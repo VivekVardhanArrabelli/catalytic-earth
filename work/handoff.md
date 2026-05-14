@@ -50,6 +50,42 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-14T18:51:29Z run after clean startup gates
+(`340` unit tests passed and `validate` passed):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and
+  the source-scale audit remains capped at 1,003 observed M-CSA source records.
+  No M-CSA-only tranche should be opened without new source-scale evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. The selected pilot still has 10 rows, 0 terminal decisions, 0
+  import-ready rows, 0 countable candidates, 3 active-site-source blockers, 10
+  broader duplicate-screening blockers, 3 representation-control
+  stability-change blockers, and 10 full-gate blockers.
+- Scientific generalization work: Yes, for direct Foldseek/TM-score split
+  repair planning, but not for a full split. This run added
+  `artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json`, which consumes
+  the target-failure audit and sequence holdout. The observed blocking pair
+  `m_csa:33`/`m_csa:34` has one conservative review-only repair candidate:
+  move held-out out-of-scope `m_csa:34` to in-distribution before regenerating
+  sequence-holdout metrics. The projected held-out count is 135, all 44
+  held-out in-scope rows remain held out, and observed blocking pairs in the
+  supplied signal project to 0 after repair. The companion projection artifact
+  `artifacts/v3_foldseek_tm_score_split_repair_projection_1000.json` applies
+  that move only in memory over the expanded100 Foldseek rows: source
+  train/test violations drop from 48 to 0 and max train/test TM-score drops
+  from `0.7515` to `0.6993`. The candidate repaired sequence holdout
+  `artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json`
+  applies the move to a copy: 135 held-out rows, 44 held-out in-scope rows, 0
+  held-out out-of-scope false non-abstentions, and no remaining held-out
+  overlap with the moved `mmseqs30:m_csa:34` cluster.
+- SPOF hardening work: Yes. The new plan prevents the exact Foldseek target
+  violation from staying as an aggregate blocker while preserving false-claim
+  safety: the repaired holdout is a candidate copy only, downstream artifacts
+  are not rebuilt from it, the source Foldseek signal remains partial, the
+  uncapped Foldseek split remains uncomputed, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-14T17:50:46Z run after clean startup gates
 (`336` unit tests passed and `validate` passed):
 
@@ -213,6 +249,27 @@ Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 
 ## Recent Project Progress
 
+- Added `artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json` plus CLI
+  and regression coverage. The plan consumes the target-failure audit and
+  sequence holdout, names `m_csa:34` as the only held-out row that must move to
+  repair the observed `m_csa:33`/`m_csa:34` TM-score split violation, and
+  records that the move preserves all 44 held-out in-scope rows while reducing
+  projected held-out count from 136 to 135. It keeps the repair unapplied,
+  review-only, non-countable, and not import-ready; the full all-materializable
+  Foldseek split remains uncomputed and no full holdout claim is permitted.
+- Added `artifacts/v3_foldseek_tm_score_split_repair_projection_1000.json`.
+  This projection applies the proposed `m_csa:34` move only to existing
+  expanded100 Foldseek pair rows, reducing source train/test violations from 48
+  to 0 and projected max train/test TM-score from `0.7515` to `0.6993`.
+  Because the sequence holdout and downstream metrics are not regenerated and
+  572 staged coordinates remain uncomputed, the projection remains review-only
+  and non-claiming.
+- Added `artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json`.
+  This candidate applies the repair to a copy of the sequence holdout, moves
+  `m_csa:34` from held-out to in-distribution, preserves all 44 held-out
+  in-scope rows, keeps held-out out-of-scope false non-abstentions at 0, and
+  records no remaining held-out overlap with the moved MMseqs2 cluster. It is
+  not canonical and downstream artifacts have not been rebuilt from it.
 - Added `artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json` plus
   CLI and regression coverage. The audit consumes the expanded100 Foldseek
   signal and identifies the exact current-split target blocker: one unique

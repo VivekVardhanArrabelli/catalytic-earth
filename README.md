@@ -369,6 +369,26 @@ pair, `m_csa:33`/`m_csa:34` (`pdb:1JC5`/`pdb:1MPY`), with max pair TM-score
 forbidden unless the split is repaired or the exclusion policy is explicitly
 reviewed; extending the capped signal alone cannot make the current split pass
 the `<0.7` target.
+`artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json` now converts that
+observed blocker into a concrete, review-only split-repair candidate: move the
+held-out out-of-scope row `m_csa:34` into the in-distribution side before
+regenerating sequence-holdout metrics. The projected held-out count would move
+from 136 to 135 while preserving all 44 held-out in-scope rows, but the repair
+is not applied yet; full TM-score holdout claims remain forbidden until the
+sequence holdout, downstream metrics, and an uncapped Foldseek-backed split are
+regenerated and pass.
+`artifacts/v3_foldseek_tm_score_split_repair_projection_1000.json` applies the
+same proposed move only as an in-memory projection over the existing expanded100
+Foldseek rows: source train/test violations drop from 48 to 0 and projected
+max train/test TM-score is `0.6993`, just under the `<0.7` target. This is
+still review-only and non-countable because the real sequence split has not
+been regenerated and 572 staged coordinates remain outside the capped signal.
+`artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json`
+applies the same move to a candidate copy of the sequence holdout: `m_csa:34`
+moves from held-out to in-distribution, held-out count becomes 135, held-out
+in-scope count stays 44, held-out out-of-scope false non-abstentions stay 0,
+and the moved MMseqs2 cluster does not overlap remaining held-out clusters.
+This candidate does not replace the canonical holdout or downstream artifacts.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

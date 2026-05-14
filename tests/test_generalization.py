@@ -5,10 +5,13 @@ import unittest
 from pathlib import Path
 
 from catalytic_earth.generalization import (
+    audit_foldseek_tm_score_split_repair,
     audit_foldseek_tm_score_target_failure,
+    build_sequence_distance_holdout_split_repair_candidate,
     build_foldseek_coordinate_readiness,
     build_foldseek_tm_score_signal,
     build_sequence_distance_holdout_eval,
+    project_foldseek_tm_score_split_repair,
 )
 from catalytic_earth.labels import MechanismLabel
 
@@ -879,6 +882,274 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertFalse(pair["countable_label_candidate"])
         self.assertFalse(pair["import_ready"])
 
+    def test_tm_score_split_repair_plan_preserves_heldout_in_scope_rows(self) -> None:
+        target_failure = {
+            "metadata": {
+                "method": "foldseek_tm_score_target_failure_audit",
+                "slice_id": "test",
+                "current_sequence_holdout_split_tm_score_target_blocked": True,
+                "source_signal_coverage_status": "partial_staged_coordinate_signal",
+                "source_signal_full_tm_score_split_computed": False,
+                "source_signal_remaining_uncomputed_staged_coordinate_count": 1,
+                "full_tm_score_holdout_claim_blockers": [
+                    "computed train/test TM-score target <0.7 is already violated in the computed subset"
+                ],
+            },
+            "blocking_pairs": [
+                {
+                    "query_structure_key": "pdb:1AAA",
+                    "target_structure_key": "pdb:2BBB",
+                    "query_entry_ids": ["m_csa:1"],
+                    "target_entry_ids": ["m_csa:2"],
+                    "max_pair_tm_score": 0.75,
+                    "violates_target": True,
+                }
+            ],
+        }
+        sequence_holdout = {
+            "metadata": {
+                "method": "sequence_fold_distance_holdout_evaluation",
+                "slice_id": "test",
+                "heldout_count": 2,
+                "in_distribution_count": 1,
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:1",
+                    "partition": "in_distribution",
+                    "label_type": "out_of_scope",
+                    "label_group": "out_of_scope",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "selected_structure_proxy_id": "pdb:1AAA",
+                },
+                {
+                    "entry_id": "m_csa:2",
+                    "partition": "heldout",
+                    "label_type": "out_of_scope",
+                    "label_group": "out_of_scope",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "selected_structure_proxy_id": "pdb:2BBB",
+                },
+                {
+                    "entry_id": "m_csa:3",
+                    "partition": "heldout",
+                    "label_type": "seed_fingerprint",
+                    "label_group": "flavin_dehydrogenase_reductase",
+                    "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+                    "selected_structure_proxy_id": "pdb:3CCC",
+                },
+            ],
+        }
+
+        artifact = audit_foldseek_tm_score_split_repair(
+            target_failure=target_failure,
+            sequence_holdout=sequence_holdout,
+            target_failure_path="artifacts/test_target_failure.json",
+            sequence_holdout_path="artifacts/test_sequence_holdout.json",
+            threshold=0.7,
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_split_repair_plan")
+        self.assertEqual(metadata["review_status"], "review_only_non_countable")
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertTrue(metadata["current_sequence_holdout_split_tm_score_target_blocked"])
+        self.assertTrue(metadata["split_repair_required_for_target"])
+        self.assertTrue(metadata["all_observed_blocking_pairs_have_repair_candidate"])
+        self.assertEqual(metadata["repair_candidate_pair_count"], 1)
+        self.assertEqual(metadata["manual_review_pair_count"], 0)
+        self.assertEqual(metadata["proposed_moved_heldout_entry_ids"], ["m_csa:2"])
+        self.assertEqual(metadata["proposed_moved_heldout_in_scope_entry_count"], 0)
+        self.assertEqual(metadata["heldout_in_scope_count_before_repair"], 1)
+        self.assertEqual(metadata["projected_heldout_in_scope_count_after_repair"], 1)
+        self.assertEqual(metadata["projected_observed_blocking_pair_count_after_repair"], 0)
+        self.assertTrue(metadata["sequence_holdout_metrics_need_regeneration_after_repair"])
+        self.assertEqual(len(artifact["rows"]), 1)
+        row = artifact["rows"][0]
+        self.assertTrue(row["repair_candidate"])
+        self.assertEqual(
+            row["repair_status"],
+            "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution",
+        )
+        self.assertEqual(row["heldout_out_of_scope_entry_ids"], ["m_csa:2"])
+        self.assertEqual(row["heldout_in_scope_entry_ids"], [])
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["import_ready"])
+
+    def test_tm_score_split_repair_projection_reclassifies_existing_signal(self) -> None:
+        signal = {
+            "metadata": {
+                "method": "foldseek_tm_score_signal",
+                "slice_id": "test",
+                "staged_coordinate_count": 3,
+                "remaining_uncomputed_staged_coordinate_count": 0,
+                "tm_score_signal_coverage_status": "partial_staged_coordinate_signal",
+                "full_tm_score_split_computed": False,
+                "full_tm_score_holdout_claim_blockers": [
+                    "computed train/test TM-score target <0.7 is not achieved"
+                ],
+            },
+            "rows": [
+                {
+                    "query_structure_key": "pdb:1AAA",
+                    "target_structure_key": "pdb:2BBB",
+                    "query_entry_ids": ["m_csa:1"],
+                    "target_entry_ids": ["m_csa:2"],
+                    "query_partitions": ["in_distribution"],
+                    "target_partitions": ["heldout"],
+                    "max_pair_tm_score": 0.75,
+                    "train_test_pair": True,
+                    "self_pair": False,
+                    "line_number": 1,
+                },
+                {
+                    "query_structure_key": "pdb:1AAA",
+                    "target_structure_key": "pdb:3CCC",
+                    "query_entry_ids": ["m_csa:1"],
+                    "target_entry_ids": ["m_csa:3"],
+                    "query_partitions": ["in_distribution"],
+                    "target_partitions": ["heldout"],
+                    "max_pair_tm_score": 0.62,
+                    "train_test_pair": True,
+                    "self_pair": False,
+                    "line_number": 2,
+                },
+            ],
+        }
+        repair_plan = {
+            "metadata": {
+                "method": "foldseek_tm_score_split_repair_plan",
+                "slice_id": "test",
+                "proposed_moved_heldout_entry_ids": ["m_csa:2"],
+            }
+        }
+
+        artifact = project_foldseek_tm_score_split_repair(
+            signal=signal,
+            repair_plan=repair_plan,
+            signal_path="artifacts/test_signal.json",
+            repair_plan_path="artifacts/test_repair_plan.json",
+            threshold=0.7,
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "foldseek_tm_score_split_repair_projection"
+        )
+        self.assertEqual(metadata["source_train_test_pair_count"], 2)
+        self.assertEqual(metadata["source_violating_train_test_pair_row_count"], 1)
+        self.assertEqual(metadata["source_max_observed_train_test_tm_score"], 0.75)
+        self.assertEqual(metadata["projected_train_test_pair_count"], 1)
+        self.assertEqual(metadata["projected_violating_train_test_pair_row_count"], 0)
+        self.assertEqual(metadata["projected_max_observed_train_test_tm_score"], 0.62)
+        self.assertTrue(
+            metadata["projected_tm_score_target_achieved_for_computed_subset"]
+        )
+        self.assertTrue(metadata["computed_subset_target_blocker_removed_by_projection"])
+        self.assertFalse(metadata["repair_applied_to_sequence_holdout"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertEqual(len(artifact["projected_blocking_pairs"]), 0)
+        self.assertEqual(len(artifact["projected_top_train_test_pairs"]), 1)
+        top_pair = artifact["projected_top_train_test_pairs"][0]
+        self.assertEqual(top_pair["target_entry_ids"], ["m_csa:3"])
+        self.assertFalse(top_pair["violates_target_after_projection"])
+        self.assertFalse(top_pair["countable_label_candidate"])
+        self.assertFalse(top_pair["import_ready"])
+
+    def test_sequence_holdout_split_repair_candidate_recomputes_partition_metrics(
+        self,
+    ) -> None:
+        sequence_holdout = {
+            "metadata": {
+                "method": "sequence_fold_distance_holdout_evaluation",
+                "slice_id": "test",
+                "sequence_identity_target_achieved": True,
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:1",
+                    "partition": "in_distribution",
+                    "label_type": "out_of_scope",
+                    "abstained": True,
+                    "real_sequence_identity_cluster_id": "cluster:1",
+                },
+                {
+                    "entry_id": "m_csa:2",
+                    "partition": "heldout",
+                    "label_type": "out_of_scope",
+                    "abstained": True,
+                    "real_sequence_identity_cluster_id": "cluster:2",
+                },
+                {
+                    "entry_id": "m_csa:3",
+                    "partition": "heldout",
+                    "label_type": "seed_fingerprint",
+                    "abstained": False,
+                    "top1_correct": True,
+                    "top3_correct": True,
+                    "real_sequence_identity_cluster_id": "cluster:3",
+                },
+            ],
+        }
+        repair_plan = {
+            "metadata": {
+                "method": "foldseek_tm_score_split_repair_plan",
+                "slice_id": "test",
+                "proposed_moved_heldout_entry_ids": ["m_csa:2"],
+            }
+        }
+        projection = {
+            "metadata": {
+                "method": "foldseek_tm_score_split_repair_projection",
+                "projected_tm_score_target_achieved_for_computed_subset": True,
+                "projected_max_observed_train_test_tm_score": 0.62,
+                "projected_violating_train_test_pair_row_count": 0,
+            }
+        }
+
+        artifact = build_sequence_distance_holdout_split_repair_candidate(
+            sequence_holdout=sequence_holdout,
+            repair_plan=repair_plan,
+            projection=projection,
+            sequence_holdout_path="artifacts/test_sequence_holdout.json",
+            repair_plan_path="artifacts/test_repair_plan.json",
+            projection_path="artifacts/test_projection.json",
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "sequence_distance_holdout_split_repair_candidate"
+        )
+        self.assertEqual(metadata["source_heldout_count"], 2)
+        self.assertEqual(metadata["repaired_heldout_count"], 1)
+        self.assertEqual(metadata["source_heldout_in_scope_count"], 1)
+        self.assertEqual(metadata["repaired_heldout_in_scope_count"], 1)
+        self.assertEqual(
+            metadata["repaired_heldout_out_of_scope_false_non_abstention_count"], 0
+        )
+        self.assertTrue(metadata["repair_candidate_applied"])
+        self.assertEqual(metadata["applied_moved_heldout_entry_ids"], ["m_csa:2"])
+        self.assertEqual(
+            metadata["remaining_heldout_sequence_identity_cluster_overlap_count"], 0
+        )
+        self.assertTrue(
+            metadata["sequence_identity_target_preserved_by_cluster_partition"]
+        )
+        self.assertFalse(metadata["real_sequence_identity_recomputed"])
+        self.assertFalse(metadata["canonical_holdout_replaced"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        moved = [row for row in artifact["rows"] if row["entry_id"] == "m_csa:2"][0]
+        self.assertEqual(moved["source_partition"], "heldout")
+        self.assertEqual(moved["partition"], "in_distribution")
+        self.assertTrue(moved["split_repair_applied_to_candidate"])
+
     def test_current_1000_foldseek_tm_score_signal_artifact_is_pinned(self) -> None:
         artifact = _load_artifact(
             "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json"
@@ -1242,6 +1513,123 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertTrue(pair["violates_target"])
         self.assertFalse(pair["countable_label_candidate"])
         self.assertFalse(pair["import_ready"])
+
+    def test_current_foldseek_split_repair_plan_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_split_repair_plan")
+        self.assertEqual(metadata["observed_blocking_pair_count"], 1)
+        self.assertEqual(metadata["repair_candidate_pair_count"], 1)
+        self.assertEqual(metadata["manual_review_pair_count"], 0)
+        self.assertTrue(metadata["all_observed_blocking_pairs_have_repair_candidate"])
+        self.assertEqual(
+            metadata["projected_observed_blocking_pair_count_after_repair"], 0
+        )
+        self.assertEqual(metadata["proposed_moved_heldout_entry_ids"], ["m_csa:34"])
+        self.assertEqual(metadata["proposed_moved_heldout_in_scope_entry_count"], 0)
+        self.assertEqual(metadata["heldout_count_before_repair"], 136)
+        self.assertEqual(metadata["projected_heldout_count_after_repair"], 135)
+        self.assertEqual(metadata["heldout_in_scope_count_before_repair"], 44)
+        self.assertEqual(metadata["projected_heldout_in_scope_count_after_repair"], 44)
+        self.assertTrue(metadata["sequence_holdout_metrics_need_regeneration_after_repair"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(len(artifact["rows"]), 1)
+        row = artifact["rows"][0]
+        self.assertEqual(row["blocking_pair_id"], "m_csa:33|m_csa:34")
+        self.assertEqual(row["query_structure_key"], "pdb:1JC5")
+        self.assertEqual(row["target_structure_key"], "pdb:1MPY")
+        self.assertEqual(row["heldout_out_of_scope_entry_ids"], ["m_csa:34"])
+        self.assertEqual(row["heldout_in_scope_entry_ids"], [])
+        self.assertTrue(row["repair_candidate"])
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["import_ready"])
+
+    def test_current_foldseek_split_repair_projection_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_split_repair_projection_1000.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "foldseek_tm_score_split_repair_projection"
+        )
+        self.assertEqual(metadata["source_train_test_pair_count"], 7317)
+        self.assertEqual(metadata["source_violating_train_test_pair_row_count"], 48)
+        self.assertEqual(metadata["source_max_observed_train_test_tm_score"], 0.7515)
+        self.assertEqual(metadata["projected_train_test_pair_count"], 6930)
+        self.assertEqual(metadata["projected_violating_train_test_pair_row_count"], 0)
+        self.assertEqual(metadata["projected_max_observed_train_test_tm_score"], 0.6993)
+        self.assertTrue(
+            metadata["projected_tm_score_target_achieved_for_computed_subset"]
+        )
+        self.assertTrue(metadata["computed_subset_target_blocker_removed_by_projection"])
+        self.assertEqual(metadata["proposed_moved_heldout_entry_ids"], ["m_csa:34"])
+        self.assertFalse(metadata["repair_applied_to_sequence_holdout"])
+        self.assertFalse(metadata["sequence_holdout_metrics_regenerated"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(len(artifact["projected_blocking_pairs"]), 0)
+        self.assertEqual(len(artifact["projected_top_train_test_pairs"]), 20)
+        top_pair = artifact["projected_top_train_test_pairs"][0]
+        self.assertEqual(top_pair["query_entry_ids"], ["m_csa:45"])
+        self.assertEqual(top_pair["target_entry_ids"], ["m_csa:54"])
+        self.assertEqual(top_pair["max_pair_tm_score"], 0.6993)
+        self.assertFalse(top_pair["violates_target_after_projection"])
+        self.assertFalse(top_pair["countable_label_candidate"])
+        self.assertFalse(top_pair["import_ready"])
+
+    def test_current_sequence_holdout_split_repair_candidate_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "sequence_distance_holdout_split_repair_candidate"
+        )
+        self.assertTrue(metadata["repair_candidate_applied"])
+        self.assertEqual(metadata["applied_moved_heldout_entry_ids"], ["m_csa:34"])
+        self.assertEqual(metadata["source_heldout_count"], 136)
+        self.assertEqual(metadata["repaired_heldout_count"], 135)
+        self.assertEqual(metadata["source_in_distribution_count"], 542)
+        self.assertEqual(metadata["repaired_in_distribution_count"], 543)
+        self.assertEqual(metadata["source_heldout_in_scope_count"], 44)
+        self.assertEqual(metadata["repaired_heldout_in_scope_count"], 44)
+        self.assertEqual(metadata["source_heldout_out_of_scope_count"], 92)
+        self.assertEqual(metadata["repaired_heldout_out_of_scope_count"], 91)
+        self.assertEqual(
+            metadata["repaired_heldout_out_of_scope_false_non_abstention_count"], 0
+        )
+        self.assertEqual(metadata["remaining_heldout_sequence_identity_cluster_overlap_count"], 0)
+        self.assertTrue(
+            metadata["sequence_identity_target_preserved_by_cluster_partition"]
+        )
+        self.assertFalse(metadata["real_sequence_identity_recomputed"])
+        self.assertEqual(metadata["foldseek_projection_max_train_test_tm_score"], 0.6993)
+        self.assertEqual(
+            metadata["foldseek_projection_violating_train_test_pair_row_count"], 0
+        )
+        self.assertFalse(metadata["canonical_holdout_replaced"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        moved_rows = [
+            row
+            for row in artifact["rows"]
+            if row.get("split_repair_applied_to_candidate")
+        ]
+        self.assertEqual(len(moved_rows), 1)
+        self.assertEqual(moved_rows[0]["entry_id"], "m_csa:34")
+        self.assertEqual(moved_rows[0]["source_partition"], "heldout")
+        self.assertEqual(moved_rows[0]["partition"], "in_distribution")
 
 
 def _result(

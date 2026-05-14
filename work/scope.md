@@ -197,7 +197,20 @@ Current expectation:
   `m_csa:33`/`m_csa:34` (`pdb:1JC5`/`pdb:1MPY`) reaches max pair TM-score
   `0.7515` across 48 chain-level violating train/test rows, so the current
   sequence-holdout split cannot claim a `<0.7` TM-score separation without split
-  repair or explicit exclusion review. The first 12-row
+  repair or explicit exclusion review. The split-repair plan now identifies one
+  conservative review-only repair candidate: move held-out out-of-scope
+  `m_csa:34` to in-distribution before regenerating holdout metrics. That would
+  reduce the held-out count from 136 to 135 while preserving all 44 held-out
+  in-scope rows and the projected observed blocking-pair count would be 0, but
+  the repair has not been applied and no full TM-score claim is permitted. A
+  projection over the existing expanded100 Foldseek rows shows the computed
+  subset would drop from 48 source violations at max `0.7515` to 0 projected
+  violations at max `0.6993`, but the real sequence split and downstream
+  metrics still need regeneration. A candidate repaired sequence holdout now
+  applies the move to a copy: 135 held-out rows, 44 held-out in-scope rows, 0
+  held-out out-of-scope false non-abstentions, and no remaining held-out
+  overlap with the moved `mmseqs30:m_csa:34` cluster. It is not canonical and
+  downstream artifacts are not rebuilt from it. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

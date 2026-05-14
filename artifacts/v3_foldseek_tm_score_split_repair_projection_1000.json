@@ -1,0 +1,874 @@
+{
+  "metadata": {
+    "blocker_not_removed": "repair is projected only; sequence holdout metrics and full Foldseek split remain unregenerated",
+    "blocker_removed": "projects the split-repair candidate across the existing Foldseek signal; the computed subset has no remaining train/test TM-score target violations",
+    "blockers_remaining": [
+      "available staged coordinates were excluded by the signal cap",
+      "downstream retrieval and holdout metrics must be recomputed after split repair",
+      "evaluated selected-coordinate coverage is partial",
+      "full all-materializable TM-score split remains uncomputed",
+      "one or more evaluated rows lacks a supported selected structure",
+      "selected structures remain outside the computed signal",
+      "sequence holdout metrics must be regenerated after split repair",
+      "split repair projection has not been applied to the sequence holdout",
+      "this builder emits a TM-score signal, not a tested full TM-score split"
+    ],
+    "computed_subset_target_blocker_removed_by_projection": true,
+    "countable_label_candidate_count": 0,
+    "countable_label_count": 0,
+    "full_tm_score_holdout_claim_blockers": [
+      "available staged coordinates were excluded by the signal cap",
+      "downstream retrieval and holdout metrics must be recomputed after split repair",
+      "evaluated selected-coordinate coverage is partial",
+      "full all-materializable TM-score split remains uncomputed",
+      "one or more evaluated rows lacks a supported selected structure",
+      "selected structures remain outside the computed signal",
+      "sequence holdout metrics must be regenerated after split repair",
+      "split repair projection has not been applied to the sequence holdout",
+      "this builder emits a TM-score signal, not a tested full TM-score split"
+    ],
+    "full_tm_score_holdout_claim_permitted": false,
+    "import_ready_candidate_count": 0,
+    "import_ready_row_count": 0,
+    "limitations": [
+      "projection reclassifies existing Foldseek rows only and does not rerun Foldseek",
+      "repair is not applied to the sequence holdout artifact",
+      "review-only artifact; it creates no countable labels and no import-ready rows",
+      "sequence holdout and downstream retrieval metrics must be regenerated before any repaired split can be evaluated",
+      "source Foldseek signal may be partial; an uncapped full split remains required"
+    ],
+    "max_reported_pairs": 20,
+    "method": "foldseek_tm_score_split_repair_projection",
+    "projected_max_observed_train_test_tm_score": 0.6993,
+    "projected_tm_score_target_achieved_for_computed_subset": true,
+    "projected_train_test_pair_count": 6930,
+    "projected_violating_train_test_pair_row_count": 0,
+    "projection_only": true,
+    "proposed_moved_heldout_entry_count": 1,
+    "proposed_moved_heldout_entry_ids": [
+      "m_csa:34"
+    ],
+    "ready_for_label_import": false,
+    "repair_applied_to_sequence_holdout": false,
+    "repair_plan_artifact": "artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json",
+    "review_status": "review_only_non_countable",
+    "sequence_holdout_metrics_regenerated": false,
+    "signal_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json",
+    "slice_id": "1000",
+    "source_max_observed_train_test_tm_score": 0.7515,
+    "source_repair_plan_method": "foldseek_tm_score_split_repair_plan",
+    "source_signal_coverage_status": "partial_staged_coordinate_signal",
+    "source_signal_full_tm_score_split_computed": false,
+    "source_signal_method": "foldseek_tm_score_signal",
+    "source_signal_remaining_uncomputed_staged_coordinate_count": 572,
+    "source_signal_staged_coordinate_count": 100,
+    "source_train_test_pair_count": 7317,
+    "source_violating_train_test_pair_row_count": 48,
+    "threshold_target": "<0.7",
+    "tm_score_target_operator": "<",
+    "tm_score_threshold": 0.7
+  },
+  "projected_blocking_pairs": [],
+  "projected_top_train_test_pairs": [
+    {
+      "alntmscore": 0.6993,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6993,
+      "projected_query_partitions": [
+        "heldout"
+      ],
+      "projected_target_partitions": [
+        "in_distribution"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.2955,
+      "query_entry_ids": [
+        "m_csa:45"
+      ],
+      "query_structure_id": "1CDG",
+      "query_structure_key": "pdb:1CDG",
+      "raw_query_name": "pdb_1CDG_A",
+      "raw_target_name": "pdb_1QFE_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "heldout"
+      ],
+      "source_signal_line_number": 6388,
+      "source_target_partitions": [
+        "in_distribution"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:54"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1QFE",
+      "target_structure_key": "pdb:1QFE",
+      "threshold": 0.7,
+      "ttmscore": 0.6926,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6993,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6993,
+      "projected_query_partitions": [
+        "in_distribution"
+      ],
+      "projected_target_partitions": [
+        "heldout"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.6926,
+      "query_entry_ids": [
+        "m_csa:54"
+      ],
+      "query_structure_id": "1QFE",
+      "query_structure_key": "pdb:1QFE",
+      "raw_query_name": "pdb_1QFE_A",
+      "raw_target_name": "pdb_1CDG_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "in_distribution"
+      ],
+      "source_signal_line_number": 20358,
+      "source_target_partitions": [
+        "heldout"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:45"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1CDG",
+      "target_structure_key": "pdb:1CDG",
+      "threshold": 0.7,
+      "ttmscore": 0.2955,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6991,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6991,
+      "projected_query_partitions": [
+        "heldout"
+      ],
+      "projected_target_partitions": [
+        "in_distribution"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.2955,
+      "query_entry_ids": [
+        "m_csa:45"
+      ],
+      "query_structure_id": "1CDG",
+      "query_structure_key": "pdb:1CDG",
+      "raw_query_name": "pdb_1CDG_A",
+      "raw_target_name": "pdb_1QFE_B",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "heldout"
+      ],
+      "source_signal_line_number": 6389,
+      "source_target_partitions": [
+        "in_distribution"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:54"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1QFE",
+      "target_structure_key": "pdb:1QFE",
+      "threshold": 0.7,
+      "ttmscore": 0.6924,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6991,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6991,
+      "projected_query_partitions": [
+        "in_distribution"
+      ],
+      "projected_target_partitions": [
+        "heldout"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.6924,
+      "query_entry_ids": [
+        "m_csa:54"
+      ],
+      "query_structure_id": "1QFE",
+      "query_structure_key": "pdb:1QFE",
+      "raw_query_name": "pdb_1QFE_B",
+      "raw_target_name": "pdb_1CDG_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "in_distribution"
+      ],
+      "source_signal_line_number": 20514,
+      "source_target_partitions": [
+        "heldout"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:45"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1CDG",
+      "target_structure_key": "pdb:1CDG",
+      "threshold": 0.7,
+      "ttmscore": 0.2955,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6937,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6937,
+      "projected_query_partitions": [
+        "heldout"
+      ],
+      "projected_target_partitions": [
+        "in_distribution"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.2678,
+      "query_entry_ids": [
+        "m_csa:45"
+      ],
+      "query_structure_id": "1CDG",
+      "query_structure_key": "pdb:1CDG",
+      "raw_query_name": "pdb_1CDG_A",
+      "raw_target_name": "pdb_1DBT_B",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "heldout"
+      ],
+      "source_signal_line_number": 6391,
+      "source_target_partitions": [
+        "in_distribution"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:50"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1DBT",
+      "target_structure_key": "pdb:1DBT",
+      "threshold": 0.7,
+      "ttmscore": 0.6912,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6937,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6937,
+      "projected_query_partitions": [
+        "in_distribution"
+      ],
+      "projected_target_partitions": [
+        "heldout"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.6912,
+      "query_entry_ids": [
+        "m_csa:50"
+      ],
+      "query_structure_id": "1DBT",
+      "query_structure_key": "pdb:1DBT",
+      "raw_query_name": "pdb_1DBT_B",
+      "raw_target_name": "pdb_1CDG_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "in_distribution"
+      ],
+      "source_signal_line_number": 8440,
+      "source_target_partitions": [
+        "heldout"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:45"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1CDG",
+      "target_structure_key": "pdb:1CDG",
+      "threshold": 0.7,
+      "ttmscore": 0.2678,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6921,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6921,
+      "projected_query_partitions": [
+        "heldout"
+      ],
+      "projected_target_partitions": [
+        "in_distribution"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.2672,
+      "query_entry_ids": [
+        "m_csa:45"
+      ],
+      "query_structure_id": "1CDG",
+      "query_structure_key": "pdb:1CDG",
+      "raw_query_name": "pdb_1CDG_A",
+      "raw_target_name": "pdb_1DBT_C",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "heldout"
+      ],
+      "source_signal_line_number": 6392,
+      "source_target_partitions": [
+        "in_distribution"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:50"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1DBT",
+      "target_structure_key": "pdb:1DBT",
+      "threshold": 0.7,
+      "ttmscore": 0.6896,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6921,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6921,
+      "projected_query_partitions": [
+        "in_distribution"
+      ],
+      "projected_target_partitions": [
+        "heldout"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.6896,
+      "query_entry_ids": [
+        "m_csa:50"
+      ],
+      "query_structure_id": "1DBT",
+      "query_structure_key": "pdb:1DBT",
+      "raw_query_name": "pdb_1DBT_C",
+      "raw_target_name": "pdb_1CDG_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "in_distribution"
+      ],
+      "source_signal_line_number": 8583,
+      "source_target_partitions": [
+        "heldout"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:45"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1CDG",
+      "target_structure_key": "pdb:1CDG",
+      "threshold": 0.7,
+      "ttmscore": 0.2672,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6917,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6917,
+      "projected_query_partitions": [
+        "heldout"
+      ],
+      "projected_target_partitions": [
+        "in_distribution"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.2702,
+      "query_entry_ids": [
+        "m_csa:45"
+      ],
+      "query_structure_id": "1CDG",
+      "query_structure_key": "pdb:1CDG",
+      "raw_query_name": "pdb_1CDG_A",
+      "raw_target_name": "pdb_1DBT_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "heldout"
+      ],
+      "source_signal_line_number": 6390,
+      "source_target_partitions": [
+        "in_distribution"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:50"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1DBT",
+      "target_structure_key": "pdb:1DBT",
+      "threshold": 0.7,
+      "ttmscore": 0.6892,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6917,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6917,
+      "projected_query_partitions": [
+        "in_distribution"
+      ],
+      "projected_target_partitions": [
+        "heldout"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.6892,
+      "query_entry_ids": [
+        "m_csa:50"
+      ],
+      "query_structure_id": "1DBT",
+      "query_structure_key": "pdb:1DBT",
+      "raw_query_name": "pdb_1DBT_A",
+      "raw_target_name": "pdb_1CDG_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "in_distribution"
+      ],
+      "source_signal_line_number": 8319,
+      "source_target_partitions": [
+        "heldout"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:45"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1CDG",
+      "target_structure_key": "pdb:1CDG",
+      "threshold": 0.7,
+      "ttmscore": 0.2702,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6911,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6911,
+      "projected_query_partitions": [
+        "in_distribution"
+      ],
+      "projected_target_partitions": [
+        "heldout"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.6715,
+      "query_entry_ids": [
+        "m_csa:63"
+      ],
+      "query_structure_id": "1CB7",
+      "query_structure_key": "pdb:1CB7",
+      "raw_query_name": "pdb_1CB7_A",
+      "raw_target_name": "pdb_1D4A_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "in_distribution"
+      ],
+      "source_signal_line_number": 5883,
+      "source_target_partitions": [
+        "heldout"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:3"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1D4A",
+      "target_structure_key": "pdb:1D4A",
+      "threshold": 0.7,
+      "ttmscore": 0.381,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6911,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6911,
+      "projected_query_partitions": [
+        "heldout"
+      ],
+      "projected_target_partitions": [
+        "in_distribution"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.381,
+      "query_entry_ids": [
+        "m_csa:3"
+      ],
+      "query_structure_id": "1D4A",
+      "query_structure_key": "pdb:1D4A",
+      "raw_query_name": "pdb_1D4A_A",
+      "raw_target_name": "pdb_1CB7_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "heldout"
+      ],
+      "source_signal_line_number": 7257,
+      "source_target_partitions": [
+        "in_distribution"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:63"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1CB7",
+      "target_structure_key": "pdb:1CB7",
+      "threshold": 0.7,
+      "ttmscore": 0.6715,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.69,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.69,
+      "projected_query_partitions": [
+        "in_distribution"
+      ],
+      "projected_target_partitions": [
+        "heldout"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.6704,
+      "query_entry_ids": [
+        "m_csa:63"
+      ],
+      "query_structure_id": "1CB7",
+      "query_structure_key": "pdb:1CB7",
+      "raw_query_name": "pdb_1CB7_C",
+      "raw_target_name": "pdb_1D4A_C",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "in_distribution"
+      ],
+      "source_signal_line_number": 6150,
+      "source_target_partitions": [
+        "heldout"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:3"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1D4A",
+      "target_structure_key": "pdb:1D4A",
+      "threshold": 0.7,
+      "ttmscore": 0.3795,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.69,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.69,
+      "projected_query_partitions": [
+        "heldout"
+      ],
+      "projected_target_partitions": [
+        "in_distribution"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.3795,
+      "query_entry_ids": [
+        "m_csa:3"
+      ],
+      "query_structure_id": "1D4A",
+      "query_structure_key": "pdb:1D4A",
+      "raw_query_name": "pdb_1D4A_C",
+      "raw_target_name": "pdb_1CB7_C",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "heldout"
+      ],
+      "source_signal_line_number": 7512,
+      "source_target_partitions": [
+        "in_distribution"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:63"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1CB7",
+      "target_structure_key": "pdb:1CB7",
+      "threshold": 0.7,
+      "ttmscore": 0.6704,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.689,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.689,
+      "projected_query_partitions": [
+        "in_distribution"
+      ],
+      "projected_target_partitions": [
+        "heldout"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.6697,
+      "query_entry_ids": [
+        "m_csa:63"
+      ],
+      "query_structure_id": "1CB7",
+      "query_structure_key": "pdb:1CB7",
+      "raw_query_name": "pdb_1CB7_C",
+      "raw_target_name": "pdb_1D4A_B",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "in_distribution"
+      ],
+      "source_signal_line_number": 6151,
+      "source_target_partitions": [
+        "heldout"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:3"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1D4A",
+      "target_structure_key": "pdb:1D4A",
+      "threshold": 0.7,
+      "ttmscore": 0.3796,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.689,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.689,
+      "projected_query_partitions": [
+        "heldout"
+      ],
+      "projected_target_partitions": [
+        "in_distribution"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.3796,
+      "query_entry_ids": [
+        "m_csa:3"
+      ],
+      "query_structure_id": "1D4A",
+      "query_structure_key": "pdb:1D4A",
+      "raw_query_name": "pdb_1D4A_B",
+      "raw_target_name": "pdb_1CB7_C",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "heldout"
+      ],
+      "source_signal_line_number": 7387,
+      "source_target_partitions": [
+        "in_distribution"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:63"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1CB7",
+      "target_structure_key": "pdb:1CB7",
+      "threshold": 0.7,
+      "ttmscore": 0.6697,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6889,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6889,
+      "projected_query_partitions": [
+        "in_distribution"
+      ],
+      "projected_target_partitions": [
+        "heldout"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.6695,
+      "query_entry_ids": [
+        "m_csa:63"
+      ],
+      "query_structure_id": "1CB7",
+      "query_structure_key": "pdb:1CB7",
+      "raw_query_name": "pdb_1CB7_A",
+      "raw_target_name": "pdb_1D4A_D",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "in_distribution"
+      ],
+      "source_signal_line_number": 5884,
+      "source_target_partitions": [
+        "heldout"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:3"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1D4A",
+      "target_structure_key": "pdb:1D4A",
+      "threshold": 0.7,
+      "ttmscore": 0.3802,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6889,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6889,
+      "projected_query_partitions": [
+        "heldout"
+      ],
+      "projected_target_partitions": [
+        "in_distribution"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.3802,
+      "query_entry_ids": [
+        "m_csa:3"
+      ],
+      "query_structure_id": "1D4A",
+      "query_structure_key": "pdb:1D4A",
+      "raw_query_name": "pdb_1D4A_D",
+      "raw_target_name": "pdb_1CB7_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "heldout"
+      ],
+      "source_signal_line_number": 7653,
+      "source_target_partitions": [
+        "in_distribution"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:63"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1CB7",
+      "target_structure_key": "pdb:1CB7",
+      "threshold": 0.7,
+      "ttmscore": 0.6695,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6887,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6887,
+      "projected_query_partitions": [
+        "in_distribution"
+      ],
+      "projected_target_partitions": [
+        "heldout"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.6654,
+      "query_entry_ids": [
+        "m_csa:63"
+      ],
+      "query_structure_id": "1CB7",
+      "query_structure_key": "pdb:1CB7",
+      "raw_query_name": "pdb_1CB7_A",
+      "raw_target_name": "pdb_1D4A_B",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "in_distribution"
+      ],
+      "source_signal_line_number": 5886,
+      "source_target_partitions": [
+        "heldout"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:3"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1D4A",
+      "target_structure_key": "pdb:1D4A",
+      "threshold": 0.7,
+      "ttmscore": 0.3782,
+      "violates_target_after_projection": false
+    },
+    {
+      "alntmscore": 0.6887,
+      "countable_label_candidate": false,
+      "import_ready": false,
+      "max_pair_tm_score": 0.6887,
+      "projected_query_partitions": [
+        "heldout"
+      ],
+      "projected_target_partitions": [
+        "in_distribution"
+      ],
+      "projected_train_test_pair": true,
+      "qtmscore": 0.3782,
+      "query_entry_ids": [
+        "m_csa:3"
+      ],
+      "query_structure_id": "1D4A",
+      "query_structure_key": "pdb:1D4A",
+      "raw_query_name": "pdb_1D4A_B",
+      "raw_target_name": "pdb_1CB7_A",
+      "review_status": "review_only_non_countable",
+      "self_pair": false,
+      "source_query_partitions": [
+        "heldout"
+      ],
+      "source_signal_line_number": 7388,
+      "source_target_partitions": [
+        "in_distribution"
+      ],
+      "source_train_test_pair": true,
+      "target_entry_ids": [
+        "m_csa:63"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1CB7",
+      "target_structure_key": "pdb:1CB7",
+      "threshold": 0.7,
+      "ttmscore": 0.6654,
+      "violates_target_after_projection": false
+    }
+  ]
+}

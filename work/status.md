@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 96
-- Measured elapsed time: 3416.3 minutes (56.94 hours)
+- Entries: 98
+- Measured elapsed time: 3433.6 minutes (57.23 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 770.0 measured minutes (12.83 hours)
+- post-mcsa-spof-hardening: 787.3 measured minutes (13.12 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,32 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1010
-- Evidence references logged: 825
+- Artifact references logged: 1029
+- Evidence references logged: 843
 
 ## Recent Entries
-
-### 2026-05-14T12:34:37.036864+00:00 - post-mcsa-spof-hardening
-
-- Task: Delegated Foldseek all-materializable retry attempt
-- Time mode: measured
-- Measured minutes: 52.017
-- Started: 2026-05-14T11:42:35Z
-- Ended: 2026-05-14T12:34:36Z
-- Artifacts: work/handoff.md
-- Evidence: 331 unit tests passed before delegation, validate passed before delegation, MMseqs BLAST+ DIAMOND present on PATH, Foldseek 10.941cd33 available at /private/tmp/catalytic-foldseek-env/bin/foldseek, worker shut down with no parent worktree changes, 0 countable labels, 0 import-ready rows
-- Notes: Normal locked instruction-only run per user override. Parent did not implement backend changes locally; delegated worker timed out and was closed, leaving the worktree clean before bookkeeping.
-
-### 2026-05-14T12:50:26.982940+00:00 - post-mcsa-spof-hardening
-
-- Task: Sequence holdout backend metadata hardening
-- Time mode: measured
-- Measured minutes: 6.0
-- Started: 2026-05-14T12:44:26Z
-- Ended: 2026-05-14T12:50:26Z
-- Artifacts: src/catalytic_earth/generalization.py, tests/test_generalization.py, artifacts/v3_sequence_distance_holdout_eval_1000.json, artifacts/v3_sequence_distance_holdout_eval_1025.json, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: 331 unit tests passed before editing, validate passed before editing, targeted sequence holdout tests passed, MMseqs2 18-8cc5c real sequence holdout metadata aliases, 0 held-out out-of-scope false non-abstentions, Foldseek absent from PATH
-- Notes: Normal locked local implementation run. No M-CSA count growth and no external import.
 
 ### 2026-05-14T14:10:21.275491+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +94,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json, artifacts/v3_external_source_pilot_representation_adjudication_1025.json, artifacts/v3_external_source_pilot_success_criteria_1025.json, tests/test_generalization.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/external_source_transfer_1025_notes.md, work/handoff.md, work/scope.md
 - Evidence: 340 unit tests passed, validate passed with 679 curated labels, git diff check passed, 0 countable labels, 0 import-ready rows
 - Notes: Final direct-run verification and documentation refresh after blocker-removal artifacts.
+
+### 2026-05-14T19:04:21.441130+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek split repair projection
+- Time mode: measured
+- Measured minutes: 12.859
+- Started: 2026-05-14T13:51:29.436087-05:00
+- Ended: 2026-05-14T14:04:21-0500
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json, artifacts/v3_foldseek_tm_score_split_repair_projection_1000.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 344 unit tests passed, validate passed, compileall passed, git diff check passed, Foldseek split repair plan moves m_csa:34 only, projection drops train/test TM violations from 48 to 0 and max TM-score to 0.6993, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
+
+### 2026-05-14T19:08:48.002960+00:00 - post-mcsa-spof-hardening
+
+- Task: Sequence holdout split repair candidate
+- Time mode: measured
+- Measured minutes: 4.417
+- Started: 2026-05-14T14:04:22-0500
+- Ended: 2026-05-14T14:08:47-0500
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 346 unit tests passed, validate passed, compileall passed, git diff check passed, JSON parse passed, candidate holdout moves m_csa:34 only, preserves 44 held-out in-scope rows, held-out out-of-scope false non-abstentions remain 0, 0 countable labels, 0 import-ready rows
+- Notes: Second direct bounded slice in the same locked run. No delegation, no count/import growth.
 
 ## Expectation Updates
 
@@ -200,6 +200,8 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T15:07:52.876846+00:00: External pilot now has measurable success criteria and remains needs_more_work; Foldseek selected-structure blocker is narrowed to explicit coordinate exclusions plus the unrun full TM-score split.
 - 2026-05-14T16:15:30.855586+00:00: Expanded80 removes the expanded60 partial-signal ceiling, but full TM-score split remains blocked by two coordinate exclusions, the capped-out staged coordinates, and the failed <0.7 computed-subset target.
 - 2026-05-14T17:29:09.455993+00:00: Expanded100 removes the expanded80 partial-signal ceiling, but full TM-score split remains blocked by two coordinate exclusions, the capped-out staged coordinates, and the failed <0.7 computed-subset target.
+- 2026-05-14T19:04:21.441130+00:00: Next Foldseek work should apply/regenerate the repaired split and rerun downstream metrics before any full TM-score claim
+- 2026-05-14T19:08:48.002960+00:00: Next Foldseek work should rebuild downstream evaluation from the candidate split and run an uncapped all-materializable Foldseek signal when feasible
 
 ## Scope Adjustments
 
@@ -287,3 +289,5 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T15:07:52.876846+00:00: Do not count external pilot evidence as success until terminal decisions and import criteria pass; report m_csa:372 and m_csa:501 as coordinate exclusions before any full TM-score holdout claim.
 - 2026-05-14T16:15:30.855586+00:00: Foldseek TM-score evidence is stronger but still review-only and non-countable; do not treat expanded80 as a full holdout split.
 - 2026-05-14T17:29:09.455993+00:00: Foldseek TM-score evidence is stronger but still review-only and non-countable; do not treat expanded100 as a full holdout split.
+- 2026-05-14T19:04:21.441130+00:00: Foldseek target failure now has a concrete unapplied repair candidate and computed-subset projection; full holdout still requires regenerated sequence metrics and uncapped Foldseek split
+- 2026-05-14T19:08:48.002960+00:00: Foldseek split repair now has an unapplied candidate sequence holdout copy; canonical holdout and downstream artifacts still need regeneration before any claim

@@ -1373,12 +1373,827 @@ def audit_foldseek_tm_score_target_failure(
     return {"metadata": metadata, "blocking_pairs": blocking_pairs}
 
 
+def audit_foldseek_tm_score_split_repair(
+    *,
+    target_failure: dict[str, Any],
+    sequence_holdout: dict[str, Any],
+    target_failure_path: str | None = None,
+    sequence_holdout_path: str | None = None,
+    threshold: float = 0.7,
+) -> dict[str, Any]:
+    """Plan a conservative repair for observed Foldseek TM-score split failures.
+
+    This does not rewrite the sequence holdout. It identifies whether each
+    observed target-violating train/test pair has a concrete split-repair
+    candidate that preserves held-out in-scope positives.
+    """
+
+    target_metadata = (
+        target_failure.get("metadata", {}) if isinstance(target_failure, dict) else {}
+    )
+    if not isinstance(target_metadata, dict):
+        target_metadata = {}
+    holdout_metadata = (
+        sequence_holdout.get("metadata", {})
+        if isinstance(sequence_holdout, dict)
+        else {}
+    )
+    if not isinstance(holdout_metadata, dict):
+        holdout_metadata = {}
+
+    holdout_rows = [
+        row
+        for row in (sequence_holdout.get("rows", []) if isinstance(sequence_holdout, dict) else [])
+        if isinstance(row, dict)
+    ]
+    rows_by_entry = {
+        str(row["entry_id"]): row
+        for row in holdout_rows
+        if isinstance(row.get("entry_id"), str)
+    }
+    blocking_pairs = [
+        row
+        for row in (
+            target_failure.get("blocking_pairs", [])
+            if isinstance(target_failure, dict)
+            else []
+        )
+        if isinstance(row, dict) and row.get("violates_target")
+    ]
+
+    rows: list[dict[str, Any]] = []
+    moved_heldout_entries: set[str] = set()
+    manual_review_count = 0
+    repair_candidate_count = 0
+    moved_heldout_in_scope_count = 0
+    moved_heldout_out_of_scope_count = 0
+
+    for index, pair in enumerate(blocking_pairs, start=1):
+        query_entries = _string_list(pair.get("query_entry_ids"))
+        target_entries = _string_list(pair.get("target_entry_ids"))
+        entry_ids = sorted(set(query_entries + target_entries), key=_entry_id_sort_key)
+        missing_entries = [entry_id for entry_id in entry_ids if entry_id not in rows_by_entry]
+        entry_rows = {entry_id: rows_by_entry.get(entry_id, {}) for entry_id in entry_ids}
+        heldout_entries = [
+            entry_id
+            for entry_id in entry_ids
+            if entry_rows.get(entry_id, {}).get("partition") == "heldout"
+        ]
+        in_distribution_entries = [
+            entry_id
+            for entry_id in entry_ids
+            if entry_rows.get(entry_id, {}).get("partition") == "in_distribution"
+        ]
+        heldout_in_scope_entries = [
+            entry_id
+            for entry_id in heldout_entries
+            if entry_rows.get(entry_id, {}).get("label_type") != "out_of_scope"
+        ]
+        heldout_out_of_scope_entries = [
+            entry_id
+            for entry_id in heldout_entries
+            if entry_rows.get(entry_id, {}).get("label_type") == "out_of_scope"
+        ]
+        score = _parse_optional_float(pair.get("max_pair_tm_score"))
+        score_blocks_target = score is not None and score >= float(threshold)
+
+        if missing_entries:
+            status = "requires_manual_review_missing_sequence_holdout_rows"
+            action = "inspect_missing_sequence_holdout_rows_before_repartition"
+            repair_candidate = False
+        elif not score_blocks_target:
+            status = "no_repair_needed_below_threshold"
+            action = "keep_existing_partition_for_this_pair"
+            repair_candidate = False
+        elif not heldout_entries or not in_distribution_entries:
+            status = "requires_manual_review_not_a_simple_train_test_pair"
+            action = "inspect_pair_partition_before_repartition"
+            repair_candidate = False
+        elif heldout_in_scope_entries:
+            status = "requires_manual_review_would_move_heldout_in_scope_rows"
+            action = "design_new_stratified_partition_before_repartition"
+            repair_candidate = False
+        else:
+            status = "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution"
+            action = (
+                "move_heldout_out_of_scope_entries_to_in_distribution_and_regenerate_"
+                "sequence_holdout_metrics_before_any_tm_score_claim"
+            )
+            repair_candidate = True
+            moved_heldout_entries.update(heldout_out_of_scope_entries)
+
+        if repair_candidate:
+            repair_candidate_count += 1
+            moved_heldout_out_of_scope_count += len(heldout_out_of_scope_entries)
+        else:
+            manual_review_count += 1
+        moved_heldout_in_scope_count += len(heldout_in_scope_entries)
+
+        rows.append(
+            {
+                "blocking_pair_index": index,
+                "blocking_pair_id": "|".join(entry_ids),
+                "query_structure_key": pair.get("query_structure_key"),
+                "target_structure_key": pair.get("target_structure_key"),
+                "query_structure_id": pair.get("query_structure_id"),
+                "target_structure_id": pair.get("target_structure_id"),
+                "query_entry_ids": query_entries,
+                "target_entry_ids": target_entries,
+                "entry_ids": entry_ids,
+                "missing_sequence_holdout_entry_ids": missing_entries,
+                "current_partition_by_entry": {
+                    entry_id: entry_rows.get(entry_id, {}).get("partition")
+                    for entry_id in entry_ids
+                },
+                "label_type_by_entry": {
+                    entry_id: entry_rows.get(entry_id, {}).get("label_type")
+                    for entry_id in entry_ids
+                },
+                "label_group_by_entry": {
+                    entry_id: entry_rows.get(entry_id, {}).get("label_group")
+                    for entry_id in entry_ids
+                },
+                "top1_fingerprint_by_entry": {
+                    entry_id: entry_rows.get(entry_id, {}).get("top1_fingerprint_id")
+                    for entry_id in entry_ids
+                },
+                "selected_structure_proxy_by_entry": {
+                    entry_id: entry_rows.get(entry_id, {}).get("selected_structure_proxy_id")
+                    for entry_id in entry_ids
+                },
+                "heldout_entry_ids": heldout_entries,
+                "in_distribution_entry_ids": in_distribution_entries,
+                "heldout_in_scope_entry_ids": heldout_in_scope_entries,
+                "heldout_out_of_scope_entry_ids": heldout_out_of_scope_entries,
+                "proposed_entries_to_move_to_in_distribution": (
+                    heldout_out_of_scope_entries if repair_candidate else []
+                ),
+                "projected_pair_partition_after_repair": (
+                    "co_partitioned_in_distribution" if repair_candidate else None
+                ),
+                "max_pair_tm_score": pair.get("max_pair_tm_score"),
+                "threshold": float(threshold),
+                "target_operator": "<",
+                "violates_target": score_blocks_target,
+                "repair_candidate": repair_candidate,
+                "repair_status": status,
+                "recommended_repair_action": action,
+                "review_status": "review_only_non_countable",
+                "countable_label_candidate": False,
+                "import_ready": False,
+            }
+        )
+
+    heldout_count = int(holdout_metadata.get("heldout_count", 0) or 0)
+    in_distribution_count = int(holdout_metadata.get("in_distribution_count", 0) or 0)
+    heldout_in_scope_before = sum(
+        1
+        for row in holdout_rows
+        if row.get("partition") == "heldout" and row.get("label_type") != "out_of_scope"
+    )
+    heldout_out_of_scope_before = sum(
+        1
+        for row in holdout_rows
+        if row.get("partition") == "heldout" and row.get("label_type") == "out_of_scope"
+    )
+    projected_heldout_count = max(0, heldout_count - len(moved_heldout_entries))
+    projected_in_distribution_count = in_distribution_count + len(moved_heldout_entries)
+    projected_heldout_in_scope_count = max(
+        0, heldout_in_scope_before - moved_heldout_in_scope_count
+    )
+    projected_heldout_out_of_scope_count = max(
+        0, heldout_out_of_scope_before - moved_heldout_out_of_scope_count
+    )
+    all_pairs_have_repair_candidate = bool(blocking_pairs) and repair_candidate_count == len(
+        blocking_pairs
+    )
+    projected_observed_blocking_pairs_after_repair = (
+        0 if all_pairs_have_repair_candidate else len(blocking_pairs) - repair_candidate_count
+    )
+    target_blocked = bool(
+        target_metadata.get("current_sequence_holdout_split_tm_score_target_blocked")
+        or blocking_pairs
+    )
+
+    claim_blockers = [
+        str(blocker)
+        for blocker in target_metadata.get("full_tm_score_holdout_claim_blockers", [])
+        if isinstance(blocker, str)
+    ]
+    claim_blockers.extend(
+        [
+            "split repair plan has not been applied to the sequence holdout",
+            "sequence holdout metrics must be regenerated after any split repair",
+            "full all-materializable TM-score split remains uncomputed",
+        ]
+    )
+    if projected_observed_blocking_pairs_after_repair:
+        claim_blockers.append(
+            "one or more observed blocking pairs lacks a conservative repair candidate"
+        )
+
+    metadata = {
+        "method": "foldseek_tm_score_split_repair_plan",
+        "blocker_removed": (
+            "turns the observed target-violating Foldseek train/test pair into a "
+            "concrete split-repair candidate that preserves held-out in-scope positives"
+            if all_pairs_have_repair_candidate
+            else None
+        ),
+        "blocker_not_removed": "full all-materializable Foldseek/TM-score split remains uncomputed",
+        "blockers_remaining": sorted(set(claim_blockers)),
+        "slice_id": str(
+            target_metadata.get("slice_id") or holdout_metadata.get("slice_id") or ""
+        ),
+        "target_failure_artifact": target_failure_path,
+        "sequence_holdout_artifact": sequence_holdout_path,
+        "source_target_failure_method": target_metadata.get("method"),
+        "source_sequence_holdout_method": holdout_metadata.get("method"),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate_count": 0,
+        "countable_label_count": 0,
+        "import_ready_candidate_count": 0,
+        "import_ready_row_count": 0,
+        "ready_for_label_import": False,
+        "threshold_target": "<0.7",
+        "tm_score_threshold": float(threshold),
+        "tm_score_target_operator": "<",
+        "current_sequence_holdout_split_tm_score_target_blocked": target_blocked,
+        "split_repair_required_for_target": target_blocked,
+        "observed_blocking_pair_count": len(blocking_pairs),
+        "repair_candidate_pair_count": repair_candidate_count,
+        "manual_review_pair_count": manual_review_count,
+        "all_observed_blocking_pairs_have_repair_candidate": all_pairs_have_repair_candidate,
+        "projected_observed_blocking_pair_count_after_repair": projected_observed_blocking_pairs_after_repair,
+        "proposed_moved_heldout_entry_ids": sorted(
+            moved_heldout_entries, key=_entry_id_sort_key
+        ),
+        "proposed_moved_heldout_entry_count": len(moved_heldout_entries),
+        "proposed_moved_heldout_in_scope_entry_count": moved_heldout_in_scope_count,
+        "proposed_moved_heldout_out_of_scope_entry_count": moved_heldout_out_of_scope_count,
+        "heldout_count_before_repair": heldout_count,
+        "projected_heldout_count_after_repair": projected_heldout_count,
+        "in_distribution_count_before_repair": in_distribution_count,
+        "projected_in_distribution_count_after_repair": projected_in_distribution_count,
+        "heldout_in_scope_count_before_repair": heldout_in_scope_before,
+        "projected_heldout_in_scope_count_after_repair": projected_heldout_in_scope_count,
+        "heldout_out_of_scope_count_before_repair": heldout_out_of_scope_before,
+        "projected_heldout_out_of_scope_count_after_repair": projected_heldout_out_of_scope_count,
+        "sequence_holdout_metrics_need_regeneration_after_repair": bool(
+            moved_heldout_entries
+        ),
+        "tm_score_signal_coverage_status": target_metadata.get(
+            "source_signal_coverage_status"
+        ),
+        "source_signal_full_tm_score_split_computed": bool(
+            target_metadata.get("source_signal_full_tm_score_split_computed")
+        ),
+        "source_signal_remaining_uncomputed_staged_coordinate_count": target_metadata.get(
+            "source_signal_remaining_uncomputed_staged_coordinate_count"
+        ),
+        "full_tm_score_holdout_claim_permitted": False,
+        "full_tm_score_holdout_claim_blockers": sorted(set(claim_blockers)),
+        "limitations": sorted(
+            {
+                "repair plan is not applied to the sequence holdout artifact",
+                "review-only artifact; it creates no countable labels and no import-ready rows",
+                "plan covers observed target-violating pairs in the supplied partial Foldseek signal only",
+                "sequence holdout and downstream retrieval metrics must be regenerated before any repaired split can be evaluated",
+                "full all-materializable Foldseek/TM-score split remains uncomputed",
+            }
+        ),
+    }
+    return {"metadata": metadata, "rows": rows}
+
+
+def project_foldseek_tm_score_split_repair(
+    *,
+    signal: dict[str, Any],
+    repair_plan: dict[str, Any],
+    signal_path: str | None = None,
+    repair_plan_path: str | None = None,
+    threshold: float = 0.7,
+    max_reported_pairs: int = 20,
+) -> dict[str, Any]:
+    """Project a proposed split repair across an existing Foldseek signal.
+
+    The projection reclassifies pair partitions in memory only. It does not
+    mutate the sequence holdout or rerun Foldseek.
+    """
+
+    signal_metadata = signal.get("metadata", {}) if isinstance(signal, dict) else {}
+    if not isinstance(signal_metadata, dict):
+        signal_metadata = {}
+    repair_metadata = (
+        repair_plan.get("metadata", {}) if isinstance(repair_plan, dict) else {}
+    )
+    if not isinstance(repair_metadata, dict):
+        repair_metadata = {}
+
+    moved_entries = sorted(
+        {
+            str(entry_id)
+            for entry_id in repair_metadata.get("proposed_moved_heldout_entry_ids", [])
+            if isinstance(entry_id, str)
+        },
+        key=_entry_id_sort_key,
+    )
+    moved_entry_set = set(moved_entries)
+    threshold_value = float(threshold)
+    rows_in = [
+        row
+        for row in (signal.get("rows", []) if isinstance(signal, dict) else [])
+        if isinstance(row, dict)
+    ]
+
+    source_train_test_count = 0
+    source_violating_count = 0
+    source_max_train_test_tm_score: float | None = None
+    projected_train_test_rows: list[dict[str, Any]] = []
+    projected_violating_rows: list[dict[str, Any]] = []
+    projected_max_train_test_tm_score: float | None = None
+
+    for row in rows_in:
+        score = _parse_optional_float(row.get("max_pair_tm_score"))
+        if row.get("train_test_pair"):
+            source_train_test_count += 1
+            if score is not None:
+                source_max_train_test_tm_score = (
+                    score
+                    if source_max_train_test_tm_score is None
+                    else max(source_max_train_test_tm_score, score)
+                )
+                if score >= threshold_value:
+                    source_violating_count += 1
+
+        query_entries = _string_list(row.get("query_entry_ids"))
+        target_entries = _string_list(row.get("target_entry_ids"))
+        query_partitions = _projected_partitions_after_entry_moves(
+            row.get("query_partitions"), query_entries, moved_entry_set
+        )
+        target_partitions = _projected_partitions_after_entry_moves(
+            row.get("target_partitions"), target_entries, moved_entry_set
+        )
+        projected_train_test = _partitions_are_train_test_pair(
+            query_partitions, target_partitions
+        )
+        if not projected_train_test:
+            continue
+        projected_row = _foldseek_projected_pair_summary(
+            row=row,
+            query_partitions=query_partitions,
+            target_partitions=target_partitions,
+            threshold=threshold_value,
+        )
+        projected_train_test_rows.append(projected_row)
+        if score is not None:
+            projected_max_train_test_tm_score = (
+                score
+                if projected_max_train_test_tm_score is None
+                else max(projected_max_train_test_tm_score, score)
+            )
+            if score >= threshold_value:
+                projected_violating_rows.append(projected_row)
+
+    projected_target_achieved = (
+        projected_max_train_test_tm_score is not None
+        and projected_max_train_test_tm_score < threshold_value
+    )
+    top_projected_pairs = sorted(
+        projected_train_test_rows,
+        key=lambda item: (
+            -(_parse_optional_float(item.get("max_pair_tm_score")) or 0.0),
+            str(item.get("query_structure_key") or ""),
+            str(item.get("target_structure_key") or ""),
+        ),
+    )[: max(0, int(max_reported_pairs))]
+
+    source_claim_blockers = [
+        str(blocker)
+        for blocker in signal_metadata.get("full_tm_score_holdout_claim_blockers", [])
+        if isinstance(blocker, str)
+    ]
+    if projected_target_achieved:
+        source_claim_blockers = [
+            blocker
+            for blocker in source_claim_blockers
+            if "computed train/test TM-score target <0.7" not in blocker
+        ]
+    claim_blockers = source_claim_blockers + [
+        "split repair projection has not been applied to the sequence holdout",
+        "sequence holdout metrics must be regenerated after split repair",
+        "downstream retrieval and holdout metrics must be recomputed after split repair",
+        "full all-materializable TM-score split remains uncomputed",
+    ]
+    if projected_violating_rows:
+        claim_blockers.append(
+            "projected train/test TM-score target <0.7 is still violated in the computed subset"
+        )
+    if not moved_entries:
+        claim_blockers.append("no held-out entries were proposed for split repair")
+
+    metadata = {
+        "method": "foldseek_tm_score_split_repair_projection",
+        "blocker_removed": (
+            "projects the split-repair candidate across the existing Foldseek signal; "
+            "the computed subset has no remaining train/test TM-score target violations"
+            if projected_target_achieved and not projected_violating_rows
+            else None
+        ),
+        "blocker_not_removed": (
+            "repair is projected only; sequence holdout metrics and full Foldseek split "
+            "remain unregenerated"
+        ),
+        "blockers_remaining": sorted(set(claim_blockers)),
+        "slice_id": str(
+            signal_metadata.get("slice_id") or repair_metadata.get("slice_id") or ""
+        ),
+        "signal_artifact": signal_path,
+        "repair_plan_artifact": repair_plan_path,
+        "source_signal_method": signal_metadata.get("method"),
+        "source_repair_plan_method": repair_metadata.get("method"),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate_count": 0,
+        "countable_label_count": 0,
+        "import_ready_candidate_count": 0,
+        "import_ready_row_count": 0,
+        "ready_for_label_import": False,
+        "threshold_target": "<0.7",
+        "tm_score_threshold": threshold_value,
+        "tm_score_target_operator": "<",
+        "projection_only": True,
+        "repair_applied_to_sequence_holdout": False,
+        "sequence_holdout_metrics_regenerated": False,
+        "proposed_moved_heldout_entry_ids": moved_entries,
+        "proposed_moved_heldout_entry_count": len(moved_entries),
+        "source_train_test_pair_count": source_train_test_count,
+        "source_violating_train_test_pair_row_count": source_violating_count,
+        "source_max_observed_train_test_tm_score": (
+            round(source_max_train_test_tm_score, 4)
+            if source_max_train_test_tm_score is not None
+            else None
+        ),
+        "projected_train_test_pair_count": len(projected_train_test_rows),
+        "projected_violating_train_test_pair_row_count": len(projected_violating_rows),
+        "projected_max_observed_train_test_tm_score": (
+            round(projected_max_train_test_tm_score, 4)
+            if projected_max_train_test_tm_score is not None
+            else None
+        ),
+        "projected_tm_score_target_achieved_for_computed_subset": projected_target_achieved,
+        "computed_subset_target_blocker_removed_by_projection": (
+            projected_target_achieved and not projected_violating_rows
+        ),
+        "source_signal_staged_coordinate_count": signal_metadata.get(
+            "staged_coordinate_count"
+        ),
+        "source_signal_remaining_uncomputed_staged_coordinate_count": signal_metadata.get(
+            "remaining_uncomputed_staged_coordinate_count"
+        ),
+        "source_signal_coverage_status": signal_metadata.get(
+            "tm_score_signal_coverage_status"
+        ),
+        "source_signal_full_tm_score_split_computed": bool(
+            signal_metadata.get("full_tm_score_split_computed")
+        ),
+        "full_tm_score_holdout_claim_permitted": False,
+        "full_tm_score_holdout_claim_blockers": sorted(set(claim_blockers)),
+        "max_reported_pairs": max(0, int(max_reported_pairs)),
+        "limitations": sorted(
+            {
+                "projection reclassifies existing Foldseek rows only and does not rerun Foldseek",
+                "repair is not applied to the sequence holdout artifact",
+                "sequence holdout and downstream retrieval metrics must be regenerated before any repaired split can be evaluated",
+                "source Foldseek signal may be partial; an uncapped full split remains required",
+                "review-only artifact; it creates no countable labels and no import-ready rows",
+            }
+        ),
+    }
+    return {
+        "metadata": metadata,
+        "projected_top_train_test_pairs": top_projected_pairs,
+        "projected_blocking_pairs": projected_violating_rows[
+            : max(0, int(max_reported_pairs))
+        ],
+    }
+
+
+def build_sequence_distance_holdout_split_repair_candidate(
+    *,
+    sequence_holdout: dict[str, Any],
+    repair_plan: dict[str, Any],
+    projection: dict[str, Any] | None = None,
+    sequence_holdout_path: str | None = None,
+    repair_plan_path: str | None = None,
+    projection_path: str | None = None,
+) -> dict[str, Any]:
+    """Apply a split-repair plan to a candidate copy of a sequence holdout."""
+
+    source_metadata = (
+        sequence_holdout.get("metadata", {})
+        if isinstance(sequence_holdout, dict)
+        else {}
+    )
+    if not isinstance(source_metadata, dict):
+        source_metadata = {}
+    repair_metadata = (
+        repair_plan.get("metadata", {}) if isinstance(repair_plan, dict) else {}
+    )
+    if not isinstance(repair_metadata, dict):
+        repair_metadata = {}
+    projection_metadata = (
+        (projection or {}).get("metadata", {}) if isinstance(projection, dict) else {}
+    )
+    if not isinstance(projection_metadata, dict):
+        projection_metadata = {}
+
+    moved_entries = sorted(
+        {
+            str(entry_id)
+            for entry_id in repair_metadata.get("proposed_moved_heldout_entry_ids", [])
+            if isinstance(entry_id, str)
+        },
+        key=_entry_id_sort_key,
+    )
+    moved_entry_set = set(moved_entries)
+    rows_in = [
+        row
+        for row in (
+            sequence_holdout.get("rows", [])
+            if isinstance(sequence_holdout, dict)
+            else []
+        )
+        if isinstance(row, dict)
+    ]
+    found_entries = {
+        str(row.get("entry_id")) for row in rows_in if isinstance(row.get("entry_id"), str)
+    }
+    missing_moved_entries = [
+        entry_id for entry_id in moved_entries if entry_id not in found_entries
+    ]
+
+    candidate_rows: list[dict[str, Any]] = []
+    applied_entries: list[str] = []
+    for row in rows_in:
+        entry_id = str(row.get("entry_id") or "")
+        source_partition = row.get("partition")
+        candidate = dict(row)
+        candidate["source_partition"] = source_partition
+        candidate["split_repair_candidate_partition"] = source_partition
+        candidate["split_repair_applied_to_candidate"] = False
+        candidate["split_repair_reason"] = None
+        if entry_id in moved_entry_set and source_partition == "heldout":
+            candidate["partition"] = "in_distribution"
+            candidate["split_repair_candidate_partition"] = "in_distribution"
+            candidate["split_repair_applied_to_candidate"] = True
+            candidate["split_repair_reason"] = (
+                "foldseek_tm_score_split_repair_move_heldout_out_of_scope_to_in_distribution"
+            )
+            applied_entries.append(entry_id)
+        candidate_rows.append(candidate)
+
+    repaired_metrics = _sequence_holdout_partition_metrics(candidate_rows)
+    source_metrics = _sequence_holdout_partition_metrics(rows_in)
+    moved_cluster_ids = {
+        str(row.get("real_sequence_identity_cluster_id") or "")
+        for row in rows_in
+        if row.get("entry_id") in moved_entry_set
+        and row.get("real_sequence_identity_cluster_id")
+    }
+    remaining_heldout_cluster_ids = {
+        str(row.get("real_sequence_identity_cluster_id") or "")
+        for row in candidate_rows
+        if row.get("partition") == "heldout"
+        and row.get("real_sequence_identity_cluster_id")
+    }
+    split_cluster_ids = sorted(moved_cluster_ids & remaining_heldout_cluster_ids)
+    sequence_identity_target_preserved = bool(
+        source_metadata.get("sequence_identity_target_achieved")
+        or source_metadata.get("target_identity_achieved")
+    ) and not split_cluster_ids
+
+    claim_blockers = [
+        "candidate sequence holdout has not replaced the canonical sequence holdout",
+        "full all-materializable TM-score split remains uncomputed",
+        "downstream accepted-registry artifacts have not been rebuilt from this candidate holdout",
+    ]
+    if not projection_metadata.get("computed_subset_target_blocker_removed_by_projection"):
+        claim_blockers.append(
+            "Foldseek computed-subset target repair projection is absent or unresolved"
+        )
+    if split_cluster_ids:
+        claim_blockers.append(
+            "moving heldout entries would split one or more sequence-identity clusters"
+        )
+    if missing_moved_entries:
+        claim_blockers.append("one or more proposed moved entries is missing from the holdout")
+
+    metadata = {
+        "method": "sequence_distance_holdout_split_repair_candidate",
+        "blocker_removed": (
+            "applies the Foldseek split-repair move to a candidate sequence-holdout copy "
+            "and recomputes partition metrics without moving held-out in-scope rows"
+            if applied_entries and not split_cluster_ids
+            else None
+        ),
+        "blocker_not_removed": (
+            "candidate holdout is not canonical and full Foldseek/TM-score split remains uncomputed"
+        ),
+        "blockers_remaining": sorted(set(claim_blockers)),
+        "slice_id": str(
+            source_metadata.get("slice_id") or repair_metadata.get("slice_id") or ""
+        ),
+        "sequence_holdout_artifact": sequence_holdout_path,
+        "repair_plan_artifact": repair_plan_path,
+        "projection_artifact": projection_path,
+        "source_sequence_holdout_method": source_metadata.get("method"),
+        "source_repair_plan_method": repair_metadata.get("method"),
+        "source_projection_method": projection_metadata.get("method"),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate_count": 0,
+        "countable_label_count": 0,
+        "import_ready_candidate_count": 0,
+        "import_ready_row_count": 0,
+        "ready_for_label_import": False,
+        "canonical_holdout_replaced": False,
+        "repair_candidate_applied": bool(applied_entries),
+        "proposed_moved_heldout_entry_ids": moved_entries,
+        "applied_moved_heldout_entry_ids": sorted(
+            applied_entries, key=_entry_id_sort_key
+        ),
+        "missing_moved_heldout_entry_ids": missing_moved_entries,
+        "source_heldout_count": source_metrics["heldout_count"],
+        "repaired_heldout_count": repaired_metrics["heldout_count"],
+        "source_in_distribution_count": source_metrics["in_distribution_count"],
+        "repaired_in_distribution_count": repaired_metrics["in_distribution_count"],
+        "source_heldout_in_scope_count": source_metrics["heldout_in_scope_count"],
+        "repaired_heldout_in_scope_count": repaired_metrics["heldout_in_scope_count"],
+        "source_heldout_out_of_scope_count": source_metrics[
+            "heldout_out_of_scope_count"
+        ],
+        "repaired_heldout_out_of_scope_count": repaired_metrics[
+            "heldout_out_of_scope_count"
+        ],
+        "source_heldout_out_of_scope_false_non_abstention_count": source_metrics[
+            "heldout_out_of_scope_false_non_abstention_count"
+        ],
+        "repaired_heldout_out_of_scope_false_non_abstention_count": repaired_metrics[
+            "heldout_out_of_scope_false_non_abstention_count"
+        ],
+        "source_heldout_in_scope_top1_accuracy": source_metrics[
+            "heldout_in_scope_top1_accuracy"
+        ],
+        "repaired_heldout_in_scope_top1_accuracy": repaired_metrics[
+            "heldout_in_scope_top1_accuracy"
+        ],
+        "source_heldout_in_scope_top3_accuracy": source_metrics[
+            "heldout_in_scope_top3_accuracy"
+        ],
+        "repaired_heldout_in_scope_top3_accuracy": repaired_metrics[
+            "heldout_in_scope_top3_accuracy"
+        ],
+        "source_heldout_in_scope_retention": source_metrics[
+            "heldout_in_scope_retention"
+        ],
+        "repaired_heldout_in_scope_retention": repaired_metrics[
+            "heldout_in_scope_retention"
+        ],
+        "moved_sequence_identity_cluster_ids": sorted(moved_cluster_ids),
+        "remaining_heldout_sequence_identity_cluster_overlap_count": len(split_cluster_ids),
+        "remaining_heldout_sequence_identity_cluster_overlaps": split_cluster_ids,
+        "sequence_identity_target_preserved_by_cluster_partition": sequence_identity_target_preserved,
+        "real_sequence_identity_recomputed": False,
+        "foldseek_projection_target_achieved_for_computed_subset": projection_metadata.get(
+            "projected_tm_score_target_achieved_for_computed_subset"
+        ),
+        "foldseek_projection_max_train_test_tm_score": projection_metadata.get(
+            "projected_max_observed_train_test_tm_score"
+        ),
+        "foldseek_projection_violating_train_test_pair_row_count": projection_metadata.get(
+            "projected_violating_train_test_pair_row_count"
+        ),
+        "full_tm_score_holdout_claim_permitted": False,
+        "full_tm_score_holdout_claim_blockers": sorted(set(claim_blockers)),
+        "limitations": sorted(
+            {
+                "candidate holdout is a repaired copy and does not replace canonical artifacts",
+                "real sequence identity search is not rerun; cluster-partition risk is checked from existing row metadata",
+                "Foldseek projection uses existing capped signal rows and does not rerun Foldseek",
+                "full all-materializable Foldseek/TM-score split remains uncomputed",
+                "review-only artifact; it creates no countable labels and no import-ready rows",
+            }
+        ),
+    }
+    return {"metadata": metadata, "rows": candidate_rows}
+
+
 def _foldseek_blocking_pair_member_key(value: Any, fallback: Any) -> str:
     if isinstance(value, str) and value:
         return value
     if isinstance(fallback, str) and fallback:
         return f"raw:{fallback}"
     return "unmapped"
+
+
+def _string_list(value: Any) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [str(item) for item in value if isinstance(item, str)]
+
+
+def _projected_partitions_after_entry_moves(
+    partitions: Any, entry_ids: list[str], moved_entry_ids: set[str]
+) -> list[str]:
+    if any(entry_id in moved_entry_ids for entry_id in entry_ids):
+        return ["in_distribution"]
+    return sorted(set(_string_list(partitions)))
+
+
+def _partitions_are_train_test_pair(
+    query_partitions: list[str], target_partitions: list[str]
+) -> bool:
+    query_set = set(query_partitions)
+    target_set = set(target_partitions)
+    return (
+        "heldout" in query_set
+        and "in_distribution" in target_set
+        or "in_distribution" in query_set
+        and "heldout" in target_set
+    )
+
+
+def _foldseek_projected_pair_summary(
+    *,
+    row: dict[str, Any],
+    query_partitions: list[str],
+    target_partitions: list[str],
+    threshold: float,
+) -> dict[str, Any]:
+    score = _parse_optional_float(row.get("max_pair_tm_score"))
+    return {
+        "query_structure_key": row.get("query_structure_key"),
+        "target_structure_key": row.get("target_structure_key"),
+        "query_structure_id": row.get("query_structure_id"),
+        "target_structure_id": row.get("target_structure_id"),
+        "query_entry_ids": _string_list(row.get("query_entry_ids")),
+        "target_entry_ids": _string_list(row.get("target_entry_ids")),
+        "source_query_partitions": _string_list(row.get("query_partitions")),
+        "source_target_partitions": _string_list(row.get("target_partitions")),
+        "projected_query_partitions": query_partitions,
+        "projected_target_partitions": target_partitions,
+        "raw_query_name": row.get("raw_query_name"),
+        "raw_target_name": row.get("raw_target_name"),
+        "qtmscore": row.get("qtmscore"),
+        "ttmscore": row.get("ttmscore"),
+        "alntmscore": row.get("alntmscore"),
+        "max_pair_tm_score": row.get("max_pair_tm_score"),
+        "threshold": threshold,
+        "target_operator": "<",
+        "violates_target_after_projection": (
+            score is not None and score >= threshold
+        ),
+        "projected_train_test_pair": True,
+        "source_train_test_pair": bool(row.get("train_test_pair")),
+        "self_pair": bool(row.get("self_pair")),
+        "source_signal_line_number": row.get("line_number"),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate": False,
+        "import_ready": False,
+    }
+
+
+def _sequence_holdout_partition_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    heldout_rows = [row for row in rows if row.get("partition") == "heldout"]
+    in_distribution_rows = [
+        row for row in rows if row.get("partition") == "in_distribution"
+    ]
+    heldout_in_scope = [
+        row for row in heldout_rows if row.get("label_type") != "out_of_scope"
+    ]
+    heldout_out_of_scope = [
+        row for row in heldout_rows if row.get("label_type") == "out_of_scope"
+    ]
+    return {
+        "heldout_count": len(heldout_rows),
+        "in_distribution_count": len(in_distribution_rows),
+        "heldout_in_scope_count": len(heldout_in_scope),
+        "heldout_out_of_scope_count": len(heldout_out_of_scope),
+        "heldout_out_of_scope_false_non_abstention_count": sum(
+            1 for row in heldout_out_of_scope if not row.get("abstained")
+        ),
+        "heldout_in_scope_top1_accuracy": _safe_ratio(
+            sum(1 for row in heldout_in_scope if row.get("top1_correct")),
+            len(heldout_in_scope),
+        ),
+        "heldout_in_scope_top3_accuracy": _safe_ratio(
+            sum(1 for row in heldout_in_scope if row.get("top3_correct")),
+            len(heldout_in_scope),
+        ),
+        "heldout_in_scope_retention": _safe_ratio(
+            sum(1 for row in heldout_in_scope if not row.get("abstained")),
+            len(heldout_in_scope),
+        ),
+    }
 
 
 def _foldseek_blocking_pair_summary(

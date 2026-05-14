@@ -8,6 +8,9 @@ Expanded60 TM signal update: 2026-05-14T13:48:04Z
 Expanded80 TM signal update: 2026-05-14T16:11:42Z
 Expanded100 TM signal update: 2026-05-14T17:24:58Z
 Target-failure audit update: 2026-05-14T17:58:00Z
+Split-repair plan update: 2026-05-14T18:57:00Z
+Split-repair projection update: 2026-05-14T19:03:00Z
+Sequence-holdout repair-candidate update: 2026-05-14T19:09:00Z
 
 Status:
 
@@ -125,6 +128,31 @@ Current TM-score readiness:
   current sequence-holdout split by showing that the target already fails in
   the computed subset. The full holdout claim remains forbidden until split
   repair or explicit exclusion review is done.
+- `artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json` now turns that
+  observed target failure into one concrete review-only repair candidate. The
+  plan proposes moving the held-out out-of-scope row `m_csa:34` to
+  in-distribution before regenerating the sequence-holdout metrics. It would
+  reduce the held-out count from 136 to 135, preserve all 44 held-out in-scope
+  rows, and reduce observed blocking pairs in the supplied signal to 0. The
+  repair is not applied, the source signal is still partial, the uncapped
+  Foldseek-backed split remains uncomputed, and the artifact keeps 0
+  countable/import-ready rows.
+- `artifacts/v3_foldseek_tm_score_split_repair_projection_1000.json` projects
+  the planned move over the existing expanded100 Foldseek rows without mutating
+  the sequence holdout. It reclassifies `m_csa:34` as in-distribution in the
+  projection only, lowering the computed-subset train/test violations from 48
+  to 0 and max train/test TM-score from `0.7515` to `0.6993`. This removes the
+  observed computed-subset target blocker only in projection. The actual split
+  still needs sequence-holdout regeneration, downstream metric recomputation,
+  and an uncapped Foldseek-backed run before any full TM-score holdout claim.
+- `artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json`
+  applies the same move to a candidate copy of the sequence holdout. It moves
+  `m_csa:34` from held-out to in-distribution, recomputes held-out count as
+  135, preserves all 44 held-out in-scope rows, keeps held-out out-of-scope
+  false non-abstentions at 0, and records no remaining held-out overlap with
+  the moved `mmseqs30:m_csa:34` cluster. This candidate is not canonical,
+  does not rebuild downstream retrieval artifacts, and still forbids a full
+  TM-score holdout claim.
 - The TM-score signal builder now records explicit partial/full coverage
   semantics for future artifacts: `tm_score_signal_coverage_status`,
   `full_tm_score_holdout_claim_permitted=false`,

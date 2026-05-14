@@ -109,6 +109,27 @@ drives 48 chain-level rows at or above the `<0.7` threshold, with max pair
 TM-score `0.7515`. This keeps the full TM-score holdout claim forbidden and
 makes the next generalization task split repair/exclusion review, not just a
 larger capped run.
+`artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json` now completes
+that first split-repair review step without applying it: the observed blocker
+has one conservative repair candidate, moving the held-out out-of-scope row
+`m_csa:34` to in-distribution before regenerating holdout metrics. The
+projected held-out count is 135, held-out in-scope rows remain 44, observed
+blocking pairs drop to 0 under the plan, and every field remains
+review-only/non-countable. Full TM-score holdout claims remain forbidden until
+the repair is applied, sequence-holdout metrics are regenerated, and an
+uncapped Foldseek-backed split passes.
+`artifacts/v3_foldseek_tm_score_split_repair_projection_1000.json` then
+projects the planned move over the existing expanded100 Foldseek rows without
+rerunning Foldseek. The projection lowers observed train/test violations from
+48 to 0 and the computed-subset max train/test TM-score from `0.7515` to
+`0.6993`, but it remains non-claiming because the repair is not applied, the
+sequence holdout is not regenerated, and the source signal is still capped.
+`artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json`
+applies the same move to a candidate copy of the sequence holdout. The repaired
+candidate has 135 held-out rows, 44 held-out in-scope rows, 0 held-out
+out-of-scope false non-abstentions, and no remaining held-out overlap with the
+moved `mmseqs30:m_csa:34` cluster. It does not replace the canonical sequence
+holdout or downstream artifacts.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until a full Foldseek-backed

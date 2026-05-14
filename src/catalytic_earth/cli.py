@@ -16,10 +16,13 @@ from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_grap
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
 from .generalization import (
+    audit_foldseek_tm_score_split_repair,
     audit_foldseek_tm_score_target_failure,
+    build_sequence_distance_holdout_split_repair_candidate,
     build_foldseek_coordinate_readiness,
     build_foldseek_tm_score_signal,
     build_sequence_distance_holdout_eval,
+    project_foldseek_tm_score_split_repair,
 )
 from .learned_retrieval import build_learned_retrieval_manifest
 from .labels import (
@@ -694,6 +697,84 @@ def cmd_audit_foldseek_tm_score_target_failure(args: argparse.Namespace) -> int:
         f"{args.out} ("
         f"{artifact['metadata']['violating_unique_structure_pair_count']} "
         "blocking structure pairs, "
+        "full_tm_score_holdout_claim_permitted="
+        f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
+    )
+    return 0
+
+
+def cmd_audit_foldseek_tm_score_split_repair(args: argparse.Namespace) -> int:
+    with Path(args.target_failure).open("r", encoding="utf-8") as handle:
+        target_failure = json.load(handle)
+    with Path(args.sequence_holdout).open("r", encoding="utf-8") as handle:
+        sequence_holdout = json.load(handle)
+    artifact = audit_foldseek_tm_score_split_repair(
+        target_failure=target_failure,
+        sequence_holdout=sequence_holdout,
+        target_failure_path=args.target_failure,
+        sequence_holdout_path=args.sequence_holdout,
+        threshold=args.threshold,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote Foldseek TM-score split-repair plan to "
+        f"{args.out} ("
+        f"{artifact['metadata']['repair_candidate_pair_count']} repair-candidate "
+        "pairs, "
+        "full_tm_score_holdout_claim_permitted="
+        f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
+    )
+    return 0
+
+
+def cmd_project_foldseek_tm_score_split_repair(args: argparse.Namespace) -> int:
+    with Path(args.signal).open("r", encoding="utf-8") as handle:
+        signal = json.load(handle)
+    with Path(args.repair_plan).open("r", encoding="utf-8") as handle:
+        repair_plan = json.load(handle)
+    artifact = project_foldseek_tm_score_split_repair(
+        signal=signal,
+        repair_plan=repair_plan,
+        signal_path=args.signal,
+        repair_plan_path=args.repair_plan,
+        threshold=args.threshold,
+        max_reported_pairs=args.max_reported_pairs,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote Foldseek TM-score split-repair projection to "
+        f"{args.out} (projected max train/test TM-score="
+        f"{artifact['metadata']['projected_max_observed_train_test_tm_score']}, "
+        "full_tm_score_holdout_claim_permitted="
+        f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
+    )
+    return 0
+
+
+def cmd_build_sequence_distance_holdout_split_repair_candidate(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.sequence_holdout).open("r", encoding="utf-8") as handle:
+        sequence_holdout = json.load(handle)
+    with Path(args.repair_plan).open("r", encoding="utf-8") as handle:
+        repair_plan = json.load(handle)
+    projection = None
+    if args.projection:
+        with Path(args.projection).open("r", encoding="utf-8") as handle:
+            projection = json.load(handle)
+    artifact = build_sequence_distance_holdout_split_repair_candidate(
+        sequence_holdout=sequence_holdout,
+        repair_plan=repair_plan,
+        projection=projection,
+        sequence_holdout_path=args.sequence_holdout,
+        repair_plan_path=args.repair_plan,
+        projection_path=args.projection,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote sequence holdout split-repair candidate to "
+        f"{args.out} (heldout_count="
+        f"{artifact['metadata']['repaired_heldout_count']}, "
         "full_tm_score_holdout_claim_permitted="
         f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
     )
@@ -4255,6 +4336,102 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_target_failure.set_defaults(
         func=cmd_audit_foldseek_tm_score_target_failure
+    )
+
+    foldseek_split_repair = subparsers.add_parser(
+        "audit-foldseek-tm-score-split-repair",
+        help=(
+            "plan conservative split repairs for observed Foldseek train/test "
+            "TM-score target failures without applying the repair"
+        ),
+    )
+    foldseek_split_repair.add_argument(
+        "--target-failure",
+        default="artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json",
+        help="Foldseek TM-score target-failure audit artifact",
+    )
+    foldseek_split_repair.add_argument(
+        "--sequence-holdout",
+        default="artifacts/v3_sequence_distance_holdout_eval_1000.json",
+        help="sequence-distance holdout artifact defining row partitions",
+    )
+    foldseek_split_repair.add_argument(
+        "--threshold",
+        type=float,
+        default=0.7,
+        help="exclusive target threshold; pairs at or above this value need repair",
+    )
+    foldseek_split_repair.add_argument(
+        "--out",
+        default="artifacts/v3_foldseek_tm_score_split_repair_plan.json",
+    )
+    foldseek_split_repair.set_defaults(func=cmd_audit_foldseek_tm_score_split_repair)
+
+    foldseek_split_projection = subparsers.add_parser(
+        "project-foldseek-tm-score-split-repair",
+        help=(
+            "project a proposed split repair across existing Foldseek signal rows "
+            "without mutating the sequence holdout"
+        ),
+    )
+    foldseek_split_projection.add_argument(
+        "--signal",
+        default="artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json",
+        help="Foldseek TM-score signal artifact to reclassify in projection",
+    )
+    foldseek_split_projection.add_argument(
+        "--repair-plan",
+        default="artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json",
+        help="Foldseek split-repair plan artifact",
+    )
+    foldseek_split_projection.add_argument(
+        "--threshold",
+        type=float,
+        default=0.7,
+        help="exclusive target threshold for the projected train/test pairs",
+    )
+    foldseek_split_projection.add_argument(
+        "--max-reported-pairs",
+        type=int,
+        default=20,
+        help="maximum projected top train/test pairs and blockers to include",
+    )
+    foldseek_split_projection.add_argument(
+        "--out",
+        default="artifacts/v3_foldseek_tm_score_split_repair_projection.json",
+    )
+    foldseek_split_projection.set_defaults(
+        func=cmd_project_foldseek_tm_score_split_repair
+    )
+
+    sequence_split_repair_candidate = subparsers.add_parser(
+        "build-sequence-distance-holdout-split-repair-candidate",
+        help=(
+            "apply a Foldseek split-repair plan to a candidate copy of the "
+            "sequence-distance holdout"
+        ),
+    )
+    sequence_split_repair_candidate.add_argument(
+        "--sequence-holdout",
+        default="artifacts/v3_sequence_distance_holdout_eval_1000.json",
+        help="source sequence-distance holdout artifact",
+    )
+    sequence_split_repair_candidate.add_argument(
+        "--repair-plan",
+        default="artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json",
+        help="Foldseek split-repair plan artifact",
+    )
+    sequence_split_repair_candidate.add_argument(
+        "--projection",
+        default="artifacts/v3_foldseek_tm_score_split_repair_projection_1000.json",
+        help="optional Foldseek split-repair projection artifact",
+    )
+    sequence_split_repair_candidate.add_argument(
+        "--out",
+        default="artifacts/v3_sequence_distance_holdout_split_repair_candidate.json",
+    )
+    sequence_split_repair_candidate.set_defaults(
+        func=cmd_build_sequence_distance_holdout_split_repair_candidate
     )
 
     source_scale_limits = subparsers.add_parser(
