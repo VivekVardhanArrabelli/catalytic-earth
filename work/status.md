@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 85
-- Measured elapsed time: 3114.8 minutes (51.91 hours)
+- Entries: 86
+- Measured elapsed time: 3163.7 minutes (52.73 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 468.6 measured minutes (7.81 hours)
+- post-mcsa-spof-hardening: 517.4 measured minutes (8.62 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 909
-- Evidence references logged: 744
+- Artifact references logged: 917
+- Evidence references logged: 753
 
 ## Recent Entries
-
-### 2026-05-13T23:52:26.926762+00:00 - external-transfer-spof-hardening
-
-- Task: pilot-specific representation controls and gate coverage
-- Time mode: measured
-- Measured minutes: 25.267
-- Started: 2026-05-13T23:26:40Z
-- Ended: 2026-05-13T23:51:56Z
-- Artifacts: artifacts/v3_external_source_pilot_representation_backend_plan_1025.json, artifacts/v3_external_source_pilot_representation_backend_sample_1025.json, artifacts/v3_external_source_pilot_evidence_dossiers_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json
-- Evidence: 298-unit-tests, validate, compileall, git-diff-check, jq-empty
-- Notes: M-CSA-only growth remains stopped; all pilot representation rows are review-only and non-countable
 
 ### 2026-05-14T00:43:19.772463+00:00 - post-mcsa-spof-hardening
 
@@ -117,6 +106,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 324 unit tests passed, validate passed, compileall passed, git diff check passed, expanded Foldseek readiness staged 100 coordinates with 0 fetch failures, expanded40 Foldseek signal failed with blocker_not_removed, 650M unavailable sidecars compute 8M fallback and report fallback_stable
 - Notes: Normal locked delegated run with local integration fixes. No M-CSA count growth and no external import; requested 650M remains uncached and full TM-score split remains blocked.
 
+### 2026-05-14T09:28:41.519786+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek expanded40 recovery and raw-name mapping hardening
+- Time mode: measured
+- Measured minutes: 48.85
+- Started: 2026-05-14T08:39:50Z
+- Ended: 2026-05-14T09:28:41Z
+- Artifacts: src/catalytic_earth/generalization.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 325 unit tests passed, validate passed, git diff check passed, Foldseek expanded40 completed partial signal 5699 mapped pairs, 0 unmapped raw names, max train/test TM 0.7515, 0 countable labels, 0 import-ready rows, expanded100 attempt stopped with no artifact
+- Notes: Recovered stale lock dirty expanded40 artifact, delegated integration per user instruction, hardened unambiguous PDB chain-suffix mapping, regenerated expanded40 as review-only/non-countable partial Foldseek signal. M-CSA-only count growth remains stopped and external import remains blocked.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -191,6 +191,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T04:23:49.348241+00:00: Next useful external-pilot work is active-site source decisions and representation repair for selected rows; M-CSA-only count growth remains stopped.
 - 2026-05-14T05:08:05.672183+00:00: Full TM-score split remains blocked until remaining selected coordinates are staged and a Foldseek-backed split builder is added; partial staged25 TM signal is review-only evidence.
 - 2026-05-14T05:12:09.497043+00:00: Foldseek artifacts now have regression coverage; full TM-score split remains blocked until the remaining selected coordinates and split builder are implemented.
+- 2026-05-14T09:28:41.519786+00:00: Expanded40 Foldseek raw-name mapping is no longer a blocker, but the partial staged-coordinate TM signal still fails the <0.7 target and full TM-score split remains blocked on full coordinate coverage plus a split builder.
 
 ## Scope Adjustments
 

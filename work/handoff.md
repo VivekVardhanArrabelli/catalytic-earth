@@ -69,11 +69,14 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   Foldseek/TM-score blocker is narrowed, not cleared: Foldseek 10.941cd33 is
   recorded through the explicit temporary binary path, 676 evaluated rows have
   supported selected PDB coordinates, 100 selected PDB mmCIF sidecars are now
-  staged, and the latest successful partial staged-coordinate Foldseek signal
-  remains the 25-coordinate artifact with max staged train/test TM score
-  `0.6426`. The expanded40 signal attempt failed before producing pair rows and
-  is marked `blocker_not_removed`, so `tm_score_split_computed=false` until a
-  successful expanded/full run and split builder exist.
+  staged, and the expanded40 partial staged-coordinate Foldseek signal is now
+  completed with 5,699 pair rows, all 5,699 safely mapped rows, 1,633
+  heldout/in-distribution train/test pairs, max train/test TM score `0.7515`,
+  0 unmapped raw names, and 0 countable/import-ready rows. This removes the
+  staged25-only proof blocker and the expanded40 raw-name mapping blocker, but
+  it is still review-only and non-countable; the computed subset fails the
+  `<0.7` target and `tm_score_split_computed=false` until full coordinate
+  coverage and a full split builder exist.
 - SPOF hardening work: Yes. External artifact lineage, backend metadata,
   review-only audits, and gate checks are now explicit and tested. The Foldseek
   capped-signal path now builds a dedicated selected-coordinate search directory
@@ -94,11 +97,16 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   non-countable.
 - Expanded Foldseek coordinate readiness from 25 to 100 staged selected PDB
   coordinates in `artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json`
-  with 0 fetch failures. A bounded expanded40 Foldseek signal attempt failed
-  with no pair rows and is preserved as
-  `artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json` with
-  `blocker_not_removed`; staged25 remains the latest usable TM signal. The CLI
-  now accepts `--max-staged-coordinates`, and capped runs use a dedicated
+  with 0 fetch failures. The bounded expanded40 Foldseek signal in
+  `artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json` now completes as
+  partial staged-coordinate review evidence: 5,699 pair rows, all 5,699 safely
+  mapped rows, 1,633 heldout/in-distribution train/test pairs, max train/test
+  TM score `0.7515`, 0 unmapped raw Foldseek names, and 0
+  countable/import-ready rows. It removes the staged25-only proof blocker and
+  the expanded40 raw-name mapping blocker, but stays non-countable/not
+  import-ready because full TM-score split remains false and the partial signal
+  does not achieve the `<0.7` target. The CLI now accepts
+  `--max-staged-coordinates`, and capped runs use a dedicated
   selected-coordinate search directory.
 - Added a bounded Foldseek coordinate-readiness path for the accepted 1,000
   context. `build-foldseek-coordinate-readiness` records explicit Foldseek

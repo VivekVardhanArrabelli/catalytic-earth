@@ -496,6 +496,43 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         )
         self.assertEqual(artifact["rows"][0]["target_structure_key"], "pdb:2BBB")
 
+    def test_tm_score_signal_maps_pdb_chain_suffixes_from_staged_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            coord_dir = Path(tmpdir) / "coords"
+            coord_dir.mkdir()
+            first = coord_dir / "renamed_first.cif"
+            second = coord_dir / "renamed_second.cif"
+            first.write_text("data_1AAA\n#\n", encoding="utf-8")
+            second.write_text("data_2BBB\n#\n", encoding="utf-8")
+
+            def fake_runner(command: list[str], cwd: Path) -> None:
+                Path(command[4]).write_text(
+                    "pdb_1AAA_A\tpdb_2BBB_B\t0.1\t0.2\t0.3\n",
+                    encoding="utf-8",
+                )
+
+            artifact = build_foldseek_tm_score_signal(
+                readiness=_tm_signal_readiness(
+                    first_coordinate_path=str(first),
+                    second_coordinate_path=str(second),
+                ),
+                slice_id="test",
+                foldseek_binary="/bin/echo",
+                runner=fake_runner,
+            )
+
+        self.assertEqual(artifact["metadata"]["raw_name_mapping_unmapped_count"], 0)
+        self.assertEqual(artifact["rows"][0]["query_structure_key"], "pdb:1AAA")
+        self.assertEqual(artifact["rows"][0]["target_structure_key"], "pdb:2BBB")
+        self.assertEqual(
+            artifact["rows"][0]["query_name_mapping_status"],
+            "mapped_chain_suffix_alias",
+        )
+        self.assertEqual(
+            artifact["rows"][0]["target_name_mapping_status"],
+            "mapped_chain_suffix_alias",
+        )
+
     def test_tm_score_signal_records_cap_coverage_and_target_scope(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             coord_dir = Path(tmpdir) / "coords"
@@ -505,8 +542,10 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
             third = coord_dir / "pdb_3CCC.cif"
             for path in (first, second, third):
                 path.write_text(f"data_{path.stem}\n#\n", encoding="utf-8")
+            commands: list[list[str]] = []
 
             def fake_runner(command: list[str], cwd: Path) -> None:
+                commands.append(command)
                 Path(command[4]).write_text(
                     "\n".join(
                         [
@@ -544,6 +583,8 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["computed_subset_structure_coverage"], 0.6667)
         self.assertEqual(metadata["computed_subset_materialized_coverage"], 0.6667)
         self.assertEqual(metadata["computed_subset_evaluated_entry_coverage"], 0.6667)
+        self.assertEqual(Path(commands[0][2]).name, "selected_coordinates")
+        self.assertEqual(Path(commands[0][3]).name, "selected_coordinates")
         self.assertEqual(metadata["heldout_in_distribution_pair_count"], 2)
         self.assertEqual(metadata["heldout_pair_count"], 0)
         self.assertEqual(metadata["in_distribution_pair_count"], 0)
@@ -601,7 +642,7 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
         self.assertEqual(metadata["foldseek_version"], "10.941cd33")
 
-    def test_expanded_40_foldseek_tm_score_failure_artifact_is_pinned(self) -> None:
+    def test_expanded_40_foldseek_tm_score_completed_partial_artifact_is_pinned(self) -> None:
         artifact = _load_artifact(
             "artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json"
         )
@@ -612,15 +653,47 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["staged_coordinate_count"], 40)
         self.assertEqual(metadata["tm_signal_coordinate_cap_requested"], 40)
         self.assertTrue(metadata["tm_signal_coordinate_cap_applied"])
-        self.assertEqual(metadata["foldseek_run_status"], "foldseek_run_failed")
-        self.assertFalse(metadata["partial_tm_score_signal_computed"])
-        self.assertEqual(metadata["pair_count"], 0)
-        self.assertIsNone(metadata["blocker_removed"])
-        self.assertIn("did not complete", metadata["blocker_not_removed"])
+        self.assertEqual(metadata["foldseek_run_status"], "completed")
+        self.assertEqual(metadata["foldseek_version"], "10.941cd33")
+        self.assertEqual(metadata["pair_count"], 5699)
+        self.assertEqual(metadata["mapped_pair_count"], 5699)
+        self.assertEqual(metadata["heldout_pair_count"], 183)
+        self.assertEqual(metadata["heldout_in_distribution_pair_count"], 1633)
+        self.assertEqual(metadata["train_test_pair_count"], 1633)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.7515)
+        self.assertTrue(metadata["max_observed_train_test_tm_score_computable"])
+        self.assertEqual(metadata["threshold_target"], "<0.7")
+        self.assertFalse(metadata["tm_score_target_achieved_for_computed_subset"])
+        self.assertGreater(metadata["max_observed_train_test_tm_score"], 0.7)
+        self.assertTrue(metadata["partial_tm_score_signal_computed"])
+        self.assertTrue(metadata["partial_real_tm_score_signal_computed"])
+        self.assertIn("selected_coordinates", metadata["foldseek_command"])
+        self.assertEqual(metadata["raw_name_mapping_unmapped_count"], 0)
+        self.assertEqual(metadata["raw_name_mapping_unmapped_names"], [])
+        self.assertIn("staged25-only proof blocker", metadata["blocker_removed"])
+        self.assertIsNone(metadata["blocker_not_removed"])
+        self.assertIn(
+            "partial staged-coordinate Foldseek signal only; it is not a full accepted-registry TM-score holdout",
+            metadata["limitations"],
+        )
+        self.assertIn(
+            "full evaluated-coordinate coverage is absent; full TM-score split remains blocked",
+            metadata["limitations"],
+        )
+        self.assertIn(
+            "review-only artifact; it creates no countable labels and no import-ready rows",
+            metadata["limitations"],
+        )
         self.assertFalse(metadata["full_tm_score_split_computed"])
         self.assertFalse(metadata["tm_score_split_computed"])
         self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["review_status"], "review_only_non_countable")
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in artifact["rows"])
+        )
+        self.assertTrue(all(not row["import_ready"] for row in artifact["rows"]))
 
 
 def _result(

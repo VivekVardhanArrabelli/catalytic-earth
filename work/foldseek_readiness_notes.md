@@ -1,7 +1,7 @@
 # Foldseek readiness note
 
 Recorded: 2026-05-14T03:05:45Z
-Updated: 2026-05-14T06:20:00Z
+Updated: 2026-05-14T09:01:28Z
 
 Status:
 
@@ -41,16 +41,25 @@ Current TM-score readiness:
   signal `0.6426` against the `<0.7` target. It is review-only evidence with
   0 countable/import-ready rows and keeps both `tm_score_split_computed=false`
   and `full_tm_score_split_computed=false`.
-- `artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json` preserves a
-  bounded expanded signal attempt, but the Foldseek backend failed before
-  producing pair rows. The artifact is marked `blocker_not_removed`; the latest
-  usable TM-score signal remains staged25.
+- `artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json` now records a
+  completed bounded expanded Foldseek `easy-search` signal over a capped
+  40-coordinate selected-coordinate directory. It records 5,699 pair rows, all
+  5,699 safely mapped rows, 183 heldout pair rows, 1,633
+  heldout/in-distribution train/test rows, max observed train/test TM score
+  `0.7515`, 0 unmapped raw Foldseek names, and 0 countable/import-ready rows.
+  This removes the staged25-only proof blocker and the expanded40 raw-name
+  mapping blocker, but it remains partial, review-only, non-countable, and not
+  import-ready. The computed subset does not achieve the `<0.7` target, and both
+  `tm_score_split_computed=false` and `full_tm_score_split_computed=false`
+  remain true.
 
 TM-score split remains blocked on materializing the remaining selected
-PDB/AlphaFold coordinate files, getting a successful expanded/full Foldseek
-backend run, and adding a Foldseek-backed split builder. The readiness and
-partial TM signal artifacts are non-countable review evidence only. The exact
-bounded readiness command is:
+PDB/AlphaFold coordinate files and adding a full Foldseek-backed split builder.
+The expanded40 signal proves the backend can produce a larger staged-coordinate
+partial signal with capped-search execution and raw-name mapping aligned, but
+it does not satisfy the full accepted-registry TM-score holdout or the `<0.7`
+train/test target. The readiness and partial TM signal artifacts are
+non-countable review evidence only. The exact bounded readiness command is:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness \
@@ -88,7 +97,7 @@ PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \
   --out artifacts/v3_foldseek_tm_score_signal_1000_staged25.json
 ```
 
-The failed expanded40 attempt used:
+The completed expanded40 partial signal used:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \

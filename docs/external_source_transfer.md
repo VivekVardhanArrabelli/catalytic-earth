@@ -72,10 +72,16 @@ and keeps both `tm_score_split_computed=false` and
 `artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json` expands the
 coordinate sidecar to 100 selected PDB structures with 0 fetch failures and 572
 supported structures still unstaged behind the deterministic cap. The companion
-expanded40 Foldseek signal attempt is preserved in
-`artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json`, but it failed
-before producing pair rows and is marked `blocker_not_removed`; staged25 remains
-the latest usable TM-score signal.
+expanded40 Foldseek signal in
+`artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json` is now completed
+as a partial staged-coordinate run over the capped selected-coordinate search
+directory: 5,699 pair rows, all 5,699 safely mapped rows, 1,633
+heldout/in-distribution train/test pairs, max observed train/test TM score
+`0.7515`, 0 unmapped raw Foldseek names, and 0 countable/import-ready rows. It
+removes the staged25-only proof blocker and the expanded40 raw-name mapping
+blocker, but it remains review-only, non-countable, and not import-ready. The
+full TM-score split is still false, and the `<0.7` target is not achieved on
+this partial signal.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the remaining selected

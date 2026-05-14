@@ -173,10 +173,15 @@ Current expectation:
   structures. A partial staged-coordinate Foldseek signal over the first 25
   files records 1,840 mapped pair rows, 532 staged heldout/in-distribution pair
   rows, and max staged train/test TM score `0.6426` while keeping
-  `full_tm_score_split_computed=false`. The expanded40 signal attempt failed
-  before producing pair rows and is marked `blocker_not_removed`; the remaining
-  selected PDB/AlphaFold coordinates, a successful expanded/full Foldseek run,
-  and a Foldseek-backed split builder are still required. The first 12-row
+  `full_tm_score_split_computed=false`. The expanded40 signal now completes as
+  a larger partial staged-coordinate signal with 5,699 pair rows, all 5,699
+  safely mapped rows, 1,633 heldout/in-distribution train/test pairs, max
+  train/test TM score `0.7515`, 0 unmapped raw Foldseek names, and 0
+  countable/import-ready rows. That removes the staged25-only proof blocker and
+  the expanded40 raw-name mapping blocker, but it remains
+  review-only/non-countable; the `<0.7` target is not achieved on the partial
+  signal, and the remaining selected PDB/AlphaFold coordinates plus a full
+  Foldseek-backed split builder are still required. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state and computed 8M fallback

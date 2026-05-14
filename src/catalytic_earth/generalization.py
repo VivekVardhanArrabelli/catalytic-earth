@@ -798,7 +798,7 @@ def build_foldseek_tm_score_signal(
         "partial staged-coordinate Foldseek signal only; it is not a full accepted-registry TM-score holdout",
         "tm_score_split_computed=false because not every evaluated coordinate is staged and no split is computed here",
         "review-only artifact; it creates no countable labels and no import-ready rows",
-        "Foldseek output names are mapped by exact filename/basename/stem aliases or by an unambiguous generated filename stem plus chain suffix; other differing raw names remain unmapped",
+        "Foldseek output names are mapped by exact filename/basename/stem/structure-metadata aliases or by an unambiguous generated PDB stem plus chain suffix; other differing raw names remain unmapped",
     ]
     if alias_collisions:
         limitations.append("one or more coordinate filename aliases were ambiguous and not used for raw-name mapping")
@@ -1877,6 +1877,7 @@ def _foldseek_name_aliases(
             str(coordinate_path),
             coordinate_path.name,
             coordinate_path.stem,
+            *_foldseek_structure_metadata_aliases(structure),
         }
         for alias in sorted(raw_aliases):
             if not alias:
@@ -1897,6 +1898,32 @@ def _foldseek_name_aliases(
         {"alias": alias, "structure_keys": sorted(set(keys))}
         for alias, keys in sorted(collisions.items())
     ]
+
+
+def _foldseek_structure_metadata_aliases(structure: dict[str, Any]) -> set[str]:
+    aliases: set[str] = set()
+    structure_id = str(structure.get("structure_id") or "").strip()
+    if structure_id:
+        aliases.add(structure_id)
+        aliases.add(structure_id.upper())
+    structure_key = str(structure.get("structure_key") or "").strip()
+    if structure_key:
+        aliases.add(structure_key)
+        if ":" in structure_key:
+            source, source_id = structure_key.split(":", 1)
+            source = source.strip()
+            source_id = source_id.strip()
+            if source_id:
+                aliases.add(source_id)
+                aliases.add(source_id.upper())
+                if source.lower() == "pdb":
+                    aliases.add(f"pdb_{source_id}")
+                    aliases.add(f"pdb_{source_id.upper()}")
+    source = str(structure.get("source") or "").strip()
+    if source.lower() == "pdb" and structure_id:
+        aliases.add(f"pdb_{structure_id}")
+        aliases.add(f"pdb_{structure_id.upper()}")
+    return {alias for alias in aliases if alias}
 
 
 def _coordinate_paths_digest(staged_structures: list[dict[str, Any]]) -> str:

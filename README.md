@@ -304,12 +304,17 @@ pair rows, and max observed staged train/test TM signal `0.6426` against the
 `<0.7` target. It is review-only, has 0 countable/import-ready rows, and keeps
 `full_tm_score_split_computed=false`. The expanded coordinate-readiness sidecar
 `artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json` now stages
-100 selected PDB coordinates with 0 fetch failures, but a bounded expanded40
-Foldseek signal attempt failed before producing pair rows and is recorded in
-`artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json` as
-`blocker_not_removed`. The latest usable TM-score signal is still staged25; the
-full TM-score split still requires a successful Foldseek run over staged
-coordinates plus the remaining selected-coordinate materialization.
+100 selected PDB coordinates with 0 fetch failures, and the companion
+`artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json` now records a
+completed review-only partial Foldseek run over a capped 40-coordinate subset:
+5,699 pair rows, all 5,699 safely mapped rows, 1,633
+heldout/in-distribution train/test pairs, max observed train/test TM score
+`0.7515`, and 0 unmapped raw Foldseek names, with 0 countable/import-ready
+rows. This removes the staged25-only proof blocker and the expanded40 raw-name
+mapping blocker, but it is still partial, non-countable, and not import-ready.
+The `<0.7` target is not achieved on the computed subset, and the full TM-score
+split still requires remaining selected-coordinate materialization plus a full
+Foldseek-backed split builder.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
