@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 86
-- Measured elapsed time: 3163.7 minutes (52.73 hours)
+- Entries: 87
+- Measured elapsed time: 3199.8 minutes (53.33 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 517.4 measured minutes (8.62 hours)
+- post-mcsa-spof-hardening: 553.6 measured minutes (9.23 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 917
-- Evidence references logged: 753
+- Artifact references logged: 932
+- Evidence references logged: 762
 
 ## Recent Entries
-
-### 2026-05-14T00:43:19.772463+00:00 - post-mcsa-spof-hardening
-
-- Task: Harden label artifact lineage
-- Time mode: measured
-- Measured minutes: 14.6
-- Started: 2026-05-14T00:28:43Z
-- Ended: 2026-05-14T00:43:19Z
-- Artifacts: src/catalytic_earth/cli.py, src/catalytic_earth/labels.py, tests/test_cli.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_label_batch_acceptance_check_1025_preview.json, artifacts/v3_label_scaling_quality_audit_1025_preview.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/label_preview_1025_notes.md
-- Evidence: 300 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifacts parsed, label batch acceptance lineage negative regression, label scaling quality lineage negative regression, 0 countable external labels, 0 import-ready external labels
-- Notes: Normal locked SPOF-hardening run. M-CSA-only growth remains stopped; 1025 preview remains non-promotable and all external rows remain review-only.
 
 ### 2026-05-14T01:50:53.503582+00:00 - post-mcsa-spof-hardening
 
@@ -117,6 +106,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 325 unit tests passed, validate passed, git diff check passed, Foldseek expanded40 completed partial signal 5699 mapped pairs, 0 unmapped raw names, max train/test TM 0.7515, 0 countable labels, 0 import-ready rows, expanded100 attempt stopped with no artifact
 - Notes: Recovered stale lock dirty expanded40 artifact, delegated integration per user instruction, hardened unambiguous PDB chain-suffix mapping, regenerated expanded40 as review-only/non-countable partial Foldseek signal. M-CSA-only count growth remains stopped and external import remains blocked.
 
+### 2026-05-14T10:16:36.145071+00:00 - post-mcsa-spof-hardening
+
+- Task: Representation fallback and Foldseek claim safety
+- Time mode: measured
+- Measured minutes: 36.15
+- Started: 2026-05-14T09:40:14Z
+- Ended: 2026-05-14T10:16:23Z
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json, artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json, artifacts/v3_external_source_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json, artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json, artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 326 unit tests passed, validate passed, git diff check passed, external transfer gate 67/67, 150M ESM-2 fallback computed for 12 controls and 10 pilot rows, 650M uncached/infeasible, expanded40 Foldseek signal 5699 mapped pairs with false-full-claim blockers, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked delegated run per user instruction. Parent integrated worker outputs, regenerated expanded40 metadata, verified gates, and kept all external rows review-only.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -192,6 +192,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T05:08:05.672183+00:00: Full TM-score split remains blocked until remaining selected coordinates are staged and a Foldseek-backed split builder is added; partial staged25 TM signal is review-only evidence.
 - 2026-05-14T05:12:09.497043+00:00: Foldseek artifacts now have regression coverage; full TM-score split remains blocked until the remaining selected coordinates and split builder are implemented.
 - 2026-05-14T09:28:41.519786+00:00: Expanded40 Foldseek raw-name mapping is no longer a blocker, but the partial staged-coordinate TM signal still fails the <0.7 target and full TM-score split remains blocked on full coordinate coverage plus a split builder.
+- 2026-05-14T10:16:36.145071+00:00: Requested 650M representation remains blocked by local cache/disk/CPU limits; largest feasible cached ESM-2 150M now gives a real review-only control signal while Foldseek remains partial and fails the <0.7 target.
 
 ## Scope Adjustments
 

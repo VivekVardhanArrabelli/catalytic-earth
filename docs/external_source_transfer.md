@@ -276,10 +276,14 @@ Priority blockers:
   near-duplicate holdout.
 - `artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json`
   and its audit/stability sidecars attempt the 650M upgrade for those same
-  selected pilot rows in local-only mode. The 650M weights are not cached, so
-  the sidecars now record the cache miss, use the cached 8M backend as the
-  largest feasible fallback, and mark `requested_650m_or_larger_representation_backend_not_computed`;
-  they remain feasibility evidence only and do not replace a real 650M control.
+  selected pilot rows in local-only mode after a bounded 150M feasibility run.
+  The 650M weights are not cached, and the current machine had only about 3.2
+  GiB free for a 2.61 GB remote 650M weight file with CPU-only inference, so the
+  sidecars record the 650M cache miss, use cached
+  `facebook/esm2_t30_150M_UR50D` as the largest feasible fallback, and mark
+  `requested_650m_or_larger_representation_backend_not_computed`; they remain
+  review-only feasibility/control evidence and do not replace a real 650M
+  control.
 - `artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` assembles
   the same 10 selected rows into per-candidate review dossiers. It records 7
   candidates with explicit UniProt active-site feature support, all 10 with
@@ -620,6 +624,10 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representatio
   --representation-backend-sample artifacts/v3_external_source_representation_backend_sample_1025.json \
   --out artifacts/v3_external_source_representation_backend_sample_audit_1025.json
 
+# The current 650M sidecar is generated after caching the largest feasible
+# smaller ESM-2 tier (`facebook/esm2_t30_150M_UR50D`) in
+# `/private/tmp/catalytic-earth-hf-cache`. It records 650M as requested and 150M
+# as the actual computed fallback; do not read it as a completed 650M control.
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample \
   --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json \
   --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
@@ -745,6 +753,7 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representatio
   --representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
   --out artifacts/v3_external_source_pilot_representation_backend_sample_audit_1025.json
 
+# Same requested-650M/actual-150M sidecar pattern for selected pilot rows.
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample \
   --representation-backend-plan artifacts/v3_external_source_pilot_representation_backend_plan_1025.json \
   --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \

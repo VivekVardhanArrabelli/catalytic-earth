@@ -2,6 +2,7 @@
 
 Recorded: 2026-05-14T03:05:45Z
 Updated: 2026-05-14T09:01:28Z
+Delegated slice update: 2026-05-14T10:02:47Z
 
 Status:
 
@@ -52,6 +53,23 @@ Current TM-score readiness:
   import-ready. The computed subset does not achieve the `<0.7` target, and both
   `tm_score_split_computed=false` and `full_tm_score_split_computed=false`
   remain true.
+- The TM-score signal builder now records explicit partial/full coverage
+  semantics for future artifacts: `tm_score_signal_coverage_status`,
+  `full_tm_score_holdout_claim_permitted=false`,
+  `full_tm_score_holdout_claim_blockers`,
+  `remaining_to_full_signal_structure_count`,
+  `remaining_uncomputed_staged_coordinate_count`, and optional
+  `prior_staged_coordinate_count`/`staged_coordinate_count_exceeds_prior`
+  metadata. These fields are intended to prevent a bounded partial signal from
+  being mistaken for a full Foldseek-backed TM-score holdout.
+- An expanded100 Foldseek signal was attempted with the 100 staged coordinates
+  and `--prior-staged-coordinate-count 40`, but it did not produce
+  `/private/tmp/catalytic-earth-foldseek-tm-1000-312c1ec42f1d/staged_tm_scores.tsv`
+  or a repo artifact before parent wrap-up. Process inspection and `pkill` were
+  unavailable in this sandbox; a best-effort `killall -TERM foldseek` did not
+  make the Codex session exit. Treat expanded100 TM-score signal generation as
+  blocked/no durable artifact for this delegated slice unless a later worker
+  verifies a completed artifact exists.
 
 TM-score split remains blocked on materializing the remaining selected
 PDB/AlphaFold coordinate files and adding a full Foldseek-backed split builder.
@@ -59,7 +77,10 @@ The expanded40 signal proves the backend can produce a larger staged-coordinate
 partial signal with capped-search execution and raw-name mapping aligned, but
 it does not satisfy the full accepted-registry TM-score holdout or the `<0.7`
 train/test target. The readiness and partial TM signal artifacts are
-non-countable review evidence only. The exact bounded readiness command is:
+non-countable review evidence only. The new metadata hardening narrows the
+SPOF/review blocker by making partial-vs-full TM-score claim safety explicit;
+it does not remove the full split blocker. The exact bounded readiness command
+is:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness \
@@ -105,5 +126,17 @@ PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \
   --readiness artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json \
   --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
   --max-staged-coordinates 40 \
+  --prior-staged-coordinate-count 25 \
   --out artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json
+```
+
+The attempted expanded100 command was:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \
+  --slice-id 1000 \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --prior-staged-coordinate-count 40 \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json
 ```

@@ -2460,7 +2460,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             all(row["countable_label_candidate"] is False for row in sample["rows"])
         )
 
-    def test_650m_representation_backend_sidecars_record_local_infeasibility(
+    def test_650m_representation_backend_sidecars_use_largest_feasible_esm2(
         self,
     ) -> None:
         sample = _load_json(
@@ -2496,20 +2496,24 @@ class Scaling1025ArtifactTests(unittest.TestCase):
 
         for artifact in (sample, pilot_sample):
             metadata = artifact["metadata"]
-            self.assertEqual(metadata["embedding_backend"], "esm2_t6_8m_ur50d")
+            self.assertEqual(metadata["embedding_backend"], "esm2_t30_150m_ur50d")
             self.assertEqual(
                 metadata["requested_embedding_backend"], "esm2_t33_650m_ur50d"
             )
-            self.assertEqual(metadata["computed_embedding_backend"], "esm2_t6_8m_ur50d")
-            self.assertEqual(metadata["model_name"], "facebook/esm2_t6_8M_UR50D")
+            self.assertEqual(
+                metadata["computed_embedding_backend"], "esm2_t30_150m_ur50d"
+            )
+            self.assertEqual(
+                metadata["model_name"], "facebook/esm2_t30_150M_UR50D"
+            )
             self.assertEqual(
                 metadata["requested_model_name"], "facebook/esm2_t33_650M_UR50D"
             )
             self.assertTrue(metadata["local_files_only"])
             self.assertTrue(metadata["embedding_backend_available"])
             self.assertFalse(metadata["requested_embedding_backend_available"])
-            self.assertEqual(metadata["embedding_vector_dimension"], 320)
-            self.assertEqual(metadata["expected_embedding_vector_dimension"], 320)
+            self.assertEqual(metadata["embedding_vector_dimension"], 640)
+            self.assertEqual(metadata["expected_embedding_vector_dimension"], 640)
             self.assertEqual(
                 metadata["requested_expected_embedding_vector_dimension"], 1280
             )
@@ -2552,12 +2556,12 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "esm2_t33_650m_ur50d",
             )
             self.assertEqual(
-                metadata["largest_feasible_embedding_backend"], "esm2_t6_8m_ur50d"
+                metadata["largest_feasible_embedding_backend"], "esm2_t30_150m_ur50d"
             )
             self.assertIsNone(metadata["fallback_not_computed_reason"])
             self.assertTrue(metadata["fallback_used"])
             self.assertEqual(
-                metadata["fallback_selected_backend"], "esm2_t6_8m_ur50d"
+                metadata["fallback_selected_backend"], "esm2_t30_150m_ur50d"
             )
             self.assertEqual(
                 metadata["fallback_reason"],
@@ -2581,7 +2585,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             )
             self.assertTrue(
                 all(
-                    row["embedding_backend"] == "esm2_t6_8m_ur50d"
+                    row["embedding_backend"] == "esm2_t30_150m_ur50d"
                     and row["requested_embedding_backend"] == "esm2_t33_650m_ur50d"
                     and row["fallback_used"] is True
                     and row["countable_label_candidate"] is False
@@ -2598,14 +2602,22 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertTrue(pilot_sample_audit["metadata"]["guardrail_clean"])
         self.assertEqual(
             sample_audit["metadata"]["fallback_selected_backend"],
-            "esm2_t6_8m_ur50d",
+            "esm2_t30_150m_ur50d",
         )
         self.assertEqual(
             pilot_sample_audit["metadata"]["fallback_selected_backend"],
-            "esm2_t6_8m_ur50d",
+            "esm2_t30_150m_ur50d",
         )
-        self.assertEqual(stability["metadata"]["stability_status"], "fallback_stable")
+        self.assertEqual(stability["metadata"]["stability_status"], "fallback_changed")
         self.assertEqual(stability["metadata"]["comparison_fallback_used"], True)
+        self.assertEqual(
+            stability["metadata"]["comparison_embedding_backend"],
+            "esm2_t30_150m_ur50d",
+        )
+        self.assertEqual(
+            stability["metadata"]["comparison_fallback_selected_backend"],
+            "esm2_t30_150m_ur50d",
+        )
         self.assertEqual(
             stability["metadata"]["comparison_requested_embedding_backend"],
             "esm2_t33_650m_ur50d",
@@ -2617,7 +2629,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             1280,
         )
         self.assertEqual(
-            stability["metadata"]["comparison_expected_embedding_vector_dimension"], 320
+            stability["metadata"]["comparison_expected_embedding_vector_dimension"], 640
         )
         self.assertEqual(
             stability["metadata"][
@@ -2625,15 +2637,23 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             ],
             0,
         )
-        self.assertEqual(stability["metadata"]["nearest_reference_changed_count"], 0)
+        self.assertEqual(stability["metadata"]["nearest_reference_changed_count"], 3)
         self.assertEqual(
-            stability["metadata"]["heuristic_disagreement_status_changed_count"], 0
+            stability["metadata"]["heuristic_disagreement_status_changed_count"], 4
         )
         self.assertTrue(stability["metadata"]["guardrail_clean"])
         self.assertEqual(
-            pilot_stability["metadata"]["stability_status"], "fallback_stable"
+            pilot_stability["metadata"]["stability_status"], "fallback_changed"
         )
         self.assertEqual(pilot_stability["metadata"]["comparison_fallback_used"], True)
+        self.assertEqual(
+            pilot_stability["metadata"]["comparison_embedding_backend"],
+            "esm2_t30_150m_ur50d",
+        )
+        self.assertEqual(
+            pilot_stability["metadata"]["comparison_fallback_selected_backend"],
+            "esm2_t30_150m_ur50d",
+        )
         self.assertEqual(
             pilot_stability["metadata"][
                 "comparison_embedding_backend_unavailable_row_count"
@@ -2641,13 +2661,13 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             0,
         )
         self.assertEqual(
-            pilot_stability["metadata"]["nearest_reference_changed_count"], 0
+            pilot_stability["metadata"]["nearest_reference_changed_count"], 4
         )
         self.assertEqual(
             pilot_stability["metadata"][
                 "heuristic_disagreement_status_changed_count"
             ],
-            0,
+            3,
         )
         self.assertTrue(pilot_stability["metadata"]["guardrail_clean"])
 

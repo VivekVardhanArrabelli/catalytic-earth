@@ -662,6 +662,7 @@ def cmd_build_foldseek_tm_score_signal(args: argparse.Namespace) -> int:
         slice_id=args.slice_id,
         foldseek_binary=args.foldseek_binary,
         max_staged_coordinates=args.max_staged_coordinates,
+        prior_staged_coordinate_count=args.prior_staged_coordinate_count,
     )
     write_json(Path(args.out), artifact)
     print(
@@ -4066,6 +4067,15 @@ def build_parser() -> argparse.ArgumentParser:
         help=(
             "optional deterministic cap on staged coordinates included in the "
             "Foldseek easy-search signal; omitted means all staged coordinates"
+        ),
+    )
+    foldseek_tm_signal.add_argument(
+        "--prior-staged-coordinate-count",
+        type=int,
+        default=None,
+        help=(
+            "optional previous partial-signal staged-coordinate count to record "
+            "when a larger bounded Foldseek signal removes that ceiling"
         ),
     )
     foldseek_tm_signal.set_defaults(func=cmd_build_foldseek_tm_score_signal)

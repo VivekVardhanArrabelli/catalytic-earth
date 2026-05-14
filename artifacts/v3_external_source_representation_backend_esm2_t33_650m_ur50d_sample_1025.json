@@ -20,7 +20,7 @@
         "m_csa:405"
       ],
       "representation_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
-      "top_embedding_cosine": 0.9727
+      "top_embedding_cosine": 0.977
     },
     {
       "accession": "P60174",
@@ -36,7 +36,7 @@
         "m_csa:324"
       ],
       "representation_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
-      "top_embedding_cosine": 0.9984
+      "top_embedding_cosine": 0.9949
     },
     {
       "accession": "Q13907",
@@ -52,7 +52,7 @@
         "m_csa:74"
       ],
       "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
-      "top_embedding_cosine": 0.8265
+      "top_embedding_cosine": 0.9134
     },
     {
       "accession": "Q6NSJ0",
@@ -65,10 +65,10 @@
       ],
       "learned_or_proxy_backend_status": "learned_representation_sample_complete",
       "nearest_reference_entry_ids": [
-        "m_csa:714"
+        "m_csa:289"
       ],
       "representation_heuristic_disagreement_status": "heuristic_metal_hydrolase_boundary_contrast_priority",
-      "top_embedding_cosine": 0.8958
+      "top_embedding_cosine": 0.926
     },
     {
       "accession": "Q9BXD5",
@@ -79,12 +79,12 @@
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "learned_or_proxy_backend_status": "representation_near_duplicate_holdout",
       "nearest_reference_entry_ids": [
         "m_csa:526"
       ],
-      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
-      "top_embedding_cosine": 0.8619
+      "representation_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
+      "top_embedding_cosine": 0.9649
     },
     {
       "accession": "Q9BXS1",
@@ -95,12 +95,12 @@
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "learned_or_proxy_backend_status": "representation_near_duplicate_holdout",
       "nearest_reference_entry_ids": [
         "m_csa:517"
       ],
-      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
-      "top_embedding_cosine": 0.9025
+      "representation_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
+      "top_embedding_cosine": 0.9641
     },
     {
       "accession": "A2RU49",
@@ -116,7 +116,7 @@
         "m_csa:348"
       ],
       "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
-      "top_embedding_cosine": 0.8879
+      "top_embedding_cosine": 0.9412
     },
     {
       "accession": "O14756",
@@ -129,10 +129,10 @@
       ],
       "learned_or_proxy_backend_status": "learned_representation_sample_complete",
       "nearest_reference_entry_ids": [
-        "m_csa:11"
+        "m_csa:315"
       ],
       "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
-      "top_embedding_cosine": 0.7852
+      "top_embedding_cosine": 0.9233
     },
     {
       "accession": "P34949",
@@ -148,7 +148,7 @@
         "m_csa:457"
       ],
       "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
-      "top_embedding_cosine": 0.9199
+      "top_embedding_cosine": 0.9364
     },
     {
       "accession": "P35914",
@@ -159,12 +159,12 @@
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "learned_or_proxy_backend_status": "representation_near_duplicate_holdout",
       "nearest_reference_entry_ids": [
         "m_csa:106"
       ],
-      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
-      "top_embedding_cosine": 0.9499
+      "representation_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
+      "top_embedding_cosine": 0.9509
     },
     {
       "accession": "Q969G6",
@@ -180,7 +180,7 @@
         "m_csa:405"
       ],
       "representation_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
-      "top_embedding_cosine": 0.9789
+      "top_embedding_cosine": 0.9609
     },
     {
       "accession": "Q96I15",
@@ -191,91 +191,71 @@
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "learned_or_proxy_backend_status": "representation_near_duplicate_holdout",
       "nearest_reference_entry_ids": [
-        "m_csa:579"
+        "m_csa:413"
       ],
-      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
-      "top_embedding_cosine": 0.8346
+      "representation_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
+      "top_embedding_cosine": 0.9537
     }
   ],
   "metadata": {
     "attempted_embedding_backend": "esm2_t33_650m_ur50d",
     "backend_feasibility_status": "fallback_computed_requested_model_unavailable_locally",
     "backend_status_counts": {
-      "learned_representation_sample_complete": 9,
-      "representation_near_duplicate_holdout": 3
+      "learned_representation_sample_complete": 5,
+      "representation_near_duplicate_holdout": 7
     },
     "blocker_not_removed": "requested_650m_or_larger_representation_backend_not_computed",
     "blocker_removed": "computes a bounded learned or proxy representation sample for external pilot readiness while preserving heuristic geometry retrieval as the baseline",
     "candidate_count": 12,
-    "computed_embedding_backend": "esm2_t6_8m_ur50d",
+    "computed_embedding_backend": "esm2_t30_150m_ur50d",
     "countable_label_candidate_count": 0,
-    "elapsed_seconds": 7.497,
-    "embedding_backend": "esm2_t6_8m_ur50d",
+    "elapsed_seconds": 28.7852,
+    "embedding_backend": "esm2_t30_150m_ur50d",
     "embedding_backend_available": true,
     "embedding_backend_model_family": "ESM-2",
-    "embedding_backend_parameter_count": "8M",
-    "embedding_elapsed_seconds": 5.8929,
+    "embedding_backend_parameter_count": "150M",
+    "embedding_elapsed_seconds": 27.2687,
     "embedding_failure_count": 0,
     "embedding_status": "computed_review_only",
-    "embedding_vector_dimension": 320,
-    "expected_embedding_vector_dimension": 320,
+    "embedding_vector_dimension": 640,
+    "expected_embedding_vector_dimension": 640,
     "fallback_attempts": [
-      {
-        "attempted_model_load": false,
-        "backend_feasibility_status": "skipped_cache_missing",
-        "embedding_backend": "esm2_t30_150m_ur50d",
-        "embedding_backend_available": false,
-        "expected_embedding_vector_dimension": 640,
-        "local_cache_status": "not_cached",
-        "model_name": "facebook/esm2_t30_150M_UR50D",
-        "weights_cached": false
-      },
-      {
-        "attempted_model_load": false,
-        "backend_feasibility_status": "skipped_cache_missing",
-        "embedding_backend": "esm2_t12_35m_ur50d",
-        "embedding_backend_available": false,
-        "expected_embedding_vector_dimension": 480,
-        "local_cache_status": "not_cached",
-        "model_name": "facebook/esm2_t12_35M_UR50D",
-        "weights_cached": false
-      },
       {
         "attempted_model_load": true,
         "backend_feasibility_status": "computed",
-        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_backend": "esm2_t30_150m_ur50d",
         "embedding_backend_available": true,
         "embedding_failure_count": 0,
-        "embedding_vector_dimension": 320,
-        "expected_embedding_vector_dimension": 320,
+        "embedding_vector_dimension": 640,
+        "expected_embedding_vector_dimension": 640,
         "local_cache_status": "weights_cached",
         "model_load_failure_type": null,
         "model_load_status": "loaded",
-        "model_name": "facebook/esm2_t6_8M_UR50D",
+        "model_name": "facebook/esm2_t30_150M_UR50D",
         "weights_cached": true
       }
     ],
     "fallback_not_computed_reason": null,
     "fallback_reason": "requested_backend_uncached_local_files_only",
-    "fallback_selected_backend": "esm2_t6_8m_ur50d",
+    "fallback_selected_backend": "esm2_t30_150m_ur50d",
     "fallback_used": true,
     "fetch_failure_count": 0,
     "fetched_accession_count": 47,
     "heuristic_contrast_required_count": 11,
-    "largest_feasible_embedding_backend": "esm2_t6_8m_ur50d",
+    "largest_feasible_embedding_backend": "esm2_t30_150m_ur50d",
     "largest_supported_embedding_backend": "esm2_t33_650m_ur50d",
-    "learned_representation_complete_count": 9,
+    "learned_representation_complete_count": 5,
     "learned_vs_heuristic_disagreement_count": 12,
     "local_files_only": true,
     "max_rows": 12,
     "method": "external_source_representation_backend_sample",
-    "model_load_elapsed_seconds": 3.1059,
+    "model_load_elapsed_seconds": 4.5188,
     "model_load_failure": null,
     "model_load_failure_type": null,
     "model_load_status": "loaded",
-    "model_name": "facebook/esm2_t6_8M_UR50D",
+    "model_name": "facebook/esm2_t30_150M_UR50D",
     "predictive_feature_policy": "representation status is computed from sequence embeddings and sequence length coverage only; identifiers, EC/Rhea, mechanism text, labels, and heuristic fingerprint ids are review context or holdout context only",
     "predictive_feature_sources": [
       "sequence_embedding_cosine",
@@ -283,7 +263,7 @@
     ],
     "ready_for_label_import": false,
     "reference_pair_count": 36,
-    "representation_near_duplicate_alert_count": 3,
+    "representation_near_duplicate_alert_count": 7,
     "requested_accession_count": 47,
     "requested_backend_cache_snapshot_count": 0,
     "requested_backend_feasibility_status": "model_unavailable_locally",
@@ -559,11 +539,11 @@
       ],
       "candidate_sequence_length": 312,
       "comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:P33025",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -582,8 +562,8 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.9727,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.977,
         "length_coverage": 0.9968,
         "matched_m_csa_entry_ids": [
           "m_csa:405"
@@ -598,8 +578,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9727,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.977,
           "length_coverage": 0.9968,
           "matched_m_csa_entry_ids": [
             "m_csa:405"
@@ -608,8 +588,8 @@
           "screen_near_duplicate_score": 0.0929
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9684,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9681,
           "length_coverage": 0.9551,
           "matched_m_csa_entry_ids": [
             "m_csa:178"
@@ -618,8 +598,8 @@
           "screen_near_duplicate_score": 0.0962
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.95,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.8876,
           "length_coverage": 0.9968,
           "matched_m_csa_entry_ids": [
             "m_csa:49"
@@ -638,7 +618,7 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "glycan_chemistry",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.9727
+      "top_embedding_cosine": 0.977
     },
     {
       "accession": "P60174",
@@ -650,11 +630,11 @@
       ],
       "candidate_sequence_length": 249,
       "comparison_status": "proxy_flags_metal_hydrolase_collapse",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:P60174",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -673,8 +653,8 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.9984,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.9949,
         "length_coverage": 0.996,
         "matched_m_csa_entry_ids": [
           "m_csa:324"
@@ -689,8 +669,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9984,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9949,
           "length_coverage": 0.996,
           "matched_m_csa_entry_ids": [
             "m_csa:324"
@@ -699,8 +679,8 @@
           "screen_near_duplicate_score": 0.4773
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8983,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.926,
           "length_coverage": 0.9881,
           "matched_m_csa_entry_ids": [
             "m_csa:54"
@@ -709,8 +689,8 @@
           "screen_near_duplicate_score": 0.0992
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.6025,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.8273,
           "length_coverage": 0.996,
           "matched_m_csa_entry_ids": [
             "m_csa:173"
@@ -729,7 +709,7 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "isomerase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.9984
+      "top_embedding_cosine": 0.9949
     },
     {
       "accession": "Q13907",
@@ -740,11 +720,11 @@
       ],
       "candidate_sequence_length": 227,
       "comparison_status": "proxy_flags_metal_hydrolase_collapse",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:Q13907",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -763,8 +743,8 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.8265,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.9134,
         "length_coverage": 0.9912,
         "matched_m_csa_entry_ids": [
           "m_csa:74"
@@ -779,8 +759,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8265,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9134,
           "length_coverage": 0.9912,
           "matched_m_csa_entry_ids": [
             "m_csa:74"
@@ -789,8 +769,8 @@
           "screen_near_duplicate_score": 0.0925
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.7921,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.8953,
           "length_coverage": 0.9956,
           "matched_m_csa_entry_ids": [
             "m_csa:335"
@@ -799,8 +779,8 @@
           "screen_near_duplicate_score": 0.0921
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.7862,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.8726,
           "length_coverage": 0.919,
           "matched_m_csa_entry_ids": [
             "m_csa:516"
@@ -819,7 +799,7 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "isomerase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.8265
+      "top_embedding_cosine": 0.9134
     },
     {
       "accession": "Q6NSJ0",
@@ -830,11 +810,11 @@
       ],
       "candidate_sequence_length": 714,
       "comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:Q6NSJ0",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -853,13 +833,13 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.8958,
-        "length_coverage": 0.9286,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.926,
+        "length_coverage": 0.9622,
         "matched_m_csa_entry_ids": [
-          "m_csa:714"
+          "m_csa:289"
         ],
-        "reference_accession": "P0ABI8",
+        "reference_accession": "P07342",
         "screen_near_duplicate_score": 0.0784
       },
       "predictive_feature_sources": [
@@ -869,18 +849,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8958,
-          "length_coverage": 0.9286,
-          "matched_m_csa_entry_ids": [
-            "m_csa:714"
-          ],
-          "reference_accession": "P0ABI8",
-          "screen_near_duplicate_score": 0.0784
-        },
-        {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8452,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.926,
           "length_coverage": 0.9622,
           "matched_m_csa_entry_ids": [
             "m_csa:289"
@@ -889,8 +859,18 @@
           "screen_near_duplicate_score": 0.0784
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8394,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.904,
+          "length_coverage": 0.9286,
+          "matched_m_csa_entry_ids": [
+            "m_csa:714"
+          ],
+          "reference_accession": "P0ABI8",
+          "screen_near_duplicate_score": 0.0784
+        },
+        {
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.8634,
           "length_coverage": 0.9096,
           "matched_m_csa_entry_ids": [
             "m_csa:539"
@@ -909,22 +889,23 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "glycan_chemistry",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.8958
+      "top_embedding_cosine": 0.926
     },
     {
       "accession": "Q9BXD5",
-      "backend_status": "learned_representation_sample_complete",
+      "backend_status": "representation_near_duplicate_holdout",
       "blockers": [
+        "representation_near_duplicate_control_holdout",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 320,
       "comparison_status": "proxy_flags_scope_top1_mismatch",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:Q9BXD5",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -943,8 +924,8 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.8619,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.9649,
         "length_coverage": 0.9581,
         "matched_m_csa_entry_ids": [
           "m_csa:526"
@@ -959,8 +940,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8619,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9649,
           "length_coverage": 0.9581,
           "matched_m_csa_entry_ids": [
             "m_csa:526"
@@ -969,8 +950,8 @@
           "screen_near_duplicate_score": 0.1048
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8499,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9468,
           "length_coverage": 0.8,
           "matched_m_csa_entry_ids": [
             "m_csa:856"
@@ -979,8 +960,8 @@
           "screen_near_duplicate_score": 0.09
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8343,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.8909,
           "length_coverage": 0.9786,
           "matched_m_csa_entry_ids": [
             "m_csa:342"
@@ -999,22 +980,23 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "lyase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.8619
+      "top_embedding_cosine": 0.9649
     },
     {
       "accession": "Q9BXS1",
-      "backend_status": "learned_representation_sample_complete",
+      "backend_status": "representation_near_duplicate_holdout",
       "blockers": [
+        "representation_near_duplicate_control_holdout",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 227,
       "comparison_status": "proxy_flags_metal_hydrolase_collapse",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:Q9BXS1",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -1033,8 +1015,8 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.9025,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.9641,
         "length_coverage": 0.9692,
         "matched_m_csa_entry_ids": [
           "m_csa:517"
@@ -1049,8 +1031,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9025,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9641,
           "length_coverage": 0.9692,
           "matched_m_csa_entry_ids": [
             "m_csa:517"
@@ -1059,8 +1041,8 @@
           "screen_near_duplicate_score": 0.0837
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8917,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9449,
           "length_coverage": 0.9419,
           "matched_m_csa_entry_ids": [
             "m_csa:637"
@@ -1069,8 +1051,8 @@
           "screen_near_duplicate_score": 0.0871
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8026,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9096,
           "length_coverage": 0.9956,
           "matched_m_csa_entry_ids": [
             "m_csa:335"
@@ -1089,7 +1071,7 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "isomerase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.9025
+      "top_embedding_cosine": 0.9641
     },
     {
       "accession": "A2RU49",
@@ -1100,11 +1082,11 @@
       ],
       "candidate_sequence_length": 373,
       "comparison_status": "proxy_flags_metal_hydrolase_collapse",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:A2RU49",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -1123,8 +1105,8 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.8879,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.9412,
         "length_coverage": 0.992,
         "matched_m_csa_entry_ids": [
           "m_csa:348"
@@ -1139,8 +1121,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8879,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9412,
           "length_coverage": 0.992,
           "matched_m_csa_entry_ids": [
             "m_csa:348"
@@ -1149,8 +1131,8 @@
           "screen_near_duplicate_score": 0.0912
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8612,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9389,
           "length_coverage": 0.9947,
           "matched_m_csa_entry_ids": [
             "m_csa:377"
@@ -1159,8 +1141,8 @@
           "screen_near_duplicate_score": 0.0907
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.7859,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9297,
           "length_coverage": 0.8928,
           "matched_m_csa_entry_ids": [
             "m_csa:576"
@@ -1179,7 +1161,7 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "transferase_phosphoryl",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.8879
+      "top_embedding_cosine": 0.9412
     },
     {
       "accession": "O14756",
@@ -1190,11 +1172,11 @@
       ],
       "candidate_sequence_length": 317,
       "comparison_status": "proxy_consistent_with_heuristic_scope",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:O14756",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -1213,13 +1195,13 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.7852,
-        "length_coverage": 0.8991,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.9233,
+        "length_coverage": 0.9148,
         "matched_m_csa_entry_ids": [
-          "m_csa:11"
+          "m_csa:315"
         ],
-        "reference_accession": "P0A6C1",
+        "reference_accession": "P14604",
         "screen_near_duplicate_score": 0.0852
       },
       "predictive_feature_sources": [
@@ -1229,18 +1211,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.7852,
-          "length_coverage": 0.8991,
-          "matched_m_csa_entry_ids": [
-            "m_csa:11"
-          ],
-          "reference_accession": "P0A6C1",
-          "screen_near_duplicate_score": 0.0852
-        },
-        {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.7672,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9233,
           "length_coverage": 0.9148,
           "matched_m_csa_entry_ids": [
             "m_csa:315"
@@ -1249,8 +1221,18 @@
           "screen_near_duplicate_score": 0.0852
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.6627,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.8931,
+          "length_coverage": 0.8991,
+          "matched_m_csa_entry_ids": [
+            "m_csa:11"
+          ],
+          "reference_accession": "P0A6C1",
+          "screen_near_duplicate_score": 0.0852
+        },
+        {
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.792,
           "length_coverage": 0.8202,
           "matched_m_csa_entry_ids": [
             "m_csa:595"
@@ -1269,7 +1251,7 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "oxidoreductase_long_tail",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.7852
+      "top_embedding_cosine": 0.9233
     },
     {
       "accession": "P34949",
@@ -1280,11 +1262,11 @@
       ],
       "candidate_sequence_length": 423,
       "comparison_status": "proxy_flags_scope_top1_mismatch",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:P34949",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -1303,8 +1285,8 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.9199,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.9364,
         "length_coverage": 0.9906,
         "matched_m_csa_entry_ids": [
           "m_csa:457"
@@ -1319,8 +1301,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9199,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9364,
           "length_coverage": 0.9906,
           "matched_m_csa_entry_ids": [
             "m_csa:457"
@@ -1329,8 +1311,8 @@
           "screen_near_duplicate_score": 0.0913
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.875,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9257,
           "length_coverage": 0.9456,
           "matched_m_csa_entry_ids": [
             "m_csa:282"
@@ -1339,8 +1321,8 @@
           "screen_near_duplicate_score": 0.0898
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.7167,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9043,
           "length_coverage": 0.9658,
           "matched_m_csa_entry_ids": [
             "m_csa:317"
@@ -1359,22 +1341,23 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "isomerase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.9199
+      "top_embedding_cosine": 0.9364
     },
     {
       "accession": "P35914",
-      "backend_status": "learned_representation_sample_complete",
+      "backend_status": "representation_near_duplicate_holdout",
       "blockers": [
+        "representation_near_duplicate_control_holdout",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 325,
       "comparison_status": "proxy_flags_metal_hydrolase_collapse",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:P35914",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -1393,8 +1376,8 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.9499,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.9509,
         "length_coverage": 1.0,
         "matched_m_csa_entry_ids": [
           "m_csa:106"
@@ -1409,8 +1392,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9499,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9509,
           "length_coverage": 1.0,
           "matched_m_csa_entry_ids": [
             "m_csa:106"
@@ -1419,8 +1402,8 @@
           "screen_near_duplicate_score": 0.0954
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9277,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9363,
           "length_coverage": 0.7757,
           "matched_m_csa_entry_ids": [
             "m_csa:369"
@@ -1429,8 +1412,8 @@
           "screen_near_duplicate_score": 0.1026
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9225,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9161,
           "length_coverage": 0.9848,
           "matched_m_csa_entry_ids": [
             "m_csa:75"
@@ -1449,7 +1432,7 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "lyase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.9499
+      "top_embedding_cosine": 0.9509
     },
     {
       "accession": "Q969G6",
@@ -1461,11 +1444,11 @@
       ],
       "candidate_sequence_length": 155,
       "comparison_status": "proxy_flags_metal_hydrolase_collapse",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:Q969G6",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -1484,8 +1467,8 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.9789,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.9609,
         "length_coverage": 0.9871,
         "matched_m_csa_entry_ids": [
           "m_csa:405"
@@ -1500,8 +1483,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9789,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9609,
           "length_coverage": 0.9871,
           "matched_m_csa_entry_ids": [
             "m_csa:405"
@@ -1510,8 +1493,8 @@
           "screen_near_duplicate_score": 0.1032
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9461,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9499,
           "length_coverage": 0.8839,
           "matched_m_csa_entry_ids": [
             "m_csa:63"
@@ -1520,8 +1503,8 @@
           "screen_near_duplicate_score": 0.0903
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.9404,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9388,
           "length_coverage": 0.9677,
           "matched_m_csa_entry_ids": [
             "m_csa:123"
@@ -1540,22 +1523,23 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "transferase_phosphoryl",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.9789
+      "top_embedding_cosine": 0.9609
     },
     {
       "accession": "Q96I15",
-      "backend_status": "learned_representation_sample_complete",
+      "backend_status": "representation_near_duplicate_holdout",
       "blockers": [
+        "representation_near_duplicate_control_holdout",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 445,
       "comparison_status": "proxy_flags_metal_hydrolase_collapse",
-      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t30_150m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": 320,
+      "embedding_vector_dimension": 640,
       "embedding_warning": null,
       "entry_id": "uniprot:Q96I15",
       "fallback_reason": "requested_backend_uncached_local_files_only",
@@ -1574,14 +1558,14 @@
         "source_scope_signal_review_context_only"
       ],
       "nearest_reference": {
-        "embedding_backend": "esm2_t6_8m_ur50d",
-        "embedding_cosine": 0.8346,
-        "length_coverage": 0.9889,
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.9537,
+        "length_coverage": 0.9888,
         "matched_m_csa_entry_ids": [
-          "m_csa:579"
+          "m_csa:413"
         ],
-        "reference_accession": "P24295",
-        "screen_near_duplicate_score": 0.0911
+        "reference_accession": "P07650",
+        "screen_near_duplicate_score": 0.0899
       },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
@@ -1590,18 +1574,8 @@
       "ready_for_label_import": false,
       "reference_scores": [
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8346,
-          "length_coverage": 0.9889,
-          "matched_m_csa_entry_ids": [
-            "m_csa:579"
-          ],
-          "reference_accession": "P24295",
-          "screen_near_duplicate_score": 0.0911
-        },
-        {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.8068,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9537,
           "length_coverage": 0.9888,
           "matched_m_csa_entry_ids": [
             "m_csa:413"
@@ -1610,8 +1584,18 @@
           "screen_near_duplicate_score": 0.0899
         },
         {
-          "embedding_backend": "esm2_t6_8m_ur50d",
-          "embedding_cosine": 0.78,
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9452,
+          "length_coverage": 0.9889,
+          "matched_m_csa_entry_ids": [
+            "m_csa:579"
+          ],
+          "reference_accession": "P24295",
+          "screen_near_duplicate_score": 0.0911
+        },
+        {
+          "embedding_backend": "esm2_t30_150m_ur50d",
+          "embedding_cosine": 0.9136,
           "length_coverage": 0.8674,
           "matched_m_csa_entry_ids": [
             "m_csa:303"
@@ -1630,7 +1614,7 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "lyase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.8346
+      "top_embedding_cosine": 0.9537
     }
   ],
   "warnings": [

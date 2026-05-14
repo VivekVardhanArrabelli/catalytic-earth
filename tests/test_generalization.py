@@ -439,7 +439,17 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertFalse(metadata["full_tm_score_split_computed"])
         self.assertTrue(metadata["partial_tm_score_signal_computed"])
         self.assertFalse(metadata["full_evaluated_coordinate_coverage"])
+        self.assertEqual(
+            metadata["tm_score_signal_coverage_status"],
+            "partial_staged_coordinate_signal",
+        )
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertIn(
+            "evaluated selected-coordinate coverage is partial",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
         self.assertEqual(metadata["staged_coordinate_count"], 2)
+        self.assertEqual(metadata["remaining_to_full_signal_structure_count"], 1)
         self.assertEqual(metadata["pair_count"], 2)
         self.assertEqual(metadata["train_test_pair_count"], 2)
         self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.62)
@@ -580,6 +590,13 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertTrue(metadata["tm_signal_coordinate_cap_applied"])
         self.assertEqual(metadata["available_staged_coordinate_count"], 3)
         self.assertEqual(metadata["staged_coordinate_count"], 2)
+        self.assertEqual(metadata["remaining_to_full_signal_structure_count"], 1)
+        self.assertEqual(metadata["remaining_uncomputed_staged_coordinate_count"], 1)
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertIn(
+            "available staged coordinates were excluded by the signal cap",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
         self.assertEqual(metadata["computed_subset_structure_coverage"], 0.6667)
         self.assertEqual(metadata["computed_subset_materialized_coverage"], 0.6667)
         self.assertEqual(metadata["computed_subset_evaluated_entry_coverage"], 0.6667)
@@ -597,6 +614,62 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
         self.assertEqual(metadata["import_ready_candidate_count"], 0)
         self.assertFalse(metadata["ready_for_label_import"])
+
+    def test_tm_score_signal_records_prior_baseline_and_blocks_false_full_claim(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            coord_dir = Path(tmpdir) / "coords"
+            coord_dir.mkdir()
+            first = coord_dir / "pdb_1AAA.cif"
+            second = coord_dir / "pdb_2BBB.cif"
+            for path in (first, second):
+                path.write_text(f"data_{path.stem}\n#\n", encoding="utf-8")
+
+            def fake_runner(command: list[str], cwd: Path) -> None:
+                Path(command[4]).write_text(
+                    "\n".join(
+                        [
+                            "pdb_1AAA\tpdb_2BBB\t0.710\t0.720\t0.750",
+                            "pdb_2BBB\tpdb_1AAA\t0.730\t0.740\t0.760",
+                            "",
+                        ]
+                    ),
+                    encoding="utf-8",
+                )
+
+            artifact = build_foldseek_tm_score_signal(
+                readiness=_tm_signal_readiness(
+                    first_coordinate_path=str(first),
+                    second_coordinate_path=str(second),
+                ),
+                slice_id="test",
+                foldseek_binary="/bin/echo",
+                prior_staged_coordinate_count=1,
+                runner=fake_runner,
+            )
+
+        metadata = artifact["metadata"]
+        self.assertEqual(metadata["prior_staged_coordinate_count"], 1)
+        self.assertTrue(metadata["staged_coordinate_count_exceeds_prior"])
+        self.assertIn(
+            "previous expanded1 partial-signal ceiling",
+            metadata["blocker_removed"],
+        )
+        self.assertFalse(metadata["tm_score_target_achieved_for_computed_subset"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertEqual(
+            metadata["tm_score_signal_coverage_status"],
+            "partial_staged_coordinate_signal",
+        )
+        self.assertIn(
+            "computed train/test TM-score target <0.7 is not achieved",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertIn(
+            "selected structures remain outside the computed signal",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
 
     def test_current_1000_foldseek_tm_score_signal_artifact_is_pinned(self) -> None:
         artifact = _load_artifact(
@@ -670,7 +743,24 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertIn("selected_coordinates", metadata["foldseek_command"])
         self.assertEqual(metadata["raw_name_mapping_unmapped_count"], 0)
         self.assertEqual(metadata["raw_name_mapping_unmapped_names"], [])
-        self.assertIn("staged25-only proof blocker", metadata["blocker_removed"])
+        self.assertIn("previous expanded25 partial-signal ceiling", metadata["blocker_removed"])
+        self.assertEqual(metadata["prior_staged_coordinate_count"], 25)
+        self.assertTrue(metadata["staged_coordinate_count_exceeds_prior"])
+        self.assertEqual(
+            metadata["tm_score_signal_coverage_status"],
+            "partial_staged_coordinate_signal",
+        )
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertIn(
+            "computed train/test TM-score target <0.7 is not achieved",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertIn(
+            "evaluated selected-coordinate coverage is partial",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertEqual(metadata["remaining_to_full_signal_structure_count"], 632)
+        self.assertEqual(metadata["remaining_uncomputed_staged_coordinate_count"], 60)
         self.assertIsNone(metadata["blocker_not_removed"])
         self.assertIn(
             "partial staged-coordinate Foldseek signal only; it is not a full accepted-registry TM-score holdout",

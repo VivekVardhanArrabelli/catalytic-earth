@@ -333,14 +333,17 @@ holdout, label-factory, and external heuristic-control artifacts preserve 0 hard
 negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0 countable
 external labels.
 ESM-2 650M support is implemented as a review-only sidecar path for mapped
-controls and selected pilot rows. The current local run could not compute
-`facebook/esm2_t33_650M_UR50D` because the model was not cached; the sidecars
-now make that first-class by recording the requested 650M backend as unavailable,
-falling back to the cached 8M backend for computed review-only rows, recording
-actual dimension `320` versus requested dimension `1280`, and marking
-`requested_650m_or_larger_representation_backend_not_computed`. The 8M-vs-650M
-stability audits now report `fallback_stable` for both mapped controls and
-selected pilot rows without replacing a real future 650M control.
+controls and selected pilot rows. The current environment still could not
+compute `facebook/esm2_t33_650M_UR50D`: the 650M weights are not cached, the
+remote weight file is about 2.61 GB, only about 3.2 GiB remained free after the
+150M cache, and no MPS backend was available. The sidecars now record the
+requested 650M backend as unavailable, fall back to the cached
+`facebook/esm2_t30_150M_UR50D` backend for computed review-only rows, record
+actual dimension `640` versus requested dimension `1280`, and mark
+`requested_650m_or_larger_representation_backend_not_computed`. The 8M-vs-larger
+stability audits now report `fallback_changed` for both mapped controls and
+selected pilot rows, which is a real representation-control signal rather than a
+replacement for a future full 650M control.
 `artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json`
 prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
 expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,

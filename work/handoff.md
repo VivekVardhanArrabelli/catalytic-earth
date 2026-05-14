@@ -60,9 +60,10 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   sequence holdouts, active-site evidence gaps, the still-uncomputed requested
   650M representation control, expert-review no-decision artifacts, and full
   factory gates still block every external row from import. The requested 650M
-  sidecars now fall back to computed 8M rows and explicitly mark
+  sidecars now fall back to computed 150M rows after confirming the 650M weights
+  are uncached and locally infeasible, and explicitly mark
   `requested_650m_or_larger_representation_backend_not_computed`, so they are
-  clearer feasibility evidence but not import evidence.
+  stronger representation-control evidence but still not import evidence.
 - Scientific generalization work: Yes. Accepted-registry MMseqs2 holdouts and
   the new external backend sequence search are real backend evidence, with 0
   held-out out-of-scope false non-abstentions in the countable path. The
@@ -81,7 +82,8 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   review-only audits, and gate checks are now explicit and tested. The Foldseek
   capped-signal path now builds a dedicated selected-coordinate search directory
   instead of pointing Foldseek at the whole sidecar directory, avoiding a cap
-  metadata/execution mismatch. Maintainability risk is mainly the large artifact
+  metadata/execution mismatch, and the expanded40 artifact now records explicit
+  false-full-claim blockers. Maintainability risk is mainly the large artifact
   graph and stale downstream pilot packets if future agents regenerate blocker
   priorities without refreshing dependent pilot evidence.
 
@@ -90,11 +92,12 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 - Hardened the 650M representation-readiness path without claiming a real 650M
   run. The mapped-control and selected-pilot 650M sidecars now record the 650M
   cache miss, requested dimension `1280`, computed fallback backend
-  `esm2_t6_8m_ur50d`, actual dimension `320`, and
+  `esm2_t30_150m_ur50d`, actual dimension `640`, and
   `requested_650m_or_larger_representation_backend_not_computed`. The stability
-  sidecars report `fallback_stable` with 0 nearest-reference changes and 0
-  heuristic-disagreement-status changes while all rows remain review-only and
-  non-countable.
+  sidecars report `fallback_changed` while all rows remain review-only and
+  non-countable: mapped controls have 3 nearest-reference changes and 4
+  heuristic-disagreement-status changes, while selected pilot rows have 4
+  nearest-reference changes and 3 heuristic-disagreement-status changes.
 - Expanded Foldseek coordinate readiness from 25 to 100 staged selected PDB
   coordinates in `artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json`
   with 0 fetch failures. The bounded expanded40 Foldseek signal in
@@ -106,8 +109,9 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   the expanded40 raw-name mapping blocker, but stays non-countable/not
   import-ready because full TM-score split remains false and the partial signal
   does not achieve the `<0.7` target. The CLI now accepts
-  `--max-staged-coordinates`, and capped runs use a dedicated
-  selected-coordinate search directory.
+  `--max-staged-coordinates` plus `--prior-staged-coordinate-count`, capped
+  runs use a dedicated selected-coordinate search directory, and the artifact
+  explicitly blocks full holdout claims while coverage remains partial.
 - Added a bounded Foldseek coordinate-readiness path for the accepted 1,000
   context. `build-foldseek-coordinate-readiness` records explicit Foldseek
   provenance, selected-structure materialization readiness, missing selected
@@ -580,11 +584,18 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   `artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json`
   and
   `artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json`
-  attempt `facebook/esm2_t33_650M_UR50D` in local-only mode. The model is not
-  cached locally, so mapped-control and pilot sidecars are unavailable
-  feasibility artifacts, not computed embeddings. Their paired stability audits
-  compare against the 8M baseline, remain review-only, and keep 0 countable or
-  import-ready rows.
+  attempt `facebook/esm2_t33_650M_UR50D` in local-only mode after a bounded
+  150M feasibility run. The 650M model is still not cached, and the environment
+  had only about 3.2 GiB free for a 2.61 GB remote weight file with CPU-only
+  inference, so the sidecars use the cached `facebook/esm2_t30_150M_UR50D`
+  backend as the largest feasible actual model. Mapped controls now have 12
+  review-only 640-dimensional rows, 0 embedding failures, 7 representation
+  near-duplicate holdouts, and 12 learned-vs-heuristic disagreements; selected
+  pilot rows now have 10 review-only rows, 0 embedding failures, 4
+  representation near-duplicate holdouts, and 10 learned-vs-heuristic
+  disagreements. Their paired 8M-vs-larger stability audits report
+  `fallback_changed`, remain review-only, and keep 0 countable or import-ready
+  rows.
 - 725 post-batch review surface: all 95 unlabeled candidates are retained in a
   207-row active-learning queue; 95 expert-label decision rows are exported as
   review-only no-decision items; 25 priority local-evidence lanes are audited

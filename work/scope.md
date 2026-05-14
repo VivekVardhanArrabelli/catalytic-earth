@@ -184,8 +184,10 @@ Current expectation:
   Foldseek-backed split builder are still required. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
-  now explicitly record the uncached 650M state and computed 8M fallback
-  stability rather than pretending a 650M control was completed.
+  now explicitly record the uncached 650M state, compute
+  `facebook/esm2_t30_150M_UR50D` as the largest feasible cached fallback, and
+  report 8M-vs-larger `fallback_changed` stability rather than pretending a
+  650M control was completed.
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed

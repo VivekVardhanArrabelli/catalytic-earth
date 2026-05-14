@@ -608,6 +608,7 @@ def build_foldseek_tm_score_signal(
     foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
     readiness_path: str | None = None,
     max_staged_coordinates: int | None = None,
+    prior_staged_coordinate_count: int | None = None,
     runner: Callable[[list[str], Path], None] | None = None,
 ) -> dict[str, Any]:
     """Build a partial Foldseek TM-score signal for staged coordinates only.
@@ -794,6 +795,44 @@ def build_foldseek_tm_score_signal(
     computed_tm_target_achieved = (
         max_train_test_tm_score is not None and max_train_test_tm_score < 0.7
     )
+    prior_coordinate_count = (
+        max(0, int(prior_staged_coordinate_count))
+        if prior_staged_coordinate_count is not None
+        else None
+    )
+    staged_exceeds_prior = bool(
+        partial_signal
+        and prior_coordinate_count is not None
+        and len(staged_structures) > prior_coordinate_count
+    )
+    remaining_to_full_signal_structure_count = max(
+        0, selected_structure_count - len(staged_structures)
+    )
+    remaining_uncomputed_staged_coordinate_count = max(
+        0, len(available_staged_structures) - len(staged_structures)
+    )
+    coverage_status = (
+        "full_evaluated_coordinate_signal"
+        if full_evaluated_coordinate_coverage
+        else "partial_staged_coordinate_signal"
+    )
+    full_claim_blockers = [
+        "this builder emits a TM-score signal, not a tested full TM-score split"
+    ]
+    if not partial_signal:
+        full_claim_blockers.append("Foldseek TM-score signal did not complete with pair rows")
+    if not full_evaluated_coordinate_coverage:
+        full_claim_blockers.append("evaluated selected-coordinate coverage is partial")
+    if missing_or_unsupported_structure_count:
+        full_claim_blockers.append("one or more evaluated rows lacks a supported selected structure")
+    if fetch_failure_count:
+        full_claim_blockers.append("one or more selected coordinate fetches failed")
+    if remaining_to_full_signal_structure_count:
+        full_claim_blockers.append("selected structures remain outside the computed signal")
+    if remaining_uncomputed_staged_coordinate_count:
+        full_claim_blockers.append("available staged coordinates were excluded by the signal cap")
+    if not computed_tm_target_achieved:
+        full_claim_blockers.append("computed train/test TM-score target <0.7 is not achieved")
     limitations = [
         "partial staged-coordinate Foldseek signal only; it is not a full accepted-registry TM-score holdout",
         "tm_score_split_computed=false because not every evaluated coordinate is staged and no split is computed here",
@@ -834,16 +873,24 @@ def build_foldseek_tm_score_signal(
     expanded_successful_signal = partial_signal and (
         len(staged_structures) > 25 or cap_applied
     )
-
-    metadata = {
-        "method": "foldseek_tm_score_signal",
-        "blocker_removed": (
+    if staged_exceeds_prior:
+        blocker_removed = (
+            f"removes the previous expanded{prior_coordinate_count} partial-signal "
+            f"ceiling by running Foldseek easy-search over {len(staged_structures)} "
+            "staged coordinates; this remains review-only and non-countable"
+        )
+    elif expanded_successful_signal:
+        blocker_removed = (
             "removes the staged25-only proof blocker when staged_coordinate_count "
             "exceeds 25 by running Foldseek easy-search over the expanded bounded "
             "coordinate subset; this remains review-only and non-countable"
-            if expanded_successful_signal
-            else None
-        ),
+        )
+    else:
+        blocker_removed = None
+
+    metadata = {
+        "method": "foldseek_tm_score_signal",
+        "blocker_removed": blocker_removed,
         "blocker_not_removed": (
             "expanded Foldseek TM-score signal did not complete with pair rows; "
             "staged25-only computed signal remains the latest usable TM-score signal"
@@ -869,6 +916,9 @@ def build_foldseek_tm_score_signal(
         "real_tm_score_computed": False,
         "partial_real_tm_score_signal_computed": partial_signal,
         "full_evaluated_coordinate_coverage": full_evaluated_coordinate_coverage,
+        "tm_score_signal_coverage_status": coverage_status,
+        "full_tm_score_holdout_claim_permitted": False,
+        "full_tm_score_holdout_claim_blockers": sorted(set(full_claim_blockers)),
         "threshold_target": "<0.7",
         "tm_score_threshold_target": "<0.7",
         "tm_score_target_achieved_for_computed_subset": computed_tm_target_achieved,
@@ -889,10 +939,15 @@ def build_foldseek_tm_score_signal(
         "not_materialized_structures": metadata_in.get("not_materialized_structures", []),
         "tm_signal_coordinate_cap_requested": coordinate_cap,
         "tm_signal_coordinate_cap_applied": cap_applied,
+        "prior_staged_coordinate_count": prior_coordinate_count,
+        "staged_coordinate_count_exceeds_prior": staged_exceeds_prior,
         "staged_coordinate_count": len(staged_structures),
         "staged_structure_count": len(staged_structures),
         "staged_entry_count": len(selected_staged_entry_ids),
         "selected_staged_entry_ids": selected_staged_entry_ids,
+        "remaining_to_full_signal_structure_count": remaining_to_full_signal_structure_count,
+        "remaining_uncomputed_staged_coordinate_count": remaining_uncomputed_staged_coordinate_count,
+        "remaining_unstaged_supported_structure_count": not_materialized_structure_count,
         "computed_subset_structure_coverage": computed_subset_structure_coverage,
         "computed_subset_materialized_coverage": computed_subset_materialized_coverage,
         "computed_subset_evaluated_entry_coverage": computed_subset_evaluated_entry_coverage,
