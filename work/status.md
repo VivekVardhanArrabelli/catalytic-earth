@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 92
-- Measured elapsed time: 3329.1 minutes (55.49 hours)
+- Entries: 93
+- Measured elapsed time: 3355.7 minutes (55.93 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 682.9 measured minutes (11.38 hours)
+- post-mcsa-spof-hardening: 709.5 measured minutes (11.82 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 980
-- Evidence references logged: 801
+- Artifact references logged: 987
+- Evidence references logged: 811
 
 ## Recent Entries
-
-### 2026-05-14T06:41:02.695388+00:00 - post-mcsa-spof-hardening
-
-- Task: Foldseek expanded readiness and 650M fallback hardening
-- Time mode: measured
-- Measured minutes: 65.767
-- Started: 2026-05-14T05:35:16Z
-- Ended: 2026-05-14T06:41:02Z
-- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, src/catalytic_earth/transfer_scope.py, tests/test_generalization.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json, artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json, artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json, artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: 324 unit tests passed, validate passed, compileall passed, git diff check passed, expanded Foldseek readiness staged 100 coordinates with 0 fetch failures, expanded40 Foldseek signal failed with blocker_not_removed, 650M unavailable sidecars compute 8M fallback and report fallback_stable
-- Notes: Normal locked delegated run with local integration fixes. No M-CSA count growth and no external import; requested 650M remains uncached and full TM-score split remains blocked.
 
 ### 2026-05-14T09:28:41.519786+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, src/catalytic_earth/generalization.py, tests/test_transfer_scope.py, tests/test_cli.py, tests/test_generalization.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_pilot_success_criteria_1025.json, artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json, README.md, docs/external_source_transfer.md, work/external_source_transfer_1025_notes.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
 - Evidence: 334 unit tests passed, validate passed, compileall passed, pilot success criteria status needs_more_work with 0 terminal decisions and 0 import-ready rows, pilot success criteria record 7 explicit active-site rows, 3 binding-context-only rows, 10 broader duplicate-screening blockers, 9 representation-control blockers, and 10 full-gate blockers, Foldseek coordinate exclusions recorded for m_csa:372 and m_csa:501 with geometry_status=no_structure_positions and selected_structure_id=null, 0 countable labels, 0 import-ready rows
 - Notes: Normal locked local implementation run. No M-CSA count growth and no external import.
+
+### 2026-05-14T16:15:30.855586+00:00 - post-mcsa-spof-hardening
+
+- Task: Expanded80 Foldseek partial TM signal
+- Time mode: measured
+- Measured minutes: 26.6
+- Started: 2026-05-14T15:48:54Z
+- Ended: 2026-05-14T16:15:30Z
+- Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_expanded80.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 335 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifact parse passed, Foldseek expanded80 completed partial signal 18591 mapped pairs, max train/test TM 0.7515, target <0.7 not achieved, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
 
 ## Expectation Updates
 
@@ -198,6 +198,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T12:50:26.982940+00:00: Sequence-distance holdout is real backend evidence; next generalization blocker remains full Foldseek/TM-score split and external import blockers.
 - 2026-05-14T14:10:21.275491+00:00: Expanded60 removes the expanded40 partial-signal ceiling, but full TM-score split remains blocked by two missing selected structures, the capped-out staged coordinates, and the failed <0.7 computed-subset target.
 - 2026-05-14T15:07:52.876846+00:00: External pilot now has measurable success criteria and remains needs_more_work; Foldseek selected-structure blocker is narrowed to explicit coordinate exclusions plus the unrun full TM-score split.
+- 2026-05-14T16:15:30.855586+00:00: Expanded80 removes the expanded60 partial-signal ceiling, but full TM-score split remains blocked by two coordinate exclusions, the capped-out staged coordinates, and the failed <0.7 computed-subset target.
 
 ## Scope Adjustments
 
@@ -283,3 +284,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T12:34:37.036864+00:00: No project scope change; full TM-score split remains blocked by two missing selected structures and the unrun all-materializable Foldseek signal.
 - 2026-05-14T14:10:21.275491+00:00: Foldseek TM-score evidence is stronger but still review-only and non-countable; do not treat expanded60 as a full holdout split.
 - 2026-05-14T15:07:52.876846+00:00: Do not count external pilot evidence as success until terminal decisions and import criteria pass; report m_csa:372 and m_csa:501 as coordinate exclusions before any full TM-score holdout claim.
+- 2026-05-14T16:15:30.855586+00:00: Foldseek TM-score evidence is stronger but still review-only and non-countable; do not treat expanded80 as a full holdout split.

@@ -182,13 +182,13 @@ Current expectation:
   train/test TM score `0.7515`, 0 unmapped raw Foldseek names, and 0
   countable/import-ready rows. That removes the staged25-only proof blocker,
   expanded40 raw-name mapping blocker, and unstaged selected-coordinate sidecar
-  blocker. The expanded60 signal now completes from the all-materializable
-  sidecar with 60 staged coordinates, 12,329 mapped pair rows, 3,716
+  blocker. The expanded80 signal now completes from the all-materializable
+  sidecar with 80 staged coordinates, 18,591 mapped pair rows, 5,666
   heldout/in-distribution train/test pairs, max train/test TM score `0.7515`,
   0 unmapped raw names, and 0 countable/import-ready rows, removing the
-  expanded40 partial-signal ceiling. These signals remain
+  expanded60 partial-signal ceiling. These signals remain
   review-only/non-countable; the `<0.7` target is not achieved on the partial
-  signal, 612 staged coordinates remain outside the capped computation, and a
+  signal, 592 staged coordinates remain outside the capped computation, and a
   full Foldseek-backed split builder is still required. The coordinate
   readiness artifact now explicitly excludes `m_csa:372` and `m_csa:501`
   because both lack selected coordinate structures in current evidence; those
