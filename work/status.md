@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 88
-- Measured elapsed time: 3225.6 minutes (53.76 hours)
+- Entries: 89
+- Measured elapsed time: 3277.6 minutes (54.63 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 579.3 measured minutes (9.66 hours)
+- post-mcsa-spof-hardening: 631.4 measured minutes (10.52 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 948
-- Evidence references logged: 771
+- Artifact references logged: 949
+- Evidence references logged: 778
 
 ## Recent Entries
-
-### 2026-05-14T03:08:19.594666+00:00 - post-mcsa-spof-hardening
-
-- Task: Real holdout, text ablation, and representation readiness
-- Time mode: measured
-- Measured minutes: 36.033
-- Started: 2026-05-14T02:32:17Z
-- Ended: 2026-05-14T03:08:19Z
-- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/transfer_scope.py, artifacts/v3_sequence_distance_holdout_eval_1000.json, artifacts/v3_sequence_distance_holdout_eval_1025.json, artifacts/v3_mechanism_text_counterevidence_ablation_1000.json, artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json, artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json, work/foldseek_readiness_notes.md
-- Evidence: 313 unit tests passed, validate passed, git diff check passed, MMseqs2 holdout max train/test identity 0.284, heldout false non-abstentions 0, mechanism-text ablation 0 structure-local guardrail losses, 650M model unavailable locally, Foldseek 10.941cd33 installed in temporary env but coordinates absent
-- Notes: Normal locked delegated run per user instruction; no M-CSA count growth and no external import.
 
 ### 2026-05-14T04:23:49.348241+00:00 - post-mcsa-spof-hardening
 
@@ -117,6 +106,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 331 unit tests passed, validate passed, git diff check passed, JSON artifact parse passed, Foldseek all-materializable readiness staged 672 unique coordinates with 0 fetch failures, external pilot active-site decisions 7 explicit and 3 binding-context-only, external transfer gate 68/68, 0 countable labels, 0 import-ready rows
 - Notes: Normal locked delegated run per user instruction. Parent integrated worker outputs, added durable docs, and kept M-CSA-only growth stopped and all external rows review-only.
 
+### 2026-05-14T12:34:37.036864+00:00 - post-mcsa-spof-hardening
+
+- Task: Delegated Foldseek all-materializable retry attempt
+- Time mode: measured
+- Measured minutes: 52.017
+- Started: 2026-05-14T11:42:35Z
+- Ended: 2026-05-14T12:34:36Z
+- Artifacts: work/handoff.md
+- Evidence: 331 unit tests passed before delegation, validate passed before delegation, MMseqs BLAST+ DIAMOND present on PATH, Foldseek 10.941cd33 available at /private/tmp/catalytic-foldseek-env/bin/foldseek, worker shut down with no parent worktree changes, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked instruction-only run per user override. Parent did not implement backend changes locally; delegated worker timed out and was closed, leaving the worktree clean before bookkeeping.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -194,6 +194,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T09:28:41.519786+00:00: Expanded40 Foldseek raw-name mapping is no longer a blocker, but the partial staged-coordinate TM signal still fails the <0.7 target and full TM-score split remains blocked on full coordinate coverage plus a split builder.
 - 2026-05-14T10:16:36.145071+00:00: Requested 650M representation remains blocked by local cache/disk/CPU limits; largest feasible cached ESM-2 150M now gives a real review-only control signal while Foldseek remains partial and fails the <0.7 target.
 - 2026-05-14T11:07:34.295381+00:00: Next work should run a full Foldseek/TM-score split only after resolving missing selected structures and should advance pilot rows through broader duplicate screening, representation review, and review decisions without countable import.
+- 2026-05-14T12:34:37.036864+00:00: Next agent should retry the all-materializable Foldseek TM-score signal as delegated backend work or emit a bounded larger-than-40 completed signal without false full-holdout claims.
 
 ## Scope Adjustments
 
@@ -276,3 +277,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T03:08:19.594666+00:00: Real sequence-distance holdout replaces proxy-only generalization signal; Foldseek/TM-score split now depends on coordinate materialization rather than tool availability alone.
 - 2026-05-14T04:23:49.348241+00:00: External pilot sequence-search work now uses real MMseqs2 current-reference backend evidence before review decisions; import remains blocked by active-site, representation, broader duplicate-screening, review, and factory gates.
 - 2026-05-14T11:07:34.295381+00:00: Unstaged selected-coordinate sidecar blocker is removed, but full TM-score split remains blocked by two missing selected structures and the unrun Foldseek split builder; selected-pilot active-site source status is classified but import remains blocked.
+- 2026-05-14T12:34:37.036864+00:00: No project scope change; full TM-score split remains blocked by two missing selected structures and the unrun all-materializable Foldseek signal.

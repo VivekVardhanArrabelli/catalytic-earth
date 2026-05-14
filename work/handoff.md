@@ -96,6 +96,18 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Recent Project Progress
 
+- No-code delegated Foldseek attempt at 2026-05-14T11:42:35Z. The parent
+  automation acquired the lock, synced `origin/main`, verified `mmseqs`,
+  `blastp`, `makeblastdb`, and `diamond` on PATH plus Foldseek
+  `/private/tmp/catalytic-foldseek-env/bin/foldseek` version `10.941cd33`,
+  ran 331 unit tests and validation cleanly, and instructed a worker to build
+  `artifacts/v3_foldseek_tm_score_signal_1000_all_materializable.json` from
+  the all-materializable coordinate sidecar. The worker did not return within
+  the wrap-up window and was shut down; the parent worktree stayed clean and no
+  implementation or artifact changes were integrated. The next agent should
+  retry the delegated all-materializable Foldseek/TM-score signal or a bounded
+  larger-than-40 cap, keeping the two missing selected-structure blockers
+  (`m_csa:372`, `m_csa:501`) and all review-only/non-countable claims intact.
 - Staged all currently materializable selected Foldseek coordinates for the
   accepted 1,000 context in
   `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`:
