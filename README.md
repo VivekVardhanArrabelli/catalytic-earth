@@ -288,7 +288,23 @@ and 80% coverage, hold out 136 rows by whole sequence clusters, and record a
 max observed train/test identity of `0.284`. The target <=30% sequence-identity
 split is achieved, with 0 held-out out-of-scope false non-abstentions; held-out
 evaluable in-scope top1 accuracy, top3 retained accuracy, and retention are all
-`1.0000`. Foldseek/TM-score separation remains uncomputed.
+`1.0000`. Full Foldseek/TM-score separation remains uncomputed.
+`artifacts/v3_foldseek_coordinate_readiness_1000.json` narrows that blocker by
+recording the explicit Foldseek binary/version
+(`/private/tmp/catalytic-foldseek-env/bin/foldseek`, `10.941cd33`), the 678
+evaluated accepted-registry rows, 676 rows with supported selected PDB
+coordinates, two rows missing selected structures (`m_csa:372`, `m_csa:501`),
+and a capped 25-PDB coordinate sidecar in
+`artifacts/v3_foldseek_coordinates_1000/`. It is review-only/non-countable and
+keeps `tm_score_split_computed=false`. The paired
+`artifacts/v3_foldseek_tm_score_signal_1000_staged25.json` adds a bounded
+all-vs-all Foldseek `easy-search` signal over only those 25 staged coordinates:
+1,840 pair rows, 25 mapped staged entries, 532 staged heldout/in-distribution
+pair rows, and max observed staged train/test TM signal `0.6426` against the
+`<0.7` target. It is review-only, has 0 countable/import-ready rows, and keeps
+`full_tm_score_split_computed=false`; the full TM-score split still requires
+staging the remaining selected coordinates and adding the Foldseek split
+builder.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

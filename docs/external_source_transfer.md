@@ -51,12 +51,27 @@ in-distribution metrics: 44 held-out in-scope rows, 92 held-out out-of-scope
 rows, 0 held-out out-of-scope false non-abstentions, and held-out evaluable
 top1 accuracy, top3 retained accuracy, and retention all at `1.0000`. The
 deterministic low-neighborhood proxy fields remain as fallback context.
-Foldseek/TM-score separation remains unmeasured until a structural backend is
-available.
+Full Foldseek/TM-score separation remains uncomputed, but the
+coordinate-readiness blocker is now narrower.
+`artifacts/v3_foldseek_coordinate_readiness_1000.json`
+records the explicit Foldseek binary/version
+(`/private/tmp/catalytic-foldseek-env/bin/foldseek`, `10.941cd33`), identifies
+678 evaluated accepted-registry rows, finds 676 rows with supported selected
+PDB coordinates, flags `m_csa:372` and `m_csa:501` as missing selected
+structures, and stages a capped 25-PDB sidecar under
+`artifacts/v3_foldseek_coordinates_1000/`. The artifact is review-only,
+non-countable, and keeps `tm_score_split_computed=false`.
+`artifacts/v3_foldseek_tm_score_signal_1000_staged25.json` then runs a bounded
+all-vs-all Foldseek `easy-search` over only that staged sidecar. It records
+1,840 pair rows, maps all rows back to the 25 staged structures and entry ids,
+finds 532 staged heldout/in-distribution pair rows, and reports max observed
+staged train/test TM signal `0.6426` against the `<0.7` target. This is partial
+staged-coordinate review evidence only: it adds 0 countable/import-ready rows
+and keeps both `tm_score_split_computed=false` and
+`full_tm_score_split_computed=false`.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
-`10.941cd33`), but the repo currently stores structure identifiers rather than
-local coordinate files. A TM-score split remains blocked until selected
+`10.941cd33`). A TM-score split remains blocked until the remaining selected
 PDB/AlphaFold coordinates are materialized and wired into a Foldseek-backed
 split builder.
 

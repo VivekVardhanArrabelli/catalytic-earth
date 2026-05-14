@@ -62,8 +62,13 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   block every external row from import.
 - Scientific generalization work: Yes. Accepted-registry MMseqs2 holdouts and
   the new external backend sequence search are real backend evidence, with 0
-  held-out out-of-scope false non-abstentions in the countable path; Foldseek
-  TM-score work remains blocked on materialized coordinate files.
+  held-out out-of-scope false non-abstentions in the countable path. The
+  Foldseek/TM-score blocker is narrowed, not cleared: Foldseek 10.941cd33 is
+  recorded through the explicit temporary binary path, 676 evaluated rows have
+  supported selected PDB coordinates, 25 mmCIF sidecars are staged, and a
+  partial staged-coordinate Foldseek signal records max staged train/test TM
+  score `0.6426` while keeping `tm_score_split_computed=false` until the
+  remaining coordinates and split builder exist.
 - SPOF hardening work: Yes. External artifact lineage, backend metadata,
   review-only audits, and gate checks are now explicit and tested; maintainability
   risk is mainly the large artifact graph and stale downstream pilot packets if
@@ -72,6 +77,20 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Recent Project Progress
 
+- Added a bounded Foldseek coordinate-readiness path for the accepted 1,000
+  context. `build-foldseek-coordinate-readiness` records explicit Foldseek
+  provenance, selected-structure materialization readiness, missing selected
+  structures, fetch failures, and review-only/non-countable status without
+  computing or claiming a TM-score split. The current artifact stages 25
+  selected PDB mmCIF files, identifies 676 materializable evaluated rows and
+  missing selected structures for `m_csa:372` and `m_csa:501`, and keeps
+  `tm_score_split_computed=false`.
+- Added `artifacts/v3_foldseek_tm_score_signal_1000_staged25.json`, a partial
+  review-only Foldseek `easy-search` signal over only the 25 staged coordinate
+  files. It records 1,840 mapped pair rows, 532 staged heldout/in-distribution
+  pair rows, max staged train/test TM score `0.6426` against the `<0.7`
+  target, 0 countable/import-ready rows, and keeps
+  `full_tm_score_split_computed=false`.
 - Refreshed the downstream selected-pilot chain after the 1,025 backend
   sequence-search update. `v3_external_source_pilot_candidate_priority_1025`,
   review-decision export, evidence packet, pilot representation plan/sample,
@@ -319,13 +338,27 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   artifacts cover 678/678 evaluated labels, cluster 738 sequence records, hold
   out 136 rows by whole sequence clusters, record max train/test identity
   `0.284`, achieve the <=30% target, and keep held-out out-of-scope false
-  non-abstentions at 0. Foldseek/TM-score separation remains absent.
+  non-abstentions at 0. Foldseek/TM-score separation remains absent, but
+  `build-foldseek-coordinate-readiness` now records Foldseek provenance and
+  bounded coordinate staging readiness.
+- Added `artifacts/v3_foldseek_coordinate_readiness_1000.json` plus the
+  bounded sidecar directory `artifacts/v3_foldseek_coordinates_1000/`. The
+  artifact is review-only/non-countable, records explicit Foldseek
+  `/private/tmp/catalytic-foldseek-env/bin/foldseek` version `10.941cd33`,
+  identifies 678 evaluated rows, 676 rows with supported selected PDB
+  coordinates, missing selected structures for `m_csa:372` and `m_csa:501`,
+  and stages 25 selected PDB mmCIF files while keeping
+  `tm_score_split_computed=false`.
+  `artifacts/v3_foldseek_tm_score_signal_1000_staged25.json` then computes a
+  partial staged-coordinate Foldseek TM signal over those 25 files only: 1,840
+  mapped pair rows, 532 staged heldout/in-distribution pair rows, max staged
+  train/test TM score `0.6426`, 0 countable/import-ready rows, and
+  `full_tm_score_split_computed=false`.
 - Added `work/foldseek_readiness_notes.md`. Foldseek is installable in the
   isolated temporary Conda environment `/private/tmp/catalytic-foldseek-env`
-  and reports version `10.941cd33`, but the repo has structure identifiers
-  rather than local coordinate files. TM-score splitting remains blocked on
-  materializing selected PDB/AlphaFold coordinates and adding the Foldseek
-  split builder.
+  and reports version `10.941cd33`. TM-score splitting remains blocked on
+  materializing the remaining selected PDB/AlphaFold coordinates and adding
+  the Foldseek split builder.
 - Hardened mechanism-text counterevidence into explicit categories:
   structure/local-evidence counterevidence remains predictive safety evidence,
   while mechanism-text counterevidence is review context only and not valid for
@@ -640,8 +673,9 @@ Label-quality confidence call for the 2026-05-14T02:32:17Z run:
   a real <=30% sequence-identity holdout for the accepted registry with max
   train/test identity `0.284`, 0 held-out out-of-scope false non-abstentions,
   and pinned held-out/in-distribution metrics. Foldseek/TM-score separation is
-  still open because coordinate files are not materialized in the repo, even
-  though Foldseek is now available in `/private/tmp/catalytic-foldseek-env`.
+  still open, but the coordinate blocker is narrowed by a review-only readiness
+  artifact that stages 25 selected PDB mmCIF files and records the remaining
+  missing/unstaged coordinate surface.
 - SPOF hardening work: yes, but only for named blockers. This run split
   mechanism-text counterevidence into structure/local versus review-context
   categories, added the text-removal ablation, and recorded 0 structure/local
@@ -979,10 +1013,12 @@ Next ordered worklist:
    covered, 738 sequence records are clustered at 30% identity and 80%
    coverage, and max observed train/test identity is `0.284`. The retained
    proxy fields are fallback context only. Foldseek is available in the
-   temporary Conda env `/private/tmp/catalytic-foldseek-env`, but TM-score
-   separation remains missing because coordinate files are not materialized in
-   the repo; add coordinate staging plus a structural backend only if it
-   directly supports pilot import readiness.
+   temporary Conda env `/private/tmp/catalytic-foldseek-env`. The new
+  Foldseek coordinate-readiness artifact stages 25 selected PDB mmCIF
+  files and records 676 materializable rows plus two missing selected
+  structures. A partial staged-coordinate TM signal exists for those 25 files,
+  but full TM-score separation remains missing until the remaining coordinates
+  are staged and a structural backend is wired in.
 3. Use the learned representation backend path, pilot priority artifact,
    no-decision review export, pilot evidence packet, pilot-specific
    representation sample, and pilot evidence dossiers for reviewer work. The

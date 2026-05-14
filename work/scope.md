@@ -91,6 +91,9 @@ Post-V2 quality work has started:
 
 - PDB mmCIF structure parsing
 - active-site residue coordinate extraction
+- bounded Foldseek coordinate-readiness staging and partial staged-coordinate
+  TM-score signaling for selected accepted-registry structures; this is
+  review-only and does not compute a full TM-score split
 - pairwise catalytic-residue distance features
 - nearby ligand/cofactor context from mmCIF non-polymer atoms
 - geometry artifacts for 20-entry regression, 30-entry, 40-entry, 50-entry,
@@ -163,9 +166,15 @@ Current expectation:
   observed train/test identity `0.284`, achieves the <=30% target, preserves
   0 held-out out-of-scope false non-abstentions, and reports held-out evaluable
   top1 accuracy, top3 retained accuracy, and retention of `1.0000`. Foldseek
-  TM-score separation remains uncomputed because selected PDB/AlphaFold
-  coordinate files are not yet materialized in the repo, although Foldseek is
-  available in `/private/tmp/catalytic-foldseek-env`. The first 12-row ESM-2 8M
+  TM-score separation remains uncomputed, but the review-only coordinate
+  readiness path now records Foldseek `10.941cd33`, stages 25 selected PDB
+  mmCIF files, identifies 676 supported selected-coordinate rows, and flags
+  two rows with missing selected structures. A partial staged-coordinate
+  Foldseek signal over those 25 files records 1,840 mapped pair rows, 532
+  staged heldout/in-distribution pair rows, and max staged train/test TM score
+  `0.6426` while keeping `full_tm_score_split_computed=false`. The remaining
+  selected PDB/AlphaFold coordinates and a Foldseek-backed split builder are
+  still required. The first 12-row ESM-2 8M
   representation sample and a 10-row selected-pilot ESM-2 8M representation
   sample are computed and review-only; 650M sidecars are implemented but
   currently record `model_unavailable_locally` because the model is not cached.

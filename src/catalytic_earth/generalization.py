@@ -7,7 +7,7 @@ import shutil
 import subprocess
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from .labels import MechanismLabel, label_summary
 
@@ -20,6 +20,7 @@ SEQUENCE_FIELD_NAMES = (
     "reference_sequence",
 )
 MMSEQS_CLUSTER_COVERAGE_MODE = 0
+SUPPORTED_COORDINATE_STRUCTURE_SOURCES = {"pdb", "alphafold"}
 
 
 def build_sequence_distance_holdout_eval(
@@ -285,6 +286,595 @@ def build_sequence_distance_holdout_eval(
             "all": _per_fingerprint_breakdowns(result_rows),
         },
         "rows": sorted(result_rows, key=lambda row: _entry_id_sort_key(row["entry_id"])),
+    }
+
+
+def build_foldseek_coordinate_readiness(
+    *,
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    slice_id: str,
+    geometry: dict[str, Any] | None = None,
+    sequence_holdout: dict[str, Any] | None = None,
+    foldseek_binary: str = "foldseek",
+    coordinate_dir: str | None = None,
+    max_coordinate_files: int = 0,
+    fetch_pdb_cif_fn: Callable[[str], str] | None = None,
+    fetch_external_structure_cif_fn: Callable[[str, str], str] | None = None,
+) -> dict[str, Any]:
+    """Build a review-only artifact for Foldseek coordinate readiness.
+
+    The artifact stages at most ``max_coordinate_files`` unique selected
+    structures. It does not compute a Foldseek/TM-score split and never emits
+    countable or import-ready rows.
+    """
+
+    labels_by_entry = {label.entry_id: label for label in labels}
+    geometry_by_entry = {
+        str(entry.get("entry_id")): entry
+        for entry in (geometry or {}).get("entries", [])
+        if isinstance(entry, dict) and isinstance(entry.get("entry_id"), str)
+    }
+    retrieval_by_entry = {
+        str(result.get("entry_id")): result
+        for result in retrieval.get("results", []) or []
+        if isinstance(result, dict) and isinstance(result.get("entry_id"), str)
+    }
+    holdout_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (sequence_holdout or {}).get("rows", []) or []
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+
+    if holdout_by_entry:
+        candidate_entry_ids = sorted(
+            (entry_id for entry_id in holdout_by_entry if entry_id in labels_by_entry),
+            key=_entry_id_sort_key,
+        )
+    else:
+        candidate_entry_ids = sorted(
+            (entry_id for entry_id in retrieval_by_entry if entry_id in labels_by_entry),
+            key=_entry_id_sort_key,
+        )
+
+    rows: list[dict[str, Any]] = []
+    unique_structures: dict[str, dict[str, Any]] = {}
+    for entry_id in candidate_entry_ids:
+        retrieval_row = retrieval_by_entry.get(entry_id, {})
+        geometry_row = geometry_by_entry.get(entry_id, {})
+        holdout_row = holdout_by_entry.get(entry_id, {})
+        source, structure_id, source_field = _selected_coordinate_structure(
+            retrieval_row=retrieval_row,
+            geometry_row=geometry_row,
+            holdout_row=holdout_row,
+        )
+        structure_key = (
+            f"{source}:{structure_id}" if source and structure_id else "missing_selected_structure"
+        )
+        possible = bool(
+            source in SUPPORTED_COORDINATE_STRUCTURE_SOURCES and structure_id
+        )
+        row = {
+            "entry_id": entry_id,
+            "entry_name": (
+                retrieval_row.get("entry_name")
+                or geometry_row.get("entry_name")
+                or holdout_row.get("entry_name")
+            ),
+            "label_type": labels_by_entry[entry_id].label_type,
+            "target_fingerprint_id": labels_by_entry[entry_id].fingerprint_id,
+            "evaluated": True,
+            "geometry_status": retrieval_row.get("status") or geometry_row.get("status"),
+            "sequence_holdout_partition": holdout_row.get("partition"),
+            "selected_structure_source": source,
+            "selected_structure_id": structure_id,
+            "selected_structure_key": structure_key,
+            "selected_structure_source_field": source_field,
+            "coordinate_materialization_possible": possible,
+            "coordinate_materialization_status": (
+                "pending_bounded_fetch" if possible else "missing_or_unsupported_structure"
+            ),
+            "coordinate_path": None,
+            "fetch_error": None,
+            "countable_label_candidate": False,
+            "import_ready": False,
+            "tm_score_split_member": False,
+            "review_status": "review_only_non_countable",
+        }
+        rows.append(row)
+        if possible and structure_key not in unique_structures:
+            unique_structures[structure_key] = {
+                "source": source,
+                "structure_id": structure_id,
+                "structure_key": structure_key,
+                "first_entry_id": entry_id,
+                "entry_ids": [],
+                "coordinate_path": None,
+                "fetch_status": "not_requested",
+                "fetch_error": None,
+            }
+        if possible:
+            unique_structures[structure_key]["entry_ids"].append(entry_id)
+
+    coordinate_dir_path = Path(coordinate_dir) if coordinate_dir else None
+    fetch_limit = max(0, int(max_coordinate_files or 0))
+    fetch_pdb = fetch_pdb_cif_fn
+    fetch_external = fetch_external_structure_cif_fn
+    if fetch_limit and coordinate_dir_path and (fetch_pdb is None or fetch_external is None):
+        from .structure import fetch_pdb_cif
+        from .transfer_scope import fetch_external_structure_cif
+
+        fetch_pdb = fetch_pdb or fetch_pdb_cif
+        fetch_external = fetch_external or fetch_external_structure_cif
+
+    staged_keys = set(
+        sorted(
+            unique_structures,
+            key=lambda key: _entry_id_sort_key(str(unique_structures[key]["first_entry_id"])),
+        )[:fetch_limit]
+    )
+    if fetch_limit and coordinate_dir_path:
+        coordinate_dir_path.mkdir(parents=True, exist_ok=True)
+    for structure_key in sorted(unique_structures):
+        structure = unique_structures[structure_key]
+        if structure_key not in staged_keys:
+            structure["fetch_status"] = (
+                "not_requested_fetch_cap_reached" if fetch_limit else "not_requested"
+            )
+            continue
+        if not coordinate_dir_path:
+            structure["fetch_status"] = "not_requested_coordinate_dir_missing"
+            continue
+        source = str(structure["source"])
+        structure_id = str(structure["structure_id"])
+        coordinate_path = coordinate_dir_path / _coordinate_file_name(source, structure_id)
+        try:
+            if coordinate_path.exists():
+                cif_text = coordinate_path.read_text(encoding="utf-8")
+                if not cif_text.strip():
+                    raise ValueError("existing coordinate file is empty")
+                structure["fetch_status"] = "already_materialized"
+            else:
+                if source == "pdb":
+                    if fetch_pdb is None:
+                        raise ValueError("PDB coordinate fetcher is unavailable")
+                    cif_text = fetch_pdb(structure_id)
+                else:
+                    if fetch_external is None:
+                        raise ValueError("external coordinate fetcher is unavailable")
+                    cif_text = fetch_external(source, structure_id)
+                if not str(cif_text).strip():
+                    raise ValueError("coordinate fetch returned empty content")
+                coordinate_path.write_text(str(cif_text), encoding="utf-8")
+                structure["fetch_status"] = "materialized"
+            structure["coordinate_path"] = str(coordinate_path)
+        except Exception as exc:  # pragma: no cover - live-source failure shape
+            structure["fetch_status"] = "fetch_failed"
+            structure["fetch_error"] = f"{type(exc).__name__}: {exc}"
+
+    structures_by_key = unique_structures
+    for row in rows:
+        structure = structures_by_key.get(str(row["selected_structure_key"]))
+        if not structure:
+            continue
+        row["coordinate_path"] = structure.get("coordinate_path")
+        row["fetch_error"] = structure.get("fetch_error")
+        fetch_status = str(structure.get("fetch_status"))
+        if fetch_status in {"materialized", "already_materialized"}:
+            row["coordinate_materialization_status"] = fetch_status
+        elif fetch_status == "fetch_failed":
+            row["coordinate_materialization_status"] = "fetch_failed"
+        elif fetch_status == "not_requested_fetch_cap_reached":
+            row["coordinate_materialization_status"] = "not_materialized_fetch_cap_reached"
+        elif fetch_status == "not_requested_coordinate_dir_missing":
+            row["coordinate_materialization_status"] = "not_materialized_coordinate_dir_missing"
+        else:
+            row["coordinate_materialization_status"] = "not_materialized_not_requested"
+
+    foldseek_info = _foldseek_binary_info(foldseek_binary)
+    materialized_keys = sorted(
+        key
+        for key, structure in structures_by_key.items()
+        if structure.get("fetch_status") in {"materialized", "already_materialized"}
+    )
+    fetch_failures = [
+        {
+            "structure_key": key,
+            "source": structure.get("source"),
+            "structure_id": structure.get("structure_id"),
+            "entry_ids": structure.get("entry_ids", []),
+            "error": structure.get("fetch_error"),
+        }
+        for key, structure in sorted(structures_by_key.items())
+        if structure.get("fetch_status") == "fetch_failed"
+    ]
+    missing_or_unsupported = [
+        {
+            "entry_id": row["entry_id"],
+            "selected_structure_key": row["selected_structure_key"],
+            "selected_structure_source": row["selected_structure_source"],
+            "selected_structure_id": row["selected_structure_id"],
+        }
+        for row in rows
+        if not row["coordinate_materialization_possible"]
+    ]
+    not_materialized = [
+        {
+            "structure_key": key,
+            "source": structure.get("source"),
+            "structure_id": structure.get("structure_id"),
+            "entry_ids": structure.get("entry_ids", []),
+            "fetch_status": structure.get("fetch_status"),
+        }
+        for key, structure in sorted(structures_by_key.items())
+        if structure.get("fetch_status") not in {"materialized", "already_materialized"}
+    ]
+
+    all_possible_structures_materialized = (
+        bool(structures_by_key)
+        and len(materialized_keys) == len(structures_by_key)
+        and not missing_or_unsupported
+        and not fetch_failures
+    )
+    blocker_key = (
+        "blocker_removed" if all_possible_structures_materialized and foldseek_info["available"]
+        else "blocker_narrowed"
+    )
+    blocker_value = (
+        "all evaluated selected coordinates are staged and Foldseek is available; TM-score split builder is still not run"
+        if blocker_key == "blocker_removed"
+        else "selected structure ids, Foldseek provenance, and bounded coordinate materialization status are explicit; remaining unstaged or failed coordinates block TM-score split computation"
+    )
+
+    limitations = [
+        "review-only readiness artifact; it creates no countable labels and no import-ready rows",
+        "tm_score_split_computed=false because Foldseek/TM-score clustering is not executed here",
+        "coordinate staging is capped and deterministic; unstaged supported structures remain TM-score blockers",
+        "coordinate materialization records selected structures only and does not validate catalytic function",
+    ]
+    if not foldseek_info["available"]:
+        limitations.append("Foldseek binary was not resolved or did not report a version")
+    if missing_or_unsupported:
+        limitations.append("some evaluated rows lack supported selected PDB/AlphaFold structure identifiers")
+    if fetch_failures:
+        limitations.append("one or more selected coordinate fetches failed")
+    if not fetch_limit:
+        limitations.append("coordinate fetching was not requested; set max_coordinate_files above zero to stage a bounded subset")
+
+    metadata = {
+        "method": "foldseek_coordinate_readiness",
+        blocker_key: blocker_value,
+        "slice_id": str(slice_id),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate_count": 0,
+        "import_ready_candidate_count": 0,
+        "ready_for_label_import": False,
+        "tm_score_split_computed": False,
+        "real_tm_score_computed": False,
+        "label_registry_count": len(labels),
+        "retrieval_result_count": len(retrieval.get("results", []) or []),
+        "geometry_entry_count": len((geometry or {}).get("entries", []) or []),
+        "sequence_holdout_row_count": len((sequence_holdout or {}).get("rows", []) or []),
+        "evaluated_count": len(rows),
+        "selected_entry_ids": [row["entry_id"] for row in rows],
+        "selected_structure_count": len(structures_by_key),
+        "selected_structure_ids": sorted(structures_by_key),
+        "supported_structure_sources": sorted(SUPPORTED_COORDINATE_STRUCTURE_SOURCES),
+        "coordinate_materialization_requested": bool(fetch_limit and coordinate_dir_path),
+        "coordinate_materialization_possible_count": sum(
+            1 for row in rows if row["coordinate_materialization_possible"]
+        ),
+        "coordinate_fetch_cap": fetch_limit,
+        "coordinate_directory": str(coordinate_dir_path) if coordinate_dir_path else None,
+        "materialized_coordinate_count": len(materialized_keys),
+        "materialized_structure_ids": materialized_keys,
+        "missing_or_unsupported_structure_count": len(missing_or_unsupported),
+        "missing_or_unsupported_structures": missing_or_unsupported,
+        "fetch_failure_count": len(fetch_failures),
+        "fetch_failures": fetch_failures,
+        "not_materialized_structure_count": len(not_materialized),
+        "not_materialized_structures": not_materialized,
+        "foldseek_binary_requested": foldseek_info["requested"],
+        "foldseek_binary_resolved": foldseek_info["resolved"],
+        "foldseek_binary_available": foldseek_info["available"],
+        "foldseek_version": foldseek_info["version"],
+        "foldseek_version_command": foldseek_info["version_command"],
+        "foldseek_command": foldseek_info["version_command"],
+        "limitations": sorted(set(limitations)),
+    }
+
+    return {
+        "metadata": metadata,
+        "structures": [
+            {
+                "structure_key": key,
+                "source": structure.get("source"),
+                "structure_id": structure.get("structure_id"),
+                "entry_ids": sorted(structure.get("entry_ids", []), key=_entry_id_sort_key),
+                "coordinate_path": structure.get("coordinate_path"),
+                "fetch_status": structure.get("fetch_status"),
+                "fetch_error": structure.get("fetch_error"),
+            }
+            for key, structure in sorted(structures_by_key.items())
+        ],
+        "rows": sorted(rows, key=lambda row: _entry_id_sort_key(row["entry_id"])),
+    }
+
+
+def build_foldseek_tm_score_signal(
+    *,
+    readiness: dict[str, Any],
+    slice_id: str | None = None,
+    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    readiness_path: str | None = None,
+    runner: Callable[[list[str], Path], None] | None = None,
+) -> dict[str, Any]:
+    """Build a partial Foldseek TM-score signal for staged coordinates only.
+
+    This deliberately does not compute or claim a full TM-score split. It only
+    searches the coordinate files already staged by the readiness artifact.
+    """
+
+    metadata_in = readiness.get("metadata", {}) if isinstance(readiness, dict) else {}
+    if not isinstance(metadata_in, dict):
+        metadata_in = {}
+    rows_in = readiness.get("rows", []) if isinstance(readiness, dict) else []
+    structures_in = readiness.get("structures", []) if isinstance(readiness, dict) else []
+    rows = [row for row in rows_in if isinstance(row, dict)]
+    structures = [item for item in structures_in if isinstance(item, dict)]
+
+    row_partitions_by_entry = {
+        str(row.get("entry_id")): row.get("sequence_holdout_partition")
+        for row in rows
+        if isinstance(row.get("entry_id"), str)
+    }
+    row_structure_by_entry = {
+        str(row.get("entry_id")): row.get("selected_structure_key")
+        for row in rows
+        if isinstance(row.get("entry_id"), str)
+    }
+
+    staged_structures = _staged_foldseek_structures(structures)
+    alias_to_structure, alias_collisions = _foldseek_name_aliases(staged_structures)
+    coordinate_dirs = sorted(
+        {
+            str(Path(str(structure["coordinate_path"])).parent)
+            for structure in staged_structures
+            if structure.get("coordinate_path")
+        }
+    )
+    coordinate_dir = (
+        str(Path(coordinate_dirs[0]).resolve()) if len(coordinate_dirs) == 1 else None
+    )
+    foldseek_info = _foldseek_binary_info(foldseek_binary)
+    requested_slice_id = str(slice_id or metadata_in.get("slice_id") or "")
+    command: list[str] | None = None
+    command_string: str | None = None
+    pair_rows: list[dict[str, Any]] = []
+    run_status = "not_run"
+    run_error: str | None = None
+
+    if not foldseek_info["available"]:
+        run_status = "foldseek_unavailable"
+    elif len(staged_structures) < 2:
+        run_status = "insufficient_staged_coordinates"
+    elif coordinate_dir is None:
+        run_status = "staged_coordinates_span_multiple_directories"
+    else:
+        digest = _coordinate_paths_digest(staged_structures)
+        workdir = Path("/private/tmp") / (
+            f"catalytic-earth-foldseek-tm-{requested_slice_id or 'slice'}-{digest}"
+        )
+        if workdir.exists():
+            shutil.rmtree(workdir)
+        workdir.mkdir(parents=True, exist_ok=True)
+        result_tsv = workdir / "staged_tm_scores.tsv"
+        tmpdir = workdir / "tmp"
+        command = [
+            str(foldseek_info["resolved"] or foldseek_binary),
+            "easy-search",
+            coordinate_dir,
+            coordinate_dir,
+            str(result_tsv),
+            str(tmpdir),
+            "--format-output",
+            "query,target,qtmscore,ttmscore,alntmscore",
+            "--exhaustive-search",
+            "1",
+            "--alignment-type",
+            "1",
+            "--tmalign-fast",
+            "0",
+            "--exact-tmscore",
+            "1",
+            "--threads",
+            "1",
+            "-v",
+            "1",
+        ]
+        command_string = _command_string(command)
+        try:
+            if runner is None:
+                _run_backend_command(command, cwd=workdir)
+            else:
+                runner(command, workdir)
+            pair_rows = _parse_foldseek_tm_score_rows(
+                result_tsv=result_tsv,
+                alias_to_structure=alias_to_structure,
+                row_partitions_by_entry=row_partitions_by_entry,
+            )
+            run_status = "completed"
+        except (OSError, RuntimeError, ValueError) as exc:
+            run_status = "foldseek_run_failed"
+            run_error = f"{type(exc).__name__}: {exc}"
+
+    mapped_pair_count = sum(
+        1
+        for row in pair_rows
+        if row.get("query_structure_key") and row.get("target_structure_key")
+    )
+    train_test_rows = [row for row in pair_rows if row.get("train_test_pair")]
+    max_train_test_tm_score = None
+    for row in train_test_rows:
+        score = row.get("max_pair_tm_score")
+        if score is None:
+            continue
+        max_train_test_tm_score = (
+            float(score)
+            if max_train_test_tm_score is None
+            else max(max_train_test_tm_score, float(score))
+        )
+    unmapped_names = sorted(
+        {
+            str(name)
+            for row in pair_rows
+            for name, key in (
+                (row.get("raw_query_name"), row.get("query_structure_key")),
+                (row.get("raw_target_name"), row.get("target_structure_key")),
+            )
+            if name and not key
+        }
+    )
+    full_evaluated_coordinate_coverage = (
+        bool(staged_structures)
+        and int(metadata_in.get("selected_structure_count", 0) or 0) == len(staged_structures)
+        and int(metadata_in.get("missing_or_unsupported_structure_count", 0) or 0) == 0
+        and int(metadata_in.get("fetch_failure_count", 0) or 0) == 0
+    )
+    partial_signal = run_status == "completed" and bool(pair_rows)
+    limitations = [
+        "partial staged-coordinate Foldseek signal only; it is not a full accepted-registry TM-score holdout",
+        "tm_score_split_computed=false because not every evaluated coordinate is staged and no split is computed here",
+        "review-only artifact; it creates no countable labels and no import-ready rows",
+        "Foldseek output names are mapped by exact filename/basename/stem aliases or by an unambiguous generated filename stem plus chain suffix; other differing raw names remain unmapped",
+    ]
+    if alias_collisions:
+        limitations.append("one or more coordinate filename aliases were ambiguous and not used for raw-name mapping")
+    if unmapped_names:
+        limitations.append("one or more Foldseek raw query/target names could not be mapped safely to staged structures")
+    if run_error:
+        limitations.append("Foldseek easy-search did not complete; pairwise TM-score rows are unavailable")
+    if not full_evaluated_coordinate_coverage:
+        limitations.append("full evaluated-coordinate coverage is absent; full TM-score split remains blocked")
+
+    selected_staged_entry_ids = sorted(
+        {
+            str(entry_id)
+            for structure in staged_structures
+            for entry_id in structure.get("entry_ids", [])
+            if isinstance(entry_id, str)
+        },
+        key=_entry_id_sort_key,
+    )
+
+    metadata = {
+        "method": "foldseek_tm_score_signal",
+        "blocker_narrowed": (
+            "bounded staged-coordinate Foldseek TM-score signal computed for the "
+            "coordinate sidecar only; full evaluated-coordinate TM-score split "
+            "remains blocked until every evaluated coordinate is staged"
+        ),
+        "slice_id": requested_slice_id,
+        "readiness_artifact": readiness_path,
+        "readiness_method": metadata_in.get("method"),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate_count": 0,
+        "import_ready_candidate_count": 0,
+        "ready_for_label_import": False,
+        "tm_score_split_computed": False,
+        "full_tm_score_split_computed": False,
+        "partial_tm_score_signal_computed": partial_signal,
+        "partial_tm_score_signal_scope": "staged_coordinates_only",
+        "real_tm_score_computed": False,
+        "partial_real_tm_score_signal_computed": partial_signal,
+        "full_evaluated_coordinate_coverage": full_evaluated_coordinate_coverage,
+        "threshold_target": "<0.7",
+        "tm_score_threshold_target": "<0.7",
+        "evaluated_count": int(metadata_in.get("evaluated_count", len(rows)) or 0),
+        "selected_structure_count": int(metadata_in.get("selected_structure_count", len(structures)) or 0),
+        "staged_coordinate_count": len(staged_structures),
+        "staged_structure_count": len(staged_structures),
+        "staged_entry_count": len(selected_staged_entry_ids),
+        "selected_staged_entry_ids": selected_staged_entry_ids,
+        "coordinate_directory": coordinate_dir,
+        "coordinate_directories": coordinate_dirs,
+        "pair_count": len(pair_rows),
+        "mapped_pair_count": mapped_pair_count,
+        "train_test_pair_count": len(train_test_rows),
+        "unique_unordered_nonself_pair_count": _unique_unordered_nonself_pair_count(pair_rows),
+        "max_observed_train_test_tm_score": (
+            round(max_train_test_tm_score, 4)
+            if max_train_test_tm_score is not None
+            else None
+        ),
+        "max_observed_train_test_tm_score_computable": max_train_test_tm_score is not None,
+        "max_observed_train_test_tm_score_metric": (
+            "max(qtmscore, ttmscore, alntmscore) across mapped heldout/in_distribution staged-coordinate pairs"
+        ),
+        "foldseek_binary_requested": foldseek_info["requested"],
+        "foldseek_binary_resolved": foldseek_info["resolved"],
+        "foldseek_binary_available": foldseek_info["available"],
+        "foldseek_version": foldseek_info["version"],
+        "foldseek_version_command": foldseek_info["version_command"],
+        "foldseek_command": command_string,
+        "foldseek_commands": [item for item in [foldseek_info["version_command"], command_string] if item],
+        "foldseek_run_status": run_status,
+        "foldseek_run_error": run_error,
+        "raw_name_mapping_unmapped_count": len(unmapped_names),
+        "raw_name_mapping_unmapped_names": unmapped_names,
+        "raw_name_mapping_alias_collision_count": len(alias_collisions),
+        "raw_name_mapping_alias_collisions": alias_collisions,
+        "limitations": sorted(set(limitations)),
+    }
+
+    return {
+        "metadata": metadata,
+        "staged_structures": [
+            {
+                **{
+                    key: structure.get(key)
+                    for key in (
+                        "structure_key",
+                        "source",
+                        "structure_id",
+                        "coordinate_path",
+                        "fetch_status",
+                    )
+                },
+                "entry_ids": sorted(
+                    [str(entry_id) for entry_id in structure.get("entry_ids", [])],
+                    key=_entry_id_sort_key,
+                ),
+                "entry_partitions": {
+                    str(entry_id): row_partitions_by_entry.get(str(entry_id))
+                    for entry_id in structure.get("entry_ids", [])
+                },
+            }
+            for structure in staged_structures
+        ],
+        "rows": sorted(
+            [
+                {
+                    **row,
+                    "query_entry_structure_keys": {
+                        entry_id: row_structure_by_entry.get(entry_id)
+                        for entry_id in row.get("query_entry_ids", [])
+                    },
+                    "target_entry_structure_keys": {
+                        entry_id: row_structure_by_entry.get(entry_id)
+                        for entry_id in row.get("target_entry_ids", [])
+                    },
+                    "countable_label_candidate": False,
+                    "import_ready": False,
+                    "review_status": "review_only_non_countable",
+                }
+                for row in pair_rows
+            ],
+            key=lambda row: (
+                str(row.get("raw_query_name") or ""),
+                str(row.get("raw_target_name") or ""),
+            ),
+        ),
     }
 
 
@@ -1139,6 +1729,243 @@ def _run_backend_command(command: list[str], *, cwd: Path) -> None:
         )
 
 
+def _staged_foldseek_structures(structures: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    staged = []
+    for structure in structures:
+        coordinate_path = structure.get("coordinate_path")
+        if not isinstance(coordinate_path, str) or not coordinate_path:
+            continue
+        path = Path(coordinate_path)
+        if not path.exists() or not path.is_file():
+            continue
+        staged.append(
+            {
+                **structure,
+                "coordinate_path": str(path),
+                "entry_ids": [
+                    str(entry_id)
+                    for entry_id in structure.get("entry_ids", []) or []
+                    if isinstance(entry_id, str)
+                ],
+            }
+        )
+    return sorted(
+        staged,
+        key=lambda item: (
+            _entry_id_sort_key(str((item.get("entry_ids") or [""])[0])),
+            str(item.get("structure_key") or ""),
+        ),
+    )
+
+
+def _foldseek_name_aliases(
+    staged_structures: list[dict[str, Any]],
+) -> tuple[dict[str, dict[str, Any]], list[dict[str, Any]]]:
+    aliases: dict[str, dict[str, Any]] = {}
+    collisions: dict[str, list[str]] = defaultdict(list)
+    for structure in staged_structures:
+        coordinate_path = Path(str(structure.get("coordinate_path") or ""))
+        raw_aliases = {
+            str(coordinate_path),
+            coordinate_path.name,
+            coordinate_path.stem,
+        }
+        for alias in sorted(raw_aliases):
+            if not alias:
+                continue
+            existing = aliases.get(alias)
+            if existing and existing.get("structure_key") != structure.get("structure_key"):
+                collisions[alias].extend(
+                    [
+                        str(existing.get("structure_key")),
+                        str(structure.get("structure_key")),
+                    ]
+                )
+                aliases.pop(alias, None)
+                continue
+            if alias not in collisions:
+                aliases[alias] = structure
+    return aliases, [
+        {"alias": alias, "structure_keys": sorted(set(keys))}
+        for alias, keys in sorted(collisions.items())
+    ]
+
+
+def _coordinate_paths_digest(staged_structures: list[dict[str, Any]]) -> str:
+    paths = [
+        str(structure.get("coordinate_path") or "")
+        for structure in staged_structures
+        if structure.get("coordinate_path")
+    ]
+    return hashlib.sha256("|".join(sorted(paths)).encode("utf-8")).hexdigest()[:12]
+
+
+def _parse_foldseek_tm_score_rows(
+    *,
+    result_tsv: Path,
+    alias_to_structure: dict[str, dict[str, Any]],
+    row_partitions_by_entry: dict[str, Any],
+) -> list[dict[str, Any]]:
+    if not result_tsv.exists():
+        raise ValueError(f"Foldseek result TSV was not created: {result_tsv}")
+    rows: list[dict[str, Any]] = []
+    with result_tsv.open("r", encoding="utf-8") as handle:
+        for line_number, raw_line in enumerate(handle, start=1):
+            line = raw_line.rstrip("\n")
+            if not line or line.startswith("#"):
+                continue
+            fields = line.split("\t")
+            if fields[:5] == ["query", "target", "qtmscore", "ttmscore", "alntmscore"]:
+                continue
+            if len(fields) < 5:
+                rows.append(
+                    {
+                        "line_number": line_number,
+                        "raw_line": line,
+                        "parse_error": "expected at least 5 tab-separated Foldseek fields",
+                        "raw_query_name": fields[0] if fields else None,
+                        "raw_target_name": fields[1] if len(fields) > 1 else None,
+                        "query_structure_key": None,
+                        "target_structure_key": None,
+                        "query_name_mapping_status": "unparsed_row",
+                        "target_name_mapping_status": "unparsed_row",
+                    }
+                )
+                continue
+            query_raw, target_raw = fields[0], fields[1]
+            query_structure, query_status = _map_foldseek_raw_name(
+                query_raw, alias_to_structure
+            )
+            target_structure, target_status = _map_foldseek_raw_name(
+                target_raw, alias_to_structure
+            )
+            query_entry_ids = _structure_entry_ids(query_structure)
+            target_entry_ids = _structure_entry_ids(target_structure)
+            query_partitions = sorted(
+                {
+                    str(row_partitions_by_entry.get(entry_id))
+                    for entry_id in query_entry_ids
+                    if row_partitions_by_entry.get(entry_id) is not None
+                }
+            )
+            target_partitions = sorted(
+                {
+                    str(row_partitions_by_entry.get(entry_id))
+                    for entry_id in target_entry_ids
+                    if row_partitions_by_entry.get(entry_id) is not None
+                }
+            )
+            qtmscore = _parse_optional_float(fields[2])
+            ttmscore = _parse_optional_float(fields[3])
+            alntmscore = _parse_optional_float(fields[4])
+            max_pair_tm_score = _max_optional_float([qtmscore, ttmscore, alntmscore])
+            rows.append(
+                {
+                    "line_number": line_number,
+                    "raw_query_name": query_raw,
+                    "raw_target_name": target_raw,
+                    "query_name_mapping_status": query_status,
+                    "target_name_mapping_status": target_status,
+                    "query_structure_key": (
+                        query_structure.get("structure_key") if query_structure else None
+                    ),
+                    "target_structure_key": (
+                        target_structure.get("structure_key") if target_structure else None
+                    ),
+                    "query_structure_id": (
+                        query_structure.get("structure_id") if query_structure else None
+                    ),
+                    "target_structure_id": (
+                        target_structure.get("structure_id") if target_structure else None
+                    ),
+                    "query_coordinate_path": (
+                        query_structure.get("coordinate_path") if query_structure else None
+                    ),
+                    "target_coordinate_path": (
+                        target_structure.get("coordinate_path") if target_structure else None
+                    ),
+                    "query_entry_ids": query_entry_ids,
+                    "target_entry_ids": target_entry_ids,
+                    "query_partitions": query_partitions,
+                    "target_partitions": target_partitions,
+                    "qtmscore": qtmscore,
+                    "ttmscore": ttmscore,
+                    "alntmscore": alntmscore,
+                    "max_pair_tm_score": max_pair_tm_score,
+                    "self_pair": bool(
+                        query_structure
+                        and target_structure
+                        and query_structure.get("structure_key")
+                        == target_structure.get("structure_key")
+                    ),
+                    "train_test_pair": _is_train_test_partition_pair(
+                        query_partitions, target_partitions
+                    ),
+                }
+            )
+    return rows
+
+
+def _map_foldseek_raw_name(
+    raw_name: str,
+    alias_to_structure: dict[str, dict[str, Any]],
+) -> tuple[dict[str, Any] | None, str]:
+    for alias in (raw_name, Path(raw_name).name, Path(raw_name).stem):
+        if alias in alias_to_structure:
+            return alias_to_structure[alias], "mapped_exact_alias"
+    raw_basename = Path(raw_name).name
+    chain_suffix_matches = {
+        str(structure.get("structure_key")): structure
+        for alias, structure in alias_to_structure.items()
+        if "/" not in alias
+        and "." not in alias
+        and raw_basename.startswith(f"{alias}_")
+    }
+    if len(chain_suffix_matches) == 1:
+        return next(iter(chain_suffix_matches.values())), "mapped_chain_suffix_alias"
+    return None, "unmapped_raw_name"
+
+
+def _structure_entry_ids(structure: dict[str, Any] | None) -> list[str]:
+    if not structure:
+        return []
+    return sorted(
+        [str(entry_id) for entry_id in structure.get("entry_ids", [])],
+        key=_entry_id_sort_key,
+    )
+
+
+def _parse_optional_float(value: Any) -> float | None:
+    try:
+        return round(float(value), 4)
+    except (TypeError, ValueError):
+        return None
+
+
+def _max_optional_float(values: list[float | None]) -> float | None:
+    present = [value for value in values if value is not None]
+    return max(present) if present else None
+
+
+def _is_train_test_partition_pair(
+    query_partitions: list[str],
+    target_partitions: list[str],
+) -> bool:
+    partitions = set(query_partitions) | set(target_partitions)
+    return "heldout" in partitions and "in_distribution" in partitions
+
+
+def _unique_unordered_nonself_pair_count(rows: list[dict[str, Any]]) -> int:
+    pairs = set()
+    for row in rows:
+        query_key = row.get("query_structure_key") or f"raw:{row.get('raw_query_name')}"
+        target_key = row.get("target_structure_key") or f"raw:{row.get('raw_target_name')}"
+        if query_key == target_key:
+            continue
+        pairs.add(tuple(sorted([str(query_key), str(target_key)])))
+    return len(pairs)
+
+
 def _backend_version(binary: str) -> str | None:
     try:
         completed = subprocess.run(
@@ -1158,8 +1985,100 @@ def _command_string(command: list[str]) -> str:
     return shlex.join(command)
 
 
+def _foldseek_binary_info(foldseek_binary: str) -> dict[str, Any]:
+    requested = str(foldseek_binary or "foldseek")
+    if "/" in requested:
+        candidate = Path(requested)
+        resolved = str(candidate) if candidate.exists() else None
+    else:
+        resolved = shutil.which(requested)
+    version = _backend_version(resolved) if resolved else None
+    version_command = _command_string([resolved or requested, "version"])
+    return {
+        "requested": requested,
+        "resolved": resolved,
+        "available": bool(resolved and version),
+        "version": version,
+        "version_command": version_command,
+    }
+
+
 def _mmseqs_float(value: float) -> str:
     return f"{float(value):.4g}"
+
+
+def _selected_coordinate_structure(
+    *,
+    retrieval_row: dict[str, Any],
+    geometry_row: dict[str, Any],
+    holdout_row: dict[str, Any],
+) -> tuple[str | None, str | None, str | None]:
+    for source_field, value in (
+        ("sequence_holdout.selected_structure_proxy_id", holdout_row.get("selected_structure_proxy_id")),
+        ("retrieval.selected_structure_proxy_id", retrieval_row.get("selected_structure_proxy_id")),
+        ("geometry.selected_structure_proxy_id", geometry_row.get("selected_structure_proxy_id")),
+    ):
+        source, structure_id = _parse_selected_structure_key(value)
+        if source and structure_id:
+            return source, structure_id, source_field
+
+    for source_field, value in (
+        ("retrieval.pdb_id", retrieval_row.get("pdb_id")),
+        ("geometry.pdb_id", geometry_row.get("pdb_id")),
+    ):
+        structure_id = _normalise_pdb_structure_id(value)
+        if structure_id:
+            return "pdb", structure_id, source_field
+
+    for source_field, value in (
+        ("retrieval.alphafold_id", retrieval_row.get("alphafold_id")),
+        ("geometry.alphafold_id", geometry_row.get("alphafold_id")),
+        ("retrieval.alphafold_accession", retrieval_row.get("alphafold_accession")),
+        ("geometry.alphafold_accession", geometry_row.get("alphafold_accession")),
+    ):
+        structure_id = _normalise_alphafold_structure_id(value)
+        if structure_id:
+            return "alphafold", structure_id, source_field
+
+    return None, None, None
+
+
+def _parse_selected_structure_key(value: Any) -> tuple[str | None, str | None]:
+    if not isinstance(value, str) or ":" not in value:
+        return None, None
+    source, _, raw_id = value.partition(":")
+    source = source.strip().lower()
+    raw_id = raw_id.strip()
+    if source == "pdb":
+        structure_id = _normalise_pdb_structure_id(raw_id)
+    elif source == "alphafold":
+        structure_id = _normalise_alphafold_structure_id(raw_id)
+    else:
+        structure_id = raw_id or None
+    return (source or None), structure_id
+
+
+def _normalise_pdb_structure_id(value: Any) -> str | None:
+    if not isinstance(value, str):
+        return None
+    cleaned = value.strip().upper()
+    return cleaned or None
+
+
+def _normalise_alphafold_structure_id(value: Any) -> str | None:
+    if not isinstance(value, str):
+        return None
+    cleaned = value.strip()
+    if cleaned.startswith("AF-"):
+        cleaned = cleaned[3:]
+    cleaned = cleaned.split("-F1-model", 1)[0]
+    return cleaned or None
+
+
+def _coordinate_file_name(source: str, structure_id: str) -> str:
+    safe_source = re.sub(r"[^A-Za-z0-9]+", "_", source).strip("_").lower()
+    safe_id = re.sub(r"[^A-Za-z0-9]+", "_", structure_id).strip("_")
+    return f"{safe_source}_{safe_id}.cif"
 
 
 def _selected_structure_proxy_id(

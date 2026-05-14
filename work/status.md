@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 82
-- Measured elapsed time: 3011.1 minutes (50.19 hours)
+- Entries: 84
+- Measured elapsed time: 3049.1 minutes (50.82 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 364.8 measured minutes (6.08 hours)
+- post-mcsa-spof-hardening: 402.8 measured minutes (6.71 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,32 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 880
-- Evidence references logged: 721
+- Artifact references logged: 894
+- Evidence references logged: 737
 
 ## Recent Entries
-
-### 2026-05-13T20:51:07.000000+00:00 - post-mcsa-spof-hardening
-
-- Task: Remove geometry retrieval text leakage
-- Time mode: measured
-- Measured minutes: 27.383
-- Started: 2026-05-13T20:23:44Z
-- Ended: 2026-05-13T20:51:07Z
-- Artifacts: src/catalytic_earth/geometry_retrieval.py, artifacts/v3_geometry_retrieval_1000.json, artifacts/v3_geometry_retrieval_1025.json, artifacts/v3_external_source_heuristic_control_scores_1025.json, artifacts/v3_label_factory_gate_check_1000.json
-- Evidence: tests/test_geometry_retrieval.py, tests/test_geometry_artifact_regression.py, tests/test_scaling_1025_artifacts.py, PYTHONPATH=src python -m unittest discover -s tests, PYTHONPATH=src python -m catalytic_earth.cli validate
-- Notes: Normal locked SPOF-hardening run. Refreshed dependent 1000/1025 artifacts and docs; preserved zero hard negatives, zero near misses, zero out-of-scope false non-abstentions, zero actionable failures, and zero countable external labels.
-
-### 2026-05-13T22:04:23.805937+00:00 - post-mcsa-spof-hardening
-
-- Task: Harden external current-reference sequence screen
-- Time mode: measured
-- Measured minutes: 40.217
-- Started: 2026-05-13T21:24:10Z
-- Ended: 2026-05-13T22:04:23Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_sequence_reference_screen_audit_1025.json, artifacts/v3_external_source_sequence_neighborhood_sample_1025.json, artifacts/v3_external_source_sequence_search_export_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: 296 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, external gate 65/65 with current-reference screen audit, 735 current reference accessions screened after inactive UniProt replacement resolution, 28 current-reference no-signal rows, 2 exact-reference holdouts, 0 countable external labels, 0 import-ready external labels
-- Notes: Normal locked SPOF-hardening run. Added inactive UniProt replacement handling, current-reference screen audit, direct transfer-gate validation, and stale-export regression coverage.
 
 ### 2026-05-13T22:34:16.818554+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +94,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_backend_sequence_search_1025.json, artifacts/v3_external_source_backend_sequence_search_audit_1025.json, artifacts/v3_external_source_import_readiness_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_pilot_candidate_priority_1025.json, artifacts/v3_external_source_pilot_review_decision_export_1025.json, artifacts/v3_external_source_pilot_evidence_packet_1025.json, artifacts/v3_external_source_pilot_representation_backend_plan_1025.json, artifacts/v3_external_source_pilot_representation_backend_sample_1025.json, artifacts/v3_external_source_pilot_evidence_dossiers_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: 313 unit tests passed, validate passed, compileall passed, git diff check passed, 1706 JSON artifacts parsed, MMseqs2 backend search 30 external rows vs 735 reference accessions, 28 no-signal rows, 2 exact reference holdouts, 0 near-duplicate rows, 0 import-ready rows, transfer gate 67/67
 - Notes: Normal locked delegated run per user instruction. No M-CSA count growth and no external import.
+
+### 2026-05-14T05:08:05.672183+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek coordinate readiness and partial TM signal
+- Time mode: measured
+- Measured minutes: 33.883
+- Started: 2026-05-14T04:34:12Z
+- Ended: 2026-05-14T05:08:05Z
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_foldseek_coordinate_readiness_1000.json, artifacts/v3_foldseek_coordinates_1000, artifacts/v3_foldseek_tm_score_signal_1000_staged25.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 318 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifacts parsed, Foldseek 10.941cd33 staged 25 coordinates, partial staged TM signal max train/test 0.6426, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked delegated run per user instruction. No M-CSA count growth and no external import.
+
+### 2026-05-14T05:12:09.497043+00:00 - post-mcsa-spof-hardening
+
+- Task: Pin Foldseek readiness artifacts
+- Time mode: measured
+- Measured minutes: 4.067
+- Started: 2026-05-14T05:08:05Z
+- Ended: 2026-05-14T05:12:09Z
+- Artifacts: tests/test_generalization.py, work/progress_log.jsonl, work/status.md
+- Evidence: 320 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifacts parsed, Foldseek readiness artifact pinned, Foldseek staged25 TM signal artifact pinned
+- Notes: Final parent verification after delegated artifact-pinning tests. No count growth and no external import.
 
 ## Expectation Updates
 
@@ -189,6 +189,8 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T00:43:19.772463+00:00: Artifact graph consistency still matters at count-decision boundaries; next work should fill external pilot evidence decisions rather than add generic gates.
 - 2026-05-14T03:08:19.594666+00:00: External pilot remains review-only; next highest-value work is coordinate staging for TM-score only if it directly unblocks pilot import readiness, plus active-site source decisions and complete near-duplicate search.
 - 2026-05-14T04:23:49.348241+00:00: Next useful external-pilot work is active-site source decisions and representation repair for selected rows; M-CSA-only count growth remains stopped.
+- 2026-05-14T05:08:05.672183+00:00: Full TM-score split remains blocked until remaining selected coordinates are staged and a Foldseek-backed split builder is added; partial staged25 TM signal is review-only evidence.
+- 2026-05-14T05:12:09.497043+00:00: Foldseek artifacts now have regression coverage; full TM-score split remains blocked until the remaining selected coordinates and split builder are implemented.
 
 ## Scope Adjustments
 

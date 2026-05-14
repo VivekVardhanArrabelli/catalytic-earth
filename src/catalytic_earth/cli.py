@@ -15,7 +15,11 @@ from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
-from .generalization import build_sequence_distance_holdout_eval
+from .generalization import (
+    build_foldseek_coordinate_readiness,
+    build_foldseek_tm_score_signal,
+    build_sequence_distance_holdout_eval,
+)
 from .learned_retrieval import build_learned_retrieval_manifest
 from .labels import (
     analyze_cofactor_abstention_policy,
@@ -613,6 +617,58 @@ def cmd_build_sequence_distance_holdout_eval(args: argparse.Namespace) -> int:
         f"{args.out} ({artifact['metadata']['heldout_count']} held out, "
         f"{artifact['metrics']['heldout']['out_of_scope_false_non_abstentions']} "
         "held-out false non-abstentions)"
+    )
+    return 0
+
+
+def cmd_build_foldseek_coordinate_readiness(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    labels = load_labels(Path(args.labels))
+    geometry = None
+    if args.geometry:
+        with Path(args.geometry).open("r", encoding="utf-8") as handle:
+            geometry = json.load(handle)
+    sequence_holdout = None
+    if args.sequence_holdout:
+        with Path(args.sequence_holdout).open("r", encoding="utf-8") as handle:
+            sequence_holdout = json.load(handle)
+    artifact = build_foldseek_coordinate_readiness(
+        retrieval=retrieval,
+        labels=labels,
+        geometry=geometry,
+        sequence_holdout=sequence_holdout,
+        slice_id=args.slice_id,
+        foldseek_binary=args.foldseek_binary,
+        coordinate_dir=args.coordinate_dir,
+        max_coordinate_files=args.max_coordinate_files,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote Foldseek coordinate readiness to "
+        f"{args.out} ({artifact['metadata']['materialized_coordinate_count']} "
+        "coordinates staged, "
+        f"tm_score_split_computed={artifact['metadata']['tm_score_split_computed']})"
+    )
+    return 0
+
+
+def cmd_build_foldseek_tm_score_signal(args: argparse.Namespace) -> int:
+    with Path(args.readiness).open("r", encoding="utf-8") as handle:
+        readiness = json.load(handle)
+    artifact = build_foldseek_tm_score_signal(
+        readiness=readiness,
+        readiness_path=args.readiness,
+        slice_id=args.slice_id,
+        foldseek_binary=args.foldseek_binary,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote Foldseek TM-score signal to "
+        f"{args.out} ({artifact['metadata']['staged_coordinate_count']} "
+        "staged coordinates, "
+        f"{artifact['metadata']['pair_count']} pair rows, "
+        f"tm_score_split_computed={artifact['metadata']['tm_score_split_computed']})"
     )
     return 0
 
@@ -3932,6 +3988,77 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_sequence_distance_holdout_eval.json",
     )
     sequence_holdout.set_defaults(func=cmd_build_sequence_distance_holdout_eval)
+
+    foldseek_readiness = subparsers.add_parser(
+        "build-foldseek-coordinate-readiness",
+        help=(
+            "stage a bounded selected-coordinate set and report Foldseek "
+            "readiness without computing a TM-score split"
+        ),
+    )
+    foldseek_readiness.add_argument("--slice-id", required=True)
+    foldseek_readiness.add_argument(
+        "--retrieval",
+        default="artifacts/v3_geometry_retrieval_1000.json",
+    )
+    foldseek_readiness.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    foldseek_readiness.add_argument(
+        "--geometry",
+        default="artifacts/v3_geometry_features_1000.json",
+    )
+    foldseek_readiness.add_argument(
+        "--sequence-holdout",
+        default=None,
+        help="optional sequence-distance holdout artifact to define evaluated rows",
+    )
+    foldseek_readiness.add_argument(
+        "--foldseek-binary",
+        default="foldseek",
+        help="Foldseek binary name or explicit path, used only for version provenance",
+    )
+    foldseek_readiness.add_argument(
+        "--coordinate-dir",
+        default="artifacts/foldseek_coordinates",
+        help="directory for bounded staged mmCIF coordinate sidecars",
+    )
+    foldseek_readiness.add_argument(
+        "--max-coordinate-files",
+        type=int,
+        default=0,
+        help="maximum unique selected structures to fetch and stage; 0 records readiness only",
+    )
+    foldseek_readiness.add_argument(
+        "--out",
+        default="artifacts/v3_foldseek_coordinate_readiness.json",
+    )
+    foldseek_readiness.set_defaults(func=cmd_build_foldseek_coordinate_readiness)
+
+    foldseek_tm_signal = subparsers.add_parser(
+        "build-foldseek-tm-score-signal",
+        help=(
+            "run a bounded Foldseek all-vs-all search over already staged "
+            "coordinates and write a partial review-only TM-score signal"
+        ),
+    )
+    foldseek_tm_signal.add_argument("--slice-id", required=True)
+    foldseek_tm_signal.add_argument(
+        "--readiness",
+        default="artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        help="Foldseek coordinate-readiness artifact with staged coordinate sidecars",
+    )
+    foldseek_tm_signal.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        help="explicit Foldseek binary path for version provenance and easy-search",
+    )
+    foldseek_tm_signal.add_argument(
+        "--out",
+        default="artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+    )
+    foldseek_tm_signal.set_defaults(func=cmd_build_foldseek_tm_score_signal)
 
     source_scale_limits = subparsers.add_parser(
         "audit-source-scale-limits",
