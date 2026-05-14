@@ -1,7 +1,7 @@
 # Foldseek readiness note
 
 Recorded: 2026-05-14T03:05:45Z
-Updated: 2026-05-14T04:41:00Z
+Updated: 2026-05-14T06:20:00Z
 
 Status:
 
@@ -30,6 +30,10 @@ Current TM-score readiness:
   `m_csa:501`), and no fetch failures in the bounded materialization pass.
 - The readiness pass stages 25 deterministic selected PDB mmCIF files under
   `artifacts/v3_foldseek_coordinates_1000/`.
+- `artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json` expands
+  the same readiness path to 100 deterministic selected PDB mmCIF sidecars in
+  the same directory, with 0 fetch failures and 572 supported selected
+  structures still unstaged behind the cap.
 - `artifacts/v3_foldseek_tm_score_signal_1000_staged25.json` adds a bounded
   Foldseek `easy-search` signal over only those staged sidecars. It records
   25 staged coordinates, 1,840 pair rows, 1,840 mapped rows, 532 staged
@@ -37,11 +41,16 @@ Current TM-score readiness:
   signal `0.6426` against the `<0.7` target. It is review-only evidence with
   0 countable/import-ready rows and keeps both `tm_score_split_computed=false`
   and `full_tm_score_split_computed=false`.
+- `artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json` preserves a
+  bounded expanded signal attempt, but the Foldseek backend failed before
+  producing pair rows. The artifact is marked `blocker_not_removed`; the latest
+  usable TM-score signal remains staged25.
 
 TM-score split remains blocked on materializing the remaining selected
-PDB/AlphaFold coordinate files and adding a Foldseek-backed split builder. The
-readiness and staged25 TM signal artifacts are non-countable review evidence
-only. The exact bounded readiness command is:
+PDB/AlphaFold coordinate files, getting a successful expanded/full Foldseek
+backend run, and adding a Foldseek-backed split builder. The readiness and
+partial TM signal artifacts are non-countable review evidence only. The exact
+bounded readiness command is:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness \
@@ -55,6 +64,20 @@ PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness
   --out artifacts/v3_foldseek_coordinate_readiness_1000.json
 ```
 
+The expanded coordinate-readiness command is:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness \
+  --slice-id 1000 \
+  --retrieval artifacts/v3_geometry_retrieval_1000.json \
+  --geometry artifacts/v3_geometry_features_1000.json \
+  --sequence-holdout artifacts/v3_sequence_distance_holdout_eval_1000.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --coordinate-dir artifacts/v3_foldseek_coordinates_1000 \
+  --max-coordinate-files 100 \
+  --out artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json
+```
+
 The exact partial staged-coordinate TM signal command is:
 
 ```bash
@@ -63,4 +86,15 @@ PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \
   --readiness artifacts/v3_foldseek_coordinate_readiness_1000.json \
   --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
   --out artifacts/v3_foldseek_tm_score_signal_1000_staged25.json
+```
+
+The failed expanded40 attempt used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \
+  --slice-id 1000 \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --max-staged-coordinates 40 \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json
 ```

@@ -3,250 +3,258 @@
     "external_review_decision_artifact_not_built",
     "full_label_factory_gate_not_run"
   ],
-  "embedding_failures": [
-    {
-      "accession": "C9JRZ8",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
+  "embedding_failures": [],
+  "fetch_failures": [],
+  "learned_vs_heuristic_disagreements": [
     {
       "accession": "O14756",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "O58403",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "O60568",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "O95050",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P00488",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P00918",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P00940",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
+      "entry_id": "uniprot:O14756",
+      "heuristic_top1_fingerprint_id": null,
+      "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:11"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.7852
     },
     {
       "accession": "P06746",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
+      "entry_id": "uniprot:P06746",
+      "heuristic_top1_fingerprint_id": null,
+      "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:521"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9275
     },
     {
-      "accession": "P07342",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P08373",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P09147",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P0A6C1",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P0A6D3",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P0A786",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P0ABI8",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P11708",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P14604",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P14900",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P15369",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P19938",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P21327",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P21874",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P26239",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P27002",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P31116",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P34949",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P36507",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P42790",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P51580",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P53608",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
+      "accession": "C9JRZ8",
+      "entry_id": "uniprot:C9JRZ8",
+      "heuristic_top1_fingerprint_id": null,
+      "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:405"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.7995
     },
     {
       "accession": "P55263",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
+      "entry_id": "uniprot:P55263",
+      "heuristic_top1_fingerprint_id": null,
+      "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "representation_near_duplicate_holdout",
+      "nearest_reference_entry_ids": [
+        "m_csa:209"
+      ],
+      "representation_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
+      "top_embedding_cosine": 0.9731
     },
     {
-      "accession": "P71119",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "P71447",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "Q50925",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "Q62651",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
-    },
-    {
-      "accession": "Q6NSJ0",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
+      "accession": "P34949",
+      "entry_id": "uniprot:P34949",
+      "heuristic_top1_fingerprint_id": null,
+      "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:457"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9199
     },
     {
       "accession": "Q9BXD5",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
+      "entry_id": "uniprot:Q9BXD5",
+      "heuristic_top1_fingerprint_id": null,
+      "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:526"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.8619
     },
     {
-      "accession": "Q9TVW2",
-      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-      "error_type": "OSError"
+      "accession": "Q6NSJ0",
+      "entry_id": "uniprot:Q6NSJ0",
+      "heuristic_top1_fingerprint_id": null,
+      "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:714"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.8958
+    },
+    {
+      "accession": "O60568",
+      "entry_id": "uniprot:O60568",
+      "heuristic_top1_fingerprint_id": null,
+      "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:149"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9454
+    },
+    {
+      "accession": "O95050",
+      "entry_id": "uniprot:O95050",
+      "heuristic_top1_fingerprint_id": null,
+      "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:795"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.9103
+    },
+    {
+      "accession": "P51580",
+      "entry_id": "uniprot:P51580",
+      "heuristic_top1_fingerprint_id": null,
+      "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
+      "learned_or_proxy_backend_status": "learned_representation_sample_complete",
+      "nearest_reference_entry_ids": [
+        "m_csa:188"
+      ],
+      "representation_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "top_embedding_cosine": 0.8325
     }
   ],
-  "fetch_failures": [],
-  "learned_vs_heuristic_disagreements": [],
   "metadata": {
     "attempted_embedding_backend": "esm2_t33_650m_ur50d",
-    "backend_feasibility_status": "model_unavailable_locally",
+    "backend_feasibility_status": "fallback_computed_requested_model_unavailable_locally",
     "backend_status_counts": {
-      "embedding_backend_unavailable": 10
+      "learned_representation_sample_complete": 9,
+      "representation_near_duplicate_holdout": 1
     },
+    "blocker_not_removed": "requested_650m_or_larger_representation_backend_not_computed",
     "blocker_removed": "computes a bounded learned or proxy representation sample for external pilot readiness while preserving heuristic geometry retrieval as the baseline",
     "candidate_count": 10,
+    "computed_embedding_backend": "esm2_t6_8m_ur50d",
     "countable_label_candidate_count": 0,
-    "elapsed_seconds": 5.1279,
-    "embedding_backend": "esm2_t33_650m_ur50d",
-    "embedding_backend_available": false,
+    "elapsed_seconds": 7.082,
+    "embedding_backend": "esm2_t6_8m_ur50d",
+    "embedding_backend_available": true,
     "embedding_backend_model_family": "ESM-2",
-    "embedding_backend_parameter_count": "650M",
-    "embedding_elapsed_seconds": 3.9658,
-    "embedding_failure_count": 39,
+    "embedding_backend_parameter_count": "8M",
+    "embedding_elapsed_seconds": 5.8927,
+    "embedding_failure_count": 0,
     "embedding_status": "computed_review_only",
-    "embedding_vector_dimension": null,
-    "expected_embedding_vector_dimension": 1280,
-    "fallback_not_computed_reason": "local_files_only_prevents_downloading_uncached_model",
+    "embedding_vector_dimension": 320,
+    "expected_embedding_vector_dimension": 320,
+    "fallback_attempts": [
+      {
+        "attempted_model_load": false,
+        "backend_feasibility_status": "skipped_cache_missing",
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_backend_available": false,
+        "expected_embedding_vector_dimension": 640,
+        "local_cache_status": "not_cached",
+        "model_name": "facebook/esm2_t30_150M_UR50D",
+        "weights_cached": false
+      },
+      {
+        "attempted_model_load": false,
+        "backend_feasibility_status": "skipped_cache_missing",
+        "embedding_backend": "esm2_t12_35m_ur50d",
+        "embedding_backend_available": false,
+        "expected_embedding_vector_dimension": 480,
+        "local_cache_status": "not_cached",
+        "model_name": "facebook/esm2_t12_35M_UR50D",
+        "weights_cached": false
+      },
+      {
+        "attempted_model_load": true,
+        "backend_feasibility_status": "computed",
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_backend_available": true,
+        "embedding_failure_count": 0,
+        "embedding_vector_dimension": 320,
+        "expected_embedding_vector_dimension": 320,
+        "local_cache_status": "weights_cached",
+        "model_load_failure_type": null,
+        "model_load_status": "loaded",
+        "model_name": "facebook/esm2_t6_8M_UR50D",
+        "weights_cached": true
+      }
+    ],
+    "fallback_not_computed_reason": null,
+    "fallback_reason": "requested_backend_uncached_local_files_only",
+    "fallback_selected_backend": "esm2_t6_8m_ur50d",
+    "fallback_used": true,
     "fetch_failure_count": 0,
     "fetched_accession_count": 39,
     "heuristic_contrast_required_count": 2,
-    "largest_feasible_embedding_backend": null,
+    "largest_feasible_embedding_backend": "esm2_t6_8m_ur50d",
     "largest_supported_embedding_backend": "esm2_t33_650m_ur50d",
-    "learned_representation_complete_count": 0,
-    "learned_vs_heuristic_disagreement_count": 0,
+    "learned_representation_complete_count": 9,
+    "learned_vs_heuristic_disagreement_count": 10,
     "local_files_only": true,
-    "max_rows": 100,
+    "max_rows": 10,
     "method": "external_source_representation_backend_sample",
-    "model_load_elapsed_seconds": 3.9658,
-    "model_load_failure": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
-    "model_load_failure_type": "OSError",
-    "model_load_status": "failed",
-    "model_name": "facebook/esm2_t33_650M_UR50D",
+    "model_load_elapsed_seconds": 3.0551,
+    "model_load_failure": null,
+    "model_load_failure_type": null,
+    "model_load_status": "loaded",
+    "model_name": "facebook/esm2_t6_8M_UR50D",
     "predictive_feature_policy": "representation status is computed from sequence embeddings and sequence length coverage only; identifiers, EC/Rhea, mechanism text, labels, and heuristic fingerprint ids are review context or holdout context only",
     "predictive_feature_sources": [
       "sequence_embedding_cosine",
       "sequence_length_coverage"
     ],
     "ready_for_label_import": false,
-    "reference_pair_count": 0,
-    "representation_near_duplicate_alert_count": 0,
+    "reference_pair_count": 30,
+    "representation_near_duplicate_alert_count": 1,
     "requested_accession_count": 39,
+    "requested_backend_cache_snapshot_count": 0,
+    "requested_backend_feasibility_status": "model_unavailable_locally",
+    "requested_backend_local_cache_status": "not_cached",
+    "requested_backend_smoke_status": "not_attempted_weights_not_cached",
+    "requested_backend_weights_cached": false,
     "requested_embedding_backend": "esm2_t33_650m_ur50d",
+    "requested_embedding_backend_available": false,
+    "requested_embedding_failure_count": 39,
+    "requested_expected_embedding_vector_dimension": 1280,
+    "requested_model_load_failure": "requested ESM-2 weights are not present in the local Hugging Face cache",
+    "requested_model_load_failure_type": "ModelWeightsNotCached",
+    "requested_model_load_status": "not_attempted_cache_missing",
     "requested_model_name": "facebook/esm2_t33_650M_UR50D",
     "review_context_fields": [
       "heuristic_baseline_control",
@@ -261,39 +269,281 @@
     "source_sequence_neighborhood_sample_method": "external_source_sequence_neighborhood_sample",
     "top_k": 3
   },
+  "requested_embedding_failures": [
+    {
+      "accession": "C9JRZ8",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "O14756",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "O58403",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "O60568",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "O95050",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P00488",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P00918",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P00940",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P06746",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P07342",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P08373",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P09147",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P0A6C1",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P0A6D3",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P0A786",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P0ABI8",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P11708",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P14604",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P14900",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P15369",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P19938",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P21327",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P21874",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P26239",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P27002",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P31116",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P34949",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P36507",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P42790",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P51580",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P53608",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P55263",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P71119",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "P71447",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "Q50925",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "Q62651",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "Q9BXD5",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    },
+    {
+      "accession": "Q9TVW2",
+      "error": "requested ESM-2 weights are not present in the local Hugging Face cache",
+      "error_type": "ModelWeightsNotCached"
+    }
+  ],
   "rows": [
     {
       "accession": "O14756",
-      "backend_status": "embedding_backend_unavailable",
+      "backend_status": "learned_representation_sample_complete",
       "blockers": [
-        "representation_embedding_backend_unavailable",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 317,
       "comparison_status": "pilot_sequence_embedding_control",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t33_650m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": null,
+      "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:O14756",
+      "fallback_reason": "requested_backend_uncached_local_files_only",
+      "fallback_used": true,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:oxidoreductase_long_tail",
+      "larger_model_readiness_status": "requested_backend_unavailable_fallback_used",
       "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "nearest_reference": null,
+      "nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.7852,
+        "length_coverage": 0.8991,
+        "matched_m_csa_entry_ids": [
+          "m_csa:11"
+        ],
+        "reference_accession": "P0A6C1",
+        "screen_near_duplicate_score": 0.0852
+      },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
         "sequence_length_coverage"
       ],
       "ready_for_label_import": false,
-      "reference_scores": [],
+      "reference_scores": [
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.7852,
+          "length_coverage": 0.8991,
+          "matched_m_csa_entry_ids": [
+            "m_csa:11"
+          ],
+          "reference_accession": "P0A6C1",
+          "screen_near_duplicate_score": 0.0852
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.7672,
+          "length_coverage": 0.9148,
+          "matched_m_csa_entry_ids": [
+            "m_csa:315"
+          ],
+          "reference_accession": "P14604",
+          "screen_near_duplicate_score": 0.0852
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.6627,
+          "length_coverage": 0.8202,
+          "matched_m_csa_entry_ids": [
+            "m_csa:595"
+          ],
+          "reference_accession": "P15369",
+          "screen_near_duplicate_score": 0.0852
+        }
+      ],
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -303,40 +553,85 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "oxidoreductase_long_tail",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.0
+      "top_embedding_cosine": 0.7852
     },
     {
       "accession": "P06746",
-      "backend_status": "embedding_backend_unavailable",
+      "backend_status": "learned_representation_sample_complete",
       "blockers": [
-        "representation_embedding_backend_unavailable",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 335,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t33_650m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": null,
+      "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:P06746",
+      "fallback_reason": "requested_backend_uncached_local_files_only",
+      "fallback_used": true,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:lyase",
+      "larger_model_readiness_status": "requested_backend_unavailable_fallback_used",
       "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "nearest_reference": null,
+      "nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.9275,
+        "length_coverage": 0.9331,
+        "matched_m_csa_entry_ids": [
+          "m_csa:521"
+        ],
+        "reference_accession": "P31116",
+        "screen_near_duplicate_score": 0.0919
+      },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
         "sequence_length_coverage"
       ],
       "ready_for_label_import": false,
-      "reference_scores": [],
+      "reference_scores": [
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.9275,
+          "length_coverage": 0.9331,
+          "matched_m_csa_entry_ids": [
+            "m_csa:521"
+          ],
+          "reference_accession": "P31116",
+          "screen_near_duplicate_score": 0.0919
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.914,
+          "length_coverage": 0.9795,
+          "matched_m_csa_entry_ids": [
+            "m_csa:353"
+          ],
+          "reference_accession": "P08373",
+          "screen_near_duplicate_score": 0.0906
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8872,
+          "length_coverage": 0.9571,
+          "matched_m_csa_entry_ids": [
+            "m_csa:536"
+          ],
+          "reference_accession": "P26239",
+          "screen_near_duplicate_score": 0.0857
+        }
+      ],
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -346,40 +641,85 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "lyase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.0
+      "top_embedding_cosine": 0.9275
     },
     {
       "accession": "C9JRZ8",
-      "backend_status": "embedding_backend_unavailable",
+      "backend_status": "learned_representation_sample_complete",
       "blockers": [
-        "representation_embedding_backend_unavailable",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 316,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t33_650m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": null,
+      "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:C9JRZ8",
+      "fallback_reason": "requested_backend_uncached_local_files_only",
+      "fallback_used": true,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:oxidoreductase_long_tail",
+      "larger_model_readiness_status": "requested_backend_unavailable_fallback_used",
       "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "nearest_reference": null,
+      "nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.7995,
+        "length_coverage": 0.9842,
+        "matched_m_csa_entry_ids": [
+          "m_csa:405"
+        ],
+        "reference_accession": "P0A786",
+        "screen_near_duplicate_score": 0.0918
+      },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
         "sequence_length_coverage"
       ],
       "ready_for_label_import": false,
-      "reference_scores": [],
+      "reference_scores": [
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.7995,
+          "length_coverage": 0.9842,
+          "matched_m_csa_entry_ids": [
+            "m_csa:405"
+          ],
+          "reference_accession": "P0A786",
+          "screen_near_duplicate_score": 0.0918
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.7822,
+          "length_coverage": 0.8956,
+          "matched_m_csa_entry_ids": [
+            "m_csa:66"
+          ],
+          "reference_accession": "P19938",
+          "screen_near_duplicate_score": 0.0918
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.775,
+          "length_coverage": 0.9723,
+          "matched_m_csa_entry_ids": [
+            "m_csa:106"
+          ],
+          "reference_accession": "P21874",
+          "screen_near_duplicate_score": 0.0923
+        }
+      ],
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -389,40 +729,86 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "oxidoreductase_long_tail",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.0
+      "top_embedding_cosine": 0.7995
     },
     {
       "accession": "P55263",
-      "backend_status": "embedding_backend_unavailable",
+      "backend_status": "representation_near_duplicate_holdout",
       "blockers": [
-        "representation_embedding_backend_unavailable",
+        "representation_near_duplicate_control_holdout",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 362,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t33_650m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": null,
+      "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:P55263",
+      "fallback_reason": "requested_backend_uncached_local_files_only",
+      "fallback_used": true,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:transferase_phosphoryl",
+      "larger_model_readiness_status": "requested_backend_unavailable_fallback_used",
       "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "nearest_reference": null,
+      "nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.9731,
+        "length_coverage": 0.9972,
+        "matched_m_csa_entry_ids": [
+          "m_csa:209"
+        ],
+        "reference_accession": "Q9TVW2",
+        "screen_near_duplicate_score": 0.0826
+      },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
         "sequence_length_coverage"
       ],
       "ready_for_label_import": false,
-      "reference_scores": [],
+      "reference_scores": [
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.9731,
+          "length_coverage": 0.9972,
+          "matched_m_csa_entry_ids": [
+            "m_csa:209"
+          ],
+          "reference_accession": "Q9TVW2",
+          "screen_near_duplicate_score": 0.0826
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8526,
+          "length_coverage": 0.826,
+          "matched_m_csa_entry_ids": [
+            "m_csa:445"
+          ],
+          "reference_accession": "P53608",
+          "screen_near_duplicate_score": 0.0856
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8192,
+          "length_coverage": 0.9669,
+          "matched_m_csa_entry_ids": [
+            "m_csa:536"
+          ],
+          "reference_accession": "P26239",
+          "screen_near_duplicate_score": 0.0829
+        }
+      ],
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -432,40 +818,85 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "transferase_phosphoryl",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.0
+      "top_embedding_cosine": 0.9731
     },
     {
       "accession": "P34949",
-      "backend_status": "embedding_backend_unavailable",
+      "backend_status": "learned_representation_sample_complete",
       "blockers": [
-        "representation_embedding_backend_unavailable",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 423,
       "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t33_650m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": null,
+      "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:P34949",
+      "fallback_reason": "requested_backend_uncached_local_files_only",
+      "fallback_used": true,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": true,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:isomerase",
+      "larger_model_readiness_status": "requested_backend_unavailable_fallback_used",
       "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "nearest_reference": null,
+      "nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.9199,
+        "length_coverage": 0.9906,
+        "matched_m_csa_entry_ids": [
+          "m_csa:457"
+        ],
+        "reference_accession": "P0A6D3",
+        "screen_near_duplicate_score": 0.0913
+      },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
         "sequence_length_coverage"
       ],
       "ready_for_label_import": false,
-      "reference_scores": [],
+      "reference_scores": [
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.9199,
+          "length_coverage": 0.9906,
+          "matched_m_csa_entry_ids": [
+            "m_csa:457"
+          ],
+          "reference_accession": "P0A6D3",
+          "screen_near_duplicate_score": 0.0913
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.875,
+          "length_coverage": 0.9456,
+          "matched_m_csa_entry_ids": [
+            "m_csa:282"
+          ],
+          "reference_accession": "P36507",
+          "screen_near_duplicate_score": 0.0898
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.7167,
+          "length_coverage": 0.9658,
+          "matched_m_csa_entry_ids": [
+            "m_csa:317"
+          ],
+          "reference_accession": "P14900",
+          "screen_near_duplicate_score": 0.0868
+        }
+      ],
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -475,40 +906,85 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "isomerase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.0
+      "top_embedding_cosine": 0.9199
     },
     {
       "accession": "Q9BXD5",
-      "backend_status": "embedding_backend_unavailable",
+      "backend_status": "learned_representation_sample_complete",
       "blockers": [
-        "representation_embedding_backend_unavailable",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 320,
       "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t33_650m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": null,
+      "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:Q9BXD5",
+      "fallback_reason": "requested_backend_uncached_local_files_only",
+      "fallback_used": true,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": true,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:lyase",
+      "larger_model_readiness_status": "requested_backend_unavailable_fallback_used",
       "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "nearest_reference": null,
+      "nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.8619,
+        "length_coverage": 0.9581,
+        "matched_m_csa_entry_ids": [
+          "m_csa:526"
+        ],
+        "reference_accession": "P11708",
+        "screen_near_duplicate_score": 0.1048
+      },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
         "sequence_length_coverage"
       ],
       "ready_for_label_import": false,
-      "reference_scores": [],
+      "reference_scores": [
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8619,
+          "length_coverage": 0.9581,
+          "matched_m_csa_entry_ids": [
+            "m_csa:526"
+          ],
+          "reference_accession": "P11708",
+          "screen_near_duplicate_score": 0.1048
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8499,
+          "length_coverage": 0.8,
+          "matched_m_csa_entry_ids": [
+            "m_csa:856"
+          ],
+          "reference_accession": "P21327",
+          "screen_near_duplicate_score": 0.09
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8343,
+          "length_coverage": 0.9786,
+          "matched_m_csa_entry_ids": [
+            "m_csa:342"
+          ],
+          "reference_accession": "Q62651",
+          "screen_near_duplicate_score": 0.0917
+        }
+      ],
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -518,40 +994,85 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "lyase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.0
+      "top_embedding_cosine": 0.8619
     },
     {
       "accession": "Q6NSJ0",
-      "backend_status": "embedding_backend_unavailable",
+      "backend_status": "learned_representation_sample_complete",
       "blockers": [
-        "representation_embedding_backend_unavailable",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 714,
       "comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t33_650m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": null,
+      "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:Q6NSJ0",
+      "fallback_reason": "requested_backend_uncached_local_files_only",
+      "fallback_used": true,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:glycan_chemistry",
+      "larger_model_readiness_status": "requested_backend_unavailable_fallback_used",
       "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "nearest_reference": null,
+      "nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.8958,
+        "length_coverage": 0.9286,
+        "matched_m_csa_entry_ids": [
+          "m_csa:714"
+        ],
+        "reference_accession": "P0ABI8",
+        "screen_near_duplicate_score": 0.0784
+      },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
         "sequence_length_coverage"
       ],
       "ready_for_label_import": false,
-      "reference_scores": [],
+      "reference_scores": [
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8958,
+          "length_coverage": 0.9286,
+          "matched_m_csa_entry_ids": [
+            "m_csa:714"
+          ],
+          "reference_accession": "P0ABI8",
+          "screen_near_duplicate_score": 0.0784
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8452,
+          "length_coverage": 0.9622,
+          "matched_m_csa_entry_ids": [
+            "m_csa:289"
+          ],
+          "reference_accession": "P07342",
+          "screen_near_duplicate_score": 0.0784
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8394,
+          "length_coverage": 0.9096,
+          "matched_m_csa_entry_ids": [
+            "m_csa:539"
+          ],
+          "reference_accession": "P27002",
+          "screen_near_duplicate_score": 0.0803
+        }
+      ],
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -561,40 +1082,85 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "glycan_chemistry",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.0
+      "top_embedding_cosine": 0.8958
     },
     {
       "accession": "O60568",
-      "backend_status": "embedding_backend_unavailable",
+      "backend_status": "learned_representation_sample_complete",
       "blockers": [
-        "representation_embedding_backend_unavailable",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 738,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t33_650m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": null,
+      "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:O60568",
+      "fallback_reason": "requested_backend_uncached_local_files_only",
+      "fallback_used": true,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:glycan_chemistry",
+      "larger_model_readiness_status": "requested_backend_unavailable_fallback_used",
       "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "nearest_reference": null,
+      "nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.9454,
+        "length_coverage": 0.9919,
+        "matched_m_csa_entry_ids": [
+          "m_csa:149"
+        ],
+        "reference_accession": "P00488",
+        "screen_near_duplicate_score": 0.0718
+      },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
         "sequence_length_coverage"
       ],
       "ready_for_label_import": false,
-      "reference_scores": [],
+      "reference_scores": [
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.9454,
+          "length_coverage": 0.9919,
+          "matched_m_csa_entry_ids": [
+            "m_csa:149"
+          ],
+          "reference_accession": "P00488",
+          "screen_near_duplicate_score": 0.0718
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.9005,
+          "length_coverage": 0.7724,
+          "matched_m_csa_entry_ids": [
+            "m_csa:581"
+          ],
+          "reference_accession": "Q50925",
+          "screen_near_duplicate_score": 0.0691
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8602,
+          "length_coverage": 0.7954,
+          "matched_m_csa_entry_ids": [
+            "m_csa:380"
+          ],
+          "reference_accession": "P42790",
+          "screen_near_duplicate_score": 0.0691
+        }
+      ],
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -604,40 +1170,85 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "glycan_chemistry",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.0
+      "top_embedding_cosine": 0.9454
     },
     {
       "accession": "O95050",
-      "backend_status": "embedding_backend_unavailable",
+      "backend_status": "learned_representation_sample_complete",
       "blockers": [
-        "representation_embedding_backend_unavailable",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 263,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t33_650m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": null,
+      "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:O95050",
+      "fallback_reason": "requested_backend_uncached_local_files_only",
+      "fallback_used": true,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:transferase_methyl",
+      "larger_model_readiness_status": "requested_backend_unavailable_fallback_used",
       "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "nearest_reference": null,
+      "nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.9103,
+        "length_coverage": 0.8175,
+        "matched_m_csa_entry_ids": [
+          "m_csa:795"
+        ],
+        "reference_accession": "P71119",
+        "screen_near_duplicate_score": 0.0951
+      },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
         "sequence_length_coverage"
       ],
       "ready_for_label_import": false,
-      "reference_scores": [],
+      "reference_scores": [
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.9103,
+          "length_coverage": 0.8175,
+          "matched_m_csa_entry_ids": [
+            "m_csa:795"
+          ],
+          "reference_accession": "P71119",
+          "screen_near_duplicate_score": 0.0951
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.9079,
+          "length_coverage": 0.9886,
+          "matched_m_csa_entry_ids": [
+            "m_csa:216"
+          ],
+          "reference_accession": "P00918",
+          "screen_near_duplicate_score": 0.1065
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.7792,
+          "length_coverage": 0.943,
+          "matched_m_csa_entry_ids": [
+            "m_csa:324"
+          ],
+          "reference_accession": "P00940",
+          "screen_near_duplicate_score": 0.0951
+        }
+      ],
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -647,40 +1258,85 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "transferase_methyl",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.0
+      "top_embedding_cosine": 0.9103
     },
     {
       "accession": "P51580",
-      "backend_status": "embedding_backend_unavailable",
+      "backend_status": "learned_representation_sample_complete",
       "blockers": [
-        "representation_embedding_backend_unavailable",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run"
       ],
       "candidate_sequence_length": 245,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
-      "embedding_backend": "esm2_t33_650m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
-      "embedding_vector_dimension": null,
+      "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:P51580",
+      "fallback_reason": "requested_backend_uncached_local_files_only",
+      "fallback_used": true,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:transferase_methyl",
+      "larger_model_readiness_status": "requested_backend_unavailable_fallback_used",
       "leakage_flags": [
+        "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
       ],
-      "nearest_reference": null,
+      "nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.8325,
+        "length_coverage": 0.7249,
+        "matched_m_csa_entry_ids": [
+          "m_csa:188"
+        ],
+        "reference_accession": "P09147",
+        "screen_near_duplicate_score": 0.0888
+      },
       "predictive_feature_sources": [
         "sequence_embedding_cosine",
         "sequence_length_coverage"
       ],
       "ready_for_label_import": false,
-      "reference_scores": [],
+      "reference_scores": [
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8325,
+          "length_coverage": 0.7249,
+          "matched_m_csa_entry_ids": [
+            "m_csa:188"
+          ],
+          "reference_accession": "P09147",
+          "screen_near_duplicate_score": 0.0888
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8237,
+          "length_coverage": 0.9306,
+          "matched_m_csa_entry_ids": [
+            "m_csa:335"
+          ],
+          "reference_accession": "O58403",
+          "screen_near_duplicate_score": 0.0857
+        },
+        {
+          "embedding_backend": "esm2_t6_8m_ur50d",
+          "embedding_cosine": 0.8095,
+          "length_coverage": 0.902,
+          "matched_m_csa_entry_ids": [
+            "m_csa:206"
+          ],
+          "reference_accession": "P71447",
+          "screen_near_duplicate_score": 0.0857
+        }
+      ],
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -690,11 +1346,11 @@
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "transferase_methyl",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
-      "top_embedding_cosine": 0.0
+      "top_embedding_cosine": 0.8325
     }
   ],
   "warnings": [
-    "ESM-2 backend could not be loaded locally: OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
+    "ESM-2 embeddings are computed review-only controls; they do not replace active-site evidence, sequence-search completion, expert decisions, or factory gates",
     "computed representation controls are not expert evidence"
   ]
 }

@@ -1,11 +1,19 @@
 {
   "blockers": [],
   "metadata": {
+    "availability_metadata_missing_fields": [],
     "blocker_removed": "verifies computed representation sample rows remain review-only and non-countable before external pilot import",
     "candidate_count": 10,
     "countable_label_candidate_count": 0,
-    "embedding_backend": "esm2_t33_650m_ur50d",
+    "embedding_backend": "esm2_t6_8m_ur50d",
+    "embedding_dimension_matches_expected": true,
+    "embedding_elapsed_seconds": 5.8927,
     "embedding_status": "computed_review_only",
+    "expected_embedding_vector_dimension": 320,
+    "fallback_metadata_missing_fields": [],
+    "fallback_reason": "requested_backend_uncached_local_files_only",
+    "fallback_selected_backend": "esm2_t6_8m_ur50d",
+    "fallback_used": true,
     "guardrail_clean": true,
     "import_ready_row_count": 0,
     "leakage_context_unmarked_row_count": 0,
@@ -14,12 +22,20 @@
     "missing_backend_status_row_count": 0,
     "missing_predictive_sources_row_count": 0,
     "missing_review_only_status_row_count": 0,
+    "model_load_status": "loaded",
     "predictive_feature_sources": [
       "sequence_embedding_cosine",
       "sequence_length_coverage"
     ],
     "ready_for_label_import": false,
-    "representation_near_duplicate_alert_count": 0
+    "representation_near_duplicate_alert_count": 1,
+    "requested_backend_feasibility_status": "model_unavailable_locally",
+    "requested_backend_local_cache_status": "not_cached",
+    "requested_backend_smoke_status": "not_attempted_weights_not_cached",
+    "requested_embedding_backend": "esm2_t33_650m_ur50d",
+    "requested_embedding_failure_count": 39,
+    "requested_expected_embedding_vector_dimension": 1280,
+    "unavailable_metadata_missing_fields": []
   },
   "warnings": [
     "computed representation backend samples are review-only controls and cannot authorize external label import"

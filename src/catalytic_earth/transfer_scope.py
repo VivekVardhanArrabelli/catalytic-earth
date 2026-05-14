@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 import hashlib
+import os
 import shlex
 import shutil
 import subprocess
@@ -80,6 +81,18 @@ ESM2_BACKEND_SCALE_LABELS = {
     "esm2_t30_150m_ur50d": "150M",
     "esm2_t33_650m_ur50d": "650M",
 }
+ESM2_BACKEND_FALLBACK_ORDER = (
+    "esm2_t33_650m_ur50d",
+    "esm2_t30_150m_ur50d",
+    "esm2_t12_35m_ur50d",
+    "esm2_t6_8m_ur50d",
+)
+ESM2_BACKEND_WEIGHT_FILENAMES = (
+    "model.safetensors",
+    "pytorch_model.bin",
+    "tf_model.h5",
+    "flax_model.msgpack",
+)
 EXTERNAL_TRANSFER_GATE_INPUT_CONTRACT = "ExternalSourceTransferGateInputs.v1"
 EXTERNAL_TRANSFER_GATE_REQUIRED_FIELDS = (
     "transfer_manifest",
@@ -3501,6 +3514,9 @@ def build_external_source_representation_backend_sample(
     embedding_backend: str = "deterministic_sequence_kmer_control",
     model_name: str = ESM2_BACKEND_MODEL_NAMES[DEFAULT_ESM2_BACKEND],
     local_files_only: bool = False,
+    fallback_to_largest_local_esm2: bool = True,
+    allow_larger_model_smoke: bool = False,
+    larger_model_smoke_accession_limit: int = 2,
     fetcher: Callable[[list[str]], dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Compute a review-only sequence representation control."""
@@ -3549,6 +3565,9 @@ def build_external_source_representation_backend_sample(
         embedding_backend=embedding_backend,
         model_name=model_name,
         local_files_only=local_files_only,
+        fallback_to_largest_local_esm2=fallback_to_largest_local_esm2,
+        allow_larger_model_smoke=allow_larger_model_smoke,
+        larger_model_smoke_accession_limit=larger_model_smoke_accession_limit,
     )
     embeddings_by_accession = embedding_payload["embeddings_by_accession"]
 
@@ -3668,6 +3687,26 @@ def build_external_source_representation_backend_sample(
                 "comparison_status": plan_row.get("comparison_status"),
                 "countable_label_candidate": False,
                 "embedding_backend": embedding_payload["metadata"]["embedding_backend"],
+                "requested_embedding_backend": embedding_payload["metadata"].get(
+                    "requested_embedding_backend", embedding_backend
+                ),
+                "computed_embedding_backend": embedding_payload["metadata"].get(
+                    "computed_embedding_backend",
+                    embedding_payload["metadata"].get("embedding_backend"),
+                ),
+                "fallback_used": embedding_payload["metadata"].get(
+                    "fallback_used", False
+                ),
+                "fallback_reason": embedding_payload["metadata"].get(
+                    "fallback_reason"
+                ),
+                "larger_model_readiness_status": (
+                    "requested_backend_unavailable_fallback_used"
+                    if embedding_payload["metadata"].get("fallback_used")
+                    else embedding_payload["metadata"].get(
+                        "backend_feasibility_status"
+                    )
+                ),
                 "embedding_status": "computed_review_only",
                 "embedding_vector_dimension": embedding_payload["metadata"].get(
                     "embedding_vector_dimension"
@@ -3716,7 +3755,13 @@ def build_external_source_representation_backend_sample(
             "max_rows": max_rows,
             "top_k": top_k,
             "embedding_backend": embedding_payload["metadata"]["embedding_backend"],
-            "requested_embedding_backend": embedding_backend,
+            "requested_embedding_backend": embedding_payload["metadata"].get(
+                "requested_embedding_backend", embedding_backend
+            ),
+            "computed_embedding_backend": embedding_payload["metadata"].get(
+                "computed_embedding_backend",
+                embedding_payload["metadata"].get("embedding_backend"),
+            ),
             "model_name": embedding_payload["metadata"].get("model_name"),
             "requested_model_name": embedding_payload["metadata"].get(
                 "requested_model_name", model_name
@@ -3771,6 +3816,54 @@ def build_external_source_representation_backend_sample(
             "attempted_embedding_backend": embedding_payload["metadata"].get(
                 "attempted_embedding_backend"
             ),
+            "requested_expected_embedding_vector_dimension": (
+                embedding_payload["metadata"].get(
+                    "requested_expected_embedding_vector_dimension"
+                )
+            ),
+            "requested_embedding_backend_available": (
+                embedding_payload["metadata"].get(
+                    "requested_embedding_backend_available"
+                )
+            ),
+            "requested_backend_feasibility_status": embedding_payload[
+                "metadata"
+            ].get("requested_backend_feasibility_status"),
+            "requested_backend_local_cache_status": embedding_payload[
+                "metadata"
+            ].get("requested_backend_local_cache_status"),
+            "requested_backend_weights_cached": embedding_payload["metadata"].get(
+                "requested_backend_weights_cached"
+            ),
+            "requested_backend_cache_snapshot_count": embedding_payload[
+                "metadata"
+            ].get("requested_backend_cache_snapshot_count"),
+            "requested_backend_smoke_status": embedding_payload["metadata"].get(
+                "requested_backend_smoke_status"
+            ),
+            "requested_model_load_status": embedding_payload["metadata"].get(
+                "requested_model_load_status"
+            ),
+            "requested_model_load_failure_type": embedding_payload["metadata"].get(
+                "requested_model_load_failure_type"
+            ),
+            "requested_model_load_failure": embedding_payload["metadata"].get(
+                "requested_model_load_failure"
+            ),
+            "requested_embedding_failure_count": embedding_payload["metadata"].get(
+                "requested_embedding_failure_count"
+            ),
+            "fallback_used": embedding_payload["metadata"].get("fallback_used", False),
+            "fallback_selected_backend": embedding_payload["metadata"].get(
+                "fallback_selected_backend"
+            ),
+            "fallback_reason": embedding_payload["metadata"].get("fallback_reason"),
+            "fallback_attempts": embedding_payload["metadata"].get(
+                "fallback_attempts", []
+            ),
+            "blocker_not_removed": embedding_payload["metadata"].get(
+                "blocker_not_removed"
+            ),
             "largest_supported_embedding_backend": embedding_payload["metadata"].get(
                 "largest_supported_embedding_backend"
             ),
@@ -3812,6 +3905,9 @@ def build_external_source_representation_backend_sample(
         "learned_vs_heuristic_disagreements": disagreement_rows,
         "fetch_failures": fetch_failures,
         "embedding_failures": embedding_payload["embedding_failures"],
+        "requested_embedding_failures": embedding_payload.get(
+            "requested_embedding_failures", []
+        ),
         "blockers": [
             "external_review_decision_artifact_not_built",
             "full_label_factory_gate_not_run",
@@ -3875,6 +3971,60 @@ def audit_external_source_representation_backend_sample(
         )
     ]
     metadata = representation_backend_sample.get("metadata", {})
+    embedding_backend = metadata.get("embedding_backend")
+    requested_backend = metadata.get("requested_embedding_backend")
+    esm2_metadata_required = (
+        embedding_backend in ESM2_BACKEND_MODEL_NAMES
+        or requested_backend in ESM2_BACKEND_MODEL_NAMES
+    )
+    missing_availability_metadata: list[str] = []
+    if esm2_metadata_required:
+        for field_name in (
+            "backend_feasibility_status",
+            "expected_embedding_vector_dimension",
+            "embedding_elapsed_seconds",
+            "model_load_status",
+            "requested_embedding_backend",
+            "requested_expected_embedding_vector_dimension",
+            "requested_backend_feasibility_status",
+            "requested_backend_local_cache_status",
+            "requested_backend_smoke_status",
+            "requested_embedding_failure_count",
+            "fallback_used",
+        ):
+            if field_name not in metadata:
+                missing_availability_metadata.append(field_name)
+    unavailable_metadata_missing = []
+    if metadata.get("embedding_backend_available") is False:
+        for field_name in (
+            "backend_feasibility_status",
+            "model_load_status",
+            "embedding_failure_count",
+        ):
+            if field_name not in metadata:
+                unavailable_metadata_missing.append(field_name)
+    fallback_metadata_missing = []
+    if metadata.get("fallback_used") is True:
+        for field_name in (
+            "fallback_selected_backend",
+            "fallback_reason",
+            "fallback_attempts",
+            "requested_backend_feasibility_status",
+            "requested_model_load_status",
+            "requested_embedding_failure_count",
+            "blocker_not_removed",
+        ):
+            if not metadata.get(field_name):
+                fallback_metadata_missing.append(field_name)
+    dimension_mismatch = False
+    expected_dimension = metadata.get("expected_embedding_vector_dimension")
+    observed_dimension = metadata.get("embedding_vector_dimension")
+    if (
+        metadata.get("embedding_backend_available") is True
+        and isinstance(expected_dimension, int)
+        and observed_dimension != expected_dimension
+    ):
+        dimension_mismatch = True
     predictive_sources = _representation_predictive_sources_from(metadata)
     for row in rows:
         predictive_sources.extend(_representation_predictive_sources_from(row))
@@ -3908,6 +4058,14 @@ def audit_external_source_representation_backend_sample(
         blockers.append("representation_backend_sample_leakage_context_unmarked")
     if leakage_prone_predictive_sources:
         blockers.append("representation_backend_sample_leakage_prone_predictive_sources")
+    if missing_availability_metadata:
+        blockers.append("representation_backend_sample_availability_metadata_missing")
+    if unavailable_metadata_missing:
+        blockers.append("representation_backend_sample_unavailable_metadata_missing")
+    if fallback_metadata_missing:
+        blockers.append("representation_backend_sample_fallback_metadata_missing")
+    if dimension_mismatch:
+        blockers.append("representation_backend_sample_dimension_mismatch")
     return {
         "metadata": {
             "method": "external_source_representation_backend_sample_audit",
@@ -3920,6 +4078,38 @@ def audit_external_source_representation_backend_sample(
             "candidate_count": len(rows),
             "embedding_status": metadata.get("embedding_status"),
             "embedding_backend": metadata.get("embedding_backend"),
+            "requested_embedding_backend": metadata.get("requested_embedding_backend"),
+            "requested_backend_feasibility_status": metadata.get(
+                "requested_backend_feasibility_status"
+            ),
+            "requested_backend_local_cache_status": metadata.get(
+                "requested_backend_local_cache_status"
+            ),
+            "requested_backend_smoke_status": metadata.get(
+                "requested_backend_smoke_status"
+            ),
+            "requested_embedding_failure_count": metadata.get(
+                "requested_embedding_failure_count"
+            ),
+            "expected_embedding_vector_dimension": metadata.get(
+                "expected_embedding_vector_dimension"
+            ),
+            "requested_expected_embedding_vector_dimension": metadata.get(
+                "requested_expected_embedding_vector_dimension"
+            ),
+            "embedding_elapsed_seconds": metadata.get("embedding_elapsed_seconds"),
+            "model_load_status": metadata.get("model_load_status"),
+            "fallback_used": metadata.get("fallback_used", False),
+            "fallback_selected_backend": metadata.get("fallback_selected_backend"),
+            "fallback_reason": metadata.get("fallback_reason"),
+            "availability_metadata_missing_fields": sorted(
+                missing_availability_metadata
+            ),
+            "unavailable_metadata_missing_fields": sorted(
+                unavailable_metadata_missing
+            ),
+            "fallback_metadata_missing_fields": sorted(fallback_metadata_missing),
+            "embedding_dimension_matches_expected": not dimension_mismatch,
             "import_ready_row_count": len(import_ready_rows),
             "missing_backend_status_row_count": len(missing_backend_status),
             "missing_review_only_status_row_count": len(missing_review_status),
@@ -4032,6 +4222,8 @@ def audit_external_source_representation_backend_stability(
         if comparison_row.get("backend_status") == "embedding_backend_unavailable":
             flags.append("comparison_embedding_backend_unavailable")
             comparison_unavailable_count += 1
+        if comparison_row.get("fallback_used") is True:
+            flags.append("comparison_embedding_backend_fallback_used")
         rows.append(
             {
                 "accession": accession,
@@ -4049,6 +4241,13 @@ def audit_external_source_representation_backend_stability(
                 "comparison_embedding_backend": comparison_row.get(
                     "embedding_backend"
                 ),
+                "comparison_requested_embedding_backend": comparison_row.get(
+                    "requested_embedding_backend"
+                ),
+                "comparison_fallback_used": comparison_row.get(
+                    "fallback_used", False
+                ),
+                "comparison_fallback_reason": comparison_row.get("fallback_reason"),
                 "comparison_heuristic_disagreement_status": (
                     comparison_disagreement_status
                 ),
@@ -4099,6 +4298,15 @@ def audit_external_source_representation_backend_stability(
         blockers.append("empty_representation_backend_stability_audit")
     if comparison_meta.get("embedding_backend_available") is not True:
         stability_status = "comparison_backend_unavailable"
+    elif comparison_meta.get("fallback_used") is True and (
+        nearest_reference_changed_count
+        or nearest_reference_entry_ids_changed_count
+        or disagreement_status_changed_count
+        or fingerprint_context_changed_count
+    ):
+        stability_status = "fallback_changed"
+    elif comparison_meta.get("fallback_used") is True:
+        stability_status = "fallback_stable"
     elif (
         nearest_reference_changed_count
         or nearest_reference_entry_ids_changed_count
@@ -4122,8 +4330,14 @@ def audit_external_source_representation_backend_stability(
             "shared_candidate_count": len(rows),
             "baseline_embedding_backend": baseline_meta.get("embedding_backend"),
             "comparison_embedding_backend": comparison_meta.get("embedding_backend"),
+            "comparison_requested_embedding_backend": comparison_meta.get(
+                "requested_embedding_backend"
+            ),
             "baseline_model_name": baseline_meta.get("model_name"),
             "comparison_model_name": comparison_meta.get("model_name"),
+            "comparison_requested_model_name": comparison_meta.get(
+                "requested_model_name"
+            ),
             "baseline_embedding_vector_dimension": baseline_meta.get(
                 "embedding_vector_dimension"
             ),
@@ -4133,6 +4347,9 @@ def audit_external_source_representation_backend_stability(
             "comparison_expected_embedding_vector_dimension": comparison_meta.get(
                 "expected_embedding_vector_dimension"
             ),
+            "comparison_requested_expected_embedding_vector_dimension": (
+                comparison_meta.get("requested_expected_embedding_vector_dimension")
+            ),
             "baseline_embedding_backend_available": baseline_meta.get(
                 "embedding_backend_available"
             ),
@@ -4141,6 +4358,26 @@ def audit_external_source_representation_backend_stability(
             ),
             "comparison_backend_feasibility_status": comparison_meta.get(
                 "backend_feasibility_status"
+            ),
+            "comparison_requested_backend_feasibility_status": comparison_meta.get(
+                "requested_backend_feasibility_status"
+            ),
+            "comparison_requested_backend_local_cache_status": comparison_meta.get(
+                "requested_backend_local_cache_status"
+            ),
+            "comparison_requested_backend_smoke_status": comparison_meta.get(
+                "requested_backend_smoke_status"
+            ),
+            "comparison_requested_embedding_failure_count": comparison_meta.get(
+                "requested_embedding_failure_count", 0
+            ),
+            "comparison_fallback_used": comparison_meta.get("fallback_used", False),
+            "comparison_fallback_selected_backend": comparison_meta.get(
+                "fallback_selected_backend"
+            ),
+            "comparison_fallback_reason": comparison_meta.get("fallback_reason"),
+            "comparison_blocker_not_removed": comparison_meta.get(
+                "blocker_not_removed"
             ),
             "comparison_largest_supported_embedding_backend": comparison_meta.get(
                 "largest_supported_embedding_backend"
@@ -12748,6 +12985,9 @@ def _compute_sequence_embedding_payload(
     embedding_backend: str,
     model_name: str,
     local_files_only: bool = False,
+    fallback_to_largest_local_esm2: bool = True,
+    allow_larger_model_smoke: bool = False,
+    larger_model_smoke_accession_limit: int = 2,
 ) -> dict[str, Any]:
     started = time.perf_counter()
     backend = _normalized_embedding_backend(embedding_backend)
@@ -12775,6 +13015,16 @@ def _compute_sequence_embedding_payload(
                 "expected_embedding_vector_dimension": None,
                 "embedding_backend_model_family": "deterministic_sequence_kmer",
                 "embedding_backend_parameter_count": None,
+                "requested_embedding_backend": backend,
+                "requested_backend_feasibility_status": "computed",
+                "requested_backend_local_cache_status": "not_applicable",
+                "requested_backend_smoke_status": "not_applicable",
+                "requested_expected_embedding_vector_dimension": None,
+                "requested_embedding_failure_count": 0,
+                "fallback_used": False,
+                "fallback_selected_backend": None,
+                "fallback_reason": None,
+                "fallback_attempts": [],
             },
             "embeddings_by_accession": embeddings,
             "warnings_by_accession": {},
@@ -12803,6 +13053,16 @@ def _compute_sequence_embedding_payload(
                 "expected_embedding_vector_dimension": None,
                 "embedding_backend_model_family": None,
                 "embedding_backend_parameter_count": None,
+                "requested_embedding_backend": backend,
+                "requested_backend_feasibility_status": "unsupported_backend",
+                "requested_backend_local_cache_status": "not_applicable",
+                "requested_backend_smoke_status": "not_applicable",
+                "requested_expected_embedding_vector_dimension": None,
+                "requested_embedding_failure_count": len(accessions),
+                "fallback_used": False,
+                "fallback_selected_backend": None,
+                "fallback_reason": None,
+                "fallback_attempts": [],
             },
             "embeddings_by_accession": {},
             "warnings_by_accession": {},
@@ -12819,6 +13079,20 @@ def _compute_sequence_embedding_payload(
     resolved_model_name = _resolved_esm2_model_name(
         backend=backend, requested_model_name=model_name
     )
+    if (
+        local_files_only
+        and fallback_to_largest_local_esm2
+        and backend != DEFAULT_ESM2_BACKEND
+    ):
+        return _compute_esm2_embeddings_with_local_fallback(
+            records_by_accession=records_by_accession,
+            accessions=accessions,
+            requested_backend=backend,
+            requested_model_name=resolved_model_name,
+            allow_larger_model_smoke=allow_larger_model_smoke,
+            larger_model_smoke_accession_limit=larger_model_smoke_accession_limit,
+            started=started,
+        )
     if backend == DEFAULT_ESM2_BACKEND:
         return _compute_esm2_t6_embeddings(
             records_by_accession=records_by_accession,
@@ -12886,6 +13160,448 @@ def _normalized_embedding_backend(value: str) -> str:
     )
 
 
+def _compute_esm2_embeddings_with_local_fallback(
+    *,
+    records_by_accession: dict[str, dict[str, Any]],
+    accessions: list[str],
+    requested_backend: str,
+    requested_model_name: str,
+    allow_larger_model_smoke: bool,
+    larger_model_smoke_accession_limit: int,
+    started: float,
+) -> dict[str, Any]:
+    requested_cache = _esm2_model_local_cache_status(requested_model_name)
+    requested_smoke_status = "not_attempted_weights_not_cached"
+    requested_backend_feasibility_status = "model_unavailable_locally"
+    requested_model_load_status = "not_attempted_cache_missing"
+    requested_model_load_failure_type = "ModelWeightsNotCached"
+    requested_model_load_failure = (
+        "requested ESM-2 weights are not present in the local Hugging Face cache"
+    )
+    requested_failures = _esm2_backend_failures(
+        accessions=accessions,
+        error_type=requested_model_load_failure_type,
+        error=requested_model_load_failure,
+    )
+    fallback_reason = "requested_backend_uncached_local_files_only"
+
+    if requested_cache["weights_cached"]:
+        if allow_larger_model_smoke:
+            smoke_limit = max(1, int(larger_model_smoke_accession_limit or 1))
+            smoke_accessions = accessions[:smoke_limit]
+            smoke_payload = _compute_esm2_embeddings(
+                records_by_accession=records_by_accession,
+                accessions=smoke_accessions,
+                backend=requested_backend,
+                model_name=requested_model_name,
+                local_files_only=True,
+            )
+            requested_smoke_status = (
+                "smoke_sample_computed"
+                if smoke_payload["metadata"].get("embedding_backend_available")
+                else "smoke_sample_failed"
+            )
+            requested_backend_feasibility_status = smoke_payload["metadata"].get(
+                "backend_feasibility_status", "smoke_sample_failed"
+            )
+            requested_model_load_status = smoke_payload["metadata"].get(
+                "model_load_status"
+            )
+            requested_model_load_failure_type = smoke_payload["metadata"].get(
+                "model_load_failure_type"
+            )
+            requested_model_load_failure = smoke_payload["metadata"].get(
+                "model_load_failure"
+            )
+            requested_failures = smoke_payload.get("embedding_failures", [])
+            if smoke_payload["metadata"].get("embedding_backend_available"):
+                return _attach_esm2_request_context(
+                    payload=smoke_payload,
+                    requested_backend=requested_backend,
+                    requested_model_name=requested_model_name,
+                    requested_cache=requested_cache,
+                    requested_backend_feasibility_status="smoke_sample_computed",
+                    requested_smoke_status=requested_smoke_status,
+                    requested_model_load_status=requested_model_load_status,
+                    requested_model_load_failure_type=requested_model_load_failure_type,
+                    requested_model_load_failure=requested_model_load_failure,
+                    requested_embedding_failure_count=len(requested_failures),
+                    requested_embedding_failures=requested_failures,
+                    fallback_used=False,
+                    fallback_reason=None,
+                    fallback_attempts=[],
+                    fallback_not_computed_reason=(
+                        "bounded_smoke_sample_only_full_650m_sample_not_computed"
+                    ),
+                    backend_feasibility_status="smoke_sample_computed",
+                    started=started,
+                )
+        else:
+            requested_smoke_status = "not_attempted_smoke_not_allowed"
+            requested_backend_feasibility_status = (
+                "cached_but_smoke_not_explicitly_allowed"
+            )
+            requested_model_load_status = "not_attempted_smoke_not_allowed"
+            requested_model_load_failure_type = "LargerModelSmokeNotAllowed"
+            requested_model_load_failure = (
+                "requested ESM-2 weights appear cached, but larger-model smoke "
+                "execution was not explicitly allowed"
+            )
+            requested_failures = _esm2_backend_failures(
+                accessions=accessions,
+                error_type=requested_model_load_failure_type,
+                error=requested_model_load_failure,
+            )
+            fallback_reason = "requested_backend_smoke_not_explicitly_allowed"
+
+    fallback_attempts: list[dict[str, Any]] = []
+    for fallback_backend in _esm2_local_fallback_backends(requested_backend):
+        fallback_model_name = ESM2_BACKEND_MODEL_NAMES[fallback_backend]
+        fallback_cache = _esm2_model_local_cache_status(fallback_model_name)
+        attempt: dict[str, Any] = {
+            "embedding_backend": fallback_backend,
+            "model_name": fallback_model_name,
+            "expected_embedding_vector_dimension": (
+                ESM2_BACKEND_EXPECTED_DIMENSIONS.get(fallback_backend)
+            ),
+            "local_cache_status": fallback_cache["local_cache_status"],
+            "weights_cached": fallback_cache["weights_cached"],
+            "attempted_model_load": False,
+            "embedding_backend_available": False,
+            "backend_feasibility_status": "skipped_cache_missing",
+        }
+        should_attempt = fallback_cache["weights_cached"] or (
+            fallback_backend == DEFAULT_ESM2_BACKEND
+        )
+        if not should_attempt:
+            fallback_attempts.append(attempt)
+            continue
+        attempt["attempted_model_load"] = True
+        fallback_payload = _compute_esm2_embeddings(
+            records_by_accession=records_by_accession,
+            accessions=accessions,
+            backend=fallback_backend,
+            model_name=fallback_model_name,
+            local_files_only=True,
+        )
+        fallback_meta = fallback_payload["metadata"]
+        attempt.update(
+            {
+                "embedding_backend_available": fallback_meta.get(
+                    "embedding_backend_available"
+                ),
+                "embedding_failure_count": fallback_meta.get(
+                    "embedding_failure_count", 0
+                ),
+                "embedding_vector_dimension": fallback_meta.get(
+                    "embedding_vector_dimension"
+                ),
+                "model_load_status": fallback_meta.get("model_load_status"),
+                "model_load_failure_type": fallback_meta.get(
+                    "model_load_failure_type"
+                ),
+                "backend_feasibility_status": fallback_meta.get(
+                    "backend_feasibility_status"
+                ),
+            }
+        )
+        fallback_attempts.append(attempt)
+        if fallback_meta.get("embedding_backend_available"):
+            return _attach_esm2_request_context(
+                payload=fallback_payload,
+                requested_backend=requested_backend,
+                requested_model_name=requested_model_name,
+                requested_cache=requested_cache,
+                requested_backend_feasibility_status=(
+                    requested_backend_feasibility_status
+                ),
+                requested_smoke_status=requested_smoke_status,
+                requested_model_load_status=requested_model_load_status,
+                requested_model_load_failure_type=requested_model_load_failure_type,
+                requested_model_load_failure=requested_model_load_failure,
+                requested_embedding_failure_count=len(requested_failures),
+                requested_embedding_failures=requested_failures,
+                fallback_used=True,
+                fallback_reason=fallback_reason,
+                fallback_attempts=fallback_attempts,
+                fallback_not_computed_reason=None,
+                backend_feasibility_status=(
+                    "fallback_computed_requested_model_unavailable_locally"
+                    if requested_smoke_status == "not_attempted_weights_not_cached"
+                    else "fallback_computed_requested_smoke_not_allowed"
+                ),
+                started=started,
+            )
+
+    return _esm2_local_unavailable_payload(
+        accessions=accessions,
+        backend=requested_backend,
+        model_name=requested_model_name,
+        local_files_only=True,
+        started=started,
+        requested_cache=requested_cache,
+        requested_backend_feasibility_status=requested_backend_feasibility_status,
+        requested_smoke_status=requested_smoke_status,
+        requested_model_load_status=requested_model_load_status,
+        requested_model_load_failure_type=requested_model_load_failure_type,
+        requested_model_load_failure=requested_model_load_failure,
+        requested_embedding_failures=requested_failures,
+        fallback_attempts=fallback_attempts,
+        fallback_not_computed_reason=(
+            "no_supported_esm2_backend_available_in_local_cache"
+        ),
+    )
+
+
+def _attach_esm2_request_context(
+    *,
+    payload: dict[str, Any],
+    requested_backend: str,
+    requested_model_name: str,
+    requested_cache: dict[str, Any],
+    requested_backend_feasibility_status: str,
+    requested_smoke_status: str,
+    requested_model_load_status: str | None,
+    requested_model_load_failure_type: str | None,
+    requested_model_load_failure: str | None,
+    requested_embedding_failure_count: int,
+    requested_embedding_failures: list[dict[str, str]],
+    fallback_used: bool,
+    fallback_reason: str | None,
+    fallback_attempts: list[dict[str, Any]],
+    fallback_not_computed_reason: str | None,
+    backend_feasibility_status: str,
+    started: float,
+) -> dict[str, Any]:
+    metadata = payload["metadata"]
+    actual_backend = metadata.get("embedding_backend")
+    metadata.update(
+        {
+            "requested_embedding_backend": requested_backend,
+            "requested_model_name": requested_model_name,
+            "requested_expected_embedding_vector_dimension": (
+                ESM2_BACKEND_EXPECTED_DIMENSIONS.get(requested_backend)
+            ),
+            "requested_embedding_backend_available": (
+                requested_backend == actual_backend
+                and metadata.get("embedding_backend_available") is True
+            ),
+            "requested_backend_feasibility_status": (
+                requested_backend_feasibility_status
+            ),
+            "requested_backend_local_cache_status": requested_cache[
+                "local_cache_status"
+            ],
+            "requested_backend_weights_cached": requested_cache["weights_cached"],
+            "requested_backend_cache_snapshot_count": requested_cache[
+                "snapshot_count"
+            ],
+            "requested_backend_smoke_status": requested_smoke_status,
+            "requested_model_load_status": requested_model_load_status,
+            "requested_model_load_failure_type": requested_model_load_failure_type,
+            "requested_model_load_failure": requested_model_load_failure,
+            "requested_embedding_failure_count": requested_embedding_failure_count,
+            "computed_embedding_backend": actual_backend,
+            "fallback_used": fallback_used,
+            "fallback_selected_backend": actual_backend if fallback_used else None,
+            "fallback_reason": fallback_reason,
+            "fallback_attempts": fallback_attempts,
+            "fallback_not_computed_reason": fallback_not_computed_reason,
+            "backend_feasibility_status": backend_feasibility_status,
+            "largest_feasible_embedding_backend": (
+                actual_backend
+                if metadata.get("embedding_backend_available")
+                else metadata.get("largest_feasible_embedding_backend")
+            ),
+            "elapsed_seconds_including_fallback": round(
+                time.perf_counter() - started, 4
+            ),
+        }
+    )
+    if fallback_used:
+        metadata["attempted_embedding_backend"] = requested_backend
+        metadata["blocker_not_removed"] = (
+            "requested_650m_or_larger_representation_backend_not_computed"
+        )
+    payload["requested_embedding_failures"] = requested_embedding_failures
+    return payload
+
+
+def _esm2_local_unavailable_payload(
+    *,
+    accessions: list[str],
+    backend: str,
+    model_name: str,
+    local_files_only: bool,
+    started: float,
+    requested_cache: dict[str, Any],
+    requested_backend_feasibility_status: str,
+    requested_smoke_status: str,
+    requested_model_load_status: str | None,
+    requested_model_load_failure_type: str | None,
+    requested_model_load_failure: str | None,
+    requested_embedding_failures: list[dict[str, str]],
+    fallback_attempts: list[dict[str, Any]],
+    fallback_not_computed_reason: str,
+) -> dict[str, Any]:
+    return {
+        "metadata": {
+            "embedding_backend": backend,
+            "embedding_backend_available": False,
+            "embedding_vector_dimension": None,
+            "model_name": model_name,
+            "requested_model_name": model_name,
+            "local_files_only": local_files_only,
+            "embedding_failure_count": len(accessions),
+            "embedding_elapsed_seconds": round(time.perf_counter() - started, 4),
+            "model_load_elapsed_seconds": 0.0,
+            "model_load_status": requested_model_load_status,
+            "model_load_failure_type": requested_model_load_failure_type,
+            "model_load_failure": requested_model_load_failure,
+            "backend_feasibility_status": "model_unavailable_locally",
+            "largest_feasible_embedding_backend": None,
+            "fallback_not_computed_reason": fallback_not_computed_reason,
+            "requested_embedding_backend": backend,
+            "requested_expected_embedding_vector_dimension": (
+                ESM2_BACKEND_EXPECTED_DIMENSIONS.get(backend)
+            ),
+            "requested_embedding_backend_available": False,
+            "requested_backend_feasibility_status": (
+                requested_backend_feasibility_status
+            ),
+            "requested_backend_local_cache_status": requested_cache[
+                "local_cache_status"
+            ],
+            "requested_backend_weights_cached": requested_cache["weights_cached"],
+            "requested_backend_cache_snapshot_count": requested_cache[
+                "snapshot_count"
+            ],
+            "requested_backend_smoke_status": requested_smoke_status,
+            "requested_model_load_status": requested_model_load_status,
+            "requested_model_load_failure_type": requested_model_load_failure_type,
+            "requested_model_load_failure": requested_model_load_failure,
+            "requested_embedding_failure_count": len(requested_embedding_failures),
+            "computed_embedding_backend": None,
+            "fallback_used": False,
+            "fallback_selected_backend": None,
+            "fallback_reason": None,
+            "fallback_attempts": fallback_attempts,
+            "blocker_not_removed": (
+                "requested_650m_or_larger_representation_backend_not_computed"
+            ),
+            **_esm2_backend_metadata(backend),
+        },
+        "embeddings_by_accession": {},
+        "warnings_by_accession": {},
+        "embedding_failures": requested_embedding_failures,
+        "requested_embedding_failures": requested_embedding_failures,
+        "warnings": [
+            (
+                "requested ESM-2 backend was unavailable locally and no "
+                "supported local fallback could be computed"
+            )
+        ],
+    }
+
+
+def _esm2_local_fallback_backends(requested_backend: str) -> list[str]:
+    try:
+        requested_index = ESM2_BACKEND_FALLBACK_ORDER.index(requested_backend)
+    except ValueError:
+        return [DEFAULT_ESM2_BACKEND]
+    return list(ESM2_BACKEND_FALLBACK_ORDER[requested_index + 1 :])
+
+
+def _esm2_backend_failures(
+    *,
+    accessions: list[str],
+    error_type: str,
+    error: str,
+) -> list[dict[str, str]]:
+    return [
+        {
+            "accession": accession,
+            "error_type": error_type,
+            "error": error,
+        }
+        for accession in accessions
+    ]
+
+
+def _esm2_model_local_cache_status(model_name: str) -> dict[str, Any]:
+    if not model_name:
+        return {
+            "model_name": model_name,
+            "local_cache_checked": True,
+            "local_cache_status": "model_name_missing",
+            "weights_cached": False,
+            "config_cached": False,
+            "tokenizer_cached": False,
+            "snapshot_count": 0,
+            "cache_root_count": 0,
+        }
+    cache_dir_name = "models--" + model_name.replace("/", "--")
+    snapshots: list[Path] = []
+    for cache_root in _huggingface_hub_cache_roots():
+        model_cache_dir = cache_root / cache_dir_name
+        snapshot_dir = model_cache_dir / "snapshots"
+        if snapshot_dir.is_dir():
+            snapshots.extend(
+                snapshot
+                for snapshot in snapshot_dir.iterdir()
+                if snapshot.is_dir()
+            )
+    config_cached = any((snapshot / "config.json").exists() for snapshot in snapshots)
+    weights_cached = any(
+        any((snapshot / filename).exists() for filename in ESM2_BACKEND_WEIGHT_FILENAMES)
+        for snapshot in snapshots
+    )
+    tokenizer_cached = any(
+        any(
+            (snapshot / filename).exists()
+            for filename in ("tokenizer.json", "tokenizer_config.json", "vocab.txt")
+        )
+        for snapshot in snapshots
+    )
+    if weights_cached and config_cached:
+        local_cache_status = "weights_cached"
+    elif weights_cached:
+        local_cache_status = "weights_cached_config_missing"
+    elif config_cached or tokenizer_cached:
+        local_cache_status = "metadata_cached_without_weights"
+    else:
+        local_cache_status = "not_cached"
+    return {
+        "model_name": model_name,
+        "local_cache_checked": True,
+        "local_cache_status": local_cache_status,
+        "weights_cached": weights_cached,
+        "config_cached": config_cached,
+        "tokenizer_cached": tokenizer_cached,
+        "snapshot_count": len(snapshots),
+        "cache_root_count": len(_huggingface_hub_cache_roots()),
+    }
+
+
+def _huggingface_hub_cache_roots() -> list[Path]:
+    roots: list[Path] = []
+    for env_name in ("HUGGINGFACE_HUB_CACHE", "TRANSFORMERS_CACHE"):
+        env_value = os.environ.get(env_name)
+        if env_value:
+            roots.append(Path(env_value).expanduser())
+    hf_home = Path(os.environ.get("HF_HOME", "~/.cache/huggingface")).expanduser()
+    roots.append(hf_home / "hub")
+    roots.append(Path("~/.cache/huggingface/hub").expanduser())
+    unique_roots: list[Path] = []
+    seen: set[str] = set()
+    for root in roots:
+        key = str(root)
+        if key not in seen:
+            unique_roots.append(root)
+            seen.add(key)
+    return unique_roots
+
+
 def _compute_esm2_t6_embeddings(
     *,
     records_by_accession: dict[str, dict[str, Any]],
@@ -12951,6 +13667,33 @@ def _compute_esm2_embeddings(
                     if local_files_only
                     else "model_load_failed_before_embedding"
                 ),
+                "requested_embedding_backend": backend,
+                "requested_backend_feasibility_status": (
+                    "model_unavailable_locally"
+                    if local_files_only
+                    else "model_load_failed"
+                ),
+                "requested_backend_local_cache_status": (
+                    _esm2_model_local_cache_status(model_name)["local_cache_status"]
+                    if local_files_only
+                    else "not_checked"
+                ),
+                "requested_backend_weights_cached": (
+                    _esm2_model_local_cache_status(model_name)["weights_cached"]
+                    if local_files_only
+                    else None
+                ),
+                "requested_backend_smoke_status": "not_applicable",
+                "requested_expected_embedding_vector_dimension": (
+                    ESM2_BACKEND_EXPECTED_DIMENSIONS.get(backend)
+                ),
+                "requested_embedding_failure_count": len(accessions),
+                "requested_embedding_backend_available": False,
+                "computed_embedding_backend": None,
+                "fallback_used": False,
+                "fallback_selected_backend": None,
+                "fallback_reason": None,
+                "fallback_attempts": [],
                 **_esm2_backend_metadata(backend),
             },
             "embeddings_by_accession": {},
@@ -13035,6 +13778,35 @@ def _compute_esm2_embeddings(
             ),
             "largest_feasible_embedding_backend": backend if embeddings else None,
             "fallback_not_computed_reason": None if embeddings else "embedding_runtime_failed",
+            "requested_embedding_backend": backend,
+            "requested_backend_feasibility_status": (
+                "computed"
+                if len(embeddings) == len(accessions)
+                else "partially_computed"
+                if embeddings
+                else "embedding_runtime_failed"
+            ),
+            "requested_backend_local_cache_status": (
+                _esm2_model_local_cache_status(model_name)["local_cache_status"]
+                if local_files_only
+                else "not_checked"
+            ),
+            "requested_backend_weights_cached": (
+                _esm2_model_local_cache_status(model_name)["weights_cached"]
+                if local_files_only
+                else None
+            ),
+            "requested_backend_smoke_status": "not_applicable",
+            "requested_expected_embedding_vector_dimension": (
+                ESM2_BACKEND_EXPECTED_DIMENSIONS.get(backend)
+            ),
+            "requested_embedding_failure_count": len(failures),
+            "requested_embedding_backend_available": bool(embeddings),
+            "computed_embedding_backend": backend if embeddings else None,
+            "fallback_used": False,
+            "fallback_selected_backend": None,
+            "fallback_reason": None,
+            "fallback_attempts": [],
             **_esm2_backend_metadata(backend),
         },
         "embeddings_by_accession": embeddings,

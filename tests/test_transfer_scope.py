@@ -3098,11 +3098,32 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
 
         fake_embedding_payload = {
             "metadata": {
+                "attempted_embedding_backend": "esm2_t6_8m_ur50d",
+                "backend_feasibility_status": "computed",
+                "computed_embedding_backend": "esm2_t6_8m_ur50d",
                 "embedding_backend": "esm2_t6_8m_ur50d",
                 "embedding_backend_available": True,
+                "embedding_elapsed_seconds": 0.01,
                 "embedding_failure_count": 0,
                 "embedding_vector_dimension": 2,
+                "expected_embedding_vector_dimension": 2,
+                "fallback_attempts": [],
+                "fallback_reason": None,
+                "fallback_selected_backend": None,
+                "fallback_used": False,
+                "largest_feasible_embedding_backend": "esm2_t6_8m_ur50d",
+                "largest_supported_embedding_backend": "esm2_t33_650m_ur50d",
+                "local_files_only": False,
+                "model_load_status": "loaded",
                 "model_name": "fake-esm2",
+                "requested_backend_feasibility_status": "computed",
+                "requested_backend_local_cache_status": "not_checked",
+                "requested_backend_smoke_status": "not_applicable",
+                "requested_embedding_backend": "esm2_t6_8m_ur50d",
+                "requested_embedding_backend_available": True,
+                "requested_embedding_failure_count": 0,
+                "requested_expected_embedding_vector_dimension": 2,
+                "requested_model_name": "fake-esm2",
             },
             "embeddings_by_accession": {
                 "P11111": [1.0, 0.0],
@@ -3220,7 +3241,22 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "warnings_by_accession": {},
         }
 
+        def fake_cache_status(model_name: str) -> dict[str, object]:
+            return {
+                "model_name": model_name,
+                "local_cache_checked": True,
+                "local_cache_status": "weights_cached",
+                "weights_cached": True,
+                "config_cached": True,
+                "tokenizer_cached": True,
+                "snapshot_count": 1,
+                "cache_root_count": 1,
+            }
+
         with patch(
+            "catalytic_earth.transfer_scope._esm2_model_local_cache_status",
+            side_effect=fake_cache_status,
+        ), patch(
             "catalytic_earth.transfer_scope._compute_esm2_embeddings",
             return_value=fake_embedding_payload,
         ) as mocked_embeddings:
@@ -3229,6 +3265,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 sequence_neighborhood_sample=sequence_sample,
                 embedding_backend="facebook/esm2_t33_650M_UR50D",
                 local_files_only=True,
+                allow_larger_model_smoke=True,
                 fetcher=fake_fetcher,
             )
 
@@ -3243,13 +3280,188 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             sample["metadata"]["expected_embedding_vector_dimension"], 1280
         )
+        self.assertEqual(
+            sample["metadata"]["requested_expected_embedding_vector_dimension"], 1280
+        )
         self.assertEqual(sample["metadata"]["embedding_backend_parameter_count"], "650M")
-        self.assertEqual(sample["metadata"]["backend_feasibility_status"], "computed")
+        self.assertEqual(
+            sample["metadata"]["backend_feasibility_status"], "smoke_sample_computed"
+        )
+        self.assertEqual(
+            sample["metadata"]["requested_backend_smoke_status"],
+            "smoke_sample_computed",
+        )
+        self.assertFalse(sample["metadata"]["fallback_used"])
         self.assertEqual(
             sample["metadata"]["predictive_feature_sources"],
             ["sequence_embedding_cosine", "sequence_length_coverage"],
         )
         self.assertFalse(sample["rows"][0]["countable_label_candidate"])
+
+    def test_external_representation_backend_sample_falls_back_from_uncached_650m(
+        self,
+    ) -> None:
+        plan = {
+            "metadata": {"method": "external_source_representation_backend_plan"},
+            "rows": [
+                {
+                    "accession": "P11111",
+                    "backend_readiness_status": (
+                        "ready_for_backend_selection_not_embedding"
+                    ),
+                    "comparison_status": "feature_proxy_boundary_case",
+                    "countable_label_candidate": False,
+                    "entry_id": "uniprot:P11111",
+                    "heuristic_baseline_control": {
+                        "scope_top1_mismatch": True,
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    },
+                    "lane_id": "external_source:isomerase",
+                    "ready_for_label_import": False,
+                    "scope_signal": "isomerase",
+                    "sequence_search_task": (
+                        "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+                    ),
+                }
+            ],
+        }
+        sequence_sample = {
+            "metadata": {"method": "external_source_sequence_neighborhood_sample"},
+            "rows": [
+                {
+                    "accession": "P11111",
+                    "top_matches": [
+                        {
+                            "matched_m_csa_entry_ids": ["m_csa:1"],
+                            "near_duplicate_score": 0.2,
+                            "reference_accession": "P22222",
+                        }
+                    ],
+                }
+            ],
+        }
+
+        def fake_fetcher(accessions: list[str]) -> dict[str, object]:
+            self.assertEqual(sorted(accessions), ["P11111", "P22222"])
+            return {
+                "metadata": {"source": "fake_sequence_records"},
+                "records": [
+                    {"accession": "P11111", "sequence": "ACDEFGHIKLMNPQRSTVWY"},
+                    {"accession": "P22222", "sequence": "YYYYYGHIKLMNPQRSTVWY"},
+                ],
+            }
+
+        def fake_cache_status(model_name: str) -> dict[str, object]:
+            weights_cached = model_name == "facebook/esm2_t6_8M_UR50D"
+            return {
+                "model_name": model_name,
+                "local_cache_checked": True,
+                "local_cache_status": (
+                    "weights_cached" if weights_cached else "not_cached"
+                ),
+                "weights_cached": weights_cached,
+                "config_cached": weights_cached,
+                "tokenizer_cached": weights_cached,
+                "snapshot_count": 1 if weights_cached else 0,
+                "cache_root_count": 1,
+            }
+
+        fake_fallback_payload = {
+            "metadata": {
+                "attempted_embedding_backend": "esm2_t6_8m_ur50d",
+                "backend_feasibility_status": "computed",
+                "computed_embedding_backend": "esm2_t6_8m_ur50d",
+                "embedding_backend": "esm2_t6_8m_ur50d",
+                "embedding_backend_available": True,
+                "embedding_backend_model_family": "ESM-2",
+                "embedding_backend_parameter_count": "8M",
+                "embedding_elapsed_seconds": 0.02,
+                "embedding_failure_count": 0,
+                "embedding_vector_dimension": 320,
+                "expected_embedding_vector_dimension": 320,
+                "fallback_attempts": [],
+                "fallback_not_computed_reason": None,
+                "fallback_reason": None,
+                "fallback_selected_backend": None,
+                "fallback_used": False,
+                "largest_feasible_embedding_backend": "esm2_t6_8m_ur50d",
+                "largest_supported_embedding_backend": "esm2_t33_650m_ur50d",
+                "local_files_only": True,
+                "model_load_elapsed_seconds": 0.01,
+                "model_load_status": "loaded",
+                "model_name": "facebook/esm2_t6_8M_UR50D",
+                "requested_model_name": "facebook/esm2_t6_8M_UR50D",
+            },
+            "embeddings_by_accession": {
+                "P11111": [1.0, 0.0],
+                "P22222": [0.0, 1.0],
+            },
+            "embedding_failures": [],
+            "warnings": ["fake fallback learned backend"],
+            "warnings_by_accession": {},
+        }
+
+        with patch(
+            "catalytic_earth.transfer_scope._esm2_model_local_cache_status",
+            side_effect=fake_cache_status,
+        ), patch(
+            "catalytic_earth.transfer_scope._compute_esm2_embeddings",
+            return_value=fake_fallback_payload,
+        ) as mocked_embeddings:
+            sample = build_external_source_representation_backend_sample(
+                representation_backend_plan=plan,
+                sequence_neighborhood_sample=sequence_sample,
+                embedding_backend="esm2_t33_650m_ur50d",
+                model_name="facebook/esm2_t33_650M_UR50D",
+                local_files_only=True,
+                fetcher=fake_fetcher,
+            )
+
+        audit = audit_external_source_representation_backend_sample(sample)
+        embedding_call = mocked_embeddings.call_args.kwargs
+        self.assertEqual(embedding_call["backend"], "esm2_t6_8m_ur50d")
+        self.assertEqual(sample["metadata"]["embedding_backend"], "esm2_t6_8m_ur50d")
+        self.assertEqual(
+            sample["metadata"]["requested_embedding_backend"],
+            "esm2_t33_650m_ur50d",
+        )
+        self.assertEqual(sample["metadata"]["expected_embedding_vector_dimension"], 320)
+        self.assertEqual(
+            sample["metadata"]["requested_expected_embedding_vector_dimension"], 1280
+        )
+        self.assertEqual(
+            sample["metadata"]["requested_backend_local_cache_status"],
+            "not_cached",
+        )
+        self.assertEqual(
+            sample["metadata"]["requested_backend_smoke_status"],
+            "not_attempted_weights_not_cached",
+        )
+        self.assertEqual(
+            sample["metadata"]["backend_feasibility_status"],
+            "fallback_computed_requested_model_unavailable_locally",
+        )
+        self.assertEqual(
+            sample["metadata"]["fallback_reason"],
+            "requested_backend_uncached_local_files_only",
+        )
+        self.assertEqual(
+            sample["metadata"]["fallback_selected_backend"], "esm2_t6_8m_ur50d"
+        )
+        self.assertEqual(sample["metadata"]["requested_embedding_failure_count"], 2)
+        self.assertTrue(sample["metadata"]["fallback_used"])
+        self.assertEqual(
+            sample["metadata"]["blocker_not_removed"],
+            "requested_650m_or_larger_representation_backend_not_computed",
+        )
+        self.assertEqual(
+            sample["rows"][0]["larger_model_readiness_status"],
+            "requested_backend_unavailable_fallback_used",
+        )
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            audit["metadata"]["fallback_selected_backend"], "esm2_t6_8m_ur50d"
+        )
 
     def test_representation_backend_stability_audit_compares_8m_and_650m(
         self,

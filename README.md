@@ -302,9 +302,14 @@ all-vs-all Foldseek `easy-search` signal over only those 25 staged coordinates:
 1,840 pair rows, 25 mapped staged entries, 532 staged heldout/in-distribution
 pair rows, and max observed staged train/test TM signal `0.6426` against the
 `<0.7` target. It is review-only, has 0 countable/import-ready rows, and keeps
-`full_tm_score_split_computed=false`; the full TM-score split still requires
-staging the remaining selected coordinates and adding the Foldseek split
-builder.
+`full_tm_score_split_computed=false`. The expanded coordinate-readiness sidecar
+`artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json` now stages
+100 selected PDB coordinates with 0 fetch failures, but a bounded expanded40
+Foldseek signal attempt failed before producing pair rows and is recorded in
+`artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json` as
+`blocker_not_removed`. The latest usable TM-score signal is still staged25; the
+full TM-score split still requires a successful Foldseek run over staged
+coordinates plus the remaining selected-coordinate materialization.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
@@ -324,10 +329,13 @@ negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0 countable
 external labels.
 ESM-2 650M support is implemented as a review-only sidecar path for mapped
 controls and selected pilot rows. The current local run could not compute
-`facebook/esm2_t33_650M_UR50D` because the model was not cached and the sidecar
-used local-only loading; the 650M artifacts record `model_unavailable_locally`,
-expected dimension `1280`, embedding failures, elapsed time, and 8M-vs-650M
-stability audits without replacing the computed 8M baseline.
+`facebook/esm2_t33_650M_UR50D` because the model was not cached; the sidecars
+now make that first-class by recording the requested 650M backend as unavailable,
+falling back to the cached 8M backend for computed review-only rows, recording
+actual dimension `320` versus requested dimension `1280`, and marking
+`requested_650m_or_larger_representation_backend_not_computed`. The 8M-vs-650M
+stability audits now report `fallback_stable` for both mapped controls and
+selected pilot rows without replacing a real future 650M control.
 `artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json`
 prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
 expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,

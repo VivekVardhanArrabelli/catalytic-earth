@@ -7,33 +7,44 @@
     "baseline_embedding_vector_dimension": 320,
     "baseline_model_name": "facebook/esm2_t6_8M_UR50D",
     "blocker_removed": "compares baseline and upgraded learned representation controls without changing countable labels",
-    "comparison_backend_feasibility_status": "model_unavailable_locally",
+    "comparison_backend_feasibility_status": "fallback_computed_requested_model_unavailable_locally",
+    "comparison_blocker_not_removed": "requested_650m_or_larger_representation_backend_not_computed",
     "comparison_candidate_count": 10,
-    "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-    "comparison_embedding_backend_available": false,
-    "comparison_embedding_backend_unavailable_row_count": 10,
-    "comparison_embedding_elapsed_seconds": 3.9658,
-    "comparison_embedding_failure_count": 39,
-    "comparison_embedding_vector_dimension": null,
-    "comparison_expected_embedding_vector_dimension": 1280,
-    "comparison_fallback_not_computed_reason": "local_files_only_prevents_downloading_uncached_model",
-    "comparison_largest_feasible_embedding_backend": null,
+    "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+    "comparison_embedding_backend_available": true,
+    "comparison_embedding_backend_unavailable_row_count": 0,
+    "comparison_embedding_elapsed_seconds": 5.8927,
+    "comparison_embedding_failure_count": 0,
+    "comparison_embedding_vector_dimension": 320,
+    "comparison_expected_embedding_vector_dimension": 320,
+    "comparison_fallback_not_computed_reason": null,
+    "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+    "comparison_fallback_selected_backend": "esm2_t6_8m_ur50d",
+    "comparison_fallback_used": true,
+    "comparison_largest_feasible_embedding_backend": "esm2_t6_8m_ur50d",
     "comparison_largest_supported_embedding_backend": "esm2_t33_650m_ur50d",
-    "comparison_model_name": "facebook/esm2_t33_650M_UR50D",
+    "comparison_model_name": "facebook/esm2_t6_8M_UR50D",
+    "comparison_requested_backend_feasibility_status": "model_unavailable_locally",
+    "comparison_requested_backend_local_cache_status": "not_cached",
+    "comparison_requested_backend_smoke_status": "not_attempted_weights_not_cached",
+    "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+    "comparison_requested_embedding_failure_count": 39,
+    "comparison_requested_expected_embedding_vector_dimension": 1280,
+    "comparison_requested_model_name": "facebook/esm2_t33_650M_UR50D",
     "countable_label_candidate_count": 0,
     "guardrail_clean": true,
-    "heuristic_disagreement_status_changed_count": 10,
-    "heuristic_disagreement_status_stable_count": 0,
+    "heuristic_disagreement_status_changed_count": 0,
+    "heuristic_disagreement_status_stable_count": 10,
     "heuristic_fingerprint_context_changed_count": 0,
     "heuristic_fingerprint_context_stable_count": 10,
     "method": "external_source_representation_backend_stability_audit",
-    "nearest_reference_changed_count": 10,
-    "nearest_reference_entry_ids_changed_count": 10,
-    "nearest_reference_entry_ids_stable_count": 0,
-    "nearest_reference_stable_count": 0,
+    "nearest_reference_changed_count": 0,
+    "nearest_reference_entry_ids_changed_count": 0,
+    "nearest_reference_entry_ids_stable_count": 10,
+    "nearest_reference_stable_count": 10,
     "ready_for_label_import": false,
     "shared_candidate_count": 10,
-    "stability_status": "comparison_backend_unavailable"
+    "stability_status": "fallback_stable"
   },
   "rows": [
     {
@@ -46,25 +57,27 @@
         "m_csa:405"
       ],
       "baseline_top_embedding_cosine": 0.7995,
-      "comparison_backend_status": "embedding_backend_unavailable",
-      "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-      "comparison_heuristic_disagreement_status": "no_disagreement_signal",
-      "comparison_nearest_reference_accession": "",
-      "comparison_nearest_reference_entry_ids": [],
-      "comparison_top_embedding_cosine": 0.0,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+      "comparison_fallback_used": true,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P0A786",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:405"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "comparison_top_embedding_cosine": 0.7995,
       "countable_label_candidate": false,
-      "heuristic_disagreement_status_stable": false,
+      "heuristic_disagreement_status_stable": true,
       "heuristic_fingerprint_context_stable": true,
       "heuristic_top1_fingerprint_id": null,
-      "nearest_reference_entry_ids_stable": false,
-      "nearest_reference_stable": false,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
       "ready_for_label_import": false,
       "review_status": "representation_backend_stability_audit_review_only",
       "stability_flags": [
-        "nearest_reference_changed",
-        "nearest_reference_entry_ids_changed",
-        "heuristic_disagreement_status_changed",
-        "comparison_embedding_backend_unavailable"
+        "comparison_embedding_backend_fallback_used"
       ]
     },
     {
@@ -77,25 +90,27 @@
         "m_csa:11"
       ],
       "baseline_top_embedding_cosine": 0.7852,
-      "comparison_backend_status": "embedding_backend_unavailable",
-      "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-      "comparison_heuristic_disagreement_status": "no_disagreement_signal",
-      "comparison_nearest_reference_accession": "",
-      "comparison_nearest_reference_entry_ids": [],
-      "comparison_top_embedding_cosine": 0.0,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+      "comparison_fallback_used": true,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P0A6C1",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:11"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "comparison_top_embedding_cosine": 0.7852,
       "countable_label_candidate": false,
-      "heuristic_disagreement_status_stable": false,
+      "heuristic_disagreement_status_stable": true,
       "heuristic_fingerprint_context_stable": true,
       "heuristic_top1_fingerprint_id": null,
-      "nearest_reference_entry_ids_stable": false,
-      "nearest_reference_stable": false,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
       "ready_for_label_import": false,
       "review_status": "representation_backend_stability_audit_review_only",
       "stability_flags": [
-        "nearest_reference_changed",
-        "nearest_reference_entry_ids_changed",
-        "heuristic_disagreement_status_changed",
-        "comparison_embedding_backend_unavailable"
+        "comparison_embedding_backend_fallback_used"
       ]
     },
     {
@@ -108,25 +123,27 @@
         "m_csa:149"
       ],
       "baseline_top_embedding_cosine": 0.9454,
-      "comparison_backend_status": "embedding_backend_unavailable",
-      "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-      "comparison_heuristic_disagreement_status": "no_disagreement_signal",
-      "comparison_nearest_reference_accession": "",
-      "comparison_nearest_reference_entry_ids": [],
-      "comparison_top_embedding_cosine": 0.0,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+      "comparison_fallback_used": true,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P00488",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:149"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "comparison_top_embedding_cosine": 0.9454,
       "countable_label_candidate": false,
-      "heuristic_disagreement_status_stable": false,
+      "heuristic_disagreement_status_stable": true,
       "heuristic_fingerprint_context_stable": true,
       "heuristic_top1_fingerprint_id": null,
-      "nearest_reference_entry_ids_stable": false,
-      "nearest_reference_stable": false,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
       "ready_for_label_import": false,
       "review_status": "representation_backend_stability_audit_review_only",
       "stability_flags": [
-        "nearest_reference_changed",
-        "nearest_reference_entry_ids_changed",
-        "heuristic_disagreement_status_changed",
-        "comparison_embedding_backend_unavailable"
+        "comparison_embedding_backend_fallback_used"
       ]
     },
     {
@@ -139,25 +156,27 @@
         "m_csa:795"
       ],
       "baseline_top_embedding_cosine": 0.9103,
-      "comparison_backend_status": "embedding_backend_unavailable",
-      "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-      "comparison_heuristic_disagreement_status": "no_disagreement_signal",
-      "comparison_nearest_reference_accession": "",
-      "comparison_nearest_reference_entry_ids": [],
-      "comparison_top_embedding_cosine": 0.0,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+      "comparison_fallback_used": true,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P71119",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:795"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "comparison_top_embedding_cosine": 0.9103,
       "countable_label_candidate": false,
-      "heuristic_disagreement_status_stable": false,
+      "heuristic_disagreement_status_stable": true,
       "heuristic_fingerprint_context_stable": true,
       "heuristic_top1_fingerprint_id": null,
-      "nearest_reference_entry_ids_stable": false,
-      "nearest_reference_stable": false,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
       "ready_for_label_import": false,
       "review_status": "representation_backend_stability_audit_review_only",
       "stability_flags": [
-        "nearest_reference_changed",
-        "nearest_reference_entry_ids_changed",
-        "heuristic_disagreement_status_changed",
-        "comparison_embedding_backend_unavailable"
+        "comparison_embedding_backend_fallback_used"
       ]
     },
     {
@@ -170,25 +189,27 @@
         "m_csa:521"
       ],
       "baseline_top_embedding_cosine": 0.9275,
-      "comparison_backend_status": "embedding_backend_unavailable",
-      "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-      "comparison_heuristic_disagreement_status": "no_disagreement_signal",
-      "comparison_nearest_reference_accession": "",
-      "comparison_nearest_reference_entry_ids": [],
-      "comparison_top_embedding_cosine": 0.0,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+      "comparison_fallback_used": true,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P31116",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:521"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "comparison_top_embedding_cosine": 0.9275,
       "countable_label_candidate": false,
-      "heuristic_disagreement_status_stable": false,
+      "heuristic_disagreement_status_stable": true,
       "heuristic_fingerprint_context_stable": true,
       "heuristic_top1_fingerprint_id": null,
-      "nearest_reference_entry_ids_stable": false,
-      "nearest_reference_stable": false,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
       "ready_for_label_import": false,
       "review_status": "representation_backend_stability_audit_review_only",
       "stability_flags": [
-        "nearest_reference_changed",
-        "nearest_reference_entry_ids_changed",
-        "heuristic_disagreement_status_changed",
-        "comparison_embedding_backend_unavailable"
+        "comparison_embedding_backend_fallback_used"
       ]
     },
     {
@@ -201,25 +222,27 @@
         "m_csa:457"
       ],
       "baseline_top_embedding_cosine": 0.9199,
-      "comparison_backend_status": "embedding_backend_unavailable",
-      "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-      "comparison_heuristic_disagreement_status": "no_disagreement_signal",
-      "comparison_nearest_reference_accession": "",
-      "comparison_nearest_reference_entry_ids": [],
-      "comparison_top_embedding_cosine": 0.0,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+      "comparison_fallback_used": true,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P0A6D3",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:457"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "comparison_top_embedding_cosine": 0.9199,
       "countable_label_candidate": false,
-      "heuristic_disagreement_status_stable": false,
+      "heuristic_disagreement_status_stable": true,
       "heuristic_fingerprint_context_stable": true,
       "heuristic_top1_fingerprint_id": null,
-      "nearest_reference_entry_ids_stable": false,
-      "nearest_reference_stable": false,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
       "ready_for_label_import": false,
       "review_status": "representation_backend_stability_audit_review_only",
       "stability_flags": [
-        "nearest_reference_changed",
-        "nearest_reference_entry_ids_changed",
-        "heuristic_disagreement_status_changed",
-        "comparison_embedding_backend_unavailable"
+        "comparison_embedding_backend_fallback_used"
       ]
     },
     {
@@ -232,25 +255,27 @@
         "m_csa:188"
       ],
       "baseline_top_embedding_cosine": 0.8325,
-      "comparison_backend_status": "embedding_backend_unavailable",
-      "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-      "comparison_heuristic_disagreement_status": "no_disagreement_signal",
-      "comparison_nearest_reference_accession": "",
-      "comparison_nearest_reference_entry_ids": [],
-      "comparison_top_embedding_cosine": 0.0,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+      "comparison_fallback_used": true,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P09147",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:188"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "comparison_top_embedding_cosine": 0.8325,
       "countable_label_candidate": false,
-      "heuristic_disagreement_status_stable": false,
+      "heuristic_disagreement_status_stable": true,
       "heuristic_fingerprint_context_stable": true,
       "heuristic_top1_fingerprint_id": null,
-      "nearest_reference_entry_ids_stable": false,
-      "nearest_reference_stable": false,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
       "ready_for_label_import": false,
       "review_status": "representation_backend_stability_audit_review_only",
       "stability_flags": [
-        "nearest_reference_changed",
-        "nearest_reference_entry_ids_changed",
-        "heuristic_disagreement_status_changed",
-        "comparison_embedding_backend_unavailable"
+        "comparison_embedding_backend_fallback_used"
       ]
     },
     {
@@ -263,25 +288,27 @@
         "m_csa:209"
       ],
       "baseline_top_embedding_cosine": 0.9731,
-      "comparison_backend_status": "embedding_backend_unavailable",
-      "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-      "comparison_heuristic_disagreement_status": "no_disagreement_signal",
-      "comparison_nearest_reference_accession": "",
-      "comparison_nearest_reference_entry_ids": [],
-      "comparison_top_embedding_cosine": 0.0,
+      "comparison_backend_status": "representation_near_duplicate_holdout",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+      "comparison_fallback_used": true,
+      "comparison_heuristic_disagreement_status": "representation_near_duplicate_overrides_heuristic_review",
+      "comparison_nearest_reference_accession": "Q9TVW2",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:209"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "comparison_top_embedding_cosine": 0.9731,
       "countable_label_candidate": false,
-      "heuristic_disagreement_status_stable": false,
+      "heuristic_disagreement_status_stable": true,
       "heuristic_fingerprint_context_stable": true,
       "heuristic_top1_fingerprint_id": null,
-      "nearest_reference_entry_ids_stable": false,
-      "nearest_reference_stable": false,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
       "ready_for_label_import": false,
       "review_status": "representation_backend_stability_audit_review_only",
       "stability_flags": [
-        "nearest_reference_changed",
-        "nearest_reference_entry_ids_changed",
-        "heuristic_disagreement_status_changed",
-        "comparison_embedding_backend_unavailable"
+        "comparison_embedding_backend_fallback_used"
       ]
     },
     {
@@ -294,25 +321,27 @@
         "m_csa:714"
       ],
       "baseline_top_embedding_cosine": 0.8958,
-      "comparison_backend_status": "embedding_backend_unavailable",
-      "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-      "comparison_heuristic_disagreement_status": "no_disagreement_signal",
-      "comparison_nearest_reference_accession": "",
-      "comparison_nearest_reference_entry_ids": [],
-      "comparison_top_embedding_cosine": 0.0,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+      "comparison_fallback_used": true,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P0ABI8",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:714"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "comparison_top_embedding_cosine": 0.8958,
       "countable_label_candidate": false,
-      "heuristic_disagreement_status_stable": false,
+      "heuristic_disagreement_status_stable": true,
       "heuristic_fingerprint_context_stable": true,
       "heuristic_top1_fingerprint_id": null,
-      "nearest_reference_entry_ids_stable": false,
-      "nearest_reference_stable": false,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
       "ready_for_label_import": false,
       "review_status": "representation_backend_stability_audit_review_only",
       "stability_flags": [
-        "nearest_reference_changed",
-        "nearest_reference_entry_ids_changed",
-        "heuristic_disagreement_status_changed",
-        "comparison_embedding_backend_unavailable"
+        "comparison_embedding_backend_fallback_used"
       ]
     },
     {
@@ -325,25 +354,27 @@
         "m_csa:526"
       ],
       "baseline_top_embedding_cosine": 0.8619,
-      "comparison_backend_status": "embedding_backend_unavailable",
-      "comparison_embedding_backend": "esm2_t33_650m_ur50d",
-      "comparison_heuristic_disagreement_status": "no_disagreement_signal",
-      "comparison_nearest_reference_accession": "",
-      "comparison_nearest_reference_entry_ids": [],
-      "comparison_top_embedding_cosine": 0.0,
+      "comparison_backend_status": "learned_representation_sample_complete",
+      "comparison_embedding_backend": "esm2_t6_8m_ur50d",
+      "comparison_fallback_reason": "requested_backend_uncached_local_files_only",
+      "comparison_fallback_used": true,
+      "comparison_heuristic_disagreement_status": "learned_nearest_reference_requires_sequence_review",
+      "comparison_nearest_reference_accession": "P11708",
+      "comparison_nearest_reference_entry_ids": [
+        "m_csa:526"
+      ],
+      "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "comparison_top_embedding_cosine": 0.8619,
       "countable_label_candidate": false,
-      "heuristic_disagreement_status_stable": false,
+      "heuristic_disagreement_status_stable": true,
       "heuristic_fingerprint_context_stable": true,
       "heuristic_top1_fingerprint_id": null,
-      "nearest_reference_entry_ids_stable": false,
-      "nearest_reference_stable": false,
+      "nearest_reference_entry_ids_stable": true,
+      "nearest_reference_stable": true,
       "ready_for_label_import": false,
       "review_status": "representation_backend_stability_audit_review_only",
       "stability_flags": [
-        "nearest_reference_changed",
-        "nearest_reference_entry_ids_changed",
-        "heuristic_disagreement_status_changed",
-        "comparison_embedding_backend_unavailable"
+        "comparison_embedding_backend_fallback_used"
       ]
     }
   ],

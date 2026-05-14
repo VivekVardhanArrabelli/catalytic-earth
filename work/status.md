@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 84
-- Measured elapsed time: 3049.1 minutes (50.82 hours)
+- Entries: 85
+- Measured elapsed time: 3114.8 minutes (51.91 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 402.8 measured minutes (6.71 hours)
+- post-mcsa-spof-hardening: 468.6 measured minutes (7.81 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 894
-- Evidence references logged: 737
+- Artifact references logged: 909
+- Evidence references logged: 744
 
 ## Recent Entries
-
-### 2026-05-13T22:34:16.818554+00:00 - post-mcsa-spof-hardening
-
-- Task: Harden external sequence-holdout lineage
-- Time mode: measured
-- Measured minutes: 8.283
-- Started: 2026-05-13T22:25:38Z
-- Ended: 2026-05-13T22:33:55Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: 296 unit tests passed, validate passed, compileall passed, git diff --check passed, external gate 65/65 with sequence_holdout_audit in candidate lineage, 0 countable external labels, 0 import-ready external labels
-- Notes: Normal locked SPOF-hardening run. Added sequence-holdout audit to external candidate-lineage validation and refreshed docs/artifact without count growth or import.
 
 ### 2026-05-13T23:52:26.926762+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: tests/test_generalization.py, work/progress_log.jsonl, work/status.md
 - Evidence: 320 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifacts parsed, Foldseek readiness artifact pinned, Foldseek staged25 TM signal artifact pinned
 - Notes: Final parent verification after delegated artifact-pinning tests. No count growth and no external import.
+
+### 2026-05-14T06:41:02.695388+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek expanded readiness and 650M fallback hardening
+- Time mode: measured
+- Measured minutes: 65.767
+- Started: 2026-05-14T05:35:16Z
+- Ended: 2026-05-14T06:41:02Z
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, src/catalytic_earth/transfer_scope.py, tests/test_generalization.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json, artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json, artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json, artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 324 unit tests passed, validate passed, compileall passed, git diff check passed, expanded Foldseek readiness staged 100 coordinates with 0 fetch failures, expanded40 Foldseek signal failed with blocker_not_removed, 650M unavailable sidecars compute 8M fallback and report fallback_stable
+- Notes: Normal locked delegated run with local integration fixes. No M-CSA count growth and no external import; requested 650M remains uncached and full TM-score split remains blocked.
 
 ## Expectation Updates
 

@@ -57,26 +57,49 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 - External-source repair/import: No for import; yes only for review-only repair
   evidence. The MMseqs2 backend search now clears bounded current-reference
   near-duplicate search debt for 28 no-signal external rows, but 2 exact
-  sequence holdouts, active-site evidence gaps, representation holdouts/control
-  issues, expert-review no-decision artifacts, and full factory gates still
-  block every external row from import.
+  sequence holdouts, active-site evidence gaps, the still-uncomputed requested
+  650M representation control, expert-review no-decision artifacts, and full
+  factory gates still block every external row from import. The requested 650M
+  sidecars now fall back to computed 8M rows and explicitly mark
+  `requested_650m_or_larger_representation_backend_not_computed`, so they are
+  clearer feasibility evidence but not import evidence.
 - Scientific generalization work: Yes. Accepted-registry MMseqs2 holdouts and
   the new external backend sequence search are real backend evidence, with 0
   held-out out-of-scope false non-abstentions in the countable path. The
   Foldseek/TM-score blocker is narrowed, not cleared: Foldseek 10.941cd33 is
   recorded through the explicit temporary binary path, 676 evaluated rows have
-  supported selected PDB coordinates, 25 mmCIF sidecars are staged, and a
-  partial staged-coordinate Foldseek signal records max staged train/test TM
-  score `0.6426` while keeping `tm_score_split_computed=false` until the
-  remaining coordinates and split builder exist.
+  supported selected PDB coordinates, 100 selected PDB mmCIF sidecars are now
+  staged, and the latest successful partial staged-coordinate Foldseek signal
+  remains the 25-coordinate artifact with max staged train/test TM score
+  `0.6426`. The expanded40 signal attempt failed before producing pair rows and
+  is marked `blocker_not_removed`, so `tm_score_split_computed=false` until a
+  successful expanded/full run and split builder exist.
 - SPOF hardening work: Yes. External artifact lineage, backend metadata,
-  review-only audits, and gate checks are now explicit and tested; maintainability
-  risk is mainly the large artifact graph and stale downstream pilot packets if
-  future agents regenerate blocker priorities without refreshing dependent
-  pilot evidence.
+  review-only audits, and gate checks are now explicit and tested. The Foldseek
+  capped-signal path now builds a dedicated selected-coordinate search directory
+  instead of pointing Foldseek at the whole sidecar directory, avoiding a cap
+  metadata/execution mismatch. Maintainability risk is mainly the large artifact
+  graph and stale downstream pilot packets if future agents regenerate blocker
+  priorities without refreshing dependent pilot evidence.
 
 ## Recent Project Progress
 
+- Hardened the 650M representation-readiness path without claiming a real 650M
+  run. The mapped-control and selected-pilot 650M sidecars now record the 650M
+  cache miss, requested dimension `1280`, computed fallback backend
+  `esm2_t6_8m_ur50d`, actual dimension `320`, and
+  `requested_650m_or_larger_representation_backend_not_computed`. The stability
+  sidecars report `fallback_stable` with 0 nearest-reference changes and 0
+  heuristic-disagreement-status changes while all rows remain review-only and
+  non-countable.
+- Expanded Foldseek coordinate readiness from 25 to 100 staged selected PDB
+  coordinates in `artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json`
+  with 0 fetch failures. A bounded expanded40 Foldseek signal attempt failed
+  with no pair rows and is preserved as
+  `artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json` with
+  `blocker_not_removed`; staged25 remains the latest usable TM signal. The CLI
+  now accepts `--max-staged-coordinates`, and capped runs use a dedicated
+  selected-coordinate search directory.
 - Added a bounded Foldseek coordinate-readiness path for the accepted 1,000
   context. `build-foldseek-coordinate-readiness` records explicit Foldseek
   provenance, selected-structure materialization readiness, missing selected

@@ -496,6 +496,67 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         )
         self.assertEqual(artifact["rows"][0]["target_structure_key"], "pdb:2BBB")
 
+    def test_tm_score_signal_records_cap_coverage_and_target_scope(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            coord_dir = Path(tmpdir) / "coords"
+            coord_dir.mkdir()
+            first = coord_dir / "pdb_1AAA.cif"
+            second = coord_dir / "pdb_2BBB.cif"
+            third = coord_dir / "pdb_3CCC.cif"
+            for path in (first, second, third):
+                path.write_text(f"data_{path.stem}\n#\n", encoding="utf-8")
+
+            def fake_runner(command: list[str], cwd: Path) -> None:
+                Path(command[4]).write_text(
+                    "\n".join(
+                        [
+                            "pdb_1AAA\tpdb_2BBB\t0.210\t0.220\t0.230",
+                            "pdb_2BBB\tpdb_1AAA\t0.310\t0.320\t0.330",
+                            "",
+                        ]
+                    ),
+                    encoding="utf-8",
+                )
+
+            readiness = _tm_signal_readiness(
+                first_coordinate_path=str(first),
+                second_coordinate_path=str(second),
+            )
+            readiness["metadata"]["coordinate_materialization_possible_count"] = 3
+            readiness["metadata"]["coordinate_fetch_cap"] = 3
+            readiness["metadata"]["materialized_coordinate_count"] = 3
+            readiness["metadata"]["not_materialized_structure_count"] = 0
+            readiness["structures"][2]["coordinate_path"] = str(third)
+            readiness["structures"][2]["fetch_status"] = "already_materialized"
+            artifact = build_foldseek_tm_score_signal(
+                readiness=readiness,
+                slice_id="test",
+                foldseek_binary="/bin/echo",
+                max_staged_coordinates=2,
+                runner=fake_runner,
+            )
+
+        metadata = artifact["metadata"]
+        self.assertEqual(metadata["tm_signal_coordinate_cap_requested"], 2)
+        self.assertTrue(metadata["tm_signal_coordinate_cap_applied"])
+        self.assertEqual(metadata["available_staged_coordinate_count"], 3)
+        self.assertEqual(metadata["staged_coordinate_count"], 2)
+        self.assertEqual(metadata["computed_subset_structure_coverage"], 0.6667)
+        self.assertEqual(metadata["computed_subset_materialized_coverage"], 0.6667)
+        self.assertEqual(metadata["computed_subset_evaluated_entry_coverage"], 0.6667)
+        self.assertEqual(metadata["heldout_in_distribution_pair_count"], 2)
+        self.assertEqual(metadata["heldout_pair_count"], 0)
+        self.assertEqual(metadata["in_distribution_pair_count"], 0)
+        self.assertTrue(metadata["tm_score_target_achieved_for_computed_subset"])
+        self.assertIn("staged25-only proof blocker", metadata["blocker_removed"])
+        self.assertIn(
+            "computed TM-score signal was capped below the available staged coordinate count",
+            metadata["limitations"],
+        )
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+
     def test_current_1000_foldseek_tm_score_signal_artifact_is_pinned(self) -> None:
         artifact = _load_artifact(
             "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json"
@@ -521,6 +582,45 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
             all(not row["countable_label_candidate"] for row in artifact["rows"])
         )
         self.assertTrue(all(not row["import_ready"] for row in artifact["rows"]))
+
+    def test_expanded_1000_foldseek_coordinate_readiness_artifact_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_coordinate_readiness")
+        self.assertEqual(metadata["coordinate_fetch_cap"], 100)
+        self.assertEqual(metadata["materialized_coordinate_count"], 100)
+        self.assertEqual(metadata["coordinate_materialization_possible_count"], 676)
+        self.assertEqual(metadata["missing_or_unsupported_structure_count"], 2)
+        self.assertEqual(metadata["fetch_failure_count"], 0)
+        self.assertEqual(metadata["not_materialized_structure_count"], 572)
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["foldseek_version"], "10.941cd33")
+
+    def test_expanded_40_foldseek_tm_score_failure_artifact_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_signal")
+        self.assertEqual(metadata["available_staged_coordinate_count"], 100)
+        self.assertEqual(metadata["staged_coordinate_count"], 40)
+        self.assertEqual(metadata["tm_signal_coordinate_cap_requested"], 40)
+        self.assertTrue(metadata["tm_signal_coordinate_cap_applied"])
+        self.assertEqual(metadata["foldseek_run_status"], "foldseek_run_failed")
+        self.assertFalse(metadata["partial_tm_score_signal_computed"])
+        self.assertEqual(metadata["pair_count"], 0)
+        self.assertIsNone(metadata["blocker_removed"])
+        self.assertIn("did not complete", metadata["blocker_not_removed"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
 
 
 def _result(

@@ -607,6 +607,7 @@ def build_foldseek_tm_score_signal(
     slice_id: str | None = None,
     foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
     readiness_path: str | None = None,
+    max_staged_coordinates: int | None = None,
     runner: Callable[[list[str], Path], None] | None = None,
 ) -> dict[str, Any]:
     """Build a partial Foldseek TM-score signal for staged coordinates only.
@@ -634,7 +635,22 @@ def build_foldseek_tm_score_signal(
         if isinstance(row.get("entry_id"), str)
     }
 
-    staged_structures = _staged_foldseek_structures(structures)
+    available_staged_structures = _staged_foldseek_structures(structures)
+    coordinate_cap = (
+        max(0, int(max_staged_coordinates))
+        if max_staged_coordinates is not None
+        else None
+    )
+    staged_structures = (
+        available_staged_structures[:coordinate_cap]
+        if coordinate_cap is not None and coordinate_cap > 0
+        else available_staged_structures
+    )
+    cap_applied = bool(
+        coordinate_cap is not None
+        and coordinate_cap > 0
+        and len(available_staged_structures) > coordinate_cap
+    )
     alias_to_structure, alias_collisions = _foldseek_name_aliases(staged_structures)
     coordinate_dirs = sorted(
         {
@@ -668,13 +684,24 @@ def build_foldseek_tm_score_signal(
         if workdir.exists():
             shutil.rmtree(workdir)
         workdir.mkdir(parents=True, exist_ok=True)
+        search_coordinate_dir = Path(coordinate_dir)
+        if cap_applied:
+            search_coordinate_dir = workdir / "selected_coordinates"
+            search_coordinate_dir.mkdir(parents=True, exist_ok=True)
+            for structure in staged_structures:
+                source_path = Path(str(structure["coordinate_path"]))
+                target_path = search_coordinate_dir / source_path.name
+                try:
+                    target_path.symlink_to(source_path.resolve())
+                except OSError:
+                    shutil.copy2(source_path, target_path)
         result_tsv = workdir / "staged_tm_scores.tsv"
         tmpdir = workdir / "tmp"
         command = [
             str(foldseek_info["resolved"] or foldseek_binary),
             "easy-search",
-            coordinate_dir,
-            coordinate_dir,
+            str(search_coordinate_dir),
+            str(search_coordinate_dir),
             str(result_tsv),
             str(tmpdir),
             "--format-output",
@@ -714,6 +741,7 @@ def build_foldseek_tm_score_signal(
         if row.get("query_structure_key") and row.get("target_structure_key")
     )
     train_test_rows = [row for row in pair_rows if row.get("train_test_pair")]
+    partition_pair_counts = _foldseek_partition_pair_counts(pair_rows)
     max_train_test_tm_score = None
     for row in train_test_rows:
         score = row.get("max_pair_tm_score")
@@ -735,13 +763,37 @@ def build_foldseek_tm_score_signal(
             if name and not key
         }
     )
+    selected_structure_count = int(
+        metadata_in.get("selected_structure_count", len(structures)) or 0
+    )
+    evaluated_count = int(metadata_in.get("evaluated_count", len(rows)) or 0)
+    materialization_possible_count = int(
+        metadata_in.get("coordinate_materialization_possible_count", 0) or 0
+    )
+    materialized_coordinate_count = int(
+        metadata_in.get(
+            "materialized_coordinate_count", len(available_staged_structures)
+        )
+        or 0
+    )
+    missing_or_unsupported_structure_count = int(
+        metadata_in.get("missing_or_unsupported_structure_count", 0) or 0
+    )
+    fetch_failure_count = int(metadata_in.get("fetch_failure_count", 0) or 0)
+    not_materialized_structure_count = int(
+        metadata_in.get("not_materialized_structure_count", 0) or 0
+    )
     full_evaluated_coordinate_coverage = (
         bool(staged_structures)
-        and int(metadata_in.get("selected_structure_count", 0) or 0) == len(staged_structures)
-        and int(metadata_in.get("missing_or_unsupported_structure_count", 0) or 0) == 0
-        and int(metadata_in.get("fetch_failure_count", 0) or 0) == 0
+        and selected_structure_count == len(staged_structures)
+        and missing_or_unsupported_structure_count == 0
+        and fetch_failure_count == 0
+        and not cap_applied
     )
     partial_signal = run_status == "completed" and bool(pair_rows)
+    computed_tm_target_achieved = (
+        max_train_test_tm_score is not None and max_train_test_tm_score < 0.7
+    )
     limitations = [
         "partial staged-coordinate Foldseek signal only; it is not a full accepted-registry TM-score holdout",
         "tm_score_split_computed=false because not every evaluated coordinate is staged and no split is computed here",
@@ -756,6 +808,10 @@ def build_foldseek_tm_score_signal(
         limitations.append("Foldseek easy-search did not complete; pairwise TM-score rows are unavailable")
     if not full_evaluated_coordinate_coverage:
         limitations.append("full evaluated-coordinate coverage is absent; full TM-score split remains blocked")
+    if cap_applied:
+        limitations.append("computed TM-score signal was capped below the available staged coordinate count")
+    if max_train_test_tm_score is None:
+        limitations.append("no mapped heldout/in_distribution pair was available to evaluate the <0.7 target")
 
     selected_staged_entry_ids = sorted(
         {
@@ -766,9 +822,34 @@ def build_foldseek_tm_score_signal(
         },
         key=_entry_id_sort_key,
     )
+    computed_subset_structure_coverage = _safe_ratio(
+        len(staged_structures), selected_structure_count
+    )
+    computed_subset_materialized_coverage = _safe_ratio(
+        len(staged_structures), materialized_coordinate_count
+    )
+    computed_subset_evaluated_entry_coverage = _safe_ratio(
+        len(selected_staged_entry_ids), evaluated_count
+    )
+    expanded_successful_signal = partial_signal and (
+        len(staged_structures) > 25 or cap_applied
+    )
 
     metadata = {
         "method": "foldseek_tm_score_signal",
+        "blocker_removed": (
+            "removes the staged25-only proof blocker when staged_coordinate_count "
+            "exceeds 25 by running Foldseek easy-search over the expanded bounded "
+            "coordinate subset; this remains review-only and non-countable"
+            if expanded_successful_signal
+            else None
+        ),
+        "blocker_not_removed": (
+            "expanded Foldseek TM-score signal did not complete with pair rows; "
+            "staged25-only computed signal remains the latest usable TM-score signal"
+            if not expanded_successful_signal and len(staged_structures) > 25
+            else None
+        ),
         "blocker_narrowed": (
             "bounded staged-coordinate Foldseek TM-score signal computed for the "
             "coordinate sidecar only; full evaluated-coordinate TM-score split "
@@ -790,17 +871,44 @@ def build_foldseek_tm_score_signal(
         "full_evaluated_coordinate_coverage": full_evaluated_coordinate_coverage,
         "threshold_target": "<0.7",
         "tm_score_threshold_target": "<0.7",
-        "evaluated_count": int(metadata_in.get("evaluated_count", len(rows)) or 0),
-        "selected_structure_count": int(metadata_in.get("selected_structure_count", len(structures)) or 0),
+        "tm_score_target_achieved_for_computed_subset": computed_tm_target_achieved,
+        "tm_score_target_evaluation_scope": "mapped heldout/in_distribution pairs in computed staged-coordinate subset only",
+        "evaluated_count": evaluated_count,
+        "selected_structure_count": selected_structure_count,
+        "coordinate_materialization_possible_count": materialization_possible_count,
+        "coordinate_fetch_cap": metadata_in.get("coordinate_fetch_cap"),
+        "materialized_coordinate_count": materialized_coordinate_count,
+        "available_staged_coordinate_count": len(available_staged_structures),
+        "missing_or_unsupported_structure_count": missing_or_unsupported_structure_count,
+        "missing_or_unsupported_structures": metadata_in.get(
+            "missing_or_unsupported_structures", []
+        ),
+        "fetch_failure_count": fetch_failure_count,
+        "fetch_failures": metadata_in.get("fetch_failures", []),
+        "not_materialized_structure_count": not_materialized_structure_count,
+        "not_materialized_structures": metadata_in.get("not_materialized_structures", []),
+        "tm_signal_coordinate_cap_requested": coordinate_cap,
+        "tm_signal_coordinate_cap_applied": cap_applied,
         "staged_coordinate_count": len(staged_structures),
         "staged_structure_count": len(staged_structures),
         "staged_entry_count": len(selected_staged_entry_ids),
         "selected_staged_entry_ids": selected_staged_entry_ids,
+        "computed_subset_structure_coverage": computed_subset_structure_coverage,
+        "computed_subset_materialized_coverage": computed_subset_materialized_coverage,
+        "computed_subset_evaluated_entry_coverage": computed_subset_evaluated_entry_coverage,
         "coordinate_directory": coordinate_dir,
         "coordinate_directories": coordinate_dirs,
         "pair_count": len(pair_rows),
         "mapped_pair_count": mapped_pair_count,
         "train_test_pair_count": len(train_test_rows),
+        "heldout_in_distribution_pair_count": partition_pair_counts[
+            "heldout_in_distribution_pair_count"
+        ],
+        "heldout_pair_count": partition_pair_counts["heldout_pair_count"],
+        "in_distribution_pair_count": partition_pair_counts[
+            "in_distribution_pair_count"
+        ],
+        "other_partition_pair_count": partition_pair_counts["other_partition_pair_count"],
         "unique_unordered_nonself_pair_count": _unique_unordered_nonself_pair_count(pair_rows),
         "max_observed_train_test_tm_score": (
             round(max_train_test_tm_score, 4)
@@ -1955,6 +2063,28 @@ def _is_train_test_partition_pair(
     return "heldout" in partitions and "in_distribution" in partitions
 
 
+def _foldseek_partition_pair_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {
+        "heldout_in_distribution_pair_count": 0,
+        "heldout_pair_count": 0,
+        "in_distribution_pair_count": 0,
+        "other_partition_pair_count": 0,
+    }
+    for row in rows:
+        partitions = set(row.get("query_partitions") or []) | set(
+            row.get("target_partitions") or []
+        )
+        if "heldout" in partitions and "in_distribution" in partitions:
+            counts["heldout_in_distribution_pair_count"] += 1
+        elif partitions == {"heldout"}:
+            counts["heldout_pair_count"] += 1
+        elif partitions == {"in_distribution"}:
+            counts["in_distribution_pair_count"] += 1
+        else:
+            counts["other_partition_pair_count"] += 1
+    return counts
+
+
 def _unique_unordered_nonself_pair_count(rows: list[dict[str, Any]]) -> int:
     pairs = set()
     for row in rows:
@@ -1964,6 +2094,12 @@ def _unique_unordered_nonself_pair_count(rows: list[dict[str, Any]]) -> int:
             continue
         pairs.add(tuple(sorted([str(query_key), str(target_key)])))
     return len(pairs)
+
+
+def _safe_ratio(numerator: int, denominator: int) -> float | None:
+    if denominator <= 0:
+        return None
+    return round(float(numerator) / float(denominator), 4)
 
 
 def _backend_version(binary: str) -> str | None:

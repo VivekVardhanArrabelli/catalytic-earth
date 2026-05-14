@@ -661,6 +661,7 @@ def cmd_build_foldseek_tm_score_signal(args: argparse.Namespace) -> int:
         readiness_path=args.readiness,
         slice_id=args.slice_id,
         foldseek_binary=args.foldseek_binary,
+        max_staged_coordinates=args.max_staged_coordinates,
     )
     write_json(Path(args.out), artifact)
     print(
@@ -4057,6 +4058,15 @@ def build_parser() -> argparse.ArgumentParser:
     foldseek_tm_signal.add_argument(
         "--out",
         default="artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+    )
+    foldseek_tm_signal.add_argument(
+        "--max-staged-coordinates",
+        type=int,
+        default=None,
+        help=(
+            "optional deterministic cap on staged coordinates included in the "
+            "Foldseek easy-search signal; omitted means all staged coordinates"
+        ),
     )
     foldseek_tm_signal.set_defaults(func=cmd_build_foldseek_tm_score_signal)
 

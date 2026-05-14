@@ -69,6 +69,13 @@ staged train/test TM signal `0.6426` against the `<0.7` target. This is partial
 staged-coordinate review evidence only: it adds 0 countable/import-ready rows
 and keeps both `tm_score_split_computed=false` and
 `full_tm_score_split_computed=false`.
+`artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json` expands the
+coordinate sidecar to 100 selected PDB structures with 0 fetch failures and 572
+supported structures still unstaged behind the deterministic cap. The companion
+expanded40 Foldseek signal attempt is preserved in
+`artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json`, but it failed
+before producing pair rows and is marked `blocker_not_removed`; staged25 remains
+the latest usable TM-score signal.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the remaining selected
@@ -263,8 +270,10 @@ Priority blockers:
   near-duplicate holdout.
 - `artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json`
   and its audit/stability sidecars attempt the 650M upgrade for those same
-  selected pilot rows in local-only mode. The model is unavailable locally, so
-  the sidecars are feasibility evidence only and do not replace the 8M sample.
+  selected pilot rows in local-only mode. The 650M weights are not cached, so
+  the sidecars now record the cache miss, use the cached 8M backend as the
+  largest feasible fallback, and mark `requested_650m_or_larger_representation_backend_not_computed`;
+  they remain feasibility evidence only and do not replace a real 650M control.
 - `artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` assembles
   the same 10 selected rows into per-candidate review dossiers. It records 7
   candidates with explicit UniProt active-site feature support, all 10 with

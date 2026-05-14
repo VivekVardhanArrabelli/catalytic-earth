@@ -164,20 +164,26 @@
       "learned_representation_sample_complete": 9,
       "representation_near_duplicate_holdout": 1
     },
+    "blocker_not_removed": null,
     "blocker_removed": "computes a bounded learned or proxy representation sample for external pilot readiness while preserving heuristic geometry retrieval as the baseline",
     "candidate_count": 10,
+    "computed_embedding_backend": "esm2_t6_8m_ur50d",
     "countable_label_candidate_count": 0,
-    "elapsed_seconds": 9.9348,
+    "elapsed_seconds": 8.1021,
     "embedding_backend": "esm2_t6_8m_ur50d",
     "embedding_backend_available": true,
     "embedding_backend_model_family": "ESM-2",
     "embedding_backend_parameter_count": "8M",
-    "embedding_elapsed_seconds": 8.788,
+    "embedding_elapsed_seconds": 6.8857,
     "embedding_failure_count": 0,
     "embedding_status": "computed_review_only",
     "embedding_vector_dimension": 320,
     "expected_embedding_vector_dimension": 320,
+    "fallback_attempts": [],
     "fallback_not_computed_reason": null,
+    "fallback_reason": null,
+    "fallback_selected_backend": null,
+    "fallback_used": false,
     "fetch_failure_count": 0,
     "fetched_accession_count": 39,
     "heuristic_contrast_required_count": 2,
@@ -185,10 +191,10 @@
     "largest_supported_embedding_backend": "esm2_t33_650m_ur50d",
     "learned_representation_complete_count": 9,
     "learned_vs_heuristic_disagreement_count": 10,
-    "local_files_only": false,
+    "local_files_only": true,
     "max_rows": 10,
     "method": "external_source_representation_backend_sample",
-    "model_load_elapsed_seconds": 6.432,
+    "model_load_elapsed_seconds": 4.0709,
     "model_load_failure": null,
     "model_load_failure_type": null,
     "model_load_status": "loaded",
@@ -202,7 +208,18 @@
     "reference_pair_count": 30,
     "representation_near_duplicate_alert_count": 1,
     "requested_accession_count": 39,
+    "requested_backend_cache_snapshot_count": null,
+    "requested_backend_feasibility_status": "computed",
+    "requested_backend_local_cache_status": "weights_cached",
+    "requested_backend_smoke_status": "not_applicable",
+    "requested_backend_weights_cached": true,
     "requested_embedding_backend": "esm2_t6_8m_ur50d",
+    "requested_embedding_backend_available": true,
+    "requested_embedding_failure_count": 0,
+    "requested_expected_embedding_vector_dimension": 320,
+    "requested_model_load_failure": null,
+    "requested_model_load_failure_type": null,
+    "requested_model_load_status": null,
     "requested_model_name": "facebook/esm2_t6_8M_UR50D",
     "review_context_fields": [
       "heuristic_baseline_control",
@@ -217,6 +234,7 @@
     "source_sequence_neighborhood_sample_method": "external_source_sequence_neighborhood_sample",
     "top_k": 3
   },
+  "requested_embedding_failures": [],
   "rows": [
     {
       "accession": "O14756",
@@ -227,18 +245,22 @@
       ],
       "candidate_sequence_length": 317,
       "comparison_status": "pilot_sequence_embedding_control",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
       "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
       "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:O14756",
+      "fallback_reason": null,
+      "fallback_used": false,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:oxidoreductase_long_tail",
+      "larger_model_readiness_status": "computed",
       "leakage_flags": [
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
@@ -290,6 +312,7 @@
           "screen_near_duplicate_score": 0.0852
         }
       ],
+      "requested_embedding_backend": "esm2_t6_8m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -310,18 +333,22 @@
       ],
       "candidate_sequence_length": 335,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
       "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
       "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:P06746",
+      "fallback_reason": null,
+      "fallback_used": false,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:lyase",
+      "larger_model_readiness_status": "computed",
       "leakage_flags": [
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
@@ -373,6 +400,7 @@
           "screen_near_duplicate_score": 0.0857
         }
       ],
+      "requested_embedding_backend": "esm2_t6_8m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -393,18 +421,22 @@
       ],
       "candidate_sequence_length": 316,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
       "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
       "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:C9JRZ8",
+      "fallback_reason": null,
+      "fallback_used": false,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:oxidoreductase_long_tail",
+      "larger_model_readiness_status": "computed",
       "leakage_flags": [
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
@@ -456,6 +488,7 @@
           "screen_near_duplicate_score": 0.0923
         }
       ],
+      "requested_embedding_backend": "esm2_t6_8m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -477,18 +510,22 @@
       ],
       "candidate_sequence_length": 362,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
       "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
       "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:P55263",
+      "fallback_reason": null,
+      "fallback_used": false,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:transferase_phosphoryl",
+      "larger_model_readiness_status": "computed",
       "leakage_flags": [
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
@@ -540,6 +577,7 @@
           "screen_near_duplicate_score": 0.0829
         }
       ],
+      "requested_embedding_backend": "esm2_t6_8m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -560,18 +598,22 @@
       ],
       "candidate_sequence_length": 423,
       "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
       "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
       "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:P34949",
+      "fallback_reason": null,
+      "fallback_used": false,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": true,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:isomerase",
+      "larger_model_readiness_status": "computed",
       "leakage_flags": [
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
@@ -623,6 +665,7 @@
           "screen_near_duplicate_score": 0.0868
         }
       ],
+      "requested_embedding_backend": "esm2_t6_8m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -643,18 +686,22 @@
       ],
       "candidate_sequence_length": 320,
       "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
       "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
       "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:Q9BXD5",
+      "fallback_reason": null,
+      "fallback_used": false,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": true,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:lyase",
+      "larger_model_readiness_status": "computed",
       "leakage_flags": [
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
@@ -706,6 +753,7 @@
           "screen_near_duplicate_score": 0.0917
         }
       ],
+      "requested_embedding_backend": "esm2_t6_8m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -726,18 +774,22 @@
       ],
       "candidate_sequence_length": 714,
       "comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
       "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
       "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:Q6NSJ0",
+      "fallback_reason": null,
+      "fallback_used": false,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:glycan_chemistry",
+      "larger_model_readiness_status": "computed",
       "leakage_flags": [
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
@@ -789,6 +841,7 @@
           "screen_near_duplicate_score": 0.0803
         }
       ],
+      "requested_embedding_backend": "esm2_t6_8m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -809,18 +862,22 @@
       ],
       "candidate_sequence_length": 738,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
       "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
       "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:O60568",
+      "fallback_reason": null,
+      "fallback_used": false,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:glycan_chemistry",
+      "larger_model_readiness_status": "computed",
       "leakage_flags": [
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
@@ -872,6 +929,7 @@
           "screen_near_duplicate_score": 0.0691
         }
       ],
+      "requested_embedding_backend": "esm2_t6_8m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -892,18 +950,22 @@
       ],
       "candidate_sequence_length": 263,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
       "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
       "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:O95050",
+      "fallback_reason": null,
+      "fallback_used": false,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:transferase_methyl",
+      "larger_model_readiness_status": "computed",
       "leakage_flags": [
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
@@ -955,6 +1017,7 @@
           "screen_near_duplicate_score": 0.0951
         }
       ],
+      "requested_embedding_backend": "esm2_t6_8m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
@@ -975,18 +1038,22 @@
       ],
       "candidate_sequence_length": 245,
       "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
       "countable_label_candidate": false,
       "embedding_backend": "esm2_t6_8m_ur50d",
       "embedding_status": "computed_review_only",
       "embedding_vector_dimension": 320,
       "embedding_warning": null,
       "entry_id": "uniprot:P51580",
+      "fallback_reason": null,
+      "fallback_used": false,
       "heuristic_baseline_control": {
         "scope_top1_mismatch": false,
         "top1_fingerprint_id": null,
         "top1_score": null
       },
       "lane_id": "external_source:transferase_methyl",
+      "larger_model_readiness_status": "computed",
       "leakage_flags": [
         "matched_m_csa_reference_ids_holdout_context_only",
         "source_scope_signal_review_context_only"
@@ -1038,6 +1105,7 @@
           "screen_near_duplicate_score": 0.0857
         }
       ],
+      "requested_embedding_backend": "esm2_t6_8m_ur50d",
       "review_context_fields": [
         "heuristic_baseline_control",
         "nearest_reference",
