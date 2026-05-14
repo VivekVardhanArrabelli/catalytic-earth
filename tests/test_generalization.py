@@ -456,6 +456,8 @@ class FoldseekCoordinateReadinessTests(unittest.TestCase):
             "coordinate staging is deterministic; all currently materializable supported selected structures are staged",
             metadata["limitations"],
         )
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
         self.assertFalse(metadata["ready_for_label_import"])
 
     def test_current_1000_foldseek_readiness_artifact_is_pinned(self) -> None:
@@ -519,7 +521,9 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         metadata = artifact["metadata"]
         self.assertEqual(metadata["review_status"], "review_only_non_countable")
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_count"], 0)
         self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
         self.assertFalse(metadata["ready_for_label_import"])
         self.assertFalse(metadata["tm_score_split_computed"])
         self.assertFalse(metadata["full_tm_score_split_computed"])
@@ -906,6 +910,57 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["review_status"], "review_only_non_countable")
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
         self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in artifact["rows"])
+        )
+        self.assertTrue(all(not row["import_ready"] for row in artifact["rows"]))
+
+    def test_expanded_60_foldseek_tm_score_completed_partial_artifact_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_expanded60.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_signal")
+        self.assertEqual(metadata["available_staged_coordinate_count"], 672)
+        self.assertEqual(metadata["staged_coordinate_count"], 60)
+        self.assertEqual(metadata["tm_signal_coordinate_cap_requested"], 60)
+        self.assertTrue(metadata["tm_signal_coordinate_cap_applied"])
+        self.assertEqual(metadata["foldseek_run_status"], "completed")
+        self.assertEqual(metadata["foldseek_version"], "10.941cd33")
+        self.assertEqual(metadata["pair_count"], 12329)
+        self.assertEqual(metadata["mapped_pair_count"], 12329)
+        self.assertEqual(metadata["heldout_pair_count"], 457)
+        self.assertEqual(metadata["heldout_in_distribution_pair_count"], 3716)
+        self.assertEqual(metadata["train_test_pair_count"], 3716)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.7515)
+        self.assertFalse(metadata["tm_score_target_achieved_for_computed_subset"])
+        self.assertGreater(metadata["max_observed_train_test_tm_score"], 0.7)
+        self.assertTrue(metadata["partial_tm_score_signal_computed"])
+        self.assertTrue(metadata["partial_real_tm_score_signal_computed"])
+        self.assertEqual(metadata["raw_name_mapping_unmapped_count"], 0)
+        self.assertIn("previous expanded40 partial-signal ceiling", metadata["blocker_removed"])
+        self.assertEqual(metadata["prior_staged_coordinate_count"], 40)
+        self.assertTrue(metadata["staged_coordinate_count_exceeds_prior"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertEqual(metadata["remaining_to_full_signal_structure_count"], 612)
+        self.assertEqual(metadata["remaining_uncomputed_staged_coordinate_count"], 612)
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["review_status"], "review_only_non_countable")
+        self.assertIn(
+            "computed train/test TM-score target <0.7 is not achieved",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertIn(
+            "available staged coordinates were excluded by the signal cap",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
         self.assertTrue(
             all(not row["countable_label_candidate"] for row in artifact["rows"])
         )

@@ -50,7 +50,7 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
-Recorded for the 2026-05-14T12:44:26Z run after clean startup gates
+Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 (`331` unit tests passed and `validate` passed):
 
 - M-CSA-only count growth: No. The 1,025 preview still adds 0 accepted clean
@@ -73,8 +73,14 @@ Recorded for the 2026-05-14T12:44:26Z run after clean startup gates
   cluster-threshold, target-achievement, and limitation metadata aliases.
   Foldseek remains absent from default `PATH`; the prior temp-env Foldseek
   `/private/tmp/catalytic-foldseek-env/bin/foldseek` version `10.941cd33`
-  remains the documented path. Full Foldseek/TM-score split remains blocked by
-  `m_csa:372`, `m_csa:501`, and the unrun full split builder.
+  remains the documented path. This run added a bounded expanded60 Foldseek
+  signal from the all-materializable coordinate sidecar: 60 staged coordinates,
+  12,329 mapped pair rows, 3,716 heldout/in-distribution train/test pairs, max
+  train/test TM score `0.7515`, and 0 countable/import-ready rows. The partial
+  signal removes the expanded40 ceiling, but the `<0.7` target is not achieved
+  on the computed subset and full Foldseek/TM-score split remains blocked by
+  `m_csa:372`, `m_csa:501`, the 612 capped-out staged coordinates, and the
+  unrun full split builder.
 - SPOF hardening work: Yes. Sequence holdout metadata is now less brittle for
   downstream gates and reviewers while preserving the proxy fallback path and
   pinned regression coverage. Existing external artifact lineage,
@@ -104,6 +110,20 @@ Recorded for the 2026-05-14T12:44:26Z run after clean startup gates
   retry the delegated all-materializable Foldseek/TM-score signal or a bounded
   larger-than-40 cap, keeping the two missing selected-structure blockers
   (`m_csa:372`, `m_csa:501`) and all review-only/non-countable claims intact.
+- Completed a bounded expanded60 Foldseek/TM-score signal from
+  `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`.
+  The command used `/private/tmp/catalytic-foldseek-env/bin/foldseek` version
+  `10.941cd33`, `--max-staged-coordinates 60`, and
+  `--prior-staged-coordinate-count 40`; runtime was 777.55 seconds. The new
+  `artifacts/v3_foldseek_tm_score_signal_1000_expanded60.json` records 12,329
+  mapped pair rows, 457 heldout pair rows, 3,716 heldout/in-distribution
+  train/test rows, 8,156 in-distribution pair rows, max observed train/test TM
+  score `0.7515`, 0 unmapped raw Foldseek names, and explicit 0
+  countable/import-ready rows. It removes the expanded40 partial-signal
+  ceiling only. It remains review-only/non-countable because the `<0.7` target
+  fails on the computed subset, the cap leaves 612 staged coordinates
+  uncomputed, and `tm_score_split_computed=false` plus
+  `full_tm_score_split_computed=false` remain true.
 - Staged all currently materializable selected Foldseek coordinates for the
   accepted 1,000 context in
   `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`:

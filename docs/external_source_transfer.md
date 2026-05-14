@@ -89,9 +89,17 @@ stages all currently materializable supported selected coordinates for the
 accepted 1,000 context: 672 unique selected PDB mmCIF sidecars, 676
 materializable evaluated rows, 0 fetch failures, and 0 supported selected
 structures left unstaged. This removes the unstaged selected-coordinate
-sidecar blocker, but it remains review-only and non-countable because the full
-Foldseek/TM-score split has not been run and `m_csa:372` plus `m_csa:501`
-still lack supported selected structures.
+sidecar blocker. `artifacts/v3_foldseek_tm_score_signal_1000_expanded60.json`
+then completes the next bounded Foldseek signal from that all-materializable
+sidecar with a 60-coordinate cap and prior staged count 40: 12,329 mapped pair
+rows, 3,716 heldout/in-distribution train/test pairs, max observed train/test
+TM score `0.7515`, 0 unmapped raw Foldseek names, and 0
+countable/import-ready rows. It removes the expanded40 partial-signal ceiling
+but remains review-only and non-countable. The `<0.7` target is not achieved on
+the computed subset, the cap leaves 612 staged coordinates uncomputed, and the
+full Foldseek/TM-score split remains false because `m_csa:372` plus
+`m_csa:501` still lack supported selected structures and no uncapped full
+split/signal has completed.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the two missing

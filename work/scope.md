@@ -182,9 +182,15 @@ Current expectation:
   train/test TM score `0.7515`, 0 unmapped raw Foldseek names, and 0
   countable/import-ready rows. That removes the staged25-only proof blocker,
   expanded40 raw-name mapping blocker, and unstaged selected-coordinate sidecar
-  blocker, but it remains review-only/non-countable; the `<0.7` target is not
-  achieved on the partial signal, and the two missing selected structures plus
-  a full Foldseek-backed split builder are still required. The first 12-row
+  blocker. The expanded60 signal now completes from the all-materializable
+  sidecar with 60 staged coordinates, 12,329 mapped pair rows, 3,716
+  heldout/in-distribution train/test pairs, max train/test TM score `0.7515`,
+  0 unmapped raw names, and 0 countable/import-ready rows, removing the
+  expanded40 partial-signal ceiling. These signals remain
+  review-only/non-countable; the `<0.7` target is not achieved on the partial
+  signal, 612 staged coordinates remain outside the capped computation, and
+  the two missing selected structures plus a full Foldseek-backed split builder
+  are still required. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

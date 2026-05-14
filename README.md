@@ -326,10 +326,18 @@ mapping blocker, but it is still partial, non-countable, and not import-ready.
 then stages all currently materializable supported selected coordinates:
 672 unique selected PDB mmCIF sidecars for 676 materializable evaluated rows,
 with 0 fetch failures and 0 supported selected structures left unstaged. This
-removes the unstaged selected-coordinate sidecar blocker. The `<0.7` target is
-not achieved on the computed 40-coordinate subset, and the full TM-score split
-still requires the two missing selected-structure rows plus a full
-Foldseek-backed split builder.
+removes the unstaged selected-coordinate sidecar blocker. The companion
+`artifacts/v3_foldseek_tm_score_signal_1000_expanded60.json` now completes a
+larger capped Foldseek `easy-search` signal from that all-materializable
+sidecar: 60 staged coordinates, 12,329 mapped pair rows, 3,716
+heldout/in-distribution train/test pairs, max observed train/test TM score
+`0.7515`, 0 unmapped raw Foldseek names, and 0 countable/import-ready rows.
+This removes the expanded40 partial-signal ceiling, but it is still
+review-only, capped, and not import-ready. The `<0.7` target is not achieved
+on the computed 60-coordinate subset, `tm_score_split_computed=false` and
+`full_tm_score_split_computed=false` remain true, and the full TM-score split
+still requires the two missing selected-structure rows plus an uncapped
+Foldseek-backed split/signal over the full materialized set.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
