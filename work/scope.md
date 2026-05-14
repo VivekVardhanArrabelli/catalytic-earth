@@ -167,27 +167,34 @@ Current expectation:
   0 held-out out-of-scope false non-abstentions, and reports held-out evaluable
   top1 accuracy, top3 retained accuracy, and retention of `1.0000`. Foldseek
   TM-score separation remains uncomputed, but the review-only coordinate
-  readiness path now records Foldseek `10.941cd33`, stages 100 selected PDB
-  mmCIF files with 0 fetch failures, identifies 676 supported
-  selected-coordinate rows, and flags two rows with missing selected
-  structures. A partial staged-coordinate Foldseek signal over the first 25
-  files records 1,840 mapped pair rows, 532 staged heldout/in-distribution pair
-  rows, and max staged train/test TM score `0.6426` while keeping
+  readiness path now records Foldseek `10.941cd33`, stages all currently
+  materializable selected coordinates as 672 unique selected PDB mmCIF
+  sidecars for 676 materializable evaluated rows, leaves 0 supported selected
+  structures unstaged, and flags two rows with missing selected structures. A
+  partial staged-coordinate Foldseek signal over the first 25 files records
+  1,840 mapped pair rows, 532 staged heldout/in-distribution pair rows, and max
+  staged train/test TM score `0.6426` while keeping
   `full_tm_score_split_computed=false`. The expanded40 signal now completes as
   a larger partial staged-coordinate signal with 5,699 pair rows, all 5,699
   safely mapped rows, 1,633 heldout/in-distribution train/test pairs, max
   train/test TM score `0.7515`, 0 unmapped raw Foldseek names, and 0
-  countable/import-ready rows. That removes the staged25-only proof blocker and
-  the expanded40 raw-name mapping blocker, but it remains
-  review-only/non-countable; the `<0.7` target is not achieved on the partial
-  signal, and the remaining selected PDB/AlphaFold coordinates plus a full
-  Foldseek-backed split builder are still required. The first 12-row
+  countable/import-ready rows. That removes the staged25-only proof blocker,
+  expanded40 raw-name mapping blocker, and unstaged selected-coordinate sidecar
+  blocker, but it remains review-only/non-countable; the `<0.7` target is not
+  achieved on the partial signal, and the two missing selected structures plus
+  a full Foldseek-backed split builder are still required. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute
   `facebook/esm2_t30_150M_UR50D` as the largest feasible cached fallback, and
   report 8M-vs-larger `fallback_changed` stability rather than pretending a
   650M control was completed.
+- external-pilot readiness now has a review-only active-site evidence decision
+  artifact for the 10 selected rows. It records 7 explicit active-site source
+  rows, 3 binding-context-only rows, 0 countable rows, and 0 import-ready rows.
+  The next import blockers are broader duplicate screening, representation
+  control review, completed no-decision-to-decision review packets, and full
+  label-factory gates.
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed

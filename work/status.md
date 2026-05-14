@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 87
-- Measured elapsed time: 3199.8 minutes (53.33 hours)
+- Entries: 88
+- Measured elapsed time: 3225.6 minutes (53.76 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 553.6 measured minutes (9.23 hours)
+- post-mcsa-spof-hardening: 579.3 measured minutes (9.66 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 932
-- Evidence references logged: 762
+- Artifact references logged: 948
+- Evidence references logged: 771
 
 ## Recent Entries
-
-### 2026-05-14T01:50:53.503582+00:00 - post-mcsa-spof-hardening
-
-- Task: Harden external artifact lineage and selected-PDB overrides
-- Time mode: measured
-- Measured minutes: 20.75
-- Started: 2026-05-14T01:30:08Z
-- Ended: 2026-05-14T01:50:53Z
-- Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_structure.py, tests/test_transfer_scope.py, tests/test_cli.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_import_readiness_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_pilot_evidence_packet_1025.json, artifacts/v3_external_source_pilot_evidence_dossiers_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: 307 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifact parse passed, external gate 66/66, 0 countable external labels, 0 import-ready external labels, selected-PDB override mismatch regressions, external mixed-slice CLI regressions, foldseek/mmseqs/blastp/diamond absent
-- Notes: Normal locked SPOF-hardening run. No M-CSA count growth or external import; documentation checked and updated.
 
 ### 2026-05-14T03:08:19.594666+00:00 - post-mcsa-spof-hardening
 
@@ -117,6 +106,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 326 unit tests passed, validate passed, git diff check passed, external transfer gate 67/67, 150M ESM-2 fallback computed for 12 controls and 10 pilot rows, 650M uncached/infeasible, expanded40 Foldseek signal 5699 mapped pairs with false-full-claim blockers, 0 countable labels, 0 import-ready rows
 - Notes: Normal locked delegated run per user instruction. Parent integrated worker outputs, regenerated expanded40 metadata, verified gates, and kept all external rows review-only.
 
+### 2026-05-14T11:07:34.295381+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek all-materializable sidecar and pilot active-site decisions
+- Time mode: measured
+- Measured minutes: 25.783
+- Started: 2026-05-14T10:41:47Z
+- Ended: 2026-05-14T11:07:34Z
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_generalization.py, tests/test_transfer_scope.py, tests/test_cli.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json, artifacts/v3_foldseek_coordinates_1000, artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 331 unit tests passed, validate passed, git diff check passed, JSON artifact parse passed, Foldseek all-materializable readiness staged 672 unique coordinates with 0 fetch failures, external pilot active-site decisions 7 explicit and 3 binding-context-only, external transfer gate 68/68, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked delegated run per user instruction. Parent integrated worker outputs, added durable docs, and kept M-CSA-only growth stopped and all external rows review-only.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -193,6 +193,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T05:12:09.497043+00:00: Foldseek artifacts now have regression coverage; full TM-score split remains blocked until the remaining selected coordinates and split builder are implemented.
 - 2026-05-14T09:28:41.519786+00:00: Expanded40 Foldseek raw-name mapping is no longer a blocker, but the partial staged-coordinate TM signal still fails the <0.7 target and full TM-score split remains blocked on full coordinate coverage plus a split builder.
 - 2026-05-14T10:16:36.145071+00:00: Requested 650M representation remains blocked by local cache/disk/CPU limits; largest feasible cached ESM-2 150M now gives a real review-only control signal while Foldseek remains partial and fails the <0.7 target.
+- 2026-05-14T11:07:34.295381+00:00: Next work should run a full Foldseek/TM-score split only after resolving missing selected structures and should advance pilot rows through broader duplicate screening, representation review, and review decisions without countable import.
 
 ## Scope Adjustments
 
@@ -274,3 +275,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T01:50:53.503582+00:00: High-fan-in external pilot builders now fail fast on mixed-slice lineage before artifact write; selected-PDB ready overrides must match graph slice provenance.
 - 2026-05-14T03:08:19.594666+00:00: Real sequence-distance holdout replaces proxy-only generalization signal; Foldseek/TM-score split now depends on coordinate materialization rather than tool availability alone.
 - 2026-05-14T04:23:49.348241+00:00: External pilot sequence-search work now uses real MMseqs2 current-reference backend evidence before review decisions; import remains blocked by active-site, representation, broader duplicate-screening, review, and factory gates.
+- 2026-05-14T11:07:34.295381+00:00: Unstaged selected-coordinate sidecar blocker is removed, but full TM-score split remains blocked by two missing selected structures and the unrun Foldseek split builder; selected-pilot active-site source status is classified but import remains blocked.

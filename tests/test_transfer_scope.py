@@ -55,6 +55,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_heuristic_control_queue,
     build_external_source_heuristic_control_scores,
     build_external_source_pilot_candidate_priority,
+    build_external_source_pilot_active_site_evidence_decisions,
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_review_decision_export,
@@ -6076,6 +6077,191 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertEqual(dossiers["metadata"]["artifact_lineage"]["slice_id"], 1025)
 
+    def test_external_pilot_active_site_decisions_classify_evidence_only(self) -> None:
+        decisions = build_external_source_pilot_active_site_evidence_decisions(
+            pilot_evidence_dossiers={
+                "metadata": {"method": "external_source_pilot_evidence_dossier"},
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "P12345",
+                        "entry_id": "uniprot:P12345",
+                        "lane_id": "external_source:lyase",
+                        "active_site_evidence": {
+                            "explicit_active_site_feature_count": 1,
+                            "binding_site_feature_count": 0,
+                            "sourced_active_site_position_count": 0,
+                        },
+                        "reaction_evidence": {
+                            "reaction_record_count": 1,
+                            "specific_reaction_record_count": 1,
+                            "rhea_ids": ["RHEA:1"],
+                        },
+                        "sequence_evidence": {
+                            "backend_search_status": "no_near_duplicate_signal",
+                            "backend_search_complete": True,
+                        },
+                        "representation_control": {
+                            "backend_status": "learned_representation_sample_complete",
+                            "comparison_status": "pilot_sequence_embedding_control",
+                        },
+                        "remaining_blockers": [
+                            "external_review_decision_artifact_not_built"
+                        ],
+                    },
+                    {
+                        "rank": 2,
+                        "accession": "P67890",
+                        "entry_id": "uniprot:P67890",
+                        "lane_id": "external_source:hydrolase",
+                        "active_site_evidence": {
+                            "explicit_active_site_feature_count": 0,
+                            "binding_site_feature_count": 3,
+                            "sourcing_status": (
+                                "binding_context_only_no_active_site_positions"
+                            ),
+                        },
+                        "reaction_evidence": {
+                            "reaction_record_count": 1,
+                            "specific_reaction_record_count": 1,
+                            "rhea_ids": ["RHEA:2"],
+                        },
+                        "sequence_evidence": {
+                            "backend_search_status": "no_near_duplicate_signal",
+                            "backend_search_complete": True,
+                        },
+                        "representation_control": {
+                            "backend_status": "learned_representation_sample_complete",
+                            "comparison_status": (
+                                "pilot_sequence_embedding_without_feature_proxy_comparison"
+                            ),
+                            "blockers": ["representation_control_not_compared"],
+                        },
+                        "remaining_blockers": [
+                            "pilot_explicit_active_site_evidence_missing",
+                            "representation_control_not_compared",
+                        ],
+                    },
+                ],
+            },
+            pilot_evidence_packet={
+                "metadata": {"method": "external_source_pilot_evidence_packet"},
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                    },
+                    {
+                        "accession": "P67890",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                    },
+                ],
+            },
+            active_site_sourcing_resolution={
+                "metadata": {"method": "external_source_active_site_sourcing_resolution"},
+                "rows": [
+                    {
+                        "accession": "P67890",
+                        "active_site_source_status": (
+                            "binding_context_only_no_active_site_positions"
+                        ),
+                        "binding_site_feature_count": 3,
+                        "sourced_active_site_positions": [],
+                    }
+                ],
+            },
+            reaction_evidence_sample={"metadata": {}, "rows": []},
+            backend_sequence_search={
+                "metadata": {"method": "external_source_backend_sequence_search"},
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "backend_name": "mmseqs2_easy_search",
+                        "backend_search_complete": True,
+                        "search_status": "no_near_duplicate_signal",
+                    },
+                    {
+                        "accession": "P67890",
+                        "backend_name": "mmseqs2_easy_search",
+                        "backend_search_complete": True,
+                        "search_status": "no_near_duplicate_signal",
+                    },
+                ],
+            },
+            pilot_representation_backend_sample={
+                "metadata": {"method": "external_source_representation_backend_sample"},
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "backend_status": "learned_representation_sample_complete",
+                        "comparison_status": "pilot_sequence_embedding_control",
+                    },
+                    {
+                        "accession": "P67890",
+                        "backend_status": "learned_representation_sample_complete",
+                        "comparison_status": (
+                            "pilot_sequence_embedding_without_feature_proxy_comparison"
+                        ),
+                    },
+                ],
+            },
+            transfer_blocker_matrix={
+                "metadata": {"method": "external_source_transfer_blocker_matrix"},
+                "rows": [
+                    {"accession": "P12345", "blockers": []},
+                    {
+                        "accession": "P67890",
+                        "blockers": ["representation_control_not_compared"],
+                    },
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
+        )
+
+        self.assertEqual(
+            decisions["metadata"]["method"],
+            "external_source_pilot_active_site_evidence_decisions",
+        )
+        self.assertEqual(
+            decisions["metadata"]["blocker_removed"],
+            "external_pilot_active_site_source_status_ambiguity",
+        )
+        self.assertFalse(decisions["metadata"]["ready_for_label_import"])
+        self.assertEqual(decisions["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(decisions["metadata"]["completed_decision_count"], 0)
+        self.assertEqual(decisions["metadata"]["import_ready_row_count"], 0)
+        self.assertEqual(
+            decisions["metadata"]["decision_status_counts"],
+            {
+                "binding_context_only": 1,
+                "explicit_active_site_source_present": 1,
+            },
+        )
+        explicit, binding = decisions["rows"]
+        self.assertEqual(
+            explicit["active_site_evidence_decision_status"],
+            "explicit_active_site_source_present",
+        )
+        self.assertEqual(
+            binding["active_site_evidence_source_category"], "binding_context_only"
+        )
+        self.assertIn(
+            "explicit_active_site_residue_sources_absent",
+            binding["import_readiness_blockers"],
+        )
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            explicit["import_readiness_blockers"],
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in decisions["rows"])
+        )
+        self.assertTrue(all(not row["ready_for_label_import"] for row in decisions["rows"]))
+
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
         self,
     ) -> None:
@@ -6201,6 +6387,48 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 }
             ],
         }
+        pilot_active_site_evidence_decisions = {
+            "metadata": {
+                "method": "external_source_pilot_active_site_evidence_decisions",
+                "blocker_removed": (
+                    "external_pilot_active_site_source_status_ambiguity"
+                ),
+                "ready_for_label_import": False,
+                "review_only": True,
+                "countable_label_candidate_count": 0,
+                "import_ready_row_count": 0,
+                "completed_decision_count": 0,
+                "accepted_decision_count": 0,
+                "candidate_count": 1,
+                "candidate_with_import_readiness_blocker_count": 1,
+            },
+            "rows": [
+                {
+                    "accession": "P12345",
+                    "entry_id": "uniprot:P12345",
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "review_status": (
+                        "external_pilot_active_site_evidence_decision_review_only"
+                    ),
+                    "decision_class": "review_only_evidence_status",
+                    "active_site_evidence_source_category": (
+                        "explicit_active_site_source_present"
+                    ),
+                    "active_site_evidence_decision_status": (
+                        "explicit_active_site_source_present"
+                    ),
+                    "broader_duplicate_screening_status": (
+                        "broader_duplicate_screening_required"
+                    ),
+                    "import_readiness_blockers": [
+                        "broader_duplicate_screening_required",
+                        "external_review_decision_artifact_not_built",
+                        "full_label_factory_gate_not_run",
+                    ],
+                }
+            ],
+        }
         pilot_representation_backend_sample = {
             "metadata": {
                 "method": "external_source_representation_backend_sample",
@@ -6236,6 +6464,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             pilot_review_decision_export=pilot_review_decision_export,
             pilot_evidence_packet=pilot_evidence_packet,
             pilot_evidence_dossiers=pilot_evidence_dossiers,
+            pilot_active_site_evidence_decisions=pilot_active_site_evidence_decisions,
             pilot_representation_backend_sample=pilot_representation_backend_sample,
         )
 
@@ -6251,6 +6480,11 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             gates["gates"]["external_pilot_evidence_dossiers_review_only"]
         )
         self.assertTrue(
+            gates["gates"][
+                "external_pilot_active_site_evidence_decisions_review_only"
+            ]
+        )
+        self.assertTrue(
             gates["gates"]["external_pilot_representation_sample_review_only"]
         )
         self.assertEqual(gates["metadata"]["external_pilot_selected_candidate_count"], 1)
@@ -6262,6 +6496,12 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             gates["metadata"]["external_pilot_review_completed_decision_count"],
             0,
         )
+        self.assertEqual(
+            gates["metadata"][
+                "external_pilot_active_site_decision_candidate_count"
+            ],
+            1,
+        )
 
         missing_sample_gates = check_external_source_transfer_gates(
             **_base_external_transfer_gate_inputs(),
@@ -6269,6 +6509,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             pilot_review_decision_export=pilot_review_decision_export,
             pilot_evidence_packet=pilot_evidence_packet,
             pilot_evidence_dossiers=pilot_evidence_dossiers,
+            pilot_active_site_evidence_decisions=pilot_active_site_evidence_decisions,
             pilot_representation_backend_sample={
                 "metadata": {
                     **pilot_representation_backend_sample["metadata"],
@@ -6312,6 +6553,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             },
             pilot_evidence_packet=pilot_evidence_packet,
             pilot_evidence_dossiers=pilot_evidence_dossiers,
+            pilot_active_site_evidence_decisions=pilot_active_site_evidence_decisions,
         )
 
         self.assertFalse(
@@ -6341,6 +6583,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             },
             pilot_evidence_packet=pilot_evidence_packet,
             pilot_evidence_dossiers=pilot_evidence_dossiers,
+            pilot_active_site_evidence_decisions=pilot_active_site_evidence_decisions,
         )
 
         self.assertFalse(
@@ -6369,6 +6612,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             pilot_review_decision_export=pilot_review_decision_export,
             pilot_evidence_packet=pilot_evidence_packet,
             pilot_evidence_dossiers=pilot_evidence_dossiers,
+            pilot_active_site_evidence_decisions=pilot_active_site_evidence_decisions,
         )
 
         self.assertFalse(
@@ -6377,6 +6621,33 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertIn(
             "external_pilot_candidate_priority_review_only",
             ineligible_gates["blockers"],
+        )
+
+        stale_decision_gates = check_external_source_transfer_gates(
+            **_base_external_transfer_gate_inputs(),
+            pilot_candidate_priority=pilot_candidate_priority,
+            pilot_review_decision_export=pilot_review_decision_export,
+            pilot_evidence_packet=pilot_evidence_packet,
+            pilot_evidence_dossiers=pilot_evidence_dossiers,
+            pilot_active_site_evidence_decisions={
+                "metadata": pilot_active_site_evidence_decisions["metadata"],
+                "rows": [
+                    {
+                        **pilot_active_site_evidence_decisions["rows"][0],
+                        "accession": "P99999",
+                    }
+                ],
+            },
+        )
+
+        self.assertFalse(
+            stale_decision_gates["gates"][
+                "external_pilot_active_site_evidence_decisions_review_only"
+            ]
+        )
+        self.assertIn(
+            "external_pilot_active_site_evidence_decisions_review_only",
+            stale_decision_gates["blockers"],
         )
 
     def test_external_transfer_gate_requires_review_only_artifacts(self) -> None:

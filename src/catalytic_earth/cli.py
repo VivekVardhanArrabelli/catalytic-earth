@@ -132,6 +132,7 @@ from .transfer_scope import (
     build_external_source_evidence_request_export,
     build_external_source_heuristic_control_queue,
     build_external_source_heuristic_control_scores,
+    build_external_source_pilot_active_site_evidence_decisions,
     build_external_source_pilot_candidate_priority,
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
@@ -2060,6 +2061,45 @@ def cmd_build_external_source_pilot_evidence_dossiers(
     print(
         "Wrote external source pilot evidence dossiers to "
         f"{args.out} ({dossiers['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_active_site_evidence_decisions(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "pilot_evidence_dossiers",
+            "pilot_evidence_packet",
+            "active_site_sourcing_resolution",
+            "reaction_evidence_sample",
+            "backend_sequence_search",
+            "pilot_representation_backend_sample",
+            "transfer_blocker_matrix",
+        ),
+        blocker_removed="external_pilot_active_site_source_status_ambiguity",
+    )
+    decisions = build_external_source_pilot_active_site_evidence_decisions(
+        pilot_evidence_dossiers=artifact_payloads["pilot_evidence_dossiers"],
+        pilot_evidence_packet=artifact_payloads["pilot_evidence_packet"],
+        active_site_sourcing_resolution=artifact_payloads[
+            "active_site_sourcing_resolution"
+        ],
+        reaction_evidence_sample=artifact_payloads["reaction_evidence_sample"],
+        backend_sequence_search=artifact_payloads["backend_sequence_search"],
+        pilot_representation_backend_sample=artifact_payloads[
+            "pilot_representation_backend_sample"
+        ],
+        transfer_blocker_matrix=artifact_payloads["transfer_blocker_matrix"],
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), decisions)
+    print(
+        "Wrote external source pilot active-site evidence decisions to "
+        f"{args.out} ({decisions['metadata']['candidate_count']} candidates)"
     )
     return 0
 
@@ -5608,6 +5648,58 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_external_source_pilot_evidence_dossiers
     )
 
+    external_pilot_active_site_decisions = subparsers.add_parser(
+        "build-external-source-pilot-active-site-evidence-decisions",
+        help=(
+            "classify active-site evidence status for selected external pilot rows "
+            "without import decisions"
+        ),
+    )
+    external_pilot_active_site_decisions.add_argument(
+        "--pilot-evidence-dossiers",
+        default="artifacts/v3_external_source_pilot_evidence_dossiers_1025.json",
+    )
+    external_pilot_active_site_decisions.add_argument(
+        "--pilot-evidence-packet",
+        default="artifacts/v3_external_source_pilot_evidence_packet_1025.json",
+    )
+    external_pilot_active_site_decisions.add_argument(
+        "--active-site-sourcing-resolution",
+        default="artifacts/v3_external_source_active_site_sourcing_resolution_1025.json",
+    )
+    external_pilot_active_site_decisions.add_argument(
+        "--reaction-evidence-sample",
+        default="artifacts/v3_external_source_reaction_evidence_sample_1025.json",
+    )
+    external_pilot_active_site_decisions.add_argument(
+        "--backend-sequence-search",
+        default="artifacts/v3_external_source_backend_sequence_search_1025.json",
+    )
+    external_pilot_active_site_decisions.add_argument(
+        "--pilot-representation-backend-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_sample_1025.json"
+        ),
+    )
+    external_pilot_active_site_decisions.add_argument(
+        "--transfer-blocker-matrix",
+        default="artifacts/v3_external_source_transfer_blocker_matrix_1025.json",
+    )
+    external_pilot_active_site_decisions.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_active_site_decisions.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        ),
+    )
+    external_pilot_active_site_decisions.set_defaults(
+        func=cmd_build_external_source_pilot_active_site_evidence_decisions
+    )
+
     external_transfer_gate = subparsers.add_parser(
         "check-external-source-transfer-gates",
         help="gate review-only external-source transfer artifacts before import work",
@@ -5842,6 +5934,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--pilot-evidence-dossiers",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--pilot-active-site-evidence-decisions",
         default=None,
     )
     external_transfer_gate.add_argument(

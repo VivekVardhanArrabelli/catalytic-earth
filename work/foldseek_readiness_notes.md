@@ -3,6 +3,7 @@
 Recorded: 2026-05-14T03:05:45Z
 Updated: 2026-05-14T09:01:28Z
 Delegated slice update: 2026-05-14T10:02:47Z
+All-materializable sidecar update: 2026-05-14T10:45:00Z
 
 Status:
 
@@ -35,6 +36,16 @@ Current TM-score readiness:
   the same readiness path to 100 deterministic selected PDB mmCIF sidecars in
   the same directory, with 0 fetch failures and 572 supported selected
   structures still unstaged behind the cap.
+- `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`
+  stages all currently materializable supported selected coordinates for the
+  accepted 1,000 context: 672 unique supported selected PDB mmCIF sidecars,
+  676 coordinate-materializable evaluated rows, 0 fetch failures, and 0
+  supported selected structures left unstaged. It removes the unstaged
+  selected-coordinate sidecar blocker, but remains review-only and non-countable
+  with `tm_score_split_computed=false` and
+  `full_tm_score_split_computed=false`. The remaining blockers are the two
+  evaluated rows with missing/unsupported selected structures (`m_csa:372` and
+  `m_csa:501`) and the still-unrun full Foldseek/TM-score split/target check.
 - `artifacts/v3_foldseek_tm_score_signal_1000_staged25.json` adds a bounded
   Foldseek `easy-search` signal over only those staged sidecars. It records
   25 staged coordinates, 1,840 pair rows, 1,840 mapped rows, 532 staged
@@ -106,6 +117,20 @@ PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness
   --coordinate-dir artifacts/v3_foldseek_coordinates_1000 \
   --max-coordinate-files 100 \
   --out artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json
+```
+
+The all-materializable coordinate-readiness command is:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness \
+  --slice-id 1000 \
+  --retrieval artifacts/v3_geometry_retrieval_1000.json \
+  --geometry artifacts/v3_geometry_features_1000.json \
+  --sequence-holdout artifacts/v3_sequence_distance_holdout_eval_1000.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --coordinate-dir artifacts/v3_foldseek_coordinates_1000 \
+  --max-coordinate-files 676 \
+  --out artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json
 ```
 
 The exact partial staged-coordinate TM signal command is:

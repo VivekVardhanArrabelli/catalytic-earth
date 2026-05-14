@@ -262,13 +262,21 @@ selected rows without explicit active-site evidence are flagged, and no
 selected row is missing specific reaction context. Backend no-signal rows no
 longer inherit the stale complete-near-duplicate sequence blockers in the
 pilot packet or dossiers.
+`artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json`
+now classifies those 10 selected rows into review-only active-site evidence
+decision states. It records 7 rows with explicit active-site source evidence
+and 3 rows with binding context only, removes the pilot source-status ambiguity
+blocker, and keeps all 10 rows non-countable and not import-ready because
+broader duplicate screening, representation controls, review decisions, and the
+full label-factory gate remain unresolved.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
 external rows remain non-countable; the gate authorizes evidence collection
 only, not label import. Its lineage metadata now records a clean 1,025 slice
-across 64 supplied external artifacts, includes the sequence-holdout audit and
-pilot representation sample in row-level candidate-lineage validation, and
+across 65 supplied external artifacts, includes the sequence-holdout audit,
+pilot active-site evidence decisions, and pilot representation sample in
+row-level candidate-lineage validation, and
 fails fast on mixed-slice artifact paths or payload-declared slice
 contradictions. The import-readiness audit, transfer blocker matrix, pilot
 evidence packet, and pilot evidence dossiers now run the same artifact-path
@@ -312,8 +320,13 @@ heldout/in-distribution train/test pairs, max observed train/test TM score
 `0.7515`, and 0 unmapped raw Foldseek names, with 0 countable/import-ready
 rows. This removes the staged25-only proof blocker and the expanded40 raw-name
 mapping blocker, but it is still partial, non-countable, and not import-ready.
-The `<0.7` target is not achieved on the computed subset, and the full TM-score
-split still requires remaining selected-coordinate materialization plus a full
+`artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`
+then stages all currently materializable supported selected coordinates:
+672 unique selected PDB mmCIF sidecars for 676 materializable evaluated rows,
+with 0 fetch failures and 0 supported selected structures left unstaged. This
+removes the unstaged selected-coordinate sidecar blocker. The `<0.7` target is
+not achieved on the computed 40-coordinate subset, and the full TM-score split
+still requires the two missing selected-structure rows plus a full
 Foldseek-backed split builder.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped

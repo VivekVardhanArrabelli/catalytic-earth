@@ -82,11 +82,19 @@ removes the staged25-only proof blocker and the expanded40 raw-name mapping
 blocker, but it remains review-only, non-countable, and not import-ready. The
 full TM-score split is still false, and the `<0.7` target is not achieved on
 this partial signal.
+`artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`
+stages all currently materializable supported selected coordinates for the
+accepted 1,000 context: 672 unique selected PDB mmCIF sidecars, 676
+materializable evaluated rows, 0 fetch failures, and 0 supported selected
+structures left unstaged. This removes the unstaged selected-coordinate
+sidecar blocker, but it remains review-only and non-countable because the full
+Foldseek/TM-score split has not been run and `m_csa:372` plus `m_csa:501`
+still lack supported selected structures.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
-`10.941cd33`). A TM-score split remains blocked until the remaining selected
-PDB/AlphaFold coordinates are materialized and wired into a Foldseek-backed
-split builder.
+`10.941cd33`). A TM-score split remains blocked until the two missing
+selected-structure rows are resolved and a full Foldseek-backed split builder
+is run.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,
@@ -108,6 +116,13 @@ Priority blockers:
   broad-EC ambiguity;
 - fill the no-decision review packets for those pilot candidates only after
   evidence assembly, and before any countable import attempt.
+- `artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json`
+  now classifies the 10 selected pilot rows as review-only active-site evidence
+  decisions: 7 have explicit active-site source evidence, 3 have binding
+  context only, 0 are countable, and 0 are import-ready. This removes the
+  pilot source-status ambiguity blocker, but every selected row still requires
+  broader duplicate screening, representation-control review, a completed
+  review decision, and the full label-factory gate before import.
 - The active-site evidence pass now samples all 25 ready candidates from
   UniProtKB feature records. It finds active-site features for 15 candidates,
   leaves 10 candidates as active-site-feature gaps, and keeps all rows

@@ -516,6 +516,11 @@ def build_foldseek_coordinate_readiness(
         and not missing_or_unsupported
         and not fetch_failures
     )
+    all_supported_structures_materialized = (
+        bool(structures_by_key)
+        and len(materialized_keys) == len(structures_by_key)
+        and not fetch_failures
+    )
     blocker_key = (
         "blocker_removed" if all_possible_structures_materialized and foldseek_info["available"]
         else "blocker_narrowed"
@@ -525,13 +530,47 @@ def build_foldseek_coordinate_readiness(
         if blocker_key == "blocker_removed"
         else "selected structure ids, Foldseek provenance, and bounded coordinate materialization status are explicit; remaining unstaged or failed coordinates block TM-score split computation"
     )
+    blocker_removed = (
+        "all currently materializable supported selected coordinates are staged "
+        "and Foldseek is available; removes the unstaged selected-coordinate "
+        "sidecar blocker"
+        if all_supported_structures_materialized and foldseek_info["available"]
+        else None
+    )
+    blockers_remaining = [
+        "full Foldseek/TM-score split builder has not been run",
+        "TM-score target checks remain unavailable until a Foldseek signal/split is computed",
+    ]
+    if not structures_by_key:
+        blockers_remaining.append("no supported selected structures were discovered")
+    if len(materialized_keys) < len(structures_by_key):
+        blockers_remaining.append("supported selected structures remain unstaged")
+    if missing_or_unsupported:
+        blockers_remaining.append(
+            "one or more evaluated rows lacks a supported selected structure"
+        )
+    if fetch_failures:
+        blockers_remaining.append("one or more selected coordinate fetches failed")
+    if not foldseek_info["available"]:
+        blockers_remaining.append(
+            "Foldseek binary was not resolved or did not report a version"
+        )
 
     limitations = [
         "review-only readiness artifact; it creates no countable labels and no import-ready rows",
         "tm_score_split_computed=false because Foldseek/TM-score clustering is not executed here",
-        "coordinate staging is capped and deterministic; unstaged supported structures remain TM-score blockers",
         "coordinate materialization records selected structures only and does not validate catalytic function",
     ]
+    if len(materialized_keys) < len(structures_by_key):
+        limitations.append(
+            "coordinate staging is capped and deterministic; unstaged supported "
+            "structures remain TM-score blockers"
+        )
+    elif structures_by_key:
+        limitations.append(
+            "coordinate staging is deterministic; all currently materializable "
+            "supported selected structures are staged"
+        )
     if not foldseek_info["available"]:
         limitations.append("Foldseek binary was not resolved or did not report a version")
     if missing_or_unsupported:
@@ -544,12 +583,15 @@ def build_foldseek_coordinate_readiness(
     metadata = {
         "method": "foldseek_coordinate_readiness",
         blocker_key: blocker_value,
+        "blocker_removed": blocker_removed,
+        "blockers_remaining": sorted(set(blockers_remaining)),
         "slice_id": str(slice_id),
         "review_status": "review_only_non_countable",
         "countable_label_candidate_count": 0,
         "import_ready_candidate_count": 0,
         "ready_for_label_import": False,
         "tm_score_split_computed": False,
+        "full_tm_score_split_computed": False,
         "real_tm_score_computed": False,
         "label_registry_count": len(labels),
         "retrieval_result_count": len(retrieval.get("results", []) or []),
@@ -565,15 +607,35 @@ def build_foldseek_coordinate_readiness(
             1 for row in rows if row["coordinate_materialization_possible"]
         ),
         "coordinate_fetch_cap": fetch_limit,
+        "coordinate_fetch_cap_applied": bool(
+            fetch_limit and len(structures_by_key) > fetch_limit
+        ),
         "coordinate_directory": str(coordinate_dir_path) if coordinate_dir_path else None,
         "materialized_coordinate_count": len(materialized_keys),
         "materialized_structure_ids": materialized_keys,
+        "available_staged_coordinate_count": len(materialized_keys),
+        "staged_coordinate_count": len(materialized_keys),
+        "staged_structure_count": len(materialized_keys),
         "missing_or_unsupported_structure_count": len(missing_or_unsupported),
         "missing_or_unsupported_structures": missing_or_unsupported,
         "fetch_failure_count": len(fetch_failures),
         "fetch_failures": fetch_failures,
         "not_materialized_structure_count": len(not_materialized),
         "not_materialized_structures": not_materialized,
+        "tm_signal_coordinate_cap_requested": None,
+        "tm_signal_coordinate_cap_applied": False,
+        "pair_count": 0,
+        "mapped_pair_count": 0,
+        "train_test_pair_count": 0,
+        "heldout_in_distribution_pair_count": 0,
+        "heldout_pair_count": 0,
+        "in_distribution_pair_count": 0,
+        "max_observed_train_test_tm_score": None,
+        "max_observed_train_test_tm_score_computable": False,
+        "threshold_target": "<0.7",
+        "tm_score_target_achieved_for_computed_subset": None,
+        "raw_name_mapping_unmapped_count": 0,
+        "raw_name_mapping_unmapped_names": [],
         "foldseek_binary_requested": foldseek_info["requested"],
         "foldseek_binary_resolved": foldseek_info["resolved"],
         "foldseek_binary_available": foldseek_info["available"],
@@ -833,6 +895,7 @@ def build_foldseek_tm_score_signal(
         full_claim_blockers.append("available staged coordinates were excluded by the signal cap")
     if not computed_tm_target_achieved:
         full_claim_blockers.append("computed train/test TM-score target <0.7 is not achieved")
+    blockers_remaining = sorted(set(full_claim_blockers))
     limitations = [
         "partial staged-coordinate Foldseek signal only; it is not a full accepted-registry TM-score holdout",
         "tm_score_split_computed=false because not every evaluated coordinate is staged and no split is computed here",
@@ -919,6 +982,7 @@ def build_foldseek_tm_score_signal(
         "tm_score_signal_coverage_status": coverage_status,
         "full_tm_score_holdout_claim_permitted": False,
         "full_tm_score_holdout_claim_blockers": sorted(set(full_claim_blockers)),
+        "blockers_remaining": blockers_remaining,
         "threshold_target": "<0.7",
         "tm_score_threshold_target": "<0.7",
         "tm_score_target_achieved_for_computed_subset": computed_tm_target_achieved,

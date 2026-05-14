@@ -3201,6 +3201,207 @@ class CliTests(unittest.TestCase):
             )
             self.assertFalse(out.exists())
 
+    def test_build_external_pilot_active_site_decisions_cli(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            paths = {
+                "pilot_evidence_dossiers": (
+                    root / "v3_external_source_pilot_evidence_dossiers_1025.json"
+                ),
+                "pilot_evidence_packet": (
+                    root / "v3_external_source_pilot_evidence_packet_1025.json"
+                ),
+                "active_site_sourcing_resolution": (
+                    root
+                    / "v3_external_source_active_site_sourcing_resolution_1025.json"
+                ),
+                "reaction_evidence_sample": (
+                    root / "v3_external_source_reaction_evidence_sample_1025.json"
+                ),
+                "backend_sequence_search": (
+                    root / "v3_external_source_backend_sequence_search_1025.json"
+                ),
+                "pilot_representation_backend_sample": (
+                    root
+                    / "v3_external_source_pilot_representation_backend_sample_1025.json"
+                ),
+                "transfer_blocker_matrix": (
+                    root / "v3_external_source_transfer_blocker_matrix_1025.json"
+                ),
+            }
+            payloads = {
+                "pilot_evidence_dossiers": {
+                    "metadata": {
+                        "method": "external_source_pilot_evidence_dossier",
+                        "source_slice_id": 1025,
+                    },
+                    "rows": [
+                        {
+                            "rank": 1,
+                            "accession": "P12345",
+                            "entry_id": "uniprot:P12345",
+                            "lane_id": "external_source:lyase",
+                            "active_site_evidence": {
+                                "explicit_active_site_feature_count": 1,
+                                "binding_site_feature_count": 0,
+                            },
+                            "reaction_evidence": {
+                                "reaction_record_count": 1,
+                                "specific_reaction_record_count": 1,
+                                "rhea_ids": ["RHEA:1"],
+                            },
+                            "sequence_evidence": {
+                                "backend_search_complete": True,
+                                "backend_search_status": "no_near_duplicate_signal",
+                            },
+                            "representation_control": {
+                                "backend_status": (
+                                    "learned_representation_sample_complete"
+                                ),
+                                "comparison_status": (
+                                    "pilot_sequence_embedding_control"
+                                ),
+                            },
+                            "remaining_blockers": [
+                                "external_review_decision_artifact_not_built"
+                            ],
+                        }
+                    ],
+                },
+                "pilot_evidence_packet": {
+                    "metadata": {
+                        "method": "external_source_pilot_evidence_packet",
+                        "source_slice_id": 1025,
+                    },
+                    "rows": [
+                        {
+                            "accession": "P12345",
+                            "pilot_selection_status": "selected_for_review_pilot",
+                        }
+                    ],
+                },
+                "active_site_sourcing_resolution": {
+                    "metadata": {
+                        "method": "external_source_active_site_sourcing_resolution",
+                        "source_slice_id": 1025,
+                    },
+                    "rows": [],
+                },
+                "reaction_evidence_sample": {
+                    "metadata": {
+                        "method": "external_source_reaction_evidence_sample",
+                        "source_slice_id": 1025,
+                    },
+                    "rows": [],
+                },
+                "backend_sequence_search": {
+                    "metadata": {
+                        "method": "external_source_backend_sequence_search",
+                        "source_slice_id": 1025,
+                    },
+                    "rows": [
+                        {
+                            "accession": "P12345",
+                            "backend_name": "mmseqs2_easy_search",
+                            "backend_search_complete": True,
+                            "search_status": "no_near_duplicate_signal",
+                        }
+                    ],
+                },
+                "pilot_representation_backend_sample": {
+                    "metadata": {
+                        "method": "external_source_representation_backend_sample",
+                        "source_slice_id": 1025,
+                    },
+                    "rows": [
+                        {
+                            "accession": "P12345",
+                            "backend_status": (
+                                "learned_representation_sample_complete"
+                            ),
+                            "comparison_status": (
+                                "pilot_sequence_embedding_control"
+                            ),
+                        }
+                    ],
+                },
+                "transfer_blocker_matrix": {
+                    "metadata": {
+                        "method": "external_source_transfer_blocker_matrix",
+                        "source_slice_id": 1025,
+                    },
+                    "rows": [{"accession": "P12345", "blockers": []}],
+                },
+            }
+            for name, path in paths.items():
+                path.write_text(json.dumps(payloads[name]), encoding="utf-8")
+            out = root / "decisions.json"
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-external-source-pilot-active-site-evidence-decisions",
+                    "--pilot-evidence-dossiers",
+                    str(paths["pilot_evidence_dossiers"]),
+                    "--pilot-evidence-packet",
+                    str(paths["pilot_evidence_packet"]),
+                    "--active-site-sourcing-resolution",
+                    str(paths["active_site_sourcing_resolution"]),
+                    "--reaction-evidence-sample",
+                    str(paths["reaction_evidence_sample"]),
+                    "--backend-sequence-search",
+                    str(paths["backend_sequence_search"]),
+                    "--pilot-representation-backend-sample",
+                    str(paths["pilot_representation_backend_sample"]),
+                    "--transfer-blocker-matrix",
+                    str(paths["transfer_blocker_matrix"]),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                payload["metadata"]["method"],
+                "external_source_pilot_active_site_evidence_decisions",
+            )
+            self.assertEqual(
+                payload["metadata"]["artifact_lineage"]["blocker_removed"],
+                "external_pilot_active_site_source_status_ambiguity",
+            )
+            self.assertEqual(payload["metadata"]["candidate_count"], 1)
+            self.assertEqual(payload["metadata"]["countable_label_candidate_count"], 0)
+            self.assertFalse(payload["metadata"]["ready_for_label_import"])
+            self.assertEqual(
+                payload["rows"][0]["active_site_evidence_decision_status"],
+                "explicit_active_site_source_present",
+            )
+
+    def test_external_transfer_gate_help_exposes_pilot_active_site_input(self) -> None:
+        result = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "catalytic_earth.cli",
+                "check-external-source-transfer-gates",
+                "--help",
+            ],
+            cwd=ROOT,
+            env={"PYTHONPATH": str(ROOT / "src")},
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+        self.assertIn("--pilot-active-site-evidence-decisions", result.stdout)
+
     def test_automation_lock_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             lock_dir = Path(tmpdir) / "run.lock"

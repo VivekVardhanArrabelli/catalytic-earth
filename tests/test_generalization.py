@@ -372,6 +372,65 @@ class FoldseekCoordinateReadinessTests(unittest.TestCase):
         )
         self.assertTrue(all(not row["import_ready"] for row in artifact["rows"]))
 
+    def test_readiness_records_supported_coordinate_blocker_removed(self) -> None:
+        labels = [
+            MechanismLabel("m_csa:1", "fp_a", "seed_fingerprint", "medium", "a"),
+            MechanismLabel("m_csa:2", "fp_a", "seed_fingerprint", "medium", "a"),
+            MechanismLabel("m_csa:3", "fp_b", "seed_fingerprint", "medium", "b"),
+        ]
+        retrieval = {
+            "results": [
+                _result("m_csa:1", "fp_a", 0.8, pdb_id="1AAA"),
+                _result("m_csa:2", "fp_a", 0.8, pdb_id="2BBB"),
+                {
+                    "entry_id": "m_csa:3",
+                    "entry_name": "m_csa:3",
+                    "status": "ok",
+                    "top_fingerprints": [{"fingerprint_id": "fp_b", "score": 0.8}],
+                },
+            ]
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            artifact = build_foldseek_coordinate_readiness(
+                retrieval=retrieval,
+                labels=labels,
+                slice_id="test",
+                foldseek_binary="/bin/echo",
+                coordinate_dir=str(Path(tmpdir) / "coords"),
+                max_coordinate_files=2,
+                fetch_pdb_cif_fn=lambda pdb_id: f"data_{pdb_id}\n#\n",
+            )
+
+        metadata = artifact["metadata"]
+        self.assertEqual(metadata["materialized_coordinate_count"], 2)
+        self.assertEqual(metadata["staged_coordinate_count"], 2)
+        self.assertEqual(metadata["missing_or_unsupported_structure_count"], 1)
+        self.assertIn("all currently materializable", metadata["blocker_removed"])
+        self.assertIn(
+            "one or more evaluated rows lacks a supported selected structure",
+            metadata["blockers_remaining"],
+        )
+        self.assertIn(
+            "full Foldseek/TM-score split builder has not been run",
+            metadata["blockers_remaining"],
+        )
+        self.assertNotIn(
+            "supported selected structures remain unstaged",
+            metadata["blockers_remaining"],
+        )
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertEqual(metadata["train_test_pair_count"], 0)
+        self.assertIsNone(metadata["max_observed_train_test_tm_score"])
+        self.assertFalse(metadata["max_observed_train_test_tm_score_computable"])
+        self.assertEqual(metadata["raw_name_mapping_unmapped_count"], 0)
+        self.assertIn(
+            "coordinate staging is deterministic; all currently materializable supported selected structures are staged",
+            metadata["limitations"],
+        )
+        self.assertFalse(metadata["ready_for_label_import"])
+
     def test_current_1000_foldseek_readiness_artifact_is_pinned(self) -> None:
         artifact = _load_artifact("artifacts/v3_foldseek_coordinate_readiness_1000.json")
         metadata = artifact["metadata"]
@@ -667,6 +726,10 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
             metadata["full_tm_score_holdout_claim_blockers"],
         )
         self.assertIn(
+            "computed train/test TM-score target <0.7 is not achieved",
+            metadata["blockers_remaining"],
+        )
+        self.assertIn(
             "selected structures remain outside the computed signal",
             metadata["full_tm_score_holdout_claim_blockers"],
         )
@@ -714,6 +777,42 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertFalse(metadata["ready_for_label_import"])
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
         self.assertEqual(metadata["foldseek_version"], "10.941cd33")
+
+    def test_all_materializable_1000_foldseek_readiness_artifact_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_coordinate_readiness")
+        self.assertEqual(metadata["coordinate_fetch_cap"], 676)
+        self.assertFalse(metadata["coordinate_fetch_cap_applied"])
+        self.assertEqual(metadata["selected_structure_count"], 672)
+        self.assertEqual(metadata["coordinate_materialization_possible_count"], 676)
+        self.assertEqual(metadata["materialized_coordinate_count"], 672)
+        self.assertEqual(metadata["staged_coordinate_count"], 672)
+        self.assertEqual(metadata["missing_or_unsupported_structure_count"], 2)
+        self.assertEqual(metadata["fetch_failure_count"], 0)
+        self.assertEqual(metadata["not_materialized_structure_count"], 0)
+        self.assertIn("all currently materializable", metadata["blocker_removed"])
+        self.assertIn(
+            "one or more evaluated rows lacks a supported selected structure",
+            metadata["blockers_remaining"],
+        )
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertIsNone(metadata["max_observed_train_test_tm_score"])
+        self.assertFalse(metadata["max_observed_train_test_tm_score_computable"])
+        self.assertEqual(metadata["train_test_pair_count"], 0)
+        self.assertEqual(metadata["raw_name_mapping_unmapped_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["foldseek_version"], "10.941cd33")
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in artifact["rows"])
+        )
+        self.assertTrue(all(not row["import_ready"] for row in artifact["rows"]))
 
     def test_expanded_40_foldseek_tm_score_completed_partial_artifact_is_pinned(self) -> None:
         artifact = _load_artifact(

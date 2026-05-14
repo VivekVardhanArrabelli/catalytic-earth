@@ -57,38 +57,61 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 - External-source repair/import: No for import; yes only for review-only repair
   evidence. The MMseqs2 backend search now clears bounded current-reference
   near-duplicate search debt for 28 no-signal external rows, but 2 exact
-  sequence holdouts, active-site evidence gaps, the still-uncomputed requested
-  650M representation control, expert-review no-decision artifacts, and full
-  factory gates still block every external row from import. The requested 650M
-  sidecars now fall back to computed 150M rows after confirming the 650M weights
-  are uncached and locally infeasible, and explicitly mark
+  sequence holdouts, 3 selected-pilot rows with binding-context-only
+  active-site evidence, the still-uncomputed requested 650M representation
+  control, expert-review no-decision artifacts, broader duplicate screening,
+  and full factory gates still block every external row from import. The new
+  selected-pilot active-site decision artifact removes source-status ambiguity
+  for the 10 selected rows by recording 7 explicit active-site source rows and
+  3 binding-context-only rows, all review-only and non-countable. The requested
+  650M sidecars now fall back to computed 150M rows after confirming the 650M
+  weights are uncached and locally infeasible, and explicitly mark
   `requested_650m_or_larger_representation_backend_not_computed`, so they are
   stronger representation-control evidence but still not import evidence.
 - Scientific generalization work: Yes. Accepted-registry MMseqs2 holdouts and
   the new external backend sequence search are real backend evidence, with 0
   held-out out-of-scope false non-abstentions in the countable path. The
   Foldseek/TM-score blocker is narrowed, not cleared: Foldseek 10.941cd33 is
-  recorded through the explicit temporary binary path, 676 evaluated rows have
-  supported selected PDB coordinates, 100 selected PDB mmCIF sidecars are now
-  staged, and the expanded40 partial staged-coordinate Foldseek signal is now
-  completed with 5,699 pair rows, all 5,699 safely mapped rows, 1,633
-  heldout/in-distribution train/test pairs, max train/test TM score `0.7515`,
-  0 unmapped raw names, and 0 countable/import-ready rows. This removes the
-  staged25-only proof blocker and the expanded40 raw-name mapping blocker, but
-  it is still review-only and non-countable; the computed subset fails the
-  `<0.7` target and `tm_score_split_computed=false` until full coordinate
-  coverage and a full split builder exist.
+  recorded through the explicit temporary binary path, and all currently
+  materializable selected coordinates are now staged: 672 unique selected PDB
+  sidecars covering 676 materializable evaluated rows, with 0 fetch failures
+  and 0 supported selected structures left unstaged. The expanded40 partial
+  staged-coordinate Foldseek signal remains the only TM signal: 5,699 pair
+  rows, all 5,699 safely mapped rows, 1,633 heldout/in-distribution train/test
+  pairs, max train/test TM score `0.7515`, 0 unmapped raw names, and 0
+  countable/import-ready rows. The all-materializable sidecar removes the
+  unstaged selected-coordinate blocker, but the computed 40-coordinate subset
+  fails the `<0.7` target and `tm_score_split_computed=false` until the two
+  missing selected structures and a full Foldseek split builder are resolved.
 - SPOF hardening work: Yes. External artifact lineage, backend metadata,
   review-only audits, and gate checks are now explicit and tested. The Foldseek
   capped-signal path now builds a dedicated selected-coordinate search directory
   instead of pointing Foldseek at the whole sidecar directory, avoiding a cap
-  metadata/execution mismatch, and the expanded40 artifact now records explicit
-  false-full-claim blockers. Maintainability risk is mainly the large artifact
-  graph and stale downstream pilot packets if future agents regenerate blocker
-  priorities without refreshing dependent pilot evidence.
+  metadata/execution mismatch, the expanded40 artifact now records explicit
+  false-full-claim blockers, and the new pilot active-site decision artifact is
+  wired through the CLI and external transfer gate. Maintainability risk is
+  mainly the large artifact graph and stale downstream pilot packets if future
+  agents regenerate blocker priorities without refreshing dependent pilot
+  evidence.
 
 ## Recent Project Progress
 
+- Staged all currently materializable selected Foldseek coordinates for the
+  accepted 1,000 context in
+  `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`:
+  672 unique selected PDB mmCIF sidecars, 676 materializable evaluated rows,
+  0 fetch failures, and 0 supported selected structures left unstaged. This
+  removes the unstaged selected-coordinate sidecar blocker while keeping
+  `tm_score_split_computed=false` and `full_tm_score_split_computed=false`.
+  Full TM-score split work remains blocked by `m_csa:372`, `m_csa:501`, and the
+  unrun all-materializable Foldseek split builder.
+- Added
+  `artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json`
+  plus CLI and transfer-gate wiring. The artifact classifies the 10 selected
+  external pilot rows as review-only evidence decisions: 7 rows have explicit
+  active-site source evidence, 3 rows remain binding-context-only, 0 rows are
+  countable, and 0 rows are import-ready. The external transfer gate now checks
+  the artifact as part of the typed input contract and passes 68/68 checks.
 - Hardened the 650M representation-readiness path without claiming a real 650M
   run. The mapped-control and selected-pilot 650M sidecars now record the 650M
   cache miss, requested dimension `1280`, computed fallback backend

@@ -387,6 +387,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_evidence_dossiers_1025.json"
         )
+        pilot_active_site_decisions = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        )
         external_import_safety = _load_json(
             ROOT
             / "artifacts"
@@ -1670,6 +1675,66 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 for blocker in row["remaining_blockers"]
             )
         )
+        self.assertEqual(
+            pilot_active_site_decisions["metadata"]["method"],
+            "external_source_pilot_active_site_evidence_decisions",
+        )
+        self.assertEqual(
+            pilot_active_site_decisions["metadata"]["blocker_removed"],
+            "external_pilot_active_site_source_status_ambiguity",
+        )
+        self.assertEqual(
+            pilot_active_site_decisions["metadata"]["artifact_lineage"][
+                "blocker_removed"
+            ],
+            "external_pilot_active_site_source_status_ambiguity",
+        )
+        self.assertFalse(
+            pilot_active_site_decisions["metadata"]["ready_for_label_import"]
+        )
+        self.assertEqual(
+            pilot_active_site_decisions["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertEqual(pilot_active_site_decisions["metadata"]["candidate_count"], 10)
+        self.assertEqual(
+            pilot_active_site_decisions["metadata"]["decision_status_counts"],
+            {
+                "binding_context_only": 3,
+                "explicit_active_site_source_present": 7,
+            },
+        )
+        self.assertEqual(
+            pilot_active_site_decisions["metadata"][
+                "broader_duplicate_screening_required_count"
+            ],
+            10,
+        )
+        self.assertEqual(
+            pilot_active_site_decisions["metadata"]["import_ready_row_count"], 0
+        )
+        self.assertTrue(
+            all(
+                row["review_status"]
+                == "external_pilot_active_site_evidence_decision_review_only"
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                and row["broader_duplicate_screening_status"]
+                == "broader_duplicate_screening_required"
+                and row["import_readiness_blockers"]
+                for row in pilot_active_site_decisions["rows"]
+            )
+        )
+        self.assertEqual(
+            {
+                row["active_site_evidence_decision_status"]
+                for row in pilot_active_site_decisions["rows"]
+                if row["active_site_evidence_source_category"] == "binding_context_only"
+            },
+            {"binding_context_only"},
+        )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
         self.assertEqual(
             external_import_safety["metadata"]["total_new_countable_label_count"], 0
@@ -1681,8 +1746,8 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             True,
         )
         self.assertEqual(external_transfer_gate["blockers"], [])
-        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 67)
-        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 67)
+        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 68)
+        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 68)
         self.assertEqual(
             external_transfer_gate["metadata"]["gate_input_contract"],
             "ExternalSourceTransferGateInputs.v1",
@@ -1712,6 +1777,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertTrue(
             external_transfer_gate["gates"][
+                "external_pilot_active_site_evidence_decisions_review_only"
+            ]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
                 "external_pilot_representation_sample_review_only"
             ]
         )
@@ -1730,6 +1800,18 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "external_pilot_review_completed_decision_count"
             ],
             0,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "external_pilot_active_site_decision_candidate_count"
+            ],
+            10,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "external_pilot_active_site_decision_no_explicit_source_count"
+            ],
+            3,
         )
         self.assertEqual(
             external_transfer_gate["metadata"][
@@ -1765,6 +1847,10 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertIn(
             "pilot_evidence_dossiers",
+            external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
+        )
+        self.assertIn(
+            "pilot_active_site_evidence_decisions",
             external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
         )
         self.assertIn(

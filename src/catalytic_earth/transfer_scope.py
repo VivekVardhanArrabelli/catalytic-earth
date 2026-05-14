@@ -137,6 +137,7 @@ EXTERNAL_TRANSFER_CANDIDATE_LINEAGE_FIELDS = (
     "pilot_review_decision_export",
     "pilot_evidence_packet",
     "pilot_evidence_dossiers",
+    "pilot_active_site_evidence_decisions",
     "pilot_representation_backend_sample",
     "binding_context_repair_plan",
     "binding_context_mapping_sample",
@@ -215,6 +216,7 @@ class ExternalSourceTransferGateInputs:
     pilot_review_decision_export: dict[str, Any] | None = None
     pilot_evidence_packet: dict[str, Any] | None = None
     pilot_evidence_dossiers: dict[str, Any] | None = None
+    pilot_active_site_evidence_decisions: dict[str, Any] | None = None
     pilot_representation_backend_sample: dict[str, Any] | None = None
     binding_context_repair_plan: dict[str, Any] | None = None
     binding_context_repair_plan_audit: dict[str, Any] | None = None
@@ -8223,6 +8225,432 @@ def build_external_source_pilot_evidence_dossiers(
     }
 
 
+def build_external_source_pilot_active_site_evidence_decisions(
+    *,
+    pilot_evidence_dossiers: dict[str, Any],
+    pilot_evidence_packet: dict[str, Any],
+    active_site_sourcing_resolution: dict[str, Any],
+    reaction_evidence_sample: dict[str, Any],
+    backend_sequence_search: dict[str, Any],
+    pilot_representation_backend_sample: dict[str, Any],
+    transfer_blocker_matrix: dict[str, Any],
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Classify pilot active-site evidence without making review decisions."""
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    packets = _external_first_row_by_accession(pilot_evidence_packet)
+    sourcing = _external_first_row_by_accession(active_site_sourcing_resolution)
+    reactions = _external_rows_by_accession(reaction_evidence_sample)
+    sequence = _external_first_row_by_accession(backend_sequence_search)
+    representation = _external_first_row_by_accession(
+        pilot_representation_backend_sample
+    )
+    matrix = _external_first_row_by_accession(transfer_blocker_matrix)
+
+    rows: list[dict[str, Any]] = []
+    for dossier in (pilot_evidence_dossiers.get("rows", []) or [])[:max_rows]:
+        if not isinstance(dossier, dict):
+            continue
+        accession = _normalize_accession(dossier.get("accession"))
+        if not accession:
+            continue
+        packet_row = packets.get(accession, {})
+        sourcing_row = sourcing.get(accession, {})
+        reaction_rows = reactions.get(accession, [])
+        sequence_row = sequence.get(accession, {})
+        representation_row = representation.get(accession, {})
+        matrix_row = matrix.get(accession, {})
+        active_site_summary = dossier.get("active_site_evidence", {})
+        if not isinstance(active_site_summary, dict):
+            active_site_summary = {}
+        reaction_status = _external_pilot_reaction_evidence_status(
+            dossier.get("reaction_evidence", {}),
+            reaction_rows,
+        )
+        sequence_status = _external_pilot_sequence_decision_status(
+            dossier.get("sequence_evidence", {}),
+            sequence_row,
+        )
+        representation_status = _external_pilot_representation_decision_status(
+            dossier.get("representation_control", {}),
+            representation_row,
+            matrix_row,
+        )
+        source_category = _external_pilot_active_site_source_category(
+            active_site_summary,
+            sourcing_row,
+        )
+        decision_status = _external_pilot_active_site_decision_status(
+            source_category=source_category,
+            sequence_status=sequence_status,
+        )
+        blockers = _external_pilot_active_site_decision_blockers(
+            dossier=dossier,
+            source_category=source_category,
+            reaction_status=reaction_status,
+            sequence_status=sequence_status,
+            representation_status=representation_status,
+        )
+        rows.append(
+            {
+                "rank": dossier.get("rank"),
+                "accession": accession,
+                "entry_id": dossier.get("entry_id") or f"uniprot:{accession}",
+                "protein_name": dossier.get("protein_name"),
+                "lane_id": dossier.get("lane_id"),
+                "selected_for_review_pilot": True,
+                "pilot_selection_status": (
+                    packet_row.get("pilot_selection_status")
+                    or "selected_for_review_pilot"
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_status": (
+                    "external_pilot_active_site_evidence_decision_review_only"
+                ),
+                "decision_class": "review_only_evidence_status",
+                "active_site_evidence_decision_status": decision_status,
+                "active_site_evidence_source_category": source_category,
+                "active_site_source_status": (
+                    sourcing_row.get("active_site_source_status")
+                    or active_site_summary.get("sourcing_status")
+                ),
+                "explicit_active_site_feature_count": int(
+                    active_site_summary.get("explicit_active_site_feature_count", 0)
+                    or 0
+                ),
+                "sourced_active_site_position_count": int(
+                    active_site_summary.get("sourced_active_site_position_count", 0)
+                    or len(sourcing_row.get("sourced_active_site_positions", []) or [])
+                ),
+                "binding_site_feature_count": int(
+                    active_site_summary.get("binding_site_feature_count", 0)
+                    or sourcing_row.get("binding_site_feature_count", 0)
+                    or 0
+                ),
+                "active_site_feature_positions": active_site_summary.get(
+                    "feature_positions", []
+                ),
+                "reaction_mechanism_evidence_status": reaction_status,
+                "reaction_record_count": int(
+                    (dossier.get("reaction_evidence", {}) or {}).get(
+                        "reaction_record_count", 0
+                    )
+                    or len(reaction_rows)
+                ),
+                "specific_reaction_record_count": int(
+                    (dossier.get("reaction_evidence", {}) or {}).get(
+                        "specific_reaction_record_count", 0
+                    )
+                    or sum(
+                        1
+                        for row in reaction_rows
+                        if row.get("ec_specificity") == "specific"
+                    )
+                ),
+                "rhea_ids": (dossier.get("reaction_evidence", {}) or {}).get(
+                    "rhea_ids", []
+                ),
+                "sequence_holdout_backend_search_status": sequence_status,
+                "backend_sequence_search_status": sequence_row.get("search_status")
+                or (dossier.get("sequence_evidence", {}) or {}).get(
+                    "backend_search_status"
+                ),
+                "backend_sequence_search_complete": sequence_row.get(
+                    "backend_search_complete"
+                )
+                if sequence_row
+                else (dossier.get("sequence_evidence", {}) or {}).get(
+                    "backend_search_complete"
+                ),
+                "backend_sequence_backend_name": sequence_row.get("backend_name")
+                or (dossier.get("sequence_evidence", {}) or {}).get("backend_name"),
+                "broader_duplicate_screening_status": (
+                    "broader_duplicate_screening_required"
+                ),
+                "representation_control_status": representation_status,
+                "representation_backend_status": representation_row.get(
+                    "backend_status"
+                )
+                or (dossier.get("representation_control", {}) or {}).get(
+                    "backend_status"
+                ),
+                "representation_comparison_status": representation_row.get(
+                    "comparison_status"
+                )
+                or (dossier.get("representation_control", {}) or {}).get(
+                    "comparison_status"
+                ),
+                "import_readiness_blockers": blockers,
+                "next_action": _external_pilot_active_site_decision_next_action(
+                    source_category=source_category,
+                    sequence_status=sequence_status,
+                    representation_status=representation_status,
+                ),
+            }
+        )
+
+    status_counts = Counter(
+        row["active_site_evidence_decision_status"] for row in rows
+    )
+    source_counts = Counter(row["active_site_evidence_source_category"] for row in rows)
+    reaction_counts = Counter(row["reaction_mechanism_evidence_status"] for row in rows)
+    sequence_counts = Counter(row["sequence_holdout_backend_search_status"] for row in rows)
+    representation_counts = Counter(row["representation_control_status"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["import_readiness_blockers"]
+    )
+    return {
+        "metadata": {
+            "method": "external_source_pilot_active_site_evidence_decisions",
+            "blocker_removed": (
+                "external_pilot_active_site_source_status_ambiguity"
+            ),
+            "blocker_not_removed": [
+                "explicit_active_site_residue_sources_absent",
+                "broader_duplicate_screening_required",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ],
+            "source_pilot_evidence_dossiers_method": pilot_evidence_dossiers.get(
+                "metadata", {}
+            ).get("method"),
+            "source_pilot_evidence_packet_method": pilot_evidence_packet.get(
+                "metadata", {}
+            ).get("method"),
+            "source_active_site_sourcing_resolution_method": (
+                active_site_sourcing_resolution.get("metadata", {}).get("method")
+            ),
+            "source_reaction_evidence_sample_method": reaction_evidence_sample.get(
+                "metadata", {}
+            ).get("method"),
+            "source_backend_sequence_search_method": backend_sequence_search.get(
+                "metadata", {}
+            ).get("method"),
+            "source_representation_backend_sample_method": (
+                pilot_representation_backend_sample.get("metadata", {}).get("method")
+            ),
+            "source_transfer_blocker_matrix_method": transfer_blocker_matrix.get(
+                "metadata", {}
+            ).get("method"),
+            "artifact_lineage": artifact_lineage or {},
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_row_count": 0,
+            "completed_decision_count": 0,
+            "accepted_decision_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "decision_status_counts": dict(sorted(status_counts.items())),
+            "active_site_evidence_source_category_counts": dict(
+                sorted(source_counts.items())
+            ),
+            "reaction_mechanism_evidence_status_counts": dict(
+                sorted(reaction_counts.items())
+            ),
+            "sequence_holdout_backend_search_status_counts": dict(
+                sorted(sequence_counts.items())
+            ),
+            "representation_control_status_counts": dict(
+                sorted(representation_counts.items())
+            ),
+            "blocker_counts": dict(sorted(blocker_counts.items())),
+            "candidate_with_import_readiness_blocker_count": sum(
+                1 for row in rows if row["import_readiness_blockers"]
+            ),
+            "explicit_active_site_source_present_count": source_counts.get(
+                "explicit_active_site_source_present", 0
+            ),
+            "no_explicit_active_site_source_count": len(rows)
+            - source_counts.get("explicit_active_site_source_present", 0),
+            "broader_duplicate_screening_required_count": sum(
+                1
+                for row in rows
+                if row["broader_duplicate_screening_status"]
+                == "broader_duplicate_screening_required"
+            ),
+        },
+        "rows": sorted(
+            rows, key=lambda row: (int(row.get("rank") or 9999), row["accession"])
+        ),
+        "warnings": [
+            (
+                "pilot active-site evidence decisions classify source evidence only; "
+                "they are not accepted review decisions and cannot authorize import"
+            )
+        ],
+    }
+
+
+def _external_pilot_active_site_source_category(
+    active_site_summary: dict[str, Any],
+    sourcing_row: dict[str, Any],
+) -> str:
+    explicit_count = int(
+        active_site_summary.get("explicit_active_site_feature_count", 0) or 0
+    ) + int(active_site_summary.get("sourced_active_site_position_count", 0) or 0)
+    explicit_count += len(sourcing_row.get("sourced_active_site_positions", []) or [])
+    if explicit_count > 0:
+        return "explicit_active_site_source_present"
+    status = str(
+        sourcing_row.get("active_site_source_status")
+        or active_site_summary.get("sourcing_status")
+        or ""
+    )
+    binding_count = int(active_site_summary.get("binding_site_feature_count", 0) or 0)
+    binding_count += int(sourcing_row.get("binding_site_feature_count", 0) or 0)
+    if "binding" in status or binding_count > 0:
+        return "binding_context_only"
+    if "reaction_context_only" in status:
+        return "reaction_context_only"
+    return "no_explicit_active_site_source"
+
+
+def _external_pilot_active_site_decision_status(
+    *,
+    source_category: str,
+    sequence_status: str,
+) -> str:
+    if sequence_status == "sequence_holdout":
+        return "sequence_holdout"
+    return source_category
+
+
+def _external_pilot_reaction_evidence_status(
+    reaction_summary: Any,
+    reaction_rows: list[dict[str, Any]],
+) -> str:
+    summary = reaction_summary if isinstance(reaction_summary, dict) else {}
+    specific_count = int(summary.get("specific_reaction_record_count", 0) or 0)
+    if specific_count == 0:
+        specific_count = sum(
+            1 for row in reaction_rows if row.get("ec_specificity") == "specific"
+        )
+    if specific_count > 0:
+        return "specific_reaction_context_present"
+    reaction_count = int(summary.get("reaction_record_count", 0) or 0) or len(
+        reaction_rows
+    )
+    if reaction_count > 0:
+        return "reaction_context_only"
+    return "reaction_or_mechanism_evidence_missing"
+
+
+def _external_pilot_sequence_decision_status(
+    sequence_summary: Any,
+    backend_sequence_row: dict[str, Any],
+) -> str:
+    summary = sequence_summary if isinstance(sequence_summary, dict) else {}
+    backend_status = str(
+        backend_sequence_row.get("search_status")
+        or summary.get("backend_search_status")
+        or ""
+    )
+    if backend_status in {"exact_reference_holdout", "near_duplicate_holdout"}:
+        return "sequence_holdout"
+    if int(summary.get("alignment_alert_count", 0) or 0) > 0:
+        return "sequence_holdout"
+    backend_complete = backend_sequence_row.get("backend_search_complete")
+    if backend_complete is None:
+        backend_complete = summary.get("backend_search_complete")
+    if backend_complete is True and backend_status == "no_near_duplicate_signal":
+        return "current_reference_backend_no_signal"
+    return "backend_sequence_search_incomplete"
+
+
+def _external_pilot_representation_decision_status(
+    representation_summary: Any,
+    representation_row: dict[str, Any],
+    matrix_row: dict[str, Any],
+) -> str:
+    summary = representation_summary if isinstance(representation_summary, dict) else {}
+    blockers = {
+        str(blocker)
+        for blocker in (matrix_row.get("blockers", []) or [])
+        + (representation_row.get("blockers", []) or [])
+        + (summary.get("blockers", []) or [])
+        if blocker
+    }
+    backend_status = str(
+        representation_row.get("backend_status")
+        or summary.get("backend_status")
+        or ""
+    )
+    comparison_status = str(
+        representation_row.get("comparison_status")
+        or summary.get("comparison_status")
+        or ""
+    )
+    if backend_status == "representation_near_duplicate_holdout":
+        return "representation_near_duplicate_holdout"
+    if any(blocker.startswith("representation_control_") for blocker in blockers):
+        return "representation_control_issue"
+    if backend_status in {"", "missing"}:
+        return "representation_control_issue"
+    if comparison_status in {
+        "proxy_consistent_with_heuristic_scope",
+        "pilot_sequence_embedding_control",
+        "pilot_sequence_embedding_without_feature_proxy_comparison",
+    }:
+        return "pilot_representation_control_review_only"
+    return "representation_control_issue"
+
+
+def _external_pilot_active_site_decision_blockers(
+    *,
+    dossier: dict[str, Any],
+    source_category: str,
+    reaction_status: str,
+    sequence_status: str,
+    representation_status: str,
+) -> list[str]:
+    blockers = {
+        str(blocker) for blocker in dossier.get("remaining_blockers", []) or [] if blocker
+    }
+    if source_category != "explicit_active_site_source_present":
+        blockers.add("explicit_active_site_residue_sources_absent")
+    if reaction_status != "specific_reaction_context_present":
+        blockers.add("specific_reaction_or_mechanism_evidence_missing")
+    if sequence_status == "sequence_holdout":
+        blockers.add("sequence_holdout")
+    elif sequence_status != "current_reference_backend_no_signal":
+        blockers.add("backend_sequence_search_incomplete")
+    blockers.add("broader_duplicate_screening_required")
+    if representation_status in {
+        "representation_control_issue",
+        "representation_near_duplicate_holdout",
+    }:
+        blockers.add(representation_status)
+    blockers.add("external_review_decision_artifact_not_built")
+    blockers.add("full_label_factory_gate_not_run")
+    return sorted(blockers)
+
+
+def _external_pilot_active_site_decision_next_action(
+    *,
+    source_category: str,
+    sequence_status: str,
+    representation_status: str,
+) -> str:
+    if sequence_status == "sequence_holdout":
+        return "keep_sequence_holdout_out_of_import_batch"
+    if source_category == "binding_context_only":
+        return "curate_primary_literature_or_pdb_active_site_sources"
+    if source_category != "explicit_active_site_source_present":
+        return "source_explicit_active_site_residue_positions"
+    if representation_status in {
+        "representation_control_issue",
+        "representation_near_duplicate_holdout",
+    }:
+        return "compute_or_attach_real_representation_control"
+    return "complete_broader_duplicate_screening_before_review_decision"
+
+
 def _external_rows_by_accession(artifact: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
     rows_by_accession: dict[str, list[dict[str, Any]]] = {}
     for row in _external_artifact_candidate_rows(artifact):
@@ -8805,6 +9233,7 @@ def _external_pilot_review_only_gate_checks(
     pilot_review_decision_export: dict[str, Any] | None,
     pilot_evidence_packet: dict[str, Any] | None,
     pilot_evidence_dossiers: dict[str, Any] | None,
+    pilot_active_site_evidence_decisions: dict[str, Any] | None,
     pilot_representation_backend_sample: dict[str, Any] | None,
 ) -> dict[str, bool]:
     """Validate pilot artifacts without authorizing import or count growth."""
@@ -9050,6 +9479,80 @@ def _external_pilot_review_only_gate_checks(
                 for row in dossier_rows
             )
         )
+    if pilot_active_site_evidence_decisions is not None:
+        decision_meta = pilot_active_site_evidence_decisions.get("metadata", {})
+        decision_rows = _external_artifact_candidate_rows(
+            pilot_active_site_evidence_decisions
+        )
+        decision_accessions = {
+            accession
+            for accession in (
+                _normalize_accession(row.get("accession")) for row in decision_rows
+            )
+            if accession
+        }
+        expected_decision_accessions = selected_pilot_accessions or decision_accessions
+        allowed_source_categories = {
+            "explicit_active_site_source_present",
+            "binding_context_only",
+            "reaction_context_only",
+            "no_explicit_active_site_source",
+        }
+        allowed_decision_statuses = allowed_source_categories | {"sequence_holdout"}
+        gates["external_pilot_active_site_evidence_decisions_review_only"] = (
+            decision_meta.get("method")
+            == "external_source_pilot_active_site_evidence_decisions"
+            and decision_meta.get("blocker_removed")
+            == "external_pilot_active_site_source_status_ambiguity"
+            and decision_meta.get("ready_for_label_import") is False
+            and decision_meta.get("review_only") is True
+            and decision_meta.get("countable_label_candidate_count") == 0
+            and decision_meta.get("import_ready_row_count") == 0
+            and decision_meta.get("completed_decision_count") == 0
+            and decision_meta.get("accepted_decision_count") == 0
+            and int(decision_meta.get("candidate_count", 0) or 0)
+            == len(decision_rows)
+            and int(decision_meta.get("candidate_count", 0) or 0)
+            == len(expected_decision_accessions)
+            and decision_accessions == expected_decision_accessions
+            and len(decision_rows) > 0
+            and int(
+                decision_meta.get(
+                    "candidate_with_import_readiness_blocker_count", 0
+                )
+                or 0
+            )
+            == len(decision_rows)
+            and all(
+                row.get("countable_label_candidate") is False for row in decision_rows
+            )
+            and all(row.get("ready_for_label_import") is False for row in decision_rows)
+            and all(
+                row.get("review_status")
+                == "external_pilot_active_site_evidence_decision_review_only"
+                for row in decision_rows
+            )
+            and all(
+                row.get("decision_class") == "review_only_evidence_status"
+                for row in decision_rows
+            )
+            and all(
+                row.get("active_site_evidence_source_category")
+                in allowed_source_categories
+                for row in decision_rows
+            )
+            and all(
+                row.get("active_site_evidence_decision_status")
+                in allowed_decision_statuses
+                for row in decision_rows
+            )
+            and all(row.get("import_readiness_blockers") for row in decision_rows)
+            and all(
+                row.get("broader_duplicate_screening_status")
+                == "broader_duplicate_screening_required"
+                for row in decision_rows
+            )
+        )
     return gates
 
 
@@ -9139,6 +9642,7 @@ def check_external_source_transfer_gates(
     pilot_review_decision_export: dict[str, Any] | None = None,
     pilot_evidence_packet: dict[str, Any] | None = None,
     pilot_evidence_dossiers: dict[str, Any] | None = None,
+    pilot_active_site_evidence_decisions: dict[str, Any] | None = None,
     pilot_representation_backend_sample: dict[str, Any] | None = None,
     binding_context_repair_plan: dict[str, Any] | None = None,
     binding_context_repair_plan_audit: dict[str, Any] | None = None,
@@ -9207,6 +9711,7 @@ def check_external_source_transfer_gates(
         pilot_review_decision_export=pilot_review_decision_export,
         pilot_evidence_packet=pilot_evidence_packet,
         pilot_evidence_dossiers=pilot_evidence_dossiers,
+        pilot_active_site_evidence_decisions=pilot_active_site_evidence_decisions,
         pilot_representation_backend_sample=pilot_representation_backend_sample,
         binding_context_repair_plan=binding_context_repair_plan,
         binding_context_repair_plan_audit=binding_context_repair_plan_audit,
@@ -9283,6 +9788,9 @@ def check_external_source_transfer_gates(
     pilot_review_decision_export = gate_inputs.pilot_review_decision_export
     pilot_evidence_packet = gate_inputs.pilot_evidence_packet
     pilot_evidence_dossiers = gate_inputs.pilot_evidence_dossiers
+    pilot_active_site_evidence_decisions = (
+        gate_inputs.pilot_active_site_evidence_decisions
+    )
     pilot_representation_backend_sample = (
         gate_inputs.pilot_representation_backend_sample
     )
@@ -10353,6 +10861,9 @@ def check_external_source_transfer_gates(
             pilot_review_decision_export=pilot_review_decision_export,
             pilot_evidence_packet=pilot_evidence_packet,
             pilot_evidence_dossiers=pilot_evidence_dossiers,
+            pilot_active_site_evidence_decisions=(
+                pilot_active_site_evidence_decisions
+            ),
             pilot_representation_backend_sample=pilot_representation_backend_sample,
         )
     )
@@ -10976,6 +11487,27 @@ def check_external_source_transfer_gates(
                     "candidate_with_remaining_blocker_count", 0
                 )
                 if pilot_evidence_dossiers is not None
+                else 0
+            ),
+            "external_pilot_active_site_decision_candidate_count": (
+                pilot_active_site_evidence_decisions.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if pilot_active_site_evidence_decisions is not None
+                else 0
+            ),
+            "external_pilot_active_site_decision_explicit_source_count": (
+                pilot_active_site_evidence_decisions.get("metadata", {}).get(
+                    "explicit_active_site_source_present_count", 0
+                )
+                if pilot_active_site_evidence_decisions is not None
+                else 0
+            ),
+            "external_pilot_active_site_decision_no_explicit_source_count": (
+                pilot_active_site_evidence_decisions.get("metadata", {}).get(
+                    "no_explicit_active_site_source_count", 0
+                )
+                if pilot_active_site_evidence_decisions is not None
                 else 0
             ),
             "external_pilot_representation_sample_candidate_count": (
