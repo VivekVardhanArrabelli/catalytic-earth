@@ -1,6 +1,7 @@
 {
   "metadata": {
     "abstain_threshold": 0.4115,
+    "backend": "mmseqs2_cluster_sequence_identity",
     "backend_command": "/opt/homebrew/bin/mmseqs cluster /private/tmp/catalytic-earth-mmseqs-1025-210db4e5f5a5/seqdb /private/tmp/catalytic-earth-mmseqs-1025-210db4e5f5a5/clusterdb /private/tmp/catalytic-earth-mmseqs-1025-210db4e5f5a5/cluster_tmp --min-seq-id 0.3 -c 0.8 --cov-mode 0 --threads 1",
     "backend_commands": [
       "/opt/homebrew/bin/mmseqs createdb /private/tmp/catalytic-earth-mmseqs-1025-210db4e5f5a5/input.fasta /private/tmp/catalytic-earth-mmseqs-1025-210db4e5f5a5/seqdb",
@@ -8,8 +9,10 @@
       "/opt/homebrew/bin/mmseqs createtsv /private/tmp/catalytic-earth-mmseqs-1025-210db4e5f5a5/seqdb /private/tmp/catalytic-earth-mmseqs-1025-210db4e5f5a5/seqdb /private/tmp/catalytic-earth-mmseqs-1025-210db4e5f5a5/clusterdb /private/tmp/catalytic-earth-mmseqs-1025-210db4e5f5a5/clusters.tsv",
       "/opt/homebrew/bin/mmseqs easy-search /private/tmp/catalytic-earth-mmseqs-search-1025-210db4e5f5a5-8e7d90429d24/heldout.fasta /private/tmp/catalytic-earth-mmseqs-search-1025-210db4e5f5a5-8e7d90429d24/train.fasta /private/tmp/catalytic-earth-mmseqs-search-1025-210db4e5f5a5-8e7d90429d24/train_test_identity.tsv /private/tmp/catalytic-earth-mmseqs-search-1025-210db4e5f5a5-8e7d90429d24/search_tmp --format-output query,target,pident,alnlen,qcov,tcov,evalue,bits --min-seq-id 0.0 -c 0.8 --cov-mode 0 --threads 1"
     ],
+    "backend_resolved_path": "/opt/homebrew/bin/mmseqs",
     "backend_version": "18-8cc5c",
     "blocker_removed": "reports held-out fingerprint retrieval behavior separately from in-distribution slice metrics before external-source import",
+    "cluster_threshold": 0.3,
     "clustering_backend": "mmseqs2_cluster_sequence_identity",
     "clustering_tool_status": {
       "blastp": true,
@@ -328,6 +331,12 @@
       "label_count": 679,
       "mean_evidence_score": 0.6478
     },
+    "limitations": [
+      "2 FASTA records use selected-PDB sequence fallbacks for unavailable UniProt accessions",
+      "MMseqs2 clustering threshold is 0.30; connected clusters can hide within-cluster diversity and are not taxonomic or structural families",
+      "MMseqs2 easy-search reports heuristic local alignments at the configured coverage; it is not an exhaustive Smith-Waterman all-vs-all matrix",
+      "sequence-distance partitioning supersedes proxy cluster selection, but fold/TM-score distance is still not computed"
+    ],
     "max_observed_train_test_identity": 0.284,
     "max_observed_train_test_identity_alignment_count": 12,
     "max_observed_train_test_identity_computable": true,
@@ -370,6 +379,8 @@
     "sequence_missing_entry_ids": [],
     "sequence_source": "fasta:artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta; records=734",
     "slice_id": "1025",
+    "target_identity_achieved": true,
+    "target_max_train_test_identity": 0.3,
     "tm_score_target": "<0.70 when Foldseek/TM-score is available"
   },
   "metrics": {

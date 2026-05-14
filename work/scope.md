@@ -165,9 +165,11 @@ Current expectation:
   80% coverage, holds out 136 rows by whole sequence clusters, records max
   observed train/test identity `0.284`, achieves the <=30% target, preserves
   0 held-out out-of-scope false non-abstentions, and reports held-out evaluable
-  top1 accuracy, top3 retained accuracy, and retention of `1.0000`. Foldseek
-  TM-score separation remains uncomputed, but the review-only coordinate
-  readiness path now records Foldseek `10.941cd33`, stages all currently
+  top1 accuracy, top3 retained accuracy, and retention of `1.0000`. The current
+  artifacts also expose explicit backend, resolved path, cluster-threshold,
+  target-achievement, and limitation metadata aliases for review and regression
+  gates. Foldseek TM-score separation remains uncomputed, but the review-only
+  coordinate readiness path now records Foldseek `10.941cd33`, stages all currently
   materializable selected coordinates as 672 unique selected PDB mmCIF
   sidecars for 676 materializable evaluated rows, leaves 0 supported selected
   structures unstaged, and flags two rows with missing selected structures. A

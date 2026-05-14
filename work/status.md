@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 89
-- Measured elapsed time: 3277.6 minutes (54.63 hours)
+- Entries: 90
+- Measured elapsed time: 3283.6 minutes (54.73 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 631.4 measured minutes (10.52 hours)
+- post-mcsa-spof-hardening: 637.4 measured minutes (10.62 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 949
-- Evidence references logged: 778
+- Artifact references logged: 957
+- Evidence references logged: 784
 
 ## Recent Entries
-
-### 2026-05-14T04:23:49.348241+00:00 - post-mcsa-spof-hardening
-
-- Task: External backend sequence search and pilot refresh
-- Time mode: measured
-- Measured minutes: 50.133
-- Started: 2026-05-14T03:33:18Z
-- Ended: 2026-05-14T04:23:26Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_backend_sequence_search_1025.json, artifacts/v3_external_source_backend_sequence_search_audit_1025.json, artifacts/v3_external_source_import_readiness_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_pilot_candidate_priority_1025.json, artifacts/v3_external_source_pilot_review_decision_export_1025.json, artifacts/v3_external_source_pilot_evidence_packet_1025.json, artifacts/v3_external_source_pilot_representation_backend_plan_1025.json, artifacts/v3_external_source_pilot_representation_backend_sample_1025.json, artifacts/v3_external_source_pilot_evidence_dossiers_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: 313 unit tests passed, validate passed, compileall passed, git diff check passed, 1706 JSON artifacts parsed, MMseqs2 backend search 30 external rows vs 735 reference accessions, 28 no-signal rows, 2 exact reference holdouts, 0 near-duplicate rows, 0 import-ready rows, transfer gate 67/67
-- Notes: Normal locked delegated run per user instruction. No M-CSA count growth and no external import.
 
 ### 2026-05-14T05:08:05.672183+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/handoff.md
 - Evidence: 331 unit tests passed before delegation, validate passed before delegation, MMseqs BLAST+ DIAMOND present on PATH, Foldseek 10.941cd33 available at /private/tmp/catalytic-foldseek-env/bin/foldseek, worker shut down with no parent worktree changes, 0 countable labels, 0 import-ready rows
 - Notes: Normal locked instruction-only run per user override. Parent did not implement backend changes locally; delegated worker timed out and was closed, leaving the worktree clean before bookkeeping.
+
+### 2026-05-14T12:50:26.982940+00:00 - post-mcsa-spof-hardening
+
+- Task: Sequence holdout backend metadata hardening
+- Time mode: measured
+- Measured minutes: 6.0
+- Started: 2026-05-14T12:44:26Z
+- Ended: 2026-05-14T12:50:26Z
+- Artifacts: src/catalytic_earth/generalization.py, tests/test_generalization.py, artifacts/v3_sequence_distance_holdout_eval_1000.json, artifacts/v3_sequence_distance_holdout_eval_1025.json, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: 331 unit tests passed before editing, validate passed before editing, targeted sequence holdout tests passed, MMseqs2 18-8cc5c real sequence holdout metadata aliases, 0 held-out out-of-scope false non-abstentions, Foldseek absent from PATH
+- Notes: Normal locked local implementation run. No M-CSA count growth and no external import.
 
 ## Expectation Updates
 
@@ -195,6 +195,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T10:16:36.145071+00:00: Requested 650M representation remains blocked by local cache/disk/CPU limits; largest feasible cached ESM-2 150M now gives a real review-only control signal while Foldseek remains partial and fails the <0.7 target.
 - 2026-05-14T11:07:34.295381+00:00: Next work should run a full Foldseek/TM-score split only after resolving missing selected structures and should advance pilot rows through broader duplicate screening, representation review, and review decisions without countable import.
 - 2026-05-14T12:34:37.036864+00:00: Next agent should retry the all-materializable Foldseek TM-score signal as delegated backend work or emit a bounded larger-than-40 completed signal without false full-holdout claims.
+- 2026-05-14T12:50:26.982940+00:00: Sequence-distance holdout is real backend evidence; next generalization blocker remains full Foldseek/TM-score split and external import blockers.
 
 ## Scope Adjustments
 

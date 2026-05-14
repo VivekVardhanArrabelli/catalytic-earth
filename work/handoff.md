@@ -50,52 +50,48 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-14T12:44:26Z run after clean startup gates
+(`331` unit tests passed and `validate` passed):
+
 - M-CSA-only count growth: No. The 1,025 preview still adds 0 accepted clean
-  labels, source-scale is capped at 1,003 observed M-CSA records, and the
-  latest hard-negative, false-non-abstention, and actionable-failure checks
+  labels, source-scale is capped at 1,003 observed M-CSA records, and current
+  hard-negative, false-non-abstention, near-miss, and actionable-failure checks
   remain clean but do not create more M-CSA source headroom.
 - External-source repair/import: No for import; yes only for review-only repair
-  evidence. The MMseqs2 backend search now clears bounded current-reference
-  near-duplicate search debt for 28 no-signal external rows, but 2 exact
-  sequence holdouts, 3 selected-pilot rows with binding-context-only
-  active-site evidence, the still-uncomputed requested 650M representation
-  control, expert-review no-decision artifacts, broader duplicate screening,
-  and full factory gates still block every external row from import. The new
-  selected-pilot active-site decision artifact removes source-status ambiguity
-  for the 10 selected rows by recording 7 explicit active-site source rows and
-  3 binding-context-only rows, all review-only and non-countable. The requested
-  650M sidecars now fall back to computed 150M rows after confirming the 650M
-  weights are uncached and locally infeasible, and explicitly mark
-  `requested_650m_or_larger_representation_backend_not_computed`, so they are
-  stronger representation-control evidence but still not import evidence.
-- Scientific generalization work: Yes. Accepted-registry MMseqs2 holdouts and
-  the new external backend sequence search are real backend evidence, with 0
-  held-out out-of-scope false non-abstentions in the countable path. The
-  Foldseek/TM-score blocker is narrowed, not cleared: Foldseek 10.941cd33 is
-  recorded through the explicit temporary binary path, and all currently
-  materializable selected coordinates are now staged: 672 unique selected PDB
-  sidecars covering 676 materializable evaluated rows, with 0 fetch failures
-  and 0 supported selected structures left unstaged. The expanded40 partial
-  staged-coordinate Foldseek signal remains the only TM signal: 5,699 pair
-  rows, all 5,699 safely mapped rows, 1,633 heldout/in-distribution train/test
-  pairs, max train/test TM score `0.7515`, 0 unmapped raw names, and 0
-  countable/import-ready rows. The all-materializable sidecar removes the
-  unstaged selected-coordinate blocker, but the computed 40-coordinate subset
-  fails the `<0.7` target and `tm_score_split_computed=false` until the two
-  missing selected structures and a full Foldseek split builder are resolved.
-- SPOF hardening work: Yes. External artifact lineage, backend metadata,
-  review-only audits, and gate checks are now explicit and tested. The Foldseek
-  capped-signal path now builds a dedicated selected-coordinate search directory
-  instead of pointing Foldseek at the whole sidecar directory, avoiding a cap
-  metadata/execution mismatch, the expanded40 artifact now records explicit
-  false-full-claim blockers, and the new pilot active-site decision artifact is
-  wired through the CLI and external transfer gate. Maintainability risk is
-  mainly the large artifact graph and stale downstream pilot packets if future
-  agents regenerate blocker priorities without refreshing dependent pilot
-  evidence.
+  evidence. Backend current-reference MMseqs2 search debt is cleared for the
+  28 no-signal external rows, but 2 exact sequence holdouts, 3 selected-pilot
+  binding-context-only active-site rows, broader duplicate screening,
+  representation-review debt, expert-review no-decision artifacts, and full
+  factory gates still block every external row from import.
+- Scientific generalization work: Yes. The accepted-registry 1,000 and 1,025
+  MMseqs2 holdouts are real backend evidence: `/opt/homebrew/bin/mmseqs`
+  version `18-8cc5c`, 738 sequence records, 678/678 evaluated rows with
+  sequence coverage, 30% identity and 80% coverage clustering, 136 held-out
+  rows by whole clusters, max observed train/test identity `0.284`, target
+  <=30% achieved, and 0 held-out out-of-scope false non-abstentions. This run
+  hardened the artifacts with explicit backend, resolved path,
+  cluster-threshold, target-achievement, and limitation metadata aliases.
+  Foldseek remains absent from default `PATH`; the prior temp-env Foldseek
+  `/private/tmp/catalytic-foldseek-env/bin/foldseek` version `10.941cd33`
+  remains the documented path. Full Foldseek/TM-score split remains blocked by
+  `m_csa:372`, `m_csa:501`, and the unrun full split builder.
+- SPOF hardening work: Yes. Sequence holdout metadata is now less brittle for
+  downstream gates and reviewers while preserving the proxy fallback path and
+  pinned regression coverage. Existing external artifact lineage,
+  review-only audits, and Foldseek false-full-claim blockers remain in force.
 
 ## Recent Project Progress
 
+- Hardened the accepted-registry sequence-distance holdout backend metadata for
+  the 1,000 and 1,025 contexts. The regenerated artifacts keep the same
+  MMseqs2 result (`18-8cc5c`, 738 sequence records, 136 held-out rows, max
+  train/test identity `0.284`, target <=30% achieved, 0 held-out out-of-scope
+  false non-abstentions) and now expose explicit `backend`,
+  `backend_resolved_path`, `cluster_threshold`, `target_identity_achieved`,
+  `target_max_train_test_identity`, and `limitations` fields. Regression tests
+  pin both the real MMseqs2 path and the proxy fallback metadata. Tool check
+  found `mmseqs`, `blastp`, `makeblastdb`, and `diamond` on `PATH`; `foldseek`
+  was not on `PATH`, so the documented temp-env Foldseek path remains required.
 - No-code delegated Foldseek attempt at 2026-05-14T11:42:35Z. The parent
   automation acquired the lock, synced `origin/main`, verified `mmseqs`,
   `blastp`, `makeblastdb`, and `diamond` on PATH plus Foldseek

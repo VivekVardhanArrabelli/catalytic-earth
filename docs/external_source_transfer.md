@@ -50,7 +50,9 @@ so the <=30% target is achieved. Held-out metrics are reported separately from
 in-distribution metrics: 44 held-out in-scope rows, 92 held-out out-of-scope
 rows, 0 held-out out-of-scope false non-abstentions, and held-out evaluable
 top1 accuracy, top3 retained accuracy, and retention all at `1.0000`. The
-deterministic low-neighborhood proxy fields remain as fallback context.
+metadata now includes explicit backend, resolved binary path, cluster-threshold,
+target-achievement, and limitation aliases; the deterministic low-neighborhood
+proxy fields remain as fallback context.
 Full Foldseek/TM-score separation remains uncomputed, but the
 coordinate-readiness blocker is now narrower.
 `artifacts/v3_foldseek_coordinate_readiness_1000.json`

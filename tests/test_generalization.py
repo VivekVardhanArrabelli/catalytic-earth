@@ -79,6 +79,15 @@ class SequenceDistanceHoldoutTests(unittest.TestCase):
         self.assertEqual(
             artifact["metadata"]["method"], "sequence_fold_distance_holdout_evaluation"
         )
+        self.assertTrue(
+            artifact["metadata"]["backend"].startswith("deterministic_local_proxy_")
+        )
+        self.assertEqual(artifact["metadata"]["cluster_threshold"], 0.3)
+        self.assertFalse(artifact["metadata"]["target_identity_achieved"])
+        self.assertIn(
+            "deterministic proxy partition is retained because real sequence identity was not computed",
+            artifact["metadata"]["limitations"],
+        )
         self.assertFalse(artifact["metadata"]["real_sequence_identity_computed"])
         self.assertEqual(artifact["metadata"]["heldout_count"], 3)
         self.assertIn("heldout", artifact["metrics"])
@@ -182,6 +191,19 @@ class SequenceDistanceHoldoutTests(unittest.TestCase):
             artifact["metadata"]["clustering_backend"],
             "mmseqs2_cluster_sequence_identity",
         )
+        self.assertEqual(
+            artifact["metadata"]["backend"], "mmseqs2_cluster_sequence_identity"
+        )
+        self.assertEqual(
+            artifact["metadata"]["backend_resolved_path"], shutil.which("mmseqs")
+        )
+        self.assertEqual(artifact["metadata"]["cluster_threshold"], 0.3)
+        self.assertEqual(artifact["metadata"]["target_max_train_test_identity"], 0.3)
+        self.assertTrue(artifact["metadata"]["target_identity_achieved"])
+        self.assertEqual(
+            artifact["metadata"]["limitations"],
+            artifact["metadata"]["sequence_identity_limitations"],
+        )
         self.assertTrue(artifact["metadata"]["real_sequence_identity_computed"])
         self.assertEqual(artifact["metadata"]["sequence_count"], 738)
         self.assertEqual(artifact["metadata"]["sequence_entry_coverage_count"], 678)
@@ -243,6 +265,11 @@ class SequenceDistanceHoldoutTests(unittest.TestCase):
             artifact["metadata"]["clustering_backend"],
             "mmseqs2_cluster_sequence_identity",
         )
+        self.assertEqual(
+            artifact["metadata"]["backend"], "mmseqs2_cluster_sequence_identity"
+        )
+        self.assertEqual(artifact["metadata"]["cluster_threshold"], 0.3)
+        self.assertTrue(artifact["metadata"]["target_identity_achieved"])
         self.assertEqual(artifact["metadata"]["heldout_count"], 136)
         self.assertEqual(artifact["metadata"]["sequence_count"], 738)
         self.assertEqual(

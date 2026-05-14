@@ -174,6 +174,11 @@ def build_sequence_distance_holdout_eval(
         train_test_identity=train_test_identity,
         threshold=sequence_identity_threshold,
     )
+    sequence_identity_limitations = _sequence_identity_limitations(
+        real_split=real_split,
+        train_test_identity=train_test_identity,
+        sequence_identity_threshold=sequence_identity_threshold,
+    )
     backend = (
         "mmseqs2_cluster_sequence_identity"
         if real_split.get("usable")
@@ -197,10 +202,12 @@ def build_sequence_distance_holdout_eval(
             "abstain_threshold": abstain_threshold,
             "holdout_fraction": holdout_fraction,
             "min_holdout_rows": min_holdout_rows,
+            "backend": backend,
             "clustering_backend": backend,
             "clustering_tool_status": tool_status,
             "backend_command": real_split.get("backend_command"),
             "backend_commands": real_split.get("backend_commands", []),
+            "backend_resolved_path": real_split.get("backend_resolved_path"),
             "backend_version": real_split.get("backend_version"),
             "sequence_source": real_split.get("sequence_source"),
             "sequence_count": real_split.get("sequence_count", 0),
@@ -211,6 +218,7 @@ def build_sequence_distance_holdout_eval(
                 "sequence_missing_entry_count", len(result_rows)
             ),
             "sequence_missing_entry_ids": real_split.get("sequence_missing_entry_ids", []),
+            "cluster_threshold": sequence_identity_threshold,
             "sequence_identity_cluster_threshold": sequence_identity_threshold,
             "sequence_identity_cluster_coverage": sequence_identity_coverage,
             "sequence_identity_cluster_coverage_mode": MMSEQS_CLUSTER_COVERAGE_MODE,
@@ -234,12 +242,11 @@ def build_sequence_distance_holdout_eval(
             "max_observed_train_test_identity_alignment_count": train_test_identity.get(
                 "max_observed_train_test_identity_alignment_count", 0
             ),
+            "target_max_train_test_identity": sequence_identity_threshold,
+            "target_identity_achieved": target_achieved,
             "sequence_identity_target_achieved": target_achieved,
-            "sequence_identity_limitations": _sequence_identity_limitations(
-                real_split=real_split,
-                train_test_identity=train_test_identity,
-                sequence_identity_threshold=sequence_identity_threshold,
-            ),
+            "limitations": sequence_identity_limitations,
+            "sequence_identity_limitations": sequence_identity_limitations,
             "real_tm_score_computed": False,
             "sequence_identity_target": (
                 f"<={sequence_identity_threshold:.2f} train/test sequence identity "
@@ -1283,6 +1290,7 @@ def _real_sequence_identity_split(
             "usable": True,
             "backend_command": _command_string(cluster_cmd),
             "backend_commands": commands,
+            "backend_resolved_path": mmseqs_path,
             "backend_version": _backend_version(mmseqs_path),
             "records_by_id": collected["records_by_id"],
             "sequence_source": collected["sequence_source"],
@@ -1339,6 +1347,7 @@ def _proxy_real_split_metadata(
         "fallback_backend": fallback_backend,
         "backend_command": None,
         "backend_commands": [],
+        "backend_resolved_path": None,
         "backend_version": None,
         "records_by_id": collected.get("records_by_id", {}),
         "sequence_source": collected.get(

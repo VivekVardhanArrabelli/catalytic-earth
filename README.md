@@ -296,7 +296,9 @@ and 80% coverage, hold out 136 rows by whole sequence clusters, and record a
 max observed train/test identity of `0.284`. The target <=30% sequence-identity
 split is achieved, with 0 held-out out-of-scope false non-abstentions; held-out
 evaluable in-scope top1 accuracy, top3 retained accuracy, and retention are all
-`1.0000`. Full Foldseek/TM-score separation remains uncomputed.
+`1.0000`. The artifacts now also expose explicit backend, resolved path,
+cluster-threshold, target-achievement, and limitation metadata aliases for gate
+and review consumers. Full Foldseek/TM-score separation remains uncomputed.
 `artifacts/v3_foldseek_coordinate_readiness_1000.json` narrows that blocker by
 recording the explicit Foldseek binary/version
 (`/private/tmp/catalytic-foldseek-env/bin/foldseek`, `10.941cd33`), the 678
