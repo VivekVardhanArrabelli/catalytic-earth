@@ -7,6 +7,7 @@ All-materializable sidecar update: 2026-05-14T10:45:00Z
 Expanded60 TM signal update: 2026-05-14T13:48:04Z
 Expanded80 TM signal update: 2026-05-14T16:11:42Z
 Expanded100 TM signal update: 2026-05-14T17:24:58Z
+Target-failure audit update: 2026-05-14T17:58:00Z
 
 Status:
 
@@ -115,6 +116,15 @@ Current TM-score readiness:
   not achieve the `<0.7` target, the cap leaves 572 staged coordinates
   uncomputed, and both `tm_score_split_computed=false` and
   `full_tm_score_split_computed=false` remain true.
+- `artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json` now records
+  the exact current-split target failure exposed by the expanded100 signal. It
+  finds 48 train/test chain-level rows at or above the `<0.7` target, all from
+  one unique structure pair: `m_csa:33`/`m_csa:34` mapped to
+  `pdb:1JC5`/`pdb:1MPY`, with max pair TM-score `0.7515`. This audit does not
+  run Foldseek and does not claim a full split; it removes ambiguity about the
+  current sequence-holdout split by showing that the target already fails in
+  the computed subset. The full holdout claim remains forbidden until split
+  repair or explicit exclusion review is done.
 - The TM-score signal builder now records explicit partial/full coverage
   semantics for future artifacts: `tm_score_signal_coverage_status`,
   `full_tm_score_holdout_claim_permitted=false`,
@@ -220,6 +230,16 @@ PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \
   --max-staged-coordinates 80 \
   --prior-staged-coordinate-count 60 \
   --out artifacts/v3_foldseek_tm_score_signal_1000_expanded80.json
+```
+
+The target-failure audit used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli audit-foldseek-tm-score-target-failure \
+  --signal artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json \
+  --threshold 0.7 \
+  --max-blocking-pairs 20 \
+  --out artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json
 ```
 
 The completed expanded100 partial signal used:

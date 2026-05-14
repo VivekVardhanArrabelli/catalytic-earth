@@ -1164,6 +1164,279 @@ def build_foldseek_tm_score_signal(
     }
 
 
+def audit_foldseek_tm_score_target_failure(
+    *,
+    signal: dict[str, Any],
+    signal_path: str | None = None,
+    threshold: float = 0.7,
+    max_blocking_pairs: int = 20,
+) -> dict[str, Any]:
+    """Summarize Foldseek train/test TM-score pairs that block the target.
+
+    A single mapped train/test pair at or above the threshold is enough to
+    disallow a current-split TM-score holdout pass. This audit keeps that
+    evidence compact and explicit without claiming a full split.
+    """
+
+    metadata_in = signal.get("metadata", {}) if isinstance(signal, dict) else {}
+    if not isinstance(metadata_in, dict):
+        metadata_in = {}
+    rows_in = signal.get("rows", []) if isinstance(signal, dict) else []
+    rows = [row for row in rows_in if isinstance(row, dict)]
+    threshold_value = float(threshold)
+
+    train_test_rows = [
+        row
+        for row in rows
+        if row.get("train_test_pair")
+        and _parse_optional_float(row.get("max_pair_tm_score")) is not None
+    ]
+    violating_rows = [
+        row
+        for row in train_test_rows
+        if (_parse_optional_float(row.get("max_pair_tm_score")) or 0.0)
+        >= threshold_value
+    ]
+
+    best_by_structure_pair: dict[tuple[str, str], dict[str, Any]] = {}
+    entry_pair_keys: set[tuple[str, str]] = set()
+    for row in violating_rows:
+        query_key = _foldseek_blocking_pair_member_key(
+            row.get("query_structure_key"), row.get("raw_query_name")
+        )
+        target_key = _foldseek_blocking_pair_member_key(
+            row.get("target_structure_key"), row.get("raw_target_name")
+        )
+        structure_pair_key = tuple(sorted((query_key, target_key)))
+        if (
+            structure_pair_key not in best_by_structure_pair
+            or (_parse_optional_float(row.get("max_pair_tm_score")) or 0.0)
+            > (
+                _parse_optional_float(
+                    best_by_structure_pair[structure_pair_key].get("max_pair_tm_score")
+                )
+                or 0.0
+            )
+        ):
+            best_by_structure_pair[structure_pair_key] = row
+
+        query_entries = [
+            str(entry_id)
+            for entry_id in row.get("query_entry_ids", [])
+            if isinstance(entry_id, str)
+        ]
+        target_entries = [
+            str(entry_id)
+            for entry_id in row.get("target_entry_ids", [])
+            if isinstance(entry_id, str)
+        ]
+        for query_entry in query_entries:
+            for target_entry in target_entries:
+                entry_pair_keys.add(tuple(sorted((query_entry, target_entry))))
+
+    blocking_pairs = [
+        _foldseek_blocking_pair_summary(row, threshold_value)
+        for row in sorted(
+            best_by_structure_pair.values(),
+            key=lambda item: (
+                -(_parse_optional_float(item.get("max_pair_tm_score")) or 0.0),
+                str(
+                    item.get("query_structure_key")
+                    or item.get("raw_query_name")
+                    or ""
+                ),
+                str(
+                    item.get("target_structure_key")
+                    or item.get("raw_target_name")
+                    or ""
+                ),
+            ),
+        )[: max(0, int(max_blocking_pairs))]
+    ]
+
+    max_train_test_tm_score = None
+    for row in train_test_rows:
+        score = _parse_optional_float(row.get("max_pair_tm_score"))
+        if score is None:
+            continue
+        max_train_test_tm_score = (
+            score
+            if max_train_test_tm_score is None
+            else max(max_train_test_tm_score, score)
+        )
+    target_blocked = bool(violating_rows)
+    source_claim_blockers = [
+        str(blocker)
+        for blocker in metadata_in.get("full_tm_score_holdout_claim_blockers", [])
+        if isinstance(blocker, str)
+    ]
+    claim_blockers = list(source_claim_blockers)
+    if target_blocked:
+        claim_blockers.append(
+            "computed train/test TM-score target <0.7 is already violated in the computed subset"
+        )
+    if not metadata_in.get("full_tm_score_split_computed"):
+        claim_blockers.append("full all-materializable TM-score split remains uncomputed")
+    if metadata_in.get("tm_signal_coordinate_cap_applied"):
+        claim_blockers.append("available staged coordinates were excluded by the signal cap")
+
+    limitations = [
+        "audit summarizes an existing Foldseek TM-score signal and does not run Foldseek",
+        "review-only artifact; it creates no countable labels and no import-ready rows",
+        "blocking pairs are evaluated against the current sequence-holdout train/test partition only",
+    ]
+    if metadata_in.get("tm_score_signal_coverage_status") != "full_evaluated_coordinate_signal":
+        limitations.append(
+            "source Foldseek signal is partial; additional pairs may add blockers but cannot remove an observed target violation"
+        )
+    if not target_blocked:
+        limitations.append(
+            "no target-violating train/test pair was observed in the supplied signal"
+        )
+
+    metadata = {
+        "method": "foldseek_tm_score_target_failure_audit",
+        "blocker_removed": (
+            "identifies exact Foldseek train/test TM-score pair evidence that "
+            "violates the current <0.7 target; the current sequence-holdout "
+            "split cannot claim TM-score separation without split repair or "
+            "explicit exclusion review"
+            if target_blocked
+            else None
+        ),
+        "blocker_not_removed": (
+            "full all-materializable Foldseek/TM-score split remains uncomputed"
+            if not metadata_in.get("full_tm_score_split_computed")
+            else None
+        ),
+        "blockers_remaining": sorted(set(claim_blockers)),
+        "slice_id": str(metadata_in.get("slice_id") or ""),
+        "source_signal_artifact": signal_path,
+        "source_signal_method": metadata_in.get("method"),
+        "source_signal_foldseek_version": metadata_in.get("foldseek_version"),
+        "source_signal_foldseek_command": metadata_in.get("foldseek_command"),
+        "source_signal_run_status": metadata_in.get("foldseek_run_status"),
+        "source_signal_staged_coordinate_count": metadata_in.get(
+            "staged_coordinate_count"
+        ),
+        "source_signal_available_staged_coordinate_count": metadata_in.get(
+            "available_staged_coordinate_count"
+        ),
+        "source_signal_remaining_uncomputed_staged_coordinate_count": metadata_in.get(
+            "remaining_uncomputed_staged_coordinate_count"
+        ),
+        "source_signal_coverage_status": metadata_in.get(
+            "tm_score_signal_coverage_status"
+        ),
+        "source_signal_full_tm_score_split_computed": bool(
+            metadata_in.get("full_tm_score_split_computed")
+        ),
+        "source_signal_full_tm_score_holdout_claim_permitted": bool(
+            metadata_in.get("full_tm_score_holdout_claim_permitted")
+        ),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate_count": 0,
+        "countable_label_count": 0,
+        "import_ready_candidate_count": 0,
+        "import_ready_row_count": 0,
+        "ready_for_label_import": False,
+        "threshold_target": "<0.7",
+        "tm_score_threshold": threshold_value,
+        "tm_score_target_operator": "<",
+        "train_test_pair_count": len(train_test_rows),
+        "violating_train_test_pair_row_count": len(violating_rows),
+        "violating_unique_structure_pair_count": len(best_by_structure_pair),
+        "violating_unique_entry_pair_count": len(entry_pair_keys),
+        "max_reported_blocking_pairs": max(0, int(max_blocking_pairs)),
+        "max_observed_train_test_tm_score": (
+            round(max_train_test_tm_score, 4)
+            if max_train_test_tm_score is not None
+            else None
+        ),
+        "max_observed_train_test_tm_score_computable": max_train_test_tm_score is not None,
+        "tm_score_target_achieved_for_computed_subset": (
+            False
+            if target_blocked
+            else (
+                max_train_test_tm_score < threshold_value
+                if max_train_test_tm_score is not None
+                else None
+            )
+        ),
+        "current_sequence_holdout_split_tm_score_target_blocked": target_blocked,
+        "split_repair_required_for_target": target_blocked,
+        "full_tm_score_holdout_claim_permitted": False,
+        "full_tm_score_holdout_claim_blockers": sorted(set(claim_blockers)),
+        "limitations": sorted(set(limitations)),
+    }
+
+    return {"metadata": metadata, "blocking_pairs": blocking_pairs}
+
+
+def _foldseek_blocking_pair_member_key(value: Any, fallback: Any) -> str:
+    if isinstance(value, str) and value:
+        return value
+    if isinstance(fallback, str) and fallback:
+        return f"raw:{fallback}"
+    return "unmapped"
+
+
+def _foldseek_blocking_pair_summary(
+    row: dict[str, Any], threshold: float
+) -> dict[str, Any]:
+    return {
+        "query_structure_key": row.get("query_structure_key"),
+        "target_structure_key": row.get("target_structure_key"),
+        "query_structure_id": row.get("query_structure_id"),
+        "target_structure_id": row.get("target_structure_id"),
+        "query_entry_ids": sorted(
+            [
+                str(entry_id)
+                for entry_id in row.get("query_entry_ids", [])
+                if isinstance(entry_id, str)
+            ],
+            key=_entry_id_sort_key,
+        ),
+        "target_entry_ids": sorted(
+            [
+                str(entry_id)
+                for entry_id in row.get("target_entry_ids", [])
+                if isinstance(entry_id, str)
+            ],
+            key=_entry_id_sort_key,
+        ),
+        "query_partitions": sorted(
+            [
+                str(partition)
+                for partition in row.get("query_partitions", [])
+                if isinstance(partition, str)
+            ]
+        ),
+        "target_partitions": sorted(
+            [
+                str(partition)
+                for partition in row.get("target_partitions", [])
+                if isinstance(partition, str)
+            ]
+        ),
+        "raw_query_name": row.get("raw_query_name"),
+        "raw_target_name": row.get("raw_target_name"),
+        "qtmscore": row.get("qtmscore"),
+        "ttmscore": row.get("ttmscore"),
+        "alntmscore": row.get("alntmscore"),
+        "max_pair_tm_score": row.get("max_pair_tm_score"),
+        "threshold": threshold,
+        "target_operator": "<",
+        "violates_target": True,
+        "train_test_pair": bool(row.get("train_test_pair")),
+        "self_pair": bool(row.get("self_pair")),
+        "source_signal_line_number": row.get("line_number"),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate": False,
+        "import_ready": False,
+    }
+
+
 def _evaluation_rows(
     *,
     retrieval: dict[str, Any],

@@ -392,6 +392,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
         )
+        pilot_representation_adjudication = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_representation_adjudication_1025.json"
+        )
         pilot_success_criteria = _load_json(
             ROOT
             / "artifacts"
@@ -1741,6 +1746,56 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             {"binding_context_only"},
         )
         self.assertEqual(
+            pilot_representation_adjudication["metadata"]["method"],
+            "external_source_pilot_representation_adjudication",
+        )
+        self.assertEqual(
+            pilot_representation_adjudication["metadata"][
+                "representation_control_adjudication_status_counts"
+            ],
+            {
+                "representation_control_adjudicated_review_only": 3,
+                "representation_near_duplicate_holdout": 4,
+                "representation_stability_changed_requires_review": 3,
+            },
+        )
+        self.assertEqual(
+            pilot_representation_adjudication["metadata"][
+                "representation_control_unresolved_count"
+            ],
+            3,
+        )
+        self.assertEqual(
+            pilot_representation_adjudication["metadata"][
+                "representation_control_concrete_evidence_count"
+            ],
+            10,
+        )
+        self.assertEqual(
+            pilot_representation_adjudication["metadata"][
+                "comparison_blocker_not_removed"
+            ],
+            "requested_650m_or_larger_representation_backend_not_computed",
+        )
+        self.assertEqual(
+            pilot_representation_adjudication["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertFalse(
+            pilot_representation_adjudication["metadata"]["ready_for_label_import"]
+        )
+        self.assertTrue(
+            all(
+                row["review_status"]
+                == "external_pilot_representation_adjudication_review_only"
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                for row in pilot_representation_adjudication["rows"]
+            )
+        )
+        self.assertEqual(
             pilot_success_criteria["metadata"]["method"],
             "external_source_pilot_success_criteria",
         )
@@ -1786,9 +1841,9 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "representation_control_adjudication_counts"
             ],
             {
-                "representation_control_adjudicated_review_only": 1,
-                "representation_control_issue": 8,
-                "representation_near_duplicate_holdout": 1,
+                "representation_control_adjudicated_review_only": 3,
+                "representation_near_duplicate_holdout": 4,
+                "representation_stability_changed_requires_review": 3,
             },
         )
         self.assertEqual(
@@ -1808,6 +1863,12 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "review_decision_not_terminal"
             ],
             10,
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["criteria_blocker_counts"][
+                "representation_control_unresolved"
+            ],
+            3,
         )
         self.assertEqual(
             pilot_success_criteria["metadata"]["artifact_lineage"]["slice_id"], 1025

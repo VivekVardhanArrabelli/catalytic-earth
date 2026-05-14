@@ -50,6 +50,37 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-14T17:50:46Z run after clean startup gates
+(`336` unit tests passed and `validate` passed):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and
+  the source-scale audit remains capped at 1,003 observed M-CSA source records.
+  No M-CSA-only tranche should be opened without new source-scale evidence.
+- External-source repair/import: Yes for review-only representation repair; no
+  for import and no new countable external candidates. This run added
+  `artifacts/v3_external_source_pilot_representation_adjudication_1025.json`
+  and refreshed `artifacts/v3_external_source_pilot_success_criteria_1025.json`.
+  The pilot still has 10 selected rows, 0 terminal decisions, 0 import-ready
+  rows, 0 countable candidates, 3 active-site-source blockers, 10 broader
+  duplicate-screening blockers, and 10 full-gate blockers, but the generic
+  representation-control surface is now 3 stable review-only rows, 4
+  representation near-duplicate holdouts, and 3 unresolved stability-change
+  review rows.
+- Scientific generalization work: Yes, for direct Foldseek/TM-score target
+  failure evidence but not for a full split. This run added
+  `artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json`, which shows
+  the current sequence-holdout split already violates the `<0.7` target via
+  one unique train/test structure pair, `m_csa:33`/`m_csa:34`
+  (`pdb:1JC5`/`pdb:1MPY`), max pair TM-score `0.7515`, across 48 chain-level
+  violating rows. The full TM-score holdout claim remains false.
+- SPOF hardening work: Yes. The new Foldseek audit turns the aggregate
+  expanded100 max TM-score into exact blocking-pair evidence, so extending the
+  capped run alone cannot be mistaken for a pass path. The selected-pilot
+  representation adjudication also removes stale generic representation-process
+  ambiguity while preserving review-only/non-countable safeguards and the 650M
+  cache-miss blocker.
+
 Recorded for the 2026-05-14T16:50:02Z run after clean startup gates
 (`335` unit tests passed and `validate` passed):
 
@@ -182,6 +213,24 @@ Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 
 ## Recent Project Progress
 
+- Added `artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json` plus
+  CLI and regression coverage. The audit consumes the expanded100 Foldseek
+  signal and identifies the exact current-split target blocker: one unique
+  train/test structure pair, `m_csa:33`/`m_csa:34` (`pdb:1JC5`/`pdb:1MPY`),
+  reaches max pair TM-score `0.7515` across 48 chain-level violating rows.
+  This keeps `full_tm_score_holdout_claim_permitted=false` and changes the next
+  Foldseek work from "keep increasing capped coverage" to split
+  repair/exclusion review plus any later full-signal confirmation.
+- Added
+  `artifacts/v3_external_source_pilot_representation_adjudication_1025.json`
+  and refreshed
+  `artifacts/v3_external_source_pilot_success_criteria_1025.json`. The
+  selected-pilot representation surface is now concrete: 3 stable review-only
+  controls, 4 representation near-duplicate holdouts, and 3 stability-change
+  rows requiring representation review. The success artifact remains
+  `needs_more_work` with 0 terminal decisions, 0 import-ready rows, and 0
+  countable candidates; broader duplicate screening and full label-factory
+  gates still block all 10 selected rows.
 - Completed a direct bounded expanded100 Foldseek/TM-score signal from
   `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`.
   The command used `/private/tmp/catalytic-foldseek-env/bin/foldseek` version
@@ -960,20 +1009,25 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current run used delegated workers per user instruction and removed three named
-blockers. The real sequence-distance holdout now uses MMseqs2 clustering at
-30% identity and 80% coverage for the accepted registry. Mechanism-text
-counterevidence is split into structure/local evidence versus review-context
-text, and the accepted-1,000 text-removal ablation records 0 structure/local
-guardrail losses. ESM-2 650M support and review-only sidecars are implemented,
-but the local-only 650M run could not load uncached model weights, so the
-computed 8M samples remain the usable representation controls. A prior run
-also added fail-fast CLI lineage validation for `audit-label-scaling-quality`
-and `check-label-batch-acceptance`; those lineage protections remain in force.
-`artifacts/v3_label_scaling_quality_audit_1025_preview.json`
-records `blocker_removed=artifact_graph_consistency_for_label_scaling_quality`,
-`slice_id=1025`, 20 checked slice-scoped inputs, and the ATP-family exemption.
-No labels were counted and no external rows became import-ready.
+Current run was direct only, with no subagents or delegation. It added exact
+Foldseek target-failure evidence and selected-pilot representation adjudication.
+Do not open another M-CSA-only tranche. Do not claim full TM-score holdout:
+`artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json` shows the
+current sequence-holdout split already fails the `<0.7` target on
+`m_csa:33`/`m_csa:34` (`pdb:1JC5`/`pdb:1MPY`) with max pair TM-score `0.7515`.
+The next Foldseek work should be split repair/exclusion review plus a later
+uncapped confirmation if feasible, not another routine capped increment.
+
+External pilot import remains blocked. The selected-pilot representation
+adjudication now gives concrete review-only statuses: 3 stable representation
+controls, 4 near-duplicate holdouts, and 3 stability-change rows needing
+review. The refreshed pilot success criteria still reports 0 terminal
+decisions, 0 import-ready rows, 0 countable candidates, 3 active-site-source
+blockers, 10 broader duplicate-screening blockers, 3 unresolved
+representation-control blockers, and 10 full-gate blockers. Next useful pilot
+work is broader duplicate screening or review decisions only after the blocker
+evidence is sufficient; keep all outputs non-countable unless full import
+conditions pass.
 
 Label-quality confidence call for the 2026-05-14T00:28:43Z run: no for
 additional M-CSA-only count growth, yes for bounded external-source repair, no

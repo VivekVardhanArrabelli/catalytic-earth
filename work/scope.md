@@ -192,13 +192,21 @@ Current expectation:
   full Foldseek-backed split builder is still required. The coordinate
   readiness artifact now explicitly excludes `m_csa:372` and `m_csa:501`
   because both lack selected coordinate structures in current evidence; those
-  exclusions must be reported before any full-holdout claim. The first 12-row
+  exclusions must be reported before any full-holdout claim. The target-failure
+  audit now identifies the exact current-split blocker:
+  `m_csa:33`/`m_csa:34` (`pdb:1JC5`/`pdb:1MPY`) reaches max pair TM-score
+  `0.7515` across 48 chain-level violating train/test rows, so the current
+  sequence-holdout split cannot claim a `<0.7` TM-score separation without split
+  repair or explicit exclusion review. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute
   `facebook/esm2_t30_150M_UR50D` as the largest feasible cached fallback, and
   report 8M-vs-larger `fallback_changed` stability rather than pretending a
-  650M control was completed.
+  650M control was completed. The selected-pilot representation adjudication
+  now turns that stability signal into 3 stable review-only rows, 4
+  representation near-duplicate holdouts, and 3 stability-change rows that
+  still need review.
 - external-pilot readiness now has a review-only active-site evidence decision
   artifact for the 10 selected rows. It records 7 explicit active-site source
   rows, 3 binding-context-only rows, 0 countable rows, and 0 import-ready rows.
@@ -208,8 +216,8 @@ Current expectation:
   gates unless a zero-pass result is evidence-explained rather than
   process-missing. The current status is `needs_more_work` with 0 terminal
   decisions, 0 import-ready rows, 3 unresolved active-site-source rows, 10
-  broader duplicate-screening blockers, 9 representation-control blockers, and
-  10 full-gate blockers.
+  broader duplicate-screening blockers, 3 unresolved representation-control
+  stability-change blockers after adjudication, and 10 full-gate blockers.
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed

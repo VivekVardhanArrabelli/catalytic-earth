@@ -4431,6 +4431,225 @@ def audit_external_source_representation_backend_stability(
     }
 
 
+def audit_external_source_pilot_representation_adjudication(
+    *,
+    pilot_candidate_priority: dict[str, Any],
+    pilot_representation_backend_sample: dict[str, Any],
+    pilot_representation_stability_audit: dict[str, Any],
+    pilot_active_site_evidence_decisions: dict[str, Any] | None = None,
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Adjudicate selected-pilot representation controls from stability evidence."""
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    selected_rows = [
+        row
+        for row in pilot_candidate_priority.get("rows", []) or []
+        if isinstance(row, dict)
+        and str(row.get("pilot_selection_status") or "") == "selected_for_review_pilot"
+    ][:max_rows]
+    baseline_by_accession = _representation_sample_rows_by_accession(
+        pilot_representation_backend_sample
+    )
+    stability_by_accession = _external_first_row_by_accession(
+        pilot_representation_stability_audit
+    )
+    active_site_by_accession = _external_first_row_by_accession(
+        pilot_active_site_evidence_decisions or {}
+    )
+
+    rows: list[dict[str, Any]] = []
+    for selected in selected_rows:
+        accession = _normalize_accession(selected.get("accession"))
+        if not accession:
+            continue
+        baseline_row = baseline_by_accession.get(accession, {})
+        stability_row = stability_by_accession.get(accession, {})
+        active_site_row = active_site_by_accession.get(accession, {})
+        status = _external_pilot_representation_adjudication_status(
+            baseline_row, stability_row
+        )
+        import_blocker = _external_pilot_representation_adjudication_blocker(status)
+        prior_status = active_site_row.get("representation_control_status")
+        blockers = sorted(
+            {
+                str(blocker)
+                for blocker in (active_site_row.get("import_readiness_blockers", []) or [])
+                if blocker
+                and blocker
+                not in {
+                    "representation_control_not_compared",
+                    "representation_backend_plan_missing_or_not_eligible",
+                    "external_embeddings_not_computed",
+                    "representation_backend_not_selected",
+                }
+            }
+            | ({import_blocker} if import_blocker else set())
+        )
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": selected.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": selected.get("lane_id"),
+                "rank": selected.get("rank"),
+                "baseline_backend_status": baseline_row.get("backend_status"),
+                "baseline_embedding_backend": baseline_row.get("embedding_backend"),
+                "baseline_nearest_reference_accession": stability_row.get(
+                    "baseline_nearest_reference_accession"
+                ),
+                "baseline_nearest_reference_entry_ids": stability_row.get(
+                    "baseline_nearest_reference_entry_ids", []
+                ),
+                "baseline_top_embedding_cosine": stability_row.get(
+                    "baseline_top_embedding_cosine"
+                ),
+                "comparison_backend_status": stability_row.get(
+                    "comparison_backend_status"
+                ),
+                "comparison_embedding_backend": stability_row.get(
+                    "comparison_embedding_backend"
+                ),
+                "comparison_requested_embedding_backend": stability_row.get(
+                    "comparison_requested_embedding_backend"
+                ),
+                "comparison_fallback_used": bool(
+                    stability_row.get("comparison_fallback_used")
+                ),
+                "comparison_nearest_reference_accession": stability_row.get(
+                    "comparison_nearest_reference_accession"
+                ),
+                "comparison_nearest_reference_entry_ids": stability_row.get(
+                    "comparison_nearest_reference_entry_ids", []
+                ),
+                "comparison_top_embedding_cosine": stability_row.get(
+                    "comparison_top_embedding_cosine"
+                ),
+                "nearest_reference_stable": bool(
+                    stability_row.get("nearest_reference_stable")
+                ),
+                "nearest_reference_entry_ids_stable": bool(
+                    stability_row.get("nearest_reference_entry_ids_stable")
+                ),
+                "heuristic_disagreement_status_stable": bool(
+                    stability_row.get("heuristic_disagreement_status_stable")
+                ),
+                "heuristic_fingerprint_context_stable": bool(
+                    stability_row.get("heuristic_fingerprint_context_stable")
+                ),
+                "stability_flags": stability_row.get("stability_flags", []),
+                "prior_representation_control_status": prior_status,
+                "representation_control_adjudication_status": status,
+                "representation_control_process_status": (
+                    "adjudicated_from_8m_vs_largest_feasible_esm2"
+                    if stability_row
+                    else "missing_stability_audit_row"
+                ),
+                "representation_import_blocker": import_blocker,
+                "import_readiness_blockers": blockers,
+                "next_action": _external_pilot_representation_adjudication_next_action(
+                    status
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_status": (
+                    "external_pilot_representation_adjudication_review_only"
+                ),
+            }
+        )
+
+    status_counts = Counter(
+        row["representation_control_adjudication_status"] for row in rows
+    )
+    process_counts = Counter(row["representation_control_process_status"] for row in rows)
+    unresolved_count = sum(
+        1
+        for row in rows
+        if row["representation_control_adjudication_status"]
+        in {
+            "representation_control_missing_stability_evidence",
+            "representation_stability_changed_requires_review",
+        }
+    )
+    concrete_count = sum(
+        1
+        for row in rows
+        if row["representation_control_adjudication_status"]
+        != "representation_control_missing_stability_evidence"
+    )
+    stability_meta = pilot_representation_stability_audit.get("metadata", {})
+    if not isinstance(stability_meta, dict):
+        stability_meta = {}
+    sample_meta = pilot_representation_backend_sample.get("metadata", {})
+    if not isinstance(sample_meta, dict):
+        sample_meta = {}
+
+    return {
+        "metadata": {
+            "method": "external_source_pilot_representation_adjudication",
+            "blocker_removed": (
+                "selected_pilot_representation_controls_adjudicated_from_8m_vs_largest_feasible_esm2_stability"
+            ),
+            "blocker_not_removed": stability_meta.get("comparison_blocker_not_removed"),
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_row_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "representation_control_adjudication_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "representation_control_process_status_counts": dict(
+                sorted(process_counts.items())
+            ),
+            "representation_control_concrete_evidence_count": concrete_count,
+            "representation_control_unresolved_count": unresolved_count,
+            "representation_control_stable_review_only_count": status_counts.get(
+                "representation_control_adjudicated_review_only", 0
+            ),
+            "representation_near_duplicate_holdout_count": status_counts.get(
+                "representation_near_duplicate_holdout", 0
+            ),
+            "representation_stability_changed_review_count": status_counts.get(
+                "representation_stability_changed_requires_review", 0
+            ),
+            "baseline_embedding_backend": stability_meta.get(
+                "baseline_embedding_backend"
+            )
+            or sample_meta.get("embedding_backend"),
+            "comparison_embedding_backend": stability_meta.get(
+                "comparison_embedding_backend"
+            ),
+            "comparison_requested_embedding_backend": stability_meta.get(
+                "comparison_requested_embedding_backend"
+            ),
+            "comparison_backend_feasibility_status": stability_meta.get(
+                "comparison_backend_feasibility_status"
+            ),
+            "comparison_blocker_not_removed": stability_meta.get(
+                "comparison_blocker_not_removed"
+            ),
+            "predictive_feature_sources": sample_meta.get(
+                "predictive_feature_sources", []
+            ),
+            "predictive_feature_policy": sample_meta.get("predictive_feature_policy"),
+            "review_only_rule": (
+                "representation adjudication can resolve representation-control "
+                "process ambiguity, but it cannot create import-ready or "
+                "countable labels without duplicate screening, review decisions, "
+                "and full label-factory gates"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": sorted(
+            rows, key=lambda row: (int(row.get("rank") or 9999), row["accession"])
+        ),
+    }
+
+
 def _representation_sample_rows_by_accession(
     representation_backend_sample: dict[str, Any],
 ) -> dict[str, dict[str, Any]]:
@@ -4442,6 +4661,49 @@ def _representation_sample_rows_by_accession(
         if accession:
             rows_by_accession[accession] = row
     return rows_by_accession
+
+
+def _external_pilot_representation_adjudication_status(
+    baseline_row: dict[str, Any],
+    stability_row: dict[str, Any],
+) -> str:
+    if not stability_row:
+        return "representation_control_missing_stability_evidence"
+    baseline_status = str(baseline_row.get("backend_status") or "")
+    comparison_status = str(stability_row.get("comparison_backend_status") or "")
+    if (
+        baseline_status == "representation_near_duplicate_holdout"
+        or comparison_status == "representation_near_duplicate_holdout"
+    ):
+        return "representation_near_duplicate_holdout"
+    stable = (
+        stability_row.get("nearest_reference_entry_ids_stable") is True
+        and stability_row.get("heuristic_disagreement_status_stable") is True
+        and stability_row.get("heuristic_fingerprint_context_stable") is True
+    )
+    if stable:
+        return "representation_control_adjudicated_review_only"
+    return "representation_stability_changed_requires_review"
+
+
+def _external_pilot_representation_adjudication_blocker(status: str) -> str | None:
+    if status == "representation_near_duplicate_holdout":
+        return "representation_near_duplicate_holdout"
+    if status == "representation_stability_changed_requires_review":
+        return "representation_stability_changed_requires_review"
+    if status == "representation_control_missing_stability_evidence":
+        return "representation_control_missing_stability_evidence"
+    return None
+
+
+def _external_pilot_representation_adjudication_next_action(status: str) -> str:
+    if status == "representation_control_adjudicated_review_only":
+        return "carry_representation_control_as_review_only_context"
+    if status == "representation_near_duplicate_holdout":
+        return "keep_representation_near_duplicate_out_of_import_batch"
+    if status == "representation_stability_changed_requires_review":
+        return "review_largest_feasible_representation_disagreement"
+    return "compute_missing_representation_stability_audit"
 
 
 def _representation_sample_disagreements_by_accession(
@@ -8515,6 +8777,7 @@ def build_external_source_pilot_success_criteria(
     pilot_active_site_evidence_decisions: dict[str, Any],
     external_import_readiness_audit: dict[str, Any],
     external_transfer_gate: dict[str, Any],
+    pilot_representation_adjudication: dict[str, Any] | None = None,
     min_import_ready_rows: int = 1,
     max_rows: int = 10,
     artifact_lineage: dict[str, Any] | None = None,
@@ -8536,6 +8799,9 @@ def build_external_source_pilot_success_criteria(
     import_by_accession = _external_first_row_by_accession(
         external_import_readiness_audit
     )
+    representation_adjudication_by_accession = _external_first_row_by_accession(
+        pilot_representation_adjudication or {}
+    )
     decision_rows = [
         row
         for row in pilot_active_site_evidence_decisions.get("rows", []) or []
@@ -8548,6 +8814,9 @@ def build_external_source_pilot_success_criteria(
         priority_row = priority_by_accession.get(accession, {})
         review_row = review_by_accession.get(accession, {})
         import_row = import_by_accession.get(accession, {})
+        representation_adjudication_row = representation_adjudication_by_accession.get(
+            accession, {}
+        )
         review_decision = review_row.get("decision", {})
         if not isinstance(review_decision, dict):
             review_decision = {}
@@ -8570,6 +8839,28 @@ def build_external_source_pilot_success_criteria(
                 if blocker
             }
         )
+        if representation_adjudication_row:
+            blockers = [
+                blocker
+                for blocker in blockers
+                if blocker
+                not in {
+                    "external_embeddings_not_computed",
+                    "representation_backend_not_selected",
+                    "representation_control_issue",
+                    "representation_backend_plan_missing_or_not_eligible",
+                    "representation_control_not_compared",
+                }
+            ]
+            blockers.extend(
+                str(blocker)
+                for blocker in representation_adjudication_row.get(
+                    "import_readiness_blockers", []
+                )
+                or []
+                if blocker
+            )
+            blockers = sorted(set(blockers))
 
         active_site_category = str(
             row.get("active_site_evidence_source_category")
@@ -8591,10 +8882,19 @@ def build_external_source_pilot_success_criteria(
             and "broader_duplicate_screening_required" not in blockers
         )
         representation_status = str(
-            row.get("representation_control_status") or "missing"
+            representation_adjudication_row.get(
+                "representation_control_adjudication_status"
+            )
+            or row.get("representation_control_status")
+            or "missing"
         )
         representation_resolved = (
-            representation_status == "pilot_representation_control_review_only"
+            representation_status
+            in {
+                "pilot_representation_control_review_only",
+                "representation_control_adjudicated_review_only",
+                "representation_near_duplicate_holdout",
+            }
         )
         factory_gate_status = (
             "not_run"
@@ -8667,8 +8967,13 @@ def build_external_source_pilot_success_criteria(
                 "ready_for_label_import": import_ready,
                 "representation_control_adjudication_status": (
                     "representation_control_adjudicated_review_only"
-                    if representation_resolved
+                    if representation_status == "pilot_representation_control_review_only"
                     else representation_status
+                ),
+                "representation_control_process_status": (
+                    representation_adjudication_row.get(
+                        "representation_control_process_status"
+                    )
                 ),
                 "review_decision_status": review_decision_status,
                 "review_status": "external_pilot_success_criteria_review_only",

@@ -102,6 +102,13 @@ but remains review-only and non-countable. The `<0.7` target is not achieved on
 the computed subset, the cap leaves 572 staged coordinates uncomputed, and no
 uncapped full split/signal has completed. The coordinate exclusions must remain
 reported before any full TM-score holdout claim.
+`artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json` now records
+the exact current-split target blocker from that signal: one unique
+train/test structure pair, `m_csa:33`/`m_csa:34` (`pdb:1JC5`/`pdb:1MPY`),
+drives 48 chain-level rows at or above the `<0.7` threshold, with max pair
+TM-score `0.7515`. This keeps the full TM-score holdout claim forbidden and
+makes the next generalization task split repair/exclusion review, not just a
+larger capped run.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until a full Foldseek-backed
@@ -142,8 +149,16 @@ Priority blockers:
   failure is evidence-explained rather than process-missing. The current status
   is `needs_more_work`: 0 terminal decisions, 0 import-ready rows, 0 countable
   candidates, 3 unresolved active-site-source rows, 10 broader-duplicate
-  screening blockers, 9 representation-control blockers, and 10 full-gate
-  blockers.
+  screening blockers, 3 unresolved representation-control stability-change
+  rows after selected-pilot adjudication, and 10 full-gate blockers.
+- `artifacts/v3_external_source_pilot_representation_adjudication_1025.json`
+  consumes the selected-pilot 8M-vs-largest-feasible ESM-2 stability audit and
+  keeps all 10 rows review-only: 3 are stable review-only representation
+  controls, 4 are representation near-duplicate holdouts, and 3 require review
+  because nearest-reference evidence changed under the 150M fallback. The
+  requested 650M backend remains not cached, so this removes generic
+  representation-process ambiguity without claiming 650M completion or import
+  readiness.
 - The active-site evidence pass now samples all 25 ready candidates from
   UniProtKB feature records. It finds active-site features for 15 candidates,
   leaves 10 candidates as active-site-feature gaps, and keeps all rows

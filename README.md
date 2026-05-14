@@ -269,6 +269,14 @@ and 3 rows with binding context only, removes the pilot source-status ambiguity
 blocker, and keeps all 10 rows non-countable and not import-ready because
 broader duplicate screening, representation controls, review decisions, and the
 full label-factory gate remain unresolved.
+`artifacts/v3_external_source_pilot_representation_adjudication_1025.json`
+then consumes the 8M-vs-largest-feasible ESM-2 stability audit for the selected
+pilot rows. It keeps every row review-only and non-countable while splitting
+the former generic representation-control surface into 3 stable review-only
+controls, 4 representation near-duplicate holdouts, and 3 stability-change rows
+that need representation review. The requested 650M backend remains unavailable
+locally, so this is a largest-feasible 150M fallback adjudication, not a 650M
+completion claim.
 `artifacts/v3_external_source_pilot_success_criteria_1025.json` now makes the
 pilot success definition measurable instead of implicit. Operational success
 requires all 10 selected candidates to reach terminal decisions with no
@@ -277,8 +285,9 @@ candidate to become import-ready under full gates, or a zero-pass result where
 every failure is explained by concrete evidence rather than missing process.
 The current status is `needs_more_work`: 0 terminal decisions, 0 import-ready
 rows, 7 explicit active-site rows, 3 binding-context-only active-site rows, all
-10 still needing broader duplicate screening and full label-factory gates, and
-0 countable label candidates.
+10 still needing broader duplicate screening and full label-factory gates, 3
+remaining unresolved representation-control rows after adjudication, and 0
+countable label candidates.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
@@ -352,6 +361,14 @@ uncomputed, `tm_score_split_computed=false` and
 `full_tm_score_split_computed=false` remain true, and the full TM-score split
 still requires an uncapped Foldseek-backed split/signal over the full
 materialized set with the coordinate exclusions reported.
+`artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json` now makes the
+target failure actionable rather than just aggregate metadata: the current
+sequence-holdout split already has one unique blocking train/test structure
+pair, `m_csa:33`/`m_csa:34` (`pdb:1JC5`/`pdb:1MPY`), with max pair TM-score
+`0.7515` across 48 chain-level violating rows. A full holdout claim remains
+forbidden unless the split is repaired or the exclusion policy is explicitly
+reviewed; extending the capped signal alone cannot make the current split pass
+the `<0.7` target.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
@@ -380,7 +397,10 @@ actual dimension `640` versus requested dimension `1280`, and mark
 `requested_650m_or_larger_representation_backend_not_computed`. The 8M-vs-larger
 stability audits now report `fallback_changed` for both mapped controls and
 selected pilot rows, which is a real representation-control signal rather than a
-replacement for a future full 650M control.
+replacement for a future full 650M control. The selected-pilot adjudication now
+uses that signal to reduce the pilot representation surface from 9 generic
+blockers to 3 unresolved stability-change rows plus 4 concrete
+near-duplicate-holdout rows and 3 stable review-only controls.
 `artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json`
 prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
 expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,

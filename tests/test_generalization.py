@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from catalytic_earth.generalization import (
+    audit_foldseek_tm_score_target_failure,
     build_foldseek_coordinate_readiness,
     build_foldseek_tm_score_signal,
     build_sequence_distance_holdout_eval,
@@ -772,6 +773,112 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
             metadata["full_tm_score_holdout_claim_blockers"],
         )
 
+    def test_tm_score_target_failure_audit_names_blocking_pairs(self) -> None:
+        signal = {
+            "metadata": {
+                "method": "foldseek_tm_score_signal",
+                "slice_id": "test",
+                "foldseek_version": "10.test",
+                "foldseek_command": "foldseek easy-search coords coords out tmp",
+                "foldseek_run_status": "completed",
+                "staged_coordinate_count": 2,
+                "available_staged_coordinate_count": 3,
+                "remaining_uncomputed_staged_coordinate_count": 1,
+                "tm_score_signal_coverage_status": "partial_staged_coordinate_signal",
+                "tm_signal_coordinate_cap_applied": True,
+                "full_tm_score_split_computed": False,
+                "full_tm_score_holdout_claim_permitted": False,
+                "full_tm_score_holdout_claim_blockers": [
+                    "available staged coordinates were excluded by the signal cap"
+                ],
+            },
+            "rows": [
+                {
+                    "query_structure_key": "pdb:1AAA",
+                    "target_structure_key": "pdb:2BBB",
+                    "query_structure_id": "1AAA",
+                    "target_structure_id": "2BBB",
+                    "query_entry_ids": ["m_csa:1"],
+                    "target_entry_ids": ["m_csa:2"],
+                    "query_partitions": ["heldout"],
+                    "target_partitions": ["in_distribution"],
+                    "raw_query_name": "pdb_1AAA_A",
+                    "raw_target_name": "pdb_2BBB_A",
+                    "qtmscore": 0.71,
+                    "ttmscore": 0.72,
+                    "alntmscore": 0.75,
+                    "max_pair_tm_score": 0.75,
+                    "train_test_pair": True,
+                    "self_pair": False,
+                    "line_number": 1,
+                },
+                {
+                    "query_structure_key": "pdb:2BBB",
+                    "target_structure_key": "pdb:1AAA",
+                    "query_entry_ids": ["m_csa:2"],
+                    "target_entry_ids": ["m_csa:1"],
+                    "query_partitions": ["in_distribution"],
+                    "target_partitions": ["heldout"],
+                    "raw_query_name": "pdb_2BBB_A",
+                    "raw_target_name": "pdb_1AAA_A",
+                    "max_pair_tm_score": 0.73,
+                    "train_test_pair": True,
+                    "self_pair": False,
+                    "line_number": 2,
+                },
+                {
+                    "query_structure_key": "pdb:1AAA",
+                    "target_structure_key": "pdb:3CCC",
+                    "query_entry_ids": ["m_csa:1"],
+                    "target_entry_ids": ["m_csa:3"],
+                    "query_partitions": ["heldout"],
+                    "target_partitions": ["in_distribution"],
+                    "max_pair_tm_score": 0.61,
+                    "train_test_pair": True,
+                    "self_pair": False,
+                    "line_number": 3,
+                },
+            ],
+        }
+
+        artifact = audit_foldseek_tm_score_target_failure(
+            signal=signal,
+            signal_path="artifacts/test_signal.json",
+            threshold=0.7,
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_target_failure_audit")
+        self.assertEqual(metadata["review_status"], "review_only_non_countable")
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertTrue(
+            metadata["current_sequence_holdout_split_tm_score_target_blocked"]
+        )
+        self.assertTrue(metadata["split_repair_required_for_target"])
+        self.assertFalse(metadata["tm_score_target_achieved_for_computed_subset"])
+        self.assertEqual(metadata["train_test_pair_count"], 3)
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 2)
+        self.assertEqual(metadata["violating_unique_structure_pair_count"], 1)
+        self.assertEqual(metadata["violating_unique_entry_pair_count"], 1)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.75)
+        self.assertIn(
+            "computed train/test TM-score target <0.7 is already violated in the computed subset",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertEqual(len(artifact["blocking_pairs"]), 1)
+        pair = artifact["blocking_pairs"][0]
+        self.assertEqual(pair["query_structure_key"], "pdb:1AAA")
+        self.assertEqual(pair["target_structure_key"], "pdb:2BBB")
+        self.assertEqual(pair["query_entry_ids"], ["m_csa:1"])
+        self.assertEqual(pair["target_entry_ids"], ["m_csa:2"])
+        self.assertEqual(pair["max_pair_tm_score"], 0.75)
+        self.assertTrue(pair["violates_target"])
+        self.assertFalse(pair["countable_label_candidate"])
+        self.assertFalse(pair["import_ready"])
+
     def test_current_1000_foldseek_tm_score_signal_artifact_is_pinned(self) -> None:
         artifact = _load_artifact(
             "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json"
@@ -1092,6 +1199,49 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
             all(not row["countable_label_candidate"] for row in artifact["rows"])
         )
         self.assertTrue(all(not row["import_ready"] for row in artifact["rows"]))
+
+    def test_current_foldseek_target_failure_audit_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "foldseek_tm_score_target_failure_audit"
+        )
+        self.assertEqual(metadata["source_signal_staged_coordinate_count"], 100)
+        self.assertEqual(
+            metadata["source_signal_remaining_uncomputed_staged_coordinate_count"],
+            572,
+        )
+        self.assertEqual(metadata["source_signal_foldseek_version"], "10.941cd33")
+        self.assertEqual(metadata["train_test_pair_count"], 7317)
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 48)
+        self.assertEqual(metadata["violating_unique_structure_pair_count"], 1)
+        self.assertEqual(metadata["violating_unique_entry_pair_count"], 1)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.7515)
+        self.assertTrue(
+            metadata["current_sequence_holdout_split_tm_score_target_blocked"]
+        )
+        self.assertTrue(metadata["split_repair_required_for_target"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertIn(
+            "computed train/test TM-score target <0.7 is already violated in the computed subset",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertEqual(len(artifact["blocking_pairs"]), 1)
+        pair = artifact["blocking_pairs"][0]
+        self.assertEqual(pair["query_entry_ids"], ["m_csa:33"])
+        self.assertEqual(pair["target_entry_ids"], ["m_csa:34"])
+        self.assertEqual(pair["query_structure_key"], "pdb:1JC5")
+        self.assertEqual(pair["target_structure_key"], "pdb:1MPY")
+        self.assertEqual(pair["max_pair_tm_score"], 0.7515)
+        self.assertTrue(pair["violates_target"])
+        self.assertFalse(pair["countable_label_candidate"])
+        self.assertFalse(pair["import_ready"])
 
 
 def _result(

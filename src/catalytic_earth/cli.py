@@ -16,6 +16,7 @@ from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_grap
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
 from .generalization import (
+    audit_foldseek_tm_score_target_failure,
     build_foldseek_coordinate_readiness,
     build_foldseek_tm_score_signal,
     build_sequence_distance_holdout_eval,
@@ -105,6 +106,7 @@ from .transfer_scope import (
     audit_external_source_representation_backend_plan,
     audit_external_source_representation_backend_sample,
     audit_external_source_representation_backend_stability,
+    audit_external_source_pilot_representation_adjudication,
     audit_external_source_sequence_alignment_verification,
     audit_external_source_backend_sequence_search,
     audit_external_source_sequence_reference_screen,
@@ -673,6 +675,27 @@ def cmd_build_foldseek_tm_score_signal(args: argparse.Namespace) -> int:
         "staged coordinates, "
         f"{artifact['metadata']['pair_count']} pair rows, "
         f"tm_score_split_computed={artifact['metadata']['tm_score_split_computed']})"
+    )
+    return 0
+
+
+def cmd_audit_foldseek_tm_score_target_failure(args: argparse.Namespace) -> int:
+    with Path(args.signal).open("r", encoding="utf-8") as handle:
+        signal = json.load(handle)
+    artifact = audit_foldseek_tm_score_target_failure(
+        signal=signal,
+        signal_path=args.signal,
+        threshold=args.threshold,
+        max_blocking_pairs=args.max_blocking_pairs,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote Foldseek TM-score target-failure audit to "
+        f"{args.out} ("
+        f"{artifact['metadata']['violating_unique_structure_pair_count']} "
+        "blocking structure pairs, "
+        "full_tm_score_holdout_claim_permitted="
+        f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
     )
     return 0
 
@@ -1434,6 +1457,45 @@ def cmd_audit_external_source_representation_backend_stability(
     return 0
 
 
+def cmd_audit_external_source_pilot_representation_adjudication(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "pilot_candidate_priority",
+            "pilot_representation_backend_sample",
+            "pilot_representation_stability_audit",
+            "pilot_active_site_evidence_decisions",
+        ),
+        blocker_removed=(
+            "selected_pilot_representation_controls_adjudicated_from_stability"
+        ),
+    )
+    audit = audit_external_source_pilot_representation_adjudication(
+        pilot_candidate_priority=artifact_payloads["pilot_candidate_priority"],
+        pilot_representation_backend_sample=artifact_payloads[
+            "pilot_representation_backend_sample"
+        ],
+        pilot_representation_stability_audit=artifact_payloads[
+            "pilot_representation_stability_audit"
+        ],
+        pilot_active_site_evidence_decisions=artifact_payloads[
+            "pilot_active_site_evidence_decisions"
+        ],
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source pilot representation adjudication to "
+        f"{args.out} ("
+        f"{audit['metadata']['representation_control_unresolved_count']} "
+        "unresolved representation rows)"
+    )
+    return 0
+
+
 def cmd_audit_external_source_broad_ec_disambiguation(
     args: argparse.Namespace,
 ) -> int:
@@ -2116,6 +2178,7 @@ def cmd_build_external_source_pilot_success_criteria(
             "pilot_active_site_evidence_decisions",
             "external_import_readiness_audit",
             "external_transfer_gate",
+            "pilot_representation_adjudication",
         ),
         blocker_removed="external_pilot_success_criteria_defined",
     )
@@ -2131,6 +2194,9 @@ def cmd_build_external_source_pilot_success_criteria(
             "external_import_readiness_audit"
         ],
         external_transfer_gate=artifact_payloads["external_transfer_gate"],
+        pilot_representation_adjudication=artifact_payloads.get(
+            "pilot_representation_adjudication"
+        ),
         min_import_ready_rows=args.min_import_ready_rows,
         max_rows=args.max_rows,
         artifact_lineage=artifact_lineage,
@@ -4159,6 +4225,38 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_tm_signal.set_defaults(func=cmd_build_foldseek_tm_score_signal)
 
+    foldseek_target_failure = subparsers.add_parser(
+        "audit-foldseek-tm-score-target-failure",
+        help=(
+            "summarize the exact Foldseek train/test TM-score pairs that "
+            "block the current <0.7 holdout target"
+        ),
+    )
+    foldseek_target_failure.add_argument(
+        "--signal",
+        default="artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json",
+        help="Foldseek TM-score signal artifact to audit",
+    )
+    foldseek_target_failure.add_argument(
+        "--threshold",
+        type=float,
+        default=0.7,
+        help="exclusive target threshold; pairs at or above this value block the target",
+    )
+    foldseek_target_failure.add_argument(
+        "--max-blocking-pairs",
+        type=int,
+        default=20,
+        help="maximum unique blocking structure pairs to include",
+    )
+    foldseek_target_failure.add_argument(
+        "--out",
+        default="artifacts/v3_foldseek_tm_score_target_failure_audit.json",
+    )
+    foldseek_target_failure.set_defaults(
+        func=cmd_audit_foldseek_tm_score_target_failure
+    )
+
     source_scale_limits = subparsers.add_parser(
         "audit-source-scale-limits",
         help="audit whether the current source slice can support the next scale target",
@@ -4996,6 +5094,53 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_representation_backend_stability
     )
 
+    external_pilot_representation_adjudication = subparsers.add_parser(
+        "audit-external-source-pilot-representation-adjudication",
+        help=(
+            "adjudicate selected pilot representation controls from 8M versus "
+            "largest-feasible ESM-2 stability evidence"
+        ),
+    )
+    external_pilot_representation_adjudication.add_argument(
+        "--pilot-candidate-priority",
+        default="artifacts/v3_external_source_pilot_candidate_priority_1025.json",
+    )
+    external_pilot_representation_adjudication.add_argument(
+        "--pilot-representation-backend-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_sample_1025.json"
+        ),
+    )
+    external_pilot_representation_adjudication.add_argument(
+        "--pilot-representation-stability-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_"
+            "stability_audit_1025.json"
+        ),
+    )
+    external_pilot_representation_adjudication.add_argument(
+        "--pilot-active-site-evidence-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        ),
+    )
+    external_pilot_representation_adjudication.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_representation_adjudication.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_adjudication_1025.json"
+        ),
+    )
+    external_pilot_representation_adjudication.set_defaults(
+        func=cmd_audit_external_source_pilot_representation_adjudication
+    )
+
     external_broad_ec_audit = subparsers.add_parser(
         "audit-external-source-broad-ec-disambiguation",
         help="narrow broad external EC repair rows to review-only reaction context",
@@ -5767,6 +5912,14 @@ def build_parser() -> argparse.ArgumentParser:
     external_pilot_success.add_argument(
         "--external-transfer-gate",
         default="artifacts/v3_external_source_transfer_gate_check_1025.json",
+    )
+    external_pilot_success.add_argument(
+        "--pilot-representation-adjudication",
+        default=None,
+        help=(
+            "optional selected-pilot representation adjudication artifact "
+            "built from backend stability evidence"
+        ),
     )
     external_pilot_success.add_argument("--max-rows", type=int, default=10)
     external_pilot_success.add_argument(

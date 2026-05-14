@@ -29,6 +29,7 @@ from catalytic_earth.transfer_scope import (
     audit_external_source_representation_backend_plan,
     audit_external_source_representation_backend_sample,
     audit_external_source_representation_backend_stability,
+    audit_external_source_pilot_representation_adjudication,
     audit_external_source_sequence_alignment_verification,
     audit_external_source_sequence_reference_screen,
     audit_external_source_sequence_search_export,
@@ -3555,6 +3556,265 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             audit["metadata"]["heuristic_disagreement_status_stable_count"], 1
         )
         self.assertIn("nearest_reference_changed", audit["rows"][0]["stability_flags"])
+
+    def test_pilot_representation_adjudication_splits_stable_holdout_and_changed(
+        self,
+    ) -> None:
+        priority = {
+            "metadata": {"method": "external_source_pilot_candidate_priority"},
+            "rows": [
+                {
+                    "rank": 1,
+                    "accession": "PSTABLE",
+                    "lane_id": "external_source:lane_a",
+                    "pilot_selection_status": "selected_for_review_pilot",
+                },
+                {
+                    "rank": 2,
+                    "accession": "PHOLD",
+                    "lane_id": "external_source:lane_b",
+                    "pilot_selection_status": "selected_for_review_pilot",
+                },
+                {
+                    "rank": 3,
+                    "accession": "PCHANGE",
+                    "lane_id": "external_source:lane_c",
+                    "pilot_selection_status": "selected_for_review_pilot",
+                },
+            ],
+        }
+        sample = {
+            "metadata": {
+                "method": "external_source_representation_backend_sample",
+                "embedding_backend": "esm2_t6_8m_ur50d",
+                "predictive_feature_sources": [
+                    "sequence_embedding_cosine",
+                    "sequence_length_coverage",
+                ],
+            },
+            "rows": [
+                {
+                    "accession": "PSTABLE",
+                    "backend_status": "learned_representation_sample_complete",
+                    "embedding_backend": "esm2_t6_8m_ur50d",
+                },
+                {
+                    "accession": "PHOLD",
+                    "backend_status": "learned_representation_sample_complete",
+                    "embedding_backend": "esm2_t6_8m_ur50d",
+                },
+                {
+                    "accession": "PCHANGE",
+                    "backend_status": "learned_representation_sample_complete",
+                    "embedding_backend": "esm2_t6_8m_ur50d",
+                },
+            ],
+        }
+        stability = {
+            "metadata": {
+                "method": "external_source_representation_backend_stability_audit",
+                "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+                "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+                "comparison_requested_embedding_backend": "esm2_t33_650m_ur50d",
+                "comparison_blocker_not_removed": (
+                    "requested_650m_or_larger_representation_backend_not_computed"
+                ),
+            },
+            "rows": [
+                {
+                    "accession": "PSTABLE",
+                    "comparison_backend_status": (
+                        "learned_representation_sample_complete"
+                    ),
+                    "nearest_reference_stable": True,
+                    "nearest_reference_entry_ids_stable": True,
+                    "heuristic_disagreement_status_stable": True,
+                    "heuristic_fingerprint_context_stable": True,
+                    "stability_flags": ["comparison_embedding_backend_fallback_used"],
+                },
+                {
+                    "accession": "PHOLD",
+                    "comparison_backend_status": "representation_near_duplicate_holdout",
+                    "nearest_reference_stable": True,
+                    "nearest_reference_entry_ids_stable": True,
+                    "heuristic_disagreement_status_stable": False,
+                    "heuristic_fingerprint_context_stable": True,
+                    "stability_flags": [
+                        "heuristic_disagreement_status_changed",
+                        "comparison_embedding_backend_fallback_used",
+                    ],
+                },
+                {
+                    "accession": "PCHANGE",
+                    "comparison_backend_status": (
+                        "learned_representation_sample_complete"
+                    ),
+                    "nearest_reference_stable": False,
+                    "nearest_reference_entry_ids_stable": False,
+                    "heuristic_disagreement_status_stable": True,
+                    "heuristic_fingerprint_context_stable": True,
+                    "stability_flags": [
+                        "nearest_reference_changed",
+                        "nearest_reference_entry_ids_changed",
+                        "comparison_embedding_backend_fallback_used",
+                    ],
+                },
+            ],
+        }
+
+        audit = audit_external_source_pilot_representation_adjudication(
+            pilot_candidate_priority=priority,
+            pilot_representation_backend_sample=sample,
+            pilot_representation_stability_audit=stability,
+            max_rows=3,
+        )
+
+        self.assertEqual(
+            audit["metadata"]["method"],
+            "external_source_pilot_representation_adjudication",
+        )
+        self.assertEqual(
+            audit["metadata"]["representation_control_adjudication_status_counts"],
+            {
+                "representation_control_adjudicated_review_only": 1,
+                "representation_near_duplicate_holdout": 1,
+                "representation_stability_changed_requires_review": 1,
+            },
+        )
+        self.assertEqual(
+            audit["metadata"]["representation_control_unresolved_count"], 1
+        )
+        self.assertEqual(
+            audit["metadata"]["representation_control_concrete_evidence_count"], 3
+        )
+        self.assertFalse(audit["metadata"]["ready_for_label_import"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+        rows = {row["accession"]: row for row in audit["rows"]}
+        self.assertEqual(
+            rows["PSTABLE"]["representation_control_adjudication_status"],
+            "representation_control_adjudicated_review_only",
+        )
+        self.assertEqual(
+            rows["PHOLD"]["representation_import_blocker"],
+            "representation_near_duplicate_holdout",
+        )
+        self.assertEqual(
+            rows["PCHANGE"]["representation_import_blocker"],
+            "representation_stability_changed_requires_review",
+        )
+        self.assertTrue(all(not row["ready_for_label_import"] for row in audit["rows"]))
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in audit["rows"])
+        )
+
+    def test_pilot_success_criteria_can_use_representation_adjudication(
+        self,
+    ) -> None:
+        criteria = build_external_source_pilot_success_criteria(
+            pilot_candidate_priority={
+                "rows": [
+                    {
+                        "accession": "PSTABLE",
+                        "lane_id": "external_source:lane_a",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                    },
+                    {
+                        "accession": "PCHANGE",
+                        "lane_id": "external_source:lane_b",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                    },
+                ]
+            },
+            pilot_review_decision_export={
+                "review_items": [
+                    {"accession": "PSTABLE", "decision": {"decision_status": "no_decision"}},
+                    {"accession": "PCHANGE", "decision": {"decision_status": "no_decision"}},
+                ]
+            },
+            pilot_active_site_evidence_decisions={
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "PSTABLE",
+                        "active_site_evidence_source_category": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "broader_duplicate_screening_status": (
+                            "broader_duplicate_screening_required"
+                        ),
+                        "representation_control_status": "representation_control_issue",
+                        "import_readiness_blockers": [
+                            "broader_duplicate_screening_required",
+                            "representation_control_not_compared",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    },
+                    {
+                        "rank": 2,
+                        "accession": "PCHANGE",
+                        "active_site_evidence_source_category": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "broader_duplicate_screening_status": (
+                            "broader_duplicate_screening_required"
+                        ),
+                        "representation_control_status": "representation_control_issue",
+                        "import_readiness_blockers": [
+                            "broader_duplicate_screening_required",
+                            "representation_control_not_compared",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    },
+                ]
+            },
+            external_import_readiness_audit={"rows": []},
+            external_transfer_gate={"metadata": {"ready_for_label_import": False}},
+            pilot_representation_adjudication={
+                "rows": [
+                    {
+                        "accession": "PSTABLE",
+                        "representation_control_adjudication_status": (
+                            "representation_control_adjudicated_review_only"
+                        ),
+                        "representation_control_process_status": (
+                            "adjudicated_from_8m_vs_largest_feasible_esm2"
+                        ),
+                        "import_readiness_blockers": [],
+                    },
+                    {
+                        "accession": "PCHANGE",
+                        "representation_control_adjudication_status": (
+                            "representation_stability_changed_requires_review"
+                        ),
+                        "representation_control_process_status": (
+                            "adjudicated_from_8m_vs_largest_feasible_esm2"
+                        ),
+                        "import_readiness_blockers": [
+                            "representation_stability_changed_requires_review"
+                        ],
+                    },
+                ]
+            },
+            max_rows=2,
+        )
+
+        counts = criteria["metadata"]["criteria_blocker_counts"]
+        self.assertEqual(counts["representation_control_unresolved"], 1)
+        rows = {row["accession"]: row for row in criteria["rows"]}
+        self.assertNotIn(
+            "representation_control_unresolved",
+            rows["PSTABLE"]["criterion_blockers"],
+        )
+        self.assertIn(
+            "representation_control_unresolved",
+            rows["PCHANGE"]["criterion_blockers"],
+        )
+        self.assertNotIn(
+            "representation_control_not_compared",
+            rows["PSTABLE"]["unresolved_process_blockers"],
+        )
 
     def test_external_broad_ec_disambiguation_stays_review_only(self) -> None:
         audit = audit_external_source_broad_ec_disambiguation(

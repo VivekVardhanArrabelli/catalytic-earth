@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 94
-- Measured elapsed time: 3394.9 minutes (56.58 hours)
+- Entries: 96
+- Measured elapsed time: 3416.3 minutes (56.94 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 748.6 measured minutes (12.48 hours)
+- post-mcsa-spof-hardening: 770.0 measured minutes (12.83 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,32 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 994
-- Evidence references logged: 819
+- Artifact references logged: 1010
+- Evidence references logged: 825
 
 ## Recent Entries
-
-### 2026-05-14T10:16:36.145071+00:00 - post-mcsa-spof-hardening
-
-- Task: Representation fallback and Foldseek claim safety
-- Time mode: measured
-- Measured minutes: 36.15
-- Started: 2026-05-14T09:40:14Z
-- Ended: 2026-05-14T10:16:23Z
-- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json, artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json, artifacts/v3_external_source_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json, artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json, artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: 326 unit tests passed, validate passed, git diff check passed, external transfer gate 67/67, 150M ESM-2 fallback computed for 12 controls and 10 pilot rows, 650M uncached/infeasible, expanded40 Foldseek signal 5699 mapped pairs with false-full-claim blockers, 0 countable labels, 0 import-ready rows
-- Notes: Normal locked delegated run per user instruction. Parent integrated worker outputs, regenerated expanded40 metadata, verified gates, and kept all external rows review-only.
-
-### 2026-05-14T11:07:34.295381+00:00 - post-mcsa-spof-hardening
-
-- Task: Foldseek all-materializable sidecar and pilot active-site decisions
-- Time mode: measured
-- Measured minutes: 25.783
-- Started: 2026-05-14T10:41:47Z
-- Ended: 2026-05-14T11:07:34Z
-- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_generalization.py, tests/test_transfer_scope.py, tests/test_cli.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json, artifacts/v3_foldseek_coordinates_1000, artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: 331 unit tests passed, validate passed, git diff check passed, JSON artifact parse passed, Foldseek all-materializable readiness staged 672 unique coordinates with 0 fetch failures, external pilot active-site decisions 7 explicit and 3 binding-context-only, external transfer gate 68/68, 0 countable labels, 0 import-ready rows
-- Notes: Normal locked delegated run per user instruction. Parent integrated worker outputs, added durable docs, and kept M-CSA-only growth stopped and all external rows review-only.
 
 ### 2026-05-14T12:34:37.036864+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +94,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
 - Evidence: 336 unit tests passed, validate passed, compileall passed, Foldseek expanded100 completed partial signal 27542 mapped pairs, max train/test TM 0.7515, target <0.7 not achieved, 0 countable labels, 0 import-ready rows
 - Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
+
+### 2026-05-14T18:09:39.969297+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek target failure and pilot representation adjudication
+- Time mode: measured
+- Measured minutes: 18.883
+- Started: 2026-05-14T12:50:46-0500
+- Ended: 2026-05-14T13:09:39-0500
+- Artifacts: work/scope.md
+- Evidence: 0 countable labels and 0 import-ready rows
+- Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
+
+### 2026-05-14T18:12:15.033415+00:00 - post-mcsa-spof-hardening
+
+- Task: Final verification for Foldseek and pilot representation artifacts
+- Time mode: measured
+- Measured minutes: 2.567
+- Started: 2026-05-14T13:09:40-0500
+- Ended: 2026-05-14T13:12:14-0500
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json, artifacts/v3_external_source_pilot_representation_adjudication_1025.json, artifacts/v3_external_source_pilot_success_criteria_1025.json, tests/test_generalization.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/external_source_transfer_1025_notes.md, work/handoff.md, work/scope.md
+- Evidence: 340 unit tests passed, validate passed with 679 curated labels, git diff check passed, 0 countable labels, 0 import-ready rows
+- Notes: Final direct-run verification and documentation refresh after blocker-removal artifacts.
 
 ## Expectation Updates
 

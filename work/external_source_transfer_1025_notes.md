@@ -123,6 +123,12 @@ Current review-only external artifacts:
   `artifacts/v3_external_source_pilot_representation_backend_sample_1025.json`
   computes ESM-2 embeddings for all 10, flags `P55263` as a representation
   near-duplicate holdout, and keeps every row review-only and non-countable.
+  `artifacts/v3_external_source_pilot_representation_adjudication_1025.json`
+  now joins that 8M baseline to the largest-feasible ESM-2 stability audit:
+  3 pilot rows are stable review-only representation controls, 4 are
+  representation near-duplicate holdouts, and 3 need review because the nearest
+  reference changed under the 150M fallback. The requested 650M backend remains
+  not cached and is not claimed as computed.
 - `artifacts/v3_external_source_active_site_sourcing_resolution_1025.json`
   re-checks the 10 active-site-gap rows against UniProt feature evidence,
   records 0 explicit active-site residue sources, and leaves all rows
@@ -166,7 +172,8 @@ Current review-only external artifacts:
   evidence-explained rather than process-missing. The current status is
   `needs_more_work`: 0 terminal decisions, 0 import-ready rows, 0 countable
   candidates, 3 active-site-source blockers, 10 broader duplicate-screening
-  blockers, 9 representation-control blockers, and 10 full-gate blockers.
+  blockers, 3 representation-control stability-change blockers after
+  adjudication, and 10 full-gate blockers.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
