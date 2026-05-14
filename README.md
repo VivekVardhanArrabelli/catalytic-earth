@@ -417,17 +417,21 @@ correct.
 and
 `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json`
 then run the first two resumable all-materializable query chunks directly.
-They use the repaired candidate readiness artifact, Foldseek `10.941cd33`, 12
-query coordinates per chunk against all 672 staged materializable target
-coordinates, `--threads 4`, and a 900-second bound. Together they cover 24
-query coordinates, map 28,251 pair rows, evaluate 9,142
-heldout/in-distribution train/test rows, and expose max observed train/test
-TM-score `0.8957`. Chunk 0 records 11 target-violating row-level pairs across
-six unique structure pairs; chunk 1 records 59 target-violating row-level pairs
-across seven unique structure pairs. This removes the all-at-once-only runtime
-SPOF and exposes new exact target-failure evidence beyond the repaired
-expanded100 cap, but it is still only chunks 1-2/56, review-only,
-non-countable, not import-ready, and
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json`
+attempts the next chunk with the same repaired candidate readiness artifact,
+Foldseek `10.941cd33`, 12 query coordinates against all 672 staged
+materializable target coordinates, `--threads 4`, and a 900-second bound, but
+times out before emitting pair rows. The aggregate artifact
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json`
+therefore records 3 attempted chunks, 2 completed chunks, 24 completed query
+coordinates, 28,251 mapped pair rows, 9,142 heldout/in-distribution train/test
+rows, max observed train/test TM-score `0.8957`, 70 target-violating row-level
+pairs, 13 reported target-violating structure pairs, and 54 non-completed
+query chunks. This removes the first chunk-aggregation ambiguity and the
+all-at-once-only runtime SPOF while preserving the correct negative claim:
+the repaired candidate split still fails the `<0.7` target on completed
+chunks, chunk 2 exceeds the routine runtime bound, the query aggregation is
+incomplete, all rows remain review-only/non-countable/not import-ready, and
 `full_tm_score_holdout_claim_permitted=false` remains correct.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
@@ -549,12 +553,13 @@ the contract rejects non-object artifact payloads at the gate boundary.
 The external pilot ranking, no-decision review export, evidence-packet,
 pilot-specific representation, and dossier artifacts are now built; the
 high-fan-in pilot builders also fail fast on mixed-slice lineage before writing
-new packet or dossier artifacts. The next bounded work items are continuing and
-aggregating the resumable Foldseek query chunks or planning split repair for
-the newly observed chunk-level TM-score violations, plus filling the packet
-decisions with active-site sources and broader duplicate-screening evidence
-beyond the bounded current-reference MMseqs2 search. Do not resume M-CSA-only
-count growth or external label import.
+new packet or dossier artifacts. The next bounded work items are adjudicating
+the aggregated Foldseek query-chunk blockers, deciding whether chunk 2 needs a
+longer runtime or smaller query slice, and then continuing resumable chunks
+only if that directly helps the TM-score split decision. External packet
+decisions still need active-site sources and broader duplicate-screening
+evidence beyond the bounded current-reference MMseqs2 search. Do not resume
+M-CSA-only count growth or external label import.
 See
 `docs/label_factory.md`.
 

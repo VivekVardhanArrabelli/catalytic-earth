@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 101
-- Measured elapsed time: 3553.7 minutes (59.23 hours)
+- Entries: 102
+- Measured elapsed time: 3581.1 minutes (59.68 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 907.4 measured minutes (15.12 hours)
+- post-mcsa-spof-hardening: 934.8 measured minutes (15.58 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1057
-- Evidence references logged: 868
+- Artifact references logged: 1067
+- Evidence references logged: 877
 
 ## Recent Entries
-
-### 2026-05-14T17:29:09.455993+00:00 - post-mcsa-spof-hardening
-
-- Task: Expanded100 Foldseek partial TM signal
-- Time mode: measured
-- Measured minutes: 39.117
-- Started: 2026-05-14T16:50:02Z
-- Ended: 2026-05-14T17:29:09Z
-- Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: 336 unit tests passed, validate passed, compileall passed, Foldseek expanded100 completed partial signal 27542 mapped pairs, max train/test TM 0.7515, target <0.7 not achieved, 0 countable labels, 0 import-ready rows
-- Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
 
 ### 2026-05-14T18:09:39.969297+00:00 - post-mcsa-spof-hardening
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-14T22:35:35Z
 - Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
 - Evidence: 356 unit tests passed, validate passed with 679 curated labels, compileall passed, Foldseek query chunks 0 and 1 completed, 24 of 672 query coordinates covered, 28251 mapped pair rows, 9142 train/test rows, max train/test TM 0.8957, 70 target-violating rows, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
+
+### 2026-05-14T23:22:21.551765+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek query chunk aggregate and timeout
+- Time mode: measured
+- Measured minutes: 27.4
+- Started: 2026-05-14T22:54:46Z
+- Ended: 2026-05-14T23:22:10Z
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 359 unit tests passed, validate passed with 679 curated labels, compileall passed, git diff check passed, chunks 0-2 aggregate records 3 attempted chunks 2 completed chunks and 24 completed query coordinates, chunk 2 timed out after 900 seconds before pair rows, aggregate max train/test TM 0.8957 with 70 target-violating rows, 0 countable labels, 0 import-ready rows
 - Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
 
 ## Expectation Updates
@@ -205,6 +205,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T20:34:07.608397+00:00: Repaired expanded100 removes the projection-only computed-subset blocker, but full TM-score split remains blocked by the cap, two coordinate exclusions, and the uncomputed all-materializable signal
 - 2026-05-14T21:29:26.788448+00:00: Uncapped all-materializable Foldseek exact TM-score search exceeds the normal automation window; next work needs a longer run budget or chunk/resume support, not another routine capped increment
 - 2026-05-14T22:36:14.676450+00:00: Resumable Foldseek query chunks remove the all-at-once-only runtime SPOF but show the repaired candidate split still fails the <0.7 TM-score target beyond the expanded100 cap
+- 2026-05-14T23:22:21.551765+00:00: Foldseek query chunk aggregation is now durable; next work should adjudicate target-violating chunk blockers or change the chunk-2 runtime/slice strategy before routine chunk continuation
 
 ## Scope Adjustments
 
@@ -296,3 +297,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T19:08:48.002960+00:00: Foldseek split repair now has an unapplied candidate sequence holdout copy; canonical holdout and downstream artifacts still need regeneration before any claim
 - 2026-05-14T20:34:07.608397+00:00: Foldseek split repair now has an actual repaired expanded100 signal under the candidate holdout; canonical holdout remains unchanged and no full holdout claim is permitted.
 - 2026-05-14T22:36:14.676450+00:00: Full TM-score holdout remains blocked by incomplete chunk aggregation new target-violating pairs and two coordinate exclusions
+- 2026-05-14T23:22:21.551765+00:00: Full TM-score holdout remains blocked by target-violating completed chunks a timed-out chunk-2 range incomplete query coverage and two coordinate exclusions

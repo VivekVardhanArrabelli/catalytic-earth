@@ -14,6 +14,7 @@ Sequence-holdout repair-candidate update: 2026-05-14T19:09:00Z
 Repaired expanded100 TM signal update: 2026-05-14T20:35:00Z
 All-materializable timeout attempt update: 2026-05-14T21:25:00Z
 Query-chunk TM signal update: 2026-05-14T22:33:00Z
+Query-chunk aggregate and timeout update: 2026-05-14T23:20:00Z
 
 Status:
 
@@ -205,6 +206,21 @@ Current TM-score readiness:
   it also exposes new exact target-failure evidence beyond the repaired
   expanded100 cap. They remain chunks 1-2/56, review-only, non-countable, not
   import-ready, and keep
+  `full_tm_score_holdout_claim_permitted=false`.
+- `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json`
+  attempts the next deterministic 12-query chunk with the same repaired
+  candidate readiness artifact, all 672 staged materializable targets,
+  Foldseek `10.941cd33`, `--threads 4`, and a 900-second runtime bound. It
+  times out before Foldseek emits pair rows, so it records 0 pair rows, no max
+  train/test TM-score, and no target pass. The aggregate artifact
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json`
+  now summarizes chunks 0-2: 3 attempted chunks, 2 completed chunks, 24
+  completed query coordinates, 28,251 mapped pair rows, 9,142 train/test rows,
+  max train/test TM-score `0.8957`, 70 target-violating row-level pairs, 13
+  reported target-violating structure pairs, and 54 non-completed chunks. This
+  removes the first chunk-aggregation ambiguity but not the full-holdout
+  blocker: the completed chunks fail `<0.7`, chunk 2 exceeds the routine
+  runtime bound, `m_csa:372` and `m_csa:501` remain coordinate exclusions, and
   `full_tm_score_holdout_claim_permitted=false`.
 - The TM-score signal builder now records explicit partial/full coverage
   semantics for future artifacts: `tm_score_signal_coverage_status`,
@@ -408,4 +424,27 @@ PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk
   --threads 4 \
   --max-runtime-seconds 900 \
   --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json
+```
+
+The timeout chunk and aggregate used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal \
+  --slice-id 1000 \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --chunk-index 2 \
+  --chunk-size 12 \
+  --threads 4 \
+  --max-runtime-seconds 900 \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json
+```
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli aggregate-foldseek-tm-score-query-chunks \
+  --slice-id 1000 \
+  --chunks artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json \
+    artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json \
+    artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json
 ```

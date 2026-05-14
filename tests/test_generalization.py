@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from catalytic_earth.generalization import (
+    aggregate_foldseek_tm_score_query_chunks,
     audit_foldseek_tm_score_split_repair,
     audit_foldseek_tm_score_target_failure,
     build_sequence_distance_holdout_split_repair_candidate,
@@ -1174,6 +1175,200 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
                 artifact["blocking_pairs"][0]["target_entry_ids"],
                 first_target_entries,
             )
+
+    def test_current_foldseek_query_chunk_timeout_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_query_chunk_signal")
+        self.assertEqual(metadata["foldseek_run_status"], "foldseek_run_timeout")
+        self.assertEqual(metadata["query_chunk_index"], 2)
+        self.assertEqual(metadata["query_chunk_size"], 12)
+        self.assertEqual(metadata["query_chunk_count"], 56)
+        self.assertEqual(metadata["query_staged_coordinate_count"], 12)
+        self.assertEqual(metadata["target_staged_coordinate_count"], 672)
+        self.assertEqual(metadata["pair_count"], 0)
+        self.assertEqual(metadata["train_test_pair_count"], 0)
+        self.assertIsNone(metadata["max_observed_train_test_tm_score"])
+        self.assertFalse(metadata["all_materializable_query_chunk_signal_computed"])
+        self.assertFalse(metadata["real_tm_score_computed"])
+        self.assertFalse(metadata["max_observed_train_test_tm_score_computable"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["remaining_query_chunk_count_after_this_chunk"], 56)
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertIn(
+            "Foldseek query chunk did not complete with pair rows",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertIn(
+            "exceeded 900 seconds",
+            metadata["foldseek_run_error"],
+        )
+
+    def test_query_chunk_aggregate_keeps_partial_claims_review_only(self) -> None:
+        chunk_0 = {
+            "metadata": {
+                "method": "foldseek_tm_score_query_chunk_signal",
+                "query_chunk_index": 0,
+                "query_chunk_count": 2,
+                "query_chunk_size": 1,
+                "foldseek_run_status": "completed",
+                "all_materializable_query_chunk_signal_computed": True,
+                "full_evaluated_coordinate_coverage": False,
+                "all_materializable_coordinate_coverage": True,
+                "target_staged_coordinate_count": 2,
+                "selected_structure_count": 3,
+                "evaluated_count": 3,
+                "materialized_coordinate_count": 2,
+                "missing_or_unsupported_structure_count": 1,
+                "tm_score_coordinate_exclusions": [{"entry_id": "m_csa:9"}],
+                "pair_count": 4,
+                "mapped_pair_count": 4,
+                "train_test_pair_count": 2,
+                "heldout_in_distribution_pair_count": 2,
+                "heldout_pair_count": 1,
+                "in_distribution_pair_count": 1,
+                "other_partition_pair_count": 0,
+                "unique_unordered_nonself_pair_count": 3,
+                "max_observed_train_test_tm_score": 0.8,
+                "violating_train_test_pair_row_count": 1,
+                "violating_unique_structure_pair_count": 1,
+                "raw_name_mapping_unmapped_count": 0,
+                "foldseek_version": "10.test",
+                "foldseek_command": "foldseek easy-search q all out tmp",
+            },
+            "query_staged_structures": [{"structure_key": "pdb:1AAA"}],
+            "top_train_test_pairs": [
+                {
+                    "query_structure_key": "pdb:1AAA",
+                    "target_structure_key": "pdb:2BBB",
+                    "query_entry_ids": ["m_csa:1"],
+                    "target_entry_ids": ["m_csa:2"],
+                    "max_pair_tm_score": 0.8,
+                }
+            ],
+            "blocking_pairs": [
+                {
+                    "query_structure_key": "pdb:1AAA",
+                    "target_structure_key": "pdb:2BBB",
+                    "query_entry_ids": ["m_csa:1"],
+                    "target_entry_ids": ["m_csa:2"],
+                    "max_pair_tm_score": 0.8,
+                    "violates_target": True,
+                }
+            ],
+        }
+        chunk_1 = {
+            "metadata": {
+                "method": "foldseek_tm_score_query_chunk_signal",
+                "query_chunk_index": 1,
+                "query_chunk_count": 2,
+                "query_chunk_size": 1,
+                "foldseek_run_status": "completed",
+                "all_materializable_query_chunk_signal_computed": True,
+                "full_evaluated_coordinate_coverage": False,
+                "all_materializable_coordinate_coverage": True,
+                "target_staged_coordinate_count": 2,
+                "selected_structure_count": 3,
+                "evaluated_count": 3,
+                "materialized_coordinate_count": 2,
+                "missing_or_unsupported_structure_count": 1,
+                "tm_score_coordinate_exclusions": [{"entry_id": "m_csa:9"}],
+                "pair_count": 3,
+                "mapped_pair_count": 3,
+                "train_test_pair_count": 1,
+                "heldout_in_distribution_pair_count": 1,
+                "heldout_pair_count": 1,
+                "in_distribution_pair_count": 1,
+                "other_partition_pair_count": 0,
+                "unique_unordered_nonself_pair_count": 2,
+                "max_observed_train_test_tm_score": 0.65,
+                "violating_train_test_pair_row_count": 0,
+                "violating_unique_structure_pair_count": 0,
+                "raw_name_mapping_unmapped_count": 0,
+                "foldseek_version": "10.test",
+                "foldseek_command": "foldseek easy-search q2 all out tmp",
+            },
+            "query_staged_structures": [{"structure_key": "pdb:2BBB"}],
+            "top_train_test_pairs": [],
+            "blocking_pairs": [],
+        }
+
+        artifact = aggregate_foldseek_tm_score_query_chunks(
+            chunks=[chunk_0, chunk_1],
+            chunk_paths=["chunk0.json", "chunk1.json"],
+            slice_id="test",
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_query_chunk_aggregate")
+        self.assertEqual(metadata["completed_query_chunk_count"], 2)
+        self.assertTrue(metadata["all_query_chunks_completed"])
+        self.assertEqual(metadata["completed_query_coordinate_count"], 2)
+        self.assertEqual(metadata["pair_count"], 7)
+        self.assertEqual(metadata["train_test_pair_count"], 3)
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 1)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.8)
+        self.assertFalse(metadata["tm_score_target_achieved"])
+        self.assertFalse(
+            metadata["tm_score_target_achieved_for_completed_query_chunks"]
+        )
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertEqual(metadata["tm_score_coordinate_exclusion_count"], 1)
+        self.assertEqual(len(artifact["blocking_pairs"]), 1)
+        self.assertEqual(artifact["blocking_pairs"][0]["source_chunk_index"], 0)
+        self.assertIn(
+            "completed query-chunk train/test TM-score target <0.7 is not achieved",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+
+    def test_current_foldseek_query_chunk_aggregate_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_query_chunk_aggregate")
+        self.assertEqual(metadata["completed_query_chunk_count"], 2)
+        self.assertEqual(metadata["query_chunk_count"], 56)
+        self.assertFalse(metadata["all_query_chunks_completed"])
+        self.assertEqual(len(artifact["chunks"]), 3)
+        self.assertFalse(artifact["chunks"][2]["completed"])
+        self.assertEqual(artifact["chunks"][2]["foldseek_run_status"], "foldseek_run_timeout")
+        self.assertEqual(metadata["missing_query_chunk_count"], 54)
+        self.assertEqual(metadata["missing_query_chunk_indices"][0], 2)
+        self.assertEqual(metadata["missing_query_chunk_indices"][-1], 55)
+        self.assertEqual(metadata["attempted_query_coordinate_count"], 36)
+        self.assertEqual(metadata["completed_query_coordinate_count"], 24)
+        self.assertEqual(metadata["target_staged_coordinate_count"], 672)
+        self.assertEqual(metadata["completed_query_coordinate_coverage"], 0.0357)
+        self.assertEqual(metadata["pair_count"], 28251)
+        self.assertEqual(metadata["mapped_pair_count"], 28251)
+        self.assertEqual(metadata["train_test_pair_count"], 9142)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.8957)
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 70)
+        self.assertEqual(metadata["violating_unique_structure_pair_count_reported"], 13)
+        self.assertFalse(
+            metadata["tm_score_target_achieved_for_completed_query_chunks"]
+        )
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertIn(
+            "one or more Foldseek query chunks remain uncomputed",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertIn(
+            "completed query-chunk train/test TM-score target <0.7 is not achieved",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertEqual(artifact["blocking_pairs"][0]["query_entry_ids"], ["m_csa:12"])
+        self.assertEqual(artifact["blocking_pairs"][0]["target_entry_ids"], ["m_csa:405"])
 
     def test_tm_score_target_failure_audit_names_blocking_pairs(self) -> None:
         signal = {

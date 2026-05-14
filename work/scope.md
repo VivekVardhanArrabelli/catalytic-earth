@@ -234,10 +234,19 @@ Current expectation:
   run 24 deterministic query coordinates against all 672 staged materializable
   target coordinates, map 28,251 pair rows, evaluate 9,142 train/test rows, and
   record max train/test TM-score `0.8957` with 70 target-violating row-level
-  pairs across the two chunks. This removes the all-at-once-only runtime SPOF
-  but adds concrete target-failure evidence; the query chunks are not fully
-  aggregated, the target fails in both chunks, and
-  `full_tm_score_holdout_claim_permitted=false` remains correct. The first 12-row
+  pairs across the two chunks. Chunk 2 now has a direct timeout artifact:
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json`
+  uses the same 12-query/all-target Foldseek command shape and times out after
+  900 seconds before emitting pair rows. The aggregate
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json`
+  records 3 attempted chunks, 2 completed chunks, 24 completed query
+  coordinates, 28,251 mapped pair rows, max train/test TM-score `0.8957`, 70
+  target-violating row-level pairs, 13 reported violating structure pairs, and
+  54 non-completed chunks. This removes the first chunk-aggregation ambiguity
+  and the all-at-once-only runtime SPOF but adds concrete target-failure and
+  chunk-runtime evidence; the full query aggregate is incomplete, the completed
+  chunks fail `<0.7`, and `full_tm_score_holdout_claim_permitted=false`
+  remains correct. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

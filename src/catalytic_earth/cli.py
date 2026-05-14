@@ -16,6 +16,7 @@ from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_grap
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
 from .generalization import (
+    aggregate_foldseek_tm_score_query_chunks,
     audit_foldseek_tm_score_split_repair,
     audit_foldseek_tm_score_target_failure,
     build_sequence_distance_holdout_split_repair_candidate,
@@ -736,6 +737,32 @@ def cmd_build_foldseek_tm_score_query_chunk_signal(args: argparse.Namespace) -> 
         f"{artifact['metadata']['query_staged_coordinate_count']} query coordinates, "
         f"{artifact['metadata']['pair_count']} pair rows, "
         f"run_status={artifact['metadata']['foldseek_run_status']}, "
+        "full_tm_score_holdout_claim_permitted="
+        f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
+    )
+    return 0
+
+
+def cmd_aggregate_foldseek_tm_score_query_chunks(args: argparse.Namespace) -> int:
+    chunks = []
+    for chunk_path in args.chunks:
+        with Path(chunk_path).open("r", encoding="utf-8") as handle:
+            chunks.append(json.load(handle))
+    artifact = aggregate_foldseek_tm_score_query_chunks(
+        chunks=chunks,
+        chunk_paths=args.chunks,
+        slice_id=args.slice_id,
+        threshold=args.threshold,
+        max_reported_pairs=args.max_reported_pairs,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote Foldseek TM-score query chunk aggregate to "
+        f"{args.out} ({artifact['metadata']['completed_query_chunk_count']}/"
+        f"{artifact['metadata']['query_chunk_count']} chunks, "
+        f"{artifact['metadata']['completed_query_coordinate_count']} query coordinates, "
+        f"{artifact['metadata']['pair_count']} pair rows, "
+        f"max_tm={artifact['metadata']['max_observed_train_test_tm_score']}, "
         "full_tm_score_holdout_claim_permitted="
         f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
     )
@@ -4497,6 +4524,40 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_query_chunk.set_defaults(
         func=cmd_build_foldseek_tm_score_query_chunk_signal
+    )
+
+    foldseek_query_chunk_aggregate = subparsers.add_parser(
+        "aggregate-foldseek-tm-score-query-chunks",
+        help=(
+            "aggregate completed resumable Foldseek query chunk signals "
+            "without claiming a full TM-score holdout"
+        ),
+    )
+    foldseek_query_chunk_aggregate.add_argument("--slice-id", required=True)
+    foldseek_query_chunk_aggregate.add_argument(
+        "--chunks",
+        nargs="+",
+        required=True,
+        help="Foldseek query chunk signal artifacts to aggregate",
+    )
+    foldseek_query_chunk_aggregate.add_argument(
+        "--threshold",
+        type=float,
+        default=0.7,
+        help="exclusive target threshold for train/test TM-score pairs",
+    )
+    foldseek_query_chunk_aggregate.add_argument(
+        "--max-reported-pairs",
+        type=int,
+        default=30,
+        help="maximum top train/test and blocking pair summaries to keep",
+    )
+    foldseek_query_chunk_aggregate.add_argument(
+        "--out",
+        default="artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate.json",
+    )
+    foldseek_query_chunk_aggregate.set_defaults(
+        func=cmd_aggregate_foldseek_tm_score_query_chunks
     )
 
     foldseek_target_failure = subparsers.add_parser(

@@ -164,14 +164,24 @@ and a 900-second bound per chunk. They complete with 28,251 mapped pair rows,
 9,142 train/test rows, max train/test TM-score `0.8957`, 11 target-violating
 rows across six unique structure pairs in chunk 0, and 59 target-violating rows
 across seven unique structure pairs in chunk 1. These artifacts are
-review-only, non-countable, not import-ready, and still only chunks 1-2/56;
-they remove the single-run runtime SPOF but add concrete target-failure
-evidence that must be handled before any full TM-score holdout claim.
+review-only, non-countable, not import-ready, and still only chunks 1-2/56.
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json`
+then attempts chunk 2 with the same command shape and times out at 900 seconds
+before pair rows are emitted. The aggregate
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json`
+records 3 attempted chunks, 2 completed chunks, 24 completed query
+coordinates, 28,251 mapped pair rows, 9,142 train/test rows, max train/test
+TM-score `0.8957`, 70 target-violating row-level pairs, 13 reported violating
+structure pairs, and 54 non-completed chunks. This removes the first
+chunk-aggregation ambiguity and the single-run runtime SPOF but adds two
+concrete blockers before any full TM-score claim: the completed chunks fail
+the `<0.7` target and chunk 2 exceeds the routine 900-second bound.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
-`10.941cd33`). A TM-score split remains blocked until all query chunks are
-computed and aggregated, the new violating pairs are repaired or explicitly
-adjudicated, coordinate exclusions remain reported, and target checks pass.
+`10.941cd33`). A TM-score split remains blocked until query chunks are
+completed or explicitly adjudicated, the new violating pairs are repaired or
+explicitly adjudicated, coordinate exclusions remain reported, and target
+checks pass.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,
