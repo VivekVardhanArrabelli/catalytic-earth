@@ -156,16 +156,19 @@ Current expectation:
 
 - v2 scaffold: complete
 - immediate priority: falsify generalization before adding more gate machinery.
-  The first proxy sequence/fold-distance holdout evaluation now covers the
-  accepted countable registry in both the 1,000 and 1,025 slice contexts. It
-  preserves 0 held-out out-of-scope false non-abstentions and shows held-out
-  evaluable top1 accuracy and retention of `0.9767`, with `1.0000` top3
-  accuracy among retained held-out evaluable rows, but it is not a substitute
-  for real <=30% sequence-identity or <0.7 TM-score clustering. The first
-  12-row ESM-2 representation sample and a 10-row selected-pilot ESM-2
-  representation sample are also computed and review-only; next use their
-  learned-vs-heuristic disagreements, pilot holdouts, and per-candidate
-  dossiers to decide what can safely import
+  The first real MMseqs2 sequence-distance holdout now covers the accepted
+  countable registry in both the 1,000 and 1,025 slice contexts. It covers
+  678/678 evaluated labels, clusters 738 sequence records at 30% identity and
+  80% coverage, holds out 136 rows by whole sequence clusters, records max
+  observed train/test identity `0.284`, achieves the <=30% target, preserves
+  0 held-out out-of-scope false non-abstentions, and reports held-out evaluable
+  top1 accuracy, top3 retained accuracy, and retention of `1.0000`. Foldseek
+  TM-score separation remains uncomputed because selected PDB/AlphaFold
+  coordinate files are not yet materialized in the repo, although Foldseek is
+  available in `/private/tmp/catalytic-foldseek-env`. The first 12-row ESM-2 8M
+  representation sample and a 10-row selected-pilot ESM-2 8M representation
+  sample are computed and review-only; 650M sidecars are implemented but
+  currently record `model_unavailable_locally` because the model is not cached.
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed
@@ -234,7 +237,11 @@ Current expectation:
   PLP ligand-anchor feature, with regression tests and refreshed 1,000/1,025
   retrieval, holdout, label-factory, and external heuristic-control artifacts
   preserving 0 hard negatives, 0 near misses, 0 out-of-scope false
-  non-abstentions, and 0 countable external labels.
+  non-abstentions, and 0 countable external labels. Counterevidence artifacts
+  now separate structure/local evidence from mechanism-text review context, and
+  the 1,000-slice mechanism-text ablation records 157 changed rows, 156
+  review-debt rows, 20 top1 route changes, and 0 structure/local guardrail
+  losses.
 - artifact-lineage hardening has started: the external transfer blocker matrix
   audit now compares row accessions and candidate-manifest source method against
   the candidate manifest and fails on stale or mismatched matrix inputs. The

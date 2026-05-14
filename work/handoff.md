@@ -282,6 +282,33 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   representation near-duplicate holdout, refreshes the pilot dossiers so every
   selected row has representation evidence, and keeps every external row
   non-countable and not import-ready.
+- Added the real sequence-distance holdout backend for the accepted registry.
+  `build-sequence-distance-holdout-eval` now accepts a FASTA and runs MMseqs2
+  clustering at 30% identity and 80% coverage while retaining the deterministic
+  proxy path as fallback context. The refreshed 1,000 and 1,025 holdout
+  artifacts cover 678/678 evaluated labels, cluster 738 sequence records, hold
+  out 136 rows by whole sequence clusters, record max train/test identity
+  `0.284`, achieve the <=30% target, and keep held-out out-of-scope false
+  non-abstentions at 0. Foldseek/TM-score separation remains absent.
+- Added `work/foldseek_readiness_notes.md`. Foldseek is installable in the
+  isolated temporary Conda environment `/private/tmp/catalytic-foldseek-env`
+  and reports version `10.941cd33`, but the repo has structure identifiers
+  rather than local coordinate files. TM-score splitting remains blocked on
+  materializing selected PDB/AlphaFold coordinates and adding the Foldseek
+  split builder.
+- Hardened mechanism-text counterevidence into explicit categories:
+  structure/local-evidence counterevidence remains predictive safety evidence,
+  while mechanism-text counterevidence is review context only and not valid for
+  orphan discovery safety claims. The accepted-1,000 ablation artifact records
+  157 changed rows, 156 review-debt rows, 20 top1 route changes, and 0
+  structure/local guardrail losses.
+- Extended the representation backend path to larger ESM-2 identifiers and
+  added 650M sidecar/stability artifacts for mapped controls and selected pilot
+  rows. The current 650M run is feasibility evidence only:
+  `facebook/esm2_t33_650M_UR50D` was not cached locally, so sidecars record
+  `model_unavailable_locally`, expected dimension `1280`, embedding failures,
+  elapsed time, and 8M-vs-650M stability status without replacing the computed
+  8M baseline.
 
 ## Current Metrics
 
@@ -405,16 +432,15 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   review-only UniProtKB/Swiss-Prot path with 30 non-countable sample candidates.
 - Sequence/fold-distance holdout state: `artifacts/v3_sequence_distance_holdout_eval_1000.json`
   and `artifacts/v3_sequence_distance_holdout_eval_1025.json` evaluate the
-  accepted countable registry under a proxy low-neighborhood partition. Both
-  contexts evaluate 678 labeled retrieval rows and hold out 136 rows. Held-out
-  metrics are 44 in-scope rows, 43 evaluable in-scope rows, 92 out-of-scope
-  rows, 0 held-out out-of-scope false non-abstentions, `0.9767` held-out
-  evaluable top1 accuracy, `1.0000` held-out evaluable top3 accuracy among
-  retained rows, and `0.9767` held-out evaluable retention. In-distribution
-  evaluable top1 accuracy is `0.9881`, and top3 accuracy among retained
-  in-distribution rows is `1.0000`. These are proxy metrics only: real
-  <=30% sequence-identity or <0.7 TM-score clustering was not computed because
-  no local clustering executable was available.
+  accepted countable registry under real MMseqs2 sequence clustering plus the
+  retained proxy fields. Both contexts evaluate 678 labeled retrieval rows,
+  cover all 678 with sequence evidence, cluster 738 sequence records at 30%
+  identity and 80% coverage, and hold out 136 rows by whole sequence clusters.
+  Max observed train/test identity is `0.284`, so the <=30% target is achieved.
+  Held-out metrics are 44 in-scope rows, 43 evaluable in-scope rows, 92
+  out-of-scope rows, 0 held-out out-of-scope false non-abstentions, and
+  held-out evaluable top1 accuracy, top3 retained accuracy, and retention of
+  `1.0000`. Foldseek/TM-score clustering is still not computed.
 - Learned representation state: `artifacts/v3_external_source_representation_backend_sample_1025.json`
   computes a 12-row ESM-2 sample for external mapped controls with
   `embedding_backend_available=true`, vector dimension `320`, 0 embedding
@@ -433,6 +459,15 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   rows. The refreshed pilot dossiers now attach representation rows to all 10
   selected candidates, keep 3 explicit-active-site evidence blockers, and keep
   every selected candidate blocked before import.
+- 650M representation state:
+  `artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json`
+  and
+  `artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json`
+  attempt `facebook/esm2_t33_650M_UR50D` in local-only mode. The model is not
+  cached locally, so mapped-control and pilot sidecars are unavailable
+  feasibility artifacts, not computed embeddings. Their paired stability audits
+  compare against the 8M baseline, remain review-only, and keep 0 countable or
+  import-ready rows.
 - 725 post-batch review surface: all 95 unlabeled candidates are retained in a
   207-row active-learning queue; 95 expert-label decision rows are exported as
   review-only no-decision items; 25 priority local-evidence lanes are audited
@@ -536,6 +571,30 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 - Structure mapping: 19 total mapping issues at 700.
 - Local performance was regenerated on 700 artifacts in `artifacts/perf_report.json`.
 
+## Current Confidence Call
+
+Label-quality confidence call for the 2026-05-14T02:32:17Z run:
+
+- M-CSA-only count growth: no. The canonical registry remains 679 countable
+  bronze labels, the 1,025 preview still adds 0 clean countable labels, and the
+  source-scale audit still exposes only 1,003 M-CSA source records.
+- External-source repair/import: yes for bounded repair/readiness evidence, no
+  for countable import. External rows remain review-only and non-countable; the
+  new real sequence holdout and representation sidecars remove readiness
+  blockers, but active-site source decisions, complete sequence search, review
+  decisions, and full label-factory gates still block import.
+- Scientific generalization work: yes. MMseqs2 sequence clustering now provides
+  a real <=30% sequence-identity holdout for the accepted registry with max
+  train/test identity `0.284`, 0 held-out out-of-scope false non-abstentions,
+  and pinned held-out/in-distribution metrics. Foldseek/TM-score separation is
+  still open because coordinate files are not materialized in the repo, even
+  though Foldseek is now available in `/private/tmp/catalytic-foldseek-env`.
+- SPOF hardening work: yes, but only for named blockers. This run split
+  mechanism-text counterevidence into structure/local versus review-context
+  categories, added the text-removal ablation, and recorded 0 structure/local
+  guardrail losses; the 650M representation path is implemented but blocked by
+  uncached local model weights.
+
 ## Start Commands
 
 ```bash
@@ -581,21 +640,17 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current run targeted the artifact-graph consistency SPOF where code evidence
-still showed a silent-failure surface: `audit-label-scaling-quality` accepted
-many preview-scoped inputs but did not validate that acceptance, readiness,
-review-debt, active-learning, hard-negative, review export, repair, import
-safety, and deferral artifacts belonged to the same slice. The fix adds
-fail-fast CLI lineage validation for that audit, records the validated lineage
-under `metadata.artifact_lineage`, exempts only the historical 700-slice ATP
-family-boundary artifact, and pins a negative CLI regression with mixed 650/675
-inputs. Remaining bounded time went to the adjacent count-growth surface:
-`check-label-batch-acceptance` now validates countable/review-state label,
-evaluation, hard-negative, in-scope failure, factory-gate, and review-gap
-lineage before deciding whether any labels can count, with a mixed-slice
-negative CLI regression. `artifacts/v3_label_batch_acceptance_check_1025_preview.json`
-records `blocker_removed=artifact_graph_consistency_for_label_batch_acceptance`
-and `slice_id=1025`. `artifacts/v3_label_scaling_quality_audit_1025_preview.json`
+Current run used delegated workers per user instruction and removed three named
+blockers. The real sequence-distance holdout now uses MMseqs2 clustering at
+30% identity and 80% coverage for the accepted registry. Mechanism-text
+counterevidence is split into structure/local evidence versus review-context
+text, and the accepted-1,000 text-removal ablation records 0 structure/local
+guardrail losses. ESM-2 650M support and review-only sidecars are implemented,
+but the local-only 650M run could not load uncached model weights, so the
+computed 8M samples remain the usable representation controls. A prior run
+also added fail-fast CLI lineage validation for `audit-label-scaling-quality`
+and `check-label-batch-acceptance`; those lineage protections remain in force.
+`artifacts/v3_label_scaling_quality_audit_1025_preview.json`
 records `blocker_removed=artifact_graph_consistency_for_label_scaling_quality`,
 `slice_id=1025`, 20 checked slice-scoped inputs, and the ATP-family exemption.
 No labels were counted and no external rows became import-ready.
@@ -865,21 +920,26 @@ Next ordered worklist:
    decision work products. Continue artifact graph consistency only where new
    code evidence shows another high-fan-in audit can mix source slice, graph id,
    label batch, or artifact lineage without a negative regression.
-2. Sequence/fold-distance holdout evaluation is implemented and pinned by
-   regression tests. Treat the current artifacts as a proxy-only generalization
-   signal, not as proof of <=30% sequence identity or <0.7 TM-score behavior.
-   The 2026-05-13T18:23:11Z run checked for `foldseek`, `mmseqs`, `blastp`,
-   and `diamond`; none were available on PATH. Re-run
-   with Foldseek/MMseqs2/
-   BLAST/DIAMOND or an equivalent local clustering backend if it becomes
-   available.
+2. Sequence-distance holdout evaluation is implemented with a real MMseqs2
+   backend and pinned by regression tests. Treat the sequence-identity split as
+   real for the accepted countable registry: 678/678 evaluated labels are
+   covered, 738 sequence records are clustered at 30% identity and 80%
+   coverage, and max observed train/test identity is `0.284`. The retained
+   proxy fields are fallback context only. Foldseek is available in the
+   temporary Conda env `/private/tmp/catalytic-foldseek-env`, but TM-score
+   separation remains missing because coordinate files are not materialized in
+   the repo; add coordinate staging plus a structural backend only if it
+   directly supports pilot import readiness.
 3. Use the learned representation backend path, pilot priority artifact,
    no-decision review export, pilot evidence packet, pilot-specific
    representation sample, and pilot evidence dossiers for reviewer work. The
-   canonical 12-row mapped-control ESM-2 sample and the 10-row selected-pilot
-   ESM-2 sample are both computed and review-only; the next work is to fill
-   evidence decisions from the per-candidate dossier/source-target rows while
-   preserving heuristic geometry retrieval as the baseline.
+   canonical 12-row mapped-control ESM-2 8M sample and the 10-row selected-pilot
+   ESM-2 8M sample are both computed and review-only. The 650M sidecars are
+   implemented but currently unavailable because the model is not cached
+   locally; do not treat them as computed embeddings until the model can be
+   loaded. The next work is to fill evidence decisions from the per-candidate
+   dossier/source-target rows while preserving heuristic geometry retrieval as
+   the baseline.
 4. Reviewer policy and schema typing are lower priority unless code evidence
    exposes new ambiguity in countable vs review-only imports or high-fan-in
    artifact schemas.

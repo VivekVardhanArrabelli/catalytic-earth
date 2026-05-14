@@ -1758,6 +1758,24 @@ def _fingerprint_component_scores(fingerprint: dict[str, Any]) -> dict[str, Any]
     counterevidence_reasons = fingerprint.get("counterevidence_reasons", [])
     if not isinstance(counterevidence_reasons, list):
         counterevidence_reasons = []
+    counterevidence_reasons_by_category = fingerprint.get(
+        "counterevidence_reasons_by_category", {}
+    )
+    if not isinstance(counterevidence_reasons_by_category, dict):
+        counterevidence_reasons_by_category = {}
+    counterevidence_category_counts = fingerprint.get(
+        "counterevidence_category_counts", {}
+    )
+    if not isinstance(counterevidence_category_counts, dict):
+        counterevidence_category_counts = {}
+    counterevidence_policy_hits = fingerprint.get("counterevidence_policy_hits", [])
+    if not isinstance(counterevidence_policy_hits, list):
+        counterevidence_policy_hits = []
+    counterevidence_external_orphan_safety = fingerprint.get(
+        "counterevidence_external_orphan_safety", {}
+    )
+    if not isinstance(counterevidence_external_orphan_safety, dict):
+        counterevidence_external_orphan_safety = {}
     penalty_details = fingerprint.get("counterevidence_penalty_details", [])
     if not isinstance(penalty_details, list):
         penalty_details = []
@@ -1774,6 +1792,16 @@ def _fingerprint_component_scores(fingerprint: dict[str, Any]) -> dict[str, Any]
             fingerprint.get("counterevidence_penalty", 1.0) or 0.0
         ),
         "counterevidence_reasons": list(counterevidence_reasons),
+        "counterevidence_reasons_by_category": dict(
+            counterevidence_reasons_by_category
+        ),
+        "counterevidence_category_counts": dict(counterevidence_category_counts),
+        "counterevidence_policy_hits": [
+            hit for hit in counterevidence_policy_hits if isinstance(hit, dict)
+        ],
+        "counterevidence_external_orphan_safety": dict(
+            counterevidence_external_orphan_safety
+        ),
         "counterevidence_penalty_details": [
             detail for detail in penalty_details if isinstance(detail, dict)
         ],

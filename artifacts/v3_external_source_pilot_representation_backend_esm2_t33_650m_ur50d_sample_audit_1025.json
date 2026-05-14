@@ -1,0 +1,27 @@
+{
+  "blockers": [],
+  "metadata": {
+    "blocker_removed": "verifies computed representation sample rows remain review-only and non-countable before external pilot import",
+    "candidate_count": 10,
+    "countable_label_candidate_count": 0,
+    "embedding_backend": "esm2_t33_650m_ur50d",
+    "embedding_status": "computed_review_only",
+    "guardrail_clean": true,
+    "import_ready_row_count": 0,
+    "leakage_context_unmarked_row_count": 0,
+    "leakage_prone_predictive_sources": [],
+    "method": "external_source_representation_backend_sample_audit",
+    "missing_backend_status_row_count": 0,
+    "missing_predictive_sources_row_count": 0,
+    "missing_review_only_status_row_count": 0,
+    "predictive_feature_sources": [
+      "sequence_embedding_cosine",
+      "sequence_length_coverage"
+    ],
+    "ready_for_label_import": false,
+    "representation_near_duplicate_alert_count": 0
+  },
+  "warnings": [
+    "computed representation backend samples are review-only controls and cannot authorize external label import"
+  ]
+}

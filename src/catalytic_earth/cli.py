@@ -100,6 +100,7 @@ from .transfer_scope import (
     audit_external_source_representation_control_manifest,
     audit_external_source_representation_backend_plan,
     audit_external_source_representation_backend_sample,
+    audit_external_source_representation_backend_stability,
     audit_external_source_sequence_alignment_verification,
     audit_external_source_sequence_reference_screen,
     audit_external_source_sequence_search_export,
@@ -597,6 +598,12 @@ def cmd_build_sequence_distance_holdout_eval(args: argparse.Namespace) -> int:
         abstain_threshold=args.abstain_threshold,
         holdout_fraction=args.holdout_fraction,
         min_holdout_rows=args.min_holdout_rows,
+        sequence_fasta=args.sequence_fasta,
+        sequence_identity_backend=args.sequence_identity_backend,
+        sequence_identity_threshold=args.sequence_identity_threshold,
+        sequence_identity_coverage=args.sequence_identity_coverage,
+        compute_max_train_test_identity=not args.skip_max_train_test_identity,
+        mmseqs_binary=args.mmseqs_binary,
     )
     write_json(Path(args.out), artifact)
     print(
@@ -1310,6 +1317,7 @@ def cmd_build_external_source_representation_backend_sample(
         top_k=args.top_k,
         embedding_backend=args.embedding_backend,
         model_name=args.model_name,
+        local_files_only=args.local_files_only,
     )
     write_json(Path(args.out), sample)
     print(
@@ -1333,6 +1341,33 @@ def cmd_audit_external_source_representation_backend_sample(
     print(
         "Wrote external source representation backend sample audit to "
         f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_audit_external_source_representation_backend_stability(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.baseline_representation_backend_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        baseline_representation_backend_sample = json.load(handle)
+    with Path(args.comparison_representation_backend_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        comparison_representation_backend_sample = json.load(handle)
+    audit = audit_external_source_representation_backend_stability(
+        baseline_representation_backend_sample=(
+            baseline_representation_backend_sample
+        ),
+        comparison_representation_backend_sample=(
+            comparison_representation_backend_sample
+        ),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source representation backend stability audit to "
+        f"{args.out} (status={audit['metadata']['stability_status']})"
     )
     return 0
 
@@ -3799,6 +3834,35 @@ def build_parser() -> argparse.ArgumentParser:
     sequence_holdout.add_argument("--holdout-fraction", type=float, default=0.2)
     sequence_holdout.add_argument("--min-holdout-rows", type=int, default=40)
     sequence_holdout.add_argument(
+        "--sequence-fasta",
+        default=None,
+        help=(
+            "optional amino-acid FASTA keyed by m_csa entry ids or reference "
+            "UniProt accessions for real MMseqs2 sequence-identity clustering"
+        ),
+    )
+    sequence_holdout.add_argument(
+        "--sequence-identity-backend",
+        choices=("auto", "mmseqs", "proxy"),
+        default="auto",
+    )
+    sequence_holdout.add_argument(
+        "--sequence-identity-threshold",
+        type=float,
+        default=0.30,
+    )
+    sequence_holdout.add_argument(
+        "--sequence-identity-coverage",
+        type=float,
+        default=0.80,
+    )
+    sequence_holdout.add_argument("--mmseqs-binary", default="mmseqs")
+    sequence_holdout.add_argument(
+        "--skip-max-train-test-identity",
+        action="store_true",
+        help="skip MMseqs2 train-vs-heldout identity search after clustering",
+    )
+    sequence_holdout.add_argument(
         "--out",
         default="artifacts/v3_sequence_distance_holdout_eval.json",
     )
@@ -4564,11 +4628,23 @@ def build_parser() -> argparse.ArgumentParser:
     external_representation_backend_sample.add_argument(
         "--embedding-backend",
         default="deterministic_sequence_kmer_control",
-        choices=("deterministic_sequence_kmer_control", "esm2_t6_8m_ur50d", "esm2"),
+        choices=(
+            "deterministic_sequence_kmer_control",
+            "esm2",
+            "esm2_t6_8m_ur50d",
+            "esm2_t12_35m_ur50d",
+            "esm2_t30_150m_ur50d",
+            "esm2_t33_650m_ur50d",
+        ),
     )
     external_representation_backend_sample.add_argument(
         "--model-name",
         default="facebook/esm2_t6_8M_UR50D",
+    )
+    external_representation_backend_sample.add_argument(
+        "--local-files-only",
+        action="store_true",
+        help="only use locally cached model files; do not download ESM-2 weights",
     )
     external_representation_backend_sample.add_argument(
         "--out",
@@ -4601,6 +4677,32 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_representation_backend_sample_audit.set_defaults(
         func=cmd_audit_external_source_representation_backend_sample
+    )
+
+    external_representation_backend_stability_audit = subparsers.add_parser(
+        "audit-external-source-representation-backend-stability",
+        help="compare review-only representation samples across embedding backends",
+    )
+    external_representation_backend_stability_audit.add_argument(
+        "--baseline-representation-backend-sample",
+        default="artifacts/v3_external_source_representation_backend_sample.json",
+    )
+    external_representation_backend_stability_audit.add_argument(
+        "--comparison-representation-backend-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample.json"
+        ),
+    )
+    external_representation_backend_stability_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_representation_backend_stability_audit.json"
+        ),
+    )
+    external_representation_backend_stability_audit.set_defaults(
+        func=cmd_audit_external_source_representation_backend_stability
     )
 
     external_broad_ec_audit = subparsers.add_parser(

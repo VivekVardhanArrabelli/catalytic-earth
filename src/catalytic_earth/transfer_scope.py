@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from collections import Counter
 from dataclasses import dataclass
 from typing import Any, Callable
@@ -55,6 +56,25 @@ REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "source_target",
     "text",
 )
+DEFAULT_ESM2_BACKEND = "esm2_t6_8m_ur50d"
+ESM2_BACKEND_MODEL_NAMES = {
+    "esm2_t6_8m_ur50d": "facebook/esm2_t6_8M_UR50D",
+    "esm2_t12_35m_ur50d": "facebook/esm2_t12_35M_UR50D",
+    "esm2_t30_150m_ur50d": "facebook/esm2_t30_150M_UR50D",
+    "esm2_t33_650m_ur50d": "facebook/esm2_t33_650M_UR50D",
+}
+ESM2_BACKEND_EXPECTED_DIMENSIONS = {
+    "esm2_t6_8m_ur50d": 320,
+    "esm2_t12_35m_ur50d": 480,
+    "esm2_t30_150m_ur50d": 640,
+    "esm2_t33_650m_ur50d": 1280,
+}
+ESM2_BACKEND_SCALE_LABELS = {
+    "esm2_t6_8m_ur50d": "8M",
+    "esm2_t12_35m_ur50d": "35M",
+    "esm2_t30_150m_ur50d": "150M",
+    "esm2_t33_650m_ur50d": "650M",
+}
 EXTERNAL_TRANSFER_GATE_INPUT_CONTRACT = "ExternalSourceTransferGateInputs.v1"
 EXTERNAL_TRANSFER_GATE_REQUIRED_FIELDS = (
     "transfer_manifest",
@@ -3472,10 +3492,12 @@ def build_external_source_representation_backend_sample(
     top_k: int = 3,
     similarity_alert_threshold: float = 0.95,
     embedding_backend: str = "deterministic_sequence_kmer_control",
-    model_name: str = "facebook/esm2_t6_8M_UR50D",
+    model_name: str = ESM2_BACKEND_MODEL_NAMES[DEFAULT_ESM2_BACKEND],
+    local_files_only: bool = False,
     fetcher: Callable[[list[str]], dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Compute a review-only sequence representation control."""
+    sample_started = time.perf_counter()
     fetch = fetcher or _fetch_uniprot_sequence_records
     sequence_rows_by_accession = {
         _normalize_accession(row.get("accession")): row
@@ -3519,6 +3541,7 @@ def build_external_source_representation_backend_sample(
         accessions=requested_accessions,
         embedding_backend=embedding_backend,
         model_name=model_name,
+        local_files_only=local_files_only,
     )
     embeddings_by_accession = embedding_payload["embeddings_by_accession"]
 
@@ -3688,6 +3711,10 @@ def build_external_source_representation_backend_sample(
             "embedding_backend": embedding_payload["metadata"]["embedding_backend"],
             "requested_embedding_backend": embedding_backend,
             "model_name": embedding_payload["metadata"].get("model_name"),
+            "requested_model_name": embedding_payload["metadata"].get(
+                "requested_model_name", model_name
+            ),
+            "local_files_only": embedding_payload["metadata"].get("local_files_only"),
             "embedding_status": "computed_review_only",
             "predictive_feature_policy": (
                 "representation status is computed from sequence embeddings "
@@ -3706,6 +3733,45 @@ def build_external_source_representation_backend_sample(
             "embedding_failure_count": embedding_payload["metadata"].get(
                 "embedding_failure_count",
                 0,
+            ),
+            "embedding_elapsed_seconds": embedding_payload["metadata"].get(
+                "embedding_elapsed_seconds"
+            ),
+            "model_load_elapsed_seconds": embedding_payload["metadata"].get(
+                "model_load_elapsed_seconds"
+            ),
+            "model_load_status": embedding_payload["metadata"].get(
+                "model_load_status"
+            ),
+            "model_load_failure_type": embedding_payload["metadata"].get(
+                "model_load_failure_type"
+            ),
+            "model_load_failure": embedding_payload["metadata"].get(
+                "model_load_failure"
+            ),
+            "backend_feasibility_status": embedding_payload["metadata"].get(
+                "backend_feasibility_status"
+            ),
+            "expected_embedding_vector_dimension": embedding_payload["metadata"].get(
+                "expected_embedding_vector_dimension"
+            ),
+            "embedding_backend_model_family": embedding_payload["metadata"].get(
+                "embedding_backend_model_family"
+            ),
+            "embedding_backend_parameter_count": embedding_payload["metadata"].get(
+                "embedding_backend_parameter_count"
+            ),
+            "attempted_embedding_backend": embedding_payload["metadata"].get(
+                "attempted_embedding_backend"
+            ),
+            "largest_supported_embedding_backend": embedding_payload["metadata"].get(
+                "largest_supported_embedding_backend"
+            ),
+            "largest_feasible_embedding_backend": embedding_payload["metadata"].get(
+                "largest_feasible_embedding_backend"
+            ),
+            "fallback_not_computed_reason": embedding_payload["metadata"].get(
+                "fallback_not_computed_reason"
             ),
             "requested_accession_count": len(requested_accessions),
             "fetched_accession_count": len(records_by_accession),
@@ -3733,6 +3799,7 @@ def build_external_source_representation_backend_sample(
                 "computed representation samples are controls only; they do "
                 "not replace sequence-search, review-decision, or factory gates"
             ),
+            "elapsed_seconds": round(time.perf_counter() - sample_started, 4),
         },
         "rows": rows,
         "learned_vs_heuristic_disagreements": disagreement_rows,
@@ -3866,6 +3933,285 @@ def audit_external_source_representation_backend_sample(
             )
         ],
     }
+
+
+def audit_external_source_representation_backend_stability(
+    *,
+    baseline_representation_backend_sample: dict[str, Any],
+    comparison_representation_backend_sample: dict[str, Any],
+) -> dict[str, Any]:
+    """Compare learned representation samples without making either countable."""
+    baseline_rows_by_accession = _representation_sample_rows_by_accession(
+        baseline_representation_backend_sample
+    )
+    comparison_rows_by_accession = _representation_sample_rows_by_accession(
+        comparison_representation_backend_sample
+    )
+    baseline_disagreements = _representation_sample_disagreements_by_accession(
+        baseline_representation_backend_sample
+    )
+    comparison_disagreements = _representation_sample_disagreements_by_accession(
+        comparison_representation_backend_sample
+    )
+    shared_accessions = sorted(
+        set(baseline_rows_by_accession) & set(comparison_rows_by_accession)
+    )
+    rows: list[dict[str, Any]] = []
+    nearest_reference_changed_count = 0
+    nearest_reference_entry_ids_changed_count = 0
+    disagreement_status_changed_count = 0
+    fingerprint_context_changed_count = 0
+    comparison_unavailable_count = 0
+
+    for accession in shared_accessions:
+        baseline_row = baseline_rows_by_accession[accession]
+        comparison_row = comparison_rows_by_accession[accession]
+        baseline_nearest = baseline_row.get("nearest_reference") or {}
+        comparison_nearest = comparison_row.get("nearest_reference") or {}
+        baseline_reference = _normalize_accession(
+            baseline_nearest.get("reference_accession")
+        )
+        comparison_reference = _normalize_accession(
+            comparison_nearest.get("reference_accession")
+        )
+        baseline_reference_entry_ids = sorted(
+            str(entry_id)
+            for entry_id in baseline_nearest.get("matched_m_csa_entry_ids", []) or []
+            if entry_id
+        )
+        comparison_reference_entry_ids = sorted(
+            str(entry_id)
+            for entry_id in comparison_nearest.get("matched_m_csa_entry_ids", [])
+            or []
+            if entry_id
+        )
+        baseline_disagreement = baseline_disagreements.get(accession, {})
+        comparison_disagreement = comparison_disagreements.get(accession, {})
+        baseline_disagreement_status = str(
+            baseline_disagreement.get("representation_heuristic_disagreement_status")
+            or "no_disagreement_signal"
+        )
+        comparison_disagreement_status = str(
+            comparison_disagreement.get("representation_heuristic_disagreement_status")
+            or "no_disagreement_signal"
+        )
+        baseline_fingerprint = (
+            baseline_row.get("heuristic_baseline_control", {}) or {}
+        ).get("top1_fingerprint_id")
+        comparison_fingerprint = (
+            comparison_row.get("heuristic_baseline_control", {}) or {}
+        ).get("top1_fingerprint_id")
+        nearest_reference_stable = baseline_reference == comparison_reference
+        nearest_reference_entry_ids_stable = (
+            baseline_reference_entry_ids == comparison_reference_entry_ids
+        )
+        disagreement_status_stable = (
+            baseline_disagreement_status == comparison_disagreement_status
+        )
+        fingerprint_context_stable = baseline_fingerprint == comparison_fingerprint
+        flags: list[str] = []
+        if not nearest_reference_stable:
+            flags.append("nearest_reference_changed")
+            nearest_reference_changed_count += 1
+        if not nearest_reference_entry_ids_stable:
+            flags.append("nearest_reference_entry_ids_changed")
+            nearest_reference_entry_ids_changed_count += 1
+        if not disagreement_status_stable:
+            flags.append("heuristic_disagreement_status_changed")
+            disagreement_status_changed_count += 1
+        if not fingerprint_context_stable:
+            flags.append("heuristic_fingerprint_context_changed")
+            fingerprint_context_changed_count += 1
+        if comparison_row.get("backend_status") == "embedding_backend_unavailable":
+            flags.append("comparison_embedding_backend_unavailable")
+            comparison_unavailable_count += 1
+        rows.append(
+            {
+                "accession": accession,
+                "baseline_backend_status": baseline_row.get("backend_status"),
+                "baseline_embedding_backend": baseline_row.get("embedding_backend"),
+                "baseline_heuristic_disagreement_status": (
+                    baseline_disagreement_status
+                ),
+                "baseline_nearest_reference_accession": baseline_reference,
+                "baseline_nearest_reference_entry_ids": baseline_reference_entry_ids,
+                "baseline_top_embedding_cosine": baseline_row.get(
+                    "top_embedding_cosine"
+                ),
+                "comparison_backend_status": comparison_row.get("backend_status"),
+                "comparison_embedding_backend": comparison_row.get(
+                    "embedding_backend"
+                ),
+                "comparison_heuristic_disagreement_status": (
+                    comparison_disagreement_status
+                ),
+                "comparison_nearest_reference_accession": comparison_reference,
+                "comparison_nearest_reference_entry_ids": (
+                    comparison_reference_entry_ids
+                ),
+                "comparison_top_embedding_cosine": comparison_row.get(
+                    "top_embedding_cosine"
+                ),
+                "countable_label_candidate": False,
+                "heuristic_top1_fingerprint_id": baseline_fingerprint,
+                "nearest_reference_stable": nearest_reference_stable,
+                "nearest_reference_entry_ids_stable": (
+                    nearest_reference_entry_ids_stable
+                ),
+                "heuristic_disagreement_status_stable": disagreement_status_stable,
+                "heuristic_fingerprint_context_stable": fingerprint_context_stable,
+                "ready_for_label_import": False,
+                "review_status": "representation_backend_stability_audit_review_only",
+                "stability_flags": flags,
+            }
+        )
+
+    baseline_meta = baseline_representation_backend_sample.get("metadata", {})
+    comparison_meta = comparison_representation_backend_sample.get("metadata", {})
+    all_sample_rows = [
+        row
+        for sample in (
+            baseline_representation_backend_sample,
+            comparison_representation_backend_sample,
+        )
+        for row in sample.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    countable_rows = [
+        row for row in all_sample_rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in all_sample_rows if row.get("ready_for_label_import") is not False
+    ]
+    blockers: list[str] = []
+    if countable_rows:
+        blockers.append("representation_stability_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("representation_stability_rows_marked_ready_for_import")
+    if not rows:
+        blockers.append("empty_representation_backend_stability_audit")
+    if comparison_meta.get("embedding_backend_available") is not True:
+        stability_status = "comparison_backend_unavailable"
+    elif (
+        nearest_reference_changed_count
+        or nearest_reference_entry_ids_changed_count
+        or disagreement_status_changed_count
+        or fingerprint_context_changed_count
+    ):
+        stability_status = "changed"
+    else:
+        stability_status = "stable"
+    return {
+        "metadata": {
+            "method": "external_source_representation_backend_stability_audit",
+            "blocker_removed": (
+                "compares baseline and upgraded learned representation controls "
+                "without changing countable labels"
+            ),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "baseline_candidate_count": baseline_meta.get("candidate_count", 0),
+            "comparison_candidate_count": comparison_meta.get("candidate_count", 0),
+            "shared_candidate_count": len(rows),
+            "baseline_embedding_backend": baseline_meta.get("embedding_backend"),
+            "comparison_embedding_backend": comparison_meta.get("embedding_backend"),
+            "baseline_model_name": baseline_meta.get("model_name"),
+            "comparison_model_name": comparison_meta.get("model_name"),
+            "baseline_embedding_vector_dimension": baseline_meta.get(
+                "embedding_vector_dimension"
+            ),
+            "comparison_embedding_vector_dimension": comparison_meta.get(
+                "embedding_vector_dimension"
+            ),
+            "comparison_expected_embedding_vector_dimension": comparison_meta.get(
+                "expected_embedding_vector_dimension"
+            ),
+            "baseline_embedding_backend_available": baseline_meta.get(
+                "embedding_backend_available"
+            ),
+            "comparison_embedding_backend_available": comparison_meta.get(
+                "embedding_backend_available"
+            ),
+            "comparison_backend_feasibility_status": comparison_meta.get(
+                "backend_feasibility_status"
+            ),
+            "comparison_largest_supported_embedding_backend": comparison_meta.get(
+                "largest_supported_embedding_backend"
+            ),
+            "comparison_largest_feasible_embedding_backend": comparison_meta.get(
+                "largest_feasible_embedding_backend"
+            ),
+            "comparison_fallback_not_computed_reason": comparison_meta.get(
+                "fallback_not_computed_reason"
+            ),
+            "comparison_embedding_failure_count": comparison_meta.get(
+                "embedding_failure_count", 0
+            ),
+            "comparison_embedding_elapsed_seconds": comparison_meta.get(
+                "embedding_elapsed_seconds"
+            ),
+            "nearest_reference_stable_count": len(rows)
+            - nearest_reference_changed_count,
+            "nearest_reference_changed_count": nearest_reference_changed_count,
+            "nearest_reference_entry_ids_stable_count": len(rows)
+            - nearest_reference_entry_ids_changed_count,
+            "nearest_reference_entry_ids_changed_count": (
+                nearest_reference_entry_ids_changed_count
+            ),
+            "heuristic_disagreement_status_stable_count": len(rows)
+            - disagreement_status_changed_count,
+            "heuristic_disagreement_status_changed_count": (
+                disagreement_status_changed_count
+            ),
+            "heuristic_fingerprint_context_stable_count": len(rows)
+            - fingerprint_context_changed_count,
+            "heuristic_fingerprint_context_changed_count": (
+                fingerprint_context_changed_count
+            ),
+            "comparison_embedding_backend_unavailable_row_count": (
+                comparison_unavailable_count
+            ),
+            "stability_status": stability_status,
+            "guardrail_clean": not blockers,
+        },
+        "rows": rows,
+        "blockers": blockers,
+        "warnings": [
+            (
+                "representation backend stability audits compare sequence-derived "
+                "controls only; they cannot authorize external label import"
+            )
+        ],
+    }
+
+
+def _representation_sample_rows_by_accession(
+    representation_backend_sample: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    rows_by_accession: dict[str, dict[str, Any]] = {}
+    for row in representation_backend_sample.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        accession = _normalize_accession(row.get("accession"))
+        if accession:
+            rows_by_accession[accession] = row
+    return rows_by_accession
+
+
+def _representation_sample_disagreements_by_accession(
+    representation_backend_sample: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    rows_by_accession: dict[str, dict[str, Any]] = {}
+    for row in (
+        representation_backend_sample.get("learned_vs_heuristic_disagreements", [])
+        or []
+    ):
+        if not isinstance(row, dict):
+            continue
+        accession = _normalize_accession(row.get("accession"))
+        if accession:
+            rows_by_accession[accession] = row
+    return rows_by_accession
 
 
 def _representation_predictive_source_is_leakage_prone(source: str) -> bool:
@@ -8423,8 +8769,11 @@ def check_external_source_transfer_gates(
             sample_meta.get("ready_for_label_import") is False
             and sample_meta.get("countable_label_candidate_count") == 0
             and sample_meta.get("embedding_status") == "computed_review_only"
-            and sample_meta.get("embedding_backend")
-            in {"deterministic_sequence_kmer_control", "esm2_t6_8m_ur50d"}
+            and (
+                sample_meta.get("embedding_backend")
+                == "deterministic_sequence_kmer_control"
+                or sample_meta.get("embedding_backend") in ESM2_BACKEND_MODEL_NAMES
+            )
             and (
                 sample_meta.get("embedding_backend")
                 == "deterministic_sequence_kmer_control"
@@ -11134,7 +11483,9 @@ def _compute_sequence_embedding_payload(
     accessions: list[str],
     embedding_backend: str,
     model_name: str,
+    local_files_only: bool = False,
 ) -> dict[str, Any]:
+    started = time.perf_counter()
     backend = _normalized_embedding_backend(embedding_backend)
     if backend == "deterministic_sequence_kmer_control":
         embeddings = {
@@ -11150,7 +11501,16 @@ def _compute_sequence_embedding_payload(
                 "embedding_backend_available": True,
                 "embedding_vector_dimension": None,
                 "model_name": None,
+                "requested_model_name": model_name,
+                "local_files_only": local_files_only,
                 "embedding_failure_count": 0,
+                "embedding_elapsed_seconds": round(time.perf_counter() - started, 4),
+                "model_load_elapsed_seconds": 0.0,
+                "model_load_status": "not_applicable",
+                "backend_feasibility_status": "computed",
+                "expected_embedding_vector_dimension": None,
+                "embedding_backend_model_family": "deterministic_sequence_kmer",
+                "embedding_backend_parameter_count": None,
             },
             "embeddings_by_accession": embeddings,
             "warnings_by_accession": {},
@@ -11162,14 +11522,23 @@ def _compute_sequence_embedding_payload(
                 )
             ],
         }
-    if backend != "esm2_t6_8m_ur50d":
+    if backend not in ESM2_BACKEND_MODEL_NAMES:
         return {
             "metadata": {
                 "embedding_backend": backend,
                 "embedding_backend_available": False,
                 "embedding_vector_dimension": None,
                 "model_name": model_name,
+                "requested_model_name": model_name,
+                "local_files_only": local_files_only,
                 "embedding_failure_count": len(accessions),
+                "embedding_elapsed_seconds": round(time.perf_counter() - started, 4),
+                "model_load_elapsed_seconds": 0.0,
+                "model_load_status": "not_attempted",
+                "backend_feasibility_status": "unsupported_backend",
+                "expected_embedding_vector_dimension": None,
+                "embedding_backend_model_family": None,
+                "embedding_backend_parameter_count": None,
             },
             "embeddings_by_accession": {},
             "warnings_by_accession": {},
@@ -11183,22 +11552,74 @@ def _compute_sequence_embedding_payload(
             ],
             "warnings": [f"unsupported embedding backend: {embedding_backend}"],
         }
-    return _compute_esm2_t6_embeddings(
+    resolved_model_name = _resolved_esm2_model_name(
+        backend=backend, requested_model_name=model_name
+    )
+    if backend == DEFAULT_ESM2_BACKEND:
+        return _compute_esm2_t6_embeddings(
+            records_by_accession=records_by_accession,
+            accessions=accessions,
+            model_name=resolved_model_name,
+            local_files_only=local_files_only,
+        )
+    return _compute_esm2_embeddings(
         records_by_accession=records_by_accession,
         accessions=accessions,
-        model_name=model_name,
+        backend=backend,
+        model_name=resolved_model_name,
+        local_files_only=local_files_only,
     )
+
+
+def _resolved_esm2_model_name(*, backend: str, requested_model_name: str) -> str:
+    requested = str(requested_model_name or "").strip()
+    if not requested:
+        return ESM2_BACKEND_MODEL_NAMES[backend]
+    default_model = ESM2_BACKEND_MODEL_NAMES[DEFAULT_ESM2_BACKEND]
+    if requested == default_model and backend != DEFAULT_ESM2_BACKEND:
+        return ESM2_BACKEND_MODEL_NAMES[backend]
+    return requested
+
+
+def _esm2_backend_metadata(backend: str) -> dict[str, Any]:
+    return {
+        "attempted_embedding_backend": backend,
+        "expected_embedding_vector_dimension": ESM2_BACKEND_EXPECTED_DIMENSIONS.get(
+            backend
+        ),
+        "embedding_backend_model_family": "ESM-2",
+        "embedding_backend_parameter_count": ESM2_BACKEND_SCALE_LABELS.get(backend),
+        "supported_embedding_backends": list(ESM2_BACKEND_MODEL_NAMES),
+        "largest_supported_embedding_backend": "esm2_t33_650m_ur50d",
+    }
 
 
 def _normalized_embedding_backend(value: str) -> str:
     normalized = str(value or "").strip()
+    normalized_key = normalized.lower()
     aliases = {
-        "esm2": "esm2_t6_8m_ur50d",
-        "esm-2": "esm2_t6_8m_ur50d",
-        "facebook/esm2_t6_8M_UR50D": "esm2_t6_8m_ur50d",
-        "esm2_t6_8M_UR50D": "esm2_t6_8m_ur50d",
+        "esm2": DEFAULT_ESM2_BACKEND,
+        "esm-2": DEFAULT_ESM2_BACKEND,
+        "esm2_8m": "esm2_t6_8m_ur50d",
+        "esm2-8m": "esm2_t6_8m_ur50d",
+        "esm2_t6_8m_ur50d": "esm2_t6_8m_ur50d",
+        "facebook/esm2_t6_8m_ur50d": "esm2_t6_8m_ur50d",
+        "esm2_35m": "esm2_t12_35m_ur50d",
+        "esm2-35m": "esm2_t12_35m_ur50d",
+        "esm2_t12_35m_ur50d": "esm2_t12_35m_ur50d",
+        "facebook/esm2_t12_35m_ur50d": "esm2_t12_35m_ur50d",
+        "esm2_150m": "esm2_t30_150m_ur50d",
+        "esm2-150m": "esm2_t30_150m_ur50d",
+        "esm2_t30_150m_ur50d": "esm2_t30_150m_ur50d",
+        "facebook/esm2_t30_150m_ur50d": "esm2_t30_150m_ur50d",
+        "esm2_650m": "esm2_t33_650m_ur50d",
+        "esm2-650m": "esm2_t33_650m_ur50d",
+        "esm2_t33_650m_ur50d": "esm2_t33_650m_ur50d",
+        "facebook/esm2_t33_650m_ur50d": "esm2_t33_650m_ur50d",
     }
-    return aliases.get(normalized, normalized or "deterministic_sequence_kmer_control")
+    return aliases.get(
+        normalized_key, normalized or "deterministic_sequence_kmer_control"
+    )
 
 
 def _compute_esm2_t6_embeddings(
@@ -11206,22 +11627,67 @@ def _compute_esm2_t6_embeddings(
     records_by_accession: dict[str, dict[str, Any]],
     accessions: list[str],
     model_name: str,
+    local_files_only: bool = False,
 ) -> dict[str, Any]:
+    return _compute_esm2_embeddings(
+        records_by_accession=records_by_accession,
+        accessions=accessions,
+        backend=DEFAULT_ESM2_BACKEND,
+        model_name=model_name,
+        local_files_only=local_files_only,
+    )
+
+
+def _compute_esm2_embeddings(
+    *,
+    records_by_accession: dict[str, dict[str, Any]],
+    accessions: list[str],
+    backend: str,
+    model_name: str,
+    local_files_only: bool = False,
+) -> dict[str, Any]:
+    started = time.perf_counter()
+    load_started = time.perf_counter()
     try:
         import torch
         from transformers import AutoModel, AutoTokenizer
 
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
-        model = AutoModel.from_pretrained(model_name)
+        tokenizer = AutoTokenizer.from_pretrained(
+            model_name, local_files_only=local_files_only
+        )
+        model = AutoModel.from_pretrained(
+            model_name, local_files_only=local_files_only
+        )
         model.eval()
+        model_load_elapsed = round(time.perf_counter() - load_started, 4)
     except Exception as exc:  # pragma: no cover - depends on local model stack/cache
+        model_load_elapsed = round(time.perf_counter() - load_started, 4)
         return {
             "metadata": {
-                "embedding_backend": "esm2_t6_8m_ur50d",
+                "embedding_backend": backend,
                 "embedding_backend_available": False,
                 "embedding_vector_dimension": None,
                 "model_name": model_name,
+                "requested_model_name": model_name,
+                "local_files_only": local_files_only,
                 "embedding_failure_count": len(accessions),
+                "embedding_elapsed_seconds": round(time.perf_counter() - started, 4),
+                "model_load_elapsed_seconds": model_load_elapsed,
+                "model_load_status": "failed",
+                "model_load_failure_type": type(exc).__name__,
+                "model_load_failure": str(exc),
+                "backend_feasibility_status": (
+                    "model_unavailable_locally"
+                    if local_files_only
+                    else "model_load_failed"
+                ),
+                "largest_feasible_embedding_backend": None,
+                "fallback_not_computed_reason": (
+                    "local_files_only_prevents_downloading_uncached_model"
+                    if local_files_only
+                    else "model_load_failed_before_embedding"
+                ),
+                **_esm2_backend_metadata(backend),
             },
             "embeddings_by_accession": {},
             "warnings_by_accession": {},
@@ -11286,11 +11752,26 @@ def _compute_esm2_t6_embeddings(
             )
     return {
         "metadata": {
-            "embedding_backend": "esm2_t6_8m_ur50d",
+            "embedding_backend": backend,
             "embedding_backend_available": bool(embeddings),
             "embedding_vector_dimension": vector_dimension,
             "model_name": model_name,
+            "requested_model_name": model_name,
+            "local_files_only": local_files_only,
             "embedding_failure_count": len(failures),
+            "embedding_elapsed_seconds": round(time.perf_counter() - started, 4),
+            "model_load_elapsed_seconds": model_load_elapsed,
+            "model_load_status": "loaded",
+            "backend_feasibility_status": (
+                "computed"
+                if len(embeddings) == len(accessions)
+                else "partially_computed"
+                if embeddings
+                else "embedding_runtime_failed"
+            ),
+            "largest_feasible_embedding_backend": backend if embeddings else None,
+            "fallback_not_computed_reason": None if embeddings else "embedding_runtime_failed",
+            **_esm2_backend_metadata(backend),
         },
         "embeddings_by_accession": embeddings,
         "warnings_by_accession": warnings_by_accession,

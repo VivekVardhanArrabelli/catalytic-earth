@@ -266,16 +266,17 @@ pass covers all 30 external candidates with 64 reaction records, flags 16
 broad-EC context rows, and remains review-only. See
 `docs/external_source_transfer.md` for the guarded command sequence.
 `artifacts/v3_sequence_distance_holdout_eval_1000.json` and
-`artifacts/v3_sequence_distance_holdout_eval_1025.json` now report the first
-generalization holdout metrics for the accepted countable registry. No
-Foldseek, MMseqs2, BLAST, or DIAMOND executable was available locally, so the
-partition is explicitly a deterministic proxy based on exact UniProt reference
-clusters, selected structures, and active-site geometry buckets. Both contexts
-hold out 136 labeled rows, retain 0 held-out out-of-scope false
-non-abstentions, and report held-out evaluable in-scope top1 accuracy and
-retention of `0.9767`; top1/top3 accuracy among retained held-out evaluable
-rows is `1.0000`. This removes the first generalization-visibility blocker but
-does not claim real <=30% sequence identity or <0.7 TM-score separation.
+`artifacts/v3_sequence_distance_holdout_eval_1025.json` now report real
+MMseqs2 sequence-identity holdout metrics for the accepted countable registry
+while preserving the older low-neighborhood proxy fields as fallback context.
+Both contexts use the sidecar FASTA
+`artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta`,
+cover 678/678 evaluated labels, cluster 738 sequence records at 30% identity
+and 80% coverage, hold out 136 rows by whole sequence clusters, and record a
+max observed train/test identity of `0.284`. The target <=30% sequence-identity
+split is achieved, with 0 held-out out-of-scope false non-abstentions; held-out
+evaluable in-scope top1 accuracy, top3 retained accuracy, and retention are all
+`1.0000`. Foldseek/TM-score separation remains uncomputed.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
@@ -293,6 +294,12 @@ PLP/LLP/PMP/P5P ligand context, and the refreshed 1,000/1,025 retrieval,
 holdout, label-factory, and external heuristic-control artifacts preserve 0 hard
 negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0 countable
 external labels.
+ESM-2 650M support is implemented as a review-only sidecar path for mapped
+controls and selected pilot rows. The current local run could not compute
+`facebook/esm2_t33_650M_UR50D` because the model was not cached and the sidecar
+used local-only loading; the 650M artifacts record `model_unavailable_locally`,
+expected dimension `1280`, embedding failures, elapsed time, and 8M-vs-650M
+stability audits without replacing the computed 8M baseline.
 `artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json`
 prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
 expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,
@@ -360,9 +367,10 @@ automation-curated bronze labels after the accepted 850 state. The latest
 the 21 new 1,000-preview
 review-debt rows remain explicitly non-countable under
 `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The bounded
-1,025 preview is open but not promoted; the first proxy sequence/fold-distance
-holdout, the 12-row mapped-control ESM-2 representation sample, and the
-10-row selected-pilot ESM-2 representation sample are now in place. The
+1,025 preview is open but not promoted; the real MMseqs2 <=30% sequence
+holdout, the 12-row mapped-control ESM-2 8M representation sample, the
+10-row selected-pilot ESM-2 8M representation sample, and 650M local-only
+feasibility sidecars are now in place. The
 first SPOF hardening pass also refactored counterevidence and gate inputs. The
 label-factory gate and countable batch-acceptance CLI now record validated
 artifact lineage and fail on non-exempt slice mismatches, including

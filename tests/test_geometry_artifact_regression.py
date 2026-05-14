@@ -2561,6 +2561,42 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             )
             self.assertFalse(plp_hit["text_or_label_fields_used_for_score"])
             self.assertEqual(plp_hit["plp_ligand_anchor_score"], 1.0)
+            self.assertIn("counterevidence_reasons_by_category", plp_hit)
+            self.assertIn("counterevidence_category_counts", plp_hit)
+
+    def test_mechanism_text_counterevidence_ablation_artifact_marks_review_debt(
+        self,
+    ) -> None:
+        ablation = _load_json(
+            ROOT / "artifacts" / "v3_mechanism_text_counterevidence_ablation_1000.json"
+        )
+
+        metadata = ablation["metadata"]
+        self.assertEqual(metadata["method"], "mechanism_text_counterevidence_ablation")
+        self.assertEqual(
+            metadata["removed_fields"],
+            ["mechanism_text_count", "mechanism_text_snippets"],
+        )
+        self.assertGreater(metadata["changed_row_count"], 0)
+        self.assertGreater(metadata["review_debt_row_count"], 0)
+        self.assertEqual(metadata["structure_local_guardrail_loss_row_count"], 0)
+        review_debt_rows = [
+            row for row in ablation["changed_rows"] if row.get("review_debt")
+        ]
+        self.assertEqual(len(review_debt_rows), metadata["review_debt_row_count"])
+        self.assertTrue(
+            all(
+                row["orphan_discovery_claim_status"]
+                == "review_debt_text_only_not_valid_for_orphan_discovery_claims"
+                for row in review_debt_rows
+            )
+        )
+        self.assertTrue(
+            any(
+                row["lost_mechanism_text_review_context_reasons"]
+                for row in review_debt_rows
+            )
+        )
 
 
 def _load_json(path: Path) -> dict:

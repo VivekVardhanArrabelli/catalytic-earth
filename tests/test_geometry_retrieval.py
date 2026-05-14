@@ -8,8 +8,12 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from catalytic_earth.geometry_retrieval import (
+    COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY,
     COUNTEREVIDENCE_POLICY,
     COUNTEREVIDENCE_POLICY_VERSION,
+    COUNTEREVIDENCE_PREDICTIVE_SAFETY_ROLE,
+    COUNTEREVIDENCE_REVIEW_CONTEXT_ONLY_ROLE,
+    COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY,
     audit_geometry_retrieval_leakage_policy,
     compactness_score,
     counterevidence_assessment,
@@ -18,6 +22,7 @@ from catalytic_earth.geometry_retrieval import (
     counterevidence_penalty,
     distance_summary,
     mechanistic_coherence_score,
+    run_mechanism_text_counterevidence_ablation,
     run_geometry_retrieval,
     score_entry_against_fingerprint,
     substrate_pocket_score,
@@ -57,8 +62,17 @@ class GeometryRetrievalTests(unittest.TestCase):
                 {
                     "reason": "role_inferred_metal_radical_transfer_roles",
                     "penalty": 0.68,
+                    "counterevidence_category": COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY,
+                    "evidence_role": COUNTEREVIDENCE_PREDICTIVE_SAFETY_ROLE,
                 }
             ],
+        )
+        self.assertEqual(
+            assessment["category_counts"],
+            {
+                COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY: 0,
+                COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY: 1,
+            },
         )
         self.assertEqual(
             assessment["policy_hits"],
@@ -68,7 +82,16 @@ class GeometryRetrievalTests(unittest.TestCase):
                     "reason": "role_inferred_metal_radical_transfer_roles",
                     "penalty": 0.68,
                     "evidence_fields": ["cofactor_evidence", "residue_roles"],
-                    "evidence_role": "counterevidence_only_not_predictive_evidence",
+                    "predictive_safety_evidence_fields": [
+                        "cofactor_evidence",
+                        "residue_roles",
+                    ],
+                    "review_context_fields": [],
+                    "counterevidence_category": COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY,
+                    "evidence_role": COUNTEREVIDENCE_PREDICTIVE_SAFETY_ROLE,
+                    "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                    "external_orphan_safety_evidence": True,
+                    "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
                     "leakage_flags": [],
                     "policy_version": COUNTEREVIDENCE_POLICY_VERSION,
                 }
@@ -89,8 +112,53 @@ class GeometryRetrievalTests(unittest.TestCase):
             text_hits["methylcobalamin_transfer_context_for_metal_hydrolase"][
                 "leakage_flags"
             ],
-            ["mechanism_text_review_context_only"],
+            [
+                "mechanism_text_review_context_only",
+                COUNTEREVIDENCE_REVIEW_CONTEXT_ONLY_ROLE,
+            ],
         )
+        self.assertEqual(
+            text_hits["methylcobalamin_transfer_context_for_metal_hydrolase"][
+                "counterevidence_category"
+            ],
+            COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY,
+        )
+        self.assertEqual(
+            text_hits["methylcobalamin_transfer_context_for_metal_hydrolase"][
+                "evidence_role"
+            ],
+            COUNTEREVIDENCE_REVIEW_CONTEXT_ONLY_ROLE,
+        )
+        self.assertFalse(
+            text_hits["methylcobalamin_transfer_context_for_metal_hydrolase"][
+                "external_orphan_safety_evidence"
+            ]
+        )
+
+        missing_water = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[{"code": "HIS", "roles": ["metal ligand"]}],
+            cofactor_evidence="role_inferred",
+            ligand_context={"ligand_codes": [], "cofactor_families": []},
+            substrate_pocket_score_value=0.2,
+        )
+        missing_water_hit = {
+            hit["reason"]: hit for hit in missing_water["policy_hits"]
+        }["role_inferred_metal_missing_water_activation_role"]
+        self.assertEqual(
+            missing_water_hit["counterevidence_category"],
+            COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY,
+        )
+        self.assertEqual(
+            missing_water_hit["evidence_role"],
+            COUNTEREVIDENCE_PREDICTIVE_SAFETY_ROLE,
+        )
+        self.assertEqual(missing_water_hit["review_context_fields"], ["mechanism_text"])
+        self.assertIn(
+            "mechanism_text_review_context_condition_only",
+            missing_water_hit["leakage_flags"],
+        )
+        self.assertTrue(missing_water_hit["external_orphan_safety_evidence"])
 
     def test_score_ser_his_acid_fingerprint(self) -> None:
         entry = {
@@ -578,7 +646,12 @@ class GeometryRetrievalTests(unittest.TestCase):
         self.assertEqual(apc_assessment["penalty"], 0.68)
         self.assertIn("nucleotide_transfer_ligand_context", apc_assessment["reasons"])
         self.assertIn(
-            {"reason": "nucleotide_transfer_ligand_context", "penalty": 0.68},
+            {
+                "reason": "nucleotide_transfer_ligand_context",
+                "penalty": 0.68,
+                "counterevidence_category": COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY,
+                "evidence_role": COUNTEREVIDENCE_PREDICTIVE_SAFETY_ROLE,
+            },
             apc_assessment["penalty_details"],
         )
         self.assertLess(
@@ -831,6 +904,8 @@ class GeometryRetrievalTests(unittest.TestCase):
                 {
                     "reason": "role_inferred_metal_radical_transfer_roles",
                     "penalty": 0.68,
+                    "counterevidence_category": COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY,
+                    "evidence_role": COUNTEREVIDENCE_PREDICTIVE_SAFETY_ROLE,
                 }
             ],
         )
@@ -1188,6 +1263,58 @@ class GeometryRetrievalTests(unittest.TestCase):
         self.assertIn(
             "geometry_retrieval_hit_uses_text_or_label_score",
             audit["metadata"]["blockers"],
+        )
+
+    def test_mechanism_text_counterevidence_ablation_reports_review_debt(self) -> None:
+        ablation = run_mechanism_text_counterevidence_ablation(
+            {
+                "entries": [
+                    {
+                        "entry_id": "example:text-ablation",
+                        "entry_name": "review context only",
+                        "mechanism_text_count": 1,
+                        "mechanism_text_snippets": [
+                            "Methylcobalamin catalysis uses heterolytic Co-C bond "
+                            "cleavage for methyl transfer."
+                        ],
+                        "residues": [{"code": "HIS", "roles": ["metal ligand"]}],
+                        "ligand_context": {
+                            "ligand_codes": ["COB"],
+                            "cofactor_families": ["cobalamin"],
+                        },
+                        "pocket_context": {
+                            "nearby_residue_count": 1,
+                            "descriptors": {"polar_fraction": 0.2},
+                        },
+                        "pairwise_distances_angstrom": [{"distance": 10}],
+                    }
+                ]
+            },
+            top_k=20,
+            route_threshold=0.4115,
+        )
+
+        self.assertEqual(ablation["metadata"]["changed_row_count"], 1)
+        self.assertEqual(ablation["metadata"]["review_debt_row_count"], 1)
+        row = ablation["changed_rows"][0]
+        self.assertEqual(row["mechanism_text_count_after"], 0)
+        self.assertTrue(row["review_debt"])
+        self.assertEqual(
+            row["orphan_discovery_claim_status"],
+            "review_debt_text_only_not_valid_for_orphan_discovery_claims",
+        )
+        metal_change = next(
+            change
+            for change in row["changed_top_fingerprints"]
+            if change["fingerprint_id"] == "metal_dependent_hydrolase"
+        )
+        self.assertIn(
+            "methylcobalamin_transfer_context_for_metal_hydrolase",
+            metal_change["lost_mechanism_text_review_context_reasons"],
+        )
+        self.assertIn(
+            "top_k_fingerprint_details_changed",
+            row["change_types"],
         )
 
     def test_ser_his_hydrolase_penalizes_phosphoryl_transfer_text_context(self) -> None:

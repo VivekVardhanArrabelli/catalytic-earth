@@ -1,14 +1,25 @@
 from __future__ import annotations
 
 import hashlib
+import re
+import shlex
 import shutil
+import subprocess
 from collections import Counter, defaultdict
+from pathlib import Path
 from typing import Any
 
 from .labels import MechanismLabel, label_summary
 
 
 CLUSTERING_TOOL_CANDIDATES = ("foldseek", "mmseqs", "blastp", "diamond")
+SEQUENCE_FIELD_NAMES = (
+    "sequence",
+    "protein_sequence",
+    "amino_acid_sequence",
+    "reference_sequence",
+)
+MMSEQS_CLUSTER_COVERAGE_MODE = 0
 
 
 def build_sequence_distance_holdout_eval(
@@ -21,12 +32,19 @@ def build_sequence_distance_holdout_eval(
     abstain_threshold: float,
     holdout_fraction: float = 0.2,
     min_holdout_rows: int = 40,
+    sequence_fasta: str | None = None,
+    sequence_identity_backend: str = "auto",
+    sequence_identity_threshold: float = 0.30,
+    sequence_identity_coverage: float = 0.80,
+    compute_max_train_test_identity: bool = True,
+    mmseqs_binary: str = "mmseqs",
 ) -> dict[str, Any]:
-    """Evaluate retrieval on a proxy low-sequence/fold-neighborhood holdout.
+    """Evaluate retrieval on a sequence-distance held-out partition.
 
-    This command is intentionally honest about what the local repo can compute:
-    if real clustering tools are absent, the partition is a deterministic proxy
-    based on exact UniProt reference clusters and selected-structure context.
+    When an amino-acid FASTA or row-level sequences are available, MMseqs2 is
+    used to cluster evaluated rows by real sequence identity. If not, the
+    command falls back to the legacy deterministic local proxy and labels that
+    limitation explicitly.
     """
 
     labels_by_entry = {label.entry_id: label for label in labels}
@@ -65,13 +83,71 @@ def build_sequence_distance_holdout_eval(
             and row["active_site_geometry_proxy_bucket_count"] <= 3
         )
 
-    heldout_ids, partition_notes = _select_holdout_entry_ids(
-        result_rows,
-        holdout_fraction=holdout_fraction,
-        min_holdout_rows=min_holdout_rows,
+    real_split = _real_sequence_identity_split(
+        rows=result_rows,
+        sequence_rows_by_entry=sequence_rows_by_entry,
+        sequence_fasta=sequence_fasta,
+        slice_id=str(slice_id),
+        backend=sequence_identity_backend,
+        threshold=sequence_identity_threshold,
+        coverage=sequence_identity_coverage,
+        mmseqs_binary=mmseqs_binary,
     )
+    if real_split.get("usable"):
+        for row in result_rows:
+            entry_id = str(row["entry_id"])
+            row["real_sequence_identity_cluster_id"] = real_split[
+                "entry_clusters"
+            ].get(entry_id, f"missing_sequence:{entry_id}")
+            row["real_sequence_identity_available"] = entry_id in real_split[
+                "entries_with_sequence"
+            ]
+            row["real_sequence_record_count"] = int(
+                real_split["sequence_record_counts_by_entry"].get(entry_id, 0)
+            )
+            row["real_sequence_accessions"] = real_split[
+                "sequence_accessions_by_entry"
+            ].get(entry_id, [])
+            row["real_sequence_identity_note"] = (
+                "mmseqs2_sequence_identity_cluster"
+                if row["real_sequence_identity_available"]
+                else "missing_sequence_for_real_identity_backend"
+            )
+        heldout_ids, partition_notes = _select_holdout_entry_ids_by_real_clusters(
+            result_rows,
+            entry_clusters=real_split["entry_clusters"],
+            holdout_fraction=holdout_fraction,
+            min_holdout_rows=min_holdout_rows,
+        )
+    else:
+        for row in result_rows:
+            row["real_sequence_identity_cluster_id"] = None
+            row["real_sequence_identity_available"] = False
+            row["real_sequence_record_count"] = 0
+            row["real_sequence_accessions"] = []
+            row["real_sequence_identity_note"] = "real_sequence_identity_not_computed"
+        heldout_ids, partition_notes = _select_holdout_entry_ids(
+            result_rows,
+            holdout_fraction=holdout_fraction,
+            min_holdout_rows=min_holdout_rows,
+        )
     for row in result_rows:
         row["partition"] = "heldout" if row["entry_id"] in heldout_ids else "in_distribution"
+
+    train_test_identity = _empty_train_test_identity_metadata()
+    if real_split.get("usable") and compute_max_train_test_identity:
+        train_test_identity = _compute_mmseqs_train_test_identity(
+            records_by_id=real_split["records_by_id"],
+            heldout_entry_ids=heldout_ids,
+            slice_id=str(slice_id),
+            threshold=sequence_identity_threshold,
+            coverage=sequence_identity_coverage,
+            mmseqs_binary=mmseqs_binary,
+            prior_commands=real_split["backend_commands"],
+        )
+        real_split["backend_commands"] = train_test_identity.get(
+            "backend_commands", real_split["backend_commands"]
+        )
 
     heldout_rows = [row for row in result_rows if row["partition"] == "heldout"]
     in_distribution_rows = [
@@ -81,11 +157,27 @@ def build_sequence_distance_holdout_eval(
     heldout_metrics = _partition_metrics(heldout_rows)
     in_distribution_metrics = _partition_metrics(in_distribution_rows)
     tool_status = {tool: bool(shutil.which(tool)) for tool in CLUSTERING_TOOL_CANDIDATES}
-    real_tool_available = any(tool_status.values())
+    heldout_cluster_ids = sorted(
+        {
+            str(row.get("real_sequence_identity_cluster_id"))
+            for row in heldout_rows
+            if row.get("real_sequence_identity_cluster_id")
+        }
+    )
+    heldout_entry_ids = sorted(
+        (str(row["entry_id"]) for row in heldout_rows),
+        key=_entry_id_sort_key,
+    )
+    target_achieved = _sequence_identity_target_achieved(
+        real_split=real_split,
+        train_test_identity=train_test_identity,
+        threshold=sequence_identity_threshold,
+    )
     backend = (
-        "real_clustering_tool_available_not_invoked_by_proxy_command"
-        if real_tool_available
-        else "deterministic_local_proxy_no_foldseek_mmseqs2_blast_or_diamond"
+        "mmseqs2_cluster_sequence_identity"
+        if real_split.get("usable")
+        else real_split.get("fallback_backend")
+        or "deterministic_local_proxy_sequence_identity_not_computed"
     )
 
     return {
@@ -106,9 +198,52 @@ def build_sequence_distance_holdout_eval(
             "min_holdout_rows": min_holdout_rows,
             "clustering_backend": backend,
             "clustering_tool_status": tool_status,
-            "real_sequence_identity_computed": False,
+            "backend_command": real_split.get("backend_command"),
+            "backend_commands": real_split.get("backend_commands", []),
+            "backend_version": real_split.get("backend_version"),
+            "sequence_source": real_split.get("sequence_source"),
+            "sequence_count": real_split.get("sequence_count", 0),
+            "sequence_entry_coverage_count": real_split.get(
+                "sequence_entry_coverage_count", 0
+            ),
+            "sequence_missing_entry_count": real_split.get(
+                "sequence_missing_entry_count", len(result_rows)
+            ),
+            "sequence_missing_entry_ids": real_split.get("sequence_missing_entry_ids", []),
+            "sequence_identity_cluster_threshold": sequence_identity_threshold,
+            "sequence_identity_cluster_coverage": sequence_identity_coverage,
+            "sequence_identity_cluster_coverage_mode": MMSEQS_CLUSTER_COVERAGE_MODE,
+            "sequence_identity_backend_requested": sequence_identity_backend,
+            "sequence_identity_backend_available": bool(real_split.get("usable")),
+            "real_sequence_identity_computed": bool(real_split.get("usable")),
+            "real_sequence_identity_record_cluster_count": real_split.get(
+                "record_cluster_count"
+            ),
+            "real_sequence_identity_entry_cluster_count": real_split.get(
+                "entry_cluster_count"
+            ),
+            "heldout_cluster_ids": heldout_cluster_ids,
+            "heldout_entry_ids": heldout_entry_ids,
+            "max_observed_train_test_identity": train_test_identity.get(
+                "max_observed_train_test_identity"
+            ),
+            "max_observed_train_test_identity_computable": bool(
+                train_test_identity.get("max_observed_train_test_identity_computable")
+            ),
+            "max_observed_train_test_identity_alignment_count": train_test_identity.get(
+                "max_observed_train_test_identity_alignment_count", 0
+            ),
+            "sequence_identity_target_achieved": target_achieved,
+            "sequence_identity_limitations": _sequence_identity_limitations(
+                real_split=real_split,
+                train_test_identity=train_test_identity,
+                sequence_identity_threshold=sequence_identity_threshold,
+            ),
             "real_tm_score_computed": False,
-            "sequence_identity_target": "<=0.30 when real clustering/alignment is available",
+            "sequence_identity_target": (
+                f"<={sequence_identity_threshold:.2f} train/test sequence identity "
+                "when real clustering/alignment is available"
+            ),
             "tm_score_target": "<0.70 when Foldseek/TM-score is available",
             "proxy_limitation": (
                 "Exact UniProt reference clusters, selected PDB identifiers, "
@@ -116,12 +251,7 @@ def build_sequence_distance_holdout_eval(
                 "they do not replace all-vs-all sequence identity, MMseqs2, "
                 "Foldseek, or TM-score clustering."
             ),
-            "partition_rule": (
-                "stratified deterministic holdout by label/fingerprint group, "
-                "prioritizing singleton exact UniProt reference clusters, "
-                "singleton selected structures, and rare active-site geometry "
-                "proxy buckets"
-            ),
+            "partition_rule": _partition_rule(real_split),
             "sequence_cluster_method": sequence_clusters.get("metadata", {}).get("method"),
             "sequence_cluster_source": sequence_clusters.get("metadata", {}).get(
                 "cluster_source"
@@ -236,6 +366,800 @@ def _sequence_cluster_indexes(
         counts = Counter(str(row.get("sequence_cluster_id") or "") for row in rows_by_entry.values())
         cluster_sizes.update({cluster_id: count for cluster_id, count in counts.items() if cluster_id})
     return rows_by_entry, cluster_sizes
+
+
+def _real_sequence_identity_split(
+    *,
+    rows: list[dict[str, Any]],
+    sequence_rows_by_entry: dict[str, dict[str, Any]],
+    sequence_fasta: str | None,
+    slice_id: str,
+    backend: str,
+    threshold: float,
+    coverage: float,
+    mmseqs_binary: str,
+) -> dict[str, Any]:
+    if backend == "proxy":
+        return _proxy_real_split_metadata(
+            rows=rows,
+            sequence_fasta=sequence_fasta,
+            fallback_backend="deterministic_local_proxy_requested",
+            limitation="sequence_identity_backend=proxy was requested",
+        )
+    if backend not in {"auto", "mmseqs"}:
+        return _proxy_real_split_metadata(
+            rows=rows,
+            sequence_fasta=sequence_fasta,
+            fallback_backend="deterministic_local_proxy_unsupported_backend",
+            limitation=f"unsupported sequence identity backend: {backend}",
+        )
+
+    mmseqs_path = shutil.which(mmseqs_binary)
+    if not mmseqs_path:
+        return _proxy_real_split_metadata(
+            rows=rows,
+            sequence_fasta=sequence_fasta,
+            fallback_backend="deterministic_local_proxy_mmseqs2_unavailable",
+            limitation=f"MMseqs2 binary not found: {mmseqs_binary}",
+        )
+
+    collected = _collect_sequence_records(
+        rows=rows,
+        sequence_rows_by_entry=sequence_rows_by_entry,
+        sequence_fasta=sequence_fasta,
+    )
+    if len(collected["records_by_id"]) < 2:
+        return _proxy_real_split_metadata(
+            rows=rows,
+            sequence_fasta=sequence_fasta,
+            fallback_backend="deterministic_local_proxy_insufficient_sequences",
+            limitation="fewer than two amino-acid sequence records were available",
+            collected=collected,
+        )
+
+    digest = _sequence_records_digest(collected["records_by_id"])
+    workdir = Path("/private/tmp") / f"catalytic-earth-mmseqs-{slice_id}-{digest}"
+    if workdir.exists():
+        shutil.rmtree(workdir)
+    workdir.mkdir(parents=True, exist_ok=True)
+    commands: list[str] = []
+    try:
+        input_fasta = workdir / "input.fasta"
+        seqdb = workdir / "seqdb"
+        cluster_db = workdir / "clusterdb"
+        cluster_tmp = workdir / "cluster_tmp"
+        clusters_tsv = workdir / "clusters.tsv"
+        _write_sequence_records_fasta(input_fasta, collected["records_by_id"])
+        createdb_cmd = [mmseqs_path, "createdb", str(input_fasta), str(seqdb)]
+        cluster_cmd = [
+            mmseqs_path,
+            "cluster",
+            str(seqdb),
+            str(cluster_db),
+            str(cluster_tmp),
+            "--min-seq-id",
+            _mmseqs_float(threshold),
+            "-c",
+            _mmseqs_float(coverage),
+            "--cov-mode",
+            str(MMSEQS_CLUSTER_COVERAGE_MODE),
+            "--threads",
+            "1",
+        ]
+        createtsv_cmd = [
+            mmseqs_path,
+            "createtsv",
+            str(seqdb),
+            str(seqdb),
+            str(cluster_db),
+            str(clusters_tsv),
+        ]
+        for command in (createdb_cmd, cluster_cmd, createtsv_cmd):
+            _run_backend_command(command, cwd=workdir)
+            commands.append(_command_string(command))
+        record_clusters = _parse_mmseqs_cluster_tsv(clusters_tsv)
+        entry_clusters = _entry_clusters_from_record_clusters(
+            record_clusters=record_clusters,
+            records_by_id=collected["records_by_id"],
+        )
+        return {
+            "usable": True,
+            "backend_command": _command_string(cluster_cmd),
+            "backend_commands": commands,
+            "backend_version": _backend_version(mmseqs_path),
+            "records_by_id": collected["records_by_id"],
+            "sequence_source": collected["sequence_source"],
+            "sequence_count": len(collected["records_by_id"]),
+            "sequence_entry_coverage_count": len(collected["entries_with_sequence"]),
+            "sequence_missing_entry_count": len(collected["missing_entry_ids"]),
+            "sequence_missing_entry_ids": collected["missing_entry_ids"],
+            "entries_with_sequence": collected["entries_with_sequence"],
+            "sequence_record_counts_by_entry": collected[
+                "sequence_record_counts_by_entry"
+            ],
+            "sequence_accessions_by_entry": collected["sequence_accessions_by_entry"],
+            "record_cluster_count": len(record_clusters),
+            "entry_cluster_count": len(set(entry_clusters.values())),
+            "entry_clusters": entry_clusters,
+            "limitations": collected["limitations"],
+        }
+    except (OSError, RuntimeError, ValueError) as exc:
+        collected["limitations"].append(f"MMseqs2 clustering failed: {exc}")
+        return _proxy_real_split_metadata(
+            rows=rows,
+            sequence_fasta=sequence_fasta,
+            fallback_backend="deterministic_local_proxy_mmseqs2_failed",
+            limitation=f"MMseqs2 clustering failed: {exc}",
+            collected=collected,
+        )
+
+
+def _proxy_real_split_metadata(
+    *,
+    rows: list[dict[str, Any]],
+    sequence_fasta: str | None,
+    fallback_backend: str,
+    limitation: str,
+    collected: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    collected = collected or {
+        "records_by_id": {},
+        "sequence_source": _sequence_source_description(sequence_fasta, None),
+        "entries_with_sequence": set(),
+        "missing_entry_ids": sorted(
+            (str(row["entry_id"]) for row in rows),
+            key=_entry_id_sort_key,
+        ),
+        "sequence_record_counts_by_entry": {},
+        "sequence_accessions_by_entry": {},
+        "limitations": [],
+    }
+    limitations = list(collected.get("limitations", []))
+    if limitation not in limitations:
+        limitations.append(limitation)
+    return {
+        "usable": False,
+        "fallback_backend": fallback_backend,
+        "backend_command": None,
+        "backend_commands": [],
+        "backend_version": None,
+        "records_by_id": collected.get("records_by_id", {}),
+        "sequence_source": collected.get(
+            "sequence_source", _sequence_source_description(sequence_fasta, None)
+        ),
+        "sequence_count": len(collected.get("records_by_id", {})),
+        "sequence_entry_coverage_count": len(
+            collected.get("entries_with_sequence", set())
+        ),
+        "sequence_missing_entry_count": len(collected.get("missing_entry_ids", [])),
+        "sequence_missing_entry_ids": collected.get("missing_entry_ids", []),
+        "entries_with_sequence": collected.get("entries_with_sequence", set()),
+        "sequence_record_counts_by_entry": collected.get(
+            "sequence_record_counts_by_entry", {}
+        ),
+        "sequence_accessions_by_entry": collected.get(
+            "sequence_accessions_by_entry", {}
+        ),
+        "record_cluster_count": None,
+        "entry_cluster_count": None,
+        "entry_clusters": {},
+        "limitations": limitations,
+    }
+
+
+def _collect_sequence_records(
+    *,
+    rows: list[dict[str, Any]],
+    sequence_rows_by_entry: dict[str, dict[str, Any]],
+    sequence_fasta: str | None,
+) -> dict[str, Any]:
+    fasta_records = _load_fasta_records(Path(sequence_fasta)) if sequence_fasta else None
+    fasta_by_accession: dict[str, str] = {}
+    fasta_by_entry: dict[str, str] = {}
+    if fasta_records:
+        for record in fasta_records:
+            sequence = str(record["sequence"])
+            for accession in record["accessions"]:
+                fasta_by_accession.setdefault(accession, sequence)
+            for entry_id in record["entry_ids"]:
+                fasta_by_entry.setdefault(entry_id, sequence)
+
+    records_by_id: dict[str, dict[str, Any]] = {}
+    entries_with_sequence: set[str] = set()
+    record_counts_by_entry: Counter[str] = Counter()
+    accessions_by_entry: dict[str, set[str]] = defaultdict(set)
+    limitations: list[str] = []
+    if fasta_records:
+        fallback_count = sum(
+            1
+            for record in fasta_records
+            if "fallback_for_uniprot:" in str(record.get("header", ""))
+        )
+        if fallback_count:
+            limitations.append(
+                f"{fallback_count} FASTA records use selected-PDB sequence fallbacks for unavailable UniProt accessions"
+            )
+
+    for row in rows:
+        entry_id = str(row["entry_id"])
+        reference_accessions = [
+            str(accession)
+            for accession in row.get("reference_uniprot_ids", []) or []
+            if accession
+        ]
+        row_sequence = _sequence_from_row(sequence_rows_by_entry.get(entry_id, {}))
+        if row_sequence:
+            accession = reference_accessions[0] if reference_accessions else None
+            record_id = _sequence_record_id(entry_id, accession or "row_sequence")
+            records_by_id[record_id] = {
+                "record_id": record_id,
+                "entry_id": entry_id,
+                "accession": accession,
+                "sequence": row_sequence,
+                "source": "sequence_cluster_row",
+            }
+        for accession in reference_accessions:
+            sequence = fasta_by_accession.get(accession)
+            if not sequence:
+                continue
+            record_id = _sequence_record_id(entry_id, accession)
+            records_by_id[record_id] = {
+                "record_id": record_id,
+                "entry_id": entry_id,
+                "accession": accession,
+                "sequence": sequence,
+                "source": "fasta_reference_uniprot_accession",
+            }
+        if entry_id not in {
+            str(record["entry_id"]) for record in records_by_id.values()
+        }:
+            sequence = fasta_by_entry.get(entry_id)
+            if sequence:
+                record_id = _sequence_record_id(entry_id, "entry_fasta")
+                records_by_id[record_id] = {
+                    "record_id": record_id,
+                    "entry_id": entry_id,
+                    "accession": None,
+                    "sequence": sequence,
+                    "source": "fasta_entry_id",
+                }
+
+    for record in records_by_id.values():
+        entry_id = str(record["entry_id"])
+        entries_with_sequence.add(entry_id)
+        record_counts_by_entry[entry_id] += 1
+        if record.get("accession"):
+            accessions_by_entry[entry_id].add(str(record["accession"]))
+
+    missing_entry_ids = sorted(
+        (
+            str(row["entry_id"])
+            for row in rows
+            if str(row["entry_id"]) not in entries_with_sequence
+        ),
+        key=_entry_id_sort_key,
+    )
+    if missing_entry_ids:
+        limitations.append(
+            "real sequence identity is unavailable for rows without amino-acid sequence records"
+        )
+    if fasta_records is None and not any(
+        _sequence_from_row(sequence_rows_by_entry.get(str(row["entry_id"]), {}))
+        for row in rows
+    ):
+        limitations.append(
+            "no FASTA was supplied and sequence cluster rows do not contain amino-acid sequences"
+        )
+
+    return {
+        "records_by_id": dict(sorted(records_by_id.items())),
+        "sequence_source": _sequence_source_description(sequence_fasta, fasta_records),
+        "entries_with_sequence": entries_with_sequence,
+        "missing_entry_ids": missing_entry_ids,
+        "sequence_record_counts_by_entry": {
+            entry_id: int(count)
+            for entry_id, count in sorted(record_counts_by_entry.items())
+        },
+        "sequence_accessions_by_entry": {
+            entry_id: sorted(accessions)
+            for entry_id, accessions in sorted(accessions_by_entry.items())
+        },
+        "limitations": limitations,
+    }
+
+
+def _sequence_from_row(row: dict[str, Any]) -> str | None:
+    for field_name in SEQUENCE_FIELD_NAMES:
+        sequence = _normalise_sequence(row.get(field_name))
+        if sequence:
+            return sequence
+    return None
+
+
+def _load_fasta_records(path: Path) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    if not path.exists():
+        raise ValueError(f"sequence FASTA does not exist: {path}")
+    header: str | None = None
+    sequence_lines: list[str] = []
+    with path.open("r", encoding="utf-8") as handle:
+        for raw_line in handle:
+            line = raw_line.strip()
+            if not line:
+                continue
+            if line.startswith(">"):
+                if header is not None:
+                    _append_fasta_record(records, header, sequence_lines)
+                header = line[1:].strip()
+                sequence_lines = []
+            else:
+                sequence_lines.append(line)
+    if header is not None:
+        _append_fasta_record(records, header, sequence_lines)
+    return records
+
+
+def _append_fasta_record(
+    records: list[dict[str, Any]], header: str, sequence_lines: list[str]
+) -> None:
+    sequence = _normalise_sequence("".join(sequence_lines))
+    if not sequence:
+        return
+    records.append(
+        {
+            "header": header,
+            "sequence": sequence,
+            "accessions": _fasta_header_accessions(header),
+            "entry_ids": _fasta_header_entry_ids(header),
+        }
+    )
+
+
+def _fasta_header_accessions(header: str) -> list[str]:
+    accessions: set[str] = set()
+    pipe_match = re.match(r"^(?:sp|tr)\|([A-Za-z0-9]+)\|", header)
+    if pipe_match:
+        accessions.add(pipe_match.group(1))
+    for token in re.split(r"[\s|,;]+", header):
+        if re.fullmatch(r"[A-Z][A-Z0-9]{5,9}", token):
+            accessions.add(token)
+    return sorted(accessions)
+
+
+def _fasta_header_entry_ids(header: str) -> list[str]:
+    return sorted(set(re.findall(r"m_csa:\d+", header)), key=_entry_id_sort_key)
+
+
+def _normalise_sequence(value: Any) -> str | None:
+    if not isinstance(value, str):
+        return None
+    sequence = re.sub(r"[^A-Za-z]", "", value).upper()
+    return sequence or None
+
+
+def _sequence_source_description(
+    sequence_fasta: str | None, fasta_records: list[dict[str, Any]] | None
+) -> str:
+    if sequence_fasta:
+        record_count = len(fasta_records or [])
+        return f"fasta:{sequence_fasta}; records={record_count}"
+    return "sequence_cluster_rows"
+
+
+def _sequence_record_id(entry_id: str, accession: str) -> str:
+    safe_entry = re.sub(r"[^A-Za-z0-9]+", "_", entry_id).strip("_")
+    safe_accession = re.sub(r"[^A-Za-z0-9]+", "_", accession).strip("_")
+    return f"{safe_entry}__{safe_accession}"
+
+
+def _sequence_records_digest(records_by_id: dict[str, dict[str, Any]]) -> str:
+    digest = hashlib.sha256()
+    for record_id, record in sorted(records_by_id.items()):
+        digest.update(record_id.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(str(record["sequence"]).encode("utf-8"))
+        digest.update(b"\0")
+    return digest.hexdigest()[:12]
+
+
+def _write_sequence_records_fasta(
+    path: Path, records_by_id: dict[str, dict[str, Any]]
+) -> None:
+    with path.open("w", encoding="utf-8") as handle:
+        for record_id, record in sorted(records_by_id.items()):
+            handle.write(f">{record_id}\n")
+            sequence = str(record["sequence"])
+            for start in range(0, len(sequence), 80):
+                handle.write(sequence[start : start + 80] + "\n")
+
+
+def _parse_mmseqs_cluster_tsv(path: Path) -> dict[str, set[str]]:
+    clusters: dict[str, set[str]] = defaultdict(set)
+    with path.open("r", encoding="utf-8") as handle:
+        for raw_line in handle:
+            fields = raw_line.rstrip("\n").split("\t")
+            if len(fields) < 2:
+                continue
+            representative, member = fields[0], fields[1]
+            clusters[representative].add(representative)
+            clusters[representative].add(member)
+    return {cluster_id: members for cluster_id, members in sorted(clusters.items())}
+
+
+def _entry_clusters_from_record_clusters(
+    *,
+    record_clusters: dict[str, set[str]],
+    records_by_id: dict[str, dict[str, Any]],
+) -> dict[str, str]:
+    parent: dict[str, str] = {}
+
+    def find(entry_id: str) -> str:
+        parent.setdefault(entry_id, entry_id)
+        if parent[entry_id] != entry_id:
+            parent[entry_id] = find(parent[entry_id])
+        return parent[entry_id]
+
+    def union(a: str, b: str) -> None:
+        root_a = find(a)
+        root_b = find(b)
+        if root_a == root_b:
+            return
+        winner, loser = sorted([root_a, root_b], key=_entry_id_sort_key)
+        parent[loser] = winner
+
+    for record in records_by_id.values():
+        find(str(record["entry_id"]))
+    for members in record_clusters.values():
+        member_entries = sorted(
+            {
+                str(records_by_id[record_id]["entry_id"])
+                for record_id in members
+                if record_id in records_by_id
+            },
+            key=_entry_id_sort_key,
+        )
+        if not member_entries:
+            continue
+        first = member_entries[0]
+        for entry_id in member_entries[1:]:
+            union(first, entry_id)
+
+    root_members: dict[str, list[str]] = defaultdict(list)
+    for record in records_by_id.values():
+        entry_id = str(record["entry_id"])
+        root_members[find(entry_id)].append(entry_id)
+    cluster_id_by_root: dict[str, str] = {}
+    for root, members in root_members.items():
+        canonical = sorted(set(members), key=_entry_id_sort_key)[0]
+        cluster_id_by_root[root] = f"mmseqs30:{canonical}"
+    return {
+        entry_id: cluster_id_by_root[find(entry_id)]
+        for entry_id in sorted(root_members, key=_entry_id_sort_key)
+    } | {
+        str(record["entry_id"]): cluster_id_by_root[find(str(record["entry_id"]))]
+        for record in records_by_id.values()
+    }
+
+
+def _select_holdout_entry_ids_by_real_clusters(
+    rows: list[dict[str, Any]],
+    *,
+    entry_clusters: dict[str, str],
+    holdout_fraction: float,
+    min_holdout_rows: int,
+) -> tuple[set[str], list[str]]:
+    if not rows:
+        return set(), ["no_evaluation_rows_available"]
+    target_total = min(
+        len(rows),
+        max(min_holdout_rows, round(len(rows) * holdout_fraction)),
+    )
+    rows_by_cluster: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        entry_id = str(row["entry_id"])
+        cluster_id = entry_clusters.get(entry_id, f"missing_sequence:{entry_id}")
+        rows_by_cluster[cluster_id].append(row)
+
+    by_group: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        by_group[str(row.get("label_group") or "unknown")].append(row)
+    group_targets: dict[str, int] = {}
+    for group, group_rows in sorted(by_group.items()):
+        if len(group_rows) == 1:
+            group_targets[group] = 1 if target_total >= len(by_group) else 0
+        else:
+            group_targets[group] = max(1, round(len(group_rows) * holdout_fraction))
+
+    while sum(group_targets.values()) > target_total:
+        reducible = [group for group, count in group_targets.items() if count > 1]
+        if not reducible:
+            break
+        largest = max(
+            reducible,
+            key=lambda group: (group_targets[group], len(by_group[group]), group),
+        )
+        group_targets[largest] -= 1
+
+    selected_clusters: set[str] = set()
+    heldout_ids: set[str] = set()
+    notes: list[str] = []
+    for group, target in sorted(group_targets.items()):
+        if target <= 0:
+            continue
+        group_heldout = 0
+        candidate_clusters = [
+            cluster_id
+            for cluster_id, cluster_rows in rows_by_cluster.items()
+            if cluster_id not in selected_clusters
+            and any(str(row.get("label_group") or "unknown") == group for row in cluster_rows)
+        ]
+        for cluster_id in sorted(
+            candidate_clusters,
+            key=lambda cluster_id: _real_cluster_rank_key(cluster_id, rows_by_cluster[cluster_id]),
+        ):
+            if group_heldout >= target:
+                break
+            selected_clusters.add(cluster_id)
+            cluster_ids = {str(row["entry_id"]) for row in rows_by_cluster[cluster_id]}
+            heldout_ids.update(cluster_ids)
+            group_heldout += sum(
+                1
+                for row in rows_by_cluster[cluster_id]
+                if str(row.get("label_group") or "unknown") == group
+            )
+        if group_heldout < target:
+            notes.append(
+                f"{group}: sequence cluster units exhausted before group target {target}"
+            )
+
+    if len(heldout_ids) < target_total:
+        remaining_clusters = [
+            cluster_id
+            for cluster_id in rows_by_cluster
+            if cluster_id not in selected_clusters
+        ]
+        for cluster_id in sorted(
+            remaining_clusters,
+            key=lambda cluster_id: _real_cluster_rank_key(cluster_id, rows_by_cluster[cluster_id]),
+        ):
+            if len(heldout_ids) >= target_total:
+                break
+            selected_clusters.add(cluster_id)
+            heldout_ids.update(str(row["entry_id"]) for row in rows_by_cluster[cluster_id])
+
+    if len(heldout_ids) > target_total:
+        notes.append(
+            "heldout row count exceeds nominal target because sequence clusters are indivisible"
+        )
+    notes.append(
+        "real sequence split selected whole MMseqs2 clusters; proxy low-neighborhood scores only rank candidate clusters"
+    )
+    return heldout_ids, notes
+
+
+def _real_cluster_rank_key(cluster_id: str, rows: list[dict[str, Any]]) -> tuple[float, int, str, str]:
+    average_proxy_score = sum(
+        float(row.get("low_neighborhood_proxy_score", 0.0) or 0.0) for row in rows
+    ) / max(len(rows), 1)
+    payload = "|".join(sorted(str(row.get("entry_id") or "") for row in rows))
+    return (
+        -average_proxy_score,
+        len(rows),
+        hashlib.sha256((cluster_id + "|" + payload).encode("utf-8")).hexdigest(),
+        cluster_id,
+    )
+
+
+def _empty_train_test_identity_metadata() -> dict[str, Any]:
+    return {
+        "max_observed_train_test_identity": None,
+        "max_observed_train_test_identity_computable": False,
+        "max_observed_train_test_identity_alignment_count": 0,
+        "backend_commands": [],
+        "limitations": [],
+    }
+
+
+def _compute_mmseqs_train_test_identity(
+    *,
+    records_by_id: dict[str, dict[str, Any]],
+    heldout_entry_ids: set[str],
+    slice_id: str,
+    threshold: float,
+    coverage: float,
+    mmseqs_binary: str,
+    prior_commands: list[str],
+) -> dict[str, Any]:
+    mmseqs_path = shutil.which(mmseqs_binary)
+    if not mmseqs_path:
+        return {
+            **_empty_train_test_identity_metadata(),
+            "limitations": [f"MMseqs2 binary not found: {mmseqs_binary}"],
+            "backend_commands": prior_commands,
+        }
+    heldout_records = {
+        record_id: record
+        for record_id, record in records_by_id.items()
+        if str(record["entry_id"]) in heldout_entry_ids
+    }
+    train_records = {
+        record_id: record
+        for record_id, record in records_by_id.items()
+        if str(record["entry_id"]) not in heldout_entry_ids
+    }
+    if not heldout_records or not train_records:
+        return {
+            **_empty_train_test_identity_metadata(),
+            "limitations": [
+                "train/test identity search requires at least one train and one heldout sequence"
+            ],
+            "backend_commands": prior_commands,
+        }
+    digest = _sequence_records_digest(records_by_id) + "-" + _ids_digest(heldout_entry_ids)
+    workdir = Path("/private/tmp") / f"catalytic-earth-mmseqs-search-{slice_id}-{digest}"
+    if workdir.exists():
+        shutil.rmtree(workdir)
+    workdir.mkdir(parents=True, exist_ok=True)
+    commands = list(prior_commands)
+    try:
+        heldout_fasta = workdir / "heldout.fasta"
+        train_fasta = workdir / "train.fasta"
+        result_tsv = workdir / "train_test_identity.tsv"
+        search_tmp = workdir / "search_tmp"
+        _write_sequence_records_fasta(heldout_fasta, heldout_records)
+        _write_sequence_records_fasta(train_fasta, train_records)
+        search_cmd = [
+            mmseqs_path,
+            "easy-search",
+            str(heldout_fasta),
+            str(train_fasta),
+            str(result_tsv),
+            str(search_tmp),
+            "--format-output",
+            "query,target,pident,alnlen,qcov,tcov,evalue,bits",
+            "--min-seq-id",
+            "0.0",
+            "-c",
+            _mmseqs_float(coverage),
+            "--cov-mode",
+            str(MMSEQS_CLUSTER_COVERAGE_MODE),
+            "--threads",
+            "1",
+        ]
+        _run_backend_command(search_cmd, cwd=workdir)
+        commands.append(_command_string(search_cmd))
+        max_identity: float | None = None
+        alignment_count = 0
+        if result_tsv.exists():
+            with result_tsv.open("r", encoding="utf-8") as handle:
+                for raw_line in handle:
+                    fields = raw_line.rstrip("\n").split("\t")
+                    if len(fields) < 3:
+                        continue
+                    try:
+                        identity = float(fields[2]) / 100.0
+                    except ValueError:
+                        continue
+                    alignment_count += 1
+                    max_identity = (
+                        identity
+                        if max_identity is None
+                        else max(max_identity, identity)
+                    )
+        return {
+            "max_observed_train_test_identity": (
+                round(max_identity, 4) if max_identity is not None else None
+            ),
+            "max_observed_train_test_identity_computable": True,
+            "max_observed_train_test_identity_alignment_count": alignment_count,
+            "backend_commands": commands,
+            "limitations": [
+                "MMseqs2 easy-search reports heuristic local alignments at the configured coverage; it is not an exhaustive Smith-Waterman all-vs-all matrix"
+            ],
+        }
+    except (OSError, RuntimeError, ValueError) as exc:
+        return {
+            **_empty_train_test_identity_metadata(),
+            "limitations": [f"MMseqs2 train/test identity search failed: {exc}"],
+            "backend_commands": commands,
+        }
+
+
+def _sequence_identity_target_achieved(
+    *,
+    real_split: dict[str, Any],
+    train_test_identity: dict[str, Any],
+    threshold: float,
+) -> bool:
+    if not real_split.get("usable"):
+        return False
+    if int(real_split.get("sequence_missing_entry_count", 0) or 0) > 0:
+        return False
+    if not train_test_identity.get("max_observed_train_test_identity_computable"):
+        return False
+    max_identity = train_test_identity.get("max_observed_train_test_identity")
+    return max_identity is None or float(max_identity) <= threshold
+
+
+def _sequence_identity_limitations(
+    *,
+    real_split: dict[str, Any],
+    train_test_identity: dict[str, Any],
+    sequence_identity_threshold: float,
+) -> list[str]:
+    limitations = []
+    limitations.extend(str(item) for item in real_split.get("limitations", []) or [])
+    limitations.extend(
+        str(item) for item in train_test_identity.get("limitations", []) or []
+    )
+    if real_split.get("usable"):
+        limitations.append(
+            "sequence-distance partitioning supersedes proxy cluster selection, but fold/TM-score distance is still not computed"
+        )
+        limitations.append(
+            f"MMseqs2 clustering threshold is {sequence_identity_threshold:.2f}; connected clusters can hide within-cluster diversity and are not taxonomic or structural families"
+        )
+    else:
+        limitations.append(
+            "deterministic proxy partition is retained because real sequence identity was not computed"
+        )
+    return sorted(set(limitations))
+
+
+def _partition_rule(real_split: dict[str, Any]) -> str:
+    if real_split.get("usable"):
+        return (
+            "deterministic holdout by whole MMseqs2 sequence clusters at the "
+            "configured identity threshold; label/fingerprint stratification is "
+            "attempted by cluster units, and sequence separation takes precedence"
+        )
+    return (
+        "stratified deterministic proxy holdout by label/fingerprint group, "
+        "prioritizing singleton exact UniProt reference clusters, singleton "
+        "selected structures, and rare active-site geometry proxy buckets"
+    )
+
+
+def _ids_digest(ids: set[str]) -> str:
+    return hashlib.sha256("|".join(sorted(ids, key=_entry_id_sort_key)).encode("utf-8")).hexdigest()[:12]
+
+
+def _run_backend_command(command: list[str], *, cwd: Path) -> None:
+    completed = subprocess.run(
+        command,
+        cwd=str(cwd),
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        stderr = completed.stderr.strip() or completed.stdout.strip()
+        raise RuntimeError(
+            f"{_command_string(command)} failed with exit code {completed.returncode}: {stderr[:1000]}"
+        )
+
+
+def _backend_version(binary: str) -> str | None:
+    try:
+        completed = subprocess.run(
+            [binary, "version"],
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+    except OSError:
+        return None
+    if completed.returncode != 0:
+        return None
+    return (completed.stdout.strip() or completed.stderr.strip()) or None
+
+
+def _command_string(command: list[str]) -> str:
+    return shlex.join(command)
+
+
+def _mmseqs_float(value: float) -> str:
+    return f"{float(value):.4g}"
 
 
 def _selected_structure_proxy_id(

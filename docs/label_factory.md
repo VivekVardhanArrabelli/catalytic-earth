@@ -40,10 +40,13 @@ inside the geometry scorer. `geometry_retrieval.py` evaluates typed
 artifacts keep the existing `counterevidence_reasons` and
 `counterevidence_penalty_details` fields, and newer outputs also attach
 `counterevidence_policy_version` and `counterevidence_policy_hits`. Policy hits
-record rule id, evidence fields, and leakage flags. Mechanism-text rules are
-explicitly marked as `mechanism_text_review_context_only` and
-`counterevidence_only_not_predictive_evidence`, so text can route review or
-abstention but must not be used as positive discovery evidence.
+record rule id, evidence fields, leakage flags, and explicit counterevidence
+categories. Structure/local-evidence counterevidence remains predictive safety
+evidence, while mechanism-text-derived counterevidence is marked
+`review_context_only_not_predictive` and
+`review_context_only_not_valid_for_orphan_discovery_claims`. Text can route
+curated rows to review or abstention, but it is not positive discovery evidence
+and is not a valid orphan/external safety requirement.
 
 Geometry retrieval now carries an explicit text-free scoring policy in artifact
 metadata. Mechanism text, entry names, labels, EC/Rhea identifiers, source ids,
@@ -54,6 +57,12 @@ ligand context, and regression tests verify that PLP mechanism text does not
 change the score. This removes the text-leakage SPOF without lowering the
 accepted 1,000 guardrails: hard negatives, near misses, out-of-scope false
 non-abstentions, and actionable in-scope failures remain 0.
+`artifacts/v3_mechanism_text_counterevidence_ablation_1000.json` strips
+mechanism-text fields from the accepted 1,000 retrieval artifact and reports
+the rows whose route or counterevidence changes. The current ablation finds
+157 changed rows, 156 review-debt rows, 20 top1 route changes, and 0
+structure/local guardrail losses. Rows losing only text-derived guardrails are
+review debt and are not valid support for orphan discovery safety claims.
 
 The label-factory gate also has a typed input contract:
 `LabelFactoryGateInputs.v1`. The CLI loads required and optional gate artifacts

@@ -37,20 +37,28 @@ The next phase is a small external-source import pilot, not more abstract gate
 accumulation. New gates or audits should be added only when they directly
 remove one blocker to pilot import readiness.
 
-The first sequence/fold-distance holdout evaluation now exists for the accepted
+The first real sequence-distance holdout evaluation now exists for the accepted
 countable registry and both the 1,000 and 1,025 slice contexts:
 `artifacts/v3_sequence_distance_holdout_eval_1000.json` and
-`artifacts/v3_sequence_distance_holdout_eval_1025.json`. No Foldseek, MMseqs2,
-BLAST, or DIAMOND executable was available locally, so this is explicitly a
-deterministic proxy using exact UniProt reference clusters, selected-structure
-identifiers, and active-site geometry buckets. It reports held-out metrics
-separately from in-distribution metrics: 136 held-out rows, 44 held-out
-in-scope rows, 92 held-out out-of-scope rows, 0 held-out out-of-scope false
-non-abstentions, `0.9767` held-out evaluable top1 accuracy, `1.0000`
-held-out evaluable top3 accuracy among retained rows, and `0.9767` held-out
-evaluable retention.
-Real <=30% sequence-identity or <0.7 TM-score separation remains unmeasured
-until a real clustering/alignment backend is available.
+`artifacts/v3_sequence_distance_holdout_eval_1025.json`. The current artifacts
+use MMseqs2 (`18-8cc5c`) with 30% sequence identity and 80% coverage over the
+sidecar FASTA
+`artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta`, cover
+678/678 evaluated labels, cluster 738 sequence records, and hold out 136 rows
+by whole sequence clusters. The max observed train/test identity is `0.284`,
+so the <=30% target is achieved. Held-out metrics are reported separately from
+in-distribution metrics: 44 held-out in-scope rows, 92 held-out out-of-scope
+rows, 0 held-out out-of-scope false non-abstentions, and held-out evaluable
+top1 accuracy, top3 retained accuracy, and retention all at `1.0000`. The
+deterministic low-neighborhood proxy fields remain as fallback context.
+Foldseek/TM-score separation remains unmeasured until a structural backend is
+available.
+Foldseek itself is now available in the isolated temporary environment
+`/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
+`10.941cd33`), but the repo currently stores structure identifiers rather than
+local coordinate files. A TM-score split remains blocked until selected
+PDB/AlphaFold coordinates are materialized and wired into a Foldseek-backed
+split builder.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,
@@ -166,6 +174,13 @@ Priority blockers:
   fails if EC/Rhea identifiers, mechanism text, source labels, fingerprint ids,
   or source-target identifiers appear as predictive feature sources. The
   heuristic geometry retrieval remains the required baseline control.
+- The representation backend now supports larger ESM-2 model identifiers,
+  including `facebook/esm2_t33_650M_UR50D`, without replacing the computed 8M
+  baseline. The current 650M sidecar artifacts for mapped controls and pilot
+  rows were run in local-only mode and record `model_unavailable_locally`
+  because the 650M weights were not cached. They still provide explicit
+  expected dimension `1280`, elapsed time, embedding failures, and 8M-vs-650M
+  stability audits as review-only feasibility evidence.
 - The transfer blocker matrix audit now performs a row-level candidate-manifest
   lineage check. A matrix built from a stale or mismatched manifest fails with
   `external_transfer_blocker_matrix_candidate_lineage_mismatch` instead of
@@ -221,6 +236,10 @@ Priority blockers:
   rows. The ESM-2 sample computes 320-dimensional embeddings, keeps every row
   review-only and non-countable, and flags `P55263` as a representation
   near-duplicate holdout.
+- `artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json`
+  and its audit/stability sidecars attempt the 650M upgrade for those same
+  selected pilot rows in local-only mode. The model is unavailable locally, so
+  the sidecars are feasibility evidence only and do not replace the 8M sample.
 - `artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` assembles
   the same 10 selected rows into per-candidate review dossiers. It records 7
   candidates with explicit UniProt active-site feature support, all 10 with
@@ -263,6 +282,10 @@ PYTHONPATH=src python -m catalytic_earth.cli build-sequence-distance-holdout-eva
   --sequence-clusters artifacts/v3_sequence_cluster_proxy_1000.json \
   --geometry artifacts/v3_geometry_features_1000.json \
   --abstain-threshold 0.4115 \
+  --sequence-fasta artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta \
+  --sequence-identity-backend mmseqs \
+  --sequence-identity-threshold 0.30 \
+  --sequence-identity-coverage 0.80 \
   --out artifacts/v3_sequence_distance_holdout_eval_1000.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-sequence-distance-holdout-eval \
@@ -272,6 +295,10 @@ PYTHONPATH=src python -m catalytic_earth.cli build-sequence-distance-holdout-eva
   --sequence-clusters artifacts/v3_sequence_cluster_proxy_1025.json \
   --geometry artifacts/v3_geometry_features_1025.json \
   --abstain-threshold 0.4115 \
+  --sequence-fasta artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta \
+  --sequence-identity-backend mmseqs \
+  --sequence-identity-threshold 0.30 \
+  --sequence-identity-coverage 0.80 \
   --out artifacts/v3_sequence_distance_holdout_eval_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-query-manifest \
@@ -535,6 +562,25 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representatio
   --representation-backend-sample artifacts/v3_external_source_representation_backend_sample_1025.json \
   --out artifacts/v3_external_source_representation_backend_sample_audit_1025.json
 
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample \
+  --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json \
+  --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
+  --max-rows 12 \
+  --top-k 3 \
+  --embedding-backend esm2_t33_650m_ur50d \
+  --model-name facebook/esm2_t33_650M_UR50D \
+  --local-files-only \
+  --out artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-backend-sample \
+  --representation-backend-sample artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json \
+  --out artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-backend-stability \
+  --baseline-representation-backend-sample artifacts/v3_external_source_representation_backend_sample_1025.json \
+  --comparison-representation-backend-sample artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json \
+  --out artifacts/v3_external_source_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json
+
 PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-broad-ec-disambiguation \
   --control-repair-plan artifacts/v3_external_source_control_repair_plan_1025.json \
   --reaction-evidence-sample artifacts/v3_external_source_reaction_evidence_sample_1025.json \
@@ -637,6 +683,25 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representatio
 PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-backend-sample \
   --representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
   --out artifacts/v3_external_source_pilot_representation_backend_sample_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample \
+  --representation-backend-plan artifacts/v3_external_source_pilot_representation_backend_plan_1025.json \
+  --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
+  --max-rows 10 \
+  --top-k 3 \
+  --embedding-backend esm2_t33_650m_ur50d \
+  --model-name facebook/esm2_t33_650M_UR50D \
+  --local-files-only \
+  --out artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-backend-sample \
+  --representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json \
+  --out artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-backend-stability \
+  --baseline-representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
+  --comparison-representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json \
+  --out artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidence-dossiers \
   --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \

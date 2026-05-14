@@ -28,6 +28,7 @@ from catalytic_earth.transfer_scope import (
     audit_external_source_representation_control_manifest,
     audit_external_source_representation_backend_plan,
     audit_external_source_representation_backend_sample,
+    audit_external_source_representation_backend_stability,
     audit_external_source_sequence_alignment_verification,
     audit_external_source_sequence_reference_screen,
     audit_external_source_sequence_search_export,
@@ -3141,6 +3142,205 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertFalse(sample["rows"][0]["countable_label_candidate"])
         self.assertTrue(audit["metadata"]["guardrail_clean"])
+
+    def test_external_representation_backend_sample_accepts_650m_backend(self) -> None:
+        plan = {
+            "metadata": {"method": "external_source_representation_backend_plan"},
+            "rows": [
+                {
+                    "accession": "P11111",
+                    "backend_readiness_status": (
+                        "ready_for_backend_selection_not_embedding"
+                    ),
+                    "comparison_status": "feature_proxy_boundary_case",
+                    "countable_label_candidate": False,
+                    "entry_id": "uniprot:P11111",
+                    "heuristic_baseline_control": {
+                        "scope_top1_mismatch": True,
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    },
+                    "lane_id": "external_source:isomerase",
+                    "ready_for_label_import": False,
+                    "scope_signal": "isomerase",
+                    "sequence_search_task": (
+                        "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+                    ),
+                }
+            ],
+        }
+        sequence_sample = {
+            "metadata": {"method": "external_source_sequence_neighborhood_sample"},
+            "rows": [
+                {
+                    "accession": "P11111",
+                    "top_matches": [
+                        {
+                            "matched_m_csa_entry_ids": ["m_csa:1"],
+                            "near_duplicate_score": 0.2,
+                            "reference_accession": "P22222",
+                        }
+                    ],
+                }
+            ],
+        }
+
+        def fake_fetcher(accessions: list[str]) -> dict[str, object]:
+            self.assertEqual(sorted(accessions), ["P11111", "P22222"])
+            return {
+                "metadata": {"source": "fake_sequence_records"},
+                "records": [
+                    {"accession": "P11111", "sequence": "ACDEFGHIKLMNPQRSTVWY"},
+                    {"accession": "P22222", "sequence": "YYYYYGHIKLMNPQRSTVWY"},
+                ],
+            }
+
+        fake_embedding_payload = {
+            "metadata": {
+                "backend_feasibility_status": "computed",
+                "embedding_backend": "esm2_t33_650m_ur50d",
+                "embedding_backend_available": True,
+                "embedding_backend_model_family": "ESM-2",
+                "embedding_backend_parameter_count": "650M",
+                "embedding_elapsed_seconds": 0.01,
+                "embedding_failure_count": 0,
+                "embedding_vector_dimension": 1280,
+                "expected_embedding_vector_dimension": 1280,
+                "local_files_only": True,
+                "model_load_elapsed_seconds": 0.01,
+                "model_load_status": "loaded",
+                "model_name": "facebook/esm2_t33_650M_UR50D",
+                "requested_model_name": "facebook/esm2_t33_650M_UR50D",
+            },
+            "embeddings_by_accession": {
+                "P11111": [1.0, 0.0],
+                "P22222": [0.0, 1.0],
+            },
+            "embedding_failures": [],
+            "warnings": ["fake 650M learned backend"],
+            "warnings_by_accession": {},
+        }
+
+        with patch(
+            "catalytic_earth.transfer_scope._compute_esm2_embeddings",
+            return_value=fake_embedding_payload,
+        ) as mocked_embeddings:
+            sample = build_external_source_representation_backend_sample(
+                representation_backend_plan=plan,
+                sequence_neighborhood_sample=sequence_sample,
+                embedding_backend="facebook/esm2_t33_650M_UR50D",
+                local_files_only=True,
+                fetcher=fake_fetcher,
+            )
+
+        embedding_call = mocked_embeddings.call_args.kwargs
+        self.assertEqual(embedding_call["backend"], "esm2_t33_650m_ur50d")
+        self.assertEqual(
+            embedding_call["model_name"], "facebook/esm2_t33_650M_UR50D"
+        )
+        self.assertTrue(embedding_call["local_files_only"])
+        self.assertEqual(sample["metadata"]["embedding_backend"], "esm2_t33_650m_ur50d")
+        self.assertEqual(sample["metadata"]["embedding_vector_dimension"], 1280)
+        self.assertEqual(
+            sample["metadata"]["expected_embedding_vector_dimension"], 1280
+        )
+        self.assertEqual(sample["metadata"]["embedding_backend_parameter_count"], "650M")
+        self.assertEqual(sample["metadata"]["backend_feasibility_status"], "computed")
+        self.assertEqual(
+            sample["metadata"]["predictive_feature_sources"],
+            ["sequence_embedding_cosine", "sequence_length_coverage"],
+        )
+        self.assertFalse(sample["rows"][0]["countable_label_candidate"])
+
+    def test_representation_backend_stability_audit_compares_8m_and_650m(
+        self,
+    ) -> None:
+        baseline_sample = {
+            "metadata": {
+                "candidate_count": 1,
+                "embedding_backend": "esm2_t6_8m_ur50d",
+                "embedding_backend_available": True,
+                "embedding_vector_dimension": 320,
+                "model_name": "facebook/esm2_t6_8M_UR50D",
+            },
+            "rows": [
+                {
+                    "accession": "P11111",
+                    "backend_status": "learned_representation_sample_complete",
+                    "countable_label_candidate": False,
+                    "embedding_backend": "esm2_t6_8m_ur50d",
+                    "heuristic_baseline_control": {
+                        "top1_fingerprint_id": "metal_dependent_hydrolase"
+                    },
+                    "nearest_reference": {
+                        "matched_m_csa_entry_ids": ["m_csa:1"],
+                        "reference_accession": "P22222",
+                    },
+                    "ready_for_label_import": False,
+                    "top_embedding_cosine": 0.7,
+                }
+            ],
+            "learned_vs_heuristic_disagreements": [
+                {
+                    "accession": "P11111",
+                    "representation_heuristic_disagreement_status": (
+                        "learned_nearest_reference_requires_sequence_review"
+                    ),
+                }
+            ],
+        }
+        comparison_sample = {
+            "metadata": {
+                "backend_feasibility_status": "computed",
+                "candidate_count": 1,
+                "embedding_backend": "esm2_t33_650m_ur50d",
+                "embedding_backend_available": True,
+                "embedding_failure_count": 0,
+                "embedding_vector_dimension": 1280,
+                "expected_embedding_vector_dimension": 1280,
+                "model_name": "facebook/esm2_t33_650M_UR50D",
+            },
+            "rows": [
+                {
+                    "accession": "P11111",
+                    "backend_status": "learned_representation_sample_complete",
+                    "countable_label_candidate": False,
+                    "embedding_backend": "esm2_t33_650m_ur50d",
+                    "heuristic_baseline_control": {
+                        "top1_fingerprint_id": "metal_dependent_hydrolase"
+                    },
+                    "nearest_reference": {
+                        "matched_m_csa_entry_ids": ["m_csa:2"],
+                        "reference_accession": "P33333",
+                    },
+                    "ready_for_label_import": False,
+                    "top_embedding_cosine": 0.8,
+                }
+            ],
+            "learned_vs_heuristic_disagreements": [
+                {
+                    "accession": "P11111",
+                    "representation_heuristic_disagreement_status": (
+                        "learned_nearest_reference_requires_sequence_review"
+                    ),
+                }
+            ],
+        }
+
+        audit = audit_external_source_representation_backend_stability(
+            baseline_representation_backend_sample=baseline_sample,
+            comparison_representation_backend_sample=comparison_sample,
+        )
+
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["stability_status"], "changed")
+        self.assertEqual(audit["metadata"]["nearest_reference_changed_count"], 1)
+        self.assertEqual(
+            audit["metadata"]["nearest_reference_entry_ids_changed_count"], 1
+        )
+        self.assertEqual(
+            audit["metadata"]["heuristic_disagreement_status_stable_count"], 1
+        )
+        self.assertIn("nearest_reference_changed", audit["rows"][0]["stability_flags"])
 
     def test_external_broad_ec_disambiguation_stays_review_only(self) -> None:
         audit = audit_external_source_broad_ec_disambiguation(

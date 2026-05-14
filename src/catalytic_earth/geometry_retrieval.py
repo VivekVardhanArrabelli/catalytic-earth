@@ -75,6 +75,18 @@ FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES = {
 }
 PLP_LIGAND_ANCHOR_CODES = {"LLP", "PLP", "PMP", "P5P"}
 COUNTEREVIDENCE_POLICY_VERSION = "2026-05-13.declarative-v1"
+COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY = "structure_local_evidence_counterevidence"
+COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY = (
+    "mechanism_text_review_context_counterevidence"
+)
+COUNTEREVIDENCE_CATEGORIES = (
+    COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY,
+    COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY,
+)
+COUNTEREVIDENCE_PREDICTIVE_SAFETY_ROLE = "predictive_safety_counterevidence"
+COUNTEREVIDENCE_REVIEW_CONTEXT_ONLY_ROLE = "review_context_only_not_predictive"
+COUNTEREVIDENCE_LEGACY_ROLE = "counterevidence_only_not_predictive_evidence"
+COUNTEREVIDENCE_REVIEW_CONTEXT_EVIDENCE_FIELDS = {"mechanism_text"}
 GEOMETRY_RETRIEVAL_PREDICTIVE_EVIDENCE_SOURCES = (
     "active_site_residue_identity",
     "active_site_residue_roles",
@@ -151,16 +163,76 @@ class CounterevidenceRule:
     penalty: float
     evidence_fields: tuple[str, ...]
     predicate: CounterevidencePredicate
+    counterevidence_category: str | None = None
 
     @property
     def rule_id(self) -> str:
         return f"{self.fingerprint_id}:{self.reason}"
 
     @property
+    def uses_mechanism_text(self) -> bool:
+        return "mechanism_text" in self.evidence_fields
+
+    @property
+    def category(self) -> str:
+        if self.counterevidence_category:
+            return self.counterevidence_category
+        if self.uses_mechanism_text:
+            return COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY
+        return COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY
+
+    @property
+    def evidence_role(self) -> str:
+        if self.category == COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY:
+            return COUNTEREVIDENCE_REVIEW_CONTEXT_ONLY_ROLE
+        return COUNTEREVIDENCE_PREDICTIVE_SAFETY_ROLE
+
+    @property
+    def review_context_fields(self) -> tuple[str, ...]:
+        return tuple(
+            field
+            for field in self.evidence_fields
+            if field in COUNTEREVIDENCE_REVIEW_CONTEXT_EVIDENCE_FIELDS
+        )
+
+    @property
+    def predictive_safety_evidence_fields(self) -> tuple[str, ...]:
+        if self.category == COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY:
+            return ()
+        return tuple(
+            field
+            for field in self.evidence_fields
+            if field not in COUNTEREVIDENCE_REVIEW_CONTEXT_EVIDENCE_FIELDS
+        )
+
+    @property
+    def external_orphan_safety_evidence(self) -> bool:
+        return self.category == COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY
+
+    @property
+    def orphan_discovery_claim_status(self) -> str:
+        if self.external_orphan_safety_evidence:
+            return "valid_predictive_safety_evidence"
+        return "review_context_only_not_valid_for_orphan_discovery_claims"
+
+    @property
     def leakage_flags(self) -> tuple[str, ...]:
         flags: list[str] = []
-        if "mechanism_text" in self.evidence_fields:
-            flags.append("mechanism_text_review_context_only")
+        if self.uses_mechanism_text:
+            if self.category == COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY:
+                flags.extend(
+                    [
+                        "mechanism_text_review_context_only",
+                        COUNTEREVIDENCE_REVIEW_CONTEXT_ONLY_ROLE,
+                    ]
+                )
+            else:
+                flags.extend(
+                    [
+                        "mechanism_text_review_context_condition_only",
+                        "mechanism_text_not_required_for_external_orphan_safety",
+                    ]
+                )
         return tuple(flags)
 
 
@@ -218,6 +290,16 @@ def run_geometry_retrieval(
             ),
             "leakage_policy": GEOMETRY_RETRIEVAL_LEAKAGE_POLICY,
             "validation_boundary": "retrieval evidence only; not mechanism validation",
+            "counterevidence_categories": {
+                COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY: (
+                    "Predictive safety counterevidence from active-site residues, "
+                    "local ligands, pocket descriptors, or compactness."
+                ),
+                COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY: (
+                    "Curated review-context counterevidence from mechanism text; "
+                    "review/abstention only and not valid external/orphan safety evidence."
+                ),
+            },
         },
         "results": results,
     }
@@ -311,9 +393,22 @@ def score_entry_against_fingerprint(
         "mechanistic_coherence_score": round(coherence, 4),
         "counterevidence_penalty": round(counterevidence["penalty"], 4),
         "counterevidence_reasons": counterevidence["reasons"],
+        "counterevidence_reasons_by_category": counterevidence[
+            "reasons_by_category"
+        ],
+        "counterevidence_category_counts": counterevidence["category_counts"],
+        "counterevidence_predictive_safety_reasons": counterevidence[
+            "predictive_safety_reasons"
+        ],
+        "counterevidence_review_context_only_reasons": counterevidence[
+            "review_context_only_reasons"
+        ],
         "counterevidence_penalty_details": counterevidence["penalty_details"],
         "counterevidence_policy_version": counterevidence["policy_version"],
         "counterevidence_policy_hits": counterevidence["policy_hits"],
+        "counterevidence_external_orphan_safety": counterevidence[
+            "external_orphan_safety"
+        ],
         "text_or_label_fields_used_for_score": False,
         "matched_signature_roles": matched_signature_roles,
         "distance_summary": distance_summary(distances),
@@ -644,32 +739,96 @@ def counterevidence_assessment(
         if rule.penalty < penalty:
             penalty = rule.penalty
         reasons.append(rule.reason)
-        penalty_details.append({"reason": rule.reason, "penalty": round(rule.penalty, 4)})
+        penalty_details.append(
+            {
+                "reason": rule.reason,
+                "penalty": round(rule.penalty, 4),
+                "counterevidence_category": rule.category,
+                "evidence_role": rule.evidence_role,
+            }
+        )
         policy_hits.append(
             {
                 "rule_id": rule.rule_id,
                 "reason": rule.reason,
                 "penalty": round(rule.penalty, 4),
                 "evidence_fields": list(rule.evidence_fields),
-                "evidence_role": "counterevidence_only_not_predictive_evidence",
+                "predictive_safety_evidence_fields": list(
+                    rule.predictive_safety_evidence_fields
+                ),
+                "review_context_fields": list(rule.review_context_fields),
+                "counterevidence_category": rule.category,
+                "evidence_role": rule.evidence_role,
+                "legacy_evidence_role": COUNTEREVIDENCE_LEGACY_ROLE,
+                "external_orphan_safety_evidence": (
+                    rule.external_orphan_safety_evidence
+                ),
+                "orphan_discovery_claim_status": (
+                    rule.orphan_discovery_claim_status
+                ),
                 "leakage_flags": list(rule.leakage_flags),
                 "policy_version": COUNTEREVIDENCE_POLICY_VERSION,
             }
         )
 
     def result() -> dict[str, Any]:
+        unique_hits = sorted(
+            {hit["rule_id"]: hit for hit in policy_hits}.values(),
+            key=lambda hit: (float(hit["penalty"]), str(hit["rule_id"])),
+        )
+        categories = sorted(
+            set(COUNTEREVIDENCE_CATEGORIES)
+            | {
+                str(hit.get("counterevidence_category"))
+                for hit in unique_hits
+                if hit.get("counterevidence_category")
+            }
+        )
+        reasons_by_category = {
+            category: sorted(
+                {
+                    str(hit.get("reason"))
+                    for hit in unique_hits
+                    if hit.get("counterevidence_category") == category
+                    and hit.get("reason")
+                }
+            )
+            for category in categories
+        }
+        category_counts = {
+            category: len(reasons_by_category.get(category, []))
+            for category in categories
+        }
+        predictive_safety_reasons = reasons_by_category.get(
+            COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY, []
+        )
+        review_context_only_reasons = reasons_by_category.get(
+            COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY, []
+        )
         return {
             "penalty": penalty,
             "reasons": sorted(set(reasons)),
+            "reasons_by_category": reasons_by_category,
+            "category_counts": category_counts,
+            "predictive_safety_reasons": predictive_safety_reasons,
+            "review_context_only_reasons": review_context_only_reasons,
             "penalty_details": sorted(
                 {detail["reason"]: detail for detail in penalty_details}.values(),
                 key=lambda detail: (float(detail["penalty"]), str(detail["reason"])),
             ),
             "policy_version": COUNTEREVIDENCE_POLICY_VERSION,
-            "policy_hits": sorted(
-                {hit["rule_id"]: hit for hit in policy_hits}.values(),
-                key=lambda hit: (float(hit["penalty"]), str(hit["rule_id"])),
-            ),
+            "policy_hits": unique_hits,
+            "external_orphan_safety": {
+                "predictive_safety_counterevidence_required": bool(
+                    predictive_safety_reasons
+                ),
+                "review_context_only_counterevidence_not_required": bool(
+                    review_context_only_reasons
+                ),
+                "review_context_only_not_valid_for_orphan_discovery_claims": bool(
+                    review_context_only_reasons
+                ),
+            },
         }
 
     applied_reasons: set[str] = set()
@@ -723,13 +882,20 @@ def _counterevidence_rule(
     penalty: float,
     evidence_fields: tuple[str, ...],
     predicate: CounterevidencePredicate,
+    counterevidence_category: str | None = None,
 ) -> CounterevidenceRule:
+    if (
+        counterevidence_category is not None
+        and counterevidence_category not in COUNTEREVIDENCE_CATEGORIES
+    ):
+        raise ValueError(f"unknown counterevidence category: {counterevidence_category}")
     return CounterevidenceRule(
         fingerprint_id=fingerprint_id,
         reason=reason,
         penalty=penalty,
         evidence_fields=evidence_fields,
         predicate=predicate,
+        counterevidence_category=counterevidence_category,
     )
 
 
@@ -762,6 +928,8 @@ def audit_geometry_retrieval_leakage_policy(artifact: dict[str, Any]) -> dict[st
 
     scored_text_rows = []
     counterevidence_text_without_role = []
+    counterevidence_text_category_issues = []
+    counterevidence_structure_category_issues = []
     for result in artifact.get("results", []) or []:
         for hit in result.get("top_fingerprints", []) or []:
             if hit.get("text_or_label_fields_used_for_score") is not False:
@@ -773,23 +941,40 @@ def audit_geometry_retrieval_leakage_policy(artifact: dict[str, Any]) -> dict[st
                 )
             for policy_hit in hit.get("counterevidence_policy_hits", []) or []:
                 evidence_fields = set(policy_hit.get("evidence_fields", []) or [])
-                if "mechanism_text" not in evidence_fields:
+                category = policy_hit.get("counterevidence_category")
+                role = policy_hit.get("evidence_role")
+                issue_context = {
+                    "entry_id": result.get("entry_id"),
+                    "fingerprint_id": hit.get("fingerprint_id"),
+                    "rule_id": policy_hit.get("rule_id"),
+                }
+                if category == COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY:
+                    if (
+                        "mechanism_text" not in evidence_fields
+                        or role != COUNTEREVIDENCE_REVIEW_CONTEXT_ONLY_ROLE
+                        or "mechanism_text_review_context_only"
+                        not in set(policy_hit.get("leakage_flags", []) or [])
+                        or policy_hit.get("external_orphan_safety_evidence") is not False
+                    ):
+                        counterevidence_text_category_issues.append(issue_context)
                     continue
-                if (
-                    policy_hit.get("evidence_role")
-                    != "counterevidence_only_not_predictive_evidence"
-                ):
-                    counterevidence_text_without_role.append(
-                        {
-                            "entry_id": result.get("entry_id"),
-                            "fingerprint_id": hit.get("fingerprint_id"),
-                            "rule_id": policy_hit.get("rule_id"),
-                        }
-                    )
+                if category == COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY:
+                    if (
+                        role != COUNTEREVIDENCE_PREDICTIVE_SAFETY_ROLE
+                        or policy_hit.get("external_orphan_safety_evidence") is not True
+                    ):
+                        counterevidence_structure_category_issues.append(issue_context)
+                    continue
+                if "mechanism_text" in evidence_fields:
+                    counterevidence_text_without_role.append(issue_context)
     if scored_text_rows:
         blockers.append("geometry_retrieval_hit_uses_text_or_label_score")
     if counterevidence_text_without_role:
         blockers.append("geometry_retrieval_text_counterevidence_role_missing")
+    if counterevidence_text_category_issues:
+        blockers.append("geometry_retrieval_text_counterevidence_category_invalid")
+    if counterevidence_structure_category_issues:
+        blockers.append("geometry_retrieval_structure_counterevidence_category_invalid")
 
     return {
         "metadata": {
@@ -801,10 +986,408 @@ def audit_geometry_retrieval_leakage_policy(artifact: dict[str, Any]) -> dict[st
             "text_counterevidence_role_issue_count": len(
                 counterevidence_text_without_role
             ),
+            "text_counterevidence_category_issue_count": len(
+                counterevidence_text_category_issues
+            ),
+            "structure_counterevidence_category_issue_count": len(
+                counterevidence_structure_category_issues
+            ),
         },
         "scored_text_rows": scored_text_rows,
         "text_counterevidence_role_issues": counterevidence_text_without_role,
+        "text_counterevidence_category_issues": counterevidence_text_category_issues,
+        "structure_counterevidence_category_issues": (
+            counterevidence_structure_category_issues
+        ),
     }
+
+
+def run_mechanism_text_counterevidence_ablation(
+    geometry: dict[str, Any],
+    top_k: int = 5,
+    route_threshold: float = 0.4115,
+    strip_entry_name_review_context: bool = False,
+) -> dict[str, Any]:
+    baseline = run_geometry_retrieval(geometry, top_k=top_k)
+    without_text = run_geometry_retrieval(
+        _strip_mechanism_text_review_context(
+            geometry,
+            strip_entry_name_review_context=strip_entry_name_review_context,
+        ),
+        top_k=top_k,
+    )
+    baseline_by_id = {
+        row.get("entry_id"): row
+        for row in baseline.get("results", [])
+        if row.get("entry_id") is not None
+    }
+    without_text_by_id = {
+        row.get("entry_id"): row
+        for row in without_text.get("results", [])
+        if row.get("entry_id") is not None
+    }
+
+    changed_rows: list[dict[str, Any]] = []
+    for entry_id in sorted(
+        set(baseline_by_id) & set(without_text_by_id),
+        key=lambda value: str(value),
+    ):
+        baseline_row = baseline_by_id[entry_id]
+        without_text_row = without_text_by_id[entry_id]
+        changed_top_fingerprints = _counterevidence_ablation_top_changes(
+            baseline_row,
+            without_text_row,
+            route_threshold,
+        )
+        top1_before = _first_top_fingerprint(baseline_row)
+        top1_after = _first_top_fingerprint(without_text_row)
+        top1_before_summary = _ablation_fingerprint_summary(
+            top1_before,
+            route_threshold,
+        )
+        top1_after_summary = _ablation_fingerprint_summary(
+            top1_after,
+            route_threshold,
+        )
+        change_types = _ablation_change_types(
+            top1_before_summary,
+            top1_after_summary,
+            changed_top_fingerprints,
+        )
+        if not change_types:
+            continue
+
+        lost_text_reasons = sorted(
+            {
+                reason
+                for change in changed_top_fingerprints
+                for reason in change.get(
+                    "lost_mechanism_text_review_context_reasons", []
+                )
+            }
+        )
+        lost_structure_reasons = sorted(
+            {
+                reason
+                for change in changed_top_fingerprints
+                for reason in change.get(
+                    "lost_structure_local_counterevidence_reasons", []
+                )
+            }
+        )
+        changed_rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": baseline_row.get("entry_name"),
+                "mechanism_text_count_before": baseline_row.get(
+                    "mechanism_text_count", 0
+                ),
+                "mechanism_text_count_after": without_text_row.get(
+                    "mechanism_text_count", 0
+                ),
+                "change_types": change_types,
+                "top1_before": top1_before_summary,
+                "top1_after_text_removed": top1_after_summary,
+                "changed_top_fingerprints": changed_top_fingerprints,
+                "lost_mechanism_text_review_context_reasons": lost_text_reasons,
+                "lost_structure_local_counterevidence_reasons": (
+                    lost_structure_reasons
+                ),
+                "review_debt": bool(lost_text_reasons),
+                "orphan_discovery_claim_status": (
+                    "review_debt_text_only_not_valid_for_orphan_discovery_claims"
+                    if lost_text_reasons
+                    else "unchanged_or_structure_supported"
+                ),
+            }
+        )
+
+    route_changed_rows = [
+        row for row in changed_rows if "top1_route_changed" in row["change_types"]
+    ]
+    text_guardrail_loss_rows = [
+        row for row in changed_rows if row["lost_mechanism_text_review_context_reasons"]
+    ]
+    structure_guardrail_loss_rows = [
+        row for row in changed_rows if row["lost_structure_local_counterevidence_reasons"]
+    ]
+    return {
+        "metadata": {
+            "method": "mechanism_text_counterevidence_ablation",
+            "policy_version": COUNTEREVIDENCE_POLICY_VERSION,
+            "entry_count": len(baseline_by_id),
+            "top_k": top_k,
+            "route_threshold": route_threshold,
+            "removed_fields": [
+                "mechanism_text_count",
+                "mechanism_text_snippets",
+            ],
+            "strip_entry_name_review_context": strip_entry_name_review_context,
+            "retained_review_context_fields": (
+                [] if strip_entry_name_review_context else ["entry_name"]
+            ),
+            "changed_row_count": len(changed_rows),
+            "top1_route_changed_row_count": len(route_changed_rows),
+            "text_review_context_guardrail_loss_row_count": len(
+                text_guardrail_loss_rows
+            ),
+            "structure_local_guardrail_loss_row_count": len(
+                structure_guardrail_loss_rows
+            ),
+            "review_debt_row_count": len(text_guardrail_loss_rows),
+            "orphan_discovery_claim_invalid_row_count": len(
+                text_guardrail_loss_rows
+            ),
+            "limitations": [
+                (
+                    "Mechanism-text-derived counterevidence is review context only; "
+                    "rows losing it under ablation are review debt."
+                ),
+                (
+                    "Rows whose guardrail disappears under text removal are not "
+                    "valid support for external/orphan discovery safety claims."
+                ),
+                (
+                    "This ablation strips mechanism_text_snippets and counts; entry "
+                    "names remain unless strip_entry_name_review_context is true."
+                ),
+            ],
+        },
+        "changed_rows": changed_rows,
+    }
+
+
+def write_mechanism_text_counterevidence_ablation(
+    geometry_path: Path,
+    out_path: Path,
+    top_k: int = 5,
+    route_threshold: float = 0.4115,
+    strip_entry_name_review_context: bool = False,
+) -> dict[str, Any]:
+    artifact = run_mechanism_text_counterevidence_ablation(
+        load_json(geometry_path),
+        top_k=top_k,
+        route_threshold=route_threshold,
+        strip_entry_name_review_context=strip_entry_name_review_context,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(artifact, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return artifact
+
+
+def _strip_mechanism_text_review_context(
+    geometry: dict[str, Any],
+    strip_entry_name_review_context: bool,
+) -> dict[str, Any]:
+    stripped = dict(geometry)
+    entries: list[Any] = []
+    for entry in geometry.get("entries", []) or []:
+        if not isinstance(entry, dict):
+            entries.append(entry)
+            continue
+        updated = dict(entry)
+        updated["mechanism_text_count"] = 0
+        updated["mechanism_text_snippets"] = []
+        if strip_entry_name_review_context:
+            updated["entry_name"] = ""
+        entries.append(updated)
+    stripped["entries"] = entries
+    return stripped
+
+
+def _counterevidence_ablation_top_changes(
+    baseline_row: dict[str, Any],
+    without_text_row: dict[str, Any],
+    route_threshold: float,
+) -> list[dict[str, Any]]:
+    baseline_top = _top_fingerprints_by_id(baseline_row)
+    without_text_top = _top_fingerprints_by_id(without_text_row)
+    changes: list[dict[str, Any]] = []
+    for fingerprint_id in sorted(set(baseline_top) | set(without_text_top)):
+        baseline_rank, baseline_hit = baseline_top.get(fingerprint_id, (None, {}))
+        without_text_rank, without_text_hit = without_text_top.get(
+            fingerprint_id, (None, {})
+        )
+        baseline_summary = _ablation_fingerprint_summary(
+            baseline_hit,
+            route_threshold,
+        )
+        without_text_summary = _ablation_fingerprint_summary(
+            without_text_hit,
+            route_threshold,
+        )
+        if baseline_rank == without_text_rank and baseline_summary == without_text_summary:
+            continue
+        lost_reasons = sorted(
+            _ablation_reason_set(baseline_hit)
+            - _ablation_reason_set(without_text_hit)
+        )
+        gained_reasons = sorted(
+            _ablation_reason_set(without_text_hit)
+            - _ablation_reason_set(baseline_hit)
+        )
+        changes.append(
+            {
+                "fingerprint_id": fingerprint_id,
+                "rank_before": baseline_rank,
+                "rank_after_text_removed": without_text_rank,
+                "before": baseline_summary,
+                "after_text_removed": without_text_summary,
+                "lost_counterevidence_reasons": lost_reasons,
+                "gained_counterevidence_reasons": gained_reasons,
+                "lost_mechanism_text_review_context_reasons": sorted(
+                    _ablation_category_reason_set(
+                        baseline_hit,
+                        COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY,
+                    )
+                    - _ablation_category_reason_set(
+                        without_text_hit,
+                        COUNTEREVIDENCE_MECHANISM_TEXT_CATEGORY,
+                    )
+                ),
+                "lost_structure_local_counterevidence_reasons": sorted(
+                    _ablation_category_reason_set(
+                        baseline_hit,
+                        COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY,
+                    )
+                    - _ablation_category_reason_set(
+                        without_text_hit,
+                        COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY,
+                    )
+                ),
+                "route_changed": (
+                    baseline_summary.get("route_at_threshold")
+                    != without_text_summary.get("route_at_threshold")
+                ),
+            }
+        )
+    return changes
+
+
+def _top_fingerprints_by_id(
+    row: dict[str, Any],
+) -> dict[str, tuple[int, dict[str, Any]]]:
+    top = row.get("top_fingerprints", [])
+    if not isinstance(top, list):
+        return {}
+    result: dict[str, tuple[int, dict[str, Any]]] = {}
+    for index, hit in enumerate(top, start=1):
+        if not isinstance(hit, dict):
+            continue
+        fingerprint_id = str(hit.get("fingerprint_id") or "")
+        if not fingerprint_id:
+            continue
+        result[fingerprint_id] = (index, hit)
+    return result
+
+
+def _first_top_fingerprint(row: dict[str, Any]) -> dict[str, Any]:
+    top = row.get("top_fingerprints", [])
+    if isinstance(top, list) and top and isinstance(top[0], dict):
+        return top[0]
+    return {}
+
+
+def _ablation_fingerprint_summary(
+    hit: dict[str, Any],
+    route_threshold: float,
+) -> dict[str, Any]:
+    if not hit:
+        return {
+            "fingerprint_id": None,
+            "score": None,
+            "route_at_threshold": "no_hit",
+            "counterevidence_reasons": [],
+            "counterevidence_reasons_by_category": _empty_counterevidence_categories(),
+            "counterevidence_category_counts": _zero_counterevidence_category_counts(),
+        }
+    return {
+        "fingerprint_id": hit.get("fingerprint_id"),
+        "score": hit.get("score"),
+        "route_at_threshold": _ablation_route(hit, route_threshold),
+        "counterevidence_penalty": hit.get("counterevidence_penalty"),
+        "counterevidence_reasons": sorted(_ablation_reason_set(hit)),
+        "counterevidence_reasons_by_category": {
+            category: sorted(_ablation_category_reason_set(hit, category))
+            for category in COUNTEREVIDENCE_CATEGORIES
+        },
+        "counterevidence_category_counts": {
+            category: len(_ablation_category_reason_set(hit, category))
+            for category in COUNTEREVIDENCE_CATEGORIES
+        },
+    }
+
+
+def _ablation_route(hit: dict[str, Any], route_threshold: float) -> str:
+    try:
+        score = float(hit.get("score", 0.0) or 0.0)
+    except (TypeError, ValueError):
+        score = 0.0
+    if score < route_threshold:
+        return "abstain_or_review"
+    return "retained_above_threshold"
+
+
+def _ablation_change_types(
+    top1_before: dict[str, Any],
+    top1_after: dict[str, Any],
+    changed_top_fingerprints: list[dict[str, Any]],
+) -> list[str]:
+    change_types: set[str] = set()
+    if top1_before.get("fingerprint_id") != top1_after.get("fingerprint_id"):
+        change_types.add("top1_fingerprint_changed")
+    if top1_before.get("score") != top1_after.get("score"):
+        change_types.add("top1_score_changed")
+    if top1_before.get("route_at_threshold") != top1_after.get("route_at_threshold"):
+        change_types.add("top1_route_changed")
+    if top1_before.get("counterevidence_reasons") != top1_after.get(
+        "counterevidence_reasons"
+    ):
+        change_types.add("top1_counterevidence_reasons_changed")
+    if changed_top_fingerprints:
+        change_types.add("top_k_fingerprint_details_changed")
+    return sorted(change_types)
+
+
+def _ablation_reason_set(hit: dict[str, Any]) -> set[str]:
+    reasons = hit.get("counterevidence_reasons", []) if isinstance(hit, dict) else []
+    if not isinstance(reasons, list):
+        return set()
+    return {str(reason) for reason in reasons if reason}
+
+
+def _ablation_category_reason_set(
+    hit: dict[str, Any],
+    category: str,
+) -> set[str]:
+    if not isinstance(hit, dict):
+        return set()
+    by_category = hit.get("counterevidence_reasons_by_category", {})
+    if isinstance(by_category, dict):
+        reasons = by_category.get(category, [])
+        if isinstance(reasons, list):
+            return {str(reason) for reason in reasons if reason}
+    policy_hits = hit.get("counterevidence_policy_hits", [])
+    if not isinstance(policy_hits, list):
+        return set()
+    return {
+        str(policy_hit.get("reason"))
+        for policy_hit in policy_hits
+        if isinstance(policy_hit, dict)
+        and policy_hit.get("counterevidence_category") == category
+        and policy_hit.get("reason")
+    }
+
+
+def _empty_counterevidence_categories() -> dict[str, list[str]]:
+    return {category: [] for category in COUNTEREVIDENCE_CATEGORIES}
+
+
+def _zero_counterevidence_category_counts() -> dict[str, int]:
+    return {category: 0 for category in COUNTEREVIDENCE_CATEGORIES}
 
 
 def _allowed_residue_codes(spec: str) -> set[str]:
@@ -1512,6 +2095,7 @@ COUNTEREVIDENCE_POLICY: tuple[CounterevidenceRule, ...] = (
         lambda c, _: c.cofactor_evidence == "role_inferred"
         and not _has_water_activation_role(c.residues)
         and not _has_metal_phosphate_hydrolysis_text_context(c.mechanism_text),
+        counterevidence_category=COUNTEREVIDENCE_STRUCTURE_LOCAL_CATEGORY,
     ),
     _counterevidence_rule(
         "metal_dependent_hydrolase",

@@ -2307,6 +2307,110 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             all(row["countable_label_candidate"] is False for row in sample["rows"])
         )
 
+    def test_650m_representation_backend_sidecars_record_local_infeasibility(
+        self,
+    ) -> None:
+        sample = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json"
+        )
+        sample_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_audit_1025.json"
+        )
+        pilot_sample = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json"
+        )
+        pilot_sample_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_audit_1025.json"
+        )
+        stability = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json"
+        )
+        pilot_stability = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json"
+        )
+
+        for artifact in (sample, pilot_sample):
+            metadata = artifact["metadata"]
+            self.assertEqual(metadata["embedding_backend"], "esm2_t33_650m_ur50d")
+            self.assertEqual(metadata["model_name"], "facebook/esm2_t33_650M_UR50D")
+            self.assertTrue(metadata["local_files_only"])
+            self.assertFalse(metadata["embedding_backend_available"])
+            self.assertIsNone(metadata["embedding_vector_dimension"])
+            self.assertEqual(metadata["expected_embedding_vector_dimension"], 1280)
+            self.assertEqual(
+                metadata["embedding_failure_count"],
+                metadata["requested_accession_count"],
+            )
+            self.assertEqual(metadata["model_load_status"], "failed")
+            self.assertEqual(metadata["model_load_failure_type"], "OSError")
+            self.assertIsInstance(metadata["model_load_failure"], str)
+            self.assertEqual(
+                metadata["backend_feasibility_status"], "model_unavailable_locally"
+            )
+            self.assertEqual(
+                metadata["attempted_embedding_backend"], "esm2_t33_650m_ur50d"
+            )
+            self.assertEqual(
+                metadata["largest_supported_embedding_backend"],
+                "esm2_t33_650m_ur50d",
+            )
+            self.assertIsNone(metadata["largest_feasible_embedding_backend"])
+            self.assertEqual(
+                metadata["fallback_not_computed_reason"],
+                "local_files_only_prevents_downloading_uncached_model",
+            )
+            self.assertIsInstance(metadata["embedding_elapsed_seconds"], float)
+            self.assertEqual(metadata["countable_label_candidate_count"], 0)
+            self.assertFalse(metadata["ready_for_label_import"])
+            self.assertEqual(len(artifact["rows"]), metadata["candidate_count"])
+            self.assertIsInstance(
+                artifact["learned_vs_heuristic_disagreements"], list
+            )
+            self.assertTrue(
+                all(
+                    row["backend_status"] == "embedding_backend_unavailable"
+                    and row["embedding_backend"] == "esm2_t33_650m_ur50d"
+                    and row["countable_label_candidate"] is False
+                    and row["ready_for_label_import"] is False
+                    for row in artifact["rows"]
+                )
+            )
+
+        self.assertTrue(sample_audit["metadata"]["guardrail_clean"])
+        self.assertTrue(pilot_sample_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            stability["metadata"]["stability_status"],
+            "comparison_backend_unavailable",
+        )
+        self.assertEqual(
+            stability["metadata"]["comparison_embedding_backend_unavailable_row_count"],
+            12,
+        )
+        self.assertTrue(stability["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            pilot_stability["metadata"]["stability_status"],
+            "comparison_backend_unavailable",
+        )
+        self.assertEqual(
+            pilot_stability["metadata"][
+                "comparison_embedding_backend_unavailable_row_count"
+            ],
+            10,
+        )
+        self.assertTrue(pilot_stability["metadata"]["guardrail_clean"])
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:
