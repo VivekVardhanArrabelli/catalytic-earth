@@ -280,7 +280,24 @@ Current expectation:
   standard 900-second cap before pair rows are emitted. No full TM-score
   holdout claim is permitted because only 3/56 redesigned chunks are complete,
   chunk 3 now has a runtime blocker, two coordinate exclusions remain, and the
-  split remains a candidate copy. The first 12-row
+  split remains a candidate copy. A cluster-first replacement path now
+  supersedes blind chunk continuation. The first cluster-first candidate uses
+  the 672 staged materializable structures as a structure index, converts the
+  observed `TM >= 0.7` pair evidence into 24 partition constraints across 12
+  constrained clusters, and projects 0 remaining high-TM train/test
+  violations with 0 sequence-cluster splits. Verification subchunk 006 found a
+  new `m_csa:38`/`m_csa:118` blocker at max TM-score `0.7435`; round 2 moves
+  held-out out-of-scope `m_csa:118` to in-distribution and clears that same
+  subchunk with max TM-score `0.6509`. Subchunk 007 then fails under round 2
+  with max TM-score `0.8651`, 16 violating rows, and 9 reported blocking
+  pairs. The current round-3 cluster-first candidate folds those new blockers
+  into 34 high-TM constraints across 14 constrained clusters, projects 0
+  remaining known constraint violations, preserves 0 sequence-cluster splits,
+  and keeps all rows review-only/non-countable. The next Foldseek work should
+  verify from
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`,
+  starting with subchunk 007 or the next bounded coverage slice, and stop on
+  any new target violation. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

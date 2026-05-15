@@ -490,6 +490,26 @@ keeps that timeout visible while preserving the completed-chunk max
 train/test TM-score `0.695`. The 53 chunks from 3-55 remain uncomputed until
 chunk 3 is retried or split into a smaller query slice, the two coordinate
 exclusions still stand, and full-holdout claims remain forbidden.
+A cluster-first Foldseek split path now replaces blind chunk iteration as the
+active design. `artifacts/v3_foldseek_tm_score_cluster_first_split_1000.json`
+reuses the 672 materialized selected-coordinate index and turns the previously
+observed `TM >= 0.7` pairs into 24 partition constraints across 12 constrained
+clusters, resolving all observed constraints in projection with 0 sequence
+identity cluster splits. A first 6-query verification subchunk then exposed a
+new high-TM blocker, `m_csa:38` versus `m_csa:118`, with max train/test
+TM-score `0.7435`; the round-2 cluster-first candidate moves held-out
+out-of-scope `m_csa:118` to in-distribution and the same subchunk passes with
+max train/test TM-score `0.6509` and 0 violations. The paired subchunk 007
+then fails with max train/test TM-score `0.8651`, 16 violating rows, and 9
+reported structure-pair blockers. Those blockers are folded into
+`artifacts/v3_foldseek_tm_score_cluster_first_split_round3_1000.json`, which
+now records 34 high-TM constraints, 14 constrained clusters, 0 projected
+constraint violations, 0 sequence-cluster splits, and a companion readiness
+artifact at
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`.
+This is still review-only and non-countable; no full TM-score holdout claim is
+permitted until verification resumes from the round-3 cluster-first readiness,
+starting with subchunk 007 or later, and the remaining query coverage passes.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

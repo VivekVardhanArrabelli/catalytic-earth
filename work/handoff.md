@@ -50,6 +50,38 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T04:00:46Z run after clean startup gates
+(`378` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not modify external pilot decisions; the selected
+  external pilot remains review-only with 0 import-ready rows and 0 countable
+  candidates.
+- Scientific generalization work: Yes for Foldseek/TM-score cluster-first
+  split design and bounded verification, but not for a full split claim. This
+  run added cluster-first split candidates through round 3, round-specific
+  readiness artifacts, and query subchunk verification artifacts. The current
+  round-3 cluster-first candidate has 34 high-TM constraints, 14 constrained
+  clusters, 0 projected known constraint violations, 0 sequence-cluster splits,
+  and 0 held-out out-of-scope false non-abstentions. Round-2 subchunk 006
+  passes after moving held-out out-of-scope `m_csa:118` to in-distribution,
+  but round-2 subchunk 007 fails with max train/test TM-score `0.8651`, 16
+  violating rows, and 9 reported blocking structure pairs; those blockers are
+  folded into the current round-3 candidate.
+- SPOF hardening work: Yes. The run replaces blind 56-chunk continuation with
+  a cluster-first partition-constraint cache over the 672 staged
+  materializable structures, demonstrates a smaller 6-query verification
+  route for the old chunk-3 timeout region, and converts the latest failure
+  into concrete round-3 split constraints. `m_csa:372` and `m_csa:501` remain
+  coordinate exclusions, most query coverage remains unverified under the
+  cluster-first round-3 split, all outputs remain review-only/non-countable,
+  and `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-14T21:59:56-05:00 run after clean startup gates
 (`374` unit tests passed and `validate` passed with 679 curated labels; final
 wrap-up gates passed `378` unit tests and `validate` after the new artifacts
@@ -1382,66 +1414,51 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Previous run was direct only, with no subagents or delegation. It added
-`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_1000.json`,
-`artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate.json`,
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_query_chunk_000_of_056.json`,
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_query_chunk_aggregate_000_of_056.json`,
-`artifacts/v3_foldseek_tm_score_split_redesign_candidate_query_chunk_repair_plan_1000.json`,
-`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round2_1000.json`,
-`artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round2.json`,
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_000_of_056.json`,
-and
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_aggregate_000_of_056.json`.
-This run continued that path and added
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_001_of_056.json`,
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_aggregate_000_001_of_056.json`,
-`artifacts/v3_foldseek_tm_score_split_redesign_candidate_round2_query_chunk_repair_plan_1000.json`,
-`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round3_1000.json`,
-`artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round3.json`,
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_000_of_056.json`,
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_001_of_056.json`,
-and
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_001_of_056.json`.
-Do not open another M-CSA-only tranche. Do not claim full TM-score holdout.
-The first split-redesign candidate moved the 9 held-out out-of-scope blockers
-from the retry aggregate to in-distribution and moved 6 high-TM train
-neighbors to heldout to preserve held-out in-scope blockers. In projection it
-resolved the 15 observed completed-chunk blockers, preserved 0 sequence-cluster
-splits, and kept held-out out-of-scope false non-abstentions at 0. The direct
-Foldseek chunk-0 rerun against that redesigned split invalidated the projection
-as a sufficient fix: 12 query coordinates against all 672 staged targets
-completed with 16,475 mapped pair rows, 6,909 train/test rows, max train/test
-TM-score `0.926`, and 15 target-violating row-level pairs across 4 reported
-structure pairs. The new repair plan classifies all 4 reported pairs as manual
-held-out in-scope split-redesign blockers involving `m_csa:6` against
-`m_csa:277`, `m_csa:378`, `m_csa:320`, and `m_csa:108`; there are 0
-conservative held-out out-of-scope repair candidates in this direct chunk-0
-result. The round-2 redesign moves those four neighbors to heldout as well and
-reruns chunk 0 directly; it clears the chunk with 16,475 mapped pair rows,
-6,939 train/test rows, max train/test TM-score `0.695`, and 0 target-violating
-pairs. Round-2 chunk 1 then completed with 11,776 mapped rows, 4,154 train/test
-TM-score `0.8182`, and 12 target-violating row-level pairs across 4 reported
-structure pairs. The new repair plan classifies all 4 reported pairs as
-manual held-out in-scope split-redesign blockers involving `m_csa:15` and
-`m_csa:16` against train neighbors `m_csa:258` and `m_csa:157`; there are 0
-conservative held-out out-of-scope repair candidates. The round-3 redesign
-moves `m_csa:157` and `m_csa:258` to heldout, preserves 0 sequence-cluster
-splits, and direct Foldseek chunks 0, 1, and 2 clear with 40,890 mapped rows,
-13,472 train/test rows, max train/test TM-score `0.695`, and 0
-target-violating pairs. Chunk 2 completed under the standard 900-second bound
-with max train/test TM-score `0.584`. Chunk 3 under the same command shape
-times out at 900 seconds before pair rows are emitted; the 0-3 aggregate keeps
-that timeout visible while preserving the completed-chunk max `0.695`. The
-previous retry aggregate still records chunks 0-2 under the prior candidate
-split with max `0.8957`, and the all-at-once all-materializable attempt still
-documents a 1,500-second timeout. The canonical sequence holdout remains
-unchanged, `m_csa:372` and `m_csa:501` remain coordinate exclusions, chunks
-3-55 remain uncomputed under the round-3 redesigned split until chunk 3 is
-retried or split, and no countable/import-ready rows were created. Next
-Foldseek work should retry round-3 chunk 3 with a longer runtime or smaller
-query slice, but stop and adjudicate if a target-violating pair appears; do
-not add another capped preview or claim full separation.
+Latest run was direct only, with no subagents or delegation. Do not open another
+M-CSA-only tranche. Do not claim full TM-score holdout.
+
+The active Foldseek path is now cluster-first, not blind chunk continuation.
+This run added `build-foldseek-tm-score-cluster-first-split` and pinned
+cluster-first artifacts:
+`artifacts/v3_foldseek_tm_score_cluster_first_split_1000.json`,
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split.json`,
+`artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_query_subchunk_006_of_112.json`,
+`artifacts/v3_foldseek_tm_score_cluster_first_split_round2_1000.json`,
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round2.json`,
+`artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round2_query_subchunk_006_of_112.json`,
+`artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round2_query_subchunk_007_of_112.json`,
+`artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round2_query_subchunk_aggregate_006_007_of_112.json`,
+`artifacts/v3_foldseek_tm_score_cluster_first_split_round3_1000.json`, and
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`.
+
+The first cluster-first candidate uses the 672 staged materializable structures
+as the structure index and folds existing `TM >= 0.7` evidence into 24
+partition constraints across 12 constrained clusters. It projects 0 known
+constraint violations and preserves 0 sequence-cluster splits. A first
+6-query verification subchunk (`006/112`) then exposed a new blocker:
+`m_csa:38` against held-out out-of-scope `m_csa:118`, max train/test
+TM-score `0.7435`. Round 2 moves `m_csa:118` to in-distribution and the same
+subchunk passes with 14,207 mapped rows, 2,358 train/test rows, max TM-score
+`0.6509`, and 0 target-violating pairs.
+
+The paired round-2 subchunk `007/112` completed with 9,094 mapped rows, 5,449
+train/test rows, max train/test TM-score `0.8651`, and 16 target-violating rows
+across 9 reported structure pairs. The current handoff split is
+`artifacts/v3_foldseek_tm_score_cluster_first_split_round3_1000.json`: it folds
+those blockers into 34 high-TM constraints across 14 constrained clusters,
+projects 0 known constraint violations, preserves 0 sequence-cluster splits,
+moves 12 entries to heldout and 12 held-out out-of-scope entries to
+in-distribution, keeps held-out out-of-scope false non-abstentions at 0, and
+keeps all rows review-only/non-countable.
+
+Next Foldseek work should start from
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`
+and verify bounded subchunks under that round-3 cluster-first partition. The
+highest-value immediate check is rerunning subchunk `007/112` against round 3
+because it was the latest failing verification unit; stop and fold in any new
+target-violating pair before continuing. `m_csa:372` and `m_csa:501` remain
+coordinate exclusions, most query coverage remains unverified, and
+`full_tm_score_holdout_claim_permitted=false` remains required.
 
 External pilot import remains blocked. The selected-pilot representation
 adjudication now gives concrete review-only statuses: 3 stable representation
@@ -2542,6 +2559,37 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-15T04:00:46Z
+- ENDED_AT: 2026-05-15T04:56:08Z
+- Measured elapsed time: 55.367 minutes
+- Documentation checked and updated across README,
+  docs/external_source_transfer.md, work/foldseek_readiness_notes.md,
+  work/handoff.md, work/scope.md, and work/status.md before commit.
+- Normal locked direct run with no subagents or delegation. No M-CSA-only count
+  growth and no external import.
+- Implemented `build-foldseek-tm-score-cluster-first-split`, a review-only
+  cluster-first candidate builder that turns observed `TM >= 0.7` Foldseek
+  evidence into structural partition constraints before verification chunks
+  run.
+- The current handoff split is
+  `artifacts/v3_foldseek_tm_score_cluster_first_split_round3_1000.json`: 34
+  high-TM constraints, 14 constrained clusters, 0 projected known
+  train/test violations, 0 sequence-cluster splits, and 0 countable/import-ready
+  rows. Its readiness artifact is
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`.
+- Verification evidence: round-2 subchunk 006 passes with 14,207 mapped rows,
+  2,358 train/test rows, max TM-score `0.6509`, and 0 target-violating pairs.
+  Round-2 subchunk 007 fails with 9,094 mapped rows, 5,449 train/test rows,
+  max TM-score `0.8651`, and 16 target-violating rows across 9 reported
+  structure pairs; those blockers are folded into the round-3 split. Next
+  verification should rerun subchunk 007 from the round-3 readiness and stop
+  on any new target violation.
+- Final verification passed: `git diff --check`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  `PYTHONPATH=src python -m unittest discover -s tests` with 383 tests,
+  `PYTHONPATH=src python -m compileall -q src tests`, and JSON parsing for
+  the 10 new Foldseek artifacts.
 
 - STARTED_AT: 2026-05-14T03:33:18Z
 - ENDED_AT: 2026-05-14T04:23:26Z

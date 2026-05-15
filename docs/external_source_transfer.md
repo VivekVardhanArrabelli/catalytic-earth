@@ -234,10 +234,29 @@ keeps that timeout visible while preserving completed-chunk max train/test
 TM-score `0.695`. The full split remains blocked by the chunk-3 runtime
 blocker, 53 uncomputed chunks, two coordinate exclusions, and candidate-only
 split status; no full TM-score holdout claim is permitted.
+The active replacement path is now cluster-first rather than blind 56-chunk
+continuation. `artifacts/v3_foldseek_tm_score_cluster_first_split_1000.json`
+uses the 672 staged materializable structures as the structure index and
+turns observed `TM >= 0.7` pairs into 24 partition constraints across 12
+constrained clusters, resolving those known constraints in projection with 0
+sequence-cluster splits. Verification subchunk 006 first exposed a new
+`m_csa:38`/`m_csa:118` blocker at max TM-score `0.7435`; the round-2
+cluster-first candidate moves held-out out-of-scope `m_csa:118` to
+in-distribution and the same subchunk then passes with max TM-score `0.6509`
+and 0 violations. Subchunk 007 under round 2 fails with max TM-score `0.8651`,
+16 violating rows, and 9 reported blocking structure pairs. The current
+cluster-first handoff artifact,
+`artifacts/v3_foldseek_tm_score_cluster_first_split_round3_1000.json`, folds
+those blockers back into the split and records 34 high-TM constraints, 14
+constrained clusters, 0 projected violations, 0 sequence-cluster splits, and
+0 countable/import-ready rows. Its readiness artifact is
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`.
+Full TM-score holdout claims remain forbidden until verification restarts from
+that round-3 cluster-first readiness and all remaining coverage passes.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the remaining query
-chunks are completed or explicitly adjudicated under the round-3 redesigned
+chunks are completed or explicitly adjudicated under the cluster-first round-3
 split, coordinate exclusions remain reported, and target checks pass.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot

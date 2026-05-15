@@ -19,6 +19,7 @@ from .generalization import (
     aggregate_foldseek_tm_score_query_chunks,
     audit_foldseek_tm_score_split_repair,
     audit_foldseek_tm_score_target_failure,
+    build_foldseek_tm_score_cluster_first_split,
     build_sequence_distance_holdout_split_repair_candidate,
     build_sequence_distance_holdout_split_redesign_candidate,
     build_foldseek_coordinate_readiness,
@@ -890,6 +891,38 @@ def cmd_build_sequence_distance_holdout_split_redesign_candidate(
         f"{artifact['metadata']['redesigned_heldout_count']}, "
         "observed_blockers_after_redesign="
         f"{artifact['metadata']['projected_observed_blocking_pair_count_after_redesign']}, "
+        "full_tm_score_holdout_claim_permitted="
+        f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
+    )
+    return 0
+
+
+def cmd_build_foldseek_tm_score_cluster_first_split(args: argparse.Namespace) -> int:
+    with Path(args.readiness).open("r", encoding="utf-8") as handle:
+        readiness = json.load(handle)
+    with Path(args.sequence_holdout).open("r", encoding="utf-8") as handle:
+        sequence_holdout = json.load(handle)
+    evidence_artifacts = []
+    for evidence_path in args.evidence_artifact:
+        with Path(evidence_path).open("r", encoding="utf-8") as handle:
+            evidence_artifacts.append(json.load(handle))
+    artifact = build_foldseek_tm_score_cluster_first_split(
+        readiness=readiness,
+        sequence_holdout=sequence_holdout,
+        evidence_artifacts=evidence_artifacts,
+        readiness_path=args.readiness,
+        sequence_holdout_path=args.sequence_holdout,
+        evidence_paths=args.evidence_artifact,
+        threshold=args.threshold,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote Foldseek cluster-first split candidate to "
+        f"{args.out} (clusters={artifact['metadata']['cluster_count']}, "
+        "high_tm_constraints="
+        f"{artifact['metadata']['high_tm_partition_constraint_count']}, "
+        "projected_violations="
+        f"{artifact['metadata']['projected_violating_constraint_count_after_cluster_assignment']}, "
         "full_tm_score_holdout_claim_permitted="
         f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
     )
@@ -4745,6 +4778,46 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sequence_split_redesign_candidate.set_defaults(
         func=cmd_build_sequence_distance_holdout_split_redesign_candidate
+    )
+
+    foldseek_cluster_first_split = subparsers.add_parser(
+        "build-foldseek-tm-score-cluster-first-split",
+        help=(
+            "build a review-only cluster-first Foldseek split candidate from "
+            "observed high-TM pair evidence before verification chunks run"
+        ),
+    )
+    foldseek_cluster_first_split.add_argument(
+        "--readiness",
+        default="artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round3.json",
+        help="Foldseek coordinate-readiness artifact with staged selected structures",
+    )
+    foldseek_cluster_first_split.add_argument(
+        "--sequence-holdout",
+        default="artifacts/v3_sequence_distance_holdout_eval_1000.json",
+        help="source sequence-distance holdout artifact defining row partitions",
+    )
+    foldseek_cluster_first_split.add_argument(
+        "--evidence-artifact",
+        nargs="+",
+        required=True,
+        help=(
+            "Foldseek signal, aggregate, target-failure, or split-repair artifacts "
+            "whose observed pair evidence should become cluster constraints"
+        ),
+    )
+    foldseek_cluster_first_split.add_argument(
+        "--threshold",
+        type=float,
+        default=0.7,
+        help="exclusive target threshold; pairs at or above this value form constraints",
+    )
+    foldseek_cluster_first_split.add_argument(
+        "--out",
+        default="artifacts/v3_foldseek_tm_score_cluster_first_split_1000.json",
+    )
+    foldseek_cluster_first_split.set_defaults(
+        func=cmd_build_foldseek_tm_score_cluster_first_split
     )
 
     source_scale_limits = subparsers.add_parser(

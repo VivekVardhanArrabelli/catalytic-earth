@@ -3688,6 +3688,749 @@ def build_sequence_distance_holdout_split_redesign_candidate(
     }
 
 
+def build_foldseek_tm_score_cluster_first_split(
+    *,
+    readiness: dict[str, Any],
+    sequence_holdout: dict[str, Any],
+    evidence_artifacts: list[dict[str, Any]],
+    readiness_path: str | None = None,
+    sequence_holdout_path: str | None = None,
+    evidence_paths: list[str] | None = None,
+    threshold: float = 0.7,
+) -> dict[str, Any]:
+    """Build a review-only cluster-first split candidate from Foldseek evidence.
+
+    The artifact turns observed high-TM Foldseek pairs into partition
+    constraints before verification chunks are run. It does not run Foldseek and
+    does not claim a complete TM-score holdout.
+    """
+
+    readiness_metadata = (
+        readiness.get("metadata", {}) if isinstance(readiness, dict) else {}
+    )
+    if not isinstance(readiness_metadata, dict):
+        readiness_metadata = {}
+    holdout_metadata = (
+        sequence_holdout.get("metadata", {})
+        if isinstance(sequence_holdout, dict)
+        else {}
+    )
+    if not isinstance(holdout_metadata, dict):
+        holdout_metadata = {}
+
+    rows_in = [
+        row
+        for row in (
+            sequence_holdout.get("rows", [])
+            if isinstance(sequence_holdout, dict)
+            else []
+        )
+        if isinstance(row, dict)
+    ]
+    rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in rows_in
+        if isinstance(row.get("entry_id"), str)
+    }
+
+    structures_in = [
+        item
+        for item in (
+            readiness.get("structures", []) if isinstance(readiness, dict) else []
+        )
+        if isinstance(item, dict)
+    ]
+    staged_structures = _staged_foldseek_structures(structures_in)
+    structure_by_key = {
+        str(structure.get("structure_key")): structure
+        for structure in staged_structures
+        if isinstance(structure.get("structure_key"), str)
+    }
+    entry_to_structure_key: dict[str, str] = {}
+    for structure_key, structure in structure_by_key.items():
+        for entry_id in _structure_entry_ids(structure):
+            entry_to_structure_key.setdefault(entry_id, structure_key)
+
+    pair_cache = _foldseek_pair_constraint_cache(
+        evidence_artifacts=evidence_artifacts,
+        evidence_paths=evidence_paths or [],
+        entry_to_structure_key=entry_to_structure_key,
+        threshold=float(threshold),
+    )
+
+    parent = _foldseek_constraint_parents(structure_by_key)
+    for pair in pair_cache:
+        if not pair["high_tm_partition_constraint"]:
+            continue
+        query_key = pair.get("query_structure_key")
+        target_key = pair.get("target_structure_key")
+        if query_key in parent and target_key in parent and query_key != target_key:
+            _foldseek_union(parent, str(query_key), str(target_key))
+
+    component_members: dict[str, list[str]] = defaultdict(list)
+    for structure_key in structure_by_key:
+        component_members[_foldseek_find(parent, structure_key)].append(structure_key)
+    sorted_components = sorted(
+        component_members.values(),
+        key=lambda keys: (
+            -len(keys),
+            _entry_id_sort_key(
+                min(
+                    (
+                        entry_id
+                        for key in keys
+                        for entry_id in _structure_entry_ids(structure_by_key[key])
+                    ),
+                    default="",
+                    key=_entry_id_sort_key,
+                )
+            ),
+            sorted(keys)[0],
+        ),
+    )
+
+    structure_to_cluster: dict[str, str] = {}
+    clusters: list[dict[str, Any]] = []
+    for index, structure_keys in enumerate(sorted_components, start=1):
+        cluster_id = f"fold_tm_{index:04d}"
+        sorted_structure_keys = sorted(structure_keys)
+        entry_ids = sorted(
+            {
+                entry_id
+                for structure_key in sorted_structure_keys
+                for entry_id in _structure_entry_ids(structure_by_key[structure_key])
+            },
+            key=_entry_id_sort_key,
+        )
+        for structure_key in sorted_structure_keys:
+            structure_to_cluster[structure_key] = cluster_id
+
+        source_partitions = {
+            entry_id: rows_by_entry.get(entry_id, {}).get("partition")
+            for entry_id in entry_ids
+        }
+        label_types = {
+            entry_id: rows_by_entry.get(entry_id, {}).get("label_type")
+            for entry_id in entry_ids
+        }
+        assigned_partition, assignment_reason = _foldseek_cluster_assignment(
+            entry_ids=entry_ids,
+            rows_by_entry=rows_by_entry,
+        )
+        high_tm_edges = [
+            pair
+            for pair in pair_cache
+            if pair["high_tm_partition_constraint"]
+            and pair.get("query_structure_key") in sorted_structure_keys
+            and pair.get("target_structure_key") in sorted_structure_keys
+        ]
+        clusters.append(
+            {
+                "cluster_id": cluster_id,
+                "cluster_source": (
+                    "observed_foldseek_tm_ge_threshold_constraints_plus_singletons"
+                ),
+                "assignment": assigned_partition,
+                "assignment_reason": assignment_reason,
+                "structure_count": len(sorted_structure_keys),
+                "entry_count": len(entry_ids),
+                "structure_keys": sorted_structure_keys,
+                "structure_ids": [
+                    structure_by_key[key].get("structure_id")
+                    for key in sorted_structure_keys
+                ],
+                "entry_ids": entry_ids,
+                "source_partition_by_entry": source_partitions,
+                "label_type_by_entry": label_types,
+                "high_tm_constraint_count": len(high_tm_edges),
+                "max_observed_in_cluster_tm_score": _max_pair_score(high_tm_edges),
+                "review_status": "review_only_non_countable",
+                "countable_label_candidate": False,
+                "import_ready": False,
+            }
+        )
+
+    partition_constraints: list[dict[str, Any]] = []
+    unresolved_constraint_count = 0
+    projected_violating_constraint_count = 0
+    max_observed_intra_cluster_tm_score: float | None = None
+    max_observed_inter_cluster_tm_score: float | None = None
+    max_observed_high_tm_inter_cluster_score: float | None = None
+
+    for pair in pair_cache:
+        score = _parse_optional_float(pair.get("max_pair_tm_score"))
+        query_cluster = structure_to_cluster.get(str(pair.get("query_structure_key")))
+        target_cluster = structure_to_cluster.get(str(pair.get("target_structure_key")))
+        same_cluster = bool(query_cluster and query_cluster == target_cluster)
+        if same_cluster:
+            max_observed_intra_cluster_tm_score = _max_optional_float(
+                [max_observed_intra_cluster_tm_score, score]
+            )
+        elif query_cluster and target_cluster:
+            max_observed_inter_cluster_tm_score = _max_optional_float(
+                [max_observed_inter_cluster_tm_score, score]
+            )
+            if pair["high_tm_partition_constraint"]:
+                max_observed_high_tm_inter_cluster_score = _max_optional_float(
+                    [max_observed_high_tm_inter_cluster_score, score]
+                )
+
+        projected_query_partitions = _cluster_projected_partitions(
+            entry_ids=_string_list(pair.get("query_entry_ids")),
+            structure_key=pair.get("query_structure_key"),
+            structure_to_cluster=structure_to_cluster,
+            clusters=clusters,
+        )
+        projected_target_partitions = _cluster_projected_partitions(
+            entry_ids=_string_list(pair.get("target_entry_ids")),
+            structure_key=pair.get("target_structure_key"),
+            structure_to_cluster=structure_to_cluster,
+            clusters=clusters,
+        )
+        projected_train_test = _partitions_are_train_test_pair(
+            projected_query_partitions, projected_target_partitions
+        )
+        projected_violation = bool(
+            pair["high_tm_partition_constraint"] and projected_train_test
+        )
+        unresolved = bool(
+            pair["high_tm_partition_constraint"]
+            and (not query_cluster or not target_cluster)
+        )
+        unresolved_constraint_count += int(unresolved)
+        projected_violating_constraint_count += int(projected_violation)
+        if pair["high_tm_partition_constraint"]:
+            partition_constraints.append(
+                {
+                    **pair,
+                    "constraint_id": f"fold_tm_constraint_{len(partition_constraints) + 1:04d}",
+                    "query_cluster_id": query_cluster,
+                    "target_cluster_id": target_cluster,
+                    "same_cluster_after_constraint_closure": same_cluster,
+                    "source_query_partitions": pair.get("query_partitions", []),
+                    "source_target_partitions": pair.get("target_partitions", []),
+                    "projected_query_partitions": projected_query_partitions,
+                    "projected_target_partitions": projected_target_partitions,
+                    "projected_train_test_pair_after_cluster_assignment": (
+                        projected_train_test
+                    ),
+                    "projected_violates_target_after_cluster_assignment": (
+                        projected_violation
+                    ),
+                    "unresolved_after_cluster_assignment": unresolved,
+                    "review_status": "review_only_non_countable",
+                    "countable_label_candidate": False,
+                    "import_ready": False,
+                }
+            )
+
+    cluster_assignment_by_entry: dict[str, dict[str, str]] = {}
+    cluster_by_id = {cluster["cluster_id"]: cluster for cluster in clusters}
+    for structure_key, cluster_id in structure_to_cluster.items():
+        cluster = cluster_by_id[cluster_id]
+        for entry_id in _structure_entry_ids(structure_by_key[structure_key]):
+            if entry_id in rows_by_entry:
+                cluster_assignment_by_entry[entry_id] = {
+                    "cluster_id": cluster_id,
+                    "partition": str(cluster["assignment"]),
+                    "reason": str(cluster["assignment_reason"]),
+                }
+
+    candidate_rows: list[dict[str, Any]] = []
+    applied_to_heldout: list[str] = []
+    applied_to_in_distribution: list[str] = []
+    for row in rows_in:
+        entry_id = str(row.get("entry_id") or "")
+        source_partition = row.get("partition")
+        candidate = dict(row)
+        candidate["source_partition"] = source_partition
+        candidate["foldseek_cluster_first_split_candidate_partition"] = source_partition
+        candidate["foldseek_cluster_first_cluster_id"] = None
+        candidate["foldseek_cluster_first_applied_to_candidate"] = False
+        candidate["foldseek_cluster_first_reason"] = None
+        assignment = cluster_assignment_by_entry.get(entry_id)
+        if assignment and assignment["partition"] in {"heldout", "in_distribution"}:
+            candidate["foldseek_cluster_first_cluster_id"] = assignment["cluster_id"]
+            candidate["foldseek_cluster_first_split_candidate_partition"] = assignment[
+                "partition"
+            ]
+            candidate["foldseek_cluster_first_reason"] = assignment["reason"]
+            if source_partition != assignment["partition"]:
+                candidate["partition"] = assignment["partition"]
+                candidate["foldseek_cluster_first_applied_to_candidate"] = True
+                if assignment["partition"] == "heldout":
+                    applied_to_heldout.append(entry_id)
+                else:
+                    applied_to_in_distribution.append(entry_id)
+        candidate_rows.append(candidate)
+
+    source_metrics = _sequence_holdout_partition_metrics(rows_in)
+    candidate_metrics = _sequence_holdout_partition_metrics(candidate_rows)
+    cluster_splits = _sequence_identity_cluster_partition_splits(candidate_rows)
+    sequence_identity_target_preserved = not cluster_splits and bool(
+        holdout_metadata.get("sequence_identity_target_preserved_by_cluster_partition")
+        or holdout_metadata.get("sequence_identity_target_achieved")
+        or holdout_metadata.get("target_identity_achieved")
+    )
+
+    high_tm_constraints = [
+        pair for pair in pair_cache if pair["high_tm_partition_constraint"]
+    ]
+    constrained_clusters = [
+        cluster for cluster in clusters if cluster["high_tm_constraint_count"]
+    ]
+    singleton_clusters = [cluster for cluster in clusters if cluster["structure_count"] == 1]
+    coordinate_exclusions = (
+        readiness_metadata.get("tm_score_coordinate_exclusions")
+        or readiness_metadata.get("missing_or_unsupported_structures")
+        or []
+    )
+    claim_blockers = [
+        "cluster-first split is a review-only candidate and has not replaced the canonical sequence holdout",
+        "Foldseek verification chunks must be run under the cluster-first candidate before any full TM-score holdout claim",
+        "full all-materializable Foldseek/TM-score split remains uncomputed",
+        "observed pair cache is incomplete until every deterministic query chunk has completed or been explicitly adjudicated",
+    ]
+    if coordinate_exclusions:
+        claim_blockers.append("one or more evaluated rows lacks a supported selected structure")
+    if projected_violating_constraint_count:
+        claim_blockers.append(
+            "one or more observed high-TM partition constraint remains train/test"
+        )
+    if unresolved_constraint_count:
+        claim_blockers.append(
+            "one or more observed high-TM constraint could not be mapped to staged structures"
+        )
+    if cluster_splits:
+        claim_blockers.append("cluster-first candidate splits one or more sequence-identity clusters")
+
+    observed_constraints_resolved = (
+        bool(high_tm_constraints)
+        and projected_violating_constraint_count == 0
+        and unresolved_constraint_count == 0
+        and not cluster_splits
+    )
+    metadata = {
+        "method": "foldseek_tm_score_cluster_first_split_candidate",
+        "blocker_removed": (
+            "replaces blind Foldseek query-chunk split iteration with a "
+            "cluster-first candidate: observed TM>=0.7 neighbors are partition "
+            "constraints, whole connected components receive one assignment, "
+            "and verification can resume against that candidate"
+            if observed_constraints_resolved
+            else None
+        ),
+        "blocker_not_removed": (
+            "full TM-score holdout remains unclaimed until cluster-first "
+            "verification coverage completes"
+        ),
+        "blockers_remaining": sorted(set(claim_blockers)),
+        "slice_id": str(
+            readiness_metadata.get("slice_id") or holdout_metadata.get("slice_id") or ""
+        ),
+        "readiness_artifact": readiness_path,
+        "sequence_holdout_artifact": sequence_holdout_path,
+        "evidence_artifacts": evidence_paths or [],
+        "source_sequence_holdout_method": holdout_metadata.get("method"),
+        "source_readiness_method": readiness_metadata.get("method"),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate_count": 0,
+        "countable_label_count": 0,
+        "import_ready_candidate_count": 0,
+        "import_ready_row_count": 0,
+        "ready_for_label_import": False,
+        "threshold_target": "<0.7",
+        "tm_score_threshold": float(threshold),
+        "tm_score_target_operator": "<",
+        "structure_index_source": "foldseek_coordinate_readiness_staged_materialized_selected_structures",
+        "structure_index_member_count": len(staged_structures),
+        "structure_index_coordinate_directory": readiness_metadata.get("coordinate_directory"),
+        "structure_index_cache_scope": "all currently staged materializable selected coordinates",
+        "selected_structure_count": readiness_metadata.get(
+            "selected_structure_count", len(structures_in)
+        ),
+        "materialized_coordinate_count": readiness_metadata.get(
+            "materialized_coordinate_count", len(staged_structures)
+        ),
+        "missing_or_unsupported_structure_count": len(coordinate_exclusions),
+        "tm_score_coordinate_exclusion_count": len(coordinate_exclusions),
+        "tm_score_coordinate_exclusions": coordinate_exclusions,
+        "foldseek_binary_resolved": readiness_metadata.get("foldseek_binary_resolved"),
+        "foldseek_version": readiness_metadata.get("foldseek_version"),
+        "pair_constraint_cache_count": len(pair_cache),
+        "high_tm_partition_constraint_count": len(high_tm_constraints),
+        "observed_high_tm_structure_pair_count": len(
+            {
+                tuple(
+                    sorted(
+                        [
+                            str(pair.get("query_structure_key")),
+                            str(pair.get("target_structure_key")),
+                        ]
+                    )
+                )
+                for pair in high_tm_constraints
+                if pair.get("query_structure_key") and pair.get("target_structure_key")
+            }
+        ),
+        "projected_violating_constraint_count_after_cluster_assignment": (
+            projected_violating_constraint_count
+        ),
+        "unresolved_high_tm_constraint_count": unresolved_constraint_count,
+        "observed_high_tm_constraints_resolved_by_cluster_assignment": (
+            observed_constraints_resolved
+        ),
+        "cluster_count": len(clusters),
+        "constrained_cluster_count": len(constrained_clusters),
+        "singleton_cluster_count": len(singleton_clusters),
+        "max_cluster_structure_count": max(
+            (int(cluster["structure_count"]) for cluster in clusters),
+            default=0,
+        ),
+        "max_cluster_entry_count": max(
+            (int(cluster["entry_count"]) for cluster in clusters),
+            default=0,
+        ),
+        "source_heldout_count": source_metrics["heldout_count"],
+        "cluster_first_heldout_count": candidate_metrics["heldout_count"],
+        "source_in_distribution_count": source_metrics["in_distribution_count"],
+        "cluster_first_in_distribution_count": candidate_metrics[
+            "in_distribution_count"
+        ],
+        "source_heldout_in_scope_count": source_metrics["heldout_in_scope_count"],
+        "cluster_first_heldout_in_scope_count": candidate_metrics[
+            "heldout_in_scope_count"
+        ],
+        "source_heldout_out_of_scope_count": source_metrics[
+            "heldout_out_of_scope_count"
+        ],
+        "cluster_first_heldout_out_of_scope_count": candidate_metrics[
+            "heldout_out_of_scope_count"
+        ],
+        "source_heldout_out_of_scope_false_non_abstention_count": source_metrics[
+            "heldout_out_of_scope_false_non_abstention_count"
+        ],
+        "cluster_first_heldout_out_of_scope_false_non_abstention_count": (
+            candidate_metrics["heldout_out_of_scope_false_non_abstention_count"]
+        ),
+        "source_heldout_in_scope_top1_accuracy": source_metrics[
+            "heldout_in_scope_top1_accuracy"
+        ],
+        "cluster_first_heldout_in_scope_top1_accuracy": candidate_metrics[
+            "heldout_in_scope_top1_accuracy"
+        ],
+        "source_heldout_in_scope_top3_accuracy": source_metrics[
+            "heldout_in_scope_top3_accuracy"
+        ],
+        "cluster_first_heldout_in_scope_top3_accuracy": candidate_metrics[
+            "heldout_in_scope_top3_accuracy"
+        ],
+        "source_heldout_in_scope_retention": source_metrics[
+            "heldout_in_scope_retention"
+        ],
+        "cluster_first_heldout_in_scope_retention": candidate_metrics[
+            "heldout_in_scope_retention"
+        ],
+        "proposed_moved_to_heldout_entry_ids": sorted(
+            applied_to_heldout, key=_entry_id_sort_key
+        ),
+        "proposed_moved_to_heldout_entry_count": len(applied_to_heldout),
+        "proposed_moved_to_in_distribution_entry_ids": sorted(
+            applied_to_in_distribution, key=_entry_id_sort_key
+        ),
+        "proposed_moved_to_in_distribution_entry_count": len(
+            applied_to_in_distribution
+        ),
+        "sequence_identity_cluster_split_count": len(cluster_splits),
+        "sequence_identity_cluster_splits": cluster_splits,
+        "sequence_identity_target_preserved_by_cluster_partition": (
+            sequence_identity_target_preserved
+        ),
+        "real_sequence_identity_recomputed": False,
+        "max_observed_intra_cluster_tm_score": (
+            round(max_observed_intra_cluster_tm_score, 4)
+            if max_observed_intra_cluster_tm_score is not None
+            else None
+        ),
+        "max_observed_inter_cluster_tm_score_from_supplied_cache": (
+            round(max_observed_inter_cluster_tm_score, 4)
+            if max_observed_inter_cluster_tm_score is not None
+            else None
+        ),
+        "max_observed_high_tm_inter_cluster_tm_score": (
+            round(max_observed_high_tm_inter_cluster_score, 4)
+            if max_observed_high_tm_inter_cluster_score is not None
+            else None
+        ),
+        "tm_score_target_achieved_for_observed_constraint_cache": (
+            observed_constraints_resolved
+        ),
+        "verification_required": True,
+        "cluster_first_verification_status": "not_run",
+        "canonical_holdout_replaced": False,
+        "full_tm_score_split_computed": False,
+        "full_tm_score_holdout_claim_permitted": False,
+        "full_tm_score_holdout_claim_blockers": sorted(set(claim_blockers)),
+        "limitations": sorted(
+            {
+                "cluster-first split is a candidate copy and does not replace canonical artifacts",
+                "pair cache is assembled from existing Foldseek signal/audit/repair artifacts and may be incomplete",
+                "real sequence identity search is not rerun; cluster-partition risk is checked from existing row metadata",
+                "Foldseek verification chunks must be run after this cluster-first assignment before target status can be claimed",
+                "selected rows with no supported coordinate structures remain excluded from TM-score computation",
+                "review-only artifact; it creates no countable labels and no import-ready rows",
+            }
+        ),
+    }
+    return {
+        "metadata": metadata,
+        "clusters": clusters,
+        "partition_constraints": partition_constraints,
+        "pair_constraint_cache": pair_cache,
+        "excluded_entries": coordinate_exclusions,
+        "rows": candidate_rows,
+    }
+
+
+def _foldseek_pair_constraint_cache(
+    *,
+    evidence_artifacts: list[dict[str, Any]],
+    evidence_paths: list[str],
+    entry_to_structure_key: dict[str, str],
+    threshold: float,
+) -> list[dict[str, Any]]:
+    pair_cache: dict[tuple[str, str], dict[str, Any]] = {}
+    for artifact_index, artifact in enumerate(evidence_artifacts):
+        if not isinstance(artifact, dict):
+            continue
+        path = evidence_paths[artifact_index] if artifact_index < len(evidence_paths) else None
+        metadata = artifact.get("metadata", {})
+        method = metadata.get("method") if isinstance(metadata, dict) else None
+        rows: list[dict[str, Any]] = []
+        for key in (
+            "blocking_pairs",
+            "top_train_test_pairs",
+            "projected_blocking_pairs",
+            "projected_top_train_test_pairs",
+            "rows",
+        ):
+            value = artifact.get(key)
+            if isinstance(value, list):
+                rows.extend(item for item in value if isinstance(item, dict))
+        for row in rows:
+            score = _parse_optional_float(row.get("max_pair_tm_score"))
+            if score is None:
+                continue
+            query_entry_ids = _string_list(row.get("query_entry_ids"))
+            target_entry_ids = _string_list(row.get("target_entry_ids"))
+            if not query_entry_ids and not target_entry_ids:
+                entry_ids = _string_list(row.get("entry_ids"))
+                if len(entry_ids) == 2:
+                    query_entry_ids = [entry_ids[0]]
+                    target_entry_ids = [entry_ids[1]]
+            query_structure_key = _foldseek_pair_structure_key(
+                row=row,
+                key="query_structure_key",
+                id_key="query_structure_id",
+                entry_ids=query_entry_ids,
+                entry_to_structure_key=entry_to_structure_key,
+            )
+            target_structure_key = _foldseek_pair_structure_key(
+                row=row,
+                key="target_structure_key",
+                id_key="target_structure_id",
+                entry_ids=target_entry_ids,
+                entry_to_structure_key=entry_to_structure_key,
+            )
+            if (
+                query_structure_key
+                and target_structure_key
+                and query_structure_key == target_structure_key
+            ):
+                continue
+            pair_key = tuple(
+                sorted(
+                    [
+                        query_structure_key or "|".join(query_entry_ids) or "unmapped_query",
+                        target_structure_key or "|".join(target_entry_ids) or "unmapped_target",
+                    ]
+                )
+            )
+            candidate = {
+                "query_structure_key": query_structure_key,
+                "target_structure_key": target_structure_key,
+                "query_structure_id": row.get("query_structure_id"),
+                "target_structure_id": row.get("target_structure_id"),
+                "query_entry_ids": sorted(query_entry_ids, key=_entry_id_sort_key),
+                "target_entry_ids": sorted(target_entry_ids, key=_entry_id_sort_key),
+                "query_partitions": _string_list(row.get("query_partitions")),
+                "target_partitions": _string_list(row.get("target_partitions")),
+                "max_pair_tm_score": score,
+                "threshold": threshold,
+                "target_operator": "<",
+                "high_tm_partition_constraint": score >= threshold,
+                "source_artifacts": [path] if path else [],
+                "source_methods": [str(method)] if method else [],
+                "source_chunk_indices": [
+                    int(row["source_chunk_index"])
+                ]
+                if isinstance(row.get("source_chunk_index"), int)
+                else [],
+            }
+            existing = pair_cache.get(pair_key)
+            if existing is None:
+                pair_cache[pair_key] = candidate
+                continue
+            if score > (_parse_optional_float(existing.get("max_pair_tm_score")) or 0.0):
+                existing.update(
+                    {
+                        key: value
+                        for key, value in candidate.items()
+                        if key
+                        not in {"source_artifacts", "source_methods", "source_chunk_indices"}
+                    }
+                )
+            existing["high_tm_partition_constraint"] = bool(
+                existing["high_tm_partition_constraint"]
+                or candidate["high_tm_partition_constraint"]
+            )
+            existing["source_artifacts"] = sorted(
+                set(existing.get("source_artifacts", []) + candidate["source_artifacts"])
+            )
+            existing["source_methods"] = sorted(
+                set(existing.get("source_methods", []) + candidate["source_methods"])
+            )
+            existing["source_chunk_indices"] = sorted(
+                set(existing.get("source_chunk_indices", []) + candidate["source_chunk_indices"])
+            )
+    return sorted(
+        pair_cache.values(),
+        key=lambda row: (
+            not bool(row.get("high_tm_partition_constraint")),
+            -(_parse_optional_float(row.get("max_pair_tm_score")) or 0.0),
+            str(row.get("query_structure_key") or ""),
+            str(row.get("target_structure_key") or ""),
+        ),
+    )
+
+
+def _foldseek_pair_structure_key(
+    *,
+    row: dict[str, Any],
+    key: str,
+    id_key: str,
+    entry_ids: list[str],
+    entry_to_structure_key: dict[str, str],
+) -> str | None:
+    value = row.get(key)
+    if isinstance(value, str) and value:
+        return value
+    structure_id = row.get(id_key)
+    if isinstance(structure_id, str) and structure_id:
+        return structure_id if ":" in structure_id else f"pdb:{structure_id}"
+    mapped_keys = {
+        entry_to_structure_key[entry_id]
+        for entry_id in entry_ids
+        if entry_id in entry_to_structure_key
+    }
+    if len(mapped_keys) == 1:
+        return next(iter(mapped_keys))
+    return None
+
+
+def _foldseek_constraint_parents(
+    structure_by_key: dict[str, dict[str, Any]]
+) -> dict[str, str]:
+    return {structure_key: structure_key for structure_key in structure_by_key}
+
+
+def _foldseek_find(parent: dict[str, str], value: str) -> str:
+    parent.setdefault(value, value)
+    while parent[value] != value:
+        parent[value] = parent[parent[value]]
+        value = parent[value]
+    return value
+
+
+def _foldseek_union(parent: dict[str, str], left: str, right: str) -> None:
+    left_root = _foldseek_find(parent, left)
+    right_root = _foldseek_find(parent, right)
+    if left_root == right_root:
+        return
+    parent[max(left_root, right_root)] = min(left_root, right_root)
+
+
+def _foldseek_cluster_assignment(
+    *,
+    entry_ids: list[str],
+    rows_by_entry: dict[str, dict[str, Any]],
+) -> tuple[str, str]:
+    heldout_in_scope = [
+        entry_id
+        for entry_id in entry_ids
+        if rows_by_entry.get(entry_id, {}).get("partition") == "heldout"
+        and rows_by_entry.get(entry_id, {}).get("label_type") != "out_of_scope"
+    ]
+    heldout_out_of_scope = [
+        entry_id
+        for entry_id in entry_ids
+        if rows_by_entry.get(entry_id, {}).get("partition") == "heldout"
+        and rows_by_entry.get(entry_id, {}).get("label_type") == "out_of_scope"
+    ]
+    in_distribution = [
+        entry_id
+        for entry_id in entry_ids
+        if rows_by_entry.get(entry_id, {}).get("partition") == "in_distribution"
+    ]
+    heldout_any = [
+        entry_id
+        for entry_id in entry_ids
+        if rows_by_entry.get(entry_id, {}).get("partition") == "heldout"
+    ]
+    if heldout_in_scope:
+        return "heldout", "preserve_heldout_in_scope_high_tm_neighborhood"
+    if heldout_out_of_scope and in_distribution:
+        return "in_distribution", "move_heldout_out_of_scope_high_tm_neighborhood_to_train"
+    if heldout_any:
+        return "heldout", "preserve_existing_heldout_single_partition_cluster"
+    if in_distribution:
+        return "in_distribution", "preserve_existing_in_distribution_cluster"
+    return "unassigned", "no_sequence_holdout_partition_for_cluster"
+
+
+def _cluster_projected_partitions(
+    *,
+    entry_ids: list[str],
+    structure_key: Any,
+    structure_to_cluster: dict[str, str],
+    clusters: list[dict[str, Any]],
+) -> list[str]:
+    cluster_by_id = {str(cluster["cluster_id"]): cluster for cluster in clusters}
+    partitions = {
+        str(cluster_by_id[cluster_id].get("assignment"))
+        for cluster_id in [
+            structure_to_cluster.get(str(structure_key))
+            if isinstance(structure_key, str)
+            else None
+        ]
+        if cluster_id in cluster_by_id
+    }
+    if partitions:
+        return sorted(partitions)
+    for cluster in clusters:
+        if any(entry_id in cluster.get("entry_ids", []) for entry_id in entry_ids):
+            assignment = str(cluster.get("assignment") or "")
+            if assignment:
+                partitions.add(assignment)
+    return sorted(partitions)
+
+
+def _max_pair_score(rows: list[dict[str, Any]]) -> float | None:
+    return _max_optional_float(
+        [_parse_optional_float(row.get("max_pair_tm_score")) for row in rows]
+    )
+
+
 def _foldseek_blocking_pair_member_key(value: Any, fallback: Any) -> str:
     if isinstance(value, str) and value:
         return value

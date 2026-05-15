@@ -17,6 +17,7 @@ Query-chunk TM signal update: 2026-05-14T22:33:00Z
 Query-chunk aggregate and timeout update: 2026-05-14T23:20:00Z
 Split-redesign candidate and direct chunk-0 check: 2026-05-15T01:15:00Z
 Round-2 split redesign and direct chunk-0 check: 2026-05-15T01:40:00Z
+Cluster-first split redesign and subchunk verification: 2026-05-15T04:51:00Z
 
 Status:
 
@@ -30,6 +31,42 @@ Status:
   lookup and an isolated install:
   `/private/tmp/catalytic-foldseek-env/bin/foldseek version` reports
   `10.941cd33`.
+- Blind query-chunk continuation is no longer the active design. The current
+  Foldseek split path is cluster-first: build partition constraints from
+  observed `TM >= 0.7` pairs, assign whole connected structural components to
+  heldout or in-distribution, then verify bounded query chunks against the
+  resulting candidate.
+- `artifacts/v3_foldseek_tm_score_cluster_first_split_1000.json` reuses all
+  672 staged materializable selected structures as the current structure index.
+  It folds the pre-existing blocker evidence into 24 high-TM constraints across
+  12 constrained clusters, projects 0 high-TM train/test violations, preserves
+  0 sequence-cluster splits, and keeps every row review-only/non-countable.
+- The first cluster-first subchunk verification,
+  `artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_query_subchunk_006_of_112.json`,
+  completes with 14,207 mapped rows and exposes a new `m_csa:38`/`m_csa:118`
+  blocker at max train/test TM-score `0.7435`.
+- `artifacts/v3_foldseek_tm_score_cluster_first_split_round2_1000.json` folds
+  that blocker into the split by moving held-out out-of-scope `m_csa:118` to
+  in-distribution. The rerun
+  `artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round2_query_subchunk_006_of_112.json`
+  passes with 14,207 mapped rows, 2,358 train/test rows, max train/test
+  TM-score `0.6509`, and 0 target-violating pairs.
+- The paired round-2 subchunk,
+  `artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round2_query_subchunk_007_of_112.json`,
+  completes with 9,094 mapped rows, 5,449 train/test rows, max train/test
+  TM-score `0.8651`, and 16 violating rows across 9 reported structure pairs.
+  The aggregate
+  `artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round2_query_subchunk_aggregate_006_007_of_112.json`
+  keeps that failure explicit.
+- The current handoff split is
+  `artifacts/v3_foldseek_tm_score_cluster_first_split_round3_1000.json`; it
+  folds the subchunk-007 blockers into 34 high-TM constraints across 14
+  constrained clusters, projects 0 remaining known constraint violations,
+  preserves 0 sequence-cluster splits, and records 0 countable/import-ready
+  rows. Its readiness artifact is
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`.
+  Full TM-score holdout claims remain forbidden until verification restarts
+  from this round-3 cluster-first readiness and the remaining coverage passes.
 
 Current TM-score readiness:
 
