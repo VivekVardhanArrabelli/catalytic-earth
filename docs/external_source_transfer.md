@@ -223,12 +223,17 @@ as held-out in-scope `m_csa:15`/`m_csa:16` versus train neighbors
 moves `m_csa:157` and `m_csa:258` to heldout, preserves 0 sequence-cluster
 splits, increases heldout rows to 138, and keeps 0 held-out out-of-scope false
 non-abstentions. Its direct chunk aggregate
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_001_of_056.json`
-covers chunks 0-1/56 with 24 query coordinates, 28,251 mapped rows, 11,087
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_002_of_056.json`
+covers chunks 0-2/56 with 36 query coordinates, 40,890 mapped rows, 13,472
 train/test rows, max train/test TM-score `0.695`, and 0 target-violating
-pairs. This removes the first two query-chunk blockers only; 54 chunks remain
-uncomputed, two coordinate exclusions remain, and no full TM-score holdout
-claim is permitted.
+pairs. This removes the first three query-chunk blockers only; 53 chunks remain
+uncomputed. Chunk 3 then times out under the standard 900-second bound before
+pair rows are emitted, and
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_003_of_056.json`
+keeps that timeout visible while preserving completed-chunk max train/test
+TM-score `0.695`. The full split remains blocked by the chunk-3 runtime
+blocker, 53 uncomputed chunks, two coordinate exclusions, and candidate-only
+split status; no full TM-score holdout claim is permitted.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the remaining query

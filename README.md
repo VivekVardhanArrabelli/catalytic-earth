@@ -477,13 +477,19 @@ out-of-scope repair candidates. The round-3 candidate
 `artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round3_1000.json`
 moves `m_csa:157` and `m_csa:258` to heldout, keeps sequence-cluster splits at
 0, and keeps every row review-only/non-countable. Direct round-3 Foldseek
-chunks 0 and 1 clear the target: the aggregate
-`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_001_of_056.json`
-covers 24 query coordinates, 28,251 mapped rows, 11,087 train/test rows, max
+chunks 0, 1, and 2 clear the target: the aggregate
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_002_of_056.json`
+covers 36 query coordinates, 40,890 mapped rows, 13,472 train/test rows, max
 train/test TM-score `0.695`, and 0 target-violating pairs. This removes the
-first two query-chunk blockers only; 54 redesigned chunks remain uncomputed,
-the two coordinate exclusions still stand, and full-holdout claims remain
-forbidden.
+first three query-chunk blockers only. A direct chunk 3 attempt,
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_003_of_056.json`,
+times out under the standard 900-second bound before pair rows are emitted, and
+the aggregate
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_003_of_056.json`
+keeps that timeout visible while preserving the completed-chunk max
+train/test TM-score `0.695`. The 53 chunks from 3-55 remain uncomputed until
+chunk 3 is retried or split into a smaller query slice, the two coordinate
+exclusions still stand, and full-holdout claims remain forbidden.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
@@ -604,13 +610,12 @@ the contract rejects non-object artifact payloads at the gate boundary.
 The external pilot ranking, no-decision review export, evidence-packet,
 pilot-specific representation, and dossier artifacts are now built; the
 high-fan-in pilot builders also fail fast on mixed-slice lineage before writing
-new packet or dossier artifacts. The next bounded work items are adjudicating
-the aggregated Foldseek query-chunk blockers, deciding whether chunk 2 needs a
-longer runtime or smaller query slice, and then continuing resumable chunks
-only if that directly helps the TM-score split decision. External packet
-decisions still need active-site sources and broader duplicate-screening
-evidence beyond the bounded current-reference MMseqs2 search. Do not resume
-M-CSA-only count growth or external label import.
+new packet or dossier artifacts. The next bounded Foldseek item is retrying
+round-3 chunk 3 with a longer runtime or smaller query slice, stopping for
+adjudication if a target-violating pair appears. External packet decisions
+still need active-site sources and broader duplicate-screening evidence beyond
+the bounded current-reference MMseqs2 search. Do not resume M-CSA-only count
+growth or external label import.
 See
 `docs/label_factory.md`.
 

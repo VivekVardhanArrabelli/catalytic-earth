@@ -333,6 +333,30 @@ Current TM-score readiness:
   blockers but not the full split blocker: 54 chunks remain uncomputed,
   coordinate exclusions remain, and the split is still candidate review
   evidence only.
+- `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_002_of_056.json`
+  continues the same direct round-3 query-chunk path. It completes with
+  Foldseek `10.941cd33`, 12 query coordinates against all 672 staged targets,
+  `--threads 4`, and a 900-second cap; it records 12,639 mapped rows, 2,385
+  train/test rows, max train/test TM-score `0.584`, and 0 target-violating
+  pairs. The aggregate
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_002_of_056.json`
+  now records 3/56 completed round-3 chunks, 36 query coordinates, 40,890
+  mapped rows, 13,472 train/test rows, max train/test TM-score `0.695`, and
+  0 target-violating pairs. This removes the first three round-3 query-chunk
+  blockers but not the full split blocker: 53 chunks remain uncomputed,
+  coordinate exclusions remain, and the split is still candidate review
+  evidence only.
+- `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_003_of_056.json`
+  attempts the next direct round-3 chunk with the same Foldseek `10.941cd33`,
+  12-query/all-target command shape, `--threads 4`, and 900-second cap. It
+  times out before pair rows are emitted, so it records 0 mapped rows, no max
+  train/test TM-score, and no target pass. The aggregate
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_003_of_056.json`
+  preserves the timeout status while keeping the completed chunks 0-2 metrics:
+  3/56 completed chunks, 36 completed query coordinates, 40,890 mapped rows,
+  13,472 train/test rows, max train/test TM-score `0.695`, and 0
+  target-violating pairs among completed chunks. Chunk 3 now needs a longer
+  retry or smaller query slice before chunked Foldseek coverage can advance.
 - The TM-score signal builder now records explicit partial/full coverage
   semantics for future artifacts: `tm_score_signal_coverage_status`,
   `full_tm_score_holdout_claim_permitted=false`,
@@ -590,4 +614,51 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-foldseek-tm-score-split-repai
   --target-failure artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json \
   --sequence-holdout artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json \
   --out artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json
+```
+
+The round-3 redesigned chunk-2 signal and 0-2 aggregate used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal \
+  --slice-id 1000 \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round3.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --chunk-index 2 \
+  --chunk-size 12 \
+  --threads 4 \
+  --max-runtime-seconds 900 \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_002_of_056.json
+```
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli aggregate-foldseek-tm-score-query-chunks \
+  --slice-id 1000 \
+  --chunks artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_000_of_056.json \
+    artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_001_of_056.json \
+    artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_002_of_056.json \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_002_of_056.json
+```
+
+The round-3 redesigned chunk-3 timeout artifact and 0-3 aggregate used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal \
+  --slice-id 1000 \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round3.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --chunk-index 3 \
+  --chunk-size 12 \
+  --threads 4 \
+  --max-runtime-seconds 900 \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_003_of_056.json
+```
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli aggregate-foldseek-tm-score-query-chunks \
+  --slice-id 1000 \
+  --chunks artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_000_of_056.json \
+    artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_001_of_056.json \
+    artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_002_of_056.json \
+    artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_003_of_056.json \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_003_of_056.json
 ```

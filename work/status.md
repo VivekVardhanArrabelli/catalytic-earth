@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 105
-- Measured elapsed time: 3696.8 minutes (61.61 hours)
+- Entries: 106
+- Measured elapsed time: 3737.3 minutes (62.29 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 1050.5 measured minutes (17.51 hours)
+- post-mcsa-spof-hardening: 1091.0 measured minutes (18.18 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1108
-- Evidence references logged: 901
+- Artifact references logged: 1109
+- Evidence references logged: 902
 
 ## Recent Entries
-
-### 2026-05-14T19:08:48.002960+00:00 - post-mcsa-spof-hardening
-
-- Task: Sequence holdout split repair candidate
-- Time mode: measured
-- Measured minutes: 4.417
-- Started: 2026-05-14T14:04:22-0500
-- Ended: 2026-05-14T14:08:47-0500
-- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: 346 unit tests passed, validate passed, compileall passed, git diff check passed, JSON parse passed, candidate holdout moves m_csa:34 only, preserves 44 held-out in-scope rows, held-out out-of-scope false non-abstentions remain 0, 0 countable labels, 0 import-ready rows
-- Notes: Second direct bounded slice in the same locked run. No delegation, no count/import growth.
 
 ### 2026-05-14T20:34:07.608397+00:00 - post-mcsa-spof-hardening
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-15T02:46:58Z
 - Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_001_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_aggregate_000_001_of_056.json, artifacts/v3_foldseek_tm_score_split_redesign_candidate_round2_query_chunk_repair_plan_1000.json, artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round3_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round3.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_000_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_001_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_001_of_056.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
 - Evidence: startup 370 unit tests passed, validate passed with 679 curated labels, round-2 chunk 1 completed and failed target with max TM 0.8182 across 4 reported blockers, round-3 redesigned split moved m_csa:157 and m_csa:258 to heldout, direct round-3 chunks 0-1 completed with max TM 0.695 and 0 target-violating pairs, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
+
+### 2026-05-15T03:40:39.370706+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek round3 chunk continuation
+- Time mode: measured
+- Measured minutes: 40.467
+- Started: 2026-05-14T21:59:56-05:00
+- Ended: 2026-05-14T22:40:24-05:00
+- Artifacts: work/scope.md
+- Evidence: 0 import-ready rows
 - Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
 
 ## Expectation Updates
@@ -209,6 +209,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-15T00:19:07.369532+00:00: Full TM-score holdout remains blocked by target-violating completed chunks, held-out in-scope split blockers, incomplete query coverage, and two coordinate exclusions
 - 2026-05-15T01:39:52.871051+00:00: Round-2 split redesign clears Foldseek chunk 0 only; next work should continue chunk 1 under the round-2 candidate and stop on any new target violation
 - 2026-05-15T02:47:11.394945+00:00: Round-3 split redesign clears Foldseek chunks 0-1 only; next work should continue chunk 2 and stop on any new target violation
+- 2026-05-15T03:40:39.370706+00:00: Round-3 Foldseek chunks 0-2 clear the completed-chunk target, but chunk 3 is now the runtime blocker; retry or split chunk 3 before continuing coverage
 
 ## Scope Adjustments
 

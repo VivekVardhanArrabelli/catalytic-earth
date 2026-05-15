@@ -50,6 +50,42 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-14T21:59:56-05:00 run after clean startup gates
+(`374` unit tests passed and `validate` passed with 679 curated labels; final
+wrap-up gates passed `378` unit tests and `validate` after the new artifacts
+were pinned):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. The selected external pilot remains review-only with 0
+  import-ready rows and 0 countable candidates; this run did not change pilot
+  terminal decisions or import readiness.
+- Scientific generalization work: Yes for Foldseek/TM-score split-redesign
+  evidence, but not for a full split claim. This run added
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_002_of_056.json`,
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_003_of_056.json`,
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_002_of_056.json`,
+  and
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_003_of_056.json`.
+  Round-3 chunk 2 completed directly under the 900-second bound with 12,639
+  mapped rows, 2,385 train/test rows, max train/test TM-score `0.584`, and 0
+  target-violating pairs. The chunks 0-2 aggregate covers 36 query
+  coordinates, 40,890 mapped rows, 13,472 train/test rows, max train/test
+  TM-score `0.695`, and 0 target-violating pairs. Chunk 3 timed out under the
+  standard 900-second bound before emitting pair rows; the chunks 0-3 aggregate
+  keeps that timeout visible while preserving completed-chunk max `0.695`.
+- SPOF hardening work: Yes. The run removes the round-3 chunk-2 runtime and
+  target-status ambiguity, and converts chunk 3 into a concrete runtime
+  blocker without claiming full separation. `m_csa:372` and `m_csa:501`
+  remain coordinate exclusions, chunks 3-55 remain uncomputed under the
+  round-3 redesigned split until chunk 3 is retried or split, all outputs
+  remain review-only and non-countable, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-15T01:57:51Z run after clean startup gates
 (`370` unit tests passed and `validate` passed with 679 curated labels):
 
@@ -1391,17 +1427,21 @@ manual held-out in-scope split-redesign blockers involving `m_csa:15` and
 `m_csa:16` against train neighbors `m_csa:258` and `m_csa:157`; there are 0
 conservative held-out out-of-scope repair candidates. The round-3 redesign
 moves `m_csa:157` and `m_csa:258` to heldout, preserves 0 sequence-cluster
-splits, and direct Foldseek chunks 0 and 1 clear with 28,251 mapped rows,
-11,087 train/test rows, max train/test TM-score `0.695`, and 0
-target-violating pairs. The previous retry aggregate still records chunks 0-2
-under the prior candidate split with max `0.8957`, and the all-at-once
-all-materializable attempt still documents a 1,500-second timeout. The
-canonical sequence holdout remains unchanged, `m_csa:372` and `m_csa:501`
-remain coordinate exclusions, 54 round-3 redesigned query chunks remain
-uncomputed, and no countable/import-ready rows were created. Next Foldseek work
-should continue from the round-3 redesigned split with query chunk 2, but stop
-and adjudicate if a new target-violating pair appears; do not add another
-capped preview or claim full separation.
+splits, and direct Foldseek chunks 0, 1, and 2 clear with 40,890 mapped rows,
+13,472 train/test rows, max train/test TM-score `0.695`, and 0
+target-violating pairs. Chunk 2 completed under the standard 900-second bound
+with max train/test TM-score `0.584`. Chunk 3 under the same command shape
+times out at 900 seconds before pair rows are emitted; the 0-3 aggregate keeps
+that timeout visible while preserving the completed-chunk max `0.695`. The
+previous retry aggregate still records chunks 0-2 under the prior candidate
+split with max `0.8957`, and the all-at-once all-materializable attempt still
+documents a 1,500-second timeout. The canonical sequence holdout remains
+unchanged, `m_csa:372` and `m_csa:501` remain coordinate exclusions, chunks
+3-55 remain uncomputed under the round-3 redesigned split until chunk 3 is
+retried or split, and no countable/import-ready rows were created. Next
+Foldseek work should retry round-3 chunk 3 with a longer runtime or smaller
+query slice, but stop and adjudicate if a target-violating pair appears; do
+not add another capped preview or claim full separation.
 
 External pilot import remains blocked. The selected-pilot representation
 adjudication now gives concrete review-only statuses: 3 stable representation
