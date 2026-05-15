@@ -23,6 +23,7 @@ Cluster-first round-6 verification update: 2026-05-15T06:47:00Z
 Cluster-first round-7 timeout/update: 2026-05-15T07:58:00Z
 Cluster-first round-19 verification update: 2026-05-15T12:34:47-05:00
 Cluster-first round-22 verification update: 2026-05-15T18:33:42Z
+Cluster-first round-24 verification update: 2026-05-15T19:16:47Z
 
 Status:
 
@@ -181,9 +182,22 @@ Status:
   `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round22.json`.
   Direct round-22 verification clears staged indices 115-118 in aggregate with
   6,103 mapped rows, 1,319 train/test rows, max train/test TM-score `0.6939`,
+  and 0 target-violating pairs. Continuing at staged index 119 exposes
+  `m_csa:120`/`pdb:1ZP3` against six held-out neighbors at max train/test
+  TM-score `0.7556`. Round 23 folds those blockers into 88 high-TM constraints,
+  but the direct index-119 rerun still exposes a second `m_csa:120` surface
+  against five in-distribution neighbors at max `0.711`. Round 24 folds that
+  second surface into 93 high-TM constraints plus 38 sequence-identity
+  partition constraints, preserves 0 projected violations, 0 sequence-cluster
+  splits, and 0 held-out out-of-scope false non-abstentions, and stages
+  readiness at
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round24.json`.
+  Direct round-24 verification clears staged indices 119-122 in aggregate with
+  5,681 mapped rows, 4,184 train/test rows, max train/test TM-score `0.6961`,
   and 0 target-violating pairs. Full TM-score holdout claims remain forbidden
-  until the remaining round-22 cluster-first coverage passes or is explicitly
-  adjudicated.
+  until the remaining round-24 cluster-first coverage passes or is explicitly
+  adjudicated. Next start: continue single-query verification from staged index
+  123 under round-24 readiness.
 
 Current TM-score readiness:
 

@@ -333,13 +333,19 @@ a broader `m_csa:116` surface at max `0.9749`; round 21 folds that surface and
 then exposes `m_csa:116`/`m_csa:67` at max `0.9032`. Round 22 folds the
 remaining pair into 82 high-TM constraints plus 38 sequence-identity partition
 constraints, preserves 0 projected violations and 0 sequence-cluster splits,
-and clears indices 115-118 at max `0.6939` with 0 target-violating pairs. Full
-TM-score holdout claims remain forbidden until the remaining round-22
+and clears indices 115-118 at max `0.6939` with 0 target-violating pairs.
+Continuing from staged index 119 exposes a `m_csa:120` blocker surface at max
+`0.7556`; round 23 folds those blockers but the index-119 rerun still fails at
+max `0.711`. Round 24 folds that second surface into 93 high-TM constraints
+plus 38 sequence-identity partition constraints, preserves 0 projected
+violations and 0 sequence-cluster splits, and clears indices 119-122 at max
+`0.6961` with 0 target-violating pairs. Full
+TM-score holdout claims remain forbidden until the remaining round-24
 cluster-first coverage passes or is explicitly adjudicated.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the remaining query
-chunks are completed or explicitly adjudicated under the cluster-first round-22
+chunks are completed or explicitly adjudicated under the cluster-first round-24
 split, coordinate exclusions remain reported, and target checks pass.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot

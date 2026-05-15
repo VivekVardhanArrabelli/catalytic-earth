@@ -589,8 +589,17 @@ partition constraints, preserves 0 projected violations and 0 sequence-cluster
 splits, and clears indices 115-118 in aggregate at max train/test TM-score
 `0.6939` with 0 target-violating pairs. Its readiness artifact is
 `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round22.json`.
+Continuing from staged index 119 exposes `m_csa:120` blockers at max `0.7556`;
+round 23 folds those blockers but the rerun still exposes a second
+`m_csa:120` surface at max `0.711`. Round 24 folds that second surface into
+93 high-TM constraints plus 38 sequence-identity partition constraints, with 0
+projected violations and 0 sequence-cluster splits. Direct round-24
+verification clears staged indices 119-122 in aggregate at max train/test
+TM-score `0.6961`, with 0 target-violating pairs. The active readiness
+artifact is
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round24.json`.
 These artifacts remain review-only and non-countable; no full TM-score holdout
-claim is permitted until verification resumes from round 22 and the remaining
+claim is permitted until verification resumes from round 24 and the remaining
 query coverage passes or is explicitly adjudicated.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped

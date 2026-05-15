@@ -2961,6 +2961,114 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["countable_label_count"], 0)
         self.assertEqual(metadata["import_ready_row_count"], 0)
 
+    def test_current_foldseek_cluster_first_round23_and_round24_blockers_are_pinned(
+        self,
+    ) -> None:
+        round22_signal = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round22_query_single_119_of_672.json"
+        )
+        round22_metadata = round22_signal["metadata"]
+
+        self.assertEqual(round22_metadata["query_staged_entry_ids"], ["m_csa:120"])
+        self.assertEqual(round22_metadata["mapped_pair_count"], 3071)
+        self.assertEqual(round22_metadata["train_test_pair_count"], 627)
+        self.assertEqual(round22_metadata["max_observed_train_test_tm_score"], 0.7556)
+        self.assertEqual(round22_metadata["violating_train_test_pair_row_count"], 31)
+        self.assertEqual(round22_metadata["violating_unique_structure_pair_count"], 6)
+        self.assertEqual(len(round22_signal["blocking_pairs"]), 6)
+        self.assertEqual(
+            round22_signal["blocking_pairs"][0]["query_entry_ids"], ["m_csa:120"]
+        )
+        self.assertEqual(
+            round22_signal["blocking_pairs"][0]["target_entry_ids"], ["m_csa:328"]
+        )
+        self.assertFalse(round22_metadata["full_tm_score_holdout_claim_permitted"])
+
+        round23_signal = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round23_query_single_119_of_672.json"
+        )
+        round23_metadata = round23_signal["metadata"]
+
+        self.assertEqual(round23_metadata["query_staged_entry_ids"], ["m_csa:120"])
+        self.assertEqual(round23_metadata["mapped_pair_count"], 3071)
+        self.assertEqual(round23_metadata["train_test_pair_count"], 2435)
+        self.assertEqual(round23_metadata["max_observed_train_test_tm_score"], 0.711)
+        self.assertEqual(round23_metadata["violating_train_test_pair_row_count"], 10)
+        self.assertEqual(round23_metadata["violating_unique_structure_pair_count"], 5)
+        self.assertEqual(len(round23_signal["blocking_pairs"]), 5)
+        self.assertEqual(
+            round23_signal["blocking_pairs"][0]["query_entry_ids"], ["m_csa:120"]
+        )
+        self.assertEqual(
+            round23_signal["blocking_pairs"][0]["target_entry_ids"], ["m_csa:182"]
+        )
+        self.assertFalse(round23_metadata["full_tm_score_holdout_claim_permitted"])
+
+    def test_current_foldseek_cluster_first_round24_candidate_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_cluster_first_split_round24_1000.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "foldseek_tm_score_cluster_first_split_candidate"
+        )
+        self.assertEqual(metadata["high_tm_partition_constraint_count"], 93)
+        self.assertEqual(metadata["sequence_identity_partition_constraint_count"], 38)
+        self.assertEqual(metadata["constrained_cluster_count"], 21)
+        self.assertEqual(metadata["cluster_first_heldout_count"], 171)
+        self.assertEqual(metadata["cluster_first_heldout_in_scope_count"], 77)
+        self.assertEqual(metadata["cluster_first_heldout_out_of_scope_count"], 94)
+        self.assertEqual(
+            metadata["cluster_first_heldout_out_of_scope_false_non_abstention_count"],
+            0,
+        )
+        self.assertEqual(metadata["sequence_identity_cluster_split_count"], 0)
+        self.assertEqual(
+            metadata["projected_violating_constraint_count_after_cluster_assignment"],
+            0,
+        )
+        self.assertTrue(
+            metadata["observed_high_tm_constraints_resolved_by_cluster_assignment"]
+        )
+        self.assertIn("m_csa:120", metadata["proposed_moved_to_heldout_entry_ids"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+
+    def test_current_foldseek_cluster_first_round24_verified_window_is_pinned(
+        self,
+    ) -> None:
+        readiness = _load_artifact(
+            "artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round24.json"
+        )
+        readiness_metadata = readiness["metadata"]
+
+        self.assertEqual(readiness_metadata["method"], "foldseek_coordinate_readiness")
+        self.assertEqual(readiness_metadata["sequence_holdout_row_count"], 678)
+        self.assertEqual(readiness_metadata["materialized_coordinate_count"], 672)
+        self.assertEqual(readiness_metadata["tm_score_coordinate_exclusion_count"], 2)
+        self.assertEqual(readiness_metadata["not_materialized_structure_count"], 0)
+        self.assertFalse(readiness_metadata["tm_score_split_computed"])
+        self.assertFalse(readiness_metadata["full_tm_score_split_computed"])
+
+        aggregate = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round24_query_single_aggregate_119_122_of_672.json"
+        )
+        metadata = aggregate["metadata"]
+
+        self.assertEqual(metadata["completed_query_chunk_indices"], [119, 120, 121, 122])
+        self.assertEqual(metadata["completed_query_coordinate_count"], 4)
+        self.assertEqual(metadata["mapped_pair_count"], 5681)
+        self.assertEqual(metadata["train_test_pair_count"], 4184)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.6961)
+        self.assertTrue(metadata["tm_score_target_achieved_for_completed_query_chunks"])
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 0)
+        self.assertEqual(aggregate["blocking_pairs"], [])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+
     def test_current_sequence_holdout_split_redesign_candidate_is_pinned(self) -> None:
         artifact = _load_artifact(
             "artifacts/v3_sequence_distance_holdout_split_redesign_candidate_1000.json"

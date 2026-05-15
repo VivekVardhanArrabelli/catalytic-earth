@@ -50,6 +50,35 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T18:56:51Z run after lock recovery/repair and
+clean startup gates (`418` unit tests passed and `validate` passed with 679
+curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not modify external pilot decisions; the selected
+  external pilot remains review-only with 0 import-ready rows and 0 countable
+  candidates.
+- Scientific generalization work: Yes for direct Foldseek/TM-score
+  cluster-first verification and split repair, but not for a full split claim.
+  Round 22 index 119 exposes `m_csa:120` at max TM-score `0.7556`; round 23
+  folds those blockers but its index-119 rerun still exposes `m_csa:120` at
+  max `0.711`; round 24 folds the second blocker surface and clears staged
+  indices 119-122 in aggregate at max train/test TM-score `0.6961`.
+- SPOF hardening work: Yes. The run converted the new high-TM train/test
+  blockers into cluster-first partition constraints, bringing the active split
+  to 93 high-TM constraints plus 38 sequence-identity constraints with 0
+  projected violations, 0 sequence-cluster splits, and 0 held-out out-of-scope
+  false non-abstentions. `m_csa:372` and `m_csa:501` remain coordinate
+  exclusions, most query coverage remains unverified under the cluster-first
+  split, and `full_tm_score_holdout_claim_permitted=false`.
+- Next start: continue single-query verification from staged index 123 under
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round24.json`.
+
 Recorded for the 2026-05-15T17:54:36Z run after clean startup gates
 (`415` unit tests passed and `validate` passed with 679 curated labels):
 
