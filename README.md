@@ -564,10 +564,19 @@ folds those blockers and clears index 103 at max `0.6669`, then index 104
 passes at max `0.4496` before index 105 exposes a larger high-TM blocker
 surface at max `0.8862`. Round 13 folds that evidence into 48 high-TM
 constraints, 38 sequence-identity partition constraints, 0 projected
-violations, and 0 sequence-cluster splits; its readiness artifact is staged for
-the next rerun of index 105.
+violations, and 0 sequence-cluster splits. Round-13 verification clears
+indices 105-106, then index 107 exposes `m_csa:108` against a broad held-out
+neighborhood at max `0.8826`; round 14 folds that surface into 60 high-TM
+constraints and reruns index 107 cleanly at max `0.6862`. Index 108 then
+exposes `m_csa:109` versus `m_csa:800`/`m_csa:267` at max `0.7649`; round 15
+folds those blockers, backfills indices 107-109 cleanly at max `0.6996`, and
+index 110 exposes `m_csa:111` versus `m_csa:364`, `m_csa:550`, `m_csa:236`,
+and `m_csa:270` at max `0.7521`. Round 16 folds that evidence into 66 high-TM
+constraints plus 38 sequence-identity partition constraints, with 0 projected
+violations, 0 sequence-cluster splits, and readiness staged at
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round16.json`.
 These artifacts remain review-only and non-countable; no full TM-score holdout
-claim is permitted until verification continues from round 13 and the remaining
+claim is permitted until verification continues from round 16 and the remaining
 query coverage passes or is explicitly adjudicated.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped

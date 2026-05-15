@@ -340,7 +340,13 @@ Current expectation:
   `0.4496`; staged index 105 then exposes a larger high-TM blocker surface at
   max `0.8862`, and round 13 folds it into 48 high-TM constraints plus 38
   sequence-identity partition constraints with 0 projected violations and 0
-  sequence-cluster splits. The first 12-row
+  sequence-cluster splits. Round 13 clears indices 105-106 before index 107
+  exposes `m_csa:108` at max `0.8826`; round 14 folds that surface and clears
+  index 107 at max `0.6862`. Round 15 folds the next index-108 blockers and
+  verifies indices 107-109 cleanly at max `0.6996`; index 110 exposes
+  `m_csa:111` at max `0.7521`, and round 16 folds that evidence into 66
+  high-TM constraints plus 38 sequence-identity partition constraints with 0
+  projected violations and 0 sequence-cluster splits. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

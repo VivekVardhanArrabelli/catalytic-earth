@@ -313,10 +313,16 @@ folds those blockers and clears index 103 at max `0.6669`, then index 104
 passes at max `0.4496` before index 105 exposes a larger high-TM blocker
 surface at max `0.8862`. Round 13 folds that evidence into 48 high-TM
 constraints, 38 sequence-identity partition constraints, 0 projected
-violations, and 0 sequence-cluster splits; its readiness artifact is staged for
-the next rerun of index 105. Full TM-score holdout claims remain forbidden until
-the remaining round-13 cluster-first coverage passes or is explicitly
-adjudicated.
+violations, and 0 sequence-cluster splits. Round-13 verification clears
+indices 105-106, then index 107 exposes `m_csa:108` at max `0.8826`; round 14
+folds that surface and reruns index 107 cleanly at max `0.6862`. Index 108
+then exposes `m_csa:109` at max `0.7649`; round 15 folds those blockers,
+verifies indices 107-109 cleanly at max `0.6996`, and index 110 exposes
+`m_csa:111` at max `0.7521`. Round 16 folds that evidence into 66 high-TM
+constraints plus 38 sequence-identity partition constraints, with 0 projected
+violations, 0 sequence-cluster splits, and readiness staged for the next direct
+rerun of index 110. Full TM-score holdout claims remain forbidden until the
+remaining round-16 cluster-first coverage passes or is explicitly adjudicated.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the remaining query
