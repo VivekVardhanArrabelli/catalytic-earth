@@ -1903,6 +1903,50 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["countable_label_count"], 0)
         self.assertEqual(metadata["import_ready_row_count"], 0)
 
+    def test_current_foldseek_cluster_first_round4_candidate_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_cluster_first_split_round4_1000.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "foldseek_tm_score_cluster_first_split_candidate"
+        )
+        self.assertEqual(metadata["structure_index_member_count"], 672)
+        self.assertEqual(metadata["pair_constraint_cache_count"], 64)
+        self.assertEqual(metadata["high_tm_partition_constraint_count"], 35)
+        self.assertEqual(metadata["cluster_count"], 639)
+        self.assertEqual(metadata["constrained_cluster_count"], 14)
+        self.assertEqual(metadata["max_cluster_structure_count"], 11)
+        self.assertEqual(
+            metadata["projected_violating_constraint_count_after_cluster_assignment"],
+            0,
+        )
+        self.assertTrue(
+            metadata["observed_high_tm_constraints_resolved_by_cluster_assignment"]
+        )
+        self.assertEqual(metadata["proposed_moved_to_heldout_entry_count"], 12)
+        self.assertEqual(metadata["proposed_moved_to_in_distribution_entry_count"], 13)
+        self.assertIn(
+            "m_csa:397", metadata["proposed_moved_to_in_distribution_entry_ids"]
+        )
+        self.assertEqual(metadata["cluster_first_heldout_count"], 135)
+        self.assertEqual(metadata["cluster_first_heldout_in_scope_count"], 56)
+        self.assertEqual(
+            metadata["cluster_first_heldout_out_of_scope_false_non_abstention_count"],
+            0,
+        )
+        self.assertEqual(metadata["sequence_identity_cluster_split_count"], 0)
+        self.assertEqual(metadata["max_observed_intra_cluster_tm_score"], 0.926)
+        self.assertEqual(
+            metadata["max_observed_inter_cluster_tm_score_from_supplied_cache"],
+            0.6993,
+        )
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertEqual(len(artifact["partition_constraints"]), 35)
+
     def test_current_foldseek_cluster_first_round2_subchunk_aggregate_is_pinned(
         self,
     ) -> None:
@@ -1929,9 +1973,79 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["countable_label_count"], 0)
         self.assertEqual(metadata["import_ready_row_count"], 0)
 
+    def test_current_foldseek_cluster_first_round3_subchunk_aggregate_is_pinned(
+        self,
+    ) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round3_query_subchunk_aggregate_006_007_of_112.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_query_chunk_aggregate")
+        self.assertEqual(metadata["query_chunk_count"], 112)
+        self.assertEqual(metadata["completed_query_chunk_count"], 2)
+        self.assertEqual(metadata["completed_query_coordinate_count"], 12)
+        self.assertEqual(metadata["remaining_uncomputed_query_coordinate_count"], 660)
+        self.assertEqual(metadata["pair_count"], 23301)
+        self.assertEqual(metadata["mapped_pair_count"], 23301)
+        self.assertEqual(metadata["train_test_pair_count"], 7332)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.8043)
+        self.assertFalse(
+            metadata["tm_score_target_achieved_for_completed_query_chunks"]
+        )
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 1)
+        self.assertEqual(metadata["violating_unique_structure_pair_count_reported"], 1)
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+
+    def test_current_foldseek_cluster_first_round4_subchunk_007_is_pinned(
+        self,
+    ) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round4_query_subchunk_007_of_112.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_query_chunk_signal")
+        self.assertEqual(metadata["foldseek_run_status"], "completed")
+        self.assertEqual(metadata["query_chunk_count"], 112)
+        self.assertEqual(metadata["query_chunk_index"], 7)
+        self.assertEqual(metadata["query_chunk_size"], 6)
+        self.assertEqual(metadata["query_staged_coordinate_count"], 6)
+        self.assertEqual(metadata["pair_count"], 9094)
+        self.assertEqual(metadata["mapped_pair_count"], 9094)
+        self.assertEqual(metadata["train_test_pair_count"], 4975)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.6598)
+        self.assertTrue(metadata["tm_score_target_achieved"])
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 0)
+        self.assertEqual(artifact["blocking_pairs"], [])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+
     def test_current_foldseek_cluster_first_round3_readiness_is_pinned(self) -> None:
         artifact = _load_artifact(
             "artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_coordinate_readiness")
+        self.assertEqual(metadata["sequence_holdout_row_count"], 678)
+        self.assertEqual(metadata["materialized_coordinate_count"], 672)
+        self.assertEqual(metadata["tm_score_coordinate_exclusion_count"], 2)
+        self.assertEqual(
+            [row["entry_id"] for row in metadata["tm_score_coordinate_exclusions"]],
+            ["m_csa:372", "m_csa:501"],
+        )
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+
+    def test_current_foldseek_cluster_first_round4_readiness_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round4.json"
         )
         metadata = artifact["metadata"]
 

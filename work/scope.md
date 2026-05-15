@@ -290,14 +290,19 @@ Current expectation:
   held-out out-of-scope `m_csa:118` to in-distribution and clears that same
   subchunk with max TM-score `0.6509`. Subchunk 007 then fails under round 2
   with max TM-score `0.8651`, 16 violating rows, and 9 reported blocking
-  pairs. The current round-3 cluster-first candidate folds those new blockers
-  into 34 high-TM constraints across 14 constrained clusters, projects 0
-  remaining known constraint violations, preserves 0 sequence-cluster splits,
-  and keeps all rows review-only/non-countable. The next Foldseek work should
+  pairs. The round-3 cluster-first candidate folds those new blockers into 34
+  high-TM constraints across 14 constrained clusters. Direct round-3
+  verification reruns subchunks 006 and 007; 006 passes with max TM-score
+  `0.6509`, while 007 exposes one remaining `m_csa:45`/`m_csa:397` blocker at
+  max TM-score `0.8043`. The current round-4 cluster-first candidate folds
+  that blocker into 35 high-TM constraints, moves held-out out-of-scope
+  `m_csa:397` to in-distribution, preserves 0 sequence-cluster splits, keeps
+  all rows review-only/non-countable, and the direct round-4 subchunk-007
+  rerun passes with max TM-score `0.6598`. The next Foldseek work should
   verify from
-  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`,
-  starting with subchunk 007 or the next bounded coverage slice, and stop on
-  any new target violation. The first 12-row
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round4.json`,
+  continuing with the next bounded coverage slice and stopping on any new
+  target violation. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

@@ -507,9 +507,18 @@ now records 34 high-TM constraints, 14 constrained clusters, 0 projected
 constraint violations, 0 sequence-cluster splits, and a companion readiness
 artifact at
 `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`.
-This is still review-only and non-countable; no full TM-score holdout claim is
-permitted until verification resumes from the round-3 cluster-first readiness,
-starting with subchunk 007 or later, and the remaining query coverage passes.
+Direct round-3 verification reruns subchunks 006 and 007 from that readiness.
+Subchunk 006 passes with max train/test TM-score `0.6509`, but subchunk 007
+exposes one remaining high-TM blocker, `m_csa:45` versus `m_csa:397`, at max
+train/test TM-score `0.8043`. The round-4 cluster-first candidate folds that
+blocker into 35 high-TM constraints, moves held-out out-of-scope `m_csa:397`
+to in-distribution, preserves 0 sequence-cluster splits and 0 held-out
+out-of-scope false non-abstentions, and its direct subchunk 007 rerun passes
+with max train/test TM-score `0.6598` and 0 target-violating pairs. This is
+still review-only and non-countable; no full TM-score holdout claim is
+permitted until verification continues from
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round4.json`
+and the remaining query coverage passes.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

@@ -18,6 +18,7 @@ Query-chunk aggregate and timeout update: 2026-05-14T23:20:00Z
 Split-redesign candidate and direct chunk-0 check: 2026-05-15T01:15:00Z
 Round-2 split redesign and direct chunk-0 check: 2026-05-15T01:40:00Z
 Cluster-first split redesign and subchunk verification: 2026-05-15T04:51:00Z
+Cluster-first round-4 verification update: 2026-05-15T05:49:00Z
 
 Status:
 
@@ -58,15 +59,30 @@ Status:
   The aggregate
   `artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round2_query_subchunk_aggregate_006_007_of_112.json`
   keeps that failure explicit.
-- The current handoff split is
+- The prior handoff split was
   `artifacts/v3_foldseek_tm_score_cluster_first_split_round3_1000.json`; it
   folds the subchunk-007 blockers into 34 high-TM constraints across 14
   constrained clusters, projects 0 remaining known constraint violations,
   preserves 0 sequence-cluster splits, and records 0 countable/import-ready
   rows. Its readiness artifact is
   `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`.
-  Full TM-score holdout claims remain forbidden until verification restarts
-  from this round-3 cluster-first readiness and the remaining coverage passes.
+- Round-3 verification from that readiness reruns subchunks 006 and 007.
+  Subchunk 006 passes with 14,207 mapped rows, 2,356 train/test rows, max
+  train/test TM-score `0.6509`, and 0 target-violating pairs. Subchunk 007
+  still fails with 9,094 mapped rows, 4,976 train/test rows, max train/test
+  TM-score `0.8043`, and one reported blocking structure pair:
+  `m_csa:45`/`m_csa:397`.
+- The current handoff split is now
+  `artifacts/v3_foldseek_tm_score_cluster_first_split_round4_1000.json`; it
+  folds that blocker into 35 high-TM constraints across 14 constrained
+  clusters, moves held-out out-of-scope `m_csa:397` to in-distribution,
+  preserves 0 sequence-cluster splits, and records 0 countable/import-ready
+  rows. Its readiness artifact is
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round4.json`.
+  The direct round-4 subchunk-007 rerun passes with 9,094 mapped rows, 4,975
+  train/test rows, max train/test TM-score `0.6598`, and 0 target-violating
+  pairs. Full TM-score holdout claims remain forbidden until the remaining
+  round-4 cluster-first coverage passes.
 
 Current TM-score readiness:
 

@@ -50,6 +50,36 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T05:02:16Z run after clean startup gates
+(`383` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not change external pilot evidence decisions; the
+  selected external pilot remains review-only with 0 import-ready rows and 0
+  countable candidates.
+- Scientific generalization work: Yes for direct Foldseek/TM-score
+  cluster-first verification and split repair, but not for a full split claim.
+  This run directly reran round-3 cluster-first subchunks 006 and 007. Subchunk
+  006 passed with max train/test TM-score `0.6509`; subchunk 007 exposed one
+  remaining `m_csa:45`/`m_csa:397` blocker at max TM-score `0.8043`. The
+  round-4 cluster-first candidate folds that blocker into 35 high-TM
+  constraints, moves held-out out-of-scope `m_csa:397` to in-distribution,
+  preserves 0 sequence-cluster splits and 0 held-out out-of-scope false
+  non-abstentions, and its direct subchunk-007 rerun passes with max train/test
+  TM-score `0.6598`.
+- SPOF hardening work: Yes. The run prevents blind chunk grinding by converting
+  the new observed high-TM pair into a cluster-first partition constraint,
+  regenerating round-4 coordinate readiness, and rerunning the failing bounded
+  verification unit. `m_csa:372` and `m_csa:501` remain coordinate exclusions,
+  most query coverage remains unverified under the cluster-first round-4 split,
+  all outputs remain review-only/non-countable, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-15T04:00:46Z run after clean startup gates
 (`378` unit tests passed and `validate` passed with 679 curated labels):
 
@@ -1451,14 +1481,26 @@ moves 12 entries to heldout and 12 held-out out-of-scope entries to
 in-distribution, keeps held-out out-of-scope false non-abstentions at 0, and
 keeps all rows review-only/non-countable.
 
-Next Foldseek work should start from
-`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`
-and verify bounded subchunks under that round-3 cluster-first partition. The
-highest-value immediate check is rerunning subchunk `007/112` against round 3
-because it was the latest failing verification unit; stop and fold in any new
-target-violating pair before continuing. `m_csa:372` and `m_csa:501` remain
-coordinate exclusions, most query coverage remains unverified, and
-`full_tm_score_holdout_claim_permitted=false` remains required.
+This run then reran subchunks `006/112` and `007/112` from the round-3
+readiness. Subchunk 006 passed again with 14,207 mapped rows, 2,356
+train/test rows, max TM-score `0.6509`, and 0 target-violating pairs.
+Subchunk 007 still failed with 9,094 mapped rows, 4,976 train/test rows, max
+TM-score `0.8043`, and one reported blocker: `m_csa:45` against held-out
+out-of-scope `m_csa:397`. The current handoff split is now
+`artifacts/v3_foldseek_tm_score_cluster_first_split_round4_1000.json`: it
+folds that blocker into 35 high-TM constraints across 14 constrained clusters,
+moves `m_csa:397` to in-distribution, preserves 0 sequence-cluster splits,
+keeps held-out out-of-scope false non-abstentions at 0, and keeps all rows
+review-only/non-countable. Its readiness artifact is
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round4.json`.
+The direct round-4 rerun of subchunk `007/112` passes with 9,094 mapped rows,
+4,975 train/test rows, max TM-score `0.6598`, and 0 target-violating pairs.
+
+Next Foldseek work should continue bounded verification from the round-4
+readiness, preferably with the next unverified subchunk `008/112`, and stop
+and fold in any new target-violating pair before continuing. `m_csa:372` and
+`m_csa:501` remain coordinate exclusions, most query coverage remains
+unverified, and `full_tm_score_holdout_claim_permitted=false` remains required.
 
 External pilot import remains blocked. The selected-pilot representation
 adjudication now gives concrete review-only statuses: 3 stable representation
@@ -2559,6 +2601,36 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-15T05:02:16Z
+- ENDED_AT: 2026-05-15T05:48:11Z
+- Measured elapsed time: 45.917 minutes
+- Documentation checked and updated across README,
+  docs/external_source_transfer.md, work/foldseek_readiness_notes.md,
+  work/handoff.md, work/scope.md, and regenerated work/status.md before
+  commit.
+- Normal locked direct run with no subagents or delegation. No M-CSA-only count
+  growth and no external import.
+- Directly reran cluster-first round-3 subchunks 006 and 007 from
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round3.json`.
+  Subchunk 006 passed with 14,207 mapped rows, 2,356 train/test rows, max
+  TM-score `0.6509`, and 0 target-violating pairs. Subchunk 007 failed with
+  9,094 mapped rows, 4,976 train/test rows, max TM-score `0.8043`, and one
+  blocker, `m_csa:45` versus held-out out-of-scope `m_csa:397`.
+- Added `artifacts/v3_foldseek_tm_score_cluster_first_split_round4_1000.json`
+  and `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round4.json`.
+  Round 4 has 35 high-TM constraints, 14 constrained clusters, 0 projected
+  violations, 0 sequence-cluster splits, 0 held-out out-of-scope false
+  non-abstentions, and moves `m_csa:397` to in-distribution.
+- The direct round-4 subchunk-007 rerun passes with 9,094 mapped rows, 4,975
+  train/test rows, max TM-score `0.6598`, and 0 target-violating pairs.
+  Continue with bounded verification from the round-4 readiness, starting with
+  the next unverified subchunk `008/112`. Stop and fold in any new high-TM
+  blocker before continuing broad coverage.
+- Final verification passed: `git diff --check`, JSON parsing for the 6 new
+  Foldseek artifacts, `PYTHONPATH=src python -m unittest discover -s tests`
+  with 387 tests, `PYTHONPATH=src python -m catalytic_earth.cli validate`, and
+  `PYTHONPATH=src python -m compileall -q src tests`.
 
 - STARTED_AT: 2026-05-15T04:00:46Z
 - ENDED_AT: 2026-05-15T04:56:08Z
