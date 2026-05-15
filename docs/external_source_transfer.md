@@ -210,11 +210,30 @@ clears chunk 0 with 16,475 mapped rows, 6,939 train/test rows, max train/test
 TM-score `0.695`, and 0 target-violating pairs. Its aggregate covers only
 1/56 redesigned chunks, so this removes the chunk-0 blocker but not the full
 TM-score holdout blocker.
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_001_of_056.json`
+then completes chunk 1 and fails the `<0.7` target with 11,776 mapped rows,
+4,154 train/test rows, max train/test TM-score `0.8182`, and 12
+target-violating row-level pairs across 4 reported structure pairs. The
+round-2 repair plan
+`artifacts/v3_foldseek_tm_score_split_redesign_candidate_round2_query_chunk_repair_plan_1000.json`
+finds no conservative out-of-scope repair candidate and classifies the blocker
+as held-out in-scope `m_csa:15`/`m_csa:16` versus train neighbors
+`m_csa:258`/`m_csa:157`. The round-3 review-only redesign
+`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round3_1000.json`
+moves `m_csa:157` and `m_csa:258` to heldout, preserves 0 sequence-cluster
+splits, increases heldout rows to 138, and keeps 0 held-out out-of-scope false
+non-abstentions. Its direct chunk aggregate
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_001_of_056.json`
+covers chunks 0-1/56 with 24 query coordinates, 28,251 mapped rows, 11,087
+train/test rows, max train/test TM-score `0.695`, and 0 target-violating
+pairs. This removes the first two query-chunk blockers only; 54 chunks remain
+uncomputed, two coordinate exclusions remain, and no full TM-score holdout
+claim is permitted.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
-`10.941cd33`). A TM-score split remains blocked until query chunks are
-completed or explicitly adjudicated under the round-2 redesigned split,
-coordinate exclusions remain reported, and target checks pass.
+`10.941cd33`). A TM-score split remains blocked until the remaining query
+chunks are completed or explicitly adjudicated under the round-3 redesigned
+split, coordinate exclusions remain reported, and target checks pass.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,

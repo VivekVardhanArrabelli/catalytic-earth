@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 104
-- Measured elapsed time: 3647.7 minutes (60.79 hours)
+- Entries: 105
+- Measured elapsed time: 3696.8 minutes (61.61 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 1001.4 measured minutes (16.69 hours)
+- post-mcsa-spof-hardening: 1050.5 measured minutes (17.51 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1094
-- Evidence references logged: 894
+- Artifact references logged: 1108
+- Evidence references logged: 901
 
 ## Recent Entries
-
-### 2026-05-14T19:04:21.441130+00:00 - post-mcsa-spof-hardening
-
-- Task: Foldseek split repair projection
-- Time mode: measured
-- Measured minutes: 12.859
-- Started: 2026-05-14T13:51:29.436087-05:00
-- Ended: 2026-05-14T14:04:21-0500
-- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json, artifacts/v3_foldseek_tm_score_split_repair_projection_1000.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: 344 unit tests passed, validate passed, compileall passed, git diff check passed, Foldseek split repair plan moves m_csa:34 only, projection drops train/test TM violations from 48 to 0 and max TM-score to 0.6993, 0 countable labels, 0 import-ready rows
-- Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
 
 ### 2026-05-14T19:08:48.002960+00:00 - post-mcsa-spof-hardening
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-15T01:39:52Z
 - Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_sequence_distance_holdout_split_redesign_candidate_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_query_chunk_000_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_query_chunk_aggregate_000_of_056.json, artifacts/v3_foldseek_tm_score_split_redesign_candidate_query_chunk_repair_plan_1000.json, artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round2_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round2.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_000_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_aggregate_000_of_056.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
 - Evidence: 370 unit tests passed, validate passed with 679 curated labels, compileall passed, git diff check passed, 9 new JSON artifacts parsed, round-2 redesigned Foldseek chunk 0 max train/test TM 0.695 with 0 target-violating pairs, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
+
+### 2026-05-15T02:47:11.394945+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek split redesign round3 validation
+- Time mode: measured
+- Measured minutes: 49.117
+- Started: 2026-05-15T01:57:51Z
+- Ended: 2026-05-15T02:46:58Z
+- Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_001_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_aggregate_000_001_of_056.json, artifacts/v3_foldseek_tm_score_split_redesign_candidate_round2_query_chunk_repair_plan_1000.json, artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round3_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round3.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_000_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_001_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_001_of_056.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: startup 370 unit tests passed, validate passed with 679 curated labels, round-2 chunk 1 completed and failed target with max TM 0.8182 across 4 reported blockers, round-3 redesigned split moved m_csa:157 and m_csa:258 to heldout, direct round-3 chunks 0-1 completed with max TM 0.695 and 0 target-violating pairs, 0 countable labels, 0 import-ready rows
 - Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
 
 ## Expectation Updates
@@ -208,6 +208,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T23:22:21.551765+00:00: Foldseek query chunk aggregation is now durable; next work should adjudicate target-violating chunk blockers or change the chunk-2 runtime/slice strategy before routine chunk continuation
 - 2026-05-15T00:19:07.369532+00:00: Full TM-score holdout remains blocked by target-violating completed chunks, held-out in-scope split blockers, incomplete query coverage, and two coordinate exclusions
 - 2026-05-15T01:39:52.871051+00:00: Round-2 split redesign clears Foldseek chunk 0 only; next work should continue chunk 1 under the round-2 candidate and stop on any new target violation
+- 2026-05-15T02:47:11.394945+00:00: Round-3 split redesign clears Foldseek chunks 0-1 only; next work should continue chunk 2 and stop on any new target violation
 
 ## Scope Adjustments
 

@@ -465,7 +465,23 @@ Foldseek chunk
 `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_000_of_056.json`
 clears chunk 0 with max train/test TM-score `0.695` and 0 target-violating
 pairs, and the single-chunk aggregate records 1/56 completed redesigned chunks.
-This removes the chunk-0 blocker only; 55 redesigned chunks remain uncomputed,
+Chunk 1 under the round-2 split then exposes a new concrete blocker:
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_001_of_056.json`
+completes with 11,776 mapped rows, 4,154 train/test rows, max train/test
+TM-score `0.8182`, and 12 target-violating row-level pairs across 4 reported
+structure pairs. The repair plan
+`artifacts/v3_foldseek_tm_score_split_redesign_candidate_round2_query_chunk_repair_plan_1000.json`
+classifies those blockers as held-out in-scope `m_csa:15` and `m_csa:16`
+against train neighbors `m_csa:258` and `m_csa:157`, with 0 conservative
+out-of-scope repair candidates. The round-3 candidate
+`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round3_1000.json`
+moves `m_csa:157` and `m_csa:258` to heldout, keeps sequence-cluster splits at
+0, and keeps every row review-only/non-countable. Direct round-3 Foldseek
+chunks 0 and 1 clear the target: the aggregate
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_001_of_056.json`
+covers 24 query coordinates, 28,251 mapped rows, 11,087 train/test rows, max
+train/test TM-score `0.695`, and 0 target-violating pairs. This removes the
+first two query-chunk blockers only; 54 redesigned chunks remain uncomputed,
 the two coordinate exclusions still stand, and full-holdout claims remain
 forbidden.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`

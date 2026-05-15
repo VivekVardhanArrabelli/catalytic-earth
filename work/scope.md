@@ -269,9 +269,16 @@ Current expectation:
   held-out in-scope `m_csa:6` versus `m_csa:277`, `m_csa:378`, `m_csa:320`,
   and `m_csa:108`; a round-2 redesign moves those four neighbors to heldout
   and clears chunk 0 directly with max train/test TM-score `0.695` and 0
-  target-violating pairs. No full TM-score holdout claim is permitted because
-  only 1/56 redesigned chunks is complete, two coordinate exclusions remain,
-  and the split remains a candidate copy. The first 12-row
+  target-violating pairs. Round-2 chunk 1 then fails directly with max
+  train/test TM-score `0.8182`, 12 target-violating row-level pairs, and 4
+  reported structure-pair blockers involving held-out in-scope `m_csa:15` and
+  `m_csa:16` against train neighbors `m_csa:258` and `m_csa:157`. A round-3
+  review-only redesign moves `m_csa:157` and `m_csa:258` to heldout,
+  preserves 0 sequence-cluster splits, and direct Foldseek chunks 0-1 clear
+  with 28,251 mapped rows, 11,087 train/test rows, max train/test TM-score
+  `0.695`, and 0 target-violating pairs. No full TM-score holdout claim is
+  permitted because only 2/56 redesigned chunks are complete, two coordinate
+  exclusions remain, and the split remains a candidate copy. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

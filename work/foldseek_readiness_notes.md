@@ -291,6 +291,48 @@ Current TM-score readiness:
   chunk-0 blocker but not the full split blocker: 55 redesigned chunks remain
   uncomputed, coordinate exclusions remain, and the split is still candidate
   review evidence only.
+- `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_001_of_056.json`
+  directly continues the round-2 candidate into chunk 1 with Foldseek
+  `10.941cd33`, 12 query coordinates, all 672 staged targets, `--threads 4`,
+  and a 900-second cap. It completes but fails the target with 11,776 mapped
+  rows, 4,154 train/test rows, max train/test TM-score `0.8182`, and 12
+  target-violating row-level pairs across 4 reported structure pairs. The
+  aggregate
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_aggregate_000_001_of_056.json`
+  records 2/56 completed round-2 chunks, 28,251 mapped rows, 11,093
+  train/test rows, max train/test TM-score `0.8182`, and 12 target-violating
+  rows.
+- `artifacts/v3_foldseek_tm_score_split_redesign_candidate_round2_query_chunk_repair_plan_1000.json`
+  classifies the round-2 chunk-1 blocker. There are 0 conservative held-out
+  out-of-scope repair candidates and 4 manual split-redesign blockers
+  involving held-out in-scope `m_csa:15` and `m_csa:16` against train
+  neighbors `m_csa:258` and `m_csa:157`.
+- `artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round3_1000.json`
+  applies the next review-only redesign by moving `m_csa:157` and `m_csa:258`
+  to heldout. It projects 0 observed blockers, preserves 0 sequence-cluster
+  splits, increases heldout rows to 138, keeps held-out in-scope rows at 56,
+  and preserves 0 held-out out-of-scope false non-abstentions.
+- `artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round3.json`
+  rebuilds readiness from the round-3 split and reuses all 672 staged
+  materializable coordinates with the same `m_csa:372` and `m_csa:501`
+  coordinate exclusions.
+- `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_000_of_056.json`
+  and
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_001_of_056.json`
+  directly rerun chunks 0 and 1 against the round-3 partition. Both complete
+  with Foldseek `10.941cd33`, 12 query coordinates per chunk, all 672 staged
+  targets, `--threads 4`, and a 900-second cap. Chunk 0 records 16,475 mapped
+  rows, 6,930 train/test rows, max train/test TM-score `0.695`, and 0
+  target-violating pairs. Chunk 1 records 11,776 mapped rows, 4,157
+  train/test rows, max train/test TM-score `0.6598`, and 0 target-violating
+  pairs. The aggregate
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_001_of_056.json`
+  records 2/56 completed round-3 chunks, 24 query coordinates, 28,251 mapped
+  rows, 11,087 train/test rows, max train/test TM-score `0.695`, and 0
+  target-violating pairs. This removes the first two round-3 query-chunk
+  blockers but not the full split blocker: 54 chunks remain uncomputed,
+  coordinate exclusions remain, and the split is still candidate review
+  evidence only.
 - The TM-score signal builder now records explicit partial/full coverage
   semantics for future artifacts: `tm_score_signal_coverage_status`,
   `full_tm_score_holdout_claim_permitted=false`,
