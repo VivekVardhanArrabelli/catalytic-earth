@@ -3766,6 +3766,22 @@ def build_foldseek_tm_score_cluster_first_split(
         target_key = pair.get("target_structure_key")
         if query_key in parent and target_key in parent and query_key != target_key:
             _foldseek_union(parent, str(query_key), str(target_key))
+    sequence_identity_structure_clusters: dict[str, list[str]] = defaultdict(list)
+    for row in rows_in:
+        cluster_id = str(row.get("real_sequence_identity_cluster_id") or "")
+        entry_id = str(row.get("entry_id") or "")
+        structure_key = entry_to_structure_key.get(entry_id)
+        if cluster_id and structure_key in parent:
+            sequence_identity_structure_clusters[cluster_id].append(structure_key)
+    sequence_identity_partition_constraint_count = 0
+    for structure_keys in sequence_identity_structure_clusters.values():
+        unique_keys = sorted(set(structure_keys))
+        if len(unique_keys) < 2:
+            continue
+        sequence_identity_partition_constraint_count += len(unique_keys) - 1
+        anchor = unique_keys[0]
+        for structure_key in unique_keys[1:]:
+            _foldseek_union(parent, anchor, structure_key)
 
     component_members: dict[str, list[str]] = defaultdict(list)
     for structure_key in structure_by_key:
@@ -4059,6 +4075,9 @@ def build_foldseek_tm_score_cluster_first_split(
         "foldseek_version": readiness_metadata.get("foldseek_version"),
         "pair_constraint_cache_count": len(pair_cache),
         "high_tm_partition_constraint_count": len(high_tm_constraints),
+        "sequence_identity_partition_constraint_count": (
+            sequence_identity_partition_constraint_count
+        ),
         "observed_high_tm_structure_pair_count": len(
             {
                 tuple(

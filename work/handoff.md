@@ -50,6 +50,38 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T14:52:02Z run after clean startup gates
+(`401` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not modify external pilot decisions; the selected
+  external pilot remains review-only with 0 import-ready rows and 0 countable
+  candidates.
+- Scientific generalization work: Yes for direct Foldseek/TM-score
+  cluster-first verification and split repair, but not for a full split claim.
+  Round-9 single-query verification clears staged indices 96-101 before index
+  102 exposes `m_csa:103`/`pdb:1VAO` versus held-out `m_csa:115`/`pdb:1W1O`
+  at max TM-score `0.7653`. Round 10 folds that blocker into 42 high-TM
+  constraints plus 38 sequence-identity partition constraints, preserves 0
+  sequence-cluster splits, and reruns staged index 102 cleanly at max
+  train/test TM-score `0.6725`. Rounds 11 and 12 fold the next staged-index
+  103 blockers, with round 12 clearing index 103 at max `0.6669`; index 104
+  passes at max `0.4496`; index 105 exposes a larger blocker at max `0.8862`,
+  and round 13 folds it into 48 high-TM constraints with 0 sequence-cluster
+  splits.
+- SPOF hardening work: Yes. The cluster-first builder now unions real
+  sequence-identity clusters before structural component assignment, preventing
+  a repaired structure split from introducing sequence-cluster leakage. The
+  all-materializable staged-coordinate Foldseek signal also completed and
+  removes the prior runtime ambiguity, but it fails the `<0.7` target at max
+  `0.9749`; `m_csa:372` and `m_csa:501` remain coordinate exclusions and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-15T13:50:06Z run after clean startup gates
 (`400` unit tests passed and `validate` passed with 679 curated labels):
 
@@ -746,11 +778,12 @@ Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
   top train/test pairs, and blocking pairs without committing every Foldseek
   pair row. The first direct run wrote
   `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
-  from the repaired candidate readiness artifact. It covered all 672 staged
-  materializable coordinates with Foldseek `10.941cd33`, `--threads 4`, and a
-  1,500-second timeout, but Foldseek timed out before writing a result TSV. It
-  records 0 pair rows and no target pass, keeps `m_csa:372`/`m_csa:501` as the
-  coordinate exclusions, and preserves 0 countable/import-ready rows with
+  from the repaired candidate readiness artifact. The latest staged signal now
+  covers all 672 staged materializable coordinates with Foldseek `10.941cd33`
+  and `--threads 4`, maps 952,922 pair rows and 274,241 train/test rows, and
+  fails the `<0.7` target at max train/test TM-score `0.9749` with 4,715
+  target-violating train/test rows. It keeps `m_csa:372`/`m_csa:501` as the
+  coordinate exclusions and preserves 0 countable/import-ready rows with
   `full_tm_score_holdout_claim_permitted=false`.
 - Added
   `artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json`,
@@ -1685,22 +1718,32 @@ held-out out-of-scope `m_csa:80`/`pdb:1C3C` against in-distribution
 `m_csa:408`/`pdb:1AUW` and `m_csa:569`/`pdb:1FUQ`, max TM-score `0.8726`.
 
 The current handoff split is now
-`artifacts/v3_foldseek_tm_score_cluster_first_split_round9_1000.json`: it
-folds the new blockers into 41 high-TM constraints across 19 constrained
-clusters, moves the `m_csa:80` high-TM neighborhood to in-distribution,
-preserves 0 sequence-cluster splits, keeps held-out out-of-scope false
-non-abstentions at 0, and keeps all rows review-only/non-countable. Its
-readiness artifact is
-`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round9.json`.
+`artifacts/v3_foldseek_tm_score_cluster_first_split_round13_1000.json`: it
+folds the latest staged-index-105 blocker surface into 48 high-TM constraints
+across 22 constrained clusters and also applies 38 real sequence-identity
+partition constraints before assignment. This preserves 0 sequence-cluster
+splits, keeps held-out out-of-scope false non-abstentions at 0, and keeps all
+rows review-only/non-countable. Its readiness artifact is
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round13.json`.
 The direct round-9 rerun of staged index 79 plus staged indices 80-83 passes
 in aggregate with 4,434 mapped rows, 763 train/test rows, max TM-score
 `0.6477`, and 0 target-violating pairs. Continuing round-9 single-query
 verification clears staged indices 84-95 with 17,189 mapped rows, 3,257
 train/test rows, max train/test TM-score `0.6579`, and 0 target-violating
-pairs.
+pairs. The next round-9 batch clears indices 96-101 before index 102 exposes
+`m_csa:103`/`pdb:1VAO` versus held-out `m_csa:115`/`pdb:1W1O` at max TM-score
+`0.7653`. The direct round-10 rerun of staged index 102 passes at max
+train/test TM-score `0.6725` with 0 target-violating pairs. Staged index 103
+then exposes `m_csa:104`/`pdb:1C9U` versus held-out `m_csa:686`/`pdb:1E1A`
+at max `0.7633`; round 11 folds that pair but exposes `m_csa:104` versus
+`m_csa:360`/`m_csa:740` at max `0.7317`; round 12 folds those pairs and
+clears staged index 103 at max `0.6669`. Staged index 104 then passes at max
+`0.4496`, and staged index 105 exposes a larger high-TM blocker surface at
+max `0.8862` with 72 violating rows. Round 13 folds those constraints and has
+not yet been verified.
 
-Next Foldseek work should continue from round-9 readiness at staged query
-index 96 (`m_csa:97`) using the same one-query verification pattern, or a
+Next Foldseek work should continue from round-13 readiness at staged query
+index 105 (`m_csa:106`) using the same one-query verification pattern, or a
 larger bounded chunk only if the runtime risk is acceptable. Stop on any
 `TM >= 0.7` train/test blocker and fold it into a new cluster-first round
 before continuing.
@@ -2807,6 +2850,42 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-15T14:52:02Z
+- ENDED_AT: 2026-05-15T15:31:50Z
+- Measured elapsed time: 39.800 minutes
+- Documentation checked and updated across README,
+  docs/external_source_transfer.md, work/foldseek_readiness_notes.md,
+  work/handoff.md, work/scope.md, and regenerated work/status.md before
+  commit.
+- Normal locked direct run with no subagents or delegation. No M-CSA-only count
+  growth and no external import.
+- Hardened cluster-first split assignment so real sequence-identity clusters
+  are unioned before structural component assignment. This fixed the
+  staged-index-102 repair path without introducing sequence-cluster splits.
+- Directly ran round-9 single-query checks from staged indices 96-102. Indices
+  96-101 passed; index 102 exposed `m_csa:103`/`pdb:1VAO` versus held-out
+  `m_csa:115`/`pdb:1W1O` at max TM-score `0.7653`.
+- Built and verified cluster-first rounds 10-12 for the subsequent blockers.
+  Round 12 clears staged index 103 at max TM-score `0.6669`; staged index 104
+  passes at max `0.4496`; staged index 105 exposes a larger high-TM blocker
+  surface at max `0.8862`.
+- Added `artifacts/v3_foldseek_tm_score_cluster_first_split_round13_1000.json`
+  and
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round13.json`.
+  Round 13 has 48 high-TM constraints, 38 sequence-identity partition
+  constraints, 0 projected violations, 0 sequence-cluster splits, 0 countable
+  labels, and 0 import-ready rows. Next direct Foldseek work should rerun
+  staged index 105 under round-13 readiness.
+- The all-materializable staged-coordinate Foldseek signal now completes over
+  all 672 materializable selected coordinates and maps 952,922 pair rows, but
+  it fails the `<0.7` target at max train/test TM-score `0.9749`; it remains
+  review-only/non-countable and non-claiming.
+- Final verification passed: `git diff --check`,
+  `PYTHONPATH=src python -m unittest discover -s tests`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  `PYTHONPATH=src python -m compileall src tests`, and JSON parsing for 28
+  new/updated Foldseek artifacts.
 
 - STARTED_AT: 2026-05-15T13:50:06Z
 - ENDED_AT: 2026-05-15T14:30:32Z

@@ -146,13 +146,14 @@ sequence holdout is unchanged, 572 staged coordinates remain outside the capped
 signal, two selected rows remain coordinate exclusions, and no full
 TM-score-holdout claim is permitted.
 `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
-then makes a direct all-materializable attempt with a compact summary artifact
-instead of repository-scale pair-row JSON. The command used Foldseek
-`10.941cd33`, all 672 staged materializable coordinates, `--threads 4`, and a
-1,500-second runtime bound. Foldseek timed out before producing a result TSV,
-so no pair rows, max TM-score, or target pass can be claimed. The artifact is
-review-only, records 0 countable/import-ready rows, keeps `m_csa:372` and
-`m_csa:501` as coordinate exclusions, and preserves
+then completes a staged all-materializable Foldseek signal over all 672
+materializable selected coordinates with Foldseek `10.941cd33` and
+`--threads 4`. It maps 952,922 pair rows and 274,241 train/test rows, but the
+computed subset fails the `<0.7` target with max train/test TM-score `0.9749`
+and 4,715 target-violating train/test rows. This removes the previous
+all-materializable runtime ambiguity but remains review-only and non-countable:
+`m_csa:372` and `m_csa:501` stay coordinate exclusions, the artifact is a
+signal rather than a canonical full split, and
 `full_tm_score_holdout_claim_permitted=false`.
 `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`
 and
@@ -298,13 +299,28 @@ pairs into 41 constraints, 19 constrained clusters, 0 projected violations, and
 indices 80-83 passes in aggregate at max TM-score `0.6477` with 0
 target-violating pairs. The next round-9 single-query batch clears staged
 indices 84-95 with 17,189 mapped rows, 3,257 train/test rows, max train/test
-TM-score `0.6579`, and 0 target-violating pairs. Full TM-score holdout claims
-remain forbidden until the remaining round-9 cluster-first coverage passes or
-is explicitly adjudicated.
+TM-score `0.6579`, and 0 target-violating pairs. The next batch clears staged
+indices 96-101 before staged index 102 exposes `m_csa:103`/`pdb:1VAO` versus
+held-out `m_csa:115`/`pdb:1W1O` at max TM-score `0.7653`. The cluster-first
+builder now unions real sequence-identity clusters before assigning structural
+components; round 10 folds that blocker into 42 high-TM constraints plus 38
+sequence-identity partition constraints, preserves 0 sequence-cluster splits,
+and reruns staged index 102 cleanly at max train/test TM-score `0.6725` with 0
+target-violating pairs. Staged index 103 then exposes `m_csa:104` against
+`m_csa:686` at max `0.7633`; round 11 folds that in but still exposes
+`m_csa:104` against `m_csa:360` and `m_csa:740` at max `0.7317`. Round 12
+folds those blockers and clears index 103 at max `0.6669`, then index 104
+passes at max `0.4496` before index 105 exposes a larger high-TM blocker
+surface at max `0.8862`. Round 13 folds that evidence into 48 high-TM
+constraints, 38 sequence-identity partition constraints, 0 projected
+violations, and 0 sequence-cluster splits; its readiness artifact is staged for
+the next rerun of index 105. Full TM-score holdout claims remain forbidden until
+the remaining round-13 cluster-first coverage passes or is explicitly
+adjudicated.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the remaining query
-chunks are completed or explicitly adjudicated under the cluster-first round-9
+chunks are completed or explicitly adjudicated under the cluster-first round-13
 split, coordinate exclusions remain reported, and target checks pass.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot

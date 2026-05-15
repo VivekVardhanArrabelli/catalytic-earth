@@ -404,15 +404,15 @@ TM-score-holdout claim: 572 staged coordinates remain uncomputed, the signal is
 capped, two selected rows remain excluded from coordinate materialization, and
 all three artifacts keep 0 countable/import-ready rows.
 `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
-now records a direct all-materializable Foldseek attempt using the compact
-summary path over all 672 staged coordinates with Foldseek `10.941cd33`,
-`--threads 4`, and a 1,500-second runtime bound. The attempt timed out before
-Foldseek emitted the result TSV, so it records 0 pair rows and removes no
-full-signal blocker. It still removes ambiguity about the next bottleneck:
-all materializable coordinates are staged, `m_csa:372` and `m_csa:501` remain
-the only coordinate exclusions, the compact path can avoid repository-scale
-pair-row JSON, and `full_tm_score_holdout_claim_permitted=false` remains
-correct.
+now records a completed all-materializable staged-coordinate Foldseek signal
+over all 672 materializable selected coordinates with Foldseek `10.941cd33` and
+`--threads 4`. It maps 952,922 pair rows and 274,241 train/test rows, but the
+computed subset fails the `<0.7` target at max train/test TM-score `0.9749`
+with 4,715 target-violating train/test rows. This removes the prior
+all-materializable runtime ambiguity but does not authorize a full
+TM-score-holdout claim: `m_csa:372` and `m_csa:501` remain coordinate
+exclusions, the artifact is a review-only signal rather than a canonical split,
+and `full_tm_score_holdout_claim_permitted=false` remains correct.
 `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`
 and
 `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json`
@@ -550,9 +550,24 @@ The direct round-9 rerun of staged index 79 plus staged indices 80-83 passes
 in aggregate at max TM-score `0.6477` with 0 target-violating pairs. Continuing
 round-9 single-query verification clears staged indices 84-95 with 17,189
 mapped rows, 3,257 train/test rows, max train/test TM-score `0.6579`, and 0
-target-violating pairs.
+target-violating pairs. Continuing from index 96 clears staged indices 96-101
+before staged index 102 exposes `m_csa:103`/`pdb:1VAO` versus held-out
+`m_csa:115`/`pdb:1W1O` at max TM-score `0.7653`. The cluster-first builder
+now preserves real sequence-identity components as partition constraints.
+Round 10 folds the new blocker into 42 high-TM constraints plus 38
+sequence-identity partition constraints, preserves 0 sequence-cluster splits,
+and reruns staged index 102 cleanly at max train/test TM-score `0.6725` with 0
+target-violating pairs. Staged index 103 then exposes `m_csa:104` against
+`m_csa:686` at max `0.7633`; round 11 folds that in but still exposes
+`m_csa:104` against `m_csa:360` and `m_csa:740` at max `0.7317`. Round 12
+folds those blockers and clears index 103 at max `0.6669`, then index 104
+passes at max `0.4496` before index 105 exposes a larger high-TM blocker
+surface at max `0.8862`. Round 13 folds that evidence into 48 high-TM
+constraints, 38 sequence-identity partition constraints, 0 projected
+violations, and 0 sequence-cluster splits; its readiness artifact is staged for
+the next rerun of index 105.
 These artifacts remain review-only and non-countable; no full TM-score holdout
-claim is permitted until verification continues from round 9 and the remaining
+claim is permitted until verification continues from round 13 and the remaining
 query coverage passes or is explicitly adjudicated.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped

@@ -221,11 +221,12 @@ Current expectation:
   TM-score holdout claim is permitted. A direct all-materializable Foldseek
   attempt now exists as a compact summary artifact:
   `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`.
-  It uses all 672 staged coordinates, Foldseek `10.941cd33`, `--threads 4`,
-  and a 1,500-second timeout, but Foldseek did not emit a result TSV before
-  the timeout. This records the concrete runtime blocker without bloating the
-  repository with full pair-row JSON; no max TM-score or target pass is
-  claimable, two coordinate exclusions remain, and
+  It now completes over all 672 staged coordinates with Foldseek `10.941cd33`
+  and `--threads 4`, maps 952,922 pair rows and 274,241 train/test rows, and
+  fails the `<0.7` target at max train/test TM-score `0.9749` with 4,715
+  target-violating train/test rows. This removes the prior all-materializable
+  runtime ambiguity, but no full split is claimable because the artifact is a
+  signal, two coordinate exclusions remain, and
   `full_tm_score_holdout_claim_permitted=false`. The first two resumable
   query-chunk signals now complete chunks 0/56 and 1/56:
   `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`
@@ -328,7 +329,18 @@ Current expectation:
   and clears the repaired index 79 plus indices 80-83 at max TM-score `0.6477`
   with 0 violations. Round-9 single-query verification then clears staged
   indices 84-95 with 17,189 mapped rows, 3,257 train/test rows, max train/test
-  TM-score `0.6579`, and 0 violations. The first 12-row
+  TM-score `0.6579`, and 0 violations. It then clears indices 96-101 before
+  staged index 102 exposes `m_csa:103`/`pdb:1VAO` versus held-out
+  `m_csa:115`/`pdb:1W1O` at max TM-score `0.7653`. The cluster-first builder
+  now preserves real sequence-identity components as partition constraints;
+  round 10 has 42 high-TM constraints, 38 sequence-identity partition
+  constraints, 0 sequence-cluster splits, and reruns index 102 cleanly at max
+  TM-score `0.6725`. Round 12 later clears staged index 103 at max `0.6669`
+  after folding `m_csa:104` neighbors, and staged index 104 passes at max
+  `0.4496`; staged index 105 then exposes a larger high-TM blocker surface at
+  max `0.8862`, and round 13 folds it into 48 high-TM constraints plus 38
+  sequence-identity partition constraints with 0 projected violations and 0
+  sequence-cluster splits. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute
