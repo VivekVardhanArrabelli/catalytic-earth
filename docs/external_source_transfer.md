@@ -289,13 +289,19 @@ train/test rows, max train/test TM-score `0.5629`, and 0 violations. Staged
 index 66 (`m_csa:67`) also passes at max TM-score `0.6535`, but staged index
 67 (`m_csa:68`) exposes a `m_csa:68`/`m_csa:750` blocker at max TM-score
 `0.7909`; round 8 folds that pair into 39 constraints, 18 constrained
-clusters, 0 projected violations, and 0 sequence-cluster splits. Full
-TM-score holdout claims remain forbidden until the remaining round-8
-cluster-first coverage passes or is explicitly adjudicated.
+clusters, 0 projected violations, and 0 sequence-cluster splits. Direct
+round-8 single-query verification then clears staged indices 68-78, but staged
+index 79 exposes held-out out-of-scope `m_csa:80` against in-distribution
+`m_csa:408` and `m_csa:569` at max TM-score `0.8726`; round 9 folds those
+pairs into 41 constraints, 19 constrained clusters, 0 projected violations, and
+0 sequence-cluster splits. The round-9 rerun of staged index 79 plus staged
+indices 80-83 passes in aggregate at max TM-score `0.6477` with 0
+target-violating pairs. Full TM-score holdout claims remain forbidden until the
+remaining round-9 cluster-first coverage passes or is explicitly adjudicated.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the remaining query
-chunks are completed or explicitly adjudicated under the cluster-first round-7
+chunks are completed or explicitly adjudicated under the cluster-first round-9
 split, coordinate exclusions remain reported, and target checks pass.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot

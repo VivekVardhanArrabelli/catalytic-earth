@@ -319,7 +319,14 @@ Current expectation:
   but staged index 67 (`m_csa:68`) exposes a `m_csa:68`/`m_csa:750` blocker at
   max TM-score `0.7909`; round 8 folds that pair into 39 high-TM constraints
   and 18 constrained clusters with 0 projected violations and 0
-  sequence-cluster splits. The first 12-row
+  sequence-cluster splits. Round-8 single-query verification clears staged
+  indices 68-78 before staged index 79 (`m_csa:80`) exposes high-TM blockers
+  against `m_csa:408` and `m_csa:569` at max TM-score `0.8726`; round 9 folds
+  those blockers into 41 high-TM constraints across 19 constrained clusters,
+  moves the `m_csa:80` neighborhood to in-distribution, preserves 0
+  sequence-cluster splits and 0 held-out out-of-scope false non-abstentions,
+  and clears the repaired index 79 plus indices 80-83 at max TM-score `0.6477`
+  with 0 violations. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

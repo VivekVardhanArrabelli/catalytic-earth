@@ -124,8 +124,20 @@ Status:
   the new pair into 39 high-TM constraints across 18 constrained clusters with
   0 projected violations and 0 sequence-cluster splits. Its readiness artifact
   is `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round8.json`.
-  Full TM-score holdout claims remain forbidden until the remaining round-8
-  cluster-first coverage passes or is explicitly adjudicated.
+  Direct round-8 single-query verification then clears staged indices 68-78
+  (`m_csa:69`-`m_csa:79`) in aggregate until staged index 79 (`m_csa:80`)
+  exposes two blockers against in-distribution `m_csa:408` and `m_csa:569`,
+  with max train/test TM-score `0.8726`. Round 9 folds those blockers into 41
+  high-TM constraints across 19 constrained clusters, moves the `m_csa:80`
+  high-TM neighborhood to in-distribution, preserves 0 sequence-cluster splits,
+  and keeps 0 held-out out-of-scope false non-abstentions. Its readiness
+  artifact is
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round9.json`.
+  The direct round-9 rerun of staged index 79 plus staged indices 80-83 passes
+  in aggregate with 4,434 mapped rows, 763 train/test rows, max train/test
+  TM-score `0.6477`, and 0 target-violating pairs. Full TM-score holdout
+  claims remain forbidden until the remaining round-9 cluster-first coverage
+  passes or is explicitly adjudicated.
 
 Current TM-score readiness:
 

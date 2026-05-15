@@ -538,8 +538,18 @@ a new `m_csa:68`/`m_csa:750` blocker at max TM-score `0.7909`. Round 8 folds
 that pair into 39 high-TM constraints, 18 constrained clusters, 0 projected
 known violations, and 0 sequence-cluster splits, with readiness at
 `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round8.json`.
+Direct round-8 single-query verification then clears staged indices 68-78, but
+staged index 79 exposes held-out out-of-scope `m_csa:80` against
+in-distribution `m_csa:408` and `m_csa:569` at max TM-score `0.8726`. Round 9
+folds those pairs into 41 high-TM constraints across 19 constrained clusters,
+moves the `m_csa:80` high-TM neighborhood to in-distribution, preserves 0
+sequence-cluster splits and 0 held-out out-of-scope false non-abstentions, and
+keeps readiness at
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round9.json`.
+The direct round-9 rerun of staged index 79 plus staged indices 80-83 passes
+in aggregate at max TM-score `0.6477` with 0 target-violating pairs.
 These artifacts remain review-only and non-countable; no full TM-score holdout
-claim is permitted until verification continues from round 8 and the remaining
+claim is permitted until verification continues from round 9 and the remaining
 query coverage passes or is explicitly adjudicated.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
