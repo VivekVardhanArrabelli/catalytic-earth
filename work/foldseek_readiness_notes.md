@@ -25,6 +25,7 @@ Cluster-first round-19 verification update: 2026-05-15T12:34:47-05:00
 Cluster-first round-22 verification update: 2026-05-15T18:33:42Z
 Cluster-first round-24 verification update: 2026-05-15T19:16:47Z
 Cluster-first round-30 verification update: 2026-05-15T16:30:00-05:00
+Cluster-first round-32 verification and timeout update: 2026-05-15T22:44:25Z
 
 Status:
 
@@ -231,6 +232,21 @@ Status:
   the remaining round-30 cluster-first coverage passes or is explicitly
   adjudicated. Next start: continue single-query verification from staged index
   142 under round-30 readiness.
+  The direct continuation clears index 142 under round 30 at max train/test
+  TM-score `0.6204`, then index 143 (`m_csa:144`/`pdb:1G8K`) exposes 88
+  violating train/test rows at max `0.872`. Round 31 folds that surface into
+  106 high-TM constraints, but its index-143 rerun still exposes 12 violating
+  rows at max `0.8001`. Round 32 folds the second surface into 108 high-TM
+  constraints plus 38 sequence-identity constraints, with 0 projected
+  violations, 0 sequence-cluster splits, and 0 held-out out-of-scope false
+  non-abstentions. Direct round-32 verification clears index 143 at max
+  `0.5745` and index 144 at max `0.4664`; index 145
+  (`m_csa:146`/`pdb:4V4E`) times out under the 900-second exact Foldseek
+  single-query bound before pair rows are emitted. The round-32 aggregate over
+  indices 143-145 records 2 completed query coordinates, 4,346 pair rows, 961
+  train/test rows, max train/test TM-score `0.5745`, 0 target-violating pairs,
+  and one timeout artifact. Next start: retry or adjudicate staged index 145
+  under `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round32.json`.
 
 Current TM-score readiness:
 

@@ -609,12 +609,20 @@ indices 131-139 before index 140 exposes `m_csa:141` versus `m_csa:903` at
 max `0.7337`. Round 30 folds that blocker into 102 high-TM constraints plus
 38 sequence-identity constraints, preserves 0 projected violations and 0
 sequence-cluster splits, and clears indices 140-141 at max `0.6873`. The
-active readiness
-artifact is
-`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round30.json`.
+next direct pass clears index 142 at max `0.6204`, then index 143 exposes a
+larger `m_csa:144` surface at max `0.872`. Round 31 folds that surface into
+106 high-TM constraints, but the rerun still exposes a second index-143
+surface at max `0.8001`. Round 32 folds that second surface into 108 high-TM
+constraints plus 38 sequence-identity constraints, preserves 0 projected
+violations and 0 sequence-cluster splits, and clears indices 143-144 at max
+`0.5745`. The active readiness artifact is
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round32.json`.
+Index 145 (`m_csa:146`/`pdb:4V4E`) is now the direct runtime blocker: exact
+Foldseek single-query verification timed out at 900 seconds before pair rows
+were emitted.
 These artifacts remain review-only and non-countable; no full TM-score holdout
-claim is permitted until verification resumes from round 30 and the remaining
-query coverage passes or is explicitly adjudicated.
+claim is permitted until index 145 and the remaining query coverage pass or are
+explicitly adjudicated.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

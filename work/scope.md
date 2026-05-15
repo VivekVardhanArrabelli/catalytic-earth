@@ -376,6 +376,13 @@ Current expectation:
   `0.7337`; round 30 folds that blocker into 102 high-TM constraints plus 38
   sequence-identity constraints, preserves 0 projected violations and 0
   sequence-cluster splits, and clears indices 140-141 at max `0.6873`. The
+  next direct pass clears index 142 at max `0.6204`, then folds two successive
+  index-143 `m_csa:144` blocker surfaces through rounds 31 and 32. Round 32 has
+  108 high-TM constraints plus 38 sequence-identity constraints, 0 projected
+  violations, 0 sequence-cluster splits, and 0 held-out out-of-scope false
+  non-abstentions; it clears indices 143-144 at max `0.5745`. Index 145
+  (`m_csa:146`/`pdb:4V4E`) timed out under the 900-second exact Foldseek
+  single-query bound and is the next direct runtime blocker. The
   first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars

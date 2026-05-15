@@ -50,6 +50,37 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T22:00:14Z run after syncing clean `origin/main`
+and passing startup gates (`426` unit tests passed and `validate` passed with
+679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not modify external pilot decisions; the selected
+  external pilot remains review-only with 0 import-ready rows and 0 countable
+  candidates.
+- Scientific generalization work: Yes for direct Foldseek/TM-score
+  cluster-first verification and split repair, but not for a full split claim.
+  Round 30 index 142 cleared at max `0.6204`, index 143 exposed `m_csa:144`
+  at max `0.872`, round 31 folded that surface but still failed index 143 at
+  max `0.8001`, and round 32 folded the second surface before clearing
+  indices 143-144 at max `0.5745`. Index 145 timed out at 900 seconds before
+  Foldseek pair rows were emitted.
+- SPOF hardening work: Yes. The run converted the new high-TM train/test
+  blockers into cluster-first partition constraints, bringing the active split
+  to 108 high-TM constraints plus 38 sequence-identity constraints with 0
+  projected violations, 0 sequence-cluster splits, and 0 held-out out-of-scope
+  false non-abstentions. `m_csa:372` and `m_csa:501` remain coordinate
+  exclusions, most query coverage remains unverified under the cluster-first
+  split, index 145 is a runtime blocker, and
+  `full_tm_score_holdout_claim_permitted=false`.
+- Next start: retry or adjudicate staged index 145 under
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round32.json`.
+
 Recorded for the 2026-05-15T15:59:13-05:00 run after syncing clean
 `origin/main` and passing startup gates (`424` unit tests passed and
 `validate` passed with 679 curated labels):
@@ -3073,6 +3104,36 @@ Known blockers:
 - Full TM-score holdout remains forbidden: round-30 coverage is still partial,
   the split remains review-only/candidate-only, and `m_csa:372`/`m_csa:501`
   remain coordinate exclusions.
+
+### 2026-05-15T22:00:14Z run
+
+- Directly continued Foldseek cluster-first verification from round-30 staged
+  index 142. Index 142 passed at max train/test TM-score `0.6204`. Index 143
+  exposed `m_csa:144`/`pdb:1G8K` against train neighbors at max `0.872` with
+  88 violating train/test rows.
+- Added `artifacts/v3_foldseek_tm_score_cluster_first_split_round31_1000.json`
+  and
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round31.json`.
+  Round 31 raised the split to 106 high-TM constraints, but the index-143
+  rerun still failed at max `0.8001` with 12 violating rows.
+- Added `artifacts/v3_foldseek_tm_score_cluster_first_split_round32_1000.json`
+  and
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round32.json`.
+  Round 32 has 108 high-TM constraints, 38 sequence-identity constraints,
+  0 projected violations, 0 sequence-cluster splits, 0 held-out out-of-scope
+  false non-abstentions, 0 countable labels, and 0 import-ready rows.
+- Direct round-32 verification clears index 143 at max `0.5745` and index 144
+  at max `0.4664`. Index 145 (`m_csa:146`/`pdb:4V4E`) timed out after 900
+  seconds before pair rows were emitted. The aggregate
+  `artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_aggregate_143_145_of_672.json`
+  records 2 completed query coordinates, 4,346 pair rows, 961 train/test rows,
+  max train/test TM-score `0.5745`, 0 target-violating pairs, and one timeout
+  artifact.
+- Full TM-score holdout remains forbidden: round-32 coverage is still partial,
+  index 145 is unresolved, the split remains review-only/candidate-only, and
+  `m_csa:372`/`m_csa:501` remain coordinate exclusions. Next direct Foldseek
+  work should retry or explicitly adjudicate staged index 145 under round-32
+  readiness before advancing to index 146.
 - Final verification passed: 426 unit tests, `validate`, `compileall`,
   `git diff --check`, and JSON parsing for 20 new Foldseek artifacts.
 
