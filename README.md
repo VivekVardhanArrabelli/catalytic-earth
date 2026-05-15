@@ -547,7 +547,10 @@ sequence-cluster splits and 0 held-out out-of-scope false non-abstentions, and
 keeps readiness at
 `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round9.json`.
 The direct round-9 rerun of staged index 79 plus staged indices 80-83 passes
-in aggregate at max TM-score `0.6477` with 0 target-violating pairs.
+in aggregate at max TM-score `0.6477` with 0 target-violating pairs. Continuing
+round-9 single-query verification clears staged indices 84-95 with 17,189
+mapped rows, 3,257 train/test rows, max train/test TM-score `0.6579`, and 0
+target-violating pairs.
 These artifacts remain review-only and non-countable; no full TM-score holdout
 claim is permitted until verification continues from round 9 and the remaining
 query coverage passes or is explicitly adjudicated.

@@ -326,7 +326,9 @@ Current expectation:
   moves the `m_csa:80` neighborhood to in-distribution, preserves 0
   sequence-cluster splits and 0 held-out out-of-scope false non-abstentions,
   and clears the repaired index 79 plus indices 80-83 at max TM-score `0.6477`
-  with 0 violations. The first 12-row
+  with 0 violations. Round-9 single-query verification then clears staged
+  indices 84-95 with 17,189 mapped rows, 3,257 train/test rows, max train/test
+  TM-score `0.6579`, and 0 violations. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

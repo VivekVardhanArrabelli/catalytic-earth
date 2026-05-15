@@ -296,8 +296,11 @@ index 79 exposes held-out out-of-scope `m_csa:80` against in-distribution
 pairs into 41 constraints, 19 constrained clusters, 0 projected violations, and
 0 sequence-cluster splits. The round-9 rerun of staged index 79 plus staged
 indices 80-83 passes in aggregate at max TM-score `0.6477` with 0
-target-violating pairs. Full TM-score holdout claims remain forbidden until the
-remaining round-9 cluster-first coverage passes or is explicitly adjudicated.
+target-violating pairs. The next round-9 single-query batch clears staged
+indices 84-95 with 17,189 mapped rows, 3,257 train/test rows, max train/test
+TM-score `0.6579`, and 0 target-violating pairs. Full TM-score holdout claims
+remain forbidden until the remaining round-9 cluster-first coverage passes or
+is explicitly adjudicated.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the remaining query

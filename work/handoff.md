@@ -50,6 +50,30 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T13:50:06Z run after clean startup gates
+(`400` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not modify external pilot decisions; the selected
+  external pilot remains review-only with 0 import-ready rows and 0 countable
+  candidates.
+- Scientific generalization work: Yes for direct Foldseek/TM-score
+  cluster-first verification, but not for a full split claim. Round-9
+  single-query verification now clears staged indices 84-95 with 17,189 mapped
+  rows, 3,257 train/test rows, max train/test TM-score `0.6579`, and 0
+  target-violating pairs.
+- SPOF hardening work: Yes. The run converted more of the remaining
+  cluster-first proof surface into resumable one-query Foldseek evidence
+  instead of returning to blind all-vs-all or 56-chunk grinding. `m_csa:372`
+  and `m_csa:501` remain coordinate exclusions, most query coverage remains
+  unverified under the cluster-first round-9 split, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-15T12:48:12Z run after clean startup gates
 (`396` unit tests passed and `validate` passed with 679 curated labels):
 
@@ -1670,10 +1694,13 @@ readiness artifact is
 `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round9.json`.
 The direct round-9 rerun of staged index 79 plus staged indices 80-83 passes
 in aggregate with 4,434 mapped rows, 763 train/test rows, max TM-score
-`0.6477`, and 0 target-violating pairs.
+`0.6477`, and 0 target-violating pairs. Continuing round-9 single-query
+verification clears staged indices 84-95 with 17,189 mapped rows, 3,257
+train/test rows, max train/test TM-score `0.6579`, and 0 target-violating
+pairs.
 
 Next Foldseek work should continue from round-9 readiness at staged query
-index 84 (`m_csa:85`) using the same one-query verification pattern, or a
+index 96 (`m_csa:97`) using the same one-query verification pattern, or a
 larger bounded chunk only if the runtime risk is acceptable. Stop on any
 `TM >= 0.7` train/test blocker and fold it into a new cluster-first round
 before continuing.
@@ -2780,6 +2807,36 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-15T13:50:06Z
+- ENDED_AT: 2026-05-15T14:30:32Z
+- Measured elapsed time: 40.433 minutes
+- Documentation checked and updated across README,
+  docs/external_source_transfer.md, work/foldseek_readiness_notes.md,
+  work/handoff.md, work/scope.md, and regenerated work/status.md before
+  commit.
+- Normal locked direct run with no subagents or delegation. No M-CSA-only count
+  growth and no external import.
+- Directly ran round-9 single-query checks from
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round9.json`.
+  Staged indices 84-95 all completed with 17,189 mapped rows, 3,257
+  train/test rows, max train/test TM-score `0.6579`, and 0 target-violating
+  pairs.
+- Added
+  `artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_084_of_672.json`
+  through
+  `artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_095_of_672.json`
+  plus
+  `artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_aggregate_084_095_of_672.json`.
+  The aggregate remains review-only/non-countable and keeps
+  `full_tm_score_holdout_claim_permitted=false`.
+- Next direct Foldseek work should start at staged index 96 under round-9
+  readiness. Stop on any `TM >= 0.7` train/test blocker and fold it into a
+  new cluster-first round before continuing.
+- Final verification passed: the new aggregate pin test, `git diff --check`,
+  `PYTHONPATH=src python -m unittest discover -s tests`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`, and
+  `PYTHONPATH=src python -m compileall src tests`.
 
 - STARTED_AT: 2026-05-15T12:48:12Z
 - ENDED_AT: 2026-05-15T13:31:56Z

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 112
-- Measured elapsed time: 4021.3 minutes (67.02 hours)
+- Entries: 113
+- Measured elapsed time: 4061.7 minutes (67.70 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 1375.0 measured minutes (22.92 hours)
+- post-mcsa-spof-hardening: 1415.4 measured minutes (23.59 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1212
-- Evidence references logged: 962
+- Artifact references logged: 1231
+- Evidence references logged: 970
 
 ## Recent Entries
-
-### 2026-05-15T02:47:11.394945+00:00 - post-mcsa-spof-hardening
-
-- Task: Foldseek split redesign round3 validation
-- Time mode: measured
-- Measured minutes: 49.117
-- Started: 2026-05-15T01:57:51Z
-- Ended: 2026-05-15T02:46:58Z
-- Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_001_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_aggregate_000_001_of_056.json, artifacts/v3_foldseek_tm_score_split_redesign_candidate_round2_query_chunk_repair_plan_1000.json, artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round3_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round3.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_000_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_001_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round3_query_chunk_aggregate_000_001_of_056.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: startup 370 unit tests passed, validate passed with 679 curated labels, round-2 chunk 1 completed and failed target with max TM 0.8182 across 4 reported blockers, round-3 redesigned split moved m_csa:157 and m_csa:258 to heldout, direct round-3 chunks 0-1 completed with max TM 0.695 and 0 target-violating pairs, 0 countable labels, 0 import-ready rows
-- Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
 
 ### 2026-05-15T03:40:39.370706+00:00 - post-mcsa-spof-hardening
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-15T13:31:56Z
 - Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_068_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_069_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_070_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_071_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_072_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_073_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_074_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_075_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_076_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_077_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_078_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_079_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round8_query_single_aggregate_068_079_of_672.json, artifacts/v3_foldseek_tm_score_cluster_first_split_round9_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round9.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_079_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_080_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_081_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_082_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_083_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_aggregate_079_083_of_672.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
 - Evidence: startup 396 unit tests passed, validate passed with 679 curated labels, round8 single-query indices 68-78 passed before index 79 exposed m_csa:80 versus m_csa:408/m_csa:569 at max TM 0.8726, round9 cluster-first candidate has 41 high-TM constraints and 0 sequence-cluster splits, round9 single-query indices 79-83 passed in aggregate at max TM 0.6477 with 0 target-violating pairs, 0 countable labels and 0 import-ready rows, JSON artifacts parsed, focused artifact tests passed
+- Notes: Normal locked direct run with no delegation. No M-CSA-only count growth and no external import. Full TM-score holdout claim remains forbidden.
+
+### 2026-05-15T14:31:01.833373+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek cluster-first round9 continuation
+- Time mode: measured
+- Measured minutes: 40.433
+- Started: 2026-05-15T13:50:06Z
+- Ended: 2026-05-15T14:30:32Z
+- Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_084_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_085_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_086_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_087_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_088_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_089_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_090_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_091_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_092_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_093_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_094_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_095_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round9_query_single_aggregate_084_095_of_672.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: startup 400 unit tests passed, validate passed with 679 curated labels, round9 single-query indices 84-95 completed with 17189 mapped pair rows, 3257 train/test rows, max TM 0.6579, 0 target-violating pairs, 0 countable labels, 0 import-ready rows
 - Notes: Normal locked direct run with no delegation. No M-CSA-only count growth and no external import. Full TM-score holdout claim remains forbidden.
 
 ## Expectation Updates
@@ -215,6 +215,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-15T06:49:36.549572+00:00: Cluster-first round6 clears subchunk 009; next work should continue bounded round6 verification from subchunk 010 and fold in any new high-TM blocker before broad coverage claims
 - 2026-05-15T08:46:02.937530+00:00: Round-8 cluster-first split folds in the new m_csa:68/m_csa:750 blocker; next work should continue single-query verification from staged index 68 under round-8 readiness.
 - 2026-05-15T13:32:19.332566+00:00: Round-9 cluster-first split folds in the m_csa:80 high-TM blocker; next work should continue single-query verification from staged index 84 under round-9 readiness.
+- 2026-05-15T14:31:01.833373+00:00: Round-9 cluster-first verification now clears staged indices 79-95; next work should continue from staged index 96 and stop on any TM>=0.7 blocker
 
 ## Scope Adjustments
 
