@@ -194,10 +194,27 @@ Status:
   `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round24.json`.
   Direct round-24 verification clears staged indices 119-122 in aggregate with
   5,681 mapped rows, 4,184 train/test rows, max train/test TM-score `0.6961`,
-  and 0 target-violating pairs. Full TM-score holdout claims remain forbidden
-  until the remaining round-24 cluster-first coverage passes or is explicitly
-  adjudicated. Next start: continue single-query verification from staged index
-  123 under round-24 readiness.
+  and 0 target-violating pairs. Index 123 then exposes `m_csa:124` against
+  held-out `m_csa:714`/`m_csa:294` at max `0.9676`; round 25 folds those
+  blockers, but its index-123 rerun exposes a second `m_csa:124` surface
+  against `m_csa:735`/`m_csa:912` at max `0.8735`. Round 26 folds that surface
+  into 97 high-TM constraints, clears staged indices 123-126 in aggregate with
+  9,272 mapped rows, 3,376 train/test rows, max train/test TM-score `0.6981`,
+  and 0 target-violating pairs, then index 127 exposes `m_csa:128` versus
+  held-out `m_csa:198` at max `0.8035`. Round 27 folds that pair, clears
+  staged indices 127-129 in aggregate with 4,169 mapped rows, 1,370
+  train/test rows, max `0.6868`, and 0 target-violating pairs, then index 130
+  exposes `m_csa:131` versus `m_csa:281`/`m_csa:555` at max `0.7574`. Round 28
+  folds those blockers into 100 high-TM constraints plus 38 sequence-identity
+  partition constraints, preserves 0 projected violations, 0 sequence-cluster
+  splits, 0 held-out out-of-scope false non-abstentions, and stages readiness
+  at
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round28.json`.
+  Its direct index-130 rerun passes with 683 mapped rows, 506 train/test rows,
+  max train/test TM-score `0.6775`, and 0 target-violating pairs. Full TM-score
+  holdout claims remain forbidden until the remaining round-28 cluster-first
+  coverage passes or is explicitly adjudicated. Next start: continue
+  single-query verification from staged index 131 under round-28 readiness.
 
 Current TM-score readiness:
 

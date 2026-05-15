@@ -364,7 +364,13 @@ Current expectation:
   rerun still fails at max `0.711`. Round 24 folds the second surface into 93
   high-TM constraints plus 38 sequence-identity partition constraints with 0
   projected violations and 0 sequence-cluster splits, then clears indices
-  119-122 at max `0.6961` with 0 target-violating pairs. The
+  119-122 at max `0.6961` with 0 target-violating pairs. Rounds 25 and 26
+  fold two successive `m_csa:124` blocker surfaces and clear indices 123-126
+  at max `0.6981`; round 27 folds `m_csa:128`/`m_csa:198` and clears indices
+  127-129 at max `0.6868`; round 28 folds `m_csa:131` versus
+  `m_csa:281`/`m_csa:555` into 100 high-TM constraints plus 38
+  sequence-identity constraints, preserves 0 projected violations and 0
+  sequence-cluster splits, and clears index 130 at max `0.6775`. The
   first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars

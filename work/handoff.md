@@ -50,6 +50,40 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T19:58:30Z run after repairing a self-created stale
+exec-shell PID lock into the expected live sentinel directory lock, syncing
+clean `origin/main`, and passing startup gates (`421` unit tests passed and
+`validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not modify external pilot decisions; the selected
+  external pilot remains review-only with 0 import-ready rows and 0 countable
+  candidates.
+- Scientific generalization work: Yes for direct Foldseek/TM-score
+  cluster-first verification and split repair, but not for a full split claim.
+  Round 24 index 123 exposed `m_csa:124` at max TM-score `0.9676`; round 25
+  folded those blockers but exposed a second `m_csa:124` surface at max
+  `0.8735`; round 26 folded that surface and cleared indices 123-126 at max
+  `0.6981` before index 127 exposed `m_csa:128` versus `m_csa:198` at max
+  `0.8035`; round 27 folded that pair and cleared indices 127-129 at max
+  `0.6868` before index 130 exposed `m_csa:131` versus
+  `m_csa:281`/`m_csa:555` at max `0.7574`; round 28 folded those blockers and
+  cleared index 130 at max `0.6775`.
+- SPOF hardening work: Yes. The run converted the new high-TM train/test
+  blockers into cluster-first partition constraints, bringing the active split
+  to 100 high-TM constraints plus 38 sequence-identity constraints with 0
+  projected violations, 0 sequence-cluster splits, and 0 held-out out-of-scope
+  false non-abstentions. `m_csa:372` and `m_csa:501` remain coordinate
+  exclusions, most query coverage remains unverified under the cluster-first
+  split, and `full_tm_score_holdout_claim_permitted=false`.
+- Next start: continue single-query verification from staged index 131 under
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round28.json`.
+
 Recorded for the 2026-05-15T18:56:51Z run after lock recovery/repair and
 clean startup gates (`418` unit tests passed and `validate` passed with 679
 curated labels):
@@ -2982,6 +3016,42 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-15T19:58:30Z
+- ENDED_AT: 2026-05-15T20:30:22Z
+- Measured elapsed time: 31.867 minutes
+- Documentation checked and updated across README,
+  docs/external_source_transfer.md, work/foldseek_readiness_notes.md,
+  work/handoff.md, work/scope.md, and regenerated work/status.md before
+  commit.
+- Normal locked direct run with no subagents or delegation. Repaired a
+  self-created stale exec-shell PID lock into a live sentinel lock before
+  syncing. No M-CSA-only count growth and no external import.
+- Directly continued round-24 Foldseek cluster-first verification from staged
+  index 123. Index 123 exposed `m_csa:124` blockers at max TM-score `0.9676`;
+  round 25 folded those blockers but its index-123 rerun exposed a second
+  `m_csa:124` surface at max `0.8735`.
+- Round 26 folded that surface into 97 high-TM constraints plus 38
+  sequence-identity constraints and cleared indices 123-126 at max train/test
+  TM-score `0.6981`. Index 127 then exposed `m_csa:128` versus `m_csa:198` at
+  max `0.8035`.
+- Round 27 folded that pair, cleared indices 127-129 at max `0.6868`, then
+  index 130 exposed `m_csa:131` versus `m_csa:281`/`m_csa:555` at max
+  `0.7574`.
+- Added `artifacts/v3_foldseek_tm_score_cluster_first_split_round28_1000.json`
+  and
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round28.json`.
+  Round 28 has 100 high-TM constraints, 38 sequence-identity partition
+  constraints, 0 projected violations, 0 sequence-cluster splits, 0 held-out
+  out-of-scope false non-abstentions, 0 countable labels, and 0 import-ready
+  rows. Its direct index-130 rerun passes at max train/test TM-score `0.6775`.
+  Next direct Foldseek work should continue staged index 131 under round-28
+  readiness.
+- Full TM-score holdout remains forbidden: round-28 coverage is still partial,
+  the split remains review-only/candidate-only, and `m_csa:372`/`m_csa:501`
+  remain coordinate exclusions.
+- Final verification passed: 424 unit tests, `validate`, `compileall`,
+  `git diff --check`, and JSON parsing for 23 new Foldseek artifacts.
 
 - STARTED_AT: 2026-05-15T14:52:02Z
 - ENDED_AT: 2026-05-15T15:31:50Z
