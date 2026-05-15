@@ -50,6 +50,34 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T07:04:30Z run after clean startup gates
+(`387` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not modify external pilot decisions; the selected
+  external pilot remains review-only with 0 import-ready rows and 0 countable
+  candidates.
+- Scientific generalization work: Yes for direct Foldseek/TM-score
+  cluster-first verification and split repair, but not for a full split claim.
+  Round-6 subchunk 010 timed out under the 900-second bound before pair rows
+  were emitted. A 3-query split of that same window completed microchunk 020,
+  found a `m_csa:63`/`m_csa:188` blocker at max TM-score `0.7116`, and round 7
+  folded that pair into 38 high-TM constraints. The direct round-7
+  microchunk-020 rerun timed out, so the repair remains unverified.
+- SPOF hardening work: Yes. The run converted the subchunk-010 runtime blocker
+  into a smaller completed evidence unit, turned the newly observed high-TM
+  pair into a partition constraint, regenerated round-7 coordinate readiness,
+  and pinned the new timeout/failure artifacts in tests. `m_csa:372` and
+  `m_csa:501` remain coordinate exclusions, the `m_csa:61`-`m_csa:63` window
+  needs single-query isolation under round 7, the `m_csa:64`-`m_csa:66` half
+  is still unrun, all outputs remain review-only/non-countable, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-15T06:03:46Z run after clean startup gates
 (`387` unit tests passed and `validate` passed with 679 curated labels):
 
@@ -1535,7 +1563,7 @@ The direct round-5 rerun of subchunk `008/112` passes with 8,641 mapped rows,
 Direct round-5 subchunk `009/112` then completed with 15,531 mapped rows,
 2,955 train/test rows, max TM-score `0.879`, and one reported blocker:
 `m_csa:58` against held-out out-of-scope `m_csa:628`. The current handoff
-split is now
+split was then
 `artifacts/v3_foldseek_tm_score_cluster_first_split_round6_1000.json`: it
 folds that blocker into 37 high-TM constraints across 16 constrained clusters,
 moves `m_csa:628` to in-distribution, preserves 0 sequence-cluster splits,
@@ -1545,11 +1573,29 @@ review-only/non-countable. Its readiness artifact is
 The direct round-6 rerun of subchunk `009/112` passes with 15,531 mapped rows,
 2,939 train/test rows, max TM-score `0.6699`, and 0 target-violating pairs.
 
-Next Foldseek work should continue bounded verification from the round-6
-readiness, preferably with the next unverified subchunk `010/112`, and stop
-and fold in any new target-violating pair before continuing. `m_csa:372` and
-`m_csa:501` remain coordinate exclusions, most query coverage remains
-unverified, and `full_tm_score_holdout_claim_permitted=false` remains required.
+This run continued from round 6. Direct subchunk `010/112` timed out under the
+900-second bound before emitting pair rows. A 3-query split of the same window
+completed microchunk `020/224` (`m_csa:61`-`m_csa:63`) with 7,488 mapped rows,
+1,319 train/test rows, max TM-score `0.7116`, and one reported blocker:
+in-distribution `m_csa:63`/`pdb:1CB7` against held-out out-of-scope
+`m_csa:188`/`pdb:1XEL`. The current handoff split is now
+`artifacts/v3_foldseek_tm_score_cluster_first_split_round7_1000.json`: it
+folds that blocker into 38 high-TM constraints across 17 constrained clusters,
+moves `m_csa:188` to in-distribution, preserves 0 sequence-cluster splits,
+keeps held-out out-of-scope false non-abstentions at 0, and keeps all rows
+review-only/non-countable. Its readiness artifact is
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
+The direct round-7 rerun of microchunk `020/224` timed out under the
+900-second bound before emitting pair rows, so the repair is not verified.
+
+Next Foldseek work should isolate the timed-out round-7 microchunk `020/224`
+with single-query checks for staged query indices 60, 61, and 62 under
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
+Only after that window passes or is explicitly adjudicated should work proceed
+to the unrun `m_csa:64`-`m_csa:66` half of the original subchunk 010.
+`m_csa:372` and `m_csa:501` remain coordinate exclusions, most query coverage
+remains unverified, and `full_tm_score_holdout_claim_permitted=false` remains
+required.
 
 External pilot import remains blocked. The selected-pilot representation
 adjudication now gives concrete review-only statuses: 3 stable representation
@@ -2650,6 +2696,39 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-15T07:04:30Z
+- ENDED_AT: 2026-05-15T07:58:04Z
+- Measured elapsed time: 53.567 minutes
+- Documentation checked and updated across README,
+  docs/external_source_transfer.md, work/foldseek_readiness_notes.md,
+  work/handoff.md, work/scope.md, and regenerated work/status.md before
+  commit.
+- Normal locked direct run with no subagents or delegation. No M-CSA-only count
+  growth and no external import.
+- Directly ran cluster-first round-6 subchunk `010/112` from
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round6.json`.
+  It timed out under the 900-second bound before pair rows were emitted,
+  leaving full TM-score holdout claims forbidden.
+- Split that same query window into 3-query microchunks. Round-6 microchunk
+  `020/224` completed with 7,488 mapped rows, 1,319 train/test rows, max
+  TM-score `0.7116`, and one blocker: in-distribution `m_csa:63` versus
+  held-out out-of-scope `m_csa:188`.
+- Added `artifacts/v3_foldseek_tm_score_cluster_first_split_round7_1000.json`
+  and `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
+  Round 7 has 38 high-TM constraints, 17 constrained clusters, 0 projected
+  known violations, 0 sequence-cluster splits, 0 held-out out-of-scope false
+  non-abstentions, and moves `m_csa:188` to in-distribution. Its direct
+  microchunk-020 rerun timed out under the 900-second bound, so the repair is
+  not verified.
+- Continue from round-7 readiness by isolating microchunk `020/224` with
+  single-query checks for staged query indices 60, 61, and 62. Only then
+  proceed to the unrun `m_csa:64`-`m_csa:66` half of original subchunk 010.
+- Final verification passed: `git diff --check`, JSON parsing for the 5 new
+  Foldseek artifacts, the 4 focused artifact-pin tests, `PYTHONPATH=src python
+  -m unittest discover -s tests` with 391 tests, `PYTHONPATH=src python -m
+  catalytic_earth.cli validate`, and `PYTHONPATH=src python -m compileall -q
+  src tests`.
 
 - STARTED_AT: 2026-05-15T06:03:46Z
 - ENDED_AT: 2026-05-15T06:48:58Z

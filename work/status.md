@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 109
-- Measured elapsed time: 3883.7 minutes (64.73 hours)
+- Entries: 110
+- Measured elapsed time: 3937.3 minutes (65.62 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 1237.5 measured minutes (20.62 hours)
+- post-mcsa-spof-hardening: 1291.0 measured minutes (21.52 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1154
-- Evidence references logged: 929
+- Artifact references logged: 1165
+- Evidence references logged: 940
 
 ## Recent Entries
-
-### 2026-05-14T23:22:21.551765+00:00 - post-mcsa-spof-hardening
-
-- Task: Foldseek query chunk aggregate and timeout
-- Time mode: measured
-- Measured minutes: 27.4
-- Started: 2026-05-14T22:54:46Z
-- Ended: 2026-05-14T23:22:10Z
-- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: 359 unit tests passed, validate passed with 679 curated labels, compileall passed, git diff check passed, chunks 0-2 aggregate records 3 attempted chunks 2 completed chunks and 24 completed query coordinates, chunk 2 timed out after 900 seconds before pair rows, aggregate max train/test TM 0.8957 with 70 target-violating rows, 0 countable labels, 0 import-ready rows
-- Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
 
 ### 2026-05-15T00:19:07.369532+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round4_query_subchunk_008_of_112.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round4_query_subchunk_aggregate_007_008_of_112.json, artifacts/v3_foldseek_tm_score_cluster_first_split_round5_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round5.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round5_query_subchunk_008_of_112.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round5_query_subchunk_009_of_112.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round5_query_subchunk_aggregate_008_009_of_112.json, artifacts/v3_foldseek_tm_score_cluster_first_split_round6_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round6.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round6_query_subchunk_009_of_112.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
 - Evidence: startup 387 unit tests passed, validate passed with 679 curated labels, round4 subchunk 008 failed at max TM 0.7205 and one blocker, round5 subchunk 008 passed at max TM 0.6989, round5 subchunk 009 failed at max TM 0.879 and one blocker, round6 subchunk 009 passed at max TM 0.6699, round6 has 37 high-TM constraints and 0 sequence-cluster splits, 0 countable labels, 0 import-ready rows, git diff check passed, JSON artifacts parsed, final 387 unit tests passed, compileall passed
 - Notes: Normal locked direct run with no delegation. No M-CSA-only count growth and no external import. Full TM-score holdout claim remains forbidden.
+
+### 2026-05-15T07:58:35.468841+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek cluster-first round7 timeout isolation
+- Time mode: measured
+- Measured minutes: 53.567
+- Started: 2026-05-15T07:04:30Z
+- Ended: 2026-05-15T07:58:04Z
+- Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round6_query_subchunk_010_of_112.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round6_query_microchunk_020_of_224.json, artifacts/v3_foldseek_tm_score_cluster_first_split_round7_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round7_query_microchunk_020_of_224.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: startup 387 unit tests passed, validate passed with 679 curated labels, round6 subchunk 010 timed out under 900 seconds with 0 pair rows, round6 microchunk 020 completed with max TM 0.7116 and one m_csa:63/m_csa:188 blocker, round7 cluster-first candidate has 38 high-TM constraints and 0 sequence-cluster splits, round7 microchunk 020 timed out under 900 seconds, git diff check passed, JSON artifacts parsed, final 391 unit tests passed, validate passed, compileall passed
+- Notes: Normal locked direct run with no delegation. No M-CSA-only count growth and no external import. Full TM-score holdout claim remains forbidden; next work should isolate round7 microchunk 020 with single-query checks before continuing.
 
 ## Expectation Updates
 

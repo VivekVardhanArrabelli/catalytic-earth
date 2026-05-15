@@ -20,6 +20,7 @@ Round-2 split redesign and direct chunk-0 check: 2026-05-15T01:40:00Z
 Cluster-first split redesign and subchunk verification: 2026-05-15T04:51:00Z
 Cluster-first round-4 verification update: 2026-05-15T05:49:00Z
 Cluster-first round-6 verification update: 2026-05-15T06:47:00Z
+Cluster-first round-7 timeout/update: 2026-05-15T07:58:00Z
 
 Status:
 
@@ -94,8 +95,24 @@ Status:
   `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round6.json`.
   The direct round-6 subchunk-009 rerun passes with 15,531 mapped rows, 2,939
   train/test rows, max train/test TM-score `0.6699`, and 0 target-violating
-  pairs. Full TM-score holdout claims remain forbidden until the remaining
-  round-6 cluster-first coverage passes.
+  pairs.
+- Direct round-6 subchunk 010 times out under the 900-second bound before
+  pair rows are emitted. The same query window is split into 3-query
+  microchunks. Round-6 microchunk 020 completes with 7,488 mapped rows, 1,319
+  train/test rows, max train/test TM-score `0.7116`, and one reported blocker:
+  in-distribution `m_csa:63`/`pdb:1CB7` against held-out `m_csa:188`/
+  `pdb:1XEL`.
+- The current handoff split is now
+  `artifacts/v3_foldseek_tm_score_cluster_first_split_round7_1000.json`; it
+  folds that blocker into 38 high-TM constraints across 17 constrained
+  clusters, moves `m_csa:188` to in-distribution as part of the connected
+  high-TM neighborhood, preserves 0 sequence-cluster splits, and records 0
+  countable/import-ready rows. Its readiness artifact is
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
+  The direct round-7 microchunk-020 rerun times out under the 900-second bound
+  before pair rows are emitted, so the repair is not verified for that window.
+  Full TM-score holdout claims remain forbidden until the remaining round-7
+  cluster-first coverage passes or is explicitly adjudicated.
 
 Current TM-score readiness:
 

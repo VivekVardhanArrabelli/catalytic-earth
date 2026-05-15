@@ -304,10 +304,17 @@ Current expectation:
   constraints, moves held-out out-of-scope `m_csa:628` to in-distribution,
   preserves 0 sequence-cluster splits, keeps all rows
   review-only/non-countable, and clears subchunk 009 at max TM-score `0.6699`.
-  The next Foldseek work should verify from
-  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round6.json`,
-  continuing with the next bounded coverage slice and stopping on any new
-  target violation. The first 12-row
+  Round-6 subchunk 010 then times out under the 900-second bound; a 3-query
+  split of the same window completes microchunk 020 and exposes a
+  `m_csa:63`/`m_csa:188` blocker at max TM-score `0.7116`. Round 7 folds that
+  pair into 38 high-TM constraints across 17 constrained clusters, preserves 0
+  sequence-cluster splits, keeps all rows review-only/non-countable, and
+  regenerates
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
+  The direct round-7 microchunk-020 rerun times out under the 900-second bound
+  before emitting pair rows, so the next Foldseek work should isolate
+  `m_csa:61`-`m_csa:63` with smaller single-query checks from the round-7
+  readiness before attempting the unrun `m_csa:64`-`m_csa:66` half. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

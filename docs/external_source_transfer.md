@@ -269,12 +269,25 @@ in-distribution, preserves 0 sequence-cluster splits, and records 0
 countable/import-ready rows. Its readiness artifact is
 `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round6.json`,
 and the direct round-6 subchunk-009 rerun passes with max train/test TM-score
-`0.6699` and 0 target-violating pairs. Full TM-score holdout claims remain
-forbidden until the remaining round-6 cluster-first coverage passes.
+`0.6699` and 0 target-violating pairs. Round-6 subchunk 010 then times out
+under the 900-second bound before emitting pair rows. Splitting that same
+window into 3-query microchunks localizes a completed target failure:
+microchunk 020 (`m_csa:61`-`m_csa:63`) records 7,488 mapped rows, max
+train/test TM-score `0.7116`, and one reported blocking structure pair,
+`m_csa:63`/`m_csa:188`. The current round-7 artifact,
+`artifacts/v3_foldseek_tm_score_cluster_first_split_round7_1000.json`, folds
+that pair into 38 high-TM constraints across 17 constrained clusters,
+preserves 0 sequence-cluster splits, and records 0 countable/import-ready rows.
+Its readiness artifact is
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
+The direct round-7 microchunk-020 rerun times out under the 900-second bound
+before emitting pair rows, so round 7 remains unverified over that window.
+Full TM-score holdout claims remain forbidden until the remaining round-7
+cluster-first coverage passes or is explicitly adjudicated.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until the remaining query
-chunks are completed or explicitly adjudicated under the cluster-first round-6
+chunks are completed or explicitly adjudicated under the cluster-first round-7
 split, coordinate exclusions remain reported, and target checks pass.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
