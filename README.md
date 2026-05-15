@@ -527,12 +527,20 @@ mapped rows and exposes a new `m_csa:63`/`m_csa:188` blocker at max TM-score
 `0.7116`. Round 7 folds that pair into 38 high-TM constraints, 17 constrained
 clusters, 0 projected known violations, and 0 sequence-cluster splits, but its
 direct microchunk-020 rerun times out under the same 900-second bound before
-pair rows are emitted. These artifacts remain review-only and non-countable;
-no full TM-score holdout claim is permitted until verification continues from
-`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`
-and the remaining query coverage, including the timed-out `m_csa:61`-
-`m_csa:63` window and unrun `m_csa:64`-`m_csa:66` window, passes or is
-explicitly adjudicated.
+pair rows are emitted. The timed-out round-7 window has now been verified with
+single-query chunks: staged indices 60-62 (`m_csa:61`-`m_csa:63`) aggregate to
+7,488 mapped rows, 1,311 train/test rows, max train/test TM-score `0.6967`,
+and 0 violations, while staged indices 63-65 (`m_csa:64`-`m_csa:66`) aggregate
+to 2,190 mapped rows, 378 train/test rows, max train/test TM-score `0.5629`,
+and 0 violations. Continuing one-query checks then clears staged index 66
+(`m_csa:67`) at max TM-score `0.6535`, but staged index 67 (`m_csa:68`) exposes
+a new `m_csa:68`/`m_csa:750` blocker at max TM-score `0.7909`. Round 8 folds
+that pair into 39 high-TM constraints, 18 constrained clusters, 0 projected
+known violations, and 0 sequence-cluster splits, with readiness at
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round8.json`.
+These artifacts remain review-only and non-countable; no full TM-score holdout
+claim is permitted until verification continues from round 8 and the remaining
+query coverage passes or is explicitly adjudicated.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

@@ -110,8 +110,21 @@ Status:
   countable/import-ready rows. Its readiness artifact is
   `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
   The direct round-7 microchunk-020 rerun times out under the 900-second bound
-  before pair rows are emitted, so the repair is not verified for that window.
-  Full TM-score holdout claims remain forbidden until the remaining round-7
+  before pair rows are emitted. Single-query isolation then verifies the same
+  span without a target failure: staged indices 60-62 (`m_csa:61`-`m_csa:63`)
+  aggregate to 7,488 mapped rows, 1,311 train/test rows, max train/test
+  TM-score `0.6967`, and 0 target-violating pairs, while staged indices 63-65
+  (`m_csa:64`-`m_csa:66`) aggregate to 2,190 mapped rows, 378 train/test rows,
+  max train/test TM-score `0.5629`, and 0 target-violating pairs. Staged index
+  66 (`m_csa:67`) then passes at max train/test TM-score `0.6535`, but staged
+  index 67 (`m_csa:68`) exposes one new `m_csa:68`/`m_csa:750` blocker at max
+  TM-score `0.7909`. `src/catalytic_earth/generalization.py` now accepts prior
+  cluster-first `partition_constraints` as pair-cache evidence, and
+  `artifacts/v3_foldseek_tm_score_cluster_first_split_round8_1000.json` folds
+  the new pair into 39 high-TM constraints across 18 constrained clusters with
+  0 projected violations and 0 sequence-cluster splits. Its readiness artifact
+  is `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round8.json`.
+  Full TM-score holdout claims remain forbidden until the remaining round-8
   cluster-first coverage passes or is explicitly adjudicated.
 
 Current TM-score readiness:

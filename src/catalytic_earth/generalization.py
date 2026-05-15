@@ -4209,6 +4209,7 @@ def _foldseek_pair_constraint_cache(
         rows: list[dict[str, Any]] = []
         for key in (
             "blocking_pairs",
+            "partition_constraints",
             "top_train_test_pairs",
             "projected_blocking_pairs",
             "projected_top_train_test_pairs",

@@ -281,8 +281,16 @@ preserves 0 sequence-cluster splits, and records 0 countable/import-ready rows.
 Its readiness artifact is
 `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
 The direct round-7 microchunk-020 rerun times out under the 900-second bound
-before emitting pair rows, so round 7 remains unverified over that window.
-Full TM-score holdout claims remain forbidden until the remaining round-7
+before emitting pair rows. Single-query isolation resolves that runtime blocker:
+indices 60-62 (`m_csa:61`-`m_csa:63`) complete with 7,488 mapped rows, 1,311
+train/test rows, max train/test TM-score `0.6967`, and 0 violations, and
+indices 63-65 (`m_csa:64`-`m_csa:66`) complete with 2,190 mapped rows, 378
+train/test rows, max train/test TM-score `0.5629`, and 0 violations. Staged
+index 66 (`m_csa:67`) also passes at max TM-score `0.6535`, but staged index
+67 (`m_csa:68`) exposes a `m_csa:68`/`m_csa:750` blocker at max TM-score
+`0.7909`; round 8 folds that pair into 39 constraints, 18 constrained
+clusters, 0 projected violations, and 0 sequence-cluster splits. Full
+TM-score holdout claims remain forbidden until the remaining round-8
 cluster-first coverage passes or is explicitly adjudicated.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports

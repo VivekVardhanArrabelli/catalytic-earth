@@ -312,9 +312,14 @@ Current expectation:
   regenerates
   `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
   The direct round-7 microchunk-020 rerun times out under the 900-second bound
-  before emitting pair rows, so the next Foldseek work should isolate
-  `m_csa:61`-`m_csa:63` with smaller single-query checks from the round-7
-  readiness before attempting the unrun `m_csa:64`-`m_csa:66` half. The first 12-row
+  before emitting pair rows. Single-query isolation now clears that window:
+  `m_csa:61`-`m_csa:63` aggregate to max TM-score `0.6967` with 0 violations,
+  and `m_csa:64`-`m_csa:66` aggregate to max TM-score `0.5629` with 0
+  violations. Staged index 66 (`m_csa:67`) passes at max TM-score `0.6535`,
+  but staged index 67 (`m_csa:68`) exposes a `m_csa:68`/`m_csa:750` blocker at
+  max TM-score `0.7909`; round 8 folds that pair into 39 high-TM constraints
+  and 18 constrained clusters with 0 projected violations and 0
+  sequence-cluster splits. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

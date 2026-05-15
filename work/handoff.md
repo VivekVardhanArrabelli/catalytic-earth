@@ -50,6 +50,36 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T08:05:27Z run after clean startup gates
+(`391` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not modify external pilot decisions; the selected
+  external pilot remains review-only with 0 import-ready rows and 0 countable
+  candidates.
+- Scientific generalization work: Yes for direct Foldseek/TM-score
+  cluster-first verification, but not for a full split claim. The timed-out
+  round-7 microchunk-020 window was isolated into one-query Foldseek checks:
+  indices 60-62 (`m_csa:61`-`m_csa:63`) pass in aggregate at max TM-score
+  `0.6967`, and indices 63-65 (`m_csa:64`-`m_csa:66`) pass in aggregate at
+  max TM-score `0.5629`, both with 0 target-violating pairs. Staged index 66
+  (`m_csa:67`) also passes at max TM-score `0.6535`; staged index 67
+  (`m_csa:68`) exposes a new `m_csa:68`/`m_csa:750` blocker at max TM-score
+  `0.7909`, and round 8 folds that pair into 39 constraints with 0 projected
+  violations.
+- SPOF hardening work: Yes. The run converted the round-7 microchunk-020
+  runtime blocker into six completed one-query evidence artifacts plus two
+  aggregate summaries, then stopped on the next high-TM blocker and converted
+  it into a round-8 cluster-first partition constraint. `m_csa:372` and
+  `m_csa:501` remain coordinate exclusions, most query coverage remains
+  unverified under the cluster-first round-8 split, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-15T07:04:30Z run after clean startup gates
 (`387` unit tests passed and `validate` passed with 679 curated labels):
 
@@ -1586,13 +1616,31 @@ keeps held-out out-of-scope false non-abstentions at 0, and keeps all rows
 review-only/non-countable. Its readiness artifact is
 `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
 The direct round-7 rerun of microchunk `020/224` timed out under the
-900-second bound before emitting pair rows, so the repair is not verified.
+900-second bound before emitting pair rows. This run isolated that timeout
+with single-query checks under the same round-7 readiness. Staged indices 60,
+61, and 62 (`m_csa:61`-`m_csa:63`) all complete and aggregate to 7,488 mapped
+rows, 1,311 train/test rows, max TM-score `0.6967`, and 0 target-violating
+pairs. Staged indices 63, 64, and 65 (`m_csa:64`-`m_csa:66`) also complete and
+aggregate to 2,190 mapped rows, 378 train/test rows, max TM-score `0.5629`,
+and 0 target-violating pairs. Staged index 66 (`m_csa:67`) completes with 687
+mapped rows, 593 train/test rows, max TM-score `0.6535`, and 0 target-violating
+pairs. Staged index 67 (`m_csa:68`) then exposes one blocker:
+in-distribution `m_csa:68`/`pdb:1IVH` against held-out `m_csa:750`/
+`pdb:1U8V`, max TM-score `0.7909`.
 
-Next Foldseek work should isolate the timed-out round-7 microchunk `020/224`
-with single-query checks for staged query indices 60, 61, and 62 under
-`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
-Only after that window passes or is explicitly adjudicated should work proceed
-to the unrun `m_csa:64`-`m_csa:66` half of the original subchunk 010.
+The current handoff split is now
+`artifacts/v3_foldseek_tm_score_cluster_first_split_round8_1000.json`: it
+folds the new blocker into 39 high-TM constraints across 18 constrained
+clusters, moves `m_csa:68` to heldout with its high-TM neighborhood, preserves
+0 sequence-cluster splits, keeps held-out out-of-scope false non-abstentions
+at 0, and keeps all rows review-only/non-countable. Its readiness artifact is
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round8.json`.
+
+Next Foldseek work should continue from round-8 readiness at staged query
+index 68 (`m_csa:69`) using the same one-query verification pattern, or a
+larger bounded chunk only if the runtime risk is acceptable. Stop on any
+`TM >= 0.7` train/test blocker and fold it into a new cluster-first round
+before continuing.
 `m_csa:372` and `m_csa:501` remain coordinate exclusions, most query coverage
 remains unverified, and `full_tm_score_holdout_claim_permitted=false` remains
 required.
@@ -2696,6 +2744,38 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-15T08:05:27Z
+- ENDED_AT: 2026-05-15T08:45:41Z
+- Measured elapsed time: 40.233 minutes
+- Documentation checked and updated across README,
+  docs/external_source_transfer.md, work/foldseek_readiness_notes.md,
+  work/handoff.md, work/scope.md, and regenerated work/status.md before
+  commit.
+- Normal locked direct run with no subagents or delegation. No M-CSA-only count
+  growth and no external import.
+- Directly isolated the timed-out round-7 microchunk `020/224` with one-query
+  checks from
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
+  Staged indices 60-62 (`m_csa:61`-`m_csa:63`) pass in aggregate at max
+  TM-score `0.6967`; staged indices 63-65 (`m_csa:64`-`m_csa:66`) pass in
+  aggregate at max TM-score `0.5629`; staged index 66 (`m_csa:67`) passes at
+  max TM-score `0.6535`.
+- Staged index 67 (`m_csa:68`) exposes a new `m_csa:68`/`m_csa:750` blocker at
+  max TM-score `0.7909`. Round 8 folds that pair into
+  `artifacts/v3_foldseek_tm_score_cluster_first_split_round8_1000.json` with
+  39 high-TM constraints, 18 constrained clusters, 0 projected violations, 0
+  sequence-cluster splits, 0 countable labels, and 0 import-ready rows. Its
+  readiness artifact is
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round8.json`.
+- `src/catalytic_earth/generalization.py` now ingests prior cluster-first
+  `partition_constraints` as pair-cache evidence so incremental rounds can
+  reuse the cluster cache rather than reconstructing every source artifact.
+- Final verification passed: JSON parsing for 13 new Foldseek artifacts, 6
+  focused artifact/cache tests, `git diff --check`, `PYTHONPATH=src python -m
+  unittest discover -s tests` with 396 tests, `PYTHONPATH=src python -m
+  catalytic_earth.cli validate`, and `PYTHONPATH=src python -m compileall -q
+  src tests`.
 
 - STARTED_AT: 2026-05-15T07:04:30Z
 - ENDED_AT: 2026-05-15T07:58:04Z
