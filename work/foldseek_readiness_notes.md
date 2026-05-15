@@ -21,6 +21,7 @@ Cluster-first split redesign and subchunk verification: 2026-05-15T04:51:00Z
 Cluster-first round-4 verification update: 2026-05-15T05:49:00Z
 Cluster-first round-6 verification update: 2026-05-15T06:47:00Z
 Cluster-first round-7 timeout/update: 2026-05-15T07:58:00Z
+Cluster-first round-19 verification update: 2026-05-15T12:34:47-05:00
 
 Status:
 
@@ -160,11 +161,18 @@ Status:
   `m_csa:109` at max `0.7649`; round 15 folds those blockers and verifies
   indices 107-109 cleanly at max `0.6996`. Index 110 exposes `m_csa:111` at
   max `0.7521`; round 16 folds that evidence into 66 high-TM constraints plus
-  38 sequence-identity partition constraints, 0 projected violations, 0
-  sequence-cluster splits, and a readiness artifact staged for the next direct
-  rerun of index 110. Full TM-score holdout claims remain forbidden until the
-  remaining round-16 cluster-first coverage passes or is explicitly
-  adjudicated.
+  38 sequence-identity partition constraints. Its direct index-110 rerun still
+  exposes `m_csa:111` versus `m_csa:852` at max `0.7708`; round 17 folds that
+  pair, clears index 110 at max `0.6823`, clears index 111 at max `0.564`, and
+  then index 112 exposes `m_csa:113` versus held-out `m_csa:131` at max
+  `0.7063`. Round 18 folds that pair, but its index-112 rerun exposes a
+  larger `m_csa:113` blocker surface against `m_csa:942`, `m_csa:978`, and
+  related in-distribution neighbors at max `0.9087`. Round 19 folds that
+  evidence into 72 high-TM constraints plus 38 sequence-identity partition
+  constraints, 0 projected violations, 0 sequence-cluster splits, and a
+  readiness artifact staged for the next direct rerun of index 112. Full
+  TM-score holdout claims remain forbidden until the remaining round-19
+  cluster-first coverage passes or is explicitly adjudicated.
 
 Current TM-score readiness:
 
