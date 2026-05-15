@@ -512,12 +512,18 @@ Subchunk 006 passes with max train/test TM-score `0.6509`, but subchunk 007
 exposes one remaining high-TM blocker, `m_csa:45` versus `m_csa:397`, at max
 train/test TM-score `0.8043`. The round-4 cluster-first candidate folds that
 blocker into 35 high-TM constraints, moves held-out out-of-scope `m_csa:397`
-to in-distribution, preserves 0 sequence-cluster splits and 0 held-out
-out-of-scope false non-abstentions, and its direct subchunk 007 rerun passes
-with max train/test TM-score `0.6598` and 0 target-violating pairs. This is
-still review-only and non-countable; no full TM-score holdout claim is
-permitted until verification continues from
-`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round4.json`
+to in-distribution, and its direct subchunk 007 rerun passes with max
+train/test TM-score `0.6598`. Round-4 subchunk 008 then exposes a new
+`m_csa:54`/`m_csa:428` blocker at max TM-score `0.7205`; round 5 moves
+held-out out-of-scope `m_csa:428` to in-distribution, raises the constraint
+count to 36, and clears subchunk 008 at max TM-score `0.6989`. Round-5
+subchunk 009 then exposes `m_csa:58`/`m_csa:628` at max TM-score `0.879`;
+round 6 moves held-out out-of-scope `m_csa:628` to in-distribution, records
+37 high-TM constraints with 0 sequence-cluster splits, and clears subchunk 009
+at max TM-score `0.6699`. These artifacts remain review-only and
+non-countable; no full TM-score holdout claim is permitted until verification
+continues from
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round6.json`
 and the remaining query coverage passes.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped

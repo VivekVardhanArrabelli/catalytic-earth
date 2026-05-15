@@ -294,13 +294,18 @@ Current expectation:
   high-TM constraints across 14 constrained clusters. Direct round-3
   verification reruns subchunks 006 and 007; 006 passes with max TM-score
   `0.6509`, while 007 exposes one remaining `m_csa:45`/`m_csa:397` blocker at
-  max TM-score `0.8043`. The current round-4 cluster-first candidate folds
-  that blocker into 35 high-TM constraints, moves held-out out-of-scope
-  `m_csa:397` to in-distribution, preserves 0 sequence-cluster splits, keeps
-  all rows review-only/non-countable, and the direct round-4 subchunk-007
-  rerun passes with max TM-score `0.6598`. The next Foldseek work should
-  verify from
-  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round4.json`,
+  max TM-score `0.8043`. Round 4 folds that blocker into 35 high-TM
+  constraints, moves held-out out-of-scope `m_csa:397` to in-distribution,
+  and clears subchunk 007 at max TM-score `0.6598`. Round-4 subchunk 008 then
+  exposes a `m_csa:54`/`m_csa:428` blocker at max TM-score `0.7205`; round 5
+  folds that pair into 36 high-TM constraints and clears subchunk 008 at max
+  TM-score `0.6989`. Round-5 subchunk 009 exposes a `m_csa:58`/`m_csa:628`
+  blocker at max TM-score `0.879`; round 6 folds that pair into 37 high-TM
+  constraints, moves held-out out-of-scope `m_csa:628` to in-distribution,
+  preserves 0 sequence-cluster splits, keeps all rows
+  review-only/non-countable, and clears subchunk 009 at max TM-score `0.6699`.
+  The next Foldseek work should verify from
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round6.json`,
   continuing with the next bounded coverage slice and stopping on any new
   target violation. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
