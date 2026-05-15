@@ -24,6 +24,7 @@ Cluster-first round-7 timeout/update: 2026-05-15T07:58:00Z
 Cluster-first round-19 verification update: 2026-05-15T12:34:47-05:00
 Cluster-first round-22 verification update: 2026-05-15T18:33:42Z
 Cluster-first round-24 verification update: 2026-05-15T19:16:47Z
+Cluster-first round-30 verification update: 2026-05-15T16:30:00-05:00
 
 Status:
 
@@ -212,9 +213,24 @@ Status:
   `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round28.json`.
   Its direct index-130 rerun passes with 683 mapped rows, 506 train/test rows,
   max train/test TM-score `0.6775`, and 0 target-violating pairs. Full TM-score
-  holdout claims remain forbidden until the remaining round-28 cluster-first
-  coverage passes or is explicitly adjudicated. Next start: continue
-  single-query verification from staged index 131 under round-28 readiness.
+  holdout claims remain forbidden until the remaining cluster-first coverage
+  passes or is explicitly adjudicated. Continuing from index 131 exposes
+  `m_csa:132` versus `m_csa:532` at max `0.8385`; round 29 folds that blocker
+  into 101 high-TM constraints plus 38 sequence-identity partition constraints
+  with 0 projected violations and 0 sequence-cluster splits. The direct
+  round-29 rerun clears index 131 at max `0.6904`, clears indices 132-139,
+  then index 140 exposes `m_csa:141` versus `m_csa:903` at max `0.7337`.
+  Round 30 folds that blocker into 102 high-TM constraints plus 38
+  sequence-identity partition constraints, preserves 0 projected violations,
+  0 sequence-cluster splits, 0 held-out out-of-scope false non-abstentions,
+  and stages readiness at
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round30.json`.
+  Its direct verification clears indices 140-141 in aggregate with 2,733
+  mapped rows, 2,089 train/test rows, max train/test TM-score `0.6873`, and 0
+  target-violating pairs. Full TM-score holdout claims remain forbidden until
+  the remaining round-30 cluster-first coverage passes or is explicitly
+  adjudicated. Next start: continue single-query verification from staged index
+  142 under round-30 readiness.
 
 Current TM-score readiness:
 

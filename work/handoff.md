@@ -50,6 +50,35 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T15:59:13-05:00 run after syncing clean
+`origin/main` and passing startup gates (`424` unit tests passed and
+`validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not modify external pilot decisions; the selected
+  external pilot remains review-only with 0 import-ready rows and 0 countable
+  candidates.
+- Scientific generalization work: Yes for direct Foldseek/TM-score
+  cluster-first verification and split repair, but not for a full split claim.
+  Round 28 index 131 exposed `m_csa:132` versus `m_csa:532` at max TM-score
+  `0.8385`; round 29 folded that blocker and cleared indices 131-139 before
+  index 140 exposed `m_csa:141` versus `m_csa:903` at max `0.7337`; round 30
+  folded that blocker and cleared indices 140-141 at max `0.6873`.
+- SPOF hardening work: Yes. The run converted the new high-TM train/test
+  blockers into cluster-first partition constraints, bringing the active split
+  to 102 high-TM constraints plus 38 sequence-identity constraints with 0
+  projected violations, 0 sequence-cluster splits, and 0 held-out out-of-scope
+  false non-abstentions. `m_csa:372` and `m_csa:501` remain coordinate
+  exclusions, most query coverage remains unverified under the cluster-first
+  split, and `full_tm_score_holdout_claim_permitted=false`.
+- Next start: continue single-query verification from staged index 142 under
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round30.json`.
+
 Recorded for the 2026-05-15T19:58:30Z run after repairing a self-created stale
 exec-shell PID lock into the expected live sentinel directory lock, syncing
 clean `origin/main`, and passing startup gates (`421` unit tests passed and
@@ -3016,6 +3045,36 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-15T15:59:13-05:00
+- ENDED_AT: 2026-05-15T16:34:59-05:00
+- Measured elapsed time: 35.767 minutes
+- Documentation checked and updated across README,
+  docs/external_source_transfer.md, work/foldseek_readiness_notes.md,
+  work/handoff.md, work/scope.md, and regenerated work/status.md before
+  commit.
+- Normal locked direct run with no subagents or delegation. No M-CSA-only count
+  growth and no external import.
+- Directly continued round-28 Foldseek cluster-first verification from staged
+  index 131. Index 131 exposed `m_csa:132` versus `m_csa:532` at max TM-score
+  `0.8385`; round 29 folded that blocker into 101 high-TM constraints plus 38
+  sequence-identity constraints.
+- Round 29 cleared index 131 at max `0.6904` and cleared indices 132-139
+  before index 140 exposed `m_csa:141` versus `m_csa:903` at max `0.7337`.
+- Added `artifacts/v3_foldseek_tm_score_cluster_first_split_round30_1000.json`
+  and
+  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round30.json`.
+  Round 30 has 102 high-TM constraints, 38 sequence-identity partition
+  constraints, 0 projected violations, 0 sequence-cluster splits, 0 held-out
+  out-of-scope false non-abstentions, 0 countable labels, and 0 import-ready
+  rows. Its direct verification clears indices 140-141 at max train/test
+  TM-score `0.6873`. Next direct Foldseek work should continue staged index
+  142 under round-30 readiness.
+- Full TM-score holdout remains forbidden: round-30 coverage is still partial,
+  the split remains review-only/candidate-only, and `m_csa:372`/`m_csa:501`
+  remain coordinate exclusions.
+- Final verification passed: 426 unit tests, `validate`, `compileall`,
+  `git diff --check`, and JSON parsing for 20 new Foldseek artifacts.
 
 - STARTED_AT: 2026-05-15T19:58:30Z
 - ENDED_AT: 2026-05-15T20:30:22Z

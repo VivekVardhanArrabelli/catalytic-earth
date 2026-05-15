@@ -603,11 +603,17 @@ that pair and clears indices 127-129 at max `0.6868`. Index 130 exposes
 `m_csa:131` versus `m_csa:281`/`m_csa:555`; round 28 folds those blockers into
 100 high-TM constraints plus 38 sequence-identity constraints, preserves 0
 projected violations and 0 sequence-cluster splits, and clears index 130 at
-max `0.6775`. The active readiness
+max `0.6775`. Index 131 then exposes `m_csa:132` versus `m_csa:532` at max
+`0.8385`; round 29 folds that blocker into 101 high-TM constraints and clears
+indices 131-139 before index 140 exposes `m_csa:141` versus `m_csa:903` at
+max `0.7337`. Round 30 folds that blocker into 102 high-TM constraints plus
+38 sequence-identity constraints, preserves 0 projected violations and 0
+sequence-cluster splits, and clears indices 140-141 at max `0.6873`. The
+active readiness
 artifact is
-`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round28.json`.
+`artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round30.json`.
 These artifacts remain review-only and non-countable; no full TM-score holdout
-claim is permitted until verification resumes from round 28 and the remaining
+claim is permitted until verification resumes from round 30 and the remaining
 query coverage passes or is explicitly adjudicated.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped

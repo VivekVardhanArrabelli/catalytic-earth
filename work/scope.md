@@ -370,7 +370,12 @@ Current expectation:
   127-129 at max `0.6868`; round 28 folds `m_csa:131` versus
   `m_csa:281`/`m_csa:555` into 100 high-TM constraints plus 38
   sequence-identity constraints, preserves 0 projected violations and 0
-  sequence-cluster splits, and clears index 130 at max `0.6775`. The
+  sequence-cluster splits, and clears index 130 at max `0.6775`. Round 29
+  folds `m_csa:132`/`m_csa:532` into 101 high-TM constraints and clears
+  indices 131-139 before index 140 exposes `m_csa:141`/`m_csa:903` at max
+  `0.7337`; round 30 folds that blocker into 102 high-TM constraints plus 38
+  sequence-identity constraints, preserves 0 projected violations and 0
+  sequence-cluster splits, and clears indices 140-141 at max `0.6873`. The
   first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
