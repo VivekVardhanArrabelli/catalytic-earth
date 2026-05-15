@@ -246,7 +246,22 @@ Current expectation:
   and the all-at-once-only runtime SPOF but adds concrete target-failure and
   chunk-runtime evidence; the full query aggregate is incomplete, the completed
   chunks fail `<0.7`, and `full_tm_score_holdout_claim_permitted=false`
-  remains correct. The first 12-row
+  remains correct. A longer direct retry,
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json`,
+  completes the same chunk under a 1,800-second cap with 12,639 mapped pair
+  rows, 3,216 train/test rows, max train/test TM-score `0.8427`, and 6
+  target-violating row-level pairs. The completed-retry aggregate
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json`
+  now records 3/56 completed chunks, 36 completed query coordinates, 40,890
+  mapped pair rows, 12,358 train/test rows, max train/test TM-score `0.8957`,
+  76 target-violating row-level pairs, 15 reported violating structure pairs,
+  and 53 non-completed chunks. The query-chunk split-repair plan
+  `artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json`
+  classifies the observed blockers into 9 conservative held-out out-of-scope
+  repair candidates and 6 manual split-redesign blockers involving held-out
+  in-scope rows (`m_csa:20`, `m_csa:497`, and `m_csa:895`). This narrows the
+  runtime and target-failure blockers but still leaves the full TM-score
+  holdout unclaimable. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

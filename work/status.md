@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 102
-- Measured elapsed time: 3581.1 minutes (59.68 hours)
+- Entries: 103
+- Measured elapsed time: 3604.3 minutes (60.07 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 934.8 measured minutes (15.58 hours)
+- post-mcsa-spof-hardening: 958.0 measured minutes (15.97 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1067
-- Evidence references logged: 877
+- Artifact references logged: 1077
+- Evidence references logged: 886
 
 ## Recent Entries
-
-### 2026-05-14T18:09:39.969297+00:00 - post-mcsa-spof-hardening
-
-- Task: Foldseek target failure and pilot representation adjudication
-- Time mode: measured
-- Measured minutes: 18.883
-- Started: 2026-05-14T12:50:46-0500
-- Ended: 2026-05-14T13:09:39-0500
-- Artifacts: work/scope.md
-- Evidence: 0 countable labels and 0 import-ready rows
-- Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
 
 ### 2026-05-14T18:12:15.033415+00:00 - post-mcsa-spof-hardening
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-14T23:22:10Z
 - Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
 - Evidence: 359 unit tests passed, validate passed with 679 curated labels, compileall passed, git diff check passed, chunks 0-2 aggregate records 3 attempted chunks 2 completed chunks and 24 completed query coordinates, chunk 2 timed out after 900 seconds before pair rows, aggregate max train/test TM 0.8957 with 70 target-violating rows, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
+
+### 2026-05-15T00:19:07.369532+00:00 - post-mcsa-spof-hardening
+
+- Task: Foldseek chunk-2 retry and query-blocker adjudication
+- Time mode: measured
+- Measured minutes: 23.25
+- Started: 2026-05-14T18:55:52-05:00
+- Ended: 2026-05-14T19:19:07-05:00
+- Artifacts: src/catalytic_earth/generalization.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json, artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 362 unit tests passed, validate passed with 679 curated labels, compileall passed, git diff check passed, chunk 2 completed under 1800-second cap, retry aggregate has 3 completed chunks and max train/test TM 0.8957, query split-repair plan has 9 repair candidates and 6 manual in-scope blockers, 0 countable labels, 0 import-ready rows
 - Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
 
 ## Expectation Updates
@@ -206,6 +206,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T21:29:26.788448+00:00: Uncapped all-materializable Foldseek exact TM-score search exceeds the normal automation window; next work needs a longer run budget or chunk/resume support, not another routine capped increment
 - 2026-05-14T22:36:14.676450+00:00: Resumable Foldseek query chunks remove the all-at-once-only runtime SPOF but show the repaired candidate split still fails the <0.7 TM-score target beyond the expanded100 cap
 - 2026-05-14T23:22:21.551765+00:00: Foldseek query chunk aggregation is now durable; next work should adjudicate target-violating chunk blockers or change the chunk-2 runtime/slice strategy before routine chunk continuation
+- 2026-05-15T00:19:07.369532+00:00: Full TM-score holdout remains blocked by target-violating completed chunks, held-out in-scope split blockers, incomplete query coverage, and two coordinate exclusions
 
 ## Scope Adjustments
 

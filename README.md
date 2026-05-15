@@ -421,18 +421,26 @@ then run the first two resumable all-materializable query chunks directly.
 attempts the next chunk with the same repaired candidate readiness artifact,
 Foldseek `10.941cd33`, 12 query coordinates against all 672 staged
 materializable target coordinates, `--threads 4`, and a 900-second bound, but
-times out before emitting pair rows. The aggregate artifact
-`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json`
-therefore records 3 attempted chunks, 2 completed chunks, 24 completed query
-coordinates, 28,251 mapped pair rows, 9,142 heldout/in-distribution train/test
-rows, max observed train/test TM-score `0.8957`, 70 target-violating row-level
-pairs, 13 reported target-violating structure pairs, and 54 non-completed
-query chunks. This removes the first chunk-aggregation ambiguity and the
-all-at-once-only runtime SPOF while preserving the correct negative claim:
-the repaired candidate split still fails the `<0.7` target on completed
-chunks, chunk 2 exceeds the routine runtime bound, the query aggregation is
-incomplete, all rows remain review-only/non-countable/not import-ready, and
-`full_tm_score_holdout_claim_permitted=false` remains correct.
+times out before emitting pair rows. A direct longer-cap retry,
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json`,
+uses the same chunk and completes under a 1,800-second bound with 12,639
+mapped pair rows, 3,216 train/test rows, max train/test TM-score `0.8427`, and
+6 target-violating row-level pairs across 2 reported structure pairs. The
+completed-retry aggregate
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json`
+records 3/56 completed chunks, 36 completed query coordinates, 40,890 mapped
+pair rows, 12,358 train/test rows, max train/test TM-score `0.8957`, 76
+target-violating row-level pairs, 15 reported target-violating structure
+pairs, and 53 non-completed chunks. The query-chunk split-repair plan
+`artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json`
+classifies those 15 observed blockers: 9 have conservative held-out
+out-of-scope move candidates, while 6 require manual split redesign because
+they touch held-out in-scope rows (`m_csa:20`, `m_csa:497`, and `m_csa:895`).
+This removes the chunk-2 runtime ambiguity and narrows the target-failure
+surface, but the repaired candidate split still fails `<0.7`, the query
+aggregation is incomplete, all rows remain review-only/non-countable/not
+import-ready, and `full_tm_score_holdout_claim_permitted=false` remains
+correct.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

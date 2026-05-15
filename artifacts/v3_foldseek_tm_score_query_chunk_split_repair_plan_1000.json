@@ -1,0 +1,1028 @@
+{
+  "metadata": {
+    "all_observed_blocking_pairs_have_repair_candidate": false,
+    "blocker_narrowed": "classifies observed Foldseek train/test TM-score violations into conservative out-of-scope split-repair candidates and held-out in-scope manual-review blockers",
+    "blocker_not_removed": "full all-materializable Foldseek/TM-score split remains uncomputed",
+    "blocker_removed": null,
+    "blockers_remaining": [
+      "canonical sequence split policy remains candidate-only until reviewed",
+      "completed query-chunk train/test TM-score target <0.7 is not achieved",
+      "evaluated selected-coordinate coverage is partial",
+      "full all-materializable TM-score split remains uncomputed",
+      "one or more Foldseek query chunks remain uncomputed",
+      "one or more evaluated rows lacks a supported selected structure",
+      "one or more observed blocking pairs lacks a conservative repair candidate",
+      "review-only query-chunk aggregate is not a canonical full holdout claim",
+      "sequence holdout metrics must be regenerated after any split repair",
+      "split repair plan has not been applied to the sequence holdout"
+    ],
+    "countable_label_candidate_count": 0,
+    "countable_label_count": 0,
+    "current_sequence_holdout_split_tm_score_target_blocked": true,
+    "full_tm_score_holdout_claim_blockers": [
+      "canonical sequence split policy remains candidate-only until reviewed",
+      "completed query-chunk train/test TM-score target <0.7 is not achieved",
+      "evaluated selected-coordinate coverage is partial",
+      "full all-materializable TM-score split remains uncomputed",
+      "one or more Foldseek query chunks remain uncomputed",
+      "one or more evaluated rows lacks a supported selected structure",
+      "one or more observed blocking pairs lacks a conservative repair candidate",
+      "review-only query-chunk aggregate is not a canonical full holdout claim",
+      "sequence holdout metrics must be regenerated after any split repair",
+      "split repair plan has not been applied to the sequence holdout"
+    ],
+    "full_tm_score_holdout_claim_permitted": false,
+    "heldout_count_before_repair": 135,
+    "heldout_in_scope_blocking_entry_count": 3,
+    "heldout_in_scope_blocking_entry_ids": [
+      "m_csa:20",
+      "m_csa:497",
+      "m_csa:895"
+    ],
+    "heldout_in_scope_count_before_repair": 44,
+    "heldout_out_of_scope_count_before_repair": 91,
+    "import_ready_candidate_count": 0,
+    "import_ready_row_count": 0,
+    "in_distribution_count_before_repair": 543,
+    "limitations": [
+      "full all-materializable Foldseek/TM-score split remains uncomputed",
+      "plan covers observed target-violating pairs in the supplied partial Foldseek signal only",
+      "repair plan is not applied to the sequence holdout artifact",
+      "review-only artifact; it creates no countable labels and no import-ready rows",
+      "sequence holdout and downstream retrieval metrics must be regenerated before any repaired split can be evaluated"
+    ],
+    "manual_review_pair_count": 6,
+    "method": "foldseek_tm_score_split_repair_plan",
+    "observed_blocking_pair_count": 15,
+    "projected_heldout_count_after_repair": 126,
+    "projected_heldout_in_scope_count_after_repair": 44,
+    "projected_heldout_out_of_scope_count_after_repair": 82,
+    "projected_in_distribution_count_after_repair": 552,
+    "projected_observed_blocking_pair_count_after_repair": 6,
+    "proposed_moved_heldout_entry_count": 9,
+    "proposed_moved_heldout_entry_ids": [
+      "m_csa:12",
+      "m_csa:30",
+      "m_csa:32",
+      "m_csa:230",
+      "m_csa:267",
+      "m_csa:346",
+      "m_csa:375",
+      "m_csa:388",
+      "m_csa:614"
+    ],
+    "proposed_moved_heldout_in_scope_entry_count": 0,
+    "proposed_moved_heldout_out_of_scope_entry_count": 9,
+    "ready_for_label_import": false,
+    "repair_candidate_pair_count": 9,
+    "review_status": "review_only_non_countable",
+    "sequence_holdout_artifact": "artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json",
+    "sequence_holdout_metrics_need_regeneration_after_repair": true,
+    "slice_id": "1000",
+    "source_sequence_holdout_method": "sequence_distance_holdout_split_repair_candidate",
+    "source_signal_full_tm_score_split_computed": false,
+    "source_signal_remaining_uncomputed_staged_coordinate_count": 636,
+    "source_target_failure_method": "foldseek_tm_score_query_chunk_aggregate",
+    "split_repair_required_for_target": true,
+    "target_failure_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json",
+    "threshold_target": "<0.7",
+    "tm_score_signal_coverage_status": "all_materializable_query_chunk_aggregate",
+    "tm_score_target_operator": "<",
+    "tm_score_threshold": 0.7
+  },
+  "rows": [
+    {
+      "blocking_pair_id": "m_csa:12|m_csa:405",
+      "blocking_pair_index": 1,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:12": "heldout",
+        "m_csa:405": "in_distribution"
+      },
+      "entry_ids": [
+        "m_csa:12",
+        "m_csa:405"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:12"
+      ],
+      "heldout_in_scope_entry_ids": [],
+      "heldout_out_of_scope_entry_ids": [
+        "m_csa:12"
+      ],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:405"
+      ],
+      "label_group_by_entry": {
+        "m_csa:12": "out_of_scope",
+        "m_csa:405": "out_of_scope"
+      },
+      "label_type_by_entry": {
+        "m_csa:12": "out_of_scope",
+        "m_csa:405": "out_of_scope"
+      },
+      "max_pair_tm_score": 0.8957,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": "co_partitioned_in_distribution",
+      "proposed_entries_to_move_to_in_distribution": [
+        "m_csa:12"
+      ],
+      "query_entry_ids": [
+        "m_csa:12"
+      ],
+      "query_structure_id": "1OTH",
+      "query_structure_key": "pdb:1OTH",
+      "recommended_repair_action": "move_heldout_out_of_scope_entries_to_in_distribution_and_regenerate_sequence_holdout_metrics_before_any_tm_score_claim",
+      "repair_candidate": true,
+      "repair_status": "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:12": "pdb:1OTH",
+        "m_csa:405": "pdb:1AT1"
+      },
+      "target_entry_ids": [
+        "m_csa:405"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1AT1",
+      "target_structure_key": "pdb:1AT1",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:12": "metal_dependent_hydrolase",
+        "m_csa:405": "metal_dependent_hydrolase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:20|m_csa:739",
+      "blocking_pair_index": 2,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:20": "heldout",
+        "m_csa:739": "in_distribution"
+      },
+      "entry_ids": [
+        "m_csa:20",
+        "m_csa:739"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:20"
+      ],
+      "heldout_in_scope_entry_ids": [
+        "m_csa:20"
+      ],
+      "heldout_out_of_scope_entry_ids": [],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:739"
+      ],
+      "label_group_by_entry": {
+        "m_csa:20": "flavin_dehydrogenase_reductase",
+        "m_csa:739": "flavin_dehydrogenase_reductase"
+      },
+      "label_type_by_entry": {
+        "m_csa:20": "seed_fingerprint",
+        "m_csa:739": "seed_fingerprint"
+      },
+      "max_pair_tm_score": 0.8684,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": null,
+      "proposed_entries_to_move_to_in_distribution": [],
+      "query_entry_ids": [
+        "m_csa:20"
+      ],
+      "query_structure_id": "1QJD",
+      "query_structure_key": "pdb:1QJD",
+      "recommended_repair_action": "design_new_stratified_partition_before_repartition",
+      "repair_candidate": false,
+      "repair_status": "requires_manual_review_would_move_heldout_in_scope_rows",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:20": "pdb:1QJD",
+        "m_csa:739": "pdb:1KNP"
+      },
+      "target_entry_ids": [
+        "m_csa:739"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1KNP",
+      "target_structure_key": "pdb:1KNP",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:20": "flavin_dehydrogenase_reductase",
+        "m_csa:739": "flavin_dehydrogenase_reductase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:20|m_csa:294",
+      "blocking_pair_index": 3,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:20": "heldout",
+        "m_csa:294": "in_distribution"
+      },
+      "entry_ids": [
+        "m_csa:20",
+        "m_csa:294"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:20"
+      ],
+      "heldout_in_scope_entry_ids": [
+        "m_csa:20"
+      ],
+      "heldout_out_of_scope_entry_ids": [],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:294"
+      ],
+      "label_group_by_entry": {
+        "m_csa:20": "flavin_dehydrogenase_reductase",
+        "m_csa:294": "flavin_dehydrogenase_reductase"
+      },
+      "label_type_by_entry": {
+        "m_csa:20": "seed_fingerprint",
+        "m_csa:294": "seed_fingerprint"
+      },
+      "max_pair_tm_score": 0.8546,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": null,
+      "proposed_entries_to_move_to_in_distribution": [],
+      "query_entry_ids": [
+        "m_csa:20"
+      ],
+      "query_structure_id": "1QJD",
+      "query_structure_key": "pdb:1QJD",
+      "recommended_repair_action": "design_new_stratified_partition_before_repartition",
+      "repair_candidate": false,
+      "repair_status": "requires_manual_review_would_move_heldout_in_scope_rows",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:20": "pdb:1QJD",
+        "m_csa:294": "pdb:1YQ4"
+      },
+      "target_entry_ids": [
+        "m_csa:294"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1YQ4",
+      "target_structure_key": "pdb:1YQ4",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:20": "flavin_dehydrogenase_reductase",
+        "m_csa:294": "flavin_dehydrogenase_reductase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:32|m_csa:359",
+      "blocking_pair_index": 4,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:32": "heldout",
+        "m_csa:359": "in_distribution"
+      },
+      "entry_ids": [
+        "m_csa:32",
+        "m_csa:359"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:32"
+      ],
+      "heldout_in_scope_entry_ids": [],
+      "heldout_out_of_scope_entry_ids": [
+        "m_csa:32"
+      ],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:359"
+      ],
+      "label_group_by_entry": {
+        "m_csa:32": "out_of_scope",
+        "m_csa:359": "out_of_scope"
+      },
+      "label_type_by_entry": {
+        "m_csa:32": "out_of_scope",
+        "m_csa:359": "out_of_scope"
+      },
+      "max_pair_tm_score": 0.8427,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": "co_partitioned_in_distribution",
+      "proposed_entries_to_move_to_in_distribution": [
+        "m_csa:32"
+      ],
+      "query_entry_ids": [
+        "m_csa:32"
+      ],
+      "query_structure_id": "1QIN",
+      "query_structure_key": "pdb:1QIN",
+      "recommended_repair_action": "move_heldout_out_of_scope_entries_to_in_distribution_and_regenerate_sequence_holdout_metrics_before_any_tm_score_claim",
+      "repair_candidate": true,
+      "repair_status": "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:32": "pdb:1QIN",
+        "m_csa:359": "pdb:1F9Z"
+      },
+      "target_entry_ids": [
+        "m_csa:359"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1F9Z",
+      "target_structure_key": "pdb:1F9Z",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:32": "metal_dependent_hydrolase",
+        "m_csa:359": "metal_dependent_hydrolase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:24|m_csa:346",
+      "blocking_pair_index": 5,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:24": "in_distribution",
+        "m_csa:346": "heldout"
+      },
+      "entry_ids": [
+        "m_csa:24",
+        "m_csa:346"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:346"
+      ],
+      "heldout_in_scope_entry_ids": [],
+      "heldout_out_of_scope_entry_ids": [
+        "m_csa:346"
+      ],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:24"
+      ],
+      "label_group_by_entry": {
+        "m_csa:24": "out_of_scope",
+        "m_csa:346": "out_of_scope"
+      },
+      "label_type_by_entry": {
+        "m_csa:24": "out_of_scope",
+        "m_csa:346": "out_of_scope"
+      },
+      "max_pair_tm_score": 0.8407,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": "co_partitioned_in_distribution",
+      "proposed_entries_to_move_to_in_distribution": [
+        "m_csa:346"
+      ],
+      "query_entry_ids": [
+        "m_csa:24"
+      ],
+      "query_structure_id": "1NZY",
+      "query_structure_key": "pdb:1NZY",
+      "recommended_repair_action": "move_heldout_out_of_scope_entries_to_in_distribution_and_regenerate_sequence_holdout_metrics_before_any_tm_score_claim",
+      "repair_candidate": true,
+      "repair_status": "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:24": "pdb:1NZY",
+        "m_csa:346": "pdb:1Q51"
+      },
+      "target_entry_ids": [
+        "m_csa:346"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1Q51",
+      "target_structure_key": "pdb:1Q51",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:24": "metal_dependent_hydrolase",
+        "m_csa:346": "metal_dependent_hydrolase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:16|m_csa:497",
+      "blocking_pair_index": 6,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:16": "in_distribution",
+        "m_csa:497": "heldout"
+      },
+      "entry_ids": [
+        "m_csa:16",
+        "m_csa:497"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:497"
+      ],
+      "heldout_in_scope_entry_ids": [
+        "m_csa:497"
+      ],
+      "heldout_out_of_scope_entry_ids": [],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:16"
+      ],
+      "label_group_by_entry": {
+        "m_csa:16": "metal_dependent_hydrolase",
+        "m_csa:497": "flavin_dehydrogenase_reductase"
+      },
+      "label_type_by_entry": {
+        "m_csa:16": "seed_fingerprint",
+        "m_csa:497": "seed_fingerprint"
+      },
+      "max_pair_tm_score": 0.8216,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": null,
+      "proposed_entries_to_move_to_in_distribution": [],
+      "query_entry_ids": [
+        "m_csa:16"
+      ],
+      "query_structure_id": "1BC2",
+      "query_structure_key": "pdb:1BC2",
+      "recommended_repair_action": "design_new_stratified_partition_before_repartition",
+      "repair_candidate": false,
+      "repair_status": "requires_manual_review_would_move_heldout_in_scope_rows",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:16": "pdb:1BC2",
+        "m_csa:497": "pdb:1YCF"
+      },
+      "target_entry_ids": [
+        "m_csa:497"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1YCF",
+      "target_structure_key": "pdb:1YCF",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:16": "metal_dependent_hydrolase",
+        "m_csa:497": "flavin_dehydrogenase_reductase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:17|m_csa:375",
+      "blocking_pair_index": 7,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:17": "in_distribution",
+        "m_csa:375": "heldout"
+      },
+      "entry_ids": [
+        "m_csa:17",
+        "m_csa:375"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:375"
+      ],
+      "heldout_in_scope_entry_ids": [],
+      "heldout_out_of_scope_entry_ids": [
+        "m_csa:375"
+      ],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:17"
+      ],
+      "label_group_by_entry": {
+        "m_csa:17": "out_of_scope",
+        "m_csa:375": "out_of_scope"
+      },
+      "label_type_by_entry": {
+        "m_csa:17": "out_of_scope",
+        "m_csa:375": "out_of_scope"
+      },
+      "max_pair_tm_score": 0.8096,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": "co_partitioned_in_distribution",
+      "proposed_entries_to_move_to_in_distribution": [
+        "m_csa:375"
+      ],
+      "query_entry_ids": [
+        "m_csa:17"
+      ],
+      "query_structure_id": "1RR6",
+      "query_structure_key": "pdb:1RR6",
+      "recommended_repair_action": "move_heldout_out_of_scope_entries_to_in_distribution_and_regenerate_sequence_holdout_metrics_before_any_tm_score_claim",
+      "repair_candidate": true,
+      "repair_status": "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:17": "pdb:1RR6",
+        "m_csa:375": "pdb:4TS9"
+      },
+      "target_entry_ids": [
+        "m_csa:375"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "4TS9",
+      "target_structure_key": "pdb:4TS9",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:17": "ser_his_acid_hydrolase",
+        "m_csa:375": "metal_dependent_hydrolase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:15|m_csa:497",
+      "blocking_pair_index": 8,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:15": "in_distribution",
+        "m_csa:497": "heldout"
+      },
+      "entry_ids": [
+        "m_csa:15",
+        "m_csa:497"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:497"
+      ],
+      "heldout_in_scope_entry_ids": [
+        "m_csa:497"
+      ],
+      "heldout_out_of_scope_entry_ids": [],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:15"
+      ],
+      "label_group_by_entry": {
+        "m_csa:15": "metal_dependent_hydrolase",
+        "m_csa:497": "flavin_dehydrogenase_reductase"
+      },
+      "label_type_by_entry": {
+        "m_csa:15": "seed_fingerprint",
+        "m_csa:497": "seed_fingerprint"
+      },
+      "max_pair_tm_score": 0.8053,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": null,
+      "proposed_entries_to_move_to_in_distribution": [],
+      "query_entry_ids": [
+        "m_csa:15"
+      ],
+      "query_structure_id": "1ZNB",
+      "query_structure_key": "pdb:1ZNB",
+      "recommended_repair_action": "design_new_stratified_partition_before_repartition",
+      "repair_candidate": false,
+      "repair_status": "requires_manual_review_would_move_heldout_in_scope_rows",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:15": "pdb:1ZNB",
+        "m_csa:497": "pdb:1YCF"
+      },
+      "target_entry_ids": [
+        "m_csa:497"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1YCF",
+      "target_structure_key": "pdb:1YCF",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:15": "metal_dependent_hydrolase",
+        "m_csa:497": "flavin_dehydrogenase_reductase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:6|m_csa:895",
+      "blocking_pair_index": 9,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:6": "in_distribution",
+        "m_csa:895": "heldout"
+      },
+      "entry_ids": [
+        "m_csa:6",
+        "m_csa:895"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:895"
+      ],
+      "heldout_in_scope_entry_ids": [
+        "m_csa:895"
+      ],
+      "heldout_out_of_scope_entry_ids": [],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:6"
+      ],
+      "label_group_by_entry": {
+        "m_csa:6": "flavin_dehydrogenase_reductase",
+        "m_csa:895": "flavin_dehydrogenase_reductase"
+      },
+      "label_type_by_entry": {
+        "m_csa:6": "seed_fingerprint",
+        "m_csa:895": "seed_fingerprint"
+      },
+      "max_pair_tm_score": 0.7955,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": null,
+      "proposed_entries_to_move_to_in_distribution": [],
+      "query_entry_ids": [
+        "m_csa:6"
+      ],
+      "query_structure_id": "2GH5",
+      "query_structure_key": "pdb:2GH5",
+      "recommended_repair_action": "design_new_stratified_partition_before_repartition",
+      "repair_candidate": false,
+      "repair_status": "requires_manual_review_would_move_heldout_in_scope_rows",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:6": "pdb:2GH5",
+        "m_csa:895": "pdb:2NPX"
+      },
+      "target_entry_ids": [
+        "m_csa:895"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "2NPX",
+      "target_structure_key": "pdb:2NPX",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:6": "flavin_dehydrogenase_reductase",
+        "m_csa:895": "flavin_dehydrogenase_reductase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:30|m_csa:416",
+      "blocking_pair_index": 10,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:30": "heldout",
+        "m_csa:416": "in_distribution"
+      },
+      "entry_ids": [
+        "m_csa:30",
+        "m_csa:416"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:30"
+      ],
+      "heldout_in_scope_entry_ids": [],
+      "heldout_out_of_scope_entry_ids": [
+        "m_csa:30"
+      ],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:416"
+      ],
+      "label_group_by_entry": {
+        "m_csa:30": "out_of_scope",
+        "m_csa:416": "out_of_scope"
+      },
+      "label_type_by_entry": {
+        "m_csa:30": "out_of_scope",
+        "m_csa:416": "out_of_scope"
+      },
+      "max_pair_tm_score": 0.76,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": "co_partitioned_in_distribution",
+      "proposed_entries_to_move_to_in_distribution": [
+        "m_csa:30"
+      ],
+      "query_entry_ids": [
+        "m_csa:30"
+      ],
+      "query_structure_id": "2PFL",
+      "query_structure_key": "pdb:2PFL",
+      "recommended_repair_action": "move_heldout_out_of_scope_entries_to_in_distribution_and_regenerate_sequence_holdout_metrics_before_any_tm_score_claim",
+      "repair_candidate": true,
+      "repair_status": "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:30": "pdb:2PFL",
+        "m_csa:416": "pdb:1H7A"
+      },
+      "target_entry_ids": [
+        "m_csa:416"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1H7A",
+      "target_structure_key": "pdb:1H7A",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:30": "metal_dependent_hydrolase",
+        "m_csa:416": "metal_dependent_hydrolase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:1|m_csa:388",
+      "blocking_pair_index": 11,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:1": "in_distribution",
+        "m_csa:388": "heldout"
+      },
+      "entry_ids": [
+        "m_csa:1",
+        "m_csa:388"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:388"
+      ],
+      "heldout_in_scope_entry_ids": [],
+      "heldout_out_of_scope_entry_ids": [
+        "m_csa:388"
+      ],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:1"
+      ],
+      "label_group_by_entry": {
+        "m_csa:1": "out_of_scope",
+        "m_csa:388": "out_of_scope"
+      },
+      "label_type_by_entry": {
+        "m_csa:1": "out_of_scope",
+        "m_csa:388": "out_of_scope"
+      },
+      "max_pair_tm_score": 0.7545,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": "co_partitioned_in_distribution",
+      "proposed_entries_to_move_to_in_distribution": [
+        "m_csa:388"
+      ],
+      "query_entry_ids": [
+        "m_csa:1"
+      ],
+      "query_structure_id": "1B73",
+      "query_structure_key": "pdb:1B73",
+      "recommended_repair_action": "move_heldout_out_of_scope_entries_to_in_distribution_and_regenerate_sequence_holdout_metrics_before_any_tm_score_claim",
+      "repair_candidate": true,
+      "repair_status": "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:1": "pdb:1B73",
+        "m_csa:388": "pdb:5HRC"
+      },
+      "target_entry_ids": [
+        "m_csa:388"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "5HRC",
+      "target_structure_key": "pdb:5HRC",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:1": "ser_his_acid_hydrolase",
+        "m_csa:388": "heme_peroxidase_oxidase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:20|m_csa:123",
+      "blocking_pair_index": 12,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:123": "in_distribution",
+        "m_csa:20": "heldout"
+      },
+      "entry_ids": [
+        "m_csa:20",
+        "m_csa:123"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:20"
+      ],
+      "heldout_in_scope_entry_ids": [
+        "m_csa:20"
+      ],
+      "heldout_out_of_scope_entry_ids": [],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:123"
+      ],
+      "label_group_by_entry": {
+        "m_csa:123": "flavin_dehydrogenase_reductase",
+        "m_csa:20": "flavin_dehydrogenase_reductase"
+      },
+      "label_type_by_entry": {
+        "m_csa:123": "seed_fingerprint",
+        "m_csa:20": "seed_fingerprint"
+      },
+      "max_pair_tm_score": 0.7228,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": null,
+      "proposed_entries_to_move_to_in_distribution": [],
+      "query_entry_ids": [
+        "m_csa:20"
+      ],
+      "query_structure_id": "1QJD",
+      "query_structure_key": "pdb:1QJD",
+      "recommended_repair_action": "design_new_stratified_partition_before_repartition",
+      "repair_candidate": false,
+      "repair_status": "requires_manual_review_would_move_heldout_in_scope_rows",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:123": "pdb:1JNR",
+        "m_csa:20": "pdb:1QJD"
+      },
+      "target_entry_ids": [
+        "m_csa:123"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1JNR",
+      "target_structure_key": "pdb:1JNR",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:123": "flavin_dehydrogenase_reductase",
+        "m_csa:20": "flavin_dehydrogenase_reductase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:8|m_csa:614",
+      "blocking_pair_index": 13,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:614": "heldout",
+        "m_csa:8": "in_distribution"
+      },
+      "entry_ids": [
+        "m_csa:8",
+        "m_csa:614"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:614"
+      ],
+      "heldout_in_scope_entry_ids": [],
+      "heldout_out_of_scope_entry_ids": [
+        "m_csa:614"
+      ],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:8"
+      ],
+      "label_group_by_entry": {
+        "m_csa:614": "out_of_scope",
+        "m_csa:8": "out_of_scope"
+      },
+      "label_type_by_entry": {
+        "m_csa:614": "out_of_scope",
+        "m_csa:8": "out_of_scope"
+      },
+      "max_pair_tm_score": 0.7187,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": "co_partitioned_in_distribution",
+      "proposed_entries_to_move_to_in_distribution": [
+        "m_csa:614"
+      ],
+      "query_entry_ids": [
+        "m_csa:8"
+      ],
+      "query_structure_id": "1QPR",
+      "query_structure_key": "pdb:1QPR",
+      "recommended_repair_action": "move_heldout_out_of_scope_entries_to_in_distribution_and_regenerate_sequence_holdout_metrics_before_any_tm_score_claim",
+      "repair_candidate": true,
+      "repair_status": "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:614": "pdb:1Q3N",
+        "m_csa:8": "pdb:1QPR"
+      },
+      "target_entry_ids": [
+        "m_csa:614"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1Q3N",
+      "target_structure_key": "pdb:1Q3N",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:614": "flavin_monooxygenase",
+        "m_csa:8": "metal_dependent_hydrolase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:11|m_csa:267",
+      "blocking_pair_index": 14,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:11": "in_distribution",
+        "m_csa:267": "heldout"
+      },
+      "entry_ids": [
+        "m_csa:11",
+        "m_csa:267"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:267"
+      ],
+      "heldout_in_scope_entry_ids": [],
+      "heldout_out_of_scope_entry_ids": [
+        "m_csa:267"
+      ],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:11"
+      ],
+      "label_group_by_entry": {
+        "m_csa:11": "metal_dependent_hydrolase",
+        "m_csa:267": "out_of_scope"
+      },
+      "label_type_by_entry": {
+        "m_csa:11": "seed_fingerprint",
+        "m_csa:267": "out_of_scope"
+      },
+      "max_pair_tm_score": 0.7042,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": "co_partitioned_in_distribution",
+      "proposed_entries_to_move_to_in_distribution": [
+        "m_csa:267"
+      ],
+      "query_entry_ids": [
+        "m_csa:11"
+      ],
+      "query_structure_id": "1QUM",
+      "query_structure_key": "pdb:1QUM",
+      "recommended_repair_action": "move_heldout_out_of_scope_entries_to_in_distribution_and_regenerate_sequence_holdout_metrics_before_any_tm_score_claim",
+      "repair_candidate": true,
+      "repair_status": "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:11": "pdb:1QUM",
+        "m_csa:267": "pdb:1DHP"
+      },
+      "target_entry_ids": [
+        "m_csa:267"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1DHP",
+      "target_structure_key": "pdb:1DHP",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:11": "metal_dependent_hydrolase",
+        "m_csa:267": "heme_peroxidase_oxidase"
+      },
+      "violates_target": true
+    },
+    {
+      "blocking_pair_id": "m_csa:8|m_csa:230",
+      "blocking_pair_index": 15,
+      "countable_label_candidate": false,
+      "current_partition_by_entry": {
+        "m_csa:230": "heldout",
+        "m_csa:8": "in_distribution"
+      },
+      "entry_ids": [
+        "m_csa:8",
+        "m_csa:230"
+      ],
+      "heldout_entry_ids": [
+        "m_csa:230"
+      ],
+      "heldout_in_scope_entry_ids": [],
+      "heldout_out_of_scope_entry_ids": [
+        "m_csa:230"
+      ],
+      "import_ready": false,
+      "in_distribution_entry_ids": [
+        "m_csa:8"
+      ],
+      "label_group_by_entry": {
+        "m_csa:230": "out_of_scope",
+        "m_csa:8": "out_of_scope"
+      },
+      "label_type_by_entry": {
+        "m_csa:230": "out_of_scope",
+        "m_csa:8": "out_of_scope"
+      },
+      "max_pair_tm_score": 0.7019,
+      "missing_sequence_holdout_entry_ids": [],
+      "projected_pair_partition_after_repair": "co_partitioned_in_distribution",
+      "proposed_entries_to_move_to_in_distribution": [
+        "m_csa:230"
+      ],
+      "query_entry_ids": [
+        "m_csa:8"
+      ],
+      "query_structure_id": "1QPR",
+      "query_structure_key": "pdb:1QPR",
+      "recommended_repair_action": "move_heldout_out_of_scope_entries_to_in_distribution_and_regenerate_sequence_holdout_metrics_before_any_tm_score_claim",
+      "repair_candidate": true,
+      "repair_status": "repair_candidate_move_heldout_out_of_scope_entries_to_in_distribution",
+      "review_status": "review_only_non_countable",
+      "selected_structure_proxy_by_entry": {
+        "m_csa:230": "pdb:1GZG",
+        "m_csa:8": "pdb:1QPR"
+      },
+      "target_entry_ids": [
+        "m_csa:230"
+      ],
+      "target_operator": "<",
+      "target_structure_id": "1GZG",
+      "target_structure_key": "pdb:1GZG",
+      "threshold": 0.7,
+      "top1_fingerprint_by_entry": {
+        "m_csa:230": "flavin_dehydrogenase_reductase",
+        "m_csa:8": "metal_dependent_hydrolase"
+      },
+      "violates_target": true
+    }
+  ]
+}

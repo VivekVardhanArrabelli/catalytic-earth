@@ -2636,10 +2636,9 @@ def audit_foldseek_tm_score_split_repair(
 
     rows: list[dict[str, Any]] = []
     moved_heldout_entries: set[str] = set()
+    heldout_in_scope_blocking_entries: set[str] = set()
     manual_review_count = 0
     repair_candidate_count = 0
-    moved_heldout_in_scope_count = 0
-    moved_heldout_out_of_scope_count = 0
 
     for index, pair in enumerate(blocking_pairs, start=1):
         query_entries = _string_list(pair.get("query_entry_ids"))
@@ -2697,10 +2696,9 @@ def audit_foldseek_tm_score_split_repair(
 
         if repair_candidate:
             repair_candidate_count += 1
-            moved_heldout_out_of_scope_count += len(heldout_out_of_scope_entries)
         else:
             manual_review_count += 1
-        moved_heldout_in_scope_count += len(heldout_in_scope_entries)
+        heldout_in_scope_blocking_entries.update(heldout_in_scope_entries)
 
         rows.append(
             {
@@ -2757,25 +2755,24 @@ def audit_foldseek_tm_score_split_repair(
             }
         )
 
-    heldout_count = int(holdout_metadata.get("heldout_count", 0) or 0)
-    in_distribution_count = int(holdout_metadata.get("in_distribution_count", 0) or 0)
-    heldout_in_scope_before = sum(
-        1
-        for row in holdout_rows
-        if row.get("partition") == "heldout" and row.get("label_type") != "out_of_scope"
+    source_metrics = _sequence_holdout_partition_metrics(holdout_rows)
+    heldout_count = int(
+        holdout_metadata.get("heldout_count", source_metrics["heldout_count"])
+        or source_metrics["heldout_count"]
     )
-    heldout_out_of_scope_before = sum(
-        1
-        for row in holdout_rows
-        if row.get("partition") == "heldout" and row.get("label_type") == "out_of_scope"
+    in_distribution_count = int(
+        holdout_metadata.get(
+            "in_distribution_count", source_metrics["in_distribution_count"]
+        )
+        or source_metrics["in_distribution_count"]
     )
+    heldout_in_scope_before = source_metrics["heldout_in_scope_count"]
+    heldout_out_of_scope_before = source_metrics["heldout_out_of_scope_count"]
     projected_heldout_count = max(0, heldout_count - len(moved_heldout_entries))
     projected_in_distribution_count = in_distribution_count + len(moved_heldout_entries)
-    projected_heldout_in_scope_count = max(
-        0, heldout_in_scope_before - moved_heldout_in_scope_count
-    )
+    projected_heldout_in_scope_count = heldout_in_scope_before
     projected_heldout_out_of_scope_count = max(
-        0, heldout_out_of_scope_before - moved_heldout_out_of_scope_count
+        0, heldout_out_of_scope_before - len(moved_heldout_entries)
     )
     all_pairs_have_repair_candidate = bool(blocking_pairs) and repair_candidate_count == len(
         blocking_pairs
@@ -2807,6 +2804,13 @@ def audit_foldseek_tm_score_split_repair(
 
     metadata = {
         "method": "foldseek_tm_score_split_repair_plan",
+        "blocker_narrowed": (
+            "classifies observed Foldseek train/test TM-score violations into "
+            "conservative out-of-scope split-repair candidates and held-out "
+            "in-scope manual-review blockers"
+            if blocking_pairs
+            else None
+        ),
         "blocker_removed": (
             "turns the observed target-violating Foldseek train/test pair into a "
             "concrete split-repair candidate that preserves held-out in-scope positives"
@@ -2842,8 +2846,12 @@ def audit_foldseek_tm_score_split_repair(
             moved_heldout_entries, key=_entry_id_sort_key
         ),
         "proposed_moved_heldout_entry_count": len(moved_heldout_entries),
-        "proposed_moved_heldout_in_scope_entry_count": moved_heldout_in_scope_count,
-        "proposed_moved_heldout_out_of_scope_entry_count": moved_heldout_out_of_scope_count,
+        "proposed_moved_heldout_in_scope_entry_count": 0,
+        "proposed_moved_heldout_out_of_scope_entry_count": len(moved_heldout_entries),
+        "heldout_in_scope_blocking_entry_ids": sorted(
+            heldout_in_scope_blocking_entries, key=_entry_id_sort_key
+        ),
+        "heldout_in_scope_blocking_entry_count": len(heldout_in_scope_blocking_entries),
         "heldout_count_before_repair": heldout_count,
         "projected_heldout_count_after_repair": projected_heldout_count,
         "in_distribution_count_before_repair": in_distribution_count,
@@ -2857,12 +2865,20 @@ def audit_foldseek_tm_score_split_repair(
         ),
         "tm_score_signal_coverage_status": target_metadata.get(
             "source_signal_coverage_status"
-        ),
+        )
+        or target_metadata.get("tm_score_signal_coverage_status"),
         "source_signal_full_tm_score_split_computed": bool(
             target_metadata.get("source_signal_full_tm_score_split_computed")
+            or target_metadata.get("full_tm_score_split_computed")
         ),
         "source_signal_remaining_uncomputed_staged_coordinate_count": target_metadata.get(
             "source_signal_remaining_uncomputed_staged_coordinate_count"
+        )
+        or target_metadata.get(
+            "remaining_uncomputed_staged_coordinate_count"
+        )
+        or target_metadata.get(
+            "remaining_uncomputed_query_coordinate_count"
         ),
         "full_tm_score_holdout_claim_permitted": False,
         "full_tm_score_holdout_claim_blockers": sorted(set(claim_blockers)),

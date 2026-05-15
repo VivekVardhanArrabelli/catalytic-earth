@@ -222,6 +222,25 @@ Current TM-score readiness:
   blocker: the completed chunks fail `<0.7`, chunk 2 exceeds the routine
   runtime bound, `m_csa:372` and `m_csa:501` remain coordinate exclusions, and
   `full_tm_score_holdout_claim_permitted=false`.
+- `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json`
+  retries chunk 2 with the same 12-query/all-target command shape and a
+  1,800-second runtime bound. It completes with 12,639 mapped pair rows, 3,216
+  train/test rows, max train/test TM-score `0.8427`, and 6 target-violating
+  row-level pairs across 2 reported structure pairs. The completed-retry
+  aggregate
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json`
+  records 3/56 completed chunks, 36 completed query coordinates, 40,890 mapped
+  pair rows, 12,358 train/test rows, max train/test TM-score `0.8957`, 76
+  target-violating row-level pairs, 15 reported target-violating structure
+  pairs, and 53 non-completed chunks. The query-chunk split-repair plan
+  `artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json`
+  classifies those blockers into 9 conservative held-out out-of-scope repair
+  candidates and 6 manual split-redesign blockers involving held-out in-scope
+  rows (`m_csa:20`, `m_csa:497`, and `m_csa:895`). This removes the chunk-2
+  runtime ambiguity but keeps the full-holdout blocker active: the completed
+  chunks fail `<0.7`, most query chunks remain uncomputed, `m_csa:372` and
+  `m_csa:501` remain coordinate exclusions, and
+  `full_tm_score_holdout_claim_permitted=false`.
 - The TM-score signal builder now records explicit partial/full coverage
   semantics for future artifacts: `tm_score_signal_coverage_status`,
   `full_tm_score_holdout_claim_permitted=false`,
@@ -447,4 +466,36 @@ PYTHONPATH=src python -m catalytic_earth.cli aggregate-foldseek-tm-score-query-c
     artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json \
     artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json \
   --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json
+```
+
+The completed chunk-2 retry, retry aggregate, and query-chunk split-repair
+adjudication used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal \
+  --slice-id 1000 \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --chunk-index 2 \
+  --chunk-size 12 \
+  --threads 4 \
+  --max-runtime-seconds 1800 \
+  --max-reported-pairs 30 \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json
+```
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli aggregate-foldseek-tm-score-query-chunks \
+  --slice-id 1000 \
+  --chunks artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json \
+    artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json \
+    artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json
+```
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli audit-foldseek-tm-score-split-repair \
+  --target-failure artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json \
+  --sequence-holdout artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json \
+  --out artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json
 ```

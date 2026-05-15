@@ -176,6 +176,20 @@ structure pairs, and 54 non-completed chunks. This removes the first
 chunk-aggregation ambiguity and the single-run runtime SPOF but adds two
 concrete blockers before any full TM-score claim: the completed chunks fail
 the `<0.7` target and chunk 2 exceeds the routine 900-second bound.
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json`
+then retries the same chunk directly with a 1,800-second cap and completes:
+12 query coordinates, 12,639 mapped pair rows, 3,216 train/test rows, max
+train/test TM-score `0.8427`, and 6 target-violating row-level pairs across 2
+reported structure pairs. The completed-retry aggregate
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json`
+now records 3/56 completed chunks, 36 completed query coordinates, 40,890
+mapped pair rows, 12,358 train/test rows, max train/test TM-score `0.8957`, 76
+target-violating row-level pairs, 15 reported violating structure pairs, and
+53 non-completed chunks. The query-chunk split-repair plan
+`artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json`
+classifies the 15 observed blockers into 9 conservative held-out out-of-scope
+repair candidates and 6 manual split-redesign blockers involving held-out
+in-scope rows (`m_csa:20`, `m_csa:497`, and `m_csa:895`).
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until query chunks are

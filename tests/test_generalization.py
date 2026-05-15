@@ -1208,6 +1208,33 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
             metadata["foldseek_run_error"],
         )
 
+    def test_current_foldseek_query_chunk_retry_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_query_chunk_signal")
+        self.assertEqual(metadata["foldseek_run_status"], "completed")
+        self.assertEqual(metadata["query_chunk_index"], 2)
+        self.assertEqual(metadata["query_chunk_size"], 12)
+        self.assertEqual(metadata["query_chunk_count"], 56)
+        self.assertEqual(metadata["query_staged_coordinate_count"], 12)
+        self.assertEqual(metadata["target_staged_coordinate_count"], 672)
+        self.assertEqual(metadata["pair_count"], 12639)
+        self.assertEqual(metadata["mapped_pair_count"], 12639)
+        self.assertEqual(metadata["train_test_pair_count"], 3216)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.8427)
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 6)
+        self.assertEqual(metadata["violating_unique_structure_pair_count"], 2)
+        self.assertEqual(metadata["foldseek_max_runtime_seconds"], 1800)
+        self.assertFalse(metadata["tm_score_target_achieved_for_query_chunk"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertEqual(artifact["blocking_pairs"][0]["query_entry_ids"], ["m_csa:32"])
+        self.assertEqual(artifact["blocking_pairs"][0]["target_entry_ids"], ["m_csa:359"])
+
     def test_query_chunk_aggregate_keeps_partial_claims_review_only(self) -> None:
         chunk_0 = {
             "metadata": {
@@ -1369,6 +1396,96 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         )
         self.assertEqual(artifact["blocking_pairs"][0]["query_entry_ids"], ["m_csa:12"])
         self.assertEqual(artifact["blocking_pairs"][0]["target_entry_ids"], ["m_csa:405"])
+
+    def test_current_foldseek_query_chunk_retry_aggregate_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_query_chunk_aggregate")
+        self.assertEqual(metadata["completed_query_chunk_count"], 3)
+        self.assertEqual(metadata["query_chunk_count"], 56)
+        self.assertFalse(metadata["all_query_chunks_completed"])
+        self.assertEqual(len(artifact["chunks"]), 3)
+        self.assertTrue(artifact["chunks"][2]["completed"])
+        self.assertEqual(artifact["chunks"][2]["foldseek_run_status"], "completed")
+        self.assertEqual(metadata["missing_query_chunk_count"], 53)
+        self.assertEqual(metadata["missing_query_chunk_indices"][0], 3)
+        self.assertEqual(metadata["missing_query_chunk_indices"][-1], 55)
+        self.assertEqual(metadata["completed_query_coordinate_count"], 36)
+        self.assertEqual(metadata["remaining_uncomputed_query_coordinate_count"], 636)
+        self.assertEqual(metadata["pair_count"], 40890)
+        self.assertEqual(metadata["mapped_pair_count"], 40890)
+        self.assertEqual(metadata["train_test_pair_count"], 12358)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.8957)
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 76)
+        self.assertEqual(metadata["violating_unique_structure_pair_count_reported"], 15)
+        self.assertFalse(
+            metadata["tm_score_target_achieved_for_completed_query_chunks"]
+        )
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertEqual(artifact["blocking_pairs"][0]["query_entry_ids"], ["m_csa:12"])
+        self.assertEqual(artifact["blocking_pairs"][0]["target_entry_ids"], ["m_csa:405"])
+
+    def test_current_query_chunk_split_repair_plan_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_split_repair_plan")
+        self.assertEqual(
+            metadata["source_target_failure_method"],
+            "foldseek_tm_score_query_chunk_aggregate",
+        )
+        self.assertEqual(metadata["observed_blocking_pair_count"], 15)
+        self.assertEqual(metadata["repair_candidate_pair_count"], 9)
+        self.assertEqual(metadata["manual_review_pair_count"], 6)
+        self.assertFalse(metadata["all_observed_blocking_pairs_have_repair_candidate"])
+        self.assertEqual(
+            metadata["projected_observed_blocking_pair_count_after_repair"], 6
+        )
+        self.assertEqual(
+            metadata["heldout_in_scope_blocking_entry_ids"],
+            ["m_csa:20", "m_csa:497", "m_csa:895"],
+        )
+        self.assertEqual(
+            metadata["proposed_moved_heldout_entry_ids"],
+            [
+                "m_csa:12",
+                "m_csa:30",
+                "m_csa:32",
+                "m_csa:230",
+                "m_csa:267",
+                "m_csa:346",
+                "m_csa:375",
+                "m_csa:388",
+                "m_csa:614",
+            ],
+        )
+        self.assertEqual(metadata["heldout_count_before_repair"], 135)
+        self.assertEqual(metadata["projected_heldout_count_after_repair"], 126)
+        self.assertEqual(metadata["heldout_in_scope_count_before_repair"], 44)
+        self.assertEqual(metadata["projected_heldout_in_scope_count_after_repair"], 44)
+        self.assertEqual(
+            metadata["source_signal_remaining_uncomputed_staged_coordinate_count"], 636
+        )
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertIn(
+            "one or more observed blocking pairs lacks a conservative repair candidate",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        manual_rows = [row for row in artifact["rows"] if not row["repair_candidate"]]
+        self.assertEqual(len(manual_rows), 6)
+        self.assertEqual(
+            manual_rows[0]["repair_status"],
+            "requires_manual_review_would_move_heldout_in_scope_rows",
+        )
 
     def test_tm_score_target_failure_audit_names_blocking_pairs(self) -> None:
         signal = {

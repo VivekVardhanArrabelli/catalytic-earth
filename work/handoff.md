@@ -50,6 +50,41 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-14T18:55:52-05:00 run after clean startup gates
+(`359` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and
+  the source-scale audit remains capped at 1,003 observed M-CSA source records.
+  Do not open another M-CSA-only tranche without new source-scale evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. The selected external pilot still has 0 import-ready rows and 0
+  countable candidates. Pilot success criteria exist, but active-site,
+  broader duplicate-screening, representation/review, and full label-factory
+  blockers remain review-only.
+- Scientific generalization work: Yes for Foldseek/TM-score query-chunk
+  runtime repair and target-failure adjudication, but not for a full split
+  claim. This run added
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json`,
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json`,
+  and
+  `artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json`.
+  Chunk 2 completes under a 1,800-second cap, but the completed chunks still
+  fail the `<0.7` target.
+- SPOF hardening work: Yes. The split-repair planner now computes holdout
+  counts from row partitions when consuming candidate holdout artifacts and
+  reports unique held-out in-scope blockers instead of double-counting repeated
+  pairs. The completed-retry aggregate records 3/56 completed chunks, 36
+  completed query coordinates, 40,890 mapped pair rows, 12,358 train/test rows,
+  max train/test TM-score `0.8957`, 76 target-violating row-level pairs, 15
+  reported target-violating structure pairs, and 53 non-completed chunks. The
+  query-chunk split-repair plan classifies those blockers into 9 conservative
+  held-out out-of-scope repair candidates and 6 manual split-redesign blockers
+  involving held-out in-scope rows (`m_csa:20`, `m_csa:497`, and `m_csa:895`).
+  `m_csa:372` and `m_csa:501` remain coordinate exclusions, all outputs remain
+  review-only/non-countable, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-14T22:54:46Z run after clean startup gates
 (`356` unit tests passed and `validate` passed with 679 curated labels):
 
@@ -1242,20 +1277,26 @@ artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
 Current run was direct only, with no subagents or delegation. It added
-`aggregate-foldseek-tm-score-query-chunks`,
-`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json`,
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json`,
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json`,
 and
-`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json`.
+`artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json`.
 Do not open another M-CSA-only tranche. Do not claim full TM-score holdout:
-chunks 0-2 now record 3 attempted chunks, 2 completed chunks, 24 completed
-query coordinates against all staged targets, 28,251 mapped pair rows, 9,142
-train/test rows, max train/test TM-score `0.8957`, 70 target-violating
-row-level pairs, and 13 reported target-violating structure pairs. Chunk 2
-times out after 900 seconds before pair rows are emitted, so 54 chunks remain
-non-completed. The aggregate removes the first chunk-aggregation ambiguity but
-proves the repaired expanded100 cap was not enough and the candidate split
-still needs repair/adjudication before a full TM-score claim. The previous timeout
-artifact still documents the all-at-once blocker:
+chunks 0-2 now record 3 completed chunks, 36 completed query coordinates
+against all staged targets, 40,890 mapped pair rows, 12,358 train/test rows,
+max train/test TM-score `0.8957`, 76 target-violating row-level pairs, and 15
+reported target-violating structure pairs. Chunk 2 previously timed out at
+900 seconds in
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json`,
+but the same chunk completes under a 1,800-second cap in the retry artifact
+with 12,639 mapped pair rows and max train/test TM-score `0.8427`. The retry
+aggregate removes the chunk-2 runtime ambiguity, but it proves the repaired
+expanded100 cap was not enough and the candidate split still needs
+repair/adjudication before a full TM-score claim. The query-chunk split-repair
+plan classifies the 15 observed blockers into 9 conservative held-out
+out-of-scope move candidates and 6 manual split-redesign blockers involving
+held-out in-scope rows (`m_csa:20`, `m_csa:497`, and `m_csa:895`). The previous
+timeout artifact still documents the all-at-once blocker:
 `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
 covers all 672 staged materializable coordinates and records the exact
 Foldseek `10.941cd33` command with `--threads 4`, but the 1,500-second bounded
@@ -1269,12 +1310,10 @@ has max train/test TM-score `0.6993`, and
 finds 0 target-violating pairs inside that cap. The canonical sequence holdout
 remains unchanged, `m_csa:372` and `m_csa:501` remain coordinate exclusions,
 and no countable/import-ready rows were created. Next Foldseek work should
-either plan split repair/adjudication for the reported chunk-level blockers
-(`m_csa:12`/`m_csa:405`, `m_csa:6`/`m_csa:895`, `m_csa:1`/`m_csa:388`,
-`m_csa:8`/`m_csa:614`, `m_csa:11`/`m_csa:267`, plus chunk 1 led by
-`m_csa:20`/`m_csa:739`) or decide whether chunk 2 should be retried with a
-longer runtime or smaller query slice before continuing routine chunks. Do not
-add another capped preview.
+resolve the 6 held-out in-scope manual split blockers or define a reviewed
+partition redesign before applying any new split repair. Routine chunk
+continuation should use the longer-cap evidence from chunk 2 only after the
+split-target blocker is addressed; do not add another capped preview.
 
 External pilot import remains blocked. The selected-pilot representation
 adjudication now gives concrete review-only statuses: 3 stable representation
