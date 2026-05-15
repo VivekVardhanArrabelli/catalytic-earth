@@ -441,6 +441,33 @@ surface, but the repaired candidate split still fails `<0.7`, the query
 aggregation is incomplete, all rows remain review-only/non-countable/not
 import-ready, and `full_tm_score_holdout_claim_permitted=false` remains
 correct.
+`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_1000.json`
+then applies a review-only split redesign over those observed blockers: the 9
+held-out out-of-scope repair candidates move to in-distribution, and the 6
+high-TM train neighbors of held-out in-scope blockers move to heldout. The
+candidate projects 0 observed completed-chunk blockers, keeps sequence-cluster
+partition splits at 0, and keeps held-out out-of-scope false non-abstentions
+at 0. The direct Foldseek check
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_query_chunk_000_of_056.json`
+invalidates that projection as a full fix: chunk 0 completes with 16,475
+mapped pair rows, 6,909 train/test rows, max train/test TM-score `0.926`, and
+15 target-violating row-level pairs across 4 reported structure pairs. The
+follow-up plan
+`artifacts/v3_foldseek_tm_score_split_redesign_candidate_query_chunk_repair_plan_1000.json`
+narrows the new blocker to held-out in-scope `m_csa:6` versus
+`m_csa:277`, `m_csa:378`, `m_csa:320`, and `m_csa:108`. This is review-only
+evidence; it creates 0 countable/import-ready rows and keeps
+`full_tm_score_holdout_claim_permitted=false`.
+A second redesign candidate,
+`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round2_1000.json`,
+moves those four high-TM neighbors to heldout as well. The direct round-2
+Foldseek chunk
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_000_of_056.json`
+clears chunk 0 with max train/test TM-score `0.695` and 0 target-violating
+pairs, and the single-chunk aggregate records 1/56 completed redesigned chunks.
+This removes the chunk-0 blocker only; 55 redesigned chunks remain uncomputed,
+the two coordinate exclusions still stand, and full-holdout claims remain
+forbidden.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

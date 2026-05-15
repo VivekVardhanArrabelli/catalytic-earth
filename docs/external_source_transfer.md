@@ -190,12 +190,31 @@ target-violating row-level pairs, 15 reported violating structure pairs, and
 classifies the 15 observed blockers into 9 conservative held-out out-of-scope
 repair candidates and 6 manual split-redesign blockers involving held-out
 in-scope rows (`m_csa:20`, `m_csa:497`, and `m_csa:895`).
+`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_1000.json`
+tries the corresponding review-only split redesign while preserving those
+held-out in-scope rows. It resolves the 15 observed blockers in projection, but
+the direct redesigned Foldseek chunk
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_query_chunk_000_of_056.json`
+still fails the `<0.7` target: 16,475 mapped rows, 6,909 train/test rows, max
+train/test TM-score `0.926`, and 15 target-violating row-level pairs across 4
+reported structure pairs. The repair plan
+`artifacts/v3_foldseek_tm_score_split_redesign_candidate_query_chunk_repair_plan_1000.json`
+identifies the new blocker as held-out in-scope `m_csa:6` against
+`m_csa:277`, `m_csa:378`, `m_csa:320`, and `m_csa:108`. These artifacts remain
+review-only with 0 countable/import-ready rows.
+`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round2_1000.json`
+then moves those four high-TM neighbors into heldout in a second review-only
+candidate. The direct round-2 chunk
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_000_of_056.json`
+clears chunk 0 with 16,475 mapped rows, 6,939 train/test rows, max train/test
+TM-score `0.695`, and 0 target-violating pairs. Its aggregate covers only
+1/56 redesigned chunks, so this removes the chunk-0 blocker but not the full
+TM-score holdout blocker.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until query chunks are
-completed or explicitly adjudicated, the new violating pairs are repaired or
-explicitly adjudicated, coordinate exclusions remain reported, and target
-checks pass.
+completed or explicitly adjudicated under the round-2 redesigned split,
+coordinate exclusions remain reported, and target checks pass.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,

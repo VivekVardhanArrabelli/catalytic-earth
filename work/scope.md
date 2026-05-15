@@ -261,7 +261,17 @@ Current expectation:
   repair candidates and 6 manual split-redesign blockers involving held-out
   in-scope rows (`m_csa:20`, `m_csa:497`, and `m_csa:895`). This narrows the
   runtime and target-failure blockers but still leaves the full TM-score
-  holdout unclaimable. The first 12-row
+  holdout unclaimable. A first review-only split-redesign candidate now
+  resolves those 15 blockers in projection by moving 9 held-out out-of-scope
+  rows to train and 6 high-TM train neighbors to heldout, but the direct
+  redesigned chunk-0 Foldseek run fails with max train/test TM-score `0.926`
+  and 4 reported violating structure pairs. The new concrete blocker is
+  held-out in-scope `m_csa:6` versus `m_csa:277`, `m_csa:378`, `m_csa:320`,
+  and `m_csa:108`; a round-2 redesign moves those four neighbors to heldout
+  and clears chunk 0 directly with max train/test TM-score `0.695` and 0
+  target-violating pairs. No full TM-score holdout claim is permitted because
+  only 1/56 redesigned chunks is complete, two coordinate exclusions remain,
+  and the split remains a candidate copy. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

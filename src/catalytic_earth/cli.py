@@ -20,6 +20,7 @@ from .generalization import (
     audit_foldseek_tm_score_split_repair,
     audit_foldseek_tm_score_target_failure,
     build_sequence_distance_holdout_split_repair_candidate,
+    build_sequence_distance_holdout_split_redesign_candidate,
     build_foldseek_coordinate_readiness,
     build_foldseek_tm_score_all_materializable_signal,
     build_foldseek_tm_score_query_chunk_signal,
@@ -862,6 +863,33 @@ def cmd_build_sequence_distance_holdout_split_repair_candidate(
         "Wrote sequence holdout split-repair candidate to "
         f"{args.out} (heldout_count="
         f"{artifact['metadata']['repaired_heldout_count']}, "
+        "full_tm_score_holdout_claim_permitted="
+        f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
+    )
+    return 0
+
+
+def cmd_build_sequence_distance_holdout_split_redesign_candidate(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.sequence_holdout).open("r", encoding="utf-8") as handle:
+        sequence_holdout = json.load(handle)
+    with Path(args.split_repair_plan).open("r", encoding="utf-8") as handle:
+        split_repair_plan = json.load(handle)
+    artifact = build_sequence_distance_holdout_split_redesign_candidate(
+        sequence_holdout=sequence_holdout,
+        split_repair_plan=split_repair_plan,
+        sequence_holdout_path=args.sequence_holdout,
+        split_repair_plan_path=args.split_repair_plan,
+        threshold=args.threshold,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote sequence holdout split-redesign candidate to "
+        f"{args.out} (heldout_count="
+        f"{artifact['metadata']['redesigned_heldout_count']}, "
+        "observed_blockers_after_redesign="
+        f"{artifact['metadata']['projected_observed_blocking_pair_count_after_redesign']}, "
         "full_tm_score_holdout_claim_permitted="
         f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
     )
@@ -4686,6 +4714,37 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sequence_split_repair_candidate.set_defaults(
         func=cmd_build_sequence_distance_holdout_split_repair_candidate
+    )
+
+    sequence_split_redesign_candidate = subparsers.add_parser(
+        "build-sequence-distance-holdout-split-redesign-candidate",
+        help=(
+            "apply a review-only Foldseek query-chunk split redesign to a "
+            "candidate sequence-distance holdout"
+        ),
+    )
+    sequence_split_redesign_candidate.add_argument(
+        "--sequence-holdout",
+        default="artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json",
+        help="source candidate sequence-distance holdout artifact",
+    )
+    sequence_split_redesign_candidate.add_argument(
+        "--split-repair-plan",
+        default="artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json",
+        help="Foldseek query-chunk split-repair plan artifact",
+    )
+    sequence_split_redesign_candidate.add_argument(
+        "--threshold",
+        type=float,
+        default=0.7,
+        help="exclusive target threshold for observed Foldseek blocker pairs",
+    )
+    sequence_split_redesign_candidate.add_argument(
+        "--out",
+        default="artifacts/v3_sequence_distance_holdout_split_redesign_candidate.json",
+    )
+    sequence_split_redesign_candidate.set_defaults(
+        func=cmd_build_sequence_distance_holdout_split_redesign_candidate
     )
 
     source_scale_limits = subparsers.add_parser(

@@ -50,6 +50,42 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T00:56:30Z run after clean startup gates
+(`362` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and
+  the source-scale audit remains capped at 1,003 observed M-CSA source records.
+  Do not open another M-CSA-only tranche without new source-scale evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. The selected external pilot remains review-only with 0
+  import-ready rows and 0 countable candidates; this run did not change the
+  pilot success criteria or external review decisions.
+- Scientific generalization work: Yes for Foldseek/TM-score split-redesign
+  evidence, but not for a full split claim. This run added
+  `artifacts/v3_sequence_distance_holdout_split_redesign_candidate_1000.json`,
+  `artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate.json`,
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_query_chunk_000_of_056.json`,
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_query_chunk_aggregate_000_of_056.json`,
+  `artifacts/v3_foldseek_tm_score_split_redesign_candidate_query_chunk_repair_plan_1000.json`,
+  `artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round2_1000.json`,
+  `artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round2.json`,
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_000_of_056.json`,
+  and
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_aggregate_000_of_056.json`.
+  The redesign candidate resolves the 15 previously observed completed-chunk
+  blockers in projection, but the direct redesigned chunk 0 fails with max
+  train/test TM-score `0.926`. The round-2 redesign then moves `m_csa:277`,
+  `m_csa:378`, `m_csa:320`, and `m_csa:108` to heldout and clears chunk 0
+  directly with max train/test TM-score `0.695` and 0 target-violating pairs.
+- SPOF hardening work: Yes. The run removes the projection-only ambiguity for
+  the first split redesign by rerunning Foldseek directly, then removes the
+  resulting chunk-0 blocker with a second direct redesign check. `m_csa:372`
+  and `m_csa:501` remain coordinate exclusions, 55 query chunks remain
+  uncomputed under the round-2 redesigned split, all outputs remain
+  review-only/non-countable, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-14T18:55:52-05:00 run after clean startup gates
 (`359` unit tests passed and `validate` passed with 679 curated labels):
 
@@ -1277,43 +1313,42 @@ artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
 Current run was direct only, with no subagents or delegation. It added
-`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json`,
-`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json`,
+`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_1000.json`,
+`artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate.json`,
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_query_chunk_000_of_056.json`,
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_query_chunk_aggregate_000_of_056.json`,
+`artifacts/v3_foldseek_tm_score_split_redesign_candidate_query_chunk_repair_plan_1000.json`,
+`artifacts/v3_sequence_distance_holdout_split_redesign_candidate_round2_1000.json`,
+`artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round2.json`,
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_000_of_056.json`,
 and
-`artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json`.
-Do not open another M-CSA-only tranche. Do not claim full TM-score holdout:
-chunks 0-2 now record 3 completed chunks, 36 completed query coordinates
-against all staged targets, 40,890 mapped pair rows, 12,358 train/test rows,
-max train/test TM-score `0.8957`, 76 target-violating row-level pairs, and 15
-reported target-violating structure pairs. Chunk 2 previously timed out at
-900 seconds in
-`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json`,
-but the same chunk completes under a 1,800-second cap in the retry artifact
-with 12,639 mapped pair rows and max train/test TM-score `0.8427`. The retry
-aggregate removes the chunk-2 runtime ambiguity, but it proves the repaired
-expanded100 cap was not enough and the candidate split still needs
-repair/adjudication before a full TM-score claim. The query-chunk split-repair
-plan classifies the 15 observed blockers into 9 conservative held-out
-out-of-scope move candidates and 6 manual split-redesign blockers involving
-held-out in-scope rows (`m_csa:20`, `m_csa:497`, and `m_csa:895`). The previous
-timeout artifact still documents the all-at-once blocker:
-`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
-covers all 672 staged materializable coordinates and records the exact
-Foldseek `10.941cd33` command with `--threads 4`, but the 1,500-second bounded
-run timed out before a result TSV was emitted. It therefore has 0 pair rows, no
-max train/test TM-score, no target pass, and
-`full_tm_score_holdout_claim_permitted=false`. The older repaired expanded100
-evidence remains only a capped-subset result:
-`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json`
-has max train/test TM-score `0.6993`, and
-`artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json`
-finds 0 target-violating pairs inside that cap. The canonical sequence holdout
+`artifacts/v3_foldseek_tm_score_signal_1000_split_redesign_candidate_round2_query_chunk_aggregate_000_of_056.json`.
+Do not open another M-CSA-only tranche. Do not claim full TM-score holdout.
+The first split-redesign candidate moved the 9 held-out out-of-scope blockers
+from the retry aggregate to in-distribution and moved 6 high-TM train
+neighbors to heldout to preserve held-out in-scope blockers. In projection it
+resolved the 15 observed completed-chunk blockers, preserved 0 sequence-cluster
+splits, and kept held-out out-of-scope false non-abstentions at 0. The direct
+Foldseek chunk-0 rerun against that redesigned split invalidated the projection
+as a sufficient fix: 12 query coordinates against all 672 staged targets
+completed with 16,475 mapped pair rows, 6,909 train/test rows, max train/test
+TM-score `0.926`, and 15 target-violating row-level pairs across 4 reported
+structure pairs. The new repair plan classifies all 4 reported pairs as manual
+held-out in-scope split-redesign blockers involving `m_csa:6` against
+`m_csa:277`, `m_csa:378`, `m_csa:320`, and `m_csa:108`; there are 0
+conservative held-out out-of-scope repair candidates in this direct chunk-0
+result. The round-2 redesign moves those four neighbors to heldout as well and
+reruns chunk 0 directly; it clears the chunk with 16,475 mapped pair rows,
+6,939 train/test rows, max train/test TM-score `0.695`, and 0 target-violating
+pairs. The previous retry aggregate still records chunks 0-2 under the prior
+candidate split with max `0.8957`, and the all-at-once all-materializable
+attempt still documents a 1,500-second timeout. The canonical sequence holdout
 remains unchanged, `m_csa:372` and `m_csa:501` remain coordinate exclusions,
-and no countable/import-ready rows were created. Next Foldseek work should
-resolve the 6 held-out in-scope manual split blockers or define a reviewed
-partition redesign before applying any new split repair. Routine chunk
-continuation should use the longer-cap evidence from chunk 2 only after the
-split-target blocker is addressed; do not add another capped preview.
+55 round-2 redesigned query chunks remain uncomputed, and no
+countable/import-ready rows were created. Next Foldseek work should continue
+from the round-2 redesigned split with query chunk 1, but stop and adjudicate
+if a new target-violating pair appears; do not add another capped preview or
+claim full separation.
 
 External pilot import remains blocked. The selected-pilot representation
 adjudication now gives concrete review-only statuses: 3 stable representation
