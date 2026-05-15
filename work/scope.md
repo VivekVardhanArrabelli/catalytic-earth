@@ -351,9 +351,15 @@ Current expectation:
   max `0.6823`, clears index 111 at max `0.564`, and then index 112 exposes
   `m_csa:113` versus held-out `m_csa:131` at max `0.7063`. Round 18 folds
   that pair, but the round-18 rerun of index 112 exposes a larger
-  `m_csa:113` blocker surface at max `0.9087`. Round 19 now folds that
-  surface into 72 high-TM constraints plus 38 sequence-identity partition
-  constraints with 0 projected violations and 0 sequence-cluster splits. The
+  `m_csa:113` blocker surface at max `0.9087`. Round 19 folds that surface and
+  clears indices 112-113 before index 114 exposes `m_csa:115` versus
+  `m_csa:822` at max `0.7338`. Round 20 folds that pair and clears index 114,
+  but index 115 exposes a broader `m_csa:116` surface at max `0.9749`; round
+  21 folds that surface and then exposes `m_csa:116` versus held-out
+  `m_csa:67` at max `0.9032`. Round 22 folds the remaining pair into 82
+  high-TM constraints plus 38 sequence-identity partition constraints with 0
+  projected violations and 0 sequence-cluster splits, then clears indices
+  115-118 at max `0.6939` with 0 target-violating pairs. The
   first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars

@@ -50,6 +50,34 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-15T17:54:36Z run after clean startup gates
+(`415` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not open another M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. This run did not modify external pilot decisions; the selected
+  external pilot remains review-only with 0 import-ready rows and 0 countable
+  candidates.
+- Scientific generalization work: Yes for direct Foldseek/TM-score
+  cluster-first verification and split repair, but not for a full split claim.
+  Round 19 clears staged indices 112-113 before index 114 exposes `m_csa:115`
+  versus `m_csa:822` at max TM-score `0.7338`; round 20 folds that pair and
+  clears index 114 before index 115 exposes a broader `m_csa:116` surface at
+  max `0.9749`; round 21 folds that surface but exposes `m_csa:116` versus
+  held-out `m_csa:67` at max `0.9032`; round 22 folds that pair and clears
+  indices 115-118 at max `0.6939`.
+- SPOF hardening work: Yes. The run converted each new high-TM train/test
+  blocker into cluster-first partition constraints, bringing the active split
+  to 82 high-TM constraints plus 38 sequence-identity constraints with 0
+  projected violations and 0 sequence-cluster splits. `m_csa:372` and
+  `m_csa:501` remain coordinate exclusions, most query coverage remains
+  unverified under the cluster-first split, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-15T11:53:48-05:00 run after clean startup gates
 (`412` unit tests passed and `validate` passed with 679 curated labels):
 
@@ -1808,15 +1836,20 @@ index 111 also passes at max `0.564`. Index 112 then exposes `m_csa:113`
 against held-out `m_csa:131` at max `0.7063`; round 18 folds that pair but
 its rerun exposes a larger `m_csa:113` blocker surface against `m_csa:942`,
 `m_csa:978`, and related in-distribution neighbors at max `0.9087`. Round 19
-folds that evidence into 72 high-TM constraints plus 38 sequence-identity
-partition constraints, with 0 projected violations and 0 sequence-cluster
-splits.
+folds that evidence and clears indices 112-113 before index 114 exposes
+`m_csa:115` versus `m_csa:822` at max `0.7338`. Round 20 folds that pair and
+clears index 114, but index 115 exposes a broader `m_csa:116` surface at max
+`0.9749`; round 21 folds that surface but exposes `m_csa:116` versus held-out
+`m_csa:67` at max `0.9032`. Round 22 folds that pair into 82 high-TM
+constraints plus 38 sequence-identity partition constraints, with 0 projected
+violations and 0 sequence-cluster splits, then clears indices 115-118 at max
+`0.6939` with 0 target-violating pairs.
 
-Next Foldseek work should continue from round-19 readiness at staged query
-index 112 (`m_csa:113`) using the same one-query verification pattern, or a
-larger bounded chunk only if the runtime risk is acceptable. Stop on any
-`TM >= 0.7` train/test blocker and fold it into a new cluster-first round
-before continuing.
+Next Foldseek work should continue from round-22 readiness at staged query
+index 119 using the same one-query verification pattern, or a larger bounded
+chunk only if the runtime risk is acceptable. Stop on any `TM >= 0.7`
+train/test blocker and fold it into a new cluster-first round before
+continuing.
 `m_csa:372` and `m_csa:501` remain coordinate exclusions, most query coverage
 remains unverified, and `full_tm_score_holdout_claim_permitted=false` remains
 required.
