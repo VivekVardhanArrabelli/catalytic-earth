@@ -221,7 +221,13 @@ Current expectation:
   duplicate rejection is not supported; all six rows are instead terminal
   review-only `rejected_representation_conflict` import-safety decisions. The
   resolved pilot surface has 0 `needs_review`, 0 import-ready rows, and 0
-  countable external labels. The external structural path now has a concrete review-only cluster index for the same 10
+  countable external labels. A follow-on repair-lane artifact assigns those
+  six representation conflicts to concrete review-only mechanism-control
+  lanes: SDR/NAD(P) redox, AKR/NADP redox, DNA Pol X/5'-dRP lyase,
+  sugar-phosphate isomerase, Schiff-base lyase/aldolase, and
+  glycoside-hydrolase versus metal-hydrolase boundary control. These lanes
+  remove generic zero-pass ambiguity but do not add predictive features,
+  imports, or countable labels. The external structural path now has a concrete review-only cluster index for the same 10
   selected rows: all 10 AlphaFold coordinate sidecars are materialized,
   Foldseek completed, nearest-neighbor coverage is 10/10, and the selected
   pilot forms nine `TM >=0.7` clusters with only `O95050`/`P51580` grouped. It

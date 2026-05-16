@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 132
-- Measured elapsed time: 4560.4 minutes (76.01 hours)
+- Entries: 133
+- Measured elapsed time: 4573.0 minutes (76.22 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- external-transfer-spof-hardening: 136.6 measured minutes (2.28 hours)
+- external-transfer-spof-hardening: 149.3 measured minutes (2.49 hours)
 - ops: 51.4 measured minutes (0.86 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1527
-- Evidence references logged: 1152
+- Artifact references logged: 1537
+- Evidence references logged: 1162
 
 ## Recent Entries
-
-### 2026-05-16T08:06:00.835318+00:00 - external-transfer-spof-hardening
-
-- Task: Route deferred external pilot rows to human expert review
-- Time mode: measured
-- Measured minutes: 8.6
-- Started: 2026-05-16T07:57:24Z
-- Ended: 2026-05-16T08:06:00Z
-- Artifacts: artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: startup 349 unit tests passed, startup validate passed with 679 curated labels, final 350 unit tests passed, final validate passed with 679 curated labels, 3 deferred pilot rows routed to review-only human/expert packets, 0 import-ready rows and 0 countable external labels
-- Notes: Normal locked direct run with no delegation; M-CSA strict TM repair stayed closed.
 
 ### 2026-05-16T09:14:46.363953+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_source_pilot_needs_review_resolution_1025.json, artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json, artifacts/v3_external_source_pilot_human_expert_review_queue_resolved_1025.json, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 358 unit tests passed, startup validate passed with 679 curated labels, targeted UniRef90/50 mapping found 0 shared nearest-reference clusters, 6 needs_review rows resolved as rejected_representation_conflict, 0 import-ready rows and 0 countable external labels, final 359 unit tests passed, final validate passed, compileall passed, git diff check passed
 - Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; no external rows became countable or import-ready.
+
+### 2026-05-16T16:17:35.092187+00:00 - external-transfer-spof-hardening
+
+- Task: Assign external pilot mechanism repair lanes
+- Time mode: measured
+- Measured minutes: 12.617
+- Started: 2026-05-16T16:04:57Z
+- Ended: 2026-05-16T16:17:34Z
+- Artifacts: artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 359 unit tests passed, startup validate passed with 679 curated labels, 6 resolved representation conflicts assigned to review-only mechanism repair lanes, 0 needs_review rows, 0 import-ready rows, 0 countable external labels, final 360 unit tests passed, final validate passed, compileall passed, git diff check passed
+- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
 
 ## Expectation Updates
 

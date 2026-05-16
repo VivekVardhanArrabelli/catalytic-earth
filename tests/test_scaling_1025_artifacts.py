@@ -3189,6 +3189,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_human_expert_review_queue_resolved_1025.json"
         )
+        repair_lanes = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+        )
 
         self.assertEqual(
             resolution["metadata"]["method"],
@@ -3247,6 +3252,39 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertEqual(resolved_queue["metadata"]["queued_candidate_count"], 0)
         self.assertEqual(resolved_queue["rows"], [])
+
+        self.assertEqual(
+            repair_lanes["metadata"]["method"],
+            "external_source_pilot_mechanism_repair_lanes",
+        )
+        self.assertTrue(repair_lanes["metadata"]["review_only"])
+        self.assertFalse(repair_lanes["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            repair_lanes["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(repair_lanes["metadata"]["candidate_count"], 6)
+        self.assertEqual(
+            repair_lanes["metadata"]["repair_lane_counts"],
+            {
+                "add_akr_nadp_redox_representation_axis": 1,
+                "add_dna_pol_x_lyase_representation_axis": 1,
+                "add_schiff_base_aldolase_lyase_scope_control": 1,
+                "add_sdr_nad_p_redox_representation_axis": 1,
+                "add_sugar_phosphate_isomerase_scope_control": 1,
+                "split_glycoside_hydrolase_from_metal_hydrolase_control": 1,
+            },
+        )
+        self.assertTrue(
+            all(
+                row["source_context_evidence"]["representative_rhea_reactions"]
+                and row["source_context_evidence"]["interpro_or_prosite_context"]
+                and row["heuristic_context"]["interpretation"]
+                and row["representation_context"]["status"]
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                for row in repair_lanes["rows"]
+            )
+        )
 
 
 def _load_json(path: Path) -> dict:

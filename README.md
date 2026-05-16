@@ -325,6 +325,13 @@ queue artifacts,
 `artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json` and
 `artifacts/v3_external_source_pilot_human_expert_review_queue_resolved_1025.json`,
 leave 0 `needs_review`, 0 import-ready rows, and 0 countable external labels.
+`artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json` now
+assigns the 6 resolved representation conflicts to concrete review-only
+repair lanes: SDR/NAD(P) redox, AKR/NADP redox, DNA Pol X/5'-dRP lyase,
+sugar-phosphate isomerase, Schiff-base lyase/aldolase, and
+glycoside-hydrolase versus metal-hydrolase boundary control. These lanes
+remove the generic zero-pass repair ambiguity but are not predictive features,
+import-ready decisions, or countable labels.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

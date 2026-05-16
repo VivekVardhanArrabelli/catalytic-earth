@@ -97,7 +97,15 @@ supported, but all 6 rows are terminal review-only
 `rejected_representation_conflict` import-safety decisions because current
 representation or heuristic controls conflict with source-supported chemistry.
 The resolved decision surface has 0 `needs_review`, 0 import-ready rows, and 0
-countable external labels. The external structural pilot path has now moved from path definition to a concrete
+countable external labels.
+`artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json` now
+turns those six review-only representation conflicts into named
+representation/heuristic repair lanes: SDR/NAD(P) redox, AKR/NADP redox, DNA
+Pol X/5'-dRP lyase, sugar-phosphate isomerase, Schiff-base lyase/aldolase, and
+glycoside-hydrolase versus metal-hydrolase boundary control. These lanes
+remove the generic zero-pass repair ambiguity but are not predictive features,
+import-ready decisions, or countable labels.
+The external structural pilot path has now moved from path definition to a concrete
 review-only structure cache in
 `artifacts/v3_external_structural_cluster_index_1025.json`: all 10 selected
 AlphaFold coordinate sidecars are materialized, Foldseek completed, the nearest
@@ -125,16 +133,44 @@ MMseqs2 searched all 30 external candidates against each other, found 0
 near-duplicate pairs at 90% identity / 80% coverage, recorded max reported
 external-external identity `0.647`, and kept 0 import-ready/countable rows. The
 confidence audit now carries this external all-vs-all no-signal evidence for
-the selected pilot rows. The later needs-review resolution artifact supersedes
-the 6-row normalized queue for pilot-decision work; do not re-open those rows
-without new evidence. Next direct work should repair the representation or
-heuristic policy that caused the zero-pass outcome, or broaden the external
-Swiss-Prot/AFDB structural surface beyond the current 30-row review-only split
-before any import or benchmark claim.
+the selected pilot rows. The later needs-review resolution and mechanism repair
+lane artifacts supersede the 6-row normalized queue for pilot-decision work; do
+not re-open those rows without new evidence. Next direct work should implement
+one bounded repair lane as review-only representation/heuristic control work,
+or broaden the external Swiss-Prot/AFDB structural surface beyond the current
+30-row review-only split before any import or benchmark claim.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
 unless the user explicitly reverses the override.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T16:04:57Z run after acquiring the automation lock,
+syncing clean `origin/main`, passing startup gates (`359` unit tests passed and
+`validate` passed with 679 curated labels), confirming the six normalized
+external `needs_review` rows were already resolved on the latest pushed state,
+and passing wrap checks (`360` unit tests, `validate`, `compileall`, and
+`git diff --check`):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and no
+  M-CSA strict-TM round, query, split-repair, or partition-repair work was
+  resumed.
+- External-source repair/import: Yes for representation/heuristic repair
+  scoping, no for import or countable labels. This run added
+  `artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json`, which
+  assigns the six resolved representation conflicts to six named review-only
+  repair lanes: SDR/NAD(P) redox, AKR/NADP redox, DNA Pol X/5'-dRP lyase,
+  sugar-phosphate isomerase, Schiff-base lyase/aldolase, and
+  glycoside-hydrolase versus metal-hydrolase boundary control. The selected
+  pilot still has 0 `needs_review`, 0 import-ready rows, and 0 countable
+  external labels.
+- Scientific generalization work: No new benchmark or split claim. The
+  all-30 external structural split remains review-only with max cross-split TM
+  about `0.6963`; this run prepared the next representation/heuristic repair
+  target rather than broadening structure.
+- SPOF hardening work: Yes. The new CLI, artifact, and regression coverage make
+  the zero-pass repair lanes explicit while preserving review-only/import-safety
+  invariants. `docs/label_factory.md` was checked and needed no content change.
 
 Recorded for the 2026-05-16T15:04:24Z run after acquiring the automation lock,
 syncing clean `origin/main`, passing startup gates (`358` unit tests passed and

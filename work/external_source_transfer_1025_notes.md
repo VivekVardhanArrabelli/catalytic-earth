@@ -189,6 +189,14 @@ Current review-only external artifacts:
   resolved as terminal review-only `rejected_representation_conflict`
   import-safety decisions. The resolved decision and queue artifacts leave 0
   `needs_review`, 0 import-ready rows, and 0 countable external labels.
+- `artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json`
+  removes the generic zero-pass repair-lane ambiguity for those 6 resolved
+  representation conflicts. It assigns one review-only lane each for
+  SDR/NAD(P) redox, AKR/NADP redox, DNA Pol X/5'-dRP lyase,
+  sugar-phosphate isomerase, Schiff-base lyase/aldolase, and
+  glycoside-hydrolase versus metal-hydrolase boundary repair. These are
+  next-code/worklist lanes only; they are not predictive features, import-ready
+  decisions, or countable labels.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine

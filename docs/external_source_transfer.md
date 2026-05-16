@@ -138,6 +138,14 @@ Priority blockers:
   representation or heuristic controls. The resolved decisions and queue
   artifacts leave 0 `needs_review`, 0 import-ready rows, and 0 countable
   external labels.
+- `artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json`
+  converts those 6 review-only representation conflicts into concrete
+  mechanism repair lanes without changing any decision: SDR/NAD(P) redox,
+  AKR/NADP redox, DNA Pol X/5'-dRP lyase, sugar-phosphate isomerase,
+  Schiff-base lyase/aldolase, and glycoside-hydrolase versus
+  metal-hydrolase boundary control. This removes the generic zero-pass
+  repair-lane ambiguity; the lanes are not predictive features, import-ready
+  rows, or countable labels.
 - `artifacts/v3_external_structural_cluster_index_1025.json` removes the
   selected-pilot structure-index blocker by staging all 10 AlphaFold coordinate
   sidecars, recording SHA-256 digests, running Foldseek, and caching

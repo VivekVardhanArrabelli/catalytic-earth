@@ -151,6 +151,7 @@ from .transfer_scope import (
     build_external_source_pilot_decisions_review_normalized,
     build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_human_expert_review_queue_normalized,
+    build_external_source_pilot_mechanism_repair_lanes,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
@@ -2650,6 +2651,28 @@ def cmd_build_external_source_pilot_human_expert_review_queue_normalized(
     print(
         "Wrote normalized external source pilot human/expert review queue to "
         f"{args.out} ({queue['metadata']['queued_candidate_count']} queued)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_mechanism_repair_lanes(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        ("needs_review_resolution", "resolved_pilot_decisions"),
+        blocker_removed="external_pilot_mechanism_repair_lanes_assigned",
+    )
+    lanes = build_external_source_pilot_mechanism_repair_lanes(
+        needs_review_resolution=artifact_payloads["needs_review_resolution"],
+        resolved_pilot_decisions=artifact_payloads["resolved_pilot_decisions"],
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), lanes)
+    print(
+        "Wrote external source pilot mechanism repair lanes to "
+        f"{args.out} ({lanes['metadata']['candidate_count']} rows)"
     )
     return 0
 
@@ -7064,6 +7087,41 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_normalized_queue.set_defaults(
         func=cmd_build_external_source_pilot_human_expert_review_queue_normalized
+    )
+
+    external_pilot_mechanism_repair = subparsers.add_parser(
+        "build-external-source-pilot-mechanism-repair-lanes",
+        help=(
+            "assign review-only representation/heuristic repair lanes for "
+            "resolved external pilot mechanism conflicts"
+        ),
+    )
+    external_pilot_mechanism_repair.add_argument(
+        "--needs-review-resolution",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_needs_review_resolution_1025.json"
+        ),
+    )
+    external_pilot_mechanism_repair.add_argument(
+        "--resolved-pilot-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_decisions_review_resolved_1025.json"
+        ),
+    )
+    external_pilot_mechanism_repair.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_mechanism_repair.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+        ),
+    )
+    external_pilot_mechanism_repair.set_defaults(
+        func=cmd_build_external_source_pilot_mechanism_repair_lanes
     )
 
     external_structural_path = subparsers.add_parser(

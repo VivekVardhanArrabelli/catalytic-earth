@@ -61,6 +61,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_human_expert_review_queue,
+    build_external_source_pilot_mechanism_repair_lanes,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
@@ -7173,6 +7174,111 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "nearest-reference",
             row["human_expert_review_questions"][0],
         )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_mechanism_repair_lanes_stay_review_only(
+        self,
+    ) -> None:
+        lanes = build_external_source_pilot_mechanism_repair_lanes(
+            needs_review_resolution={
+                "metadata": {
+                    "method": "external_source_pilot_needs_review_resolution"
+                },
+                "rows": [
+                    {
+                        "accession": "P34949",
+                        "entry_id": "uniprot:P34949",
+                        "protein_name": "Mannose-6-phosphate isomerase",
+                        "revised_status": "rejected_representation_conflict",
+                        "confidence": "medium",
+                        "active_site_evidence_result": {
+                            "status": "explicit_active_site_source_present",
+                            "positions": [{"position": 295}],
+                        },
+                        "duplicate_screen_result": {
+                            "bounded_current_reference_backend": (
+                                "no_near_duplicate_signal"
+                            ),
+                            "external_all_vs_all_backend": (
+                                "no_near_duplicate_signal"
+                            ),
+                            "shared_uniref90_or_uniref50_with_nearest_references": (
+                                False
+                            ),
+                        },
+                        "representation_control_result": {
+                            "status": "representation_control_adjudicated_review_only",
+                            "baseline_backend": "esm2_t6_8m_ur50d",
+                            "comparison_backend": "esm2_t30_150m_ur50d",
+                            "nearest_reference_family_preserved": False,
+                        },
+                        "reaction_mechanism_context_result": {
+                            "status": (
+                                "source_supports_mannose_6_phosphate_isomerase_context"
+                            ),
+                            "representative_rhea_reactions": [
+                                "RHEA:12356 D-mannose 6-phosphate = D-fructose 6-phosphate"
+                            ],
+                            "interpro_or_prosite_context": [
+                                "IPR001250 Man6P_Isoase-1"
+                            ],
+                            "heuristic_context": {
+                                "top1_fingerprint_id": (
+                                    "flavin_dehydrogenase_reductase"
+                                ),
+                                "top1_score": 0.185,
+                                "scope_top1_mismatch": True,
+                                "counterevidence": ["absent_flavin_context"],
+                            },
+                        },
+                    }
+                ],
+            },
+            resolved_pilot_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_decisions_review_resolved"
+                },
+                "rows": [
+                    {
+                        "accession": "P34949",
+                        "normalized_decision_status": (
+                            "rejected_representation_conflict"
+                        ),
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                    }
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = lanes["metadata"]
+        self.assertEqual(
+            metadata["method"], "external_source_pilot_mechanism_repair_lanes"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["repair_lane_counts"],
+            {"add_sugar_phosphate_isomerase_scope_control": 1},
+        )
+        row = lanes["rows"][0]
+        self.assertEqual(
+            row["repair_lane"], "add_sugar_phosphate_isomerase_scope_control"
+        )
+        self.assertEqual(
+            row["source_context_evidence"]["active_site_position_count"], 1
+        )
+        self.assertIn("RHEA:12356", row["source_context_evidence"][
+            "representative_rhea_reactions"
+        ][0])
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
 

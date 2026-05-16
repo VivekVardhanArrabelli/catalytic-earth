@@ -11163,6 +11163,348 @@ def build_external_source_pilot_human_expert_review_queue_normalized(
     }
 
 
+def build_external_source_pilot_mechanism_repair_lanes(
+    *,
+    needs_review_resolution: dict[str, Any],
+    resolved_pilot_decisions: dict[str, Any],
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Assign concrete repair lanes for resolved pilot representation conflicts."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    resolution_rows = [
+        row
+        for row in needs_review_resolution.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    resolved_status_counts = Counter(
+        str(row.get("normalized_decision_status") or "")
+        for row in resolved_pilot_decisions.get("rows", []) or []
+        if isinstance(row, dict)
+    )
+
+    rows: list[dict[str, Any]] = []
+    for row in sorted(
+        resolution_rows,
+        key=lambda item: (
+            int(item.get("rank") or 9999),
+            str(item.get("accession") or ""),
+        ),
+    )[:max_rows]:
+        accession = _normalize_accession(row.get("accession"))
+        if not accession:
+            continue
+        reaction_context = row.get("reaction_mechanism_context_result", {})
+        if not isinstance(reaction_context, dict):
+            reaction_context = {}
+        heuristic_context = reaction_context.get("heuristic_context", {})
+        if not isinstance(heuristic_context, dict):
+            heuristic_context = {}
+        representation_context = row.get("representation_control_result", {})
+        if not isinstance(representation_context, dict):
+            representation_context = {}
+        duplicate_context = row.get("duplicate_screen_result", {})
+        if not isinstance(duplicate_context, dict):
+            duplicate_context = {}
+        active_site_context = row.get("active_site_evidence_result", {})
+        if not isinstance(active_site_context, dict):
+            active_site_context = {}
+
+        repair_lane = _external_pilot_mechanism_repair_lane(row)
+        repair_plan = _external_pilot_mechanism_repair_plan(repair_lane)
+        active_site_positions = active_site_context.get("positions", [])
+        if not isinstance(active_site_positions, list):
+            active_site_positions = []
+
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
+                "protein_name": row.get("protein_name"),
+                "source_resolved_status": row.get("revised_status"),
+                "source_confidence": row.get("confidence"),
+                "source_supported_context_status": reaction_context.get("status"),
+                "source_context_evidence": {
+                    "representative_rhea_reactions": reaction_context.get(
+                        "representative_rhea_reactions", []
+                    ),
+                    "interpro_or_prosite_context": reaction_context.get(
+                        "interpro_or_prosite_context", []
+                    ),
+                    "active_site_evidence_status": active_site_context.get("status"),
+                    "active_site_position_count": len(active_site_positions),
+                },
+                "heuristic_context": {
+                    "scored": heuristic_context.get("scored"),
+                    "top1_fingerprint_id": heuristic_context.get(
+                        "top1_fingerprint_id"
+                    ),
+                    "top1_score": heuristic_context.get("top1_score"),
+                    "scope_top1_mismatch": heuristic_context.get(
+                        "scope_top1_mismatch"
+                    ),
+                    "counterevidence": heuristic_context.get("counterevidence", []),
+                    "interpretation": heuristic_context.get("interpretation"),
+                },
+                "representation_context": {
+                    "status": representation_context.get("status"),
+                    "baseline_backend": representation_context.get(
+                        "baseline_backend"
+                    ),
+                    "baseline_nearest_reference_accession": (
+                        representation_context.get(
+                            "baseline_nearest_reference_accession"
+                        )
+                    ),
+                    "baseline_top_embedding_cosine": representation_context.get(
+                        "baseline_top_embedding_cosine"
+                    ),
+                    "comparison_backend": representation_context.get(
+                        "comparison_backend"
+                    ),
+                    "comparison_nearest_reference_accession": (
+                        representation_context.get(
+                            "comparison_nearest_reference_accession"
+                        )
+                    ),
+                    "comparison_top_embedding_cosine": representation_context.get(
+                        "comparison_top_embedding_cosine"
+                    ),
+                    "nearest_reference_family_preserved": representation_context.get(
+                        "nearest_reference_family_preserved"
+                    ),
+                    "interpretation": representation_context.get("interpretation"),
+                },
+                "duplicate_screen_summary": {
+                    "bounded_current_reference_backend": duplicate_context.get(
+                        "bounded_current_reference_backend"
+                    ),
+                    "external_all_vs_all_backend": duplicate_context.get(
+                        "external_all_vs_all_backend"
+                    ),
+                    "shared_uniref90_or_uniref50_with_nearest_references": (
+                        duplicate_context.get(
+                            "shared_uniref90_or_uniref50_with_nearest_references"
+                        )
+                    ),
+                    "top_current_reference_alignment_identity": duplicate_context.get(
+                        "top_current_reference_alignment_identity"
+                    ),
+                    "structural_neighbor_tm_score": duplicate_context.get(
+                        "structural_neighbor_tm_score"
+                    ),
+                    "structural_neighbor_above_tm_0_7": duplicate_context.get(
+                        "structural_neighbor_above_tm_0_7"
+                    ),
+                },
+                "repair_lane": repair_lane,
+                "repair_goal": repair_plan["repair_goal"],
+                "smallest_next_action": repair_plan["smallest_next_action"],
+                "repair_requires": repair_plan["repair_requires"],
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_status": "external_pilot_mechanism_repair_lane_review_only",
+            }
+        )
+
+    repair_lane_counts = Counter(row["repair_lane"] for row in rows)
+    source_context_counts = Counter(
+        str(row.get("source_supported_context_status") or "missing_source_context")
+        for row in rows
+    )
+    heuristic_top1_counts = Counter(
+        str(row["heuristic_context"].get("top1_fingerprint_id") or "not_scored")
+        for row in rows
+    )
+    return {
+        "metadata": {
+            "method": "external_source_pilot_mechanism_repair_lanes",
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "external_pilot_representation_conflict_rows_have_named_mechanism_repair_lanes"
+            ),
+            "blocker_not_removed": [
+                "repair_lanes_not_implemented_as_predictive_features",
+                "full_label_factory_gate_not_run_for_external_import",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "source_needs_review_resolution_method": needs_review_resolution.get(
+                "metadata", {}
+            ).get("method"),
+            "source_resolved_pilot_decisions_method": resolved_pilot_decisions.get(
+                "metadata", {}
+            ).get("method"),
+            "source_resolved_decision_status_counts": dict(
+                sorted(resolved_status_counts.items())
+            ),
+            "repair_lane_counts": dict(sorted(repair_lane_counts.items())),
+            "source_context_status_counts": dict(
+                sorted(source_context_counts.items())
+            ),
+            "heuristic_top1_counts": dict(sorted(heuristic_top1_counts.items())),
+            "selected_accessions": [row["accession"] for row in rows],
+            "non_countable_rule": (
+                "repair lanes identify representation/heuristic control work only; "
+                "they cannot create import-ready rows or countable labels"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "mechanism repair lanes are review-only planning evidence and do "
+                "not validate enzyme function or authorize external label import"
+            )
+        ],
+    }
+
+
+def _external_artifact_lineage_slice_id(
+    artifact_lineage: dict[str, Any] | None,
+) -> int | None:
+    if not isinstance(artifact_lineage, dict):
+        return None
+    parsed = _parse_external_transfer_lineage_int(artifact_lineage.get("slice_id"))
+    return parsed
+
+
+def _external_pilot_mechanism_repair_lane(row: dict[str, Any]) -> str:
+    reaction_context = row.get("reaction_mechanism_context_result", {})
+    if not isinstance(reaction_context, dict):
+        return "manual_source_mechanism_review_required"
+    status = str(reaction_context.get("status") or "")
+    if "short_chain_dehydrogenase_reductase" in status:
+        return "add_sdr_nad_p_redox_representation_axis"
+    if "aldo_keto_reductase" in status:
+        return "add_akr_nadp_redox_representation_axis"
+    if "dna_polymerase" in status or "5_drp_lyase" in status:
+        return "add_dna_pol_x_lyase_representation_axis"
+    if "mannose_6_phosphate_isomerase" in status:
+        return "add_sugar_phosphate_isomerase_scope_control"
+    if "n_acetylneuraminate_lyase" in status:
+        return "add_schiff_base_aldolase_lyase_scope_control"
+    if "alpha_galactosidase" in status or "glycoside_hydrolase" in status:
+        return "split_glycoside_hydrolase_from_metal_hydrolase_control"
+    return "manual_source_mechanism_review_required"
+
+
+def _external_pilot_mechanism_repair_plan(repair_lane: str) -> dict[str, Any]:
+    plans: dict[str, dict[str, Any]] = {
+        "add_sdr_nad_p_redox_representation_axis": {
+            "repair_goal": (
+                "separate SDR/NAD(P)-dependent redox chemistry from heme and "
+                "generic oxidoreductase representation neighbors"
+            ),
+            "smallest_next_action": (
+                "add a review-only SDR/NAD(P) contrast set from source-supported "
+                "external rows and current countable references, then rerun "
+                "representation/heuristic disagreement checks"
+            ),
+            "repair_requires": [
+                "non_text_sequence_or_structure_features_only",
+                "source_supported_active_site_and_rhea_context",
+                "no_import_until_duplicate_review_and_factory_gate_pass",
+            ],
+        },
+        "add_akr_nadp_redox_representation_axis": {
+            "repair_goal": (
+                "separate aldo-keto reductase NADP chemistry from unrelated "
+                "high-cosine current-reference neighbors"
+            ),
+            "smallest_next_action": (
+                "build a bounded AKR/NADP contrast row using active-site and "
+                "InterPro context before any new pilot decision"
+            ),
+            "repair_requires": [
+                "non_text_sequence_or_structure_features_only",
+                "explicit_duplicate_controls_remain_required",
+                "review_only_until_factory_gate_passes",
+            ],
+        },
+        "add_dna_pol_x_lyase_representation_axis": {
+            "repair_goal": (
+                "separate DNA polymerase X and 5'-dRP lyase source context from "
+                "generic representation-neighbor evidence"
+            ),
+            "smallest_next_action": (
+                "map a DNA Pol X/5'-dRP lyase representation contrast control "
+                "before treating high cosine alone as duplicate evidence"
+            ),
+            "repair_requires": [
+                "structure_or_sequence_derived_features_only",
+                "broader_duplicate_screening_before_import",
+                "expert_or_review_decision_before_counting",
+            ],
+        },
+        "add_sugar_phosphate_isomerase_scope_control": {
+            "repair_goal": (
+                "separate sugar-phosphate isomerase chemistry from weak flavin "
+                "redox heuristic top1 matches"
+            ),
+            "smallest_next_action": (
+                "add an isomerase contrast control for mannose-6-phosphate "
+                "isomerase-like rows and rerun the heuristic top1/scope audit"
+            ),
+            "repair_requires": [
+                "local_active_site_geometry_or_structure_features",
+                "no_text_or_ec_fields_as_predictive_features",
+                "external_rows_remain_review_only",
+            ],
+        },
+        "add_schiff_base_aldolase_lyase_scope_control": {
+            "repair_goal": (
+                "separate N-acetylneuraminate lyase or aldolase chemistry from "
+                "weak heme/peroxidase heuristic matches"
+            ),
+            "smallest_next_action": (
+                "add a Schiff-base lyase/aldolase contrast control using active-site "
+                "Lys/proton-donor evidence before revising import decisions"
+            ),
+            "repair_requires": [
+                "active_site_residue_evidence_remains_source_traced",
+                "heuristic_counterevidence_stays_non_predictive_context",
+                "duplicate_and_factory_gates_still_block_import",
+            ],
+        },
+        "split_glycoside_hydrolase_from_metal_hydrolase_control": {
+            "repair_goal": (
+                "separate glycoside hydrolase chemistry from the current broad "
+                "metal-dependent hydrolase seed"
+            ),
+            "smallest_next_action": (
+                "add a glycoside-hydrolase boundary control and rerun the glycan "
+                "chemistry representation/heuristic comparison"
+            ),
+            "repair_requires": [
+                "glycan_boundary_axis_stays_review_only",
+                "non_text_structure_or_sequence_features_only",
+                "no_external_import_without_full_gate",
+            ],
+        },
+        "manual_source_mechanism_review_required": {
+            "repair_goal": "identify the missing mechanism repair family",
+            "smallest_next_action": (
+                "inspect source-supported reaction and active-site context before "
+                "adding another control"
+            ),
+            "repair_requires": [
+                "source_context_must_be_explicit",
+                "review_only_until_decision_artifact_and_gates_exist",
+            ],
+        },
+    }
+    return plans.get(repair_lane, plans["manual_source_mechanism_review_required"])
+
+
 def _external_pilot_confidence_source_artifacts(
     artifact_lineage: dict[str, Any] | None,
 ) -> dict[str, str]:
