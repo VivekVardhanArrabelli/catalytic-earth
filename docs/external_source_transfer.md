@@ -361,14 +361,25 @@ high-TM constraints plus 38 sequence-identity constraints with 0 projected
 violations, 0 sequence-cluster splits, and 0 held-out out-of-scope false
 non-abstentions. Its verification clears indices 143-144 at max `0.5745`;
 index 145 (`m_csa:146`/`pdb:4V4E`) timed out at 900 seconds before Foldseek
-pair rows were emitted. Full TM-score holdout claims remain forbidden until
-that timeout and the remaining round-32 cluster-first coverage pass or are
-explicitly adjudicated.
+pair rows were emitted. The strict M-CSA TM-score repair loop is now
+explicitly adjudicated rather than resumed:
+`artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json` records that
+the all-materializable M-CSA signal observed max train/test TM-score `0.9749`
+with 4,715 target-violating train/test rows, so strict pairwise `TM <0.7` is
+not a native M-CSA holdout target without destructive split repair. The
+recovered index-145 target-shard artifacts are review-only, non-canonical
+context; do not continue them into round33 or further partition repair.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
-`10.941cd33`). A TM-score split remains blocked until the remaining query
-chunks are completed or explicitly adjudicated under the cluster-first round-32
-split, coordinate exclusions remain reported, and target checks pass.
+`10.941cd33`). For M-CSA, `full_tm_score_holdout_claim_permitted=false`
+remains the descriptive limitation. Future strict TM-diverse holdout work
+belongs on broader external structural data such as Swiss-Prot/UniProt/AFDB
+candidates, with structure clustering before split assignment. The first
+review-only path artifact,
+`artifacts/v3_external_structural_tm_holdout_path_1025.json`, covers the 10
+selected pilot candidates, confirms all 10 have AlphaFold DB structure ids and
+7 have PDB references, and defines the required structure-index,
+nearest-neighbor, and cluster caches without authorizing import.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,

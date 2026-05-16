@@ -617,12 +617,27 @@ constraints plus 38 sequence-identity constraints, preserves 0 projected
 violations and 0 sequence-cluster splits, and clears indices 143-144 at max
 `0.5745`. The active readiness artifact is
 `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round32.json`.
-Index 145 (`m_csa:146`/`pdb:4V4E`) is now the direct runtime blocker: exact
+Index 145 (`m_csa:146`/`pdb:4V4E`) was the direct runtime blocker: exact
 Foldseek single-query verification timed out at 900 seconds before pair rows
 were emitted.
+`artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json` now closes
+the strict native M-CSA pairwise-TM repair loop as review-only evidence rather
+than continuing round-33/index-145 repair. It records the completed
+all-materializable signal max train/test TM-score `0.9749`, 4,715 violating
+train/test pair rows, 108 observed high-TM partition constraints, and 38
+sequence-identity constraints, then defers strict `<0.7` pairwise TM holdout
+claims for the native M-CSA slice. The clean MMseqs2 sequence-identity holdout
+remains the valid M-CSA generalization artifact; future strict structural
+holdout work should pivot to external, fold-diverse structural data before
+split assignment.
+`artifacts/v3_external_structural_tm_holdout_path_1025.json` scopes that next
+review-only path for the 10 selected external pilot candidates: all have
+AlphaFold references, seven have PDB cross-references, and the required next
+step is an external structure index plus nearest-neighbor/cache-backed
+`TM >= 0.7` clustering before any train/test split assignment. It authorizes
+0 countable labels and 0 import-ready rows.
 These artifacts remain review-only and non-countable; no full TM-score holdout
-claim is permitted until index 145 and the remaining query coverage pass or are
-explicitly adjudicated.
+claim is permitted for the M-CSA 1,000 slice.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
@@ -743,12 +758,20 @@ the contract rejects non-object artifact payloads at the gate boundary.
 The external pilot ranking, no-decision review export, evidence-packet,
 pilot-specific representation, and dossier artifacts are now built; the
 high-fan-in pilot builders also fail fast on mixed-slice lineage before writing
-new packet or dossier artifacts. The next bounded Foldseek item is retrying
-round-3 chunk 3 with a longer runtime or smaller query slice, stopping for
-adjudication if a target-violating pair appears. External packet decisions
-still need active-site sources and broader duplicate-screening evidence beyond
-the bounded current-reference MMseqs2 search. Do not resume M-CSA-only count
-growth or external label import.
+new packet or dossier artifacts. The M-CSA strict TM-score repair loop is now
+adjudicated closed/deferred by
+`artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json`: the
+all-materializable M-CSA signal observed max train/test TM-score `0.9749`, so
+`full_tm_score_holdout_claim_permitted=false` remains correct and further
+round32/index145 or round33 repair work should not be resumed. Strict
+TM-diverse holdouts should be designed from broader external structural data
+with structure clustering before split assignment; the first review-only path
+artifact is `artifacts/v3_external_structural_tm_holdout_path_1025.json`,
+which covers the 10 selected external pilot rows, requires pre-split structure
+clustering, and creates 0 countable/import-ready rows. External packet
+decisions still need active-site sources and broader duplicate-screening
+evidence beyond the bounded current-reference MMseqs2 search. Do not resume
+M-CSA-only count growth or external label import.
 See
 `docs/label_factory.md`.
 

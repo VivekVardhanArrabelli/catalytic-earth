@@ -1,0 +1,108 @@
+{
+  "evidence": [
+    {
+      "artifact": "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+      "evidence_type": "all_materializable_foldseek_signal",
+      "foldseek_run_status": "completed",
+      "mapped_pair_count": 952922,
+      "train_test_pair_count": 274241,
+      "max_observed_train_test_tm_score": 0.9749,
+      "target_violating_train_test_pair_row_count": 4715,
+      "interpretation": "The all-materializable M-CSA structural surface contains many train/test high-TM pairs under the repaired candidate split."
+    },
+    {
+      "artifact": "artifacts/v3_foldseek_tm_score_cluster_first_split_round32_1000.json",
+      "evidence_type": "latest_cluster_first_candidate",
+      "high_tm_partition_constraint_count": 108,
+      "sequence_identity_partition_constraint_count": 38,
+      "projected_violating_constraint_count_after_cluster_assignment": 0,
+      "sequence_identity_cluster_split_count": 0,
+      "cluster_first_heldout_count": 174,
+      "cluster_first_heldout_out_of_scope_false_non_abstention_count": 0,
+      "interpretation": "Repeated cluster-first repair moved the candidate split but did not make a full native M-CSA strict-TM holdout claim available."
+    },
+    {
+      "artifact": "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_of_672.json",
+      "evidence_type": "latest_standard_query_single_attempt",
+      "foldseek_run_status": "foldseek_run_timeout",
+      "query_chunk_index": 145,
+      "query_staged_entry_ids": [
+        "m_csa:146"
+      ],
+      "query_structure_key": "pdb:4V4E",
+      "pair_count": 0,
+      "max_observed_train_test_tm_score": null,
+      "interpretation": "The stopped repair loop had reached a runtime blocker at staged index 145 before pair rows were emitted."
+    },
+    {
+      "artifact": "artifacts/v3_sequence_distance_holdout_eval_1000.json",
+      "evidence_type": "valid_sequence_identity_holdout",
+      "backend": "mmseqs2",
+      "heldout_count": 136,
+      "max_observed_train_test_identity": 0.284,
+      "real_sequence_identity_computed": true,
+      "heldout_out_of_scope_false_non_abstention_count": 0,
+      "interpretation": "The M-CSA sequence-identity holdout remains useful and materially clean."
+    },
+    {
+      "artifact": "artifacts/v3_source_scale_limit_audit_1025.json",
+      "evidence_type": "mcsa_source_scale_limit",
+      "observed_source_record_count": 1003,
+      "interpretation": "M-CSA-only count growth is source-limited and should not continue through another tranche."
+    }
+  ],
+  "metadata": {
+    "adjudication_decision": "strict_pairwise_tm_less_than_0_7_is_not_a_native_m_csa_holdout_target",
+    "adjudication_status": "closed_deferred_for_mcsa",
+    "created_at": "2026-05-16T06:01:10Z",
+    "countable_label_candidate_count": 0,
+    "external_structural_data_pivot_required": true,
+    "full_tm_score_holdout_claim_permitted": false,
+    "import_ready_row_count": 0,
+    "method": "mcsa_tm_holdout_feasibility_adjudication",
+    "observed_all_materializable_max_train_test_tm_score": 0.9749,
+    "observed_all_materializable_target_violating_train_test_pair_row_count": 4715,
+    "observed_high_tm_partition_constraint_count": 108,
+    "observed_repair_round_count": 32,
+    "observed_sequence_identity_partition_constraint_count": 38,
+    "recovered_interrupted_target_shards_noncanonical": [
+      "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_target_chunk_000_of_056.json",
+      "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_target_chunk_001_of_056.json",
+      "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_target_chunk_002_of_056.json"
+    ],
+    "review_status": "review_only_non_countable",
+    "slice_id": "1000",
+    "strict_tm_repair_loop_closed": true,
+    "strict_tm_repair_loop_continue_recommended": false,
+    "strict_tm_repair_loop_next_priority": false,
+    "tm_score_threshold_target": "<0.7",
+    "valid_mcsa_sequence_holdout_artifacts": [
+      "artifacts/v3_sequence_distance_holdout_eval_1000.json",
+      "artifacts/v3_sequence_distance_holdout_eval_1025.json"
+    ]
+  },
+  "rationale": [
+    "M-CSA is curated for well-characterized catalytic mechanisms and naturally over-represents common catalytic folds.",
+    "The all-materializable Foldseek/TM-score surface reached max observed train/test TM-score 0.9749 with 4,715 target-violating train/test pair rows, so the strict pairwise TM <0.7 proxy is not natively satisfied by this dataset.",
+    "Repeated split-repair and cluster-first rounds added constraints and moved rows without producing a claimable full holdout; this is dataset structure, not simply leakage.",
+    "Continuing round-by-round repair would destroy the M-CSA slice as a representative catalytic benchmark while still leaving coordinate exclusions and candidate-only split policy blockers.",
+    "The M-CSA sequence-identity holdout remains valid evidence because it uses real MMseqs2 sequence identity, keeps max observed train/test identity near 0.284, and preserves 0 held-out out-of-scope false non-abstentions."
+  ],
+  "regression_guardrails": [
+    "do_not_resume_round33_or_staged_index_145_repair",
+    "do_not_run_more_mcsa_query_subchunk_query_single_or_partition_repair_to_force_tm_below_0_7",
+    "keep_full_tm_score_holdout_claim_permitted_false_for_m_csa_1000",
+    "treat_recovered_target_shards_as_noncanonical_review_only_context",
+    "use_external_fold_diverse_structural_data_for_future_strict_tm_diverse_holdouts"
+  ],
+  "recommended_pivot": {
+    "countable_import_allowed": false,
+    "external_sources": [
+      "UniProtKB/Swiss-Prot",
+      "AlphaFold DB",
+      "broader fold-distributed structural data"
+    ],
+    "next_path": "external_structure_clustered_holdout_before_split_assignment",
+    "review_only_until_label_factory_gates_pass": true
+  }
+}

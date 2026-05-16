@@ -382,7 +382,15 @@ Current expectation:
   violations, 0 sequence-cluster splits, and 0 held-out out-of-scope false
   non-abstentions; it clears indices 143-144 at max `0.5745`. Index 145
   (`m_csa:146`/`pdb:4V4E`) timed out under the 900-second exact Foldseek
-  single-query bound and is the next direct runtime blocker. The
+  single-query bound. As of 2026-05-16 this is closed by adjudication, not a
+  next repair target:
+  `artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json` records
+  max all-materializable M-CSA train/test TM-score `0.9749`, 4,715 target
+  violations, and `full_tm_score_holdout_claim_permitted=false`. Further
+  M-CSA round32/index145 or round33 repair would add constraints without a
+  native strict-TM benchmark; strict TM-diverse holdouts now belong on broader
+  external structural data with structure clustering before split assignment.
+  The
   first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars

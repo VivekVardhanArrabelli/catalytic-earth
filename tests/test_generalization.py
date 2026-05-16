@@ -3362,6 +3362,49 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(aggregate_metadata["countable_label_count"], 0)
         self.assertEqual(aggregate_metadata["import_ready_row_count"], 0)
 
+    def test_mcsa_tm_holdout_adjudication_closes_strict_repair_loop(self) -> None:
+        adjudication = _load_artifact(
+            "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json"
+        )
+        metadata = adjudication["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "mcsa_tm_holdout_feasibility_adjudication"
+        )
+        self.assertEqual(metadata["slice_id"], "1000")
+        self.assertEqual(metadata["adjudication_status"], "closed_deferred_for_mcsa")
+        self.assertTrue(metadata["strict_tm_repair_loop_closed"])
+        self.assertFalse(metadata["strict_tm_repair_loop_continue_recommended"])
+        self.assertFalse(metadata["strict_tm_repair_loop_next_priority"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(
+            metadata["observed_all_materializable_max_train_test_tm_score"], 0.9749
+        )
+        self.assertEqual(
+            metadata[
+                "observed_all_materializable_target_violating_train_test_pair_row_count"
+            ],
+            4715,
+        )
+        self.assertEqual(metadata["observed_repair_round_count"], 32)
+        self.assertEqual(metadata["observed_high_tm_partition_constraint_count"], 108)
+        self.assertEqual(
+            metadata["observed_sequence_identity_partition_constraint_count"], 38
+        )
+        self.assertIn(
+            "do_not_resume_round33_or_staged_index_145_repair",
+            adjudication["regression_guardrails"],
+        )
+        self.assertIn(
+            "use_external_fold_diverse_structural_data_for_future_strict_tm_diverse_holdouts",
+            adjudication["regression_guardrails"],
+        )
+        self.assertEqual(
+            adjudication["recommended_pivot"]["next_path"],
+            "external_structure_clustered_holdout_before_split_assignment",
+        )
+        self.assertFalse(adjudication["recommended_pivot"]["countable_import_allowed"])
+
     def test_current_sequence_holdout_split_redesign_candidate_is_pinned(self) -> None:
         artifact = _load_artifact(
             "artifacts/v3_sequence_distance_holdout_split_redesign_candidate_1000.json"

@@ -1,0 +1,166 @@
+{
+  "metadata": {
+    "blocker_removed": "external_tm_diverse_holdout_path_defined_after_mcsa_adjudication",
+    "candidate_count": 10,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-16T06:06:00Z",
+    "foldseek_or_tmalign_backend_required": true,
+    "import_ready_row_count": 0,
+    "method": "external_structural_tm_holdout_path",
+    "nearest_neighbor_cache_required": true,
+    "ready_for_label_import": false,
+    "review_status": "review_only_non_countable",
+    "slice_id": "1025",
+    "source_candidate_manifest": "artifacts/v3_external_source_candidate_manifest_1025.json",
+    "source_pilot_candidate_priority": "artifacts/v3_external_source_pilot_candidate_priority_1025.json",
+    "strict_tm_threshold_target": "<0.7",
+    "structure_cluster_before_split_assignment": true,
+    "structure_reference_candidate_count": 10,
+    "tm_score_split_claim_permitted": false
+  },
+  "path": {
+    "cache_artifacts_to_build_next": [
+      "external AFDB/PDB coordinate sidecar keyed by accession and structure id",
+      "external structure-index manifest with coordinate digests and source provenance",
+      "all-vs-nearest or clustered Foldseek/TM nearest-neighbor table",
+      "structure cluster assignments at TM >=0.7 before train/test split assignment",
+      "split candidate preserving review-only/import blockers until full label-factory gates pass"
+    ],
+    "design_rule": "Compute structural clusters on external AFDB/PDB-derived candidates before assigning train/test partitions; do not use M-CSA round repair as the strict-TM benchmark path.",
+    "external_sources": [
+      "UniProtKB/Swiss-Prot",
+      "AlphaFold DB",
+      "PDB cross-references where present"
+    ]
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "alphafold_ids": [
+        "O14756"
+      ],
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "structural_holdout_status": "ready_for_external_structure_indexing"
+    },
+    {
+      "accession": "P06746",
+      "alphafold_ids": [
+        "P06746"
+      ],
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 418,
+      "pdb_reference_examples": [
+        "1BPX",
+        "1BPY",
+        "1BPZ",
+        "1MQ2",
+        "1MQ3"
+      ],
+      "structural_holdout_status": "ready_for_external_structure_indexing"
+    },
+    {
+      "accession": "C9JRZ8",
+      "alphafold_ids": [
+        "C9JRZ8"
+      ],
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "structural_holdout_status": "ready_for_external_structure_indexing"
+    },
+    {
+      "accession": "P55263",
+      "alphafold_ids": [
+        "P55263"
+      ],
+      "lane_id": "external_source:transferase_phosphoryl",
+      "pdb_reference_count": 4,
+      "pdb_reference_examples": [
+        "1BX4",
+        "2I6A",
+        "2I6B",
+        "4O1L"
+      ],
+      "structural_holdout_status": "ready_for_external_structure_indexing"
+    },
+    {
+      "accession": "P34949",
+      "alphafold_ids": [
+        "P34949"
+      ],
+      "lane_id": "external_source:isomerase",
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "structural_holdout_status": "ready_for_external_structure_indexing"
+    },
+    {
+      "accession": "Q9BXD5",
+      "alphafold_ids": [
+        "Q9BXD5"
+      ],
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 1,
+      "pdb_reference_examples": [
+        "6ARH"
+      ],
+      "structural_holdout_status": "ready_for_external_structure_indexing"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "alphafold_ids": [
+        "Q6NSJ0"
+      ],
+      "lane_id": "external_source:glycan_chemistry",
+      "pdb_reference_count": 3,
+      "pdb_reference_examples": [
+        "7QQF",
+        "7QQG",
+        "7QQH"
+      ],
+      "structural_holdout_status": "ready_for_external_structure_indexing"
+    },
+    {
+      "accession": "O60568",
+      "alphafold_ids": [
+        "O60568"
+      ],
+      "lane_id": "external_source:glycan_chemistry",
+      "pdb_reference_count": 18,
+      "pdb_reference_examples": [
+        "6FXK",
+        "6FXM",
+        "6FXR",
+        "6FXT",
+        "6FXX"
+      ],
+      "structural_holdout_status": "ready_for_external_structure_indexing"
+    },
+    {
+      "accession": "O95050",
+      "alphafold_ids": [
+        "O95050"
+      ],
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_reference_count": 1,
+      "pdb_reference_examples": [
+        "2A14"
+      ],
+      "structural_holdout_status": "ready_for_external_structure_indexing"
+    },
+    {
+      "accession": "P51580",
+      "alphafold_ids": [
+        "P51580"
+      ],
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_reference_count": 2,
+      "pdb_reference_examples": [
+        "2BZG",
+        "2H11"
+      ],
+      "structural_holdout_status": "ready_for_external_structure_indexing"
+    }
+  ]
+}

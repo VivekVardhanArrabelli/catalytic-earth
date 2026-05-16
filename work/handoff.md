@@ -48,7 +48,54 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    commit, push, verify `HEAD == origin/main`, and release the lock only when
    the worktree is clean.
 
+## Current Handoff
+
+As of the 2026-05-16T05:45:22Z run, do not resume M-CSA strict
+Foldseek/TM-score repair. The loop is closed/deferred by
+`artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json`, with
+`full_tm_score_holdout_claim_permitted=false`, max all-materializable
+train/test TM-score `0.9749`, 4,715 target-violating train/test rows,
+108 high-TM partition constraints, and 38 sequence-identity partition
+constraints. The three recovered index-145 target-shard artifacts are
+review-only non-canonical context, not a continuation target.
+
+Next direct work should resume the external structural pilot: classify the 10
+selected candidates through broader duplicate screening, representation-control
+review, review decisions, and full label-factory readiness. The first
+review-only external strict-TM path artifact is
+`artifacts/v3_external_structural_tm_holdout_path_1025.json`; it covers the 10
+selected pilot rows, requires structure clustering before split assignment, and
+keeps 0 countable/import-ready rows. Do not open M-CSA round33, staged index
+145 continuation, or more partition repair unless the user explicitly reverses
+the override.
+
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T05:45:22Z run after syncing clean `origin/main`,
+passing startup gates (`426` unit tests passed and `validate` passed with
+679 curated labels), and final gates (`429` unit tests passed and `validate`
+passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records.
+- External-source repair/import: No for import and no new countable external
+  labels. The selected external pilot still has 10 review-only candidates,
+  0 terminal decisions, 0 import-ready rows, 3 unresolved active-site-source
+  rows, 10 broader duplicate-screening blockers, 3 unresolved
+  representation-control rows, and 10 full-gate blockers.
+- Scientific generalization work: Yes for adjudication, not repair. The
+  all-materializable M-CSA Foldseek signal observed max train/test TM-score
+  `0.9749`; round32 accumulated 108 high-TM constraints plus 38 sequence
+  constraints; index 145 timed out under the standard single-query path. This
+  is now treated as an unsatisfiable M-CSA proxy rather than unfinished
+  engineering work.
+- SPOF hardening work: Yes. Preserved three coherent target-shard artifacts as
+  non-canonical review-only context, added durable adjudication/regression
+  coverage that keeps
+  `full_tm_score_holdout_claim_permitted=false`, and added a review-only
+  external structural TM-holdout path artifact for the 10 selected pilot rows.
 
 Recorded for the 2026-05-15T22:00:14Z run after syncing clean `origin/main`
 and passing startup gates (`426` unit tests passed and `validate` passed with
