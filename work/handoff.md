@@ -50,26 +50,54 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-As of the 2026-05-16T05:45:22Z run, do not resume M-CSA strict
+As of the 2026-05-16T01:55:26-05:00 run, do not resume M-CSA strict
 Foldseek/TM-score repair. The loop is closed/deferred by
 `artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json`, with
 `full_tm_score_holdout_claim_permitted=false`, max all-materializable
 train/test TM-score `0.9749`, 4,715 target-violating train/test rows,
 108 high-TM partition constraints, and 38 sequence-identity partition
-constraints. The three recovered index-145 target-shard artifacts are
-review-only non-canonical context, not a continuation target.
+constraints. Noncanonical staged, expanded, query-chunk, query-single,
+target-shard, split-repair, split-redesign, and cluster-first round artifacts
+were removed after their summary was captured; they are not continuation
+targets.
 
-Next direct work should resume the external structural pilot: classify the 10
-selected candidates through broader duplicate screening, representation-control
-review, review decisions, and full label-factory readiness. The first
-review-only external strict-TM path artifact is
-`artifacts/v3_external_structural_tm_holdout_path_1025.json`; it covers the 10
-selected pilot rows, requires structure clustering before split assignment, and
-keeps 0 countable/import-ready rows. Do not open M-CSA round33, staged index
-145 continuation, or more partition repair unless the user explicitly reverses
-the override.
+The external pilot terminal-decision pass now exists in
+`artifacts/v3_external_source_pilot_terminal_decisions_1025.json`. It covers
+the 10 selected candidates with exactly one terminal status each: 4
+`rejected_duplicate_or_near_duplicate`, 3
+`rejected_active_site_evidence_missing`, and 3
+`deferred_requires_human_expert`, with 0 import-ready rows and 0 countable
+external labels. Next direct work should either route the 3 deferred rows to
+human/expert review or start the external structural pilot's fold-diverse
+holdout path from `artifacts/v3_external_structural_tm_holdout_path_1025.json`;
+it covers the same 10 selected pilot rows, requires structure clustering before
+split assignment, and keeps 0 countable/import-ready rows. Do not open M-CSA round33,
+staged index 145 continuation, or more partition repair unless the user
+explicitly reverses the override.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T01:55:26-05:00 run after syncing clean
+`origin/main` and passing startup gates (`428` unit tests passed and
+`validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. M-CSA-only tranche growth remains stopped.
+- External-source repair/import: No for import and no new countable external
+  labels. This run cleaned the M-CSA strict-TM implementation loop and recorded
+  terminal decisions for the 10 selected external pilot rows: 4
+  duplicate/near-duplicate rejections, 3 active-site-evidence-missing
+  rejections, and 3 human-expert deferrals.
+- Scientific generalization work: Yes for cleanup/adjudication, not for a new
+  M-CSA strict-TM claim. Noncanonical round/chunk artifacts were removed after
+  retaining the all-materializable max-TM evidence and final adjudication with
+  `full_tm_score_holdout_claim_permitted=false`.
+- SPOF hardening work: Yes. Tests now retain generic Foldseek tooling coverage
+  while removing M-CSA round-repair pinned artifact tests, and a guardrail
+  prevents current guidance from making M-CSA strict-TM round repair the main
+  priority again.
 
 Recorded for the 2026-05-16T05:47:16Z run after recovering a stale directory
 lock whose recorded PID (`33199`) was no longer alive, confirming the worktree

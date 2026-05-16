@@ -148,6 +148,7 @@ from .transfer_scope import (
     build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
+    build_external_source_pilot_terminal_decisions,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
@@ -2438,6 +2439,43 @@ def cmd_build_external_source_pilot_success_criteria(
     return 0
 
 
+def cmd_build_external_source_pilot_terminal_decisions(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "pilot_active_site_evidence_decisions",
+            "pilot_success_criteria",
+            "pilot_representation_adjudication",
+            "pilot_evidence_dossiers",
+            "external_structural_tm_holdout_path",
+        ),
+        blocker_removed="external_pilot_terminal_decisions_recorded",
+    )
+    decisions = build_external_source_pilot_terminal_decisions(
+        pilot_active_site_evidence_decisions=artifact_payloads[
+            "pilot_active_site_evidence_decisions"
+        ],
+        pilot_success_criteria=artifact_payloads["pilot_success_criteria"],
+        pilot_representation_adjudication=artifact_payloads[
+            "pilot_representation_adjudication"
+        ],
+        pilot_evidence_dossiers=artifact_payloads["pilot_evidence_dossiers"],
+        external_structural_tm_holdout_path=artifact_payloads[
+            "external_structural_tm_holdout_path"
+        ],
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), decisions)
+    print(
+        "Wrote external source pilot terminal decisions to "
+        f"{args.out} ({decisions['metadata']['terminal_decision_count']} terminal)"
+    )
+    return 0
+
+
 def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
     artifact_names = tuple(
         name
@@ -4422,7 +4460,7 @@ def build_parser() -> argparse.ArgumentParser:
     foldseek_tm_signal.add_argument("--slice-id", required=True)
     foldseek_tm_signal.add_argument(
         "--readiness",
-        default="artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        default="artifacts/v3_foldseek_coordinate_readiness.json",
         help="Foldseek coordinate-readiness artifact with staged coordinate sidecars",
     )
     foldseek_tm_signal.add_argument(
@@ -4432,7 +4470,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_tm_signal.add_argument(
         "--out",
-        default="artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+        default="artifacts/v3_foldseek_tm_score_signal.json",
     )
     foldseek_tm_signal.add_argument(
         "--max-staged-coordinates",
@@ -4485,7 +4523,7 @@ def build_parser() -> argparse.ArgumentParser:
     foldseek_all_materializable.add_argument("--slice-id", required=True)
     foldseek_all_materializable.add_argument(
         "--readiness",
-        default="artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json",
+        default="artifacts/v3_foldseek_coordinate_readiness_all_materializable.json",
         help="Foldseek coordinate-readiness artifact with all staged coordinate sidecars",
     )
     foldseek_all_materializable.add_argument(
@@ -4519,7 +4557,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_all_materializable.add_argument(
         "--out",
-        default="artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+        default="artifacts/v3_foldseek_tm_score_signal_all_materializable.json",
     )
     foldseek_all_materializable.set_defaults(
         func=cmd_build_foldseek_tm_score_all_materializable_signal
@@ -4535,7 +4573,7 @@ def build_parser() -> argparse.ArgumentParser:
     foldseek_query_chunk.add_argument("--slice-id", required=True)
     foldseek_query_chunk.add_argument(
         "--readiness",
-        default="artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json",
+        default="artifacts/v3_foldseek_coordinate_readiness_all_materializable.json",
         help="Foldseek coordinate-readiness artifact with all staged coordinate sidecars",
     )
     foldseek_query_chunk.add_argument(
@@ -4581,7 +4619,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_query_chunk.add_argument(
         "--out",
-        default="artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000.json",
+        default="artifacts/v3_foldseek_tm_score_signal_query_chunk_000.json",
     )
     foldseek_query_chunk.set_defaults(
         func=cmd_build_foldseek_tm_score_query_chunk_signal
@@ -4615,7 +4653,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_query_chunk_aggregate.add_argument(
         "--out",
-        default="artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate.json",
+        default="artifacts/v3_foldseek_tm_score_signal_query_chunk_aggregate.json",
     )
     foldseek_query_chunk_aggregate.set_defaults(
         func=cmd_aggregate_foldseek_tm_score_query_chunks
@@ -4630,7 +4668,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_target_failure.add_argument(
         "--signal",
-        default="artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json",
+        default="artifacts/v3_foldseek_tm_score_signal.json",
         help="Foldseek TM-score signal artifact to audit",
     )
     foldseek_target_failure.add_argument(
@@ -4662,7 +4700,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_split_repair.add_argument(
         "--target-failure",
-        default="artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json",
+        default="artifacts/v3_foldseek_tm_score_target_failure_audit.json",
         help="Foldseek TM-score target-failure audit artifact",
     )
     foldseek_split_repair.add_argument(
@@ -4691,12 +4729,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_split_projection.add_argument(
         "--signal",
-        default="artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json",
+        default="artifacts/v3_foldseek_tm_score_signal.json",
         help="Foldseek TM-score signal artifact to reclassify in projection",
     )
     foldseek_split_projection.add_argument(
         "--repair-plan",
-        default="artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json",
+        default="artifacts/v3_foldseek_tm_score_split_repair_plan.json",
         help="Foldseek split-repair plan artifact",
     )
     foldseek_split_projection.add_argument(
@@ -4728,17 +4766,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sequence_split_repair_candidate.add_argument(
         "--sequence-holdout",
-        default="artifacts/v3_sequence_distance_holdout_eval_1000.json",
+        default="artifacts/v3_sequence_distance_holdout_eval.json",
         help="source sequence-distance holdout artifact",
     )
     sequence_split_repair_candidate.add_argument(
         "--repair-plan",
-        default="artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json",
+        default="artifacts/v3_foldseek_tm_score_split_repair_plan.json",
         help="Foldseek split-repair plan artifact",
     )
     sequence_split_repair_candidate.add_argument(
         "--projection",
-        default="artifacts/v3_foldseek_tm_score_split_repair_projection_1000.json",
+        default="artifacts/v3_foldseek_tm_score_split_repair_projection.json",
         help="optional Foldseek split-repair projection artifact",
     )
     sequence_split_repair_candidate.add_argument(
@@ -4758,12 +4796,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sequence_split_redesign_candidate.add_argument(
         "--sequence-holdout",
-        default="artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json",
+        default="artifacts/v3_sequence_distance_holdout_split_repair_candidate.json",
         help="source candidate sequence-distance holdout artifact",
     )
     sequence_split_redesign_candidate.add_argument(
         "--split-repair-plan",
-        default="artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json",
+        default="artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan.json",
         help="Foldseek query-chunk split-repair plan artifact",
     )
     sequence_split_redesign_candidate.add_argument(
@@ -4789,12 +4827,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_cluster_first_split.add_argument(
         "--readiness",
-        default="artifacts/v3_foldseek_coordinate_readiness_1000_split_redesign_candidate_round3.json",
+        default="artifacts/v3_foldseek_coordinate_readiness_all_materializable.json",
         help="Foldseek coordinate-readiness artifact with staged selected structures",
     )
     foldseek_cluster_first_split.add_argument(
         "--sequence-holdout",
-        default="artifacts/v3_sequence_distance_holdout_eval_1000.json",
+        default="artifacts/v3_sequence_distance_holdout_eval.json",
         help="source sequence-distance holdout artifact defining row partitions",
     )
     foldseek_cluster_first_split.add_argument(
@@ -4814,7 +4852,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_cluster_first_split.add_argument(
         "--out",
-        default="artifacts/v3_foldseek_tm_score_cluster_first_split_1000.json",
+        default="artifacts/v3_foldseek_tm_score_cluster_first_split.json",
     )
     foldseek_cluster_first_split.set_defaults(
         func=cmd_build_foldseek_tm_score_cluster_first_split
@@ -6494,6 +6532,48 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_success.set_defaults(
         func=cmd_build_external_source_pilot_success_criteria
+    )
+
+    external_pilot_terminal = subparsers.add_parser(
+        "build-external-source-pilot-terminal-decisions",
+        help="record one terminal import decision for each selected external pilot row",
+    )
+    external_pilot_terminal.add_argument(
+        "--pilot-active-site-evidence-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        ),
+    )
+    external_pilot_terminal.add_argument(
+        "--pilot-success-criteria",
+        default="artifacts/v3_external_source_pilot_success_criteria_1025.json",
+    )
+    external_pilot_terminal.add_argument(
+        "--pilot-representation-adjudication",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_adjudication_1025.json"
+        ),
+    )
+    external_pilot_terminal.add_argument(
+        "--pilot-evidence-dossiers",
+        default="artifacts/v3_external_source_pilot_evidence_dossiers_1025.json",
+    )
+    external_pilot_terminal.add_argument(
+        "--external-structural-tm-holdout-path",
+        default="artifacts/v3_external_structural_tm_holdout_path_1025.json",
+    )
+    external_pilot_terminal.add_argument("--max-rows", type=int, default=10)
+    external_pilot_terminal.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_terminal_decisions_1025.json"
+        ),
+    )
+    external_pilot_terminal.set_defaults(
+        func=cmd_build_external_source_pilot_terminal_decisions
     )
 
     external_transfer_gate = subparsers.add_parser(

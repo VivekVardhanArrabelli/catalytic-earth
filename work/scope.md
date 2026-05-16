@@ -168,230 +168,23 @@ Current expectation:
   top1 accuracy, top3 retained accuracy, and retention of `1.0000`. The current
   artifacts also expose explicit backend, resolved path, cluster-threshold,
   target-achievement, and limitation metadata aliases for review and regression
-  gates. Foldseek TM-score separation remains uncomputed, but the review-only
-  coordinate readiness path now records Foldseek `10.941cd33`, stages all currently
-  materializable selected coordinates as 672 unique selected PDB mmCIF
-  sidecars for 676 materializable evaluated rows, leaves 0 supported selected
-  structures unstaged, and flags two rows with missing selected structures. A
-  partial staged-coordinate Foldseek signal over the first 25 files records
-  1,840 mapped pair rows, 532 staged heldout/in-distribution pair rows, and max
-  staged train/test TM score `0.6426` while keeping
-  `full_tm_score_split_computed=false`. The expanded40 signal now completes as
-  a larger partial staged-coordinate signal with 5,699 pair rows, all 5,699
-  safely mapped rows, 1,633 heldout/in-distribution train/test pairs, max
-  train/test TM score `0.7515`, 0 unmapped raw Foldseek names, and 0
-  countable/import-ready rows. That removes the staged25-only proof blocker,
-  expanded40 raw-name mapping blocker, and unstaged selected-coordinate sidecar
-  blocker. The expanded100 signal now completes from the all-materializable
-  sidecar with 100 staged coordinates, 27,542 mapped pair rows, 7,317
-  heldout/in-distribution train/test pairs, max train/test TM score `0.7515`,
-  0 unmapped raw names, and 0 countable/import-ready rows, removing the
-  expanded80 partial-signal ceiling. These signals remain
-  review-only/non-countable; the `<0.7` target is not achieved on the partial
-  signal, 572 staged coordinates remain outside the capped computation, and a
-  full Foldseek-backed split builder is still required. The coordinate
-  readiness artifact now explicitly excludes `m_csa:372` and `m_csa:501`
-  because both lack selected coordinate structures in current evidence; those
-  exclusions must be reported before any full-holdout claim. The target-failure
-  audit now identifies the exact current-split blocker:
-  `m_csa:33`/`m_csa:34` (`pdb:1JC5`/`pdb:1MPY`) reaches max pair TM-score
-  `0.7515` across 48 chain-level violating train/test rows, so the current
-  sequence-holdout split cannot claim a `<0.7` TM-score separation without split
-  repair or explicit exclusion review. The split-repair plan now identifies one
-  conservative review-only repair candidate: move held-out out-of-scope
-  `m_csa:34` to in-distribution before regenerating holdout metrics. That would
-  reduce the held-out count from 136 to 135 while preserving all 44 held-out
-  in-scope rows and the projected observed blocking-pair count would be 0, but
-  the repair has not been applied and no full TM-score claim is permitted. A
-  projection over the existing expanded100 Foldseek rows shows the computed
-  subset would drop from 48 source violations at max `0.7515` to 0 projected
-  violations at max `0.6993`, but the real sequence split and downstream
-  metrics still need regeneration. A candidate repaired sequence holdout now
-  applies the move to a copy: 135 held-out rows, 44 held-out in-scope rows, 0
-  held-out out-of-scope false non-abstentions, and no remaining held-out
-  overlap with the moved `mmseqs30:m_csa:34` cluster. It is not canonical. A
-  downstream repaired-coordinate readiness and actual repaired expanded100
-  Foldseek signal now consume that candidate split: `m_csa:34` is
-  in-distribution, 672 coordinates are staged, the same 100-coordinate cap maps
-  27,542 pair rows and 6,930 train/test rows, max train/test TM-score is
-  `0.6993`, and the companion target audit finds 0 target-violating pairs. The
-  result removes the projection-only computed-subset blocker, but it remains
-  review-only and non-countable: the canonical holdout is unchanged, 572 staged
-  coordinates remain uncomputed, two coordinate exclusions remain, and no full
-  TM-score holdout claim is permitted. A direct all-materializable Foldseek
-  attempt now exists as a compact summary artifact:
-  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`.
-  It now completes over all 672 staged coordinates with Foldseek `10.941cd33`
-  and `--threads 4`, maps 952,922 pair rows and 274,241 train/test rows, and
-  fails the `<0.7` target at max train/test TM-score `0.9749` with 4,715
-  target-violating train/test rows. This removes the prior all-materializable
-  runtime ambiguity, but no full split is claimable because the artifact is a
-  signal, two coordinate exclusions remain, and
-  `full_tm_score_holdout_claim_permitted=false`. The first two resumable
-  query-chunk signals now complete chunks 0/56 and 1/56:
-  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`
-  and
-  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json`
-  run 24 deterministic query coordinates against all 672 staged materializable
-  target coordinates, map 28,251 pair rows, evaluate 9,142 train/test rows, and
-  record max train/test TM-score `0.8957` with 70 target-violating row-level
-  pairs across the two chunks. Chunk 2 now has a direct timeout artifact:
-  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_of_056.json`
-  uses the same 12-query/all-target Foldseek command shape and times out after
-  900 seconds before emitting pair rows. The aggregate
-  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_of_056.json`
-  records 3 attempted chunks, 2 completed chunks, 24 completed query
-  coordinates, 28,251 mapped pair rows, max train/test TM-score `0.8957`, 70
-  target-violating row-level pairs, 13 reported violating structure pairs, and
-  54 non-completed chunks. This removes the first chunk-aggregation ambiguity
-  and the all-at-once-only runtime SPOF but adds concrete target-failure and
-  chunk-runtime evidence; the full query aggregate is incomplete, the completed
-  chunks fail `<0.7`, and `full_tm_score_holdout_claim_permitted=false`
-  remains correct. A longer direct retry,
-  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_002_retry_1800_of_056.json`,
-  completes the same chunk under a 1,800-second cap with 12,639 mapped pair
-  rows, 3,216 train/test rows, max train/test TM-score `0.8427`, and 6
-  target-violating row-level pairs. The completed-retry aggregate
-  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_aggregate_000_002_retry_1800_of_056.json`
-  now records 3/56 completed chunks, 36 completed query coordinates, 40,890
-  mapped pair rows, 12,358 train/test rows, max train/test TM-score `0.8957`,
-  76 target-violating row-level pairs, 15 reported violating structure pairs,
-  and 53 non-completed chunks. The query-chunk split-repair plan
-  `artifacts/v3_foldseek_tm_score_query_chunk_split_repair_plan_1000.json`
-  classifies the observed blockers into 9 conservative held-out out-of-scope
-  repair candidates and 6 manual split-redesign blockers involving held-out
-  in-scope rows (`m_csa:20`, `m_csa:497`, and `m_csa:895`). This narrows the
-  runtime and target-failure blockers but still leaves the full TM-score
-  holdout unclaimable. A first review-only split-redesign candidate now
-  resolves those 15 blockers in projection by moving 9 held-out out-of-scope
-  rows to train and 6 high-TM train neighbors to heldout, but the direct
-  redesigned chunk-0 Foldseek run fails with max train/test TM-score `0.926`
-  and 4 reported violating structure pairs. The new concrete blocker is
-  held-out in-scope `m_csa:6` versus `m_csa:277`, `m_csa:378`, `m_csa:320`,
-  and `m_csa:108`; a round-2 redesign moves those four neighbors to heldout
-  and clears chunk 0 directly with max train/test TM-score `0.695` and 0
-  target-violating pairs. Round-2 chunk 1 then fails directly with max
-  train/test TM-score `0.8182`, 12 target-violating row-level pairs, and 4
-  reported structure-pair blockers involving held-out in-scope `m_csa:15` and
-  `m_csa:16` against train neighbors `m_csa:258` and `m_csa:157`. A round-3
-  review-only redesign moves `m_csa:157` and `m_csa:258` to heldout,
-  preserves 0 sequence-cluster splits, and direct Foldseek chunks 0-2 clear
-  with 40,890 mapped rows, 13,472 train/test rows, max train/test TM-score
-  `0.695`, and 0 target-violating pairs. Direct chunk 3 then times out at the
-  standard 900-second cap before pair rows are emitted. No full TM-score
-  holdout claim is permitted because only 3/56 redesigned chunks are complete,
-  chunk 3 now has a runtime blocker, two coordinate exclusions remain, and the
-  split remains a candidate copy. A cluster-first replacement path now
-  supersedes blind chunk continuation. The first cluster-first candidate uses
-  the 672 staged materializable structures as a structure index, converts the
-  observed `TM >= 0.7` pair evidence into 24 partition constraints across 12
-  constrained clusters, and projects 0 remaining high-TM train/test
-  violations with 0 sequence-cluster splits. Verification subchunk 006 found a
-  new `m_csa:38`/`m_csa:118` blocker at max TM-score `0.7435`; round 2 moves
-  held-out out-of-scope `m_csa:118` to in-distribution and clears that same
-  subchunk with max TM-score `0.6509`. Subchunk 007 then fails under round 2
-  with max TM-score `0.8651`, 16 violating rows, and 9 reported blocking
-  pairs. The round-3 cluster-first candidate folds those new blockers into 34
-  high-TM constraints across 14 constrained clusters. Direct round-3
-  verification reruns subchunks 006 and 007; 006 passes with max TM-score
-  `0.6509`, while 007 exposes one remaining `m_csa:45`/`m_csa:397` blocker at
-  max TM-score `0.8043`. Round 4 folds that blocker into 35 high-TM
-  constraints, moves held-out out-of-scope `m_csa:397` to in-distribution,
-  and clears subchunk 007 at max TM-score `0.6598`. Round-4 subchunk 008 then
-  exposes a `m_csa:54`/`m_csa:428` blocker at max TM-score `0.7205`; round 5
-  folds that pair into 36 high-TM constraints and clears subchunk 008 at max
-  TM-score `0.6989`. Round-5 subchunk 009 exposes a `m_csa:58`/`m_csa:628`
-  blocker at max TM-score `0.879`; round 6 folds that pair into 37 high-TM
-  constraints, moves held-out out-of-scope `m_csa:628` to in-distribution,
-  preserves 0 sequence-cluster splits, keeps all rows
-  review-only/non-countable, and clears subchunk 009 at max TM-score `0.6699`.
-  Round-6 subchunk 010 then times out under the 900-second bound; a 3-query
-  split of the same window completes microchunk 020 and exposes a
-  `m_csa:63`/`m_csa:188` blocker at max TM-score `0.7116`. Round 7 folds that
-  pair into 38 high-TM constraints across 17 constrained clusters, preserves 0
-  sequence-cluster splits, keeps all rows review-only/non-countable, and
-  regenerates
-  `artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round7.json`.
-  The direct round-7 microchunk-020 rerun times out under the 900-second bound
-  before emitting pair rows. Single-query isolation now clears that window:
-  `m_csa:61`-`m_csa:63` aggregate to max TM-score `0.6967` with 0 violations,
-  and `m_csa:64`-`m_csa:66` aggregate to max TM-score `0.5629` with 0
-  violations. Staged index 66 (`m_csa:67`) passes at max TM-score `0.6535`,
-  but staged index 67 (`m_csa:68`) exposes a `m_csa:68`/`m_csa:750` blocker at
-  max TM-score `0.7909`; round 8 folds that pair into 39 high-TM constraints
-  and 18 constrained clusters with 0 projected violations and 0
-  sequence-cluster splits. Round-8 single-query verification clears staged
-  indices 68-78 before staged index 79 (`m_csa:80`) exposes high-TM blockers
-  against `m_csa:408` and `m_csa:569` at max TM-score `0.8726`; round 9 folds
-  those blockers into 41 high-TM constraints across 19 constrained clusters,
-  moves the `m_csa:80` neighborhood to in-distribution, preserves 0
-  sequence-cluster splits and 0 held-out out-of-scope false non-abstentions,
-  and clears the repaired index 79 plus indices 80-83 at max TM-score `0.6477`
-  with 0 violations. Round-9 single-query verification then clears staged
-  indices 84-95 with 17,189 mapped rows, 3,257 train/test rows, max train/test
-  TM-score `0.6579`, and 0 violations. It then clears indices 96-101 before
-  staged index 102 exposes `m_csa:103`/`pdb:1VAO` versus held-out
-  `m_csa:115`/`pdb:1W1O` at max TM-score `0.7653`. The cluster-first builder
-  now preserves real sequence-identity components as partition constraints;
-  round 10 has 42 high-TM constraints, 38 sequence-identity partition
-  constraints, 0 sequence-cluster splits, and reruns index 102 cleanly at max
-  TM-score `0.6725`. Round 12 later clears staged index 103 at max `0.6669`
-  after folding `m_csa:104` neighbors, and staged index 104 passes at max
-  `0.4496`; staged index 105 then exposes a larger high-TM blocker surface at
-  max `0.8862`, and round 13 folds it into 48 high-TM constraints plus 38
-  sequence-identity partition constraints with 0 projected violations and 0
-  sequence-cluster splits. Round 13 clears indices 105-106 before index 107
-  exposes `m_csa:108` at max `0.8826`; round 14 folds that surface and clears
-  index 107 at max `0.6862`. Round 15 folds the next index-108 blockers and
-  verifies indices 107-109 cleanly at max `0.6996`; index 110 exposes
-  `m_csa:111` at max `0.7521`, and round 16 folds that evidence into 66
-  high-TM constraints plus 38 sequence-identity partition constraints. The
-  direct round-16 rerun of index 110 still exposes `m_csa:111` versus
-  `m_csa:852` at max `0.7708`; round 17 folds that pair, clears index 110 at
-  max `0.6823`, clears index 111 at max `0.564`, and then index 112 exposes
-  `m_csa:113` versus held-out `m_csa:131` at max `0.7063`. Round 18 folds
-  that pair, but the round-18 rerun of index 112 exposes a larger
-  `m_csa:113` blocker surface at max `0.9087`. Round 19 folds that surface and
-  clears indices 112-113 before index 114 exposes `m_csa:115` versus
-  `m_csa:822` at max `0.7338`. Round 20 folds that pair and clears index 114,
-  but index 115 exposes a broader `m_csa:116` surface at max `0.9749`; round
-  21 folds that surface and then exposes `m_csa:116` versus held-out
-  `m_csa:67` at max `0.9032`. Round 22 folds the remaining pair into 82
-  high-TM constraints plus 38 sequence-identity partition constraints with 0
-  projected violations and 0 sequence-cluster splits, then clears indices
-  115-118 at max `0.6939` with 0 target-violating pairs. Index 119 then
-  exposes a `m_csa:120` surface at max `0.7556`; round 23 folds it but the
-  rerun still fails at max `0.711`. Round 24 folds the second surface into 93
-  high-TM constraints plus 38 sequence-identity partition constraints with 0
-  projected violations and 0 sequence-cluster splits, then clears indices
-  119-122 at max `0.6961` with 0 target-violating pairs. Rounds 25 and 26
-  fold two successive `m_csa:124` blocker surfaces and clear indices 123-126
-  at max `0.6981`; round 27 folds `m_csa:128`/`m_csa:198` and clears indices
-  127-129 at max `0.6868`; round 28 folds `m_csa:131` versus
-  `m_csa:281`/`m_csa:555` into 100 high-TM constraints plus 38
-  sequence-identity constraints, preserves 0 projected violations and 0
-  sequence-cluster splits, and clears index 130 at max `0.6775`. Round 29
-  folds `m_csa:132`/`m_csa:532` into 101 high-TM constraints and clears
-  indices 131-139 before index 140 exposes `m_csa:141`/`m_csa:903` at max
-  `0.7337`; round 30 folds that blocker into 102 high-TM constraints plus 38
-  sequence-identity constraints, preserves 0 projected violations and 0
-  sequence-cluster splits, and clears indices 140-141 at max `0.6873`. The
-  next direct pass clears index 142 at max `0.6204`, then folds two successive
-  index-143 `m_csa:144` blocker surfaces through rounds 31 and 32. Round 32 has
-  108 high-TM constraints plus 38 sequence-identity constraints, 0 projected
-  violations, 0 sequence-cluster splits, and 0 held-out out-of-scope false
-  non-abstentions; it clears indices 143-144 at max `0.5745`. Index 145
-  (`m_csa:146`/`pdb:4V4E`) timed out under the 900-second exact Foldseek
-  single-query bound. As of 2026-05-16 this is closed by adjudication, not a
-  next repair target:
+  gates. M-CSA strict Foldseek/TM-score separation is now closed/deferred rather
+  than an active benchmark target. The preserved descriptive evidence is the
+  all-materializable readiness/signal pair: 672 materializable selected
+  coordinates, explicit coordinate exclusions for `m_csa:372` and `m_csa:501`,
+  952,922 mapped Foldseek pair rows, 274,241 train/test rows, max observed
+  train/test TM-score `0.9749`, and 4,715 target-violating train/test rows.
   `artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json` records
-  max all-materializable M-CSA train/test TM-score `0.9749`, 4,715 target
-  violations, and `full_tm_score_holdout_claim_permitted=false`. Further
-  M-CSA round32/index145 or round33 repair would add constraints without a
-  native strict-TM benchmark; strict TM-diverse holdouts now belong on broader
-  external structural data with structure clustering before split assignment.
-  The
-  first 12-row
+  `full_tm_score_holdout_claim_permitted=false` and treats strict pairwise
+  `TM <0.7` as an unsatisfiable native M-CSA proxy driven by curated fold
+  density, not merely leakage. The noncanonical staged, expanded,
+  query-chunk, query-single, split-repair, split-redesign, and cluster-first
+  round artifacts were removed after that adjudication. Further M-CSA
+  round32/index145 or round33 repair is explicitly out of scope unless the
+  user reverses the decision; strict TM-diverse holdouts now belong on
+  broader external structural data with structure clustering before split
+  assignment.
+  The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute
@@ -408,10 +201,11 @@ Current expectation:
   explicit: all 10 rows must reach terminal decisions with no unresolved
   process blockers, and at least 1 row must become import-ready under full
   gates unless a zero-pass result is evidence-explained rather than
-  process-missing. The current status is `needs_more_work` with 0 terminal
-  decisions, 0 import-ready rows, 3 unresolved active-site-source rows, 10
-  broader duplicate-screening blockers, 3 unresolved representation-control
-  stability-change blockers after adjudication, and 10 full-gate blockers.
+  process-missing. The first terminal-decision pass now exists for all 10
+  selected rows: 4 are rejected as duplicate/near-duplicate representation
+  holdouts, 3 are rejected for missing explicit active-site residue evidence,
+  and 3 are deferred for human expert adjudication. It still has 0
+  import-ready rows and 0 countable external labels.
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed

@@ -402,6 +402,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_success_criteria_1025.json"
         )
+        pilot_terminal_decisions = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_terminal_decisions_1025.json"
+        )
         external_import_safety = _load_json(
             ROOT
             / "artifacts"
@@ -1879,6 +1884,49 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 and not row["countable_label_candidate"]
                 and not row["ready_for_label_import"]
                 for row in pilot_success_criteria["rows"]
+            )
+        )
+        self.assertEqual(
+            pilot_terminal_decisions["metadata"]["method"],
+            "external_source_pilot_terminal_decisions",
+        )
+        self.assertEqual(
+            pilot_terminal_decisions["metadata"]["milestone"],
+            "external_pilot_terminal_decisions_v1",
+        )
+        self.assertEqual(
+            pilot_terminal_decisions["metadata"]["candidate_count"], 10
+        )
+        self.assertEqual(
+            pilot_terminal_decisions["metadata"]["terminal_decision_count"], 10
+        )
+        self.assertEqual(
+            pilot_terminal_decisions["metadata"]["import_ready_candidate_count"], 0
+        )
+        self.assertEqual(
+            pilot_terminal_decisions["metadata"]["terminal_status_counts"],
+            {
+                "deferred_requires_human_expert": 3,
+                "rejected_active_site_evidence_missing": 3,
+                "rejected_duplicate_or_near_duplicate": 4,
+            },
+        )
+        self.assertEqual(
+            {
+                row["terminal_status"]
+                for row in pilot_terminal_decisions["rows"]
+                if row["active_site_residue_evidence_status"]
+                == "binding_context_only"
+            },
+            {"rejected_active_site_evidence_missing"},
+        )
+        self.assertTrue(
+            all(
+                row["review_decision"]["terminal"]
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                and row["factory_gate_status"] == "not_run"
+                for row in pilot_terminal_decisions["rows"]
             )
         )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])

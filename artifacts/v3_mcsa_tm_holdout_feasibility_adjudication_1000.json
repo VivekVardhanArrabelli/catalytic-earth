@@ -11,19 +11,20 @@
       "interpretation": "The all-materializable M-CSA structural surface contains many train/test high-TM pairs under the repaired candidate split."
     },
     {
-      "artifact": "artifacts/v3_foldseek_tm_score_cluster_first_split_round32_1000.json",
-      "evidence_type": "latest_cluster_first_candidate",
+      "artifact": null,
+      "evidence_type": "historical_cluster_first_constraint_growth_summary",
       "high_tm_partition_constraint_count": 108,
       "sequence_identity_partition_constraint_count": 38,
       "projected_violating_constraint_count_after_cluster_assignment": 0,
       "sequence_identity_cluster_split_count": 0,
       "cluster_first_heldout_count": 174,
       "cluster_first_heldout_out_of_scope_false_non_abstention_count": 0,
-      "interpretation": "Repeated cluster-first repair moved the candidate split but did not make a full native M-CSA strict-TM holdout claim available."
+      "interpretation": "Repeated cluster-first repair moved the candidate split but did not make a full native M-CSA strict-TM holdout claim available; only the summarized constraint counts are retained.",
+      "artifact_status": "noncanonical_round_artifact_removed_after_adjudication"
     },
     {
-      "artifact": "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_of_672.json",
-      "evidence_type": "latest_standard_query_single_attempt",
+      "artifact": null,
+      "evidence_type": "historical_stopped_query_single_summary",
       "foldseek_run_status": "foldseek_run_timeout",
       "query_chunk_index": 145,
       "query_staged_entry_ids": [
@@ -32,7 +33,8 @@
       "query_structure_key": "pdb:4V4E",
       "pair_count": 0,
       "max_observed_train_test_tm_score": null,
-      "interpretation": "The stopped repair loop had reached a runtime blocker at staged index 145 before pair rows were emitted."
+      "interpretation": "The stopped repair loop reached a runtime blocker at staged index 145 before pair rows were emitted; the shard artifacts are not canonical continuation targets.",
+      "artifact_status": "noncanonical_query_artifact_removed_after_adjudication"
     },
     {
       "artifact": "artifacts/v3_sequence_distance_holdout_eval_1000.json",
@@ -65,11 +67,6 @@
     "observed_high_tm_partition_constraint_count": 108,
     "observed_repair_round_count": 32,
     "observed_sequence_identity_partition_constraint_count": 38,
-    "recovered_interrupted_target_shards_noncanonical": [
-      "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_target_chunk_000_of_056.json",
-      "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_target_chunk_001_of_056.json",
-      "artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_target_chunk_002_of_056.json"
-    ],
     "review_status": "review_only_non_countable",
     "slice_id": "1000",
     "strict_tm_repair_loop_closed": true,
@@ -79,7 +76,21 @@
     "valid_mcsa_sequence_holdout_artifacts": [
       "artifacts/v3_sequence_distance_holdout_eval_1000.json",
       "artifacts/v3_sequence_distance_holdout_eval_1025.json"
-    ]
+    ],
+    "updated_at": "2026-05-16T01:55:26-05:00",
+    "artifact_cleanup_completed": true,
+    "preserved_mcsa_tm_artifacts": [
+      "artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json",
+      "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+      "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json"
+    ],
+    "removed_noncanonical_artifact_categories": [
+      "staged25_and_expanded_partial_signals",
+      "query_chunk_query_single_and_target_shard_artifacts",
+      "split_repair_and_split_redesign_candidates",
+      "cluster_first_round_candidates_and_readiness_views"
+    ],
+    "recovered_interrupted_target_shards_status": "removed_after_summary_capture_noncanonical_not_continuation_targets"
   },
   "rationale": [
     "M-CSA is curated for well-characterized catalytic mechanisms and naturally over-represents common catalytic folds.",
@@ -92,8 +103,8 @@
     "do_not_resume_round33_or_staged_index_145_repair",
     "do_not_run_more_mcsa_query_subchunk_query_single_or_partition_repair_to_force_tm_below_0_7",
     "keep_full_tm_score_holdout_claim_permitted_false_for_m_csa_1000",
-    "treat_recovered_target_shards_as_noncanonical_review_only_context",
-    "use_external_fold_diverse_structural_data_for_future_strict_tm_diverse_holdouts"
+    "use_external_fold_diverse_structural_data_for_future_strict_tm_diverse_holdouts",
+    "keep_noncanonical_round_artifacts_removed_after_adjudication"
   ],
   "recommended_pivot": {
     "countable_import_allowed": false,

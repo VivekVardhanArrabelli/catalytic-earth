@@ -30,6 +30,38 @@ class ExternalStructuralHoldoutArtifactTests(unittest.TestCase):
             7,
         )
 
+    def test_current_guidance_does_not_resume_mcsa_strict_tm_repair(self) -> None:
+        handoff = (ROOT / "work" / "handoff.md").read_text(encoding="utf-8")
+        current_handoff = handoff.split("## Current Handoff", 1)[1].split(
+            "## Start-of-Run Confidence Call", 1
+        )[0]
+        self.assertIn("Do not open M-CSA round33", current_handoff)
+        self.assertIn("external structural pilot", current_handoff)
+
+        forbidden_active_guidance = [
+            "Next start: retry or adjudicate staged index 145",
+            "continue single-query verification",
+            "continue from staged index",
+            "active readiness artifact is",
+            "resume M-CSA strict-TM round repair",
+        ]
+        guidance_texts = {
+            ROOT / "README.md": (ROOT / "README.md").read_text(encoding="utf-8"),
+            ROOT / "docs" / "external_source_transfer.md": (
+                ROOT / "docs" / "external_source_transfer.md"
+            ).read_text(encoding="utf-8"),
+            ROOT / "work" / "foldseek_readiness_notes.md": (
+                ROOT / "work" / "foldseek_readiness_notes.md"
+            ).read_text(encoding="utf-8"),
+            ROOT / "work" / "handoff.md": current_handoff,
+            ROOT / "work" / "scope.md": (ROOT / "work" / "scope.md").read_text(
+                encoding="utf-8"
+            ),
+        }
+        for path, text in guidance_texts.items():
+            for phrase in forbidden_active_guidance:
+                self.assertNotIn(phrase, text, f"{phrase!r} remains in {path}")
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

@@ -8760,6 +8760,15 @@ PILOT_TERMINAL_REVIEW_DECISION_STATUSES = {
     "rejected",
     "rejected_for_import",
 }
+EXTERNAL_PILOT_TERMINAL_STATUSES = (
+    "import_ready_candidate",
+    "rejected_active_site_evidence_missing",
+    "rejected_duplicate_or_near_duplicate",
+    "rejected_mechanism_mismatch",
+    "rejected_representation_conflict",
+    "rejected_factory_gate_failure",
+    "deferred_requires_human_expert",
+)
 PILOT_SUCCESS_CRITERIA_PROCESS_BLOCKERS = {
     "backend_sequence_search_incomplete",
     "broader_duplicate_screening_required",
@@ -9106,6 +9115,390 @@ def build_external_source_pilot_success_criteria(
             )
         ],
     }
+
+
+def build_external_source_pilot_terminal_decisions(
+    *,
+    pilot_active_site_evidence_decisions: dict[str, Any],
+    pilot_success_criteria: dict[str, Any],
+    pilot_representation_adjudication: dict[str, Any],
+    pilot_evidence_dossiers: dict[str, Any],
+    external_structural_tm_holdout_path: dict[str, Any] | None = None,
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Convert selected-pilot evidence rows into explicit terminal decisions."""
+
+    active_rows = list(pilot_active_site_evidence_decisions.get("rows", []) or [])
+    success_by_accession = _external_first_row_by_accession(pilot_success_criteria)
+    representation_by_accession = _external_first_row_by_accession(
+        pilot_representation_adjudication
+    )
+    dossier_by_accession = _external_first_row_by_accession(pilot_evidence_dossiers)
+    structure_by_accession = _external_first_row_by_accession(
+        external_structural_tm_holdout_path or {}
+    )
+
+    rows: list[dict[str, Any]] = []
+    for active_row in sorted(
+        active_rows, key=lambda row: (int(row.get("rank") or 9999), row["accession"])
+    )[:max_rows]:
+        accession = active_row["accession"]
+        success_row = success_by_accession.get(accession, {})
+        representation_row = representation_by_accession.get(accession, {})
+        dossier_row = dossier_by_accession.get(accession, {})
+        structure_row = structure_by_accession.get(accession, {})
+        terminal_status = _external_pilot_terminal_status(
+            active_row=active_row,
+            success_row=success_row,
+            representation_row=representation_row,
+            dossier_row=dossier_row,
+        )
+        active_site_positions = active_row.get("active_site_feature_positions", [])
+        active_site_sources = _external_pilot_active_site_references(
+            active_site_positions
+        )
+        sequence_evidence = dossier_row.get("sequence_evidence", {})
+        representation_result = _external_pilot_terminal_representation_result(
+            active_row=active_row,
+            representation_row=representation_row,
+            dossier_row=dossier_row,
+        )
+        heuristic_control = dossier_row.get("heuristic_control", {})
+        unresolved_evidence = _external_pilot_terminal_unresolved_evidence(
+            terminal_status=terminal_status,
+            active_row=active_row,
+            success_row=success_row,
+            representation_result=representation_result,
+            heuristic_control=heuristic_control,
+        )
+
+        rows.append(
+            {
+                "rank": active_row.get("rank"),
+                "accession": accession,
+                "source_id": accession,
+                "source_type": "UniProtKB/Swiss-Prot",
+                "entry_id": active_row.get("entry_id") or f"uniprot:{accession}",
+                "protein_name": active_row.get("protein_name"),
+                "lane_id": active_row.get("lane_id"),
+                "proposed_mechanism_fingerprint": str(
+                    active_row.get("lane_id") or ""
+                ).removeprefix("external_source:"),
+                "active_site_residue_evidence_status": active_row.get(
+                    "active_site_evidence_source_category"
+                ),
+                "active_site_residue_positions": active_site_positions,
+                "active_site_evidence_source_type": (
+                    "uniprot_active_site_feature"
+                    if active_row.get("active_site_evidence_source_category")
+                    == "explicit_active_site_source_present"
+                    else "binding_context_only_no_explicit_catalytic_residue"
+                ),
+                "active_site_evidence_references": active_site_sources,
+                "reaction_mechanism_evidence_status": active_row.get(
+                    "reaction_mechanism_evidence_status"
+                ),
+                "reaction_references": {
+                    "rhea_ids": active_row.get("rhea_ids", []),
+                    "reaction_record_count": active_row.get("reaction_record_count"),
+                    "specific_reaction_record_count": active_row.get(
+                        "specific_reaction_record_count"
+                    ),
+                },
+                "structure_references": {
+                    "alphafold_ids": structure_row.get("alphafold_ids")
+                    or [accession],
+                    "pdb_reference_examples": structure_row.get(
+                        "pdb_reference_examples", []
+                    ),
+                    "pdb_reference_count": structure_row.get(
+                        "pdb_reference_count", 0
+                    ),
+                    "structure_mapping_status": (
+                        dossier_row.get("structure_mapping", {}).get("status")
+                    ),
+                },
+                "sequence_duplicate_screen_result": {
+                    "bounded_current_reference_status": active_row.get(
+                        "sequence_holdout_backend_search_status"
+                    ),
+                    "backend_name": active_row.get("backend_sequence_backend_name")
+                    or sequence_evidence.get("backend_name"),
+                    "backend_search_complete": active_row.get(
+                        "backend_sequence_search_complete"
+                    )
+                    or sequence_evidence.get("backend_search_complete"),
+                    "backend_search_status": active_row.get(
+                        "backend_sequence_search_status"
+                    )
+                    or sequence_evidence.get("backend_search_status"),
+                    "broader_duplicate_screening_status": active_row.get(
+                        "broader_duplicate_screening_status"
+                    ),
+                    "top_alignment_hits": sequence_evidence.get(
+                        "top_alignment_hits", []
+                    ),
+                },
+                "representation_control_result": representation_result,
+                "heuristic_control_result": heuristic_control,
+                "review_decision": {
+                    "decision_status": terminal_status,
+                    "terminal": True,
+                    "decision_source": (
+                        "automation_terminal_decision_from_existing_pilot_artifacts"
+                    ),
+                    "human_expert_required": (
+                        terminal_status == "deferred_requires_human_expert"
+                    ),
+                },
+                "factory_gate_status": success_row.get(
+                    "full_label_factory_gate_status", "not_run"
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "terminal_status": terminal_status,
+                "terminal_rationale": _external_pilot_terminal_rationale(
+                    terminal_status=terminal_status,
+                    active_row=active_row,
+                    representation_result=representation_result,
+                    heuristic_control=heuristic_control,
+                ),
+                "unresolved_evidence_for_deferred": unresolved_evidence,
+            }
+        )
+
+    terminal_counts = Counter(row["terminal_status"] for row in rows)
+    active_site_counts = Counter(
+        row["active_site_residue_evidence_status"] for row in rows
+    )
+    return {
+        "metadata": {
+            "method": "external_source_pilot_terminal_decisions",
+            "milestone": "external_pilot_terminal_decisions_v1",
+            "blocker_removed": "external_pilot_terminal_decisions_recorded",
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "terminal_decision_count": len(rows),
+            "terminal_status_counts": dict(sorted(terminal_counts.items())),
+            "active_site_evidence_status_counts": dict(
+                sorted(active_site_counts.items())
+            ),
+            "allowed_terminal_statuses": list(EXTERNAL_PILOT_TERMINAL_STATUSES),
+            "active_site_rule": (
+                "binding-context-only evidence is insufficient for import-ready "
+                "status and is terminally rejected for this pilot pass"
+            ),
+            "non_countable_rule": (
+                "external rows remain review-only unless terminal active-site, "
+                "reaction, duplicate, representation, review, and factory gates pass"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "terminal pilot decisions are review/import decisions only; they "
+                "do not validate enzyme function or authorize countable labels"
+            )
+        ],
+    }
+
+
+def _external_pilot_active_site_references(
+    active_site_positions: list[dict[str, Any]],
+) -> dict[str, Any]:
+    evidence_items = [
+        evidence
+        for position in active_site_positions
+        for evidence in position.get("evidence", []) or []
+        if isinstance(evidence, dict)
+    ]
+    return {
+        "uniprot_feature_evidence": evidence_items,
+        "pmids": sorted(
+            {
+                str(evidence.get("id"))
+                for evidence in evidence_items
+                if evidence.get("source") == "PubMed" and evidence.get("id")
+            }
+        ),
+        "doi_ids": [],
+        "interpro_ids": sorted(
+            {
+                str(evidence.get("id"))
+                for evidence in evidence_items
+                if str(evidence.get("source") or "").lower() == "interpro"
+                and evidence.get("id")
+            }
+        ),
+    }
+
+
+def _external_pilot_terminal_representation_result(
+    *,
+    active_row: dict[str, Any],
+    representation_row: dict[str, Any],
+    dossier_row: dict[str, Any],
+) -> dict[str, Any]:
+    dossier_representation = dossier_row.get("representation_control", {})
+    status = (
+        representation_row.get("representation_control_adjudication_status")
+        or active_row.get("representation_control_status")
+        or dossier_representation.get("comparison_status")
+    )
+    return {
+        "status": status,
+        "process_status": representation_row.get(
+            "representation_control_process_status"
+        ),
+        "import_blocker": representation_row.get("representation_import_blocker"),
+        "stability_flags": representation_row.get("stability_flags", []),
+        "baseline_embedding_backend": representation_row.get(
+            "baseline_embedding_backend"
+        ),
+        "comparison_embedding_backend": representation_row.get(
+            "comparison_embedding_backend"
+        ),
+        "baseline_nearest_reference_accession": representation_row.get(
+            "baseline_nearest_reference_accession"
+        )
+        or dossier_representation.get("nearest_reference_accession"),
+        "comparison_nearest_reference_accession": representation_row.get(
+            "comparison_nearest_reference_accession"
+        ),
+        "baseline_top_embedding_cosine": representation_row.get(
+            "baseline_top_embedding_cosine"
+        )
+        or dossier_representation.get("top_embedding_cosine"),
+        "comparison_top_embedding_cosine": representation_row.get(
+            "comparison_top_embedding_cosine"
+        ),
+    }
+
+
+def _external_pilot_terminal_status(
+    *,
+    active_row: dict[str, Any],
+    success_row: dict[str, Any],
+    representation_row: dict[str, Any],
+    dossier_row: dict[str, Any],
+) -> str:
+    if bool(active_row.get("ready_for_label_import")):
+        return "import_ready_candidate"
+    if (
+        active_row.get("active_site_evidence_source_category")
+        != "explicit_active_site_source_present"
+    ):
+        return "rejected_active_site_evidence_missing"
+    representation_status = representation_row.get(
+        "representation_control_adjudication_status"
+    )
+    if representation_status == "representation_near_duplicate_holdout":
+        return "rejected_duplicate_or_near_duplicate"
+    blockers = set(active_row.get("import_readiness_blockers", []) or [])
+    blockers.update(success_row.get("import_readiness_blockers", []) or [])
+    blockers.update(dossier_row.get("remaining_blockers", []) or [])
+    heuristic_control = dossier_row.get("heuristic_control", {})
+    if (
+        heuristic_control.get("scope_top1_mismatch")
+        or "heuristic_scope_top1_mismatch" in blockers
+        or "heuristic_metal_hydrolase_collapse" in blockers
+    ):
+        return "deferred_requires_human_expert"
+    if representation_status == "representation_stability_changed_requires_review":
+        return "deferred_requires_human_expert"
+    if success_row.get("full_label_factory_gate_status") == "failed":
+        return "rejected_factory_gate_failure"
+    return "deferred_requires_human_expert"
+
+
+def _external_pilot_terminal_rationale(
+    *,
+    terminal_status: str,
+    active_row: dict[str, Any],
+    representation_result: dict[str, Any],
+    heuristic_control: dict[str, Any],
+) -> str:
+    accession = active_row["accession"]
+    if terminal_status == "import_ready_candidate":
+        return (
+            f"{accession} has explicit active-site evidence and all import gates "
+            "recorded as passing in the selected pilot artifacts."
+        )
+    if terminal_status == "rejected_active_site_evidence_missing":
+        return (
+            f"{accession} has only binding-context evidence in the selected pilot "
+            "packet, so explicit catalytic residue evidence is missing."
+        )
+    if terminal_status == "rejected_duplicate_or_near_duplicate":
+        return (
+            f"{accession} has explicit active-site evidence but the representation "
+            "adjudication marks it as a near-duplicate holdout."
+        )
+    if terminal_status == "rejected_factory_gate_failure":
+        return f"{accession} failed the full label-factory gate for pilot import."
+    if terminal_status == "rejected_mechanism_mismatch":
+        return f"{accession} has an evidence-backed mechanism mismatch."
+    if terminal_status == "rejected_representation_conflict":
+        return f"{accession} has an evidence-backed representation conflict."
+    if heuristic_control.get("scope_top1_mismatch"):
+        return (
+            f"{accession} has explicit active-site evidence, but heuristic scope "
+            "mismatch requires expert adjudication before import."
+        )
+    if (
+        representation_result.get("status")
+        == "representation_stability_changed_requires_review"
+    ):
+        return (
+            f"{accession} has explicit active-site evidence, but nearest-reference "
+            "representation evidence changed under the largest feasible backend."
+        )
+    return (
+        f"{accession} has explicit active-site evidence, but broader duplicate "
+        "screening, review import, and factory-gate evidence are not terminally "
+        "satisfied in the current local artifacts."
+    )
+
+
+def _external_pilot_terminal_unresolved_evidence(
+    *,
+    terminal_status: str,
+    active_row: dict[str, Any],
+    success_row: dict[str, Any],
+    representation_result: dict[str, Any],
+    heuristic_control: dict[str, Any],
+) -> list[str]:
+    if terminal_status != "deferred_requires_human_expert":
+        return []
+    unresolved = [
+        "complete broader duplicate screening beyond the bounded current-reference search",
+        "record human/expert review decision against the assembled evidence packet",
+        "run the full label-factory gate only after review decision and duplicate controls",
+    ]
+    if (
+        representation_result.get("status")
+        == "representation_stability_changed_requires_review"
+    ):
+        unresolved.append(
+            "adjudicate changed nearest-reference representation evidence"
+        )
+    if heuristic_control.get("scope_top1_mismatch") or any(
+        blocker.startswith("heuristic_")
+        for blocker in active_row.get("import_readiness_blockers", []) or []
+    ):
+        unresolved.append("adjudicate heuristic scope or top1 mismatch")
+    if "representation_control_unresolved" in (
+        success_row.get("criterion_blockers", []) or []
+    ):
+        unresolved.append("resolve selected-pilot representation-control blocker")
+    return sorted(set(unresolved))
 
 
 def _external_pilot_active_site_source_category(

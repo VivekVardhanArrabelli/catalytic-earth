@@ -1,0 +1,1400 @@
+{
+  "metadata": {
+    "active_site_evidence_status_counts": {
+      "binding_context_only": 3,
+      "explicit_active_site_source_present": 7
+    },
+    "active_site_rule": "binding-context-only evidence is insufficient for import-ready status and is terminally rejected for this pilot pass",
+    "allowed_terminal_statuses": [
+      "import_ready_candidate",
+      "rejected_active_site_evidence_missing",
+      "rejected_duplicate_or_near_duplicate",
+      "rejected_mechanism_mismatch",
+      "rejected_representation_conflict",
+      "rejected_factory_gate_failure",
+      "deferred_requires_human_expert"
+    ],
+    "artifact_lineage": {
+      "artifact_paths": {
+        "external_structural_tm_holdout_path": "artifacts/v3_external_structural_tm_holdout_path_1025.json",
+        "pilot_active_site_evidence_decisions": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+        "pilot_evidence_dossiers": "artifacts/v3_external_source_pilot_evidence_dossiers_1025.json",
+        "pilot_representation_adjudication": "artifacts/v3_external_source_pilot_representation_adjudication_1025.json",
+        "pilot_success_criteria": "artifacts/v3_external_source_pilot_success_criteria_1025.json"
+      },
+      "blocker_removed": "external_pilot_terminal_decisions_recorded",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "external_structural_tm_holdout_path": 1025,
+        "pilot_active_site_evidence_decisions": 1025,
+        "pilot_evidence_dossiers": 1025,
+        "pilot_representation_adjudication": 1025,
+        "pilot_success_criteria": 1025
+      },
+      "payload_methods": {
+        "external_structural_tm_holdout_path": "external_structural_tm_holdout_path",
+        "pilot_active_site_evidence_decisions": "external_source_pilot_active_site_evidence_decisions",
+        "pilot_evidence_dossiers": "external_source_pilot_evidence_dossier",
+        "pilot_representation_adjudication": "external_source_pilot_representation_adjudication",
+        "pilot_success_criteria": "external_source_pilot_success_criteria"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "external_structural_tm_holdout_path": {
+          "metadata.slice_id": 1025
+        },
+        "pilot_active_site_evidence_decisions": {
+          "metadata.artifact_lineage.slice_id": 1025
+        },
+        "pilot_evidence_dossiers": {
+          "metadata.artifact_lineage.slice_id": 1025
+        },
+        "pilot_representation_adjudication": {
+          "metadata.artifact_lineage.slice_id": 1025
+        },
+        "pilot_success_criteria": {
+          "metadata.artifact_lineage.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "external_structural_tm_holdout_path",
+          "pilot_active_site_evidence_decisions",
+          "pilot_evidence_dossiers",
+          "pilot_representation_adjudication",
+          "pilot_success_criteria"
+        ]
+      }
+    },
+    "blocker_removed": "external_pilot_terminal_decisions_recorded",
+    "candidate_count": 10,
+    "countable_label_candidate_count": 0,
+    "import_ready_candidate_count": 0,
+    "max_rows": 10,
+    "method": "external_source_pilot_terminal_decisions",
+    "milestone": "external_pilot_terminal_decisions_v1",
+    "non_countable_rule": "external rows remain review-only unless terminal active-site, reaction, duplicate, representation, review, and factory gates pass",
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selected_accessions": [
+      "O14756",
+      "P06746",
+      "C9JRZ8",
+      "P55263",
+      "P34949",
+      "Q9BXD5",
+      "Q6NSJ0",
+      "O60568",
+      "O95050",
+      "P51580"
+    ],
+    "terminal_decision_count": 10,
+    "terminal_status_counts": {
+      "deferred_requires_human_expert": 3,
+      "rejected_active_site_evidence_missing": 3,
+      "rejected_duplicate_or_near_duplicate": 4
+    }
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "active_site_evidence_references": {
+        "doi_ids": [],
+        "interpro_ids": [],
+        "pmids": [],
+        "uniprot_feature_evidence": [
+          {
+            "evidence_code": "ECO:0000255",
+            "id": "PRU10001",
+            "source": "PROSITE-ProRule"
+          }
+        ]
+      },
+      "active_site_evidence_source_type": "uniprot_active_site_feature",
+      "active_site_residue_evidence_status": "explicit_active_site_source_present",
+      "active_site_residue_positions": [
+        {
+          "begin": 176,
+          "description": "Proton acceptor",
+          "end": 176,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "PRU10001",
+              "source": "PROSITE-ProRule"
+            }
+          ]
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O14756",
+      "factory_gate_status": "not_run",
+      "heuristic_control_result": {
+        "scope_top1_mismatch": false,
+        "scored": true,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.3039
+      },
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "proposed_mechanism_fingerprint": "oxidoreductase_long_tail",
+      "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
+      "rank": 1,
+      "reaction_mechanism_evidence_status": "specific_reaction_context_present",
+      "reaction_references": {
+        "reaction_record_count": 10,
+        "rhea_ids": [
+          "RHEA:14929",
+          "RHEA:20377",
+          "RHEA:20381",
+          "RHEA:21284",
+          "RHEA:22400",
+          "RHEA:24612",
+          "RHEA:24616",
+          "RHEA:42004"
+        ],
+        "specific_reaction_record_count": 9
+      },
+      "ready_for_label_import": false,
+      "representation_control_result": {
+        "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P0A6C1",
+        "baseline_top_embedding_cosine": 0.7852,
+        "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P14604",
+        "comparison_top_embedding_cosine": 0.9233,
+        "import_blocker": "representation_stability_changed_requires_review",
+        "process_status": "adjudicated_from_8m_vs_largest_feasible_esm2",
+        "stability_flags": [
+          "nearest_reference_changed",
+          "nearest_reference_entry_ids_changed",
+          "comparison_embedding_backend_fallback_used"
+        ],
+        "status": "representation_stability_changed_requires_review"
+      },
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "deferred_requires_human_expert",
+        "human_expert_required": true,
+        "terminal": true
+      },
+      "sequence_duplicate_screen_result": {
+        "backend_name": "mmseqs2_easy_search",
+        "backend_search_complete": true,
+        "backend_search_status": "no_near_duplicate_signal",
+        "bounded_current_reference_status": "current_reference_backend_no_signal",
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "top_alignment_hits": [
+          {
+            "alignment_identity": 0.2145,
+            "length_coverage": 0.8202,
+            "matched_m_csa_entry_ids": [
+              "m_csa:595"
+            ],
+            "reference_accession": "P15369",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.205,
+            "length_coverage": 0.8991,
+            "matched_m_csa_entry_ids": [
+              "m_csa:11"
+            ],
+            "reference_accession": "P0A6C1",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1924,
+            "length_coverage": 0.9148,
+            "matched_m_csa_entry_ids": [
+              "m_csa:315"
+            ],
+            "reference_accession": "P14604",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          }
+        ]
+      },
+      "source_id": "O14756",
+      "source_type": "UniProtKB/Swiss-Prot",
+      "structure_references": {
+        "alphafold_ids": [
+          "O14756"
+        ],
+        "pdb_reference_count": 0,
+        "pdb_reference_examples": [],
+        "structure_mapping_status": "ok"
+      },
+      "terminal_rationale": "O14756 has explicit active-site evidence, but nearest-reference representation evidence changed under the largest feasible backend.",
+      "terminal_status": "deferred_requires_human_expert",
+      "unresolved_evidence_for_deferred": [
+        "adjudicate changed nearest-reference representation evidence",
+        "complete broader duplicate screening beyond the bounded current-reference search",
+        "record human/expert review decision against the assembled evidence packet",
+        "resolve selected-pilot representation-control blocker",
+        "run the full label-factory gate only after review decision and duplicate controls"
+      ]
+    },
+    {
+      "accession": "P06746",
+      "active_site_evidence_references": {
+        "doi_ids": [],
+        "interpro_ids": [],
+        "pmids": [
+          "9572863"
+        ],
+        "uniprot_feature_evidence": [
+          {
+            "evidence_code": "ECO:0000269",
+            "id": "9572863",
+            "source": "PubMed"
+          }
+        ]
+      },
+      "active_site_evidence_source_type": "uniprot_active_site_feature",
+      "active_site_residue_evidence_status": "explicit_active_site_source_present",
+      "active_site_residue_positions": [
+        {
+          "begin": 72,
+          "description": "Nucleophile; Schiff-base intermediate with DNA; for 5'-dRP lyase activity",
+          "end": 72,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "9572863",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06746",
+      "factory_gate_status": "not_run",
+      "heuristic_control_result": {
+        "scope_top1_mismatch": null,
+        "scored": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:lyase",
+      "proposed_mechanism_fingerprint": "lyase",
+      "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
+      "rank": 2,
+      "reaction_mechanism_evidence_status": "specific_reaction_context_present",
+      "reaction_references": {
+        "reaction_record_count": 5,
+        "rhea_ids": [
+          "RHEA:12336",
+          "RHEA:22508",
+          "RHEA:25597",
+          "RHEA:66592"
+        ],
+        "specific_reaction_record_count": 2
+      },
+      "ready_for_label_import": false,
+      "representation_control_result": {
+        "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P31116",
+        "baseline_top_embedding_cosine": 0.9275,
+        "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P31116",
+        "comparison_top_embedding_cosine": 0.9604,
+        "import_blocker": "representation_near_duplicate_holdout",
+        "process_status": "adjudicated_from_8m_vs_largest_feasible_esm2",
+        "stability_flags": [
+          "heuristic_disagreement_status_changed",
+          "comparison_embedding_backend_fallback_used"
+        ],
+        "status": "representation_near_duplicate_holdout"
+      },
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "rejected_duplicate_or_near_duplicate",
+        "human_expert_required": false,
+        "terminal": true
+      },
+      "sequence_duplicate_screen_result": {
+        "backend_name": "mmseqs2_easy_search",
+        "backend_search_complete": true,
+        "backend_search_status": "no_near_duplicate_signal",
+        "bounded_current_reference_status": "current_reference_backend_no_signal",
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "top_alignment_hits": [
+          {
+            "alignment_identity": 0.2061,
+            "length_coverage": 0.9331,
+            "matched_m_csa_entry_ids": [
+              "m_csa:521"
+            ],
+            "reference_accession": "P31116",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1829,
+            "length_coverage": 0.9571,
+            "matched_m_csa_entry_ids": [
+              "m_csa:536"
+            ],
+            "reference_accession": "P26239",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1579,
+            "length_coverage": 0.9795,
+            "matched_m_csa_entry_ids": [
+              "m_csa:353"
+            ],
+            "reference_accession": "P08373",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          }
+        ]
+      },
+      "source_id": "P06746",
+      "source_type": "UniProtKB/Swiss-Prot",
+      "structure_references": {
+        "alphafold_ids": [
+          "P06746"
+        ],
+        "pdb_reference_count": 418,
+        "pdb_reference_examples": [
+          "1BPX",
+          "1BPY",
+          "1BPZ",
+          "1MQ2",
+          "1MQ3"
+        ],
+        "structure_mapping_status": "not_mapped_for_heuristic_control"
+      },
+      "terminal_rationale": "P06746 has explicit active-site evidence but the representation adjudication marks it as a near-duplicate holdout.",
+      "terminal_status": "rejected_duplicate_or_near_duplicate",
+      "unresolved_evidence_for_deferred": []
+    },
+    {
+      "accession": "C9JRZ8",
+      "active_site_evidence_references": {
+        "doi_ids": [],
+        "interpro_ids": [],
+        "pmids": [],
+        "uniprot_feature_evidence": [
+          {
+            "evidence_code": "ECO:0000250",
+            "id": "O60218",
+            "source": "UniProtKB"
+          }
+        ]
+      },
+      "active_site_evidence_source_type": "uniprot_active_site_feature",
+      "active_site_residue_evidence_status": "explicit_active_site_source_present",
+      "active_site_residue_positions": [
+        {
+          "begin": 49,
+          "description": "Proton donor",
+          "end": 49,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "O60218",
+              "source": "UniProtKB"
+            }
+          ]
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:C9JRZ8",
+      "factory_gate_status": "not_run",
+      "heuristic_control_result": {
+        "scope_top1_mismatch": null,
+        "scored": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "proposed_mechanism_fingerprint": "oxidoreductase_long_tail",
+      "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
+      "rank": 3,
+      "reaction_mechanism_evidence_status": "specific_reaction_context_present",
+      "reaction_references": {
+        "reaction_record_count": 7,
+        "rhea_ids": [
+          "RHEA:10044",
+          "RHEA:10052",
+          "RHEA:12168",
+          "RHEA:14697",
+          "RHEA:14981",
+          "RHEA:25033"
+        ],
+        "specific_reaction_record_count": 4
+      },
+      "ready_for_label_import": false,
+      "representation_control_result": {
+        "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P0A786",
+        "baseline_top_embedding_cosine": 0.7995,
+        "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P21874",
+        "comparison_top_embedding_cosine": 0.9537,
+        "import_blocker": "representation_near_duplicate_holdout",
+        "process_status": "adjudicated_from_8m_vs_largest_feasible_esm2",
+        "stability_flags": [
+          "nearest_reference_changed",
+          "nearest_reference_entry_ids_changed",
+          "heuristic_disagreement_status_changed",
+          "comparison_embedding_backend_fallback_used"
+        ],
+        "status": "representation_near_duplicate_holdout"
+      },
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "rejected_duplicate_or_near_duplicate",
+        "human_expert_required": false,
+        "terminal": true
+      },
+      "sequence_duplicate_screen_result": {
+        "backend_name": "mmseqs2_easy_search",
+        "backend_search_complete": true,
+        "backend_search_status": "no_near_duplicate_signal",
+        "bounded_current_reference_status": "current_reference_backend_no_signal",
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "top_alignment_hits": [
+          {
+            "alignment_identity": 0.2057,
+            "length_coverage": 0.8956,
+            "matched_m_csa_entry_ids": [
+              "m_csa:66"
+            ],
+            "reference_accession": "P19938",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1741,
+            "length_coverage": 0.9842,
+            "matched_m_csa_entry_ids": [
+              "m_csa:405"
+            ],
+            "reference_accession": "P0A786",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1723,
+            "length_coverage": 0.9723,
+            "matched_m_csa_entry_ids": [
+              "m_csa:106"
+            ],
+            "reference_accession": "P21874",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          }
+        ]
+      },
+      "source_id": "C9JRZ8",
+      "source_type": "UniProtKB/Swiss-Prot",
+      "structure_references": {
+        "alphafold_ids": [
+          "C9JRZ8"
+        ],
+        "pdb_reference_count": 0,
+        "pdb_reference_examples": [],
+        "structure_mapping_status": "not_mapped_for_heuristic_control"
+      },
+      "terminal_rationale": "C9JRZ8 has explicit active-site evidence but the representation adjudication marks it as a near-duplicate holdout.",
+      "terminal_status": "rejected_duplicate_or_near_duplicate",
+      "unresolved_evidence_for_deferred": []
+    },
+    {
+      "accession": "P55263",
+      "active_site_evidence_references": {
+        "doi_ids": [],
+        "interpro_ids": [],
+        "pmids": [
+          "9843365"
+        ],
+        "uniprot_feature_evidence": [
+          {
+            "evidence_code": "ECO:0000269",
+            "id": "9843365",
+            "source": "PubMed"
+          },
+          {
+            "evidence_code": "ECO:0007744",
+            "id": "1BX4",
+            "source": "PDB"
+          }
+        ]
+      },
+      "active_site_evidence_source_type": "uniprot_active_site_feature",
+      "active_site_residue_evidence_status": "explicit_active_site_source_present",
+      "active_site_residue_positions": [
+        {
+          "begin": 317,
+          "description": "Proton acceptor",
+          "end": 317,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "9843365",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "1BX4",
+              "source": "PDB"
+            }
+          ]
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P55263",
+      "factory_gate_status": "not_run",
+      "heuristic_control_result": {
+        "scope_top1_mismatch": null,
+        "scored": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "proposed_mechanism_fingerprint": "transferase_phosphoryl",
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "rank": 4,
+      "reaction_mechanism_evidence_status": "specific_reaction_context_present",
+      "reaction_references": {
+        "reaction_record_count": 4,
+        "rhea_ids": [
+          "RHEA:10224",
+          "RHEA:10272",
+          "RHEA:20824"
+        ],
+        "specific_reaction_record_count": 1
+      },
+      "ready_for_label_import": false,
+      "representation_control_result": {
+        "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "Q9TVW2",
+        "baseline_top_embedding_cosine": 0.9731,
+        "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "Q9TVW2",
+        "comparison_top_embedding_cosine": 0.9801,
+        "import_blocker": "representation_near_duplicate_holdout",
+        "process_status": "adjudicated_from_8m_vs_largest_feasible_esm2",
+        "stability_flags": [
+          "comparison_embedding_backend_fallback_used"
+        ],
+        "status": "representation_near_duplicate_holdout"
+      },
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "rejected_duplicate_or_near_duplicate",
+        "human_expert_required": false,
+        "terminal": true
+      },
+      "sequence_duplicate_screen_result": {
+        "backend_name": "mmseqs2_easy_search",
+        "backend_search_complete": true,
+        "backend_search_status": "no_near_duplicate_signal",
+        "bounded_current_reference_status": "current_reference_backend_no_signal",
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "top_alignment_hits": [
+          {
+            "alignment_identity": 0.2893,
+            "length_coverage": 0.9972,
+            "matched_m_csa_entry_ids": [
+              "m_csa:209"
+            ],
+            "reference_accession": "Q9TVW2",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.221,
+            "length_coverage": 0.826,
+            "matched_m_csa_entry_ids": [
+              "m_csa:445"
+            ],
+            "reference_accession": "P53608",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1796,
+            "length_coverage": 0.9669,
+            "matched_m_csa_entry_ids": [
+              "m_csa:536"
+            ],
+            "reference_accession": "P26239",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          }
+        ]
+      },
+      "source_id": "P55263",
+      "source_type": "UniProtKB/Swiss-Prot",
+      "structure_references": {
+        "alphafold_ids": [
+          "P55263"
+        ],
+        "pdb_reference_count": 4,
+        "pdb_reference_examples": [
+          "1BX4",
+          "2I6A",
+          "2I6B",
+          "4O1L"
+        ],
+        "structure_mapping_status": "not_mapped_for_heuristic_control"
+      },
+      "terminal_rationale": "P55263 has explicit active-site evidence but the representation adjudication marks it as a near-duplicate holdout.",
+      "terminal_status": "rejected_duplicate_or_near_duplicate",
+      "unresolved_evidence_for_deferred": []
+    },
+    {
+      "accession": "P34949",
+      "active_site_evidence_references": {
+        "doi_ids": [],
+        "interpro_ids": [],
+        "pmids": [],
+        "uniprot_feature_evidence": [
+          {
+            "evidence_code": "ECO:0000250",
+            "id": "P34948",
+            "source": "UniProtKB"
+          }
+        ]
+      },
+      "active_site_evidence_source_type": "uniprot_active_site_feature",
+      "active_site_residue_evidence_status": "explicit_active_site_source_present",
+      "active_site_residue_positions": [
+        {
+          "begin": 295,
+          "description": "",
+          "end": 295,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P34948",
+              "source": "UniProtKB"
+            }
+          ]
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P34949",
+      "factory_gate_status": "not_run",
+      "heuristic_control_result": {
+        "scope_top1_mismatch": true,
+        "scored": true,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.185
+      },
+      "lane_id": "external_source:isomerase",
+      "proposed_mechanism_fingerprint": "isomerase",
+      "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+      "rank": 5,
+      "reaction_mechanism_evidence_status": "specific_reaction_context_present",
+      "reaction_references": {
+        "reaction_record_count": 2,
+        "rhea_ids": [
+          "RHEA:12356"
+        ],
+        "specific_reaction_record_count": 1
+      },
+      "ready_for_label_import": false,
+      "representation_control_result": {
+        "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P0A6D3",
+        "baseline_top_embedding_cosine": 0.9199,
+        "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P0A6D3",
+        "comparison_top_embedding_cosine": 0.9364,
+        "import_blocker": null,
+        "process_status": "adjudicated_from_8m_vs_largest_feasible_esm2",
+        "stability_flags": [
+          "comparison_embedding_backend_fallback_used"
+        ],
+        "status": "representation_control_adjudicated_review_only"
+      },
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "deferred_requires_human_expert",
+        "human_expert_required": true,
+        "terminal": true
+      },
+      "sequence_duplicate_screen_result": {
+        "backend_name": "mmseqs2_easy_search",
+        "backend_search_complete": true,
+        "backend_search_status": "no_near_duplicate_signal",
+        "bounded_current_reference_status": "current_reference_backend_no_signal",
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "top_alignment_hits": [
+          {
+            "alignment_identity": 0.1986,
+            "length_coverage": 0.9658,
+            "matched_m_csa_entry_ids": [
+              "m_csa:317"
+            ],
+            "reference_accession": "P14900",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1891,
+            "length_coverage": 0.9456,
+            "matched_m_csa_entry_ids": [
+              "m_csa:282"
+            ],
+            "reference_accession": "P36507",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1593,
+            "length_coverage": 0.9906,
+            "matched_m_csa_entry_ids": [
+              "m_csa:457"
+            ],
+            "reference_accession": "P0A6D3",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          }
+        ]
+      },
+      "source_id": "P34949",
+      "source_type": "UniProtKB/Swiss-Prot",
+      "structure_references": {
+        "alphafold_ids": [
+          "P34949"
+        ],
+        "pdb_reference_count": 0,
+        "pdb_reference_examples": [],
+        "structure_mapping_status": "ok"
+      },
+      "terminal_rationale": "P34949 has explicit active-site evidence, but heuristic scope mismatch requires expert adjudication before import.",
+      "terminal_status": "deferred_requires_human_expert",
+      "unresolved_evidence_for_deferred": [
+        "adjudicate heuristic scope or top1 mismatch",
+        "complete broader duplicate screening beyond the bounded current-reference search",
+        "record human/expert review decision against the assembled evidence packet",
+        "run the full label-factory gate only after review decision and duplicate controls"
+      ]
+    },
+    {
+      "accession": "Q9BXD5",
+      "active_site_evidence_references": {
+        "doi_ids": [],
+        "interpro_ids": [],
+        "pmids": [],
+        "uniprot_feature_evidence": [
+          {
+            "evidence_code": "ECO:0000250",
+            "id": "P0A6L4",
+            "source": "UniProtKB"
+          },
+          {
+            "evidence_code": "ECO:0000250",
+            "id": "P0A6L4",
+            "source": "UniProtKB"
+          }
+        ]
+      },
+      "active_site_evidence_source_type": "uniprot_active_site_feature",
+      "active_site_residue_evidence_status": "explicit_active_site_source_present",
+      "active_site_residue_positions": [
+        {
+          "begin": 143,
+          "description": "Proton donor",
+          "end": 143,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6L4",
+              "source": "UniProtKB"
+            }
+          ]
+        },
+        {
+          "begin": 173,
+          "description": "Schiff-base intermediate with substrate",
+          "end": 173,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6L4",
+              "source": "UniProtKB"
+            }
+          ]
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BXD5",
+      "factory_gate_status": "not_run",
+      "heuristic_control_result": {
+        "scope_top1_mismatch": true,
+        "scored": true,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.3646
+      },
+      "lane_id": "external_source:lyase",
+      "proposed_mechanism_fingerprint": "lyase",
+      "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+      "rank": 6,
+      "reaction_mechanism_evidence_status": "specific_reaction_context_present",
+      "reaction_references": {
+        "reaction_record_count": 2,
+        "rhea_ids": [
+          "RHEA:23296"
+        ],
+        "specific_reaction_record_count": 1
+      },
+      "ready_for_label_import": false,
+      "representation_control_result": {
+        "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P11708",
+        "baseline_top_embedding_cosine": 0.8619,
+        "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P11708",
+        "comparison_top_embedding_cosine": 0.9649,
+        "import_blocker": "representation_near_duplicate_holdout",
+        "process_status": "adjudicated_from_8m_vs_largest_feasible_esm2",
+        "stability_flags": [
+          "heuristic_disagreement_status_changed",
+          "comparison_embedding_backend_fallback_used"
+        ],
+        "status": "representation_near_duplicate_holdout"
+      },
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "rejected_duplicate_or_near_duplicate",
+        "human_expert_required": false,
+        "terminal": true
+      },
+      "sequence_duplicate_screen_result": {
+        "backend_name": "mmseqs2_easy_search",
+        "backend_search_complete": true,
+        "backend_search_status": "no_near_duplicate_signal",
+        "bounded_current_reference_status": "current_reference_backend_no_signal",
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "top_alignment_hits": [
+          {
+            "alignment_identity": 0.22,
+            "length_coverage": 0.8,
+            "matched_m_csa_entry_ids": [
+              "m_csa:856"
+            ],
+            "reference_accession": "P21327",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1886,
+            "length_coverage": 0.9581,
+            "matched_m_csa_entry_ids": [
+              "m_csa:526"
+            ],
+            "reference_accession": "P11708",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1743,
+            "length_coverage": 0.9786,
+            "matched_m_csa_entry_ids": [
+              "m_csa:342"
+            ],
+            "reference_accession": "Q62651",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          }
+        ]
+      },
+      "source_id": "Q9BXD5",
+      "source_type": "UniProtKB/Swiss-Prot",
+      "structure_references": {
+        "alphafold_ids": [
+          "Q9BXD5"
+        ],
+        "pdb_reference_count": 1,
+        "pdb_reference_examples": [
+          "6ARH"
+        ],
+        "structure_mapping_status": "ok"
+      },
+      "terminal_rationale": "Q9BXD5 has explicit active-site evidence but the representation adjudication marks it as a near-duplicate holdout.",
+      "terminal_status": "rejected_duplicate_or_near_duplicate",
+      "unresolved_evidence_for_deferred": []
+    },
+    {
+      "accession": "Q6NSJ0",
+      "active_site_evidence_references": {
+        "doi_ids": [],
+        "interpro_ids": [],
+        "pmids": [
+          "36129849"
+        ],
+        "uniprot_feature_evidence": [
+          {
+            "evidence_code": "ECO:0000305",
+            "id": "36129849",
+            "source": "PubMed"
+          },
+          {
+            "evidence_code": "ECO:0000305",
+            "id": "36129849",
+            "source": "PubMed"
+          }
+        ]
+      },
+      "active_site_evidence_source_type": "uniprot_active_site_feature",
+      "active_site_residue_evidence_status": "explicit_active_site_source_present",
+      "active_site_residue_positions": [
+        {
+          "begin": 463,
+          "description": "Nucleophile",
+          "end": 463,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000305",
+              "id": "36129849",
+              "source": "PubMed"
+            }
+          ]
+        },
+        {
+          "begin": 520,
+          "description": "Proton donor/acceptor",
+          "end": 520,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000305",
+              "id": "36129849",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q6NSJ0",
+      "factory_gate_status": "not_run",
+      "heuristic_control_result": {
+        "scope_top1_mismatch": false,
+        "scored": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3552
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "proposed_mechanism_fingerprint": "glycan_chemistry",
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "rank": 7,
+      "reaction_mechanism_evidence_status": "specific_reaction_context_present",
+      "reaction_references": {
+        "reaction_record_count": 2,
+        "rhea_ids": [
+          "RHEA:21112"
+        ],
+        "specific_reaction_record_count": 1
+      },
+      "ready_for_label_import": false,
+      "representation_control_result": {
+        "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P0ABI8",
+        "baseline_top_embedding_cosine": 0.8958,
+        "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P07342",
+        "comparison_top_embedding_cosine": 0.926,
+        "import_blocker": "representation_stability_changed_requires_review",
+        "process_status": "adjudicated_from_8m_vs_largest_feasible_esm2",
+        "stability_flags": [
+          "nearest_reference_changed",
+          "nearest_reference_entry_ids_changed",
+          "comparison_embedding_backend_fallback_used"
+        ],
+        "status": "representation_stability_changed_requires_review"
+      },
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "deferred_requires_human_expert",
+        "human_expert_required": true,
+        "terminal": true
+      },
+      "sequence_duplicate_screen_result": {
+        "backend_name": "mmseqs2_easy_search",
+        "backend_search_complete": true,
+        "backend_search_status": "no_near_duplicate_signal",
+        "bounded_current_reference_status": "current_reference_backend_no_signal",
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "top_alignment_hits": [
+          {
+            "alignment_identity": 0.2089,
+            "length_coverage": 0.9096,
+            "matched_m_csa_entry_ids": [
+              "m_csa:539"
+            ],
+            "reference_accession": "P27002",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1835,
+            "length_coverage": 0.9286,
+            "matched_m_csa_entry_ids": [
+              "m_csa:714"
+            ],
+            "reference_accession": "P0ABI8",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1821,
+            "length_coverage": 0.9622,
+            "matched_m_csa_entry_ids": [
+              "m_csa:289"
+            ],
+            "reference_accession": "P07342",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          }
+        ]
+      },
+      "source_id": "Q6NSJ0",
+      "source_type": "UniProtKB/Swiss-Prot",
+      "structure_references": {
+        "alphafold_ids": [
+          "Q6NSJ0"
+        ],
+        "pdb_reference_count": 3,
+        "pdb_reference_examples": [
+          "7QQF",
+          "7QQG",
+          "7QQH"
+        ],
+        "structure_mapping_status": "ok"
+      },
+      "terminal_rationale": "Q6NSJ0 has explicit active-site evidence, but nearest-reference representation evidence changed under the largest feasible backend.",
+      "terminal_status": "deferred_requires_human_expert",
+      "unresolved_evidence_for_deferred": [
+        "adjudicate changed nearest-reference representation evidence",
+        "adjudicate heuristic scope or top1 mismatch",
+        "complete broader duplicate screening beyond the bounded current-reference search",
+        "record human/expert review decision against the assembled evidence packet",
+        "resolve selected-pilot representation-control blocker",
+        "run the full label-factory gate only after review decision and duplicate controls"
+      ]
+    },
+    {
+      "accession": "O60568",
+      "active_site_evidence_references": {
+        "doi_ids": [],
+        "interpro_ids": [],
+        "pmids": [],
+        "uniprot_feature_evidence": []
+      },
+      "active_site_evidence_source_type": "binding_context_only_no_explicit_catalytic_residue",
+      "active_site_residue_evidence_status": "binding_context_only",
+      "active_site_residue_positions": [],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O60568",
+      "factory_gate_status": "not_run",
+      "heuristic_control_result": {
+        "scope_top1_mismatch": null,
+        "scored": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "proposed_mechanism_fingerprint": "glycan_chemistry",
+      "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+      "rank": 8,
+      "reaction_mechanism_evidence_status": "specific_reaction_context_present",
+      "reaction_references": {
+        "reaction_record_count": 4,
+        "rhea_ids": [
+          "RHEA:12576",
+          "RHEA:12637",
+          "RHEA:16569"
+        ],
+        "specific_reaction_record_count": 3
+      },
+      "ready_for_label_import": false,
+      "representation_control_result": {
+        "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P00488",
+        "baseline_top_embedding_cosine": 0.9454,
+        "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P00488",
+        "comparison_top_embedding_cosine": 0.931,
+        "import_blocker": null,
+        "process_status": "adjudicated_from_8m_vs_largest_feasible_esm2",
+        "stability_flags": [
+          "comparison_embedding_backend_fallback_used"
+        ],
+        "status": "representation_control_adjudicated_review_only"
+      },
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "rejected_active_site_evidence_missing",
+        "human_expert_required": false,
+        "terminal": true
+      },
+      "sequence_duplicate_screen_result": {
+        "backend_name": "mmseqs2_easy_search",
+        "backend_search_complete": true,
+        "backend_search_status": "no_near_duplicate_signal",
+        "bounded_current_reference_status": "current_reference_backend_no_signal",
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "top_alignment_hits": [
+          {
+            "alignment_identity": 0.2209,
+            "length_coverage": 0.7724,
+            "matched_m_csa_entry_ids": [
+              "m_csa:581"
+            ],
+            "reference_accession": "Q50925",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.2141,
+            "length_coverage": 0.7954,
+            "matched_m_csa_entry_ids": [
+              "m_csa:380"
+            ],
+            "reference_accession": "P42790",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1667,
+            "length_coverage": 0.9919,
+            "matched_m_csa_entry_ids": [
+              "m_csa:149"
+            ],
+            "reference_accession": "P00488",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          }
+        ]
+      },
+      "source_id": "O60568",
+      "source_type": "UniProtKB/Swiss-Prot",
+      "structure_references": {
+        "alphafold_ids": [
+          "O60568"
+        ],
+        "pdb_reference_count": 18,
+        "pdb_reference_examples": [
+          "6FXK",
+          "6FXM",
+          "6FXR",
+          "6FXT",
+          "6FXX"
+        ],
+        "structure_mapping_status": "not_mapped_for_heuristic_control"
+      },
+      "terminal_rationale": "O60568 has only binding-context evidence in the selected pilot packet, so explicit catalytic residue evidence is missing.",
+      "terminal_status": "rejected_active_site_evidence_missing",
+      "unresolved_evidence_for_deferred": []
+    },
+    {
+      "accession": "O95050",
+      "active_site_evidence_references": {
+        "doi_ids": [],
+        "interpro_ids": [],
+        "pmids": [],
+        "uniprot_feature_evidence": []
+      },
+      "active_site_evidence_source_type": "binding_context_only_no_explicit_catalytic_residue",
+      "active_site_residue_evidence_status": "binding_context_only",
+      "active_site_residue_positions": [],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95050",
+      "factory_gate_status": "not_run",
+      "heuristic_control_result": {
+        "scope_top1_mismatch": null,
+        "scored": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:transferase_methyl",
+      "proposed_mechanism_fingerprint": "transferase_methyl",
+      "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
+      "rank": 9,
+      "reaction_mechanism_evidence_status": "specific_reaction_context_present",
+      "reaction_references": {
+        "reaction_record_count": 4,
+        "rhea_ids": [
+          "RHEA:19613",
+          "RHEA:23136",
+          "RHEA:53924"
+        ],
+        "specific_reaction_record_count": 3
+      },
+      "ready_for_label_import": false,
+      "representation_control_result": {
+        "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P71119",
+        "baseline_top_embedding_cosine": 0.9103,
+        "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P71119",
+        "comparison_top_embedding_cosine": 0.9424,
+        "import_blocker": null,
+        "process_status": "adjudicated_from_8m_vs_largest_feasible_esm2",
+        "stability_flags": [
+          "comparison_embedding_backend_fallback_used"
+        ],
+        "status": "representation_control_adjudicated_review_only"
+      },
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "rejected_active_site_evidence_missing",
+        "human_expert_required": false,
+        "terminal": true
+      },
+      "sequence_duplicate_screen_result": {
+        "backend_name": "mmseqs2_easy_search",
+        "backend_search_complete": true,
+        "backend_search_status": "no_near_duplicate_signal",
+        "bounded_current_reference_status": "current_reference_backend_no_signal",
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "top_alignment_hits": [
+          {
+            "alignment_identity": 0.2129,
+            "length_coverage": 0.8175,
+            "matched_m_csa_entry_ids": [
+              "m_csa:795"
+            ],
+            "reference_accession": "P71119",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1787,
+            "length_coverage": 0.9886,
+            "matched_m_csa_entry_ids": [
+              "m_csa:216"
+            ],
+            "reference_accession": "P00918",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1711,
+            "length_coverage": 0.943,
+            "matched_m_csa_entry_ids": [
+              "m_csa:324"
+            ],
+            "reference_accession": "P00940",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          }
+        ]
+      },
+      "source_id": "O95050",
+      "source_type": "UniProtKB/Swiss-Prot",
+      "structure_references": {
+        "alphafold_ids": [
+          "O95050"
+        ],
+        "pdb_reference_count": 1,
+        "pdb_reference_examples": [
+          "2A14"
+        ],
+        "structure_mapping_status": "not_mapped_for_heuristic_control"
+      },
+      "terminal_rationale": "O95050 has only binding-context evidence in the selected pilot packet, so explicit catalytic residue evidence is missing.",
+      "terminal_status": "rejected_active_site_evidence_missing",
+      "unresolved_evidence_for_deferred": []
+    },
+    {
+      "accession": "P51580",
+      "active_site_evidence_references": {
+        "doi_ids": [],
+        "interpro_ids": [],
+        "pmids": [],
+        "uniprot_feature_evidence": []
+      },
+      "active_site_evidence_source_type": "binding_context_only_no_explicit_catalytic_residue",
+      "active_site_residue_evidence_status": "binding_context_only",
+      "active_site_residue_positions": [],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P51580",
+      "factory_gate_status": "not_run",
+      "heuristic_control_result": {
+        "scope_top1_mismatch": null,
+        "scored": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:transferase_methyl",
+      "proposed_mechanism_fingerprint": "transferase_methyl",
+      "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
+      "rank": 10,
+      "reaction_mechanism_evidence_status": "specific_reaction_context_present",
+      "reaction_references": {
+        "reaction_record_count": 3,
+        "rhea_ids": [
+          "RHEA:12609",
+          "RHEA:56580"
+        ],
+        "specific_reaction_record_count": 2
+      },
+      "ready_for_label_import": false,
+      "representation_control_result": {
+        "baseline_embedding_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P09147",
+        "baseline_top_embedding_cosine": 0.8325,
+        "comparison_embedding_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P71447",
+        "comparison_top_embedding_cosine": 0.9473,
+        "import_blocker": "representation_stability_changed_requires_review",
+        "process_status": "adjudicated_from_8m_vs_largest_feasible_esm2",
+        "stability_flags": [
+          "nearest_reference_changed",
+          "nearest_reference_entry_ids_changed",
+          "comparison_embedding_backend_fallback_used"
+        ],
+        "status": "representation_stability_changed_requires_review"
+      },
+      "review_decision": {
+        "decision_source": "automation_terminal_decision_from_existing_pilot_artifacts",
+        "decision_status": "rejected_active_site_evidence_missing",
+        "human_expert_required": false,
+        "terminal": true
+      },
+      "sequence_duplicate_screen_result": {
+        "backend_name": "mmseqs2_easy_search",
+        "backend_search_complete": true,
+        "backend_search_status": "no_near_duplicate_signal",
+        "bounded_current_reference_status": "current_reference_backend_no_signal",
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "top_alignment_hits": [
+          {
+            "alignment_identity": 0.2219,
+            "length_coverage": 0.7249,
+            "matched_m_csa_entry_ids": [
+              "m_csa:188"
+            ],
+            "reference_accession": "P09147",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.2,
+            "length_coverage": 0.902,
+            "matched_m_csa_entry_ids": [
+              "m_csa:206"
+            ],
+            "reference_accession": "P71447",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          },
+          {
+            "alignment_identity": 0.1714,
+            "length_coverage": 0.9306,
+            "matched_m_csa_entry_ids": [
+              "m_csa:335"
+            ],
+            "reference_accession": "O58403",
+            "verification_status": "alignment_no_near_duplicate_signal"
+          }
+        ]
+      },
+      "source_id": "P51580",
+      "source_type": "UniProtKB/Swiss-Prot",
+      "structure_references": {
+        "alphafold_ids": [
+          "P51580"
+        ],
+        "pdb_reference_count": 2,
+        "pdb_reference_examples": [
+          "2BZG",
+          "2H11"
+        ],
+        "structure_mapping_status": "not_mapped_for_heuristic_control"
+      },
+      "terminal_rationale": "P51580 has only binding-context evidence in the selected pilot packet, so explicit catalytic residue evidence is missing.",
+      "terminal_status": "rejected_active_site_evidence_missing",
+      "unresolved_evidence_for_deferred": []
+    }
+  ],
+  "warnings": [
+    "terminal pilot decisions are review/import decisions only; they do not validate enzyme function or authorize countable labels"
+  ]
+}

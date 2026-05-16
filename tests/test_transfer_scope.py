@@ -61,6 +61,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
+    build_external_source_pilot_terminal_decisions,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
@@ -6688,6 +6689,255 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 and row["criterion_blockers"]
                 for row in criteria["rows"]
             )
+        )
+
+    def test_external_pilot_terminal_decisions_assign_one_status_per_row(
+        self,
+    ) -> None:
+        decisions = build_external_source_pilot_terminal_decisions(
+            pilot_active_site_evidence_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_active_site_evidence_decisions"
+                },
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "P12345",
+                        "entry_id": "uniprot:P12345",
+                        "lane_id": "external_source:lyase",
+                        "protein_name": "active-site supported lyase",
+                        "active_site_evidence_source_category": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "active_site_feature_positions": [
+                            {
+                                "begin": 72,
+                                "end": 72,
+                                "description": "Nucleophile",
+                                "evidence": [
+                                    {"source": "PubMed", "id": "123456"}
+                                ],
+                            }
+                        ],
+                        "reaction_mechanism_evidence_status": (
+                            "specific_reaction_context_present"
+                        ),
+                        "rhea_ids": ["RHEA:12345"],
+                        "backend_sequence_backend_name": "mmseqs2_easy_search",
+                        "backend_sequence_search_complete": True,
+                        "backend_sequence_search_status": (
+                            "no_near_duplicate_signal"
+                        ),
+                        "sequence_holdout_backend_search_status": (
+                            "current_reference_backend_no_signal"
+                        ),
+                        "broader_duplicate_screening_status": (
+                            "broader_duplicate_screening_required"
+                        ),
+                        "representation_control_status": (
+                            "representation_control_issue"
+                        ),
+                        "import_readiness_blockers": [
+                            "broader_duplicate_screening_required",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    },
+                    {
+                        "rank": 2,
+                        "accession": "P67890",
+                        "entry_id": "uniprot:P67890",
+                        "lane_id": "external_source:hydrolase",
+                        "protein_name": "binding-only hydrolase",
+                        "active_site_evidence_source_category": (
+                            "binding_context_only"
+                        ),
+                        "active_site_feature_positions": [],
+                        "reaction_mechanism_evidence_status": (
+                            "specific_reaction_context_present"
+                        ),
+                        "rhea_ids": ["RHEA:67890"],
+                        "sequence_holdout_backend_search_status": (
+                            "current_reference_backend_no_signal"
+                        ),
+                        "broader_duplicate_screening_status": (
+                            "broader_duplicate_screening_required"
+                        ),
+                        "representation_control_status": (
+                            "representation_control_issue"
+                        ),
+                        "import_readiness_blockers": [
+                            "pilot_explicit_active_site_evidence_missing"
+                        ],
+                    },
+                    {
+                        "rank": 3,
+                        "accession": "P11111",
+                        "entry_id": "uniprot:P11111",
+                        "lane_id": "external_source:transferase",
+                        "protein_name": "near duplicate transferase",
+                        "active_site_evidence_source_category": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "active_site_feature_positions": [
+                            {
+                                "begin": 10,
+                                "end": 10,
+                                "description": "Proton acceptor",
+                                "evidence": [
+                                    {
+                                        "source": "PROSITE-ProRule",
+                                        "id": "PRU10001",
+                                    }
+                                ],
+                            }
+                        ],
+                        "reaction_mechanism_evidence_status": (
+                            "specific_reaction_context_present"
+                        ),
+                        "rhea_ids": ["RHEA:11111"],
+                        "sequence_holdout_backend_search_status": (
+                            "current_reference_backend_no_signal"
+                        ),
+                        "broader_duplicate_screening_status": (
+                            "broader_duplicate_screening_required"
+                        ),
+                        "representation_control_status": (
+                            "representation_control_issue"
+                        ),
+                        "import_readiness_blockers": [],
+                    },
+                ],
+            },
+            pilot_success_criteria={
+                "metadata": {"method": "external_source_pilot_success_criteria"},
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "full_label_factory_gate_status": "not_run",
+                        "criterion_blockers": ["review_decision_not_terminal"],
+                    },
+                    {
+                        "accession": "P67890",
+                        "full_label_factory_gate_status": "not_run",
+                        "criterion_blockers": ["active_site_source_unresolved"],
+                    },
+                    {
+                        "accession": "P11111",
+                        "full_label_factory_gate_status": "not_run",
+                        "criterion_blockers": ["review_decision_not_terminal"],
+                    },
+                ],
+            },
+            pilot_representation_adjudication={
+                "metadata": {
+                    "method": "external_source_pilot_representation_adjudication"
+                },
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "representation_control_adjudication_status": (
+                            "representation_stability_changed_requires_review"
+                        ),
+                        "stability_flags": ["nearest_reference_changed"],
+                    },
+                    {
+                        "accession": "P11111",
+                        "representation_control_adjudication_status": (
+                            "representation_near_duplicate_holdout"
+                        ),
+                        "representation_import_blocker": (
+                            "representation_near_duplicate_holdout"
+                        ),
+                    },
+                ],
+            },
+            pilot_evidence_dossiers={
+                "metadata": {
+                    "method": "external_source_pilot_evidence_dossier"
+                },
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "heuristic_control": {
+                            "scored": True,
+                            "scope_top1_mismatch": False,
+                            "top1_fingerprint_id": "lyase",
+                        },
+                        "sequence_evidence": {
+                            "backend_name": "mmseqs2_easy_search",
+                            "top_alignment_hits": [],
+                        },
+                    },
+                    {
+                        "accession": "P67890",
+                        "heuristic_control": {"scored": False},
+                        "sequence_evidence": {},
+                    },
+                    {
+                        "accession": "P11111",
+                        "heuristic_control": {"scored": True},
+                        "sequence_evidence": {},
+                    },
+                ],
+            },
+            external_structural_tm_holdout_path={
+                "metadata": {"method": "external_structural_tm_holdout_path"},
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "alphafold_ids": ["P12345"],
+                        "pdb_reference_examples": ["1ABC"],
+                        "pdb_reference_count": 1,
+                    }
+                ],
+            },
+            max_rows=3,
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
+        )
+
+        self.assertEqual(
+            decisions["metadata"]["method"],
+            "external_source_pilot_terminal_decisions",
+        )
+        self.assertEqual(
+            decisions["metadata"]["milestone"],
+            "external_pilot_terminal_decisions_v1",
+        )
+        self.assertEqual(decisions["metadata"]["terminal_decision_count"], 3)
+        self.assertEqual(decisions["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            decisions["metadata"]["terminal_status_counts"],
+            {
+                "deferred_requires_human_expert": 1,
+                "rejected_active_site_evidence_missing": 1,
+                "rejected_duplicate_or_near_duplicate": 1,
+            },
+        )
+        self.assertTrue(
+            all(row["review_decision"]["terminal"] for row in decisions["rows"])
+        )
+        self.assertEqual(
+            decisions["rows"][0]["active_site_evidence_references"]["pmids"],
+            ["123456"],
+        )
+        self.assertTrue(
+            decisions["rows"][0]["unresolved_evidence_for_deferred"]
+        )
+        self.assertEqual(
+            decisions["rows"][1]["terminal_status"],
+            "rejected_active_site_evidence_missing",
+        )
+        self.assertEqual(
+            decisions["rows"][2]["terminal_status"],
+            "rejected_duplicate_or_near_duplicate",
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in decisions["rows"])
         )
 
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(

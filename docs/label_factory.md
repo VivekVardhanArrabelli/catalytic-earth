@@ -788,11 +788,12 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json`,
   `artifacts/v3_external_source_pilot_candidate_priority_1025.json`,
   `artifacts/v3_external_source_pilot_review_decision_export_1025.json`,
+  `artifacts/v3_external_source_pilot_terminal_decisions_1025.json`,
   `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
   candidates, route two exact-reference overlaps to holdout controls, pass the
-  67/67 external transfer gate for evidence collection under the typed
+  68/68 external transfer gate for evidence collection under the typed
   `ExternalSourceTransferGateInputs.v1` contract, pass the lane-balance
   audit across six query lanes, queue 25 review-only active-site evidence rows,
   defer five rows, sample all 25 ready rows for UniProtKB active-site evidence,
@@ -848,6 +849,10 @@ Current 1,025-preview state:
   the refreshed pilot packet/dossiers carry backend no-signal status for all
   selected rows without retaining stale complete-near-duplicate sequence
   blockers.
+  The pilot terminal-decision artifact now converts the 10 selected rows into
+  explicit non-countable terminal statuses: 4 duplicate/near-duplicate
+  rejections, 3 active-site-evidence-missing rejections, and 3 human-expert
+  deferrals, with 0 import-ready candidates.
   `artifacts/v3_external_source_reaction_evidence_sample_1025.json`
   adds bounded Rhea reaction context for all 30 candidates while keeping every
   row non-countable and outside any reviewed decision artifact; its companion
