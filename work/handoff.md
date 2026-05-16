@@ -178,15 +178,14 @@ unless the user explicitly reverses the override.
 
 The prior push/recovery blocker is closed on the latest synced repo state:
 local `main` started this run aligned with `origin/main`, and no credential
-blocker was present at start. Wrap-up push is blocked again by local GitHub
-credentials after the current repair-control commit was created on top of the
-still-local `8a0c191` commit. `git push origin main` failed with
+blocker was present at start. Wrap-up push became blocked again after the
+current repair-control update was prepared: `git push origin main` failed with
 `fatal: could not read Username for 'https://github.com': Device not configured`.
 `gh auth status` reports the default token for `VivekVardhanArrabelli` is
 invalid and recommends `gh auth login -h github.com`. Local `main` is coherent
-and currently ahead of `origin/main`. Do not start a parallel repair run; the
-next run should push after credentials are repaired or continue from this
-local-ahead state if still present.
+but ahead of `origin/main`; do not start a parallel repair run. The next run
+should push after credentials are repaired or continue from this local-ahead
+state if still present.
 
 ## Start-of-Run Confidence Call
 
