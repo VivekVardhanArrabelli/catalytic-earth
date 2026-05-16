@@ -73,8 +73,9 @@ the override.
 
 Recorded for the 2026-05-16T05:47:16Z run after recovering a stale directory
 lock whose recorded PID (`33199`) was no longer alive, confirming the worktree
-was clean, syncing clean `origin/main`, and passing startup gates (`426` unit
-tests passed and `validate` passed with 679 curated labels):
+was clean, syncing clean `origin/main`, passing startup gates (`426` unit
+tests passed and `validate` passed with 679 curated labels), and passing wrap
+checks (`428` unit tests passed and `validate` passed with 679 curated labels):
 
 - M-CSA-only count growth: No. The accepted countable slice remains 1,000
   with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,

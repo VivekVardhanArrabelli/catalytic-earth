@@ -25,7 +25,7 @@ Generated from `work/progress_log.jsonl`.
 ## Progress Counters
 
 - Artifact references logged: 1421
-- Evidence references logged: 1065
+- Evidence references logged: 1067
 
 ## Recent Entries
 
@@ -114,7 +114,7 @@ Generated from `work/progress_log.jsonl`.
 - Started: 2026-05-16T05:47:16Z
 - Ended: 2026-05-16T06:25:21Z
 - Artifacts: work/handoff.md
-- Evidence: recovered stale directory lock after PID 33199 was dead, startup 426 unit tests passed, validate passed with 679 curated labels, latest handoff keeps M-CSA strict TM repair closed and external structural pilot next
+- Evidence: recovered stale directory lock after PID 33199 was dead, startup 426 unit tests passed, startup validate passed with 679 curated labels, latest handoff keeps M-CSA strict TM repair closed and external structural pilot next, wrap 428 unit tests passed, wrap validate passed with 679 curated labels
 - Notes: No M-CSA retry artifacts landed; docs checked against latest origin/main.
 
 ## Expectation Updates
