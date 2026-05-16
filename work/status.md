@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 139
-- Measured elapsed time: 4664.9 minutes (77.75 hours)
+- Entries: 140
+- Measured elapsed time: 4678.3 minutes (77.97 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 230.5 measured minutes (3.84 hours)
-- ops: 62.1 measured minutes (1.04 hours)
+- ops: 75.5 measured minutes (1.26 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1596
-- Evidence references logged: 1221
+- Artifact references logged: 1599
+- Evidence references logged: 1227
 
 ## Recent Entries
-
-### 2026-05-16T15:22:11.987493+00:00 - external-transfer-spof-hardening
-
-- Task: Resolve external pilot needs_review rows
-- Time mode: measured
-- Measured minutes: 17.783
-- Started: 2026-05-16T15:04:24Z
-- Ended: 2026-05-16T15:22:11Z
-- Artifacts: artifacts/v3_external_source_pilot_needs_review_resolution_1025.json, artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json, artifacts/v3_external_source_pilot_human_expert_review_queue_resolved_1025.json, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 358 unit tests passed, startup validate passed with 679 curated labels, targeted UniRef90/50 mapping found 0 shared nearest-reference clusters, 6 needs_review rows resolved as rejected_representation_conflict, 0 import-ready rows and 0 countable external labels, final 359 unit tests passed, final validate passed, compileall passed, git diff check passed
-- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; no external rows became countable or import-ready.
 
 ### 2026-05-16T16:17:35.092187+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_source_pilot_akr_nadp_repair_control_1025.json, artifacts/v3_external_source_pilot_akr_nadp_import_safety_adjudication_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 368 unit tests passed, startup validate passed with 679 curated labels, C9JRZ8 AKR/NADP repair control staged as review-only sequence-derived control, C9JRZ8 import-safety adjudication repaired representation near-duplicate conflict, post-repair C9JRZ8 status remains needs_review, 0 import-ready rows, 0 countable external labels, focused 104 tests passed, final 370 unit tests passed, final validate passed, compileall passed, git diff check passed
 - Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. GitHub auth remains invalid locally, so push may remain blocked until credentials are refreshed.
+
+### 2026-05-16T23:21:31.567236+00:00 - ops
+
+- Task: Recover recurring GitHub token fallback
+- Time mode: measured
+- Measured minutes: 13.383
+- Started: 2026-05-16T23:08:00Z
+- Ended: 2026-05-16T23:21:23Z
+- Artifacts: work/handoff.md, work/status.md, local .git/config credential helper stack
+- Evidence: gh auth valid in interactive session, osxkeychain credential available, git push origin main succeeded, HEAD equals origin/main, local helper stack now tries osxkeychain before gh, no stale lock remains
+- Notes: Recovered the second recurring push blocker. The helper was installed, but scheduled agents reported invalid gh token; added a worktree-local credential fallback order rather than relying on gh alone.
 
 ## Expectation Updates
 

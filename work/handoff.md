@@ -206,29 +206,17 @@ before a lane-specific control.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
 unless the user explicitly reverses the override.
 
-GitHub credential hygiene remains a wrap-up risk on this workstation:
-`git config --get-all credential.https://github.com.helper` includes
-`gh auth git-credential`, but `gh auth status` reports the default token for
-`VivekVardhanArrabelli` as invalid. Do not start an interactive login unless the
-user explicitly asks. If push fails, keep the coherent local commit safe and
-record the exact remote/auth error.
-
-Current 2026-05-16T21:47:33Z wrap-up blocker: the coherent local commit for
-the P34949/Q9BXD5 import-safety adjudication work is safe, but `git push origin
-main` failed with the exact error
-`fatal: could not read Username for 'https://github.com': Device not configured`.
-The `gh auth git-credential` helper is installed for `https://github.com`, so
-the remaining blocker is the invalid GitHub CLI token, not the credential-helper
-configuration.
-
-Current 2026-05-16T18:02:49-05:00 wrap-up blocker: the coherent local commit for the C9JRZ8 AKR/NADP import-safety adjudication work is safe on
-local `main`, but `git push origin main` again failed with the exact error
-`fatal: could not read Username for 'https://github.com': Device not configured`.
-`gh auth status` still reports the default GitHub token as invalid, while
-`git config --get-all credential.https://github.com.helper` includes
-`gh auth git-credential`; the remaining blocker is the invalid GitHub CLI
-token, not helper configuration. Local `main` is ahead of `origin/main` by the
-previous safe local commit.
+GitHub credential hygiene was recovered after the repeated wrap-up blockers.
+Local `main` is aligned with `origin/main` at commit `09b0d36`, the worktree is
+clean, and no automation lock should remain. The observed root cause is an
+environment-specific credential mismatch: scheduled agents can see the
+installed `gh auth git-credential` helper but still report an invalid `gh`
+token, while this interactive session can read both a valid `gh` token and a
+valid macOS `osxkeychain` GitHub credential. To reduce the single point of
+failure, this worktree's local `.git/config` now resets the GitHub HTTPS helper
+list to try `osxkeychain` first and `gh auth git-credential` second. If a future
+push still fails, do not loop on `gh auth setup-git`; inspect both helpers,
+keep any coherent local commit safe, and record the exact auth/remote error.
 
 ## Start-of-Run Confidence Call
 
