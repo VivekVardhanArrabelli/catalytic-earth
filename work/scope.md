@@ -206,8 +206,12 @@ Current expectation:
   holdouts, 3 are rejected for missing explicit active-site residue evidence,
   and 3 are deferred for human expert adjudication. Those 3 deferred rows are
   now packaged in a review-only human/expert queue with exact unresolved
-  evidence, expert questions, and remaining non-human blockers. The external
-  structural path now has a concrete review-only cluster index for the same 10
+  evidence, expert questions, and remaining non-human blockers. A follow-on
+  confidence audit now conservatively re-checks all 10 terminal decisions and
+  normalizes weak hard calls: 4 current decisions remain confident, 3
+  representation-only duplicate rejections move to low-confidence
+  `needs_review`, and the normalized review queue now carries 6 exact
+  questions. The external structural path now has a concrete review-only cluster index for the same 10
   selected rows: all 10 AlphaFold coordinate sidecars are materialized,
   Foldseek completed, nearest-neighbor coverage is 10/10, and the selected
   pilot forms nine `TM >=0.7` clusters with only `O95050`/`P51580` grouped. It

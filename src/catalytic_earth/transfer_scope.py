@@ -8769,6 +8769,15 @@ EXTERNAL_PILOT_TERMINAL_STATUSES = (
     "rejected_factory_gate_failure",
     "deferred_requires_human_expert",
 )
+EXTERNAL_PILOT_NORMALIZED_DECISION_STATUSES = (
+    "import_ready_candidate",
+    "rejected_active_site_evidence_missing",
+    "rejected_duplicate_or_near_duplicate",
+    "rejected_mechanism_mismatch",
+    "rejected_representation_conflict",
+    "rejected_factory_gate_failure",
+    "needs_review",
+)
 PILOT_SUCCESS_CRITERIA_PROCESS_BLOCKERS = {
     "backend_sequence_search_incomplete",
     "broader_duplicate_screening_required",
@@ -10299,6 +10308,700 @@ def build_external_source_pilot_human_expert_review_queue(
             )
         ],
     }
+
+
+def audit_external_source_pilot_decision_confidence(
+    *,
+    pilot_terminal_decisions: dict[str, Any],
+    pilot_active_site_evidence_decisions: dict[str, Any],
+    pilot_evidence_dossiers: dict[str, Any],
+    pilot_representation_adjudication: dict[str, Any],
+    pilot_review_decision_export: dict[str, Any] | None = None,
+    pilot_human_expert_review_queue: dict[str, Any] | None = None,
+    external_structural_cluster_index: dict[str, Any] | None = None,
+    external_structural_tm_diverse_split_plan: dict[str, Any] | None = None,
+    external_transfer_gate: dict[str, Any] | None = None,
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Audit whether selected-pilot terminal decisions are defensible."""
+
+    active_by_accession = _external_first_row_by_accession(
+        pilot_active_site_evidence_decisions
+    )
+    dossier_by_accession = _external_first_row_by_accession(pilot_evidence_dossiers)
+    representation_by_accession = _external_first_row_by_accession(
+        pilot_representation_adjudication
+    )
+    review_by_accession = _external_first_row_by_accession(
+        pilot_review_decision_export or {}
+    )
+    expert_queue_by_accession = _external_first_row_by_accession(
+        pilot_human_expert_review_queue or {}
+    )
+    structure_by_accession = _external_first_row_by_accession(
+        external_structural_cluster_index or {}
+    )
+    split_by_accession = _external_first_row_by_accession(
+        external_structural_tm_diverse_split_plan or {}
+    )
+    source_artifacts = _external_pilot_confidence_source_artifacts(artifact_lineage)
+
+    terminal_rows = [
+        row
+        for row in pilot_terminal_decisions.get("rows", []) or []
+        if isinstance(row, dict)
+    ][:max_rows]
+    rows: list[dict[str, Any]] = []
+    for terminal_row in terminal_rows:
+        accession = _normalize_accession(terminal_row.get("accession"))
+        if not accession:
+            continue
+        active_row = active_by_accession.get(accession, {})
+        dossier_row = dossier_by_accession.get(accession, {})
+        representation_row = representation_by_accession.get(accession, {})
+        review_row = review_by_accession.get(accession, {})
+        expert_row = expert_queue_by_accession.get(accession, {})
+        structure_row = structure_by_accession.get(accession, {})
+        split_row = split_by_accession.get(accession, {})
+        assessment = _external_pilot_confidence_assessment(
+            terminal_row=terminal_row,
+            active_row=active_row,
+            representation_row=representation_row,
+            expert_queue_row=expert_row,
+        )
+        sequence_result = terminal_row.get("sequence_duplicate_screen_result", {})
+        if not isinstance(sequence_result, dict):
+            sequence_result = {}
+        review_decision = review_row.get("decision", {})
+        if not isinstance(review_decision, dict):
+            review_decision = {}
+        rows.append(
+            {
+                "rank": terminal_row.get("rank"),
+                "accession": accession,
+                "entry_id": terminal_row.get("entry_id") or f"uniprot:{accession}",
+                "protein_name": terminal_row.get("protein_name"),
+                "lane_id": terminal_row.get("lane_id"),
+                "current_decision_status": terminal_row.get("terminal_status"),
+                "confidence_status": assessment["confidence_status"],
+                "recommended_revised_decision": assessment[
+                    "recommended_revised_decision"
+                ],
+                "confidence_basis": assessment["confidence_basis"],
+                "unresolved_question": assessment["unresolved_question"],
+                "active_site_evidence_status": terminal_row.get(
+                    "active_site_residue_evidence_status"
+                ),
+                "active_site_evidence_kind": terminal_row.get(
+                    "active_site_evidence_source_type"
+                ),
+                "active_site_evidence_explicit": (
+                    terminal_row.get("active_site_residue_evidence_status")
+                    == "explicit_active_site_source_present"
+                ),
+                "active_site_residue_positions": terminal_row.get(
+                    "active_site_residue_positions", []
+                ),
+                "active_site_evidence_references": terminal_row.get(
+                    "active_site_evidence_references", {}
+                ),
+                "reaction_mechanism_evidence_status": terminal_row.get(
+                    "reaction_mechanism_evidence_status"
+                ),
+                "reaction_references": terminal_row.get("reaction_references", {}),
+                "duplicate_near_duplicate_evidence": (
+                    _external_pilot_duplicate_evidence(
+                        terminal_row=terminal_row,
+                        representation_row=representation_row,
+                        structure_row=structure_row,
+                        split_row=split_row,
+                    )
+                ),
+                "representation_control_evidence": (
+                    _external_pilot_representation_evidence(representation_row)
+                ),
+                "heuristic_control_evidence": terminal_row.get(
+                    "heuristic_control_result", {}
+                ),
+                "sequence_duplicate_screen_result": sequence_result,
+                "review_decision_export_status": review_decision.get(
+                    "decision_status", "no_decision"
+                ),
+                "factory_gate_status": terminal_row.get("factory_gate_status"),
+                "external_transfer_gate_status": _external_transfer_gate_status(
+                    external_transfer_gate
+                ),
+                "remaining_import_blockers": _external_pilot_remaining_blockers(
+                    terminal_row=terminal_row,
+                    active_row=active_row,
+                    dossier_row=dossier_row,
+                    representation_row=representation_row,
+                ),
+                "sources_checked": source_artifacts,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    confidence_counts = Counter(row["confidence_status"] for row in rows)
+    recommended_counts = Counter(row["recommended_revised_decision"] for row in rows)
+    needs_review_rows = [
+        row for row in rows if row["recommended_revised_decision"] == "needs_review"
+    ]
+    low_confidence_rows = [
+        row for row in rows if row["confidence_status"] == "low_confidence"
+    ]
+    return {
+        "metadata": {
+            "method": "external_source_pilot_decision_confidence_audit",
+            "blocker_removed": "external_pilot_terminal_decision_confidence_audited",
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "confidence_status_counts": dict(sorted(confidence_counts.items())),
+            "recommended_decision_status_counts": dict(
+                sorted(recommended_counts.items())
+            ),
+            "needs_review_count": len(needs_review_rows),
+            "low_confidence_current_decision_count": len(low_confidence_rows),
+            "allowed_confidence_statuses": [
+                "confident",
+                "low_confidence",
+                "needs_review",
+            ],
+            "allowed_normalized_decision_statuses": list(
+                EXTERNAL_PILOT_NORMALIZED_DECISION_STATUSES
+            ),
+            "source_terminal_decisions_method": pilot_terminal_decisions.get(
+                "metadata", {}
+            ).get("method"),
+            "source_pilot_active_site_evidence_decisions_method": (
+                pilot_active_site_evidence_decisions.get("metadata", {}).get("method")
+            ),
+            "source_pilot_evidence_dossiers_method": pilot_evidence_dossiers.get(
+                "metadata", {}
+            ).get("method"),
+            "source_pilot_representation_adjudication_method": (
+                pilot_representation_adjudication.get("metadata", {}).get("method")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": sorted(
+            rows, key=lambda row: (int(row.get("rank") or 9999), row["accession"])
+        ),
+        "warnings": [
+            (
+                "confidence audit rows are review-only; they can downgrade weak "
+                "hard decisions to needs_review but cannot authorize import"
+            )
+        ],
+    }
+
+
+def build_external_source_pilot_decisions_review_normalized(
+    *,
+    pilot_decision_confidence_audit: dict[str, Any],
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Normalize pilot decisions to the accepted review/import status vocabulary."""
+
+    rows: list[dict[str, Any]] = []
+    for audit_row in [
+        row
+        for row in pilot_decision_confidence_audit.get("rows", []) or []
+        if isinstance(row, dict)
+    ][:max_rows]:
+        normalized_status = str(audit_row.get("recommended_revised_decision") or "")
+        if normalized_status not in EXTERNAL_PILOT_NORMALIZED_DECISION_STATUSES:
+            normalized_status = "needs_review"
+        rows.append(
+            {
+                "rank": audit_row.get("rank"),
+                "accession": audit_row.get("accession"),
+                "entry_id": audit_row.get("entry_id"),
+                "protein_name": audit_row.get("protein_name"),
+                "lane_id": audit_row.get("lane_id"),
+                "original_terminal_status": audit_row.get(
+                    "current_decision_status"
+                ),
+                "normalized_decision_status": normalized_status,
+                "confidence_status": audit_row.get("confidence_status"),
+                "confidence_basis": audit_row.get("confidence_basis"),
+                "unresolved_question": audit_row.get("unresolved_question"),
+                "active_site_evidence_status": audit_row.get(
+                    "active_site_evidence_status"
+                ),
+                "duplicate_near_duplicate_evidence": audit_row.get(
+                    "duplicate_near_duplicate_evidence", {}
+                ),
+                "representation_control_evidence": audit_row.get(
+                    "representation_control_evidence", {}
+                ),
+                "heuristic_control_evidence": audit_row.get(
+                    "heuristic_control_evidence", {}
+                ),
+                "factory_gate_status": audit_row.get("factory_gate_status"),
+                "remaining_import_blockers": audit_row.get(
+                    "remaining_import_blockers", []
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_status": "external_pilot_normalized_decision_review_only",
+            }
+        )
+
+    status_counts = Counter(row["normalized_decision_status"] for row in rows)
+    return {
+        "metadata": {
+            "method": "external_source_pilot_decisions_review_normalized",
+            "blocker_removed": "external_pilot_decisions_normalized_after_confidence_audit",
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": sum(
+                1
+                for row in rows
+                if row["normalized_decision_status"] == "import_ready_candidate"
+            ),
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [str(row.get("accession")) for row in rows],
+            "normalized_decision_status_counts": dict(sorted(status_counts.items())),
+            "needs_review_count": status_counts.get("needs_review", 0),
+            "allowed_normalized_decision_statuses": list(
+                EXTERNAL_PILOT_NORMALIZED_DECISION_STATUSES
+            ),
+            "source_confidence_audit_method": pilot_decision_confidence_audit.get(
+                "metadata", {}
+            ).get("method"),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "normalized pilot decisions preserve review-only status and "
+                "do not create countable external labels"
+            )
+        ],
+    }
+
+
+def build_external_source_pilot_human_expert_review_queue_normalized(
+    *,
+    normalized_pilot_decisions: dict[str, Any],
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Route every normalized needs_review pilot row into one review queue."""
+
+    needs_review_rows = [
+        row
+        for row in normalized_pilot_decisions.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("normalized_decision_status") == "needs_review"
+    ][:max_rows]
+    rows: list[dict[str, Any]] = []
+    for row in needs_review_rows:
+        unresolved_question = str(row.get("unresolved_question") or "").strip()
+        review_questions = [unresolved_question] if unresolved_question else [
+            "What evidence is required to resolve this external pilot row?"
+        ]
+        rows.append(
+            {
+                "rank": row.get("rank"),
+                "accession": row.get("accession"),
+                "entry_id": row.get("entry_id"),
+                "protein_name": row.get("protein_name"),
+                "lane_id": row.get("lane_id"),
+                "review_packet_status": "needs_review_decision",
+                "original_terminal_status": row.get("original_terminal_status"),
+                "normalized_decision_status": row.get("normalized_decision_status"),
+                "confidence_status": row.get("confidence_status"),
+                "confidence_basis": row.get("confidence_basis"),
+                "unresolved_question": unresolved_question,
+                "human_expert_review_questions": review_questions,
+                "non_human_blockers_remaining": [
+                    blocker
+                    for blocker in row.get("remaining_import_blockers", []) or []
+                    if blocker
+                    in {
+                        "broader_duplicate_screening_required",
+                        "full_label_factory_gate_not_run",
+                        "external_review_decision_artifact_not_built",
+                    }
+                ],
+                "active_site_evidence_status": row.get(
+                    "active_site_evidence_status"
+                ),
+                "duplicate_near_duplicate_evidence": row.get(
+                    "duplicate_near_duplicate_evidence", {}
+                ),
+                "representation_control_evidence": row.get(
+                    "representation_control_evidence", {}
+                ),
+                "heuristic_control_evidence": row.get(
+                    "heuristic_control_evidence", {}
+                ),
+                "allowed_review_outcomes": [
+                    "expert_accept_import_ready_after_duplicate_and_factory_gates",
+                    "expert_reject_active_site_evidence_missing",
+                    "expert_reject_duplicate_or_near_duplicate",
+                    "expert_reject_mechanism_mismatch",
+                    "expert_reject_representation_conflict",
+                    "expert_defer_requires_additional_evidence",
+                ],
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["non_human_blockers_remaining"]
+    )
+    return {
+        "metadata": {
+            "method": "external_source_pilot_human_expert_review_queue_normalized",
+            "blocker_removed": "all_needs_review_external_pilot_rows_routed",
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "queued_candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [str(row.get("accession")) for row in rows],
+            "review_packet_status_counts": {
+                "needs_review_decision": len(rows)
+            },
+            "non_human_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_normalized_decisions_method": normalized_pilot_decisions.get(
+                "metadata", {}
+            ).get("method"),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "normalized human/expert queue is review-only and cannot create "
+                "import-ready rows without later duplicate screening and gates"
+            )
+        ],
+    }
+
+
+def _external_pilot_confidence_source_artifacts(
+    artifact_lineage: dict[str, Any] | None,
+) -> dict[str, str]:
+    if not isinstance(artifact_lineage, dict):
+        return {}
+    paths = artifact_lineage.get("artifact_paths", {})
+    if not isinstance(paths, dict):
+        return {}
+    return {str(key): str(value) for key, value in sorted(paths.items())}
+
+
+def _external_pilot_confidence_assessment(
+    *,
+    terminal_row: dict[str, Any],
+    active_row: dict[str, Any],
+    representation_row: dict[str, Any],
+    expert_queue_row: dict[str, Any],
+) -> dict[str, str | None]:
+    accession = str(terminal_row.get("accession") or "")
+    terminal_status = str(terminal_row.get("terminal_status") or "")
+    active_status = str(
+        terminal_row.get("active_site_residue_evidence_status")
+        or active_row.get("active_site_evidence_source_category")
+        or ""
+    )
+    if terminal_status == "deferred_requires_human_expert":
+        return {
+            "confidence_status": "needs_review",
+            "recommended_revised_decision": "needs_review",
+            "confidence_basis": (
+                "current decision is already conservative but should use the "
+                "normalized needs_review vocabulary"
+            ),
+            "unresolved_question": _external_pilot_confidence_review_question(
+                terminal_row=terminal_row,
+                expert_queue_row=expert_queue_row,
+            ),
+        }
+    if terminal_status == "rejected_active_site_evidence_missing":
+        if active_status == "binding_context_only" and not terminal_row.get(
+            "active_site_residue_positions"
+        ):
+            return {
+                "confidence_status": "confident",
+                "recommended_revised_decision": (
+                    "rejected_active_site_evidence_missing"
+                ),
+                "confidence_basis": (
+                    "available pilot evidence is binding-context-only with no "
+                    "explicit catalytic or active-site residue source"
+                ),
+                "unresolved_question": None,
+            }
+        return {
+            "confidence_status": "low_confidence",
+            "recommended_revised_decision": "needs_review",
+            "confidence_basis": (
+                "active-site rejection is not fully supported by the available "
+                "source-category fields"
+            ),
+            "unresolved_question": (
+                f"Does {accession} have explicit catalytic or active-site residue "
+                "evidence that was missed by the current pilot artifact?"
+            ),
+        }
+    if terminal_status == "rejected_duplicate_or_near_duplicate":
+        if _external_pilot_representation_near_duplicate_confident(
+            representation_row
+        ):
+            return {
+                "confidence_status": "confident",
+                "recommended_revised_decision": (
+                    "rejected_duplicate_or_near_duplicate"
+                ),
+                "confidence_basis": (
+                    "representation near-duplicate holdout is stable across the "
+                    "baseline and largest feasible ESM-2 controls"
+                ),
+                "unresolved_question": None,
+            }
+        return {
+            "confidence_status": "low_confidence",
+            "recommended_revised_decision": "needs_review",
+            "confidence_basis": (
+                "hard duplicate rejection rests on fallback-only or unstable "
+                "representation evidence while bounded sequence screening shows "
+                "no near-duplicate signal"
+            ),
+            "unresolved_question": (
+                f"Is the representation-only near-duplicate signal for {accession} "
+                "sufficient for rejection, or should it remain a review-only "
+                "representation-control blocker until broader duplicate screening?"
+            ),
+        }
+    if terminal_status in EXTERNAL_PILOT_NORMALIZED_DECISION_STATUSES:
+        return {
+            "confidence_status": "confident",
+            "recommended_revised_decision": terminal_status,
+            "confidence_basis": "current terminal status already uses normalized vocabulary",
+            "unresolved_question": None,
+        }
+    return {
+        "confidence_status": "low_confidence",
+        "recommended_revised_decision": "needs_review",
+        "confidence_basis": "terminal status is outside the accepted normalized vocabulary",
+        "unresolved_question": (
+            f"What normalized external pilot decision should replace {terminal_status} "
+            f"for {accession}?"
+        ),
+    }
+
+
+def _external_pilot_confidence_review_question(
+    *,
+    terminal_row: dict[str, Any],
+    expert_queue_row: dict[str, Any],
+) -> str:
+    questions = expert_queue_row.get("human_expert_review_questions", [])
+    if isinstance(questions, list) and questions:
+        return " ".join(str(question) for question in questions)
+    unresolved = terminal_row.get("unresolved_evidence_for_deferred", [])
+    unresolved_set = {str(item) for item in unresolved or []}
+    if "adjudicate changed nearest-reference representation evidence" in unresolved_set:
+        return (
+            "Does the changed ESM-2 nearest-reference evidence preserve the "
+            "proposed mechanism family, or should this row be rejected as a "
+            "representation conflict?"
+        )
+    if "adjudicate heuristic scope or top1 mismatch" in unresolved_set:
+        return (
+            "Does the structure-local active-site and reaction evidence support "
+            "the proposed mechanism despite the heuristic top1/scope mismatch?"
+        )
+    return (
+        "Is the assembled active-site, reaction, sequence, and representation "
+        "evidence sufficient to resolve this review-only external pilot row?"
+    )
+
+
+def _external_pilot_representation_near_duplicate_confident(
+    representation_row: dict[str, Any],
+) -> bool:
+    if (
+        representation_row.get("representation_control_adjudication_status")
+        != "representation_near_duplicate_holdout"
+    ):
+        return False
+    if representation_row.get("baseline_backend_status") != (
+        "representation_near_duplicate_holdout"
+    ):
+        return False
+    if representation_row.get("comparison_backend_status") != (
+        "representation_near_duplicate_holdout"
+    ):
+        return False
+    if representation_row.get("nearest_reference_stable") is not True:
+        return False
+    if representation_row.get("nearest_reference_entry_ids_stable") is not True:
+        return False
+    baseline = _external_parse_float(representation_row.get("baseline_top_embedding_cosine"))
+    comparison = _external_parse_float(
+        representation_row.get("comparison_top_embedding_cosine")
+    )
+    return bool(
+        baseline is not None
+        and comparison is not None
+        and baseline >= 0.95
+        and comparison >= 0.95
+    )
+
+
+def _external_pilot_duplicate_evidence(
+    *,
+    terminal_row: dict[str, Any],
+    representation_row: dict[str, Any],
+    structure_row: dict[str, Any],
+    split_row: dict[str, Any],
+) -> dict[str, Any]:
+    sequence_result = terminal_row.get("sequence_duplicate_screen_result", {})
+    if not isinstance(sequence_result, dict):
+        sequence_result = {}
+    nearest_neighbor = structure_row.get("nearest_neighbor", {})
+    if not isinstance(nearest_neighbor, dict):
+        nearest_neighbor = {}
+    return {
+        "bounded_current_reference_sequence_status": sequence_result.get(
+            "bounded_current_reference_status"
+        ),
+        "backend_sequence_search_status": sequence_result.get(
+            "backend_search_status"
+        ),
+        "broader_duplicate_screening_status": sequence_result.get(
+            "broader_duplicate_screening_status"
+        ),
+        "top_alignment_hits": sequence_result.get("top_alignment_hits", []),
+        "representation_adjudication_status": representation_row.get(
+            "representation_control_adjudication_status"
+        ),
+        "representation_import_blocker": representation_row.get(
+            "representation_import_blocker"
+        ),
+        "baseline_nearest_reference_accession": representation_row.get(
+            "baseline_nearest_reference_accession"
+        ),
+        "baseline_top_embedding_cosine": representation_row.get(
+            "baseline_top_embedding_cosine"
+        ),
+        "comparison_nearest_reference_accession": representation_row.get(
+            "comparison_nearest_reference_accession"
+        ),
+        "comparison_top_embedding_cosine": representation_row.get(
+            "comparison_top_embedding_cosine"
+        ),
+        "nearest_reference_stable": representation_row.get(
+            "nearest_reference_stable"
+        ),
+        "structural_neighbor_cache_status": structure_row.get(
+            "structural_neighbor_cache_status"
+        ),
+        "nearest_structural_neighbor": nearest_neighbor,
+        "tm_cluster_id": structure_row.get("tm_cluster_id")
+        or split_row.get("tm_cluster_id"),
+        "structural_split_assignment": split_row.get("split"),
+    }
+
+
+def _external_pilot_representation_evidence(
+    representation_row: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "representation_control_adjudication_status": representation_row.get(
+            "representation_control_adjudication_status"
+        ),
+        "representation_control_process_status": representation_row.get(
+            "representation_control_process_status"
+        ),
+        "representation_import_blocker": representation_row.get(
+            "representation_import_blocker"
+        ),
+        "baseline_embedding_backend": representation_row.get(
+            "baseline_embedding_backend"
+        ),
+        "comparison_embedding_backend": representation_row.get(
+            "comparison_embedding_backend"
+        ),
+        "comparison_requested_embedding_backend": representation_row.get(
+            "comparison_requested_embedding_backend"
+        ),
+        "comparison_fallback_used": representation_row.get(
+            "comparison_fallback_used"
+        ),
+        "baseline_nearest_reference_accession": representation_row.get(
+            "baseline_nearest_reference_accession"
+        ),
+        "baseline_top_embedding_cosine": representation_row.get(
+            "baseline_top_embedding_cosine"
+        ),
+        "comparison_nearest_reference_accession": representation_row.get(
+            "comparison_nearest_reference_accession"
+        ),
+        "comparison_top_embedding_cosine": representation_row.get(
+            "comparison_top_embedding_cosine"
+        ),
+        "stability_flags": representation_row.get("stability_flags", []),
+    }
+
+
+def _external_transfer_gate_status(
+    external_transfer_gate: dict[str, Any] | None,
+) -> str:
+    if not isinstance(external_transfer_gate, dict):
+        return "not_checked"
+    metadata = external_transfer_gate.get("metadata", {})
+    if not isinstance(metadata, dict):
+        return "not_checked"
+    if metadata.get("guardrail_clean") is True or not external_transfer_gate.get(
+        "blockers"
+    ):
+        return "review_only_transfer_gate_passed"
+    return "review_only_transfer_gate_failed"
+
+
+def _external_pilot_remaining_blockers(
+    *,
+    terminal_row: dict[str, Any],
+    active_row: dict[str, Any],
+    dossier_row: dict[str, Any],
+    representation_row: dict[str, Any],
+) -> list[str]:
+    blockers = {
+        str(blocker)
+        for source in (
+            terminal_row.get("unresolved_evidence_for_deferred", []),
+            active_row.get("import_readiness_blockers", []),
+            dossier_row.get("remaining_blockers", []),
+            representation_row.get("import_readiness_blockers", []),
+        )
+        for blocker in (source or [])
+        if blocker
+    }
+    if terminal_row.get("factory_gate_status") == "not_run":
+        blockers.add("full_label_factory_gate_not_run")
+    sequence_result = terminal_row.get("sequence_duplicate_screen_result", {})
+    if isinstance(sequence_result, dict) and sequence_result.get(
+        "broader_duplicate_screening_status"
+    ):
+        blockers.add(str(sequence_result["broader_duplicate_screening_status"]))
+    return sorted(blockers)
 
 
 def _external_pilot_active_site_references(

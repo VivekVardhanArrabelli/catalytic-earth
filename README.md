@@ -294,6 +294,17 @@ packages those 3 deferred rows (`O14756`, `P34949`, and `Q6NSJ0`) into a
 review-only expert queue with the exact unresolved evidence, expert question,
 and remaining non-human blockers for each row. It authorizes 0 imports and 0
 countable external labels.
+`artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json`
+audits all 10 selected terminal decisions candidate-by-candidate. It keeps 4
+current decisions confident, marks 3 representation-only duplicate rejections
+low-confidence, and keeps 3 rows in needs-review status. The companion
+`artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json`
+normalizes the review vocabulary to 6 `needs_review`, 3
+`rejected_active_site_evidence_missing`, and 1
+`rejected_duplicate_or_near_duplicate` row, while
+`artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json`
+routes all 6 needs-review rows with exact unresolved questions. These artifacts
+remain review-only and authorize 0 imports and 0 countable external labels.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

@@ -114,6 +114,7 @@ from .transfer_scope import (
     audit_external_source_representation_backend_plan,
     audit_external_source_representation_backend_sample,
     audit_external_source_representation_backend_stability,
+    audit_external_source_pilot_decision_confidence,
     audit_external_source_pilot_representation_adjudication,
     audit_external_source_sequence_alignment_verification,
     audit_external_source_backend_sequence_search,
@@ -146,7 +147,9 @@ from .transfer_scope import (
     build_external_source_pilot_candidate_priority,
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
+    build_external_source_pilot_decisions_review_normalized,
     build_external_source_pilot_human_expert_review_queue,
+    build_external_source_pilot_human_expert_review_queue_normalized,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
@@ -2496,6 +2499,101 @@ def cmd_build_external_source_pilot_human_expert_review_queue(
     write_json(Path(args.out), queue)
     print(
         "Wrote external source pilot human/expert review queue to "
+        f"{args.out} ({queue['metadata']['queued_candidate_count']} queued)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_pilot_decision_confidence(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "pilot_terminal_decisions",
+            "pilot_active_site_evidence_decisions",
+            "pilot_evidence_dossiers",
+            "pilot_representation_adjudication",
+            "pilot_review_decision_export",
+            "pilot_human_expert_review_queue",
+            "external_structural_cluster_index",
+            "external_structural_tm_diverse_split_plan",
+            "external_transfer_gate",
+        ),
+        blocker_removed="external_pilot_terminal_decision_confidence_audited",
+    )
+    audit = audit_external_source_pilot_decision_confidence(
+        pilot_terminal_decisions=artifact_payloads["pilot_terminal_decisions"],
+        pilot_active_site_evidence_decisions=artifact_payloads[
+            "pilot_active_site_evidence_decisions"
+        ],
+        pilot_evidence_dossiers=artifact_payloads["pilot_evidence_dossiers"],
+        pilot_representation_adjudication=artifact_payloads[
+            "pilot_representation_adjudication"
+        ],
+        pilot_review_decision_export=artifact_payloads[
+            "pilot_review_decision_export"
+        ],
+        pilot_human_expert_review_queue=artifact_payloads[
+            "pilot_human_expert_review_queue"
+        ],
+        external_structural_cluster_index=artifact_payloads[
+            "external_structural_cluster_index"
+        ],
+        external_structural_tm_diverse_split_plan=artifact_payloads[
+            "external_structural_tm_diverse_split_plan"
+        ],
+        external_transfer_gate=artifact_payloads["external_transfer_gate"],
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source pilot decision confidence audit to "
+        f"{args.out} ({audit['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_decisions_review_normalized(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        ("pilot_decision_confidence_audit",),
+        blocker_removed="external_pilot_decisions_normalized_after_confidence_audit",
+    )
+    normalized = build_external_source_pilot_decisions_review_normalized(
+        pilot_decision_confidence_audit=artifact_payloads[
+            "pilot_decision_confidence_audit"
+        ],
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), normalized)
+    print(
+        "Wrote normalized external source pilot decisions to "
+        f"{args.out} ({normalized['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_human_expert_review_queue_normalized(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        ("normalized_pilot_decisions",),
+        blocker_removed="all_needs_review_external_pilot_rows_routed",
+    )
+    queue = build_external_source_pilot_human_expert_review_queue_normalized(
+        normalized_pilot_decisions=artifact_payloads["normalized_pilot_decisions"],
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote normalized external source pilot human/expert review queue to "
         f"{args.out} ({queue['metadata']['queued_candidate_count']} queued)"
     )
     return 0
@@ -6713,6 +6811,126 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_expert_queue.set_defaults(
         func=cmd_build_external_source_pilot_human_expert_review_queue
+    )
+
+    external_pilot_decision_confidence = subparsers.add_parser(
+        "audit-external-source-pilot-decision-confidence",
+        help=(
+            "audit confidence in every selected external pilot terminal decision "
+            "before import expansion"
+        ),
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--pilot-terminal-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_terminal_decisions_1025.json"
+        ),
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--pilot-active-site-evidence-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        ),
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--pilot-evidence-dossiers",
+        default="artifacts/v3_external_source_pilot_evidence_dossiers_1025.json",
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--pilot-representation-adjudication",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_adjudication_1025.json"
+        ),
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--pilot-review-decision-export",
+        default=(
+            "artifacts/v3_external_source_pilot_review_decision_export_1025.json"
+        ),
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--pilot-human-expert-review-queue",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_human_expert_review_queue_1025.json"
+        ),
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--external-structural-cluster-index",
+        default="artifacts/v3_external_structural_cluster_index_1025_all30.json",
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--external-structural-tm-diverse-split-plan",
+        default=(
+            "artifacts/"
+            "v3_external_structural_tm_diverse_split_plan_1025_all30.json"
+        ),
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--external-transfer-gate",
+        default="artifacts/v3_external_source_transfer_gate_check_1025.json",
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_decision_confidence_audit_1025.json"
+        ),
+    )
+    external_pilot_decision_confidence.set_defaults(
+        func=cmd_audit_external_source_pilot_decision_confidence
+    )
+
+    external_pilot_normalized = subparsers.add_parser(
+        "build-external-source-pilot-decisions-review-normalized",
+        help="normalize selected external pilot decisions after confidence audit",
+    )
+    external_pilot_normalized.add_argument(
+        "--pilot-decision-confidence-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_decision_confidence_audit_1025.json"
+        ),
+    )
+    external_pilot_normalized.add_argument("--max-rows", type=int, default=10)
+    external_pilot_normalized.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_decisions_review_normalized_1025.json"
+        ),
+    )
+    external_pilot_normalized.set_defaults(
+        func=cmd_build_external_source_pilot_decisions_review_normalized
+    )
+
+    external_pilot_normalized_queue = subparsers.add_parser(
+        "build-external-source-pilot-human-expert-review-queue-normalized",
+        help="route every normalized needs_review external pilot row",
+    )
+    external_pilot_normalized_queue.add_argument(
+        "--normalized-pilot-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_decisions_review_normalized_1025.json"
+        ),
+    )
+    external_pilot_normalized_queue.add_argument("--max-rows", type=int, default=10)
+    external_pilot_normalized_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_human_expert_review_queue_normalized_1025.json"
+        ),
+    )
+    external_pilot_normalized_queue.set_defaults(
+        func=cmd_build_external_source_pilot_human_expert_review_queue_normalized
     )
 
     external_structural_path = subparsers.add_parser(

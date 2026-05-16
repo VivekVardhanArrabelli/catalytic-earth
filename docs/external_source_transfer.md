@@ -103,6 +103,20 @@ Priority blockers:
   question, and remaining non-human blockers. It removes only the deferred-row
   routing blocker; broader duplicate screening and full label-factory gates
   still block import.
+- `artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json`
+  audits every selected terminal decision against active-site evidence,
+  duplicate/near-duplicate evidence, representation controls, heuristic
+  controls, review decisions, structure controls, and factory-gate state. It
+  records 4 confident current decisions, 3 low-confidence current hard
+  duplicate rejections, and 3 existing needs-review rows.
+- `artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json`
+  normalizes the post-audit decision surface to the accepted vocabulary:
+  6 `needs_review`, 3 `rejected_active_site_evidence_missing`, 1
+  `rejected_duplicate_or_near_duplicate`, 0 import-ready, and 0 countable rows.
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json`
+  routes all 6 `needs_review` rows (`O14756`, `P06746`, `C9JRZ8`, `P34949`,
+  `Q9BXD5`, and `Q6NSJ0`) with exact unresolved questions. This removes the
+  immediate pilot-decision confidence blocker without adding import authority.
 - `artifacts/v3_external_structural_cluster_index_1025.json` removes the
   selected-pilot structure-index blocker by staging all 10 AlphaFold coordinate
   sidecars, recording SHA-256 digests, running Foldseek, and caching

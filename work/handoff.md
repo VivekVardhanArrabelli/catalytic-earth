@@ -70,7 +70,22 @@ the 10 selected candidates with exactly one terminal status each: 4
 external labels. The 3 deferred rows are now routed by
 `artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`:
 `O14756`, `P34949`, and `Q6NSJ0` each have a review-only expert question,
-automation limitation, and remaining non-human blockers. The external structural pilot path has now moved from path definition to a concrete
+automation limitation, and remaining non-human blockers. The terminal-decision
+confidence audit now exists in
+`artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json`: it
+checks all 10 selected rows against active-site, duplicate/near-duplicate,
+representation, heuristic, review, structure, transfer-gate, and factory-gate
+evidence, keeps 4 current decisions confident, marks 3 current hard
+representation-only duplicate rejections low-confidence, and keeps 3 rows in
+needs-review status. The normalized companion
+`artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json`
+records 6 `needs_review`, 3 `rejected_active_site_evidence_missing`, and 1
+`rejected_duplicate_or_near_duplicate` decision; the normalized queue
+`artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json`
+routes all 6 needs-review rows (`O14756`, `P06746`, `C9JRZ8`, `P34949`,
+`Q9BXD5`, and `Q6NSJ0`) with exact unresolved questions. All three audit and
+normalization artifacts are review-only, with 0 import-ready rows and 0
+countable external labels. The external structural pilot path has now moved from path definition to a concrete
 review-only structure cache in
 `artifacts/v3_external_structural_cluster_index_1025.json`: all 10 selected
 AlphaFold coordinate sidecars are materialized, Foldseek completed, the nearest
@@ -96,6 +111,34 @@ Do not open M-CSA round33, staged index 145 continuation, or more partition repa
 unless the user explicitly reverses the override.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T07:01:54-05:00 run after confirming no fresh
+automation lock was active, syncing clean `origin/main`, passing startup gates
+(`356` unit tests passed and `validate` passed with 679 curated labels), and
+passing wrap checks (`357` unit tests passed and `validate` passed with 679
+curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and no M-CSA strict-TM round, query, split-repair, or partition-repair work
+  was resumed.
+- External-source repair/import: Yes for selected-pilot confidence repair and
+  no for import or countable labels. This run added a candidate-by-candidate
+  decision-confidence audit, normalized 3 weak representation-only duplicate
+  rejections to `needs_review`, preserved 3 active-site-missing rejections and
+  1 stable representation-near-duplicate rejection, routed all 6
+  needs-review rows, and kept 0 import-ready rows / 0 countable external
+  labels.
+- Scientific generalization work: No new benchmark or split claim. The
+  existing external all-30 review-only structural split remains the current
+  generalization artifact; this run focused on evidence confidence for pilot
+  decisions before any import expansion.
+- SPOF hardening work: Yes. The pilot terminal-decision surface now has a
+  reproducible CLI audit, normalized decision artifact, normalized review
+  queue, and regression coverage so representation-only duplicate rejections
+  cannot silently remain overconfident. README, `docs/external_source_transfer.md`,
+  `work/handoff.md`, and `work/scope.md` were updated; `docs/label_factory.md`
+  was checked and needed no change.
 
 Recorded for the 2026-05-16T11:01:29Z run after recovering this run's
 short-lived stale shell-PID lock, confirming the git tree was clean, syncing

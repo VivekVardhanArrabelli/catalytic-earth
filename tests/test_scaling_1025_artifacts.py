@@ -3030,6 +3030,90 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertTrue(pilot_stability["metadata"]["guardrail_clean"])
 
+    def test_external_pilot_decision_confidence_audit_normalizes_weak_rejections(
+        self,
+    ) -> None:
+        confidence_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_decision_confidence_audit_1025.json"
+        )
+        normalized = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_decisions_review_normalized_1025.json"
+        )
+        normalized_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_human_expert_review_queue_normalized_1025.json"
+        )
+
+        self.assertEqual(
+            confidence_audit["metadata"]["method"],
+            "external_source_pilot_decision_confidence_audit",
+        )
+        self.assertEqual(confidence_audit["metadata"]["candidate_count"], 10)
+        self.assertEqual(
+            confidence_audit["metadata"]["confidence_status_counts"],
+            {"confident": 4, "low_confidence": 3, "needs_review": 3},
+        )
+        self.assertEqual(
+            confidence_audit["metadata"]["recommended_decision_status_counts"],
+            {
+                "needs_review": 6,
+                "rejected_active_site_evidence_missing": 3,
+                "rejected_duplicate_or_near_duplicate": 1,
+            },
+        )
+        audited_rows = {row["accession"]: row for row in confidence_audit["rows"]}
+        self.assertEqual(
+            audited_rows["P06746"]["recommended_revised_decision"], "needs_review"
+        )
+        self.assertEqual(
+            audited_rows["P55263"]["recommended_revised_decision"],
+            "rejected_duplicate_or_near_duplicate",
+        )
+        self.assertEqual(
+            audited_rows["O60568"]["recommended_revised_decision"],
+            "rejected_active_site_evidence_missing",
+        )
+        self.assertFalse(confidence_audit["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            confidence_audit["metadata"]["import_ready_candidate_count"], 0
+        )
+
+        self.assertEqual(
+            normalized["metadata"]["method"],
+            "external_source_pilot_decisions_review_normalized",
+        )
+        self.assertEqual(normalized["metadata"]["needs_review_count"], 6)
+        self.assertEqual(normalized["metadata"]["import_ready_candidate_count"], 0)
+        self.assertTrue(
+            set(row["normalized_decision_status"] for row in normalized["rows"]).issubset(
+                set(normalized["metadata"]["allowed_normalized_decision_statuses"])
+            )
+        )
+
+        self.assertEqual(
+            normalized_queue["metadata"]["method"],
+            "external_source_pilot_human_expert_review_queue_normalized",
+        )
+        self.assertEqual(normalized_queue["metadata"]["queued_candidate_count"], 6)
+        self.assertEqual(
+            normalized_queue["metadata"]["selected_accessions"],
+            ["O14756", "P06746", "C9JRZ8", "P34949", "Q9BXD5", "Q6NSJ0"],
+        )
+        self.assertTrue(
+            all(
+                row["review_packet_status"] == "needs_review_decision"
+                and row["unresolved_question"]
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                for row in normalized_queue["rows"]
+            )
+        )
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 128
-- Measured elapsed time: 4502.0 minutes (75.03 hours)
+- Entries: 129
+- Measured elapsed time: 4515.5 minutes (75.26 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- external-transfer-spof-hardening: 78.3 measured minutes (1.31 hours)
+- external-transfer-spof-hardening: 91.8 measured minutes (1.53 hours)
 - ops: 51.4 measured minutes (0.86 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1489
-- Evidence references logged: 1112
+- Artifact references logged: 1499
+- Evidence references logged: 1123
 
 ## Recent Entries
-
-### 2026-05-15T22:46:27.435996+00:00 - post-mcsa-spof-hardening
-
-- Task: Foldseek cluster-first round32 verification
-- Time mode: measured
-- Measured minutes: 45.783
-- Started: 2026-05-15T22:00:14Z
-- Ended: 2026-05-15T22:46:01Z
-- Artifacts: artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round30_query_single_142_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round30_query_single_143_of_672.json, artifacts/v3_foldseek_tm_score_cluster_first_split_round31_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round31.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round31_query_single_143_of_672.json, artifacts/v3_foldseek_tm_score_cluster_first_split_round32_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round32.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_143_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_144_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_aggregate_143_145_of_672.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: startup 426 unit tests passed, startup validate passed with 679 curated labels, round30 index 142 passed max TM 0.6204, round30 index 143 failed max TM 0.872 with 88 violating rows, round31 index 143 failed max TM 0.8001 with 12 violating rows, round32 indices 143-144 passed max TM 0.5745, round32 index 145 timed out at 900 seconds before pair rows, final 426 unit tests passed, final validate passed
-- Notes: Normal locked direct run with no delegation. No M-CSA-only count growth and no external import. Round32 preserves 108 high-TM constraints, 38 sequence-identity constraints, 0 projected violations, 0 sequence-cluster splits, 0 held-out out-of-scope false non-abstentions, 0 countable labels, and 0 import-ready rows.
 
 ### 2026-05-16T06:10:48.154425+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_structural_cluster_index_1025_all30.json, artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_external_structural_holdout_artifact.py, tests/test_transfer_scope.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/foldseek_readiness_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md
 - Evidence: startup 354 unit tests passed, startup validate passed with 679 curated labels, Foldseek all-30 external cache completed 435/435 unordered nonself pairs with 900 directed rows, review-only external structural split assigned 6 test and 24 train rows, max cross-split TM-score 0.6963, 0 cross-split TM>=0.7 violations, 0 import-ready rows and 0 countable external labels, final 356 unit tests passed, final validate passed, compileall passed, git diff check passed
 - Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; no external rows became countable or import-ready.
+
+### 2026-05-16T12:15:25.647551+00:00 - external-transfer-spof-hardening
+
+- Task: External pilot decision confidence audit
+- Time mode: measured
+- Measured minutes: 13.501
+- Started: 2026-05-16T07:01:54.930663-05:00
+- Ended: 2026-05-16T12:15:25Z
+- Artifacts: artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json, artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json, artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: startup 356 unit tests passed, startup validate passed with 679 curated labels, final 357 unit tests passed, final validate passed, compileall passed, git diff check passed, 10 selected pilot terminal decisions audited, 3 weak representation-only duplicate rejections normalized to needs_review, 6 needs_review rows routed, 0 import-ready rows, 0 countable external labels
+- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; external pilot confidence was audited before any expansion or import.
 
 ## Expectation Updates
 
@@ -226,6 +226,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T09:14:46.363953+00:00: Next work should prepare human/expert decisions for O14756 P34949 and Q6NSJ0 or expand the broader external structural candidate surface before any strict TM-diverse split assignment.
 - 2026-05-16T10:14:24.266801+00:00: Next work should prepare human/expert decisions for O14756 P34949 and Q6NSJ0 or complete/cache the missing all-30 external structural pairs before strict TM-diverse split assignment.
 - 2026-05-16T11:15:09.904197+00:00: Next work should prepare human/expert decisions for O14756 P34949 and Q6NSJ0 or broaden external structural candidates beyond the current review-only 30-row split before import claims.
+- 2026-05-16T12:15:25.647551+00:00: Next external pilot work should resolve the six needs_review rows or broaden external structural candidates; do not treat representation-only duplicate signals as hard rejections unless evidence is stable.
 
 ## Scope Adjustments
 
