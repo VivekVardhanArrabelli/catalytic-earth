@@ -58,6 +58,8 @@ from catalytic_earth.transfer_scope import (
     build_external_source_heuristic_control_scores,
     build_external_source_pilot_candidate_priority,
     build_external_source_pilot_active_site_evidence_decisions,
+    build_external_source_pilot_akr_nadp_import_safety_adjudication,
+    build_external_source_pilot_akr_nadp_repair_control,
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_glycoside_hydrolase_boundary_control,
@@ -7638,6 +7640,313 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertIn(
             "full_label_factory_gate_not_run",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_akr_nadp_repair_control_stages_sequence_axis(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            external_fasta = tmp_path / "external.fasta"
+            reference_fasta = tmp_path / "reference.fasta"
+            external_fasta.write_text(
+                ">ext__C9JRZ8\n"
+                "MATFVELSTKAKMPIVGLGTWRSLLGKVKEAVKVAIDAEYRHIDCAYFYENQHEVGEAIQEKIQEKAVMREDLFIVSKVWPTFFERPLVRKAFEKTLKDLKLSYLDVYLIHWPQGFKTGDDFFPKDDKGNMISGKGTFLDAWEAMEELVDEGLVKALGVSNFNHFQIERLLNKPGLKYKPVTNQVECHPYLTQEKLIQYC\n",
+                encoding="utf-8",
+            )
+            reference_fasta.write_text(
+                ">ref__P21874\n"
+                "MAQMTMVQAITDALRIELKNDPNVLIFGEDVGVNGGVFRATEGLQAEFGEDRVFDTPLAESGIGGLAIGLALQGFRPVPEIQFFGFVYEVMDSICGQMARIRYRTGGRYHMPITIRSPFGGGVHTPELHSDSLEGLVAQQPGLKVVIPSTPYDAKGLLISAIRDNDPVIFLEHLKLYRSFRQEVPEGEYTIPIGKADIKREGKDITIIAYGAMVHESLKA\n"
+                ">ref__P0A786\n"
+                "MANPLYQKHIISINDLSRDDLNLVLATAAKLKANPQPELLKHKVIASCFFEASTRTRLSFETSMHRLGASVVGFSDSANTSLGKKGETLADTISVISTYVDAIVMRHPQEGAARLATEFSGNVPVLNAGDGSNQHPTQTLLDLFTIQETQGRLDNLHVAMVGDLKYGRTVHSLTQALAKFDGNRFYFIAPDALAMPQYILDMLDEKGIAWSLHSSIEEVM\n",
+                encoding="utf-8",
+            )
+
+            control = build_external_source_pilot_akr_nadp_repair_control(
+                repair_lanes={
+                    "metadata": {
+                        "method": "external_source_pilot_mechanism_repair_lanes"
+                    },
+                    "rows": [
+                        {
+                            "accession": "C9JRZ8",
+                            "entry_id": "uniprot:C9JRZ8",
+                            "repair_lane": "add_akr_nadp_redox_representation_axis",
+                        }
+                    ],
+                },
+                needs_review_resolution={
+                    "metadata": {
+                        "method": "external_source_pilot_needs_review_resolution"
+                    },
+                    "rows": [
+                        {
+                            "accession": "C9JRZ8",
+                            "revised_status": "rejected_representation_conflict",
+                            "confidence": "medium",
+                            "active_site_evidence_result": {
+                                "positions": [{"position": 49}],
+                            },
+                            "reaction_mechanism_context_result": {
+                                "status": "source_supports_nadp_aldo_keto_reductase_context",
+                                "representative_rhea_reactions": [
+                                    "RHEA:14981 testosterone + NADP(+) = androst-4-ene-3,17-dione + NADPH + H(+)"
+                                ],
+                                "interpro_or_prosite_context": [
+                                    "IPR020471 AKR",
+                                    "PROSITE PS00062 ALDOKETO_REDUCTASE_2",
+                                ],
+                            },
+                        }
+                    ],
+                },
+                pilot_representation_sample={
+                    "metadata": {"embedding_backend": "esm2_t6_8m_ur50d"},
+                    "rows": [
+                        {
+                            "accession": "C9JRZ8",
+                            "embedding_backend": "esm2_t6_8m_ur50d",
+                            "nearest_reference": {
+                                "reference_accession": "P0A786",
+                            },
+                            "reference_scores": [
+                                {
+                                    "embedding_backend": "esm2_t6_8m_ur50d",
+                                    "embedding_cosine": 0.7995,
+                                    "reference_accession": "P0A786",
+                                    "matched_m_csa_entry_ids": ["m_csa:405"],
+                                }
+                            ],
+                        }
+                    ],
+                },
+                pilot_larger_representation_sample={
+                    "metadata": {"embedding_backend": "esm2_t30_150m_ur50d"},
+                    "rows": [
+                        {
+                            "accession": "C9JRZ8",
+                            "embedding_backend": "esm2_t30_150m_ur50d",
+                            "nearest_reference": {
+                                "reference_accession": "P21874",
+                            },
+                            "reference_scores": [
+                                {
+                                    "embedding_backend": "esm2_t30_150m_ur50d",
+                                    "embedding_cosine": 0.9537,
+                                    "reference_accession": "P21874",
+                                    "matched_m_csa_entry_ids": ["m_csa:106"],
+                                }
+                            ],
+                        }
+                    ],
+                },
+                pilot_representation_stability_audit={
+                    "metadata": {
+                        "method": "external_source_representation_backend_stability_audit"
+                    },
+                    "rows": [
+                        {
+                            "accession": "C9JRZ8",
+                            "baseline_nearest_reference_accession": "P0A786",
+                            "comparison_nearest_reference_accession": "P21874",
+                            "nearest_reference_stable": False,
+                            "stability_flags": ["nearest_reference_changed"],
+                        }
+                    ],
+                },
+                heuristic_control_scores={
+                    "metadata": {"method": "external_source_heuristic_control_scores"},
+                    "results": [],
+                },
+                external_sequence_fasta=external_fasta,
+                reference_sequence_fasta=reference_fasta,
+                curated_labels=[
+                    {
+                        "entry_id": "m_csa:106",
+                        "fingerprint_id": None,
+                        "label_type": "out_of_scope",
+                        "review_status": "automation_curated",
+                    },
+                    {
+                        "entry_id": "m_csa:405",
+                        "fingerprint_id": None,
+                        "label_type": "out_of_scope",
+                        "review_status": "automation_curated",
+                    },
+                ],
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+
+        metadata = control["metadata"]
+        self.assertEqual(
+            metadata["method"], "external_source_pilot_akr_nadp_repair_control"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["candidate_with_akr_nadp_axis_count"], 1)
+        self.assertEqual(metadata["current_reference_akr_nadp_axis_match_count"], 0)
+        self.assertEqual(control["blockers"], [])
+        row = control["rows"][0]
+        self.assertEqual(
+            row["control_status"], "review_only_akr_nadp_axis_contrast_ready"
+        )
+        self.assertEqual(
+            row["candidate_sequence_features"]["source_active_site_tyr_positions"],
+            [49],
+        )
+        self.assertTrue(
+            row["candidate_sequence_features"][
+                "n_terminal_glycine_pair_cofactor_proxy_motif_hits"
+            ]
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_akr_nadp_import_safety_repairs_representation_only(
+        self,
+    ) -> None:
+        adjudication = build_external_source_pilot_akr_nadp_import_safety_adjudication(
+            akr_nadp_repair_control={
+                "metadata": {
+                    "method": "external_source_pilot_akr_nadp_repair_control"
+                },
+                "rows": [
+                    {
+                        "accession": "C9JRZ8",
+                        "entry_id": "uniprot:C9JRZ8",
+                        "control_status": "review_only_akr_nadp_axis_contrast_ready",
+                        "candidate_sequence_features": {
+                            "akr_nadp_sequence_axis_status": (
+                                "akr_nadp_axis_present_with_source_active_site_tyr"
+                            ),
+                            "source_active_site_tyr_count": 1,
+                            "source_active_site_tyr_positions": [49],
+                            "active_site_tyr_local_h_or_k_count": 1,
+                            "n_terminal_glycine_pair_cofactor_proxy_motif_hits": [
+                                {"motif": "VGLG"}
+                            ],
+                        },
+                        "current_reference_contrasts": [
+                            {
+                                "reference_accession": "P21874",
+                                "akr_nadp_sequence_axis_status": (
+                                    "partial_akr_nadp_axis_signal"
+                                ),
+                            },
+                            {
+                                "reference_accession": "P0A786",
+                                "akr_nadp_sequence_axis_status": (
+                                    "akr_nadp_axis_absent"
+                                ),
+                            },
+                        ],
+                    }
+                ],
+            },
+            resolved_pilot_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_decisions_review_resolved"
+                },
+                "rows": [
+                    {
+                        "accession": "C9JRZ8",
+                        "normalized_decision_status": (
+                            "rejected_representation_conflict"
+                        ),
+                    }
+                ],
+            },
+            pilot_active_site_evidence_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_active_site_evidence_decisions"
+                },
+                "rows": [
+                    {
+                        "accession": "C9JRZ8",
+                        "active_site_evidence_source_category": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "backend_sequence_search_status": "no_near_duplicate_signal",
+                        "broader_duplicate_screening_status": (
+                            "broader_duplicate_screening_required"
+                        ),
+                        "factory_gate_status": "not_run",
+                        "import_readiness_blockers": [
+                            "broader_duplicate_screening_required",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                            "heuristic_control_not_scored",
+                            "representation_near_duplicate_holdout",
+                            "representation_control_not_compared",
+                        ],
+                    }
+                ],
+            },
+            external_import_readiness_audit={
+                "metadata": {"method": "external_source_import_readiness_audit"},
+                "rows": [
+                    {
+                        "accession": "C9JRZ8",
+                        "backend_sequence_search_status": "no_near_duplicate_signal",
+                        "blockers": [
+                            "heuristic_control_not_scored",
+                            "representation_control_not_compared",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            pilot_success_criteria={
+                "metadata": {"method": "external_source_pilot_success_criteria"},
+                "rows": [
+                    {
+                        "accession": "C9JRZ8",
+                        "full_label_factory_gate_status": "not_run",
+                        "import_readiness_blockers": [
+                            "broader_duplicate_screening_required",
+                            "heuristic_control_not_scored",
+                            "representation_near_duplicate_holdout",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+        )
+
+        metadata = adjudication["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_akr_nadp_import_safety_adjudication",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["representation_conflict_repaired_count"], 1)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["normalized_decision_status_after_repair_counts"],
+            {"needs_review": 1},
+        )
+        row = adjudication["rows"][0]
+        self.assertEqual(
+            row["import_safety_adjudication_status"],
+            "akr_nadp_axis_representation_conflict_repaired",
+        )
+        self.assertEqual(
+            row["normalized_decision_status_after_repair"], "needs_review"
+        )
+        self.assertNotIn(
+            "representation_near_duplicate_holdout",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn("heuristic_control_not_scored", row["remaining_import_blockers"])
+        self.assertIn(
+            "broader_duplicate_screening_required",
             row["remaining_import_blockers"],
         )
         self.assertFalse(row["countable_label_candidate"])

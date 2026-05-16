@@ -3204,6 +3204,19 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json"
         )
+        akr_repair_control = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_akr_nadp_repair_control_1025.json"
+        )
+        akr_import_safety = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_source_pilot_akr_nadp_import_safety_"
+                "adjudication_1025.json"
+            )
+        )
         glycoside_boundary = _load_json(
             ROOT
             / "artifacts"
@@ -3423,6 +3436,89 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertFalse(adjudicated_sdr_row["countable_label_candidate"])
         self.assertFalse(adjudicated_sdr_row["ready_for_label_import"])
+
+        self.assertEqual(
+            akr_repair_control["metadata"]["method"],
+            "external_source_pilot_akr_nadp_repair_control",
+        )
+        self.assertTrue(akr_repair_control["metadata"]["review_only"])
+        self.assertFalse(akr_repair_control["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            akr_repair_control["metadata"]["target_repair_lane"],
+            "add_akr_nadp_redox_representation_axis",
+        )
+        self.assertEqual(akr_repair_control["metadata"]["candidate_count"], 1)
+        self.assertEqual(
+            akr_repair_control["metadata"]["candidate_with_akr_nadp_axis_count"],
+            1,
+        )
+        self.assertEqual(
+            akr_repair_control["metadata"][
+                "current_reference_akr_nadp_axis_match_count"
+            ],
+            0,
+        )
+        self.assertEqual(akr_repair_control["blockers"], [])
+        akr_row = akr_repair_control["rows"][0]
+        self.assertEqual(akr_row["accession"], "C9JRZ8")
+        self.assertEqual(
+            akr_row["control_status"], "review_only_akr_nadp_axis_contrast_ready"
+        )
+        self.assertEqual(
+            akr_row["candidate_sequence_features"][
+                "akr_nadp_sequence_axis_status"
+            ],
+            "akr_nadp_axis_present_with_source_active_site_tyr",
+        )
+        self.assertTrue(
+            all(
+                reference["akr_nadp_sequence_axis_status"]
+                != "akr_nadp_axis_present"
+                for reference in akr_row["current_reference_contrasts"]
+            )
+        )
+        self.assertFalse(akr_row["countable_label_candidate"])
+        self.assertFalse(akr_row["ready_for_label_import"])
+
+        self.assertEqual(
+            akr_import_safety["metadata"]["method"],
+            "external_source_pilot_akr_nadp_import_safety_adjudication",
+        )
+        self.assertTrue(akr_import_safety["metadata"]["review_only"])
+        self.assertFalse(akr_import_safety["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            akr_import_safety["metadata"][
+                "representation_conflict_repaired_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            akr_import_safety["metadata"]["import_ready_candidate_count"], 0
+        )
+        adjudicated_akr_row = akr_import_safety["rows"][0]
+        self.assertEqual(adjudicated_akr_row["accession"], "C9JRZ8")
+        self.assertEqual(
+            adjudicated_akr_row["import_safety_adjudication_status"],
+            "akr_nadp_axis_representation_conflict_repaired",
+        )
+        self.assertEqual(
+            adjudicated_akr_row["normalized_decision_status_after_repair"],
+            "needs_review",
+        )
+        self.assertNotIn(
+            "representation_near_duplicate_holdout",
+            adjudicated_akr_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "heuristic_control_not_scored",
+            adjudicated_akr_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            adjudicated_akr_row["remaining_import_blockers"],
+        )
+        self.assertFalse(adjudicated_akr_row["countable_label_candidate"])
+        self.assertFalse(adjudicated_akr_row["ready_for_label_import"])
 
         self.assertEqual(
             glycoside_boundary["metadata"]["method"],

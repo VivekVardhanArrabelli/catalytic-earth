@@ -188,10 +188,19 @@ lane, SDR control, SDR import-safety adjudication, Q6NSJ0 boundary
 adjudication, P34949 sugar-phosphate isomerase control, P34949 import-safety
 adjudication, Q9BXD5 Schiff-base lyase control, and Q9BXD5 import-safety
 adjudication artifacts supersede the 6-row normalized queue for pilot-decision
-work; do not re-open those rows without new evidence. Next direct work should
-complete the remaining duplicate/review/factory blockers for the repaired
-O14756, Q6NSJ0, P34949, or Q9BXD5 rows if a defensible full path exists;
-otherwise continue the next closest repair lane such as C9JRZ8 AKR/NADP or
+work; do not re-open those rows without new evidence. The 2026-05-16T17:49:33-05:00
+run then added `artifacts/v3_external_source_pilot_akr_nadp_repair_control_1025.json`
+and
+`artifacts/v3_external_source_pilot_akr_nadp_import_safety_adjudication_1025.json`.
+The C9JRZ8 control uses only non-text sequence/local evidence: a `VGLG`
+cofactor-binding proxy, source-traced active-site Tyr, local H/K context, and
+current-reference contrast rows lacking the complete AKR/NADP axis. The
+import-safety adjudication repairs the C9JRZ8 representation near-duplicate
+conflict and records post-repair `needs_review`, but import remains blocked by
+`heuristic_control_not_scored`, broader duplicate screening, post-repair review
+decision, and full factory gates. Next direct work should complete remaining
+duplicate/review/factory blockers for repaired external rows if a defensible
+full path exists; otherwise continue the last unimplemented repaired lane,
 P06746 DNA Pol X/5'-dRP lyase. Do not broaden dashboards or generic gates
 before a lane-specific control.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
@@ -212,7 +221,45 @@ The `gh auth git-credential` helper is installed for `https://github.com`, so
 the remaining blocker is the invalid GitHub CLI token, not the credential-helper
 configuration.
 
+Current 2026-05-16T18:02:49-05:00 wrap-up blocker: the coherent local commit for the C9JRZ8 AKR/NADP import-safety adjudication work is safe on
+local `main`, but `git push origin main` again failed with the exact error
+`fatal: could not read Username for 'https://github.com': Device not configured`.
+`gh auth status` still reports the default GitHub token as invalid, while
+`git config --get-all credential.https://github.com.helper` includes
+`gh auth git-credential`; the remaining blocker is the invalid GitHub CLI
+token, not helper configuration. Local `main` is ahead of `origin/main` by the
+previous safe local commit.
+
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T17:49:33-05:00 run after acquiring a stale-lock
+recovery lock, syncing with `origin/main`, verifying the GitHub credential
+helper is installed but the `gh` token is invalid, passing startup gates (`368`
+unit tests passed and `validate` passed with 679 curated labels), and passing
+focused AKR artifact tests plus final full tests (`370` unit tests and
+`validate` passed):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and no
+  M-CSA strict-TM round, query, split-repair, or partition-repair work was
+  resumed.
+- External-source repair/import: Yes for one additional review-only
+  import-safety adjudication lane, no for import or countable labels. The
+  C9JRZ8 AKR/NADP control consumes a sequence-derived `VGLG` cofactor-binding
+  proxy, source-traced active-site Tyr, local H/K context, current-reference
+  contrast rows lacking the complete AKR/NADP axis, and bounded sequence
+  no-signal status. It repairs the representation near-duplicate conflict and
+  records post-repair `needs_review`, but the row still requires heuristic
+  scoring, broader duplicate screening, a post-repair review decision, and full
+  factory gates before any import claim.
+- Scientific generalization work: No new benchmark or split claim. The all-30
+  external structural split remains review-only with max cross-split TM about
+  `0.6963`; strict TM-diverse claims remain on external fold-diverse surfaces
+  only.
+- SPOF hardening work: Yes. New CLI paths, artifacts, and regression tests make
+  the C9JRZ8 AKR/NADP post-repair import-safety decision path executable while
+  preserving review-only/countable-label separation. `docs/label_factory.md`
+  was checked and did not need a content change.
 
 Recorded for the 2026-05-16T21:47:33Z run after acquiring the automation lock,
 syncing clean `origin/main`, passing startup gates (`365` unit tests passed and

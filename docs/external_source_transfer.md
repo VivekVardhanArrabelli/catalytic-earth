@@ -210,6 +210,17 @@ Priority blockers:
   review-only and post-repair `needs_review`, with 0 import-ready/countable
   rows, because representation holdout review, broader duplicate screening, a
   post-repair review decision, and the full factory gate are still unresolved.
+- `artifacts/v3_external_source_pilot_akr_nadp_repair_control_1025.json`
+  starts the C9JRZ8 AKR/NADP lane as review-only non-text control evidence.
+  It uses a sequence-derived `VGLG` cofactor-binding proxy, source-traced
+  active-site Tyr, local H/K context, and current-reference contrast rows that
+  lack the complete AKR/NADP axis.
+- `artifacts/v3_external_source_pilot_akr_nadp_import_safety_adjudication_1025.json`
+  now integrates the C9JRZ8 control into the import-safety path. The non-text
+  rule repairs the representation near-duplicate conflict, but deliberately
+  leaves heuristic scoring, broader duplicate screening, post-repair review,
+  and the full factory gate unresolved. C9JRZ8 remains review-only and
+  post-repair `needs_review`, with 0 import-ready/countable rows.
 - `artifacts/v3_external_structural_cluster_index_1025.json` removes the
   selected-pilot structure-index blocker by staging all 10 AlphaFold coordinate
   sidecars, recording SHA-256 digests, running Foldseek, and caching

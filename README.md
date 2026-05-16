@@ -376,6 +376,18 @@ the Q9BXD5 weak heme/scope conflict and records post-repair `needs_review`,
 while the representation near-duplicate holdout, broader duplicate screening,
 a post-repair review decision, and the full factory gate still block import and
 counting.
+`artifacts/v3_external_source_pilot_akr_nadp_repair_control_1025.json` now
+opens the C9JRZ8 AKR/NADP lane as review-only control evidence: a
+sequence-derived `VGLG` cofactor-binding proxy, source-traced active-site Tyr,
+and local H/K context separate the candidate axis from its conflicting
+current-reference neighbors, which lack the complete AKR/NADP axis. The
+follow-on
+`artifacts/v3_external_source_pilot_akr_nadp_import_safety_adjudication_1025.json`
+now integrates that non-text control into the import-safety path: it repairs
+the C9JRZ8 representation near-duplicate conflict and records post-repair
+`needs_review`, while heuristic scoring, broader duplicate screening, a
+post-repair review decision, and the full factory gate still block import and
+counting.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

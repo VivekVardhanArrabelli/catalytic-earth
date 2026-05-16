@@ -258,6 +258,13 @@ Current expectation:
   post-repair `needs_review`, while the representation near-duplicate holdout,
   broader duplicate screening, a post-repair review decision, and the full
   factory gate still block import.
+  The C9JRZ8 AKR/NADP lane now has a bounded review-only sequence-axis control
+  using a `VGLG` cofactor-binding proxy, source-traced active-site Tyr, local
+  H/K context, and current-reference contrast rows that lack the complete
+  AKR/NADP axis. Its follow-on import-safety adjudication now repairs the
+  C9JRZ8 representation near-duplicate conflict and records post-repair
+  `needs_review`; heuristic scoring, broader duplicate screening, a
+  post-repair review decision, and the full factory gate still block import.
   The external structural path now has a
   concrete review-only cluster index for the same 10 selected rows: all 10
   AlphaFold coordinate sidecars are materialized,

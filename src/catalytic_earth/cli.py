@@ -148,6 +148,8 @@ from .transfer_scope import (
     build_external_source_pilot_candidate_priority,
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
+    build_external_source_pilot_akr_nadp_import_safety_adjudication,
+    build_external_source_pilot_akr_nadp_repair_control,
     build_external_source_pilot_decisions_review_normalized,
     build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_human_expert_review_queue_normalized,
@@ -2768,6 +2770,94 @@ def cmd_build_external_source_pilot_sdr_redox_import_safety_adjudication(
     write_json(Path(args.out), adjudication)
     print(
         "Wrote external source pilot SDR redox import-safety adjudication to "
+        f"{args.out} ({adjudication['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_akr_nadp_repair_control(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "repair_lanes",
+            "needs_review_resolution",
+            "pilot_representation_sample",
+            "pilot_larger_representation_sample",
+            "pilot_representation_stability_audit",
+            "heuristic_control_scores",
+        ),
+        blocker_removed="akr_nadp_redox_repair_lane_control_staged",
+    )
+    with Path(args.curated_labels).open("r", encoding="utf-8") as handle:
+        curated_labels = json.load(handle)
+    if not isinstance(curated_labels, list):
+        raise ValueError("curated labels registry must be a JSON list")
+    control = build_external_source_pilot_akr_nadp_repair_control(
+        repair_lanes=artifact_payloads["repair_lanes"] or {},
+        needs_review_resolution=artifact_payloads["needs_review_resolution"] or {},
+        pilot_representation_sample=artifact_payloads[
+            "pilot_representation_sample"
+        ]
+        or {},
+        pilot_larger_representation_sample=artifact_payloads[
+            "pilot_larger_representation_sample"
+        ]
+        or {},
+        pilot_representation_stability_audit=artifact_payloads[
+            "pilot_representation_stability_audit"
+        ]
+        or {},
+        heuristic_control_scores=artifact_payloads["heuristic_control_scores"] or {},
+        external_sequence_fasta=Path(args.external_sequence_fasta),
+        reference_sequence_fasta=Path(args.reference_sequence_fasta),
+        curated_labels=curated_labels,
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), control)
+    print(
+        "Wrote external source pilot AKR/NADP repair control to "
+        f"{args.out} ({control['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_akr_nadp_import_safety_adjudication(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "akr_nadp_repair_control",
+            "resolved_pilot_decisions",
+            "pilot_active_site_evidence_decisions",
+            "external_import_readiness_audit",
+            "pilot_success_criteria",
+        ),
+        blocker_removed=(
+            "akr_nadp_control_integrated_into_import_safety_adjudication"
+        ),
+    )
+    adjudication = build_external_source_pilot_akr_nadp_import_safety_adjudication(
+        akr_nadp_repair_control=artifact_payloads["akr_nadp_repair_control"] or {},
+        resolved_pilot_decisions=artifact_payloads["resolved_pilot_decisions"] or {},
+        pilot_active_site_evidence_decisions=artifact_payloads[
+            "pilot_active_site_evidence_decisions"
+        ]
+        or {},
+        external_import_readiness_audit=artifact_payloads[
+            "external_import_readiness_audit"
+        ]
+        or {},
+        pilot_success_criteria=artifact_payloads["pilot_success_criteria"] or {},
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), adjudication)
+    print(
+        "Wrote external source pilot AKR/NADP import-safety adjudication to "
         f"{args.out} ({adjudication['metadata']['candidate_count']} rows)"
     )
     return 0
@@ -7620,6 +7710,132 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_sdr_import_safety.set_defaults(
         func=cmd_build_external_source_pilot_sdr_redox_import_safety_adjudication
+    )
+
+    external_pilot_akr_repair_control = subparsers.add_parser(
+        "build-external-source-pilot-akr-nadp-repair-control",
+        help=(
+            "stage a review-only sequence-derived AKR/NADP redox contrast "
+            "control for the selected external pilot repair lane"
+        ),
+    )
+    external_pilot_akr_repair_control.add_argument(
+        "--repair-lanes",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+        ),
+    )
+    external_pilot_akr_repair_control.add_argument(
+        "--needs-review-resolution",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_needs_review_resolution_1025.json"
+        ),
+    )
+    external_pilot_akr_repair_control.add_argument(
+        "--pilot-representation-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_sample_1025.json"
+        ),
+    )
+    external_pilot_akr_repair_control.add_argument(
+        "--pilot-larger-representation-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t33_650m_"
+            "ur50d_sample_1025.json"
+        ),
+    )
+    external_pilot_akr_repair_control.add_argument(
+        "--pilot-representation-stability-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_"
+            "650m_stability_audit_1025.json"
+        ),
+    )
+    external_pilot_akr_repair_control.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores_1025.json",
+    )
+    external_pilot_akr_repair_control.add_argument(
+        "--external-sequence-fasta",
+        default=(
+            "artifacts/"
+            "v3_external_source_backend_sequence_search_external_1025.fasta"
+        ),
+    )
+    external_pilot_akr_repair_control.add_argument(
+        "--reference-sequence-fasta",
+        default=(
+            "artifacts/"
+            "v3_external_source_backend_sequence_search_reference_1025.fasta"
+        ),
+    )
+    external_pilot_akr_repair_control.add_argument(
+        "--curated-labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_pilot_akr_repair_control.add_argument("--max-rows", type=int, default=1)
+    external_pilot_akr_repair_control.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_akr_nadp_repair_control_1025.json"
+        ),
+    )
+    external_pilot_akr_repair_control.set_defaults(
+        func=cmd_build_external_source_pilot_akr_nadp_repair_control
+    )
+
+    external_pilot_akr_import_safety = subparsers.add_parser(
+        "build-external-source-pilot-akr-nadp-import-safety-adjudication",
+        help=(
+            "adjudicate the AKR/NADP repair control inside the external pilot "
+            "import-safety decision path"
+        ),
+    )
+    external_pilot_akr_import_safety.add_argument(
+        "--akr-nadp-repair-control",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_akr_nadp_repair_control_1025.json"
+        ),
+    )
+    external_pilot_akr_import_safety.add_argument(
+        "--resolved-pilot-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_decisions_review_resolved_1025.json"
+        ),
+    )
+    external_pilot_akr_import_safety.add_argument(
+        "--pilot-active-site-evidence-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        ),
+    )
+    external_pilot_akr_import_safety.add_argument(
+        "--external-import-readiness-audit",
+        default="artifacts/v3_external_source_import_readiness_audit_1025.json",
+    )
+    external_pilot_akr_import_safety.add_argument(
+        "--pilot-success-criteria",
+        default="artifacts/v3_external_source_pilot_success_criteria_1025.json",
+    )
+    external_pilot_akr_import_safety.add_argument("--max-rows", type=int, default=1)
+    external_pilot_akr_import_safety.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_akr_nadp_import_safety_adjudication_1025.json"
+        ),
+    )
+    external_pilot_akr_import_safety.set_defaults(
+        func=cmd_build_external_source_pilot_akr_nadp_import_safety_adjudication
     )
 
     external_pilot_glycoside_boundary = subparsers.add_parser(

@@ -248,6 +248,17 @@ Current review-only external artifacts:
   import-ready because the representation near-duplicate holdout, broader
   duplicate screening, a post-repair review decision, and the full factory gate
   are still unresolved.
+- `artifacts/v3_external_source_pilot_akr_nadp_repair_control_1025.json`
+  opens the next lane for `C9JRZ8`. It stages review-only, non-text
+  AKR/NADP-axis evidence from a sequence-derived `VGLG` cofactor-binding proxy,
+  source-traced active-site Tyr, local H/K context, and current-reference
+  contrast rows that lack the complete AKR/NADP axis.
+- `artifacts/v3_external_source_pilot_akr_nadp_import_safety_adjudication_1025.json`
+  turns that C9JRZ8 control into a review-only import-safety adjudication. It
+  repairs the prior representation near-duplicate conflict and records
+  post-repair `needs_review`, but it keeps the row non-countable and not
+  import-ready because heuristic scoring, broader duplicate screening, a
+  post-repair review decision, and the full factory gate are still unresolved.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine
