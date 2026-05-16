@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 131
-- Measured elapsed time: 4542.6 minutes (75.71 hours)
+- Entries: 132
+- Measured elapsed time: 4560.4 minutes (76.01 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- external-transfer-spof-hardening: 118.9 measured minutes (1.98 hours)
+- external-transfer-spof-hardening: 136.6 measured minutes (2.28 hours)
 - ops: 51.4 measured minutes (0.86 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1518
-- Evidence references logged: 1143
+- Artifact references logged: 1527
+- Evidence references logged: 1152
 
 ## Recent Entries
-
-### 2026-05-16T07:15:23.155977+00:00 - post-mcsa-spof-hardening
-
-- Task: Close M-CSA strict TM repair loop and record external pilot terminal decisions
-- Time mode: measured
-- Measured minutes: 19.75
-- Started: 2026-05-16T01:55:26-05:00
-- Ended: 2026-05-16T02:15:11-05:00
-- Artifacts: artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json, artifacts/v3_external_source_pilot_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/foldseek_readiness_notes.md, tests/test_external_structural_holdout_artifact.py, tests/test_generalization.py, tests/test_scaling_1025_artifacts.py, tests/test_transfer_scope.py
-- Evidence: startup unit tests passed 428 tests, startup validate passed 679 curated labels, final unit tests passed 349 tests, final validate passed 679 curated labels, diff check passed, 270 noncanonical M-CSA strict-TM loop artifacts removed, 10 external pilot terminal decisions recorded with 0 import-ready and 0 countable rows
-- Notes: Normal locked direct run with no delegation; preserved generic Foldseek tooling and all-materializable descriptive M-CSA evidence.
 
 ### 2026-05-16T08:06:00.835318+00:00 - external-transfer-spof-hardening
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-16T09:26:15-05:00
 - Artifacts: artifacts/v3_external_source_all_vs_all_sequence_search_1025.json, artifacts/v3_external_source_all_vs_all_sequence_search_audit_1025.json, artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json, artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json, artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: startup 357 unit tests passed, startup validate passed with 679 curated labels, all-vs-all MMseqs2 searched 30 external candidates, 0 external all-vs-all near-duplicate pairs, max external-external identity 0.647, confidence audit remains 6 needs_review and 0 import-ready rows, external transfer gate 68/68, final 358 unit tests passed, final validate passed, compileall passed, git diff check passed
+- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; no external rows became countable or import-ready.
+
+### 2026-05-16T15:22:11.987493+00:00 - external-transfer-spof-hardening
+
+- Task: Resolve external pilot needs_review rows
+- Time mode: measured
+- Measured minutes: 17.783
+- Started: 2026-05-16T15:04:24Z
+- Ended: 2026-05-16T15:22:11Z
+- Artifacts: artifacts/v3_external_source_pilot_needs_review_resolution_1025.json, artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json, artifacts/v3_external_source_pilot_human_expert_review_queue_resolved_1025.json, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 358 unit tests passed, startup validate passed with 679 curated labels, targeted UniRef90/50 mapping found 0 shared nearest-reference clusters, 6 needs_review rows resolved as rejected_representation_conflict, 0 import-ready rows and 0 countable external labels, final 359 unit tests passed, final validate passed, compileall passed, git diff check passed
 - Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; no external rows became countable or import-ready.
 
 ## Expectation Updates
@@ -229,6 +229,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T12:15:25.647551+00:00: Next external pilot work should resolve the six needs_review rows or broaden external structural candidates; do not treat representation-only duplicate signals as hard rejections unless evidence is stable.
 - 2026-05-16T13:07:13+00:00: Next external pilot work should resolve the six needs_review rows or broaden external structural candidates; no local-evidence-only decision update was defensible.
 - 2026-05-16T14:26:15.956789+00:00: External candidate all-vs-all duplicate screen is now complete for the current 30-row sample; UniRef-wide screening plus review decisions still block import.
+- 2026-05-16T15:22:11.987493+00:00: Selected-pilot needs_review is no longer the active blocker; next external work should repair representation or heuristic controls or broaden the external structural surface.
 
 ## Scope Adjustments
 

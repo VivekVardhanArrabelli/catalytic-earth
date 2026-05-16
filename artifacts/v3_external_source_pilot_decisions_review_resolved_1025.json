@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "method": "external_source_pilot_decisions_review_resolved",
+    "slice_id": 1025,
+    "created_at": "2026-05-16T15:04:24Z",
+    "review_only": true,
+    "ready_for_label_import": false,
+    "import_ready_candidate_count": 0,
+    "countable_label_candidate_count": 0,
+    "source_needs_review_resolution": "artifacts/v3_external_source_pilot_needs_review_resolution_1025.json",
+    "source_normalized_decisions": "artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json",
+    "candidate_count": 10,
+    "needs_review_count": 0,
+    "normalized_decision_status_counts": {
+      "rejected_active_site_evidence_missing": 3,
+      "rejected_duplicate_or_near_duplicate": 1,
+      "rejected_representation_conflict": 6
+    },
+    "allowed_normalized_decision_statuses": [
+      "import_ready_candidate",
+      "rejected_active_site_evidence_missing",
+      "rejected_duplicate_or_near_duplicate",
+      "rejected_mechanism_mismatch",
+      "rejected_representation_conflict",
+      "rejected_factory_gate_failure",
+      "needs_review"
+    ],
+    "blocker_removed": "external_pilot_needs_review_rows_resolved_to_terminal_review_only_decisions"
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "normalized_decision_status": "rejected_representation_conflict",
+      "decision_basis": "changed ESM-2 nearest-reference evidence points to high-cosine current-reference families that do not preserve source-supported SDR/NAD(P) chemistry",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false
+    },
+    {
+      "accession": "P06746",
+      "normalized_decision_status": "rejected_representation_conflict",
+      "decision_basis": "targeted UniRef90/UniRef50 does not support duplicate rejection, but stable high-cosine ESM-2 nearest reference conflicts with DNA polymerase beta / 5'-dRP lyase source context",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false
+    },
+    {
+      "accession": "C9JRZ8",
+      "normalized_decision_status": "rejected_representation_conflict",
+      "decision_basis": "targeted UniRef90/UniRef50 does not support duplicate rejection, but largest feasible ESM-2 nearest reference shifts to an unrelated high-cosine current-reference family",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false
+    },
+    {
+      "accession": "P55263",
+      "normalized_decision_status": "rejected_duplicate_or_near_duplicate",
+      "decision_basis": "carried forward from normalized confidence audit",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false
+    },
+    {
+      "accession": "P34949",
+      "normalized_decision_status": "rejected_representation_conflict",
+      "decision_basis": "source-local isomerase evidence is clear, but the current heuristic and stable nearest-reference representation conflict with mannose-6-phosphate isomerase chemistry",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false
+    },
+    {
+      "accession": "Q9BXD5",
+      "normalized_decision_status": "rejected_representation_conflict",
+      "decision_basis": "targeted UniRef90/UniRef50 does not support duplicate rejection, but stable high-cosine representation and heme top1 heuristic conflict with N-acetylneuraminate lyase context",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false
+    },
+    {
+      "accession": "Q6NSJ0",
+      "normalized_decision_status": "rejected_representation_conflict",
+      "decision_basis": "changed ESM-2 nearest-reference evidence and broad metal-hydrolase heuristic collapse do not preserve source-supported glycoside hydrolase chemistry",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false
+    },
+    {
+      "accession": "O60568",
+      "normalized_decision_status": "rejected_active_site_evidence_missing",
+      "decision_basis": "carried forward from normalized confidence audit",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false
+    },
+    {
+      "accession": "O95050",
+      "normalized_decision_status": "rejected_active_site_evidence_missing",
+      "decision_basis": "carried forward from normalized confidence audit",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false
+    },
+    {
+      "accession": "P51580",
+      "normalized_decision_status": "rejected_active_site_evidence_missing",
+      "decision_basis": "carried forward from normalized confidence audit",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false
+    }
+  ],
+  "warnings": [
+    "Resolved decisions are terminal for this review-only pilot pass and do not authorize import.",
+    "Representation-conflict rejections are import-safety decisions, not biochemical invalidations."
+  ]
+}

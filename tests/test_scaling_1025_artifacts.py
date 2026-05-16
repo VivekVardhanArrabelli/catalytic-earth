@@ -3171,6 +3171,83 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             )
         )
 
+    def test_external_pilot_needs_review_resolution_is_terminal_review_only(
+        self,
+    ) -> None:
+        resolution = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_needs_review_resolution_1025.json"
+        )
+        resolved = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_decisions_review_resolved_1025.json"
+        )
+        resolved_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_human_expert_review_queue_resolved_1025.json"
+        )
+
+        self.assertEqual(
+            resolution["metadata"]["method"],
+            "external_source_pilot_needs_review_resolution",
+        )
+        self.assertTrue(resolution["metadata"]["review_only"])
+        self.assertFalse(resolution["metadata"]["ready_for_label_import"])
+        self.assertEqual(resolution["metadata"]["needs_review_before_count"], 6)
+        self.assertEqual(resolution["metadata"]["needs_review_after_count"], 0)
+        self.assertEqual(
+            resolution["metadata"]["revised_status_counts"],
+            {"rejected_representation_conflict": 6},
+        )
+        self.assertEqual(len(resolution["rows"]), 6)
+        self.assertTrue(
+            all(
+                row["revised_status"] == "rejected_representation_conflict"
+                and row["remaining_expert_question"] is None
+                and row["duplicate_screen_result"][
+                    "shared_uniref90_or_uniref50_with_nearest_references"
+                ]
+                is False
+                and "representation_control_result" in row
+                and "active_site_evidence_result" in row
+                and "reaction_mechanism_context_result" in row
+                for row in resolution["rows"]
+            )
+        )
+
+        self.assertEqual(
+            resolved["metadata"]["method"],
+            "external_source_pilot_decisions_review_resolved",
+        )
+        self.assertEqual(resolved["metadata"]["candidate_count"], 10)
+        self.assertEqual(resolved["metadata"]["needs_review_count"], 0)
+        self.assertEqual(resolved["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            resolved["metadata"]["normalized_decision_status_counts"],
+            {
+                "rejected_active_site_evidence_missing": 3,
+                "rejected_duplicate_or_near_duplicate": 1,
+                "rejected_representation_conflict": 6,
+            },
+        )
+        self.assertTrue(
+            all(
+                not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                for row in resolved["rows"]
+            )
+        )
+
+        self.assertEqual(
+            resolved_queue["metadata"]["method"],
+            "external_source_pilot_human_expert_review_queue_resolved",
+        )
+        self.assertEqual(resolved_queue["metadata"]["queued_candidate_count"], 0)
+        self.assertEqual(resolved_queue["rows"], [])
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

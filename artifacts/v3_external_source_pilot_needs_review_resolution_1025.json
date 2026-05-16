@@ -1,0 +1,616 @@
+{
+  "metadata": {
+    "method": "external_source_pilot_needs_review_resolution",
+    "slice_id": 1025,
+    "created_at": "2026-05-16T15:04:24Z",
+    "review_only": true,
+    "ready_for_label_import": false,
+    "import_ready_candidate_count": 0,
+    "countable_label_candidate_count": 0,
+    "source_normalized_decisions": "artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json",
+    "source_normalized_queue": "artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json",
+    "source_confidence_audit": "artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json",
+    "source_evidence_dossiers": "artifacts/v3_external_source_pilot_evidence_dossiers_1025.json",
+    "source_reaction_evidence": "artifacts/v3_external_source_reaction_evidence_sample_1025.json",
+    "source_backend_sequence_search": "artifacts/v3_external_source_backend_sequence_search_1025.json",
+    "source_external_all_vs_all_sequence_search": "artifacts/v3_external_source_all_vs_all_sequence_search_1025.json",
+    "source_external_structural_cluster_index": "artifacts/v3_external_structural_cluster_index_1025_all30.json",
+    "source_external_structural_split_plan": "artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json",
+    "source_heuristic_scores": "artifacts/v3_external_source_heuristic_control_scores_1025.json",
+    "primary_external_sources_checked": [
+      "https://rest.uniprot.org/uniprotkb/{accession}.json",
+      "https://rest.uniprot.org/idmapping/run from UniProtKB_AC-ID to UniRef90",
+      "https://rest.uniprot.org/idmapping/run from UniProtKB_AC-ID to UniRef50",
+      "UniProtKB embedded Rhea, PDB, AlphaFoldDB, PROSITE, and InterPro cross-references"
+    ],
+    "targeted_uniref_idmapping": {
+      "uniref90_job_id": "gPHjGYXiDQ",
+      "uniref50_job_id": "hcEEmZ1A1o",
+      "candidate_and_nearest_reference_accession_count": 24,
+      "candidate_shared_uniref90_cluster_with_nearest_current_reference_count": 0,
+      "candidate_shared_uniref50_cluster_with_nearest_current_reference_count": 0,
+      "interpretation": "Targeted UniRef90/UniRef50 mapping did not support duplicate-or-near-duplicate rejection for the six normalized needs_review rows. Rows are rejected from import consideration because current representation/heuristic controls conflict with source-supported mechanism context, not because the source functions are disproven."
+    },
+    "revised_status_counts": {
+      "rejected_representation_conflict": 6
+    },
+    "needs_review_before_count": 6,
+    "needs_review_after_count": 0,
+    "blocker_removed": "six_normalized_needs_review_rows_resolved_by_desk_review",
+    "remaining_global_import_blockers": [
+      "full_label_factory_gate_not_run_for_external_import",
+      "resolved rows are terminal review-only rejections, not import-ready labels"
+    ],
+    "allowed_normalized_decision_statuses": [
+      "import_ready_candidate",
+      "rejected_active_site_evidence_missing",
+      "rejected_duplicate_or_near_duplicate",
+      "rejected_mechanism_mismatch",
+      "rejected_representation_conflict",
+      "rejected_factory_gate_failure",
+      "needs_review"
+    ]
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "entry_id": "uniprot:O14756",
+      "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6",
+      "current_unresolved_question": "Does the changed ESM-2 nearest-reference evidence preserve the proposed mechanism family, or should this row be rejected as a representation conflict?",
+      "sources_checked_this_run": [
+        "local normalized decision and confidence artifacts",
+        "local pilot evidence dossier",
+        "local reaction evidence sample",
+        "local backend current-reference MMseqs2 screen",
+        "local external all-vs-all MMseqs2 screen",
+        "local all-30 external Foldseek structural cluster index and split plan",
+        "UniProtKB REST O14756",
+        "UniRef90 and UniRef50 ID mapping for O14756 plus nearest current-reference hits P0A6C1 and P14604"
+      ],
+      "active_site_evidence_result": {
+        "status": "explicit_active_site_source_present",
+        "positions": [
+          {
+            "position": 176,
+            "description": "Proton acceptor",
+            "evidence": "PROSITE-ProRule PRU10001, ECO:0000255"
+          }
+        ],
+        "pdb_or_alphafold_context": {
+          "pdb_ids": [],
+          "alphafold_ids": [
+            "O14756"
+          ],
+          "structure_mapping_status": "ok"
+        }
+      },
+      "reaction_mechanism_context_result": {
+        "status": "source_supports_nad_p_dependent_short_chain_dehydrogenase_reductase_context",
+        "uniprot_catalytic_activity_count": 10,
+        "representative_rhea_reactions": [
+          "RHEA:21284 all-trans-retinol + NAD(+) = all-trans-retinal + NADH + H(+)",
+          "RHEA:20381 androsterone + NAD(+) = 5alpha-androstan-3,17-dione + NADH + H(+)",
+          "RHEA:42004 5alpha-androstane-3alpha,17beta-diol + NAD(+) = 17beta-hydroxy-5alpha-androstan-3-one + NADH + H(+)"
+        ],
+        "interpro_or_prosite_context": [
+          "IPR002347 SDR_fam",
+          "IPR020904 Sc_DH/Rdtase_CS",
+          "IPR036291 NAD(P)-bd_dom_sf",
+          "PROSITE PS00061 ADH_SHORT"
+        ],
+        "heuristic_context": {
+          "top1_fingerprint_id": "heme_peroxidase_oxidase",
+          "top1_score": 0.3039,
+          "scope_top1_mismatch": false,
+          "interpretation": "Broad oxidoreductase scope is preserved, but the source-supported NAD(P)/SDR chemistry is not heme/peroxidase chemistry."
+        }
+      },
+      "duplicate_screen_result": {
+        "bounded_current_reference_backend": "no_near_duplicate_signal",
+        "external_all_vs_all_backend": "no_near_duplicate_signal",
+        "targeted_uniref90_cluster": "UniRef90_O14756",
+        "targeted_uniref50_cluster": "UniRef50_O14756",
+        "nearest_reference_clusters": [
+          {
+            "reference_accession": "P0A6C1",
+            "uniref90_cluster": "UniRef90_P0A6C1",
+            "uniref50_cluster": "UniRef50_P0A6C1"
+          },
+          {
+            "reference_accession": "P14604",
+            "uniref90_cluster": "UniRef90_P14604",
+            "uniref50_cluster": "UniRef50_P14604"
+          }
+        ],
+        "shared_uniref90_or_uniref50_with_nearest_references": false,
+        "structural_neighbor_tm_score": 0.664,
+        "structural_neighbor_above_tm_0_7": false
+      },
+      "representation_control_result": {
+        "status": "representation_stability_changed_requires_review",
+        "baseline_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P0A6C1",
+        "baseline_top_embedding_cosine": 0.7852,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P14604",
+        "comparison_top_embedding_cosine": 0.9233,
+        "nearest_reference_family_preserved": false,
+        "interpretation": "The 150M fallback nearest current-reference hit is high-cosine but outside the source-supported SDR/NAD(P) mechanism context, so import would rely on conflicting representation evidence."
+      },
+      "revised_status": "rejected_representation_conflict",
+      "confidence": "medium",
+      "remaining_expert_question": null,
+      "decision_scope_note": "This is a review-only import-safety rejection, not a wet-lab or biochemical invalidation of O14756 function."
+    },
+    {
+      "accession": "P06746",
+      "entry_id": "uniprot:P06746",
+      "protein_name": "DNA polymerase beta",
+      "current_unresolved_question": "Is the representation-only near-duplicate signal for P06746 sufficient for rejection, or should it remain a review-only representation-control blocker until broader duplicate screening?",
+      "sources_checked_this_run": [
+        "local normalized decision and confidence artifacts",
+        "local pilot evidence dossier",
+        "local reaction evidence sample",
+        "local backend current-reference MMseqs2 screen",
+        "local external all-vs-all MMseqs2 screen",
+        "local all-30 external Foldseek structural cluster index and split plan",
+        "UniProtKB REST P06746",
+        "UniRef90 and UniRef50 ID mapping for P06746 plus nearest current-reference hit P31116"
+      ],
+      "active_site_evidence_result": {
+        "status": "explicit_active_site_source_present",
+        "positions": [
+          {
+            "position": 72,
+            "description": "Nucleophile; Schiff-base intermediate with DNA; for 5'-dRP lyase activity",
+            "evidence": "PubMed 9572863, ECO:0000269"
+          }
+        ],
+        "pdb_or_alphafold_context": {
+          "pdb_id_count": 418,
+          "representative_pdb_ids": [
+            "1BPX",
+            "1BPY",
+            "1ZJM",
+            "4KLD",
+            "9ICY"
+          ],
+          "alphafold_ids": [
+            "P06746"
+          ],
+          "structure_mapping_status": "not_mapped_for_heuristic_control"
+        }
+      },
+      "reaction_mechanism_context_result": {
+        "status": "source_supports_dna_polymerase_and_5_drp_lyase_context",
+        "uniprot_catalytic_activity_count": 3,
+        "representative_rhea_reactions": [
+          "RHEA:22508 DNA(n) + a 2'-deoxyribonucleoside 5'-triphosphate = DNA(n+1) + diphosphate",
+          "RHEA:66592 2'-deoxyribonucleotide-(2'-deoxyribose 5'-phosphate)-2'-deoxyribonucleotide-DNA = a 3'-end 2'-deoxyribonucleotide-(2,3-dehydro-2,3-deoxyribose 5'-phosphate)-DNA + a 5'-end 5'-phospho-2'-deoxyribonucleoside-DNA + H(+)"
+        ],
+        "interpro_or_prosite_context": [
+          "IPR002054 DNA-dir_DNA_pol_X",
+          "IPR027421 DNA_pol_lamdba_lyase_dom_sf",
+          "IPR002008 DNA_pol_X_beta-like",
+          "PROSITE PS00522 DNA_POLYMERASE_X"
+        ],
+        "heuristic_context": {
+          "scored": false,
+          "interpretation": "No local heuristic control score exists for this row, so representation evidence is the active import-safety blocker."
+        }
+      },
+      "duplicate_screen_result": {
+        "bounded_current_reference_backend": "no_near_duplicate_signal",
+        "external_all_vs_all_backend": "no_near_duplicate_signal",
+        "targeted_uniref90_cluster": "UniRef90_P06746",
+        "targeted_uniref50_cluster": "UniRef50_P06746",
+        "nearest_reference_clusters": [
+          {
+            "reference_accession": "P31116",
+            "reference_representative_member": "DHOM_YEAST",
+            "uniref90_cluster": "UniRef90_P31116",
+            "uniref50_cluster": "UniRef50_P31116"
+          }
+        ],
+        "shared_uniref90_or_uniref50_with_nearest_references": false,
+        "top_current_reference_alignment_identity": 0.2061,
+        "structural_neighbor_tm_score": 0.3661,
+        "structural_neighbor_above_tm_0_7": false
+      },
+      "representation_control_result": {
+        "status": "representation_near_duplicate_holdout",
+        "baseline_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P31116",
+        "baseline_top_embedding_cosine": 0.9275,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P31116",
+        "comparison_top_embedding_cosine": 0.9604,
+        "nearest_reference_family_preserved": false,
+        "interpretation": "Targeted UniRef evidence does not support a duplicate call, but both representation backends point at a high-cosine current-reference family that does not match DNA polymerase beta or 5'-dRP lyase source context."
+      },
+      "revised_status": "rejected_representation_conflict",
+      "confidence": "medium",
+      "remaining_expert_question": null,
+      "decision_scope_note": "This is a review-only import-safety rejection; the local source evidence for POLB catalytic activities remains recorded."
+    },
+    {
+      "accession": "C9JRZ8",
+      "entry_id": "uniprot:C9JRZ8",
+      "protein_name": "Aldo-keto reductase family 1 member B15",
+      "current_unresolved_question": "Is the representation-only near-duplicate signal for C9JRZ8 sufficient for rejection, or should it remain a review-only representation-control blocker until broader duplicate screening?",
+      "sources_checked_this_run": [
+        "local normalized decision and confidence artifacts",
+        "local pilot evidence dossier",
+        "local reaction evidence sample",
+        "local backend current-reference MMseqs2 screen",
+        "local external all-vs-all MMseqs2 screen",
+        "local all-30 external Foldseek structural cluster index and split plan",
+        "UniProtKB REST C9JRZ8",
+        "UniRef90 and UniRef50 ID mapping for C9JRZ8 plus nearest current-reference hits P0A786 and P21874"
+      ],
+      "active_site_evidence_result": {
+        "status": "explicit_active_site_source_present",
+        "positions": [
+          {
+            "position": 49,
+            "description": "Proton donor",
+            "evidence": "inferred from UniProtKB O60218, ECO:0000250"
+          }
+        ],
+        "pdb_or_alphafold_context": {
+          "pdb_ids": [],
+          "alphafold_ids": [
+            "C9JRZ8"
+          ],
+          "structure_mapping_status": "not_mapped_for_heuristic_control"
+        }
+      },
+      "reaction_mechanism_context_result": {
+        "status": "source_supports_nadp_aldo_keto_reductase_context",
+        "uniprot_catalytic_activity_count": 13,
+        "representative_rhea_reactions": [
+          "RHEA:14981 testosterone + NADP(+) = androst-4-ene-3,17-dione + NADPH + H(+)",
+          "RHEA:25033 all-trans-retinol + NADP(+) = all-trans-retinal + NADPH + H(+)",
+          "RHEA:14697 (2E,6E)-farnesol + NADP(+) = (2E,6E)-farnesal + NADPH + H(+)"
+        ],
+        "interpro_or_prosite_context": [
+          "IPR020471 AKR",
+          "IPR018170 Aldo/ket_reductase_CS",
+          "IPR023210 NADP_OxRdtase_dom",
+          "PROSITE PS00062 ALDOKETO_REDUCTASE_2"
+        ],
+        "heuristic_context": {
+          "scored": false,
+          "interpretation": "No local heuristic control score exists for this row, so representation evidence is the active import-safety blocker."
+        }
+      },
+      "duplicate_screen_result": {
+        "bounded_current_reference_backend": "no_near_duplicate_signal",
+        "external_all_vs_all_backend": "no_near_duplicate_signal",
+        "targeted_uniref90_cluster": "UniRef90_C9JRZ8",
+        "targeted_uniref50_cluster": "UniRef50_C9JRZ8",
+        "nearest_reference_clusters": [
+          {
+            "reference_accession": "P0A786",
+            "uniref90_cluster": "UniRef90_P0A786",
+            "uniref50_cluster": "UniRef50_P0A786"
+          },
+          {
+            "reference_accession": "P21874",
+            "uniref90_cluster": "UniRef90_P21874",
+            "uniref50_cluster": "UniRef50_P21882"
+          }
+        ],
+        "shared_uniref90_or_uniref50_with_nearest_references": false,
+        "top_current_reference_alignment_identity": 0.2057,
+        "structural_neighbor_tm_score": 0.6032,
+        "structural_neighbor_above_tm_0_7": false
+      },
+      "representation_control_result": {
+        "status": "representation_near_duplicate_holdout",
+        "baseline_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P0A786",
+        "baseline_top_embedding_cosine": 0.7995,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P21874",
+        "comparison_top_embedding_cosine": 0.9537,
+        "nearest_reference_family_preserved": false,
+        "interpretation": "The broader sequence/cluster checks do not support duplicate rejection, but the largest feasible representation backend shifts to a high-cosine unrelated current-reference family."
+      },
+      "revised_status": "rejected_representation_conflict",
+      "confidence": "medium",
+      "remaining_expert_question": null,
+      "decision_scope_note": "This is a review-only import-safety rejection, not a claim against the UniProt AKR functional annotation."
+    },
+    {
+      "accession": "P34949",
+      "entry_id": "uniprot:P34949",
+      "protein_name": "Mannose-6-phosphate isomerase",
+      "current_unresolved_question": "Does the structure-local active-site and reaction evidence support the proposed mechanism despite the heuristic top1/scope mismatch?",
+      "sources_checked_this_run": [
+        "local normalized decision and confidence artifacts",
+        "local pilot evidence dossier",
+        "local reaction evidence sample",
+        "local backend current-reference MMseqs2 screen",
+        "local external all-vs-all MMseqs2 screen",
+        "local all-30 external Foldseek structural cluster index and split plan",
+        "local heuristic-control score artifact",
+        "UniProtKB REST P34949",
+        "UniRef90 and UniRef50 ID mapping for P34949 plus nearest current-reference hit P0A6D3"
+      ],
+      "active_site_evidence_result": {
+        "status": "explicit_active_site_source_present",
+        "positions": [
+          {
+            "position": 295,
+            "description": "active-site feature without UniProt free-text description",
+            "evidence": "inferred from UniProtKB P34948, ECO:0000250"
+          }
+        ],
+        "pdb_or_alphafold_context": {
+          "pdb_ids": [],
+          "alphafold_ids": [
+            "P34949"
+          ],
+          "structure_mapping_status": "ok"
+        }
+      },
+      "reaction_mechanism_context_result": {
+        "status": "source_supports_mannose_6_phosphate_isomerase_context",
+        "uniprot_catalytic_activity_count": 1,
+        "representative_rhea_reactions": [
+          "RHEA:12356 D-mannose 6-phosphate = D-fructose 6-phosphate"
+        ],
+        "interpro_or_prosite_context": [
+          "IPR001250 Man6P_Isoase-1",
+          "IPR016305 Mannose-6-P_Isomerase",
+          "IPR018050 Pmannose_isomerase-type1_CS",
+          "PROSITE PS00965 PMI_I_1",
+          "PROSITE PS00966 PMI_I_2"
+        ],
+        "heuristic_context": {
+          "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.185,
+          "scope_top1_mismatch": true,
+          "counterevidence": [
+            "absent_flavin_context"
+          ],
+          "interpretation": "Source-local evidence supports an isomerase mechanism, while the current seed-fingerprint heuristic picks a weak flavin redox fingerprint outside the proposed mechanism."
+        }
+      },
+      "duplicate_screen_result": {
+        "bounded_current_reference_backend": "no_near_duplicate_signal",
+        "external_all_vs_all_backend": "no_near_duplicate_signal",
+        "targeted_uniref90_cluster": "UniRef90_P34949",
+        "targeted_uniref50_cluster": "UniRef50_P34949",
+        "nearest_reference_clusters": [
+          {
+            "reference_accession": "P0A6D3",
+            "uniref90_cluster": "UniRef90_P0A6D3",
+            "uniref50_cluster": "UniRef50_P0A6D3"
+          }
+        ],
+        "shared_uniref90_or_uniref50_with_nearest_references": false,
+        "top_current_reference_alignment_identity": 0.1986,
+        "structural_neighbor_tm_score": 0.4168,
+        "structural_neighbor_above_tm_0_7": false
+      },
+      "representation_control_result": {
+        "status": "representation_control_adjudicated_review_only",
+        "baseline_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P0A6D3",
+        "baseline_top_embedding_cosine": 0.9199,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P0A6D3",
+        "comparison_top_embedding_cosine": 0.9364,
+        "nearest_reference_family_preserved": false,
+        "interpretation": "The embedding nearest-reference is stable but points to a current-reference family that does not explain mannose-6-phosphate isomerase chemistry."
+      },
+      "revised_status": "rejected_representation_conflict",
+      "confidence": "medium",
+      "remaining_expert_question": null,
+      "decision_scope_note": "Local source evidence supports the proposed isomerase chemistry, but the current import controls conflict with it; no countable label is created."
+    },
+    {
+      "accession": "Q9BXD5",
+      "entry_id": "uniprot:Q9BXD5",
+      "protein_name": "N-acetylneuraminate lyase",
+      "current_unresolved_question": "Is the representation-only near-duplicate signal for Q9BXD5 sufficient for rejection, or should it remain a review-only representation-control blocker until broader duplicate screening?",
+      "sources_checked_this_run": [
+        "local normalized decision and confidence artifacts",
+        "local pilot evidence dossier",
+        "local reaction evidence sample",
+        "local backend current-reference MMseqs2 screen",
+        "local external all-vs-all MMseqs2 screen",
+        "local all-30 external Foldseek structural cluster index and split plan",
+        "local heuristic-control score artifact",
+        "UniProtKB REST Q9BXD5",
+        "UniRef90 and UniRef50 ID mapping for Q9BXD5 plus nearest current-reference hit P11708"
+      ],
+      "active_site_evidence_result": {
+        "status": "explicit_active_site_source_present",
+        "positions": [
+          {
+            "position": 143,
+            "description": "Proton donor",
+            "evidence": "inferred from UniProtKB P0A6L4, ECO:0000250"
+          },
+          {
+            "position": 173,
+            "description": "Schiff-base intermediate with substrate",
+            "evidence": "inferred from UniProtKB P0A6L4, ECO:0000250"
+          }
+        ],
+        "pdb_or_alphafold_context": {
+          "pdb_ids": [
+            "6ARH"
+          ],
+          "alphafold_ids": [
+            "Q9BXD5"
+          ],
+          "structure_mapping_status": "ok"
+        }
+      },
+      "reaction_mechanism_context_result": {
+        "status": "source_supports_n_acetylneuraminate_lyase_context",
+        "uniprot_catalytic_activity_count": 1,
+        "representative_rhea_reactions": [
+          "RHEA:23296 aceneuramate = aldehydo-N-acetyl-D-mannosamine + pyruvate"
+        ],
+        "interpro_or_prosite_context": [
+          "IPR013785 Aldolase_TIM",
+          "IPR002220 DapA-like",
+          "IPR005264 NanA"
+        ],
+        "heuristic_context": {
+          "top1_fingerprint_id": "heme_peroxidase_oxidase",
+          "top1_score": 0.3646,
+          "scope_top1_mismatch": true,
+          "counterevidence": [
+            "absent_heme_context"
+          ],
+          "interpretation": "Source-local lyase/aldolase context conflicts with the weak heme-peroxidase top1 heuristic."
+        }
+      },
+      "duplicate_screen_result": {
+        "bounded_current_reference_backend": "no_near_duplicate_signal",
+        "external_all_vs_all_backend": "no_near_duplicate_signal",
+        "targeted_uniref90_cluster": "UniRef90_Q9BXD5",
+        "targeted_uniref50_cluster": "UniRef50_Q9BXD5",
+        "nearest_reference_clusters": [
+          {
+            "reference_accession": "P11708",
+            "reference_representative_member": "MDHC_HUMAN",
+            "uniref90_cluster": "UniRef90_P40925",
+            "uniref50_cluster": "UniRef50_P40925"
+          }
+        ],
+        "shared_uniref90_or_uniref50_with_nearest_references": false,
+        "top_current_reference_alignment_identity": 0.22,
+        "structural_neighbor_tm_score": 0.6714,
+        "structural_neighbor_above_tm_0_7": false
+      },
+      "representation_control_result": {
+        "status": "representation_near_duplicate_holdout",
+        "baseline_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P11708",
+        "baseline_top_embedding_cosine": 0.8619,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P11708",
+        "comparison_top_embedding_cosine": 0.9649,
+        "nearest_reference_family_preserved": false,
+        "interpretation": "The targeted sequence/UniRef screens do not support duplicate rejection, but the stable high-cosine representation nearest-reference and heuristic top1 are both inconsistent with the source-supported NAL lyase context."
+      },
+      "revised_status": "rejected_representation_conflict",
+      "confidence": "medium",
+      "remaining_expert_question": null,
+      "decision_scope_note": "This is a review-only import-safety rejection; the source-supported NAL reaction remains recorded."
+    },
+    {
+      "accession": "Q6NSJ0",
+      "entry_id": "uniprot:Q6NSJ0",
+      "protein_name": "Alpha-galactosidase MYORG",
+      "current_unresolved_question": "Does the changed ESM-2 nearest-reference evidence preserve the proposed mechanism family, or should this row be rejected as a representation conflict? Does the structure-local active-site and reaction evidence support the proposed mechanism despite the heuristic top1/scope mismatch?",
+      "sources_checked_this_run": [
+        "local normalized decision and confidence artifacts",
+        "local pilot evidence dossier",
+        "local reaction evidence sample",
+        "local backend current-reference MMseqs2 screen",
+        "local external all-vs-all MMseqs2 screen",
+        "local all-30 external Foldseek structural cluster index and split plan",
+        "local heuristic-control score artifact",
+        "UniProtKB REST Q6NSJ0",
+        "UniRef90 and UniRef50 ID mapping for Q6NSJ0 plus nearest current-reference hits P0ABI8 and P07342"
+      ],
+      "active_site_evidence_result": {
+        "status": "explicit_active_site_source_present",
+        "positions": [
+          {
+            "position": 463,
+            "description": "Nucleophile",
+            "evidence": "PubMed 36129849, ECO:0000305"
+          },
+          {
+            "position": 520,
+            "description": "Proton donor/acceptor",
+            "evidence": "PubMed 36129849, ECO:0000305"
+          }
+        ],
+        "pdb_or_alphafold_context": {
+          "pdb_ids": [
+            "7QQF",
+            "7QQG",
+            "7QQH"
+          ],
+          "alphafold_ids": [
+            "Q6NSJ0"
+          ],
+          "structure_mapping_status": "ok"
+        }
+      },
+      "reaction_mechanism_context_result": {
+        "status": "source_supports_alpha_galactosidase_glycoside_hydrolase_context",
+        "uniprot_catalytic_activity_count": 1,
+        "representative_rhea_reactions": [
+          "RHEA:21112 a globoside Gb3Cer (d18:1(4E)) + H2O = a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+        ],
+        "interpro_or_prosite_context": [
+          "IPR017853 GH",
+          "IPR000322 Glyco_hydro_31_TIM",
+          "IPR048395 Glyco_hydro_31_C",
+          "IPR050985 Alpha-glycosidase_related"
+        ],
+        "heuristic_context": {
+          "top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.3552,
+          "scope_top1_mismatch": false,
+          "interpretation": "The heuristic preserves broad hydrolysis but collapses glycoside hydrolase chemistry into the current metal-dependent hydrolase seed, which is not adequate import evidence."
+        }
+      },
+      "duplicate_screen_result": {
+        "bounded_current_reference_backend": "no_near_duplicate_signal",
+        "external_all_vs_all_backend": "no_near_duplicate_signal",
+        "targeted_uniref90_cluster": "UniRef90_Q6NSJ0",
+        "targeted_uniref50_cluster": "UniRef50_Q6NSJ0",
+        "nearest_reference_clusters": [
+          {
+            "reference_accession": "P0ABI8",
+            "reference_representative_member": "CYOB_ECOLI",
+            "uniref90_cluster": "UniRef90_P0ABI8",
+            "uniref50_cluster": "UniRef50_P0ABI8"
+          },
+          {
+            "reference_accession": "P07342",
+            "reference_representative_member": "ILVB_YEAST",
+            "uniref90_cluster": "UniRef90_P07342",
+            "uniref50_cluster": "UniRef50_P07342"
+          }
+        ],
+        "shared_uniref90_or_uniref50_with_nearest_references": false,
+        "top_current_reference_alignment_identity": 0.2089,
+        "structural_neighbor_tm_score": 0.5931,
+        "structural_neighbor_above_tm_0_7": false
+      },
+      "representation_control_result": {
+        "status": "representation_stability_changed_requires_review",
+        "baseline_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P0ABI8",
+        "baseline_top_embedding_cosine": 0.8958,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P07342",
+        "comparison_top_embedding_cosine": 0.926,
+        "nearest_reference_family_preserved": false,
+        "interpretation": "The changed nearest-reference evidence does not preserve the glycoside hydrolase context, and the heuristic broad-hydrolase collapse is not a resolved glycan-mechanism control."
+      },
+      "revised_status": "rejected_representation_conflict",
+      "confidence": "high",
+      "remaining_expert_question": null,
+      "decision_scope_note": "Local evidence supports MYORG alpha-galactosidase context, but the current import controls conflict with it; no countable label is created."
+    }
+  ],
+  "warnings": [
+    "All revised decisions are review-only import-safety outcomes. They do not claim validated enzyme function.",
+    "Targeted UniRef90/UniRef50 mapping narrows duplicate uncertainty for nearest current-reference hits but is not a full UniRef-wide import screen.",
+    "No row is import-ready because resolved rows are terminal rejections and no full label-factory import gate was run."
+  ]
+}

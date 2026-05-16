@@ -74,11 +74,16 @@ Priority blockers:
   evidence, specific reaction evidence, clean sequence holdout status, clean
   structure mapping, non-collapsed retrieval/representation behavior, and no
   broad-EC ambiguity;
-- resolve the 6 normalized `needs_review` rows (`O14756`, `P06746`, `C9JRZ8`,
-  `P34949`, `Q9BXD5`, and `Q6NSJ0`) through UniRef-wide duplicate screening,
-  representation or heuristic adjudication, and actual review decisions; or
-  expand the external fold-diverse structural surface beyond the current
-  review-only 30-row split before any benchmark/import claim.
+- treat the 6 formerly normalized `needs_review` rows (`O14756`, `P06746`,
+  `C9JRZ8`, `P34949`, `Q9BXD5`, and `Q6NSJ0`) as resolved for this pilot pass:
+  `artifacts/v3_external_source_pilot_needs_review_resolution_1025.json`
+  records targeted UniRef90/50 no-shared-cluster checks plus source-mechanism
+  review, and
+  `artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json`
+  closes them as review-only `rejected_representation_conflict` outcomes.
+  Next external work should therefore focus on representation/heuristic repair
+  policy or a broader external fold-diverse structural surface, not re-opening
+  those six rows without new evidence.
 - `artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json`
   now classifies the 10 selected pilot rows as review-only active-site evidence
   decisions: 7 have explicit active-site source evidence, 3 have binding
@@ -122,6 +127,17 @@ Priority blockers:
   routes all 6 `needs_review` rows (`O14756`, `P06746`, `C9JRZ8`, `P34949`,
   `Q9BXD5`, and `Q6NSJ0`) with exact unresolved questions. This removes the
   immediate pilot-decision confidence blocker without adding import authority.
+- `artifacts/v3_external_source_pilot_needs_review_resolution_1025.json`
+  actively resolves those 6 rows by desk review. Local active-site, reaction,
+  sequence, representation, heuristic, and structural artifacts were checked
+  with UniProtKB/UniRef90/UniRef50 source context; targeted UniRef90/50 mapping
+  found 0 shared candidate/current-reference clusters for the nearest-reference
+  checks, so duplicate rejection is not supported. All 6 rows are nevertheless
+  terminal review-only `rejected_representation_conflict` import-safety
+  decisions because source-supported mechanisms conflict with current
+  representation or heuristic controls. The resolved decisions and queue
+  artifacts leave 0 `needs_review`, 0 import-ready rows, and 0 countable
+  external labels.
 - `artifacts/v3_external_structural_cluster_index_1025.json` removes the
   selected-pilot structure-index blocker by staging all 10 AlphaFold coordinate
   sidecars, recording SHA-256 digests, running Foldseek, and caching

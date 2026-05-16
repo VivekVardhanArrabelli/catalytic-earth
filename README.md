@@ -314,6 +314,17 @@ normalizes the review vocabulary to 6 `needs_review`, 3
 `artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json`
 routes all 6 needs-review rows with exact unresolved questions. These artifacts
 remain review-only and authorize 0 imports and 0 countable external labels.
+`artifacts/v3_external_source_pilot_needs_review_resolution_1025.json` now
+desk-reviews those 6 rows directly against local artifacts plus UniProtKB,
+UniRef90/50, Rhea, PDB/AlphaFold, and InterPro context. Targeted UniRef90/50
+mapping does not support duplicate rejection for the representation-only rows,
+but all 6 are resolved as review-only `rejected_representation_conflict`
+import-safety outcomes because the current representation or heuristic controls
+conflict with source-supported chemistry. The companion resolved decision and
+queue artifacts,
+`artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json` and
+`artifacts/v3_external_source_pilot_human_expert_review_queue_resolved_1025.json`,
+leave 0 `needs_review`, 0 import-ready rows, and 0 countable external labels.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

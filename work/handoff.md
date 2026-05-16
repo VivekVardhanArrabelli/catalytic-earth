@@ -85,6 +85,18 @@ records 6 `needs_review`, 3 `rejected_active_site_evidence_missing`, and 1
 routes all 6 needs-review rows (`O14756`, `P06746`, `C9JRZ8`, `P34949`,
 `Q9BXD5`, and `Q6NSJ0`) with exact unresolved questions. All three audit and
 normalization artifacts are review-only, with 0 import-ready rows and 0
+countable external labels. The 2026-05-16T15:04:24Z run then added
+`artifacts/v3_external_source_pilot_needs_review_resolution_1025.json`,
+`artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json`, and
+`artifacts/v3_external_source_pilot_human_expert_review_queue_resolved_1025.json`.
+That desk review checked local active-site, reaction, sequence, representation,
+heuristic, and structural artifacts plus UniProtKB/UniRef90/UniRef50 source
+context. Targeted UniRef90/50 mapping found 0 shared candidate/current-reference
+clusters for the nearest-reference checks, so duplicate rejection is not
+supported, but all 6 rows are terminal review-only
+`rejected_representation_conflict` import-safety decisions because current
+representation or heuristic controls conflict with source-supported chemistry.
+The resolved decision surface has 0 `needs_review`, 0 import-ready rows, and 0
 countable external labels. The external structural pilot path has now moved from path definition to a concrete
 review-only structure cache in
 `artifacts/v3_external_structural_cluster_index_1025.json`: all 10 selected
@@ -113,18 +125,43 @@ MMseqs2 searched all 30 external candidates against each other, found 0
 near-duplicate pairs at 90% identity / 80% coverage, recorded max reported
 external-external identity `0.647`, and kept 0 import-ready/countable rows. The
 confidence audit now carries this external all-vs-all no-signal evidence for
-the selected pilot rows, but the 6 normalized `needs_review` rows remain
-`needs_review` because UniRef-wide duplicate screening, representation or
-heuristic adjudication, actual review decisions, and full factory gates are
-still unresolved. Next direct work should resolve those 6 questions through
-UniRef-wide duplicate screening, representation or heuristic adjudication, and
-actual review decisions, or broaden the external Swiss-Prot/AFDB structural
-surface beyond the current 30-row review-only split before any import or
-benchmark claim.
+the selected pilot rows. The later needs-review resolution artifact supersedes
+the 6-row normalized queue for pilot-decision work; do not re-open those rows
+without new evidence. Next direct work should repair the representation or
+heuristic policy that caused the zero-pass outcome, or broaden the external
+Swiss-Prot/AFDB structural surface beyond the current 30-row review-only split
+before any import or benchmark claim.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
 unless the user explicitly reverses the override.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T15:04:24Z run after acquiring the automation lock,
+syncing clean `origin/main`, passing startup gates (`358` unit tests passed and
+`validate` passed with 679 curated labels), desk-reviewing the 6 normalized
+external `needs_review` rows, and passing wrap checks (`359` unit tests,
+`validate`, `compileall`, and `git diff --check`):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and no
+  M-CSA strict-TM round, query, split-repair, or partition-repair work was
+  resumed.
+- External-source repair/import: Yes for pilot review reduction, no for import
+  or countable labels. This run added a needs-review resolution artifact, a
+  resolved decision artifact, and an empty resolved review queue. Targeted
+  UniRef90/50 mapping found 0 shared candidate/current-reference clusters for
+  the nearest-reference checks, so duplicate rejection was not supported; all
+  six formerly `needs_review` rows were closed as review-only
+  `rejected_representation_conflict` import-safety decisions. The resolved
+  pilot surface has 0 `needs_review`, 0 import-ready rows, and 0 countable
+  external labels.
+- Scientific generalization work: No new benchmark or split claim. The current
+  all-30 external structural split remains review-only; the new work explains a
+  zero-pass selected-pilot outcome rather than broadening the structural
+  surface.
+- SPOF hardening work: Yes. Regression coverage now checks the resolved
+  six-row artifact, resolved decision counts, zero queued expert rows, and the
+  invariant that no resolved external row is countable or import-ready.
 
 Recorded for the 2026-05-16T09:03:56-05:00 run after recovering this run's
 self-created short-lived shell-PID lock, reacquiring a live lock, syncing clean

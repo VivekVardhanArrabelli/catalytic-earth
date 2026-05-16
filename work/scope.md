@@ -214,7 +214,14 @@ Current expectation:
   questions. The audit now carries the 30-row external all-vs-all sequence
   screen: 0 near-duplicate pairs at 90% identity / 80% coverage, max reported
   external-external identity `0.647`, and UniRef-wide duplicate screening still
-  pending. The external structural path now has a concrete review-only cluster index for the same 10
+  pending. A direct desk-review resolution then checks those six rows against
+  local artifacts plus UniProtKB/UniRef90/UniRef50, Rhea, PDB/AlphaFold, and
+  InterPro context. Targeted UniRef90/50 mapping finds 0 shared
+  candidate/current-reference clusters for the nearest-reference checks, so
+  duplicate rejection is not supported; all six rows are instead terminal
+  review-only `rejected_representation_conflict` import-safety decisions. The
+  resolved pilot surface has 0 `needs_review`, 0 import-ready rows, and 0
+  countable external labels. The external structural path now has a concrete review-only cluster index for the same 10
   selected rows: all 10 AlphaFold coordinate sidecars are materialized,
   Foldseek completed, nearest-neighbor coverage is 10/10, and the selected
   pilot forms nine `TM >=0.7` clusters with only `O95050`/`P51580` grouped. It

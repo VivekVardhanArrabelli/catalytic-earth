@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "method": "external_source_pilot_human_expert_review_queue_resolved",
+    "slice_id": 1025,
+    "created_at": "2026-05-16T15:04:24Z",
+    "review_only": true,
+    "ready_for_label_import": false,
+    "import_ready_candidate_count": 0,
+    "countable_label_candidate_count": 0,
+    "source_resolved_decisions": "artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json",
+    "source_needs_review_resolution": "artifacts/v3_external_source_pilot_needs_review_resolution_1025.json",
+    "queued_candidate_count": 0,
+    "selected_accessions": [],
+    "review_packet_status_counts": {},
+    "blocker_removed": "no_remaining_needs_review_rows_after_automation_resolution",
+    "non_human_blocker_counts": {
+      "full_label_factory_gate_not_run_for_external_import": 10
+    }
+  },
+  "rows": [],
+  "warnings": [
+    "No human/expert queue rows remain because all six normalized needs_review rows were resolved as review-only representation-conflict rejections.",
+    "No import-ready or countable external label is created."
+  ]
+}

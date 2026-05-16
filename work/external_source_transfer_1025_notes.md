@@ -180,6 +180,15 @@ Current review-only external artifacts:
   to human expert review. The 3 deferred rows are routed by
   `artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`;
   UniRef-wide duplicate screening and full factory gates still block import.
+- `artifacts/v3_external_source_pilot_needs_review_resolution_1025.json`
+  supersedes the normalized 6-row needs-review queue for pilot-decision work.
+  The desk review checks local evidence plus UniProtKB/UniRef90/UniRef50,
+  Rhea, PDB/AlphaFold, and InterPro context. Targeted UniRef90/50 mapping
+  finds 0 shared candidate/current-reference clusters for the nearest-reference
+  checks, so duplicate rejection is not supported; all 6 rows are instead
+  resolved as terminal review-only `rejected_representation_conflict`
+  import-safety decisions. The resolved decision and queue artifacts leave 0
+  `needs_review`, 0 import-ready rows, and 0 countable external labels.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine
