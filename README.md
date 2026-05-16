@@ -332,6 +332,13 @@ sugar-phosphate isomerase, Schiff-base lyase/aldolase, and
 glycoside-hydrolase versus metal-hydrolase boundary control. These lanes
 remove the generic zero-pass repair ambiguity but are not predictive features,
 import-ready decisions, or countable labels.
+`artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json`
+implements the first bounded lane control for `O14756`: a sequence-derived
+SDR/NAD(P) contrast axis with a `TGxxxGxG` glycine-rich proxy and a
+source-active-site-overlapping `YxxxK` proxy. The conflicting current-reference
+neighbors lack the complete SDR axis, so the lane is ready for a future
+review-only scoring experiment, while still authorizing 0 imports and 0
+countable labels.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

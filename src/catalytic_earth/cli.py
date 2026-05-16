@@ -152,6 +152,7 @@ from .transfer_scope import (
     build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_human_expert_review_queue_normalized,
     build_external_source_pilot_mechanism_repair_lanes,
+    build_external_source_pilot_sdr_redox_repair_control,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
@@ -2673,6 +2674,55 @@ def cmd_build_external_source_pilot_mechanism_repair_lanes(
     print(
         "Wrote external source pilot mechanism repair lanes to "
         f"{args.out} ({lanes['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_sdr_redox_repair_control(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "repair_lanes",
+            "needs_review_resolution",
+            "pilot_representation_sample",
+            "pilot_larger_representation_sample",
+            "pilot_representation_stability_audit",
+            "heuristic_control_scores",
+        ),
+        blocker_removed="sdr_nad_p_redox_repair_lane_control_staged",
+    )
+    with Path(args.curated_labels).open("r", encoding="utf-8") as handle:
+        curated_labels = json.load(handle)
+    if not isinstance(curated_labels, list):
+        raise ValueError("curated labels registry must be a JSON list")
+    control = build_external_source_pilot_sdr_redox_repair_control(
+        repair_lanes=artifact_payloads["repair_lanes"] or {},
+        needs_review_resolution=artifact_payloads["needs_review_resolution"] or {},
+        pilot_representation_sample=artifact_payloads[
+            "pilot_representation_sample"
+        ]
+        or {},
+        pilot_larger_representation_sample=artifact_payloads[
+            "pilot_larger_representation_sample"
+        ]
+        or {},
+        pilot_representation_stability_audit=artifact_payloads[
+            "pilot_representation_stability_audit"
+        ]
+        or {},
+        heuristic_control_scores=artifact_payloads["heuristic_control_scores"] or {},
+        external_sequence_fasta=Path(args.external_sequence_fasta),
+        reference_sequence_fasta=Path(args.reference_sequence_fasta),
+        curated_labels=curated_labels,
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), control)
+    print(
+        "Wrote external source pilot SDR redox repair control to "
+        f"{args.out} ({control['metadata']['candidate_count']} rows)"
     )
     return 0
 
@@ -7122,6 +7172,86 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_mechanism_repair.set_defaults(
         func=cmd_build_external_source_pilot_mechanism_repair_lanes
+    )
+
+    external_pilot_sdr_repair_control = subparsers.add_parser(
+        "build-external-source-pilot-sdr-redox-repair-control",
+        help=(
+            "stage a review-only sequence-derived SDR/NAD(P) redox contrast "
+            "control for the selected external pilot repair lane"
+        ),
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--repair-lanes",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+        ),
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--needs-review-resolution",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_needs_review_resolution_1025.json"
+        ),
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--pilot-representation-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_sample_1025.json"
+        ),
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--pilot-larger-representation-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t33_650m_"
+            "ur50d_sample_1025.json"
+        ),
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--pilot-representation-stability-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_"
+            "650m_stability_audit_1025.json"
+        ),
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores_1025.json",
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--external-sequence-fasta",
+        default=(
+            "artifacts/"
+            "v3_external_source_backend_sequence_search_external_1025.fasta"
+        ),
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--reference-sequence-fasta",
+        default=(
+            "artifacts/"
+            "v3_external_source_backend_sequence_search_reference_1025.fasta"
+        ),
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--curated-labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--max-rows", type=int, default=1
+    )
+    external_pilot_sdr_repair_control.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_sdr_redox_repair_control_1025.json"
+        ),
+    )
+    external_pilot_sdr_repair_control.set_defaults(
+        func=cmd_build_external_source_pilot_sdr_redox_repair_control
     )
 
     external_structural_path = subparsers.add_parser(

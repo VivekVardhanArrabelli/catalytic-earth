@@ -1,0 +1,267 @@
+{
+  "blockers": [],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "heuristic_control_scores": "artifacts/v3_external_source_heuristic_control_scores_1025.json",
+        "needs_review_resolution": "artifacts/v3_external_source_pilot_needs_review_resolution_1025.json",
+        "pilot_larger_representation_sample": "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+        "pilot_representation_sample": "artifacts/v3_external_source_pilot_representation_backend_sample_1025.json",
+        "pilot_representation_stability_audit": "artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json",
+        "repair_lanes": "artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+      },
+      "blocker_removed": "sdr_nad_p_redox_repair_lane_control_staged",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "heuristic_control_scores": 1025,
+        "needs_review_resolution": 1025,
+        "pilot_larger_representation_sample": 1025,
+        "pilot_representation_sample": 1025,
+        "pilot_representation_stability_audit": 1025,
+        "repair_lanes": 1025
+      },
+      "payload_methods": {
+        "heuristic_control_scores": "external_source_heuristic_control_scores",
+        "needs_review_resolution": "external_source_pilot_needs_review_resolution",
+        "pilot_larger_representation_sample": "external_source_representation_backend_sample",
+        "pilot_representation_sample": "external_source_representation_backend_sample",
+        "pilot_representation_stability_audit": "external_source_representation_backend_stability_audit",
+        "repair_lanes": "external_source_pilot_mechanism_repair_lanes"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "needs_review_resolution": {
+          "metadata.slice_id": 1025
+        },
+        "repair_lanes": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "heuristic_control_scores",
+          "needs_review_resolution",
+          "pilot_larger_representation_sample",
+          "pilot_representation_sample",
+          "pilot_representation_stability_audit",
+          "repair_lanes"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "control_not_integrated_into_geometry_or_representation_scorer",
+      "full_label_factory_gate_not_run_for_external_import",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "sdr_nad_p_redox_lane_has_sequence_derived_contrast_control",
+    "candidate_count": 1,
+    "candidate_with_sdr_axis_count": 1,
+    "control_status_counts": {
+      "review_only_sdr_axis_contrast_ready": 1
+    },
+    "countable_label_candidate_count": 0,
+    "current_reference_sdr_axis_match_count": 0,
+    "implemented_control": "sdr_nad_p_redox_sequence_axis_contrast",
+    "import_ready_candidate_count": 0,
+    "max_rows": 1,
+    "method": "external_source_pilot_sdr_redox_repair_control",
+    "predictive_feature_sources": [
+      "amino_acid_sequence_motif_presence",
+      "source_traced_active_site_position_overlap"
+    ],
+    "ready_for_label_import": false,
+    "review_context_fields": [
+      "Rhea reaction identifiers and equations",
+      "InterPro/PROSITE source context",
+      "current-reference M-CSA labels",
+      "heuristic fingerprint identifiers"
+    ],
+    "review_only": true,
+    "slice_id": 1025,
+    "source_baseline_representation_backend": "esm2_t6_8m_ur50d",
+    "source_larger_representation_backend": "esm2_t30_150m_ur50d",
+    "source_needs_review_resolution_method": "external_source_pilot_needs_review_resolution",
+    "source_repair_lanes_method": "external_source_pilot_mechanism_repair_lanes",
+    "target_repair_lane": "add_sdr_nad_p_redox_representation_axis"
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "candidate_sequence_features": {
+        "catalytic_yxxxk_motif_hits": [
+          {
+            "end": 180,
+            "motif": "YCVSK",
+            "motif_type": "YxxxK_sdr_catalytic_pair_proxy",
+            "overlapping_active_site_positions": [
+              176
+            ],
+            "overlaps_source_active_site": true,
+            "start": 176
+          },
+          {
+            "end": 251,
+            "motif": "YNIMK",
+            "motif_type": "YxxxK_sdr_catalytic_pair_proxy",
+            "overlapping_active_site_positions": [],
+            "overlaps_source_active_site": false,
+            "start": 247
+          }
+        ],
+        "glycine_rich_nad_p_binding_motif_hits": [
+          {
+            "end": 42,
+            "motif": "TGCDSGFG",
+            "motif_type": "TGxxxGxG_nad_p_binding_proxy",
+            "start": 35
+          }
+        ],
+        "has_catalytic_yxxxk_motif": true,
+        "has_glycine_rich_nad_p_binding_motif": true,
+        "has_source_active_site_yxxxk_pair": true,
+        "sdr_sequence_axis_status": "sdr_axis_present_with_source_active_site_overlap",
+        "sequence_length": 317,
+        "source_active_site_positions": [
+          176
+        ]
+      },
+      "control_interpretation": "Candidate carries a sequence-derived SDR NAD(P) axis signal with source-active-site overlap, while conflicting current-reference neighbors lack the complete SDR axis. This supports a bounded review-only repair-control experiment, not import.",
+      "control_status": "review_only_sdr_axis_contrast_ready",
+      "countable_label_candidate": false,
+      "current_reference_contrasts": [
+        {
+          "catalytic_yxxxk_motif_hits": [],
+          "current_label_summaries": [
+            {
+              "entry_id": "m_csa:11",
+              "fingerprint_id": "metal_dependent_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated"
+            }
+          ],
+          "embedding_cosine_by_backend": {
+            "esm2_t30_150m_ur50d": 0.8931,
+            "esm2_t6_8m_ur50d": 0.7852
+          },
+          "glycine_rich_nad_p_binding_motif_hits": [],
+          "matched_m_csa_entry_ids": [
+            "m_csa:11"
+          ],
+          "reference_accession": "P0A6C1",
+          "sdr_sequence_axis_status": "sdr_axis_absent",
+          "sequence_length": 285
+        },
+        {
+          "catalytic_yxxxk_motif_hits": [
+            {
+              "end": 157,
+              "motif": "YAGEK",
+              "motif_type": "YxxxK_sdr_catalytic_pair_proxy",
+              "overlapping_active_site_positions": [],
+              "overlaps_source_active_site": false,
+              "start": 153
+            }
+          ],
+          "current_label_summaries": [
+            {
+              "entry_id": "m_csa:315",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated"
+            }
+          ],
+          "embedding_cosine_by_backend": {
+            "esm2_t30_150m_ur50d": 0.9233,
+            "esm2_t6_8m_ur50d": 0.7672
+          },
+          "glycine_rich_nad_p_binding_motif_hits": [],
+          "matched_m_csa_entry_ids": [
+            "m_csa:315"
+          ],
+          "reference_accession": "P14604",
+          "sdr_sequence_axis_status": "partial_sdr_axis_signal",
+          "sequence_length": 290
+        },
+        {
+          "catalytic_yxxxk_motif_hits": [],
+          "current_label_summaries": [
+            {
+              "entry_id": "m_csa:595",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated"
+            }
+          ],
+          "embedding_cosine_by_backend": {
+            "esm2_t30_150m_ur50d": 0.792,
+            "esm2_t6_8m_ur50d": 0.6627
+          },
+          "glycine_rich_nad_p_binding_motif_hits": [],
+          "matched_m_csa_entry_ids": [
+            "m_csa:595"
+          ],
+          "reference_accession": "P15369",
+          "sdr_sequence_axis_status": "sdr_axis_absent",
+          "sequence_length": 260
+        }
+      ],
+      "decision_effect": "keeps row rejected_representation_conflict; this control only stages non-text repair evidence for a future scoring experiment",
+      "entry_id": "uniprot:O14756",
+      "heuristic_conflict_summary": {
+        "scope_top1_mismatch": false,
+        "scored": true,
+        "top1_counterevidence": [
+          "absent_heme_context"
+        ],
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.3039
+      },
+      "implemented_control": "sdr_nad_p_redox_sequence_axis_contrast",
+      "ready_for_label_import": false,
+      "repair_lane": "add_sdr_nad_p_redox_representation_axis",
+      "representation_conflict_summary": {
+        "baseline_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P0A6C1",
+        "baseline_top_embedding_cosine": 0.7852,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P14604",
+        "comparison_top_embedding_cosine": 0.9233,
+        "nearest_reference_stable": false,
+        "stability_flags": [
+          "nearest_reference_changed",
+          "nearest_reference_entry_ids_changed",
+          "comparison_embedding_backend_fallback_used"
+        ]
+      },
+      "review_status": "external_pilot_sdr_redox_repair_control_review_only",
+      "source_confidence": "medium",
+      "source_context_evidence": {
+        "active_site_positions": [
+          176
+        ],
+        "interpro_or_prosite_context": [
+          "IPR002347 SDR_fam",
+          "IPR020904 Sc_DH/Rdtase_CS",
+          "IPR036291 NAD(P)-bd_dom_sf",
+          "PROSITE PS00061 ADH_SHORT"
+        ],
+        "reaction_context_status": "source_supports_nad_p_dependent_short_chain_dehydrogenase_reductase_context",
+        "representative_rhea_reactions": [
+          "RHEA:21284 all-trans-retinol + NAD(+) = all-trans-retinal + NADH + H(+)",
+          "RHEA:20381 androsterone + NAD(+) = 5alpha-androstan-3,17-dione + NADH + H(+)",
+          "RHEA:42004 5alpha-androstane-3alpha,17beta-diol + NAD(+) = 17beta-hydroxy-5alpha-androstan-3-one + NADH + H(+)"
+        ]
+      },
+      "source_resolved_status": "rejected_representation_conflict"
+    }
+  ],
+  "warnings": [
+    "SDR/NAD(P) repair controls are review-only contrast evidence; they do not validate enzyme function or authorize import"
+  ]
+}

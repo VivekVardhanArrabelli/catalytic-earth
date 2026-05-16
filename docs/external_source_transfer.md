@@ -146,6 +146,14 @@ Priority blockers:
   metal-hydrolase boundary control. This removes the generic zero-pass
   repair-lane ambiguity; the lanes are not predictive features, import-ready
   rows, or countable labels.
+- `artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json`
+  implements the first bounded repair-lane control for the SDR/NAD(P) row
+  `O14756`. It stages only sequence-derived control evidence: a `TGxxxGxG`
+  glycine-rich NAD(P)-binding proxy plus a source-active-site-overlapping
+  `YxxxK` proxy, and contrasts that signal against the conflicting
+  current-reference neighbors, which lack the complete SDR axis. This removes
+  the "no implemented repair-lane control" blocker for one lane, but it is
+  review-only and changes no import, decision, or label count.
 - `artifacts/v3_external_structural_cluster_index_1025.json` removes the
   selected-pilot structure-index blocker by staging all 10 AlphaFold coordinate
   sidecars, recording SHA-256 digests, running Foldseek, and caching
@@ -863,6 +871,18 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representatio
   --baseline-representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
   --comparison-representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json \
   --out artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-sdr-redox-repair-control \
+  --repair-lanes artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json \
+  --needs-review-resolution artifacts/v3_external_source_pilot_needs_review_resolution_1025.json \
+  --pilot-representation-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
+  --pilot-larger-representation-sample artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json \
+  --pilot-representation-stability-audit artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
+  --external-sequence-fasta artifacts/v3_external_source_backend_sequence_search_external_1025.fasta \
+  --reference-sequence-fasta artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta \
+  --curated-labels data/registries/curated_mechanism_labels.json \
+  --out artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidence-dossiers \
   --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \

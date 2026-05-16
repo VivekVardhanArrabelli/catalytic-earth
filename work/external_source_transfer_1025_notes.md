@@ -197,6 +197,14 @@ Current review-only external artifacts:
   glycoside-hydrolase versus metal-hydrolase boundary repair. These are
   next-code/worklist lanes only; they are not predictive features, import-ready
   decisions, or countable labels.
+- `artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json`
+  implements the first bounded lane control without changing decisions. For
+  `O14756`, it stages sequence-derived SDR/NAD(P) control evidence using a
+  `TGxxxGxG` glycine-rich proxy and a source-active-site-overlapping `YxxxK`
+  proxy, then contrasts that complete SDR axis against the conflicting
+  current-reference neighbors. The current-reference neighbors do not carry the
+  complete SDR axis, so this removes the unimplemented-control blocker for that
+  lane while keeping 0 import-ready and 0 countable rows.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine

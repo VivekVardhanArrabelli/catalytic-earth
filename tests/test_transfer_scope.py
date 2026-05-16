@@ -62,6 +62,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_mechanism_repair_lanes,
+    build_external_source_pilot_sdr_redox_repair_control,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
@@ -7279,6 +7280,213 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertIn("RHEA:12356", row["source_context_evidence"][
             "representative_rhea_reactions"
         ][0])
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_sdr_redox_repair_control_stages_sequence_axis(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            external_fasta = tmp_path / "external.fasta"
+            reference_fasta = tmp_path / "reference.fasta"
+            external_fasta.write_text(
+                ">ext__O14756\n"
+                "MWLYLAAFVGLYYLLHWYRERQVVSHLQDKYVFITGCDSGFGNLLARQLDARGLRVLAAC\n"
+                "LTEKGAEQLRGQTSDRLETVTLDVTKMESIAAATQWVKEHVGDRGLWGLVNNAGILTPIT\n"
+                "LCEWLNTEDSMNMLKVNLIGVIQVTLSMLPLVRRARGRIVNVSSILGRVAFFVGGYCVSK\n"
+                "YGVEAFSDILRREIQHFGVKISIVEPGYFRTGMTNMTQSLERMKQSWKEAPKHIKETYGQ\n"
+                "QYFDALYNIMKEGLLNCSTNLNLVTDCMEHALTSVHPRTRYSAGWDAKFFFIPLSYLPTS\n"
+                "LADYILTRSWPKPAQAV\n",
+                encoding="utf-8",
+            )
+            reference_fasta.write_text(
+                ">ref__P0A6C1\n"
+                "MKYIGAHVSAAGGLANAAIRAAEIDATAFALFTKNQRQWRAAPLTTQTIDEFKAACEKYH\n"
+                "YTSAQILPHDSYLINLGHPVTEALEKSRDAFIDEMQRCEQLGLSLLNFHPGSHLMQISEE\n"
+                "DCLARIAESINIALDKTQGVTAVIENTAGQGSNLGFKFEHLAAIIDGVEDKSRVGVCIDT\n"
+                "CHAFAAGYDLRTPAECEKTFADFARTVGFKYLRGMHLNDAKSTFGSRVDRHHSLGEGNIG\n"
+                "HDAFRWIMQDDRFDGIPLILETINPDIWAEEIAWLKAQQTEKAVA\n"
+                ">ref__P14604\n"
+                "MAALRALLPRACNSLLSPVRCPEFRRFASGANFQYIITEKKGKNSSVGLIQLNRPKALNA\n"
+                "LCNGLIEELNQALETFEEDPAVGAIVLTGGEKAFAAGADIKEMQNRTFQDCYSGKFLSHW\n"
+                "DHITRIKKPVIAAVNGYALGGGCELAMMCDIIYAGEKAQFGQPEILLGTIPGAGGTQRLT\n"
+                "RAVGKSLAMEMVLTGDRISAQDAKQAGLVSKIFPVETLVEEAIQCAEKIANNSKIIVAMA\n"
+                "KESVNAAFEMTLTEGNKLEKKLFYSTFATDDRREGMSAFVEKRKANFKDH\n",
+                encoding="utf-8",
+            )
+
+            control = build_external_source_pilot_sdr_redox_repair_control(
+                repair_lanes={
+                    "metadata": {
+                        "method": "external_source_pilot_mechanism_repair_lanes"
+                    },
+                    "rows": [
+                        {
+                            "accession": "O14756",
+                            "entry_id": "uniprot:O14756",
+                            "repair_lane": "add_sdr_nad_p_redox_representation_axis",
+                        }
+                    ],
+                },
+                needs_review_resolution={
+                    "metadata": {
+                        "method": "external_source_pilot_needs_review_resolution"
+                    },
+                    "rows": [
+                        {
+                            "accession": "O14756",
+                            "revised_status": "rejected_representation_conflict",
+                            "confidence": "medium",
+                            "active_site_evidence_result": {
+                                "positions": [{"position": 176}],
+                            },
+                            "reaction_mechanism_context_result": {
+                                "status": (
+                                    "source_supports_nad_p_dependent_short_chain_"
+                                    "dehydrogenase_reductase_context"
+                                ),
+                                "representative_rhea_reactions": [
+                                    "RHEA:21284 all-trans-retinol + NAD(+) = "
+                                    "all-trans-retinal + NADH + H(+)"
+                                ],
+                                "interpro_or_prosite_context": [
+                                    "IPR002198 Short-chain dehydrogenase/reductase"
+                                ],
+                            },
+                        }
+                    ],
+                },
+                pilot_representation_sample={
+                    "metadata": {"embedding_backend": "esm2_t6_8m_ur50d"},
+                    "rows": [
+                        {
+                            "accession": "O14756",
+                            "embedding_backend": "esm2_t6_8m_ur50d",
+                            "nearest_reference": {
+                                "reference_accession": "P0A6C1",
+                            },
+                            "reference_scores": [
+                                {
+                                    "embedding_backend": "esm2_t6_8m_ur50d",
+                                    "embedding_cosine": 0.7852,
+                                    "reference_accession": "P0A6C1",
+                                    "matched_m_csa_entry_ids": ["m_csa:11"],
+                                }
+                            ],
+                        }
+                    ],
+                },
+                pilot_larger_representation_sample={
+                    "metadata": {"embedding_backend": "esm2_t30_150m_ur50d"},
+                    "rows": [
+                        {
+                            "accession": "O14756",
+                            "embedding_backend": "esm2_t30_150m_ur50d",
+                            "nearest_reference": {
+                                "reference_accession": "P14604",
+                            },
+                            "reference_scores": [
+                                {
+                                    "embedding_backend": "esm2_t30_150m_ur50d",
+                                    "embedding_cosine": 0.9233,
+                                    "reference_accession": "P14604",
+                                    "matched_m_csa_entry_ids": ["m_csa:315"],
+                                }
+                            ],
+                        }
+                    ],
+                },
+                pilot_representation_stability_audit={
+                    "metadata": {
+                        "method": "external_source_representation_backend_stability_audit"
+                    },
+                    "rows": [
+                        {
+                            "accession": "O14756",
+                            "baseline_nearest_reference_accession": "P0A6C1",
+                            "baseline_top_embedding_cosine": 0.7852,
+                            "comparison_nearest_reference_accession": "P14604",
+                            "comparison_top_embedding_cosine": 0.9233,
+                            "nearest_reference_stable": False,
+                            "stability_flags": ["nearest_reference_changed"],
+                        }
+                    ],
+                },
+                heuristic_control_scores={
+                    "metadata": {"method": "external_source_heuristic_control_scores"},
+                    "results": [
+                        {
+                            "entry_id": "uniprot:O14756",
+                            "scope_top1_mismatch": False,
+                            "top_fingerprints": [
+                                {
+                                    "fingerprint_id": "heme_peroxidase_oxidase",
+                                    "score": 0.3039,
+                                    "counterevidence_reasons": [
+                                        "absent_heme_context"
+                                    ],
+                                }
+                            ],
+                        }
+                    ],
+                },
+                external_sequence_fasta=external_fasta,
+                reference_sequence_fasta=reference_fasta,
+                curated_labels=[
+                    {
+                        "entry_id": "m_csa:11",
+                        "fingerprint_id": "metal_dependent_hydrolase",
+                        "label_type": "seed_fingerprint",
+                        "review_status": "automation_curated",
+                    },
+                    {
+                        "entry_id": "m_csa:315",
+                        "fingerprint_id": None,
+                        "label_type": "out_of_scope",
+                        "review_status": "automation_curated",
+                    },
+                ],
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+
+        metadata = control["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_sdr_redox_repair_control",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["candidate_count"], 1)
+        self.assertEqual(metadata["candidate_with_sdr_axis_count"], 1)
+        self.assertEqual(metadata["current_reference_sdr_axis_match_count"], 0)
+        self.assertEqual(control["blockers"], [])
+        row = control["rows"][0]
+        self.assertEqual(row["control_status"], "review_only_sdr_axis_contrast_ready")
+        self.assertEqual(
+            row["candidate_sequence_features"]["sdr_sequence_axis_status"],
+            "sdr_axis_present_with_source_active_site_overlap",
+        )
+        self.assertTrue(
+            row["candidate_sequence_features"][
+                "has_glycine_rich_nad_p_binding_motif"
+            ]
+        )
+        self.assertTrue(
+            row["candidate_sequence_features"]["has_source_active_site_yxxxk_pair"]
+        )
+        self.assertEqual(
+            {reference["reference_accession"] for reference in row[
+                "current_reference_contrasts"
+            ]},
+            {"P0A6C1", "P14604"},
+        )
+        self.assertTrue(
+            all(
+                reference["sdr_sequence_axis_status"] != "sdr_axis_present"
+                for reference in row["current_reference_contrasts"]
+            )
+        )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
 

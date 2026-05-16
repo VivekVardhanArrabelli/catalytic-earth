@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 133
-- Measured elapsed time: 4573.0 minutes (76.22 hours)
+- Entries: 134
+- Measured elapsed time: 4592.7 minutes (76.54 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- external-transfer-spof-hardening: 149.3 measured minutes (2.49 hours)
+- external-transfer-spof-hardening: 168.9 measured minutes (2.82 hours)
 - ops: 51.4 measured minutes (0.86 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1537
-- Evidence references logged: 1162
+- Artifact references logged: 1548
+- Evidence references logged: 1173
 
 ## Recent Entries
-
-### 2026-05-16T09:14:46.363953+00:00 - external-transfer-spof-hardening
-
-- Task: External structural cluster index for selected pilot
-- Time mode: measured
-- Measured minutes: 15.767
-- Started: 2026-05-16T08:59:00Z
-- Ended: 2026-05-16T09:14:46Z
-- Artifacts: artifacts/v3_external_structural_cluster_index_1025.json, artifacts/v3_external_structural_coordinates_1025, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_external_structural_holdout_artifact.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/foldseek_readiness_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md
-- Evidence: startup 350 unit tests passed, startup validate passed with 679 curated labels, final 352 unit tests passed, final validate passed with 679 curated labels, compileall passed, git diff check passed, 10 selected pilot AlphaFold coordinate sidecars materialized with 0 fetch failures, Foldseek completed selected-pilot nearest-neighbor cache with 10/10 candidate coverage, pre-split external clustering found 1 TM>=0.7 pair O95050/P51580 across 9 clusters, 0 import-ready rows and 0 countable external labels
-- Notes: Normal locked direct run with no delegation. Repaired the initial short-lived shell PID lock to a live sentinel before editing. M-CSA strict TM repair stayed closed; this run advanced the external fold-diverse path only.
 
 ### 2026-05-16T10:14:24.266801+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 359 unit tests passed, startup validate passed with 679 curated labels, 6 resolved representation conflicts assigned to review-only mechanism repair lanes, 0 needs_review rows, 0 import-ready rows, 0 countable external labels, final 360 unit tests passed, final validate passed, compileall passed, git diff check passed
 - Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
+
+### 2026-05-16T17:21:15.343286+00:00 - external-transfer-spof-hardening
+
+- Task: Stage SDR redox repair control
+- Time mode: measured
+- Measured minutes: 19.667
+- Started: 2026-05-16T17:06:39Z
+- Ended: 2026-05-16T17:26:19Z
+- Artifacts: artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, local main commit ahead of origin/main
+- Evidence: startup 360 unit tests passed, startup validate passed with 679 curated labels, SDR/NAD(P) O14756 repair lane staged as review-only sequence-derived control, candidate has TGxxxGxG and source-active-site-overlapping YxxxK proxies, conflicting current-reference neighbors lack complete SDR axis, 0 import-ready rows and 0 countable external labels, final 361 unit tests passed, final validate passed, compileall passed, git diff check passed, push blocked: invalid local GitHub credential
+- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. Push blocked by invalid local GitHub credential; coherent local commit remains ahead of origin/main for recovery.
 
 ## Expectation Updates
 

@@ -11368,6 +11368,277 @@ def build_external_source_pilot_mechanism_repair_lanes(
     }
 
 
+def build_external_source_pilot_sdr_redox_repair_control(
+    *,
+    repair_lanes: dict[str, Any],
+    needs_review_resolution: dict[str, Any],
+    pilot_representation_sample: dict[str, Any],
+    pilot_larger_representation_sample: dict[str, Any],
+    pilot_representation_stability_audit: dict[str, Any],
+    heuristic_control_scores: dict[str, Any],
+    external_sequence_fasta: Path,
+    reference_sequence_fasta: Path,
+    curated_labels: list[dict[str, Any]] | None = None,
+    max_rows: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Stage the SDR/NAD(P) redox repair lane as review-only control evidence."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    target_lane = "add_sdr_nad_p_redox_representation_axis"
+    resolution_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in needs_review_resolution.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    baseline_representation_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in pilot_representation_sample.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    larger_representation_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in pilot_larger_representation_sample.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    stability_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in pilot_representation_stability_audit.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    heuristic_by_accession = {
+        _normalize_accession(str(row.get("entry_id") or "").removeprefix("uniprot:")): row
+        for row in heuristic_control_scores.get("results", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(str(row.get("entry_id") or "").removeprefix("uniprot:"))
+    }
+    external_sequences = {
+        _external_candidate_fasta_accession(record): record
+        for record in _parse_sequence_fasta(external_sequence_fasta)
+        if _external_candidate_fasta_accession(record)
+    }
+    reference_sequences = {
+        _external_candidate_fasta_accession(record): record
+        for record in _parse_sequence_fasta(reference_sequence_fasta)
+        if _external_candidate_fasta_accession(record)
+    }
+    labels_by_entry_id = {
+        str(label.get("entry_id")): label
+        for label in curated_labels or []
+        if isinstance(label, dict) and label.get("entry_id")
+    }
+
+    rows: list[dict[str, Any]] = []
+    for lane_row in repair_lanes.get("rows", []) or []:
+        if not isinstance(lane_row, dict) or lane_row.get("repair_lane") != target_lane:
+            continue
+        accession = _normalize_accession(lane_row.get("accession"))
+        if not accession:
+            continue
+        resolution_row = resolution_by_accession.get(accession, {})
+        active_site_result = resolution_row.get("active_site_evidence_result", {})
+        if not isinstance(active_site_result, dict):
+            active_site_result = {}
+        active_site_positions = _external_active_site_positions(active_site_result)
+        candidate_record = external_sequences.get(accession, {})
+        candidate_sequence = _clean_sequence(candidate_record.get("sequence"))
+        candidate_features = _external_sdr_redox_sequence_features(
+            candidate_sequence,
+            active_site_positions=active_site_positions,
+        )
+        baseline_row = baseline_representation_by_accession.get(accession, {})
+        larger_row = larger_representation_by_accession.get(accession, {})
+        stability_row = stability_by_accession.get(accession, {})
+        reference_accessions = _external_representation_reference_accessions(
+            baseline_row,
+            larger_row,
+            stability_row,
+        )
+        reference_contrasts = [
+            _external_sdr_redox_reference_contrast(
+                reference_accession=reference_accession,
+                reference_sequences=reference_sequences,
+                baseline_row=baseline_row,
+                larger_row=larger_row,
+                labels_by_entry_id=labels_by_entry_id,
+            )
+            for reference_accession in reference_accessions
+        ]
+        full_reference_match_count = sum(
+            1
+            for reference in reference_contrasts
+            if reference.get("sdr_sequence_axis_status") == "sdr_axis_present"
+        )
+        candidate_has_axis = (
+            candidate_features.get("sdr_sequence_axis_status")
+            == "sdr_axis_present_with_source_active_site_overlap"
+        )
+        control_status = (
+            "review_only_sdr_axis_contrast_ready"
+            if candidate_has_axis and full_reference_match_count == 0
+            else "review_only_sdr_axis_contrast_incomplete"
+        )
+        heuristic_row = heuristic_by_accession.get(accession, {})
+        reaction_context = resolution_row.get("reaction_mechanism_context_result", {})
+        if not isinstance(reaction_context, dict):
+            reaction_context = {}
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": lane_row.get("entry_id") or f"uniprot:{accession}",
+                "repair_lane": target_lane,
+                "implemented_control": "sdr_nad_p_redox_sequence_axis_contrast",
+                "control_status": control_status,
+                "source_resolved_status": resolution_row.get("revised_status"),
+                "source_confidence": resolution_row.get("confidence"),
+                "candidate_sequence_features": candidate_features,
+                "current_reference_contrasts": reference_contrasts,
+                "representation_conflict_summary": {
+                    "baseline_backend": baseline_row.get("embedding_backend"),
+                    "baseline_nearest_reference_accession": (
+                        stability_row.get("baseline_nearest_reference_accession")
+                        or (baseline_row.get("nearest_reference") or {}).get(
+                            "reference_accession"
+                        )
+                    ),
+                    "baseline_top_embedding_cosine": (
+                        stability_row.get("baseline_top_embedding_cosine")
+                        or baseline_row.get("top_embedding_cosine")
+                    ),
+                    "comparison_backend": larger_row.get("embedding_backend"),
+                    "comparison_nearest_reference_accession": (
+                        stability_row.get("comparison_nearest_reference_accession")
+                        or (larger_row.get("nearest_reference") or {}).get(
+                            "reference_accession"
+                        )
+                    ),
+                    "comparison_top_embedding_cosine": (
+                        stability_row.get("comparison_top_embedding_cosine")
+                        or larger_row.get("top_embedding_cosine")
+                    ),
+                    "nearest_reference_stable": stability_row.get(
+                        "nearest_reference_stable"
+                    ),
+                    "stability_flags": stability_row.get("stability_flags", []),
+                },
+                "heuristic_conflict_summary": {
+                    "scored": bool(heuristic_row),
+                    "top1_fingerprint_id": _external_top1_fingerprint(heuristic_row),
+                    "top1_score": (
+                        heuristic_row.get("top_fingerprints", [{}])[0].get("score")
+                        if heuristic_row.get("top_fingerprints")
+                        else None
+                    ),
+                    "scope_top1_mismatch": heuristic_row.get("scope_top1_mismatch"),
+                    "top1_counterevidence": (
+                        heuristic_row.get("top_fingerprints", [{}])[0].get(
+                            "counterevidence_reasons", []
+                        )
+                        if heuristic_row.get("top_fingerprints")
+                        else []
+                    ),
+                },
+                "source_context_evidence": {
+                    "reaction_context_status": reaction_context.get("status"),
+                    "representative_rhea_reactions": reaction_context.get(
+                        "representative_rhea_reactions", []
+                    ),
+                    "interpro_or_prosite_context": reaction_context.get(
+                        "interpro_or_prosite_context", []
+                    ),
+                    "active_site_positions": active_site_positions,
+                },
+                "control_interpretation": _external_sdr_redox_control_interpretation(
+                    candidate_has_axis=candidate_has_axis,
+                    full_reference_match_count=full_reference_match_count,
+                ),
+                "decision_effect": (
+                    "keeps row rejected_representation_conflict; this control only "
+                    "stages non-text repair evidence for a future scoring experiment"
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_status": "external_pilot_sdr_redox_repair_control_review_only",
+            }
+        )
+        if len(rows) >= max_rows:
+            break
+
+    control_status_counts = Counter(row["control_status"] for row in rows)
+    reference_axis_match_count = sum(
+        1
+        for row in rows
+        for reference in row["current_reference_contrasts"]
+        if reference.get("sdr_sequence_axis_status") == "sdr_axis_present"
+    )
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("target_sdr_repair_lane_row_missing")
+    if any(row["control_status"].endswith("_incomplete") for row in rows):
+        blockers.append("sdr_sequence_axis_contrast_incomplete")
+    return {
+        "metadata": {
+            "method": "external_source_pilot_sdr_redox_repair_control",
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": "sdr_nad_p_redox_lane_has_sequence_derived_contrast_control",
+            "blocker_not_removed": [
+                "control_not_integrated_into_geometry_or_representation_scorer",
+                "full_label_factory_gate_not_run_for_external_import",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "target_repair_lane": target_lane,
+            "implemented_control": "sdr_nad_p_redox_sequence_axis_contrast",
+            "control_status_counts": dict(sorted(control_status_counts.items())),
+            "candidate_with_sdr_axis_count": sum(
+                1
+                for row in rows
+                if row["candidate_sequence_features"].get("sdr_sequence_axis_status")
+                == "sdr_axis_present_with_source_active_site_overlap"
+            ),
+            "current_reference_sdr_axis_match_count": reference_axis_match_count,
+            "predictive_feature_sources": [
+                "amino_acid_sequence_motif_presence",
+                "source_traced_active_site_position_overlap",
+            ],
+            "review_context_fields": [
+                "Rhea reaction identifiers and equations",
+                "InterPro/PROSITE source context",
+                "current-reference M-CSA labels",
+                "heuristic fingerprint identifiers",
+            ],
+            "source_repair_lanes_method": repair_lanes.get("metadata", {}).get(
+                "method"
+            ),
+            "source_needs_review_resolution_method": needs_review_resolution.get(
+                "metadata", {}
+            ).get("method"),
+            "source_baseline_representation_backend": pilot_representation_sample.get(
+                "metadata", {}
+            ).get("embedding_backend"),
+            "source_larger_representation_backend": pilot_larger_representation_sample.get(
+                "metadata", {}
+            ).get("embedding_backend"),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "blockers": blockers,
+        "warnings": [
+            (
+                "SDR/NAD(P) repair controls are review-only contrast evidence; "
+                "they do not validate enzyme function or authorize import"
+            )
+        ],
+    }
+
+
 def _external_artifact_lineage_slice_id(
     artifact_lineage: dict[str, Any] | None,
 ) -> int | None:
@@ -11503,6 +11774,209 @@ def _external_pilot_mechanism_repair_plan(repair_lane: str) -> dict[str, Any]:
         },
     }
     return plans.get(repair_lane, plans["manual_source_mechanism_review_required"])
+
+
+def _external_active_site_positions(active_site_result: dict[str, Any]) -> list[int]:
+    positions: list[int] = []
+    for item in active_site_result.get("positions", []) or []:
+        if not isinstance(item, dict):
+            continue
+        try:
+            positions.append(int(item.get("position")))
+        except (TypeError, ValueError):
+            continue
+    return sorted(set(positions))
+
+
+def _external_sdr_redox_sequence_features(
+    sequence: str,
+    *,
+    active_site_positions: list[int],
+) -> dict[str, Any]:
+    sequence = _clean_sequence(sequence)
+    active_site_position_set = set(active_site_positions)
+    glycine_motif_hits: list[dict[str, Any]] = []
+    for index in range(0, max(len(sequence) - 7, 0)):
+        motif = sequence[index : index + 8]
+        if motif[0:2] == "TG" and motif[5] == "G" and motif[7] == "G":
+            glycine_motif_hits.append(
+                {
+                    "motif": motif,
+                    "motif_type": "TGxxxGxG_nad_p_binding_proxy",
+                    "start": index + 1,
+                    "end": index + 8,
+                }
+            )
+
+    catalytic_yxxxk_hits: list[dict[str, Any]] = []
+    for index in range(0, max(len(sequence) - 4, 0)):
+        motif = sequence[index : index + 5]
+        if motif[0] != "Y" or motif[4] != "K":
+            continue
+        start = index + 1
+        end = index + 5
+        overlapping_positions = [
+            position
+            for position in active_site_positions
+            if start <= position <= end
+        ]
+        catalytic_yxxxk_hits.append(
+            {
+                "motif": motif,
+                "motif_type": "YxxxK_sdr_catalytic_pair_proxy",
+                "start": start,
+                "end": end,
+                "overlaps_source_active_site": bool(overlapping_positions),
+                "overlapping_active_site_positions": overlapping_positions,
+            }
+        )
+
+    has_glycine_motif = bool(glycine_motif_hits)
+    has_yxxxk = bool(catalytic_yxxxk_hits)
+    has_source_active_site_yxxxk = any(
+        hit["overlaps_source_active_site"] for hit in catalytic_yxxxk_hits
+    )
+    if has_glycine_motif and has_source_active_site_yxxxk:
+        status = "sdr_axis_present_with_source_active_site_overlap"
+    elif has_glycine_motif and has_yxxxk:
+        status = "sdr_axis_present"
+    elif has_glycine_motif or has_yxxxk:
+        status = "partial_sdr_axis_signal"
+    else:
+        status = "sdr_axis_absent"
+
+    return {
+        "sequence_length": len(sequence),
+        "source_active_site_positions": sorted(active_site_position_set),
+        "glycine_rich_nad_p_binding_motif_hits": glycine_motif_hits,
+        "catalytic_yxxxk_motif_hits": catalytic_yxxxk_hits,
+        "has_glycine_rich_nad_p_binding_motif": has_glycine_motif,
+        "has_catalytic_yxxxk_motif": has_yxxxk,
+        "has_source_active_site_yxxxk_pair": has_source_active_site_yxxxk,
+        "sdr_sequence_axis_status": status,
+    }
+
+
+def _external_representation_reference_accessions(
+    *rows: dict[str, Any],
+) -> list[str]:
+    accessions: list[str] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        for key in (
+            "baseline_nearest_reference_accession",
+            "comparison_nearest_reference_accession",
+        ):
+            accession = _normalize_accession(row.get(key))
+            if accession:
+                accessions.append(accession)
+        nearest_reference = row.get("nearest_reference")
+        if isinstance(nearest_reference, dict):
+            accession = _normalize_accession(
+                nearest_reference.get("reference_accession")
+            )
+            if accession:
+                accessions.append(accession)
+        for reference in row.get("reference_scores", []) or []:
+            if isinstance(reference, dict):
+                accession = _normalize_accession(reference.get("reference_accession"))
+                if accession:
+                    accessions.append(accession)
+    return sorted(set(accessions))
+
+
+def _external_sdr_redox_reference_contrast(
+    *,
+    reference_accession: str,
+    reference_sequences: dict[str, dict[str, Any]],
+    baseline_row: dict[str, Any],
+    larger_row: dict[str, Any],
+    labels_by_entry_id: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    reference_scores = [
+        reference
+        for row in (baseline_row, larger_row)
+        for reference in row.get("reference_scores", []) or []
+        if isinstance(reference, dict)
+        and _normalize_accession(reference.get("reference_accession"))
+        == reference_accession
+    ]
+    matched_entry_ids = sorted(
+        {
+            str(entry_id)
+            for reference in reference_scores
+            for entry_id in reference.get("matched_m_csa_entry_ids", []) or []
+            if entry_id
+        },
+        key=_external_entry_id_sort_key,
+    )
+    sequence = _clean_sequence(
+        (reference_sequences.get(reference_accession) or {}).get("sequence")
+    )
+    features = _external_sdr_redox_sequence_features(
+        sequence,
+        active_site_positions=[],
+    )
+    label_summaries = [
+        {
+            "entry_id": entry_id,
+            "fingerprint_id": labels_by_entry_id.get(entry_id, {}).get(
+                "fingerprint_id"
+            ),
+            "label_type": labels_by_entry_id.get(entry_id, {}).get("label_type"),
+            "review_status": labels_by_entry_id.get(entry_id, {}).get(
+                "review_status"
+            ),
+        }
+        for entry_id in matched_entry_ids
+    ]
+    cosine_by_backend = {
+        str(reference.get("embedding_backend")): reference.get("embedding_cosine")
+        for reference in reference_scores
+        if reference.get("embedding_backend")
+    }
+    return {
+        "reference_accession": reference_accession,
+        "matched_m_csa_entry_ids": matched_entry_ids,
+        "current_label_summaries": label_summaries,
+        "embedding_cosine_by_backend": dict(sorted(cosine_by_backend.items())),
+        "sequence_length": features["sequence_length"],
+        "glycine_rich_nad_p_binding_motif_hits": features[
+            "glycine_rich_nad_p_binding_motif_hits"
+        ],
+        "catalytic_yxxxk_motif_hits": features["catalytic_yxxxk_motif_hits"],
+        "sdr_sequence_axis_status": (
+            "sdr_axis_present"
+            if features["sdr_sequence_axis_status"]
+            == "sdr_axis_present_with_source_active_site_overlap"
+            else features["sdr_sequence_axis_status"]
+        ),
+    }
+
+
+def _external_sdr_redox_control_interpretation(
+    *,
+    candidate_has_axis: bool,
+    full_reference_match_count: int,
+) -> str:
+    if candidate_has_axis and full_reference_match_count == 0:
+        return (
+            "Candidate carries a sequence-derived SDR NAD(P) axis signal with "
+            "source-active-site overlap, while conflicting current-reference "
+            "neighbors lack the complete SDR axis. This supports a bounded "
+            "review-only repair-control experiment, not import."
+        )
+    if candidate_has_axis:
+        return (
+            "Candidate carries the sequence-derived SDR axis, but at least one "
+            "current-reference neighbor also carries it; broader controls remain "
+            "needed before any scorer change."
+        )
+    return (
+        "The source row does not yet have a complete sequence-derived SDR axis "
+        "signal, so the repair lane remains unimplemented."
+    )
 
 
 def _external_pilot_confidence_source_artifacts(

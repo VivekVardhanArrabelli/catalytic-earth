@@ -105,6 +105,14 @@ Pol X/5'-dRP lyase, sugar-phosphate isomerase, Schiff-base lyase/aldolase, and
 glycoside-hydrolase versus metal-hydrolase boundary control. These lanes
 remove the generic zero-pass repair ambiguity but are not predictive features,
 import-ready decisions, or countable labels.
+`artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json` now
+implements the first bounded repair-lane control for `O14756`. It stages only
+sequence-derived SDR/NAD(P) evidence: a `TGxxxGxG` glycine-rich proxy plus a
+source-active-site-overlapping `YxxxK` proxy, then contrasts that complete SDR
+axis against the conflicting current-reference neighbors. Those neighbors lack
+the complete SDR axis, so one lane now has concrete review-only control
+evidence for a future scoring experiment. It still creates 0 import-ready rows
+and 0 countable external labels.
 The external structural pilot path has now moved from path definition to a concrete
 review-only structure cache in
 `artifacts/v3_external_structural_cluster_index_1025.json`: all 10 selected
@@ -133,16 +141,54 @@ MMseqs2 searched all 30 external candidates against each other, found 0
 near-duplicate pairs at 90% identity / 80% coverage, recorded max reported
 external-external identity `0.647`, and kept 0 import-ready/countable rows. The
 confidence audit now carries this external all-vs-all no-signal evidence for
-the selected pilot rows. The later needs-review resolution and mechanism repair
-lane artifacts supersede the 6-row normalized queue for pilot-decision work; do
-not re-open those rows without new evidence. Next direct work should implement
-one bounded repair lane as review-only representation/heuristic control work,
-or broaden the external Swiss-Prot/AFDB structural surface beyond the current
-30-row review-only split before any import or benchmark claim.
+the selected pilot rows. The later needs-review resolution, mechanism repair
+lane, and SDR control artifacts supersede the 6-row normalized queue for
+pilot-decision work; do not re-open those rows without new evidence. Next
+direct work should implement the next bounded repair lane as review-only
+representation/heuristic control work, or broaden the external Swiss-Prot/AFDB
+structural surface beyond the current 30-row review-only split before any
+import or benchmark claim.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
 unless the user explicitly reverses the override.
 
+Push/recovery blocker for the next run: local commit the local commit contains the
+SDR/NAD(P) repair-control work and is clean, but `git push origin main` failed
+because the local GitHub credential is invalid (`gh auth status` reports the
+default token for `VivekVardhanArrabelli` is invalid, and HTTPS git push cannot
+read a username). The worktree should be treated as coherent local-ahead
+recovery state, not as a reason to revert. After credentials are repaired,
+push `main`, verify `HEAD == origin/main`, then release
+`.git/catalytic-earth-automation.lock`.
+
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T12:06:39-05:00 run after acquiring the automation
+lock, syncing clean `origin/main`, passing startup gates (`360` unit tests
+passed and `validate` passed with 679 curated labels), and confirming the six
+normalized external `needs_review` rows were already resolved on the latest
+pushed state; wrap checks also passed (`361` unit tests, `validate`,
+`compileall`, and `git diff --check`):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and no
+  M-CSA strict-TM round, query, split-repair, or partition-repair work was
+  resumed.
+- External-source repair/import: Yes for one bounded review-only repair
+  control, no for import or countable labels. This run stages the SDR/NAD(P)
+  redox lane for `O14756` as a sequence-derived contrast control using a
+  `TGxxxGxG` glycine-rich proxy plus a source-active-site-overlapping `YxxxK`
+  proxy. The conflicting current-reference neighbors lack the complete SDR
+  axis, so the lane is ready for future review-only scorer repair; the selected
+  pilot still has 0 `needs_review`, 0 import-ready rows, and 0 countable
+  external labels.
+- Scientific generalization work: No new benchmark or split claim. The all-30
+  external structural split remains review-only with max cross-split TM about
+  `0.6963`; this run advances representation/heuristic control repair rather
+  than broadening structure.
+- SPOF hardening work: Yes. The new control artifact, CLI path, and regression
+  coverage make the first repair lane executable while preserving review-only
+  import-safety invariants. Push is blocked by local GitHub credential failure;
+  the coherent local commit is the local `main` commit and remains ahead of `origin/main`.
 
 Recorded for the 2026-05-16T16:04:57Z run after acquiring the automation lock,
 syncing clean `origin/main`, passing startup gates (`359` unit tests passed and

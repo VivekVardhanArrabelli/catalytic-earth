@@ -3194,6 +3194,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_mechanism_repair_lanes_1025.json"
         )
+        sdr_repair_control = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_sdr_redox_repair_control_1025.json"
+        )
 
         self.assertEqual(
             resolution["metadata"]["method"],
@@ -3285,6 +3290,50 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 for row in repair_lanes["rows"]
             )
         )
+
+        self.assertEqual(
+            sdr_repair_control["metadata"]["method"],
+            "external_source_pilot_sdr_redox_repair_control",
+        )
+        self.assertTrue(sdr_repair_control["metadata"]["review_only"])
+        self.assertFalse(sdr_repair_control["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            sdr_repair_control["metadata"]["target_repair_lane"],
+            "add_sdr_nad_p_redox_representation_axis",
+        )
+        self.assertEqual(sdr_repair_control["metadata"]["candidate_count"], 1)
+        self.assertEqual(
+            sdr_repair_control["metadata"]["candidate_with_sdr_axis_count"], 1
+        )
+        self.assertEqual(
+            sdr_repair_control["metadata"][
+                "current_reference_sdr_axis_match_count"
+            ],
+            0,
+        )
+        self.assertEqual(sdr_repair_control["blockers"], [])
+        sdr_row = sdr_repair_control["rows"][0]
+        self.assertEqual(sdr_row["accession"], "O14756")
+        self.assertEqual(
+            sdr_row["control_status"], "review_only_sdr_axis_contrast_ready"
+        )
+        self.assertEqual(
+            sdr_row["candidate_sequence_features"]["sdr_sequence_axis_status"],
+            "sdr_axis_present_with_source_active_site_overlap",
+        )
+        self.assertTrue(
+            sdr_row["candidate_sequence_features"][
+                "has_source_active_site_yxxxk_pair"
+            ]
+        )
+        self.assertTrue(
+            all(
+                reference["sdr_sequence_axis_status"] != "sdr_axis_present"
+                for reference in sdr_row["current_reference_contrasts"]
+            )
+        )
+        self.assertFalse(sdr_row["countable_label_candidate"])
+        self.assertFalse(sdr_row["ready_for_label_import"])
 
 
 def _load_json(path: Path) -> dict:
