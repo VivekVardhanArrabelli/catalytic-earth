@@ -229,8 +229,25 @@ Current review-only external artifacts:
   scope-control evidence from the source-traced active-site Arg, local pocket
   composition, absent flavin/cofactor context, zero flavin role-hint support,
   and weak top1 score with local `absent_flavin_context` counterevidence.
-  The control is not yet integrated into import-safety adjudication and keeps
-  0 import-ready/countable rows.
+- `artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication_1025.json`
+  turns that P34949 scope control into a review-only import-safety
+  adjudication. It repairs the prior weak flavin/scope representation conflict
+  and records post-repair `needs_review`, but it keeps the row non-countable
+  and not import-ready because broader duplicate screening, a post-repair
+  review decision, and the full factory gate are still unresolved.
+- `artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json`
+  opens the next lane for `Q9BXD5`. It stages review-only, non-text
+  scope-control evidence from source-traced Tyr/Lys active-site residues, a
+  Schiff-base Lys, active-site spacing, local pocket composition, absent
+  heme/cofactor context, zero heme/electron-transfer role-hint support, and
+  weak heme top1 score with local `absent_heme_context` counterevidence.
+- `artifacts/v3_external_source_pilot_schiff_base_lyase_import_safety_adjudication_1025.json`
+  turns that Q9BXD5 scope control into a review-only import-safety
+  adjudication. It repairs the prior weak heme/scope conflict and records
+  post-repair `needs_review`, but it keeps the row non-countable and not
+  import-ready because the representation near-duplicate holdout, broader
+  duplicate screening, a post-repair review decision, and the full factory gate
+  are still unresolved.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine

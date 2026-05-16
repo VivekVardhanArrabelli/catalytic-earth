@@ -154,10 +154,13 @@ from .transfer_scope import (
     build_external_source_pilot_glycoside_hydrolase_boundary_control,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
     build_external_source_pilot_mechanism_repair_lanes,
+    build_external_source_pilot_schiff_base_lyase_control,
+    build_external_source_pilot_schiff_base_lyase_import_safety_adjudication,
     build_external_source_pilot_sdr_redox_import_safety_adjudication,
     build_external_source_pilot_sdr_redox_repair_control,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_sugar_phosphate_isomerase_control,
+    build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
     build_external_structural_cluster_index,
@@ -2901,6 +2904,143 @@ def cmd_build_external_source_pilot_sugar_phosphate_isomerase_control(
     print(
         "Wrote external source pilot sugar-phosphate isomerase control to "
         f"{args.out} ({control['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "sugar_phosphate_isomerase_control",
+            "resolved_pilot_decisions",
+            "pilot_active_site_evidence_decisions",
+            "external_import_readiness_audit",
+            "pilot_success_criteria",
+        ),
+        blocker_removed=(
+            "sugar_phosphate_isomerase_control_integrated_into_import_safety_"
+            "adjudication"
+        ),
+    )
+    adjudication = (
+        build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication(
+            sugar_phosphate_isomerase_control=artifact_payloads[
+                "sugar_phosphate_isomerase_control"
+            ]
+            or {},
+            resolved_pilot_decisions=artifact_payloads["resolved_pilot_decisions"]
+            or {},
+            pilot_active_site_evidence_decisions=artifact_payloads[
+                "pilot_active_site_evidence_decisions"
+            ]
+            or {},
+            external_import_readiness_audit=artifact_payloads[
+                "external_import_readiness_audit"
+            ]
+            or {},
+            pilot_success_criteria=artifact_payloads["pilot_success_criteria"] or {},
+            max_rows=args.max_rows,
+            artifact_lineage=artifact_lineage,
+        )
+    )
+    write_json(Path(args.out), adjudication)
+    print(
+        "Wrote external source pilot sugar-phosphate isomerase import-safety "
+        f"adjudication to {args.out} "
+        f"({adjudication['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_schiff_base_lyase_control(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "repair_lanes",
+            "needs_review_resolution",
+            "pilot_representation_sample",
+            "pilot_larger_representation_sample",
+            "pilot_representation_stability_audit",
+            "heuristic_control_scores",
+        ),
+        blocker_removed="schiff_base_lyase_has_non_text_scope_control",
+    )
+    control = build_external_source_pilot_schiff_base_lyase_control(
+        repair_lanes=artifact_payloads["repair_lanes"] or {},
+        needs_review_resolution=artifact_payloads["needs_review_resolution"] or {},
+        pilot_representation_sample=artifact_payloads[
+            "pilot_representation_sample"
+        ]
+        or {},
+        pilot_larger_representation_sample=artifact_payloads[
+            "pilot_larger_representation_sample"
+        ]
+        or {},
+        pilot_representation_stability_audit=artifact_payloads[
+            "pilot_representation_stability_audit"
+        ]
+        or {},
+        heuristic_control_scores=artifact_payloads["heuristic_control_scores"] or {},
+        external_sequence_fasta=Path(args.external_sequence_fasta),
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), control)
+    print(
+        "Wrote external source pilot Schiff-base lyase control to "
+        f"{args.out} ({control['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_schiff_base_lyase_import_safety_adjudication(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "schiff_base_lyase_control",
+            "resolved_pilot_decisions",
+            "pilot_active_site_evidence_decisions",
+            "external_import_readiness_audit",
+            "pilot_success_criteria",
+        ),
+        blocker_removed=(
+            "schiff_base_lyase_control_integrated_into_import_safety_"
+            "adjudication"
+        ),
+    )
+    adjudication = (
+        build_external_source_pilot_schiff_base_lyase_import_safety_adjudication(
+            schiff_base_lyase_control=artifact_payloads[
+                "schiff_base_lyase_control"
+            ]
+            or {},
+            resolved_pilot_decisions=artifact_payloads["resolved_pilot_decisions"]
+            or {},
+            pilot_active_site_evidence_decisions=artifact_payloads[
+                "pilot_active_site_evidence_decisions"
+            ]
+            or {},
+            external_import_readiness_audit=artifact_payloads[
+                "external_import_readiness_audit"
+            ]
+            or {},
+            pilot_success_criteria=artifact_payloads["pilot_success_criteria"] or {},
+            max_rows=args.max_rows,
+            artifact_lineage=artifact_lineage,
+        )
+    )
+    write_json(Path(args.out), adjudication)
+    print(
+        "Wrote external source pilot Schiff-base lyase import-safety "
+        f"adjudication to {args.out} "
+        f"({adjudication['metadata']['candidate_count']} rows)"
     )
     return 0
 
@@ -7669,6 +7809,177 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_sugar_isomerase.set_defaults(
         func=cmd_build_external_source_pilot_sugar_phosphate_isomerase_control
+    )
+
+    external_pilot_sugar_isomerase_import_safety = subparsers.add_parser(
+        "build-external-source-pilot-sugar-phosphate-isomerase-import-safety-adjudication",
+        help=(
+            "adjudicate the sugar-phosphate isomerase scope control inside the "
+            "external pilot import-safety decision path"
+        ),
+    )
+    external_pilot_sugar_isomerase_import_safety.add_argument(
+        "--sugar-phosphate-isomerase-control",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json"
+        ),
+    )
+    external_pilot_sugar_isomerase_import_safety.add_argument(
+        "--resolved-pilot-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_decisions_review_resolved_1025.json"
+        ),
+    )
+    external_pilot_sugar_isomerase_import_safety.add_argument(
+        "--pilot-active-site-evidence-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        ),
+    )
+    external_pilot_sugar_isomerase_import_safety.add_argument(
+        "--external-import-readiness-audit",
+        default="artifacts/v3_external_source_import_readiness_audit_1025.json",
+    )
+    external_pilot_sugar_isomerase_import_safety.add_argument(
+        "--pilot-success-criteria",
+        default="artifacts/v3_external_source_pilot_success_criteria_1025.json",
+    )
+    external_pilot_sugar_isomerase_import_safety.add_argument(
+        "--max-rows", type=int, default=1
+    )
+    external_pilot_sugar_isomerase_import_safety.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_sugar_phosphate_isomerase_import_safety_"
+            "adjudication_1025.json"
+        ),
+    )
+    external_pilot_sugar_isomerase_import_safety.set_defaults(
+        func=cmd_build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication
+    )
+
+    external_pilot_schiff_base_lyase = subparsers.add_parser(
+        "build-external-source-pilot-schiff-base-lyase-control",
+        help=(
+            "stage a review-only Schiff-base lyase/aldolase versus weak heme "
+            "peroxidase scope control for the selected external pilot repair lane"
+        ),
+    )
+    external_pilot_schiff_base_lyase.add_argument(
+        "--repair-lanes",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+        ),
+    )
+    external_pilot_schiff_base_lyase.add_argument(
+        "--needs-review-resolution",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_needs_review_resolution_1025.json"
+        ),
+    )
+    external_pilot_schiff_base_lyase.add_argument(
+        "--pilot-representation-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_sample_1025.json"
+        ),
+    )
+    external_pilot_schiff_base_lyase.add_argument(
+        "--pilot-larger-representation-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t33_650m_"
+            "ur50d_sample_1025.json"
+        ),
+    )
+    external_pilot_schiff_base_lyase.add_argument(
+        "--pilot-representation-stability-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_"
+            "650m_stability_audit_1025.json"
+        ),
+    )
+    external_pilot_schiff_base_lyase.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores_1025.json",
+    )
+    external_pilot_schiff_base_lyase.add_argument(
+        "--external-sequence-fasta",
+        default=(
+            "artifacts/"
+            "v3_external_source_backend_sequence_search_external_1025.fasta"
+        ),
+    )
+    external_pilot_schiff_base_lyase.add_argument(
+        "--max-rows", type=int, default=1
+    )
+    external_pilot_schiff_base_lyase.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_schiff_base_lyase_control_1025.json"
+        ),
+    )
+    external_pilot_schiff_base_lyase.set_defaults(
+        func=cmd_build_external_source_pilot_schiff_base_lyase_control
+    )
+
+    external_pilot_schiff_base_lyase_import_safety = subparsers.add_parser(
+        "build-external-source-pilot-schiff-base-lyase-import-safety-adjudication",
+        help=(
+            "adjudicate the Schiff-base lyase/aldolase scope control inside "
+            "the external pilot import-safety decision path"
+        ),
+    )
+    external_pilot_schiff_base_lyase_import_safety.add_argument(
+        "--schiff-base-lyase-control",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_schiff_base_lyase_control_1025.json"
+        ),
+    )
+    external_pilot_schiff_base_lyase_import_safety.add_argument(
+        "--resolved-pilot-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_decisions_review_resolved_1025.json"
+        ),
+    )
+    external_pilot_schiff_base_lyase_import_safety.add_argument(
+        "--pilot-active-site-evidence-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        ),
+    )
+    external_pilot_schiff_base_lyase_import_safety.add_argument(
+        "--external-import-readiness-audit",
+        default="artifacts/v3_external_source_import_readiness_audit_1025.json",
+    )
+    external_pilot_schiff_base_lyase_import_safety.add_argument(
+        "--pilot-success-criteria",
+        default="artifacts/v3_external_source_pilot_success_criteria_1025.json",
+    )
+    external_pilot_schiff_base_lyase_import_safety.add_argument(
+        "--max-rows", type=int, default=1
+    )
+    external_pilot_schiff_base_lyase_import_safety.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_schiff_base_lyase_import_safety_"
+            "adjudication_1025.json"
+        ),
+    )
+    external_pilot_schiff_base_lyase_import_safety.set_defaults(
+        func=cmd_build_external_source_pilot_schiff_base_lyase_import_safety_adjudication
     )
 
     external_structural_path = subparsers.add_parser(

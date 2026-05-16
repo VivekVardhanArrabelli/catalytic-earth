@@ -245,8 +245,19 @@ Current expectation:
   The P34949 sugar-phosphate isomerase lane now has a bounded review-only
   scope control using a source-traced active-site Arg, local pocket composition,
   absent flavin/cofactor context, zero flavin role-hint support, and weak top1
-  score with local `absent_flavin_context` counterevidence; it is not yet an
-  import-safety adjudication.
+  score with local `absent_flavin_context` counterevidence. Its follow-on
+  import-safety adjudication now repairs the P34949 weak flavin/scope conflict
+  and records post-repair `needs_review`; broader duplicate screening, a
+  post-repair review decision, and the full factory gate still block import.
+  The Q9BXD5 Schiff-base lyase/aldolase lane now has a bounded review-only
+  scope control using source-traced Tyr/Lys active-site residues, a
+  Schiff-base Lys, local pocket composition, absent heme/cofactor context,
+  zero heme/electron-transfer role-hint support, and weak top1 score with
+  local `absent_heme_context` counterevidence. Its follow-on import-safety
+  adjudication now repairs the Q9BXD5 weak heme/scope conflict and records
+  post-repair `needs_review`, while the representation near-duplicate holdout,
+  broader duplicate screening, a post-repair review decision, and the full
+  factory gate still block import.
   The external structural path now has a
   concrete review-only cluster index for the same 10 selected rows: all 10
   AlphaFold coordinate sidecars are materialized,

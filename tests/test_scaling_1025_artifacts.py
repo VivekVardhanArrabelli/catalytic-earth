@@ -3219,6 +3219,27 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json"
         )
+        sugar_isomerase_import_safety = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_source_pilot_sugar_phosphate_isomerase_import_safety_"
+                "adjudication_1025.json"
+            )
+        )
+        schiff_base_control = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_schiff_base_lyase_control_1025.json"
+        )
+        schiff_base_import_safety = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_source_pilot_schiff_base_lyase_import_safety_"
+                "adjudication_1025.json"
+            )
+        )
 
         self.assertEqual(
             resolution["metadata"]["method"],
@@ -3540,6 +3561,149 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertFalse(isomerase_row["countable_label_candidate"])
         self.assertFalse(isomerase_row["ready_for_label_import"])
+
+        self.assertEqual(
+            sugar_isomerase_import_safety["metadata"]["method"],
+            "external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication",
+        )
+        self.assertTrue(sugar_isomerase_import_safety["metadata"]["review_only"])
+        self.assertFalse(
+            sugar_isomerase_import_safety["metadata"]["ready_for_label_import"]
+        )
+        self.assertEqual(
+            sugar_isomerase_import_safety["metadata"][
+                "representation_conflict_repaired_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            sugar_isomerase_import_safety["metadata"]["scope_conflict_repaired_count"],
+            1,
+        )
+        self.assertEqual(
+            sugar_isomerase_import_safety["metadata"][
+                "import_ready_candidate_count"
+            ],
+            0,
+        )
+        adjudicated_isomerase_row = sugar_isomerase_import_safety["rows"][0]
+        self.assertEqual(adjudicated_isomerase_row["accession"], "P34949")
+        self.assertEqual(
+            adjudicated_isomerase_row["import_safety_adjudication_status"],
+            "sugar_phosphate_isomerase_scope_conflict_repaired",
+        )
+        self.assertEqual(
+            adjudicated_isomerase_row["normalized_decision_status_after_repair"],
+            "needs_review",
+        )
+        self.assertNotIn(
+            "heuristic_scope_top1_mismatch",
+            adjudicated_isomerase_row["remaining_import_blockers"],
+        )
+        self.assertNotIn(
+            "representation_control_proxy_flags_scope_top1_mismatch",
+            adjudicated_isomerase_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            adjudicated_isomerase_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "full_label_factory_gate_not_run",
+            adjudicated_isomerase_row["remaining_import_blockers"],
+        )
+        self.assertFalse(adjudicated_isomerase_row["countable_label_candidate"])
+        self.assertFalse(adjudicated_isomerase_row["ready_for_label_import"])
+
+        self.assertEqual(
+            schiff_base_control["metadata"]["method"],
+            "external_source_pilot_schiff_base_lyase_control",
+        )
+        self.assertTrue(schiff_base_control["metadata"]["review_only"])
+        self.assertFalse(schiff_base_control["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            schiff_base_control["metadata"]["candidate_with_schiff_base_lys_count"],
+            1,
+        )
+        self.assertEqual(
+            schiff_base_control["metadata"]["candidate_with_tyr_lys_pair_count"],
+            1,
+        )
+        self.assertEqual(
+            schiff_base_control["metadata"]["heme_ligand_context_absent_count"],
+            1,
+        )
+        self.assertEqual(
+            schiff_base_control["metadata"]["import_ready_candidate_count"], 0
+        )
+        self.assertEqual(schiff_base_control["blockers"], [])
+        schiff_row = schiff_base_control["rows"][0]
+        self.assertEqual(schiff_row["accession"], "Q9BXD5")
+        self.assertEqual(
+            schiff_row["control_status"],
+            "review_only_schiff_base_lyase_scope_ready",
+        )
+        self.assertEqual(
+            schiff_row["candidate_active_site_features"][
+                "source_active_site_tyr_positions"
+            ],
+            [143],
+        )
+        self.assertEqual(
+            schiff_row["candidate_active_site_features"][
+                "source_active_site_lys_positions"
+            ],
+            [173],
+        )
+        self.assertEqual(
+            schiff_row["heme_peroxidase_contrast_features"][
+                "heme_or_electron_role_hint_match_count"
+            ],
+            0,
+        )
+        self.assertFalse(schiff_row["countable_label_candidate"])
+        self.assertFalse(schiff_row["ready_for_label_import"])
+
+        self.assertEqual(
+            schiff_base_import_safety["metadata"]["method"],
+            "external_source_pilot_schiff_base_lyase_import_safety_adjudication",
+        )
+        self.assertTrue(schiff_base_import_safety["metadata"]["review_only"])
+        self.assertFalse(
+            schiff_base_import_safety["metadata"]["ready_for_label_import"]
+        )
+        self.assertEqual(
+            schiff_base_import_safety["metadata"]["scope_conflict_repaired_count"],
+            1,
+        )
+        self.assertEqual(
+            schiff_base_import_safety["metadata"]["import_ready_candidate_count"],
+            0,
+        )
+        adjudicated_schiff_row = schiff_base_import_safety["rows"][0]
+        self.assertEqual(adjudicated_schiff_row["accession"], "Q9BXD5")
+        self.assertEqual(
+            adjudicated_schiff_row["import_safety_adjudication_status"],
+            "schiff_base_lyase_scope_conflict_repaired",
+        )
+        self.assertEqual(
+            adjudicated_schiff_row["normalized_decision_status_after_repair"],
+            "needs_review",
+        )
+        self.assertNotIn(
+            "heuristic_scope_top1_mismatch",
+            adjudicated_schiff_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "representation_near_duplicate_holdout",
+            adjudicated_schiff_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            adjudicated_schiff_row["remaining_import_blockers"],
+        )
+        self.assertFalse(adjudicated_schiff_row["countable_label_candidate"])
+        self.assertFalse(adjudicated_schiff_row["ready_for_label_import"])
 
 
 def _load_json(path: Path) -> dict:

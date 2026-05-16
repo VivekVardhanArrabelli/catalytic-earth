@@ -134,8 +134,27 @@ It uses the source-traced active-site Arg, local pocket composition, absent
 flavin/cofactor context, zero flavin role-hint support, and weak top1 score
 with local `absent_flavin_context` counterevidence to separate
 mannose-6-phosphate isomerase scope from the weak flavin-redox heuristic top1.
-It is not yet integrated into import-safety adjudication and keeps 0
-import-ready rows and 0 countable external labels.
+The follow-on
+`artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication_1025.json`
+now consumes that control in the import-safety path. It repairs the P34949 weak
+flavin/scope representation blocker and records the post-repair normalized
+status as `needs_review`, but it still creates 0 import-ready rows and 0
+countable external labels because broader duplicate screening, a post-repair
+review decision, and the full factory gate remain unresolved.
+`artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json` now
+opens the next Q9BXD5 repair lane as review-only scope-control evidence. It
+uses source-traced Tyr/Lys active-site residues, a Schiff-base Lys, local
+pocket composition, absent heme/cofactor context, zero heme/electron-transfer
+role-hint support, and weak top1 score with local `absent_heme_context`
+counterevidence to separate N-acetylneuraminate lyase scope from the weak
+heme-peroxidase heuristic top1. The follow-on
+`artifacts/v3_external_source_pilot_schiff_base_lyase_import_safety_adjudication_1025.json`
+now consumes that control in the import-safety path. It repairs the Q9BXD5 weak
+heme/scope blocker and records the post-repair normalized status as
+`needs_review`, but it still creates 0 import-ready rows and 0 countable
+external labels because the representation near-duplicate holdout, broader
+duplicate screening, a post-repair review decision, and the full factory gate
+remain unresolved.
 The external structural pilot path has now moved from path definition to a concrete
 review-only structure cache in
 `artifacts/v3_external_structural_cluster_index_1025.json`: all 10 selected
@@ -166,30 +185,66 @@ external-external identity `0.647`, and kept 0 import-ready/countable rows. The
 confidence audit now carries this external all-vs-all no-signal evidence for
 the selected pilot rows. The later needs-review resolution, mechanism repair
 lane, SDR control, SDR import-safety adjudication, Q6NSJ0 boundary
-adjudication, and P34949 sugar-phosphate isomerase control artifacts supersede
-the 6-row normalized queue for pilot-decision work; do not re-open those rows
-without new evidence. Next direct work should integrate the `P34949`
-sugar-phosphate isomerase control into an import-safety adjudication path, or
-complete the remaining O14756/Q6NSJ0 process blockers if a full duplicate,
-review, and gate path becomes available. Do not broaden dashboards or generic
-gates before a lane-specific control.
+adjudication, P34949 sugar-phosphate isomerase control, P34949 import-safety
+adjudication, Q9BXD5 Schiff-base lyase control, and Q9BXD5 import-safety
+adjudication artifacts supersede the 6-row normalized queue for pilot-decision
+work; do not re-open those rows without new evidence. Next direct work should
+complete the remaining duplicate/review/factory blockers for the repaired
+O14756, Q6NSJ0, P34949, or Q9BXD5 rows if a defensible full path exists;
+otherwise continue the next closest repair lane such as C9JRZ8 AKR/NADP or
+P06746 DNA Pol X/5'-dRP lyase. Do not broaden dashboards or generic gates
+before a lane-specific control.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
 unless the user explicitly reverses the override.
 
-The repeated push/recovery blocker is partially closed on the latest fetched
-repo state: the substantive repair-control commits (`8a0c191` and `1ff6187`)
-reached `origin/main`, so the new Q6NSJ0 and P34949 artifacts are pushed.
-However, a later local handoff/status correction remains ahead of `origin/main`,
-and `git push origin main` still fails with
+GitHub credential hygiene remains a wrap-up risk on this workstation:
+`git config --get-all credential.https://github.com.helper` includes
+`gh auth git-credential`, but `gh auth status` reports the default token for
+`VivekVardhanArrabelli` as invalid. Do not start an interactive login unless the
+user explicitly asks. If push fails, keep the coherent local commit safe and
+record the exact remote/auth error.
+
+Current 2026-05-16T21:47:33Z wrap-up blocker: the coherent local commit for
+the P34949/Q9BXD5 import-safety adjudication work is safe, but `git push origin
+main` failed with the exact error
 `fatal: could not read Username for 'https://github.com': Device not configured`.
-`gh auth status` still reports the default token for `VivekVardhanArrabelli` as
-invalid, even though `git config --get-all credential.https://github.com.helper`
-now includes `gh auth git-credential`. The stale lock was removed during the
-recovery attempt; the next run should reacquire the automation lock, verify the
-local-ahead status, and push the remaining handoff/status commit after GitHub
-credentials are usable.
+The `gh auth git-credential` helper is installed for `https://github.com`, so
+the remaining blocker is the invalid GitHub CLI token, not the credential-helper
+configuration.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T21:47:33Z run after acquiring the automation lock,
+syncing clean `origin/main`, passing startup gates (`365` unit tests passed and
+`validate` passed with 679 curated labels), and passing wrap checks (`368` unit
+tests, `validate`, `compileall`, and `git diff --check`):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and no
+  M-CSA strict-TM round, query, split-repair, or partition-repair work was
+  resumed.
+- External-source repair/import: Yes for two review-only import-safety
+  adjudication paths and one additional lane control, no for import or
+  countable labels. The P34949 non-text rule consumes a source-traced active-site
+  Arg, local pocket composition, absent flavin/cofactor context, zero flavin
+  role-hint support, weak top1 score with `absent_flavin_context`, and bounded
+  sequence no-signal status; it repairs the weak flavin/scope blocker and
+  records post-repair `needs_review`. The Q9BXD5 rule consumes source-traced
+  Tyr/Lys active-site residues, a Schiff-base Lys, absent heme/cofactor context,
+  zero heme/electron-transfer role-hint support, weak heme top1 score with
+  `absent_heme_context`, local pocket context, and bounded sequence no-signal
+  status; it repairs the weak heme/scope blocker while preserving the
+  representation near-duplicate holdout as an import blocker. Both rows still
+  require broader duplicate screening, post-repair review decisions, and full
+  factory gates before any import claim.
+- Scientific generalization work: No new benchmark or split claim. The all-30
+  external structural split remains review-only with max cross-split TM about
+  `0.6963`; strict TM-diverse claims remain on external fold-diverse surfaces
+  only.
+- SPOF hardening work: Yes. New CLI paths, artifacts, and regression tests make
+  the P34949 and Q9BXD5 post-repair import-safety decision paths executable
+  while preserving review-only/countable-label separation. `docs/label_factory.md`
+  was checked and did not need a content change.
 
 Recorded for the 2026-05-16T20:47:11Z run after acquiring the automation
 lock, syncing clean `origin/main`, passing startup gates (`363` unit tests

@@ -64,10 +64,13 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_mechanism_repair_lanes,
     build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication,
+    build_external_source_pilot_schiff_base_lyase_control,
+    build_external_source_pilot_schiff_base_lyase_import_safety_adjudication,
     build_external_source_pilot_sdr_redox_import_safety_adjudication,
     build_external_source_pilot_sdr_redox_repair_control,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_sugar_phosphate_isomerase_control,
+    build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
     build_external_structural_cluster_index,
@@ -8136,6 +8139,522 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "flavin_role_hint_match_count"
             ],
             0,
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_sugar_phosphate_import_safety_repairs_scope_conflict(
+        self,
+    ) -> None:
+        adjudication = (
+            build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication(
+                sugar_phosphate_isomerase_control={
+                    "metadata": {
+                        "method": (
+                            "external_source_pilot_sugar_phosphate_isomerase_control"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "P34949",
+                            "entry_id": "uniprot:P34949",
+                            "control_status": (
+                                "review_only_sugar_phosphate_isomerase_scope_ready"
+                            ),
+                            "candidate_active_site_features": {
+                                "source_active_site_arg_positions": [295],
+                                "source_active_site_arg_count": 1,
+                                "source_active_site_basic_or_polar_count": 1,
+                            },
+                            "flavin_redox_contrast_features": {
+                                "flavin_ligand_context_absent": True,
+                                "top1_fingerprint_id": (
+                                    "flavin_dehydrogenase_reductase"
+                                ),
+                                "top1_score": 0.185,
+                                "top1_role_match_fraction": 0.0,
+                                "flavin_role_hint_match_count": 0,
+                                "counterevidence_reasons": [
+                                    "absent_flavin_context"
+                                ],
+                            },
+                            "pocket_boundary_features": {
+                                "nearby_basic_or_polar_residue_count": 8,
+                                "polar_fraction": 0.2632,
+                                "positive_fraction": 0.1053,
+                            },
+                        }
+                    ],
+                },
+                resolved_pilot_decisions={
+                    "metadata": {
+                        "method": "external_source_pilot_decisions_review_resolved"
+                    },
+                    "rows": [
+                        {
+                            "accession": "P34949",
+                            "normalized_decision_status": (
+                                "rejected_representation_conflict"
+                            ),
+                        }
+                    ],
+                },
+                pilot_active_site_evidence_decisions={
+                    "metadata": {
+                        "method": (
+                            "external_source_pilot_active_site_evidence_decisions"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "P34949",
+                            "active_site_evidence_source_category": (
+                                "explicit_active_site_source_present"
+                            ),
+                            "backend_sequence_search_status": "no_near_duplicate_signal",
+                            "broader_duplicate_screening_status": (
+                                "broader_duplicate_screening_required"
+                            ),
+                            "factory_gate_status": "not_run",
+                            "import_readiness_blockers": [
+                                "broader_duplicate_screening_required",
+                                "external_review_decision_artifact_not_built",
+                                "full_label_factory_gate_not_run",
+                                "heuristic_scope_top1_mismatch",
+                                "representation_control_issue",
+                                "representation_control_proxy_flags_scope_top1_mismatch",
+                            ],
+                        }
+                    ],
+                },
+                external_import_readiness_audit={
+                    "metadata": {"method": "external_source_import_readiness_audit"},
+                    "rows": [
+                        {
+                            "accession": "P34949",
+                            "backend_sequence_search_status": "no_near_duplicate_signal",
+                            "blockers": [
+                                "heuristic_scope_top1_mismatch",
+                                "representation_control_proxy_flags_scope_top1_mismatch",
+                                "external_review_decision_artifact_not_built",
+                                "full_label_factory_gate_not_run",
+                            ],
+                        }
+                    ],
+                },
+                pilot_success_criteria={
+                    "metadata": {"method": "external_source_pilot_success_criteria"},
+                    "rows": [
+                        {
+                            "accession": "P34949",
+                            "full_label_factory_gate_status": "not_run",
+                            "criterion_blockers": [
+                                "broader_duplicate_screening_unresolved",
+                                "full_label_factory_gate_not_passed",
+                                "representation_control_unresolved",
+                                "review_decision_not_terminal",
+                            ],
+                        }
+                    ],
+                },
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+        )
+
+        metadata = adjudication["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["representation_conflict_repaired_count"], 1)
+        self.assertEqual(metadata["scope_conflict_repaired_count"], 1)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["normalized_decision_status_after_repair_counts"],
+            {"needs_review": 1},
+        )
+        row = adjudication["rows"][0]
+        self.assertEqual(row["accession"], "P34949")
+        self.assertEqual(
+            row["previous_normalized_decision_status"],
+            "rejected_representation_conflict",
+        )
+        self.assertEqual(
+            row["import_safety_adjudication_status"],
+            "sugar_phosphate_isomerase_scope_conflict_repaired",
+        )
+        self.assertEqual(
+            row["normalized_decision_status_after_repair"], "needs_review"
+        )
+        self.assertNotIn(
+            "heuristic_scope_top1_mismatch",
+            row["remaining_import_blockers"],
+        )
+        self.assertNotIn(
+            "representation_control_proxy_flags_scope_top1_mismatch",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "full_label_factory_gate_not_run",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_schiff_base_lyase_control_uses_non_text_features(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            external_fasta = Path(tmp_dir) / "external.fasta"
+            external_fasta.write_text(
+                ">ext__Q9BXD5\n"
+                + ("A" * 142)
+                + "Y"
+                + ("G" * 29)
+                + "K"
+                + ("A" * 147)
+                + "\n",
+                encoding="utf-8",
+            )
+            control = build_external_source_pilot_schiff_base_lyase_control(
+                repair_lanes={
+                    "metadata": {
+                        "method": "external_source_pilot_mechanism_repair_lanes"
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q9BXD5",
+                            "entry_id": "uniprot:Q9BXD5",
+                            "repair_lane": (
+                                "add_schiff_base_aldolase_lyase_scope_control"
+                            ),
+                        }
+                    ],
+                },
+                needs_review_resolution={
+                    "metadata": {
+                        "method": "external_source_pilot_needs_review_resolution"
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q9BXD5",
+                            "revised_status": "rejected_representation_conflict",
+                            "confidence": "medium",
+                            "active_site_evidence_result": {
+                                "positions": [
+                                    {"position": 143},
+                                    {"position": 173},
+                                ],
+                            },
+                        }
+                    ],
+                },
+                pilot_representation_sample={
+                    "metadata": {"embedding_backend": "esm2_t6_8m_ur50d"},
+                    "rows": [
+                        {
+                            "accession": "Q9BXD5",
+                            "embedding_backend": "esm2_t6_8m_ur50d",
+                            "nearest_reference": {
+                                "reference_accession": "P11708"
+                            },
+                            "top_embedding_cosine": 0.8619,
+                        }
+                    ],
+                },
+                pilot_larger_representation_sample={
+                    "metadata": {"embedding_backend": "esm2_t30_150m_ur50d"},
+                    "rows": [
+                        {
+                            "accession": "Q9BXD5",
+                            "embedding_backend": "esm2_t30_150m_ur50d",
+                            "nearest_reference": {
+                                "reference_accession": "P11708"
+                            },
+                            "top_embedding_cosine": 0.9649,
+                        }
+                    ],
+                },
+                pilot_representation_stability_audit={
+                    "metadata": {
+                        "method": (
+                            "external_source_representation_backend_stability_audit"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q9BXD5",
+                            "baseline_nearest_reference_accession": "P11708",
+                            "baseline_top_embedding_cosine": 0.8619,
+                            "comparison_nearest_reference_accession": "P11708",
+                            "comparison_top_embedding_cosine": 0.9649,
+                            "nearest_reference_stable": True,
+                            "stability_flags": [
+                                "heuristic_disagreement_status_changed",
+                                "comparison_embedding_backend_fallback_used",
+                            ],
+                        }
+                    ],
+                },
+                heuristic_control_scores={
+                    "metadata": {"method": "external_source_heuristic_control_scores"},
+                    "results": [
+                        {
+                            "entry_id": "uniprot:Q9BXD5",
+                            "ligand_context": {
+                                "cofactor_families": [],
+                                "ligand_codes": [],
+                                "proximal_ligands": [],
+                                "structure_cofactor_families": [],
+                                "structure_ligand_codes": [],
+                                "structure_ligands": [],
+                            },
+                            "pocket_context": {
+                                "descriptors": {
+                                    "aromatic_fraction": 0.3571,
+                                    "hydrophobic_fraction": 0.4286,
+                                    "positive_fraction": 0.0714,
+                                },
+                                "nearby_residue_sites": [
+                                    {"code": "TYR"},
+                                    {"code": "PHE"},
+                                    {"code": "HIS"},
+                                    {"code": "LYS"},
+                                ],
+                            },
+                            "top_fingerprints": [
+                                {
+                                    "fingerprint_id": "heme_peroxidase_oxidase",
+                                    "score": 0.3646,
+                                    "role_match_fraction": 0.3333,
+                                    "residue_match_fraction": 1.0,
+                                    "counterevidence_reasons": [
+                                        "absent_heme_context"
+                                    ],
+                                    "matched_signature_roles": [
+                                        {
+                                            "required_role": "heme_ligand",
+                                            "role_hint_match": False,
+                                        },
+                                        {
+                                            "required_role": "acid_base",
+                                            "role_hint_match": True,
+                                        },
+                                        {
+                                            "required_role": (
+                                                "electron_transfer_path"
+                                            ),
+                                            "role_hint_match": False,
+                                        },
+                                    ],
+                                }
+                            ],
+                        }
+                    ],
+                },
+                external_sequence_fasta=external_fasta,
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+
+        metadata = control["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_schiff_base_lyase_control",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["candidate_with_schiff_base_lys_count"], 1)
+        self.assertEqual(metadata["candidate_with_tyr_lys_pair_count"], 1)
+        self.assertEqual(metadata["heme_ligand_context_absent_count"], 1)
+        self.assertEqual(control["blockers"], [])
+        row = control["rows"][0]
+        self.assertEqual(row["accession"], "Q9BXD5")
+        self.assertEqual(
+            row["control_status"],
+            "review_only_schiff_base_lyase_scope_ready",
+        )
+        self.assertEqual(
+            row["candidate_active_site_features"][
+                "source_active_site_tyr_positions"
+            ],
+            [143],
+        )
+        self.assertEqual(
+            row["candidate_active_site_features"][
+                "source_active_site_lys_positions"
+            ],
+            [173],
+        )
+        self.assertEqual(
+            row["heme_peroxidase_contrast_features"][
+                "heme_or_electron_role_hint_match_count"
+            ],
+            0,
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_schiff_base_import_safety_leaves_holdout_blocker(
+        self,
+    ) -> None:
+        adjudication = (
+            build_external_source_pilot_schiff_base_lyase_import_safety_adjudication(
+                schiff_base_lyase_control={
+                    "metadata": {
+                        "method": "external_source_pilot_schiff_base_lyase_control"
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q9BXD5",
+                            "entry_id": "uniprot:Q9BXD5",
+                            "control_status": (
+                                "review_only_schiff_base_lyase_scope_ready"
+                            ),
+                            "candidate_active_site_features": {
+                                "source_active_site_tyr_positions": [143],
+                                "source_active_site_tyr_count": 1,
+                                "source_active_site_lys_positions": [173],
+                                "source_active_site_lys_count": 1,
+                                "tyr_lys_spacing_values": [30],
+                                "has_tyr_lys_pair": True,
+                            },
+                            "heme_peroxidase_contrast_features": {
+                                "heme_ligand_context_absent": True,
+                                "top1_fingerprint_id": "heme_peroxidase_oxidase",
+                                "top1_score": 0.3646,
+                                "top1_role_match_fraction": 0.3333,
+                                "heme_or_electron_role_hint_match_count": 0,
+                                "acid_base_role_hint_match_count": 1,
+                                "counterevidence_reasons": [
+                                    "absent_heme_context"
+                                ],
+                            },
+                            "pocket_boundary_features": {
+                                "nearby_aromatic_residue_count": 10,
+                                "nearby_basic_residue_count": 2,
+                            },
+                        }
+                    ],
+                },
+                resolved_pilot_decisions={
+                    "metadata": {
+                        "method": "external_source_pilot_decisions_review_resolved"
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q9BXD5",
+                            "normalized_decision_status": (
+                                "rejected_representation_conflict"
+                            ),
+                        }
+                    ],
+                },
+                pilot_active_site_evidence_decisions={
+                    "metadata": {
+                        "method": (
+                            "external_source_pilot_active_site_evidence_decisions"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q9BXD5",
+                            "active_site_evidence_source_category": (
+                                "explicit_active_site_source_present"
+                            ),
+                            "backend_sequence_search_status": "no_near_duplicate_signal",
+                            "broader_duplicate_screening_status": (
+                                "broader_duplicate_screening_required"
+                            ),
+                            "factory_gate_status": "not_run",
+                            "import_readiness_blockers": [
+                                "broader_duplicate_screening_required",
+                                "external_review_decision_artifact_not_built",
+                                "full_label_factory_gate_not_run",
+                                "heuristic_scope_top1_mismatch",
+                                "representation_control_issue",
+                                "representation_control_proxy_flags_scope_top1_mismatch",
+                            ],
+                        }
+                    ],
+                },
+                external_import_readiness_audit={
+                    "metadata": {"method": "external_source_import_readiness_audit"},
+                    "rows": [
+                        {
+                            "accession": "Q9BXD5",
+                            "backend_sequence_search_status": "no_near_duplicate_signal",
+                            "blockers": [
+                                "heuristic_scope_top1_mismatch",
+                                "representation_control_proxy_flags_scope_top1_mismatch",
+                                "external_review_decision_artifact_not_built",
+                                "full_label_factory_gate_not_run",
+                            ],
+                        }
+                    ],
+                },
+                pilot_success_criteria={
+                    "metadata": {"method": "external_source_pilot_success_criteria"},
+                    "rows": [
+                        {
+                            "accession": "Q9BXD5",
+                            "full_label_factory_gate_status": "not_run",
+                            "criterion_blockers": [
+                                "broader_duplicate_screening_unresolved",
+                                "full_label_factory_gate_not_passed",
+                                "review_decision_not_terminal",
+                            ],
+                            "import_readiness_blockers": [
+                                "broader_duplicate_screening_required",
+                                "external_review_decision_artifact_not_built",
+                                "full_label_factory_gate_not_run",
+                                "representation_near_duplicate_holdout",
+                            ],
+                        }
+                    ],
+                },
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+        )
+
+        metadata = adjudication["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_schiff_base_lyase_import_safety_adjudication",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["scope_conflict_repaired_count"], 1)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        row = adjudication["rows"][0]
+        self.assertEqual(row["accession"], "Q9BXD5")
+        self.assertEqual(
+            row["import_safety_adjudication_status"],
+            "schiff_base_lyase_scope_conflict_repaired",
+        )
+        self.assertEqual(
+            row["normalized_decision_status_after_repair"], "needs_review"
+        )
+        self.assertNotIn(
+            "heuristic_scope_top1_mismatch",
+            row["remaining_import_blockers"],
+        )
+        self.assertNotIn(
+            "representation_control_proxy_flags_scope_top1_mismatch",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "representation_near_duplicate_holdout",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            row["remaining_import_blockers"],
         )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])

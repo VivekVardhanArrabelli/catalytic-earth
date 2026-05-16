@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 137
-- Measured elapsed time: 4634.1 minutes (77.23 hours)
+- Entries: 138
+- Measured elapsed time: 4651.7 minutes (77.53 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- external-transfer-spof-hardening: 199.7 measured minutes (3.33 hours)
+- external-transfer-spof-hardening: 217.2 measured minutes (3.62 hours)
 - ops: 62.1 measured minutes (1.04 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1573
-- Evidence references logged: 1199
+- Artifact references logged: 1585
+- Evidence references logged: 1209
 
 ## Recent Entries
-
-### 2026-05-16T13:07:13+00:00 - external-transfer-spof-hardening
-
-- Task: External pilot confidence audit verification
-- Time mode: measured
-- Measured minutes: 4.733
-- Started: 2026-05-16T13:02:29Z
-- Ended: 2026-05-16T13:07:13Z
-- Artifacts: artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json, artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json, artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json, docs/external_source_transfer.md, work/handoff.md
-- Evidence: startup 357 unit tests passed, startup validate passed with 679 curated labels, confidence and normalization CLIs reran idempotently, normalized six needs_review rows verified, 0 import-ready rows and 0 countable external labels, final 357 unit tests passed, final validate passed, compileall passed, git diff check passed
-- Notes: Normal locked direct run with no delegation. Latest pushed audit already satisfied the immediate confidence-audit instruction; this run verified it, updated stale next-work guidance, and kept M-CSA strict TM repair closed.
 
 ### 2026-05-16T14:26:15.956789+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/handoff.md, work/status.md, global git credential helper
 - Evidence: gh auth setup-git configured git credential helper, repair-control commits 8a0c191 and 1ff6187 are on origin/main, current handoff/status correction remains local ahead of origin/main, git push origin main still fails with HTTPS username error, gh auth status reports invalid default token, stale lock was removed during recovery attempt
 - Notes: Partial recovery: substantive repair-control work reached origin/main, but the current shell still cannot push the later handoff/status correction.
+
+### 2026-05-16T22:05:28.138975+00:00 - external-transfer-spof-hardening
+
+- Task: Integrate P34949/Q9BXD5 import-safety repair lanes
+- Time mode: measured
+- Measured minutes: 17.567
+- Started: 2026-05-16T21:47:33Z
+- Ended: 2026-05-16T22:05:07Z
+- Artifacts: artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication_1025.json, artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json, artifacts/v3_external_source_pilot_schiff_base_lyase_import_safety_adjudication_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 365 unit tests passed, startup validate passed with 679 curated labels, P34949 sugar-phosphate import-safety adjudication repaired weak flavin/scope conflict, Q9BXD5 Schiff-base lyase control staged non-text Tyr/Lys and absent-heme evidence, Q9BXD5 import-safety adjudication repaired weak heme/scope conflict while retaining representation near-duplicate holdout, 0 import-ready rows, 0 countable external labels, focused 102 tests passed, final 368 unit tests passed, final validate passed
+- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. GitHub auth remains invalid locally, so push may remain blocked until credentials are refreshed.
 
 ## Expectation Updates
 
@@ -233,6 +233,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T20:03:03.218017+00:00: Next direct work should integrate the Q6NSJ0 glycoside-hydrolase boundary control into import-safety adjudication or complete O14756 duplicate review and full factory gate path before import.
 - 2026-05-16T21:00:19.989175+00:00: Next direct work should integrate the P34949 sugar-phosphate isomerase control into import-safety adjudication or complete duplicate/review/factory blockers for repaired O14756 and Q6NSJ0.
 - 2026-05-16T21:04:56.234887+00:00: Next run should reacquire the lock, verify local-ahead state, and push the remaining handoff/status correction after GitHub credentials are usable.
+- 2026-05-16T22:05:28.138975+00:00: Next direct work should complete duplicate/review/factory blockers for repaired external rows or continue C9JRZ8 AKR/NADP repair without broadening generic gates.
 
 ## Scope Adjustments
 
@@ -338,3 +339,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T10:14:24.266801+00:00: External fold-diverse structural work now starts from the all-30 UniProtKB/Swiss-Prot candidate surface rather than only the selected 10-row pilot; strict split claims remain blocked until pair-cache and review/import blockers are resolved.
 - 2026-05-16T11:15:09.904197+00:00: External structural TM-diverse split assignment is now available only as review-only all-30 Swiss-Prot/AFDB evidence; import and benchmark claims remain blocked by terminal review decisions and broader duplicate/factory gates.
 - 2026-05-16T21:00:19.989175+00:00: Q6NSJ0 boundary repair is now an import-safety adjudication; P34949 sugar-phosphate isomerase is the next staged review-only control, not an import.
+- 2026-05-16T22:05:28.138975+00:00: P34949 and Q9BXD5 now have review-only import-safety adjudications; Q9BXD5 still preserves the representation near-duplicate holdout as an import blocker.

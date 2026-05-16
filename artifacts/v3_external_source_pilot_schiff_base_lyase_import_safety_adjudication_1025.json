@@ -1,0 +1,165 @@
+{
+  "blockers": [],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "external_import_readiness_audit": "artifacts/v3_external_source_import_readiness_audit_1025.json",
+        "pilot_active_site_evidence_decisions": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+        "pilot_success_criteria": "artifacts/v3_external_source_pilot_success_criteria_1025.json",
+        "resolved_pilot_decisions": "artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json",
+        "schiff_base_lyase_control": "artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json"
+      },
+      "blocker_removed": "schiff_base_lyase_control_integrated_into_import_safety_adjudication",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "external_import_readiness_audit": 1025,
+        "pilot_active_site_evidence_decisions": 1025,
+        "pilot_success_criteria": 1025,
+        "resolved_pilot_decisions": 1025,
+        "schiff_base_lyase_control": 1025
+      },
+      "payload_methods": {
+        "external_import_readiness_audit": "external_source_import_readiness_audit",
+        "pilot_active_site_evidence_decisions": "external_source_pilot_active_site_evidence_decisions",
+        "pilot_success_criteria": "external_source_pilot_success_criteria",
+        "resolved_pilot_decisions": "external_source_pilot_decisions_review_resolved",
+        "schiff_base_lyase_control": "external_source_pilot_schiff_base_lyase_control"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "external_import_readiness_audit": {
+          "metadata.artifact_lineage.slice_id": 1025
+        },
+        "pilot_active_site_evidence_decisions": {
+          "metadata.artifact_lineage.slice_id": 1025
+        },
+        "pilot_success_criteria": {
+          "metadata.artifact_lineage.slice_id": 1025
+        },
+        "resolved_pilot_decisions": {
+          "metadata.slice_id": 1025
+        },
+        "schiff_base_lyase_control": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "external_import_readiness_audit",
+          "pilot_active_site_evidence_decisions",
+          "pilot_success_criteria",
+          "resolved_pilot_decisions",
+          "schiff_base_lyase_control"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "broader_duplicate_screening_required",
+      "broader_duplicate_screening_unresolved",
+      "external_review_decision_artifact_not_built",
+      "full_label_factory_gate_not_passed",
+      "full_label_factory_gate_not_run",
+      "representation_near_duplicate_holdout",
+      "review_decision_not_terminal"
+    ],
+    "blocker_removed": "schiff_base_lyase_control_integrated_into_import_safety_adjudication",
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "import_ready_candidate_count": 0,
+    "import_safety_adjudication_status_counts": {
+      "schiff_base_lyase_scope_conflict_repaired": 1
+    },
+    "max_rows": 1,
+    "method": "external_source_pilot_schiff_base_lyase_import_safety_adjudication",
+    "normalized_decision_status_after_repair_counts": {
+      "needs_review": 1
+    },
+    "predictive_feature_sources": [
+      "source_traced_active_site_residue_codes",
+      "active_site_sequence_position_spacing",
+      "local_structure_ligand_context_absence",
+      "local_structure_pocket_residue_composition",
+      "heuristic_role_hint_match_absence",
+      "weak_top1_score_with_local_counterevidence",
+      "bounded_current_reference_sequence_search_status"
+    ],
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "broader_duplicate_screening_required": 1,
+      "broader_duplicate_screening_unresolved": 1,
+      "external_review_decision_artifact_not_built": 1,
+      "full_label_factory_gate_not_passed": 1,
+      "full_label_factory_gate_not_run": 1,
+      "representation_near_duplicate_holdout": 1,
+      "review_decision_not_terminal": 1
+    },
+    "review_context_fields": [
+      "Rhea reaction identifiers and equations",
+      "InterPro/PROSITE source context",
+      "current-reference M-CSA labels",
+      "heuristic fingerprint identifiers"
+    ],
+    "review_only": true,
+    "scope_conflict_repaired_count": 1,
+    "slice_id": 1025,
+    "source_external_import_readiness_audit_method": "external_source_import_readiness_audit",
+    "source_pilot_active_site_evidence_decisions_method": "external_source_pilot_active_site_evidence_decisions",
+    "source_pilot_success_criteria_method": "external_source_pilot_success_criteria",
+    "source_resolved_pilot_decisions_method": "external_source_pilot_decisions_review_resolved",
+    "source_schiff_base_lyase_control_method": "external_source_pilot_schiff_base_lyase_control"
+  },
+  "rows": [
+    {
+      "accession": "Q9BXD5",
+      "active_site_import_safety_status": "explicit_active_site_source_resolved",
+      "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+      "countable_label_candidate": false,
+      "decision_effect": "scope_conflict_repaired_but_import_blocked_by_duplicate_review_representation_holdout_and_factory_gates",
+      "entry_id": "uniprot:Q9BXD5",
+      "import_safety_adjudication_status": "schiff_base_lyase_scope_conflict_repaired",
+      "normalized_decision_status_after_repair": "needs_review",
+      "previous_normalized_decision_status": "rejected_representation_conflict",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "broader_duplicate_screening_required",
+        "broader_duplicate_screening_unresolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "representation_near_duplicate_holdout",
+        "review_decision_not_terminal"
+      ],
+      "review_status": "external_pilot_schiff_base_lyase_import_safety_adjudication_review_only",
+      "schiff_base_lyase_scope_evidence": {
+        "absent_heme_context_counterevidence": true,
+        "acid_base_role_hint_match_count": 1,
+        "heme_ligand_context_absent": true,
+        "heme_or_electron_role_hint_match_count": 0,
+        "nearby_aromatic_residue_count": 10,
+        "nearby_basic_residue_count": 2,
+        "source_active_site_lys_positions": [
+          173
+        ],
+        "source_active_site_tyr_positions": [
+          143
+        ],
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.3646,
+        "tyr_lys_spacing_values": [
+          30
+        ]
+      },
+      "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal"
+    }
+  ],
+  "warnings": [
+    "Schiff-base lyase import-safety adjudication is review-only; it repairs one weak heme/scope conflict but cannot bypass representation holdout review, duplicate review, expert/review decisions, or full factory gates"
+  ]
+}

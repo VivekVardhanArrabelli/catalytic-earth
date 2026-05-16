@@ -184,8 +184,32 @@ Priority blockers:
   pocket composition, absent flavin/cofactor ligand context, zero flavin
   role-hint support, and weak top1 score with local `absent_flavin_context`
   counterevidence to separate mannose-6-phosphate isomerase scope from the
-  weak flavin-redox heuristic top1. This is staged control evidence only; it is
-  not yet an import-safety adjudication or countable-label path.
+  weak flavin-redox heuristic top1.
+- `artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication_1025.json`
+  now integrates the P34949 scope control into the import-safety path. The
+  non-text rule treats the source-traced active-site Arg, local pocket
+  composition, absent flavin/cofactor context, zero flavin role-hint support,
+  weak top1 score with `absent_flavin_context` counterevidence, and bounded
+  sequence-search no-signal status as enough to repair the weak flavin/scope
+  representation conflict. P34949 still remains review-only and post-repair
+  `needs_review`, with 0 import-ready/countable rows, because broader duplicate
+  screening, a post-repair review decision, and the full factory gate are still
+  unresolved.
+- `artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json`
+  starts the Q9BXD5 Schiff-base lyase/aldolase lane as review-only non-text
+  scope-control evidence. It uses source-traced Tyr/Lys active-site residues,
+  a Schiff-base Lys, active-site spacing, local pocket composition, absent
+  heme/cofactor ligand context, zero heme/electron-transfer role-hint support,
+  and weak heme top1 score with local `absent_heme_context` counterevidence to
+  separate N-acetylneuraminate lyase scope from the weak heme-peroxidase
+  heuristic top1.
+- `artifacts/v3_external_source_pilot_schiff_base_lyase_import_safety_adjudication_1025.json`
+  now integrates the Q9BXD5 scope control into the import-safety path. The
+  non-text rule repairs the weak heme/scope conflict but deliberately leaves
+  the representation near-duplicate holdout unresolved. Q9BXD5 remains
+  review-only and post-repair `needs_review`, with 0 import-ready/countable
+  rows, because representation holdout review, broader duplicate screening, a
+  post-repair review decision, and the full factory gate are still unresolved.
 - `artifacts/v3_external_structural_cluster_index_1025.json` removes the
   selected-pilot structure-index blocker by staging all 10 AlphaFold coordinate
   sidecars, recording SHA-256 digests, running Foldseek, and caching
@@ -951,6 +975,32 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-sugar-p
   --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
   --external-sequence-fasta artifacts/v3_external_source_backend_sequence_search_external_1025.fasta \
   --out artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-sugar-phosphate-isomerase-import-safety-adjudication \
+  --sugar-phosphate-isomerase-control artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json \
+  --resolved-pilot-decisions artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json \
+  --pilot-active-site-evidence-decisions artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json \
+  --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --pilot-success-criteria artifacts/v3_external_source_pilot_success_criteria_1025.json \
+  --out artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudication_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-schiff-base-lyase-control \
+  --repair-lanes artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json \
+  --needs-review-resolution artifacts/v3_external_source_pilot_needs_review_resolution_1025.json \
+  --pilot-representation-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
+  --pilot-larger-representation-sample artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json \
+  --pilot-representation-stability-audit artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
+  --external-sequence-fasta artifacts/v3_external_source_backend_sequence_search_external_1025.fasta \
+  --out artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-schiff-base-lyase-import-safety-adjudication \
+  --schiff-base-lyase-control artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json \
+  --resolved-pilot-decisions artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json \
+  --pilot-active-site-evidence-decisions artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json \
+  --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --pilot-success-criteria artifacts/v3_external_source_pilot_success_criteria_1025.json \
+  --out artifacts/v3_external_source_pilot_schiff_base_lyase_import_safety_adjudication_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidence-dossiers \
   --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \
