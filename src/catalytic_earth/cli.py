@@ -146,6 +146,7 @@ from .transfer_scope import (
     build_external_source_pilot_candidate_priority,
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
+    build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
@@ -2472,6 +2473,27 @@ def cmd_build_external_source_pilot_terminal_decisions(
     print(
         "Wrote external source pilot terminal decisions to "
         f"{args.out} ({decisions['metadata']['terminal_decision_count']} terminal)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_human_expert_review_queue(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        ("pilot_terminal_decisions",),
+        blocker_removed="deferred_external_pilot_rows_routed_to_human_expert_review",
+    )
+    queue = build_external_source_pilot_human_expert_review_queue(
+        pilot_terminal_decisions=artifact_payloads["pilot_terminal_decisions"],
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote external source pilot human/expert review queue to "
+        f"{args.out} ({queue['metadata']['queued_candidate_count']} queued)"
     )
     return 0
 
@@ -6574,6 +6596,32 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_terminal.set_defaults(
         func=cmd_build_external_source_pilot_terminal_decisions
+    )
+
+    external_pilot_expert_queue = subparsers.add_parser(
+        "build-external-source-pilot-human-expert-review-queue",
+        help=(
+            "route deferred selected external pilot rows into a review-only "
+            "human/expert decision queue"
+        ),
+    )
+    external_pilot_expert_queue.add_argument(
+        "--pilot-terminal-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_terminal_decisions_1025.json"
+        ),
+    )
+    external_pilot_expert_queue.add_argument("--max-rows", type=int, default=10)
+    external_pilot_expert_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_human_expert_review_queue_1025.json"
+        ),
+    )
+    external_pilot_expert_queue.set_defaults(
+        func=cmd_build_external_source_pilot_human_expert_review_queue
     )
 
     external_transfer_gate = subparsers.add_parser(

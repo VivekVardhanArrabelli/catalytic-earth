@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 124
-- Measured elapsed time: 4449.0 minutes (74.15 hours)
+- Entries: 125
+- Measured elapsed time: 4457.6 minutes (74.29 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
+- external-transfer-spof-hardening: 33.9 measured minutes (0.56 hours)
 - ops: 51.4 measured minutes (0.86 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1435
-- Evidence references logged: 1074
+- Artifact references logged: 1445
+- Evidence references logged: 1080
 
 ## Recent Entries
-
-### 2026-05-15T18:36:22.139127+00:00 - post-mcsa-spof-hardening
-
-- Task: Foldseek cluster-first round22 verification
-- Time mode: measured
-- Measured minutes: 41.433
-- Started: 2026-05-15T17:54:36Z
-- Ended: 2026-05-15T18:36:02Z
-- Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round19_query_single_112_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round19_query_single_113_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round19_query_single_114_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round19_query_single_aggregate_112_114_of_672.json, artifacts/v3_foldseek_tm_score_cluster_first_split_round20_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round20.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round20_query_single_114_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round20_query_single_115_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round20_query_single_aggregate_114_115_of_672.json, artifacts/v3_foldseek_tm_score_cluster_first_split_round21_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round21.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round21_query_single_115_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round21_query_single_aggregate_115_of_672.json, artifacts/v3_foldseek_tm_score_cluster_first_split_round22_1000.json, artifacts/v3_foldseek_coordinate_readiness_1000_cluster_first_split_round22.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round22_query_single_115_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round22_query_single_116_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round22_query_single_117_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round22_query_single_118_of_672.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round22_query_single_aggregate_115_118_of_672.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: startup 415 unit tests passed, startup validate passed with 679 curated labels, round19 indices 112-113 passed before index 114 blocker max TM 0.7338, round20 index 114 passed before index 115 blocker max TM 0.9749, round21 index 115 rerun exposed m_csa:116/m_csa:67 at max TM 0.9032, round22 has 82 high-TM constraints and 0 sequence-cluster splits, round22 indices 115-118 passed in aggregate at max TM 0.6939, JSON artifacts parsed, final 418 unit tests passed, final validate passed
-- Notes: Normal locked direct run with no delegation. No M-CSA-only count growth and no external import. Full TM-score holdout claim remains forbidden.
 
 ### 2026-05-15T19:16:47.231347+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json, artifacts/v3_external_source_pilot_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/foldseek_readiness_notes.md, tests/test_external_structural_holdout_artifact.py, tests/test_generalization.py, tests/test_scaling_1025_artifacts.py, tests/test_transfer_scope.py
 - Evidence: startup unit tests passed 428 tests, startup validate passed 679 curated labels, final unit tests passed 349 tests, final validate passed 679 curated labels, diff check passed, 270 noncanonical M-CSA strict-TM loop artifacts removed, 10 external pilot terminal decisions recorded with 0 import-ready and 0 countable rows
 - Notes: Normal locked direct run with no delegation; preserved generic Foldseek tooling and all-materializable descriptive M-CSA evidence.
+
+### 2026-05-16T08:06:00.835318+00:00 - external-transfer-spof-hardening
+
+- Task: Route deferred external pilot rows to human expert review
+- Time mode: measured
+- Measured minutes: 8.6
+- Started: 2026-05-16T07:57:24Z
+- Ended: 2026-05-16T08:06:00Z
+- Artifacts: artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md
+- Evidence: startup 349 unit tests passed, startup validate passed with 679 curated labels, final 350 unit tests passed, final validate passed with 679 curated labels, 3 deferred pilot rows routed to review-only human/expert packets, 0 import-ready rows and 0 countable external labels
+- Notes: Normal locked direct run with no delegation; M-CSA strict TM repair stayed closed.
 
 ## Expectation Updates
 
@@ -222,6 +222,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-15T22:46:27.435996+00:00: Full TM-score holdout remains blocked by round32 index 145 timeout, incomplete query coverage, candidate-only split status, and two coordinate exclusions.
 - 2026-05-16T06:10:48.154425+00:00: Next useful work is external pilot blockers or external structure index/nearest-neighbor cache, not more M-CSA strict-TM repair.
 - 2026-05-16T07:15:23.155977+00:00: Next work should route the 3 deferred external pilot rows to human/expert review or start external structural clustering; do not resume M-CSA round repair.
+- 2026-05-16T08:06:00.835318+00:00: Next work should prepare human/expert decisions for O14756 P34949 and Q6NSJ0 or start external structural clustering; do not resume M-CSA round repair.
 
 ## Scope Adjustments
 
@@ -322,3 +323,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T06:10:48.154425+00:00: Do not resume M-CSA round33 or staged-index-145 partition repair as normal progress; strict TM-diverse holdouts now move to external fold-diverse structural data before split assignment.
 - 2026-05-16T06:25:28.404682+00:00: No scope change; latest pushed repo state supersedes stale prompt Foldseek continuation and keeps external structural pilot as next direct work
 - 2026-05-16T07:15:23.155977+00:00: M-CSA strict pairwise TM <0.7 is closed/deferred for the curated M-CSA surface; strict TM-diverse holdouts move to external fold-diverse structural data.
+- 2026-05-16T08:06:00.835318+00:00: Deferred external pilot rows are now routed to human/expert review packets; external import remains blocked by expert decisions broader duplicate screening and full factory gates.

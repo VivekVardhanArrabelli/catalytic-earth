@@ -59,6 +59,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_active_site_evidence_decisions,
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
+    build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
@@ -6939,6 +6940,122 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertTrue(
             all(not row["ready_for_label_import"] for row in decisions["rows"])
         )
+
+    def test_external_pilot_human_expert_review_queue_routes_deferred_rows(
+        self,
+    ) -> None:
+        queue = build_external_source_pilot_human_expert_review_queue(
+            pilot_terminal_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_terminal_decisions",
+                    "terminal_decision_count": 2,
+                },
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "P12345",
+                        "source_id": "P12345",
+                        "source_type": "UniProtKB/Swiss-Prot",
+                        "entry_id": "uniprot:P12345",
+                        "protein_name": "active-site supported lyase",
+                        "lane_id": "external_source:lyase",
+                        "proposed_mechanism_fingerprint": "lyase",
+                        "terminal_status": "deferred_requires_human_expert",
+                        "terminal_rationale": (
+                            "P12345 has explicit active-site evidence, but "
+                            "nearest-reference representation evidence changed."
+                        ),
+                        "active_site_residue_evidence_status": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "active_site_residue_positions": [
+                            {
+                                "begin": 72,
+                                "end": 72,
+                                "description": "Nucleophile",
+                            }
+                        ],
+                        "active_site_evidence_source_type": (
+                            "uniprot_active_site_feature"
+                        ),
+                        "active_site_evidence_references": {
+                            "pmids": ["123456"],
+                        },
+                        "reaction_mechanism_evidence_status": (
+                            "specific_reaction_context_present"
+                        ),
+                        "reaction_references": {"rhea_ids": ["RHEA:12345"]},
+                        "sequence_duplicate_screen_result": {
+                            "broader_duplicate_screening_status": (
+                                "broader_duplicate_screening_required"
+                            )
+                        },
+                        "representation_control_result": {
+                            "status": (
+                                "representation_stability_changed_requires_review"
+                            )
+                        },
+                        "heuristic_control_result": {
+                            "scope_top1_mismatch": False,
+                            "top1_fingerprint_id": "lyase",
+                        },
+                        "factory_gate_status": "not_run",
+                        "unresolved_evidence_for_deferred": [
+                            (
+                                "adjudicate changed nearest-reference "
+                                "representation evidence"
+                            ),
+                            (
+                                "complete broader duplicate screening beyond "
+                                "the bounded current-reference search"
+                            ),
+                            (
+                                "run the full label-factory gate only after "
+                                "review decision and duplicate controls"
+                            ),
+                        ],
+                    },
+                    {
+                        "rank": 2,
+                        "accession": "P67890",
+                        "terminal_status": (
+                            "rejected_active_site_evidence_missing"
+                        ),
+                    },
+                ],
+            },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = queue["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_human_expert_review_queue",
+        )
+        self.assertEqual(metadata["deferred_candidate_count"], 1)
+        self.assertEqual(metadata["queued_candidate_count"], 1)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(
+            metadata["non_human_blocker_counts"],
+            {
+                "broader_duplicate_screening_required": 1,
+                "full_label_factory_gate_not_run": 1,
+            },
+        )
+        row = queue["rows"][0]
+        self.assertEqual(row["review_packet_status"], "needs_human_expert_decision")
+        self.assertIn(
+            "nearest-reference",
+            row["human_expert_review_questions"][0],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
 
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
         self,

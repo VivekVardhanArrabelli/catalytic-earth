@@ -67,15 +67,40 @@ the 10 selected candidates with exactly one terminal status each: 4
 `rejected_duplicate_or_near_duplicate`, 3
 `rejected_active_site_evidence_missing`, and 3
 `deferred_requires_human_expert`, with 0 import-ready rows and 0 countable
-external labels. Next direct work should either route the 3 deferred rows to
-human/expert review or start the external structural pilot's fold-diverse
-holdout path from `artifacts/v3_external_structural_tm_holdout_path_1025.json`;
-it covers the same 10 selected pilot rows, requires structure clustering before
-split assignment, and keeps 0 countable/import-ready rows. Do not open M-CSA round33,
+external labels. The 3 deferred rows are now routed by
+`artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`:
+`O14756`, `P34949`, and `Q6NSJ0` each have a review-only expert question,
+automation limitation, and remaining non-human blockers. Next direct work
+should either prepare actual human/expert review decisions for those packets or
+start the external structural pilot's fold-diverse holdout path from
+`artifacts/v3_external_structural_tm_holdout_path_1025.json`; it covers the
+same 10 selected pilot rows, requires structure clustering before split
+assignment, and keeps 0 countable/import-ready rows. Do not open M-CSA round33,
 staged index 145 continuation, or more partition repair unless the user
 explicitly reverses the override.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T07:57:24Z run after syncing clean `origin/main`,
+passing startup gates (`349` unit tests passed and `validate` passed with
+679 curated labels), and passing wrap checks (`350` unit tests passed and
+`validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and M-CSA strict TM-score repair remains closed/deferred with
+  `full_tm_score_holdout_claim_permitted=false`.
+- External-source repair/import: Yes for deferred-pilot review routing, no for
+  import or countable labels. This run added
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`,
+  routing `O14756`, `P34949`, and `Q6NSJ0` to review-only human/expert
+  questions with exact unresolved evidence and remaining non-human blockers.
+- Scientific generalization work: No new structural split claim or M-CSA TM
+  work. The external structural pilot path remains the next fold-diverse
+  generalization route after expert decision routing.
+- SPOF hardening work: Yes. A dedicated CLI builder and regression coverage now
+  keep deferred selected-pilot rows review-only, non-countable, and explicitly
+  blocked on expert review, broader duplicate screening, and full factory gates.
 
 Recorded for the 2026-05-16T01:55:26-05:00 run after syncing clean
 `origin/main` and passing startup gates (`428` unit tests passed and

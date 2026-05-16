@@ -204,7 +204,9 @@ Current expectation:
   process-missing. The first terminal-decision pass now exists for all 10
   selected rows: 4 are rejected as duplicate/near-duplicate representation
   holdouts, 3 are rejected for missing explicit active-site residue evidence,
-  and 3 are deferred for human expert adjudication. It still has 0
+  and 3 are deferred for human expert adjudication. Those 3 deferred rows are
+  now packaged in a review-only human/expert queue with exact unresolved
+  evidence, expert questions, and remaining non-human blockers. It still has 0
   import-ready rows and 0 countable external labels.
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation

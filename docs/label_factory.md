@@ -789,6 +789,7 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_pilot_candidate_priority_1025.json`,
   `artifacts/v3_external_source_pilot_review_decision_export_1025.json`,
   `artifacts/v3_external_source_pilot_terminal_decisions_1025.json`,
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`,
   `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
@@ -853,6 +854,9 @@ Current 1,025-preview state:
   explicit non-countable terminal statuses: 4 duplicate/near-duplicate
   rejections, 3 active-site-evidence-missing rejections, and 3 human-expert
   deferrals, with 0 import-ready candidates.
+  The human/expert queue routes exactly those 3 deferred rows into review-only
+  packets with unresolved evidence and expert questions while keeping broader
+  duplicate screening and full gates as explicit non-human blockers.
   `artifacts/v3_external_source_reaction_evidence_sample_1025.json`
   adds bounded Rhea reaction context for all 30 candidates while keeping every
   row non-countable and outside any reviewed decision artifact; its companion

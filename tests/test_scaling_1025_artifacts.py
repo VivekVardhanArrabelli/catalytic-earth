@@ -407,6 +407,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_terminal_decisions_1025.json"
         )
+        pilot_human_expert_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_human_expert_review_queue_1025.json"
+        )
         external_import_safety = _load_json(
             ROOT
             / "artifacts"
@@ -1927,6 +1932,38 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 and not row["ready_for_label_import"]
                 and row["factory_gate_status"] == "not_run"
                 for row in pilot_terminal_decisions["rows"]
+            )
+        )
+        self.assertEqual(
+            pilot_human_expert_queue["metadata"]["method"],
+            "external_source_pilot_human_expert_review_queue",
+        )
+        self.assertEqual(
+            pilot_human_expert_queue["metadata"]["queued_candidate_count"], 3
+        )
+        self.assertEqual(
+            pilot_human_expert_queue["metadata"]["selected_accessions"],
+            ["O14756", "P34949", "Q6NSJ0"],
+        )
+        self.assertEqual(
+            pilot_human_expert_queue["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertEqual(
+            pilot_human_expert_queue["metadata"]["import_ready_candidate_count"],
+            0,
+        )
+        self.assertFalse(
+            pilot_human_expert_queue["metadata"]["ready_for_label_import"]
+        )
+        self.assertTrue(
+            all(
+                row["review_packet_status"] == "needs_human_expert_decision"
+                and row["terminal_status_from_automation"]
+                == "deferred_requires_human_expert"
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                for row in pilot_human_expert_queue["rows"]
             )
         )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])

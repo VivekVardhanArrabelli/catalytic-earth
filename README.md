@@ -289,6 +289,11 @@ as duplicate/near-duplicate holdouts, 3 are rejected for missing explicit
 active-site residue evidence, and 3 are deferred to human expert review because
 representation or heuristic evidence remains non-terminal. There are still 0
 import-ready rows and 0 countable external labels.
+`artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`
+packages those 3 deferred rows (`O14756`, `P34949`, and `Q6NSJ0`) into a
+review-only expert queue with the exact unresolved evidence, expert question,
+and remaining non-human blockers for each row. It authorizes 0 imports and 0
+countable external labels.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All

@@ -96,6 +96,12 @@ Priority blockers:
   active-site evidence are `deferred_requires_human_expert` for representation
   stability or heuristic-scope adjudication. The pass has 0 import-ready rows,
   0 countable label candidates, and no external label import authorization.
+- `artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`
+  routes the 3 deferred rows (`O14756`, `P34949`, and `Q6NSJ0`) into a
+  review-only human/expert queue with the exact unresolved evidence, expert
+  question, and remaining non-human blockers. It removes only the deferred-row
+  routing blocker; broader duplicate screening and full label-factory gates
+  still block import.
 - `artifacts/v3_external_source_pilot_representation_adjudication_1025.json`
   consumes the selected-pilot 8M-vs-largest-feasible ESM-2 stability audit and
   keeps all 10 rows review-only: 3 are stable review-only representation

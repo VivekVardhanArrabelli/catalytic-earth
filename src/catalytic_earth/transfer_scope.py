@@ -9310,6 +9310,140 @@ def build_external_source_pilot_terminal_decisions(
     }
 
 
+def build_external_source_pilot_human_expert_review_queue(
+    *,
+    pilot_terminal_decisions: dict[str, Any],
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Route deferred selected-pilot rows into a concrete expert review queue."""
+
+    terminal_rows = [
+        row
+        for row in pilot_terminal_decisions.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    deferred_rows = [
+        row
+        for row in terminal_rows
+        if row.get("terminal_status") == "deferred_requires_human_expert"
+    ]
+
+    rows: list[dict[str, Any]] = []
+    for row in sorted(
+        deferred_rows,
+        key=lambda item: (
+            int(item.get("rank") or 9999),
+            item.get("accession", ""),
+        ),
+    )[:max_rows]:
+        unresolved = list(row.get("unresolved_evidence_for_deferred", []) or [])
+        representation_result = row.get("representation_control_result", {})
+        heuristic_result = row.get("heuristic_control_result", {})
+        rows.append(
+            {
+                "rank": row.get("rank"),
+                "accession": row.get("accession"),
+                "source_id": row.get("source_id") or row.get("accession"),
+                "source_type": row.get("source_type") or "UniProtKB/Swiss-Prot",
+                "entry_id": row.get("entry_id"),
+                "protein_name": row.get("protein_name"),
+                "lane_id": row.get("lane_id"),
+                "proposed_mechanism_fingerprint": row.get(
+                    "proposed_mechanism_fingerprint"
+                ),
+                "review_packet_status": "needs_human_expert_decision",
+                "terminal_status_from_automation": row.get("terminal_status"),
+                "terminal_rationale_from_automation": row.get("terminal_rationale"),
+                "active_site_residue_evidence_status": row.get(
+                    "active_site_residue_evidence_status"
+                ),
+                "active_site_residue_positions": row.get(
+                    "active_site_residue_positions", []
+                ),
+                "active_site_evidence_source_type": row.get(
+                    "active_site_evidence_source_type"
+                ),
+                "active_site_evidence_references": row.get(
+                    "active_site_evidence_references", {}
+                ),
+                "reaction_mechanism_evidence_status": row.get(
+                    "reaction_mechanism_evidence_status"
+                ),
+                "reaction_references": row.get("reaction_references", {}),
+                "sequence_duplicate_screen_result": row.get(
+                    "sequence_duplicate_screen_result", {}
+                ),
+                "representation_control_result": representation_result,
+                "heuristic_control_result": heuristic_result,
+                "factory_gate_status": row.get("factory_gate_status"),
+                "unresolved_evidence": unresolved,
+                "human_expert_review_questions": (
+                    _external_pilot_human_expert_questions(
+                        unresolved_evidence=unresolved,
+                        representation_result=representation_result,
+                        heuristic_result=heuristic_result,
+                    )
+                ),
+                "automation_cannot_resolve_reason": (
+                    _external_pilot_human_expert_limitation(
+                        unresolved_evidence=unresolved,
+                        representation_result=representation_result,
+                        heuristic_result=heuristic_result,
+                    )
+                ),
+                "non_human_blockers_remaining": (
+                    _external_pilot_non_human_blockers(unresolved)
+                ),
+                "allowed_review_outcomes": [
+                    "expert_accept_import_ready_after_duplicate_and_factory_gates",
+                    "expert_reject_mechanism_mismatch",
+                    "expert_reject_representation_conflict",
+                    "expert_defer_requires_additional_evidence",
+                ],
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    non_human_blocker_counts = Counter(
+        blocker for row in rows for blocker in row["non_human_blockers_remaining"]
+    )
+    return {
+        "metadata": {
+            "method": "external_source_pilot_human_expert_review_queue",
+            "blocker_removed": "deferred_external_pilot_rows_routed_to_human_expert_review",
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "source_terminal_decision_count": len(terminal_rows),
+            "deferred_candidate_count": len(deferred_rows),
+            "queued_candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [str(row.get("accession")) for row in rows],
+            "terminal_status_filter": ["deferred_requires_human_expert"],
+            "review_packet_status_counts": {
+                "needs_human_expert_decision": len(rows)
+            },
+            "non_human_blocker_counts": dict(sorted(non_human_blocker_counts.items())),
+            "non_countable_rule": (
+                "expert review packets cannot create countable external labels; "
+                "duplicate screening and full label-factory gates must pass after "
+                "a terminal expert decision"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "human/expert review routing is a review-only work queue and "
+                "does not authorize import-ready or countable labels"
+            )
+        ],
+    }
+
+
 def _external_pilot_active_site_references(
     active_site_positions: list[dict[str, Any]],
 ) -> dict[str, Any]:
@@ -9499,6 +9633,88 @@ def _external_pilot_terminal_unresolved_evidence(
     ):
         unresolved.append("resolve selected-pilot representation-control blocker")
     return sorted(set(unresolved))
+
+
+def _external_pilot_human_expert_questions(
+    *,
+    unresolved_evidence: list[str],
+    representation_result: dict[str, Any],
+    heuristic_result: dict[str, Any],
+) -> list[str]:
+    questions: list[str] = []
+    if (
+        "adjudicate changed nearest-reference representation evidence"
+        in unresolved_evidence
+    ):
+        questions.append(
+            "Does the changed ESM-2 nearest-reference evidence preserve the "
+            "proposed mechanism family, or should this row be rejected as a "
+            "representation conflict?"
+        )
+    if (
+        "adjudicate heuristic scope or top1 mismatch" in unresolved_evidence
+        or heuristic_result.get("scope_top1_mismatch")
+    ):
+        questions.append(
+            "Does the structure-local active-site and reaction evidence support "
+            "the proposed mechanism despite the heuristic top1/scope mismatch?"
+        )
+    if not questions:
+        status = representation_result.get("status") or "unresolved"
+        questions.append(
+            "Is the assembled active-site, reaction, sequence, and "
+            f"representation evidence ({status}) sufficient to keep this row "
+            "in expert review?"
+        )
+    return questions
+
+
+def _external_pilot_human_expert_limitation(
+    *,
+    unresolved_evidence: list[str],
+    representation_result: dict[str, Any],
+    heuristic_result: dict[str, Any],
+) -> str:
+    if (
+        "adjudicate changed nearest-reference representation evidence"
+        in unresolved_evidence
+    ):
+        return (
+            "Automation observed a nearest-reference change between the baseline "
+            "and largest feasible ESM-2 backends but cannot decide whether that "
+            "change is benign family diversity or a representation conflict."
+        )
+    if (
+        "adjudicate heuristic scope or top1 mismatch" in unresolved_evidence
+        or heuristic_result.get("scope_top1_mismatch")
+    ):
+        top1 = heuristic_result.get("top1_fingerprint_id") or "unknown"
+        return (
+            "Automation observed a heuristic scope/top1 mismatch "
+            f"({top1}) and cannot overrule it with source text or labels."
+        )
+    status = representation_result.get("status") or "unresolved"
+    return (
+        "Automation cannot convert this deferred row into an import decision "
+        f"while representation or review status remains {status}."
+    )
+
+
+def _external_pilot_non_human_blockers(
+    unresolved_evidence: list[str],
+) -> list[str]:
+    blockers = []
+    if (
+        "complete broader duplicate screening beyond the bounded current-reference search"
+        in unresolved_evidence
+    ):
+        blockers.append("broader_duplicate_screening_required")
+    if (
+        "run the full label-factory gate only after review decision and duplicate controls"
+        in unresolved_evidence
+    ):
+        blockers.append("full_label_factory_gate_not_run")
+    return sorted(set(blockers))
 
 
 def _external_pilot_active_site_source_category(
