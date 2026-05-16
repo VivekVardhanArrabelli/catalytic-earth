@@ -73,8 +73,10 @@ Priority blockers:
   evidence, specific reaction evidence, clean sequence holdout status, clean
   structure mapping, non-collapsed retrieval/representation behavior, and no
   broad-EC ambiguity;
-- prepare actual human/expert decisions for `O14756`, `P34949`, and `Q6NSJ0`,
-  or expand the external fold-diverse structural surface beyond the current
+- resolve the 6 normalized `needs_review` rows (`O14756`, `P06746`, `C9JRZ8`,
+  `P34949`, `Q9BXD5`, and `Q6NSJ0`) through broader duplicate screening,
+  representation or heuristic adjudication, and actual review decisions; or
+  expand the external fold-diverse structural surface beyond the current
   review-only 30-row split before any benchmark/import claim.
 - `artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json`
   now classifies the 10 selected pilot rows as review-only active-site evidence

@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 129
-- Measured elapsed time: 4515.5 minutes (75.26 hours)
+- Entries: 130
+- Measured elapsed time: 4520.3 minutes (75.34 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- external-transfer-spof-hardening: 91.8 measured minutes (1.53 hours)
+- external-transfer-spof-hardening: 96.5 measured minutes (1.61 hours)
 - ops: 51.4 measured minutes (0.86 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1499
-- Evidence references logged: 1123
+- Artifact references logged: 1504
+- Evidence references logged: 1132
 
 ## Recent Entries
-
-### 2026-05-16T06:10:48.154425+00:00 - post-mcsa-spof-hardening
-
-- Task: M-CSA strict TM-score adjudication and external structural path
-- Time mode: measured
-- Measured minutes: 25.417
-- Started: 2026-05-16T05:45:22Z
-- Ended: 2026-05-16T06:10:47Z
-- Artifacts: artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json, artifacts/v3_external_structural_tm_holdout_path_1025.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_target_chunk_000_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_target_chunk_001_of_056.json, artifacts/v3_foldseek_tm_score_signal_1000_cluster_first_split_round32_query_single_145_target_chunk_002_of_056.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md, tests/test_generalization.py, tests/test_external_structural_holdout_artifact.py
-- Evidence: startup 426 unit tests passed, startup validate passed with 679 curated labels, final 429 unit tests passed, final validate passed, all-materializable M-CSA Foldseek signal max train/test TM-score 0.9749 with 4715 target-violating rows, round32 reached 108 high-TM constraints plus 38 sequence-identity constraints, external structural path covers 10 pilot candidates with AlphaFold IDs and 7 with PDB references
-- Notes: Normal locked direct run with no delegation. Preserved recovered index-145 target shards as noncanonical review-only context, added M-CSA adjudication, and defined the first external structural holdout path.
 
 ### 2026-05-16T06:25:28.404682+00:00 - ops
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json, artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json, artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
 - Evidence: startup 356 unit tests passed, startup validate passed with 679 curated labels, final 357 unit tests passed, final validate passed, compileall passed, git diff check passed, 10 selected pilot terminal decisions audited, 3 weak representation-only duplicate rejections normalized to needs_review, 6 needs_review rows routed, 0 import-ready rows, 0 countable external labels
 - Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; external pilot confidence was audited before any expansion or import.
+
+### 2026-05-16T13:07:13+00:00 - external-transfer-spof-hardening
+
+- Task: External pilot confidence audit verification
+- Time mode: measured
+- Measured minutes: 4.733
+- Started: 2026-05-16T13:02:29Z
+- Ended: 2026-05-16T13:07:13Z
+- Artifacts: artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json, artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json, artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json, docs/external_source_transfer.md, work/handoff.md
+- Evidence: startup 357 unit tests passed, startup validate passed with 679 curated labels, confidence and normalization CLIs reran idempotently, normalized six needs_review rows verified, 0 import-ready rows and 0 countable external labels, final 357 unit tests passed, final validate passed, compileall passed, git diff check passed
+- Notes: Normal locked direct run with no delegation. Latest pushed audit already satisfied the immediate confidence-audit instruction; this run verified it, updated stale next-work guidance, and kept M-CSA strict TM repair closed.
 
 ## Expectation Updates
 
@@ -227,6 +227,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T10:14:24.266801+00:00: Next work should prepare human/expert decisions for O14756 P34949 and Q6NSJ0 or complete/cache the missing all-30 external structural pairs before strict TM-diverse split assignment.
 - 2026-05-16T11:15:09.904197+00:00: Next work should prepare human/expert decisions for O14756 P34949 and Q6NSJ0 or broaden external structural candidates beyond the current review-only 30-row split before import claims.
 - 2026-05-16T12:15:25.647551+00:00: Next external pilot work should resolve the six needs_review rows or broaden external structural candidates; do not treat representation-only duplicate signals as hard rejections unless evidence is stable.
+- 2026-05-16T13:07:13+00:00: Next external pilot work should resolve the six needs_review rows or broaden external structural candidates; no local-evidence-only decision update was defensible.
 
 ## Scope Adjustments
 

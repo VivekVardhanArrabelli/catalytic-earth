@@ -103,14 +103,42 @@ now removes the split-assignment blocker with a review-only cluster-preserving
 split: 6 test and 24 train candidates, one test candidate from each external
 lane, 144/144 cross-split pairs checked, max cross-split TM-score `0.6963`,
 and 0 cross-split pairs at `TM >=0.7`. This is not an import-ready benchmark
-claim; every external row remains non-countable. Next direct work should
-prepare actual human/expert review decisions for `O14756`, `P34949`, and
-`Q6NSJ0`, or broaden the external Swiss-Prot/AFDB structural surface beyond the
-current 30-row review-only split before any import or benchmark claim.
+claim; every external row remains non-countable. The 2026-05-16T13:02:29Z
+audit-verification run reran the confidence, normalization, and normalized
+queue builders idempotently and found no defensible local-evidence-only
+resolution for the 6 normalized `needs_review` rows. Next direct work should
+resolve those 6 questions through broader duplicate screening, representation
+or heuristic adjudication, and actual review decisions, or broaden the external
+Swiss-Prot/AFDB structural surface beyond the current 30-row review-only split
+before any import or benchmark claim.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
 unless the user explicitly reverses the override.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T13:02:29Z run after confirming no fresh automation
+lock was active, syncing clean `origin/main`, passing startup gates (`357` unit
+tests passed and `validate` passed with 679 curated labels), rerunning the
+external pilot confidence/normalization builders idempotently, checking the
+latest README/docs/work guidance, and passing wrap checks (`357` unit tests,
+`validate`, `compileall`, and `git diff --check`):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and no M-CSA strict-TM round, query, split-repair, or partition-repair work
+  was resumed.
+- External-source repair/import: Yes for audit verification and guidance
+  repair, no for import or countable labels. The requested candidate-by-candidate
+  audit already existed on `origin/main`; this run reran the three audit and
+  normalization CLIs with no artifact diff, verified the normalized 6-row
+  `needs_review` surface, and found no safe local-evidence-only decision update.
+- Scientific generalization work: No new benchmark or split claim. The
+  existing review-only all-30 external structural split remains the current
+  generalization artifact, with import still blocked by review/duplicate/factory
+  evidence.
+- SPOF hardening work: Yes. The handoff and external-transfer docs now point
+  next agents at the normalized 6-row review blocker rather than the older
+  3-row deferred-only queue; no new gates or artifacts were added.
 
 Recorded for the 2026-05-16T07:01:54-05:00 run after confirming no fresh
 automation lock was active, syncing clean `origin/main`, passing startup gates
