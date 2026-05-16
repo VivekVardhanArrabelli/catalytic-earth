@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 136
-- Measured elapsed time: 4623.4 minutes (77.06 hours)
+- Entries: 137
+- Measured elapsed time: 4634.1 minutes (77.23 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 199.7 measured minutes (3.33 hours)
-- ops: 51.4 measured minutes (0.86 hours)
+- ops: 62.1 measured minutes (1.04 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1570
-- Evidence references logged: 1193
+- Artifact references logged: 1573
+- Evidence references logged: 1199
 
 ## Recent Entries
-
-### 2026-05-16T12:15:25.647551+00:00 - external-transfer-spof-hardening
-
-- Task: External pilot decision confidence audit
-- Time mode: measured
-- Measured minutes: 13.501
-- Started: 2026-05-16T07:01:54.930663-05:00
-- Ended: 2026-05-16T12:15:25Z
-- Artifacts: artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json, artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json, artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: startup 356 unit tests passed, startup validate passed with 679 curated labels, final 357 unit tests passed, final validate passed, compileall passed, git diff check passed, 10 selected pilot terminal decisions audited, 3 weak representation-only duplicate rejections normalized to needs_review, 6 needs_review rows routed, 0 import-ready rows, 0 countable external labels
-- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; external pilot confidence was audited before any expansion or import.
 
 ### 2026-05-16T13:07:13+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_1025.json, artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 363 unit tests passed, startup validate passed with 679 curated labels, Q6NSJ0 glycoside-hydrolase import-safety adjudication repaired representation/heuristic conflict, post-repair Q6NSJ0 status remains needs_review, P34949 sugar-phosphate isomerase control staged as review-only non-text evidence, 0 import-ready rows and 0 countable external labels, final 365 unit tests passed, final validate passed, compileall passed, git diff check passed
 - Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
+
+### 2026-05-16T21:04:56.234887+00:00 - ops
+
+- Task: Check GitHub push credential helper
+- Time mode: measured
+- Measured minutes: 10.7
+- Started: 2026-05-16T20:54:00Z
+- Ended: 2026-05-16T21:04:42Z
+- Artifacts: work/handoff.md, work/status.md, global git credential helper
+- Evidence: gh auth setup-git configured git credential helper, repair-control commits 8a0c191 and 1ff6187 are on origin/main, current handoff/status correction remains local ahead of origin/main, git push origin main still fails with HTTPS username error, gh auth status reports invalid default token, stale lock was removed during recovery attempt
+- Notes: Partial recovery: substantive repair-control work reached origin/main, but the current shell still cannot push the later handoff/status correction.
 
 ## Expectation Updates
 
@@ -232,6 +232,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T15:22:11.987493+00:00: Selected-pilot needs_review is no longer the active blocker; next external work should repair representation or heuristic controls or broaden the external structural surface.
 - 2026-05-16T20:03:03.218017+00:00: Next direct work should integrate the Q6NSJ0 glycoside-hydrolase boundary control into import-safety adjudication or complete O14756 duplicate review and full factory gate path before import.
 - 2026-05-16T21:00:19.989175+00:00: Next direct work should integrate the P34949 sugar-phosphate isomerase control into import-safety adjudication or complete duplicate/review/factory blockers for repaired O14756 and Q6NSJ0.
+- 2026-05-16T21:04:56.234887+00:00: Next run should reacquire the lock, verify local-ahead state, and push the remaining handoff/status correction after GitHub credentials are usable.
 
 ## Scope Adjustments
 

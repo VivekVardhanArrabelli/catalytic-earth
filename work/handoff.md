@@ -176,16 +176,18 @@ gates before a lane-specific control.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
 unless the user explicitly reverses the override.
 
-The prior push/recovery blocker is closed on the latest synced repo state:
-local `main` started this run aligned with `origin/main`, and no credential
-blocker was present at start. Wrap-up push became blocked again after the
-current repair-control update was prepared: `git push origin main` failed with
+The repeated push/recovery blocker is partially closed on the latest fetched
+repo state: the substantive repair-control commits (`8a0c191` and `1ff6187`)
+reached `origin/main`, so the new Q6NSJ0 and P34949 artifacts are pushed.
+However, a later local handoff/status correction remains ahead of `origin/main`,
+and `git push origin main` still fails with
 `fatal: could not read Username for 'https://github.com': Device not configured`.
-`gh auth status` reports the default token for `VivekVardhanArrabelli` is
-invalid and recommends `gh auth login -h github.com`. Local `main` is coherent
-but ahead of `origin/main`; do not start a parallel repair run. The next run
-should push after credentials are repaired or continue from this local-ahead
-state if still present.
+`gh auth status` still reports the default token for `VivekVardhanArrabelli` as
+invalid, even though `git config --get-all credential.https://github.com.helper`
+now includes `gh auth git-credential`. The stale lock was removed during the
+recovery attempt; the next run should reacquire the automation lock, verify the
+local-ahead status, and push the remaining handoff/status commit after GitHub
+credentials are usable.
 
 ## Start-of-Run Confidence Call
 
@@ -268,8 +270,9 @@ pushed state; wrap checks also passed (`361` unit tests, `validate`,
   than broadening structure.
 - SPOF hardening work: Yes. The new control artifact, CLI path, and regression
   coverage make the first repair lane executable while preserving review-only
-  import-safety invariants. Push is blocked by local GitHub credential failure;
-  the coherent local commit is the local `main` commit and remains ahead of `origin/main`.
+  import-safety invariants. The substantive repair-control commit has since
+  reached `origin/main`; only a later handoff/status correction remains local
+  because the current shell still cannot complete HTTPS Git push.
 
 Recorded for the 2026-05-16T16:04:57Z run after acquiring the automation lock,
 syncing clean `origin/main`, passing startup gates (`359` unit tests passed and
