@@ -53,7 +53,7 @@ top1 accuracy, top3 retained accuracy, and retention all at `1.0000`. The
 metadata now includes explicit backend, resolved binary path, cluster-threshold,
 target-achievement, and limitation aliases; the deterministic low-neighborhood
 proxy fields remain as fallback context.
-M-CSA strict Foldseek/TM-score separation is now closed/deferred rather than an active target. The preserved descriptive structural evidence is `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json` plus `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`: 672 materializable selected coordinates, explicit coordinate exclusions for `m_csa:372` and `m_csa:501`, 952,922 mapped Foldseek pair rows, 274,241 train/test rows, max train/test TM-score `0.9749`, and 4,715 target-violating train/test rows. `artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json` records `full_tm_score_holdout_claim_permitted=false` and states that strict pairwise `TM <0.7` is not a native M-CSA holdout target without destructive split repair. The noncanonical staged, expanded, query-chunk, query-single, split-repair, split-redesign, and cluster-first round artifacts were removed after their aggregate lesson was captured. Do not resume round32/index145, round33, or any further M-CSA partition repair unless the user explicitly reverses that decision. Future strict TM-diverse holdouts belong on broader external structural data such as Swiss-Prot/UniProt/AFDB candidates, with structure clustering before split assignment. The first review-only path artifact, `artifacts/v3_external_structural_tm_holdout_path_1025.json`, covers the 10 selected pilot candidates, confirms all 10 have AlphaFold DB structure ids and 7 have PDB references, and defines the required structure-index, nearest-neighbor, and cluster caches without authorizing import. `artifacts/v3_external_structural_cluster_index_1025.json` now materializes all 10 selected AlphaFold coordinate sidecars, completes a Foldseek nearest-neighbor cache, and clusters the pilot at `TM >=0.7` before any split assignment; only `O95050`/`P51580` cluster together, and 0 rows become countable or import-ready. The broader review-only structural surface now uses `artifacts/v3_external_structural_tm_holdout_path_1025_all30.json` and `artifacts/v3_external_structural_cluster_index_1025_all30.json`: all 30 current external candidates have AlphaFold sidecars, Foldseek nearest-neighbor coverage is 30/30, and 6 high-TM pairs form 26 pre-split clusters, but the all-vs-all pair cache is incomplete and no strict TM-diverse split is assigned.
+M-CSA strict Foldseek/TM-score separation is now closed/deferred rather than an active target. The preserved descriptive structural evidence is `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json` plus `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`: 672 materializable selected coordinates, explicit coordinate exclusions for `m_csa:372` and `m_csa:501`, 952,922 mapped Foldseek pair rows, 274,241 train/test rows, max train/test TM-score `0.9749`, and 4,715 target-violating train/test rows. `artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json` records `full_tm_score_holdout_claim_permitted=false` and states that strict pairwise `TM <0.7` is not a native M-CSA holdout target without destructive split repair. The noncanonical staged, expanded, query-chunk, query-single, split-repair, split-redesign, and cluster-first round artifacts were removed after their aggregate lesson was captured. Do not resume round32/index145, round33, or any further M-CSA partition repair unless the user explicitly reverses that decision. Future strict TM-diverse holdouts belong on broader external structural data such as Swiss-Prot/UniProt/AFDB candidates, with structure clustering before split assignment. The first review-only path artifact, `artifacts/v3_external_structural_tm_holdout_path_1025.json`, covers the 10 selected pilot candidates, confirms all 10 have AlphaFold DB structure ids and 7 have PDB references, and defines the required structure-index, nearest-neighbor, and cluster caches without authorizing import. `artifacts/v3_external_structural_cluster_index_1025.json` now materializes all 10 selected AlphaFold coordinate sidecars, completes a Foldseek nearest-neighbor cache, and clusters the pilot at `TM >=0.7` before any split assignment; only `O95050`/`P51580` cluster together, and 0 rows become countable or import-ready. The broader review-only structural surface now uses `artifacts/v3_external_structural_tm_holdout_path_1025_all30.json`, `artifacts/v3_external_structural_cluster_index_1025_all30.json`, and `artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json`: all 30 current external candidates have AlphaFold sidecars, the Foldseek all-vs-all cache covers 435/435 unordered nonself pairs, 6 high-TM pairs form 26 pre-split clusters, and the review-only split assigns 6 test / 24 train candidates with max cross-split TM-score `0.6963` and 0 cross-split `TM >=0.7` pairs. No external row becomes countable or import-ready.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,
@@ -74,8 +74,8 @@ Priority blockers:
   structure mapping, non-collapsed retrieval/representation behavior, and no
   broad-EC ambiguity;
 - prepare actual human/expert decisions for `O14756`, `P34949`, and `Q6NSJ0`,
-  or expand the external fold-diverse structural surface before assigning any
-  strict TM-diverse split.
+  or expand the external fold-diverse structural surface beyond the current
+  review-only 30-row split before any benchmark/import claim.
 - `artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json`
   now classifies the 10 selected pilot rows as review-only active-site evidence
   decisions: 7 have explicit active-site source evidence, 3 have binding
@@ -113,10 +113,16 @@ Priority blockers:
   `artifacts/v3_external_structural_cluster_index_1025_all30.json` expand the
   external fold-diverse structural surface beyond the 10 selected pilot rows:
   30/30 AlphaFold coordinate sidecars are materialized with 0 fetch failures,
-  Foldseek nearest-neighbor coverage is complete for all 30 rows, and the
-  pre-split surface has 6 high-TM pairs across 26 clusters. It remains
-  review-only because the all-vs-all pair cache is incomplete and no train/test
-  split or import decision has been assigned.
+  Foldseek nearest-neighbor coverage is complete for all 30 rows, the
+  all-vs-all pair cache covers 435/435 unordered nonself pairs, and the
+  pre-split surface has 6 high-TM pairs across 26 clusters.
+- `artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json`
+  assigns a review-only, cluster-preserving external structural split after the
+  complete all-vs-all cache: 6 test and 24 train candidates, one test row per
+  external lane, 144/144 cross-split pairs checked, max cross-split TM-score
+  `0.6963`, and 0 cross-split `TM >=0.7` violations. This removes the
+  split-assignment blocker but still authorizes 0 imports and 0 countable
+  external labels.
 - `artifacts/v3_external_source_pilot_representation_adjudication_1025.json`
   consumes the selected-pilot 8M-vs-largest-feasible ESM-2 stability audit and
   keeps all 10 rows review-only: 3 are stable review-only representation

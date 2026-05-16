@@ -1,0 +1,2063 @@
+{
+  "cross_split_pairs": [
+    {
+      "alntmscore": 0.6963,
+      "left_accession": "Q32P41",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.6963,
+      "qtmscore": 0.3041,
+      "right_accession": "Q9Y5N5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.6625
+    },
+    {
+      "alntmscore": 0.664,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.664,
+      "qtmscore": 0.4024,
+      "right_accession": "Q9Y5N5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.561
+    },
+    {
+      "alntmscore": 0.6635,
+      "left_accession": "P35914",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.6635,
+      "qtmscore": 0.657,
+      "right_accession": "P60174",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.5265
+    },
+    {
+      "alntmscore": 0.6368,
+      "left_accession": "Q32P41",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.6368,
+      "qtmscore": 0.3181,
+      "right_accession": "Q9HBK9",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.417
+    },
+    {
+      "alntmscore": 0.629,
+      "left_accession": "P35914",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.629,
+      "qtmscore": 0.5771,
+      "right_accession": "Q9BXD5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.5847
+    },
+    {
+      "alntmscore": 0.5986,
+      "left_accession": "C9JRZ8",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.5986,
+      "qtmscore": 0.5112,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.4997
+    },
+    {
+      "alntmscore": 0.5931,
+      "left_accession": "P60174",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.5931,
+      "qtmscore": 0.5874,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2398
+    },
+    {
+      "alntmscore": 0.5929,
+      "left_accession": "C9JRZ8",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.5929,
+      "qtmscore": 0.5465,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2752
+    },
+    {
+      "alntmscore": 0.5909,
+      "left_accession": "O95050",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.5909,
+      "qtmscore": 0.5385,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3046
+    },
+    {
+      "alntmscore": 0.5756,
+      "left_accession": "P51580",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.5756,
+      "qtmscore": 0.5736,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3025
+    },
+    {
+      "alntmscore": 0.535,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.535,
+      "qtmscore": 0.3903,
+      "right_accession": "O95050",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.4528
+    },
+    {
+      "alntmscore": 0.5115,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.5115,
+      "qtmscore": 0.4126,
+      "right_accession": "P51580",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.5098
+    },
+    {
+      "alntmscore": 0.4971,
+      "left_accession": "Q6NSJ0",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4971,
+      "qtmscore": 0.2421,
+      "right_accession": "Q9BXD5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.4806
+    },
+    {
+      "alntmscore": 0.4931,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4931,
+      "qtmscore": 0.4225,
+      "right_accession": "P55263",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3792
+    },
+    {
+      "alntmscore": 0.481,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.481,
+      "qtmscore": 0.4241,
+      "right_accession": "Q9HBK9",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3699
+    },
+    {
+      "alntmscore": 0.4758,
+      "left_accession": "P33025",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.4758,
+      "qtmscore": 0.3764,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3653
+    },
+    {
+      "alntmscore": 0.4631,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4631,
+      "qtmscore": 0.3916,
+      "right_accession": "P33025",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3964
+    },
+    {
+      "alntmscore": 0.45,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.45,
+      "qtmscore": 0.3265,
+      "right_accession": "P27144",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.43
+    },
+    {
+      "alntmscore": 0.4475,
+      "left_accession": "P35914",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4475,
+      "qtmscore": 0.3233,
+      "right_accession": "P51580",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3926
+    },
+    {
+      "alntmscore": 0.446,
+      "left_accession": "O95050",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.446,
+      "qtmscore": 0.4094,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3511
+    },
+    {
+      "alntmscore": 0.4351,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4351,
+      "qtmscore": 0.3313,
+      "right_accession": "Q9BXD5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3291
+    },
+    {
+      "alntmscore": 0.4343,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4343,
+      "qtmscore": 0.3416,
+      "right_accession": "P60174",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.4064
+    },
+    {
+      "alntmscore": 0.4322,
+      "left_accession": "P29372",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.4322,
+      "qtmscore": 0.2237,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3669
+    },
+    {
+      "alntmscore": 0.4283,
+      "left_accession": "P27144",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.4283,
+      "qtmscore": 0.3848,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2907
+    },
+    {
+      "alntmscore": 0.4278,
+      "left_accession": "P35914",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4278,
+      "qtmscore": 0.3923,
+      "right_accession": "P55263",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3635
+    },
+    {
+      "alntmscore": 0.4212,
+      "left_accession": "A2RU49",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.4212,
+      "qtmscore": 0.1967,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3833
+    },
+    {
+      "alntmscore": 0.4192,
+      "left_accession": "P35914",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4192,
+      "qtmscore": 0.3019,
+      "right_accession": "P42126",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3195
+    },
+    {
+      "alntmscore": 0.4191,
+      "left_accession": "Q13907",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.4191,
+      "qtmscore": 0.273,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3596
+    },
+    {
+      "alntmscore": 0.4179,
+      "left_accession": "P35914",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4179,
+      "qtmscore": 0.3089,
+      "right_accession": "Q9Y5N5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.4166
+    },
+    {
+      "alntmscore": 0.4168,
+      "left_accession": "A2RUC4",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.4168,
+      "qtmscore": 0.3633,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2873
+    },
+    {
+      "alntmscore": 0.415,
+      "left_accession": "P51580",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.415,
+      "qtmscore": 0.3984,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1775
+    },
+    {
+      "alntmscore": 0.4146,
+      "left_accession": "Q969G6",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4146,
+      "qtmscore": 0.36,
+      "right_accession": "Q9BXS1",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2746
+    },
+    {
+      "alntmscore": 0.4134,
+      "left_accession": "P42126",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.4134,
+      "qtmscore": 0.3557,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1821
+    },
+    {
+      "alntmscore": 0.4126,
+      "left_accession": "P35914",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4126,
+      "qtmscore": 0.3397,
+      "right_accession": "Q96I15",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2661
+    },
+    {
+      "alntmscore": 0.4058,
+      "left_accession": "O95050",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.4058,
+      "qtmscore": 0.3983,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1865
+    },
+    {
+      "alntmscore": 0.4032,
+      "left_accession": "P35914",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.4032,
+      "qtmscore": 0.3676,
+      "right_accession": "Q9HBK9",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3341
+    },
+    {
+      "alntmscore": 0.4029,
+      "left_accession": "P30176",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.4029,
+      "qtmscore": 0.2511,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2565
+    },
+    {
+      "alntmscore": 0.3995,
+      "left_accession": "Q32P41",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3995,
+      "qtmscore": 0.2444,
+      "right_accession": "Q96I15",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2733
+    },
+    {
+      "alntmscore": 0.3977,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3977,
+      "qtmscore": 0.3916,
+      "right_accession": "O60568",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2014
+    },
+    {
+      "alntmscore": 0.3974,
+      "left_accession": "C9JRZ8",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3974,
+      "qtmscore": 0.3639,
+      "right_accession": "O14756",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3631
+    },
+    {
+      "alntmscore": 0.395,
+      "left_accession": "O60568",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.395,
+      "qtmscore": 0.2047,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3215
+    },
+    {
+      "alntmscore": 0.395,
+      "left_accession": "Q6NSJ0",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.395,
+      "qtmscore": 0.1359,
+      "right_accession": "Q9Y5N5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3626
+    },
+    {
+      "alntmscore": 0.3943,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3943,
+      "qtmscore": 0.3694,
+      "right_accession": "P32189",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.237
+    },
+    {
+      "alntmscore": 0.3913,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3913,
+      "qtmscore": 0.3876,
+      "right_accession": "Q96I15",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2957
+    },
+    {
+      "alntmscore": 0.3859,
+      "left_accession": "P30176",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3859,
+      "qtmscore": 0.3497,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1775
+    },
+    {
+      "alntmscore": 0.3852,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3852,
+      "qtmscore": 0.2841,
+      "right_accession": "O15247",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3417
+    },
+    {
+      "alntmscore": 0.385,
+      "left_accession": "P30176",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.385,
+      "qtmscore": 0.3448,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2016
+    },
+    {
+      "alntmscore": 0.3811,
+      "left_accession": "A5PLL7",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3811,
+      "qtmscore": 0.2907,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2547
+    },
+    {
+      "alntmscore": 0.381,
+      "left_accession": "P33025",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.381,
+      "qtmscore": 0.2191,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3549
+    },
+    {
+      "alntmscore": 0.3748,
+      "left_accession": "P32189",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3748,
+      "qtmscore": 0.1477,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3733
+    },
+    {
+      "alntmscore": 0.3735,
+      "left_accession": "P27144",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3735,
+      "qtmscore": 0.3232,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1304
+    },
+    {
+      "alntmscore": 0.3711,
+      "left_accession": "P32189",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3711,
+      "qtmscore": 0.2298,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3382
+    },
+    {
+      "alntmscore": 0.3693,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3693,
+      "qtmscore": 0.3024,
+      "right_accession": "P42126",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3133
+    },
+    {
+      "alntmscore": 0.3693,
+      "left_accession": "P27144",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3693,
+      "qtmscore": 0.3088,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1629
+    },
+    {
+      "alntmscore": 0.3687,
+      "left_accession": "P60174",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3687,
+      "qtmscore": 0.352,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2071
+    },
+    {
+      "alntmscore": 0.3657,
+      "left_accession": "O95050",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3657,
+      "qtmscore": 0.3466,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2463
+    },
+    {
+      "alntmscore": 0.3641,
+      "left_accession": "P55263",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3641,
+      "qtmscore": 0.1965,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3626
+    },
+    {
+      "alntmscore": 0.3618,
+      "left_accession": "P60174",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3618,
+      "qtmscore": 0.2322,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3293
+    },
+    {
+      "alntmscore": 0.3584,
+      "left_accession": "C9JRZ8",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3584,
+      "qtmscore": 0.2136,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3569
+    },
+    {
+      "alntmscore": 0.3576,
+      "left_accession": "O15247",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3576,
+      "qtmscore": 0.3284,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1902
+    },
+    {
+      "alntmscore": 0.3573,
+      "left_accession": "O15527",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3573,
+      "qtmscore": 0.3327,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1902
+    },
+    {
+      "alntmscore": 0.3568,
+      "left_accession": "A2RU49",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3568,
+      "qtmscore": 0.3326,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2018
+    },
+    {
+      "alntmscore": 0.3556,
+      "left_accession": "P30176",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3556,
+      "qtmscore": 0.3509,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1079
+    },
+    {
+      "alntmscore": 0.3538,
+      "left_accession": "O15247",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3538,
+      "qtmscore": 0.3343,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.274
+    },
+    {
+      "alntmscore": 0.3524,
+      "left_accession": "A5PLL7",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3524,
+      "qtmscore": 0.2641,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1898
+    },
+    {
+      "alntmscore": 0.352,
+      "left_accession": "P34949",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.352,
+      "qtmscore": 0.239,
+      "right_accession": "P51580",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3492
+    },
+    {
+      "alntmscore": 0.3491,
+      "left_accession": "P27144",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3491,
+      "qtmscore": 0.2578,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3341
+    },
+    {
+      "alntmscore": 0.3487,
+      "left_accession": "P33025",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3487,
+      "qtmscore": 0.3456,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1869
+    },
+    {
+      "alntmscore": 0.3472,
+      "left_accession": "P34949",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3472,
+      "qtmscore": 0.2311,
+      "right_accession": "P60174",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3385
+    },
+    {
+      "alntmscore": 0.3455,
+      "left_accession": "C9JRZ8",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3455,
+      "qtmscore": 0.3004,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2084
+    },
+    {
+      "alntmscore": 0.3455,
+      "left_accession": "P34949",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3455,
+      "qtmscore": 0.2105,
+      "right_accession": "Q9Y5N5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3393
+    },
+    {
+      "alntmscore": 0.3425,
+      "left_accession": "O15247",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3425,
+      "qtmscore": 0.1993,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2782
+    },
+    {
+      "alntmscore": 0.3423,
+      "left_accession": "A2RUC4",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3423,
+      "qtmscore": 0.3352,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.185
+    },
+    {
+      "alntmscore": 0.3421,
+      "left_accession": "P42126",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3421,
+      "qtmscore": 0.1957,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3258
+    },
+    {
+      "alntmscore": 0.3419,
+      "left_accession": "P34949",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3419,
+      "qtmscore": 0.2427,
+      "right_accession": "Q96I15",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2338
+    },
+    {
+      "alntmscore": 0.3416,
+      "left_accession": "P30176",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3416,
+      "qtmscore": 0.3359,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1359
+    },
+    {
+      "alntmscore": 0.3404,
+      "left_accession": "A2RU49",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3404,
+      "qtmscore": 0.2704,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2968
+    },
+    {
+      "alntmscore": 0.3402,
+      "left_accession": "P34949",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3402,
+      "qtmscore": 0.2542,
+      "right_accession": "Q9BXD5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3107
+    },
+    {
+      "alntmscore": 0.3386,
+      "left_accession": "O15527",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3386,
+      "qtmscore": 0.273,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2833
+    },
+    {
+      "alntmscore": 0.3384,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3384,
+      "qtmscore": 0.1967,
+      "right_accession": "P30176",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3265
+    },
+    {
+      "alntmscore": 0.3376,
+      "left_accession": "C9JRZ8",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3376,
+      "qtmscore": 0.3131,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2543
+    },
+    {
+      "alntmscore": 0.3365,
+      "left_accession": "P29372",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3365,
+      "qtmscore": 0.2732,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2098
+    },
+    {
+      "alntmscore": 0.3363,
+      "left_accession": "A5PLL7",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3363,
+      "qtmscore": 0.2239,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3334
+    },
+    {
+      "alntmscore": 0.336,
+      "left_accession": "P55263",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.336,
+      "qtmscore": 0.3051,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1856
+    },
+    {
+      "alntmscore": 0.3336,
+      "left_accession": "Q969G6",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3336,
+      "qtmscore": 0.3001,
+      "right_accession": "Q9Y5N5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2416
+    },
+    {
+      "alntmscore": 0.333,
+      "left_accession": "P06746",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.333,
+      "qtmscore": 0.2819,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2053
+    },
+    {
+      "alntmscore": 0.3311,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3311,
+      "qtmscore": 0.2462,
+      "right_accession": "O15527",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2332
+    },
+    {
+      "alntmscore": 0.331,
+      "left_accession": "P34949",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.331,
+      "qtmscore": 0.2579,
+      "right_accession": "Q9HBK9",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2819
+    },
+    {
+      "alntmscore": 0.3298,
+      "left_accession": "O60568",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3298,
+      "qtmscore": 0.1023,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.3287
+    },
+    {
+      "alntmscore": 0.3297,
+      "left_accession": "O15247",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3297,
+      "qtmscore": 0.3202,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1478
+    },
+    {
+      "alntmscore": 0.3291,
+      "left_accession": "A2RUC4",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3291,
+      "qtmscore": 0.1848,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2967
+    },
+    {
+      "alntmscore": 0.3289,
+      "left_accession": "A2RU49",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3289,
+      "qtmscore": 0.2775,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2229
+    },
+    {
+      "alntmscore": 0.3286,
+      "left_accession": "Q969G6",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3286,
+      "qtmscore": 0.3023,
+      "right_accession": "Q9HBK9",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.1575
+    },
+    {
+      "alntmscore": 0.3275,
+      "left_accession": "P55263",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3275,
+      "qtmscore": 0.3003,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2366
+    },
+    {
+      "alntmscore": 0.3253,
+      "left_accession": "P34949",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3253,
+      "qtmscore": 0.2014,
+      "right_accession": "Q13907",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3114
+    },
+    {
+      "alntmscore": 0.3206,
+      "left_accession": "Q969G6",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3206,
+      "qtmscore": 0.3167,
+      "right_accession": "Q96I15",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.1482
+    },
+    {
+      "alntmscore": 0.3205,
+      "left_accession": "P29372",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3205,
+      "qtmscore": 0.3116,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1617
+    },
+    {
+      "alntmscore": 0.3204,
+      "left_accession": "Q6NSJ0",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3204,
+      "qtmscore": 0.1915,
+      "right_accession": "Q9HBK9",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3049
+    },
+    {
+      "alntmscore": 0.3203,
+      "left_accession": "O60568",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3203,
+      "qtmscore": 0.1708,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.311
+    },
+    {
+      "alntmscore": 0.32,
+      "left_accession": "P34949",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.32,
+      "qtmscore": 0.2099,
+      "right_accession": "P42126",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2657
+    },
+    {
+      "alntmscore": 0.3197,
+      "left_accession": "O60568",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3197,
+      "qtmscore": 0.2116,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2792
+    },
+    {
+      "alntmscore": 0.3191,
+      "left_accession": "P06746",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3191,
+      "qtmscore": 0.3144,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1788
+    },
+    {
+      "alntmscore": 0.3177,
+      "left_accession": "O15247",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3177,
+      "qtmscore": 0.3007,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2054
+    },
+    {
+      "alntmscore": 0.3172,
+      "left_accession": "P29372",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3172,
+      "qtmscore": 0.2764,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1835
+    },
+    {
+      "alntmscore": 0.3163,
+      "left_accession": "O60568",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3163,
+      "qtmscore": 0.2577,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2637
+    },
+    {
+      "alntmscore": 0.3162,
+      "left_accession": "A5PLL7",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3162,
+      "qtmscore": 0.3013,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1443
+    },
+    {
+      "alntmscore": 0.3159,
+      "left_accession": "A5PLL7",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3159,
+      "qtmscore": 0.2814,
+      "right_accession": "O14756",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2529
+    },
+    {
+      "alntmscore": 0.313,
+      "left_accession": "Q6NSJ0",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.313,
+      "qtmscore": 0.1254,
+      "right_accession": "Q9BXS1",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2942
+    },
+    {
+      "alntmscore": 0.3125,
+      "left_accession": "O15527",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3125,
+      "qtmscore": 0.1673,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2957
+    },
+    {
+      "alntmscore": 0.3119,
+      "left_accession": "O95050",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3119,
+      "qtmscore": 0.2084,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2975
+    },
+    {
+      "alntmscore": 0.3108,
+      "left_accession": "O15527",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3108,
+      "qtmscore": 0.2981,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.225
+    },
+    {
+      "alntmscore": 0.3104,
+      "left_accession": "Q969G6",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3104,
+      "qtmscore": 0.3092,
+      "right_accession": "Q9BXD5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.1926
+    },
+    {
+      "alntmscore": 0.3097,
+      "left_accession": "P32189",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3097,
+      "qtmscore": 0.2894,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2407
+    },
+    {
+      "alntmscore": 0.3093,
+      "left_accession": "Q13907",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3093,
+      "qtmscore": 0.2911,
+      "right_accession": "Q6NSJ0",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1274
+    },
+    {
+      "alntmscore": 0.3088,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3088,
+      "qtmscore": 0.2385,
+      "right_accession": "Q9BXS1",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.3001
+    },
+    {
+      "alntmscore": 0.3084,
+      "left_accession": "P33025",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3084,
+      "qtmscore": 0.2491,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1774
+    },
+    {
+      "alntmscore": 0.3083,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3083,
+      "qtmscore": 0.232,
+      "right_accession": "P29372",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2424
+    },
+    {
+      "alntmscore": 0.3082,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3082,
+      "qtmscore": 0.2356,
+      "right_accession": "Q13907",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2986
+    },
+    {
+      "alntmscore": 0.3081,
+      "left_accession": "P35914",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3081,
+      "qtmscore": 0.2269,
+      "right_accession": "Q9BXS1",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2923
+    },
+    {
+      "alntmscore": 0.3064,
+      "left_accession": "P35914",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3064,
+      "qtmscore": 0.2254,
+      "right_accession": "Q13907",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2901
+    },
+    {
+      "alntmscore": 0.3052,
+      "left_accession": "A2RU49",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3052,
+      "qtmscore": 0.2709,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2475
+    },
+    {
+      "alntmscore": 0.3039,
+      "left_accession": "Q32P41",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3039,
+      "qtmscore": 0.2077,
+      "right_accession": "Q9BXD5",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2957
+    },
+    {
+      "alntmscore": 0.3022,
+      "left_accession": "P34949",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3022,
+      "qtmscore": 0.1846,
+      "right_accession": "Q9BXS1",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2889
+    },
+    {
+      "alntmscore": 0.3002,
+      "left_accession": "P51580",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.3002,
+      "qtmscore": 0.2131,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2879
+    },
+    {
+      "alntmscore": 0.3002,
+      "left_accession": "Q32P41",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.3002,
+      "qtmscore": 0.161,
+      "right_accession": "Q9BXS1",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2863
+    },
+    {
+      "alntmscore": 0.2996,
+      "left_accession": "P42126",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2996,
+      "qtmscore": 0.2891,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1982
+    },
+    {
+      "alntmscore": 0.2991,
+      "left_accession": "P27144",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2991,
+      "qtmscore": 0.2842,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.182
+    },
+    {
+      "alntmscore": 0.2989,
+      "left_accession": "A2RU49",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2989,
+      "qtmscore": 0.2641,
+      "right_accession": "O14756",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.292
+    },
+    {
+      "alntmscore": 0.2962,
+      "left_accession": "Q13907",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2962,
+      "qtmscore": 0.282,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1586
+    },
+    {
+      "alntmscore": 0.2947,
+      "left_accession": "P34949",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.2947,
+      "qtmscore": 0.2491,
+      "right_accession": "P55263",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2771
+    },
+    {
+      "alntmscore": 0.2924,
+      "left_accession": "A5PLL7",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2924,
+      "qtmscore": 0.2661,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1699
+    },
+    {
+      "alntmscore": 0.2907,
+      "left_accession": "P32189",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2907,
+      "qtmscore": 0.2341,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2863
+    },
+    {
+      "alntmscore": 0.2906,
+      "left_accession": "O14756",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.2906,
+      "qtmscore": 0.2673,
+      "right_accession": "P06746",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2571
+    },
+    {
+      "alntmscore": 0.2905,
+      "left_accession": "A2RUC4",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2905,
+      "qtmscore": 0.2707,
+      "right_accession": "O14756",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2695
+    },
+    {
+      "alntmscore": 0.2896,
+      "left_accession": "P06746",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2896,
+      "qtmscore": 0.1593,
+      "right_accession": "Q969G6",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2743
+    },
+    {
+      "alntmscore": 0.2892,
+      "left_accession": "Q6NSJ0",
+      "left_split_assignment": "test_structural_holdout",
+      "max_pair_tm_score": 0.2892,
+      "qtmscore": 0.1875,
+      "right_accession": "Q96I15",
+      "right_split_assignment": "train_structural_context",
+      "ttmscore": 0.2678
+    },
+    {
+      "alntmscore": 0.2881,
+      "left_accession": "P32189",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2881,
+      "qtmscore": 0.2461,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2617
+    },
+    {
+      "alntmscore": 0.2784,
+      "left_accession": "P33025",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2784,
+      "qtmscore": 0.2748,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.222
+    },
+    {
+      "alntmscore": 0.2742,
+      "left_accession": "P06746",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2742,
+      "qtmscore": 0.2679,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2259
+    },
+    {
+      "alntmscore": 0.2725,
+      "left_accession": "A2RUC4",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2725,
+      "qtmscore": 0.2412,
+      "right_accession": "Q32P41",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1718
+    },
+    {
+      "alntmscore": 0.2661,
+      "left_accession": "P06746",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2661,
+      "qtmscore": 0.2363,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2408
+    },
+    {
+      "alntmscore": 0.2562,
+      "left_accession": "A2RUC4",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2562,
+      "qtmscore": 0.2374,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2327
+    },
+    {
+      "alntmscore": 0.2536,
+      "left_accession": "O15527",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.2536,
+      "qtmscore": 0.2296,
+      "right_accession": "P34949",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.1991
+    },
+    {
+      "alntmscore": 0.25,
+      "left_accession": "P29372",
+      "left_split_assignment": "train_structural_context",
+      "max_pair_tm_score": 0.25,
+      "qtmscore": 0.2485,
+      "right_accession": "P35914",
+      "right_split_assignment": "test_structural_holdout",
+      "ttmscore": 0.2339
+    }
+  ],
+  "metadata": {
+    "all_vs_all_pair_cache_complete": true,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "external_structural_cluster_index": "artifacts/v3_external_structural_cluster_index_1025_all30.json"
+      },
+      "blocker_removed": "external_structural_tm_diverse_split_assignment",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "external_structural_cluster_index": 1025
+      },
+      "payload_methods": {
+        "external_structural_cluster_index": "external_structural_cluster_index"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "external_structural_cluster_index": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "external_structural_cluster_index"
+        ]
+      }
+    },
+    "blocker_not_removed": [],
+    "blocker_removed": "external_structural_tm_diverse_split_assigned_for_review_only_all30_surface",
+    "candidate_count": 30,
+    "cluster_preserving_assignment": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-16T11:10:34Z",
+    "cross_split_high_tm_pair_count": 0,
+    "cross_split_pair_count": 144,
+    "cross_split_pair_coverage": 1.0,
+    "expected_cross_split_pair_count": 144,
+    "expected_unique_unordered_nonself_pair_count": 435,
+    "external_structural_split_pairwise_tm_target_achieved": true,
+    "external_structural_tm_diverse_split_claim_permitted": true,
+    "full_holdout_claim_limitation": "review-only external candidate split; labels remain non-countable and no import-ready benchmark rows are authorized",
+    "full_tm_score_holdout_claim_permitted": false,
+    "import_ready_row_count": 0,
+    "lane_counts": {
+      "external_source:glycan_chemistry": 5,
+      "external_source:isomerase": 5,
+      "external_source:lyase": 5,
+      "external_source:oxidoreductase_long_tail": 5,
+      "external_source:transferase_methyl": 5,
+      "external_source:transferase_phosphoryl": 5
+    },
+    "max_cross_split_tm_score": 0.6963,
+    "max_rows": 30,
+    "method": "external_structural_tm_diverse_split_plan",
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selected_test_cluster_count": 6,
+    "slice_id": "1025",
+    "source_external_structural_cluster_index_method": "external_structural_cluster_index",
+    "source_high_tm_pair_count": 6,
+    "source_largest_tm_cluster_size": 4,
+    "source_tm_cluster_count": 26,
+    "split_assignment_status": "assigned_cluster_preserving_review_only",
+    "split_counts": {
+      "test_structural_holdout": 6,
+      "train_structural_context": 24
+    },
+    "strict_tm_threshold_target": "<0.7",
+    "surface_scope": "broader_external_surface",
+    "test_candidate_count": 6,
+    "test_fraction_target": 0.2,
+    "test_lane_counts": {
+      "external_source:glycan_chemistry": 1,
+      "external_source:isomerase": 1,
+      "external_source:lyase": 1,
+      "external_source:oxidoreductase_long_tail": 1,
+      "external_source:transferase_methyl": 1,
+      "external_source:transferase_phosphoryl": 1
+    },
+    "tm_score_split_claim_permitted": true,
+    "tm_score_threshold": 0.7,
+    "train_candidate_count": 24,
+    "unique_unordered_nonself_pair_count": 435
+  },
+  "rows": [
+    {
+      "accession": "A2RUC4",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RUC4",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_neighbor": {
+        "accession": "P34949",
+        "tm_score": 0.4168
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:002"
+    },
+    {
+      "accession": "A5PLL7",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A5PLL7",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_neighbor": {
+        "accession": "P27144",
+        "tm_score": 0.3945
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:003"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:C9JRZ8",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_neighbor": {
+        "accession": "Q9BXD5",
+        "tm_score": 0.6032
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": "rejected_duplicate_or_near_duplicate",
+      "tm_cluster_id": "external_tm_cluster:004"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O14756",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_neighbor": {
+        "accession": "Q9Y5N5",
+        "tm_score": 0.664
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "test_structural_holdout",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": "deferred_requires_human_expert",
+      "tm_cluster_id": "external_tm_cluster:005"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O15247",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_neighbor": {
+        "accession": "P30176",
+        "tm_score": 0.4245
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:006"
+    },
+    {
+      "accession": "Q969G6",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q969G6",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "nearest_neighbor": {
+        "accession": "P29372",
+        "tm_score": 0.4322
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "test_structural_holdout",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:024"
+    },
+    {
+      "accession": "P32189",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P32189",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "nearest_neighbor": {
+        "accession": "O15247",
+        "tm_score": 0.4218
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:014"
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P55263",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "nearest_neighbor": {
+        "accession": "Q9Y5N5",
+        "tm_score": 0.5372
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": "rejected_duplicate_or_near_duplicate",
+      "tm_cluster_id": "external_tm_cluster:019"
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P27144",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "nearest_neighbor": {
+        "accession": "O14756",
+        "tm_score": 0.45
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:011"
+    },
+    {
+      "accession": "A2RU49",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RU49",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "nearest_neighbor": {
+        "accession": "P27144",
+        "tm_score": 0.4419
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:001"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06746",
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "P51580",
+        "tm_score": 0.3661
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": "rejected_duplicate_or_near_duplicate",
+      "tm_cluster_id": "external_tm_cluster:010"
+    },
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BXD5",
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "P60174",
+        "tm_score": 0.6714
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": "rejected_duplicate_or_near_duplicate",
+      "tm_cluster_id": "external_tm_cluster:026"
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P35914",
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "P60174",
+        "tm_score": 0.6635
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "test_structural_holdout",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:017"
+    },
+    {
+      "accession": "Q96I15",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q96I15",
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "Q9Y5N5",
+        "tm_score": 0.5138
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:025"
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O15527",
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "Q13907",
+        "tm_score": 0.3707
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:007"
+    },
+    {
+      "accession": "Q13907",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q13907",
+      "lane_id": "external_source:isomerase",
+      "nearest_neighbor": {
+        "accession": "Q9BXS1",
+        "tm_score": 0.9843
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:021"
+    },
+    {
+      "accession": "Q9BXS1",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BXS1",
+      "lane_id": "external_source:isomerase",
+      "nearest_neighbor": {
+        "accession": "Q13907",
+        "tm_score": 0.9843
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:021"
+    },
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P34949",
+      "lane_id": "external_source:isomerase",
+      "nearest_neighbor": {
+        "accession": "A2RUC4",
+        "tm_score": 0.4168
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "test_structural_holdout",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": "deferred_requires_human_expert",
+      "tm_cluster_id": "external_tm_cluster:016"
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P60174",
+      "lane_id": "external_source:isomerase",
+      "nearest_neighbor": {
+        "accession": "Q9BXD5",
+        "tm_score": 0.6714
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:020"
+    },
+    {
+      "accession": "P42126",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P42126",
+      "lane_id": "external_source:isomerase",
+      "nearest_neighbor": {
+        "accession": "P55263",
+        "tm_score": 0.4523
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:018"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q6NSJ0",
+      "lane_id": "external_source:glycan_chemistry",
+      "nearest_neighbor": {
+        "accession": "P60174",
+        "tm_score": 0.5931
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "test_structural_holdout",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": "deferred_requires_human_expert",
+      "tm_cluster_id": "external_tm_cluster:023"
+    },
+    {
+      "accession": "P30176",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30176",
+      "lane_id": "external_source:glycan_chemistry",
+      "nearest_neighbor": {
+        "accession": "O15247",
+        "tm_score": 0.4245
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:013"
+    },
+    {
+      "accession": "P29372",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P29372",
+      "lane_id": "external_source:glycan_chemistry",
+      "nearest_neighbor": {
+        "accession": "Q969G6",
+        "tm_score": 0.4322
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:012"
+    },
+    {
+      "accession": "P33025",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P33025",
+      "lane_id": "external_source:glycan_chemistry",
+      "nearest_neighbor": {
+        "accession": "Q9Y5N5",
+        "tm_score": 0.5061
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:015"
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O60568",
+      "lane_id": "external_source:glycan_chemistry",
+      "nearest_neighbor": {
+        "accession": "Q9Y5N5",
+        "tm_score": 0.4844
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": "rejected_active_site_evidence_missing",
+      "tm_cluster_id": "external_tm_cluster:008"
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95050",
+      "lane_id": "external_source:transferase_methyl",
+      "nearest_neighbor": {
+        "accession": "Q9Y5N5",
+        "tm_score": 0.7223
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "terminal_status_from_pilot": "rejected_active_site_evidence_missing",
+      "tm_cluster_id": "external_tm_cluster:009"
+    },
+    {
+      "accession": "P51580",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P51580",
+      "lane_id": "external_source:transferase_methyl",
+      "nearest_neighbor": {
+        "accession": "Q9HBK9",
+        "tm_score": 0.7262
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "terminal_status_from_pilot": "rejected_active_site_evidence_missing",
+      "tm_cluster_id": "external_tm_cluster:009"
+    },
+    {
+      "accession": "Q9Y5N5",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9Y5N5",
+      "lane_id": "external_source:transferase_methyl",
+      "nearest_neighbor": {
+        "accession": "O95050",
+        "tm_score": 0.7223
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:009"
+    },
+    {
+      "accession": "Q32P41",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q32P41",
+      "lane_id": "external_source:transferase_methyl",
+      "nearest_neighbor": {
+        "accession": "Q9Y5N5",
+        "tm_score": 0.6963
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "test_structural_holdout",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:022"
+    },
+    {
+      "accession": "Q9HBK9",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9HBK9",
+      "lane_id": "external_source:transferase_methyl",
+      "nearest_neighbor": {
+        "accession": "P51580",
+        "tm_score": 0.7262
+      },
+      "ready_for_label_import": false,
+      "split_assignment": "train_structural_context",
+      "split_assignment_status": "assigned_cluster_preserving_review_only",
+      "structural_neighbor_cache_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:009"
+    }
+  ],
+  "selected_test_clusters": [
+    {
+      "accessions": [
+        "O14756"
+      ],
+      "cluster_id": "external_tm_cluster:005",
+      "member_count": 1
+    },
+    {
+      "accessions": [
+        "P34949"
+      ],
+      "cluster_id": "external_tm_cluster:016",
+      "member_count": 1
+    },
+    {
+      "accessions": [
+        "P35914"
+      ],
+      "cluster_id": "external_tm_cluster:017",
+      "member_count": 1
+    },
+    {
+      "accessions": [
+        "Q32P41"
+      ],
+      "cluster_id": "external_tm_cluster:022",
+      "member_count": 1
+    },
+    {
+      "accessions": [
+        "Q6NSJ0"
+      ],
+      "cluster_id": "external_tm_cluster:023",
+      "member_count": 1
+    },
+    {
+      "accessions": [
+        "Q969G6"
+      ],
+      "cluster_id": "external_tm_cluster:024",
+      "member_count": 1
+    }
+  ],
+  "threshold_violating_cross_split_pairs": [],
+  "warnings": [
+    "external structural split plan is review-only; it verifies cluster-preserving pairwise TM separation but does not authorize label import or validated enzyme-function claims"
+  ]
+}

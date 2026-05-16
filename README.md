@@ -305,10 +305,14 @@ The broader external structural surface is now staged separately:
 30 current UniProtKB/Swiss-Prot candidates, and
 `artifacts/v3_external_structural_cluster_index_1025_all30.json` materializes
 30 AlphaFold coordinate sidecars, completes Foldseek nearest-neighbor coverage
-for all 30 rows, and finds 6 high-TM pairs across 26 pre-split clusters. This
-removes the 10-row-only structural-surface blocker, but no strict TM-diverse
-split has been assigned because the Foldseek all-vs-all pair cache is not yet
-complete.
+for all 30 rows, and now emits the full 435/435 unordered nonself all-vs-all
+Foldseek pair cache after forcing exhaustive TM-align reporting with `-e inf`.
+`artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json`
+assigns a review-only cluster-preserving split with 6 test and 24 train
+candidates, one test candidate from each external lane, max cross-split
+TM-score `0.6963`, and 0 cross-split pairs at `TM >=0.7`. This removes the
+external structural split-assignment blocker, but it is not an import or
+benchmark-label authorization.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
@@ -477,7 +481,13 @@ The broader path now extends to all 30 current external candidates via
 `artifacts/v3_external_structural_tm_holdout_path_1025_all30.json` and
 `artifacts/v3_external_structural_cluster_index_1025_all30.json`: 30/30
 AlphaFold sidecars are materialized with 0 fetch failures, Foldseek nearest
-neighbors cover 30/30 rows, and 6 high-TM pairs form 26 pre-split clusters.
+neighbors cover 30/30 rows, the all-vs-all cache now covers 435/435 unordered
+nonself pairs, and 6 high-TM pairs form 26 pre-split clusters.
+`artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json`
+assigns the first review-only external structural split: 6 test and 24 train
+rows, 144/144 cross-split pairs checked, max cross-split TM-score `0.6963`,
+and 0 cross-split `TM >=0.7` violations. It keeps every external row
+non-countable and not import-ready.
 External packet
 decisions still need active-site sources and broader duplicate-screening
 evidence beyond the bounded current-reference MMseqs2 search. Do not resume

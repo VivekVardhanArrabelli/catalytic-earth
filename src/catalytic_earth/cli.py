@@ -151,6 +151,7 @@ from .transfer_scope import (
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
     build_external_structural_cluster_index,
+    build_external_structural_tm_diverse_split_plan,
     build_external_structural_tm_holdout_path,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
@@ -2558,6 +2559,32 @@ def cmd_build_external_structural_cluster_index(args: argparse.Namespace) -> int
         "Wrote external structural cluster index to "
         f"{args.out} ({index['metadata']['coordinate_materialized_count']} "
         "coordinates)"
+    )
+    return 0
+
+
+def cmd_build_external_structural_tm_diverse_split_plan(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        ("external_structural_cluster_index",),
+        blocker_removed="external_structural_tm_diverse_split_assignment",
+    )
+    split_plan = build_external_structural_tm_diverse_split_plan(
+        external_structural_cluster_index=artifact_payloads[
+            "external_structural_cluster_index"
+        ],
+        test_fraction=args.test_fraction,
+        tm_score_threshold=args.tm_score_threshold,
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), split_plan)
+    print(
+        "Wrote external structural TM-diverse split plan to "
+        f"{args.out} ({split_plan['metadata']['test_candidate_count']} test / "
+        f"{split_plan['metadata']['train_candidate_count']} train)"
     )
     return 0
 
@@ -6756,6 +6783,36 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_structural_cluster.set_defaults(
         func=cmd_build_external_structural_cluster_index
+    )
+
+    external_structural_split = subparsers.add_parser(
+        "build-external-structural-tm-diverse-split-plan",
+        help=(
+            "assign a review-only cluster-preserving external structural split "
+            "after the all-vs-all Foldseek cache is complete"
+        ),
+    )
+    external_structural_split.add_argument(
+        "--external-structural-cluster-index",
+        default="artifacts/v3_external_structural_cluster_index_1025_all30.json",
+    )
+    external_structural_split.add_argument(
+        "--test-fraction",
+        type=float,
+        default=0.2,
+    )
+    external_structural_split.add_argument(
+        "--tm-score-threshold",
+        type=float,
+        default=0.7,
+    )
+    external_structural_split.add_argument("--max-rows", type=int, default=30)
+    external_structural_split.add_argument(
+        "--out",
+        default="artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json",
+    )
+    external_structural_split.set_defaults(
+        func=cmd_build_external_structural_tm_diverse_split_plan
     )
 
     external_transfer_gate = subparsers.add_parser(

@@ -793,6 +793,7 @@ Current 1,025-preview state:
   `artifacts/v3_external_structural_cluster_index_1025.json`,
   `artifacts/v3_external_structural_tm_holdout_path_1025_all30.json`,
   `artifacts/v3_external_structural_cluster_index_1025_all30.json`,
+  `artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json`,
   `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
@@ -808,7 +809,10 @@ Current 1,025-preview state:
   12 learned-vs-heuristic disagreements, stage all 10 selected pilot AlphaFold
   coordinate sidecars for review-only Foldseek nearest-neighbor clustering,
   expand that structure cache to all 30 current external candidates with 6
-  high-TM pre-split pairs across 26 clusters, and
+  high-TM pre-split pairs across 26 clusters, complete the all-30 Foldseek
+  all-vs-all cache at 435/435 unordered nonself pairs, assign a review-only
+  cluster-preserving split with 6 test and 24 train rows at max cross-split
+  TM-score `0.6963`, and
   must not be imported as labels.
   The heuristic-control audit records a 9/12
   metal-hydrolase top1 collapse and 9 scope/top1 mismatches as review-only

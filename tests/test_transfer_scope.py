@@ -64,6 +64,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
     build_external_structural_cluster_index,
+    build_external_structural_tm_diverse_split_plan,
     build_external_structural_tm_holdout_path,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
@@ -7138,6 +7139,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 return f"data_{structure_source}_{structure_id}"
 
             def fake_runner(command: list[str], workdir: Path) -> None:
+                self.assertIn("--max-seqs", command)
+                self.assertIn("100000", command)
+                self.assertIn("-e", command)
+                self.assertIn("inf", command)
                 result_tsv = Path(command[4])
                 result_tsv.write_text(
                     "\n".join(
@@ -7235,6 +7240,87 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "external_structural_cluster_neighbor_at_or_above_threshold",
         )
         self.assertTrue(all(not row["ready_for_label_import"] for row in index["rows"]))
+
+    def test_external_structural_tm_diverse_split_plan_preserves_clusters(
+        self,
+    ) -> None:
+        accessions = ["A11111", "A22222", "B11111", "B22222", "C11111", "C22222"]
+        lane_by_accession = {
+            "A11111": "external_source:lane_a",
+            "A22222": "external_source:lane_a",
+            "B11111": "external_source:lane_b",
+            "B22222": "external_source:lane_b",
+            "C11111": "external_source:lane_c",
+            "C22222": "external_source:lane_c",
+        }
+        pairs = []
+        for left_index, left in enumerate(accessions):
+            for right in accessions[left_index + 1 :]:
+                pairs.append(
+                    {
+                        "left_accession": left,
+                        "right_accession": right,
+                        "max_pair_tm_score": 0.42,
+                        "qtmscore": 0.41,
+                        "ttmscore": 0.40,
+                        "alntmscore": 0.42,
+                    }
+                )
+
+        split_plan = build_external_structural_tm_diverse_split_plan(
+            external_structural_cluster_index={
+                "metadata": {
+                    "method": "external_structural_cluster_index",
+                    "slice_id": "1025",
+                    "surface_scope": "broader_external_surface",
+                    "all_vs_all_pair_cache_complete": True,
+                    "unique_unordered_nonself_pair_count": 15,
+                    "expected_unique_unordered_nonself_pair_count": 15,
+                    "high_tm_pair_count": 0,
+                    "tm_cluster_count": 6,
+                    "largest_tm_cluster_size": 1,
+                },
+                "rows": [
+                    {
+                        "accession": accession,
+                        "entry_id": f"uniprot:{accession}",
+                        "lane_id": lane_by_accession[accession],
+                        "tm_cluster_id": f"external_tm_cluster:{accession}",
+                        "terminal_status_from_pilot": None,
+                        "structural_neighbor_cache_status": (
+                            "no_external_structural_neighbor_above_threshold"
+                        ),
+                    }
+                    for accession in accessions
+                ],
+                "pairs": pairs,
+            },
+            test_fraction=0.2,
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = split_plan["metadata"]
+        self.assertEqual(
+            metadata["blocker_removed"],
+            "external_structural_tm_diverse_split_assigned_for_review_only_all30_surface",
+        )
+        self.assertTrue(metadata["external_structural_split_pairwise_tm_target_achieved"])
+        self.assertTrue(metadata["tm_score_split_claim_permitted"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["test_candidate_count"], 3)
+        self.assertEqual(metadata["train_candidate_count"], 3)
+        self.assertEqual(metadata["cross_split_pair_count"], 9)
+        self.assertEqual(metadata["expected_cross_split_pair_count"], 9)
+        self.assertEqual(metadata["cross_split_high_tm_pair_count"], 0)
+        self.assertEqual(metadata["test_lane_counts"]["external_source:lane_a"], 1)
+        self.assertFalse(split_plan["threshold_violating_cross_split_pairs"])
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in split_plan["rows"])
+        )
 
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
         self,

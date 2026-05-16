@@ -81,16 +81,46 @@ structural surface now exists in
 `artifacts/v3_external_structural_tm_holdout_path_1025_all30.json` and
 `artifacts/v3_external_structural_cluster_index_1025_all30.json`: all 30
 current external candidates have AlphaFold sidecars, Foldseek nearest-neighbor
-coverage is 30/30, and the pre-split cache finds 6 high-TM pairs across 26
-clusters. This removes the 10-row-only external surface blocker, but strict
-TM-diverse split assignment remains blocked by incomplete all-vs-all pair-cache
-coverage and no import-ready rows. Next direct work should either prepare
-actual human/expert review decisions for `O14756`, `P34949`, and `Q6NSJ0`, or
-complete/cache the missing external all-vs-all structural pairs before any
-strict TM-diverse split assignment. Do not open M-CSA round33, staged index 145 continuation, or more partition repair unless
-the user explicitly reverses the override.
+coverage is 30/30, the all-vs-all Foldseek cache now covers 435/435 unordered
+nonself pairs, and the pre-split cache finds 6 high-TM pairs across 26
+clusters. `artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json`
+now removes the split-assignment blocker with a review-only cluster-preserving
+split: 6 test and 24 train candidates, one test candidate from each external
+lane, 144/144 cross-split pairs checked, max cross-split TM-score `0.6963`,
+and 0 cross-split pairs at `TM >=0.7`. This is not an import-ready benchmark
+claim; every external row remains non-countable. Next direct work should
+prepare actual human/expert review decisions for `O14756`, `P34949`, and
+`Q6NSJ0`, or broaden the external Swiss-Prot/AFDB structural surface beyond the
+current 30-row review-only split before any import or benchmark claim.
+Do not open M-CSA round33, staged index 145 continuation, or more partition repair
+unless the user explicitly reverses the override.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T11:01:29Z run after recovering this run's
+short-lived stale shell-PID lock, confirming the git tree was clean, syncing
+clean `origin/main`, passing startup gates (`354` unit tests passed and
+`validate` passed with 679 curated labels), completing the external all-30
+structural pair cache, and assigning a review-only cluster-preserving split:
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and no M-CSA strict-TM round, query, split-repair, or partition-repair work
+  was resumed.
+- External-source repair/import: Yes for external structural repair, no for
+  import or countable labels. This run changed the all-30 external structural
+  cluster index from an incomplete 313/435 pair cache to a complete 435/435
+  unordered nonself pair cache and added a review-only split plan with 6 test
+  and 24 train candidates, 0 cross-split `TM >=0.7` violations, 0 import-ready
+  rows, and 0 countable external labels.
+- Scientific generalization work: Yes. Strict structural-diversity work is now
+  on the external Swiss-Prot/AFDB surface, with cluster-preserving split
+  assignment and max cross-split TM-score `0.6963`; this is still review-only
+  because pilot rows are not import-ready benchmark labels.
+- SPOF hardening work: Yes. The Foldseek command now forces exhaustive exact
+  TM-align reporting with `-e inf` and high `--max-seqs`, regression tests
+  guard complete all-vs-all pair coverage and the review-only split plan, and
+  M-CSA strict-TM repair remains closed.
 
 Recorded for the 2026-05-16T09:59:24Z run after syncing clean `origin/main`,
 passing startup gates (`352` unit tests passed and `validate` passed with

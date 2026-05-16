@@ -215,9 +215,12 @@ Current expectation:
   external structural surface now extends to all 30 current candidates:
   `artifacts/v3_external_structural_cluster_index_1025_all30.json` materializes
   30/30 AlphaFold coordinate sidecars, completes nearest-neighbor coverage,
-  and finds 6 high-TM pairs across 26 pre-split clusters. No train/test
-  structural split has been assigned because the all-vs-all pair cache is
-  incomplete and import/review blockers remain.
+  covers 435/435 unordered nonself all-vs-all Foldseek pairs, and finds 6
+  high-TM pairs across 26 pre-split clusters. The review-only
+  `artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json`
+  assigns 6 test and 24 train candidates, one test row per external lane, with
+  max cross-split TM-score `0.6963` and 0 cross-split `TM >=0.7` violations.
+  This is structural split evidence only; import/review blockers remain.
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed

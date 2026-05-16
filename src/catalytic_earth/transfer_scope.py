@@ -8,7 +8,7 @@ import shlex
 import shutil
 import subprocess
 import time
-from collections import Counter
+from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
@@ -9109,6 +9109,10 @@ def build_external_structural_cluster_index(
             "0",
             "--exact-tmscore",
             "1",
+            "--max-seqs",
+            "100000",
+            "-e",
+            "inf",
             "--threads",
             str(max(1, int(threads))),
             "-v",
@@ -9253,6 +9257,9 @@ def build_external_structural_cluster_index(
             "foldseek_command": foldseek_command_string,
             "foldseek_run_status": foldseek_run_status,
             "foldseek_error": foldseek_error,
+            "foldseek_all_vs_all_reporting_mode": (
+                "exhaustive_tm_align_exact_tmscore_evalue_infinite"
+            ),
             "tm_score_threshold": float(tm_score_threshold),
             "structure_cluster_before_split_assignment": True,
             "nearest_neighbor_cache_required": True,
@@ -9306,6 +9313,324 @@ def build_external_structural_cluster_index(
                 "external structural cluster index is review-only; it stages "
                 "coordinates and nearest-neighbor evidence but does not assign a "
                 "train/test split or authorize import"
+            )
+        ],
+    }
+
+
+def build_external_structural_tm_diverse_split_plan(
+    *,
+    external_structural_cluster_index: dict[str, Any],
+    test_fraction: float = 0.2,
+    tm_score_threshold: float = 0.7,
+    max_rows: int = 30,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Assign a review-only external structural split after cluster indexing.
+
+    The split is cluster-preserving: any candidates connected by a pair at or
+    above the TM threshold stay on the same side of the split. This removes the
+    external structural split-assignment blocker without making any row
+    countable or import-ready.
+    """
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+    if not (0.0 < test_fraction < 1.0):
+        raise ValueError("test_fraction must be between 0 and 1")
+    if tm_score_threshold <= 0:
+        raise ValueError("tm_score_threshold must be positive")
+
+    source_rows = [
+        dict(row)
+        for row in external_structural_cluster_index.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ][:max_rows]
+    source_metadata = external_structural_cluster_index.get("metadata", {}) or {}
+    all_vs_all_pair_cache_complete = bool(
+        source_metadata.get("all_vs_all_pair_cache_complete")
+    )
+
+    terminal_priority = {
+        "deferred_requires_human_expert": 0,
+        "not_recorded": 1,
+        "rejected_active_site_evidence_missing": 2,
+        "rejected_mechanism_mismatch": 3,
+        "rejected_representation_conflict": 4,
+        "rejected_factory_gate_failure": 5,
+        "rejected_duplicate_or_near_duplicate": 6,
+    }
+
+    row_order_by_accession = {
+        str(row["accession"]): index for index, row in enumerate(source_rows)
+    }
+    clusters_by_id: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in source_rows:
+        cluster_id = str(row.get("tm_cluster_id") or f"external_tm_cluster:{row['accession']}")
+        row["tm_cluster_id"] = cluster_id
+        clusters_by_id[cluster_id].append(row)
+
+    def _cluster_priority(cluster_rows: list[dict[str, Any]], lane_id: str | None = None) -> tuple[Any, ...]:
+        scoped_rows = [
+            row
+            for row in cluster_rows
+            if lane_id is None or str(row.get("lane_id")) == lane_id
+        ]
+        if not scoped_rows:
+            scoped_rows = cluster_rows
+        best_terminal_priority = min(
+            terminal_priority.get(
+                str(row.get("terminal_status_from_pilot") or "not_recorded"), 7
+            )
+            for row in scoped_rows
+        )
+        best_rank = min(
+            int(row.get("rank") or 1_000_000)
+            for row in scoped_rows
+        )
+        best_order = min(
+            row_order_by_accession.get(str(row.get("accession")), 1_000_000)
+            for row in scoped_rows
+        )
+        return (len(cluster_rows), best_terminal_priority, best_rank, best_order)
+
+    selected_test_clusters: set[str] = set()
+    lane_ids = sorted({str(row.get("lane_id") or "unassigned") for row in source_rows})
+    target_test_count = max(1, int(round(len(source_rows) * test_fraction))) if source_rows else 0
+
+    # Keep the first split lane-balanced before filling by global priority.
+    for lane_id in lane_ids:
+        candidate_cluster_ids = [
+            cluster_id
+            for cluster_id, cluster_rows in clusters_by_id.items()
+            if cluster_id not in selected_test_clusters
+            and any(str(row.get("lane_id") or "unassigned") == lane_id for row in cluster_rows)
+        ]
+        if not candidate_cluster_ids:
+            continue
+        selected_test_clusters.add(
+            min(
+                candidate_cluster_ids,
+                key=lambda cluster_id: (
+                    _cluster_priority(clusters_by_id[cluster_id], lane_id),
+                    cluster_id,
+                ),
+            )
+        )
+
+    def _selected_test_count() -> int:
+        return sum(
+            len(cluster_rows)
+            for cluster_id, cluster_rows in clusters_by_id.items()
+            if cluster_id in selected_test_clusters
+        )
+
+    while _selected_test_count() < target_test_count:
+        remaining_cluster_ids = [
+            cluster_id
+            for cluster_id in clusters_by_id
+            if cluster_id not in selected_test_clusters
+        ]
+        if not remaining_cluster_ids:
+            break
+        selected_test_clusters.add(
+            min(
+                remaining_cluster_ids,
+                key=lambda cluster_id: (
+                    _cluster_priority(clusters_by_id[cluster_id]),
+                    cluster_id,
+                ),
+            )
+        )
+
+    split_by_accession: dict[str, str] = {}
+    row_outputs: list[dict[str, Any]] = []
+    for row in source_rows:
+        accession = str(row["accession"])
+        cluster_id = str(row["tm_cluster_id"])
+        split_assignment = (
+            "test_structural_holdout"
+            if cluster_id in selected_test_clusters
+            else "train_structural_context"
+        )
+        split_by_accession[accession] = split_assignment
+        row_outputs.append(
+            {
+                "accession": accession,
+                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": row.get("lane_id"),
+                "tm_cluster_id": cluster_id,
+                "split_assignment": split_assignment,
+                "split_assignment_status": (
+                    "assigned_cluster_preserving_review_only"
+                    if all_vs_all_pair_cache_complete
+                    else "not_claimed_all_vs_all_pair_cache_incomplete"
+                ),
+                "terminal_status_from_pilot": row.get("terminal_status_from_pilot"),
+                "structural_neighbor_cache_status": row.get(
+                    "structural_neighbor_cache_status"
+                ),
+                "nearest_neighbor": row.get("nearest_neighbor"),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    cross_split_pairs: list[dict[str, Any]] = []
+    threshold_violating_pairs: list[dict[str, Any]] = []
+    for pair in external_structural_cluster_index.get("pairs", []) or []:
+        if not isinstance(pair, dict):
+            continue
+        left = _normalize_accession(pair.get("left_accession"))
+        right = _normalize_accession(pair.get("right_accession"))
+        if not left or not right:
+            continue
+        left_split = split_by_accession.get(left)
+        right_split = split_by_accession.get(right)
+        if not left_split or not right_split or left_split == right_split:
+            continue
+        pair_score = float(pair.get("max_pair_tm_score") or 0.0)
+        cross_pair = {
+            "left_accession": left,
+            "right_accession": right,
+            "left_split_assignment": left_split,
+            "right_split_assignment": right_split,
+            "max_pair_tm_score": pair_score,
+            "qtmscore": pair.get("qtmscore"),
+            "ttmscore": pair.get("ttmscore"),
+            "alntmscore": pair.get("alntmscore"),
+        }
+        cross_split_pairs.append(cross_pair)
+        if pair_score >= tm_score_threshold:
+            threshold_violating_pairs.append(cross_pair)
+
+    cross_split_pairs.sort(
+        key=lambda pair: (
+            -float(pair.get("max_pair_tm_score") or 0.0),
+            str(pair["left_accession"]),
+            str(pair["right_accession"]),
+        )
+    )
+    threshold_violating_pairs.sort(
+        key=lambda pair: (
+            -float(pair.get("max_pair_tm_score") or 0.0),
+            str(pair["left_accession"]),
+            str(pair["right_accession"]),
+        )
+    )
+
+    split_counts = Counter(row["split_assignment"] for row in row_outputs)
+    lane_counts = Counter(str(row.get("lane_id") or "unassigned") for row in row_outputs)
+    test_lane_counts = Counter(
+        str(row.get("lane_id") or "unassigned")
+        for row in row_outputs
+        if row["split_assignment"] == "test_structural_holdout"
+    )
+    train_count = split_counts.get("train_structural_context", 0)
+    test_count = split_counts.get("test_structural_holdout", 0)
+    expected_cross_split_pair_count = train_count * test_count
+    split_target_achieved = (
+        all_vs_all_pair_cache_complete
+        and len(cross_split_pairs) == expected_cross_split_pair_count
+        and not threshold_violating_pairs
+        and bool(row_outputs)
+    )
+
+    blocker_not_removed: list[str] = []
+    if not all_vs_all_pair_cache_complete:
+        blocker_not_removed.append("external_structural_all_vs_all_pair_cache_incomplete")
+    if threshold_violating_pairs:
+        blocker_not_removed.append("external_structural_cross_split_tm_threshold_violation")
+    if not split_target_achieved:
+        blocker_not_removed.append("external_structural_tm_diverse_split_not_assigned")
+
+    return {
+        "metadata": {
+            "method": "external_structural_tm_diverse_split_plan",
+            "blocker_removed": (
+                "external_structural_tm_diverse_split_assigned_for_review_only_all30_surface"
+                if split_target_achieved
+                else "external_structural_tm_diverse_split_assignment_attempted_review_only"
+            ),
+            "blocker_not_removed": blocker_not_removed,
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": str(source_metadata.get("slice_id", "1025")),
+            "surface_scope": source_metadata.get("surface_scope", "broader_external_surface"),
+            "source_external_structural_cluster_index_method": source_metadata.get("method"),
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_row_count": 0,
+            "candidate_count": len(row_outputs),
+            "max_rows": max_rows,
+            "tm_score_threshold": float(tm_score_threshold),
+            "strict_tm_threshold_target": f"<{tm_score_threshold}",
+            "test_fraction_target": float(test_fraction),
+            "split_assignment_status": (
+                "assigned_cluster_preserving_review_only"
+                if split_target_achieved
+                else "not_claimed_review_only"
+            ),
+            "cluster_preserving_assignment": True,
+            "external_structural_split_pairwise_tm_target_achieved": split_target_achieved,
+            "external_structural_tm_diverse_split_claim_permitted": split_target_achieved,
+            "tm_score_split_claim_permitted": split_target_achieved,
+            "full_tm_score_holdout_claim_permitted": False,
+            "full_holdout_claim_limitation": (
+                "review-only external candidate split; labels remain non-countable "
+                "and no import-ready benchmark rows are authorized"
+            ),
+            "all_vs_all_pair_cache_complete": all_vs_all_pair_cache_complete,
+            "unique_unordered_nonself_pair_count": source_metadata.get(
+                "unique_unordered_nonself_pair_count"
+            ),
+            "expected_unique_unordered_nonself_pair_count": source_metadata.get(
+                "expected_unique_unordered_nonself_pair_count"
+            ),
+            "selected_test_cluster_count": len(selected_test_clusters),
+            "train_candidate_count": train_count,
+            "test_candidate_count": test_count,
+            "split_counts": dict(sorted(split_counts.items())),
+            "lane_counts": dict(sorted(lane_counts.items())),
+            "test_lane_counts": dict(sorted(test_lane_counts.items())),
+            "cross_split_pair_count": len(cross_split_pairs),
+            "expected_cross_split_pair_count": expected_cross_split_pair_count,
+            "cross_split_pair_coverage": _safe_ratio(
+                len(cross_split_pairs), expected_cross_split_pair_count
+            ),
+            "max_cross_split_tm_score": max(
+                (float(pair.get("max_pair_tm_score") or 0.0) for pair in cross_split_pairs),
+                default=None,
+            ),
+            "cross_split_high_tm_pair_count": len(threshold_violating_pairs),
+            "source_high_tm_pair_count": source_metadata.get("high_tm_pair_count"),
+            "source_tm_cluster_count": source_metadata.get("tm_cluster_count"),
+            "source_largest_tm_cluster_size": source_metadata.get(
+                "largest_tm_cluster_size"
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": row_outputs,
+        "selected_test_clusters": sorted(
+            [
+                {
+                    "cluster_id": cluster_id,
+                    "accessions": sorted(
+                        str(row["accession"]) for row in clusters_by_id[cluster_id]
+                    ),
+                    "member_count": len(clusters_by_id[cluster_id]),
+                }
+                for cluster_id in selected_test_clusters
+            ],
+            key=lambda cluster: str(cluster["cluster_id"]),
+        ),
+        "cross_split_pairs": cross_split_pairs,
+        "threshold_violating_cross_split_pairs": threshold_violating_pairs,
+        "warnings": [
+            (
+                "external structural split plan is review-only; it verifies "
+                "cluster-preserving pairwise TM separation but does not authorize "
+                "label import or validated enzyme-function claims"
             )
         ],
     }

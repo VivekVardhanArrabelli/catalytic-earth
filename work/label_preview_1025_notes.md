@@ -70,14 +70,18 @@ representation-backend planning/sample, a candidate blocker matrix, lineage-
 checked pilot priority, no-decision pilot review packets, a consolidated
 79-target pilot evidence packet, review-only dossier safeguards, pilot
 active-site evidence decisions, terminal pilot decisions, human/expert review
-queue routing, explicit pilot success criteria, and selected-pilot external
-structural clustering plus all-30 external structural clustering. The
+queue routing, explicit pilot success criteria, selected-pilot external
+structural clustering, all-30 external structural clustering, and a review-only
+all-30 external structural split plan. The
 active-site sourcing resolution finds 0 explicit active-site residue sources in
 the 10 gap rows, the terminal pilot decision artifact records 10 terminal
 statuses with 0 import-ready rows, the external structural cluster index stages
 all 10 selected AlphaFold coordinate sidecars and finds one `TM >=0.7` pair
 (`O95050`/`P51580`), the all-30 external structural cache materializes 30/30
-AlphaFold sidecars and finds 6 high-TM pairs across 26 pre-split clusters, the
+AlphaFold sidecars, covers 435/435 unordered nonself Foldseek pairs, and finds
+6 high-TM pairs across 26 pre-split clusters, the split plan assigns 6 test
+and 24 train rows with max cross-split TM-score `0.6963` and 0 cross-split
+`TM >=0.7` violations, the
 deterministic k-mer baseline flags one representation near-duplicate holdout,
 and the canonical ESM-2 representation sample flags three representation
 near-duplicate holdouts while keeping all rows non-countable.

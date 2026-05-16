@@ -101,11 +101,16 @@ class ExternalStructuralHoldoutArtifactTests(unittest.TestCase):
         self.assertTrue(cluster_metadata["nearest_neighbor_cache_complete"])
         self.assertEqual(cluster_metadata["nearest_neighbor_cache_candidate_count"], 30)
         self.assertGreaterEqual(cluster_metadata["high_tm_pair_count"], 1)
+        self.assertTrue(cluster_metadata["all_vs_all_pair_cache_complete"])
+        self.assertEqual(
+            cluster_metadata["unique_unordered_nonself_pair_count"],
+            cluster_metadata["expected_unique_unordered_nonself_pair_count"],
+        )
         self.assertLess(
             cluster_metadata["tm_cluster_count"],
             cluster_metadata["candidate_count"],
         )
-        self.assertIn(
+        self.assertNotIn(
             "external_structural_all_vs_all_pair_cache_incomplete",
             cluster_metadata["blocker_not_removed"],
         )
@@ -114,6 +119,36 @@ class ExternalStructuralHoldoutArtifactTests(unittest.TestCase):
         self.assertEqual(cluster_metadata["import_ready_row_count"], 0)
         self.assertTrue(
             all(not row["ready_for_label_import"] for row in cluster_index["rows"])
+        )
+
+    def test_external_structural_all30_split_plan_is_cluster_preserving(self) -> None:
+        split_plan = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_structural_tm_diverse_split_plan_1025_all30.json"
+        )
+        metadata = split_plan["metadata"]
+
+        self.assertEqual(
+            metadata["blocker_removed"],
+            "external_structural_tm_diverse_split_assigned_for_review_only_all30_surface",
+        )
+        self.assertTrue(metadata["all_vs_all_pair_cache_complete"])
+        self.assertTrue(metadata["external_structural_split_pairwise_tm_target_achieved"])
+        self.assertTrue(metadata["tm_score_split_claim_permitted"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["candidate_count"], 30)
+        self.assertEqual(metadata["test_candidate_count"], 6)
+        self.assertEqual(metadata["train_candidate_count"], 24)
+        self.assertEqual(metadata["cross_split_pair_count"], 144)
+        self.assertEqual(metadata["expected_cross_split_pair_count"], 144)
+        self.assertEqual(metadata["cross_split_high_tm_pair_count"], 0)
+        self.assertLess(metadata["max_cross_split_tm_score"], 0.7)
+        self.assertEqual(len(metadata["test_lane_counts"]), 6)
+        self.assertFalse(split_plan["threshold_violating_cross_split_pairs"])
+        self.assertTrue(all(not row["ready_for_label_import"] for row in split_plan["rows"]))
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in split_plan["rows"])
         )
 
     def test_current_guidance_does_not_resume_mcsa_strict_tm_repair(self) -> None:

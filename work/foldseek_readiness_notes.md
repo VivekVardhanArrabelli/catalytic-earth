@@ -39,7 +39,13 @@ Current path:
   `artifacts/v3_external_structural_cluster_index_1025_all30.json` expand the
   external structural surface to all 30 current UniProtKB/Swiss-Prot
   candidates. All 30 AlphaFold sidecars are materialized, Foldseek nearest
-  neighbors cover 30/30 candidates, and 6 high-TM pairs form 26 pre-split
-  clusters. This removes the 10-row-only surface blocker, but strict
-  TM-diverse split assignment remains blocked by the incomplete all-vs-all
-  pair cache and by import-review blockers.
+  neighbors cover 30/30 candidates, and the Foldseek all-vs-all cache now
+  covers 435/435 unordered nonself pairs after exhaustive exact TM-align
+  reporting with `-e inf`.
+- `artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json`
+  assigns the first review-only external structural split: 6 test and 24 train
+  candidates, one test row per external lane, 144/144 cross-split pairs
+  checked, max cross-split TM-score `0.6963`, and 0 cross-split pairs at
+  `TM >=0.7`. This removes the structural split-assignment blocker, but import
+  remains blocked by review-only terminal decisions, broader duplicate
+  screening, and label-factory gates.

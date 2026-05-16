@@ -185,9 +185,15 @@ Current review-only external artifacts:
   `artifacts/v3_external_structural_cluster_index_1025_all30.json` now expand
   that structural surface to all 30 current external candidates. The all-30
   cache materializes 30/30 AlphaFold sidecars with 0 fetch failures, completes
-  nearest-neighbor coverage for all 30 rows, and records 6 high-TM pairs across
-  26 pre-split clusters. It remains review-only because the all-vs-all pair
-  cache is incomplete and no strict TM-diverse split has been assigned.
+  nearest-neighbor coverage for all 30 rows, covers 435/435 unordered nonself
+  all-vs-all Foldseek pairs, and records 6 high-TM pairs across 26 pre-split
+  clusters.
+- `artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json`
+  now assigns a review-only cluster-preserving split on the all-30 surface:
+  6 test and 24 train candidates, one test row per external lane, 144/144
+  cross-split pairs checked, max cross-split TM-score `0.6963`, and 0
+  cross-split `TM >=0.7` violations. It remains non-countable and does not
+  authorize label import.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
