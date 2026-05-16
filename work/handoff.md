@@ -71,6 +71,34 @@ the override.
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-16T05:47:16Z run after recovering a stale directory
+lock whose recorded PID (`33199`) was no longer alive, confirming the worktree
+was clean, syncing clean `origin/main`, and passing startup gates (`426` unit
+tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. Do not reopen an M-CSA-only tranche without new source-scale
+  evidence.
+- External-source repair/import: No for import and no new countable external
+  labels. Latest pushed state already redirects the next direct work to the
+  external structural pilot; the selected external pilot still has 10
+  review-only candidates, 0 terminal decisions, 0 import-ready rows, 3
+  unresolved active-site-source rows, 10 broader duplicate-screening blockers,
+  3 unresolved representation-control rows, and 10 full-gate blockers.
+- Scientific generalization work: No new M-CSA strict TM-score claim or repair
+  artifact was landed. The current repo state has already adjudicated the
+  native M-CSA strict pairwise-TM repair loop as review-only/non-canonical
+  context with `full_tm_score_holdout_claim_permitted=false`; do not resume
+  round33 or staged index 145 continuation unless the user explicitly reverses
+  that state.
+- SPOF hardening work: No new scientific SPOF hardening was landed in this
+  bounded run. Operationally, the stale lock was recovered only after the
+  recorded PID was dead and the git tree was clean; README, label-factory docs,
+  external-transfer docs, scope, status, and handoff state were checked against
+  latest `origin/main`.
+
 Recorded for the 2026-05-16T05:45:22Z run after syncing clean `origin/main`,
 passing startup gates (`426` unit tests passed and `validate` passed with
 679 curated labels), and final gates (`429` unit tests passed and `validate`
