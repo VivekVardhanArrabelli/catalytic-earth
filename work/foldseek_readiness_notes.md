@@ -30,3 +30,8 @@ Current path:
   split assignment.
 - The review-only external structural path starts at
   `artifacts/v3_external_structural_tm_holdout_path_1025.json`.
+- `artifacts/v3_external_structural_cluster_index_1025.json` now materializes
+  the 10 selected pilot AlphaFold coordinate sidecars, completes Foldseek
+  nearest-neighbor clustering, and finds one `TM >=0.7` external pair
+  (`O95050`/`P51580`) across nine clusters. This is pre-split review evidence
+  only and does not authorize import or countable labels.

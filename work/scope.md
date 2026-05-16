@@ -206,8 +206,13 @@ Current expectation:
   holdouts, 3 are rejected for missing explicit active-site residue evidence,
   and 3 are deferred for human expert adjudication. Those 3 deferred rows are
   now packaged in a review-only human/expert queue with exact unresolved
-  evidence, expert questions, and remaining non-human blockers. It still has 0
-  import-ready rows and 0 countable external labels.
+  evidence, expert questions, and remaining non-human blockers. The external
+  structural path now has a concrete review-only cluster index for the same 10
+  selected rows: all 10 AlphaFold coordinate sidecars are materialized,
+  Foldseek completed, nearest-neighbor coverage is 10/10, and the selected
+  pilot forms nine `TM >=0.7` clusters with only `O95050`/`P51580` grouped. It
+  still has 0 import-ready rows and 0 countable external labels, and no
+  train/test structural split has been assigned.
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed

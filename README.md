@@ -294,6 +294,12 @@ packages those 3 deferred rows (`O14756`, `P34949`, and `Q6NSJ0`) into a
 review-only expert queue with the exact unresolved evidence, expert question,
 and remaining non-human blockers for each row. It authorizes 0 imports and 0
 countable external labels.
+`artifacts/v3_external_structural_cluster_index_1025.json` now starts the
+external structural-diversity path directly: all 10 selected pilot AlphaFold
+coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a
+review-only nearest-neighbor cache, and pre-split clustering at `TM >=0.7`
+finds one high-TM pair (`O95050`/`P51580`) across nine clusters. It assigns no
+train/test split, authorizes 0 imports, and creates 0 countable labels.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
@@ -323,7 +329,7 @@ split is achieved, with 0 held-out out-of-scope false non-abstentions; held-out
 evaluable in-scope top1 accuracy, top3 retained accuracy, and retention are all
 `1.0000`. The artifacts now also expose explicit backend, resolved path,
 cluster-threshold, target-achievement, and limitation metadata aliases for gate
-and review consumers. Full Foldseek/TM-score separation on native M-CSA is now closed/deferred, not an active benchmark target. The preserved descriptive structural evidence is `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json` plus `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`: 672 materializable selected coordinates for 676 materializable evaluated rows, explicit coordinate exclusions for `m_csa:372` and `m_csa:501`, 952,922 mapped Foldseek pair rows, 274,241 train/test rows, max observed train/test TM-score `0.9749`, and 4,715 target-violating train/test rows. `artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json` records `full_tm_score_holdout_claim_permitted=false` and treats strict pairwise `TM <0.7` as an unsatisfiable native M-CSA proxy: M-CSA over-represents common catalytic folds because it is curated for well-characterized catalytic mechanisms, and repeated split-repair/cluster-first rounds added constraints without producing a claimable structural holdout. The noncanonical staged, expanded, query-chunk, query-single, split-repair, split-redesign, and cluster-first round artifacts have been removed and should not be regenerated to force M-CSA below the threshold. The clean MMseqs2 sequence-identity holdout remains valid M-CSA generalization evidence. Future strict TM-diverse holdouts belong on external, fold-diverse structural data with structure clustering before split assignment; `artifacts/v3_external_structural_tm_holdout_path_1025.json` scopes that review-only path for the 10 selected external pilot candidates and authorizes 0 countable/import-ready rows.
+and review consumers. Full Foldseek/TM-score separation on native M-CSA is now closed/deferred, not an active benchmark target. The preserved descriptive structural evidence is `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json` plus `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`: 672 materializable selected coordinates for 676 materializable evaluated rows, explicit coordinate exclusions for `m_csa:372` and `m_csa:501`, 952,922 mapped Foldseek pair rows, 274,241 train/test rows, max observed train/test TM-score `0.9749`, and 4,715 target-violating train/test rows. `artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json` records `full_tm_score_holdout_claim_permitted=false` and treats strict pairwise `TM <0.7` as an unsatisfiable native M-CSA proxy: M-CSA over-represents common catalytic folds because it is curated for well-characterized catalytic mechanisms, and repeated split-repair/cluster-first rounds added constraints without producing a claimable structural holdout. The noncanonical staged, expanded, query-chunk, query-single, split-repair, split-redesign, and cluster-first round artifacts have been removed and should not be regenerated to force M-CSA below the threshold. The clean MMseqs2 sequence-identity holdout remains valid M-CSA generalization evidence. Future strict TM-diverse holdouts belong on external, fold-diverse structural data with structure clustering before split assignment; `artifacts/v3_external_structural_tm_holdout_path_1025.json` scopes that review-only path for the 10 selected external pilot candidates, and `artifacts/v3_external_structural_cluster_index_1025.json` now materializes those coordinates and caches Foldseek nearest-neighbor clusters without assigning a split or authorizing countable/import-ready rows.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
@@ -454,7 +460,11 @@ TM-diverse holdouts should be designed from broader external structural data
 with structure clustering before split assignment; the first review-only path
 artifact is `artifacts/v3_external_structural_tm_holdout_path_1025.json`,
 which covers the 10 selected external pilot rows, requires pre-split structure
-clustering, and creates 0 countable/import-ready rows. External packet
+clustering, and creates 0 countable/import-ready rows. The follow-on
+`artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
+selected AlphaFold coordinate sidecars and records one `TM >=0.7` external
+cluster pair (`O95050`/`P51580`) as review-only nearest-neighbor evidence.
+External packet
 decisions still need active-site sources and broader duplicate-screening
 evidence beyond the bounded current-reference MMseqs2 search. Do not resume
 M-CSA-only count growth or external label import.

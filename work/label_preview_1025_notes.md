@@ -69,10 +69,14 @@ sequence-search export, active-site sourcing export/resolution,
 representation-backend planning/sample, a candidate blocker matrix, lineage-
 checked pilot priority, no-decision pilot review packets, a consolidated
 79-target pilot evidence packet, review-only dossier safeguards, pilot
-active-site evidence decisions, and explicit pilot success criteria. The
+active-site evidence decisions, terminal pilot decisions, human/expert review
+queue routing, explicit pilot success criteria, and selected-pilot external
+structural clustering. The
 active-site sourcing resolution finds 0 explicit active-site residue sources in
-the 10 gap rows, the pilot success artifact records 0 terminal decisions and 0
-import-ready rows, the deterministic k-mer baseline flags one representation
+the 10 gap rows, the terminal pilot decision artifact records 10 terminal
+statuses with 0 import-ready rows, the external structural cluster index stages
+all 10 selected AlphaFold coordinate sidecars and finds one `TM >=0.7` pair
+(`O95050`/`P51580`), the deterministic k-mer baseline flags one representation
 near-duplicate holdout, and the canonical ESM-2 representation sample flags
 three representation near-duplicate holdouts while keeping all rows
 non-countable.

@@ -150,6 +150,7 @@ from .transfer_scope import (
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
+    build_external_structural_cluster_index,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
@@ -2494,6 +2495,35 @@ def cmd_build_external_source_pilot_human_expert_review_queue(
     print(
         "Wrote external source pilot human/expert review queue to "
         f"{args.out} ({queue['metadata']['queued_candidate_count']} queued)"
+    )
+    return 0
+
+
+def cmd_build_external_structural_cluster_index(args: argparse.Namespace) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        ("external_structural_tm_holdout_path", "pilot_terminal_decisions"),
+        blocker_removed=(
+            "external_structure_index_and_nearest_neighbor_cache_for_selected_pilot"
+        ),
+    )
+    index = build_external_structural_cluster_index(
+        external_structural_tm_holdout_path=artifact_payloads[
+            "external_structural_tm_holdout_path"
+        ],
+        pilot_terminal_decisions=artifact_payloads["pilot_terminal_decisions"],
+        coordinate_dir=args.coordinate_dir,
+        foldseek_binary=args.foldseek_binary,
+        tm_score_threshold=args.tm_score_threshold,
+        max_rows=args.max_rows,
+        threads=args.threads,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), index)
+    print(
+        "Wrote external structural cluster index to "
+        f"{args.out} ({index['metadata']['coordinate_materialized_count']} "
+        "coordinates)"
     )
     return 0
 
@@ -6622,6 +6652,47 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_expert_queue.set_defaults(
         func=cmd_build_external_source_pilot_human_expert_review_queue
+    )
+
+    external_structural_cluster = subparsers.add_parser(
+        "build-external-structural-cluster-index",
+        help=(
+            "stage selected external pilot structures and compute a review-only "
+            "Foldseek nearest-neighbor cluster cache before split assignment"
+        ),
+    )
+    external_structural_cluster.add_argument(
+        "--external-structural-tm-holdout-path",
+        default="artifacts/v3_external_structural_tm_holdout_path_1025.json",
+    )
+    external_structural_cluster.add_argument(
+        "--pilot-terminal-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_terminal_decisions_1025.json"
+        ),
+    )
+    external_structural_cluster.add_argument(
+        "--coordinate-dir",
+        default="artifacts/v3_external_structural_coordinates_1025",
+    )
+    external_structural_cluster.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    )
+    external_structural_cluster.add_argument(
+        "--tm-score-threshold",
+        type=float,
+        default=0.7,
+    )
+    external_structural_cluster.add_argument("--threads", type=int, default=1)
+    external_structural_cluster.add_argument("--max-rows", type=int, default=10)
+    external_structural_cluster.add_argument(
+        "--out",
+        default="artifacts/v3_external_structural_cluster_index_1025.json",
+    )
+    external_structural_cluster.set_defaults(
+        func=cmd_build_external_structural_cluster_index
     )
 
     external_transfer_gate = subparsers.add_parser(

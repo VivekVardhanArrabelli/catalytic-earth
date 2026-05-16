@@ -30,6 +30,40 @@ class ExternalStructuralHoldoutArtifactTests(unittest.TestCase):
             7,
         )
 
+    def test_external_structural_cluster_index_records_nearest_neighbor_cache(self) -> None:
+        artifact = _load_json(
+            ROOT / "artifacts" / "v3_external_structural_cluster_index_1025.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "external_structural_cluster_index")
+        self.assertEqual(metadata["candidate_count"], 10)
+        self.assertEqual(metadata["coordinate_materialized_count"], 10)
+        self.assertEqual(metadata["fetch_failure_count"], 0)
+        self.assertEqual(metadata["foldseek_run_status"], "completed")
+        self.assertTrue(metadata["nearest_neighbor_cache_complete"])
+        self.assertEqual(metadata["nearest_neighbor_cache_candidate_count"], 10)
+        self.assertEqual(metadata["nearest_neighbor_cache_candidate_coverage"], 1.0)
+        self.assertTrue(metadata["structure_cluster_before_split_assignment"])
+        self.assertFalse(metadata["tm_score_split_claim_permitted"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertGreaterEqual(metadata["high_tm_pair_count"], 1)
+        self.assertLess(metadata["tm_cluster_count"], metadata["candidate_count"])
+
+        cluster_by_accession = {
+            accession: cluster["cluster_id"]
+            for cluster in artifact["clusters"]
+            for accession in cluster["accessions"]
+        }
+        self.assertEqual(
+            cluster_by_accession["O95050"],
+            cluster_by_accession["P51580"],
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in artifact["rows"])
+        )
+
     def test_current_guidance_does_not_resume_mcsa_strict_tm_repair(self) -> None:
         handoff = (ROOT / "work" / "handoff.md").read_text(encoding="utf-8")
         current_handoff = handoff.split("## Current Handoff", 1)[1].split(

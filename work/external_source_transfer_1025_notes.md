@@ -169,11 +169,18 @@ Current review-only external artifacts:
   measurable pilot success. It requires all 10 selected rows to reach terminal
   decisions with no unresolved process blockers, and requires at least 1
   import-ready row under full gates or a zero-pass result whose failures are
-  evidence-explained rather than process-missing. The current status is
-  `needs_more_work`: 0 terminal decisions, 0 import-ready rows, 0 countable
-  candidates, 3 active-site-source blockers, 10 broader duplicate-screening
-  blockers, 3 representation-control stability-change blockers after
-  adjudication, and 10 full-gate blockers.
+  evidence-explained rather than process-missing.
+- `artifacts/v3_external_source_pilot_terminal_decisions_1025.json` now gives
+  all 10 selected rows a terminal status: 4 rejected duplicate/near-duplicate
+  holdouts, 3 rejected active-site-evidence-missing rows, and 3 rows deferred
+  to human expert review. The 3 deferred rows are routed by
+  `artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`;
+  broader duplicate screening and full factory gates still block import.
+- `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
+  selected AlphaFold coordinate sidecars and completes Foldseek
+  nearest-neighbor clustering before any split assignment. It finds nine
+  clusters at `TM >=0.7`, with only `O95050` and `P51580` grouped, and remains
+  review-only with 0 import-ready rows and 0 countable candidates.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate

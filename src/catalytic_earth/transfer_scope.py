@@ -8779,6 +8779,341 @@ PILOT_SUCCESS_CRITERIA_PROCESS_BLOCKERS = {
 }
 
 
+def build_external_structural_cluster_index(
+    *,
+    external_structural_tm_holdout_path: dict[str, Any],
+    pilot_terminal_decisions: dict[str, Any] | None = None,
+    coordinate_dir: str | Path = "artifacts/v3_external_structural_coordinates_1025",
+    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    tm_score_threshold: float = 0.7,
+    max_rows: int = 10,
+    threads: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+    cif_fetcher: Callable[[str, str], str] | None = None,
+    runner: Callable[[list[str], Path], None] | None = None,
+) -> dict[str, Any]:
+    """Build a review-only structure index and nearest-neighbor cache.
+
+    This is the external structural-diversity path after M-CSA strict-TM
+    adjudication. It materializes selected pilot structures, computes a small
+    Foldseek all-vs-all cache when available, and clusters before any split
+    assignment. It never authorizes import or countable labels.
+    """
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+    if tm_score_threshold <= 0:
+        raise ValueError("tm_score_threshold must be positive")
+
+    fetcher = cif_fetcher or fetch_external_structure_cif
+    coordinate_dir_path = Path(coordinate_dir)
+    coordinate_dir_path.mkdir(parents=True, exist_ok=True)
+
+    path_rows = [
+        row
+        for row in external_structural_tm_holdout_path.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ][:max_rows]
+    terminal_by_accession = _external_first_row_by_accession(
+        pilot_terminal_decisions or {}
+    )
+
+    rows: list[dict[str, Any]] = []
+    fetch_failures: list[dict[str, Any]] = []
+    for path_row in path_rows:
+        accession = _normalize_accession(path_row.get("accession"))
+        structure_source, structure_id = _external_structural_index_choice(path_row)
+        coordinate_path: Path | None = None
+        coordinate_digest: str | None = None
+        coordinate_byte_count: int | None = None
+        coordinate_status = "structure_reference_missing"
+        fetch_error: str | None = None
+        if structure_source and structure_id:
+            coordinate_path = coordinate_dir_path / _external_coordinate_file_name(
+                structure_source, structure_id
+            )
+            try:
+                if coordinate_path.exists():
+                    cif_text = coordinate_path.read_text(encoding="utf-8")
+                    coordinate_status = "coordinate_sidecar_reused"
+                else:
+                    cif_text = fetcher(structure_source, structure_id)
+                    coordinate_path.write_text(str(cif_text), encoding="utf-8")
+                    coordinate_status = "coordinate_sidecar_materialized"
+                coordinate_bytes = str(cif_text).encode("utf-8")
+                coordinate_digest = hashlib.sha256(coordinate_bytes).hexdigest()
+                coordinate_byte_count = len(coordinate_bytes)
+            except Exception as exc:  # pragma: no cover - live-source fallback
+                fetch_error = f"{type(exc).__name__}: {exc}"
+                coordinate_status = "coordinate_fetch_failed"
+                fetch_failures.append(
+                    {
+                        "accession": accession,
+                        "structure_source": structure_source,
+                        "structure_id": structure_id,
+                        "error": fetch_error,
+                    }
+                )
+
+        terminal_row = terminal_by_accession.get(accession, {})
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": f"uniprot:{accession}",
+                "lane_id": path_row.get("lane_id"),
+                "rank": terminal_row.get("rank"),
+                "structure_source": structure_source,
+                "structure_id": structure_id,
+                "coordinate_path": str(coordinate_path) if coordinate_path else None,
+                "coordinate_digest_sha256": coordinate_digest,
+                "coordinate_byte_count": coordinate_byte_count,
+                "coordinate_status": coordinate_status,
+                "fetch_error": fetch_error,
+                "pdb_reference_count": path_row.get("pdb_reference_count", 0),
+                "pdb_reference_examples": path_row.get("pdb_reference_examples", []),
+                "terminal_status_from_pilot": terminal_row.get("terminal_status"),
+                "structural_neighbor_cache_status": "not_computed",
+                "nearest_neighbor": None,
+                "tm_cluster_id": None,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    materialized_rows = [
+        row
+        for row in rows
+        if row.get("coordinate_path")
+        and row.get("coordinate_digest_sha256")
+        and row.get("coordinate_status")
+        in {"coordinate_sidecar_materialized", "coordinate_sidecar_reused"}
+    ]
+    foldseek_info = _external_foldseek_binary_info(foldseek_binary)
+    foldseek_run_status = "not_run"
+    foldseek_error: str | None = None
+    foldseek_command: list[str] | None = None
+    foldseek_command_string: str | None = None
+    parsed_pair_rows: list[dict[str, Any]] = []
+    unordered_pairs: list[dict[str, Any]] = []
+    if not foldseek_info["available"]:
+        foldseek_run_status = "foldseek_unavailable"
+    elif len(materialized_rows) < 2:
+        foldseek_run_status = "insufficient_materialized_coordinates"
+    else:
+        coordinate_digest = hashlib.sha256(
+            "\n".join(
+                sorted(str(row["coordinate_digest_sha256"]) for row in materialized_rows)
+            ).encode("utf-8")
+        ).hexdigest()[:16]
+        workdir = Path("/private/tmp") / (
+            f"catalytic-earth-external-structural-{coordinate_digest}"
+        )
+        if workdir.exists():
+            shutil.rmtree(workdir)
+        workdir.mkdir(parents=True, exist_ok=True)
+        result_tsv = workdir / "external_structural_tm_scores.tsv"
+        tmpdir = workdir / "tmp"
+        search_coordinate_dir = workdir / "selected_coordinates"
+        search_coordinate_dir.mkdir(parents=True, exist_ok=True)
+        for row in materialized_rows:
+            source_path = Path(str(row["coordinate_path"]))
+            target_path = search_coordinate_dir / source_path.name
+            try:
+                target_path.symlink_to(source_path.resolve())
+            except OSError:
+                shutil.copy2(source_path, target_path)
+        foldseek_command = [
+            str(foldseek_info["resolved"] or foldseek_binary),
+            "easy-search",
+            str(search_coordinate_dir),
+            str(search_coordinate_dir),
+            str(result_tsv),
+            str(tmpdir),
+            "--format-output",
+            "query,target,qtmscore,ttmscore,alntmscore",
+            "--exhaustive-search",
+            "1",
+            "--alignment-type",
+            "1",
+            "--tmalign-fast",
+            "0",
+            "--exact-tmscore",
+            "1",
+            "--threads",
+            str(max(1, int(threads))),
+            "-v",
+            "1",
+        ]
+        foldseek_command_string = " ".join(shlex.quote(part) for part in foldseek_command)
+        try:
+            if runner is None:
+                _external_run_backend_command(foldseek_command, cwd=workdir)
+            else:
+                runner(foldseek_command, workdir)
+            alias_to_accession = _external_coordinate_aliases(materialized_rows)
+            parsed_pair_rows = _parse_external_foldseek_pairs(
+                result_tsv=result_tsv,
+                alias_to_accession=alias_to_accession,
+            )
+            unordered_pairs = _external_unordered_tm_pairs(parsed_pair_rows)
+            foldseek_run_status = "completed"
+        except (OSError, RuntimeError, ValueError) as exc:
+            foldseek_run_status = "foldseek_run_failed"
+            foldseek_error = f"{type(exc).__name__}: {exc}"
+
+    expected_unordered_pair_count = (
+        len(materialized_rows) * (len(materialized_rows) - 1) // 2
+    )
+    nearest_by_accession = _external_nearest_tm_neighbors(unordered_pairs)
+    clusters = _external_tm_clusters(
+        [str(row["accession"]) for row in materialized_rows],
+        unordered_pairs,
+        threshold=tm_score_threshold,
+    )
+    cluster_by_accession = {
+        accession: cluster["cluster_id"]
+        for cluster in clusters
+        for accession in cluster["accessions"]
+    }
+    high_tm_pair_count = sum(
+        1
+        for pair in unordered_pairs
+        if float(pair.get("max_pair_tm_score") or 0.0) >= tm_score_threshold
+    )
+    for row in rows:
+        accession = str(row["accession"])
+        nearest = nearest_by_accession.get(accession)
+        row["nearest_neighbor"] = nearest
+        row["tm_cluster_id"] = cluster_by_accession.get(accession)
+        if row not in materialized_rows:
+            row["structural_neighbor_cache_status"] = "coordinate_not_materialized"
+        elif foldseek_run_status != "completed":
+            row["structural_neighbor_cache_status"] = foldseek_run_status
+        elif nearest and float(nearest.get("tm_score") or 0.0) >= tm_score_threshold:
+            row["structural_neighbor_cache_status"] = (
+                "external_structural_cluster_neighbor_at_or_above_threshold"
+            )
+        else:
+            row["structural_neighbor_cache_status"] = (
+                "no_external_structural_neighbor_above_threshold"
+            )
+
+    nearest_neighbor_cache_complete = (
+        foldseek_run_status == "completed"
+        and len(nearest_by_accession) == len(materialized_rows)
+    )
+    all_vs_all_pair_cache_complete = (
+        foldseek_run_status == "completed"
+        and len(unordered_pairs) == expected_unordered_pair_count
+    )
+    terminal_counts = Counter(
+        str(row.get("terminal_status_from_pilot") or "not_recorded") for row in rows
+    )
+    cache_status_counts = Counter(
+        str(row.get("structural_neighbor_cache_status")) for row in rows
+    )
+    return {
+        "metadata": {
+            "method": "external_structural_cluster_index",
+            "blocker_removed": (
+                "external_structure_index_and_nearest_neighbor_cache_for_selected_pilot"
+            ),
+            "blocker_not_removed": [
+                "external_structural_tm_diverse_split_not_assigned",
+                "broader_external_fold_diverse_candidate_surface_not_expanded",
+            ],
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": str(
+                external_structural_tm_holdout_path.get("metadata", {}).get(
+                    "slice_id", "1025"
+                )
+            ),
+            "source_external_structural_tm_holdout_path_method": (
+                external_structural_tm_holdout_path.get("metadata", {}).get("method")
+            ),
+            "source_pilot_terminal_decisions_method": (
+                (pilot_terminal_decisions or {}).get("metadata", {}).get("method")
+            ),
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_row_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "terminal_status_counts": dict(sorted(terminal_counts.items())),
+            "coordinate_directory": str(coordinate_dir_path),
+            "structure_reference_candidate_count": sum(
+                1 for row in rows if row.get("structure_source") and row.get("structure_id")
+            ),
+            "coordinate_materialized_count": len(materialized_rows),
+            "fetch_failure_count": len(fetch_failures),
+            "fetch_failures": fetch_failures,
+            "foldseek_binary_requested": foldseek_info["requested"],
+            "foldseek_binary_resolved": foldseek_info["resolved"],
+            "foldseek_binary_available": foldseek_info["available"],
+            "foldseek_version": foldseek_info["version"],
+            "foldseek_command": foldseek_command_string,
+            "foldseek_run_status": foldseek_run_status,
+            "foldseek_error": foldseek_error,
+            "tm_score_threshold": float(tm_score_threshold),
+            "structure_cluster_before_split_assignment": True,
+            "nearest_neighbor_cache_required": True,
+            "nearest_neighbor_cache_complete": nearest_neighbor_cache_complete,
+            "nearest_neighbor_cache_candidate_count": len(nearest_by_accession),
+            "nearest_neighbor_cache_candidate_coverage": _safe_ratio(
+                len(nearest_by_accession), len(materialized_rows)
+            ),
+            "all_vs_all_pair_cache_complete": all_vs_all_pair_cache_complete,
+            "tm_score_split_claim_permitted": False,
+            "full_tm_score_holdout_claim_permitted": False,
+            "external_structural_split_assignment_status": (
+                "not_assigned_cluster_index_only"
+            ),
+            "foldseek_pair_row_count": len(parsed_pair_rows),
+            "unique_unordered_nonself_pair_count": len(unordered_pairs),
+            "expected_unique_unordered_nonself_pair_count": expected_unordered_pair_count,
+            "unique_unordered_pair_coverage": _safe_ratio(
+                len(unordered_pairs), expected_unordered_pair_count
+            ),
+            "high_tm_pair_count": high_tm_pair_count,
+            "candidate_with_high_tm_neighbor_count": sum(
+                1
+                for nearest in nearest_by_accession.values()
+                if float(nearest.get("tm_score") or 0.0) >= tm_score_threshold
+            ),
+            "tm_cluster_count": len(clusters),
+            "tm_singleton_cluster_count": sum(
+                1 for cluster in clusters if len(cluster["accessions"]) == 1
+            ),
+            "largest_tm_cluster_size": max(
+                (len(cluster["accessions"]) for cluster in clusters), default=0
+            ),
+            "structural_neighbor_cache_status_counts": dict(
+                sorted(cache_status_counts.items())
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "pairs": sorted(
+            unordered_pairs,
+            key=lambda pair: (
+                -float(pair.get("max_pair_tm_score") or 0.0),
+                pair["left_accession"],
+                pair["right_accession"],
+            ),
+        ),
+        "clusters": clusters,
+        "warnings": [
+            (
+                "external structural cluster index is review-only; it stages "
+                "coordinates and nearest-neighbor evidence but does not assign a "
+                "train/test split or authorize import"
+            )
+        ],
+    }
+
+
 def build_external_source_pilot_success_criteria(
     *,
     pilot_candidate_priority: dict[str, Any],
@@ -13095,6 +13430,268 @@ def fetch_external_structure_cif(structure_source: str, structure_id: str) -> st
     if structure_source == "pdb":
         return fetch_pdb_cif(structure_id)
     raise ValueError(f"unsupported structure source: {structure_source}")
+
+
+def _external_structural_index_choice(
+    row: dict[str, Any],
+) -> tuple[str | None, str | None]:
+    alphafold_ids = [
+        _normalize_alphafold_model_accession(item)
+        for item in row.get("alphafold_ids", []) or row.get("alphafold_ids_sample", [])
+        if _normalize_alphafold_model_accession(item)
+    ]
+    if alphafold_ids:
+        return "alphafold", alphafold_ids[0]
+    pdb_ids = [
+        str(item).strip().upper()
+        for item in (
+            row.get("pdb_reference_examples", []) or row.get("pdb_ids_sample", [])
+        )
+        if str(item).strip()
+    ]
+    if pdb_ids:
+        return "pdb", pdb_ids[0]
+    return None, None
+
+
+def _external_coordinate_file_name(structure_source: str, structure_id: str) -> str:
+    source_prefix = "afdb" if structure_source == "alphafold" else "pdb"
+    safe_id = re.sub(r"[^A-Za-z0-9_.-]+", "_", str(structure_id).strip())
+    return f"{source_prefix}_{safe_id}.cif"
+
+
+def _external_foldseek_binary_info(foldseek_binary: str) -> dict[str, Any]:
+    requested = str(foldseek_binary)
+    requested_path = Path(requested)
+    resolved = (
+        str(requested_path)
+        if requested_path.exists()
+        else shutil.which(requested)
+    )
+    info: dict[str, Any] = {
+        "requested": requested,
+        "resolved": resolved,
+        "available": bool(resolved),
+        "version": None,
+    }
+    if not resolved:
+        return info
+    try:
+        result = subprocess.run(
+            [resolved, "version"],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=20,
+        )
+        info["version"] = (result.stdout or result.stderr).strip().splitlines()[0]
+    except Exception as exc:  # pragma: no cover - backend-specific fallback
+        info["version"] = f"version_unavailable:{type(exc).__name__}"
+    return info
+
+
+def _external_run_backend_command(command: list[str], *, cwd: Path) -> None:
+    result = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+    if result.returncode != 0:
+        stderr = (result.stderr or result.stdout or "").strip()
+        raise RuntimeError(stderr or f"backend command failed: {command[0]}")
+
+
+def _external_coordinate_aliases(
+    materialized_rows: list[dict[str, Any]],
+) -> dict[str, str]:
+    aliases: dict[str, str] = {}
+    for row in materialized_rows:
+        accession = str(row["accession"])
+        structure_id = str(row.get("structure_id") or accession)
+        path = Path(str(row["coordinate_path"]))
+        raw_aliases = {
+            accession,
+            structure_id,
+            path.name,
+            path.stem,
+            str(path),
+            f"afdb_{structure_id}",
+            f"pdb_{structure_id}",
+            f"AF-{structure_id}-F1-model_v6",
+        }
+        for alias in raw_aliases:
+            if alias:
+                aliases[str(alias)] = accession
+    return aliases
+
+
+def _external_foldseek_name_candidates(raw_name: str) -> list[str]:
+    text = str(raw_name or "").strip()
+    if not text:
+        return []
+    path = Path(text)
+    candidates = [text, path.name, path.stem]
+    if "." in path.name:
+        candidates.append(path.name.rsplit(".", 1)[0])
+    if "_" in path.stem:
+        parts = path.stem.split("_")
+        if len(parts) > 1:
+            candidates.append("_".join(parts[:-1]))
+    return list(dict.fromkeys(candidate for candidate in candidates if candidate))
+
+
+def _parse_external_foldseek_pairs(
+    *,
+    result_tsv: Path,
+    alias_to_accession: dict[str, str],
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    if not result_tsv.exists():
+        raise ValueError(f"Foldseek result TSV does not exist: {result_tsv}")
+    for line in result_tsv.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        parts = line.split("\t")
+        if len(parts) < 5:
+            continue
+        raw_query, raw_target = parts[0], parts[1]
+        query_accession = _external_map_foldseek_name(raw_query, alias_to_accession)
+        target_accession = _external_map_foldseek_name(raw_target, alias_to_accession)
+        qtmscore = _external_parse_float(parts[2])
+        ttmscore = _external_parse_float(parts[3])
+        alntmscore = _external_parse_float(parts[4])
+        score_values = [
+            score
+            for score in (qtmscore, ttmscore, alntmscore)
+            if score is not None
+        ]
+        rows.append(
+            {
+                "raw_query_name": raw_query,
+                "raw_target_name": raw_target,
+                "query_accession": query_accession,
+                "target_accession": target_accession,
+                "qtmscore": qtmscore,
+                "ttmscore": ttmscore,
+                "alntmscore": alntmscore,
+                "max_pair_tm_score": max(score_values) if score_values else None,
+                "mapped": bool(query_accession and target_accession),
+            }
+        )
+    return rows
+
+
+def _external_map_foldseek_name(
+    raw_name: str,
+    alias_to_accession: dict[str, str],
+) -> str | None:
+    for candidate in _external_foldseek_name_candidates(raw_name):
+        if candidate in alias_to_accession:
+            return alias_to_accession[candidate]
+    return None
+
+
+def _external_parse_float(value: Any) -> float | None:
+    try:
+        if value is None or str(value).strip() == "":
+            return None
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _external_unordered_tm_pairs(
+    pair_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    pairs: dict[tuple[str, str], dict[str, Any]] = {}
+    for row in pair_rows:
+        query = row.get("query_accession")
+        target = row.get("target_accession")
+        if not query or not target or query == target:
+            continue
+        score = _external_parse_float(row.get("max_pair_tm_score"))
+        if score is None:
+            continue
+        left, right = sorted((str(query), str(target)))
+        key = (left, right)
+        current = pairs.get(key)
+        if current is None or score > float(current.get("max_pair_tm_score") or 0.0):
+            pairs[key] = {
+                "left_accession": left,
+                "right_accession": right,
+                "max_pair_tm_score": round(score, 4),
+                "qtmscore": row.get("qtmscore"),
+                "ttmscore": row.get("ttmscore"),
+                "alntmscore": row.get("alntmscore"),
+                "raw_query_name": row.get("raw_query_name"),
+                "raw_target_name": row.get("raw_target_name"),
+            }
+    return list(pairs.values())
+
+
+def _external_nearest_tm_neighbors(
+    unordered_pairs: list[dict[str, Any]],
+) -> dict[str, dict[str, Any]]:
+    nearest: dict[str, dict[str, Any]] = {}
+    for pair in unordered_pairs:
+        left = str(pair["left_accession"])
+        right = str(pair["right_accession"])
+        score = float(pair.get("max_pair_tm_score") or 0.0)
+        for accession, neighbor in ((left, right), (right, left)):
+            current = nearest.get(accession)
+            if current is None or score > float(current.get("tm_score") or 0.0):
+                nearest[accession] = {
+                    "accession": neighbor,
+                    "tm_score": round(score, 4),
+                }
+    return nearest
+
+
+def _external_tm_clusters(
+    accessions: list[str],
+    unordered_pairs: list[dict[str, Any]],
+    *,
+    threshold: float,
+) -> list[dict[str, Any]]:
+    parent = {accession: accession for accession in accessions}
+
+    def find(accession: str) -> str:
+        while parent[accession] != accession:
+            parent[accession] = parent[parent[accession]]
+            accession = parent[accession]
+        return accession
+
+    def union(left: str, right: str) -> None:
+        left_root = find(left)
+        right_root = find(right)
+        if left_root != right_root:
+            parent[max(left_root, right_root)] = min(left_root, right_root)
+
+    for pair in unordered_pairs:
+        if float(pair.get("max_pair_tm_score") or 0.0) >= threshold:
+            union(str(pair["left_accession"]), str(pair["right_accession"]))
+
+    members_by_root: dict[str, list[str]] = {}
+    for accession in accessions:
+        members_by_root.setdefault(find(accession), []).append(accession)
+
+    clusters = []
+    for index, (_, members) in enumerate(
+        sorted(members_by_root.items(), key=lambda item: (item[1][0], item[0])),
+        start=1,
+    ):
+        sorted_members = sorted(members)
+        clusters.append(
+            {
+                "cluster_id": f"external_tm_cluster:{index:03d}",
+                "accessions": sorted_members,
+                "member_count": len(sorted_members),
+                "threshold_rule": f"connected_components_at_tm_score_ge_{threshold:.1f}",
+            }
+        )
+    return clusters
+
+
+def _safe_ratio(numerator: int, denominator: int) -> float | None:
+    if denominator <= 0:
+        return None
+    return round(float(numerator) / float(denominator), 4)
 
 
 def _external_structure_choice(row: dict[str, Any]) -> tuple[str | None, str | None]:

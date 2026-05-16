@@ -63,6 +63,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
+    build_external_structural_cluster_index,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
@@ -7056,6 +7057,114 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_structural_cluster_index_materializes_and_clusters(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            coordinate_dir = Path(tmpdir) / "coords"
+
+            def fake_fetcher(structure_source: str, structure_id: str) -> str:
+                return f"data_{structure_source}_{structure_id}"
+
+            def fake_runner(command: list[str], workdir: Path) -> None:
+                result_tsv = Path(command[4])
+                result_tsv.write_text(
+                    "\n".join(
+                        [
+                            "afdb_P12345\tafdb_P12345\t1.0\t1.0\t1.0",
+                            "afdb_P12345\tafdb_P67890\t0.82\t0.81\t0.80",
+                            "afdb_P67890\tafdb_P12345\t0.81\t0.82\t0.80",
+                            "afdb_P12345\tafdb_P11111\t0.40\t0.39\t0.38",
+                            "afdb_P67890\tafdb_P11111\t0.44\t0.43\t0.42",
+                        ]
+                    )
+                    + "\n",
+                    encoding="utf-8",
+                )
+
+            index = build_external_structural_cluster_index(
+                external_structural_tm_holdout_path={
+                    "metadata": {
+                        "method": "external_structural_tm_holdout_path",
+                        "slice_id": "1025",
+                    },
+                    "rows": [
+                        {
+                            "accession": "P12345",
+                            "lane_id": "external_source:lyase",
+                            "alphafold_ids": ["P12345"],
+                            "pdb_reference_count": 0,
+                            "pdb_reference_examples": [],
+                        },
+                        {
+                            "accession": "P67890",
+                            "lane_id": "external_source:lyase",
+                            "alphafold_ids": ["P67890"],
+                            "pdb_reference_count": 1,
+                            "pdb_reference_examples": ["1ABC"],
+                        },
+                        {
+                            "accession": "P11111",
+                            "lane_id": "external_source:transferase",
+                            "alphafold_ids": ["P11111"],
+                            "pdb_reference_count": 0,
+                            "pdb_reference_examples": [],
+                        },
+                    ],
+                },
+                pilot_terminal_decisions={
+                    "metadata": {"method": "external_source_pilot_terminal_decisions"},
+                    "rows": [
+                        {
+                            "accession": "P12345",
+                            "rank": 1,
+                            "terminal_status": "deferred_requires_human_expert",
+                        },
+                        {
+                            "accession": "P67890",
+                            "rank": 2,
+                            "terminal_status": "rejected_duplicate_or_near_duplicate",
+                        },
+                    ],
+                },
+                coordinate_dir=coordinate_dir,
+                foldseek_binary=sys.executable,
+                cif_fetcher=fake_fetcher,
+                runner=fake_runner,
+                max_rows=3,
+                artifact_lineage={
+                    "method": "external_transfer_artifact_path_lineage_validation",
+                    "slice_id": 1025,
+                    "guardrail_clean": True,
+                },
+            )
+
+        metadata = index["metadata"]
+        self.assertEqual(metadata["method"], "external_structural_cluster_index")
+        self.assertEqual(
+            metadata["blocker_removed"],
+            "external_structure_index_and_nearest_neighbor_cache_for_selected_pilot",
+        )
+        self.assertEqual(metadata["candidate_count"], 3)
+        self.assertEqual(metadata["coordinate_materialized_count"], 3)
+        self.assertEqual(metadata["foldseek_run_status"], "completed")
+        self.assertTrue(metadata["nearest_neighbor_cache_complete"])
+        self.assertEqual(metadata["high_tm_pair_count"], 1)
+        self.assertEqual(metadata["tm_cluster_count"], 2)
+        self.assertFalse(metadata["tm_score_split_claim_permitted"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        clustered = {
+            row["accession"]: row["tm_cluster_id"] for row in index["rows"]
+        }
+        self.assertEqual(clustered["P12345"], clustered["P67890"])
+        self.assertNotEqual(clustered["P12345"], clustered["P11111"])
+        self.assertEqual(
+            index["rows"][0]["structural_neighbor_cache_status"],
+            "external_structural_cluster_neighbor_at_or_above_threshold",
+        )
+        self.assertTrue(all(not row["ready_for_label_import"] for row in index["rows"]))
 
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
         self,

@@ -790,6 +790,7 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_pilot_review_decision_export_1025.json`,
   `artifacts/v3_external_source_pilot_terminal_decisions_1025.json`,
   `artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`,
+  `artifacts/v3_external_structural_cluster_index_1025.json`,
   `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
@@ -802,7 +803,9 @@ Current 1,025-preview state:
   all 12 heuristic-ready controls onto AlphaFold structures, preserve a
   deterministic k-mer representation baseline, compute a canonical 12-row ESM-2
   representation sample with three representation near-duplicate holdouts and
-  12 learned-vs-heuristic disagreements, and must not be imported as labels.
+  12 learned-vs-heuristic disagreements, stage all 10 selected pilot AlphaFold
+  coordinate sidecars for review-only Foldseek nearest-neighbor clustering, and
+  must not be imported as labels.
   The heuristic-control audit records a 9/12
   metal-hydrolase top1 collapse and 9 scope/top1 mismatches as review-only
   failure modes rather than countable evidence. The repair plan creates 25

@@ -412,6 +412,9 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_human_expert_review_queue_1025.json"
         )
+        external_structural_cluster_index = _load_json(
+            ROOT / "artifacts" / "v3_external_structural_cluster_index_1025.json"
+        )
         external_import_safety = _load_json(
             ROOT
             / "artifacts"
@@ -1964,6 +1967,45 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 and not row["countable_label_candidate"]
                 and not row["ready_for_label_import"]
                 for row in pilot_human_expert_queue["rows"]
+            )
+        )
+        self.assertEqual(
+            external_structural_cluster_index["metadata"]["method"],
+            "external_structural_cluster_index",
+        )
+        self.assertEqual(
+            external_structural_cluster_index["metadata"]["candidate_count"], 10
+        )
+        self.assertEqual(
+            external_structural_cluster_index["metadata"][
+                "coordinate_materialized_count"
+            ],
+            10,
+        )
+        self.assertEqual(
+            external_structural_cluster_index["metadata"]["foldseek_run_status"],
+            "completed",
+        )
+        self.assertTrue(
+            external_structural_cluster_index["metadata"][
+                "nearest_neighbor_cache_complete"
+            ]
+        )
+        self.assertFalse(
+            external_structural_cluster_index["metadata"][
+                "tm_score_split_claim_permitted"
+            ]
+        )
+        self.assertEqual(
+            external_structural_cluster_index["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertTrue(
+            all(
+                not row["ready_for_label_import"]
+                for row in external_structural_cluster_index["rows"]
             )
         )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])

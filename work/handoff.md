@@ -70,16 +70,44 @@ the 10 selected candidates with exactly one terminal status each: 4
 external labels. The 3 deferred rows are now routed by
 `artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`:
 `O14756`, `P34949`, and `Q6NSJ0` each have a review-only expert question,
-automation limitation, and remaining non-human blockers. Next direct work
-should either prepare actual human/expert review decisions for those packets or
-start the external structural pilot's fold-diverse holdout path from
-`artifacts/v3_external_structural_tm_holdout_path_1025.json`; it covers the
-same 10 selected pilot rows, requires structure clustering before split
-assignment, and keeps 0 countable/import-ready rows. Do not open M-CSA round33,
-staged index 145 continuation, or more partition repair unless the user
-explicitly reverses the override.
+automation limitation, and remaining non-human blockers. The external structural pilot path has now moved from path definition to a concrete
+review-only structure cache in
+`artifacts/v3_external_structural_cluster_index_1025.json`: all 10 selected
+AlphaFold coordinate sidecars are materialized, Foldseek completed, the nearest
+neighbor cache covers 10/10 candidates, and pre-split clustering at `TM >=0.7`
+finds one high-TM pair (`O95050`/`P51580`) across nine clusters. This is not a
+train/test split and keeps 0 countable/import-ready rows. Next direct work
+should either prepare actual human/expert review decisions for `O14756`,
+`P34949`, and `Q6NSJ0`, or expand the external fold-diverse candidate surface
+beyond the 10-row pilot before assigning any strict TM-diverse split. Do not open M-CSA round33, staged index 145 continuation, or more partition repair unless
+the user explicitly reverses the override.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T08:59:00Z run after syncing clean `origin/main`,
+passing startup gates (`350` unit tests passed and `validate` passed with
+679 curated labels), and passing wrap checks (`352` unit tests passed,
+`validate` passed with 679 curated labels, `compileall` passed, and
+`git diff --check` passed):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and no M-CSA strict-TM round, query, split-repair, or partition-repair work
+  was resumed.
+- External-source repair/import: Yes for selected-pilot structure-index
+  readiness, no for import or countable labels. This run added
+  `artifacts/v3_external_structural_cluster_index_1025.json` plus 10
+  AlphaFold coordinate sidecars, with 0 fetch failures, 10/10 nearest-neighbor
+  cache coverage, 1 high-TM pair, and 0 import-ready rows.
+- Scientific generalization work: Yes for external structural diversity
+  groundwork, not for a full split claim. Foldseek completed on the 10 selected
+  external pilot structures, clustering them into nine `TM >=0.7` components;
+  full strict-TM split assignment remains blocked until a broader external
+  fold-diverse candidate surface is available.
+- SPOF hardening work: Yes. A dedicated CLI builder and regression coverage now
+  materialize external coordinate sidecars with digests, validate 1,025
+  lineage, keep the artifact review-only/non-countable, and keep M-CSA
+  strict-TM repair closed.
 
 Recorded for the 2026-05-16T07:57:24Z run after syncing clean `origin/main`,
 passing startup gates (`349` unit tests passed and `validate` passed with
