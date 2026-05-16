@@ -71,15 +71,16 @@ checked pilot priority, no-decision pilot review packets, a consolidated
 79-target pilot evidence packet, review-only dossier safeguards, pilot
 active-site evidence decisions, terminal pilot decisions, human/expert review
 queue routing, explicit pilot success criteria, and selected-pilot external
-structural clustering. The
+structural clustering plus all-30 external structural clustering. The
 active-site sourcing resolution finds 0 explicit active-site residue sources in
 the 10 gap rows, the terminal pilot decision artifact records 10 terminal
 statuses with 0 import-ready rows, the external structural cluster index stages
 all 10 selected AlphaFold coordinate sidecars and finds one `TM >=0.7` pair
-(`O95050`/`P51580`), the deterministic k-mer baseline flags one representation
-near-duplicate holdout, and the canonical ESM-2 representation sample flags
-three representation near-duplicate holdouts while keeping all rows
-non-countable.
+(`O95050`/`P51580`), the all-30 external structural cache materializes 30/30
+AlphaFold sidecars and finds 6 high-TM pairs across 26 pre-split clusters, the
+deterministic k-mer baseline flags one representation near-duplicate holdout,
+and the canonical ESM-2 representation sample flags three representation
+near-duplicate holdouts while keeping all rows non-countable.
 Two sample accessions (`O15527` and `P42126`) overlap existing M-CSA reference
 accessions and are routed to holdout controls. The lane-balance audit is clean:
 six lanes each contribute five candidates, so the initial review sample has not

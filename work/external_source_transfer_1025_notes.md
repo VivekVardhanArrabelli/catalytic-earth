@@ -181,6 +181,13 @@ Current review-only external artifacts:
   nearest-neighbor clustering before any split assignment. It finds nine
   clusters at `TM >=0.7`, with only `O95050` and `P51580` grouped, and remains
   review-only with 0 import-ready rows and 0 countable candidates.
+- `artifacts/v3_external_structural_tm_holdout_path_1025_all30.json` and
+  `artifacts/v3_external_structural_cluster_index_1025_all30.json` now expand
+  that structural surface to all 30 current external candidates. The all-30
+  cache materializes 30/30 AlphaFold sidecars with 0 fetch failures, completes
+  nearest-neighbor coverage for all 30 rows, and records 6 high-TM pairs across
+  26 pre-split clusters. It remains review-only because the all-vs-all pair
+  cache is incomplete and no strict TM-diverse split has been assigned.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate

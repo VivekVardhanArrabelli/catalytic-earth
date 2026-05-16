@@ -8779,6 +8779,176 @@ PILOT_SUCCESS_CRITERIA_PROCESS_BLOCKERS = {
 }
 
 
+def build_external_structural_tm_holdout_path(
+    *,
+    candidate_manifest: dict[str, Any],
+    pilot_candidate_priority: dict[str, Any] | None = None,
+    max_rows: int = 30,
+    selected_pilot_only: bool = False,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Scope external structures before any strict TM-diverse split assignment.
+
+    The output is a review-only candidate surface. It exists to move strict
+    structural diversity work onto external Swiss-Prot/AFDB-style rows after
+    the native M-CSA TM target was adjudicated closed.
+    """
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    manifest_rows = [
+        row
+        for row in candidate_manifest.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ]
+    manifest_by_accession = {
+        _normalize_accession(row.get("accession")): row for row in manifest_rows
+    }
+    priority_rows = [
+        row
+        for row in (pilot_candidate_priority or {}).get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ]
+    selected_accessions = [
+        _normalize_accession(row.get("accession"))
+        for row in priority_rows
+        if row.get("pilot_selection_status") == "selected_for_review_pilot"
+    ]
+    selected_accession_set = set(selected_accessions)
+
+    if selected_pilot_only:
+        source_rows = [
+            manifest_by_accession[accession]
+            for accession in selected_accessions
+            if accession in manifest_by_accession
+        ]
+    else:
+        source_rows = manifest_rows
+    source_rows = source_rows[:max_rows]
+
+    rows: list[dict[str, Any]] = []
+    for manifest_row in source_rows:
+        accession = _normalize_accession(manifest_row.get("accession"))
+        alphafold_ids = [
+            _normalize_alphafold_model_accession(item)
+            for item in manifest_row.get("alphafold_ids", []) or []
+            if _normalize_alphafold_model_accession(item)
+        ]
+        pdb_ids = [
+            str(item).strip().upper()
+            for item in manifest_row.get("pdb_ids", []) or []
+            if str(item).strip()
+        ]
+        has_structure_reference = bool(alphafold_ids or pdb_ids)
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": f"uniprot:{accession}",
+                "lane_id": manifest_row.get("lane_id"),
+                "scope_signal": manifest_row.get("scope_signal"),
+                "protein_name": manifest_row.get("protein_name"),
+                "alphafold_ids": alphafold_ids,
+                "pdb_reference_count": len(pdb_ids),
+                "pdb_reference_examples": pdb_ids[:5],
+                "structure_reference_status": (
+                    "pdb_or_alphafold_reference_present"
+                    if has_structure_reference
+                    else "structure_reference_missing"
+                ),
+                "structural_holdout_status": (
+                    "ready_for_external_structure_indexing"
+                    if has_structure_reference
+                    else "blocked_by_missing_structure_reference"
+                ),
+                "selected_pilot_status": (
+                    "selected_for_review_pilot"
+                    if accession in selected_accession_set
+                    else "broader_external_candidate_surface"
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    lane_counts = Counter(str(row.get("lane_id") or "unknown") for row in rows)
+    selected_row_count = sum(
+        1 for row in rows if row["selected_pilot_status"] == "selected_for_review_pilot"
+    )
+    structure_reference_count = sum(
+        1 for row in rows if row["structure_reference_status"] != "structure_reference_missing"
+    )
+    scope = "selected_pilot" if selected_pilot_only else "broader_external_surface"
+    blocker_removed = (
+        "external_tm_diverse_holdout_path_defined_after_mcsa_adjudication"
+        if selected_pilot_only
+        else "broader_external_fold_diverse_candidate_surface_expanded_for_structure_clustering"
+    )
+    blocker_not_removed = [
+        "external_structural_cluster_index_not_built",
+        "external_structural_tm_diverse_split_not_assigned",
+    ]
+    if selected_pilot_only:
+        blocker_not_removed.append("broader_external_fold_diverse_candidate_surface_not_expanded")
+    return {
+        "metadata": {
+            "method": "external_structural_tm_holdout_path",
+            "blocker_removed": blocker_removed,
+            "blocker_not_removed": blocker_not_removed,
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": str(
+                candidate_manifest.get("metadata", {}).get("slice_id", "1025")
+            ),
+            "surface_scope": scope,
+            "source_candidate_manifest_method": candidate_manifest.get(
+                "metadata", {}
+            ).get("method"),
+            "source_pilot_candidate_priority_method": (
+                (pilot_candidate_priority or {}).get("metadata", {}).get("method")
+            ),
+            "source_candidate_manifest": (
+                "artifacts/v3_external_source_candidate_manifest_1025.json"
+            ),
+            "source_pilot_candidate_priority": (
+                "artifacts/v3_external_source_pilot_candidate_priority_1025.json"
+                if pilot_candidate_priority
+                else None
+            ),
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_pilot_candidate_count": selected_row_count,
+            "broader_surface_candidate_count": len(rows) - selected_row_count,
+            "lane_counts": dict(sorted(lane_counts.items())),
+            "structure_reference_candidate_count": structure_reference_count,
+            "alphafold_reference_candidate_count": sum(
+                1 for row in rows if row["alphafold_ids"]
+            ),
+            "pdb_reference_candidate_count": sum(
+                1 for row in rows if row["pdb_reference_count"] > 0
+            ),
+            "structure_cluster_before_split_assignment": True,
+            "nearest_neighbor_cache_required": True,
+            "foldseek_or_tmalign_backend_required": True,
+            "strict_tm_threshold_target": "<0.7",
+            "tm_score_split_claim_permitted": False,
+            "full_tm_score_holdout_claim_permitted": False,
+            "review_status": "review_only_non_countable",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_row_count": 0,
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "external structural TM holdout path is a review-only candidate "
+                "surface; it requires clustering before split assignment and "
+                "does not authorize import"
+            )
+        ],
+    }
+
+
 def build_external_structural_cluster_index(
     *,
     external_structural_tm_holdout_path: dict[str, Any],
@@ -9012,22 +9182,49 @@ def build_external_structural_cluster_index(
     cache_status_counts = Counter(
         str(row.get("structural_neighbor_cache_status")) for row in rows
     )
+    source_surface_scope = str(
+        external_structural_tm_holdout_path.get("metadata", {}).get(
+            "surface_scope", "selected_pilot"
+        )
+    )
+    selected_pilot_candidate_count = int(
+        external_structural_tm_holdout_path.get("metadata", {}).get(
+            "selected_pilot_candidate_count", 0
+        )
+        or 0
+    )
+    if source_surface_scope == "selected_pilot" and selected_pilot_candidate_count == 0:
+        selected_pilot_candidate_count = len(rows)
+    broader_surface_candidate_count = max(0, len(rows) - selected_pilot_candidate_count)
+    if source_surface_scope == "broader_external_surface" or broader_surface_candidate_count:
+        blocker_removed = (
+            "external_structure_index_and_nearest_neighbor_cache_for_broader_external_surface"
+        )
+        blocker_not_removed = ["external_structural_tm_diverse_split_not_assigned"]
+    else:
+        blocker_removed = (
+            "external_structure_index_and_nearest_neighbor_cache_for_selected_pilot"
+        )
+        blocker_not_removed = [
+            "external_structural_tm_diverse_split_not_assigned",
+            "broader_external_fold_diverse_candidate_surface_not_expanded",
+        ]
+    if not all_vs_all_pair_cache_complete:
+        blocker_not_removed.append("external_structural_all_vs_all_pair_cache_incomplete")
     return {
         "metadata": {
             "method": "external_structural_cluster_index",
-            "blocker_removed": (
-                "external_structure_index_and_nearest_neighbor_cache_for_selected_pilot"
-            ),
-            "blocker_not_removed": [
-                "external_structural_tm_diverse_split_not_assigned",
-                "broader_external_fold_diverse_candidate_surface_not_expanded",
-            ],
+            "blocker_removed": blocker_removed,
+            "blocker_not_removed": blocker_not_removed,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "slice_id": str(
                 external_structural_tm_holdout_path.get("metadata", {}).get(
                     "slice_id", "1025"
                 )
             ),
+            "surface_scope": source_surface_scope,
+            "selected_pilot_candidate_count": selected_pilot_candidate_count,
+            "broader_surface_candidate_count": broader_surface_candidate_count,
             "source_external_structural_tm_holdout_path_method": (
                 external_structural_tm_holdout_path.get("metadata", {}).get("method")
             ),

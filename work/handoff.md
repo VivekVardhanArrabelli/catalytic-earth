@@ -76,13 +76,44 @@ review-only structure cache in
 AlphaFold coordinate sidecars are materialized, Foldseek completed, the nearest
 neighbor cache covers 10/10 candidates, and pre-split clustering at `TM >=0.7`
 finds one high-TM pair (`O95050`/`P51580`) across nine clusters. This is not a
-train/test split and keeps 0 countable/import-ready rows. Next direct work
-should either prepare actual human/expert review decisions for `O14756`,
-`P34949`, and `Q6NSJ0`, or expand the external fold-diverse candidate surface
-beyond the 10-row pilot before assigning any strict TM-diverse split. Do not open M-CSA round33, staged index 145 continuation, or more partition repair unless
+train/test split and keeps 0 countable/import-ready rows. The broader external
+structural surface now exists in
+`artifacts/v3_external_structural_tm_holdout_path_1025_all30.json` and
+`artifacts/v3_external_structural_cluster_index_1025_all30.json`: all 30
+current external candidates have AlphaFold sidecars, Foldseek nearest-neighbor
+coverage is 30/30, and the pre-split cache finds 6 high-TM pairs across 26
+clusters. This removes the 10-row-only external surface blocker, but strict
+TM-diverse split assignment remains blocked by incomplete all-vs-all pair-cache
+coverage and no import-ready rows. Next direct work should either prepare
+actual human/expert review decisions for `O14756`, `P34949`, and `Q6NSJ0`, or
+complete/cache the missing external all-vs-all structural pairs before any
+strict TM-diverse split assignment. Do not open M-CSA round33, staged index 145 continuation, or more partition repair unless
 the user explicitly reverses the override.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T09:59:24Z run after syncing clean `origin/main`,
+passing startup gates (`352` unit tests passed and `validate` passed with
+679 curated labels), passing wrap checks (`354` unit tests passed, `validate`
+passed with 679 curated labels, `compileall` passed, and `git diff --check`
+passed), and expanding the external structural surface:
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and no M-CSA strict-TM round, query, split-repair, or partition-repair work
+  was resumed.
+- External-source repair/import: Yes for external structural-surface repair,
+  no for import or countable labels. This run added the all-30 external
+  structural path and cluster index with 30/30 AlphaFold sidecars, 0 fetch
+  failures, 30/30 Foldseek nearest-neighbor coverage, 6 high-TM pairs, 26
+  pre-split clusters, 0 import-ready rows, and 0 countable external labels.
+- Scientific generalization work: Yes for moving strict structural-diversity
+  work onto the broader external Swiss-Prot/AFDB surface, not for a full split
+  claim. Strict TM-diverse split assignment remains blocked because Foldseek
+  emitted an incomplete all-vs-all pair cache.
+- SPOF hardening work: Yes. A dedicated path builder, all-30 artifact
+  regression, coordinate digests, and lineage metadata now keep the external
+  structural surface reproducible while preserving the M-CSA strict-TM closure.
 
 Recorded for the 2026-05-16T08:59:00Z run after syncing clean `origin/main`,
 passing startup gates (`350` unit tests passed and `validate` passed with

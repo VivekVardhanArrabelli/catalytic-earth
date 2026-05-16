@@ -35,3 +35,11 @@ Current path:
   nearest-neighbor clustering, and finds one `TM >=0.7` external pair
   (`O95050`/`P51580`) across nine clusters. This is pre-split review evidence
   only and does not authorize import or countable labels.
+- `artifacts/v3_external_structural_tm_holdout_path_1025_all30.json` and
+  `artifacts/v3_external_structural_cluster_index_1025_all30.json` expand the
+  external structural surface to all 30 current UniProtKB/Swiss-Prot
+  candidates. All 30 AlphaFold sidecars are materialized, Foldseek nearest
+  neighbors cover 30/30 candidates, and 6 high-TM pairs form 26 pre-split
+  clusters. This removes the 10-row-only surface blocker, but strict
+  TM-diverse split assignment remains blocked by the incomplete all-vs-all
+  pair cache and by import-review blockers.

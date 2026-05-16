@@ -64,6 +64,58 @@ class ExternalStructuralHoldoutArtifactTests(unittest.TestCase):
             all(not row["ready_for_label_import"] for row in artifact["rows"])
         )
 
+    def test_external_structural_all30_surface_expands_beyond_selected_pilot(self) -> None:
+        path = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_structural_tm_holdout_path_1025_all30.json"
+        )
+        cluster_index = _load_json(
+            ROOT / "artifacts" / "v3_external_structural_cluster_index_1025_all30.json"
+        )
+        path_metadata = path["metadata"]
+        cluster_metadata = cluster_index["metadata"]
+
+        self.assertEqual(
+            path_metadata["blocker_removed"],
+            "broader_external_fold_diverse_candidate_surface_expanded_for_structure_clustering",
+        )
+        self.assertEqual(path_metadata["surface_scope"], "broader_external_surface")
+        self.assertEqual(path_metadata["candidate_count"], 30)
+        self.assertEqual(path_metadata["selected_pilot_candidate_count"], 10)
+        self.assertEqual(path_metadata["broader_surface_candidate_count"], 20)
+        self.assertEqual(path_metadata["structure_reference_candidate_count"], 30)
+        self.assertFalse(path_metadata["tm_score_split_claim_permitted"])
+        self.assertEqual(path_metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(path_metadata["import_ready_row_count"], 0)
+
+        self.assertEqual(
+            cluster_metadata["blocker_removed"],
+            "external_structure_index_and_nearest_neighbor_cache_for_broader_external_surface",
+        )
+        self.assertEqual(cluster_metadata["surface_scope"], "broader_external_surface")
+        self.assertEqual(cluster_metadata["candidate_count"], 30)
+        self.assertEqual(cluster_metadata["coordinate_materialized_count"], 30)
+        self.assertEqual(cluster_metadata["fetch_failure_count"], 0)
+        self.assertEqual(cluster_metadata["foldseek_run_status"], "completed")
+        self.assertTrue(cluster_metadata["nearest_neighbor_cache_complete"])
+        self.assertEqual(cluster_metadata["nearest_neighbor_cache_candidate_count"], 30)
+        self.assertGreaterEqual(cluster_metadata["high_tm_pair_count"], 1)
+        self.assertLess(
+            cluster_metadata["tm_cluster_count"],
+            cluster_metadata["candidate_count"],
+        )
+        self.assertIn(
+            "external_structural_all_vs_all_pair_cache_incomplete",
+            cluster_metadata["blocker_not_removed"],
+        )
+        self.assertFalse(cluster_metadata["tm_score_split_claim_permitted"])
+        self.assertEqual(cluster_metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(cluster_metadata["import_ready_row_count"], 0)
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in cluster_index["rows"])
+        )
+
     def test_current_guidance_does_not_resume_mcsa_strict_tm_repair(self) -> None:
         handoff = (ROOT / "work" / "handoff.md").read_text(encoding="utf-8")
         current_handoff = handoff.split("## Current Handoff", 1)[1].split(

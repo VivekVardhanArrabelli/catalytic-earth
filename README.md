@@ -300,6 +300,15 @@ coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a
 review-only nearest-neighbor cache, and pre-split clustering at `TM >=0.7`
 finds one high-TM pair (`O95050`/`P51580`) across nine clusters. It assigns no
 train/test split, authorizes 0 imports, and creates 0 countable labels.
+The broader external structural surface is now staged separately:
+`artifacts/v3_external_structural_tm_holdout_path_1025_all30.json` covers all
+30 current UniProtKB/Swiss-Prot candidates, and
+`artifacts/v3_external_structural_cluster_index_1025_all30.json` materializes
+30 AlphaFold coordinate sidecars, completes Foldseek nearest-neighbor coverage
+for all 30 rows, and finds 6 high-TM pairs across 26 pre-split clusters. This
+removes the 10-row-only structural-surface blocker, but no strict TM-diverse
+split has been assigned because the Foldseek all-vs-all pair cache is not yet
+complete.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
@@ -464,6 +473,11 @@ clustering, and creates 0 countable/import-ready rows. The follow-on
 `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
 selected AlphaFold coordinate sidecars and records one `TM >=0.7` external
 cluster pair (`O95050`/`P51580`) as review-only nearest-neighbor evidence.
+The broader path now extends to all 30 current external candidates via
+`artifacts/v3_external_structural_tm_holdout_path_1025_all30.json` and
+`artifacts/v3_external_structural_cluster_index_1025_all30.json`: 30/30
+AlphaFold sidecars are materialized with 0 fetch failures, Foldseek nearest
+neighbors cover 30/30 rows, and 6 high-TM pairs form 26 pre-split clusters.
 External packet
 decisions still need active-site sources and broader duplicate-screening
 evidence beyond the bounded current-reference MMseqs2 search. Do not resume

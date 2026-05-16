@@ -64,6 +64,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
     build_external_structural_cluster_index,
+    build_external_structural_tm_holdout_path,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
@@ -7057,6 +7058,75 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_structural_tm_holdout_path_expands_broader_surface(
+        self,
+    ) -> None:
+        path = build_external_structural_tm_holdout_path(
+            candidate_manifest={
+                "metadata": {
+                    "method": "external_source_candidate_manifest",
+                    "slice_id": "1025",
+                },
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "lane_id": "external_source:lyase",
+                        "scope_signal": "lyase",
+                        "protein_name": "selected lyase",
+                        "alphafold_ids": ["AF-P12345-F1"],
+                        "pdb_ids": ["1ABC", "2ABC"],
+                    },
+                    {
+                        "accession": "P67890",
+                        "lane_id": "external_source:transferase",
+                        "scope_signal": "transferase",
+                        "protein_name": "broader transferase",
+                        "alphafold_ids": ["P67890"],
+                        "pdb_ids": [],
+                    },
+                ],
+            },
+            pilot_candidate_priority={
+                "metadata": {"method": "external_source_pilot_candidate_priority"},
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                    }
+                ],
+            },
+            max_rows=2,
+            selected_pilot_only=False,
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
+        )
+
+        metadata = path["metadata"]
+        self.assertEqual(metadata["method"], "external_structural_tm_holdout_path")
+        self.assertEqual(metadata["surface_scope"], "broader_external_surface")
+        self.assertEqual(
+            metadata["blocker_removed"],
+            "broader_external_fold_diverse_candidate_surface_expanded_for_structure_clustering",
+        )
+        self.assertEqual(metadata["candidate_count"], 2)
+        self.assertEqual(metadata["selected_pilot_candidate_count"], 1)
+        self.assertEqual(metadata["broader_surface_candidate_count"], 1)
+        self.assertEqual(metadata["structure_reference_candidate_count"], 2)
+        self.assertTrue(metadata["structure_cluster_before_split_assignment"])
+        self.assertFalse(metadata["tm_score_split_claim_permitted"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertEqual(path["rows"][0]["alphafold_ids"], ["P12345"])
+        self.assertEqual(path["rows"][0]["pdb_reference_count"], 2)
+        self.assertEqual(
+            path["rows"][1]["selected_pilot_status"],
+            "broader_external_candidate_surface",
+        )
+        self.assertTrue(all(not row["ready_for_label_import"] for row in path["rows"]))
 
     def test_external_structural_cluster_index_materializes_and_clusters(
         self,

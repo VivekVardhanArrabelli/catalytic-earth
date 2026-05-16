@@ -151,6 +151,7 @@ from .transfer_scope import (
     build_external_source_pilot_success_criteria,
     build_external_source_pilot_terminal_decisions,
     build_external_structural_cluster_index,
+    build_external_structural_tm_holdout_path,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
@@ -2499,13 +2500,46 @@ def cmd_build_external_source_pilot_human_expert_review_queue(
     return 0
 
 
+def cmd_build_external_structural_tm_holdout_path(args: argparse.Namespace) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        ("candidate_manifest", "pilot_candidate_priority"),
+        blocker_removed=(
+            "broader_external_fold_diverse_candidate_surface_expanded_for_structure_clustering"
+            if not args.selected_pilot_only
+            else "external_tm_diverse_holdout_path_defined_after_mcsa_adjudication"
+        ),
+    )
+    path = build_external_structural_tm_holdout_path(
+        candidate_manifest=artifact_payloads["candidate_manifest"],
+        pilot_candidate_priority=artifact_payloads["pilot_candidate_priority"],
+        max_rows=args.max_rows,
+        selected_pilot_only=args.selected_pilot_only,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), path)
+    print(
+        "Wrote external structural TM holdout path to "
+        f"{args.out} ({path['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
 def cmd_build_external_structural_cluster_index(args: argparse.Namespace) -> int:
     artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
         args,
         ("external_structural_tm_holdout_path", "pilot_terminal_decisions"),
-        blocker_removed=(
-            "external_structure_index_and_nearest_neighbor_cache_for_selected_pilot"
-        ),
+        blocker_removed="external_structure_index_and_nearest_neighbor_cache",
+    )
+    surface_scope = (
+        artifact_payloads["external_structural_tm_holdout_path"]
+        .get("metadata", {})
+        .get("surface_scope", "selected_pilot")
+    )
+    artifact_lineage["blocker_removed"] = (
+        "external_structure_index_and_nearest_neighbor_cache_for_broader_external_surface"
+        if surface_scope == "broader_external_surface"
+        else "external_structure_index_and_nearest_neighbor_cache_for_selected_pilot"
     )
     index = build_external_structural_cluster_index(
         external_structural_tm_holdout_path=artifact_payloads[
@@ -6652,6 +6686,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_expert_queue.set_defaults(
         func=cmd_build_external_source_pilot_human_expert_review_queue
+    )
+
+    external_structural_path = subparsers.add_parser(
+        "build-external-structural-tm-holdout-path",
+        help=(
+            "scope review-only external structures for pre-split TM clustering "
+            "after M-CSA strict-TM adjudication"
+        ),
+    )
+    external_structural_path.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest_1025.json",
+    )
+    external_structural_path.add_argument(
+        "--pilot-candidate-priority",
+        default="artifacts/v3_external_source_pilot_candidate_priority_1025.json",
+    )
+    external_structural_path.add_argument("--max-rows", type=int, default=30)
+    external_structural_path.add_argument(
+        "--selected-pilot-only",
+        action="store_true",
+        help="emit only selected pilot candidates instead of the broader surface",
+    )
+    external_structural_path.add_argument(
+        "--out",
+        default="artifacts/v3_external_structural_tm_holdout_path_1025_all30.json",
+    )
+    external_structural_path.set_defaults(
+        func=cmd_build_external_structural_tm_holdout_path
     )
 
     external_structural_cluster = subparsers.add_parser(
