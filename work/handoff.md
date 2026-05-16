@@ -110,8 +110,19 @@ implements the first bounded repair-lane control for `O14756`. It stages only
 sequence-derived SDR/NAD(P) evidence: a `TGxxxGxG` glycine-rich proxy plus a
 source-active-site-overlapping `YxxxK` proxy, then contrasts that complete SDR
 axis against the conflicting current-reference neighbors. Those neighbors lack
-the complete SDR axis, so one lane now has concrete review-only control
-evidence for a future scoring experiment. It still creates 0 import-ready rows
+the complete SDR axis. The follow-on
+`artifacts/v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json`
+now consumes that non-text control in the import-safety path. It repairs the
+O14756 representation-conflict blocker and records the post-repair normalized
+status as `needs_review`, but it still creates 0 import-ready rows and 0
+countable external labels because broader duplicate screening, a post-repair
+review decision, and the full factory gate remain unresolved.
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json`
+now opens the next repair lane for `Q6NSJ0` as review-only control evidence.
+It stages source-traced acidic active-site residues, active-site spacing, local
+pocket composition, absent local metal/cofactor ligand context, and zero
+metal-hydrolase role-hint support as a non-text boundary control. It is not
+yet integrated into import-safety adjudication and keeps 0 import-ready rows
 and 0 countable external labels.
 The external structural pilot path has now moved from path definition to a concrete
 review-only structure cache in
@@ -142,25 +153,58 @@ near-duplicate pairs at 90% identity / 80% coverage, recorded max reported
 external-external identity `0.647`, and kept 0 import-ready/countable rows. The
 confidence audit now carries this external all-vs-all no-signal evidence for
 the selected pilot rows. The later needs-review resolution, mechanism repair
-lane, and SDR control artifacts supersede the 6-row normalized queue for
-pilot-decision work; do not re-open those rows without new evidence. Next
-direct work should implement the next bounded repair lane as review-only
-representation/heuristic control work, or broaden the external Swiss-Prot/AFDB
-structural surface beyond the current 30-row review-only split before any
-import or benchmark claim.
+lane, SDR control, and SDR import-safety adjudication artifacts supersede the
+6-row normalized queue for pilot-decision work; do not re-open those rows
+without new evidence. Next direct work should integrate the `Q6NSJ0`
+glycoside-hydrolase boundary control into an import-safety adjudication path,
+or complete the remaining O14756 process blockers if a full duplicate,
+review, and gate path becomes available. Do not broaden dashboards or generic
+gates before a lane-specific control.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
 unless the user explicitly reverses the override.
 
-Push/recovery blocker for the next run: local commit the local commit contains the
-SDR/NAD(P) repair-control work and is clean, but `git push origin main` failed
-because the local GitHub credential is invalid (`gh auth status` reports the
-default token for `VivekVardhanArrabelli` is invalid, and HTTPS git push cannot
-read a username). The worktree should be treated as coherent local-ahead
-recovery state, not as a reason to revert. After credentials are repaired,
-push `main`, verify `HEAD == origin/main`, then release
-`.git/catalytic-earth-automation.lock`.
+The prior push/recovery blocker is closed on the latest synced repo state:
+local `main` started this run aligned with `origin/main`, and no credential
+blocker was present at start.
+
+Wrap-up push is currently blocked by local GitHub credentials after the local
+`Integrate external pilot SDR adjudication` commit was created.
+`git push origin main` failed with
+`fatal: could not read Username for 'https://github.com': Device not configured`;
+`gh auth status` reports the default token for `VivekVardhanArrabelli` is
+invalid; and the SSH fallback failed with `Permission denied (publickey)`.
+The coherent local commit remains one commit ahead of `origin/main` and should
+be pushed after re-authentication. Do not start a parallel repair run; the next
+run should either push this commit after credentials are repaired or continue
+from this exact local-ahead state if it is still present.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T19:45:17Z run after acquiring the automation
+lock, syncing clean `origin/main`, passing startup gates (`361` unit tests
+passed and `validate` passed with 679 curated labels), and passing wrap checks
+(`363` unit tests, `validate`, `compileall`, and `git diff --check`):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and no
+  M-CSA strict-TM round, query, split-repair, or partition-repair work was
+  resumed.
+- External-source repair/import: Yes for one real O14756 import-safety
+  adjudication path and one next-lane control, no for import or countable
+  labels. The SDR/NAD(P) rule consumes only sequence/active-site/reference
+  axis evidence, repairs O14756's representation-conflict blocker, and records
+  post-repair `needs_review`; broader duplicate screening, a post-repair
+  review decision, and the full factory gate still block import. The `Q6NSJ0`
+  glycoside-hydrolase boundary lane now has a review-only non-text control
+  from acidic active-site residues, local pocket composition, absent
+  metal/cofactor ligand context, and zero metal-hydrolase role-hint support.
+- Scientific generalization work: No new benchmark or split claim. The all-30
+  external structural split remains review-only with max cross-split TM about
+  `0.6963`; strict TM-diverse claims remain on external fold-diverse surfaces
+  only.
+- SPOF hardening work: Yes. Two new CLI paths, artifacts, and regression tests
+  make the first post-repair import-safety decision path executable while
+  preserving review-only/countable-label separation.
 
 Recorded for the 2026-05-16T12:06:39-05:00 run after acquiring the automation
 lock, syncing clean `origin/main`, passing startup gates (`360` unit tests

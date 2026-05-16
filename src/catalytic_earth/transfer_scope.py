@@ -11639,6 +11639,632 @@ def build_external_source_pilot_sdr_redox_repair_control(
     }
 
 
+def build_external_source_pilot_sdr_redox_import_safety_adjudication(
+    *,
+    sdr_redox_repair_control: dict[str, Any],
+    resolved_pilot_decisions: dict[str, Any],
+    pilot_active_site_evidence_decisions: dict[str, Any],
+    external_import_readiness_audit: dict[str, Any],
+    pilot_success_criteria: dict[str, Any] | None = None,
+    max_rows: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Adjudicate the O14756 SDR/NAD(P) repair control in import-safety terms."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    resolved_by_accession = _external_first_row_by_accession(resolved_pilot_decisions)
+    active_by_accession = _external_first_row_by_accession(
+        pilot_active_site_evidence_decisions
+    )
+    import_by_accession = _external_first_row_by_accession(
+        external_import_readiness_audit
+    )
+    success_by_accession = _external_first_row_by_accession(
+        pilot_success_criteria or {}
+    )
+
+    representation_blockers = {
+        "representation_control_issue",
+        "representation_control_not_compared",
+        "representation_control_unresolved",
+        "representation_near_duplicate_control_holdout",
+        "representation_near_duplicate_holdout",
+        "representation_stability_changed_requires_review",
+        "resolve selected-pilot representation-control blocker",
+    }
+
+    rows: list[dict[str, Any]] = []
+    for control_row in [
+        row
+        for row in sdr_redox_repair_control.get("rows", []) or []
+        if isinstance(row, dict)
+    ][:max_rows]:
+        accession = _normalize_accession(control_row.get("accession"))
+        if not accession:
+            continue
+        resolved_row = resolved_by_accession.get(accession, {})
+        active_row = active_by_accession.get(accession, {})
+        import_row = import_by_accession.get(accession, {})
+        success_row = success_by_accession.get(accession, {})
+
+        candidate_features = control_row.get("candidate_sequence_features", {})
+        if not isinstance(candidate_features, dict):
+            candidate_features = {}
+        reference_contrasts = [
+            reference
+            for reference in control_row.get("current_reference_contrasts", []) or []
+            if isinstance(reference, dict)
+        ]
+        candidate_has_sdr_axis = (
+            candidate_features.get("sdr_sequence_axis_status")
+            == "sdr_axis_present_with_source_active_site_overlap"
+        )
+        current_reference_sdr_axis_match_count = sum(
+            1
+            for reference in reference_contrasts
+            if reference.get("sdr_sequence_axis_status") == "sdr_axis_present"
+        )
+        active_site_resolved = (
+            active_row.get("active_site_evidence_source_category")
+            == "explicit_active_site_source_present"
+        )
+        bounded_sequence_no_signal = (
+            active_row.get("backend_sequence_search_status")
+            == "no_near_duplicate_signal"
+            or import_row.get("backend_sequence_search_status")
+            == "no_near_duplicate_signal"
+        )
+        repair_control_ready = (
+            control_row.get("control_status")
+            == "review_only_sdr_axis_contrast_ready"
+            and candidate_has_sdr_axis
+            and current_reference_sdr_axis_match_count == 0
+        )
+        representation_conflict_repaired = (
+            repair_control_ready and active_site_resolved and bounded_sequence_no_signal
+        )
+
+        blockers = {
+            str(blocker)
+            for source_row in (active_row, import_row, success_row)
+            for blocker in (
+                (source_row.get("blockers", []) or [])
+                + (source_row.get("import_readiness_blockers", []) or [])
+                + (source_row.get("criterion_blockers", []) or [])
+                + (source_row.get("unresolved_process_blockers", []) or [])
+            )
+            if blocker
+        }
+        if representation_conflict_repaired:
+            blockers = {
+                blocker
+                for blocker in blockers
+                if blocker not in representation_blockers
+                and not blocker.startswith("representation_control_")
+            }
+        if active_row.get("broader_duplicate_screening_status"):
+            blockers.add(str(active_row["broader_duplicate_screening_status"]))
+        if (
+            active_row.get("factory_gate_status") == "not_run"
+            or success_row.get("full_label_factory_gate_status") == "not_run"
+        ):
+            blockers.add("full_label_factory_gate_not_run")
+        if not resolved_row:
+            blockers.add("resolved_pilot_decision_missing")
+        if not active_site_resolved:
+            blockers.add("explicit_active_site_evidence_missing")
+        if not bounded_sequence_no_signal:
+            blockers.add("bounded_sequence_no_near_duplicate_signal_missing")
+
+        ready_for_import = representation_conflict_repaired and not blockers
+        adjudicated_status = (
+            "sdr_axis_representation_conflict_repaired"
+            if representation_conflict_repaired
+            else "sdr_axis_representation_conflict_not_repaired"
+        )
+        normalized_status_after_repair = (
+            "import_ready_candidate"
+            if ready_for_import
+            else "needs_review"
+            if representation_conflict_repaired
+            else resolved_row.get("normalized_decision_status")
+            or "rejected_representation_conflict"
+        )
+
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": control_row.get("entry_id") or f"uniprot:{accession}",
+                "previous_normalized_decision_status": resolved_row.get(
+                    "normalized_decision_status"
+                ),
+                "normalized_decision_status_after_repair": (
+                    normalized_status_after_repair
+                ),
+                "import_safety_adjudication_status": adjudicated_status,
+                "decision_effect": (
+                    "representation_conflict_repaired_but_import_blocked_by_"
+                    "duplicate_review_and_factory_gates"
+                    if representation_conflict_repaired and not ready_for_import
+                    else "import_ready_candidate"
+                    if ready_for_import
+                    else "keeps_previous_representation_conflict_rejection"
+                ),
+                "sdr_axis_evidence": {
+                    "candidate_sequence_axis_status": candidate_features.get(
+                        "sdr_sequence_axis_status"
+                    ),
+                    "glycine_rich_nad_p_binding_motif_count": len(
+                        candidate_features.get(
+                            "glycine_rich_nad_p_binding_motif_hits", []
+                        )
+                        or []
+                    ),
+                    "source_active_site_yxxxk_motif_count": sum(
+                        1
+                        for hit in candidate_features.get(
+                            "catalytic_yxxxk_motif_hits", []
+                        )
+                        or []
+                        if isinstance(hit, dict)
+                        and hit.get("overlaps_source_active_site") is True
+                    ),
+                    "current_reference_sdr_axis_match_count": (
+                        current_reference_sdr_axis_match_count
+                    ),
+                    "current_reference_axis_statuses": [
+                        {
+                            "reference_accession": reference.get(
+                                "reference_accession"
+                            ),
+                            "sdr_sequence_axis_status": reference.get(
+                                "sdr_sequence_axis_status"
+                            ),
+                        }
+                        for reference in reference_contrasts
+                    ],
+                },
+                "active_site_import_safety_status": (
+                    "explicit_active_site_source_resolved"
+                    if active_site_resolved
+                    else "explicit_active_site_source_missing"
+                ),
+                "sequence_import_safety_status": (
+                    "bounded_current_reference_no_near_duplicate_signal"
+                    if bounded_sequence_no_signal
+                    else "bounded_sequence_signal_missing"
+                ),
+                "broader_duplicate_screening_status": active_row.get(
+                    "broader_duplicate_screening_status"
+                ),
+                "remaining_import_blockers": sorted(blockers),
+                "countable_label_candidate": False,
+                "ready_for_label_import": ready_for_import,
+                "review_status": (
+                    "external_pilot_sdr_redox_import_safety_adjudication_review_only"
+                ),
+            }
+        )
+
+    status_counts = Counter(
+        row["import_safety_adjudication_status"] for row in rows
+    )
+    decision_counts = Counter(
+        row["normalized_decision_status_after_repair"] for row in rows
+    )
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("target_sdr_repair_control_row_missing")
+    return {
+        "metadata": {
+            "method": "external_source_pilot_sdr_redox_import_safety_adjudication",
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "sdr_nad_p_redox_control_integrated_into_import_safety_adjudication"
+            ),
+            "blocker_not_removed": sorted(blocker_counts),
+            "review_only": True,
+            "ready_for_label_import": any(
+                row["ready_for_label_import"] for row in rows
+            ),
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": sum(
+                1
+                for row in rows
+                if row["normalized_decision_status_after_repair"]
+                == "import_ready_candidate"
+            ),
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "representation_conflict_repaired_count": status_counts.get(
+                "sdr_axis_representation_conflict_repaired", 0
+            ),
+            "import_safety_adjudication_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "normalized_decision_status_after_repair_counts": dict(
+                sorted(decision_counts.items())
+            ),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "predictive_feature_sources": [
+                "amino_acid_sequence_motif_presence",
+                "source_traced_active_site_position_overlap",
+                "current_reference_sequence_axis_absence",
+                "bounded_current_reference_sequence_search_status",
+            ],
+            "review_context_fields": [
+                "Rhea reaction identifiers and equations",
+                "InterPro/PROSITE source context",
+                "current-reference M-CSA labels",
+                "heuristic fingerprint identifiers",
+            ],
+            "source_sdr_redox_repair_control_method": (
+                sdr_redox_repair_control.get("metadata", {}).get("method")
+            ),
+            "source_resolved_pilot_decisions_method": (
+                resolved_pilot_decisions.get("metadata", {}).get("method")
+            ),
+            "source_pilot_active_site_evidence_decisions_method": (
+                pilot_active_site_evidence_decisions.get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "source_external_import_readiness_audit_method": (
+                external_import_readiness_audit.get("metadata", {}).get("method")
+            ),
+            "source_pilot_success_criteria_method": (
+                (pilot_success_criteria or {}).get("metadata", {}).get("method")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "blockers": blockers,
+        "warnings": [
+            (
+                "SDR/NAD(P) import-safety adjudication is a review-only decision "
+                "path; it repairs one representation conflict but cannot bypass "
+                "duplicate review, expert/review decisions, or full factory gates"
+            )
+        ],
+    }
+
+
+def build_external_source_pilot_glycoside_hydrolase_boundary_control(
+    *,
+    repair_lanes: dict[str, Any],
+    needs_review_resolution: dict[str, Any],
+    pilot_representation_sample: dict[str, Any],
+    pilot_larger_representation_sample: dict[str, Any],
+    pilot_representation_stability_audit: dict[str, Any],
+    heuristic_control_scores: dict[str, Any],
+    external_sequence_fasta: Path,
+    max_rows: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Stage a Q6NSJ0 glycoside-hydrolase boundary control."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    target_lane = "split_glycoside_hydrolase_from_metal_hydrolase_control"
+    resolution_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in needs_review_resolution.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    baseline_representation_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in pilot_representation_sample.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    larger_representation_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in pilot_larger_representation_sample.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    stability_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in pilot_representation_stability_audit.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    heuristic_by_accession = {
+        _normalize_accession(str(row.get("entry_id") or "").removeprefix("uniprot:")): row
+        for row in heuristic_control_scores.get("results", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(str(row.get("entry_id") or "").removeprefix("uniprot:"))
+    }
+    external_sequences = {
+        _external_candidate_fasta_accession(record): record
+        for record in _parse_sequence_fasta(external_sequence_fasta)
+        if _external_candidate_fasta_accession(record)
+    }
+
+    rows: list[dict[str, Any]] = []
+    for lane_row in repair_lanes.get("rows", []) or []:
+        if not isinstance(lane_row, dict) or lane_row.get("repair_lane") != target_lane:
+            continue
+        accession = _normalize_accession(lane_row.get("accession"))
+        if not accession:
+            continue
+        resolution_row = resolution_by_accession.get(accession, {})
+        active_site_result = resolution_row.get("active_site_evidence_result", {})
+        if not isinstance(active_site_result, dict):
+            active_site_result = {}
+        active_site_positions = _external_active_site_positions(active_site_result)
+        sequence = _clean_sequence(
+            (external_sequences.get(accession) or {}).get("sequence")
+        )
+        active_site_features = _external_glycoside_hydrolase_active_site_features(
+            sequence,
+            active_site_positions=active_site_positions,
+        )
+        heuristic_row = heuristic_by_accession.get(accession, {})
+        top1 = (
+            heuristic_row.get("top_fingerprints", [{}])[0]
+            if heuristic_row.get("top_fingerprints")
+            else {}
+        )
+        ligand_context = heuristic_row.get("ligand_context", {})
+        if not isinstance(ligand_context, dict):
+            ligand_context = {}
+        pocket_context = heuristic_row.get("pocket_context", {})
+        if not isinstance(pocket_context, dict):
+            pocket_context = {}
+        pocket_descriptors = pocket_context.get("descriptors", {})
+        if not isinstance(pocket_descriptors, dict):
+            pocket_descriptors = {}
+        nearby_sites = [
+            site
+            for site in pocket_context.get("nearby_residue_sites", []) or []
+            if isinstance(site, dict)
+        ]
+        metal_ligand_context_absent = not any(
+            ligand_context.get(key)
+            for key in (
+                "cofactor_families",
+                "ligand_codes",
+                "proximal_ligands",
+                "structure_cofactor_families",
+                "structure_ligand_codes",
+                "structure_ligands",
+            )
+        )
+        metal_role_hint_match_count = sum(
+            1
+            for match in top1.get("matched_signature_roles", []) or []
+            if isinstance(match, dict) and match.get("role_hint_match") is True
+        )
+        glycan_boundary_ready = (
+            active_site_features["acidic_source_active_site_residue_count"] >= 2
+            and metal_ligand_context_absent
+            and _external_parse_float(top1.get("role_match_fraction")) == 0.0
+            and metal_role_hint_match_count == 0
+        )
+        baseline_row = baseline_representation_by_accession.get(accession, {})
+        larger_row = larger_representation_by_accession.get(accession, {})
+        stability_row = stability_by_accession.get(accession, {})
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": lane_row.get("entry_id") or f"uniprot:{accession}",
+                "repair_lane": target_lane,
+                "implemented_control": (
+                    "glycoside_hydrolase_active_site_vs_metal_hydrolase_boundary"
+                ),
+                "control_status": (
+                    "review_only_glycoside_hydrolase_boundary_ready"
+                    if glycan_boundary_ready
+                    else "review_only_glycoside_hydrolase_boundary_incomplete"
+                ),
+                "source_resolved_status": resolution_row.get("revised_status"),
+                "source_confidence": resolution_row.get("confidence"),
+                "candidate_active_site_features": active_site_features,
+                "metal_hydrolase_contrast_features": {
+                    "metal_ligand_context_absent": metal_ligand_context_absent,
+                    "top1_role_match_fraction": top1.get("role_match_fraction"),
+                    "top1_residue_match_fraction": top1.get(
+                        "residue_match_fraction"
+                    ),
+                    "metal_role_hint_match_count": metal_role_hint_match_count,
+                    "matched_signature_roles": top1.get(
+                        "matched_signature_roles", []
+                    ),
+                },
+                "pocket_boundary_features": {
+                    "aromatic_fraction": pocket_descriptors.get(
+                        "aromatic_fraction"
+                    ),
+                    "negative_fraction": pocket_descriptors.get(
+                        "negative_fraction"
+                    ),
+                    "nearby_aromatic_residue_count": sum(
+                        1
+                        for site in nearby_sites
+                        if site.get("code") in {"PHE", "TRP", "TYR"}
+                    ),
+                    "nearby_acidic_residue_count": sum(
+                        1
+                        for site in nearby_sites
+                        if site.get("code") in {"ASP", "GLU"}
+                    ),
+                    "nearby_residue_count": len(nearby_sites),
+                },
+                "representation_conflict_summary": {
+                    "baseline_backend": baseline_row.get("embedding_backend"),
+                    "baseline_nearest_reference_accession": (
+                        stability_row.get("baseline_nearest_reference_accession")
+                        or (baseline_row.get("nearest_reference") or {}).get(
+                            "reference_accession"
+                        )
+                    ),
+                    "baseline_top_embedding_cosine": (
+                        stability_row.get("baseline_top_embedding_cosine")
+                        or baseline_row.get("top_embedding_cosine")
+                    ),
+                    "comparison_backend": larger_row.get("embedding_backend"),
+                    "comparison_nearest_reference_accession": (
+                        stability_row.get("comparison_nearest_reference_accession")
+                        or (larger_row.get("nearest_reference") or {}).get(
+                            "reference_accession"
+                        )
+                    ),
+                    "comparison_top_embedding_cosine": (
+                        stability_row.get("comparison_top_embedding_cosine")
+                        or larger_row.get("top_embedding_cosine")
+                    ),
+                    "nearest_reference_stable": stability_row.get(
+                        "nearest_reference_stable"
+                    ),
+                    "stability_flags": stability_row.get("stability_flags", []),
+                },
+                "control_interpretation": (
+                    "Candidate has source-traced acidic active-site residues and "
+                    "no local metal/cofactor context, while the metal-hydrolase "
+                    "heuristic match has zero role-hint support. This is a "
+                    "review-only boundary control, not import."
+                    if glycan_boundary_ready
+                    else "The glycoside-hydrolase boundary evidence is incomplete."
+                ),
+                "decision_effect": (
+                    "keeps row rejected_representation_conflict; this control "
+                    "stages non-text boundary evidence for later import-safety "
+                    "adjudication"
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_status": (
+                    "external_pilot_glycoside_hydrolase_boundary_control_review_only"
+                ),
+            }
+        )
+        if len(rows) >= max_rows:
+            break
+
+    control_status_counts = Counter(row["control_status"] for row in rows)
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("target_glycoside_hydrolase_repair_lane_row_missing")
+    if any(row["control_status"].endswith("_incomplete") for row in rows):
+        blockers.append("glycoside_hydrolase_boundary_control_incomplete")
+    return {
+        "metadata": {
+            "method": "external_source_pilot_glycoside_hydrolase_boundary_control",
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "glycoside_hydrolase_boundary_has_non_text_contrast_control"
+            ),
+            "blocker_not_removed": [
+                "control_not_integrated_into_import_safety_adjudication",
+                "full_label_factory_gate_not_run_for_external_import",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "target_repair_lane": target_lane,
+            "implemented_control": (
+                "glycoside_hydrolase_active_site_vs_metal_hydrolase_boundary"
+            ),
+            "control_status_counts": dict(sorted(control_status_counts.items())),
+            "candidate_with_acidic_dyad_count": sum(
+                1
+                for row in rows
+                if row["candidate_active_site_features"][
+                    "acidic_source_active_site_residue_count"
+                ]
+                >= 2
+            ),
+            "metal_ligand_context_absent_count": sum(
+                1
+                for row in rows
+                if row["metal_hydrolase_contrast_features"][
+                    "metal_ligand_context_absent"
+                ]
+            ),
+            "predictive_feature_sources": [
+                "source_traced_active_site_residue_codes",
+                "active_site_sequence_position_spacing",
+                "local_structure_ligand_context_absence",
+                "local_structure_pocket_residue_composition",
+                "heuristic_role_hint_match_absence",
+            ],
+            "review_context_fields": [
+                "Rhea reaction identifiers and equations",
+                "InterPro/PROSITE source context",
+                "current-reference M-CSA labels",
+                "heuristic fingerprint identifiers",
+            ],
+            "source_repair_lanes_method": repair_lanes.get("metadata", {}).get(
+                "method"
+            ),
+            "source_needs_review_resolution_method": needs_review_resolution.get(
+                "metadata", {}
+            ).get("method"),
+            "source_heuristic_control_scores_method": heuristic_control_scores.get(
+                "metadata", {}
+            ).get("method"),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "blockers": blockers,
+        "warnings": [
+            (
+                "glycoside-hydrolase boundary controls are review-only contrast "
+                "evidence; they do not validate enzyme function or authorize import"
+            )
+        ],
+    }
+
+
+def _external_glycoside_hydrolase_active_site_features(
+    sequence: str,
+    *,
+    active_site_positions: list[int],
+) -> dict[str, Any]:
+    sequence = _clean_sequence(sequence)
+    acidic_positions: list[int] = []
+    residue_windows: list[dict[str, Any]] = []
+    for position in sorted(set(active_site_positions)):
+        if position < 1 or position > len(sequence):
+            continue
+        residue = sequence[position - 1]
+        if residue in {"D", "E"}:
+            acidic_positions.append(position)
+        window_start = max(1, position - 12)
+        window_end = min(len(sequence), position + 12)
+        residue_windows.append(
+            {
+                "position": position,
+                "residue": residue,
+                "window_start": window_start,
+                "window_end": window_end,
+                "sequence_window": sequence[window_start - 1 : window_end],
+            }
+        )
+    spacing_values = [
+        later - earlier
+        for index, earlier in enumerate(acidic_positions)
+        for later in acidic_positions[index + 1 :]
+    ]
+    return {
+        "sequence_length": len(sequence),
+        "source_active_site_positions": sorted(set(active_site_positions)),
+        "active_site_residue_windows": residue_windows,
+        "acidic_source_active_site_positions": acidic_positions,
+        "acidic_source_active_site_residue_count": len(acidic_positions),
+        "acidic_active_site_spacing_values": spacing_values,
+        "has_acidic_active_site_pair": len(acidic_positions) >= 2,
+    }
+
+
 def _external_artifact_lineage_slice_id(
     artifact_lineage: dict[str, Any] | None,
 ) -> int | None:

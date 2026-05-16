@@ -336,9 +336,19 @@ import-ready decisions, or countable labels.
 implements the first bounded lane control for `O14756`: a sequence-derived
 SDR/NAD(P) contrast axis with a `TGxxxGxG` glycine-rich proxy and a
 source-active-site-overlapping `YxxxK` proxy. The conflicting current-reference
-neighbors lack the complete SDR axis, so the lane is ready for a future
-review-only scoring experiment, while still authorizing 0 imports and 0
-countable labels.
+neighbors lack the complete SDR axis.
+`artifacts/v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json`
+now consumes that non-text control in the import-safety path: it repairs the
+O14756 representation conflict and changes the post-repair status to
+`needs_review`, but still authorizes 0 imports and 0 countable labels because
+broader duplicate screening, a post-repair review decision, and the full
+factory gate remain unresolved.
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json`
+also opens the next `Q6NSJ0` lane as review-only control evidence: source-traced
+acidic active-site residues, absent local metal/cofactor context, and zero
+metal-hydrolase role-hint support separate the glycoside-hydrolase boundary
+from the current broad metal-hydrolase collapse. It is not yet integrated into
+an import-safety decision and authorizes no imports.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

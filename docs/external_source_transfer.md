@@ -152,8 +152,24 @@ Priority blockers:
   glycine-rich NAD(P)-binding proxy plus a source-active-site-overlapping
   `YxxxK` proxy, and contrasts that signal against the conflicting
   current-reference neighbors, which lack the complete SDR axis. This removes
-  the "no implemented repair-lane control" blocker for one lane, but it is
-  review-only and changes no import, decision, or label count.
+  the "no implemented repair-lane control" blocker for one lane.
+- `artifacts/v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json`
+  now integrates that control into the O14756 import-safety decision path. The
+  non-text rule treats the complete candidate SDR axis, source-active-site
+  `YxxxK` overlap, absent complete SDR axes among current-reference neighbors,
+  and bounded sequence-search no-signal status as enough to repair the
+  representation-conflict blocker. O14756 still remains review-only and
+  post-repair `needs_review`, with 0 import-ready/countable rows, because
+  broader duplicate screening, a post-repair review decision, and the full
+  factory gate are still unresolved.
+- `artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json`
+  starts the next repair lane for `Q6NSJ0` as review-only non-text control
+  evidence. It uses source-traced acidic active-site residues, active-site
+  spacing, local pocket composition, absent local metal/cofactor ligand
+  context, and zero metal-hydrolase role-hint support to separate the
+  glycoside-hydrolase boundary from the broad metal-hydrolase heuristic
+  collapse. This is staged control evidence only; it is not yet an
+  import-safety adjudication or countable-label path.
 - `artifacts/v3_external_structural_cluster_index_1025.json` removes the
   selected-pilot structure-index blocker by staging all 10 AlphaFold coordinate
   sidecars, recording SHA-256 digests, running Foldseek, and caching
@@ -883,6 +899,24 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-sdr-red
   --reference-sequence-fasta artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta \
   --curated-labels data/registries/curated_mechanism_labels.json \
   --out artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-sdr-redox-import-safety-adjudication \
+  --sdr-redox-repair-control artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json \
+  --resolved-pilot-decisions artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json \
+  --pilot-active-site-evidence-decisions artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json \
+  --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --pilot-success-criteria artifacts/v3_external_source_pilot_success_criteria_1025.json \
+  --out artifacts/v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-glycoside-hydrolase-boundary-control \
+  --repair-lanes artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json \
+  --needs-review-resolution artifacts/v3_external_source_pilot_needs_review_resolution_1025.json \
+  --pilot-representation-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
+  --pilot-larger-representation-sample artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json \
+  --pilot-representation-stability-audit artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
+  --external-sequence-fasta artifacts/v3_external_source_backend_sequence_search_external_1025.fasta \
+  --out artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidence-dossiers \
   --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \

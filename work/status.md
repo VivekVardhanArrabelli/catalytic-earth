@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 134
-- Measured elapsed time: 4592.7 minutes (76.54 hours)
+- Entries: 135
+- Measured elapsed time: 4610.3 minutes (76.84 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- external-transfer-spof-hardening: 168.9 measured minutes (2.82 hours)
+- external-transfer-spof-hardening: 186.5 measured minutes (3.11 hours)
 - ops: 51.4 measured minutes (0.86 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1548
-- Evidence references logged: 1173
+- Artifact references logged: 1559
+- Evidence references logged: 1183
 
 ## Recent Entries
-
-### 2026-05-16T10:14:24.266801+00:00 - external-transfer-spof-hardening
-
-- Task: Expand external structural surface to all 30 candidates
-- Time mode: measured
-- Measured minutes: 15.0
-- Started: 2026-05-16T09:59:24Z
-- Ended: 2026-05-16T10:14:24Z
-- Artifacts: artifacts/v3_external_structural_tm_holdout_path_1025_all30.json, artifacts/v3_external_structural_cluster_index_1025_all30.json, artifacts/v3_external_structural_coordinates_1025_all30, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_external_structural_holdout_artifact.py, tests/test_transfer_scope.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/foldseek_readiness_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md
-- Evidence: startup 352 unit tests passed, startup validate passed with 679 curated labels, final 354 unit tests passed, final validate passed with 679 curated labels, compileall passed, git diff check passed, 30 AlphaFold coordinate sidecars materialized with 0 fetch failures, Foldseek nearest-neighbor cache covered 30/30 external candidates, all-30 external surface found 6 high-TM pairs across 26 pre-split clusters, all-vs-all Foldseek pair cache remains incomplete at 313/435 unordered pairs, 0 import-ready rows and 0 countable external labels
-- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; no external rows became countable or import-ready.
 
 ### 2026-05-16T11:15:09.904197+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, local main commit ahead of origin/main
 - Evidence: startup 360 unit tests passed, startup validate passed with 679 curated labels, SDR/NAD(P) O14756 repair lane staged as review-only sequence-derived control, candidate has TGxxxGxG and source-active-site-overlapping YxxxK proxies, conflicting current-reference neighbors lack complete SDR axis, 0 import-ready rows and 0 countable external labels, final 361 unit tests passed, final validate passed, compileall passed, git diff check passed, push blocked: invalid local GitHub credential
 - Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. Push blocked by invalid local GitHub credential; coherent local commit remains ahead of origin/main for recovery.
+
+### 2026-05-16T20:03:03.218017+00:00 - external-transfer-spof-hardening
+
+- Task: Integrate SDR import-safety adjudication and stage glycoside boundary control
+- Time mode: measured
+- Measured minutes: 17.6
+- Started: 2026-05-16T19:45:17Z
+- Ended: 2026-05-16T20:02:53Z
+- Artifacts: artifacts/v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json, artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 361 unit tests passed, startup validate passed with 679 curated labels, O14756 SDR/NAD(P) import-safety adjudication repaired representation conflict, post-repair O14756 status remains needs_review, Q6NSJ0 glycoside hydrolase boundary control staged as review-only non-text evidence, 0 import-ready rows and 0 countable external labels, final 363 unit tests passed, final validate passed, compileall passed, git diff check passed
+- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. O14756 is no longer blocked by representation conflict alone, but duplicate review and full factory gates still block import.
 
 ## Expectation Updates
 
@@ -230,6 +230,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T13:07:13+00:00: Next external pilot work should resolve the six needs_review rows or broaden external structural candidates; no local-evidence-only decision update was defensible.
 - 2026-05-16T14:26:15.956789+00:00: External candidate all-vs-all duplicate screen is now complete for the current 30-row sample; UniRef-wide screening plus review decisions still block import.
 - 2026-05-16T15:22:11.987493+00:00: Selected-pilot needs_review is no longer the active blocker; next external work should repair representation or heuristic controls or broaden the external structural surface.
+- 2026-05-16T20:03:03.218017+00:00: Next direct work should integrate the Q6NSJ0 glycoside-hydrolase boundary control into import-safety adjudication or complete O14756 duplicate review and full factory gate path before import.
 
 ## Scope Adjustments
 

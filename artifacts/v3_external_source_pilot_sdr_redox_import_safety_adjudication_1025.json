@@ -1,0 +1,159 @@
+{
+  "blockers": [],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "external_import_readiness_audit": "artifacts/v3_external_source_import_readiness_audit_1025.json",
+        "pilot_active_site_evidence_decisions": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+        "pilot_success_criteria": "artifacts/v3_external_source_pilot_success_criteria_1025.json",
+        "resolved_pilot_decisions": "artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json",
+        "sdr_redox_repair_control": "artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json"
+      },
+      "blocker_removed": "sdr_nad_p_redox_control_integrated_into_import_safety_adjudication",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "external_import_readiness_audit": 1025,
+        "pilot_active_site_evidence_decisions": 1025,
+        "pilot_success_criteria": 1025,
+        "resolved_pilot_decisions": 1025,
+        "sdr_redox_repair_control": 1025
+      },
+      "payload_methods": {
+        "external_import_readiness_audit": "external_source_import_readiness_audit",
+        "pilot_active_site_evidence_decisions": "external_source_pilot_active_site_evidence_decisions",
+        "pilot_success_criteria": "external_source_pilot_success_criteria",
+        "resolved_pilot_decisions": "external_source_pilot_decisions_review_resolved",
+        "sdr_redox_repair_control": "external_source_pilot_sdr_redox_repair_control"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "external_import_readiness_audit": {
+          "metadata.artifact_lineage.slice_id": 1025
+        },
+        "pilot_active_site_evidence_decisions": {
+          "metadata.artifact_lineage.slice_id": 1025
+        },
+        "pilot_success_criteria": {
+          "metadata.artifact_lineage.slice_id": 1025
+        },
+        "resolved_pilot_decisions": {
+          "metadata.slice_id": 1025
+        },
+        "sdr_redox_repair_control": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "external_import_readiness_audit",
+          "pilot_active_site_evidence_decisions",
+          "pilot_success_criteria",
+          "resolved_pilot_decisions",
+          "sdr_redox_repair_control"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "broader_duplicate_screening_required",
+      "broader_duplicate_screening_unresolved",
+      "external_review_decision_artifact_not_built",
+      "full_label_factory_gate_not_passed",
+      "full_label_factory_gate_not_run",
+      "review_decision_not_terminal"
+    ],
+    "blocker_removed": "sdr_nad_p_redox_control_integrated_into_import_safety_adjudication",
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "import_ready_candidate_count": 0,
+    "import_safety_adjudication_status_counts": {
+      "sdr_axis_representation_conflict_repaired": 1
+    },
+    "max_rows": 1,
+    "method": "external_source_pilot_sdr_redox_import_safety_adjudication",
+    "normalized_decision_status_after_repair_counts": {
+      "needs_review": 1
+    },
+    "predictive_feature_sources": [
+      "amino_acid_sequence_motif_presence",
+      "source_traced_active_site_position_overlap",
+      "current_reference_sequence_axis_absence",
+      "bounded_current_reference_sequence_search_status"
+    ],
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "broader_duplicate_screening_required": 1,
+      "broader_duplicate_screening_unresolved": 1,
+      "external_review_decision_artifact_not_built": 1,
+      "full_label_factory_gate_not_passed": 1,
+      "full_label_factory_gate_not_run": 1,
+      "review_decision_not_terminal": 1
+    },
+    "representation_conflict_repaired_count": 1,
+    "review_context_fields": [
+      "Rhea reaction identifiers and equations",
+      "InterPro/PROSITE source context",
+      "current-reference M-CSA labels",
+      "heuristic fingerprint identifiers"
+    ],
+    "review_only": true,
+    "slice_id": 1025,
+    "source_external_import_readiness_audit_method": "external_source_import_readiness_audit",
+    "source_pilot_active_site_evidence_decisions_method": "external_source_pilot_active_site_evidence_decisions",
+    "source_pilot_success_criteria_method": "external_source_pilot_success_criteria",
+    "source_resolved_pilot_decisions_method": "external_source_pilot_decisions_review_resolved",
+    "source_sdr_redox_repair_control_method": "external_source_pilot_sdr_redox_repair_control"
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "active_site_import_safety_status": "explicit_active_site_source_resolved",
+      "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+      "countable_label_candidate": false,
+      "decision_effect": "representation_conflict_repaired_but_import_blocked_by_duplicate_review_and_factory_gates",
+      "entry_id": "uniprot:O14756",
+      "import_safety_adjudication_status": "sdr_axis_representation_conflict_repaired",
+      "normalized_decision_status_after_repair": "needs_review",
+      "previous_normalized_decision_status": "rejected_representation_conflict",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "broader_duplicate_screening_required",
+        "broader_duplicate_screening_unresolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "review_decision_not_terminal"
+      ],
+      "review_status": "external_pilot_sdr_redox_import_safety_adjudication_review_only",
+      "sdr_axis_evidence": {
+        "candidate_sequence_axis_status": "sdr_axis_present_with_source_active_site_overlap",
+        "current_reference_axis_statuses": [
+          {
+            "reference_accession": "P0A6C1",
+            "sdr_sequence_axis_status": "sdr_axis_absent"
+          },
+          {
+            "reference_accession": "P14604",
+            "sdr_sequence_axis_status": "partial_sdr_axis_signal"
+          },
+          {
+            "reference_accession": "P15369",
+            "sdr_sequence_axis_status": "sdr_axis_absent"
+          }
+        ],
+        "current_reference_sdr_axis_match_count": 0,
+        "glycine_rich_nad_p_binding_motif_count": 1,
+        "source_active_site_yxxxk_motif_count": 1
+      },
+      "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal"
+    }
+  ],
+  "warnings": [
+    "SDR/NAD(P) import-safety adjudication is a review-only decision path; it repairs one representation conflict but cannot bypass duplicate review, expert/review decisions, or full factory gates"
+  ]
+}

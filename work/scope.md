@@ -231,8 +231,15 @@ Current expectation:
   review-only SDR/NAD(P) redox sequence-axis control for `O14756`: the source
   row has both a `TGxxxGxG` glycine-rich proxy and a source-active-site
   `YxxxK` proxy, while the conflicting current-reference neighbors lack the
-  complete SDR axis. This is a control artifact for future scorer repair, not
-  an import decision or countable label. The external structural path now has a
+  complete SDR axis. The follow-on import-safety adjudication artifact now
+  consumes that non-text control, repairs the O14756 representation-conflict
+  blocker, and records post-repair `needs_review`; broader duplicate
+  screening, a post-repair review decision, and the full factory gate still
+  block import. The next lane now has a bounded `Q6NSJ0` review-only
+  glycoside-hydrolase boundary control using source-traced acidic active-site
+  residues, active-site spacing, local pocket composition, absent metal/cofactor
+  ligand context, and zero metal-hydrolase role-hint support; it is not yet an
+  import-safety adjudication. The external structural path now has a
   concrete review-only cluster index for the same 10 selected rows: all 10
   AlphaFold coordinate sidecars are materialized,
   Foldseek completed, nearest-neighbor coverage is 10/10, and the selected

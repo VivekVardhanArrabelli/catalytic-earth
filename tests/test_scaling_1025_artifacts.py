@@ -3199,6 +3199,16 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_sdr_redox_repair_control_1025.json"
         )
+        sdr_import_safety = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json"
+        )
+        glycoside_boundary = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json"
+        )
 
         self.assertEqual(
             resolution["metadata"]["method"],
@@ -3334,6 +3344,91 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertFalse(sdr_row["countable_label_candidate"])
         self.assertFalse(sdr_row["ready_for_label_import"])
+
+        self.assertEqual(
+            sdr_import_safety["metadata"]["method"],
+            "external_source_pilot_sdr_redox_import_safety_adjudication",
+        )
+        self.assertTrue(sdr_import_safety["metadata"]["review_only"])
+        self.assertFalse(sdr_import_safety["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            sdr_import_safety["metadata"]["representation_conflict_repaired_count"],
+            1,
+        )
+        self.assertEqual(
+            sdr_import_safety["metadata"]["import_ready_candidate_count"], 0
+        )
+        self.assertEqual(
+            sdr_import_safety["metadata"][
+                "normalized_decision_status_after_repair_counts"
+            ],
+            {"needs_review": 1},
+        )
+        adjudicated_sdr_row = sdr_import_safety["rows"][0]
+        self.assertEqual(adjudicated_sdr_row["accession"], "O14756")
+        self.assertEqual(
+            adjudicated_sdr_row["previous_normalized_decision_status"],
+            "rejected_representation_conflict",
+        )
+        self.assertEqual(
+            adjudicated_sdr_row["import_safety_adjudication_status"],
+            "sdr_axis_representation_conflict_repaired",
+        )
+        self.assertEqual(
+            adjudicated_sdr_row["normalized_decision_status_after_repair"],
+            "needs_review",
+        )
+        self.assertNotIn(
+            "representation_stability_changed_requires_review",
+            adjudicated_sdr_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            adjudicated_sdr_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "full_label_factory_gate_not_run",
+            adjudicated_sdr_row["remaining_import_blockers"],
+        )
+        self.assertFalse(adjudicated_sdr_row["countable_label_candidate"])
+        self.assertFalse(adjudicated_sdr_row["ready_for_label_import"])
+
+        self.assertEqual(
+            glycoside_boundary["metadata"]["method"],
+            "external_source_pilot_glycoside_hydrolase_boundary_control",
+        )
+        self.assertTrue(glycoside_boundary["metadata"]["review_only"])
+        self.assertFalse(glycoside_boundary["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            glycoside_boundary["metadata"]["candidate_with_acidic_dyad_count"],
+            1,
+        )
+        self.assertEqual(
+            glycoside_boundary["metadata"]["metal_ligand_context_absent_count"],
+            1,
+        )
+        self.assertEqual(glycoside_boundary["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(glycoside_boundary["blockers"], [])
+        glycan_row = glycoside_boundary["rows"][0]
+        self.assertEqual(glycan_row["accession"], "Q6NSJ0")
+        self.assertEqual(
+            glycan_row["control_status"],
+            "review_only_glycoside_hydrolase_boundary_ready",
+        )
+        self.assertEqual(
+            glycan_row["candidate_active_site_features"][
+                "acidic_source_active_site_positions"
+            ],
+            [463, 520],
+        )
+        self.assertEqual(
+            glycan_row["metal_hydrolase_contrast_features"][
+                "metal_role_hint_match_count"
+            ],
+            0,
+        )
+        self.assertFalse(glycan_row["countable_label_candidate"])
+        self.assertFalse(glycan_row["ready_for_label_import"])
 
 
 def _load_json(path: Path) -> dict:

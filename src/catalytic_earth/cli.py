@@ -151,7 +151,9 @@ from .transfer_scope import (
     build_external_source_pilot_decisions_review_normalized,
     build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_human_expert_review_queue_normalized,
+    build_external_source_pilot_glycoside_hydrolase_boundary_control,
     build_external_source_pilot_mechanism_repair_lanes,
+    build_external_source_pilot_sdr_redox_import_safety_adjudication,
     build_external_source_pilot_sdr_redox_repair_control,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
@@ -2722,6 +2724,90 @@ def cmd_build_external_source_pilot_sdr_redox_repair_control(
     write_json(Path(args.out), control)
     print(
         "Wrote external source pilot SDR redox repair control to "
+        f"{args.out} ({control['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_sdr_redox_import_safety_adjudication(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "sdr_redox_repair_control",
+            "resolved_pilot_decisions",
+            "pilot_active_site_evidence_decisions",
+            "external_import_readiness_audit",
+            "pilot_success_criteria",
+        ),
+        blocker_removed=(
+            "sdr_nad_p_redox_control_integrated_into_import_safety_adjudication"
+        ),
+    )
+    adjudication = build_external_source_pilot_sdr_redox_import_safety_adjudication(
+        sdr_redox_repair_control=artifact_payloads["sdr_redox_repair_control"] or {},
+        resolved_pilot_decisions=artifact_payloads["resolved_pilot_decisions"] or {},
+        pilot_active_site_evidence_decisions=artifact_payloads[
+            "pilot_active_site_evidence_decisions"
+        ]
+        or {},
+        external_import_readiness_audit=artifact_payloads[
+            "external_import_readiness_audit"
+        ]
+        or {},
+        pilot_success_criteria=artifact_payloads["pilot_success_criteria"] or {},
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), adjudication)
+    print(
+        "Wrote external source pilot SDR redox import-safety adjudication to "
+        f"{args.out} ({adjudication['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_glycoside_hydrolase_boundary_control(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "repair_lanes",
+            "needs_review_resolution",
+            "pilot_representation_sample",
+            "pilot_larger_representation_sample",
+            "pilot_representation_stability_audit",
+            "heuristic_control_scores",
+        ),
+        blocker_removed=(
+            "glycoside_hydrolase_boundary_has_non_text_contrast_control"
+        ),
+    )
+    control = build_external_source_pilot_glycoside_hydrolase_boundary_control(
+        repair_lanes=artifact_payloads["repair_lanes"] or {},
+        needs_review_resolution=artifact_payloads["needs_review_resolution"] or {},
+        pilot_representation_sample=artifact_payloads[
+            "pilot_representation_sample"
+        ]
+        or {},
+        pilot_larger_representation_sample=artifact_payloads[
+            "pilot_larger_representation_sample"
+        ]
+        or {},
+        pilot_representation_stability_audit=artifact_payloads[
+            "pilot_representation_stability_audit"
+        ]
+        or {},
+        heuristic_control_scores=artifact_payloads["heuristic_control_scores"] or {},
+        external_sequence_fasta=Path(args.external_sequence_fasta),
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), control)
+    print(
+        "Wrote external source pilot glycoside-hydrolase boundary control to "
         f"{args.out} ({control['metadata']['candidate_count']} rows)"
     )
     return 0
@@ -7252,6 +7338,125 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_sdr_repair_control.set_defaults(
         func=cmd_build_external_source_pilot_sdr_redox_repair_control
+    )
+
+    external_pilot_sdr_import_safety = subparsers.add_parser(
+        "build-external-source-pilot-sdr-redox-import-safety-adjudication",
+        help=(
+            "adjudicate the SDR/NAD(P) repair control inside the external pilot "
+            "import-safety decision path"
+        ),
+    )
+    external_pilot_sdr_import_safety.add_argument(
+        "--sdr-redox-repair-control",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_sdr_redox_repair_control_1025.json"
+        ),
+    )
+    external_pilot_sdr_import_safety.add_argument(
+        "--resolved-pilot-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_decisions_review_resolved_1025.json"
+        ),
+    )
+    external_pilot_sdr_import_safety.add_argument(
+        "--pilot-active-site-evidence-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        ),
+    )
+    external_pilot_sdr_import_safety.add_argument(
+        "--external-import-readiness-audit",
+        default="artifacts/v3_external_source_import_readiness_audit_1025.json",
+    )
+    external_pilot_sdr_import_safety.add_argument(
+        "--pilot-success-criteria",
+        default="artifacts/v3_external_source_pilot_success_criteria_1025.json",
+    )
+    external_pilot_sdr_import_safety.add_argument(
+        "--max-rows", type=int, default=1
+    )
+    external_pilot_sdr_import_safety.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json"
+        ),
+    )
+    external_pilot_sdr_import_safety.set_defaults(
+        func=cmd_build_external_source_pilot_sdr_redox_import_safety_adjudication
+    )
+
+    external_pilot_glycoside_boundary = subparsers.add_parser(
+        "build-external-source-pilot-glycoside-hydrolase-boundary-control",
+        help=(
+            "stage a review-only glycoside-hydrolase versus metal-hydrolase "
+            "boundary control for the selected external pilot repair lane"
+        ),
+    )
+    external_pilot_glycoside_boundary.add_argument(
+        "--repair-lanes",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+        ),
+    )
+    external_pilot_glycoside_boundary.add_argument(
+        "--needs-review-resolution",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_needs_review_resolution_1025.json"
+        ),
+    )
+    external_pilot_glycoside_boundary.add_argument(
+        "--pilot-representation-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_sample_1025.json"
+        ),
+    )
+    external_pilot_glycoside_boundary.add_argument(
+        "--pilot-larger-representation-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t33_650m_"
+            "ur50d_sample_1025.json"
+        ),
+    )
+    external_pilot_glycoside_boundary.add_argument(
+        "--pilot-representation-stability-audit",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_"
+            "650m_stability_audit_1025.json"
+        ),
+    )
+    external_pilot_glycoside_boundary.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores_1025.json",
+    )
+    external_pilot_glycoside_boundary.add_argument(
+        "--external-sequence-fasta",
+        default=(
+            "artifacts/"
+            "v3_external_source_backend_sequence_search_external_1025.fasta"
+        ),
+    )
+    external_pilot_glycoside_boundary.add_argument(
+        "--max-rows", type=int, default=1
+    )
+    external_pilot_glycoside_boundary.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json"
+        ),
+    )
+    external_pilot_glycoside_boundary.set_defaults(
+        func=cmd_build_external_source_pilot_glycoside_hydrolase_boundary_control
     )
 
     external_structural_path = subparsers.add_parser(

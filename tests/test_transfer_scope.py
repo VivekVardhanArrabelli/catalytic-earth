@@ -60,8 +60,10 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_active_site_evidence_decisions,
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
+    build_external_source_pilot_glycoside_hydrolase_boundary_control,
     build_external_source_pilot_human_expert_review_queue,
     build_external_source_pilot_mechanism_repair_lanes,
+    build_external_source_pilot_sdr_redox_import_safety_adjudication,
     build_external_source_pilot_sdr_redox_repair_control,
     build_external_source_pilot_review_decision_export,
     build_external_source_pilot_success_criteria,
@@ -7486,6 +7488,321 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 reference["sdr_sequence_axis_status"] != "sdr_axis_present"
                 for reference in row["current_reference_contrasts"]
             )
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_sdr_redox_import_safety_repairs_representation_only(
+        self,
+    ) -> None:
+        adjudication = build_external_source_pilot_sdr_redox_import_safety_adjudication(
+            sdr_redox_repair_control={
+                "metadata": {"method": "external_source_pilot_sdr_redox_repair_control"},
+                "rows": [
+                    {
+                        "accession": "O14756",
+                        "entry_id": "uniprot:O14756",
+                        "control_status": "review_only_sdr_axis_contrast_ready",
+                        "candidate_sequence_features": {
+                            "sdr_sequence_axis_status": (
+                                "sdr_axis_present_with_source_active_site_overlap"
+                            ),
+                            "glycine_rich_nad_p_binding_motif_hits": [
+                                {"motif": "TGCDSGFG"}
+                            ],
+                            "catalytic_yxxxk_motif_hits": [
+                                {
+                                    "motif": "YCVSK",
+                                    "overlaps_source_active_site": True,
+                                }
+                            ],
+                        },
+                        "current_reference_contrasts": [
+                            {
+                                "reference_accession": "P0A6C1",
+                                "sdr_sequence_axis_status": "sdr_axis_absent",
+                            },
+                            {
+                                "reference_accession": "P14604",
+                                "sdr_sequence_axis_status": "partial_sdr_axis_signal",
+                            },
+                        ],
+                    }
+                ],
+            },
+            resolved_pilot_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_decisions_review_resolved"
+                },
+                "rows": [
+                    {
+                        "accession": "O14756",
+                        "normalized_decision_status": (
+                            "rejected_representation_conflict"
+                        ),
+                    }
+                ],
+            },
+            pilot_active_site_evidence_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_active_site_evidence_decisions"
+                },
+                "rows": [
+                    {
+                        "accession": "O14756",
+                        "active_site_evidence_source_category": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "backend_sequence_search_status": "no_near_duplicate_signal",
+                        "broader_duplicate_screening_status": (
+                            "broader_duplicate_screening_required"
+                        ),
+                        "factory_gate_status": "not_run",
+                        "import_readiness_blockers": [
+                            "broader_duplicate_screening_required",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            external_import_readiness_audit={
+                "metadata": {"method": "external_source_import_readiness_audit"},
+                "rows": [
+                    {
+                        "accession": "O14756",
+                        "backend_sequence_search_status": "no_near_duplicate_signal",
+                        "blockers": [
+                            "representation_stability_changed_requires_review",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            pilot_success_criteria={
+                "metadata": {"method": "external_source_pilot_success_criteria"},
+                "rows": [
+                    {
+                        "accession": "O14756",
+                        "full_label_factory_gate_status": "not_run",
+                        "import_readiness_blockers": [
+                            "broader_duplicate_screening_required",
+                            "representation_stability_changed_requires_review",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    }
+                ],
+            },
+            artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+        )
+
+        metadata = adjudication["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_sdr_redox_import_safety_adjudication",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["representation_conflict_repaired_count"], 1)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["normalized_decision_status_after_repair_counts"],
+            {"needs_review": 1},
+        )
+        row = adjudication["rows"][0]
+        self.assertEqual(
+            row["previous_normalized_decision_status"],
+            "rejected_representation_conflict",
+        )
+        self.assertEqual(
+            row["import_safety_adjudication_status"],
+            "sdr_axis_representation_conflict_repaired",
+        )
+        self.assertEqual(
+            row["normalized_decision_status_after_repair"], "needs_review"
+        )
+        self.assertNotIn(
+            "representation_stability_changed_requires_review",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "full_label_factory_gate_not_run",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_glycoside_boundary_control_uses_non_text_features(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            external_fasta = Path(tmp_dir) / "external.fasta"
+            external_fasta.write_text(
+                ">ext__Q6NSJ0\n"
+                + ("A" * 462)
+                + "D"
+                + ("G" * 56)
+                + "D"
+                + ("W" * 194)
+                + "\n",
+                encoding="utf-8",
+            )
+            control = (
+                build_external_source_pilot_glycoside_hydrolase_boundary_control(
+                    repair_lanes={
+                        "metadata": {
+                            "method": "external_source_pilot_mechanism_repair_lanes"
+                        },
+                        "rows": [
+                            {
+                                "accession": "Q6NSJ0",
+                                "entry_id": "uniprot:Q6NSJ0",
+                                "repair_lane": (
+                                    "split_glycoside_hydrolase_from_"
+                                    "metal_hydrolase_control"
+                                ),
+                            }
+                        ],
+                    },
+                    needs_review_resolution={
+                        "metadata": {
+                            "method": "external_source_pilot_needs_review_resolution"
+                        },
+                        "rows": [
+                            {
+                                "accession": "Q6NSJ0",
+                                "revised_status": "rejected_representation_conflict",
+                                "confidence": "high",
+                                "active_site_evidence_result": {
+                                    "positions": [
+                                        {"position": 463},
+                                        {"position": 520},
+                                    ],
+                                },
+                            }
+                        ],
+                    },
+                    pilot_representation_sample={
+                        "metadata": {"embedding_backend": "esm2_t6_8m_ur50d"},
+                        "rows": [
+                            {
+                                "accession": "Q6NSJ0",
+                                "embedding_backend": "esm2_t6_8m_ur50d",
+                                "nearest_reference": {
+                                    "reference_accession": "P0ABI8"
+                                },
+                                "top_embedding_cosine": 0.8958,
+                            }
+                        ],
+                    },
+                    pilot_larger_representation_sample={
+                        "metadata": {"embedding_backend": "esm2_t30_150m_ur50d"},
+                        "rows": [
+                            {
+                                "accession": "Q6NSJ0",
+                                "embedding_backend": "esm2_t30_150m_ur50d",
+                                "nearest_reference": {
+                                    "reference_accession": "P07342"
+                                },
+                                "top_embedding_cosine": 0.926,
+                            }
+                        ],
+                    },
+                    pilot_representation_stability_audit={
+                        "metadata": {
+                            "method": (
+                                "external_source_representation_backend_stability_audit"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "accession": "Q6NSJ0",
+                                "baseline_nearest_reference_accession": "P0ABI8",
+                                "baseline_top_embedding_cosine": 0.8958,
+                                "comparison_nearest_reference_accession": "P07342",
+                                "comparison_top_embedding_cosine": 0.926,
+                                "nearest_reference_stable": False,
+                                "stability_flags": ["nearest_reference_changed"],
+                            }
+                        ],
+                    },
+                    heuristic_control_scores={
+                        "metadata": {"method": "external_source_heuristic_control_scores"},
+                        "results": [
+                            {
+                                "entry_id": "uniprot:Q6NSJ0",
+                                "ligand_context": {
+                                    "cofactor_families": [],
+                                    "ligand_codes": [],
+                                    "proximal_ligands": [],
+                                    "structure_cofactor_families": [],
+                                    "structure_ligand_codes": [],
+                                    "structure_ligands": [],
+                                },
+                                "pocket_context": {
+                                    "descriptors": {
+                                        "aromatic_fraction": 0.2647,
+                                        "negative_fraction": 0.2059,
+                                    },
+                                    "nearby_residue_sites": [
+                                        {"code": "TRP"},
+                                        {"code": "TYR"},
+                                        {"code": "ASP"},
+                                    ],
+                                },
+                                "top_fingerprints": [
+                                    {
+                                        "fingerprint_id": (
+                                            "metal_dependent_hydrolase"
+                                        ),
+                                        "role_match_fraction": 0.0,
+                                        "residue_match_fraction": 0.6667,
+                                        "matched_signature_roles": [
+                                            {"role_hint_match": False},
+                                            {"role_hint_match": False},
+                                        ],
+                                    }
+                                ],
+                            }
+                        ],
+                    },
+                    external_sequence_fasta=external_fasta,
+                    artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+                )
+            )
+
+        metadata = control["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_glycoside_hydrolase_boundary_control",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["candidate_with_acidic_dyad_count"], 1)
+        self.assertEqual(metadata["metal_ligand_context_absent_count"], 1)
+        self.assertEqual(control["blockers"], [])
+        row = control["rows"][0]
+        self.assertEqual(
+            row["control_status"],
+            "review_only_glycoside_hydrolase_boundary_ready",
+        )
+        self.assertEqual(
+            row["candidate_active_site_features"][
+                "acidic_source_active_site_positions"
+            ],
+            [463, 520],
+        )
+        self.assertEqual(
+            row["metal_hydrolase_contrast_features"][
+                "metal_role_hint_match_count"
+            ],
+            0,
         )
         self.assertFalse(row["countable_label_candidate"])
         self.assertFalse(row["ready_for_label_import"])

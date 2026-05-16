@@ -205,6 +205,19 @@ Current review-only external artifacts:
   current-reference neighbors. The current-reference neighbors do not carry the
   complete SDR axis, so this removes the unimplemented-control blocker for that
   lane while keeping 0 import-ready and 0 countable rows.
+- `artifacts/v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json`
+  turns the staged O14756 SDR/NAD(P) control into a real import-safety
+  adjudication. The non-text sequence rule repairs the prior
+  `rejected_representation_conflict` blocker and records post-repair
+  `needs_review`, but it keeps the row non-countable and not import-ready
+  because broader duplicate screening, a post-repair review decision, and the
+  full factory gate are still unresolved.
+- `artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json`
+  opens the next lane for `Q6NSJ0`. It stages review-only, non-text boundary
+  evidence from source-traced acidic active-site residues, active-site spacing,
+  local pocket composition, absent metal/cofactor ligand context, and zero
+  metal-hydrolase role-hint support. The control is not yet integrated into an
+  import-safety adjudication and keeps 0 import-ready/countable rows.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine
