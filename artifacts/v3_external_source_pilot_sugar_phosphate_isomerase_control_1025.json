@@ -1,0 +1,185 @@
+{
+  "blockers": [],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "heuristic_control_scores": "artifacts/v3_external_source_heuristic_control_scores_1025.json",
+        "needs_review_resolution": "artifacts/v3_external_source_pilot_needs_review_resolution_1025.json",
+        "pilot_larger_representation_sample": "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+        "pilot_representation_sample": "artifacts/v3_external_source_pilot_representation_backend_sample_1025.json",
+        "pilot_representation_stability_audit": "artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json",
+        "repair_lanes": "artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+      },
+      "blocker_removed": "sugar_phosphate_isomerase_has_non_text_scope_control",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "heuristic_control_scores": 1025,
+        "needs_review_resolution": 1025,
+        "pilot_larger_representation_sample": 1025,
+        "pilot_representation_sample": 1025,
+        "pilot_representation_stability_audit": 1025,
+        "repair_lanes": 1025
+      },
+      "payload_methods": {
+        "heuristic_control_scores": "external_source_heuristic_control_scores",
+        "needs_review_resolution": "external_source_pilot_needs_review_resolution",
+        "pilot_larger_representation_sample": "external_source_representation_backend_sample",
+        "pilot_representation_sample": "external_source_representation_backend_sample",
+        "pilot_representation_stability_audit": "external_source_representation_backend_stability_audit",
+        "repair_lanes": "external_source_pilot_mechanism_repair_lanes"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "needs_review_resolution": {
+          "metadata.slice_id": 1025
+        },
+        "repair_lanes": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "heuristic_control_scores",
+          "needs_review_resolution",
+          "pilot_larger_representation_sample",
+          "pilot_representation_sample",
+          "pilot_representation_stability_audit",
+          "repair_lanes"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "control_not_integrated_into_import_safety_adjudication",
+      "full_label_factory_gate_not_run_for_external_import",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "sugar_phosphate_isomerase_has_non_text_scope_control",
+    "candidate_count": 1,
+    "candidate_with_basic_active_site_count": 1,
+    "control_status_counts": {
+      "review_only_sugar_phosphate_isomerase_scope_ready": 1
+    },
+    "countable_label_candidate_count": 0,
+    "flavin_ligand_context_absent_count": 1,
+    "implemented_control": "sugar_phosphate_isomerase_vs_weak_flavin_redox_scope_control",
+    "import_ready_candidate_count": 0,
+    "max_rows": 1,
+    "method": "external_source_pilot_sugar_phosphate_isomerase_control",
+    "predictive_feature_sources": [
+      "source_traced_active_site_residue_codes",
+      "local_structure_ligand_context_absence",
+      "local_structure_pocket_residue_composition",
+      "heuristic_role_hint_match_absence",
+      "weak_top1_score_with_local_counterevidence"
+    ],
+    "ready_for_label_import": false,
+    "review_context_fields": [
+      "Rhea reaction identifiers and equations",
+      "InterPro/PROSITE source context",
+      "current-reference M-CSA labels",
+      "heuristic fingerprint identifiers"
+    ],
+    "review_only": true,
+    "slice_id": 1025,
+    "source_heuristic_control_scores_method": "external_source_heuristic_control_scores",
+    "source_needs_review_resolution_method": "external_source_pilot_needs_review_resolution",
+    "source_repair_lanes_method": "external_source_pilot_mechanism_repair_lanes",
+    "target_repair_lane": "add_sugar_phosphate_isomerase_scope_control"
+  },
+  "rows": [
+    {
+      "accession": "P34949",
+      "candidate_active_site_features": {
+        "active_site_residue_windows": [
+          {
+            "position": 295,
+            "residue": "R",
+            "sequence_window": "CVECMACSDNTVRAGLTPKFIDVPT",
+            "window_end": 307,
+            "window_start": 283
+          }
+        ],
+        "sequence_length": 423,
+        "source_active_site_arg_count": 1,
+        "source_active_site_arg_positions": [
+          295
+        ],
+        "source_active_site_basic_or_polar_count": 1,
+        "source_active_site_basic_or_polar_positions": [
+          295
+        ],
+        "source_active_site_positions": [
+          295
+        ]
+      },
+      "control_interpretation": "Candidate has a source-traced basic active-site residue and a local pocket compatible with sugar-phosphate chemistry, while the weak flavin top1 match has absent flavin context and zero role-hint support. This is review-only scope control evidence, not import.",
+      "control_status": "review_only_sugar_phosphate_isomerase_scope_ready",
+      "countable_label_candidate": false,
+      "decision_effect": "keeps row rejected_representation_conflict; this control stages non-text isomerase-vs-flavin evidence for later import-safety adjudication",
+      "entry_id": "uniprot:P34949",
+      "flavin_redox_contrast_features": {
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "flavin_ligand_context_absent": true,
+        "flavin_role_hint_match_count": 0,
+        "matched_signature_roles": [
+          {
+            "matched_codes": [
+              "ARG"
+            ],
+            "required_residue": "basic_or_polar_motif",
+            "required_role": "flavin_binder",
+            "role_hint_match": false
+          },
+          {
+            "matched_codes": [
+              "ARG"
+            ],
+            "required_residue": "His/Glu/Cys/Tyr/Arg",
+            "required_role": "redox_acid_base",
+            "role_hint_match": false
+          }
+        ],
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_residue_match_fraction": 0.6667,
+        "top1_role_match_fraction": 0.0,
+        "top1_score": 0.185
+      },
+      "implemented_control": "sugar_phosphate_isomerase_vs_weak_flavin_redox_scope_control",
+      "pocket_boundary_features": {
+        "nearby_basic_or_polar_residue_count": 8,
+        "nearby_residue_count": 19,
+        "negative_fraction": 0.0526,
+        "polar_fraction": 0.2632,
+        "positive_fraction": 0.1053
+      },
+      "ready_for_label_import": false,
+      "repair_lane": "add_sugar_phosphate_isomerase_scope_control",
+      "representation_conflict_summary": {
+        "baseline_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P0A6D3",
+        "baseline_top_embedding_cosine": 0.9199,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P0A6D3",
+        "comparison_top_embedding_cosine": 0.9364,
+        "nearest_reference_stable": true,
+        "stability_flags": [
+          "comparison_embedding_backend_fallback_used"
+        ]
+      },
+      "review_status": "external_pilot_sugar_phosphate_isomerase_control_review_only",
+      "source_confidence": "medium",
+      "source_resolved_status": "rejected_representation_conflict"
+    }
+  ],
+  "warnings": [
+    "Sugar-phosphate isomerase controls are review-only contrast evidence; they do not validate enzyme function or authorize import"
+  ]
+}

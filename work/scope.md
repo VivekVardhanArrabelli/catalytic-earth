@@ -238,8 +238,16 @@ Current expectation:
   block import. The next lane now has a bounded `Q6NSJ0` review-only
   glycoside-hydrolase boundary control using source-traced acidic active-site
   residues, active-site spacing, local pocket composition, absent metal/cofactor
-  ligand context, and zero metal-hydrolase role-hint support; it is not yet an
-  import-safety adjudication. The external structural path now has a
+  ligand context, and zero metal-hydrolase role-hint support. Its follow-on
+  import-safety adjudication now repairs the Q6NSJ0 boundary conflict and
+  records post-repair `needs_review`; broader duplicate screening, a
+  post-repair review decision, and the full factory gate still block import.
+  The P34949 sugar-phosphate isomerase lane now has a bounded review-only
+  scope control using a source-traced active-site Arg, local pocket composition,
+  absent flavin/cofactor context, zero flavin role-hint support, and weak top1
+  score with local `absent_flavin_context` counterevidence; it is not yet an
+  import-safety adjudication.
+  The external structural path now has a
   concrete review-only cluster index for the same 10 selected rows: all 10
   AlphaFold coordinate sidecars are materialized,
   Foldseek completed, nearest-neighbor coverage is 10/10, and the selected

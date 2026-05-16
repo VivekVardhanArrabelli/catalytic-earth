@@ -347,8 +347,18 @@ factory gate remain unresolved.
 also opens the next `Q6NSJ0` lane as review-only control evidence: source-traced
 acidic active-site residues, absent local metal/cofactor context, and zero
 metal-hydrolase role-hint support separate the glycoside-hydrolase boundary
-from the current broad metal-hydrolase collapse. It is not yet integrated into
-an import-safety decision and authorizes no imports.
+from the current broad metal-hydrolase collapse. The follow-on
+`artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_1025.json`
+now integrates that non-text boundary control into the import-safety path:
+it repairs the Q6NSJ0 representation/heuristic conflict and records
+post-repair `needs_review`, while broader duplicate screening, a post-repair
+review decision, and the full factory gate still block import and counting.
+`artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json`
+then starts the P34949 lane as review-only control evidence: a source-traced
+basic active-site residue, local pocket composition, absent flavin/cofactor
+context, and zero flavin role-hint support separate mannose-6-phosphate
+isomerase scope from the weak flavin-redox heuristic top1. It is not yet an
+import-safety adjudication and authorizes no imports.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

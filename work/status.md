@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 135
-- Measured elapsed time: 4610.3 minutes (76.84 hours)
+- Entries: 136
+- Measured elapsed time: 4623.4 minutes (77.06 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- external-transfer-spof-hardening: 186.5 measured minutes (3.11 hours)
+- external-transfer-spof-hardening: 199.7 measured minutes (3.33 hours)
 - ops: 51.4 measured minutes (0.86 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1559
-- Evidence references logged: 1183
+- Artifact references logged: 1570
+- Evidence references logged: 1193
 
 ## Recent Entries
-
-### 2026-05-16T11:15:09.904197+00:00 - external-transfer-spof-hardening
-
-- Task: Complete external structural pair cache and split plan
-- Time mode: measured
-- Measured minutes: 13.667
-- Started: 2026-05-16T11:01:29Z
-- Ended: 2026-05-16T11:15:09Z
-- Artifacts: artifacts/v3_external_structural_cluster_index_1025_all30.json, artifacts/v3_external_structural_tm_diverse_split_plan_1025_all30.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_external_structural_holdout_artifact.py, tests/test_transfer_scope.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/foldseek_readiness_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md
-- Evidence: startup 354 unit tests passed, startup validate passed with 679 curated labels, Foldseek all-30 external cache completed 435/435 unordered nonself pairs with 900 directed rows, review-only external structural split assigned 6 test and 24 train rows, max cross-split TM-score 0.6963, 0 cross-split TM>=0.7 violations, 0 import-ready rows and 0 countable external labels, final 356 unit tests passed, final validate passed, compileall passed, git diff check passed
-- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; no external rows became countable or import-ready.
 
 ### 2026-05-16T12:15:25.647551+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json, artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 361 unit tests passed, startup validate passed with 679 curated labels, O14756 SDR/NAD(P) import-safety adjudication repaired representation conflict, post-repair O14756 status remains needs_review, Q6NSJ0 glycoside hydrolase boundary control staged as review-only non-text evidence, 0 import-ready rows and 0 countable external labels, final 363 unit tests passed, final validate passed, compileall passed, git diff check passed
 - Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. O14756 is no longer blocked by representation conflict alone, but duplicate review and full factory gates still block import.
+
+### 2026-05-16T21:00:19.989175+00:00 - external-transfer-spof-hardening
+
+- Task: Integrate glycoside import-safety and stage sugar isomerase control
+- Time mode: measured
+- Measured minutes: 13.133
+- Started: 2026-05-16T20:47:11Z
+- Ended: 2026-05-16T21:00:19Z
+- Artifacts: artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_1025.json, artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 363 unit tests passed, startup validate passed with 679 curated labels, Q6NSJ0 glycoside-hydrolase import-safety adjudication repaired representation/heuristic conflict, post-repair Q6NSJ0 status remains needs_review, P34949 sugar-phosphate isomerase control staged as review-only non-text evidence, 0 import-ready rows and 0 countable external labels, final 365 unit tests passed, final validate passed, compileall passed, git diff check passed
+- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
 
 ## Expectation Updates
 
@@ -231,6 +231,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T14:26:15.956789+00:00: External candidate all-vs-all duplicate screen is now complete for the current 30-row sample; UniRef-wide screening plus review decisions still block import.
 - 2026-05-16T15:22:11.987493+00:00: Selected-pilot needs_review is no longer the active blocker; next external work should repair representation or heuristic controls or broaden the external structural surface.
 - 2026-05-16T20:03:03.218017+00:00: Next direct work should integrate the Q6NSJ0 glycoside-hydrolase boundary control into import-safety adjudication or complete O14756 duplicate review and full factory gate path before import.
+- 2026-05-16T21:00:19.989175+00:00: Next direct work should integrate the P34949 sugar-phosphate isomerase control into import-safety adjudication or complete duplicate/review/factory blockers for repaired O14756 and Q6NSJ0.
 
 ## Scope Adjustments
 
@@ -335,3 +336,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T09:14:46.363953+00:00: Selected-pilot external structural clustering is now a review-only cache, not a train/test split or import authorization.
 - 2026-05-16T10:14:24.266801+00:00: External fold-diverse structural work now starts from the all-30 UniProtKB/Swiss-Prot candidate surface rather than only the selected 10-row pilot; strict split claims remain blocked until pair-cache and review/import blockers are resolved.
 - 2026-05-16T11:15:09.904197+00:00: External structural TM-diverse split assignment is now available only as review-only all-30 Swiss-Prot/AFDB evidence; import and benchmark claims remain blocked by terminal review decisions and broader duplicate/factory gates.
+- 2026-05-16T21:00:19.989175+00:00: Q6NSJ0 boundary repair is now an import-safety adjudication; P34949 sugar-phosphate isomerase is the next staged review-only control, not an import.
