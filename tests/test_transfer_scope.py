@@ -31,6 +31,7 @@ from catalytic_earth.transfer_scope import (
     audit_external_source_representation_backend_stability,
     audit_external_source_pilot_representation_adjudication,
     audit_external_source_sequence_alignment_verification,
+    audit_external_source_all_vs_all_sequence_search,
     audit_external_source_sequence_reference_screen,
     audit_external_source_sequence_search_export,
     audit_external_source_sequence_holdouts,
@@ -76,6 +77,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_representation_backend_plan,
     build_external_source_representation_backend_sample,
     build_external_source_sequence_alignment_verification,
+    build_external_source_all_vs_all_sequence_search,
     build_external_source_sequence_search_export,
     build_external_source_sequence_neighborhood_plan,
     build_external_source_sequence_neighborhood_sample,
@@ -5491,6 +5493,120 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "current_reference_sequence_screen_incomplete",
             incomplete["blockers"],
         )
+
+    def test_external_all_vs_all_sequence_search_is_review_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            external_fasta = tmp / "external.fasta"
+            external_fasta.write_text(
+                ">ext__P11111\nAAAAAAAAAA\n"
+                ">ext__P22222\nAAAAAAAAAT\n"
+                ">ext__P33333\nCCCCCCCCCC\n",
+                encoding="utf-8",
+            )
+
+            def fake_backend(**_: object) -> dict:
+                return {
+                    "alignment_rows": [
+                        {
+                            "query_id": "ext__P11111",
+                            "target_id": "ext__P11111",
+                            "pident": 100.0,
+                            "alnlen": 10,
+                            "evalue": "0",
+                            "bits": 50.0,
+                        },
+                        {
+                            "query_id": "ext__P11111",
+                            "target_id": "ext__P22222",
+                            "pident": 95.0,
+                            "alnlen": 10,
+                            "evalue": "1e-20",
+                            "bits": 45.0,
+                        },
+                        {
+                            "query_id": "ext__P22222",
+                            "target_id": "ext__P11111",
+                            "pident": 95.0,
+                            "alnlen": 10,
+                            "evalue": "1e-20",
+                            "bits": 44.0,
+                        },
+                        {
+                            "query_id": "ext__P33333",
+                            "target_id": "ext__P33333",
+                            "pident": 100.0,
+                            "alnlen": 10,
+                            "evalue": "0",
+                            "bits": 50.0,
+                        },
+                    ],
+                    "backend_available": True,
+                    "backend_commands": ["mmseqs easy-search external external out tmp"],
+                    "backend_name": "mmseqs2_easy_search",
+                    "backend_succeeded": True,
+                    "backend_version": "test",
+                    "limitations": [],
+                }
+
+            candidate_manifest = {
+                "metadata": {"method": "external_source_candidate_manifest"},
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "entry_id": "uniprot:P11111",
+                        "lane_id": "external_source:lyase",
+                    },
+                    {
+                        "accession": "P22222",
+                        "entry_id": "uniprot:P22222",
+                        "lane_id": "external_source:lyase",
+                    },
+                    {
+                        "accession": "P33333",
+                        "entry_id": "uniprot:P33333",
+                        "lane_id": "external_source:hydrolase",
+                    },
+                ],
+            }
+
+            with patch(
+                "catalytic_earth.transfer_scope._run_external_sequence_search_backend",
+                side_effect=fake_backend,
+            ):
+                search = build_external_source_all_vs_all_sequence_search(
+                    candidate_manifest=candidate_manifest,
+                    external_fasta=str(external_fasta),
+                    result_tsv_out=str(tmp / "all_vs_all.tsv"),
+                )
+
+            audit = audit_external_source_all_vs_all_sequence_search(
+                all_vs_all_sequence_search=search,
+                candidate_manifest=candidate_manifest,
+            )
+            rows = {row["accession"]: row for row in search["rows"]}
+
+            self.assertEqual(
+                search["metadata"]["blocker_removed"],
+                "external_candidate_all_vs_all_sequence_duplicate_screen",
+            )
+            self.assertIn(
+                "uniref_wide_duplicate_screen_not_run",
+                search["metadata"]["blocker_not_removed"],
+            )
+            self.assertEqual(search["metadata"]["near_duplicate_pair_count"], 1)
+            self.assertEqual(
+                rows["P11111"]["search_status"],
+                "external_all_vs_all_near_duplicate_holdout",
+            )
+            self.assertEqual(
+                rows["P33333"]["search_status"],
+                "external_all_vs_all_no_near_duplicate_signal",
+            )
+            self.assertFalse(search["metadata"]["ready_for_label_import"])
+            self.assertEqual(search["metadata"]["countable_label_candidate_count"], 0)
+            self.assertTrue(audit["metadata"]["guardrail_clean"])
+            self.assertEqual(audit["metadata"]["near_duplicate_pair_count"], 1)
 
     def test_external_import_readiness_audit_prioritizes_remaining_blockers(
         self,

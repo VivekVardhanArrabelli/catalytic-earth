@@ -832,13 +832,17 @@ Current 1,025-preview state:
   `O15527` and `P42126`, records 28 no-signal rows, 0 near-duplicate rows, and
   0 failures, and keeps every row review-only, non-countable, and not
   import-ready. This removes the bounded current-reference backend search debt
-  for the 28 no-signal rows, but broader UniRef-wide/all-vs-all duplicate
-  screening still blocks import. The bounded sequence-alignment verification
+  for the 28 no-signal rows. The external all-vs-all sequence screen
+  `artifacts/v3_external_source_all_vs_all_sequence_search_1025.json` covers
+  all 30 current external rows, finds 0 near-duplicate pairs at 90% identity /
+  80% coverage, records max reported external-external identity `0.647`, and
+  keeps every row review-only. UniRef-wide duplicate screening still blocks
+  import. The bounded sequence-alignment verification
   checks 90 top-hit pairs, confirms the two exact-reference holdouts, and keeps
   all rows non-countable. The
   import-readiness audit keeps 0 rows import-ready while summarizing 10
   active-site gaps, 2 exact sequence holdouts, 9 heuristic scope/top1
-  mismatches, 29 representation-control issues, and broader duplicate-screening
+  mismatches, 29 representation-control issues, and UniRef-wide duplicate-screening
   limitations; the active-site sourcing queue prioritizes the 10 active-site
   gaps into 7 mapped-binding-context rows and 3 primary-source rows. The
   active-site sourcing export carries 72 source targets with 0 completed

@@ -117,6 +117,7 @@ from .transfer_scope import (
     audit_external_source_pilot_decision_confidence,
     audit_external_source_pilot_representation_adjudication,
     audit_external_source_sequence_alignment_verification,
+    audit_external_source_all_vs_all_sequence_search,
     audit_external_source_backend_sequence_search,
     audit_external_source_sequence_reference_screen,
     audit_external_source_sequence_search_export,
@@ -166,6 +167,7 @@ from .transfer_scope import (
     build_external_source_pilot_representation_backend_plan,
     build_external_source_representation_backend_sample,
     build_external_source_sequence_alignment_verification,
+    build_external_source_all_vs_all_sequence_search,
     build_external_source_backend_sequence_search,
     build_external_source_sequence_search_export,
     build_external_source_sequence_neighborhood_plan,
@@ -1960,6 +1962,55 @@ def cmd_audit_external_source_backend_sequence_search(
     return 0
 
 
+def cmd_build_external_source_all_vs_all_sequence_search(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    search = build_external_source_all_vs_all_sequence_search(
+        candidate_manifest=candidate_manifest,
+        external_fasta=args.external_fasta,
+        result_tsv_out=args.result_tsv_out,
+        backend=args.backend,
+        mmseqs_binary=args.mmseqs_binary,
+        diamond_binary=args.diamond_binary,
+        blastp_binary=args.blastp_binary,
+        makeblastdb_binary=args.makeblastdb_binary,
+        identity_threshold=args.identity_threshold,
+        coverage_threshold=args.coverage_threshold,
+        exact_identity_threshold=args.exact_identity_threshold,
+        exact_coverage_threshold=args.exact_coverage_threshold,
+        max_rows=args.max_rows,
+        top_k=args.top_k,
+    )
+    write_json(Path(args.out), search)
+    print(
+        "Wrote external source all-vs-all sequence search to "
+        f"{args.out} ({search['metadata']['backend_name']}, "
+        f"{search['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_all_vs_all_sequence_search(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.all_vs_all_sequence_search).open("r", encoding="utf-8") as handle:
+        all_vs_all_sequence_search = json.load(handle)
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    audit = audit_external_source_all_vs_all_sequence_search(
+        all_vs_all_sequence_search=all_vs_all_sequence_search,
+        candidate_manifest=candidate_manifest,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source all-vs-all sequence search audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
 def cmd_build_external_source_sequence_search_export(
     args: argparse.Namespace,
 ) -> int:
@@ -2518,6 +2569,7 @@ def cmd_audit_external_source_pilot_decision_confidence(
             "pilot_human_expert_review_queue",
             "external_structural_cluster_index",
             "external_structural_tm_diverse_split_plan",
+            "external_all_vs_all_sequence_search",
             "external_transfer_gate",
         ),
         blocker_removed="external_pilot_terminal_decision_confidence_audited",
@@ -2543,6 +2595,9 @@ def cmd_audit_external_source_pilot_decision_confidence(
         external_structural_tm_diverse_split_plan=artifact_payloads[
             "external_structural_tm_diverse_split_plan"
         ],
+        external_all_vs_all_sequence_search=artifact_payloads.get(
+            "external_all_vs_all_sequence_search"
+        ),
         external_transfer_gate=artifact_payloads["external_transfer_gate"],
         max_rows=args.max_rows,
         artifact_lineage=artifact_lineage,
@@ -6221,6 +6276,77 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_backend_sequence_search
     )
 
+    external_all_vs_all_sequence_search = subparsers.add_parser(
+        "build-external-source-all-vs-all-sequence-search",
+        help="run a real backend all-vs-all sequence search across external candidates",
+    )
+    external_all_vs_all_sequence_search.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_all_vs_all_sequence_search.add_argument(
+        "--external-fasta",
+        default="artifacts/v3_external_source_backend_sequence_search_external.fasta",
+    )
+    external_all_vs_all_sequence_search.add_argument(
+        "--result-tsv-out",
+        default="artifacts/v3_external_source_all_vs_all_sequence_search.tsv",
+    )
+    external_all_vs_all_sequence_search.add_argument(
+        "--backend", choices=("auto", "mmseqs", "diamond", "blastp"), default="auto"
+    )
+    external_all_vs_all_sequence_search.add_argument("--mmseqs-binary", default="mmseqs")
+    external_all_vs_all_sequence_search.add_argument(
+        "--diamond-binary", default="diamond"
+    )
+    external_all_vs_all_sequence_search.add_argument("--blastp-binary", default="blastp")
+    external_all_vs_all_sequence_search.add_argument(
+        "--makeblastdb-binary", default="makeblastdb"
+    )
+    external_all_vs_all_sequence_search.add_argument(
+        "--identity-threshold", type=float, default=0.90
+    )
+    external_all_vs_all_sequence_search.add_argument(
+        "--coverage-threshold", type=float, default=0.80
+    )
+    external_all_vs_all_sequence_search.add_argument(
+        "--exact-identity-threshold", type=float, default=0.999
+    )
+    external_all_vs_all_sequence_search.add_argument(
+        "--exact-coverage-threshold", type=float, default=0.98
+    )
+    external_all_vs_all_sequence_search.add_argument(
+        "--max-rows", type=int, default=100
+    )
+    external_all_vs_all_sequence_search.add_argument("--top-k", type=int, default=5)
+    external_all_vs_all_sequence_search.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_all_vs_all_sequence_search.json",
+    )
+    external_all_vs_all_sequence_search.set_defaults(
+        func=cmd_build_external_source_all_vs_all_sequence_search
+    )
+
+    external_all_vs_all_sequence_search_audit = subparsers.add_parser(
+        "audit-external-source-all-vs-all-sequence-search",
+        help="verify external all-vs-all sequence-search artifacts remain review-only",
+    )
+    external_all_vs_all_sequence_search_audit.add_argument(
+        "--all-vs-all-sequence-search",
+        default="artifacts/v3_external_source_all_vs_all_sequence_search.json",
+    )
+    external_all_vs_all_sequence_search_audit.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_all_vs_all_sequence_search_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_all_vs_all_sequence_search_audit.json",
+    )
+    external_all_vs_all_sequence_search_audit.set_defaults(
+        func=cmd_audit_external_source_all_vs_all_sequence_search
+    )
+
     external_sequence_search_export = subparsers.add_parser(
         "build-external-source-sequence-search-export",
         help="build review-only complete near-duplicate sequence-search packets",
@@ -6867,6 +6993,13 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/"
             "v3_external_structural_tm_diverse_split_plan_1025_all30.json"
+        ),
+    )
+    external_pilot_decision_confidence.add_argument(
+        "--external-all-vs-all-sequence-search",
+        default=(
+            "artifacts/"
+            "v3_external_source_all_vs_all_sequence_search_1025.json"
         ),
     )
     external_pilot_decision_confidence.add_argument(

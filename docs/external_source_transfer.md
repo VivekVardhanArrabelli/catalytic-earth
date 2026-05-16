@@ -67,14 +67,15 @@ Priority blockers:
 - source explicit catalytic or active-site residue evidence for the 10
   active-site-feature gap rows;
 - treat the bounded current-reference MMseqs2 sequence search as complete for
-  the 28 no-signal rows, while still requiring broader UniRef-wide/all-vs-all
+  the 28 no-signal rows and the external candidate all-vs-all MMseqs2 screen
+  as complete for the current 30-row sample, while still requiring UniRef-wide
   duplicate screening before import;
 - advance the 10 selected pilot-priority candidates with explicit active-site
   evidence, specific reaction evidence, clean sequence holdout status, clean
   structure mapping, non-collapsed retrieval/representation behavior, and no
   broad-EC ambiguity;
 - resolve the 6 normalized `needs_review` rows (`O14756`, `P06746`, `C9JRZ8`,
-  `P34949`, `Q9BXD5`, and `Q6NSJ0`) through broader duplicate screening,
+  `P34949`, `Q9BXD5`, and `Q6NSJ0`) through UniRef-wide duplicate screening,
   representation or heuristic adjudication, and actual review decisions; or
   expand the external fold-diverse structural surface beyond the current
   review-only 30-row split before any benchmark/import claim.
@@ -83,7 +84,7 @@ Priority blockers:
   decisions: 7 have explicit active-site source evidence, 3 have binding
   context only, 0 are countable, and 0 are import-ready. This removes the
   pilot source-status ambiguity blocker, but every selected row still requires
-  broader duplicate screening, representation-control review, a completed
+  UniRef-wide duplicate screening, representation-control review, a completed
   review decision, and the full label-factory gate before import.
 - `artifacts/v3_external_source_pilot_success_criteria_1025.json` defines the
   pilot success bar rather than treating evidence assembly as completion.
@@ -103,14 +104,16 @@ Priority blockers:
   routes the 3 deferred rows (`O14756`, `P34949`, and `Q6NSJ0`) into a
   review-only human/expert queue with the exact unresolved evidence, expert
   question, and remaining non-human blockers. It removes only the deferred-row
-  routing blocker; broader duplicate screening and full label-factory gates
+  routing blocker; UniRef-wide duplicate screening and full label-factory gates
   still block import.
 - `artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json`
   audits every selected terminal decision against active-site evidence,
   duplicate/near-duplicate evidence, representation controls, heuristic
   controls, review decisions, structure controls, and factory-gate state. It
   records 4 confident current decisions, 3 low-confidence current hard
-  duplicate rejections, and 3 existing needs-review rows.
+  duplicate rejections, and 3 existing needs-review rows. It now carries the
+  external all-vs-all screen evidence showing 0 selected-row external
+  near-duplicate hits while preserving the remaining UniRef-wide blocker.
 - `artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json`
   normalizes the post-audit decision surface to the accepted vocabulary:
   6 `needs_review`, 3 `rejected_active_site_evidence_missing`, 1
@@ -203,14 +206,18 @@ Priority blockers:
   records. It preserves exact holdouts `O15527` and `P42126`, records 28
   no-signal rows, 0 near-duplicate rows, and 0 failures, and keeps every row
   review-only, non-countable, and not import-ready. This removes the bounded
-  current-reference backend sequence-search debt for the 28 no-signal rows,
-  but broader UniRef-wide/all-vs-all duplicate screening remains mandatory
-  before import. The bounded top-hit alignment verification checks 90
+  current-reference backend sequence-search debt for the 28 no-signal rows.
+  `artifacts/v3_external_source_all_vs_all_sequence_search_1025.json` runs
+  the same MMseqs2 backend all-vs-all across the 30 external candidates,
+  covers 30/30 sequences, finds 0 near-duplicate pairs, records max reported
+  external-external identity `0.647`, and keeps all rows review-only. UniRef-wide
+  duplicate screening remains mandatory before import. The bounded top-hit
+  alignment verification checks 90
   sequence-neighborhood pairs, confirms the two exact-reference holdouts by
   alignment, and finds 88 no-signal top-hit pairs.
 - The import-readiness audit aggregates the current blockers by candidate: 10
   active-site gaps, 2 exact sequence holdouts, 9 heuristic scope/top1
-  mismatches, 29 representation-control issues, and the remaining broader
+  mismatches, 29 representation-control issues, and the remaining UniRef-wide
   duplicate-screening limitation. It keeps 0 rows import-ready. The active-site
   sourcing queue turns the 10 active-site gaps into 7 mapped-binding-context
   sourcing rows and 3 primary-source rows, and the active-site sourcing export
@@ -219,8 +226,8 @@ Priority blockers:
   evidence, finds 0 explicit active-site residue sources, and leaves the rows
   non-countable. The sequence-search export plus backend search keep all 30
   candidates in no-decision sequence controls: 28 bounded current-reference
-  no-signal rows, 2 exact sequence holdouts, and broader duplicate screening
-  still pending.
+  no-signal rows, 2 exact sequence holdouts, external all-vs-all no-signal
+  rows, and UniRef-wide duplicate screening still pending.
   The representation-backend plan covers 12 mapped controls without computing
   embeddings. `artifacts/v3_external_source_kmer_representation_backend_sample_1025.json`
   preserves the deterministic k-mer baseline/proxy, while the canonical
@@ -342,7 +349,7 @@ Priority blockers:
   selected-pilot work into measurable review-only criteria. It records 10
   selected candidates, 0 terminal review decisions, 0 import-ready rows, 0
   countable label candidates, the explicit active-site split of 7 resolved and
-  3 unresolved rows, broader duplicate screening still required for all 10,
+  3 unresolved rows, UniRef-wide duplicate screening still required for all 10,
   representation-control adjudication still unresolved for 9 rows, and full
   label-factory gates not run for all 10. Its current `pilot_status` is
   `needs_more_work`.
@@ -618,6 +625,18 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-backend-seque
   --backend-sequence-search artifacts/v3_external_source_backend_sequence_search_1025.json \
   --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
   --out artifacts/v3_external_source_backend_sequence_search_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-all-vs-all-sequence-search \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --external-fasta artifacts/v3_external_source_backend_sequence_search_external_1025.fasta \
+  --result-tsv-out artifacts/v3_external_source_all_vs_all_sequence_search_1025.tsv \
+  --backend auto \
+  --out artifacts/v3_external_source_all_vs_all_sequence_search_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-all-vs-all-sequence-search \
+  --all-vs-all-sequence-search artifacts/v3_external_source_all_vs_all_sequence_search_1025.json \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --out artifacts/v3_external_source_all_vs_all_sequence_search_audit_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-reaction-evidence-sample \
   --evidence-request-export artifacts/v3_external_source_evidence_request_export_1025.json \
@@ -919,6 +938,7 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --pilot-review-decision-export artifacts/v3_external_source_pilot_review_decision_export_1025.json \
   --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \
   --pilot-evidence-dossiers artifacts/v3_external_source_pilot_evidence_dossiers_1025.json \
+  --pilot-active-site-evidence-decisions artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json \
   --pilot-representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
   --binding-context-repair-plan artifacts/v3_external_source_binding_context_repair_plan_1025.json \
   --binding-context-repair-plan-audit artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json \

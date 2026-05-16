@@ -178,7 +178,8 @@ active-site feature sampling, structure-mapping and heuristic-control
 prototypes, failure-mode audit, control-repair artifacts, representation-control
 comparison, broad-EC disambiguation, active-site gap source requests,
 sequence-neighborhood controls, sequence-alignment verification,
-sequence-search export, import-readiness audit, active-site sourcing queue/export,
+sequence-search export, backend current-reference and external all-vs-all
+sequence screening, import-readiness audit, active-site sourcing queue/export,
 active-site sourcing resolution, representation-backend plan/sample, a
 candidate blocker matrix, a 10-row external pilot candidate priority worklist,
 a consolidated pilot evidence packet, 10 per-candidate pilot evidence
@@ -220,10 +221,15 @@ rows against 735 current reference accessions / 737 sequence records. It
 preserves exact holdouts `O15527` and `P42126`, records 28 no-signal rows, 0
 near-duplicate rows, and 0 failures, and keeps every row review-only,
 non-countable, and not import-ready. This removes the bounded current-reference
-backend sequence-search debt for the 28 no-signal rows; broader UniRef-wide or
-all-vs-all duplicate screening remains required before any import. The bounded
-sequence-alignment verification checks 90 top-hit pairs, confirms the two
-exact-reference holdouts, and keeps every row non-countable. The
+backend sequence-search debt for the 28 no-signal rows. The external
+candidate all-vs-all sequence screen
+`artifacts/v3_external_source_all_vs_all_sequence_search_1025.json` covers all
+30 current external rows, finds 0 near-duplicate pairs at the 90% identity /
+80% coverage bar, records max reported external-external identity `0.647`, and
+keeps every row review-only. UniRef-wide duplicate screening remains required
+before import. The bounded sequence-alignment verification checks 90 top-hit
+pairs, confirms the two exact-reference holdouts, and keeps every row
+non-countable. The
 import-readiness audit keeps 0 rows import-ready while summarizing 10
 active-site gaps, 2 exact sequence holdouts, 9 heuristic scope/top1
 mismatches, 29 representation-control issues, and the remaining broader
@@ -261,13 +267,14 @@ dossier assembly now adds local evidence-completeness blockers itself; the 3
 selected rows without explicit active-site evidence are flagged, and no
 selected row is missing specific reaction context. Backend no-signal rows no
 longer inherit the stale complete-near-duplicate sequence blockers in the
-pilot packet or dossiers.
+pilot packet or dossiers, and the external all-vs-all sequence screen now
+shows 0 selected-row external near-duplicate hits.
 `artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json`
 now classifies those 10 selected rows into review-only active-site evidence
 decision states. It records 7 rows with explicit active-site source evidence
 and 3 rows with binding context only, removes the pilot source-status ambiguity
 blocker, and keeps all 10 rows non-countable and not import-ready because
-broader duplicate screening, representation controls, review decisions, and the
+UniRef-wide duplicate screening, representation controls, review decisions, and the
 full label-factory gate remain unresolved.
 `artifacts/v3_external_source_pilot_representation_adjudication_1025.json`
 then consumes the 8M-vs-largest-feasible ESM-2 stability audit for the selected
@@ -297,7 +304,9 @@ countable external labels.
 `artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json`
 audits all 10 selected terminal decisions candidate-by-candidate. It keeps 4
 current decisions confident, marks 3 representation-only duplicate rejections
-low-confidence, and keeps 3 rows in needs-review status. The companion
+low-confidence, and keeps 3 rows in needs-review status. It carries the
+external all-vs-all no-signal evidence while preserving the remaining
+UniRef-wide duplicate blocker. The companion
 `artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json`
 normalizes the review vocabulary to 6 `needs_review`, 3
 `rejected_active_site_evidence_missing`, and 1
@@ -500,8 +509,9 @@ rows, 144/144 cross-split pairs checked, max cross-split TM-score `0.6963`,
 and 0 cross-split `TM >=0.7` violations. It keeps every external row
 non-countable and not import-ready.
 External packet
-decisions still need active-site sources and broader duplicate-screening
-evidence beyond the bounded current-reference MMseqs2 search. Do not resume
+decisions still need active-site sources and UniRef-wide duplicate-screening
+evidence beyond the bounded current-reference and external all-vs-all MMseqs2
+screens, especially UniRef-wide duplicate evidence. Do not resume
 M-CSA-only count growth or external label import.
 See
 `docs/label_factory.md`.

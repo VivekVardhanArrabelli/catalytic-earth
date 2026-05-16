@@ -211,7 +211,10 @@ Current expectation:
   normalizes weak hard calls: 4 current decisions remain confident, 3
   representation-only duplicate rejections move to low-confidence
   `needs_review`, and the normalized review queue now carries 6 exact
-  questions. The external structural path now has a concrete review-only cluster index for the same 10
+  questions. The audit now carries the 30-row external all-vs-all sequence
+  screen: 0 near-duplicate pairs at 90% identity / 80% coverage, max reported
+  external-external identity `0.647`, and UniRef-wide duplicate screening still
+  pending. The external structural path now has a concrete review-only cluster index for the same 10
   selected rows: all 10 AlphaFold coordinate sidecars are materialized,
   Foldseek completed, nearest-neighbor coverage is 10/10, and the selected
   pilot forms nine `TM >=0.7` clusters with only `O95050`/`P51580` grouped. It
@@ -356,7 +359,8 @@ Current expectation:
   `O15527` and `P42126`, records 28 no-signal rows, 0 near-duplicate rows, and
   0 failures, and keeps every row review-only, non-countable, and not
   import-ready. The bounded current-reference backend search debt is cleared
-  for the 28 no-signal rows, while broader UniRef-wide/all-vs-all duplicate
+  for the 28 no-signal rows; the external all-vs-all sequence screen covers
+  the current 30-row sample with 0 near-duplicate pairs; UniRef-wide duplicate
   screening remains active. The refreshed pilot packet and dossiers consume
   this backend status so selected no-signal rows no longer retain stale
   complete-near-duplicate sequence blockers.
@@ -404,7 +408,8 @@ Current expectation:
   artifacts, representation-control comparison, broad-EC disambiguation,
   active-site gap source requests, sequence-neighborhood controls, bounded
   sequence-neighborhood screening, bounded sequence-alignment verification,
-  sequence-search export, backend sequence search, import-readiness audit, active-site sourcing
+  sequence-search export, backend current-reference and all-vs-all sequence
+  searches, import-readiness audit, active-site sourcing
   queue/export/resolution, representation-backend plan/sample, transfer blocker
   matrix, active-site pilot decisions, pilot success criteria, and a 68/68
   transfer gate with direct current-reference sequence-screen and backend
@@ -433,12 +438,13 @@ Current expectation:
   reference accessions / 737 sequence records, preserves exact holdouts
   `O15527` and `P42126`, records 28 no-signal rows, 0 near-duplicate rows, and
   0 failures, and removes the bounded current-reference backend search debt for
-  the 28 no-signal rows while broader UniRef-wide/all-vs-all duplicate
-  screening remains blocked, the
+  the 28 no-signal rows; the external all-vs-all sequence screen covers 30/30
+  rows with 0 near-duplicate pairs while UniRef-wide duplicate screening remains
+  blocked, the
   import-readiness audit records 0
   import-ready rows plus 10 active-site gaps, 9 heuristic scope/top1
   mismatches, 29 representation-control issues, 2 exact sequence holdouts, and
-  broader duplicate-screening limitations, the active-site sourcing queue
+  UniRef-wide duplicate-screening limitations, the active-site sourcing queue
   prioritizes 7 mapped-binding-context rows and 3 primary-source rows, the
   active-site sourcing export carries 72 source targets, the sequence-search
   export plus backend search keeps all 30 rows review-only, non-countable, and

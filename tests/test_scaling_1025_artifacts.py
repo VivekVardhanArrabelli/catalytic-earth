@@ -302,6 +302,16 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_backend_sequence_search_audit_1025.json"
         )
+        all_vs_all_sequence_search = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_all_vs_all_sequence_search_1025.json"
+        )
+        all_vs_all_sequence_search_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_all_vs_all_sequence_search_audit_1025.json"
+        )
         import_readiness = _load_json(
             ROOT
             / "artifacts"
@@ -1133,7 +1143,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertTrue(backend_sequence_search["metadata"]["backend_succeeded"])
         self.assertEqual(
             backend_sequence_search["metadata"]["blocker_removed"],
-            "complete_uniref_or_all_vs_all_near_duplicate_search_required",
+            "bounded_current_reference_backend_sequence_search",
+        )
+        self.assertIn(
+            "uniref_wide_or_external_all_vs_all_duplicate_screen_not_run",
+            backend_sequence_search["metadata"]["blocker_not_removed"],
         )
         self.assertEqual(backend_sequence_search["metadata"]["candidate_count"], 30)
         self.assertEqual(
@@ -1168,6 +1182,37 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertTrue(backend_sequence_search_audit["metadata"]["guardrail_clean"])
         self.assertTrue(backend_sequence_search_audit["metadata"]["real_backend"])
+        self.assertEqual(
+            all_vs_all_sequence_search["metadata"]["method"],
+            "external_source_all_vs_all_sequence_search",
+        )
+        self.assertTrue(
+            all_vs_all_sequence_search["metadata"]["all_vs_all_screen_complete"]
+        )
+        self.assertEqual(
+            all_vs_all_sequence_search["metadata"]["candidate_count"], 30
+        )
+        self.assertEqual(
+            all_vs_all_sequence_search["metadata"]["external_sequence_count"], 30
+        )
+        self.assertEqual(
+            all_vs_all_sequence_search["metadata"]["blocker_removed"],
+            "external_candidate_all_vs_all_sequence_duplicate_screen",
+        )
+        self.assertIn(
+            "uniref_wide_duplicate_screen_not_run",
+            all_vs_all_sequence_search["metadata"]["blocker_not_removed"],
+        )
+        self.assertEqual(
+            all_vs_all_sequence_search["metadata"]["import_ready_row_count"], 0
+        )
+        self.assertEqual(
+            all_vs_all_sequence_search["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertTrue(
+            all_vs_all_sequence_search_audit["metadata"]["guardrail_clean"]
+        )
         self.assertTrue(import_readiness["metadata"]["guardrail_clean"])
         self.assertFalse(import_readiness["metadata"]["ready_for_label_import"])
         self.assertEqual(
@@ -3069,6 +3114,18 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         audited_rows = {row["accession"]: row for row in confidence_audit["rows"]}
         self.assertEqual(
             audited_rows["P06746"]["recommended_revised_decision"], "needs_review"
+        )
+        self.assertEqual(
+            audited_rows["P06746"]["duplicate_near_duplicate_evidence"][
+                "external_all_vs_all_sequence_status"
+            ],
+            "external_all_vs_all_no_near_duplicate_signal",
+        )
+        self.assertEqual(
+            audited_rows["P06746"]["duplicate_near_duplicate_evidence"][
+                "broader_duplicate_screening_status"
+            ],
+            "current_reference_and_external_all_vs_all_no_signal_uniref_pending",
         )
         self.assertEqual(
             audited_rows["P55263"]["recommended_revised_decision"],

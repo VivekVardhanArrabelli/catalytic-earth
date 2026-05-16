@@ -62,7 +62,8 @@ carry sampled PDB/AlphaFold structure references into the evidence export, queue
 25 review-only active-site evidence rows while deferring five rows, sample
 UniProtKB active-site features, map all 12 heuristic-ready AlphaFold controls,
 score the mapped controls with the current heuristic retrieval path, add a
-bounded sequence-neighborhood screen and import-readiness audit, and pass the
+bounded sequence-neighborhood screen, current-reference backend search,
+external all-vs-all sequence screen, and import-readiness audit, and pass the
 68/68 external-transfer gate for review-only evidence collection under
 `ExternalSourceTransferGateInputs.v1` with
 sequence-search export, active-site sourcing export/resolution,

@@ -6328,8 +6328,11 @@ def build_external_source_backend_sequence_search(
             "backend_succeeded": bool(backend_result.get("backend_succeeded")),
             "backend_commands": backend_result.get("backend_commands", []),
             "backend_result_tsv": str(result_tsv_out),
-            "blocker_removed": "complete_uniref_or_all_vs_all_near_duplicate_search_required",
-            "blocker_removed_for_status": "no_near_duplicate_signal",
+            "blocker_removed": "bounded_current_reference_backend_sequence_search",
+            "blocker_removed_for_status": "current_reference_backend_no_signal",
+            "blocker_not_removed": [
+                "uniref_wide_or_external_all_vs_all_duplicate_screen_not_run"
+            ],
             "ready_for_label_import": False,
             "countable_label_candidate_count": 0,
             "import_ready_row_count": 0,
@@ -6502,6 +6505,461 @@ def audit_external_source_backend_sequence_search(
             (
                 "backend sequence-search audits verify review-only evidence only; "
                 "they do not authorize external label import"
+            )
+        ],
+    }
+
+
+def build_external_source_all_vs_all_sequence_search(
+    *,
+    candidate_manifest: dict[str, Any],
+    external_fasta: str,
+    result_tsv_out: str,
+    backend: str = "auto",
+    mmseqs_binary: str = "mmseqs",
+    diamond_binary: str = "diamond",
+    blastp_binary: str = "blastp",
+    makeblastdb_binary: str = "makeblastdb",
+    identity_threshold: float = 0.90,
+    coverage_threshold: float = 0.80,
+    exact_identity_threshold: float = 0.999,
+    exact_coverage_threshold: float = 0.98,
+    max_rows: int = 100,
+    top_k: int = 5,
+) -> dict[str, Any]:
+    """Run a review-only all-vs-all sequence duplicate screen for external rows."""
+
+    manifest_rows = [
+        row
+        for row in candidate_manifest.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ][:max_rows]
+    manifest_by_accession = {
+        _normalize_accession(row.get("accession")): row for row in manifest_rows
+    }
+    external_fasta_path = Path(external_fasta).resolve()
+    parsed_records = _parse_sequence_fasta(external_fasta_path)
+    parsed_by_accession = {
+        _external_candidate_fasta_accession(record): record
+        for record in parsed_records
+        if _external_candidate_fasta_accession(record)
+        and _clean_sequence(record.get("sequence"))
+    }
+
+    sequence_records: dict[str, dict[str, Any]] = {}
+    target_records: dict[str, dict[str, Any]] = {}
+    missing_sequence_accessions: list[str] = []
+    for accession in sorted(manifest_by_accession):
+        record = parsed_by_accession.get(accession)
+        sequence = _clean_sequence((record or {}).get("sequence"))
+        if not sequence:
+            missing_sequence_accessions.append(accession)
+            continue
+        record_id = str(
+            record.get("record_id") or _external_sequence_record_id("ext", accession)
+        )
+        sequence_records[record_id] = {
+            "accession": accession,
+            "record_id": record_id,
+            "sequence": sequence,
+        }
+        target_records[record_id] = {
+            "accession": accession,
+            "matched_m_csa_entry_ids": [],
+            "record_id": record_id,
+            "reference_accession_resolution": "external_candidate_all_vs_all",
+            "requested_reference_accession": accession,
+            "resolved_reference_accession": accession,
+            "sequence": sequence,
+        }
+
+    if sequence_records:
+        backend_result = _run_external_sequence_search_backend(
+            external_fasta=external_fasta_path,
+            reference_fasta=external_fasta_path,
+            result_tsv=Path(result_tsv_out).resolve(),
+            backend=backend,
+            mmseqs_binary=mmseqs_binary,
+            diamond_binary=diamond_binary,
+            blastp_binary=blastp_binary,
+            makeblastdb_binary=makeblastdb_binary,
+            coverage_threshold=coverage_threshold,
+        )
+    else:
+        backend_result = {
+            "alignment_rows": [],
+            "backend_available": False,
+            "backend_commands": [],
+            "backend_name": None,
+            "backend_succeeded": False,
+            "backend_version": None,
+            "limitations": ["no external candidate sequences available for all-vs-all search"],
+        }
+
+    all_alignments = _external_sequence_search_alignments(
+        backend_result.get("alignment_rows", []),
+        external_sequence_records=sequence_records,
+        reference_sequence_records=target_records,
+    )
+    nonself_alignments = [
+        alignment
+        for alignment in all_alignments
+        if _normalize_accession(alignment.get("accession"))
+        and _normalize_accession(alignment.get("reference_accession"))
+        and _normalize_accession(alignment.get("accession"))
+        != _normalize_accession(alignment.get("reference_accession"))
+    ]
+    alignments_by_accession: dict[str, list[dict[str, Any]]] = {}
+    best_pair_by_key: dict[tuple[str, str], dict[str, Any]] = {}
+    for alignment in nonself_alignments:
+        accession = _normalize_accession(alignment.get("accession"))
+        reference_accession = _normalize_accession(alignment.get("reference_accession"))
+        if not accession or not reference_accession:
+            continue
+        alignments_by_accession.setdefault(accession, []).append(alignment)
+        pair_key = tuple(sorted((accession, reference_accession)))
+        previous = best_pair_by_key.get(pair_key)
+        if previous is None or _external_all_vs_all_alignment_rank(alignment) > (
+            _external_all_vs_all_alignment_rank(previous)
+        ):
+            best_pair_by_key[pair_key] = alignment
+    for accession_alignments in alignments_by_accession.values():
+        accession_alignments.sort(
+            key=lambda row: (
+                -float(row.get("identity", 0.0) or 0.0),
+                -float(row.get("min_coverage", 0.0) or 0.0),
+                -float(row.get("bits", 0.0) or 0.0),
+                str(row.get("reference_accession") or ""),
+            )
+        )
+
+    rows: list[dict[str, Any]] = []
+    exact_duplicate_rows: list[dict[str, Any]] = []
+    near_duplicate_rows: list[dict[str, Any]] = []
+    no_signal_rows: list[dict[str, Any]] = []
+    failure_rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    max_identity: float | None = None
+    for accession in sorted(manifest_by_accession):
+        manifest_row = manifest_by_accession[accession]
+        top_hits = alignments_by_accession.get(accession, [])[:top_k]
+        if top_hits:
+            local_max = max(float(hit.get("identity", 0.0) or 0.0) for hit in top_hits)
+            max_identity = local_max if max_identity is None else max(max_identity, local_max)
+        exact_duplicate_hits = [
+            hit
+            for hit in top_hits
+            if float(hit.get("identity", 0.0) or 0.0) >= exact_identity_threshold
+            and float(hit.get("query_coverage", 0.0) or 0.0)
+            >= exact_coverage_threshold
+            and float(hit.get("target_coverage", 0.0) or 0.0)
+            >= exact_coverage_threshold
+        ]
+        near_duplicate_hits = [
+            hit
+            for hit in top_hits
+            if float(hit.get("identity", 0.0) or 0.0) >= identity_threshold
+            and float(hit.get("query_coverage", 0.0) or 0.0) >= coverage_threshold
+            and float(hit.get("target_coverage", 0.0) or 0.0) >= coverage_threshold
+        ]
+        if accession in missing_sequence_accessions:
+            search_status = "external_sequence_missing"
+            blockers = [
+                "external_sequence_missing_for_all_vs_all_search",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        elif not backend_result.get("backend_available"):
+            search_status = "backend_unavailable"
+            blockers = [
+                "real_all_vs_all_sequence_backend_unavailable",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        elif not backend_result.get("backend_succeeded"):
+            search_status = "backend_failed"
+            blockers = [
+                "real_all_vs_all_sequence_backend_failed",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        elif exact_duplicate_hits:
+            search_status = "external_all_vs_all_exact_duplicate_holdout"
+            blockers = [
+                "external_all_vs_all_exact_duplicate_holdout",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        elif near_duplicate_hits:
+            search_status = "external_all_vs_all_near_duplicate_holdout"
+            blockers = [
+                "external_all_vs_all_near_duplicate_holdout",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        else:
+            search_status = "external_all_vs_all_no_near_duplicate_signal"
+            blockers = [
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        status_counts[search_status] += 1
+        row = {
+            "accession": accession,
+            "all_vs_all_search_complete": bool(
+                backend_result.get("backend_succeeded")
+                and search_status
+                in {
+                    "external_all_vs_all_exact_duplicate_holdout",
+                    "external_all_vs_all_near_duplicate_holdout",
+                    "external_all_vs_all_no_near_duplicate_signal",
+                }
+            ),
+            "backend_name": backend_result.get("backend_name"),
+            "blockers": blockers,
+            "countable_label_candidate": False,
+            "entry_id": manifest_row.get("entry_id") or f"uniprot:{accession}",
+            "exact_duplicate_hit_count": len(exact_duplicate_hits),
+            "external_sequence_length": len(
+                sequence_records.get(
+                    str(
+                        (parsed_by_accession.get(accession) or {}).get("record_id")
+                        or _external_sequence_record_id("ext", accession)
+                    ),
+                    {},
+                ).get("sequence", "")
+            ),
+            "lane_id": manifest_row.get("lane_id"),
+            "max_external_vs_external_identity": (
+                round(max(float(hit.get("identity", 0.0) or 0.0) for hit in top_hits), 4)
+                if top_hits
+                else None
+            ),
+            "near_duplicate_hit_count": len(near_duplicate_hits),
+            "protein_name": manifest_row.get("protein_name"),
+            "ready_for_label_import": False,
+            "review_status": "external_all_vs_all_sequence_search_review_only",
+            "scope_signal": manifest_row.get("scope_signal"),
+            "search_status": search_status,
+            "top_external_hits": [
+                _external_all_vs_all_hit_summary(hit) for hit in top_hits
+            ],
+        }
+        rows.append(row)
+        if search_status == "external_all_vs_all_exact_duplicate_holdout":
+            exact_duplicate_rows.append(row)
+        elif search_status == "external_all_vs_all_near_duplicate_holdout":
+            near_duplicate_rows.append(row)
+        elif search_status == "external_all_vs_all_no_near_duplicate_signal":
+            no_signal_rows.append(row)
+        else:
+            failure_rows.append(row)
+
+    pair_rows = [
+        _external_all_vs_all_pair_summary(pair_key, alignment)
+        for pair_key, alignment in sorted(best_pair_by_key.items())
+    ]
+    near_duplicate_pairs = [
+        pair
+        for pair in pair_rows
+        if float(pair.get("identity", 0.0) or 0.0) >= identity_threshold
+        and float(pair.get("query_coverage", 0.0) or 0.0) >= coverage_threshold
+        and float(pair.get("target_coverage", 0.0) or 0.0) >= coverage_threshold
+    ]
+    exact_duplicate_pairs = [
+        pair
+        for pair in pair_rows
+        if float(pair.get("identity", 0.0) or 0.0) >= exact_identity_threshold
+        and float(pair.get("query_coverage", 0.0) or 0.0)
+        >= exact_coverage_threshold
+        and float(pair.get("target_coverage", 0.0) or 0.0)
+        >= exact_coverage_threshold
+    ]
+    row_blocker_counts = Counter(
+        blocker for row in rows for blocker in row.get("blockers", []) or []
+    )
+    all_vs_all_complete = bool(
+        backend_result.get("backend_succeeded")
+        and not missing_sequence_accessions
+        and len(rows) == len(manifest_by_accession)
+    )
+    limitations = list(backend_result.get("limitations", []))
+    limitations.extend(
+        [
+            (
+                "all-vs-all search compares only the current external candidate "
+                "FASTA; no UniRef-wide database was downloaded or searched"
+            ),
+            (
+                "absence of all-vs-all near-duplicate hits cannot by itself make "
+                "a candidate import-ready"
+            ),
+        ]
+    )
+    return {
+        "metadata": {
+            "method": "external_source_all_vs_all_sequence_search",
+            "backend_requested": backend,
+            "backend_name": backend_result.get("backend_name"),
+            "backend_version": backend_result.get("backend_version"),
+            "backend_available": bool(backend_result.get("backend_available")),
+            "backend_succeeded": bool(backend_result.get("backend_succeeded")),
+            "backend_commands": backend_result.get("backend_commands", []),
+            "backend_result_tsv": str(result_tsv_out),
+            "blocker_removed": (
+                "external_candidate_all_vs_all_sequence_duplicate_screen"
+                if all_vs_all_complete
+                else None
+            ),
+            "blocker_not_removed": ["uniref_wide_duplicate_screen_not_run"],
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_row_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "expected_external_sequence_count": len(manifest_by_accession),
+            "external_sequence_count": len(sequence_records),
+            "external_sequence_fasta": str(external_fasta),
+            "missing_external_sequence_count": len(missing_sequence_accessions),
+            "missing_external_sequence_accessions": missing_sequence_accessions,
+            "identity_threshold": identity_threshold,
+            "coverage_threshold": coverage_threshold,
+            "exact_identity_threshold": exact_identity_threshold,
+            "exact_coverage_threshold": exact_coverage_threshold,
+            "all_vs_all_screen_complete": all_vs_all_complete,
+            "all_vs_all_pair_count": len(pair_rows),
+            "exact_duplicate_pair_count": len(exact_duplicate_pairs),
+            "near_duplicate_pair_count": len(near_duplicate_pairs),
+            "exact_duplicate_row_count": len(exact_duplicate_rows),
+            "near_duplicate_row_count": len(near_duplicate_rows),
+            "no_signal_row_count": len(no_signal_rows),
+            "failure_row_count": len(failure_rows),
+            "alignment_row_count": len(nonself_alignments),
+            "max_external_vs_external_identity": (
+                round(max_identity, 4) if max_identity is not None else None
+            ),
+            "search_status_counts": dict(sorted(status_counts.items())),
+            "row_blocker_counts": dict(sorted(row_blocker_counts.items())),
+            "limitations": limitations,
+            "review_only_rule": (
+                "external all-vs-all sequence evidence is review-only and cannot "
+                "make external rows countable or import-ready"
+            ),
+        },
+        "rows": rows,
+        "pairs": pair_rows,
+        "exact_duplicate_pairs": exact_duplicate_pairs,
+        "near_duplicate_pairs": near_duplicate_pairs,
+        "exact_duplicate_rows": exact_duplicate_rows,
+        "near_duplicate_rows": near_duplicate_rows,
+        "no_signal_rows": no_signal_rows,
+        "failure_rows": failure_rows,
+        "blockers": sorted(row_blocker_counts),
+        "warnings": [
+            (
+                "the all-vs-all screen removes only the external-candidate "
+                "duplicate-screening blocker; UniRef-wide duplicate screening, "
+                "active-site evidence, representation controls, review decisions, "
+                "and factory gates remain required"
+            )
+        ],
+    }
+
+
+def audit_external_source_all_vs_all_sequence_search(
+    *,
+    all_vs_all_sequence_search: dict[str, Any],
+    candidate_manifest: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify external all-vs-all sequence-search results remain review-only."""
+
+    rows = [
+        row
+        for row in all_vs_all_sequence_search.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    manifest_accessions = {
+        _normalize_accession(row.get("accession"))
+        for row in candidate_manifest.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    row_accessions = {
+        _normalize_accession(row.get("accession"))
+        for row in rows
+        if _normalize_accession(row.get("accession"))
+    }
+    metadata = all_vs_all_sequence_search.get("metadata", {})
+    real_backend = str(metadata.get("backend_name") or "") in {
+        "mmseqs2_easy_search",
+        "diamond_blastp",
+        "blastp",
+    }
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_review_only_rows = [
+        row
+        for row in rows
+        if row.get("review_status")
+        != "external_all_vs_all_sequence_search_review_only"
+    ]
+    self_hit_rows = [
+        row
+        for row in rows
+        for hit in row.get("top_external_hits", []) or []
+        if _normalize_accession(hit.get("reference_accession"))
+        == _normalize_accession(row.get("accession"))
+    ]
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_all_vs_all_sequence_search")
+    if metadata.get("method") != "external_source_all_vs_all_sequence_search":
+        blockers.append("all_vs_all_sequence_search_wrong_method")
+    if not real_backend or metadata.get("backend_succeeded") is not True:
+        blockers.append("all_vs_all_sequence_search_not_real_or_not_successful")
+    if row_accessions != manifest_accessions:
+        blockers.append("all_vs_all_sequence_search_candidate_mismatch")
+    if metadata.get("all_vs_all_screen_complete") is not True:
+        blockers.append("all_vs_all_sequence_screen_incomplete")
+    if "uniref_wide_duplicate_screen_not_run" not in (
+        metadata.get("blocker_not_removed", []) or []
+    ):
+        blockers.append("all_vs_all_sequence_search_overclaims_uniref_completion")
+    if countable_rows:
+        blockers.append("all_vs_all_sequence_search_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("all_vs_all_sequence_search_rows_marked_ready_for_import")
+    if missing_review_only_rows:
+        blockers.append("all_vs_all_sequence_search_rows_not_review_only")
+    if self_hit_rows:
+        blockers.append("all_vs_all_sequence_search_contains_self_top_hits")
+    return {
+        "metadata": {
+            "method": "external_source_all_vs_all_sequence_search_audit",
+            "backend_name": metadata.get("backend_name"),
+            "backend_version": metadata.get("backend_version"),
+            "backend_succeeded": bool(metadata.get("backend_succeeded")),
+            "real_backend": real_backend,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "import_ready_row_count": len(import_ready_rows),
+            "candidate_count": len(rows),
+            "expected_candidate_count": len(manifest_accessions),
+            "all_vs_all_screen_complete": bool(
+                metadata.get("all_vs_all_screen_complete")
+            ),
+            "near_duplicate_pair_count": metadata.get("near_duplicate_pair_count", 0),
+            "failure_row_count": metadata.get("failure_row_count", 0),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "all-vs-all sequence-search audits verify review-only evidence "
+                "only; they do not authorize external label import"
             )
         ],
     }
@@ -10320,6 +10778,7 @@ def audit_external_source_pilot_decision_confidence(
     pilot_human_expert_review_queue: dict[str, Any] | None = None,
     external_structural_cluster_index: dict[str, Any] | None = None,
     external_structural_tm_diverse_split_plan: dict[str, Any] | None = None,
+    external_all_vs_all_sequence_search: dict[str, Any] | None = None,
     external_transfer_gate: dict[str, Any] | None = None,
     max_rows: int = 10,
     artifact_lineage: dict[str, Any] | None = None,
@@ -10345,6 +10804,9 @@ def audit_external_source_pilot_decision_confidence(
     split_by_accession = _external_first_row_by_accession(
         external_structural_tm_diverse_split_plan or {}
     )
+    all_vs_all_by_accession = _external_first_row_by_accession(
+        external_all_vs_all_sequence_search or {}
+    )
     source_artifacts = _external_pilot_confidence_source_artifacts(artifact_lineage)
 
     terminal_rows = [
@@ -10364,6 +10826,7 @@ def audit_external_source_pilot_decision_confidence(
         expert_row = expert_queue_by_accession.get(accession, {})
         structure_row = structure_by_accession.get(accession, {})
         split_row = split_by_accession.get(accession, {})
+        all_vs_all_row = all_vs_all_by_accession.get(accession, {})
         assessment = _external_pilot_confidence_assessment(
             terminal_row=terminal_row,
             active_row=active_row,
@@ -10416,6 +10879,7 @@ def audit_external_source_pilot_decision_confidence(
                         representation_row=representation_row,
                         structure_row=structure_row,
                         split_row=split_row,
+                        all_vs_all_row=all_vs_all_row,
                     )
                 ),
                 "representation_control_evidence": (
@@ -10488,6 +10952,11 @@ def audit_external_source_pilot_decision_confidence(
             ).get("method"),
             "source_pilot_representation_adjudication_method": (
                 pilot_representation_adjudication.get("metadata", {}).get("method")
+            ),
+            "source_external_all_vs_all_sequence_search_method": (
+                (external_all_vs_all_sequence_search or {})
+                .get("metadata", {})
+                .get("method")
             ),
             "artifact_lineage": artifact_lineage or {},
         },
@@ -10871,13 +11340,26 @@ def _external_pilot_duplicate_evidence(
     representation_row: dict[str, Any],
     structure_row: dict[str, Any],
     split_row: dict[str, Any],
+    all_vs_all_row: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     sequence_result = terminal_row.get("sequence_duplicate_screen_result", {})
     if not isinstance(sequence_result, dict):
         sequence_result = {}
+    all_vs_all_row = all_vs_all_row or {}
     nearest_neighbor = structure_row.get("nearest_neighbor", {})
     if not isinstance(nearest_neighbor, dict):
         nearest_neighbor = {}
+    broader_status = sequence_result.get("broader_duplicate_screening_status")
+    all_vs_all_status = all_vs_all_row.get("search_status")
+    if all_vs_all_status == "external_all_vs_all_no_near_duplicate_signal":
+        broader_status = (
+            "current_reference_and_external_all_vs_all_no_signal_uniref_pending"
+        )
+    elif all_vs_all_status in {
+        "external_all_vs_all_exact_duplicate_holdout",
+        "external_all_vs_all_near_duplicate_holdout",
+    }:
+        broader_status = all_vs_all_status
     return {
         "bounded_current_reference_sequence_status": sequence_result.get(
             "bounded_current_reference_status"
@@ -10885,9 +11367,15 @@ def _external_pilot_duplicate_evidence(
         "backend_sequence_search_status": sequence_result.get(
             "backend_search_status"
         ),
-        "broader_duplicate_screening_status": sequence_result.get(
-            "broader_duplicate_screening_status"
+        "broader_duplicate_screening_status": broader_status,
+        "external_all_vs_all_sequence_status": all_vs_all_status,
+        "external_all_vs_all_near_duplicate_hit_count": all_vs_all_row.get(
+            "near_duplicate_hit_count"
         ),
+        "external_all_vs_all_max_identity": all_vs_all_row.get(
+            "max_external_vs_external_identity"
+        ),
+        "external_all_vs_all_top_hits": all_vs_all_row.get("top_external_hits", []),
         "top_alignment_hits": sequence_result.get("top_alignment_hits", []),
         "representation_adjudication_status": representation_row.get(
             "representation_control_adjudication_status"
@@ -15825,6 +16313,14 @@ def _sequence_fasta_accession(record_id: str) -> str:
     return _normalize_accession(record_id)
 
 
+def _external_candidate_fasta_accession(record: dict[str, Any]) -> str:
+    record_id = str(record.get("record_id") or "")
+    fields = record_id.split("__")
+    if len(fields) >= 2 and fields[0] in {"ext", "ref"}:
+        return _normalize_accession(fields[1])
+    return _normalize_accession(record.get("accession"))
+
+
 def _write_sequence_fasta(path: Path, records: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as handle:
@@ -16221,6 +16717,48 @@ def _external_sequence_search_alignments(
             }
         )
     return alignments
+
+
+def _external_all_vs_all_alignment_rank(
+    alignment: dict[str, Any],
+) -> tuple[float, float, float]:
+    return (
+        float(alignment.get("identity", 0.0) or 0.0),
+        float(alignment.get("min_coverage", 0.0) or 0.0),
+        float(alignment.get("bits", 0.0) or 0.0),
+    )
+
+
+def _external_all_vs_all_hit_summary(hit: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "alignment_length": hit.get("alignment_length"),
+        "bits": hit.get("bits"),
+        "evalue": hit.get("evalue"),
+        "identity": hit.get("identity"),
+        "min_coverage": hit.get("min_coverage"),
+        "query_coverage": hit.get("query_coverage"),
+        "reference_accession": hit.get("reference_accession"),
+        "reference_length": hit.get("reference_length"),
+        "target_coverage": hit.get("target_coverage"),
+    }
+
+
+def _external_all_vs_all_pair_summary(
+    pair_key: tuple[str, str], alignment: dict[str, Any]
+) -> dict[str, Any]:
+    accession_a, accession_b = pair_key
+    return {
+        "accession_a": accession_a,
+        "accession_b": accession_b,
+        "alignment_length": alignment.get("alignment_length"),
+        "best_query_accession": alignment.get("accession"),
+        "bits": alignment.get("bits"),
+        "evalue": alignment.get("evalue"),
+        "identity": alignment.get("identity"),
+        "min_coverage": alignment.get("min_coverage"),
+        "query_coverage": alignment.get("query_coverage"),
+        "target_coverage": alignment.get("target_coverage"),
+    }
 
 
 def _external_backend_version(binary: str) -> str | None:

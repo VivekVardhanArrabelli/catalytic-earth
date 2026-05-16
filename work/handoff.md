@@ -106,15 +106,52 @@ and 0 cross-split pairs at `TM >=0.7`. This is not an import-ready benchmark
 claim; every external row remains non-countable. The 2026-05-16T13:02:29Z
 audit-verification run reran the confidence, normalization, and normalized
 queue builders idempotently and found no defensible local-evidence-only
-resolution for the 6 normalized `needs_review` rows. Next direct work should
-resolve those 6 questions through broader duplicate screening, representation
-or heuristic adjudication, and actual review decisions, or broaden the external
-Swiss-Prot/AFDB structural surface beyond the current 30-row review-only split
-before any import or benchmark claim.
+resolution for the 6 normalized `needs_review` rows. The 2026-05-16T09:03:56-05:00
+run then added `artifacts/v3_external_source_all_vs_all_sequence_search_1025.json`
+and `artifacts/v3_external_source_all_vs_all_sequence_search_audit_1025.json`:
+MMseqs2 searched all 30 external candidates against each other, found 0
+near-duplicate pairs at 90% identity / 80% coverage, recorded max reported
+external-external identity `0.647`, and kept 0 import-ready/countable rows. The
+confidence audit now carries this external all-vs-all no-signal evidence for
+the selected pilot rows, but the 6 normalized `needs_review` rows remain
+`needs_review` because UniRef-wide duplicate screening, representation or
+heuristic adjudication, actual review decisions, and full factory gates are
+still unresolved. Next direct work should resolve those 6 questions through
+UniRef-wide duplicate screening, representation or heuristic adjudication, and
+actual review decisions, or broaden the external Swiss-Prot/AFDB structural
+surface beyond the current 30-row review-only split before any import or
+benchmark claim.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
 unless the user explicitly reverses the override.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T09:03:56-05:00 run after recovering this run's
+self-created short-lived shell-PID lock, reacquiring a live lock, syncing clean
+`origin/main`, passing startup gates (`357` unit tests passed and `validate`
+passed with 679 curated labels), and confirming the candidate-by-candidate
+confidence audit already existed before external expansion:
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000
+  with 679 canonical labels, the 1,025 preview adds 0 clean countable labels,
+  and no M-CSA strict-TM round, query, split-repair, or partition-repair work
+  was resumed.
+- External-source repair/import: Yes for duplicate-confidence repair, no for
+  import or countable labels. This run added a real review-only external
+  candidate all-vs-all MMseqs2 sequence screen covering 30/30 external rows,
+  with 0 near-duplicate pairs at 90% identity / 80% coverage and max reported
+  external-external identity `0.647`; the pilot audit/normalized decisions now
+  carry that evidence while preserving 6 `needs_review`, 0 import-ready rows,
+  and 0 countable external labels.
+- Scientific generalization work: No new benchmark/import claim. The existing
+  review-only all-30 structural split remains the structural generalization
+  artifact; the new all-vs-all sequence screen narrows duplicate uncertainty
+  only inside the current external candidate sample.
+- SPOF hardening work: Yes. The backend current-reference sequence-search
+  artifact no longer overclaims UniRef/all-vs-all completion, the external
+  all-vs-all sequence screen has a dedicated builder/audit and regression
+  coverage, and the transfer-gate command documentation now includes the
+  pilot active-site decision input needed for the 68/68 gate.
 
 Recorded for the 2026-05-16T13:02:29Z run after confirming no fresh automation
 lock was active, syncing clean `origin/main`, passing startup gates (`357` unit
@@ -2752,13 +2789,15 @@ unaligned screen, and the real MMseqs2 backend sequence-search artifact compares
 all 30 external rows against 735 current reference accessions / 737 sequence
 records. That backend search records 28 no-signal rows, 2 exact-reference
 holdouts, 0 near-duplicate rows, and 0 failures, clearing bounded
-current-reference backend search debt for the 28 no-signal rows while broader
-UniRef-wide/all-vs-all duplicate screening remains a limitation before import.
+current-reference backend search debt for the 28 no-signal rows. The external
+all-vs-all sequence screen now clears the current 30-row candidate-candidate
+duplicate screen with 0 near-duplicate pairs, while UniRef-wide duplicate
+screening remains a limitation before import.
 The bounded alignment verification
 checks 90 top-hit pairs, confirms `O15527` and `P42126` as exact holdouts, and
 records 88 no-signal pairs. The import-readiness audit keeps 0 rows ready for
 label import and records 10 active-site gaps, 2 exact sequence holdouts, 9
-heuristic scope/top1 mismatches, 29 representation-control issues, broader
+heuristic scope/top1 mismatches, 29 representation-control issues, UniRef-wide
 duplicate-screening limitations, and 2 alignment-confirmed sequence holdouts.
 The sequence-search export converts all 30 rows into no-decision sequence
 controls; the backend search carries the 28 current-reference no-signal rows

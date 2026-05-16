@@ -75,7 +75,7 @@ Current review-only external artifacts:
   accessions after resolving inactive demerged references to replacement
   accessions. It fetches all 30 external sequences, records 0 high-similarity
   alerts under the current unaligned screen, retains the 2 exact-reference
-  holdouts, and keeps complete UniRef/all-vs-all near-duplicate search as a
+  holdouts, and keeps broader near-duplicate search as a
   mandatory future control.
 - `artifacts/v3_external_source_sequence_alignment_verification_1025.json`
   verifies the top 90 sequence-neighborhood pairs with bounded global
@@ -89,13 +89,16 @@ Current review-only external artifacts:
   `P03176` -> `P0DTH5`/`Q9QNF7` and `Q05489` -> `P0DUB8`/`P0DUB9`, giving
   sequence coverage for all 735 expected current countable reference
   accessions. The artifact is review-only, records 28 current-reference top-hit
-  no-signal rows plus the two exact holdouts, and leaves UniRef/all-vs-all
-  near-duplicate search mandatory.
+  no-signal rows plus the two exact holdouts. The companion
+  `artifacts/v3_external_source_all_vs_all_sequence_search_1025.json` covers
+  all 30 external candidates with MMseqs2 all-vs-all search, finds 0
+  near-duplicate pairs at 90% identity / 80% coverage, and records max
+  reported external-external identity `0.647`; UniRef-wide near-duplicate
+  search remains mandatory.
 - `artifacts/v3_external_source_import_readiness_audit_1025.json` aggregates
-  candidate-level blockers: 10 active-site gaps, 2 sequence holdouts, 28
-  complete near-duplicate search requirements, 9 heuristic scope/top1
-  mismatches, and 29 representation-control issues. It marks 0 rows ready for
-  label import.
+  candidate-level blockers: 10 active-site gaps, 2 sequence holdouts,
+  remaining UniRef-wide duplicate screening, 9 heuristic scope/top1 mismatches,
+  and 29 representation-control issues. It marks 0 rows ready for label import.
 - `artifacts/v3_external_source_active_site_sourcing_queue_1025.json` converts
   the 10 active-site gaps into a prioritized non-countable sourcing queue: 7
   mapped-binding-context rows and 3 primary active-site source rows.
@@ -103,10 +106,11 @@ Current review-only external artifacts:
   those 10 active-site sourcing tasks with 72 source targets and 0 completed
   decisions.
 - `artifacts/v3_external_source_sequence_search_export_1025.json` keeps all 30
-  external candidates in no-decision sequence controls: 28 UniRef/all-vs-all
-  near-duplicate searches and 2 sequence holdouts. The prior
+  external candidates in no-decision sequence controls: 28 duplicate-search
+  controls and 2 sequence holdouts. The prior
   `complete_near_duplicate_reference_search_not_completed` blocker is replaced
-  by `complete_uniref_or_all_vs_all_near_duplicate_search_required` for the
+  by the bounded current-reference backend screen plus the external all-vs-all
+  screen; UniRef-wide search remains the unresolved sequence blocker for the
   28 non-holdout rows.
 - `artifacts/v3_external_source_representation_backend_plan_1025.json` covers 12
   mapped representation controls without computing embeddings.
@@ -175,7 +179,7 @@ Current review-only external artifacts:
   holdouts, 3 rejected active-site-evidence-missing rows, and 3 rows deferred
   to human expert review. The 3 deferred rows are routed by
   `artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json`;
-  broader duplicate screening and full factory gates still block import.
+  UniRef-wide duplicate screening and full factory gates still block import.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine
@@ -225,7 +229,9 @@ Sequence-similarity guardrail details:
   high-similarity hit in that artifact must not be used as import evidence.
   The current sample resolves inactive demerged references `P03176` and
   `Q05489` conservatively to all listed replacement accessions, so the
-  current-reference screen is complete but still not a UniRef-style search.
+  current-reference screen is complete, and the external all-vs-all sequence
+  search is now complete for the 30-row sample, but neither is a UniRef-wide
+  search.
 - `artifacts/v3_external_source_sequence_alignment_verification_1025.json`
   checks only bounded top hits; it confirms the two exact-reference holdouts
   but does not replace full near-duplicate or UniRef-style search.
