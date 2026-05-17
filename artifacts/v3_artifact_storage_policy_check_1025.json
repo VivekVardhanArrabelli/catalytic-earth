@@ -7,7 +7,7 @@
     "policy_version": "artifact_storage_policy_v1_2026_05_17",
     "source_file_count": 2580,
     "source_inventory_method": "artifact_storage_inventory",
-    "source_total_bytes": 2744706161,
+    "source_total_bytes": 2744830004,
     "status": "passed"
   }
 }

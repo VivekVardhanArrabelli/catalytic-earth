@@ -901,6 +901,37 @@ def _execution_producer_status_reason(
     )
 
 
+def _as_string_list(value: Any) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [str(item) for item in value if isinstance(item, str) and item]
+
+
+def _producer_provenance_recovery_steps(
+    source_path: str,
+    execution_status: str,
+) -> list[str]:
+    if execution_status != "unknown_blocking":
+        return []
+    if source_path.startswith("artifacts/v3_geometry_features_"):
+        return [
+            "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
+            "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
+            "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts.",
+        ]
+    if "/v3_foldseek_coordinates_1000/" in source_path:
+        return [
+            "Resolve the source PDB identifier and coordinate-fetch/staging inputs for this sidecar.",
+            "If testing refetch/restage, write to a scratch path only and compare size plus SHA-256 against the committed sidecar.",
+            "Keep migration_ready=false unless the restaged scratch sidecar or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts.",
+        ]
+    return [
+        "Identify the exact producer command, source inputs, and downstream consumers.",
+        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
+        "Keep migration_ready=false until producer provenance is known or explicitly unavailable with a reason.",
+    ]
+
+
 def _first_existing_summary_path(
     paths: list[Any],
     *,
@@ -981,6 +1012,13 @@ def build_artifact_migration_execution_manifest(
         downstream_consumers = manifest_row.get("downstream_consumers", [])
         if not isinstance(downstream_consumers, list):
             downstream_consumers = []
+        producer_commands = _as_string_list(
+            manifest_row.get("likely_producer_cli_commands")
+        )
+        source_inputs = _as_string_list(manifest_row.get("source_inputs"))
+        parameter_assumptions = _as_string_list(
+            manifest_row.get("parameter_assumptions")
+        )
         summary_paths = plan_row.get("canonical_summary_preserving_conclusion")
         if not isinstance(summary_paths, list):
             summary_paths = manifest_row.get("canonical_summary_artifacts", [])
@@ -1023,6 +1061,13 @@ def build_artifact_migration_execution_manifest(
                 source_producer_status,
                 producer_status,
                 source_path,
+            ),
+            "producer_commands": producer_commands,
+            "source_inputs": source_inputs,
+            "parameter_assumptions": parameter_assumptions,
+            "producer_provenance_recovery_steps": _producer_provenance_recovery_steps(
+                source_path,
+                producer_status,
             ),
             "downstream_consumers": downstream_consumers,
             "canonical_summary_path": canonical_summary_path,
@@ -1101,6 +1146,14 @@ def build_artifact_migration_execution_manifest(
                     sorted(
                         Counter(
                             str(row.get("planned_storage_class") or "missing")
+                            for row in unknown_blocking_rows
+                        ).items()
+                    )
+                ),
+                "by_source_producer_command_status": dict(
+                    sorted(
+                        Counter(
+                            str(row.get("source_producer_command_status") or "missing")
                             for row in unknown_blocking_rows
                         ).items()
                     )
@@ -1219,6 +1272,14 @@ def validate_artifact_migration_manifest(
                 ).items()
             )
         ),
+        "by_source_producer_command_status": dict(
+            sorted(
+                Counter(
+                    str(row.get("source_producer_command_status") or "missing")
+                    for row in unknown_blocking_rows
+                ).items()
+            )
+        ),
         "source_paths": sorted(
             str(row.get("source_path")) for row in unknown_blocking_rows
         ),
@@ -1242,6 +1303,10 @@ def validate_artifact_migration_manifest(
         "source_producer_command_status",
         "producer_status",
         "producer_status_reason",
+        "producer_commands",
+        "source_inputs",
+        "parameter_assumptions",
+        "producer_provenance_recovery_steps",
         "downstream_consumers",
         "storage_class",
         "target_uri",
@@ -1319,6 +1384,43 @@ def validate_artifact_migration_manifest(
                     "row_index": index,
                     "source_path": source_path,
                     "reason": "producer_status_reason is required",
+                }
+            )
+        for list_field in (
+            "producer_commands",
+            "source_inputs",
+            "parameter_assumptions",
+            "producer_provenance_recovery_steps",
+        ):
+            if not isinstance(row.get(list_field), list):
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": f"{list_field} must be a list",
+                    }
+                )
+        if row.get("producer_status") == "known" and not row.get(
+            "producer_commands"
+        ):
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "known producer_status requires producer_commands",
+                }
+            )
+        if row.get("producer_status") == "unknown_blocking" and not row.get(
+            "producer_provenance_recovery_steps"
+        ):
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": (
+                        "unknown_blocking producer_status requires "
+                        "producer_provenance_recovery_steps"
+                    ),
                 }
             )
         if not isinstance(row.get("downstream_consumers"), list):

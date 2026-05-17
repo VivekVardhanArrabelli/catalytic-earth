@@ -183,6 +183,12 @@ class ArtifactStorageTests(unittest.TestCase):
                 row["target_uri"],
                 f"git:{row['source_path']}@{commit}",
             )
+            self.assertIsInstance(row["producer_commands"], list)
+            self.assertIsInstance(row["source_inputs"], list)
+            self.assertIsInstance(row["parameter_assumptions"], list)
+            self.assertIsInstance(row["producer_provenance_recovery_steps"], list)
+            if row["producer_status"] == "unknown_blocking":
+                self.assertGreater(len(row["producer_provenance_recovery_steps"]), 0)
             self.assertFalse(row["removal_allowed"])
 
     def test_large_artifact_manifest_feeds_admission_guard(self) -> None:
@@ -292,6 +298,10 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(row["producer_status"], "unknown_blocking")
         self.assertEqual(row["source_producer_command_status"], "partially_inferred")
         self.assertIn("fail-closed", row["producer_status_reason"])
+        self.assertEqual(row["producer_commands"], [])
+        self.assertEqual(row["source_inputs"], [])
+        self.assertEqual(row["parameter_assumptions"], [])
+        self.assertGreater(len(row["producer_provenance_recovery_steps"]), 0)
         self.assertEqual(row["storage_class"], "git")
         self.assertEqual(row["target_uri"], "git:artifacts/large.json@abc123")
         self.assertFalse(row["migration_ready"])
@@ -320,6 +330,10 @@ class ArtifactStorageTests(unittest.TestCase):
             "source_producer_command_status": "unknown",
             "producer_status": "unknown_blocking",
             "producer_status_reason": "source status maps fail-closed",
+            "producer_commands": [],
+            "source_inputs": [],
+            "parameter_assumptions": [],
+            "producer_provenance_recovery_steps": ["recover provenance"],
             "downstream_consumers": ["consumer"],
             "canonical_summary_path": "README.md",
             "storage_class": "object_storage",
@@ -366,6 +380,10 @@ class ArtifactStorageTests(unittest.TestCase):
             "source_producer_command_status": "known",
             "producer_status": "known",
             "producer_status_reason": "producer command provenance is recorded as known",
+            "producer_commands": ["cmd"],
+            "source_inputs": ["input"],
+            "parameter_assumptions": [],
+            "producer_provenance_recovery_steps": [],
             "downstream_consumers": ["consumer"],
             "canonical_summary_path": "README.md",
             "storage_class": "git",
@@ -393,6 +411,7 @@ class ArtifactStorageTests(unittest.TestCase):
                 "row_count": 0,
                 "by_artifact_category": {},
                 "by_planned_storage_class": {},
+                "by_source_producer_command_status": {},
                 "source_paths": [],
             },
         }
@@ -405,6 +424,7 @@ class ArtifactStorageTests(unittest.TestCase):
             "row_count": 1,
             "by_artifact_category": {"raw_cache": 1},
             "by_planned_storage_class": {},
+            "by_source_producer_command_status": {"known": 1},
             "source_paths": ["artifacts/raw.tsv"],
         }
 
@@ -432,6 +452,10 @@ class ArtifactStorageTests(unittest.TestCase):
             "source_producer_command_status": "known",
             "producer_status": "known",
             "producer_status_reason": "producer command provenance is recorded as known",
+            "producer_commands": ["cmd"],
+            "source_inputs": ["input"],
+            "parameter_assumptions": [],
+            "producer_provenance_recovery_steps": [],
             "downstream_consumers": ["consumer"],
             "canonical_summary_path": "README.md",
             "storage_class": "git",
@@ -461,6 +485,7 @@ class ArtifactStorageTests(unittest.TestCase):
                     "row_count": 0,
                     "by_artifact_category": {},
                     "by_planned_storage_class": {},
+                    "by_source_producer_command_status": {},
                     "source_paths": [],
                 },
             },
@@ -485,6 +510,10 @@ class ArtifactStorageTests(unittest.TestCase):
             "source_producer_command_status": "known",
             "producer_status": "known",
             "producer_status_reason": "producer command provenance is recorded as known",
+            "producer_commands": ["cmd"],
+            "source_inputs": ["input"],
+            "parameter_assumptions": [],
+            "producer_provenance_recovery_steps": [],
             "downstream_consumers": ["consumer"],
             "canonical_summary_path": "README.md",
             "storage_class": "git",
@@ -514,6 +543,7 @@ class ArtifactStorageTests(unittest.TestCase):
                     "row_count": 0,
                     "by_artifact_category": {},
                     "by_planned_storage_class": {},
+                    "by_source_producer_command_status": {},
                     "source_paths": [],
                 },
             },

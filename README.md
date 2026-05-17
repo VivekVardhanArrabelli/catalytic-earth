@@ -92,7 +92,9 @@ The repository currently contains:
     stored migration status counts drift from the row-level evidence, or if a
     Git-retained row's `git:<source_path>@<commit>` target identity no longer
     matches the execution manifest. Git-retained rows also cannot become
-    migration-ready through metadata drift.
+    migration-ready through metadata drift. Execution rows now carry producer
+    commands, source inputs, parameter assumptions, and explicit provenance
+    recovery steps for fail-closed `unknown_blocking` rows.
     `artifacts/v3_artifact_admission_guard_1025.json` guards future large
     artifact admission. See `docs/artifact_storage.md`.
 

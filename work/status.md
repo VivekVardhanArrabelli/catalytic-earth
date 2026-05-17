@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 165
-- Measured elapsed time: 5178.8 minutes (86.31 hours)
+- Entries: 166
+- Measured elapsed time: 5188.4 minutes (86.47 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
-- infrastructure: 55.8 measured minutes (0.93 hours)
+- infrastructure: 65.5 measured minutes (1.09 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -26,21 +26,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1833
-- Evidence references logged: 1437
+- Artifact references logged: 1842
+- Evidence references logged: 1443
 
 ## Recent Entries
-
-### 2026-05-17T16:23:19.784897+00:00 - post-v2
-
-- Task: Close post-P06744 hard-negative source surface
-- Time mode: measured
-- Measured minutes: 42.133
-- Started: 2026-05-17T15:41:11Z
-- Ended: 2026-05-17T16:23:19Z
-- Artifacts: artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json, artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_1025.json, artifacts/v3_external_hard_negative_post_p06744_all_vs_all_sequence_search_1025.json, artifacts/v3_external_hard_negative_post_p06744_structural_cluster_index_1025.json, artifacts/v3_external_hard_negative_post_p06744_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_post_p06744_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 405 unit tests passed, startup validate passed with 682 curated labels, post-P06744 sourcing selected 6 review-only covered-lane rows, bounded sequence screens were 6/6 no-signal and guardrail-clean, Foldseek current-countable screen completed 4032/4032 pairs and rejected all 6 as structural duplicate signals, terminal decisions recorded 0 import-ready rows and 0 countable candidates, final 409 unit tests passed, validate passed with 682 labels, compileall passed, git diff --check passed
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. Older O14756/Q6NSJ0 import prompt stayed superseded; no countable labels imported.
 
 ### 2026-05-17T17:13:28.332690+00:00 - leakage-risk closure
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_artifact_migration_execution_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, tests/test_source_only_contract.py, README.md, docs/artifact_storage.md, work/handoff.md
 - Evidence: 436 unit tests passed; targeted artifact transfer source-only tests passed; validate passed with 682 labels; migration validation passed with local file checks; restore smoke dry-run passed; git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only: no artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite.
+
+### 2026-05-17T22:58:00.622782+00:00 - infrastructure
+
+- Task: Artifact migration provenance recovery hardening
+- Time mode: measured
+- Measured minutes: 9.683
+- Started: 2026-05-17T22:48:09Z
+- Ended: 2026-05-17T22:57:50Z
+- Artifacts: artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
+- Evidence: 436 unit tests passed, targeted artifact and transfer tests passed, source-only compile/import/CLI help/validate passed, validate-artifact-migration passed with local file checks, restore smoke dry-run passed, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only; no artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite.
 
 ## Expectation Updates
 

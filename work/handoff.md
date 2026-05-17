@@ -50,6 +50,33 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-17T22:57:18Z automation run, Phase 1 remains
+instrumentation-only and has a provenance-readability hardening slice. The
+execution manifest was refreshed against latest pulled `main` commit
+`6a29655d595314d33558947531e21391b66046e0` and still covers 108 large
+noncanonical rows with 0 migration-ready rows, 0 remote SHA-256 verifications,
+0 restore-test passes, and 0 removal authorizations. Execution rows now carry
+the producer command list, source inputs, parameter assumptions, and explicit
+`producer_provenance_recovery_steps`; the validator requires known producers to
+retain commands and `unknown_blocking` rows to retain recovery steps. The 40
+blocked rows remain 31 geometry feature artifacts and 9 Foldseek coordinate
+sidecars, all with source status `partially_inferred`, and all still
+`removal_allowed=false`. The storage inventory/policy/admission guard were
+refreshed after the execution manifest changed; inventory now covers 2,580
+artifact files and 2.5563 GiB with 108 large files, 0 policy blockers, and 0
+deletion authorization.
+Verification passed with targeted artifact/transfer tests, source-only compile,
+`transfer_scope` import, CLI help, CLI `validate`, full 436-test unit suite,
+`validate-artifact-migration --dry-run --check-local-files`, restore smoke
+dry-run, and `git diff --check`.
+Evidence-based confidence call: this was a no-science-recompute Phase 1
+instrumentation hardening pass. No artifact upload, deletion, Git LFS
+migration, externalization, label/import artifact edit, scientific-artifact
+recompute, or history rewrite was performed. The next automation run should
+stay in Phase 1 and either keep tightening provenance for the 40
+`unknown_blocking` rows or add more negative validator tests; do not start
+Phase 2 uploads without explicit human authorization.
+
 As of the 2026-05-17T21:46:03Z automation run, Phase 1 remains
 instrumentation-only and has one additional fail-closed validator hardening
 slice. The `validate-artifact-migration` path now rejects any

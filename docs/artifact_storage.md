@@ -17,7 +17,7 @@ artifacts/v3_artifact_migration_execution_1025.json
 artifacts/v3_artifact_admission_guard_1025.json
 ```
 
-The refreshed inventory covers 2,580 artifact files and 2.5562 GiB, including
+The refreshed inventory covers 2,580 artifact files and 2.5563 GiB, including
 storage planning artifacts. The large-file surface remains 108 files above the
 5 MiB threshold. The policy check passes with zero deletion authorization and
 zero unclassified large artifacts. The producer/consumer manifest covers all
@@ -36,7 +36,11 @@ migration-ready. Each execution row also preserves the source
 `partially_inferred` provenance remains visible while the execution status maps
 fail-closed to `unknown_blocking`. For blocked rows, that reason now separates
 geometry adjacent-slice `--reuse-existing` provenance gaps from Foldseek
-coordinate sidecar refetch/restage hash-closure gaps.
+coordinate sidecar refetch/restage hash-closure gaps. Rows also carry the
+producer command list, source inputs, parameter assumptions, and explicit
+provenance recovery steps. The validator requires known producers to retain a
+producer command and requires each `unknown_blocking` row to retain recovery
+steps, so future provenance tightening cannot silently erase the next action.
 
 The execution manifest is explicit about the current-main scientific baseline:
 `baseline=current_main_three_external_hard_negatives`, `slice_id=1025`, and
