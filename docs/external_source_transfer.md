@@ -51,8 +51,24 @@ import.
   starts the next review-only tranche with 3 lower-risk candidates (`P33025`,
   `Q13907`, and `P35914`). They are not import-ready or countable; external
   all-30 TM clustering is used only to pick one representative per high-TM
-  external cluster, and current-countable structural duplicate screening is
-  still a required follow-up.
+  external cluster.
+- `artifacts/v3_external_hard_negative_second_tranche_current_countable_structural_screen_1025.json`
+  removes the "not run" status for bounded current-countable structural
+  duplicate screening but blocks all three tranche-2 rows: Foldseek completed
+  against 672 staged current selected structures, reported 2001/2016 query-
+  target pairs, and found high-TM current-countable structural signals for
+  `P33025` (`0.7063`), `Q13907` (`0.8686`), and `P35914` (`0.7638`). No
+  tranche-2 row is import-ready or countable; UniRef-wide duplicate screening,
+  terminal review acceptance, and full factory gates remain unresolved.
+- `artifacts/v3_external_hard_negative_second_tranche_terminal_decisions_1025.json`
+  records terminal review-only decisions for those three tranche-2 rows:
+  all are `rejected_current_countable_structural_duplicate_signal`, with 0
+  import-ready rows and 0 countable external labels.
+- `artifacts/v3_external_hard_negative_second_tranche_replacement_triage_1025.json`
+  triages the remaining current 25-row pool after those terminal rejections and
+  admits 0 replacements. The next hard-negative tranche needs new external
+  candidate sourcing or new evidence, not another import attempt from the same
+  pool.
 
 ## Immediate Pilot Direction
 

@@ -1,0 +1,209 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "current_countable_structural_screen": "artifacts/v3_external_hard_negative_second_tranche_current_countable_structural_screen_1025.json",
+        "second_tranche_selection": "artifacts/v3_external_hard_negative_second_tranche_selection_1025.json"
+      },
+      "blocker_removed": "second_tranche_terminal_decisions_recorded",
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 1025
+    },
+    "blocker_not_removed": [
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "second_tranche_terminal_decisions_recorded_after_current_countable_structural_screen",
+    "candidate_count": 3,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T02:45:10Z",
+    "import_ready_candidate_count": 0,
+    "method": "external_hard_negative_second_tranche_terminal_decisions",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "full_label_factory_gate_not_run_after_duplicate_rejection": 3,
+      "no_import_ready_external_rows": 3
+    },
+    "review_only": true,
+    "slice_id": 1025,
+    "source_current_countable_structural_screen_foldseek_status": "completed",
+    "source_current_countable_structural_screen_method": "external_hard_negative_second_tranche_current_countable_structural_screen",
+    "source_second_tranche_selection_method": "external_hard_negative_second_tranche_selection",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope",
+    "terminal_decision_count": 3,
+    "terminal_decision_status_counts": {
+      "rejected_current_countable_structural_duplicate_signal": 3
+    }
+  },
+  "rows": [
+    {
+      "accession": "P33025",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "entry_id": "uniprot:P33025",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:glycan_chemistry",
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.7246,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+        "current_entry_ids": [
+          "m_csa:735"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1EHK",
+        "current_selected_structure_key": "pdb:1EHK",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "heme_peroxidase_oxidase"
+        ],
+        "example_current_entry_id": "m_csa:735",
+        "max_pair_tm_score": 0.7063,
+        "qtmscore": 0.09916,
+        "raw_query_name": "afdb_P33025",
+        "raw_target_name": "pdb_1EHK_C",
+        "ttmscore": 0.7063
+      },
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate_status": "passed",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run_after_duplicate_rejection",
+        "no_import_ready_external_rows"
+      ],
+      "review_status": "external_hard_negative_second_tranche_terminal_decision_review_only",
+      "selection_status": "admitted_for_second_tranche_review",
+      "source_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "source_top1_score": 0.3355,
+      "structural_duplicate_screen_blockers": [
+        "current_countable_structural_duplicate_signal",
+        "current_countable_structural_pair_cache_incomplete",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "medium",
+      "terminal_decision_status": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "Q13907",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 2,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "entry_id": "uniprot:Q13907",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:isomerase",
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.8731,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1NFS.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1NFS.cif",
+        "current_entry_ids": [
+          "m_csa:190"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1NFS",
+        "current_selected_structure_key": "pdb:1NFS",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:190",
+        "max_pair_tm_score": 0.8686,
+        "qtmscore": 0.6886,
+        "raw_query_name": "afdb_Q13907",
+        "raw_target_name": "pdb_1NFS_A",
+        "ttmscore": 0.8686
+      },
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate_status": "passed",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run_after_duplicate_rejection",
+        "no_import_ready_external_rows"
+      ],
+      "review_status": "external_hard_negative_second_tranche_terminal_decision_review_only",
+      "selection_status": "admitted_for_second_tranche_review",
+      "source_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "source_top1_score": 0.3714,
+      "structural_duplicate_screen_blockers": [
+        "current_countable_structural_duplicate_signal",
+        "current_countable_structural_pair_cache_incomplete",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "medium",
+      "terminal_decision_status": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 6,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "entry_id": "uniprot:P35914",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.7672,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBM.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBM.cif",
+        "current_entry_ids": [
+          "m_csa:328"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1LBM",
+        "current_selected_structure_key": "pdb:1LBM",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:328",
+        "max_pair_tm_score": 0.7638,
+        "qtmscore": 0.4863,
+        "raw_query_name": "afdb_P35914",
+        "raw_target_name": "pdb_1LBM",
+        "ttmscore": 0.7638
+      },
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate_status": "passed",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run_after_duplicate_rejection",
+        "no_import_ready_external_rows"
+      ],
+      "review_status": "external_hard_negative_second_tranche_terminal_decision_review_only",
+      "selection_status": "admitted_for_second_tranche_review",
+      "source_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "source_top1_score": 0.1875,
+      "structural_duplicate_screen_blockers": [
+        "current_countable_structural_duplicate_signal",
+        "current_countable_structural_pair_cache_incomplete",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "medium",
+      "terminal_decision_status": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    }
+  ],
+  "warnings": [
+    "second-tranche terminal decisions are review-only import-safety decisions; they do not validate enzyme function or create countable labels"
+  ]
+}

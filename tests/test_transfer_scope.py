@@ -96,6 +96,8 @@ from catalytic_earth.transfer_scope import (
     build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
     build_external_source_transfer_blocker_matrix,
+    build_external_hard_negative_second_tranche_current_countable_structural_screen,
+    build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
     ExternalSourceTransferGateInputs,
     validate_external_transfer_artifact_path_lineage,
@@ -9694,6 +9696,197 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertTrue(
             all(not row["ready_for_label_import"] for row in split_plan["rows"])
         )
+
+    def test_second_tranche_current_countable_structural_screen_flags_high_tm(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            external_dir = root / "external"
+            current_dir = root / "current"
+            external_dir.mkdir()
+            current_dir.mkdir()
+            for name in ("afdb_P33025.cif", "afdb_Q13907.cif"):
+                (external_dir / name).write_text(f"data_{name}", encoding="utf-8")
+            for name in ("pdb_1AAA.cif", "pdb_2BBB.cif"):
+                (current_dir / name).write_text(f"data_{name}", encoding="utf-8")
+
+            def fake_runner(command: list[str], workdir: Path) -> None:
+                self.assertIn("--exact-tmscore", command)
+                result_tsv = Path(command[4])
+                result_tsv.write_text(
+                    "\n".join(
+                        [
+                            "afdb_P33025\tpdb_1AAA\t0.31\t0.32\t0.33",
+                            "afdb_P33025\tpdb_2BBB\t0.42\t0.43\t0.44",
+                            "afdb_Q13907\tpdb_1AAA\t0.72\t0.71\t0.70",
+                            "afdb_Q13907\tpdb_2BBB\t0.45\t0.46\t0.47",
+                        ]
+                    )
+                    + "\n",
+                    encoding="utf-8",
+                )
+
+            screen = build_external_hard_negative_second_tranche_current_countable_structural_screen(
+                second_tranche_selection={
+                    "metadata": {
+                        "method": "external_hard_negative_second_tranche_selection"
+                    },
+                    "rows": [
+                        {
+                            "accession": "P33025",
+                            "entry_id": "uniprot:P33025",
+                            "lane_id": "external_source:glycan_chemistry",
+                            "selection_status": "admitted_for_second_tranche_review",
+                            "structure_source": "alphafold",
+                            "structure_id": "P33025",
+                            "out_of_scope_inverse_gate_status": "passed",
+                        },
+                        {
+                            "accession": "Q13907",
+                            "entry_id": "uniprot:Q13907",
+                            "lane_id": "external_source:isomerase",
+                            "selection_status": "admitted_for_second_tranche_review",
+                            "structure_source": "alphafold",
+                            "structure_id": "Q13907",
+                            "out_of_scope_inverse_gate_status": "passed",
+                        },
+                    ],
+                },
+                foldseek_coordinate_readiness={
+                    "metadata": {
+                        "method": "foldseek_coordinate_readiness",
+                        "slice_id": "1000",
+                    },
+                    "rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "coordinate_path": str(current_dir / "pdb_1AAA.cif"),
+                            "coordinate_materialization_status": (
+                                "already_materialized"
+                            ),
+                            "selected_structure_key": "pdb:1AAA",
+                            "selected_structure_id": "1AAA",
+                            "selected_structure_source": "pdb",
+                            "label_type": "out_of_scope",
+                            "target_fingerprint_id": None,
+                        },
+                        {
+                            "entry_id": "m_csa:2",
+                            "coordinate_path": str(current_dir / "pdb_2BBB.cif"),
+                            "coordinate_materialization_status": (
+                                "already_materialized"
+                            ),
+                            "selected_structure_key": "pdb:2BBB",
+                            "selected_structure_id": "2BBB",
+                            "selected_structure_source": "pdb",
+                            "label_type": "seed_fingerprint",
+                            "target_fingerprint_id": "plp_dependent_enzyme",
+                        },
+                    ],
+                },
+                external_coordinate_dir=external_dir,
+                foldseek_binary=sys.executable,
+                runner=fake_runner,
+                max_rows=2,
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+
+        metadata = screen["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_hard_negative_second_tranche_current_countable_structural_screen",
+        )
+        self.assertEqual(metadata["foldseek_run_status"], "completed")
+        self.assertTrue(metadata["pair_cache_complete"])
+        self.assertEqual(metadata["unique_query_target_pair_count"], 4)
+        self.assertEqual(metadata["expected_query_target_pair_count"], 4)
+        self.assertEqual(metadata["high_tm_candidate_count"], 1)
+        by_accession = {row["accession"]: row for row in screen["rows"]}
+        self.assertEqual(
+            by_accession["P33025"]["current_countable_structural_screen_status"],
+            "no_current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(
+            by_accession["Q13907"]["current_countable_structural_screen_status"],
+            "current_countable_structural_duplicate_signal",
+        )
+        self.assertIn(
+            "current_countable_structural_duplicate_signal",
+            by_accession["Q13907"]["remaining_import_blockers"],
+        )
+        self.assertFalse(by_accession["P33025"]["ready_for_label_import"])
+        self.assertFalse(by_accession["Q13907"]["countable_label_candidate"])
+
+    def test_second_tranche_terminal_decisions_reject_structural_duplicates(
+        self,
+    ) -> None:
+        decisions = build_external_hard_negative_second_tranche_terminal_decisions(
+            second_tranche_selection={
+                "metadata": {
+                    "method": "external_hard_negative_second_tranche_selection"
+                },
+                "rows": [
+                    {
+                        "accession": "P33025",
+                        "entry_id": "uniprot:P33025",
+                        "lane_id": "external_source:glycan_chemistry",
+                        "selection_status": "admitted_for_second_tranche_review",
+                        "out_of_scope_inverse_gate_status": "passed",
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "top1_score": 0.3355,
+                    }
+                ],
+            },
+            current_countable_structural_screen={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_second_tranche_current_countable_"
+                        "structural_screen"
+                    ),
+                    "foldseek_run_status": "completed",
+                },
+                "rows": [
+                    {
+                        "accession": "P33025",
+                        "current_countable_structural_screen_status": (
+                            "current_countable_structural_duplicate_signal"
+                        ),
+                        "current_countable_high_tm_hit_count": 1,
+                        "nearest_current_countable_hit": {
+                            "current_entry_ids": ["m_csa:735"],
+                            "max_pair_tm_score": 0.7063,
+                        },
+                        "remaining_import_blockers": [
+                            "current_countable_structural_duplicate_signal"
+                        ],
+                    }
+                ],
+            },
+            artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+        )
+
+        metadata = decisions["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_hard_negative_second_tranche_terminal_decisions",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["terminal_decision_count"], 1)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["terminal_decision_status_counts"],
+            {"rejected_current_countable_structural_duplicate_signal": 1},
+        )
+        row = decisions["rows"][0]
+        self.assertEqual(
+            row["terminal_decision_status"],
+            "rejected_current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(row["target_label_type"], "out_of_scope")
+        self.assertIsNone(row["target_fingerprint_id"])
+        self.assertFalse(row["import_ready_candidate"])
+        self.assertFalse(row["countable_label_candidate"])
 
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
         self,

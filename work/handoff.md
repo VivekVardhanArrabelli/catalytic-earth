@@ -86,18 +86,34 @@ the next review-only hard-negative tranche with P33025, Q13907, and P35914 as
 lower-risk candidates. P60174 is explicitly excluded for high
 current-reference identity (`0.899`), and Q9BXS1 is excluded because Q13907
 already represents the same external `TM >= 0.7` cluster. These tranche-2 rows
-are not import-ready and not countable; next work should build terminal
-decisions plus duplicate/factory gates for those rows, including
-current-countable structural duplicate screening if a backend is available.
+are not import-ready and not countable. The 2026-05-17T02:23:59Z run then
+added
+`artifacts/v3_external_hard_negative_second_tranche_current_countable_structural_screen_1025.json`,
+which runs Foldseek over those 3 external rows against 672 staged current
+selected structures. Foldseek completed, but only 2001/2016 query-target pairs
+were reported and all three admitted rows have high-TM current-countable
+structural signals: P33025 to `m_csa:735` at `0.7063`, Q13907 to `m_csa:190`
+at `0.8686`, and P35914 to `m_csa:328` at `0.7638`. Evidence-based confidence
+call: tranche-2 import readiness is now lower, not higher.
+`artifacts/v3_external_hard_negative_second_tranche_terminal_decisions_1025.json`
+records all three admitted rows as terminal review-only
+`rejected_current_countable_structural_duplicate_signal` outcomes with 0
+import-ready rows and 0 countable labels.
+`artifacts/v3_external_hard_negative_second_tranche_replacement_triage_1025.json`
+then triages the current 25-row pool and admits 0 replacements. Next direct
+work should source a new external hard-negative tranche or add new evidence
+before reconsidering this pool; do not retry P33025/Q13907/P35914 or reopen
+O14756/Q6NSJ0/P34949/Q9BXD5/C9JRZ8/P06746 repair lanes in this cycle without
+new expert evidence.
 
-Run verification for this handoff: started `2026-05-17T01:23:28Z`, wrapped at
-`2026-05-17T02:09:41Z` after the bounded two-candidate attempt and tranche-2
-selection. Final checks passed with 376 unit tests, `compileall`, `git diff
---check`, `PYTHONPATH=src python -m catalytic_earth.cli validate`, JSON parse
-checks for the new hard-negative artifacts, and the external transfer gate
-remaining at 68/68. README, label-factory docs, external-transfer docs, scope,
-handoff, and repair/transfer notes were checked and updated to reflect the
-no-import result.
+Run verification for the current handoff: started `2026-05-17T02:23:59Z` and
+wrapped at `2026-05-17T02:50:16Z`. Startup checks passed with 376 unit tests
+and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks
+passed with 378 unit tests, `validate`, `compileall`, `git diff --check`, JSON
+parse checks for the new hard-negative artifacts, and the external transfer
+gate remaining at 68/68. README, label-factory docs, external-transfer docs,
+scope, handoff, and repair/transfer notes were checked; label-factory docs
+required no content change for this structural duplicate-screen slice.
 
 As of the 2026-05-16T01:55:26-05:00 run, do not resume M-CSA strict
 Foldseek/TM-score repair. The loop is closed/deferred by
@@ -280,6 +296,28 @@ agents should push over SSH and should not return to HTTPS/`gh auth` repair
 unless the deploy key is explicitly removed.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-17T02:23:59Z run after acquiring the automation lock,
+syncing clean `origin/main`, verifying the SSH deploy-key push path, and
+passing startup gates (`376` unit tests and `validate` with 679 curated
+labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, no M-CSA strict-TM repair path was reopened, and the
+  work stayed on external fold-diverse hard-negative blockers.
+- External-source repair/import: Yes for bounded duplicate-screen evidence, no
+  for import or countable labels. The tranche-2 current-countable structural
+  screen finds high-TM current selected-structure signals for P33025, Q13907,
+  and P35914; the terminal decision artifact rejects all three as review-only
+  duplicate-risk outcomes, leaving 0 import-ready rows and 0 countable external
+  labels.
+- Scientific generalization work: Yes, but review-only. The new Foldseek screen
+  compares three external candidates to 672 staged current selected structures;
+  it is duplicate-risk evidence, not a new benchmark split or validated enzyme
+  function claim.
+- SPOF hardening work: Yes. A direct CLI/function/test path now records the
+  current-countable structural duplicate screen that the previous handoff
+  identified as a blocker for second-tranche import readiness.
 
 Recorded for the 2026-05-16T23:51:02Z run after acquiring the automation lock,
 syncing clean `origin/main`, verifying that `gh auth status` remains invalid

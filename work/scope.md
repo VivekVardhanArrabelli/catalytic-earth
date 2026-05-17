@@ -537,8 +537,16 @@ Current expectation:
   blocked by broader duplicate, post-repair review, and full factory gates, the
   second review-only hard-negative tranche selection starts with P33025,
   Q13907, and P35914 as lower-risk candidates after using the all-30 external
-  TM cluster surface to keep one representative per high-TM external cluster,
-  and 0 external labels are countable.
+  TM cluster surface to keep one representative per high-TM external cluster.
+  The follow-on current-countable structural screen completes a bounded
+  Foldseek pass against 672 staged current selected structures and finds
+  high-TM current-countable structural duplicate signals for all three
+  admitted tranche-2 rows; the terminal decision artifact rejects all three as
+  `rejected_current_countable_structural_duplicate_signal`, so 0 external
+  labels are countable. Replacement triage over the current 25-row pool admits
+  0 replacement rows, so the next tranche-2 work needs new external candidate
+  sourcing or new evidence rather than retrying this same pool without expert
+  input.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

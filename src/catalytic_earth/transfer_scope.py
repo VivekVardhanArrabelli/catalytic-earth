@@ -10105,6 +10105,566 @@ def build_external_structural_tm_diverse_split_plan(
     }
 
 
+def build_external_hard_negative_second_tranche_current_countable_structural_screen(
+    *,
+    second_tranche_selection: dict[str, Any],
+    foldseek_coordinate_readiness: dict[str, Any],
+    external_coordinate_dir: str | Path = "artifacts/v3_external_structural_coordinates_1025_all30",
+    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    tm_score_threshold: float = 0.7,
+    max_rows: int = 3,
+    max_reported_hits: int = 5,
+    threads: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+    runner: Callable[[list[str], Path], None] | None = None,
+) -> dict[str, Any]:
+    """Screen tranche-2 external hard-negatives against current structures."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+    if max_reported_hits < 1:
+        raise ValueError("max_reported_hits must be positive")
+    if tm_score_threshold <= 0:
+        raise ValueError("tm_score_threshold must be positive")
+
+    external_coordinate_dir_path = Path(external_coordinate_dir)
+    source_candidates = [
+        row
+        for row in second_tranche_selection.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("selection_status") == "admitted_for_second_tranche_review"
+        and _normalize_accession(row.get("accession"))
+    ][:max_rows]
+    query_rows: list[dict[str, Any]] = []
+    for row in source_candidates:
+        accession = _normalize_accession(row.get("accession"))
+        structure_source = str(row.get("structure_source") or "alphafold")
+        structure_id = str(row.get("structure_id") or accession)
+        coordinate_path = external_coordinate_dir_path / _external_coordinate_file_name(
+            structure_source,
+            structure_id,
+        )
+        coordinate_available = coordinate_path.exists()
+        query_rows.append(
+            {
+                "accession": accession,
+                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": row.get("lane_id"),
+                "protein_name": row.get("protein_name"),
+                "structure_source": structure_source,
+                "structure_id": structure_id,
+                "coordinate_path": str(coordinate_path),
+                "coordinate_status": (
+                    "coordinate_sidecar_reused"
+                    if coordinate_available
+                    else "coordinate_sidecar_missing"
+                ),
+                "source_selection_status": row.get("selection_status"),
+                "source_out_of_scope_inverse_gate_status": row.get(
+                    "out_of_scope_inverse_gate_status"
+                ),
+                "source_top1_fingerprint_id": row.get("top1_fingerprint_id"),
+                "source_top1_score": row.get("top1_score"),
+            }
+        )
+
+    current_groups = _current_countable_foldseek_coordinate_groups(
+        foldseek_coordinate_readiness
+    )
+    materialized_queries = [
+        row
+        for row in query_rows
+        if row["coordinate_status"] == "coordinate_sidecar_reused"
+    ]
+    foldseek_info = _external_foldseek_binary_info(foldseek_binary)
+    foldseek_run_status = "not_run"
+    foldseek_error: str | None = None
+    foldseek_command: list[str] | None = None
+    foldseek_command_string: str | None = None
+    pair_rows: list[dict[str, Any]] = []
+
+    if not foldseek_info["available"]:
+        foldseek_run_status = "foldseek_unavailable"
+    elif not materialized_queries:
+        foldseek_run_status = "external_coordinate_sidecars_missing"
+    elif not current_groups:
+        foldseek_run_status = "current_countable_coordinates_missing"
+    else:
+        digest = hashlib.sha256(
+            "\n".join(
+                sorted(
+                    [str(row["coordinate_path"]) for row in materialized_queries]
+                    + [str(group["coordinate_path"]) for group in current_groups]
+                )
+            ).encode("utf-8")
+        ).hexdigest()[:16]
+        workdir = Path("/private/tmp") / (
+            f"catalytic-earth-second-tranche-current-structural-{digest}"
+        )
+        if workdir.exists():
+            shutil.rmtree(workdir)
+        workdir.mkdir(parents=True, exist_ok=True)
+        query_dir = workdir / "external_queries"
+        target_dir = workdir / "current_countable_targets"
+        query_dir.mkdir(parents=True, exist_ok=True)
+        target_dir.mkdir(parents=True, exist_ok=True)
+        for row in materialized_queries:
+            source_path = Path(str(row["coordinate_path"]))
+            target_path = query_dir / source_path.name
+            try:
+                target_path.symlink_to(source_path.resolve())
+            except OSError:
+                shutil.copy2(source_path, target_path)
+        for group in current_groups:
+            source_path = Path(str(group["coordinate_path"]))
+            target_path = target_dir / source_path.name
+            try:
+                target_path.symlink_to(source_path.resolve())
+            except OSError:
+                shutil.copy2(source_path, target_path)
+
+        result_tsv = workdir / "second_tranche_current_countable_tm_scores.tsv"
+        tmpdir = workdir / "tmp"
+        foldseek_command = [
+            str(foldseek_info["resolved"] or foldseek_binary),
+            "easy-search",
+            str(query_dir),
+            str(target_dir),
+            str(result_tsv),
+            str(tmpdir),
+            "--format-output",
+            "query,target,qtmscore,ttmscore,alntmscore",
+            "--exhaustive-search",
+            "1",
+            "--alignment-type",
+            "1",
+            "--tmalign-fast",
+            "0",
+            "--exact-tmscore",
+            "1",
+            "--max-seqs",
+            "100000",
+            "-e",
+            "inf",
+            "--threads",
+            str(max(1, int(threads))),
+            "-v",
+            "1",
+        ]
+        foldseek_command_string = " ".join(
+            shlex.quote(part) for part in foldseek_command
+        )
+        try:
+            if runner is None:
+                _external_run_backend_command(foldseek_command, cwd=workdir)
+            else:
+                runner(foldseek_command, workdir)
+            pair_rows = _parse_external_vs_current_foldseek_pairs(
+                result_tsv=result_tsv,
+                query_aliases=_external_coordinate_aliases(materialized_queries),
+                target_aliases=_current_countable_foldseek_aliases(current_groups),
+            )
+            foldseek_run_status = "completed"
+        except (OSError, RuntimeError, ValueError) as exc:
+            foldseek_run_status = "foldseek_run_failed"
+            foldseek_error = f"{type(exc).__name__}: {exc}"
+
+    best_pairs: dict[tuple[str, str], dict[str, Any]] = {}
+    for pair in pair_rows:
+        query = pair.get("query_accession")
+        target = pair.get("target_coordinate_key")
+        score = _external_parse_float(pair.get("max_pair_tm_score"))
+        if not query or not target or score is None:
+            continue
+        key = (str(query), str(target))
+        current = best_pairs.get(key)
+        if current is None or score > float(current.get("max_pair_tm_score") or 0.0):
+            best_pairs[key] = {**pair, "max_pair_tm_score": round(score, 4)}
+    unique_pairs = list(best_pairs.values())
+    hits_by_accession: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    current_group_by_key = {
+        str(group["coordinate_key"]): group for group in current_groups
+    }
+    for pair in unique_pairs:
+        query = str(pair["query_accession"])
+        group = current_group_by_key.get(str(pair["target_coordinate_key"]), {})
+        example_rows = group.get("rows", []) or []
+        example_row = example_rows[0] if example_rows else {}
+        hits_by_accession[query].append(
+            {
+                "current_coordinate_key": group.get("coordinate_key"),
+                "current_coordinate_path": group.get("coordinate_path"),
+                "current_selected_structure_key": group.get(
+                    "selected_structure_key"
+                ),
+                "current_selected_structure_id": group.get(
+                    "selected_structure_id"
+                ),
+                "current_selected_structure_source": group.get(
+                    "selected_structure_source"
+                ),
+                "current_entry_ids": group.get("entry_ids", []),
+                "current_label_types": group.get("label_types", []),
+                "current_target_fingerprint_ids": group.get(
+                    "target_fingerprint_ids", []
+                ),
+                "example_current_entry_id": example_row.get("entry_id"),
+                "max_pair_tm_score": pair.get("max_pair_tm_score"),
+                "qtmscore": pair.get("qtmscore"),
+                "ttmscore": pair.get("ttmscore"),
+                "alntmscore": pair.get("alntmscore"),
+                "raw_query_name": pair.get("raw_query_name"),
+                "raw_target_name": pair.get("raw_target_name"),
+            }
+        )
+    for hits in hits_by_accession.values():
+        hits.sort(
+            key=lambda hit: (
+                -float(hit.get("max_pair_tm_score") or 0.0),
+                str(hit.get("current_selected_structure_key") or ""),
+            )
+        )
+
+    expected_pair_count = len(materialized_queries) * len(current_groups)
+    pair_cache_complete = (
+        foldseek_run_status == "completed"
+        and len(unique_pairs) == expected_pair_count
+    )
+    rows: list[dict[str, Any]] = []
+    for row in query_rows:
+        accession = str(row["accession"])
+        hits = hits_by_accession.get(accession, [])
+        nearest = hits[0] if hits else None
+        high_tm_hits = [
+            hit
+            for hit in hits
+            if float(hit.get("max_pair_tm_score") or 0.0) >= tm_score_threshold
+        ]
+        blockers: list[str] = []
+        if row["coordinate_status"] != "coordinate_sidecar_reused":
+            blockers.append("external_coordinate_sidecar_missing")
+        if foldseek_run_status != "completed":
+            blockers.append("current_countable_structural_screen_not_completed")
+        elif not pair_cache_complete:
+            blockers.append("current_countable_structural_pair_cache_incomplete")
+        if high_tm_hits:
+            blockers.append("current_countable_structural_duplicate_signal")
+        status = (
+            "current_countable_structural_duplicate_signal"
+            if high_tm_hits
+            else "no_current_countable_structural_duplicate_signal"
+            if foldseek_run_status == "completed"
+            and row["coordinate_status"] == "coordinate_sidecar_reused"
+            else "current_countable_structural_screen_not_completed"
+        )
+        rows.append(
+            {
+                **row,
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "current_countable_structural_screen_status": status,
+                "tm_score_threshold": float(tm_score_threshold),
+                "nearest_current_countable_hit": nearest,
+                "top_current_countable_hits": hits[:max_reported_hits],
+                "current_countable_hit_count": len(hits),
+                "current_countable_high_tm_hit_count": len(high_tm_hits),
+                "remaining_import_blockers": sorted(
+                    set(
+                        blockers
+                        + [
+                            "uniref_wide_duplicate_screening_required",
+                            "terminal_review_decision_not_accepted",
+                            "full_label_factory_gate_not_run",
+                        ]
+                    )
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "import_ready_candidate": False,
+                "review_status": (
+                    "external_hard_negative_second_tranche_current_countable_"
+                    "structural_screen_review_only"
+                ),
+            }
+        )
+
+    status_counts = Counter(
+        row["current_countable_structural_screen_status"] for row in rows
+    )
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    max_tm_score = max(
+        (
+            float(hit.get("max_pair_tm_score") or 0.0)
+            for hits in hits_by_accession.values()
+            for hit in hits
+        ),
+        default=None,
+    )
+    high_tm_candidate_count = sum(
+        1
+        for row in rows
+        if row["current_countable_structural_screen_status"]
+        == "current_countable_structural_duplicate_signal"
+    )
+    blocker_not_removed = [
+        "uniref_wide_duplicate_screening_required",
+        "terminal_review_decision_not_accepted",
+        "full_label_factory_gate_not_run",
+    ]
+    if high_tm_candidate_count:
+        blocker_not_removed.append("current_countable_structural_duplicate_signal")
+    if not pair_cache_complete:
+        blocker_not_removed.append("current_countable_structural_pair_cache_incomplete")
+
+    return {
+        "metadata": {
+            "method": (
+                "external_hard_negative_second_tranche_current_countable_"
+                "structural_screen"
+            ),
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "second_tranche_current_countable_structural_duplicate_screen_completed"
+                if pair_cache_complete
+                else "second_tranche_current_countable_structural_duplicate_screen_attempted"
+            ),
+            "blocker_not_removed": sorted(set(blocker_not_removed)),
+            "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "candidate_count": len(rows),
+            "admitted_candidate_count": len(source_candidates),
+            "screened_candidate_count": len(materialized_queries),
+            "current_countable_coordinate_count": len(current_groups),
+            "current_countable_evaluated_row_count": sum(
+                len(group.get("rows", []) or []) for group in current_groups
+            ),
+            "foldseek_binary_requested": foldseek_info["requested"],
+            "foldseek_binary_resolved": foldseek_info["resolved"],
+            "foldseek_binary_available": foldseek_info["available"],
+            "foldseek_version": foldseek_info["version"],
+            "foldseek_command": foldseek_command_string,
+            "foldseek_run_status": foldseek_run_status,
+            "foldseek_error": foldseek_error,
+            "foldseek_reporting_mode": (
+                "external_second_tranche_queries_vs_current_countable_targets_"
+                "exhaustive_exact_tmscore"
+            ),
+            "threads": max(1, int(threads)),
+            "tm_score_threshold": float(tm_score_threshold),
+            "pair_cache_complete": pair_cache_complete,
+            "unique_query_target_pair_count": len(unique_pairs),
+            "expected_query_target_pair_count": expected_pair_count,
+            "query_target_pair_coverage": _safe_ratio(
+                len(unique_pairs), expected_pair_count
+            ),
+            "high_tm_candidate_count": high_tm_candidate_count,
+            "max_external_vs_current_countable_tm_score": (
+                round(max_tm_score, 4) if max_tm_score is not None else None
+            ),
+            "current_countable_structural_screen_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_second_tranche_selection_method": (
+                second_tranche_selection.get("metadata", {}).get("method")
+            ),
+            "source_foldseek_coordinate_readiness_method": (
+                foldseek_coordinate_readiness.get("metadata", {}).get("method")
+            ),
+            "source_foldseek_coordinate_readiness_slice_id": (
+                foldseek_coordinate_readiness.get("metadata", {}).get("slice_id")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "current-countable structural screening is bounded to staged "
+                "selected structures; UniRef-wide duplicate screening, terminal "
+                "review acceptance, and full factory gates still block import"
+            )
+        ],
+    }
+
+
+def build_external_hard_negative_second_tranche_terminal_decisions(
+    *,
+    second_tranche_selection: dict[str, Any],
+    current_countable_structural_screen: dict[str, Any],
+    max_rows: int = 3,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Record terminal review-only outcomes for admitted second-tranche rows."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    selected_rows = [
+        row
+        for row in second_tranche_selection.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("selection_status") == "admitted_for_second_tranche_review"
+        and _normalize_accession(row.get("accession"))
+    ][:max_rows]
+    screen_by_accession = _external_first_row_by_accession(
+        current_countable_structural_screen
+    )
+
+    rows: list[dict[str, Any]] = []
+    for selected in selected_rows:
+        accession = _normalize_accession(selected.get("accession"))
+        screen_row = screen_by_accession.get(accession, {})
+        screen_status = screen_row.get("current_countable_structural_screen_status")
+        nearest_hit = screen_row.get("nearest_current_countable_hit")
+        high_tm_hit_count = _external_parse_int(
+            screen_row.get("current_countable_high_tm_hit_count")
+        )
+        screen_blockers = [
+            str(blocker)
+            for blocker in screen_row.get("remaining_import_blockers", []) or []
+            if blocker
+        ]
+        if (
+            screen_status == "current_countable_structural_duplicate_signal"
+            or high_tm_hit_count > 0
+        ):
+            terminal_decision_status = (
+                "rejected_current_countable_structural_duplicate_signal"
+            )
+            terminal_reason = (
+                "bounded current-countable Foldseek screen found high-TM "
+                "selected-structure duplicate risk"
+            )
+            terminal_confidence = "medium"
+            unresolved_blockers = [
+                "no_import_ready_external_rows",
+                "full_label_factory_gate_not_run_after_duplicate_rejection",
+            ]
+        elif screen_status == "no_current_countable_structural_duplicate_signal":
+            terminal_decision_status = (
+                "deferred_requires_review_and_factory_gate_after_structural_screen"
+            )
+            terminal_reason = (
+                "bounded structural duplicate screen has no high-TM signal, but "
+                "terminal review and factory gates are still missing"
+            )
+            terminal_confidence = "low"
+            unresolved_blockers = [
+                "terminal_review_decision_not_accepted",
+                "uniref_wide_duplicate_screening_required",
+                "full_label_factory_gate_not_run",
+            ]
+        else:
+            terminal_decision_status = (
+                "needs_review_current_countable_structural_screen_incomplete"
+            )
+            terminal_reason = (
+                "current-countable structural screen did not produce a completed "
+                "row-level decision"
+            )
+            terminal_confidence = "low"
+            unresolved_blockers = [
+                "current_countable_structural_screen_not_completed",
+                "terminal_review_decision_not_accepted",
+                "full_label_factory_gate_not_run",
+            ]
+
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": selected.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": selected.get("lane_id"),
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "selection_status": selected.get("selection_status"),
+                "out_of_scope_inverse_gate_status": selected.get(
+                    "out_of_scope_inverse_gate_status"
+                ),
+                "source_top1_fingerprint_id": selected.get("top1_fingerprint_id"),
+                "source_top1_score": selected.get("top1_score"),
+                "terminal_decision_status": terminal_decision_status,
+                "terminal_import_attempt_status": "import_blocked",
+                "terminal_reason": terminal_reason,
+                "terminal_confidence": terminal_confidence,
+                "current_countable_structural_screen_status": screen_status,
+                "current_countable_high_tm_hit_count": high_tm_hit_count,
+                "nearest_current_countable_hit": nearest_hit,
+                "structural_duplicate_screen_blockers": screen_blockers,
+                "remaining_import_blockers": sorted(set(unresolved_blockers)),
+                "import_ready_candidate": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "review_status": (
+                    "external_hard_negative_second_tranche_terminal_decision_"
+                    "review_only"
+                ),
+            }
+        )
+
+    status_counts = Counter(row["terminal_decision_status"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    import_ready_count = sum(1 for row in rows if row["import_ready_candidate"])
+    return {
+        "metadata": {
+            "method": "external_hard_negative_second_tranche_terminal_decisions",
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "second_tranche_terminal_decisions_recorded_after_"
+                "current_countable_structural_screen"
+            ),
+            "blocker_not_removed": (
+                ["no_import_ready_external_rows"]
+                if import_ready_count == 0
+                else []
+            ),
+            "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "candidate_count": len(rows),
+            "terminal_decision_count": len(rows),
+            "import_ready_candidate_count": import_ready_count,
+            "countable_label_candidate_count": 0,
+            "ready_for_label_import": False,
+            "terminal_decision_status_counts": dict(sorted(status_counts.items())),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_second_tranche_selection_method": (
+                second_tranche_selection.get("metadata", {}).get("method")
+            ),
+            "source_current_countable_structural_screen_method": (
+                current_countable_structural_screen.get("metadata", {}).get("method")
+            ),
+            "source_current_countable_structural_screen_foldseek_status": (
+                current_countable_structural_screen.get("metadata", {}).get(
+                    "foldseek_run_status"
+                )
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "second-tranche terminal decisions are review-only import-safety "
+                "decisions; they do not validate enzyme function or create "
+                "countable labels"
+            )
+        ],
+    }
+
+
 def build_external_source_pilot_success_criteria(
     *,
     pilot_candidate_priority: dict[str, Any],
@@ -19911,6 +20471,94 @@ def _external_coordinate_aliases(
     return aliases
 
 
+def _current_countable_foldseek_coordinate_groups(
+    foldseek_coordinate_readiness: dict[str, Any],
+) -> list[dict[str, Any]]:
+    groups_by_path: dict[str, dict[str, Any]] = {}
+    materialized_statuses = {
+        "already_materialized",
+        "coordinate_sidecar_materialized",
+        "coordinate_sidecar_reused",
+        "materialized",
+    }
+    for row in foldseek_coordinate_readiness.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        coordinate_path = row.get("coordinate_path")
+        if not coordinate_path:
+            continue
+        status = str(row.get("coordinate_materialization_status") or "")
+        if status and status not in materialized_statuses:
+            continue
+        path = Path(str(coordinate_path))
+        if not path.exists():
+            continue
+        key = str(path)
+        group = groups_by_path.setdefault(
+            key,
+            {
+                "coordinate_key": key,
+                "coordinate_path": key,
+                "selected_structure_key": row.get("selected_structure_key"),
+                "selected_structure_id": row.get("selected_structure_id"),
+                "selected_structure_source": row.get("selected_structure_source"),
+                "entry_ids": [],
+                "label_types": [],
+                "target_fingerprint_ids": [],
+                "rows": [],
+            },
+        )
+        entry_id = row.get("entry_id")
+        if entry_id and entry_id not in group["entry_ids"]:
+            group["entry_ids"].append(entry_id)
+        label_type = row.get("label_type")
+        if label_type and label_type not in group["label_types"]:
+            group["label_types"].append(label_type)
+        fingerprint_id = row.get("target_fingerprint_id")
+        if fingerprint_id and fingerprint_id not in group["target_fingerprint_ids"]:
+            group["target_fingerprint_ids"].append(fingerprint_id)
+        group["rows"].append(row)
+    groups = list(groups_by_path.values())
+    for group in groups:
+        group["entry_ids"] = sorted(str(item) for item in group["entry_ids"])
+        group["label_types"] = sorted(str(item) for item in group["label_types"])
+        group["target_fingerprint_ids"] = sorted(
+            str(item) for item in group["target_fingerprint_ids"]
+        )
+    return sorted(
+        groups,
+        key=lambda group: (
+            str(group.get("selected_structure_key") or ""),
+            str(group.get("coordinate_path") or ""),
+        ),
+    )
+
+
+def _current_countable_foldseek_aliases(
+    current_groups: list[dict[str, Any]],
+) -> dict[str, str]:
+    aliases: dict[str, str] = {}
+    for group in current_groups:
+        coordinate_key = str(group["coordinate_key"])
+        path = Path(str(group["coordinate_path"]))
+        structure_id = str(group.get("selected_structure_id") or "")
+        structure_key = str(group.get("selected_structure_key") or "")
+        source = str(group.get("selected_structure_source") or "")
+        raw_aliases = {
+            coordinate_key,
+            str(path),
+            path.name,
+            path.stem,
+            structure_id,
+            structure_key,
+            f"{source}_{structure_id}" if source and structure_id else "",
+        }
+        for alias in raw_aliases:
+            if alias:
+                aliases[str(alias)] = coordinate_key
+    return aliases
+
+
 def _external_foldseek_name_candidates(raw_name: str) -> list[str]:
     text = str(raw_name or "").strip()
     if not text:
@@ -19962,6 +20610,48 @@ def _parse_external_foldseek_pairs(
                 "alntmscore": alntmscore,
                 "max_pair_tm_score": max(score_values) if score_values else None,
                 "mapped": bool(query_accession and target_accession),
+            }
+        )
+    return rows
+
+
+def _parse_external_vs_current_foldseek_pairs(
+    *,
+    result_tsv: Path,
+    query_aliases: dict[str, str],
+    target_aliases: dict[str, str],
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    if not result_tsv.exists():
+        raise ValueError(f"Foldseek result TSV does not exist: {result_tsv}")
+    for line in result_tsv.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        parts = line.split("\t")
+        if len(parts) < 5:
+            continue
+        raw_query, raw_target = parts[0], parts[1]
+        query_accession = _external_map_foldseek_name(raw_query, query_aliases)
+        target_coordinate_key = _external_map_foldseek_name(raw_target, target_aliases)
+        qtmscore = _external_parse_float(parts[2])
+        ttmscore = _external_parse_float(parts[3])
+        alntmscore = _external_parse_float(parts[4])
+        score_values = [
+            score
+            for score in (qtmscore, ttmscore)
+            if score is not None
+        ]
+        rows.append(
+            {
+                "raw_query_name": raw_query,
+                "raw_target_name": raw_target,
+                "query_accession": query_accession,
+                "target_coordinate_key": target_coordinate_key,
+                "qtmscore": qtmscore,
+                "ttmscore": ttmscore,
+                "alntmscore": alntmscore,
+                "max_pair_tm_score": max(score_values) if score_values else None,
+                "mapped": bool(query_accession and target_coordinate_key),
             }
         )
     return rows

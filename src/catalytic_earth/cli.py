@@ -187,6 +187,8 @@ from .transfer_scope import (
     build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
     build_external_source_transfer_blocker_matrix,
+    build_external_hard_negative_second_tranche_current_countable_structural_screen,
+    build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
     ExternalSourceTransferGateInputs,
     validate_external_transfer_artifact_path_lineage,
@@ -3325,6 +3327,81 @@ def cmd_build_external_structural_tm_diverse_split_plan(
         "Wrote external structural TM-diverse split plan to "
         f"{args.out} ({split_plan['metadata']['test_candidate_count']} test / "
         f"{split_plan['metadata']['train_candidate_count']} train)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_second_tranche_current_countable_structural_screen(
+    args: argparse.Namespace,
+) -> int:
+    second_tranche_selection = read_json_object(Path(args.second_tranche_selection))
+    foldseek_coordinate_readiness = read_json_object(
+        Path(args.foldseek_coordinate_readiness)
+    )
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "second_tranche_selection": args.second_tranche_selection,
+            "foldseek_coordinate_readiness": args.foldseek_coordinate_readiness,
+        },
+        "blocker_removed": (
+            "second_tranche_current_countable_structural_duplicate_screen"
+        ),
+    }
+    screen = (
+        build_external_hard_negative_second_tranche_current_countable_structural_screen(
+            second_tranche_selection=second_tranche_selection,
+            foldseek_coordinate_readiness=foldseek_coordinate_readiness,
+            external_coordinate_dir=args.external_coordinate_dir,
+            foldseek_binary=args.foldseek_binary,
+            tm_score_threshold=args.tm_score_threshold,
+            max_rows=args.max_rows,
+            max_reported_hits=args.max_reported_hits,
+            threads=args.threads,
+            artifact_lineage=artifact_lineage,
+        )
+    )
+    write_json(Path(args.out), screen)
+    print(
+        "Wrote second-tranche current-countable structural screen to "
+        f"{args.out} ({screen['metadata']['screened_candidate_count']} "
+        "candidates screened)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_second_tranche_terminal_decisions(
+    args: argparse.Namespace,
+) -> int:
+    second_tranche_selection = read_json_object(Path(args.second_tranche_selection))
+    current_countable_structural_screen = read_json_object(
+        Path(args.current_countable_structural_screen)
+    )
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "second_tranche_selection": args.second_tranche_selection,
+            "current_countable_structural_screen": (
+                args.current_countable_structural_screen
+            ),
+        },
+        "blocker_removed": "second_tranche_terminal_decisions_recorded",
+    }
+    decisions = build_external_hard_negative_second_tranche_terminal_decisions(
+        second_tranche_selection=second_tranche_selection,
+        current_countable_structural_screen=current_countable_structural_screen,
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), decisions)
+    print(
+        "Wrote second-tranche terminal decisions to "
+        f"{args.out} ({decisions['metadata']['terminal_decision_count']} "
+        "terminal)"
     )
     return 0
 
@@ -8549,6 +8626,88 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_structural_split.set_defaults(
         func=cmd_build_external_structural_tm_diverse_split_plan
+    )
+
+    external_second_tranche_structural = subparsers.add_parser(
+        "build-external-hard-negative-second-tranche-current-countable-structural-screen",
+        help=(
+            "screen admitted tranche-2 external hard-negative candidates against "
+            "current countable selected structures with Foldseek"
+        ),
+    )
+    external_second_tranche_structural.add_argument(
+        "--second-tranche-selection",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_second_tranche_selection_1025.json"
+        ),
+    )
+    external_second_tranche_structural.add_argument(
+        "--foldseek-coordinate-readiness",
+        default="artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json",
+    )
+    external_second_tranche_structural.add_argument(
+        "--external-coordinate-dir",
+        default="artifacts/v3_external_structural_coordinates_1025_all30",
+    )
+    external_second_tranche_structural.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    )
+    external_second_tranche_structural.add_argument(
+        "--tm-score-threshold",
+        type=float,
+        default=0.7,
+    )
+    external_second_tranche_structural.add_argument("--threads", type=int, default=1)
+    external_second_tranche_structural.add_argument("--max-rows", type=int, default=3)
+    external_second_tranche_structural.add_argument(
+        "--max-reported-hits", type=int, default=5
+    )
+    external_second_tranche_structural.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_second_tranche_current_countable_"
+            "structural_screen_1025.json"
+        ),
+    )
+    external_second_tranche_structural.set_defaults(
+        func=cmd_build_external_hard_negative_second_tranche_current_countable_structural_screen
+    )
+
+    external_second_tranche_terminal = subparsers.add_parser(
+        "build-external-hard-negative-second-tranche-terminal-decisions",
+        help=(
+            "record review-only terminal decisions for admitted tranche-2 "
+            "hard-negative candidates after duplicate screening"
+        ),
+    )
+    external_second_tranche_terminal.add_argument(
+        "--second-tranche-selection",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_second_tranche_selection_1025.json"
+        ),
+    )
+    external_second_tranche_terminal.add_argument(
+        "--current-countable-structural-screen",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_second_tranche_current_countable_"
+            "structural_screen_1025.json"
+        ),
+    )
+    external_second_tranche_terminal.add_argument("--max-rows", type=int, default=3)
+    external_second_tranche_terminal.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_second_tranche_terminal_decisions_1025.json"
+        ),
+    )
+    external_second_tranche_terminal.set_defaults(
+        func=cmd_build_external_hard_negative_second_tranche_terminal_decisions
     )
 
     external_transfer_gate = subparsers.add_parser(

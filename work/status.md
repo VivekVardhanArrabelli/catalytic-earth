@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 144
-- Measured elapsed time: 4749.6 minutes (79.16 hours)
+- Entries: 145
+- Measured elapsed time: 4775.8 minutes (79.60 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2589.1 measured minutes (43.15 hours)
+- post-v2: 2615.4 measured minutes (43.59 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1627
-- Evidence references logged: 1258
+- Artifact references logged: 1639
+- Evidence references logged: 1259
 
 ## Recent Entries
-
-### 2026-05-16T21:04:56.234887+00:00 - ops
-
-- Task: Check GitHub push credential helper
-- Time mode: measured
-- Measured minutes: 10.7
-- Started: 2026-05-16T20:54:00Z
-- Ended: 2026-05-16T21:04:42Z
-- Artifacts: work/handoff.md, work/status.md, global git credential helper
-- Evidence: gh auth setup-git configured git credential helper, repair-control commits 8a0c191 and 1ff6187 are on origin/main, current handoff/status correction remains local ahead of origin/main, git push origin main still fails with HTTPS username error, gh auth status reports invalid default token, stale lock was removed during recovery attempt
-- Notes: Partial recovery: substantive repair-control work reached origin/main, but the current shell still cannot push the later handoff/status correction.
 
 ### 2026-05-16T22:05:28.138975+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, data/registries/curated_mechanism_labels.json, artifacts/v3_external_out_of_scope_inverse_gate_logic_check_1025.json, artifacts/v3_external_sdr_ec_1_1_1_consistency_check_1025.json, artifacts/v3_external_hard_negative_two_candidate_import_attempt_1025.json, artifacts/v3_external_hard_negative_second_tranche_selection_1025.json, artifacts/v3_label_summary.json
 - Evidence: 376 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, external transfer gate 68/68, 0 external labels imported, 0 import-ready external rows
 - Notes: Normal locked run; migrated label ontology version and kept external rows non-countable.
+
+### 2026-05-17T02:50:28.945932+00:00 - post-v2
+
+- Task: Close second-tranche hard-negative duplicate screen
+- Time mode: measured
+- Measured minutes: 26.283
+- Started: 2026-05-17T02:23:59Z
+- Ended: 2026-05-17T02:50:16Z
+- Artifacts: artifacts/v3_external_hard_negative_second_tranche_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_second_tranche_terminal_decisions_1025.json, artifacts/v3_external_hard_negative_second_tranche_replacement_triage_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: Foldseek completed tranche-2 current-countable structural screen over 3 external rows against 672 current selected structures; all three admitted rows had high-TM current-countable structural duplicate signals; terminal decisions rejected P33025 Q13907 P35914 as review-only duplicate-risk outcomes; replacement triage admitted 0 rows from current 25-row pool; 378 unit tests passed; validate passed; compileall passed; git diff --check passed; external transfer gate remained 68/68
+- Notes: Normal locked direct run over SSH deploy-key path; no delegation; M-CSA strict TM repair stayed closed; external countable labels remain 0.
 
 ## Expectation Updates
 

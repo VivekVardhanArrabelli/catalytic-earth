@@ -418,7 +418,20 @@ gates, so there is still 0 external count growth. The follow-on
 the next review-only tranche with 3 lower-risk candidates (`P33025`, `Q13907`,
 and `P35914`), using the all-30 external TM clustering only to keep one
 representative per high-TM external cluster. None are import-ready or
-countable.
+countable. The follow-on current-countable structural screen
+`artifacts/v3_external_hard_negative_second_tranche_current_countable_structural_screen_1025.json`
+runs Foldseek for those three rows against 672 staged current selected
+structures and finds high-TM current-countable structural signals for all three
+(`P33025` max `0.7063`, `Q13907` max `0.8686`, `P35914` max `0.7638`). The
+screen remains review-only, has 0 import-ready rows, and blocks tranche-2
+promotion. `artifacts/v3_external_hard_negative_second_tranche_terminal_decisions_1025.json`
+records all three admitted tranche-2 rows as terminal review-only
+`rejected_current_countable_structural_duplicate_signal` outcomes with 0
+import-ready rows and 0 countable candidates.
+`artifacts/v3_external_hard_negative_second_tranche_replacement_triage_1025.json`
+then triages the existing 25-row pool after those rejections and admits 0
+replacement rows, so the next import attempt needs new external candidate
+sourcing rather than another pass over the same pool.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

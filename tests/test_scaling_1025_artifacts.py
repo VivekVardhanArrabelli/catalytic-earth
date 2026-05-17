@@ -3934,6 +3934,24 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_hard_negative_second_tranche_selection_1025.json"
         )
+        structural_screen = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_second_tranche_current_countable_"
+                "structural_screen_1025.json"
+            )
+        )
+        terminal_decisions = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_second_tranche_terminal_decisions_1025.json"
+        )
+        replacement_triage = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_second_tranche_replacement_triage_1025.json"
+        )
 
         self.assertTrue(step1a["metadata"]["step_1a_passed"])
         self.assertEqual(step1a["metadata"]["target_label_type"], "out_of_scope")
@@ -3977,6 +3995,80 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertIn(
             "same_external_tm_cluster_as_selected_second_tranche_candidate",
             q9bxs1["admission_blockers"],
+        )
+
+        structural_metadata = structural_screen["metadata"]
+        self.assertEqual(
+            structural_metadata["method"],
+            "external_hard_negative_second_tranche_current_countable_structural_screen",
+        )
+        self.assertEqual(structural_metadata["foldseek_run_status"], "completed")
+        self.assertEqual(structural_metadata["candidate_count"], 3)
+        self.assertEqual(structural_metadata["screened_candidate_count"], 3)
+        self.assertEqual(
+            structural_metadata["current_countable_coordinate_count"], 672
+        )
+        self.assertEqual(structural_metadata["high_tm_candidate_count"], 3)
+        self.assertEqual(
+            structural_metadata["current_countable_structural_screen_status_counts"],
+            {"current_countable_structural_duplicate_signal": 3},
+        )
+        self.assertEqual(
+            [row["accession"] for row in structural_screen["rows"]],
+            ["P33025", "Q13907", "P35914"],
+        )
+        self.assertTrue(
+            all(
+                row["current_countable_structural_screen_status"]
+                == "current_countable_structural_duplicate_signal"
+                for row in structural_screen["rows"]
+            )
+        )
+        self.assertTrue(
+            all(not row["import_ready_candidate"] for row in structural_screen["rows"])
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in structural_screen["rows"])
+        )
+
+        self.assertEqual(
+            terminal_decisions["metadata"]["method"],
+            "external_hard_negative_second_tranche_terminal_decisions",
+        )
+        self.assertEqual(terminal_decisions["metadata"]["terminal_decision_count"], 3)
+        self.assertEqual(
+            terminal_decisions["metadata"]["terminal_decision_status_counts"],
+            {"rejected_current_countable_structural_duplicate_signal": 3},
+        )
+        self.assertEqual(
+            terminal_decisions["metadata"]["import_ready_candidate_count"], 0
+        )
+        self.assertTrue(
+            all(
+                row["terminal_decision_status"]
+                == "rejected_current_countable_structural_duplicate_signal"
+                for row in terminal_decisions["rows"]
+            )
+        )
+
+        self.assertEqual(
+            replacement_triage["metadata"]["method"],
+            "external_hard_negative_second_tranche_replacement_triage",
+        )
+        self.assertEqual(replacement_triage["metadata"]["candidate_pool_count"], 25)
+        self.assertEqual(
+            replacement_triage["metadata"]["replacement_admitted_count"], 0
+        )
+        self.assertEqual(
+            replacement_triage["metadata"]["import_ready_candidate_count"], 0
+        )
+        self.assertEqual(
+            replacement_triage["metadata"]["terminal_rejected_accessions"],
+            ["P33025", "P35914", "Q13907"],
+        )
+        self.assertIn(
+            "new_external_candidate_sourcing_required",
+            replacement_triage["metadata"]["blocker_not_removed"],
         )
 
 

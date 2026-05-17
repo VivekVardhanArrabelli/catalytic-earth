@@ -289,6 +289,23 @@ Current review-only external artifacts:
   P35914. P60174 is excluded by high current-reference identity; Q9BXS1 is
   excluded because Q13907 already represents the same external `TM >=0.7`
   cluster.
+- `artifacts/v3_external_hard_negative_second_tranche_current_countable_structural_screen_1025.json`
+  runs the admitted tranche-2 rows against the staged current selected
+  structures with Foldseek. It completes with 2001/2016 query-target pairs and
+  finds high-TM current-countable structural signals for all three admitted
+  rows: P33025 to `m_csa:735` at `0.7063`, Q13907 to `m_csa:190` at `0.8686`,
+  and P35914 to `m_csa:328` at `0.7638`. The screen is review-only and blocks
+  import; 0 rows are countable or import-ready.
+- `artifacts/v3_external_hard_negative_second_tranche_terminal_decisions_1025.json`
+  converts those signals into terminal review-only decisions. P33025, Q13907,
+  and P35914 are all `rejected_current_countable_structural_duplicate_signal`
+  outcomes, with 0 import-ready rows and 0 countable labels.
+- `artifacts/v3_external_hard_negative_second_tranche_replacement_triage_1025.json`
+  triages the existing 25-row external pool after the terminal duplicate
+  rejections. It admits 0 replacements: the remaining rows are blocked by the
+  current-cycle hard stop, missing active-site/scoring/structure evidence,
+  uncovered mechanism lanes, high current-reference identity, same-cluster
+  status, or possible existing-fingerprint context.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine
