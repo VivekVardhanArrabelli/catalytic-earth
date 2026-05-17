@@ -10534,59 +10534,13 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
 ) -> dict[str, Any]:
     """Screen fresh sequence-clean external candidates against current structures."""
 
-    sourcing_by_accession = _external_first_row_by_accession(new_candidate_sourcing)
-    sequence_no_signal_rows: list[dict[str, Any]] = []
-    exact_reference_holdouts: list[str] = []
-    for row in backend_sequence_search.get("rows", []) or []:
-        if not isinstance(row, dict):
-            continue
-        accession = _normalize_accession(row.get("accession"))
-        if not accession:
-            continue
-        search_status = str(row.get("search_status") or "")
-        if search_status == "exact_reference_holdout":
-            exact_reference_holdouts.append(accession)
-            continue
-        if search_status != "no_near_duplicate_signal":
-            continue
-        sourcing_row = sourcing_by_accession.get(accession, {})
-        if (
-            sourcing_row.get("sourcing_status")
-            != "sourced_pending_sequence_structure_distance_screens"
-        ):
-            continue
-        sequence_no_signal_rows.append(
-            {
-                "accession": accession,
-                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
-                "lane_id": row.get("lane_id") or sourcing_row.get("lane_id"),
-                "protein_name": row.get("protein_name")
-                or sourcing_row.get("protein_name"),
-                "selection_status": "admitted_for_second_tranche_review",
-                "structure_source": "alphafold",
-                "structure_id": accession,
-                "out_of_scope_inverse_gate_status": "not_scored_for_new_source_row",
-                "top1_fingerprint_id": None,
-                "top1_score": None,
-                "backend_sequence_search_status": search_status,
-                "max_external_vs_reference_identity": row.get(
-                    "max_external_vs_reference_identity"
-                ),
-            }
+    selection, exact_reference_holdouts = (
+        _external_hard_negative_new_candidate_sequence_clean_selection(
+            new_candidate_sourcing=new_candidate_sourcing,
+            backend_sequence_search=backend_sequence_search,
         )
-
-    selection = {
-        "metadata": {
-            "method": "external_hard_negative_new_candidate_screen_selection",
-            "source_new_candidate_sourcing_method": new_candidate_sourcing.get(
-                "metadata", {}
-            ).get("method"),
-            "source_backend_sequence_search_method": backend_sequence_search.get(
-                "metadata", {}
-            ).get("method"),
-        },
-        "rows": sequence_no_signal_rows,
-    }
+    )
+    sequence_no_signal_rows = list(selection.get("rows", []) or [])
     screen = build_external_hard_negative_second_tranche_current_countable_structural_screen(
         second_tranche_selection=selection,
         foldseek_coordinate_readiness=foldseek_coordinate_readiness,
@@ -10637,9 +10591,7 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
         if row.get("current_countable_structural_screen_status")
         == "no_current_countable_structural_duplicate_signal"
     )
-    metadata["exact_reference_holdout_accessions"] = sorted(
-        set(exact_reference_holdouts)
-    )
+    metadata["exact_reference_holdout_accessions"] = exact_reference_holdouts
     metadata["exact_reference_holdout_count"] = len(
         metadata["exact_reference_holdout_accessions"]
     )
@@ -10830,6 +10782,66 @@ def build_external_hard_negative_second_tranche_terminal_decisions(
             )
         ],
     }
+
+
+def build_external_hard_negative_new_candidate_terminal_decisions(
+    *,
+    new_candidate_sourcing: dict[str, Any],
+    backend_sequence_search: dict[str, Any],
+    current_countable_structural_screen: dict[str, Any],
+    max_rows: int = 7,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Record review-only terminal outcomes for fresh hard-negative candidates."""
+
+    selection, exact_reference_holdouts = (
+        _external_hard_negative_new_candidate_sequence_clean_selection(
+            new_candidate_sourcing=new_candidate_sourcing,
+            backend_sequence_search=backend_sequence_search,
+        )
+    )
+    decisions = build_external_hard_negative_second_tranche_terminal_decisions(
+        second_tranche_selection=selection,
+        current_countable_structural_screen=current_countable_structural_screen,
+        max_rows=max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+
+    for row in decisions.get("rows", []) or []:
+        row["review_status"] = (
+            "external_hard_negative_new_candidate_terminal_decision_review_only"
+        )
+        row["backend_sequence_search_status"] = "no_near_duplicate_signal"
+
+    metadata = decisions["metadata"]
+    metadata["method"] = "external_hard_negative_new_candidate_terminal_decisions"
+    metadata["blocker_removed"] = (
+        "new_candidate_terminal_decisions_recorded_after_current_countable_"
+        "structural_screen"
+    )
+    metadata["source_new_candidate_sourcing_method"] = new_candidate_sourcing.get(
+        "metadata", {}
+    ).get("method")
+    metadata["source_backend_sequence_search_method"] = backend_sequence_search.get(
+        "metadata", {}
+    ).get("method")
+    metadata["source_new_candidate_screen_selection_method"] = selection.get(
+        "metadata", {}
+    ).get("method")
+    metadata["sequence_no_signal_candidate_count"] = len(
+        selection.get("rows", []) or []
+    )
+    metadata["exact_reference_holdout_accessions"] = exact_reference_holdouts
+    metadata["exact_reference_holdout_count"] = len(exact_reference_holdouts)
+    metadata["artifact_lineage"] = artifact_lineage or {}
+    decisions["warnings"] = [
+        (
+            "new-candidate terminal decisions are review-only import-safety "
+            "decisions; they close the fresh hard-negative tranche without "
+            "validating enzyme function or creating countable labels"
+        )
+    ]
+    return decisions
 
 
 def build_external_hard_negative_new_candidate_sourcing(
@@ -21095,7 +21107,72 @@ def _external_foldseek_name_candidates(raw_name: str) -> list[str]:
         parts = path.stem.split("_")
         if len(parts) > 1:
             candidates.append("_".join(parts[:-1]))
+        if len(parts) >= 2 and parts[0].lower() == "pdb":
+            candidates.append("_".join(parts[:2]))
+            candidates.append(parts[1])
     return list(dict.fromkeys(candidate for candidate in candidates if candidate))
+
+
+def _external_hard_negative_new_candidate_sequence_clean_selection(
+    *,
+    new_candidate_sourcing: dict[str, Any],
+    backend_sequence_search: dict[str, Any],
+) -> tuple[dict[str, Any], list[str]]:
+    sourcing_by_accession = _external_first_row_by_accession(new_candidate_sourcing)
+    sequence_no_signal_rows: list[dict[str, Any]] = []
+    exact_reference_holdouts: list[str] = []
+    for row in backend_sequence_search.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        accession = _normalize_accession(row.get("accession"))
+        if not accession:
+            continue
+        search_status = str(row.get("search_status") or "")
+        if search_status == "exact_reference_holdout":
+            exact_reference_holdouts.append(accession)
+            continue
+        if search_status != "no_near_duplicate_signal":
+            continue
+        sourcing_row = sourcing_by_accession.get(accession, {})
+        if (
+            sourcing_row.get("sourcing_status")
+            != "sourced_pending_sequence_structure_distance_screens"
+        ):
+            continue
+        sequence_no_signal_rows.append(
+            {
+                "accession": accession,
+                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": row.get("lane_id") or sourcing_row.get("lane_id"),
+                "protein_name": row.get("protein_name")
+                or sourcing_row.get("protein_name"),
+                "selection_status": "admitted_for_second_tranche_review",
+                "structure_source": "alphafold",
+                "structure_id": accession,
+                "out_of_scope_inverse_gate_status": "not_scored_for_new_source_row",
+                "top1_fingerprint_id": None,
+                "top1_score": None,
+                "backend_sequence_search_status": search_status,
+                "max_external_vs_reference_identity": row.get(
+                    "max_external_vs_reference_identity"
+                ),
+            }
+        )
+    return (
+        {
+            "metadata": {
+                "method": "external_hard_negative_new_candidate_screen_selection",
+                "source_new_candidate_sourcing_method": new_candidate_sourcing.get(
+                    "metadata", {}
+                ).get("method"),
+                "source_backend_sequence_search_method": backend_sequence_search.get(
+                    "metadata", {}
+                ).get("method"),
+            },
+            "rows": sequence_no_signal_rows,
+        },
+        sorted(set(exact_reference_holdouts)),
+    )
 
 
 def _parse_external_foldseek_pairs(

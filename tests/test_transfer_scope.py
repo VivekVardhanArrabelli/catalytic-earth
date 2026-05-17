@@ -98,6 +98,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_transfer_blocker_matrix,
     build_external_hard_negative_new_candidate_sourcing,
     build_external_hard_negative_new_candidate_current_countable_structural_screen,
+    build_external_hard_negative_new_candidate_terminal_decisions,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -9820,6 +9821,84 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertFalse(by_accession["P33025"]["ready_for_label_import"])
         self.assertFalse(by_accession["Q13907"]["countable_label_candidate"])
 
+    def test_current_countable_structural_screen_maps_multimodel_target_names(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            external_dir = root / "external"
+            current_dir = root / "current"
+            external_dir.mkdir()
+            current_dir.mkdir()
+            (external_dir / "afdb_Q13087.cif").write_text(
+                "data_q13087", encoding="utf-8"
+            )
+            (current_dir / "pdb_1MEK.cif").write_text(
+                "data_1mek", encoding="utf-8"
+            )
+
+            def fake_runner(command: list[str], workdir: Path) -> None:
+                result_tsv = Path(command[4])
+                result_tsv.write_text(
+                    "afdb_Q13087\tpdb_1MEK_MODEL_37_A\t0.22\t0.904\t0.911\n",
+                    encoding="utf-8",
+                )
+
+            screen = build_external_hard_negative_second_tranche_current_countable_structural_screen(
+                second_tranche_selection={
+                    "metadata": {
+                        "method": "external_hard_negative_new_candidate_screen_selection"
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q13087",
+                            "entry_id": "uniprot:Q13087",
+                            "lane_id": "external_source:isomerase",
+                            "selection_status": "admitted_for_second_tranche_review",
+                            "structure_source": "alphafold",
+                            "structure_id": "Q13087",
+                        }
+                    ],
+                },
+                foldseek_coordinate_readiness={
+                    "metadata": {
+                        "method": "foldseek_coordinate_readiness",
+                        "slice_id": "1000",
+                    },
+                    "rows": [
+                        {
+                            "entry_id": "m_csa:191",
+                            "coordinate_path": str(current_dir / "pdb_1MEK.cif"),
+                            "coordinate_materialization_status": (
+                                "already_materialized"
+                            ),
+                            "selected_structure_key": "pdb:1MEK",
+                            "selected_structure_id": "1MEK",
+                            "selected_structure_source": "pdb",
+                            "label_type": "out_of_scope",
+                            "target_fingerprint_id": None,
+                        }
+                    ],
+                },
+                external_coordinate_dir=external_dir,
+                foldseek_binary=sys.executable,
+                runner=fake_runner,
+                max_rows=1,
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+
+        self.assertTrue(screen["metadata"]["pair_cache_complete"])
+        self.assertEqual(screen["metadata"]["unique_query_target_pair_count"], 1)
+        row = screen["rows"][0]
+        self.assertEqual(
+            row["current_countable_structural_screen_status"],
+            "current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(
+            row["nearest_current_countable_hit"]["current_selected_structure_id"],
+            "1MEK",
+        )
+
     def test_new_candidate_current_countable_structural_screen_filters_sequence_clean_rows(
         self,
     ) -> None:
@@ -10033,6 +10112,88 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertEqual(row["target_label_type"], "out_of_scope")
         self.assertIsNone(row["target_fingerprint_id"])
+        self.assertFalse(row["import_ready_candidate"])
+        self.assertFalse(row["countable_label_candidate"])
+
+    def test_new_candidate_terminal_decisions_reject_structural_duplicates(
+        self,
+    ) -> None:
+        decisions = build_external_hard_negative_new_candidate_terminal_decisions(
+            new_candidate_sourcing={
+                "metadata": {
+                    "method": "external_hard_negative_new_candidate_sourcing"
+                },
+                "rows": [
+                    {
+                        "accession": "Q13087",
+                        "lane_id": "external_source:isomerase",
+                        "protein_name": "fresh candidate",
+                        "sourcing_status": (
+                            "sourced_pending_sequence_structure_distance_screens"
+                        ),
+                    }
+                ],
+            },
+            backend_sequence_search={
+                "metadata": {"method": "external_source_backend_sequence_search"},
+                "rows": [
+                    {
+                        "accession": "Q13087",
+                        "entry_id": "uniprot:Q13087",
+                        "lane_id": "external_source:isomerase",
+                        "protein_name": "fresh candidate",
+                        "search_status": "no_near_duplicate_signal",
+                    },
+                    {
+                        "accession": "Q04760",
+                        "search_status": "exact_reference_holdout",
+                    },
+                ],
+            },
+            current_countable_structural_screen={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_new_candidate_current_countable_"
+                        "structural_screen"
+                    ),
+                    "foldseek_run_status": "completed",
+                },
+                "rows": [
+                    {
+                        "accession": "Q13087",
+                        "current_countable_structural_screen_status": (
+                            "current_countable_structural_duplicate_signal"
+                        ),
+                        "current_countable_high_tm_hit_count": 1,
+                        "nearest_current_countable_hit": {
+                            "current_entry_ids": ["m_csa:191"],
+                            "max_pair_tm_score": 0.904,
+                        },
+                        "remaining_import_blockers": [
+                            "current_countable_structural_duplicate_signal"
+                        ],
+                    }
+                ],
+            },
+            artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+        )
+
+        metadata = decisions["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_hard_negative_new_candidate_terminal_decisions",
+        )
+        self.assertEqual(metadata["sequence_no_signal_candidate_count"], 1)
+        self.assertEqual(metadata["exact_reference_holdout_accessions"], ["Q04760"])
+        self.assertEqual(
+            metadata["terminal_decision_status_counts"],
+            {"rejected_current_countable_structural_duplicate_signal": 1},
+        )
+        row = decisions["rows"][0]
+        self.assertEqual(
+            row["review_status"],
+            "external_hard_negative_new_candidate_terminal_decision_review_only",
+        )
         self.assertFalse(row["import_ready_candidate"])
         self.assertFalse(row["countable_label_candidate"])
 

@@ -3997,6 +3997,14 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "structural_screen_1025.json"
             )
         )
+        new_terminal_decisions = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_new_candidate_terminal_decisions_"
+                "1025.json"
+            )
+        )
 
         self.assertTrue(step1a["metadata"]["step_1a_passed"])
         self.assertEqual(step1a["metadata"]["target_label_type"], "out_of_scope")
@@ -4229,12 +4237,12 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             ],
             ["Q04760"],
         )
-        self.assertFalse(new_current_countable_screen["metadata"]["pair_cache_complete"])
+        self.assertTrue(new_current_countable_screen["metadata"]["pair_cache_complete"])
         self.assertEqual(
             new_current_countable_screen["metadata"][
                 "unique_query_target_pair_count"
             ],
-            4669,
+            4704,
         )
         self.assertEqual(
             new_current_countable_screen["metadata"][
@@ -4243,13 +4251,13 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             4704,
         )
         self.assertEqual(
-            new_current_countable_screen["metadata"]["high_tm_candidate_count"], 6
+            new_current_countable_screen["metadata"]["high_tm_candidate_count"], 7
         )
         self.assertEqual(
             new_current_countable_screen["metadata"][
                 "no_current_countable_structural_signal_count"
             ],
-            1,
+            0,
         )
         self.assertEqual(
             new_current_countable_screen["metadata"][
@@ -4265,11 +4273,44 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         }
         self.assertEqual(
             by_accession["Q13087"]["current_countable_structural_screen_status"],
-            "no_current_countable_structural_duplicate_signal",
+            "current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(
+            by_accession["Q13087"]["nearest_current_countable_hit"][
+                "current_selected_structure_id"
+            ],
+            "1MEK",
+        )
+        self.assertEqual(
+            by_accession["Q13087"]["nearest_current_countable_hit"][
+                "max_pair_tm_score"
+            ],
+            0.9039,
         )
         self.assertEqual(
             by_accession["O75828"]["current_countable_structural_screen_status"],
             "current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(
+            new_terminal_decisions["metadata"]["method"],
+            "external_hard_negative_new_candidate_terminal_decisions",
+        )
+        self.assertEqual(
+            new_terminal_decisions["metadata"]["terminal_decision_count"], 7
+        )
+        self.assertEqual(
+            new_terminal_decisions["metadata"]["terminal_decision_status_counts"],
+            {"rejected_current_countable_structural_duplicate_signal": 7},
+        )
+        self.assertEqual(
+            new_terminal_decisions["metadata"]["import_ready_candidate_count"], 0
+        )
+        self.assertTrue(
+            all(
+                row["terminal_decision_status"]
+                == "rejected_current_countable_structural_duplicate_signal"
+                for row in new_terminal_decisions["rows"]
+            )
         )
 
 

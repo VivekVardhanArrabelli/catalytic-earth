@@ -90,11 +90,15 @@ import.
   `0.8338`.
 - `artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json`
   now screens the 7 sequence no-signal rows against current countable selected
-  structures. Foldseek completed, but the cache is still incomplete
-  (4669/4704 unique query-target pairs). Six rows have high-TM
-  current-countable duplicate signals; only `Q13087` has no high-TM signal, and
-  it remains blocked by pair-cache completion, UniRef-wide duplicate screening,
-  terminal review, and the full factory gate. This authorizes 0 imports.
+  structures. Foldseek completed with a fully mapped 4704/4704 pair cache after
+  multi-model current target aliases were normalized. All 7 rows have high-TM
+  current-countable duplicate signals; `Q13087` maps to current selected
+  structure `1MEK` at `TM=0.9039`, so it is no longer a no-signal candidate.
+- `artifacts/v3_external_hard_negative_new_candidate_terminal_decisions_1025.json`
+  records all 7 sequence-clean fresh candidates as terminal review-only
+  `rejected_current_countable_structural_duplicate_signal` outcomes with 0
+  import-ready rows and 0 countable candidates. This closes the fresh sourced
+  tranche without authorizing import.
 
 ## Immediate Pilot Direction
 

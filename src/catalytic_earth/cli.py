@@ -189,6 +189,7 @@ from .transfer_scope import (
     build_external_source_transfer_blocker_matrix,
     build_external_hard_negative_new_candidate_sourcing,
     build_external_hard_negative_new_candidate_current_countable_structural_screen,
+    build_external_hard_negative_new_candidate_terminal_decisions,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -3483,6 +3484,43 @@ def cmd_build_external_hard_negative_new_candidate_current_countable_structural_
         "Wrote new-candidate current-countable structural screen to "
         f"{args.out} ({screen['metadata']['screened_candidate_count']} "
         "candidates screened)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_new_candidate_terminal_decisions(
+    args: argparse.Namespace,
+) -> int:
+    new_candidate_sourcing = read_json_object(Path(args.new_candidate_sourcing))
+    backend_sequence_search = read_json_object(Path(args.backend_sequence_search))
+    current_countable_structural_screen = read_json_object(
+        Path(args.current_countable_structural_screen)
+    )
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "new_candidate_sourcing": args.new_candidate_sourcing,
+            "backend_sequence_search": args.backend_sequence_search,
+            "current_countable_structural_screen": (
+                args.current_countable_structural_screen
+            ),
+        },
+        "blocker_removed": "new_candidate_terminal_decisions",
+    }
+    decisions = build_external_hard_negative_new_candidate_terminal_decisions(
+        new_candidate_sourcing=new_candidate_sourcing,
+        backend_sequence_search=backend_sequence_search,
+        current_countable_structural_screen=current_countable_structural_screen,
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), decisions)
+    print(
+        "Wrote new-candidate terminal decisions to "
+        f"{args.out} ({decisions['metadata']['terminal_decision_count']} "
+        "terminal decisions)"
     )
     return 0
 
@@ -8894,6 +8932,49 @@ def build_parser() -> argparse.ArgumentParser:
         func=(
             cmd_build_external_hard_negative_new_candidate_current_countable_structural_screen
         )
+    )
+
+    external_hard_negative_new_terminal = subparsers.add_parser(
+        "build-external-hard-negative-new-candidate-terminal-decisions",
+        help=(
+            "record review-only terminal decisions for fresh external hard-negative "
+            "candidates after current-countable structural screening"
+        ),
+    )
+    external_hard_negative_new_terminal.add_argument(
+        "--new-candidate-sourcing",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_new_candidate_sourcing_1025.json"
+        ),
+    )
+    external_hard_negative_new_terminal.add_argument(
+        "--backend-sequence-search",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_new_candidate_backend_sequence_search_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_new_terminal.add_argument(
+        "--current-countable-structural-screen",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_new_candidate_current_countable_"
+            "structural_screen_1025.json"
+        ),
+    )
+    external_hard_negative_new_terminal.add_argument("--max-rows", type=int, default=7)
+    external_hard_negative_new_terminal.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_new_candidate_terminal_decisions_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_new_terminal.set_defaults(
+        func=cmd_build_external_hard_negative_new_candidate_terminal_decisions
     )
 
     external_transfer_gate = subparsers.add_parser(

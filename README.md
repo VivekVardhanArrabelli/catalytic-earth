@@ -454,12 +454,14 @@ formed at `TM >=0.7`, and only `P04424`/`P30566` form a high-TM pair
 (`0.8338`). This is external clustering context only.
 `artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json`
 then screens the 7 sequence no-signal rows against 672 current countable
-selected structures. Foldseek completes with 4669/4704 unique query-target
-pairs (`99.26%` coverage), leaving the pair cache incomplete; 6/7 rows have a
-high-TM current-countable duplicate signal and only `Q13087` has no high-TM
-signal. No row is import-ready or countable, and Q13087 still needs pair-cache
-completion, UniRef-wide duplicate screening, terminal review, and the full
-factory gate.
+selected structures. Foldseek now maps the multi-model current targets and
+completes 4704/4704 unique query-target pairs. All 7 sequence-clean rows have
+high-TM current-countable duplicate signals; `Q13087` is no longer a no-signal
+row after the completed cache maps it to `1MEK` at `TM=0.9039`.
+`artifacts/v3_external_hard_negative_new_candidate_terminal_decisions_1025.json`
+records all seven rows as review-only
+`rejected_current_countable_structural_duplicate_signal` decisions with 0
+import-ready rows and 0 countable candidates.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

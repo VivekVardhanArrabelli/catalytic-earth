@@ -331,12 +331,15 @@ Current review-only external artifacts:
   this sourced surface, not the current-countable structural duplicate blocker.
 - `artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json`
   screens the 7 sequence no-signal sourced rows against 672 current countable
-  selected structures. Foldseek completed with 4669/4704 unique query-target
-  pairs, so the current-countable pair cache is still incomplete. Six rows have
-  high-TM current-countable duplicate signals; Q13087 is the lone row without a
-  high-TM current-countable signal, but it remains review-only and blocked by
-  pair-cache completion, UniRef-wide duplicate screening, terminal review, and
-  the full factory gate.
+  selected structures. Foldseek completed with 4704/4704 unique query-target
+  pairs after multi-model current target names were normalized. All 7
+  sequence-clean rows have high-TM current-countable duplicate signals; Q13087
+  is no longer a no-signal row because it maps to current selected structure
+  1MEK at `TM=0.9039`.
+- `artifacts/v3_external_hard_negative_new_candidate_terminal_decisions_1025.json`
+  records all 7 sequence-clean fresh candidates as terminal review-only
+  `rejected_current_countable_structural_duplicate_signal` outcomes. The fresh
+  sourced tranche has 0 import-ready rows and 0 countable candidates.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine

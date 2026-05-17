@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 146
-- Measured elapsed time: 4825.2 minutes (80.42 hours)
+- Entries: 147
+- Measured elapsed time: 4860.0 minutes (81.00 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2664.8 measured minutes (44.41 hours)
+- post-v2: 2699.5 measured minutes (44.99 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1655
-- Evidence references logged: 1279
+- Artifact references logged: 1666
+- Evidence references logged: 1289
 
 ## Recent Entries
-
-### 2026-05-16T23:03:05.000429+00:00 - external-transfer-spof-hardening
-
-- Task: Integrate C9JRZ8 AKR/NADP import-safety repair lane
-- Time mode: measured
-- Measured minutes: 13.267
-- Started: 2026-05-16T17:49:33-0500
-- Ended: 2026-05-16T18:02:49-0500
-- Artifacts: artifacts/v3_external_source_pilot_akr_nadp_repair_control_1025.json, artifacts/v3_external_source_pilot_akr_nadp_import_safety_adjudication_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 368 unit tests passed, startup validate passed with 679 curated labels, C9JRZ8 AKR/NADP repair control staged as review-only sequence-derived control, C9JRZ8 import-safety adjudication repaired representation near-duplicate conflict, post-repair C9JRZ8 status remains needs_review, 0 import-ready rows, 0 countable external labels, focused 104 tests passed, final 370 unit tests passed, final validate passed, compileall passed, git diff check passed
-- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. GitHub auth remains invalid locally, so push may remain blocked until credentials are refreshed.
 
 ### 2026-05-16T23:21:31.567236+00:00 - ops
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json, artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_1025.json, artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_audit_1025.json, artifacts/v3_external_hard_negative_new_candidate_structural_tm_holdout_path_1025.json, artifacts/v3_external_hard_negative_new_candidate_structural_cluster_index_1025.json, artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, artifacts/v3_external_source_transfer_gate_check_1025.json
 - Evidence: startup 378 unit tests passed, startup validate passed with 679 curated labels, 8 new covered-lane Swiss-Prot sourcing candidates found, 7 sourced candidates cleared bounded current-reference MMseqs2 screen, Q04760 exact-reference holdout identified, 8 sourced AlphaFold structures staged, 28/28 sourced external Foldseek pairs cached, one sourced high-TM pair P04424/P30566 at 0.8338, validate passed, compileall passed, git diff --check passed, external transfer gate remained 68/68, focused scaling artifact regression passed after coordinate normalization, coordinate CIF trailing whitespace normalized and recorded SHA-256 digests rechecked, new-candidate current-countable Foldseek screen completed over 7 sequence-clean rows, 4669/4704 current-countable query-target pairs cached, 6 sourced rows had high-TM current-countable duplicate signals, Q13087 had no high-TM current-countable signal but pair cache remains incomplete, final 380 unit tests passed after wrapper integration, external transfer gate rerun remained 68/68
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed. The delayed broad current-countable structural screen completed during wrap-up and was converted into a reproducible CLI wrapper/test artifact. Coordinate sidecars were whitespace-normalized during wrap-up and digests were rechecked.
+
+### 2026-05-17T05:01:18.923988+00:00 - post-v2
+
+- Task: Close fresh hard-negative structural duplicate tranche
+- Time mode: measured
+- Measured minutes: 34.717
+- Started: 2026-05-17T04:26:35Z
+- Ended: 2026-05-17T05:01:18Z
+- Artifacts: artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_new_candidate_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 380 unit tests passed, startup validate passed with 679 curated labels, Foldseek multi-model current target aliases normalized, new-candidate current-countable structural pair cache completed 4704/4704, all 7 sequence-clean fresh candidates have high-TM current-countable duplicate signals, Q13087 maps to current selected structure 1MEK at TM 0.9039, new-candidate terminal decisions reject all 7 rows review-only, 0 import-ready rows, 0 countable external labels, focused transfer and scaling tests passed
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
 
 ## Expectation Updates
 
@@ -237,6 +237,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T23:03:05.000429+00:00: Next direct work should complete duplicate/review/factory blockers for repaired external rows or implement the remaining P06746 DNA Pol X/5'-dRP lyase repair lane without broadening generic gates.
 - 2026-05-17T02:10:05.048551+00:00: External out-of-scope import requires all-8 inverse gate plus duplicate review and factory gates; O14756 and Q6NSJ0 are blocked despite inverse-gate pass.
 - 2026-05-17T04:14:25+00:00: Fresh external sourcing and the first current-countable structural screen are complete; Q13087 is the only sequence-clean row without a high-TM current-countable signal, but pair-cache completion, UniRef-wide screening, terminal review, and factory gates still block import.
+- 2026-05-17T05:01:18.923988+00:00: Fresh sourced hard-negative tranche is closed by current-countable structural duplicate signals; next work needs new external candidate sourcing or genuinely new evidence.
 
 ## Scope Adjustments
 

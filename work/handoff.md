@@ -125,13 +125,21 @@ AlphaFold coordinate sidecars are staged, 28/28 unordered Foldseek pairs are
 covered, and only `P04424`/`P30566` cluster at `TM >=0.7` (`0.8338`).
 `artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json`
 now screens the 7 sequence no-signal rows against 672 current countable
-selected structures. Foldseek completed, but only 4669/4704 unique query-target
-pairs were reported, so the pair cache is still incomplete. Six rows have
-high-TM current-countable duplicate signals; `Q13087` is the lone row without a
-high-TM current-countable signal, but it remains blocked by pair-cache
-completion, UniRef-wide duplicate screening, terminal review, and the full
-factory gate. Next direct work should complete or shard the missing
-current-countable pair cache before any terminal review/import attempt.
+selected structures. The 2026-05-17T04:26:35Z run fixed the Foldseek
+multi-model target alias mapper (`pdb_1MEK_MODEL_37_A` now maps back to
+`pdb_1MEK`) and reran the screen. The pair cache is now complete at 4704/4704
+unique query-target pairs, and all 7 sequence-clean rows have high-TM
+current-countable duplicate signals. `Q13087` is no longer a viable no-signal
+candidate: its completed-cache nearest current-countable hit is selected
+structure `1MEK` at `TM=0.9039`. The new
+`artifacts/v3_external_hard_negative_new_candidate_terminal_decisions_1025.json`
+artifact records all 7 rows as terminal review-only
+`rejected_current_countable_structural_duplicate_signal` outcomes, with 0
+import-ready rows and 0 countable labels. Evidence-based confidence call: the
+fresh sourced tranche is closed by current-countable structural duplicate
+signals, not by an unresolved process blocker. Next direct work should source a
+new external hard-negative surface or add genuinely new evidence; do not retry
+the now-rejected seven rows without new expert/duplicate evidence.
 
 Run verification for the current handoff: started `2026-05-17T03:25:01Z`.
 Startup checks passed with 378 unit tests and `PYTHONPATH=src python -m
