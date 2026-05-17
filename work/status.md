@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 142
-- Measured elapsed time: 4696.2 minutes (78.27 hours)
+- Entries: 143
+- Measured elapsed time: 4703.3 minutes (78.39 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
-- ops: 77.2 measured minutes (1.29 hours)
+- ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1613
-- Evidence references logged: 1244
+- Artifact references logged: 1618
+- Evidence references logged: 1250
 
 ## Recent Entries
-
-### 2026-05-16T20:03:03.218017+00:00 - external-transfer-spof-hardening
-
-- Task: Integrate SDR import-safety adjudication and stage glycoside boundary control
-- Time mode: measured
-- Measured minutes: 17.6
-- Started: 2026-05-16T19:45:17Z
-- Ended: 2026-05-16T20:02:53Z
-- Artifacts: artifacts/v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json, artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 361 unit tests passed, startup validate passed with 679 curated labels, O14756 SDR/NAD(P) import-safety adjudication repaired representation conflict, post-repair O14756 status remains needs_review, Q6NSJ0 glycoside hydrolase boundary control staged as review-only non-text evidence, 0 import-ready rows and 0 countable external labels, final 363 unit tests passed, final validate passed, compileall passed, git diff check passed
-- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. O14756 is no longer blocked by representation conflict alone, but duplicate review and full factory gates still block import.
 
 ### 2026-05-16T21:00:19.989175+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/handoff.md, work/status.md, local main ahead by one safe commit
 - Evidence: git credential fill failed with Device not configured, git push --dry-run origin main failed with Device not configured, git push origin main failed with Device not configured, gh auth status reports invalid default token, local main ahead of origin/main by one safe commit
 - Notes: Push blocked in scheduled shell after successful local commit; keep the current local commit safe and recover credentials before pushing.
+
+### 2026-05-17T00:22:15.473415+00:00 - ops
+
+- Task: Switch automation push path to SSH deploy key
+- Time mode: measured
+- Measured minutes: 7.117
+- Started: 2026-05-17T00:15:00Z
+- Ended: 2026-05-17T00:22:07Z
+- Artifacts: work/handoff.md, work/status.md, repo-scoped GitHub deploy key, local origin SSH URL, local core.sshCommand
+- Evidence: HTTPS credential fill failed in scheduled run, repo-scoped read-write deploy key added, git ls-remote over SSH succeeded, git push over SSH succeeded, HEAD equals origin/main, no stale lock remains
+- Notes: Moved recurring automation push path from unstable HTTPS gh/keychain credentials to a repo-scoped SSH deploy key without storing plaintext GitHub tokens.
 
 ## Expectation Updates
 
