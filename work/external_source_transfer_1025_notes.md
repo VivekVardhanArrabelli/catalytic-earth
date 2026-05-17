@@ -270,6 +270,25 @@ Current review-only external artifacts:
   post-repair `needs_review`, but it keeps the row non-countable and not
   import-ready because heuristic scoring, broader duplicate screening, a
   post-repair review decision, and the full factory gate are still unresolved.
+- `artifacts/v3_external_out_of_scope_inverse_gate_logic_check_1025.json`
+  records the current external hard-negative import target explicitly:
+  `label_type=out_of_scope`, `fingerprint_id=null`, and
+  `ontology_version_at_decision=label_factory_v1_8fp`. The gate requires all
+  8 current fingerprint scores below `0.4115`; above-threshold retained hits
+  remain false non-abstentions.
+- `artifacts/v3_external_sdr_ec_1_1_1_consistency_check_1025.json` supports the
+  O14756 attempt with a bounded SDR/NAD(P) consistency check: 36/36 evaluable
+  SDR-like Swiss-Prot EC 1.1.1.x rows are clean abstentions, with 0 SDR false
+  non-abstentions and 0 predictive leakage rows.
+- `artifacts/v3_external_hard_negative_two_candidate_import_attempt_1025.json`
+  attempts exactly O14756 and Q6NSJ0. Both pass the all-8 inverse gate, but
+  both remain non-countable because broader duplicate screening, post-repair
+  review acceptance, and full external factory gates are unresolved.
+- `artifacts/v3_external_hard_negative_second_tranche_selection_1025.json`
+  starts the next review-only hard-negative selection with P33025, Q13907, and
+  P35914. P60174 is excluded by high current-reference identity; Q9BXS1 is
+  excluded because Q13907 already represents the same external `TM >=0.7`
+  cluster.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine
@@ -288,7 +307,7 @@ Current review-only external artifacts:
   cross-split pairs checked, max cross-split TM-score `0.6963`, and 0
   cross-split `TM >=0.7` violations. It remains non-countable and does not
   authorize label import.
-- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
+- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 68/68
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
   checkpoints, then 45/45 after sequence-alignment verification and the

@@ -15,6 +15,8 @@ from typing import Any, Callable
 from urllib.request import Request, urlopen
 
 from .adapters import fetch_rhea_by_ec, fetch_uniprot_entry, fetch_uniprot_query
+from .fingerprints import load_fingerprints
+from .labels import DEFAULT_ONTOLOGY_VERSION_AT_DECISION
 from .structure import (
     atom_position,
     fetch_pdb_cif,
@@ -10504,6 +10506,9 @@ def build_external_source_pilot_terminal_decisions(
                 "source_id": accession,
                 "source_type": "UniProtKB/Swiss-Prot",
                 "entry_id": active_row.get("entry_id") or f"uniprot:{accession}",
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
                 "protein_name": active_row.get("protein_name"),
                 "lane_id": active_row.get("lane_id"),
                 "proposed_mechanism_fingerprint": str(
@@ -10614,6 +10619,7 @@ def build_external_source_pilot_terminal_decisions(
                 sorted(active_site_counts.items())
             ),
             "allowed_terminal_statuses": list(EXTERNAL_PILOT_TERMINAL_STATUSES),
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
             "active_site_rule": (
                 "binding-context-only evidence is insufficient for import-ready "
                 "status and is terminally rejected for this pilot pass"
@@ -10671,6 +10677,12 @@ def build_external_source_pilot_human_expert_review_queue(
                 "source_id": row.get("source_id") or row.get("accession"),
                 "source_type": row.get("source_type") or "UniProtKB/Swiss-Prot",
                 "entry_id": row.get("entry_id"),
+                "target_label_type": row.get("target_label_type") or "out_of_scope",
+                "target_fingerprint_id": row.get("target_fingerprint_id"),
+                "ontology_version_at_decision": row.get(
+                    "ontology_version_at_decision",
+                    DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                ),
                 "protein_name": row.get("protein_name"),
                 "lane_id": row.get("lane_id"),
                 "proposed_mechanism_fingerprint": row.get(
@@ -10844,6 +10856,12 @@ def audit_external_source_pilot_decision_confidence(
                 "rank": terminal_row.get("rank"),
                 "accession": accession,
                 "entry_id": terminal_row.get("entry_id") or f"uniprot:{accession}",
+                "target_label_type": terminal_row.get("target_label_type") or "out_of_scope",
+                "target_fingerprint_id": terminal_row.get("target_fingerprint_id"),
+                "ontology_version_at_decision": terminal_row.get(
+                    "ontology_version_at_decision",
+                    DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                ),
                 "protein_name": terminal_row.get("protein_name"),
                 "lane_id": terminal_row.get("lane_id"),
                 "current_decision_status": terminal_row.get("terminal_status"),
@@ -10994,6 +11012,12 @@ def build_external_source_pilot_decisions_review_normalized(
                 "rank": audit_row.get("rank"),
                 "accession": audit_row.get("accession"),
                 "entry_id": audit_row.get("entry_id"),
+                "target_label_type": audit_row.get("target_label_type") or "out_of_scope",
+                "target_fingerprint_id": audit_row.get("target_fingerprint_id"),
+                "ontology_version_at_decision": audit_row.get(
+                    "ontology_version_at_decision",
+                    DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                ),
                 "protein_name": audit_row.get("protein_name"),
                 "lane_id": audit_row.get("lane_id"),
                 "original_terminal_status": audit_row.get(
@@ -11086,6 +11110,12 @@ def build_external_source_pilot_human_expert_review_queue_normalized(
                 "rank": row.get("rank"),
                 "accession": row.get("accession"),
                 "entry_id": row.get("entry_id"),
+                "target_label_type": row.get("target_label_type") or "out_of_scope",
+                "target_fingerprint_id": row.get("target_fingerprint_id"),
+                "ontology_version_at_decision": row.get(
+                    "ontology_version_at_decision",
+                    DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                ),
                 "protein_name": row.get("protein_name"),
                 "lane_id": row.get("lane_id"),
                 "review_packet_status": "needs_review_decision",
@@ -11645,7 +11675,9 @@ def build_external_source_pilot_sdr_redox_import_safety_adjudication(
     resolved_pilot_decisions: dict[str, Any],
     pilot_active_site_evidence_decisions: dict[str, Any],
     external_import_readiness_audit: dict[str, Any],
+    heuristic_control_scores: dict[str, Any] | None = None,
     pilot_success_criteria: dict[str, Any] | None = None,
+    abstain_threshold: float = 0.4115,
     max_rows: int = 1,
     artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -11688,6 +11720,11 @@ def build_external_source_pilot_sdr_redox_import_safety_adjudication(
         active_row = active_by_accession.get(accession, {})
         import_row = import_by_accession.get(accession, {})
         success_row = success_by_accession.get(accession, {})
+        inverse_gate = _external_out_of_scope_inverse_gate_result(
+            accession=accession,
+            heuristic_control_scores=heuristic_control_scores,
+            abstain_threshold=abstain_threshold,
+        )
 
         candidate_features = control_row.get("candidate_sequence_features", {})
         if not isinstance(candidate_features, dict):
@@ -11757,6 +11794,8 @@ def build_external_source_pilot_sdr_redox_import_safety_adjudication(
             blockers.add("explicit_active_site_evidence_missing")
         if not bounded_sequence_no_signal:
             blockers.add("bounded_sequence_no_near_duplicate_signal_missing")
+        if heuristic_control_scores is not None:
+            blockers.update(inverse_gate["blockers"])
 
         ready_for_import = representation_conflict_repaired and not blockers
         adjudicated_status = (
@@ -11777,6 +11816,9 @@ def build_external_source_pilot_sdr_redox_import_safety_adjudication(
             {
                 "accession": accession,
                 "entry_id": control_row.get("entry_id") or f"uniprot:{accession}",
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
                 "previous_normalized_decision_status": resolved_row.get(
                     "normalized_decision_status"
                 ),
@@ -11839,6 +11881,7 @@ def build_external_source_pilot_sdr_redox_import_safety_adjudication(
                 "broader_duplicate_screening_status": active_row.get(
                     "broader_duplicate_screening_status"
                 ),
+                "out_of_scope_inverse_gate": inverse_gate,
                 "remaining_import_blockers": sorted(blockers),
                 "countable_label_candidate": False,
                 "ready_for_label_import": ready_for_import,
@@ -11869,6 +11912,10 @@ def build_external_source_pilot_sdr_redox_import_safety_adjudication(
             ),
             "blocker_not_removed": sorted(blocker_counts),
             "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "abstain_threshold": round(float(abstain_threshold), 4),
             "ready_for_label_import": any(
                 row["ready_for_label_import"] for row in rows
             ),
@@ -12369,6 +12416,9 @@ def build_external_source_pilot_akr_nadp_import_safety_adjudication(
             {
                 "accession": accession,
                 "entry_id": control_row.get("entry_id") or f"uniprot:{accession}",
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
                 "previous_normalized_decision_status": resolved_row.get(
                     "normalized_decision_status"
                 ),
@@ -12957,6 +13007,9 @@ def build_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication(
             {
                 "accession": accession,
                 "entry_id": control_row.get("entry_id") or f"uniprot:{accession}",
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
                 "previous_normalized_decision_status": resolved_row.get(
                     "normalized_decision_status"
                 ),
@@ -13392,7 +13445,9 @@ def build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication(
     resolved_pilot_decisions: dict[str, Any],
     pilot_active_site_evidence_decisions: dict[str, Any],
     external_import_readiness_audit: dict[str, Any],
+    heuristic_control_scores: dict[str, Any] | None = None,
     pilot_success_criteria: dict[str, Any] | None = None,
+    abstain_threshold: float = 0.4115,
     max_rows: int = 1,
     artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -13434,6 +13489,11 @@ def build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication(
         active_row = active_by_accession.get(accession, {})
         import_row = import_by_accession.get(accession, {})
         success_row = success_by_accession.get(accession, {})
+        inverse_gate = _external_out_of_scope_inverse_gate_result(
+            accession=accession,
+            heuristic_control_scores=heuristic_control_scores,
+            abstain_threshold=abstain_threshold,
+        )
 
         active_site_features = control_row.get("candidate_active_site_features", {})
         if not isinstance(active_site_features, dict):
@@ -13511,6 +13571,8 @@ def build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication(
             blockers.add("explicit_active_site_evidence_missing")
         if not bounded_sequence_no_signal:
             blockers.add("bounded_sequence_no_near_duplicate_signal_missing")
+        if heuristic_control_scores is not None:
+            blockers.update(inverse_gate["blockers"])
 
         ready_for_import = representation_conflict_repaired and not blockers
         adjudicated_status = (
@@ -13531,6 +13593,9 @@ def build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication(
             {
                 "accession": accession,
                 "entry_id": control_row.get("entry_id") or f"uniprot:{accession}",
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
                 "previous_normalized_decision_status": resolved_row.get(
                     "normalized_decision_status"
                 ),
@@ -13581,6 +13646,7 @@ def build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication(
                 "broader_duplicate_screening_status": active_row.get(
                     "broader_duplicate_screening_status"
                 ),
+                "out_of_scope_inverse_gate": inverse_gate,
                 "remaining_import_blockers": sorted(blockers),
                 "countable_label_candidate": False,
                 "ready_for_label_import": ready_for_import,
@@ -13616,6 +13682,10 @@ def build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication(
             ),
             "blocker_not_removed": sorted(blocker_counts),
             "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "abstain_threshold": round(float(abstain_threshold), 4),
             "ready_for_label_import": any(
                 row["ready_for_label_import"] for row in rows
             ),
@@ -14153,6 +14223,9 @@ def build_external_source_pilot_sugar_phosphate_isomerase_import_safety_adjudica
             {
                 "accession": accession,
                 "entry_id": control_row.get("entry_id") or f"uniprot:{accession}",
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
                 "previous_normalized_decision_status": resolved_row.get(
                     "normalized_decision_status"
                 ),
@@ -14804,6 +14877,9 @@ def build_external_source_pilot_schiff_base_lyase_import_safety_adjudication(
             {
                 "accession": accession,
                 "entry_id": control_row.get("entry_id") or f"uniprot:{accession}",
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
                 "previous_normalized_decision_status": resolved_row.get(
                     "normalized_decision_status"
                 ),
@@ -20227,6 +20303,84 @@ def _external_top1_fingerprint(result: dict[str, Any]) -> str | None:
         return None
     fingerprint = top1.get("fingerprint_id")
     return str(fingerprint) if fingerprint else None
+
+
+def _external_out_of_scope_inverse_gate_result(
+    *,
+    accession: str,
+    heuristic_control_scores: dict[str, Any] | None,
+    abstain_threshold: float,
+    ontology_version_at_decision: str = DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+) -> dict[str, Any]:
+    current_fingerprint_ids = sorted(fingerprint.id for fingerprint in load_fingerprints())
+    result = {
+        "target_label_type": "out_of_scope",
+        "target_fingerprint_id": None,
+        "ontology_version_at_decision": ontology_version_at_decision,
+        "abstain_threshold": round(float(abstain_threshold), 4),
+        "expected_current_fingerprint_count": len(current_fingerprint_ids),
+        "observed_current_fingerprint_count": 0,
+        "observed_current_fingerprint_ids": [],
+        "missing_current_fingerprint_ids": current_fingerprint_ids,
+        "top1_fingerprint_id": None,
+        "top1_score": None,
+        "max_current_fingerprint_score": None,
+        "all_current_fingerprint_scores_below_threshold": False,
+        "inverse_gate_status": "not_evaluated",
+        "blockers": ["out_of_scope_inverse_gate_not_evaluated"],
+    }
+    if heuristic_control_scores is None:
+        result["inverse_gate_status"] = "heuristic_control_scores_not_supplied"
+        result["blockers"] = ["out_of_scope_inverse_gate_scores_not_supplied"]
+        return result
+
+    score_row = _external_first_row_by_accession(heuristic_control_scores).get(accession, {})
+    top_fingerprints = [
+        hit for hit in score_row.get("top_fingerprints", []) or [] if isinstance(hit, dict)
+    ]
+    if not score_row or not top_fingerprints:
+        result["inverse_gate_status"] = "heuristic_control_scores_missing_for_accession"
+        result["blockers"] = ["out_of_scope_inverse_gate_scores_missing"]
+        return result
+
+    observed_scores: dict[str, float] = {}
+    for hit in top_fingerprints:
+        fingerprint_id = str(hit.get("fingerprint_id") or "")
+        if fingerprint_id not in current_fingerprint_ids:
+            continue
+        observed_scores[fingerprint_id] = round(float(hit.get("score", 0.0) or 0.0), 4)
+    observed_ids = sorted(observed_scores)
+    missing_ids = sorted(set(current_fingerprint_ids) - set(observed_ids))
+    max_score = max(observed_scores.values(), default=None)
+    top1 = top_fingerprints[0]
+    top1_score = round(float(top1.get("score", 0.0) or 0.0), 4)
+    blockers: list[str] = []
+    if missing_ids:
+        blockers.append("out_of_scope_inverse_gate_incomplete_current_fingerprint_coverage")
+    if max_score is None:
+        blockers.append("out_of_scope_inverse_gate_scores_missing")
+    elif max_score >= float(abstain_threshold):
+        blockers.append("out_of_scope_false_non_abstention")
+
+    result.update(
+        {
+            "observed_current_fingerprint_count": len(observed_ids),
+            "observed_current_fingerprint_ids": observed_ids,
+            "missing_current_fingerprint_ids": missing_ids,
+            "current_fingerprint_scores": dict(sorted(observed_scores.items())),
+            "top1_fingerprint_id": top1.get("fingerprint_id"),
+            "top1_score": top1_score,
+            "max_current_fingerprint_score": max_score,
+            "all_current_fingerprint_scores_below_threshold": (
+                max_score is not None
+                and max_score < float(abstain_threshold)
+                and not missing_ids
+            ),
+            "inverse_gate_status": "passed" if not blockers else "blocked",
+            "blockers": blockers,
+        }
+    )
+    return result
 
 
 def _external_control_repair_coverage(

@@ -11,13 +11,18 @@ Each label in `data/registries/curated_mechanism_labels.json` has:
 - `review_status`: `automation_curated`, `needs_expert_review`,
   `expert_reviewed`, or `rejected`.
 - `confidence`: curator confidence, still `high`, `medium`, or `low`.
+- `ontology_version_at_decision`: the ontology/fingerprint universe used when
+  the label decision was made. Missing historical records migrate to
+  `label_factory_v1_8fp`.
 - `evidence_score`: a bounded numeric score in `[0, 1]`.
 - `evidence`: provenance-bearing evidence fields with sources, retrieval score,
   cofactor evidence, conflicts, and review notes.
 
 Current migrated labels start as bronze automation-curated labels. Gold labels
 require `expert_reviewed` status and cannot be created by retrieval evidence
-alone.
+alone. External `out_of_scope` terminal decisions must carry
+`ontology_version_at_decision` so future fingerprint expansion cannot
+retroactively redefine what the hard-negative decision meant.
 
 ## Promotion And Demotion
 

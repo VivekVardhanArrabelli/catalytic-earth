@@ -78,7 +78,15 @@ class LabelTests(unittest.TestCase):
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
         self.assertEqual(summary["by_tier"]["bronze"], 679)
         self.assertEqual(summary["by_review_status"]["automation_curated"], 679)
+        self.assertEqual(
+            summary["by_ontology_version_at_decision"],
+            {"label_factory_v1_8fp": 679},
+        )
         self.assertGreater(summary["mean_evidence_score"], 0)
+        self.assertEqual(
+            {label.ontology_version_at_decision for label in labels},
+            {"label_factory_v1_8fp"},
+        )
 
     def test_invalid_label(self) -> None:
         with self.assertRaises(ValueError):
@@ -88,6 +96,19 @@ class LabelTests(unittest.TestCase):
                     "fingerprint_id": None,
                     "label_type": "seed_fingerprint",
                     "confidence": "high",
+                    "rationale": "This rationale is long enough to pass length.",
+                }
+            )
+
+    def test_blank_ontology_version_is_invalid(self) -> None:
+        with self.assertRaises(ValueError):
+            MechanismLabel.from_dict(
+                {
+                    "entry_id": "m_csa:1",
+                    "fingerprint_id": None,
+                    "label_type": "out_of_scope",
+                    "confidence": "medium",
+                    "ontology_version_at_decision": "",
                     "rationale": "This rationale is long enough to pass length.",
                 }
             )
@@ -104,8 +125,28 @@ class LabelTests(unittest.TestCase):
         )
         self.assertEqual(migrated["tier"], "bronze")
         self.assertEqual(migrated["review_status"], "automation_curated")
+        self.assertEqual(
+            migrated["ontology_version_at_decision"], "label_factory_v1_8fp"
+        )
         self.assertEqual(migrated["evidence_score"], 0.65)
         self.assertEqual(migrated["evidence"]["sources"], ["curator_rationale"])
+
+    def test_label_serialization_preserves_decision_ontology_version(self) -> None:
+        label = MechanismLabel.from_dict(
+            {
+                "entry_id": "m_csa:1",
+                "fingerprint_id": None,
+                "label_type": "out_of_scope",
+                "confidence": "medium",
+                "ontology_version_at_decision": "label_factory_test",
+                "rationale": "Out-of-scope test label has enough rationale text.",
+            }
+        )
+
+        self.assertEqual(label.ontology_version_at_decision, "label_factory_test")
+        self.assertEqual(
+            label.to_dict()["ontology_version_at_decision"], "label_factory_test"
+        )
 
     def test_ser_his_counterevidence_blocks_provisional_counting(self) -> None:
         review = {

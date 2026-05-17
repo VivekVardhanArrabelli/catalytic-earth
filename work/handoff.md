@@ -50,6 +50,55 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-17T01:23:28Z run, the first external hard-negative import
+attempt is closed without count growth. Evidence-based confidence call: the
+external out-of-scope inverse gate is now explicit and test-covered for the
+current 8-fingerprint ontology, but neither O14756 nor Q6NSJ0 is defensible as
+an import-ready hard negative because duplicate, post-repair review, and full
+factory gates still block them.
+
+`MechanismLabel` now carries `ontology_version_at_decision`, with existing
+registry labels migrated to `label_factory_v1_8fp`. External terminal and
+post-repair decision artifacts now carry `target_label_type=out_of_scope`,
+`target_fingerprint_id=null`, and the same ontology version so future ontology
+expansion cannot retroactively change this hard-negative decision surface.
+`artifacts/v3_external_out_of_scope_inverse_gate_logic_check_1025.json` records
+Step 1A as passed: curated out-of-scope labels still reject non-null
+fingerprints and above-threshold retained hits, and the O14756/Q6NSJ0 external
+post-repair paths require all 8 current fingerprint scores below the active
+`0.4115` floor. `artifacts/v3_external_sdr_ec_1_1_1_consistency_check_1025.json`
+records Step 1B as passed on the bounded SDR check: 36/36 evaluable SDR-like
+Swiss-Prot EC 1.1.1.x rows were clean abstentions, with 0 SDR false
+non-abstentions and 0 predictive text/annotation leakage rows.
+
+`artifacts/v3_external_hard_negative_two_candidate_import_attempt_1025.json`
+then tried exactly the requested two candidates. O14756 passes the inverse gate
+with top1 `heme_peroxidase_oxidase` score `0.3039`; Q6NSJ0 passes with top1
+`metal_dependent_hydrolase` score `0.3552`. Both rows remain
+`import_blocked`, `import_ready_candidate=false`, and non-countable because
+broader duplicate screening, terminal post-repair review acceptance, and the
+full external factory gate are unresolved. Do not try P34949, Q9BXD5, C9JRZ8,
+P06746, or any third original pilot candidate in this cycle.
+
+Because both first candidates failed strict readiness,
+`artifacts/v3_external_hard_negative_second_tranche_selection_1025.json` starts
+the next review-only hard-negative tranche with P33025, Q13907, and P35914 as
+lower-risk candidates. P60174 is explicitly excluded for high
+current-reference identity (`0.899`), and Q9BXS1 is excluded because Q13907
+already represents the same external `TM >= 0.7` cluster. These tranche-2 rows
+are not import-ready and not countable; next work should build terminal
+decisions plus duplicate/factory gates for those rows, including
+current-countable structural duplicate screening if a backend is available.
+
+Run verification for this handoff: started `2026-05-17T01:23:28Z`, wrapped at
+`2026-05-17T02:09:41Z` after the bounded two-candidate attempt and tranche-2
+selection. Final checks passed with 376 unit tests, `compileall`, `git diff
+--check`, `PYTHONPATH=src python -m catalytic_earth.cli validate`, JSON parse
+checks for the new hard-negative artifacts, and the external transfer gate
+remaining at 68/68. README, label-factory docs, external-transfer docs, scope,
+handoff, and repair/transfer notes were checked and updated to reflect the
+no-import result.
+
 As of the 2026-05-16T01:55:26-05:00 run, do not resume M-CSA strict
 Foldseek/TM-score repair. The loop is closed/deferred by
 `artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json`, with

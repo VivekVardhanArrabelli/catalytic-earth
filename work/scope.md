@@ -528,8 +528,17 @@ Current expectation:
   pilot-specific ESM-2 sample covers all 10 selected candidates with 9 complete
   learned-representation rows and 1 representation near-duplicate holdout, the
   pilot dossiers now carry representation rows for all 10 selected candidates
-  while preserving 3 explicit-active-site blockers, and 0 external labels are
-  countable.
+  while preserving 3 explicit-active-site blockers, the external out-of-scope
+  inverse gate now requires all 8 current fingerprint scores below the `0.4115`
+  floor with `ontology_version_at_decision=label_factory_v1_8fp`, the bounded
+  SDR EC 1.1.1.x consistency check reports 36/36 evaluable SDR-like rows as
+  clean abstentions with 0 false non-abstentions, the O14756/Q6NSJ0 hard-
+  negative import attempt is closed with both rows inverse-gate clean but still
+  blocked by broader duplicate, post-repair review, and full factory gates, the
+  second review-only hard-negative tranche selection starts with P33025,
+  Q13907, and P35914 as lower-risk candidates after using the all-30 external
+  TM cluster surface to keep one representative per high-TM external cluster,
+  and 0 external labels are countable.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

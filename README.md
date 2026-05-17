@@ -399,6 +399,26 @@ the P06746 representation near-duplicate conflict and records post-repair
 `needs_review`, while heuristic scoring, broader duplicate screening, a
 post-repair review decision, and the full factory gate still block import and
 counting.
+External hard-negative import now has an explicit out-of-scope inverse gate and
+decision ontology version. `MechanismLabel` records
+`ontology_version_at_decision` (defaulting legacy records to
+`label_factory_v1_8fp`), and terminal external decisions carry
+`target_label_type=out_of_scope`, `target_fingerprint_id=null`, and the same
+ontology version. `artifacts/v3_external_out_of_scope_inverse_gate_logic_check_1025.json`
+confirms the external gate requires all 8 current fingerprint scores below the
+active `0.4115` floor. The bounded SDR/NAD(P) consistency artifact
+`artifacts/v3_external_sdr_ec_1_1_1_consistency_check_1025.json` reports 36/36
+evaluable SDR-like EC 1.1.1.x rows as clean abstentions with 0 SDR false
+non-abstentions and 0 predictive leakage rows. The two-candidate attempt in
+`artifacts/v3_external_hard_negative_two_candidate_import_attempt_1025.json`
+then tests `O14756` and `Q6NSJ0`: both pass the all-8 inverse gate, but both
+remain blocked by broader duplicate, post-repair review, and full factory
+gates, so there is still 0 external count growth. The follow-on
+`artifacts/v3_external_hard_negative_second_tranche_selection_1025.json` starts
+the next review-only tranche with 3 lower-risk candidates (`P33025`, `Q13907`,
+and `P35914`), using the all-30 external TM clustering only to keep one
+representative per high-TM external cluster. None are import-ready or
+countable.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

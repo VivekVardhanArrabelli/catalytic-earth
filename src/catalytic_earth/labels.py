@@ -49,6 +49,7 @@ REVIEW_STATUSES = {
     "rejected",
 }
 COUNTABLE_REVIEW_STATUSES = {"automation_curated", "expert_reviewed"}
+DEFAULT_ONTOLOGY_VERSION_AT_DECISION = "label_factory_v1_8fp"
 CONFIDENCE_EVIDENCE_SCORES = {
     "high": 0.85,
     "medium": 0.65,
@@ -192,6 +193,7 @@ class MechanismLabel:
     rationale: str
     tier: str = "bronze"
     review_status: str = "automation_curated"
+    ontology_version_at_decision: str = DEFAULT_ONTOLOGY_VERSION_AT_DECISION
     evidence_score: float = 0.65
     evidence: dict[str, Any] = field(
         default_factory=lambda: {
@@ -212,6 +214,7 @@ class MechanismLabel:
         label_type = data.get("label_type")
         tier = data.get("tier")
         review_status = data.get("review_status")
+        ontology_version_at_decision = data.get("ontology_version_at_decision")
         confidence = data.get("confidence")
         evidence_score = data.get("evidence_score")
         evidence = data.get("evidence")
@@ -226,6 +229,13 @@ class MechanismLabel:
             raise ValueError(f"{entry_id}: invalid tier")
         if review_status not in REVIEW_STATUSES:
             raise ValueError(f"{entry_id}: invalid review_status")
+        if (
+            not isinstance(ontology_version_at_decision, str)
+            or not ontology_version_at_decision
+        ):
+            raise ValueError(
+                f"{entry_id}: ontology_version_at_decision must be a non-empty string"
+            )
         if confidence not in {"high", "medium", "low"}:
             raise ValueError(f"{entry_id}: invalid confidence")
         if not isinstance(evidence_score, (int, float)) or not 0 <= float(evidence_score) <= 1:
@@ -251,6 +261,7 @@ class MechanismLabel:
             label_type=label_type,
             tier=tier,
             review_status=review_status,
+            ontology_version_at_decision=ontology_version_at_decision,
             confidence=confidence,
             evidence_score=round(float(evidence_score), 4),
             evidence=dict(evidence),
@@ -264,6 +275,7 @@ class MechanismLabel:
             "label_type": self.label_type,
             "tier": self.tier,
             "review_status": self.review_status,
+            "ontology_version_at_decision": self.ontology_version_at_decision,
             "confidence": self.confidence,
             "evidence_score": self.evidence_score,
             "evidence": self.evidence,
@@ -318,6 +330,10 @@ def migrate_label_record(data: dict[str, Any]) -> dict[str, Any]:
         **data,
         "tier": data.get("tier", "bronze"),
         "review_status": data.get("review_status", "automation_curated"),
+        "ontology_version_at_decision": data.get(
+            "ontology_version_at_decision",
+            DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+        ),
         "evidence_score": data.get("evidence_score", default_score),
         "evidence": migrated_evidence,
     }
@@ -348,6 +364,13 @@ def label_summary(labels: list[MechanismLabel]) -> dict[str, Any]:
         "by_tier": dict(sorted(Counter(label.tier for label in labels).items())),
         "by_review_status": dict(
             sorted(Counter(label.review_status for label in labels).items())
+        ),
+        "by_ontology_version_at_decision": dict(
+            sorted(
+                Counter(
+                    label.ontology_version_at_decision for label in labels
+                ).items()
+            )
         ),
         "by_confidence": dict(sorted(Counter(label.confidence for label in labels).items())),
         "by_fingerprint": dict(
@@ -13545,12 +13568,18 @@ def _accepted_expert_label_record(
     evidence_score = decision.get("evidence_score")
     if evidence_score is None:
         evidence_score = 1.0 if tier == "gold" else CONFIDENCE_EVIDENCE_SCORES.get(str(confidence), 0.65)
+    ontology_version_at_decision = (
+        decision.get("ontology_version_at_decision")
+        or (existing or {}).get("ontology_version_at_decision")
+        or DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+    )
     return {
         "entry_id": entry_id,
         "fingerprint_id": fingerprint_id,
         "label_type": label_type,
         "tier": tier,
         "review_status": review_status,
+        "ontology_version_at_decision": ontology_version_at_decision,
         "confidence": confidence,
         "evidence_score": evidence_score,
         "evidence": _expert_review_evidence(
@@ -13580,12 +13609,17 @@ def _review_placeholder_record(
     evidence_score = decision.get("evidence_score")
     if evidence_score is None:
         evidence_score = CONFIDENCE_EVIDENCE_SCORES.get(str(confidence), 0.4)
+    ontology_version_at_decision = (
+        decision.get("ontology_version_at_decision")
+        or DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+    )
     return {
         "entry_id": entry_id,
         "fingerprint_id": fingerprint_id,
         "label_type": label_type,
         "tier": "bronze",
         "review_status": "needs_expert_review",
+        "ontology_version_at_decision": ontology_version_at_decision,
         "confidence": confidence,
         "evidence_score": evidence_score,
         "evidence": _expert_review_evidence(

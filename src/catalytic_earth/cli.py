@@ -2748,6 +2748,7 @@ def cmd_build_external_source_pilot_sdr_redox_import_safety_adjudication(
             "resolved_pilot_decisions",
             "pilot_active_site_evidence_decisions",
             "external_import_readiness_audit",
+            "heuristic_control_scores",
             "pilot_success_criteria",
         ),
         blocker_removed=(
@@ -2765,7 +2766,9 @@ def cmd_build_external_source_pilot_sdr_redox_import_safety_adjudication(
             "external_import_readiness_audit"
         ]
         or {},
+        heuristic_control_scores=artifact_payloads["heuristic_control_scores"] or {},
         pilot_success_criteria=artifact_payloads["pilot_success_criteria"] or {},
+        abstain_threshold=args.abstain_threshold,
         max_rows=args.max_rows,
         artifact_lineage=artifact_lineage,
     )
@@ -3017,6 +3020,7 @@ def cmd_build_external_source_pilot_glycoside_hydrolase_import_safety_adjudicati
             "resolved_pilot_decisions",
             "pilot_active_site_evidence_decisions",
             "external_import_readiness_audit",
+            "heuristic_control_scores",
             "pilot_success_criteria",
         ),
         blocker_removed=(
@@ -3040,7 +3044,10 @@ def cmd_build_external_source_pilot_glycoside_hydrolase_import_safety_adjudicati
                 "external_import_readiness_audit"
             ]
             or {},
+            heuristic_control_scores=artifact_payloads["heuristic_control_scores"]
+            or {},
             pilot_success_criteria=artifact_payloads["pilot_success_criteria"] or {},
+            abstain_threshold=args.abstain_threshold,
             max_rows=args.max_rows,
             artifact_lineage=artifact_lineage,
         )
@@ -7794,8 +7801,15 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_external_source_import_readiness_audit_1025.json",
     )
     external_pilot_sdr_import_safety.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores_1025.json",
+    )
+    external_pilot_sdr_import_safety.add_argument(
         "--pilot-success-criteria",
         default="artifacts/v3_external_source_pilot_success_criteria_1025.json",
+    )
+    external_pilot_sdr_import_safety.add_argument(
+        "--abstain-threshold", type=float, default=0.4115
     )
     external_pilot_sdr_import_safety.add_argument(
         "--max-rows", type=int, default=1
@@ -8172,8 +8186,15 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_external_source_import_readiness_audit_1025.json",
     )
     external_pilot_glycoside_import_safety.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores_1025.json",
+    )
+    external_pilot_glycoside_import_safety.add_argument(
         "--pilot-success-criteria",
         default="artifacts/v3_external_source_pilot_success_criteria_1025.json",
+    )
+    external_pilot_glycoside_import_safety.add_argument(
+        "--abstain-threshold", type=float, default=0.4115
     )
     external_pilot_glycoside_import_safety.add_argument(
         "--max-rows", type=int, default=1

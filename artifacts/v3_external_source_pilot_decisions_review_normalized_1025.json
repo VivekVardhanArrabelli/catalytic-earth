@@ -135,6 +135,7 @@
       },
       "lane_id": "external_source:oxidoreductase_long_tail",
       "normalized_decision_status": "needs_review",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
       "original_terminal_status": "deferred_requires_human_expert",
       "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
       "rank": 1,
@@ -169,6 +170,8 @@
         ]
       },
       "review_status": "external_pilot_normalized_decision_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
       "unresolved_question": "Does the changed ESM-2 nearest-reference evidence preserve the proposed mechanism family, or should this row be rejected as a representation conflict?"
     },
     {
@@ -239,6 +242,7 @@
       },
       "lane_id": "external_source:lyase",
       "normalized_decision_status": "needs_review",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
       "original_terminal_status": "rejected_duplicate_or_near_duplicate",
       "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
       "rank": 2,
@@ -270,6 +274,8 @@
         ]
       },
       "review_status": "external_pilot_normalized_decision_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
       "unresolved_question": "Is the representation-only near-duplicate signal for P06746 sufficient for rejection, or should it remain a review-only representation-control blocker until broader duplicate screening?"
     },
     {
@@ -340,6 +346,7 @@
       },
       "lane_id": "external_source:oxidoreductase_long_tail",
       "normalized_decision_status": "needs_review",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
       "original_terminal_status": "rejected_duplicate_or_near_duplicate",
       "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
       "rank": 3,
@@ -373,6 +380,8 @@
         ]
       },
       "review_status": "external_pilot_normalized_decision_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
       "unresolved_question": "Is the representation-only near-duplicate signal for C9JRZ8 sufficient for rejection, or should it remain a review-only representation-control blocker until broader duplicate screening?"
     },
     {
@@ -443,6 +452,7 @@
       },
       "lane_id": "external_source:transferase_phosphoryl",
       "normalized_decision_status": "rejected_duplicate_or_near_duplicate",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
       "original_terminal_status": "rejected_duplicate_or_near_duplicate",
       "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
       "rank": 4,
@@ -473,6 +483,8 @@
         ]
       },
       "review_status": "external_pilot_normalized_decision_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
       "unresolved_question": null
     },
     {
@@ -543,6 +555,7 @@
       },
       "lane_id": "external_source:isomerase",
       "normalized_decision_status": "needs_review",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
       "original_terminal_status": "deferred_requires_human_expert",
       "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
       "rank": 5,
@@ -576,6 +589,8 @@
         ]
       },
       "review_status": "external_pilot_normalized_decision_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
       "unresolved_question": "Does the structure-local active-site and reaction evidence support the proposed mechanism despite the heuristic top1/scope mismatch?"
     },
     {
@@ -646,6 +661,7 @@
       },
       "lane_id": "external_source:lyase",
       "normalized_decision_status": "needs_review",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
       "original_terminal_status": "rejected_duplicate_or_near_duplicate",
       "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
       "rank": 6,
@@ -677,6 +693,8 @@
         ]
       },
       "review_status": "external_pilot_normalized_decision_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
       "unresolved_question": "Is the representation-only near-duplicate signal for Q9BXD5 sufficient for rejection, or should it remain a review-only representation-control blocker until broader duplicate screening?"
     },
     {
@@ -747,6 +765,7 @@
       },
       "lane_id": "external_source:glycan_chemistry",
       "normalized_decision_status": "needs_review",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
       "original_terminal_status": "deferred_requires_human_expert",
       "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
       "rank": 7,
@@ -785,6 +804,8 @@
         ]
       },
       "review_status": "external_pilot_normalized_decision_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
       "unresolved_question": "Does the changed ESM-2 nearest-reference evidence preserve the proposed mechanism family, or should this row be rejected as a representation conflict? Does the structure-local active-site and reaction evidence support the proposed mechanism despite the heuristic top1/scope mismatch?"
     },
     {
@@ -855,6 +876,7 @@
       },
       "lane_id": "external_source:glycan_chemistry",
       "normalized_decision_status": "rejected_active_site_evidence_missing",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
       "original_terminal_status": "rejected_active_site_evidence_missing",
       "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
       "rank": 8,
@@ -889,6 +911,8 @@
         ]
       },
       "review_status": "external_pilot_normalized_decision_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
       "unresolved_question": null
     },
     {
@@ -959,6 +983,7 @@
       },
       "lane_id": "external_source:transferase_methyl",
       "normalized_decision_status": "rejected_active_site_evidence_missing",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
       "original_terminal_status": "rejected_active_site_evidence_missing",
       "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
       "rank": 9,
@@ -993,6 +1018,8 @@
         ]
       },
       "review_status": "external_pilot_normalized_decision_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
       "unresolved_question": null
     },
     {
@@ -1063,6 +1090,7 @@
       },
       "lane_id": "external_source:transferase_methyl",
       "normalized_decision_status": "rejected_active_site_evidence_missing",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
       "original_terminal_status": "rejected_active_site_evidence_missing",
       "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
       "rank": 10,
@@ -1100,6 +1128,8 @@
         ]
       },
       "review_status": "external_pilot_normalized_decision_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
       "unresolved_question": null
     }
   ],

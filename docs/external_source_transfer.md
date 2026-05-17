@@ -30,6 +30,29 @@ import.
   or incomplete EC context, defers three broad-only candidates for specific
   reaction disambiguation, and exports a review-only active-site evidence queue
   with 25 ready candidates and five deferred candidates.
+- External hard-negative imports now target `label_type=out_of_scope` with
+  `fingerprint_id=null` under ontology version `label_factory_v1_8fp`.
+  `artifacts/v3_external_out_of_scope_inverse_gate_logic_check_1025.json`
+  confirms that the external post-repair path uses the same inverse condition
+  as label-factory out-of-scope evidence: all 8 current fingerprint scores must
+  stay below the active abstention floor (`0.4115`), with retained
+  above-threshold hits treated as false non-abstentions.
+- `artifacts/v3_external_sdr_ec_1_1_1_consistency_check_1025.json` records the
+  bounded SDR/NAD(P) lane check: 36/36 evaluable SDR-like Swiss-Prot EC 1.1.1.x
+  rows were clean abstentions, 0 were SDR false non-abstentions, and 0
+  text/annotation leakage rows were used as predictive support.
+- The first two-candidate hard-negative import attempt is closed without count
+  growth. `O14756` and `Q6NSJ0` both pass the all-8 out-of-scope inverse gate,
+  but `artifacts/v3_external_hard_negative_two_candidate_import_attempt_1025.json`
+  keeps both blocked by unresolved broader duplicate screening, post-repair
+  review acceptance, and full external factory-gate state.
+- Because both first candidates failed strict import readiness,
+  `artifacts/v3_external_hard_negative_second_tranche_selection_1025.json`
+  starts the next review-only tranche with 3 lower-risk candidates (`P33025`,
+  `Q13907`, and `P35914`). They are not import-ready or countable; external
+  all-30 TM clustering is used only to pick one representative per high-TM
+  external cluster, and current-countable structural duplicate screening is
+  still a required follow-up.
 
 ## Immediate Pilot Direction
 
@@ -967,6 +990,7 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-sdr-red
   --resolved-pilot-decisions artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json \
   --pilot-active-site-evidence-decisions artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json \
   --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
   --pilot-success-criteria artifacts/v3_external_source_pilot_success_criteria_1025.json \
   --out artifacts/v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json
 
@@ -985,6 +1009,7 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-glycosi
   --resolved-pilot-decisions artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json \
   --pilot-active-site-evidence-decisions artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json \
   --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
   --pilot-success-criteria artifacts/v3_external_source_pilot_success_criteria_1025.json \
   --out artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_1025.json
 
@@ -1176,3 +1201,11 @@ Do not import external candidates directly into
 `data/registries/curated_mechanism_labels.json`. The first safe external-source
 milestone is a review-only candidate manifest and evidence-request export that
 can fail cleanly without changing the benchmark label count.
+
+For the current 8-fingerprint ontology, the only allowed external hard-negative
+import target is `out_of_scope` with a null fingerprint id and
+`ontology_version_at_decision=label_factory_v1_8fp`. A candidate must have a
+complete all-8 inverse score check below the active abstention floor, clean
+duplicate evidence, a terminal post-repair review acceptance, and full
+label-factory gates before any registry import. A source-supported mechanism
+description or repaired representation conflict alone is never import-ready.

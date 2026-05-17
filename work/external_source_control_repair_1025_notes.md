@@ -10,7 +10,7 @@ consolidated pilot evidence packet with review-only dossier safeguards.
 
 ## Current Gate
 
-- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 65/65
+- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 68/68
   review-only checks under `ExternalSourceTransferGateInputs.v1`.
 - `countable_label_candidate_count` remains 0.
 - `ready_for_label_import` remains false.
@@ -133,6 +133,31 @@ consolidated pilot evidence packet with review-only dossier safeguards.
   the sequence screen and import-readiness audit passed targeted tests, keep
   work bounded to artifact regression coverage, docs, validation, and final
   gate verification rather than opening any external label decision.
+
+## Hard-Negative Import Attempt
+
+- External import targets are hard negatives for the current 8-fingerprint
+  universe: `label_type=out_of_scope`, `fingerprint_id=null`, and
+  `ontology_version_at_decision=label_factory_v1_8fp`.
+- `artifacts/v3_external_out_of_scope_inverse_gate_logic_check_1025.json`
+  confirms the external post-repair path enforces the inverse out-of-scope
+  rule: all 8 current fingerprint scores must stay below `0.4115`, and any
+  retained above-threshold hit is an `out_of_scope_false_non_abstention`
+  blocker.
+- `artifacts/v3_external_sdr_ec_1_1_1_consistency_check_1025.json` checked a
+  bounded Swiss-Prot EC 1.1.1.x sample before the O14756 import attempt. Among
+  36 evaluable SDR/NAD(P)-like rows, 36 were clean abstentions, 0 were SDR false
+  non-abstentions, and 0 predictive-support rows had text/annotation leakage.
+- `artifacts/v3_external_hard_negative_two_candidate_import_attempt_1025.json`
+  tried exactly O14756 then Q6NSJ0 under the hard-stop rule. Both rows pass the
+  all-8 inverse gate, but both remain non-countable and import-blocked by
+  unresolved broader duplicate screening, post-repair review acceptance, and
+  the full external factory gate.
+- `artifacts/v3_external_hard_negative_second_tranche_selection_1025.json`
+  starts the next review-only selection surface with P33025, Q13907, and P35914
+  as lower-risk tranche-2 candidates. P60174 is excluded by high
+  current-reference identity, and Q9BXS1 is excluded because Q13907 already
+  represents the same external `TM >= 0.7` cluster.
 
 ## Next Repair Target
 

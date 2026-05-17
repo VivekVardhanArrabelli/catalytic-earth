@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "active_threshold_or_floor": 0.4115,
+    "created_at": "2026-05-17T01:39:38Z",
+    "current_fingerprint_count": 8,
+    "factory_code_paths": [
+      {
+        "enforcement": "out_of_scope requires null fingerprint_id; top1_score >= abstain_threshold creates out_of_scope_false_non_abstention; near-threshold rows route to boundary review; evidence score uses 1 - top1_score for out_of_scope labels.",
+        "path": "src/catalytic_earth/labels.py",
+        "symbols": [
+          "MechanismLabel.from_dict",
+          "_label_evidence_conflicts",
+          "_label_factory_action",
+          "build_label_factory_audit"
+        ]
+      },
+      {
+        "enforcement": "post-repair external rows now carry target_label_type=out_of_scope, target_fingerprint_id=null, ontology_version_at_decision, and require all 8 current fingerprint scores below threshold when heuristic_control_scores are supplied.",
+        "path": "src/catalytic_earth/transfer_scope.py",
+        "symbols": [
+          "build_external_source_pilot_sdr_redox_import_safety_adjudication",
+          "build_external_source_pilot_glycoside_hydrolase_import_safety_adjudication",
+          "_external_out_of_scope_inverse_gate_result"
+        ]
+      }
+    ],
+    "heuristic_score_top_k": 8,
+    "method": "external_out_of_scope_inverse_gate_logic_check",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "source_artifacts": [
+      {
+        "method": "external_source_heuristic_control_scores",
+        "path": "artifacts/v3_external_source_heuristic_control_scores_1025.json"
+      },
+      {
+        "method": "external_source_pilot_sdr_redox_import_safety_adjudication",
+        "path": "artifacts/v3_external_source_pilot_sdr_redox_import_safety_adjudication_1025.json"
+      },
+      {
+        "method": "external_source_pilot_glycoside_hydrolase_import_safety_adjudication",
+        "path": "artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_1025.json"
+      }
+    ],
+    "step": "1A",
+    "step_1a_passed": true,
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope",
+    "threshold_or_floor_source": "accepted geometry abstain_threshold used by label factory and external import wrappers"
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "all_current_fingerprint_scores_below_threshold": true,
+      "blockers": [],
+      "entry_id": "uniprot:O14756",
+      "inverse_gate_status": "passed",
+      "max_current_fingerprint_score": 0.3039,
+      "observed_current_fingerprint_count": 8,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "remaining_import_blockers": [
+        "broader_duplicate_screening_required",
+        "broader_duplicate_screening_unresolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "review_decision_not_terminal"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3039
+    },
+    {
+      "accession": "Q6NSJ0",
+      "all_current_fingerprint_scores_below_threshold": true,
+      "blockers": [],
+      "entry_id": "uniprot:Q6NSJ0",
+      "inverse_gate_status": "passed",
+      "max_current_fingerprint_score": 0.3552,
+      "observed_current_fingerprint_count": 8,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "remaining_import_blockers": [
+        "broader_duplicate_screening_required",
+        "broader_duplicate_screening_unresolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "review_decision_not_terminal"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3552
+    }
+  ],
+  "warnings": [
+    "Passing Step 1A verifies gate logic and current O14756/Q6NSJ0 inverse-score evidence only; it does not resolve duplicate, review-decision, or full factory-gate blockers."
+  ]
+}

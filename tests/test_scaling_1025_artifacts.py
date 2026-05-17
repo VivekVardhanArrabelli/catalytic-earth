@@ -3913,6 +3913,72 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertFalse(adjudicated_schiff_row["countable_label_candidate"])
         self.assertFalse(adjudicated_schiff_row["ready_for_label_import"])
 
+    def test_external_hard_negative_attempt_stays_non_countable(self) -> None:
+        step1a = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_out_of_scope_inverse_gate_logic_check_1025.json"
+        )
+        sdr_check = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_sdr_ec_1_1_1_consistency_check_1025.json"
+        )
+        attempt = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_two_candidate_import_attempt_1025.json"
+        )
+        tranche = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_second_tranche_selection_1025.json"
+        )
+
+        self.assertTrue(step1a["metadata"]["step_1a_passed"])
+        self.assertEqual(step1a["metadata"]["target_label_type"], "out_of_scope")
+        self.assertIsNone(step1a["metadata"]["target_fingerprint_id"])
+        self.assertEqual(
+            step1a["metadata"]["ontology_version_at_decision"],
+            "label_factory_v1_8fp",
+        )
+        self.assertTrue(sdr_check["metadata"]["primary_pass_criterion_met"])
+        self.assertEqual(sdr_check["metadata"]["sdr_false_non_abstention_count"], 0)
+        self.assertEqual(
+            sdr_check["metadata"]["predictive_support_leakage_risk_count"], 0
+        )
+
+        self.assertEqual(attempt["metadata"]["candidate_order"], ["O14756", "Q6NSJ0"])
+        self.assertEqual(attempt["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(attempt["metadata"]["promoted_label_count"], 0)
+        self.assertTrue(attempt["metadata"]["hard_stop_after_two_candidates"])
+        self.assertEqual(
+            [row["terminal_import_attempt_status"] for row in attempt["rows"]],
+            ["import_blocked", "import_blocked"],
+        )
+        self.assertTrue(
+            all(row["out_of_scope_inverse_gate"]["inverse_gate_status"] == "passed"
+                for row in attempt["rows"])
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in attempt["rows"])
+        )
+
+        self.assertEqual(
+            tranche["metadata"]["admitted_accessions"],
+            ["P33025", "Q13907", "P35914"],
+        )
+        self.assertEqual(tranche["metadata"]["admitted_count"], 3)
+        self.assertEqual(tranche["metadata"]["target_label_type"], "out_of_scope")
+        self.assertTrue(
+            all(not row["import_ready_candidate"] for row in tranche["rows"])
+        )
+        q9bxs1 = next(row for row in tranche["rows"] if row["accession"] == "Q9BXS1")
+        self.assertIn(
+            "same_external_tm_cluster_as_selected_second_tranche_candidate",
+            q9bxs1["admission_blockers"],
+        )
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

@@ -16,6 +16,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(summary["label_count"], 679)
         self.assertEqual(summary["by_type"]["seed_fingerprint"], 212)
         self.assertEqual(summary["by_type"]["out_of_scope"], 467)
+        self.assertEqual(
+            summary["by_ontology_version_at_decision"],
+            {"label_factory_v1_8fp": 679},
+        )
 
     def test_125_entry_geometry_artifacts_remain_clean(self) -> None:
         evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_125.json")

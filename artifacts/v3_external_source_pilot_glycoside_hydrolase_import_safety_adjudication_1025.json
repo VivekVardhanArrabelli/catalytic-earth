@@ -1,10 +1,12 @@
 {
   "blockers": [],
   "metadata": {
+    "abstain_threshold": 0.4115,
     "artifact_lineage": {
       "artifact_paths": {
         "external_import_readiness_audit": "artifacts/v3_external_source_import_readiness_audit_1025.json",
         "glycoside_hydrolase_boundary_control": "artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json",
+        "heuristic_control_scores": "artifacts/v3_external_source_heuristic_control_scores_1025.json",
         "pilot_active_site_evidence_decisions": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
         "pilot_success_criteria": "artifacts/v3_external_source_pilot_success_criteria_1025.json",
         "resolved_pilot_decisions": "artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json"
@@ -18,6 +20,7 @@
       "path_slice_ids": {
         "external_import_readiness_audit": 1025,
         "glycoside_hydrolase_boundary_control": 1025,
+        "heuristic_control_scores": 1025,
         "pilot_active_site_evidence_decisions": 1025,
         "pilot_success_criteria": 1025,
         "resolved_pilot_decisions": 1025
@@ -25,6 +28,7 @@
       "payload_methods": {
         "external_import_readiness_audit": "external_source_import_readiness_audit",
         "glycoside_hydrolase_boundary_control": "external_source_pilot_glycoside_hydrolase_boundary_control",
+        "heuristic_control_scores": "external_source_heuristic_control_scores",
         "pilot_active_site_evidence_decisions": "external_source_pilot_active_site_evidence_decisions",
         "pilot_success_criteria": "external_source_pilot_success_criteria",
         "resolved_pilot_decisions": "external_source_pilot_decisions_review_resolved"
@@ -53,6 +57,7 @@
         "1025": [
           "external_import_readiness_audit",
           "glycoside_hydrolase_boundary_control",
+          "heuristic_control_scores",
           "pilot_active_site_evidence_decisions",
           "pilot_success_criteria",
           "resolved_pilot_decisions"
@@ -79,6 +84,7 @@
     "normalized_decision_status_after_repair_counts": {
       "needs_review": 1
     },
+    "ontology_version_at_decision": "label_factory_v1_8fp",
     "predictive_feature_sources": [
       "source_traced_active_site_residue_codes",
       "active_site_sequence_position_spacing",
@@ -109,7 +115,9 @@
     "source_glycoside_hydrolase_boundary_control_method": "external_source_pilot_glycoside_hydrolase_boundary_control",
     "source_pilot_active_site_evidence_decisions_method": "external_source_pilot_active_site_evidence_decisions",
     "source_pilot_success_criteria_method": "external_source_pilot_success_criteria",
-    "source_resolved_pilot_decisions_method": "external_source_pilot_decisions_review_resolved"
+    "source_resolved_pilot_decisions_method": "external_source_pilot_decisions_review_resolved",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope"
   },
   "rows": [
     {
@@ -136,6 +144,42 @@
       },
       "import_safety_adjudication_status": "glycoside_boundary_representation_conflict_repaired",
       "normalized_decision_status_after_repair": "needs_review",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate": {
+        "abstain_threshold": 0.4115,
+        "all_current_fingerprint_scores_below_threshold": true,
+        "blockers": [],
+        "current_fingerprint_scores": {
+          "cobalamin_radical_rearrangement": 0.0941,
+          "flavin_dehydrogenase_reductase": 0.2038,
+          "flavin_monooxygenase": 0.083,
+          "heme_peroxidase_oxidase": 0.1959,
+          "metal_dependent_hydrolase": 0.3552,
+          "plp_dependent_enzyme": 0.1713,
+          "radical_sam_enzyme": 0.0866,
+          "ser_his_acid_hydrolase": 0.3049
+        },
+        "expected_current_fingerprint_count": 8,
+        "inverse_gate_status": "passed",
+        "max_current_fingerprint_score": 0.3552,
+        "missing_current_fingerprint_ids": [],
+        "observed_current_fingerprint_count": 8,
+        "observed_current_fingerprint_ids": [
+          "cobalamin_radical_rearrangement",
+          "flavin_dehydrogenase_reductase",
+          "flavin_monooxygenase",
+          "heme_peroxidase_oxidase",
+          "metal_dependent_hydrolase",
+          "plp_dependent_enzyme",
+          "radical_sam_enzyme",
+          "ser_his_acid_hydrolase"
+        ],
+        "ontology_version_at_decision": "label_factory_v1_8fp",
+        "target_fingerprint_id": null,
+        "target_label_type": "out_of_scope",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3552
+      },
       "previous_normalized_decision_status": "rejected_representation_conflict",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
@@ -147,7 +191,9 @@
         "review_decision_not_terminal"
       ],
       "review_status": "external_pilot_glycoside_hydrolase_import_safety_adjudication_review_only",
-      "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal"
+      "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope"
     }
   ],
   "warnings": [

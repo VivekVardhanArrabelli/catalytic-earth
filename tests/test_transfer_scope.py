@@ -7589,6 +7589,24 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                     }
                 ],
             },
+            heuristic_control_scores={
+                "metadata": {"method": "external_source_heuristic_control_scores"},
+                "results": [
+                    {
+                        "entry_id": "uniprot:O14756",
+                        "top_fingerprints": [
+                            {"fingerprint_id": "heme_peroxidase_oxidase", "score": 0.3039},
+                            {"fingerprint_id": "flavin_dehydrogenase_reductase", "score": 0.29},
+                            {"fingerprint_id": "flavin_monooxygenase", "score": 0.24},
+                            {"fingerprint_id": "metal_dependent_hydrolase", "score": 0.21},
+                            {"fingerprint_id": "ser_his_acid_hydrolase", "score": 0.2},
+                            {"fingerprint_id": "plp_dependent_enzyme", "score": 0.18},
+                            {"fingerprint_id": "radical_sam_enzyme", "score": 0.16},
+                            {"fingerprint_id": "cobalamin_radical_rearrangement", "score": 0.12},
+                        ],
+                    }
+                ],
+            },
             pilot_success_criteria={
                 "metadata": {"method": "external_source_pilot_success_criteria"},
                 "rows": [
@@ -7632,6 +7650,17 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             row["normalized_decision_status_after_repair"], "needs_review"
         )
+        self.assertEqual(row["target_label_type"], "out_of_scope")
+        self.assertIsNone(row["target_fingerprint_id"])
+        self.assertEqual(
+            row["ontology_version_at_decision"], "label_factory_v1_8fp"
+        )
+        self.assertEqual(row["out_of_scope_inverse_gate"]["inverse_gate_status"], "passed")
+        self.assertTrue(
+            row["out_of_scope_inverse_gate"][
+                "all_current_fingerprint_scores_below_threshold"
+            ]
+        )
         self.assertNotIn(
             "representation_stability_changed_requires_review",
             row["remaining_import_blockers"],
@@ -7645,6 +7674,101 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             row["remaining_import_blockers"],
         )
         self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_sdr_import_safety_blocks_false_non_abstention(
+        self,
+    ) -> None:
+        adjudication = build_external_source_pilot_sdr_redox_import_safety_adjudication(
+            sdr_redox_repair_control={
+                "rows": [
+                    {
+                        "accession": "O14756",
+                        "entry_id": "uniprot:O14756",
+                        "control_status": "review_only_sdr_axis_contrast_ready",
+                        "candidate_sequence_features": {
+                            "sdr_sequence_axis_status": (
+                                "sdr_axis_present_with_source_active_site_overlap"
+                            ),
+                            "glycine_rich_nad_p_binding_motif_hits": [
+                                {"motif": "TGCDSGFG"}
+                            ],
+                            "catalytic_yxxxk_motif_hits": [
+                                {"motif": "YCVSK", "overlaps_source_active_site": True}
+                            ],
+                        },
+                        "current_reference_contrasts": [
+                            {"sdr_sequence_axis_status": "sdr_axis_absent"}
+                        ],
+                    }
+                ]
+            },
+            resolved_pilot_decisions={
+                "rows": [
+                    {
+                        "accession": "O14756",
+                        "normalized_decision_status": (
+                            "rejected_representation_conflict"
+                        ),
+                    }
+                ]
+            },
+            pilot_active_site_evidence_decisions={
+                "rows": [
+                    {
+                        "accession": "O14756",
+                        "active_site_evidence_source_category": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "backend_sequence_search_status": "no_near_duplicate_signal",
+                        "factory_gate_status": "passed",
+                    }
+                ]
+            },
+            external_import_readiness_audit={
+                "rows": [
+                    {
+                        "accession": "O14756",
+                        "backend_sequence_search_status": "no_near_duplicate_signal",
+                    }
+                ]
+            },
+            heuristic_control_scores={
+                "results": [
+                    {
+                        "entry_id": "uniprot:O14756",
+                        "top_fingerprints": [
+                            {"fingerprint_id": "heme_peroxidase_oxidase", "score": 0.5},
+                            {"fingerprint_id": "flavin_dehydrogenase_reductase", "score": 0.29},
+                            {"fingerprint_id": "flavin_monooxygenase", "score": 0.24},
+                            {"fingerprint_id": "metal_dependent_hydrolase", "score": 0.21},
+                            {"fingerprint_id": "ser_his_acid_hydrolase", "score": 0.2},
+                            {"fingerprint_id": "plp_dependent_enzyme", "score": 0.18},
+                            {"fingerprint_id": "radical_sam_enzyme", "score": 0.16},
+                            {"fingerprint_id": "cobalamin_radical_rearrangement", "score": 0.12},
+                        ],
+                    }
+                ]
+            },
+            pilot_success_criteria={
+                "rows": [
+                    {
+                        "accession": "O14756",
+                        "full_label_factory_gate_status": "passed",
+                    }
+                ]
+            },
+        )
+
+        row = adjudication["rows"][0]
+        self.assertEqual(row["out_of_scope_inverse_gate"]["inverse_gate_status"], "blocked")
+        self.assertIn(
+            "out_of_scope_false_non_abstention",
+            row["remaining_import_blockers"],
+        )
+        self.assertEqual(
+            row["normalized_decision_status_after_repair"], "needs_review"
+        )
         self.assertFalse(row["ready_for_label_import"])
 
     def test_external_pilot_akr_nadp_repair_control_stages_sequence_axis(
