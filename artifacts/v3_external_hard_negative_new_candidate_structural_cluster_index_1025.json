@@ -1,0 +1,670 @@
+{
+  "clusters": [
+    {
+      "accessions": [
+        "O75828"
+      ],
+      "cluster_id": "external_tm_cluster:001",
+      "member_count": 1,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    },
+    {
+      "accessions": [
+        "O95154"
+      ],
+      "cluster_id": "external_tm_cluster:002",
+      "member_count": 1,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    },
+    {
+      "accessions": [
+        "O95479"
+      ],
+      "cluster_id": "external_tm_cluster:003",
+      "member_count": 1,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    },
+    {
+      "accessions": [
+        "P04424",
+        "P30566"
+      ],
+      "cluster_id": "external_tm_cluster:004",
+      "member_count": 2,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    },
+    {
+      "accessions": [
+        "Q04760"
+      ],
+      "cluster_id": "external_tm_cluster:005",
+      "member_count": 1,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    },
+    {
+      "accessions": [
+        "Q13087"
+      ],
+      "cluster_id": "external_tm_cluster:006",
+      "member_count": 1,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    },
+    {
+      "accessions": [
+        "Q8N0X4"
+      ],
+      "cluster_id": "external_tm_cluster:007",
+      "member_count": 1,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    }
+  ],
+  "metadata": {
+    "all_vs_all_pair_cache_complete": true,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "external_structural_tm_holdout_path": "artifacts/v3_external_hard_negative_new_candidate_structural_tm_holdout_path_1025.json",
+        "pilot_terminal_decisions": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json"
+      },
+      "blocker_removed": "external_structure_index_and_nearest_neighbor_cache_for_broader_external_surface",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "external_structural_tm_holdout_path": 1025,
+        "pilot_terminal_decisions": 1025
+      },
+      "payload_methods": {
+        "external_structural_tm_holdout_path": "external_structural_tm_holdout_path",
+        "pilot_terminal_decisions": "external_source_pilot_terminal_decisions"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "external_structural_tm_holdout_path": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        },
+        "pilot_terminal_decisions": {
+          "metadata.artifact_lineage.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "external_structural_tm_holdout_path",
+          "pilot_terminal_decisions"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "external_structural_tm_diverse_split_not_assigned"
+    ],
+    "blocker_removed": "external_structure_index_and_nearest_neighbor_cache_for_broader_external_surface",
+    "broader_surface_candidate_count": 8,
+    "candidate_count": 8,
+    "candidate_with_high_tm_neighbor_count": 2,
+    "coordinate_directory": "artifacts/v3_external_hard_negative_new_candidate_structural_coordinates_1025",
+    "coordinate_materialized_count": 8,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T03:38:59Z",
+    "expected_unique_unordered_nonself_pair_count": 28,
+    "external_structural_split_assignment_status": "not_assigned_cluster_index_only",
+    "fetch_failure_count": 0,
+    "fetch_failures": [],
+    "foldseek_all_vs_all_reporting_mode": "exhaustive_tm_align_exact_tmscore_evalue_infinite",
+    "foldseek_binary_available": true,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-external-structural-a062d9e3a47ab81c/selected_coordinates /private/tmp/catalytic-earth-external-structural-a062d9e3a47ab81c/selected_coordinates /private/tmp/catalytic-earth-external-structural-a062d9e3a47ab81c/external_structural_tm_scores.tsv /private/tmp/catalytic-earth-external-structural-a062d9e3a47ab81c/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+    "foldseek_error": null,
+    "foldseek_pair_row_count": 64,
+    "foldseek_run_status": "completed",
+    "foldseek_version": "10.941cd33",
+    "full_tm_score_holdout_claim_permitted": false,
+    "high_tm_pair_count": 1,
+    "import_ready_row_count": 0,
+    "largest_tm_cluster_size": 2,
+    "max_rows": 8,
+    "method": "external_structural_cluster_index",
+    "nearest_neighbor_cache_candidate_count": 8,
+    "nearest_neighbor_cache_candidate_coverage": 1.0,
+    "nearest_neighbor_cache_complete": true,
+    "nearest_neighbor_cache_required": true,
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selected_accessions": [
+      "O75828",
+      "O95154",
+      "O95479",
+      "P04424",
+      "Q8N0X4",
+      "P30566",
+      "Q04760",
+      "Q13087"
+    ],
+    "selected_pilot_candidate_count": 0,
+    "slice_id": "1025",
+    "source_external_structural_tm_holdout_path_method": "external_structural_tm_holdout_path",
+    "source_pilot_terminal_decisions_method": "external_source_pilot_terminal_decisions",
+    "structural_neighbor_cache_status_counts": {
+      "external_structural_cluster_neighbor_at_or_above_threshold": 2,
+      "no_external_structural_neighbor_above_threshold": 6
+    },
+    "structure_cluster_before_split_assignment": true,
+    "structure_reference_candidate_count": 8,
+    "surface_scope": "broader_external_surface",
+    "terminal_status_counts": {
+      "not_recorded": 8
+    },
+    "tm_cluster_count": 7,
+    "tm_score_split_claim_permitted": false,
+    "tm_score_threshold": 0.7,
+    "tm_singleton_cluster_count": 6,
+    "unique_unordered_nonself_pair_count": 28,
+    "unique_unordered_pair_coverage": 1.0
+  },
+  "pairs": [
+    {
+      "alntmscore": 0.8338,
+      "left_accession": "P04424",
+      "max_pair_tm_score": 0.8338,
+      "qtmscore": 0.7856,
+      "raw_query_name": "afdb_P04424",
+      "raw_target_name": "afdb_P30566",
+      "right_accession": "P30566",
+      "ttmscore": 0.7556
+    },
+    {
+      "alntmscore": 0.6606,
+      "left_accession": "O95154",
+      "max_pair_tm_score": 0.6606,
+      "qtmscore": 0.5059,
+      "raw_query_name": "afdb_O95154",
+      "raw_target_name": "afdb_Q8N0X4",
+      "right_accession": "Q8N0X4",
+      "ttmscore": 0.4945
+    },
+    {
+      "alntmscore": 0.5191,
+      "left_accession": "O75828",
+      "max_pair_tm_score": 0.5191,
+      "qtmscore": 0.5129,
+      "raw_query_name": "afdb_O75828",
+      "raw_target_name": "afdb_O95479",
+      "right_accession": "O95479",
+      "ttmscore": 0.2048
+    },
+    {
+      "alntmscore": 0.4644,
+      "left_accession": "O95154",
+      "max_pair_tm_score": 0.4644,
+      "qtmscore": 0.4176,
+      "raw_query_name": "afdb_O95154",
+      "raw_target_name": "afdb_O95479",
+      "right_accession": "O95479",
+      "ttmscore": 0.2122
+    },
+    {
+      "alntmscore": 0.3995,
+      "left_accession": "O95479",
+      "max_pair_tm_score": 0.3995,
+      "qtmscore": 0.1285,
+      "raw_query_name": "afdb_O95479",
+      "raw_target_name": "afdb_Q04760",
+      "right_accession": "Q04760",
+      "ttmscore": 0.3727
+    },
+    {
+      "alntmscore": 0.3933,
+      "left_accession": "O75828",
+      "max_pair_tm_score": 0.3933,
+      "qtmscore": 0.3329,
+      "raw_query_name": "afdb_O75828",
+      "raw_target_name": "afdb_P04424",
+      "right_accession": "P04424",
+      "ttmscore": 0.2219
+    },
+    {
+      "alntmscore": 0.3911,
+      "left_accession": "O95479",
+      "max_pair_tm_score": 0.3911,
+      "qtmscore": 0.1903,
+      "raw_query_name": "afdb_O95479",
+      "raw_target_name": "afdb_Q8N0X4",
+      "right_accession": "Q8N0X4",
+      "ttmscore": 0.3673
+    },
+    {
+      "alntmscore": 0.3869,
+      "left_accession": "O75828",
+      "max_pair_tm_score": 0.3869,
+      "qtmscore": 0.3755,
+      "raw_query_name": "afdb_O75828",
+      "raw_target_name": "afdb_O95154",
+      "right_accession": "O95154",
+      "ttmscore": 0.3304
+    },
+    {
+      "alntmscore": 0.3748,
+      "left_accession": "O75828",
+      "max_pair_tm_score": 0.3748,
+      "qtmscore": 0.361,
+      "raw_query_name": "afdb_O75828",
+      "raw_target_name": "afdb_Q8N0X4",
+      "right_accession": "Q8N0X4",
+      "ttmscore": 0.3132
+    },
+    {
+      "alntmscore": 0.3651,
+      "left_accession": "O95154",
+      "max_pair_tm_score": 0.3651,
+      "qtmscore": 0.2275,
+      "raw_query_name": "afdb_O95154",
+      "raw_target_name": "afdb_Q04760",
+      "right_accession": "Q04760",
+      "ttmscore": 0.3433
+    },
+    {
+      "alntmscore": 0.3615,
+      "left_accession": "O75828",
+      "max_pair_tm_score": 0.3615,
+      "qtmscore": 0.3463,
+      "raw_query_name": "afdb_O75828",
+      "raw_target_name": "afdb_P30566",
+      "right_accession": "P30566",
+      "ttmscore": 0.2257
+    },
+    {
+      "alntmscore": 0.3573,
+      "left_accession": "P30566",
+      "max_pair_tm_score": 0.3573,
+      "qtmscore": 0.1556,
+      "raw_query_name": "afdb_P30566",
+      "raw_target_name": "afdb_Q04760",
+      "right_accession": "Q04760",
+      "ttmscore": 0.3211
+    },
+    {
+      "alntmscore": 0.3507,
+      "left_accession": "O95479",
+      "max_pair_tm_score": 0.3507,
+      "qtmscore": 0.2141,
+      "raw_query_name": "afdb_O95479",
+      "raw_target_name": "afdb_P30566",
+      "right_accession": "P30566",
+      "ttmscore": 0.3152
+    },
+    {
+      "alntmscore": 0.3472,
+      "left_accession": "O95479",
+      "max_pair_tm_score": 0.3472,
+      "qtmscore": 0.219,
+      "raw_query_name": "afdb_O95479",
+      "raw_target_name": "afdb_P04424",
+      "right_accession": "P04424",
+      "ttmscore": 0.3272
+    },
+    {
+      "alntmscore": 0.3314,
+      "left_accession": "Q13087",
+      "max_pair_tm_score": 0.3314,
+      "qtmscore": 0.1973,
+      "raw_query_name": "afdb_Q13087",
+      "raw_target_name": "afdb_Q8N0X4",
+      "right_accession": "Q8N0X4",
+      "ttmscore": 0.2711
+    },
+    {
+      "alntmscore": 0.3305,
+      "left_accession": "Q04760",
+      "max_pair_tm_score": 0.3305,
+      "qtmscore": 0.3231,
+      "raw_query_name": "afdb_Q04760",
+      "raw_target_name": "afdb_Q8N0X4",
+      "right_accession": "Q8N0X4",
+      "ttmscore": 0.2106
+    },
+    {
+      "alntmscore": 0.3139,
+      "left_accession": "O75828",
+      "max_pair_tm_score": 0.3139,
+      "qtmscore": 0.2267,
+      "raw_query_name": "afdb_O75828",
+      "raw_target_name": "afdb_Q04760",
+      "right_accession": "Q04760",
+      "ttmscore": 0.3018
+    },
+    {
+      "alntmscore": 0.307,
+      "left_accession": "P04424",
+      "max_pair_tm_score": 0.307,
+      "qtmscore": 0.1493,
+      "raw_query_name": "afdb_P04424",
+      "raw_target_name": "afdb_Q04760",
+      "right_accession": "Q04760",
+      "ttmscore": 0.2916
+    },
+    {
+      "alntmscore": 0.2933,
+      "left_accession": "Q04760",
+      "max_pair_tm_score": 0.2933,
+      "qtmscore": 0.2598,
+      "raw_query_name": "afdb_Q04760",
+      "raw_target_name": "afdb_Q13087",
+      "right_accession": "Q13087",
+      "ttmscore": 0.1209
+    },
+    {
+      "alntmscore": 0.2878,
+      "left_accession": "P30566",
+      "max_pair_tm_score": 0.2878,
+      "qtmscore": 0.2056,
+      "raw_query_name": "afdb_P30566",
+      "raw_target_name": "afdb_Q13087",
+      "right_accession": "Q13087",
+      "ttmscore": 0.1936
+    },
+    {
+      "alntmscore": 0.2862,
+      "left_accession": "P30566",
+      "max_pair_tm_score": 0.2862,
+      "qtmscore": 0.1972,
+      "raw_query_name": "afdb_P30566",
+      "raw_target_name": "afdb_Q8N0X4",
+      "right_accession": "Q8N0X4",
+      "ttmscore": 0.2542
+    },
+    {
+      "alntmscore": 0.2834,
+      "left_accession": "P04424",
+      "max_pair_tm_score": 0.2834,
+      "qtmscore": 0.1975,
+      "raw_query_name": "afdb_P04424",
+      "raw_target_name": "afdb_Q8N0X4",
+      "right_accession": "Q8N0X4",
+      "ttmscore": 0.2461
+    },
+    {
+      "alntmscore": 0.28,
+      "left_accession": "O95154",
+      "max_pair_tm_score": 0.28,
+      "qtmscore": 0.2634,
+      "raw_query_name": "afdb_O95154",
+      "raw_target_name": "afdb_P04424",
+      "right_accession": "P04424",
+      "ttmscore": 0.2067
+    },
+    {
+      "alntmscore": 0.2798,
+      "left_accession": "O75828",
+      "max_pair_tm_score": 0.2798,
+      "qtmscore": 0.2602,
+      "raw_query_name": "afdb_O75828",
+      "raw_target_name": "afdb_Q13087",
+      "right_accession": "Q13087",
+      "ttmscore": 0.1576
+    },
+    {
+      "alntmscore": 0.2697,
+      "left_accession": "O95479",
+      "max_pair_tm_score": 0.2697,
+      "qtmscore": 0.1802,
+      "raw_query_name": "afdb_O95479",
+      "raw_target_name": "afdb_Q13087",
+      "right_accession": "Q13087",
+      "ttmscore": 0.2424
+    },
+    {
+      "alntmscore": 0.2605,
+      "left_accession": "O95154",
+      "max_pair_tm_score": 0.2605,
+      "qtmscore": 0.2477,
+      "raw_query_name": "afdb_O95154",
+      "raw_target_name": "afdb_P30566",
+      "right_accession": "P30566",
+      "ttmscore": 0.1874
+    },
+    {
+      "alntmscore": 0.2575,
+      "left_accession": "P04424",
+      "max_pair_tm_score": 0.2575,
+      "qtmscore": 0.2104,
+      "raw_query_name": "afdb_P04424",
+      "raw_target_name": "afdb_Q13087",
+      "right_accession": "Q13087",
+      "ttmscore": 0.1939
+    },
+    {
+      "alntmscore": 0.2316,
+      "left_accession": "O95154",
+      "max_pair_tm_score": 0.2316,
+      "qtmscore": 0.2126,
+      "raw_query_name": "afdb_O95154",
+      "raw_target_name": "afdb_Q13087",
+      "right_accession": "Q13087",
+      "ttmscore": 0.1547
+    }
+  ],
+  "rows": [
+    {
+      "accession": "O75828",
+      "coordinate_byte_count": 261315,
+      "coordinate_digest_sha256": "475d7e6bdea849613e7cb8e86cf69c1489fd23ee0d3f418a89803a27e1a4727a",
+      "coordinate_path": "artifacts/v3_external_hard_negative_new_candidate_structural_coordinates_1025/afdb_O75828.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O75828",
+      "fetch_error": null,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_neighbor": {
+        "accession": "O95479",
+        "tm_score": 0.5191
+      },
+      "pdb_reference_count": 1,
+      "pdb_reference_examples": [
+        "2HRB"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "structure_id": "O75828",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:001"
+    },
+    {
+      "accession": "O95154",
+      "coordinate_byte_count": 313616,
+      "coordinate_digest_sha256": "63fe1d759144ab5f4b00efac7a2360820de374230b6e0918423e3553821166b2",
+      "coordinate_path": "artifacts/v3_external_hard_negative_new_candidate_structural_coordinates_1025/afdb_O95154.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95154",
+      "fetch_error": null,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_neighbor": {
+        "accession": "Q8N0X4",
+        "tm_score": 0.6606
+      },
+      "pdb_reference_count": 1,
+      "pdb_reference_examples": [
+        "2CLP"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "structure_id": "O95154",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:002"
+    },
+    {
+      "accession": "O95479",
+      "coordinate_byte_count": 732011,
+      "coordinate_digest_sha256": "6fee17c59a740892e64ceeff23bfb92f4fe353f0e0d7f20dc1af0407c70ae75c",
+      "coordinate_path": "artifacts/v3_external_hard_negative_new_candidate_structural_coordinates_1025/afdb_O95479.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95479",
+      "fetch_error": null,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_neighbor": {
+        "accession": "O75828",
+        "tm_score": 0.5191
+      },
+      "pdb_reference_count": 1,
+      "pdb_reference_examples": [
+        "8EM2"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "structure_id": "O95479",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:003"
+    },
+    {
+      "accession": "P04424",
+      "coordinate_byte_count": 427278,
+      "coordinate_digest_sha256": "a2ad8f9f8b06019be3256e82cfb339534960505c812e3bb0a0750e3818e6f8ca",
+      "coordinate_path": "artifacts/v3_external_hard_negative_new_candidate_structural_coordinates_1025/afdb_P04424.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P04424",
+      "fetch_error": null,
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "P30566",
+        "tm_score": 0.8338
+      },
+      "pdb_reference_count": 2,
+      "pdb_reference_examples": [
+        "1AOS",
+        "1K62"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "structure_id": "P04424",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:004"
+    },
+    {
+      "accession": "Q8N0X4",
+      "coordinate_byte_count": 314865,
+      "coordinate_digest_sha256": "39124e88805069760ec076e7966cf49a30083a37028503e699353a6760f5819a",
+      "coordinate_path": "artifacts/v3_external_hard_negative_new_candidate_structural_coordinates_1025/afdb_Q8N0X4.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8N0X4",
+      "fetch_error": null,
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "O95154",
+        "tm_score": 0.6606
+      },
+      "pdb_reference_count": 3,
+      "pdb_reference_examples": [
+        "5VXC",
+        "5VXO",
+        "5VXS"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "structure_id": "Q8N0X4",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:007"
+    },
+    {
+      "accession": "P30566",
+      "coordinate_byte_count": 451145,
+      "coordinate_digest_sha256": "4d4df1af16b8508d5c3d47c382e9c42884ce40b2cd021d579fd8088722a9af48",
+      "coordinate_path": "artifacts/v3_external_hard_negative_new_candidate_structural_coordinates_1025/afdb_P30566.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30566",
+      "fetch_error": null,
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "P04424",
+        "tm_score": 0.8338
+      },
+      "pdb_reference_count": 4,
+      "pdb_reference_examples": [
+        "2J91",
+        "2VD6",
+        "4FFX",
+        "4FLC"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "structure_id": "P30566",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:004"
+    },
+    {
+      "accession": "Q04760",
+      "coordinate_byte_count": 181287,
+      "coordinate_digest_sha256": "7385faec9ab9c6c941851abf9f5786a2aff5f910c88d1f5b3ea43e5f982b3eb4",
+      "coordinate_path": "artifacts/v3_external_hard_negative_new_candidate_structural_coordinates_1025/afdb_Q04760.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q04760",
+      "fetch_error": null,
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "O95479",
+        "tm_score": 0.3995
+      },
+      "pdb_reference_count": 11,
+      "pdb_reference_examples": [
+        "1BH5",
+        "1FRO",
+        "1QIN",
+        "1QIP",
+        "3VW9"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "structure_id": "Q04760",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:005"
+    },
+    {
+      "accession": "Q13087",
+      "coordinate_byte_count": 484834,
+      "coordinate_digest_sha256": "4a8f1151c121f0fee288aa0a150355b935e7f6a739362550252c10910ced6b72",
+      "coordinate_path": "artifacts/v3_external_hard_negative_new_candidate_structural_coordinates_1025/afdb_Q13087.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q13087",
+      "fetch_error": null,
+      "lane_id": "external_source:isomerase",
+      "nearest_neighbor": {
+        "accession": "Q8N0X4",
+        "tm_score": 0.3314
+      },
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "structure_id": "Q13087",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:006"
+    }
+  ],
+  "warnings": [
+    "external structural cluster index is review-only; it stages coordinates and nearest-neighbor evidence but does not assign a train/test split or authorize import"
+  ]
+}

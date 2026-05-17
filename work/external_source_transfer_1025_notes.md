@@ -306,6 +306,37 @@ Current review-only external artifacts:
   current-cycle hard stop, missing active-site/scoring/structure evidence,
   uncovered mechanism lanes, high current-reference identity, same-cluster
   status, or possible existing-fingerprint context.
+- `artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json` starts
+  a fresh review-only sourcing surface after that pool exhaustion. It fetches
+  up to 12 Swiss-Prot rows per query lane, excludes the existing current
+  external pool, keeps only already covered counterevidence lanes, checks
+  bounded UniProt active-site/catalytic-activity context, and identifies 8
+  sourcing candidates: O75828, O95154, O95479, P04424, Q8N0X4, P30566, Q04760,
+  and Q13087. These rows are not a new import tranche yet; they still need
+  current-reference sequence search, current-countable structural screening,
+  external structural clustering, UniRef-wide duplicate screening, terminal
+  review, and the full factory gate.
+- `artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_1025.json`
+  screens the 8 sourced rows against the current accepted reference FASTA with
+  MMseqs2. The backend succeeds with 8/8 external sequences and 737 current
+  reference sequence records: 7 rows have no near-duplicate signal, and Q04760
+  is an exact-reference holdout to `m_csa:32`. The audit artifact is clean, but
+  these rows remain review-only; structural duplicate screening and UniRef-wide
+  duplicate screening still block import.
+- `artifacts/v3_external_hard_negative_new_candidate_structural_cluster_index_1025.json`
+  stages all 8 sourced AlphaFold structures and completes the external
+  all-vs-all structural cache. It covers 28/28 unordered nonself Foldseek
+  pairs, forms 7 clusters at `TM >=0.7`, and flags only the P04424/P30566 pair
+  as high-TM (`0.8338`). This removes the external-cluster context blocker for
+  this sourced surface, not the current-countable structural duplicate blocker.
+- `artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json`
+  screens the 7 sequence no-signal sourced rows against 672 current countable
+  selected structures. Foldseek completed with 4669/4704 unique query-target
+  pairs, so the current-countable pair cache is still incomplete. Six rows have
+  high-TM current-countable duplicate signals; Q13087 is the lone row without a
+  high-TM current-countable signal, but it remains review-only and blocked by
+  pair-cache completion, UniRef-wide duplicate screening, terminal review, and
+  the full factory gate.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine

@@ -96,6 +96,8 @@ from catalytic_earth.transfer_scope import (
     build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
     build_external_source_transfer_blocker_matrix,
+    build_external_hard_negative_new_candidate_sourcing,
+    build_external_hard_negative_new_candidate_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -9818,6 +9820,152 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertFalse(by_accession["P33025"]["ready_for_label_import"])
         self.assertFalse(by_accession["Q13907"]["countable_label_candidate"])
 
+    def test_new_candidate_current_countable_structural_screen_filters_sequence_clean_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            external_dir = root / "external"
+            current_dir = root / "current"
+            external_dir.mkdir()
+            current_dir.mkdir()
+            for name in ("afdb_PNEW1.cif", "afdb_PNEW2.cif"):
+                (external_dir / name).write_text(f"data_{name}", encoding="utf-8")
+            for name in ("pdb_1AAA.cif", "pdb_2BBB.cif"):
+                (current_dir / name).write_text(f"data_{name}", encoding="utf-8")
+
+            def fake_runner(command: list[str], workdir: Path) -> None:
+                result_tsv = Path(command[4])
+                result_tsv.write_text(
+                    "\n".join(
+                        [
+                            "afdb_PNEW1\tpdb_1AAA\t0.31\t0.32\t0.33",
+                            "afdb_PNEW1\tpdb_2BBB\t0.42\t0.43\t0.44",
+                            "afdb_PNEW2\tpdb_1AAA\t0.74\t0.73\t0.72",
+                            "afdb_PNEW2\tpdb_2BBB\t0.45\t0.46\t0.47",
+                        ]
+                    )
+                    + "\n",
+                    encoding="utf-8",
+                )
+
+            screen = build_external_hard_negative_new_candidate_current_countable_structural_screen(
+                new_candidate_sourcing={
+                    "metadata": {
+                        "method": "external_hard_negative_new_candidate_sourcing"
+                    },
+                    "rows": [
+                        {
+                            "accession": "PNEW1",
+                            "lane_id": "external_source:isomerase",
+                            "protein_name": "new no-signal row",
+                            "sourcing_status": (
+                                "sourced_pending_sequence_structure_distance_screens"
+                            ),
+                        },
+                        {
+                            "accession": "PNEW2",
+                            "lane_id": "external_source:lyase",
+                            "protein_name": "new duplicate row",
+                            "sourcing_status": (
+                                "sourced_pending_sequence_structure_distance_screens"
+                            ),
+                        },
+                    ],
+                },
+                backend_sequence_search={
+                    "metadata": {"method": "external_source_backend_sequence_search"},
+                    "rows": [
+                        {
+                            "accession": "PNEW1",
+                            "entry_id": "uniprot:PNEW1",
+                            "lane_id": "external_source:isomerase",
+                            "protein_name": "new no-signal row",
+                            "search_status": "no_near_duplicate_signal",
+                        },
+                        {
+                            "accession": "PNEW2",
+                            "entry_id": "uniprot:PNEW2",
+                            "lane_id": "external_source:lyase",
+                            "protein_name": "new duplicate row",
+                            "search_status": "no_near_duplicate_signal",
+                        },
+                        {
+                            "accession": "PHOLD",
+                            "entry_id": "uniprot:PHOLD",
+                            "lane_id": "external_source:lyase",
+                            "search_status": "exact_reference_holdout",
+                        },
+                    ],
+                },
+                foldseek_coordinate_readiness={
+                    "metadata": {
+                        "method": "foldseek_coordinate_readiness",
+                        "slice_id": "1000",
+                    },
+                    "rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "coordinate_path": str(current_dir / "pdb_1AAA.cif"),
+                            "coordinate_materialization_status": (
+                                "already_materialized"
+                            ),
+                            "selected_structure_key": "pdb:1AAA",
+                            "selected_structure_id": "1AAA",
+                            "selected_structure_source": "pdb",
+                            "label_type": "out_of_scope",
+                            "target_fingerprint_id": None,
+                        },
+                        {
+                            "entry_id": "m_csa:2",
+                            "coordinate_path": str(current_dir / "pdb_2BBB.cif"),
+                            "coordinate_materialization_status": (
+                                "already_materialized"
+                            ),
+                            "selected_structure_key": "pdb:2BBB",
+                            "selected_structure_id": "2BBB",
+                            "selected_structure_source": "pdb",
+                            "label_type": "seed_fingerprint",
+                            "target_fingerprint_id": "plp_dependent_enzyme",
+                        },
+                    ],
+                },
+                external_coordinate_dir=external_dir,
+                foldseek_binary=sys.executable,
+                runner=fake_runner,
+                max_rows=2,
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+
+        metadata = screen["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_hard_negative_new_candidate_current_countable_structural_screen",
+        )
+        self.assertEqual(metadata["sequence_no_signal_candidate_count"], 2)
+        self.assertEqual(metadata["exact_reference_holdout_accessions"], ["PHOLD"])
+        self.assertEqual(metadata["high_tm_candidate_count"], 1)
+        self.assertEqual(
+            metadata["source_new_candidate_sourcing_method"],
+            "external_hard_negative_new_candidate_sourcing",
+        )
+        by_accession = {row["accession"]: row for row in screen["rows"]}
+        self.assertEqual(
+            by_accession["PNEW1"]["current_countable_structural_screen_status"],
+            "no_current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(
+            by_accession["PNEW2"]["current_countable_structural_screen_status"],
+            "current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(
+            by_accession["PNEW2"]["review_status"],
+            "external_hard_negative_new_candidate_current_countable_"
+            "structural_screen_review_only",
+        )
+        self.assertFalse(by_accession["PNEW1"]["import_ready_candidate"])
+        self.assertFalse(by_accession["PNEW2"]["countable_label_candidate"])
+
     def test_second_tranche_terminal_decisions_reject_structural_duplicates(
         self,
     ) -> None:
@@ -9887,6 +10035,162 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertIsNone(row["target_fingerprint_id"])
         self.assertFalse(row["import_ready_candidate"])
         self.assertFalse(row["countable_label_candidate"])
+
+    def test_new_hard_negative_candidate_sourcing_stays_review_only(self) -> None:
+        def fake_query(query: str, size: int) -> dict:
+            self.assertEqual(size, 5)
+            if "ec:4" in query:
+                return {
+                    "records": [
+                        {
+                            "accession": "O14756",
+                            "entry_name": "OLD_HUMAN",
+                            "protein_name": "existing pool row",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["4.1.1.1"],
+                            "pdb_ids": [],
+                            "alphafold_ids": ["O14756"],
+                        },
+                        {
+                            "accession": "PNEW1",
+                            "entry_name": "NEW1_HUMAN",
+                            "protein_name": "fresh lyase candidate",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["4.1.2.13"],
+                            "pdb_ids": ["1AAA"],
+                            "alphafold_ids": ["PNEW1"],
+                        },
+                        {
+                            "accession": "PNEW2",
+                            "entry_name": "NEW2_HUMAN",
+                            "protein_name": "active-site gap lyase candidate",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["4.2.1.1"],
+                            "pdb_ids": [],
+                            "alphafold_ids": ["PNEW2"],
+                        },
+                    ]
+                }
+            return {
+                "records": [
+                    {
+                        "accession": "PPHOS",
+                        "entry_name": "PHOS_HUMAN",
+                        "protein_name": "uncovered kinase lane",
+                        "reviewed": "reviewed",
+                        "ec_numbers": ["2.7.1.1"],
+                        "pdb_ids": ["2BBB"],
+                        "alphafold_ids": ["PPHOS"],
+                    }
+                ]
+            }
+
+        def fake_entry(accession: str) -> dict:
+            if accession == "PNEW1":
+                return {
+                    "record": {
+                        "entry_name": "NEW1_HUMAN",
+                        "entry_type": "Swiss-Prot",
+                        "active_site_features": [
+                            {"feature_type": "Active site", "begin": 42}
+                        ],
+                        "binding_site_features": [],
+                        "catalytic_activity_comments": [
+                            {"reaction": "reviewed reaction", "ec_number": "4.1.2.13"}
+                        ],
+                        "cofactor_comments": [],
+                    }
+                }
+            return {
+                "record": {
+                    "entry_name": f"{accession}_HUMAN",
+                    "entry_type": "Swiss-Prot",
+                    "active_site_features": [],
+                    "binding_site_features": [],
+                    "catalytic_activity_comments": [
+                        {"reaction": "reviewed reaction", "ec_number": "4.2.1.1"}
+                    ],
+                    "cofactor_comments": [],
+                }
+            }
+
+        sourcing = build_external_hard_negative_new_candidate_sourcing(
+            query_manifest={
+                "metadata": {"method": "external_source_query_manifest"},
+                "rows": [
+                    {
+                        "lane_id": "external_source:lyase",
+                        "scope_signal": "lyase",
+                        "source_query_draft": "(reviewed:true) AND (ec:4.*)",
+                    },
+                    {
+                        "lane_id": "external_source:transferase_phosphoryl",
+                        "scope_signal": "transferase_phosphoryl",
+                        "source_query_draft": "(reviewed:true) AND (ec:2.7.*)",
+                    },
+                ],
+            },
+            current_candidate_manifest={
+                "metadata": {"method": "external_source_candidate_manifest"},
+                "rows": [{"accession": "O14756"}],
+            },
+            second_tranche_terminal_decisions={
+                "metadata": {
+                    "method": "external_hard_negative_second_tranche_terminal_decisions"
+                },
+                "rows": [
+                    {
+                        "accession": "P33025",
+                        "terminal_decision_status": (
+                            "rejected_current_countable_structural_duplicate_signal"
+                        ),
+                    }
+                ],
+            },
+            max_records_per_lane=5,
+            max_active_site_fetches=5,
+            max_candidates=3,
+            fetch_query=fake_query,
+            fetch_entry=fake_entry,
+            artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+        )
+
+        metadata = sourcing["metadata"]
+        self.assertEqual(
+            metadata["method"], "external_hard_negative_new_candidate_sourcing"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["target_label_type"], "out_of_scope")
+        self.assertIsNone(metadata["target_fingerprint_id"])
+        self.assertEqual(metadata["sourced_candidate_count"], 1)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        by_accession = {row["accession"]: row for row in sourcing["rows"]}
+        self.assertEqual(
+            by_accession["PNEW1"]["sourcing_status"],
+            "sourced_pending_sequence_structure_distance_screens",
+        )
+        self.assertIn(
+            "current_countable_foldseek_structural_screen",
+            by_accession["PNEW1"]["next_required_screens"],
+        )
+        self.assertFalse(by_accession["PNEW1"]["import_ready_candidate"])
+        self.assertFalse(by_accession["PNEW1"]["countable_label_candidate"])
+        self.assertEqual(
+            by_accession["PNEW2"]["sourcing_status"],
+            "blocked_active_site_source_missing",
+        )
+        self.assertIn(
+            "uniprot_active_site_feature_missing",
+            by_accession["PNEW2"]["source_evidence_blockers"],
+        )
+        self.assertEqual(
+            by_accession["O14756"]["sourcing_status"],
+            "excluded_current_external_pool",
+        )
+        self.assertEqual(
+            by_accession["PPHOS"]["sourcing_status"],
+            "blocked_uncovered_mechanism_lane",
+        )
 
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
         self,

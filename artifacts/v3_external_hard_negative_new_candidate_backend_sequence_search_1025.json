@@ -1,0 +1,652 @@
+{
+  "blockers": [
+    "external_review_decision_artifact_not_built",
+    "full_label_factory_gate_not_run",
+    "sequence_holdout_control_not_resolved"
+  ],
+  "exact_reference_rows": [
+    {
+      "accession": "Q04760",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "sequence_holdout_control_not_resolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q04760",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 184,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 1.0,
+      "near_duplicate_hit_count": 1,
+      "protein_name": "Lactoylglutathione lyase (EC 4.4.1.5) (Aldoketomutase) (Glyoxalase I) (Glx I) (Ketone-aldehyde mutase) (Methylglyoxalase) (S-D-lactoylglutathione methylglyoxal lyase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "exact_reference_holdout",
+      "top_hits": [
+        {
+          "accession": "Q04760",
+          "alignment_length": 184,
+          "bits": 392.0,
+          "evalue": 7.34e-127,
+          "external_length": 184,
+          "identity": 1.0,
+          "matched_m_csa_entry_ids": [
+            "m_csa:32"
+          ],
+          "min_coverage": 1.0,
+          "query_coverage": 1.0,
+          "reference_accession": "Q04760",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 184,
+          "requested_reference_accession": "Q04760",
+          "target_coverage": 1.0
+        }
+      ]
+    }
+  ],
+  "failure_rows": [],
+  "fetch_failures": [],
+  "metadata": {
+    "alignment_row_count": 5,
+    "backend_available": true,
+    "backend_commands": [
+      "/opt/homebrew/bin/mmseqs easy-search /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_external_1025.fasta /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_reference_1025.fasta /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_1025.tsv /private/tmp/catalytic-earth-external-sequence-mmseqs-431d3d23a762a4bf/tmp --format-output query,target,pident,alnlen,evalue,bits --min-seq-id 0.0 -c 0.8 --cov-mode 0 --max-seqs 10000 --threads 1"
+    ],
+    "backend_name": "mmseqs2_easy_search",
+    "backend_requested": "auto",
+    "backend_result_tsv": "artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_1025.tsv",
+    "backend_succeeded": true,
+    "backend_version": "18-8cc5c",
+    "blocker_not_removed": [
+      "uniref_wide_or_external_all_vs_all_duplicate_screen_not_run"
+    ],
+    "blocker_removed": "bounded_current_reference_backend_sequence_search",
+    "blocker_removed_for_status": "current_reference_backend_no_signal",
+    "candidate_count": 8,
+    "countable_label_candidate_count": 0,
+    "coverage_threshold": 0.8,
+    "current_reference_accession_count": 735,
+    "current_reference_sequence_count": 737,
+    "exact_coverage_threshold": 0.98,
+    "exact_identity_threshold": 0.999,
+    "exact_reference_row_count": 1,
+    "expected_external_sequence_count": 8,
+    "external_sequence_count": 8,
+    "external_sequence_source": "uniprot_sequence_batch_search",
+    "failure_row_count": 0,
+    "identity_threshold": 0.9,
+    "import_ready_row_count": 0,
+    "inactive_reference_accession_resolutions": {
+      "P03176": [
+        "P0DTH5",
+        "Q9QNF7"
+      ],
+      "Q05489": [
+        "P0DUB8",
+        "P0DUB9"
+      ]
+    },
+    "limitations": [
+      "MMseqs2 easy-search reports heuristic local alignments at the configured coverage threshold; it is not an exhaustive dynamic programming matrix for every low-identity pair",
+      "bounded search compares the 30-row external pilot against current accepted countable reference sequences only; no UniRef database was downloaded or searched",
+      "backend no-signal rows remove complete-search debt for the bounded current-reference pilot screen only; exact and near-duplicate rows remain holdout controls",
+      "Foldseek/TM-score structural duplicate screening is not computed here"
+    ],
+    "max_external_vs_reference_identity": 1.0,
+    "max_rows": 8,
+    "method": "external_source_backend_sequence_search",
+    "missing_external_sequence_accessions": [],
+    "missing_external_sequence_count": 0,
+    "missing_reference_sequence_accessions": [],
+    "missing_reference_sequence_count": 0,
+    "near_duplicate_row_count": 0,
+    "no_signal_row_count": 7,
+    "ready_for_label_import": false,
+    "reference_fasta_record_count": 734,
+    "review_only_rule": "real backend sequence-search evidence is review-only and cannot make external rows countable or import-ready",
+    "row_blocker_counts": {
+      "external_review_decision_artifact_not_built": 8,
+      "full_label_factory_gate_not_run": 8,
+      "sequence_holdout_control_not_resolved": 1
+    },
+    "search_status_counts": {
+      "exact_reference_holdout": 1,
+      "no_near_duplicate_signal": 7
+    },
+    "sequence_source_artifacts": {
+      "candidate_manifest": "external_hard_negative_new_candidate_sourcing",
+      "generated_external_fasta": "artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_external_1025.fasta",
+      "generated_reference_fasta": "artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_reference_1025.fasta",
+      "reference_fasta": "artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta",
+      "sequence_clusters": "sequence_cluster_proxy_from_reference_uniprot"
+    }
+  },
+  "near_duplicate_rows": [],
+  "no_signal_rows": [
+    {
+      "accession": "O75828",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O75828",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 277,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Carbonyl reductase [NADPH] 3 (EC 1.1.1.184) (NADPH-dependent carbonyl reductase 3) (Quinone reductase CBR3) (EC 1.6.5.10) (Short chain dehydrogenase/reductase family 21C member 2)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "O95154",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95154",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 331,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Aldo-keto reductase family 7 member A3 (EC 1.1.1.2) (AFB1 aldehyde reductase 2) (AFB1-AR 2) (Aflatoxin B1 aldehyde reductase member 3)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "O95479",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95479",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 791,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "GDH/6PGL endoplasmic bifunctional protein [Includes: Hexose-6-phosphate dehydrogenase (Glucose 1-dehydrogenase) (GDH) (EC 1.1.1.47) (Glucose-6-phosphate dehydrogenase) (EC 1.1.1.363); 6-phosphogluconolactonase (6PGL) (EC 3.1.1.31)]",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P04424",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P04424",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 464,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.713,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Argininosuccinate lyase (ASAL) (EC 4.3.2.1) (Arginosuccinase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P04424",
+          "alignment_length": 464,
+          "bits": 668.0,
+          "evalue": 4.617e-217,
+          "external_length": 464,
+          "identity": 0.713,
+          "matched_m_csa_entry_ids": [
+            "m_csa:408"
+          ],
+          "min_coverage": 0.9915,
+          "query_coverage": 1.0,
+          "reference_accession": "P24058",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 468,
+          "requested_reference_accession": "P24058",
+          "target_coverage": 0.9915
+        },
+        {
+          "accession": "P04424",
+          "alignment_length": 374,
+          "bits": 53.0,
+          "evalue": 1.269e-08,
+          "external_length": 464,
+          "identity": 0.205,
+          "matched_m_csa_entry_ids": [
+            "m_csa:80"
+          ],
+          "min_coverage": 0.806,
+          "query_coverage": 0.806,
+          "reference_accession": "Q9X0I0",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 431,
+          "requested_reference_accession": "Q9X0I0",
+          "target_coverage": 0.8677
+        }
+      ]
+    },
+    {
+      "accession": "P30566",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30566",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 484,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.241,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Adenylosuccinate lyase (ADSL) (ASL) (EC 4.3.2.2) (Adenylosuccinase) (ASase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P30566",
+          "alignment_length": 447,
+          "bits": 136.0,
+          "evalue": 1.346e-34,
+          "external_length": 484,
+          "identity": 0.241,
+          "matched_m_csa_entry_ids": [
+            "m_csa:80"
+          ],
+          "min_coverage": 0.9236,
+          "query_coverage": 0.9236,
+          "reference_accession": "Q9X0I0",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 431,
+          "requested_reference_accession": "Q9X0I0",
+          "target_coverage": 1.0371
+        }
+      ]
+    },
+    {
+      "accession": "Q13087",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q13087",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 525,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.502,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Protein disulfide-isomerase A2 (EC 5.3.4.1) (Pancreas-specific protein disulfide isomerase) (PDIp)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "Q13087",
+          "alignment_length": 456,
+          "bits": 478.0,
+          "evalue": 3.3e-150,
+          "external_length": 525,
+          "identity": 0.502,
+          "matched_m_csa_entry_ids": [
+            "m_csa:191"
+          ],
+          "min_coverage": 0.8686,
+          "query_coverage": 0.8686,
+          "reference_accession": "P07237",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 508,
+          "requested_reference_accession": "P07237",
+          "target_coverage": 0.8976
+        }
+      ]
+    },
+    {
+      "accession": "Q8N0X4",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8N0X4",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 340,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Citramalyl-CoA lyase, mitochondrial (EC 4.1.3.25) ((3S)-malyl-CoA thioesterase) (EC 3.1.2.30) (Beta-methylmalate synthase) (EC 2.3.3.-) (Citrate lyase subunit beta-like protein) (Citrate lyase beta-like) (Malate synthase) (EC 2.3.3.9)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    }
+  ],
+  "rows": [
+    {
+      "accession": "O75828",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O75828",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 277,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Carbonyl reductase [NADPH] 3 (EC 1.1.1.184) (NADPH-dependent carbonyl reductase 3) (Quinone reductase CBR3) (EC 1.6.5.10) (Short chain dehydrogenase/reductase family 21C member 2)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "O95154",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95154",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 331,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Aldo-keto reductase family 7 member A3 (EC 1.1.1.2) (AFB1 aldehyde reductase 2) (AFB1-AR 2) (Aflatoxin B1 aldehyde reductase member 3)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "O95479",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95479",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 791,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "GDH/6PGL endoplasmic bifunctional protein [Includes: Hexose-6-phosphate dehydrogenase (Glucose 1-dehydrogenase) (GDH) (EC 1.1.1.47) (Glucose-6-phosphate dehydrogenase) (EC 1.1.1.363); 6-phosphogluconolactonase (6PGL) (EC 3.1.1.31)]",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P04424",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P04424",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 464,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.713,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Argininosuccinate lyase (ASAL) (EC 4.3.2.1) (Arginosuccinase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P04424",
+          "alignment_length": 464,
+          "bits": 668.0,
+          "evalue": 4.617e-217,
+          "external_length": 464,
+          "identity": 0.713,
+          "matched_m_csa_entry_ids": [
+            "m_csa:408"
+          ],
+          "min_coverage": 0.9915,
+          "query_coverage": 1.0,
+          "reference_accession": "P24058",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 468,
+          "requested_reference_accession": "P24058",
+          "target_coverage": 0.9915
+        },
+        {
+          "accession": "P04424",
+          "alignment_length": 374,
+          "bits": 53.0,
+          "evalue": 1.269e-08,
+          "external_length": 464,
+          "identity": 0.205,
+          "matched_m_csa_entry_ids": [
+            "m_csa:80"
+          ],
+          "min_coverage": 0.806,
+          "query_coverage": 0.806,
+          "reference_accession": "Q9X0I0",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 431,
+          "requested_reference_accession": "Q9X0I0",
+          "target_coverage": 0.8677
+        }
+      ]
+    },
+    {
+      "accession": "P30566",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30566",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 484,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.241,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Adenylosuccinate lyase (ADSL) (ASL) (EC 4.3.2.2) (Adenylosuccinase) (ASase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P30566",
+          "alignment_length": 447,
+          "bits": 136.0,
+          "evalue": 1.346e-34,
+          "external_length": 484,
+          "identity": 0.241,
+          "matched_m_csa_entry_ids": [
+            "m_csa:80"
+          ],
+          "min_coverage": 0.9236,
+          "query_coverage": 0.9236,
+          "reference_accession": "Q9X0I0",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 431,
+          "requested_reference_accession": "Q9X0I0",
+          "target_coverage": 1.0371
+        }
+      ]
+    },
+    {
+      "accession": "Q04760",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "sequence_holdout_control_not_resolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q04760",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 184,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 1.0,
+      "near_duplicate_hit_count": 1,
+      "protein_name": "Lactoylglutathione lyase (EC 4.4.1.5) (Aldoketomutase) (Glyoxalase I) (Glx I) (Ketone-aldehyde mutase) (Methylglyoxalase) (S-D-lactoylglutathione methylglyoxal lyase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "exact_reference_holdout",
+      "top_hits": [
+        {
+          "accession": "Q04760",
+          "alignment_length": 184,
+          "bits": 392.0,
+          "evalue": 7.34e-127,
+          "external_length": 184,
+          "identity": 1.0,
+          "matched_m_csa_entry_ids": [
+            "m_csa:32"
+          ],
+          "min_coverage": 1.0,
+          "query_coverage": 1.0,
+          "reference_accession": "Q04760",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 184,
+          "requested_reference_accession": "Q04760",
+          "target_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "accession": "Q13087",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q13087",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 525,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.502,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Protein disulfide-isomerase A2 (EC 5.3.4.1) (Pancreas-specific protein disulfide isomerase) (PDIp)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "Q13087",
+          "alignment_length": 456,
+          "bits": 478.0,
+          "evalue": 3.3e-150,
+          "external_length": 525,
+          "identity": 0.502,
+          "matched_m_csa_entry_ids": [
+            "m_csa:191"
+          ],
+          "min_coverage": 0.8686,
+          "query_coverage": 0.8686,
+          "reference_accession": "P07237",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 508,
+          "requested_reference_accession": "P07237",
+          "target_coverage": 0.8976
+        }
+      ]
+    },
+    {
+      "accession": "Q8N0X4",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8N0X4",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 340,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Citramalyl-CoA lyase, mitochondrial (EC 4.1.3.25) ((3S)-malyl-CoA thioesterase) (EC 3.1.2.30) (Beta-methylmalate synthase) (EC 2.3.3.-) (Citrate lyase subunit beta-like protein) (Citrate lyase beta-like) (Malate synthase) (EC 2.3.3.9)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    }
+  ],
+  "warnings": [
+    "the backend search removes bounded current-reference sequence-search debt only for no-signal rows; active-site evidence, representation controls, review decisions, and factory gates remain required"
+  ]
+}

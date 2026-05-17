@@ -101,10 +101,48 @@ records all three admitted rows as terminal review-only
 import-ready rows and 0 countable labels.
 `artifacts/v3_external_hard_negative_second_tranche_replacement_triage_1025.json`
 then triages the current 25-row pool and admits 0 replacements. Next direct
-work should source a new external hard-negative tranche or add new evidence
-before reconsidering this pool; do not retry P33025/Q13907/P35914 or reopen
+work has now moved to fresh external sourcing rather than reconsidering this
+pool; do not retry P33025/Q13907/P35914 or reopen
 O14756/Q6NSJ0/P34949/Q9BXD5/C9JRZ8/P06746 repair lanes in this cycle without
-new expert evidence.
+new expert evidence. The 2026-05-17T03:25:01Z run added
+`artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json`, a
+review-only expanded Swiss-Prot sourcing pass. It excludes the current external
+pool, keeps only covered mechanism lanes, and finds 8 new rows with explicit
+UniProt active-site and catalytic-activity context: `O75828`, `O95154`,
+`O95479`, `P04424`, `Q8N0X4`, `P30566`, `Q04760`, and `Q13087`. Evidence-based
+confidence call: this removes the immediate "no new candidates" sourcing
+blocker, but it does not create an import-ready tranche. Every sourced row
+still needs duplicate/review/factory evidence before any import attempt. The
+same run also added
+`artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_1025.json`
+and its audit for those 8 rows. The MMseqs2 current-reference screen is
+complete and guardrail-clean: 7 rows have no near-duplicate signal, while
+`Q04760` is an exact-reference holdout to `m_csa:32`; do not carry `Q04760`
+into an import attempt.
+`artifacts/v3_external_hard_negative_new_candidate_structural_cluster_index_1025.json`
+already covers the external all-vs-all side for the 8 sourced rows: all 8
+AlphaFold coordinate sidecars are staged, 28/28 unordered Foldseek pairs are
+covered, and only `P04424`/`P30566` cluster at `TM >=0.7` (`0.8338`).
+`artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json`
+now screens the 7 sequence no-signal rows against 672 current countable
+selected structures. Foldseek completed, but only 4669/4704 unique query-target
+pairs were reported, so the pair cache is still incomplete. Six rows have
+high-TM current-countable duplicate signals; `Q13087` is the lone row without a
+high-TM current-countable signal, but it remains blocked by pair-cache
+completion, UniRef-wide duplicate screening, terminal review, and the full
+factory gate. Next direct work should complete or shard the missing
+current-countable pair cache before any terminal review/import attempt.
+
+Run verification for the current handoff: started `2026-05-17T03:25:01Z`.
+Startup checks passed with 378 unit tests and `PYTHONPATH=src python -m
+catalytic_earth.cli validate`. Final checks passed with 380 unit tests,
+`validate`, `compileall`, `git diff --check`, JSON parse checks for the new
+sourcing/sequence/structural artifacts, coordinate digest rechecks after CIF
+whitespace normalization, focused artifact regressions, and the external
+transfer gate still at 68/68. README, `docs/external_source_transfer.md`, work
+scope/handoff/status inputs, and external transfer notes were updated;
+`docs/label_factory.md` was checked and did not need content changes for this
+sourcing/duplicate-screen slice.
 
 Run verification for the current handoff: started `2026-05-17T02:23:59Z` and
 wrapped at `2026-05-17T02:50:16Z`. Startup checks passed with 376 unit tests

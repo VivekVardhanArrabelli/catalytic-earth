@@ -69,6 +69,32 @@ import.
   admits 0 replacements. The next hard-negative tranche needs new external
   candidate sourcing or new evidence, not another import attempt from the same
   pool.
+- `artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json` begins
+  that next sourcing pass without opening an import attempt. It fetches a
+  bounded expanded Swiss-Prot surface, excludes the current external pool,
+  keeps only lanes already covered by existing counterevidence work, and finds
+  8 new rows with explicit UniProt active-site plus catalytic-activity source
+  context. They are sourcing candidates only; all still need sequence,
+  structural, UniRef-wide duplicate, terminal-review, and factory-gate screens.
+- `artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_1025.json`
+  completes the first bounded current-reference sequence screen for those 8
+  sourced rows. Seven rows have no near-duplicate signal against the current
+  accepted reference FASTA, while `Q04760` is an exact-reference holdout. The
+  companion audit is guardrail-clean, but the result remains review-only and
+  still does not satisfy structural, UniRef-wide, terminal-review, or factory
+  gates.
+- `artifacts/v3_external_hard_negative_new_candidate_structural_cluster_index_1025.json`
+  stages AlphaFold structures for those 8 sourced rows and completes the
+  external all-vs-all Foldseek cache. The cache covers 28/28 unordered pairs,
+  forms 7 clusters at `TM >=0.7`, and flags the `P04424`/`P30566` pair at
+  `0.8338`.
+- `artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json`
+  now screens the 7 sequence no-signal rows against current countable selected
+  structures. Foldseek completed, but the cache is still incomplete
+  (4669/4704 unique query-target pairs). Six rows have high-TM
+  current-countable duplicate signals; only `Q13087` has no high-TM signal, and
+  it remains blocked by pair-cache completion, UniRef-wide duplicate screening,
+  terminal review, and the full factory gate. This authorizes 0 imports.
 
 ## Immediate Pilot Direction
 

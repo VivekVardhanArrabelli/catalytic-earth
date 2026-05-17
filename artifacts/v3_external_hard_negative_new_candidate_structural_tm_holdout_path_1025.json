@@ -1,0 +1,238 @@
+{
+  "metadata": {
+    "alphafold_reference_candidate_count": 8,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "candidate_manifest": "artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json",
+        "pilot_candidate_priority": "artifacts/v3_external_source_pilot_candidate_priority_1025.json"
+      },
+      "blocker_removed": "broader_external_fold_diverse_candidate_surface_expanded_for_structure_clustering",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "candidate_manifest": 1025,
+        "pilot_candidate_priority": 1025
+      },
+      "payload_methods": {
+        "candidate_manifest": "external_hard_negative_new_candidate_sourcing",
+        "pilot_candidate_priority": "external_source_pilot_candidate_priority"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "candidate_manifest": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "candidate_manifest",
+          "pilot_candidate_priority"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "external_structural_cluster_index_not_built",
+      "external_structural_tm_diverse_split_not_assigned"
+    ],
+    "blocker_removed": "broader_external_fold_diverse_candidate_surface_expanded_for_structure_clustering",
+    "broader_surface_candidate_count": 8,
+    "candidate_count": 8,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T03:38:38Z",
+    "foldseek_or_tmalign_backend_required": true,
+    "full_tm_score_holdout_claim_permitted": false,
+    "import_ready_row_count": 0,
+    "lane_counts": {
+      "external_source:isomerase": 1,
+      "external_source:lyase": 4,
+      "external_source:oxidoreductase_long_tail": 3
+    },
+    "max_rows": 8,
+    "method": "external_structural_tm_holdout_path",
+    "nearest_neighbor_cache_required": true,
+    "pdb_reference_candidate_count": 7,
+    "ready_for_label_import": false,
+    "review_status": "review_only_non_countable",
+    "selected_pilot_candidate_count": 0,
+    "slice_id": "1025",
+    "source_candidate_manifest": "artifacts/v3_external_source_candidate_manifest_1025.json",
+    "source_candidate_manifest_method": "external_hard_negative_new_candidate_sourcing",
+    "source_pilot_candidate_priority": "artifacts/v3_external_source_pilot_candidate_priority_1025.json",
+    "source_pilot_candidate_priority_method": "external_source_pilot_candidate_priority",
+    "strict_tm_threshold_target": "<0.7",
+    "structure_cluster_before_split_assignment": true,
+    "structure_reference_candidate_count": 8,
+    "surface_scope": "broader_external_surface",
+    "tm_score_split_claim_permitted": false
+  },
+  "rows": [
+    {
+      "accession": "O75828",
+      "alphafold_ids": [
+        "O75828"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O75828",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_reference_count": 1,
+      "pdb_reference_examples": [
+        "2HRB"
+      ],
+      "protein_name": "Carbonyl reductase [NADPH] 3 (EC 1.1.1.184) (NADPH-dependent carbonyl reductase 3) (Quinone reductase CBR3) (EC 1.6.5.10) (Short chain dehydrogenase/reductase family 21C member 2)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "O95154",
+      "alphafold_ids": [
+        "O95154"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95154",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_reference_count": 1,
+      "pdb_reference_examples": [
+        "2CLP"
+      ],
+      "protein_name": "Aldo-keto reductase family 7 member A3 (EC 1.1.1.2) (AFB1 aldehyde reductase 2) (AFB1-AR 2) (Aflatoxin B1 aldehyde reductase member 3)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "O95479",
+      "alphafold_ids": [
+        "O95479"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95479",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_reference_count": 1,
+      "pdb_reference_examples": [
+        "8EM2"
+      ],
+      "protein_name": "GDH/6PGL endoplasmic bifunctional protein [Includes: Hexose-6-phosphate dehydrogenase (Glucose 1-dehydrogenase) (GDH) (EC 1.1.1.47) (Glucose-6-phosphate dehydrogenase) (EC 1.1.1.363); 6-phosphogluconolactonase (6PGL) (EC 3.1.1.31)]",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "P04424",
+      "alphafold_ids": [
+        "P04424"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P04424",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 2,
+      "pdb_reference_examples": [
+        "1AOS",
+        "1K62"
+      ],
+      "protein_name": "Argininosuccinate lyase (ASAL) (EC 4.3.2.1) (Arginosuccinase)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "Q8N0X4",
+      "alphafold_ids": [
+        "Q8N0X4"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8N0X4",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 3,
+      "pdb_reference_examples": [
+        "5VXC",
+        "5VXO",
+        "5VXS"
+      ],
+      "protein_name": "Citramalyl-CoA lyase, mitochondrial (EC 4.1.3.25) ((3S)-malyl-CoA thioesterase) (EC 3.1.2.30) (Beta-methylmalate synthase) (EC 2.3.3.-) (Citrate lyase subunit beta-like protein) (Citrate lyase beta-like) (Malate synthase) (EC 2.3.3.9)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "P30566",
+      "alphafold_ids": [
+        "P30566"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30566",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 4,
+      "pdb_reference_examples": [
+        "2J91",
+        "2VD6",
+        "4FFX",
+        "4FLC"
+      ],
+      "protein_name": "Adenylosuccinate lyase (ADSL) (ASL) (EC 4.3.2.2) (Adenylosuccinase) (ASase)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "Q04760",
+      "alphafold_ids": [
+        "Q04760"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q04760",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 11,
+      "pdb_reference_examples": [
+        "1BH5",
+        "1FRO",
+        "1QIN",
+        "1QIP",
+        "3VW9"
+      ],
+      "protein_name": "Lactoylglutathione lyase (EC 4.4.1.5) (Aldoketomutase) (Glyoxalase I) (Glx I) (Ketone-aldehyde mutase) (Methylglyoxalase) (S-D-lactoylglutathione methylglyoxal lyase)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "Q13087",
+      "alphafold_ids": [
+        "Q13087"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q13087",
+      "lane_id": "external_source:isomerase",
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "protein_name": "Protein disulfide-isomerase A2 (EC 5.3.4.1) (Pancreas-specific protein disulfide isomerase) (PDIp)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    }
+  ],
+  "warnings": [
+    "external structural TM holdout path is a review-only candidate surface; it requires clustering before split assignment and does not authorize import"
+  ]
+}

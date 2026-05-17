@@ -432,6 +432,34 @@ import-ready rows and 0 countable candidates.
 then triages the existing 25-row pool after those rejections and admits 0
 replacement rows, so the next import attempt needs new external candidate
 sourcing rather than another pass over the same pool.
+`artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json` starts
+that sourcing pass as review-only work: a bounded expanded Swiss-Prot fetch
+finds 8 new covered-lane candidates with explicit UniProt active-site and
+catalytic-activity source context (`O75828`, `O95154`, `O95479`, `P04424`,
+`Q8N0X4`, `P30566`, `Q04760`, and `Q13087`). None are import-ready or
+countable; each still requires current-reference sequence search,
+current-countable structural screening, external structural clustering,
+UniRef-wide duplicate screening, terminal review, and the full factory gate.
+The bounded current-reference sequence screen for those 8 sourced rows is now
+materialized in
+`artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_1025.json`:
+MMseqs2 completes over 735 current reference accessions / 737 reference
+sequence records, finds 7 no-signal rows, and routes `Q04760` as an exact
+reference holdout. This remains review-only and does not remove the structural,
+UniRef-wide, review, or factory blockers.
+`artifacts/v3_external_hard_negative_new_candidate_structural_cluster_index_1025.json`
+then stages all 8 sourced AlphaFold structures and completes the external
+all-vs-all Foldseek cache: 28/28 unordered pairs are covered, 7 clusters are
+formed at `TM >=0.7`, and only `P04424`/`P30566` form a high-TM pair
+(`0.8338`). This is external clustering context only.
+`artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json`
+then screens the 7 sequence no-signal rows against 672 current countable
+selected structures. Foldseek completes with 4669/4704 unique query-target
+pairs (`99.26%` coverage), leaving the pair cache incomplete; 6/7 rows have a
+high-TM current-countable duplicate signal and only `Q13087` has no high-TM
+signal. No row is import-ready or countable, and Q13087 still needs pair-cache
+completion, UniRef-wide duplicate screening, terminal review, and the full
+factory gate.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

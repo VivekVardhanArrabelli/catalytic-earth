@@ -5953,6 +5953,27 @@ def build_external_source_sequence_search_export(
     }
 
 
+def _external_backend_sequence_candidate_rows(
+    candidate_manifest: dict[str, Any],
+) -> list[dict[str, Any]]:
+    rows = [
+        row
+        for row in candidate_manifest.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ]
+    if (
+        candidate_manifest.get("metadata", {}).get("method")
+        == "external_hard_negative_new_candidate_sourcing"
+    ):
+        return [
+            row
+            for row in rows
+            if row.get("sourcing_status")
+            == "sourced_pending_sequence_structure_distance_screens"
+        ]
+    return rows
+
+
 def build_external_source_backend_sequence_search(
     *,
     candidate_manifest: dict[str, Any],
@@ -5976,11 +5997,9 @@ def build_external_source_backend_sequence_search(
     fetcher: Callable[[list[str]], dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Run a real backend external-vs-current-reference sequence search."""
-    manifest_rows = [
-        row
-        for row in candidate_manifest.get("rows", []) or []
-        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
-    ][:max_rows]
+    manifest_rows = _external_backend_sequence_candidate_rows(candidate_manifest)[
+        :max_rows
+    ]
     external_accessions = sorted(
         {_normalize_accession(row.get("accession")) for row in manifest_rows}
     )
@@ -6420,10 +6439,11 @@ def audit_external_source_backend_sequence_search(
         for row in backend_sequence_search.get("rows", []) or []
         if isinstance(row, dict)
     ]
+    manifest_rows = _external_backend_sequence_candidate_rows(candidate_manifest)
     manifest_accessions = {
         _normalize_accession(row.get("accession"))
-        for row in candidate_manifest.get("rows", []) or []
-        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+        for row in manifest_rows
+        if _normalize_accession(row.get("accession"))
     }
     row_accessions = {
         _normalize_accession(row.get("accession"))
@@ -6432,9 +6452,8 @@ def audit_external_source_backend_sequence_search(
     }
     exact_manifest_accessions = {
         _normalize_accession(row.get("accession"))
-        for row in candidate_manifest.get("rows", []) or []
-        if isinstance(row, dict)
-        and _normalize_accession(row.get("accession"))
+        for row in manifest_rows
+        if _normalize_accession(row.get("accession"))
         and isinstance(row.get("external_source_controls"), dict)
         and (
             row.get("external_source_controls", {})
@@ -10496,6 +10515,154 @@ def build_external_hard_negative_second_tranche_current_countable_structural_scr
     }
 
 
+def build_external_hard_negative_new_candidate_current_countable_structural_screen(
+    *,
+    new_candidate_sourcing: dict[str, Any],
+    backend_sequence_search: dict[str, Any],
+    foldseek_coordinate_readiness: dict[str, Any],
+    external_coordinate_dir: str | Path = (
+        "artifacts/"
+        "v3_external_hard_negative_new_candidate_structural_coordinates_1025"
+    ),
+    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    tm_score_threshold: float = 0.7,
+    max_rows: int = 7,
+    max_reported_hits: int = 5,
+    threads: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+    runner: Callable[[list[str], Path], None] | None = None,
+) -> dict[str, Any]:
+    """Screen fresh sequence-clean external candidates against current structures."""
+
+    sourcing_by_accession = _external_first_row_by_accession(new_candidate_sourcing)
+    sequence_no_signal_rows: list[dict[str, Any]] = []
+    exact_reference_holdouts: list[str] = []
+    for row in backend_sequence_search.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        accession = _normalize_accession(row.get("accession"))
+        if not accession:
+            continue
+        search_status = str(row.get("search_status") or "")
+        if search_status == "exact_reference_holdout":
+            exact_reference_holdouts.append(accession)
+            continue
+        if search_status != "no_near_duplicate_signal":
+            continue
+        sourcing_row = sourcing_by_accession.get(accession, {})
+        if (
+            sourcing_row.get("sourcing_status")
+            != "sourced_pending_sequence_structure_distance_screens"
+        ):
+            continue
+        sequence_no_signal_rows.append(
+            {
+                "accession": accession,
+                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": row.get("lane_id") or sourcing_row.get("lane_id"),
+                "protein_name": row.get("protein_name")
+                or sourcing_row.get("protein_name"),
+                "selection_status": "admitted_for_second_tranche_review",
+                "structure_source": "alphafold",
+                "structure_id": accession,
+                "out_of_scope_inverse_gate_status": "not_scored_for_new_source_row",
+                "top1_fingerprint_id": None,
+                "top1_score": None,
+                "backend_sequence_search_status": search_status,
+                "max_external_vs_reference_identity": row.get(
+                    "max_external_vs_reference_identity"
+                ),
+            }
+        )
+
+    selection = {
+        "metadata": {
+            "method": "external_hard_negative_new_candidate_screen_selection",
+            "source_new_candidate_sourcing_method": new_candidate_sourcing.get(
+                "metadata", {}
+            ).get("method"),
+            "source_backend_sequence_search_method": backend_sequence_search.get(
+                "metadata", {}
+            ).get("method"),
+        },
+        "rows": sequence_no_signal_rows,
+    }
+    screen = build_external_hard_negative_second_tranche_current_countable_structural_screen(
+        second_tranche_selection=selection,
+        foldseek_coordinate_readiness=foldseek_coordinate_readiness,
+        external_coordinate_dir=external_coordinate_dir,
+        foldseek_binary=foldseek_binary,
+        tm_score_threshold=tm_score_threshold,
+        max_rows=max_rows,
+        max_reported_hits=max_reported_hits,
+        threads=threads,
+        artifact_lineage=artifact_lineage,
+        runner=runner,
+    )
+    selection_by_accession = {
+        row["accession"]: row
+        for row in sequence_no_signal_rows
+        if _normalize_accession(row.get("accession"))
+    }
+    for row in screen.get("rows", []) or []:
+        accession = _normalize_accession(row.get("accession"))
+        source_row = selection_by_accession.get(accession, {})
+        row["backend_sequence_search_status"] = source_row.get(
+            "backend_sequence_search_status"
+        )
+        row["max_external_vs_reference_identity"] = source_row.get(
+            "max_external_vs_reference_identity"
+        )
+        row["review_status"] = (
+            "external_hard_negative_new_candidate_current_countable_"
+            "structural_screen_review_only"
+        )
+
+    metadata = screen["metadata"]
+    metadata["method"] = (
+        "external_hard_negative_new_candidate_current_countable_structural_screen"
+    )
+    metadata["blocker_removed"] = (
+        "new_candidate_current_countable_structural_screen_completed"
+        if metadata.get("foldseek_run_status") == "completed"
+        else "new_candidate_current_countable_structural_screen_attempted"
+    )
+    metadata["blocker_not_removed"] = sorted(
+        set(metadata.get("blocker_not_removed", []) + ["no_import_ready_external_rows"])
+    )
+    metadata["sequence_no_signal_candidate_count"] = len(sequence_no_signal_rows)
+    metadata["no_current_countable_structural_signal_count"] = sum(
+        1
+        for row in screen.get("rows", []) or []
+        if row.get("current_countable_structural_screen_status")
+        == "no_current_countable_structural_duplicate_signal"
+    )
+    metadata["exact_reference_holdout_accessions"] = sorted(
+        set(exact_reference_holdouts)
+    )
+    metadata["exact_reference_holdout_count"] = len(
+        metadata["exact_reference_holdout_accessions"]
+    )
+    metadata["source_new_candidate_sourcing_method"] = new_candidate_sourcing.get(
+        "metadata", {}
+    ).get("method")
+    metadata["source_backend_sequence_search_method"] = backend_sequence_search.get(
+        "metadata", {}
+    ).get("method")
+    metadata["source_second_tranche_selection_method"] = (
+        "external_hard_negative_new_candidate_screen_selection"
+    )
+    metadata["artifact_lineage"] = artifact_lineage or {}
+    screen["warnings"] = [
+        (
+            "new-candidate current-countable structural screening is review-only; "
+            "pair-cache completion, UniRef-wide duplicate screening, terminal "
+            "review acceptance, and full factory gates still block import"
+        )
+    ]
+    return screen
+
+
 def build_external_hard_negative_second_tranche_terminal_decisions(
     *,
     second_tranche_selection: dict[str, Any],
@@ -10660,6 +10827,363 @@ def build_external_hard_negative_second_tranche_terminal_decisions(
                 "second-tranche terminal decisions are review-only import-safety "
                 "decisions; they do not validate enzyme function or create "
                 "countable labels"
+            )
+        ],
+    }
+
+
+def build_external_hard_negative_new_candidate_sourcing(
+    *,
+    query_manifest: dict[str, Any],
+    current_candidate_manifest: dict[str, Any],
+    second_tranche_terminal_decisions: dict[str, Any],
+    max_records_per_lane: int = 12,
+    max_active_site_fetches: int = 16,
+    max_candidates: int = 8,
+    covered_lane_ids: tuple[str, ...] = (
+        "external_source:glycan_chemistry",
+        "external_source:isomerase",
+        "external_source:lyase",
+        "external_source:oxidoreductase_long_tail",
+    ),
+    fetch_query: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
+    fetch_entry: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Source fresh external hard-negative candidates after the current pool stalls.
+
+    This is deliberately a sourcing artifact, not a tranche-selection or import
+    artifact. It confirms which newly fetched rows have enough source evidence
+    to justify the next duplicate-distance screens.
+    """
+
+    if max_records_per_lane < 1:
+        raise ValueError("max_records_per_lane must be positive")
+    if max_active_site_fetches < 0:
+        raise ValueError("max_active_site_fetches must be non-negative")
+    if max_candidates < 1:
+        raise ValueError("max_candidates must be positive")
+
+    covered_lanes = {str(lane_id) for lane_id in covered_lane_ids}
+    current_pool_accessions = {
+        _normalize_accession(row.get("accession"))
+        for row in current_candidate_manifest.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    terminal_rejected_accessions = {
+        _normalize_accession(row.get("accession"))
+        for row in second_tranche_terminal_decisions.get("rows", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(row.get("accession"))
+        and str(row.get("terminal_decision_status") or "").startswith("rejected_")
+    }
+
+    expanded_sample = build_external_source_candidate_sample(
+        query_manifest=query_manifest,
+        max_records_per_lane=max_records_per_lane,
+        fetcher=fetch_query,
+    )
+
+    rows: list[dict[str, Any]] = []
+    active_site_fetch_count = 0
+    active_site_fetch_failures: list[dict[str, str]] = []
+    sourced_candidate_ranks: dict[str, int] = {}
+    candidate_sourcing_status_counts: Counter[str] = Counter()
+    blocker_counts: Counter[str] = Counter()
+
+    for sample_row in [
+        row for row in expanded_sample.get("rows", []) or [] if isinstance(row, dict)
+    ]:
+        accession = _normalize_accession(sample_row.get("accession"))
+        if not accession:
+            continue
+        lane_id = str(sample_row.get("lane_id") or "")
+        ec_numbers = [
+            str(ec).strip()
+            for ec in sample_row.get("ec_numbers", []) or []
+            if str(ec).strip()
+        ]
+        specific_ec_numbers = sorted(
+            {ec for ec in ec_numbers if _ec_specificity(ec) == "specific"}
+        )
+        broad_or_incomplete_ec_numbers = sorted(
+            {ec for ec in ec_numbers if _ec_specificity(ec) == "broad_or_incomplete"}
+        )
+        has_structure_reference = bool(
+            sample_row.get("pdb_ids") or sample_row.get("alphafold_ids")
+        )
+        is_reviewed = str(sample_row.get("reviewed") or "").lower() == "reviewed"
+
+        blockers: list[str] = []
+        if lane_id not in covered_lanes:
+            blockers.append("mechanism_lane_not_covered_by_existing_counterevidence_rules")
+        if accession in current_pool_accessions:
+            blockers.append("accession_already_in_current_external_pool")
+        if accession in terminal_rejected_accessions:
+            blockers.append("terminal_duplicate_rejection_previous_tranche")
+        if not is_reviewed:
+            blockers.append("reviewed_swissprot_record_required")
+        if not specific_ec_numbers:
+            blockers.append("specific_ec_context_missing")
+        if not has_structure_reference:
+            blockers.append("structure_reference_missing")
+
+        active_site_feature_count: int | None = None
+        binding_site_feature_count: int | None = None
+        catalytic_activity_count: int | None = None
+        cofactor_comment_count: int | None = None
+        active_site_evidence_status = "not_sampled_metadata_blocked"
+        uniprot_entry_name = None
+        uniprot_review_status = None
+
+        metadata_clear = not blockers
+        if metadata_clear:
+            if active_site_fetch_count >= max_active_site_fetches:
+                blockers.append("active_site_feature_sampling_cap_reached")
+                active_site_evidence_status = "not_sampled_cap_reached"
+            else:
+                active_site_fetch_count += 1
+                try:
+                    payload = fetch_entry(accession)
+                    record = payload.get("record", payload)
+                    if not isinstance(record, dict):
+                        raise ValueError("UniProt feature payload did not contain a record")
+                    active_features = [
+                        feature
+                        for feature in record.get("active_site_features", []) or []
+                        if isinstance(feature, dict)
+                    ]
+                    binding_features = [
+                        feature
+                        for feature in record.get("binding_site_features", []) or []
+                        if isinstance(feature, dict)
+                    ]
+                    catalytic_comments = [
+                        comment
+                        for comment in record.get("catalytic_activity_comments", []) or []
+                        if isinstance(comment, dict)
+                    ]
+                    cofactor_comments = [
+                        comment
+                        for comment in record.get("cofactor_comments", []) or []
+                        if isinstance(comment, dict)
+                    ]
+                    active_site_feature_count = len(active_features)
+                    binding_site_feature_count = len(binding_features)
+                    catalytic_activity_count = len(catalytic_comments)
+                    cofactor_comment_count = len(cofactor_comments)
+                    uniprot_entry_name = record.get("entry_name")
+                    uniprot_review_status = record.get("entry_type")
+                    if active_features and catalytic_comments:
+                        active_site_evidence_status = (
+                            "explicit_active_site_and_catalytic_activity_source_present"
+                        )
+                    elif active_features:
+                        active_site_evidence_status = (
+                            "active_site_source_present_reaction_context_missing"
+                        )
+                        blockers.append("catalytic_activity_context_missing")
+                    elif catalytic_comments or binding_features:
+                        active_site_evidence_status = "binding_or_reaction_context_only"
+                        blockers.append("uniprot_active_site_feature_missing")
+                    else:
+                        active_site_evidence_status = "active_site_source_missing"
+                        blockers.append("uniprot_active_site_feature_missing")
+                        blockers.append("catalytic_activity_context_missing")
+                except Exception as exc:  # pragma: no cover - live fetch safety
+                    active_site_evidence_status = "active_site_fetch_failed"
+                    blockers.append("active_site_feature_fetch_failed")
+                    active_site_fetch_failures.append(
+                        {
+                            "accession": accession,
+                            "error_type": type(exc).__name__,
+                            "error": str(exc),
+                        }
+                    )
+
+        if not blockers:
+            sourcing_status = "sourced_pending_sequence_structure_distance_screens"
+            sourced_candidate_ranks.setdefault(accession, len(sourced_candidate_ranks) + 1)
+            next_action = (
+                "run current-reference sequence, current-countable structural, "
+                "external structural-cluster, and UniRef-wide duplicate screens "
+                "before any tranche selection"
+            )
+        elif "accession_already_in_current_external_pool" in blockers:
+            sourcing_status = "excluded_current_external_pool"
+            next_action = "do not retry current-pool accession without new evidence"
+        elif "mechanism_lane_not_covered_by_existing_counterevidence_rules" in blockers:
+            sourcing_status = "blocked_uncovered_mechanism_lane"
+            next_action = "source a covered-lane row instead of adding a new lane"
+        elif "uniprot_active_site_feature_missing" in blockers:
+            sourcing_status = "blocked_active_site_source_missing"
+            next_action = "do not advance without explicit active-site residue evidence"
+        else:
+            sourcing_status = "blocked_source_sourcing_criteria"
+            next_action = "do not advance until source evidence blockers are cleared"
+
+        candidate_sourcing_status_counts[sourcing_status] += 1
+        blocker_counts.update(blockers)
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": f"uniprot:{accession}",
+                "lane_id": lane_id,
+                "protein_name": sample_row.get("protein_name"),
+                "reviewed": sample_row.get("reviewed"),
+                "ec_numbers": ec_numbers,
+                "specific_ec_numbers": specific_ec_numbers,
+                "broad_or_incomplete_ec_numbers": broad_or_incomplete_ec_numbers,
+                "pdb_ids": sample_row.get("pdb_ids", []),
+                "alphafold_ids": sample_row.get("alphafold_ids", []),
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "sourcing_status": sourcing_status,
+                "candidate_priority_rank": sourced_candidate_ranks.get(accession),
+                "source_evidence_blockers": sorted(set(blockers)),
+                "active_site_evidence_status": active_site_evidence_status,
+                "active_site_feature_count": active_site_feature_count,
+                "binding_site_feature_count": binding_site_feature_count,
+                "catalytic_activity_count": catalytic_activity_count,
+                "cofactor_comment_count": cofactor_comment_count,
+                "uniprot_entry_name": uniprot_entry_name,
+                "uniprot_review_status": uniprot_review_status,
+                "covered_counterevidence_lane": lane_id in covered_lanes,
+                "new_to_current_external_pool": accession not in current_pool_accessions,
+                "next_required_screens": (
+                    [
+                        "current_reference_backend_sequence_search",
+                        "current_countable_foldseek_structural_screen",
+                        "external_all_vs_all_structural_cluster_assignment",
+                        "uniref_wide_duplicate_screening",
+                        "terminal_review_decision",
+                        "full_label_factory_gate",
+                    ]
+                    if sourcing_status
+                    == "sourced_pending_sequence_structure_distance_screens"
+                    else []
+                ),
+                "next_action": next_action,
+                "import_ready_candidate": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "review_status": (
+                    "external_hard_negative_new_candidate_sourcing_review_only"
+                ),
+            }
+        )
+
+    rows.sort(
+        key=lambda row: (
+            0
+            if row["sourcing_status"]
+            == "sourced_pending_sequence_structure_distance_screens"
+            else 1,
+            row.get("candidate_priority_rank") or 9999,
+            str(row.get("lane_id") or ""),
+            str(row.get("accession") or ""),
+        )
+    )
+    if max_candidates:
+        sourced_seen = 0
+        filtered_rows: list[dict[str, Any]] = []
+        for row in rows:
+            if (
+                row["sourcing_status"]
+                == "sourced_pending_sequence_structure_distance_screens"
+            ):
+                sourced_seen += 1
+                if sourced_seen > max_candidates:
+                    continue
+            filtered_rows.append(row)
+        rows = filtered_rows
+
+    candidate_sourcing_status_counts = Counter(
+        row["sourcing_status"] for row in rows
+    )
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["source_evidence_blockers"]
+    )
+    sourced_candidate_count = sum(
+        1
+        for row in rows
+        if row["sourcing_status"]
+        == "sourced_pending_sequence_structure_distance_screens"
+    )
+    blocker_not_removed = [
+        "current_reference_backend_sequence_search_required",
+        "current_countable_structural_screen_required",
+        "external_structural_cluster_assignment_required",
+        "uniref_wide_duplicate_screening_required",
+        "terminal_review_decision_not_accepted",
+        "full_label_factory_gate_not_run",
+        "no_import_ready_external_rows",
+    ]
+    if sourced_candidate_count == 0:
+        blocker_not_removed.append("no_new_candidate_sourced")
+
+    return {
+        "metadata": {
+            "method": "external_hard_negative_new_candidate_sourcing",
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": "new_external_candidate_sourcing_started_after_current_pool_exhausted",
+            "blocker_not_removed": blocker_not_removed,
+            "review_only": True,
+            "selection_scope": "new_external_sourcing_only_no_import_attempt",
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "ready_for_label_import": False,
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "max_records_per_lane": max_records_per_lane,
+            "max_active_site_fetches": max_active_site_fetches,
+            "max_candidates": max_candidates,
+            "queried_lane_count": expanded_sample.get("metadata", {}).get(
+                "lane_count"
+            ),
+            "fetched_candidate_count": expanded_sample.get("metadata", {}).get(
+                "candidate_count"
+            ),
+            "emitted_row_count": len(rows),
+            "sourced_candidate_count": sourced_candidate_count,
+            "current_external_pool_exclusion_count": sum(
+                1
+                for row in rows
+                if row["sourcing_status"] == "excluded_current_external_pool"
+            ),
+            "active_site_fetch_count": active_site_fetch_count,
+            "active_site_fetch_failure_count": len(active_site_fetch_failures),
+            "query_fetch_failure_count": expanded_sample.get("metadata", {}).get(
+                "fetch_failure_count"
+            ),
+            "covered_counterevidence_lanes": sorted(covered_lanes),
+            "terminal_rejected_accessions": sorted(terminal_rejected_accessions),
+            "candidate_sourcing_status_counts": dict(
+                sorted(candidate_sourcing_status_counts.items())
+            ),
+            "source_evidence_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_query_manifest_method": query_manifest.get("metadata", {}).get(
+                "method"
+            ),
+            "source_current_candidate_manifest_method": (
+                current_candidate_manifest.get("metadata", {}).get("method")
+            ),
+            "source_second_tranche_terminal_decisions_method": (
+                second_tranche_terminal_decisions.get("metadata", {}).get("method")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "fetch_failures": list(expanded_sample.get("fetch_failures", []))
+        + active_site_fetch_failures,
+        "warnings": [
+            (
+                "new external hard-negative sourcing is review-only; sourced "
+                "rows require sequence, structural duplicate, review, and full "
+                "factory gates before any import attempt"
             )
         ],
     }

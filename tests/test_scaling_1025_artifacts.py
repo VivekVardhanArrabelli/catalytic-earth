@@ -3952,6 +3952,51 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_hard_negative_second_tranche_replacement_triage_1025.json"
         )
+        new_sourcing = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_new_candidate_sourcing_1025.json"
+        )
+        new_sequence_search = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_new_candidate_backend_sequence_search_"
+                "1025.json"
+            )
+        )
+        new_sequence_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_new_candidate_backend_sequence_search_"
+                "audit_1025.json"
+            )
+        )
+        new_structural_path = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_new_candidate_structural_tm_holdout_"
+                "path_1025.json"
+            )
+        )
+        new_structural_index = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_new_candidate_structural_cluster_index_"
+                "1025.json"
+            )
+        )
+        new_current_countable_screen = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_new_candidate_current_countable_"
+                "structural_screen_1025.json"
+            )
+        )
 
         self.assertTrue(step1a["metadata"]["step_1a_passed"])
         self.assertEqual(step1a["metadata"]["target_label_type"], "out_of_scope")
@@ -4069,6 +4114,162 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertIn(
             "new_external_candidate_sourcing_required",
             replacement_triage["metadata"]["blocker_not_removed"],
+        )
+        self.assertEqual(
+            new_sourcing["metadata"]["method"],
+            "external_hard_negative_new_candidate_sourcing",
+        )
+        self.assertTrue(new_sourcing["metadata"]["review_only"])
+        self.assertEqual(new_sourcing["metadata"]["target_label_type"], "out_of_scope")
+        self.assertIsNone(new_sourcing["metadata"]["target_fingerprint_id"])
+        self.assertEqual(new_sourcing["metadata"]["sourced_candidate_count"], 8)
+        self.assertEqual(new_sourcing["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(new_sourcing["metadata"]["countable_label_candidate_count"], 0)
+        self.assertIn(
+            "current_countable_structural_screen_required",
+            new_sourcing["metadata"]["blocker_not_removed"],
+        )
+        self.assertTrue(
+            all(not row["import_ready_candidate"] for row in new_sourcing["rows"])
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in new_sourcing["rows"])
+        )
+        self.assertEqual(
+            [
+                row["accession"]
+                for row in new_sourcing["rows"]
+                if row["sourcing_status"]
+                == "sourced_pending_sequence_structure_distance_screens"
+            ],
+            [
+                "O75828",
+                "O95154",
+                "O95479",
+                "P04424",
+                "Q8N0X4",
+                "P30566",
+                "Q04760",
+                "Q13087",
+            ],
+        )
+        self.assertEqual(
+            new_sequence_search["metadata"]["method"],
+            "external_source_backend_sequence_search",
+        )
+        self.assertEqual(new_sequence_search["metadata"]["candidate_count"], 8)
+        self.assertEqual(new_sequence_search["metadata"]["no_signal_row_count"], 7)
+        self.assertEqual(new_sequence_search["metadata"]["exact_reference_row_count"], 1)
+        self.assertEqual(
+            [row["accession"] for row in new_sequence_search["exact_reference_rows"]],
+            ["Q04760"],
+        )
+        self.assertEqual(new_sequence_search["metadata"]["import_ready_row_count"], 0)
+        self.assertEqual(
+            new_sequence_search["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertTrue(new_sequence_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(new_sequence_audit["metadata"]["expected_candidate_count"], 8)
+        self.assertEqual(new_sequence_audit["blockers"], [])
+        self.assertEqual(
+            new_structural_path["metadata"]["method"],
+            "external_structural_tm_holdout_path",
+        )
+        self.assertEqual(new_structural_path["metadata"]["candidate_count"], 8)
+        self.assertEqual(
+            new_structural_path["metadata"]["structure_reference_candidate_count"], 8
+        )
+        self.assertEqual(
+            new_structural_path["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(
+            new_structural_index["metadata"]["method"],
+            "external_structural_cluster_index",
+        )
+        self.assertEqual(new_structural_index["metadata"]["candidate_count"], 8)
+        self.assertEqual(
+            new_structural_index["metadata"]["coordinate_materialized_count"], 8
+        )
+        self.assertTrue(new_structural_index["metadata"]["all_vs_all_pair_cache_complete"])
+        self.assertEqual(
+            new_structural_index["metadata"]["unique_unordered_nonself_pair_count"], 28
+        )
+        self.assertEqual(new_structural_index["metadata"]["high_tm_pair_count"], 1)
+        self.assertEqual(new_structural_index["metadata"]["tm_cluster_count"], 7)
+        self.assertEqual(
+            [
+                (
+                    pair["left_accession"],
+                    pair["right_accession"],
+                    pair["max_pair_tm_score"],
+                )
+                for pair in new_structural_index["pairs"]
+                if float(pair["max_pair_tm_score"]) >= 0.7
+            ],
+            [("P04424", "P30566", 0.8338)],
+        )
+        self.assertEqual(
+            new_structural_index["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(new_structural_index["metadata"]["import_ready_row_count"], 0)
+        self.assertEqual(
+            new_current_countable_screen["metadata"]["method"],
+            "external_hard_negative_new_candidate_current_countable_structural_screen",
+        )
+        self.assertEqual(new_current_countable_screen["metadata"]["candidate_count"], 7)
+        self.assertEqual(
+            new_current_countable_screen["metadata"][
+                "sequence_no_signal_candidate_count"
+            ],
+            7,
+        )
+        self.assertEqual(
+            new_current_countable_screen["metadata"][
+                "exact_reference_holdout_accessions"
+            ],
+            ["Q04760"],
+        )
+        self.assertFalse(new_current_countable_screen["metadata"]["pair_cache_complete"])
+        self.assertEqual(
+            new_current_countable_screen["metadata"][
+                "unique_query_target_pair_count"
+            ],
+            4669,
+        )
+        self.assertEqual(
+            new_current_countable_screen["metadata"][
+                "expected_query_target_pair_count"
+            ],
+            4704,
+        )
+        self.assertEqual(
+            new_current_countable_screen["metadata"]["high_tm_candidate_count"], 6
+        )
+        self.assertEqual(
+            new_current_countable_screen["metadata"][
+                "no_current_countable_structural_signal_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            new_current_countable_screen["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            new_current_countable_screen["metadata"]["import_ready_candidate_count"], 0
+        )
+        by_accession = {
+            row["accession"]: row for row in new_current_countable_screen["rows"]
+        }
+        self.assertEqual(
+            by_accession["Q13087"]["current_countable_structural_screen_status"],
+            "no_current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(
+            by_accession["O75828"]["current_countable_structural_screen_status"],
+            "current_countable_structural_duplicate_signal",
         )
 
 

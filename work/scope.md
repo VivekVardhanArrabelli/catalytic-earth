@@ -546,7 +546,22 @@ Current expectation:
   labels are countable. Replacement triage over the current 25-row pool admits
   0 replacement rows, so the next tranche-2 work needs new external candidate
   sourcing or new evidence rather than retrying this same pool without expert
-  input.
+  input. The first new sourcing pass now exists as
+  `artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json`: it
+  finds 8 fresh covered-lane Swiss-Prot rows with explicit UniProt active-site
+  plus catalytic-activity context while keeping 0 import-ready and 0 countable
+  rows. The bounded current-reference MMseqs2 screen for those 8 rows is also
+  complete: 7 have no near-duplicate signal and `Q04760` is an exact-reference
+  holdout. External all-vs-all structural clustering for the 8 sourced rows is
+  also complete, with one high-TM sourced pair (`P04424`/`P30566`) and 7
+  clusters. The current-countable structural screen for the 7 sequence
+  no-signal rows also completed its Foldseek run against 672 current selected
+  structures, but the cache is incomplete at 4669/4704 unique query-target
+  pairs. Six rows have high-TM current-countable duplicate signals; `Q13087`
+  is the only no-high-TM row and still needs pair-cache completion, UniRef-wide
+  duplicate screening, terminal review, and factory gates. The active
+  bottleneck is completing that current-countable pair cache, not another pass
+  over the exhausted current pool.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

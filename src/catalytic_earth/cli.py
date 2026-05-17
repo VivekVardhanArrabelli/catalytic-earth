@@ -187,6 +187,8 @@ from .transfer_scope import (
     build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
     build_external_source_transfer_blocker_matrix,
+    build_external_hard_negative_new_candidate_sourcing,
+    build_external_hard_negative_new_candidate_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -3402,6 +3404,85 @@ def cmd_build_external_hard_negative_second_tranche_terminal_decisions(
         "Wrote second-tranche terminal decisions to "
         f"{args.out} ({decisions['metadata']['terminal_decision_count']} "
         "terminal)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_new_candidate_sourcing(
+    args: argparse.Namespace,
+) -> int:
+    query_manifest = read_json_object(Path(args.query_manifest))
+    current_candidate_manifest = read_json_object(Path(args.current_candidate_manifest))
+    second_tranche_terminal_decisions = read_json_object(
+        Path(args.second_tranche_terminal_decisions)
+    )
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "query_manifest": args.query_manifest,
+            "current_candidate_manifest": args.current_candidate_manifest,
+            "second_tranche_terminal_decisions": (
+                args.second_tranche_terminal_decisions
+            ),
+        },
+        "blocker_removed": "new_external_candidate_sourcing",
+    }
+    sourcing = build_external_hard_negative_new_candidate_sourcing(
+        query_manifest=query_manifest,
+        current_candidate_manifest=current_candidate_manifest,
+        second_tranche_terminal_decisions=second_tranche_terminal_decisions,
+        max_records_per_lane=args.max_records_per_lane,
+        max_active_site_fetches=args.max_active_site_fetches,
+        max_candidates=args.max_candidates,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), sourcing)
+    print(
+        "Wrote external hard-negative candidate sourcing to "
+        f"{args.out} ({sourcing['metadata']['sourced_candidate_count']} "
+        "sourced)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_new_candidate_current_countable_structural_screen(
+    args: argparse.Namespace,
+) -> int:
+    new_candidate_sourcing = read_json_object(Path(args.new_candidate_sourcing))
+    backend_sequence_search = read_json_object(Path(args.backend_sequence_search))
+    foldseek_coordinate_readiness = read_json_object(
+        Path(args.foldseek_coordinate_readiness)
+    )
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "new_candidate_sourcing": args.new_candidate_sourcing,
+            "backend_sequence_search": args.backend_sequence_search,
+            "foldseek_coordinate_readiness": args.foldseek_coordinate_readiness,
+        },
+        "blocker_removed": "new_candidate_current_countable_structural_screen",
+    }
+    screen = build_external_hard_negative_new_candidate_current_countable_structural_screen(
+        new_candidate_sourcing=new_candidate_sourcing,
+        backend_sequence_search=backend_sequence_search,
+        foldseek_coordinate_readiness=foldseek_coordinate_readiness,
+        external_coordinate_dir=args.external_coordinate_dir,
+        foldseek_binary=args.foldseek_binary,
+        tm_score_threshold=args.tm_score_threshold,
+        max_rows=args.max_rows,
+        max_reported_hits=args.max_reported_hits,
+        threads=args.threads,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), screen)
+    print(
+        "Wrote new-candidate current-countable structural screen to "
+        f"{args.out} ({screen['metadata']['screened_candidate_count']} "
+        "candidates screened)"
     )
     return 0
 
@@ -8708,6 +8789,111 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_second_tranche_terminal.set_defaults(
         func=cmd_build_external_hard_negative_second_tranche_terminal_decisions
+    )
+
+    external_hard_negative_new_sourcing = subparsers.add_parser(
+        "build-external-hard-negative-new-candidate-sourcing",
+        help=(
+            "source fresh review-only external hard-negative candidates after "
+            "the current pool is exhausted"
+        ),
+    )
+    external_hard_negative_new_sourcing.add_argument(
+        "--query-manifest",
+        default="artifacts/v3_external_source_query_manifest_1025.json",
+    )
+    external_hard_negative_new_sourcing.add_argument(
+        "--current-candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest_1025.json",
+    )
+    external_hard_negative_new_sourcing.add_argument(
+        "--second-tranche-terminal-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_second_tranche_terminal_decisions_1025.json"
+        ),
+    )
+    external_hard_negative_new_sourcing.add_argument(
+        "--max-records-per-lane", type=int, default=12
+    )
+    external_hard_negative_new_sourcing.add_argument(
+        "--max-active-site-fetches", type=int, default=16
+    )
+    external_hard_negative_new_sourcing.add_argument(
+        "--max-candidates", type=int, default=8
+    )
+    external_hard_negative_new_sourcing.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_new_candidate_sourcing_1025.json"
+        ),
+    )
+    external_hard_negative_new_sourcing.set_defaults(
+        func=cmd_build_external_hard_negative_new_candidate_sourcing
+    )
+
+    external_hard_negative_new_current_structural = subparsers.add_parser(
+        "build-external-hard-negative-new-candidate-current-countable-structural-screen",
+        help=(
+            "screen fresh sequence-clean external hard-negative candidates "
+            "against current countable structures"
+        ),
+    )
+    external_hard_negative_new_current_structural.add_argument(
+        "--new-candidate-sourcing",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_new_candidate_sourcing_1025.json"
+        ),
+    )
+    external_hard_negative_new_current_structural.add_argument(
+        "--backend-sequence-search",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_new_candidate_backend_sequence_search_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_new_current_structural.add_argument(
+        "--foldseek-coordinate-readiness",
+        default="artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json",
+    )
+    external_hard_negative_new_current_structural.add_argument(
+        "--external-coordinate-dir",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_new_candidate_structural_coordinates_1025"
+        ),
+    )
+    external_hard_negative_new_current_structural.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    )
+    external_hard_negative_new_current_structural.add_argument(
+        "--tm-score-threshold", type=float, default=0.7
+    )
+    external_hard_negative_new_current_structural.add_argument(
+        "--max-rows", type=int, default=7
+    )
+    external_hard_negative_new_current_structural.add_argument(
+        "--max-reported-hits", type=int, default=5
+    )
+    external_hard_negative_new_current_structural.add_argument(
+        "--threads", type=int, default=1
+    )
+    external_hard_negative_new_current_structural.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_new_candidate_current_countable_"
+            "structural_screen_1025.json"
+        ),
+    )
+    external_hard_negative_new_current_structural.set_defaults(
+        func=(
+            cmd_build_external_hard_negative_new_candidate_current_countable_structural_screen
+        )
     )
 
     external_transfer_gate = subparsers.add_parser(
