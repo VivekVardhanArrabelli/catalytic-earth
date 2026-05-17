@@ -10,6 +10,11 @@ from pathlib import Path
 from typing import Any
 
 from .adapters import fetch_mcsa_sample, fetch_rhea_sample
+from .artifact_storage import (
+    DEFAULT_LARGE_FILE_THRESHOLD_BYTES,
+    build_artifact_storage_inventory,
+    check_artifact_storage_policy,
+)
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
@@ -568,6 +573,27 @@ def cmd_build_ledger(args: argparse.Namespace) -> int:
     write_json(Path(args.out), ledger)
     print(f"Wrote source ledger to {args.out}")
     return 0
+
+
+def cmd_build_artifact_storage_inventory(args: argparse.Namespace) -> int:
+    threshold_bytes = int(args.large_file_threshold_mb * 1024 * 1024)
+    inventory = build_artifact_storage_inventory(
+        Path(args.artifact_dir),
+        repo_root=Path("."),
+        large_file_threshold_bytes=threshold_bytes,
+        top_n=args.top_n,
+    )
+    write_json(Path(args.out), inventory)
+    print(f"Wrote artifact storage inventory to {args.out}")
+    return 0
+
+
+def cmd_check_artifact_storage_policy(args: argparse.Namespace) -> int:
+    inventory = read_json_object(Path(args.inventory))
+    check = check_artifact_storage_policy(inventory)
+    write_json(Path(args.out), check)
+    print(f"Wrote artifact storage policy check to {args.out}")
+    return 0 if check["metadata"]["status"] == "passed" else 2
 
 
 def cmd_fingerprint_demo(args: argparse.Namespace) -> int:
@@ -5949,6 +5975,37 @@ def build_parser() -> argparse.ArgumentParser:
     ledger = subparsers.add_parser("build-ledger", help="build source ledger artifact")
     ledger.add_argument("--out", default="artifacts/source_ledger.json")
     ledger.set_defaults(func=cmd_build_ledger)
+
+    storage_inventory = subparsers.add_parser(
+        "build-artifact-storage-inventory",
+        help="inventory artifact files before any storage migration or pruning",
+    )
+    storage_inventory.add_argument("--artifact-dir", default="artifacts")
+    storage_inventory.add_argument(
+        "--large-file-threshold-mb",
+        type=float,
+        default=DEFAULT_LARGE_FILE_THRESHOLD_BYTES / (1024 * 1024),
+    )
+    storage_inventory.add_argument("--top-n", type=int, default=50)
+    storage_inventory.add_argument(
+        "--out",
+        default="artifacts/v3_artifact_storage_inventory_1025.json",
+    )
+    storage_inventory.set_defaults(func=cmd_build_artifact_storage_inventory)
+
+    storage_policy = subparsers.add_parser(
+        "check-artifact-storage-policy",
+        help="verify artifact storage inventory does not authorize information loss",
+    )
+    storage_policy.add_argument(
+        "--inventory",
+        default="artifacts/v3_artifact_storage_inventory_1025.json",
+    )
+    storage_policy.add_argument(
+        "--out",
+        default="artifacts/v3_artifact_storage_policy_check_1025.json",
+    )
+    storage_policy.set_defaults(func=cmd_check_artifact_storage_policy)
 
     demo = subparsers.add_parser("fingerprint-demo", help="build mechanism demo artifact")
     demo.add_argument("--out", default="artifacts/mechanism_demo.json")

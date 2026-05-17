@@ -76,6 +76,11 @@ The repository currently contains:
     single points of failure. The first override plan applies holo-preference
     repairs for `m_csa:577` and `m_csa:641`, skips `m_csa:592` as a
     reaction-mismatch policy case, and keeps all rows non-countable.
+13. Artifact-storage guardrails that inventory generated artifacts before any
+    migration or pruning. `artifacts/v3_artifact_storage_inventory_1025.json`
+    records paths, sizes, SHA-256 hashes, storage categories, and preservation
+    requirements for 2,574 artifact files; the companion policy check authorizes
+    0 deletions. See `docs/artifact_storage.md`.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives

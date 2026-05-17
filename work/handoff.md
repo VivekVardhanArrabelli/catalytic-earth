@@ -50,6 +50,24 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of this manual infrastructure pass, artifact migration is being started
+without deleting or externalizing any files. `docs/artifact_storage.md` defines
+the no-information-loss rule: no artifact may leave Git unless a committed
+manifest preserves path, size, SHA-256, category, producer/provenance,
+downstream consumers, replacement storage location when applicable, and the
+scientific conclusion in a canonical summary. The new inventory tooling writes
+`artifacts/v3_artifact_storage_inventory_1025.json`, covering 2,574 artifact
+files and 2.55 GiB of artifact payload at creation time. It classifies 102 files
+as `canonical_evidence`, 358 as `regenerable_intermediate`, 760 as `raw_cache`,
+and 1,354 as `compact_artifact`; 108 files are above the 5 MiB threshold. The
+policy check in `artifacts/v3_artifact_storage_policy_check_1025.json` passes
+with 0 blockers and 0 deletion authorizations. Evidence-based confidence call:
+the repo still carries the bulky artifacts, but future agents now have a
+non-lossy manifest/policy gate before any storage migration. Next infra work
+should identify producer commands and downstream consumers for the largest
+regenerable/cache artifacts before moving anything to LFS, release assets, or
+object storage.
+
 As of the 2026-05-17T17:01:40Z run, leakage-risk closure is now the active
 handoff state. The original 10 selected external pilot candidates and repaired
 lanes (`O14756`, `Q6NSJ0`, `P34949`, `Q9BXD5`, `C9JRZ8`, `P06746`, `P55263`,

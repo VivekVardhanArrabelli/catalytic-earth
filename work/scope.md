@@ -116,6 +116,10 @@ Post-V2 quality work has started:
   preserves the global `0.4115` floor; existing external labels must be
   re-audited on positive fingerprint expansion; and accepted external labels
   separate predictive/import evidence from review-only context
+- artifact-storage inventory and non-loss policy: large generated files are now
+  classified before migration, SHA-256 hashes are recorded in
+  `artifacts/v3_artifact_storage_inventory_1025.json`, and
+  `artifacts/v3_artifact_storage_policy_check_1025.json` authorizes 0 deletions
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
 - hard-negative controls, in-scope failure analysis, label-expansion candidate

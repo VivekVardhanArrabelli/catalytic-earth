@@ -4,14 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 159
-- Measured elapsed time: 5123.0 minutes (85.38 hours)
+- Entries: 160
+- Measured elapsed time: 5129.8 minutes (85.50 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
+- infrastructure: 6.8 measured minutes (0.11 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -25,21 +26,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1785
-- Evidence references logged: 1398
+- Artifact references logged: 1790
+- Evidence references logged: 1402
 
 ## Recent Entries
-
-### 2026-05-17T09:41:38.959359+00:00 - post-v2
-
-- Task: Decide next external hard-negative follow-up
-- Time mode: measured
-- Measured minutes: 8.817
-- Started: 2026-05-17T09:32:49Z
-- Ended: 2026-05-17T09:41:38Z
-- Artifacts: artifacts/v3_external_hard_negative_next_candidate_followup_cycle_decision_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 393 unit tests passed, startup validate passed with 680 curated labels, follow-up decision kept P22830 and Q3LXA3 review-only, Q3LXA3 recommended for later explicit single-import cycle, final 395 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON parse check passed, external transfer gate 68/68
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. No second external label imported; docs/label_factory.md checked earlier and required no change.
 
 ### 2026-05-17T10:50:16.595786+00:00 - post-v2
 
@@ -117,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: v3_external_pilot_repair_leakage_closure_1025;v3_external_hard_negative_next_tranche_preregistration_1025;v3_external_hard_negative_threshold_policy_1025;v3_external_hard_negative_ontology_reaudit_policy_1025;v3_external_hard_negative_review_context_separation_audit_1025
 - Evidence: 417 unit tests passed; validate passed on 682 labels
 - Notes: Added pre-registration gate, threshold provenance, ontology re-audit, evidence separation, and M-CSA claim guard regressions.
+
+### 2026-05-17T18:01:26.215575+00:00 - infrastructure
+
+- Task: Artifact storage non-loss inventory
+- Time mode: measured
+- Measured minutes: 6.817
+- Started: 2026-05-17T17:54:37Z
+- Ended: 2026-05-17T18:01:26Z
+- Artifacts: artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, docs/artifact_storage.md, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py
+- Evidence: 421 unit tests passed, validate passed with 682 curated labels, artifact policy check passed with 0 blockers and 0 deletion authorizations, inventory covers 2574 files and 2.55 GiB
+- Notes: Manual locked infrastructure pass; no artifact deletion or externalization performed.
 
 ## Expectation Updates
 

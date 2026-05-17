@@ -1,0 +1,13 @@
+{
+  "blockers": [],
+  "metadata": {
+    "blocker_count": 0,
+    "deletion_authorized_count": 0,
+    "method": "artifact_storage_policy_check",
+    "policy_version": "artifact_storage_policy_v1_2026_05_17",
+    "source_file_count": 2574,
+    "source_inventory_method": "artifact_storage_inventory",
+    "source_total_bytes": 2742515898,
+    "status": "passed"
+  }
+}
