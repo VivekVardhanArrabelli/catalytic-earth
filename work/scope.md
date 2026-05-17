@@ -609,6 +609,19 @@ Current expectation:
   conservative deferral rather than a third external import: the formal probe
   would select P22830, but its `0.0429` margin below the `0.4115` floor is too
   narrow to justify automatic count growth after two external imports.
+  The next broader sourcing path is now durable and lane-balanced:
+  `artifacts/v3_external_hard_negative_broader_structural_sourcing_1025.json`
+  selects six review-only rows across three covered lanes after merging prior
+  source, terminal, and deferral surfaces. The first bounded duplicate screens
+  are now complete for those rows: current-reference MMseqs2 reports 6/6
+  no-signal rows, external all-vs-all sequence search finds 0 exact/near
+  duplicate pairs, external all-vs-all Foldseek finds 0 high-TM pairs, and the
+  current-countable Foldseek screen rejects five rows while leaving only
+  `P06744` as a no-current-structural-signal deferred row. These rows are not
+  countable. Follow-on `P06744` checks now clear bounded duplicate evidence,
+  targeted UniRef nearest-reference overlap, current-reference UniRef cluster
+  overlap, and the all-8 inverse gate; the active bottleneck is terminal review
+  acceptance plus full factory/import gates.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

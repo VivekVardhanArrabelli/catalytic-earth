@@ -517,7 +517,38 @@ Sequence-holdout details:
   external candidates for near-duplicate search before any future import
   decision.
 
-Next bounded work should switch to a broader external structural sourcing
-surface before any third external hard-negative import. Do not retry the five
-duplicate-signal rows, reopen the six original pilot repair lanes, or import
-P22830 without an explicit decision that supersedes the deferral artifact.
+The broader external structural sourcing surface is now durable:
+`artifacts/v3_external_hard_negative_broader_structural_sourcing_1025.json`
+merges both prior fresh sourcing artifacts, both prior terminal-decision
+artifacts, and the P22830 deferral before selecting new rows. The selected
+review-only source-evidence candidates are `P14550`, `P15428`, `Q969S2`,
+`Q96FI4`, `P06744`, and `Q9BV20`, with a clean three-lane balance profile
+(`oxidoreductase_long_tail`, `lyase`, and `isomerase`, two rows each). All six
+were non-countable and not import-ready at sourcing time.
+
+The first duplicate screens for those six rows are now complete through the
+bounded current-countable structural layer. The current-reference MMseqs2 screen
+records 6/6 no-signal rows, and the bounded external all-vs-all sequence screen
+finds 0 exact/near-duplicate external sequence pairs. The six-row external
+structural cluster index materializes all AlphaFold sidecars, covers 15/15
+unordered pairs, and finds 0 high-TM external pairs. The current-countable
+Foldseek screen completes
+4,032/4,032 query-target pairs and rejects five rows as high-TM
+current-countable duplicate risks. Only `P06744` remains deferred with no
+current-countable structural duplicate signal, and it still needs UniRef-wide
+duplicate screening, terminal review acceptance, inverse-gate/factory evidence,
+and the full import gate before any count growth.
+
+The follow-on `P06744` review-only artifacts now remove the current-reference
+UniRef duplicate blocker and the inverse-gate blocker. Bounded duplicate
+evidence is clear; targeted UniRef90/50 checks against the nearest current
+reference show no shared cluster; the candidate UniRef90/50 current-reference
+screen has 0 current-reference overlaps; and all 8 current fingerprint scores
+stay below the `0.4115` floor with top1 `metal_dependent_hydrolase` score
+`0.3066`. `P06744` is still not import-ready because terminal review acceptance
+and the full factory/import gate have not run.
+
+Next bounded work should decide the `P06744` terminal review/factory path
+without weakening gates. Do not retry the five duplicate-signal rows, reopen
+the six original pilot repair lanes, or import P22830 without an explicit
+decision that supersedes the deferral artifact.

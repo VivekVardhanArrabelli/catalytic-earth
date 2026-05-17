@@ -545,6 +545,33 @@ probe would select `P22830`, but its maximum current-fingerprint score is only
 `0.0429` below the `0.4115` out-of-scope floor after two successful external
 imports, so the registry intentionally stays at 681 labels and the next work
 should shift to broader external structural sourcing before any third import.
+`artifacts/v3_external_hard_negative_broader_structural_sourcing_1025.json`
+now makes that broader sourcing path durable. It merges the prior fresh and
+next-candidate sourcing/terminal-decision surfaces, carries the P22830 deferral
+as an explicit exclusion, fetches a broader Swiss-Prot surface, and selects six
+review-only candidates across three covered lanes with a two-per-lane cap:
+`P14550`, `P15428`, `Q969S2`, `Q96FI4`, `P06744`, and `Q9BV20`. This is still
+source evidence only: all six rows require current-reference sequence,
+current-countable Foldseek, external structural-cluster, UniRef-wide duplicate,
+terminal-review, and full factory-gate screens before any import attempt.
+The first duplicate screens for this broader surface are now recorded. The
+bounded current-reference MMseqs2 screen finds 6/6 no-signal rows, the bounded
+external all-vs-all sequence screen finds 0 exact/near-duplicate external
+sequence pairs, and the external all-vs-all structural cache materializes all
+six AlphaFold sidecars, covers 15/15 unordered pairs, and finds 0 external
+`TM >=0.7` pairs. The
+current-countable Foldseek screen is complete over 4,032 query-target pairs:
+five rows have high-TM current-countable structural duplicate signals, while
+`P06744` has no current-countable structural duplicate signal. Terminal
+decisions therefore reject those five rows as review-only duplicate risks and
+defer only `P06744` behind UniRef-wide duplicate screening, terminal review,
+and full factory gates. No external row becomes import-ready or countable.
+Follow-on review-only artifacts advance `P06744` only: bounded duplicate
+evidence is clear, targeted UniRef90/50 checks show no nearest-reference shared
+cluster, the UniRef current-reference cluster screen has 0 overlaps, and the
+all-8 out-of-scope inverse gate passes with top1 `metal_dependent_hydrolase`
+score `0.3066`. It remains blocked by missing terminal review acceptance and
+full factory gates.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

@@ -272,6 +272,53 @@ multi-prior/lane-balanced broader structural sourcing path, or explicitly
 decide that an oxidoreductase-only surface is acceptable before running
 sequence and structural duplicate screens.
 
+The 2026-05-17T12:37:08Z run added that durable path without opening any import
+attempt. `artifacts/v3_external_hard_negative_broader_structural_sourcing_1025.json`
+merges the original 30-row pool, second-tranche terminal rejects, both prior
+fresh sourced surfaces, both prior terminal-decision artifacts, and the explicit
+P22830 deferral into one reproducible exclusion surface. It then applies a
+two-per-lane cap and selects six review-only source-evidence rows across three
+covered lanes: `P14550` and `P15428` from oxidoreductase_long_tail, `Q969S2`
+and `Q96FI4` from lyase, and `P06744` and `Q9BV20` from isomerase. Evidence-based
+confidence call: the previous one-lane probe is no longer the active sourcing
+blocker.
+
+The same run then advanced the six rows through the first bounded duplicate
+screens. `artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_1025.json`
+records 6/6 no-signal rows against the current countable reference FASTA.
+`artifacts/v3_external_hard_negative_broader_structural_all_vs_all_sequence_search_1025.json`
+finds 0 exact/near-duplicate sequence pairs within the six-row broader surface.
+`artifacts/v3_external_hard_negative_broader_structural_cluster_index_1025.json`
+materializes all six AlphaFold sidecars, covers 15/15 external all-vs-all
+Foldseek pairs, and finds 0 high-TM external pairs. The current-countable
+screen
+`artifacts/v3_external_hard_negative_broader_structural_current_countable_structural_screen_1025.json`
+completes 4,032/4,032 query-target pairs: five rows have high-TM
+current-countable structural duplicate signals, and only `P06744` has no
+current-countable structural duplicate signal. `artifacts/v3_external_hard_negative_broader_structural_terminal_decisions_1025.json`
+therefore rejects `P14550`, `P15428`, `Q969S2`, `Q96FI4`, and `Q9BV20` as
+review-only duplicate-signal rows and defers `P06744` behind UniRef-wide
+duplicate screening, terminal review acceptance, inverse-gate/factory evidence,
+and the full import gate. Follow-on `P06744` artifacts now record clear bounded
+duplicate evidence, a targeted UniRef90/50 nearest-reference no-shared-cluster
+result, a UniRef90/50 current-reference screen with 0 current-reference
+overlaps, and an all-8 out-of-scope inverse-gate pass with top1
+`metal_dependent_hydrolase` score `0.3066`. Evidence-based confidence call: the
+broader surface has one surviving no-current-structural-signal row, and its
+duplicate/inverse-gate blockers are now narrower, but no row is import-ready or
+countable because terminal review acceptance and full factory/import gates are
+still missing. Next direct work should decide the `P06744` terminal
+review/factory path without weakening gates; do not retry the five
+duplicate-signal rows without new evidence.
+
+Run verification for the current handoff: started `2026-05-17T12:37:08Z` and
+wrapped at `2026-05-17T13:25:07Z`. Startup checks passed with 400 unit tests
+and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks
+passed with 404 unit tests, `validate` over 681 curated labels, `compileall`,
+and `git diff --check`. README, `docs/external_source_transfer.md`,
+`docs/label_factory.md`, work scope, handoff, status, progress log, and
+external transfer notes were checked or updated. No registry import was made.
+
 Run verification for the current handoff: started `2026-05-17T10:34:03Z` and
 wrapped at `2026-05-17T10:49:59Z`. Startup checks passed with 395 unit tests
 and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks

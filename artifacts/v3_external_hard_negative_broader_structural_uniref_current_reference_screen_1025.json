@@ -1,0 +1,101 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "labels": "data/registries/curated_mechanism_labels.json",
+        "sequence_clusters": "artifacts/v3_sequence_cluster_proxy_1000.json",
+        "targeted_uniref_check": "artifacts/v3_external_hard_negative_broader_structural_targeted_uniref_check_1025.json"
+      },
+      "blocker_removed": "next_candidate_uniref_current_reference_screen",
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 1025
+    },
+    "blocker_not_removed": [
+      "full_label_factory_gate_not_run",
+      "no_import_ready_external_rows",
+      "terminal_review_decision_not_accepted"
+    ],
+    "blocker_removed": "broader_structural_uniref90_50_current_reference_cluster_screen_recorded",
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T13:18:17Z",
+    "current_countable_reference_accession_count": 735,
+    "current_countable_reference_entry_count": 681,
+    "fetch_failure_count": 0,
+    "fetched_uniref_cluster_count": 2,
+    "import_ready_candidate_count": 0,
+    "method": "external_hard_negative_broader_structural_uniref_current_reference_screen",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "full_label_factory_gate_not_run": 1,
+      "terminal_review_decision_not_accepted": 1
+    },
+    "review_only": true,
+    "screen_scope": "candidate UniRef90 and UniRef50 cluster members intersected against all current countable M-CSA reference accessions",
+    "slice_id": 1025,
+    "source_sequence_clusters_method": "sequence_cluster_proxy_from_reference_uniprot",
+    "source_targeted_uniref_check_method": "external_hard_negative_broader_structural_targeted_uniref_check",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope",
+    "uniref_current_reference_clear_count": 1,
+    "uniref_current_reference_incomplete_count": 0,
+    "uniref_current_reference_overlap_holdout_count": 0,
+    "uniref_current_reference_screen_status_counts": {
+      "uniref_current_reference_screen_no_current_reference_overlap": 1
+    }
+  },
+  "rows": [
+    {
+      "accession": "P06744",
+      "candidate_uniref_cluster_ids": [
+        "UniRef50_P06744",
+        "UniRef90_P06744"
+      ],
+      "candidate_uniref_cluster_summaries": [
+        {
+          "accession_count": 264,
+          "cluster_id": "UniRef50_P06744",
+          "current_reference_overlap_count": 0,
+          "entry_type": "UniRef50",
+          "fetch_status": "ok",
+          "member_count": 429,
+          "returned_member_count": 429
+        },
+        {
+          "accession_count": 17,
+          "cluster_id": "UniRef90_P06744",
+          "current_reference_overlap_count": 0,
+          "entry_type": "UniRef90",
+          "fetch_status": "ok",
+          "member_count": 15,
+          "returned_member_count": 15
+        }
+      ],
+      "countable_label_candidate": false,
+      "current_countable_reference_accession_count": 735,
+      "current_countable_reference_entry_count": 681,
+      "entry_id": "uniprot:P06744",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:isomerase",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "overlapping_current_reference_accessions": [],
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted"
+      ],
+      "review_status": "external_hard_negative_broader_structural_uniref_current_reference_screen_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "targeted_uniref_check_status": "targeted_uniref_nearest_reference_no_shared_cluster",
+      "uniref_current_reference_blockers": [],
+      "uniref_current_reference_screen_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    }
+  ],
+  "warnings": [
+    "UniRef current-reference screens are duplicate-control evidence only; terminal review and full factory gates still block import"
+  ]
+}

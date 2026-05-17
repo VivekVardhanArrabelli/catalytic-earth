@@ -1,0 +1,366 @@
+{
+  "blockers": [
+    "external_review_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "exact_reference_rows": [],
+  "failure_rows": [],
+  "fetch_failures": [],
+  "metadata": {
+    "alignment_row_count": 0,
+    "backend_available": true,
+    "backend_commands": [
+      "/opt/homebrew/bin/mmseqs easy-search /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_external_1025.fasta /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_reference_1025.fasta /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_1025.tsv /private/tmp/catalytic-earth-external-sequence-mmseqs-29a271a246ccfbb9/tmp --format-output query,target,pident,alnlen,evalue,bits --min-seq-id 0.0 -c 0.8 --cov-mode 0 --max-seqs 10000 --threads 1"
+    ],
+    "backend_name": "mmseqs2_easy_search",
+    "backend_requested": "auto",
+    "backend_result_tsv": "artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_1025.tsv",
+    "backend_succeeded": true,
+    "backend_version": "18-8cc5c",
+    "blocker_not_removed": [
+      "uniref_wide_or_external_all_vs_all_duplicate_screen_not_run"
+    ],
+    "blocker_removed": "bounded_current_reference_backend_sequence_search",
+    "blocker_removed_for_status": "current_reference_backend_no_signal",
+    "candidate_count": 6,
+    "countable_label_candidate_count": 0,
+    "coverage_threshold": 0.8,
+    "current_reference_accession_count": 735,
+    "current_reference_sequence_count": 737,
+    "exact_coverage_threshold": 0.98,
+    "exact_identity_threshold": 0.999,
+    "exact_reference_row_count": 0,
+    "expected_external_sequence_count": 6,
+    "external_sequence_count": 6,
+    "external_sequence_source": "uniprot_sequence_batch_search",
+    "failure_row_count": 0,
+    "identity_threshold": 0.9,
+    "import_ready_row_count": 0,
+    "inactive_reference_accession_resolutions": {
+      "P03176": [
+        "P0DTH5",
+        "Q9QNF7"
+      ],
+      "Q05489": [
+        "P0DUB8",
+        "P0DUB9"
+      ]
+    },
+    "limitations": [
+      "MMseqs2 easy-search reports heuristic local alignments at the configured coverage threshold; it is not an exhaustive dynamic programming matrix for every low-identity pair",
+      "bounded search compares the provided external candidate manifest against current accepted countable reference sequences only; no UniRef database was downloaded or searched",
+      "backend no-signal rows remove complete-search debt for the bounded current-reference pilot screen only; exact and near-duplicate rows remain holdout controls",
+      "Foldseek/TM-score structural duplicate screening is not computed here"
+    ],
+    "max_external_vs_reference_identity": null,
+    "max_rows": 100,
+    "method": "external_source_backend_sequence_search",
+    "missing_external_sequence_accessions": [],
+    "missing_external_sequence_count": 0,
+    "missing_reference_sequence_accessions": [],
+    "missing_reference_sequence_count": 0,
+    "near_duplicate_row_count": 0,
+    "no_signal_row_count": 6,
+    "ready_for_label_import": false,
+    "reference_fasta_record_count": 734,
+    "review_only_rule": "real backend sequence-search evidence is review-only and cannot make external rows countable or import-ready",
+    "row_blocker_counts": {
+      "external_review_decision_artifact_not_built": 6,
+      "full_label_factory_gate_not_run": 6
+    },
+    "search_status_counts": {
+      "no_near_duplicate_signal": 6
+    },
+    "sequence_source_artifacts": {
+      "candidate_manifest": "external_hard_negative_broader_structural_sourcing",
+      "generated_external_fasta": "artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_external_1025.fasta",
+      "generated_reference_fasta": "artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_reference_1025.fasta",
+      "reference_fasta": "artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta",
+      "sequence_clusters": "sequence_cluster_proxy_from_reference_uniprot"
+    }
+  },
+  "near_duplicate_rows": [],
+  "no_signal_rows": [
+    {
+      "accession": "P06744",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06744",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 558,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Glucose-6-phosphate isomerase (GPI) (EC 5.3.1.9) (Autocrine motility factor) (AMF) (D-hexose-6-phosphate anomerase) (Glucose-6-phosphate C2-epimerase) (EC 5.1.3.-) (Neuroleukin) (NLK) (Phosphoglucose isomerase) (PGI) (Phosphohexose isomerase) (PHI) (Sperm antigen 36) (SA-36)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P14550",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P14550",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 325,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Aldo-keto reductase family 1 member A1 (EC 1.1.1.2) (EC 1.1.1.372) (EC 1.1.1.54) (Alcohol dehydrogenase [NADP(+)]) (Aldehyde reductase) (Glucuronate reductase) (EC 1.1.1.19) (Glucuronolactone reductase) (EC 1.1.1.20) (S-nitroso-CoA reductase) (ScorR) (EC 1.6.-.-)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P15428",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P15428",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 266,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "15-hydroxyprostaglandin dehydrogenase [NAD(+)] (15-PGDH) (EC 1.1.1.141) (Eicosanoid/docosanoid dehydrogenase [NAD(+)]) (EC 1.1.1.-, EC 1.1.1.232) (Prostaglandin dehydrogenase 1) (Short chain dehydrogenase/reductase family 36C member 1)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q969S2",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q969S2",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 332,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Endonuclease 8-like 2 (EC 3.2.2.-) (EC 4.2.99.18) (DNA glycosylase/AP lyase Neil2) (DNA-(apurinic or apyrimidinic site) lyase Neil2) (Endonuclease VIII-like 2) (Nei homolog 2) (NEH2) (Nei-like protein 2)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q96FI4",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q96FI4",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 390,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Endonuclease 8-like 1 (EC 3.2.2.-) (EC 4.2.99.18) (DNA glycosylase/AP lyase Neil1) (DNA-(apurinic or apyrimidinic site) lyase Neil1) (Endonuclease VIII-like 1) (FPG1) (Nei homolog 1) (NEH1) (Nei-like protein 1)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q9BV20",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BV20",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 369,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Methylthioribose-1-phosphate isomerase (M1Pi) (MTR-1-P isomerase) (EC 5.3.1.23) (Mediator of RhoA-dependent invasion) (S-methyl-5-thioribose-1-phosphate isomerase) (Translation initiation factor eIF-2B subunit alpha/beta/delta-like protein)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    }
+  ],
+  "rows": [
+    {
+      "accession": "P06744",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06744",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 558,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Glucose-6-phosphate isomerase (GPI) (EC 5.3.1.9) (Autocrine motility factor) (AMF) (D-hexose-6-phosphate anomerase) (Glucose-6-phosphate C2-epimerase) (EC 5.1.3.-) (Neuroleukin) (NLK) (Phosphoglucose isomerase) (PGI) (Phosphohexose isomerase) (PHI) (Sperm antigen 36) (SA-36)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P14550",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P14550",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 325,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Aldo-keto reductase family 1 member A1 (EC 1.1.1.2) (EC 1.1.1.372) (EC 1.1.1.54) (Alcohol dehydrogenase [NADP(+)]) (Aldehyde reductase) (Glucuronate reductase) (EC 1.1.1.19) (Glucuronolactone reductase) (EC 1.1.1.20) (S-nitroso-CoA reductase) (ScorR) (EC 1.6.-.-)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P15428",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P15428",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 266,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "15-hydroxyprostaglandin dehydrogenase [NAD(+)] (15-PGDH) (EC 1.1.1.141) (Eicosanoid/docosanoid dehydrogenase [NAD(+)]) (EC 1.1.1.-, EC 1.1.1.232) (Prostaglandin dehydrogenase 1) (Short chain dehydrogenase/reductase family 36C member 1)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q969S2",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q969S2",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 332,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Endonuclease 8-like 2 (EC 3.2.2.-) (EC 4.2.99.18) (DNA glycosylase/AP lyase Neil2) (DNA-(apurinic or apyrimidinic site) lyase Neil2) (Endonuclease VIII-like 2) (Nei homolog 2) (NEH2) (Nei-like protein 2)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q96FI4",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q96FI4",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 390,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Endonuclease 8-like 1 (EC 3.2.2.-) (EC 4.2.99.18) (DNA glycosylase/AP lyase Neil1) (DNA-(apurinic or apyrimidinic site) lyase Neil1) (Endonuclease VIII-like 1) (FPG1) (Nei homolog 1) (NEH1) (Nei-like protein 1)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q9BV20",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BV20",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 369,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Methylthioribose-1-phosphate isomerase (M1Pi) (MTR-1-P isomerase) (EC 5.3.1.23) (Mediator of RhoA-dependent invasion) (S-methyl-5-thioribose-1-phosphate isomerase) (Translation initiation factor eIF-2B subunit alpha/beta/delta-like protein)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    }
+  ],
+  "warnings": [
+    "the backend search removes bounded current-reference sequence-search debt only for no-signal rows; active-site evidence, representation controls, review decisions, and factory gates remain required"
+  ]
+}

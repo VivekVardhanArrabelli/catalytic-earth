@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "all_vs_all_sequence_search": "artifacts/v3_external_hard_negative_broader_structural_all_vs_all_sequence_search_1025.json",
+        "backend_sequence_search": "artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_1025.json",
+        "current_countable_structural_screen": "artifacts/v3_external_hard_negative_broader_structural_current_countable_structural_screen_1025.json",
+        "external_structural_cluster_index": "artifacts/v3_external_hard_negative_broader_structural_cluster_index_1025.json",
+        "next_candidate_terminal_decisions": "artifacts/v3_external_hard_negative_broader_structural_terminal_decisions_1025.json"
+      },
+      "blocker_removed": "next_candidate_bounded_duplicate_evidence_review",
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 1025
+    },
+    "blocker_not_removed": [
+      "uniref_wide_duplicate_screening_required",
+      "terminal_review_decision_not_accepted",
+      "full_label_factory_gate_not_run",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "broader_structural_bounded_duplicate_evidence_review_recorded",
+    "bounded_duplicate_blocked_count": 0,
+    "bounded_duplicate_clear_count": 1,
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T13:17:05Z",
+    "duplicate_evidence_status_counts": {
+      "bounded_duplicate_controls_clear_uniref_pending": 1
+    },
+    "import_ready_candidate_count": 0,
+    "method": "external_hard_negative_broader_structural_duplicate_evidence_review",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "full_label_factory_gate_not_run": 1,
+      "terminal_review_decision_not_accepted": 1,
+      "uniref_wide_duplicate_screening_required": 1
+    },
+    "review_only": true,
+    "slice_id": 1025,
+    "source_all_vs_all_sequence_search_method": "external_source_all_vs_all_sequence_search",
+    "source_backend_sequence_search_method": "external_source_backend_sequence_search",
+    "source_current_countable_structural_screen_method": "external_hard_negative_broader_structural_current_countable_structural_screen",
+    "source_external_structural_cluster_index_method": "external_structural_cluster_index",
+    "source_next_candidate_terminal_decisions_method": "external_hard_negative_broader_structural_terminal_decisions",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope"
+  },
+  "rows": [
+    {
+      "accession": "P06744",
+      "bounded_current_reference_sequence_complete": true,
+      "bounded_current_reference_sequence_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 0,
+      "current_countable_structural_screen_status": "no_current_countable_structural_duplicate_signal",
+      "duplicate_evidence_blockers": [],
+      "duplicate_evidence_status": "bounded_duplicate_controls_clear_uniref_pending",
+      "entry_id": "uniprot:P06744",
+      "external_all_vs_all_max_identity": null,
+      "external_all_vs_all_near_duplicate_hit_count": 0,
+      "external_all_vs_all_sequence_complete": true,
+      "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+      "external_all_vs_all_top_hits": [],
+      "external_structural_nearest_neighbor": {
+        "accession": "P15428",
+        "tm_score": 0.3524
+      },
+      "external_structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:isomerase",
+      "max_external_vs_reference_identity": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.6983,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+        "current_entry_ids": [
+          "m_csa:735"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1EHK",
+        "current_selected_structure_key": "pdb:1EHK",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "heme_peroxidase_oxidase"
+        ],
+        "example_current_entry_id": "m_csa:735",
+        "max_pair_tm_score": 0.6373,
+        "qtmscore": 0.04662,
+        "raw_query_name": "afdb_P06744",
+        "raw_target_name": "pdb_1EHK_C",
+        "ttmscore": 0.6373
+      },
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "review_status": "external_hard_negative_broader_structural_duplicate_evidence_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_decision_status": "deferred_requires_review_and_factory_gate_after_structural_screen",
+      "tm_cluster_id": "external_tm_cluster:001"
+    }
+  ],
+  "warnings": [
+    "bounded duplicate-evidence review cannot authorize import; UniRef-wide duplicate screening, terminal review acceptance, and full factory gates still block count growth"
+  ]
+}

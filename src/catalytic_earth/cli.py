@@ -187,6 +187,7 @@ from .transfer_scope import (
     build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
     build_external_source_transfer_blocker_matrix,
+    build_external_hard_negative_broader_structural_sourcing,
     build_external_hard_negative_new_candidate_sourcing,
     build_external_hard_negative_new_candidate_current_countable_structural_screen,
     build_external_hard_negative_new_candidate_terminal_decisions,
@@ -3514,6 +3515,76 @@ def cmd_build_external_hard_negative_next_candidate_sourcing(
         "Wrote next external hard-negative candidate sourcing to "
         f"{args.out} ({sourcing['metadata']['sourced_candidate_count']} "
         "sourced)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_broader_structural_sourcing(
+    args: argparse.Namespace,
+) -> int:
+    query_manifest = read_json_object(Path(args.query_manifest))
+    current_candidate_manifest = read_json_object(Path(args.current_candidate_manifest))
+    second_tranche_terminal_decisions = read_json_object(
+        Path(args.second_tranche_terminal_decisions)
+    )
+    prior_sourcing_paths = args.prior_new_candidate_sourcing or [
+        "artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json",
+        "artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json",
+    ]
+    prior_terminal_paths = args.prior_new_candidate_terminal_decisions or [
+        "artifacts/v3_external_hard_negative_new_candidate_terminal_decisions_1025.json",
+        "artifacts/v3_external_hard_negative_next_candidate_terminal_decisions_1025.json",
+    ]
+    prior_deferral_paths = args.prior_deferred_candidate_decision or [
+        "artifacts/v3_external_hard_negative_p22830_cycle_deferral_1025.json",
+    ]
+    prior_new_candidate_sourcings = tuple(
+        read_json_object(Path(path)) for path in prior_sourcing_paths
+    )
+    prior_new_candidate_terminal_decisions = tuple(
+        read_json_object(Path(path)) for path in prior_terminal_paths
+    )
+    prior_deferred_candidate_decisions = tuple(
+        read_json_object(Path(path)) for path in prior_deferral_paths
+    )
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "query_manifest": args.query_manifest,
+            "current_candidate_manifest": args.current_candidate_manifest,
+            "second_tranche_terminal_decisions": (
+                args.second_tranche_terminal_decisions
+            ),
+            "prior_new_candidate_sourcings": prior_sourcing_paths,
+            "prior_new_candidate_terminal_decisions": prior_terminal_paths,
+            "prior_deferred_candidate_decisions": prior_deferral_paths,
+        },
+        "blocker_removed": "broader_external_structural_sourcing",
+    }
+    sourcing = build_external_hard_negative_broader_structural_sourcing(
+        query_manifest=query_manifest,
+        current_candidate_manifest=current_candidate_manifest,
+        second_tranche_terminal_decisions=second_tranche_terminal_decisions,
+        prior_new_candidate_sourcings=prior_new_candidate_sourcings,
+        prior_new_candidate_terminal_decision_artifacts=(
+            prior_new_candidate_terminal_decisions
+        ),
+        prior_deferred_candidate_decisions=prior_deferred_candidate_decisions,
+        max_records_per_lane=args.max_records_per_lane,
+        max_active_site_fetches=args.max_active_site_fetches,
+        max_candidates=args.max_candidates,
+        max_candidates_per_lane=args.max_candidates_per_lane,
+        min_sourced_lanes=args.min_sourced_lanes,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), sourcing)
+    print(
+        "Wrote broader external hard-negative structural sourcing to "
+        f"{args.out} ({sourcing['metadata']['sourced_candidate_count']} "
+        "sourced, "
+        f"{sourcing['metadata']['sourced_lane_count']} lanes)"
     )
     return 0
 
@@ -9334,6 +9405,80 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_hard_negative_next_sourcing.set_defaults(
         func=cmd_build_external_hard_negative_next_candidate_sourcing
+    )
+
+    external_hard_negative_broader_sourcing = subparsers.add_parser(
+        "build-external-hard-negative-broader-structural-sourcing",
+        help=(
+            "source a multi-prior, lane-balanced review-only external "
+            "hard-negative structural surface"
+        ),
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--query-manifest",
+        default="artifacts/v3_external_source_query_manifest_1025.json",
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--current-candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest_1025.json",
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--second-tranche-terminal-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_second_tranche_terminal_decisions_1025.json"
+        ),
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--prior-new-candidate-sourcing",
+        action="append",
+        default=None,
+        help=(
+            "prior sourcing artifact to exclude; may be provided more than once"
+        ),
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--prior-new-candidate-terminal-decisions",
+        action="append",
+        default=None,
+        help=(
+            "prior terminal-decision artifact to exclude; may be provided more "
+            "than once"
+        ),
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--prior-deferred-candidate-decision",
+        action="append",
+        default=None,
+        help=(
+            "prior explicit deferral artifact to exclude; may be provided more "
+            "than once"
+        ),
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--max-records-per-lane", type=int, default=50
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--max-active-site-fetches", type=int, default=96
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--max-candidates", type=int, default=8
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--max-candidates-per-lane", type=int, default=2
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--min-sourced-lanes", type=int, default=3
+    )
+    external_hard_negative_broader_sourcing.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_broader_structural_sourcing_1025.json"
+        ),
+    )
+    external_hard_negative_broader_sourcing.set_defaults(
+        func=cmd_build_external_hard_negative_broader_structural_sourcing
     )
 
     external_hard_negative_new_current_structural = subparsers.add_parser(

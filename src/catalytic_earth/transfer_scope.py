@@ -5967,6 +5967,7 @@ def _external_backend_sequence_candidate_rows(
     if candidate_manifest.get("metadata", {}).get("method") in {
         "external_hard_negative_new_candidate_sourcing",
         "external_hard_negative_next_candidate_sourcing",
+        "external_hard_negative_broader_structural_sourcing",
     }:
         return [
             row
@@ -6330,9 +6331,9 @@ def build_external_source_backend_sequence_search(
     limitations.extend(
         [
             (
-                "bounded search compares the 30-row external pilot against current "
-                "accepted countable reference sequences only; no UniRef database was "
-                "downloaded or searched"
+                "bounded search compares the provided external candidate manifest "
+                "against current accepted countable reference sequences only; no "
+                "UniRef database was downloaded or searched"
             ),
             (
                 "backend no-signal rows remove complete-search debt for the bounded "
@@ -9287,11 +9288,19 @@ def build_external_structural_tm_holdout_path(
     if max_rows < 1:
         raise ValueError("max_rows must be positive")
 
-    manifest_rows = [
-        row
-        for row in candidate_manifest.get("rows", []) or []
-        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
-    ]
+    manifest_method = candidate_manifest.get("metadata", {}).get("method")
+    if manifest_method in {
+        "external_hard_negative_new_candidate_sourcing",
+        "external_hard_negative_next_candidate_sourcing",
+        "external_hard_negative_broader_structural_sourcing",
+    }:
+        manifest_rows = _external_backend_sequence_candidate_rows(candidate_manifest)
+    else:
+        manifest_rows = [
+            row
+            for row in candidate_manifest.get("rows", []) or []
+            if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+        ]
     manifest_by_accession = {
         _normalize_accession(row.get("accession")): row for row in manifest_rows
     }
@@ -10546,6 +10555,9 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
     is_next_candidate_surface = (
         source_method == "external_hard_negative_next_candidate_sourcing"
     )
+    is_broader_structural_surface = (
+        source_method == "external_hard_negative_broader_structural_sourcing"
+    )
     sequence_no_signal_rows = list(selection.get("rows", []) or [])
     screen = build_external_hard_negative_second_tranche_current_countable_structural_screen(
         second_tranche_selection=selection,
@@ -10577,6 +10589,9 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
             "external_hard_negative_next_candidate_current_countable_"
             "structural_screen_review_only"
             if is_next_candidate_surface
+            else "external_hard_negative_broader_structural_current_countable_"
+            "structural_screen_review_only"
+            if is_broader_structural_surface
             else "external_hard_negative_new_candidate_current_countable_"
             "structural_screen_review_only"
         )
@@ -10585,6 +10600,8 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
     metadata["method"] = (
         "external_hard_negative_next_candidate_current_countable_structural_screen"
         if is_next_candidate_surface
+        else "external_hard_negative_broader_structural_current_countable_structural_screen"
+        if is_broader_structural_surface
         else "external_hard_negative_new_candidate_current_countable_structural_screen"
     )
     metadata["blocker_removed"] = (
@@ -10594,6 +10611,12 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
             else "next_candidate_current_countable_structural_screen_attempted"
         )
         if is_next_candidate_surface
+        else (
+            "broader_structural_current_countable_structural_screen_completed"
+            if metadata.get("foldseek_run_status") == "completed"
+            else "broader_structural_current_countable_structural_screen_attempted"
+        )
+        if is_broader_structural_surface
         else (
             "new_candidate_current_countable_structural_screen_completed"
             if metadata.get("foldseek_run_status") == "completed"
@@ -10615,6 +10638,7 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
         metadata["exact_reference_holdout_accessions"]
     )
     metadata["source_new_candidate_sourcing_method"] = source_method
+    metadata["source_candidate_sourcing_method"] = source_method
     metadata["source_backend_sequence_search_method"] = backend_sequence_search.get(
         "metadata", {}
     ).get("method")
@@ -10628,6 +10652,10 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
             "pair-cache completion, UniRef-wide duplicate screening, terminal "
             "review acceptance, and full factory gates still block import"
             if is_next_candidate_surface
+            else "broader-structural current-countable screening is review-only; "
+            "UniRef-wide duplicate screening, terminal review acceptance, and "
+            "full factory gates still block import"
+            if is_broader_structural_surface
             else "new-candidate current-countable structural screening is review-only; "
             "pair-cache completion, UniRef-wide duplicate screening, terminal "
             "review acceptance, and full factory gates still block import"
@@ -10832,9 +10860,14 @@ def build_external_hard_negative_new_candidate_terminal_decisions(
     is_next_candidate_surface = (
         source_method == "external_hard_negative_next_candidate_sourcing"
     )
+    is_broader_structural_surface = (
+        source_method == "external_hard_negative_broader_structural_sourcing"
+    )
     review_status = (
         "external_hard_negative_next_candidate_terminal_decision_review_only"
         if is_next_candidate_surface
+        else "external_hard_negative_broader_structural_terminal_decision_review_only"
+        if is_broader_structural_surface
         else "external_hard_negative_new_candidate_terminal_decision_review_only"
     )
     for row in decisions.get("rows", []) or []:
@@ -10845,6 +10878,8 @@ def build_external_hard_negative_new_candidate_terminal_decisions(
     metadata["method"] = (
         "external_hard_negative_next_candidate_terminal_decisions"
         if is_next_candidate_surface
+        else "external_hard_negative_broader_structural_terminal_decisions"
+        if is_broader_structural_surface
         else "external_hard_negative_new_candidate_terminal_decisions"
     )
     metadata["blocker_removed"] = (
@@ -10853,6 +10888,11 @@ def build_external_hard_negative_new_candidate_terminal_decisions(
             "structural_screen"
         )
         if is_next_candidate_surface
+        else (
+            "broader_structural_terminal_decisions_recorded_after_current_countable_"
+            "structural_screen"
+        )
+        if is_broader_structural_surface
         else (
             "new_candidate_terminal_decisions_recorded_after_current_countable_"
             "structural_screen"
@@ -10877,6 +10917,11 @@ def build_external_hard_negative_new_candidate_terminal_decisions(
             "decisions; they close the replacement hard-negative tranche "
             "without validating enzyme function or creating countable labels"
             if is_next_candidate_surface
+            else "broader-structural terminal decisions are review-only "
+            "import-safety decisions; they close duplicate-signal rows and "
+            "defer no-signal rows without validating enzyme function or "
+            "creating countable labels"
+            if is_broader_structural_surface
             else "new-candidate terminal decisions are review-only import-safety "
             "decisions; they close the fresh hard-negative tranche without "
             "validating enzyme function or creating countable labels"
@@ -11040,16 +11085,36 @@ def build_external_hard_negative_next_candidate_duplicate_evidence_review(
         if row["duplicate_evidence_status"]
         == "bounded_duplicate_controls_clear_uniref_pending"
     )
+    source_terminal_method = next_candidate_terminal_decisions.get("metadata", {}).get(
+        "method"
+    )
+    is_broader_structural_surface = (
+        source_terminal_method
+        == "external_hard_negative_broader_structural_terminal_decisions"
+    )
+    method = (
+        "external_hard_negative_broader_structural_duplicate_evidence_review"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_duplicate_evidence_review"
+    )
+    blocker_removed = (
+        "broader_structural_bounded_duplicate_evidence_review_recorded"
+        if is_broader_structural_surface
+        else "next_candidate_bounded_duplicate_evidence_review_recorded"
+    )
+    review_status = (
+        "external_hard_negative_broader_structural_duplicate_evidence_review_only"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_duplicate_evidence_review_only"
+    )
+    for row in rows:
+        row["review_status"] = review_status
     return {
         "metadata": {
-            "method": (
-                "external_hard_negative_next_candidate_duplicate_evidence_review"
-            ),
+            "method": method,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
-            "blocker_removed": (
-                "next_candidate_bounded_duplicate_evidence_review_recorded"
-            ),
+            "blocker_removed": blocker_removed,
             "blocker_not_removed": [
                 "uniref_wide_duplicate_screening_required",
                 "terminal_review_decision_not_accepted",
@@ -11069,7 +11134,7 @@ def build_external_hard_negative_next_candidate_duplicate_evidence_review(
             "countable_label_candidate_count": 0,
             "ready_for_label_import": False,
             "source_next_candidate_terminal_decisions_method": (
-                next_candidate_terminal_decisions.get("metadata", {}).get("method")
+                source_terminal_method
             ),
             "source_backend_sequence_search_method": (
                 backend_sequence_search.get("metadata", {}).get("method")
@@ -11107,6 +11172,28 @@ def build_external_hard_negative_next_candidate_terminal_review_queue(
     if max_rows < 1:
         raise ValueError("max_rows must be positive")
 
+    source_duplicate_method = duplicate_evidence_review.get("metadata", {}).get(
+        "method"
+    )
+    is_broader_structural_surface = (
+        source_duplicate_method
+        == "external_hard_negative_broader_structural_duplicate_evidence_review"
+    )
+    method = (
+        "external_hard_negative_broader_structural_terminal_review_queue"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_terminal_review_queue"
+    )
+    blocker_removed = (
+        "broader_structural_terminal_review_queue_recorded"
+        if is_broader_structural_surface
+        else "next_candidate_terminal_review_queue_recorded"
+    )
+    review_status = (
+        "external_hard_negative_broader_structural_terminal_review_queue_review_only"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_terminal_review_queue_review_only"
+    )
     rows: list[dict[str, Any]] = []
     for row in [
         item
@@ -11169,10 +11256,7 @@ def build_external_hard_negative_next_candidate_terminal_review_queue(
                 ],
                 "non_human_blockers_remaining": sorted(set(non_human_blockers)),
                 "remaining_import_blockers": row.get("remaining_import_blockers", []),
-                "review_status": (
-                    "external_hard_negative_next_candidate_terminal_review_queue_"
-                    "review_only"
-                ),
+                "review_status": review_status,
                 "import_ready_candidate": False,
                 "ready_for_label_import": False,
                 "countable_label_candidate": False,
@@ -11184,10 +11268,10 @@ def build_external_hard_negative_next_candidate_terminal_review_queue(
     )
     return {
         "metadata": {
-            "method": "external_hard_negative_next_candidate_terminal_review_queue",
+            "method": method,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
-            "blocker_removed": "next_candidate_terminal_review_queue_recorded",
+            "blocker_removed": blocker_removed,
             "blocker_not_removed": [
                 "terminal_review_decision_not_accepted",
                 "uniref_wide_duplicate_screening_required",
@@ -11207,7 +11291,7 @@ def build_external_hard_negative_next_candidate_terminal_review_queue(
             },
             "non_human_blocker_counts": dict(sorted(blocker_counts.items())),
             "source_duplicate_evidence_review_method": (
-                duplicate_evidence_review.get("metadata", {}).get("method")
+                source_duplicate_method
             ),
             "artifact_lineage": artifact_lineage or {},
         },
@@ -11316,6 +11400,26 @@ def build_external_hard_negative_next_candidate_uniref_current_reference_screen(
     if max_rows < 1:
         raise ValueError("max_rows must be positive")
 
+    source_targeted_method = targeted_uniref_check.get("metadata", {}).get("method")
+    is_broader_structural_surface = (
+        source_targeted_method
+        == "external_hard_negative_broader_structural_targeted_uniref_check"
+    )
+    method = (
+        "external_hard_negative_broader_structural_uniref_current_reference_screen"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_uniref_current_reference_screen"
+    )
+    blocker_removed = (
+        "broader_structural_uniref90_50_current_reference_cluster_screen_recorded"
+        if is_broader_structural_surface
+        else "next_candidate_uniref90_50_current_reference_cluster_screen_recorded"
+    )
+    review_status = (
+        "external_hard_negative_broader_structural_uniref_current_reference_screen_review_only"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_uniref_current_reference_screen_review_only"
+    )
     countable_entry_ids = _countable_label_entry_ids(labels)
     current_reference_entry_ids_by_accession: dict[str, set[str]] = defaultdict(set)
     for row in sequence_clusters.get("rows", []) or []:
@@ -11478,10 +11582,7 @@ def build_external_hard_negative_next_candidate_uniref_current_reference_screen(
                     "targeted_uniref_check_status"
                 ),
                 "remaining_import_blockers": remaining_import_blockers,
-                "review_status": (
-                    "external_hard_negative_next_candidate_uniref_current_"
-                    "reference_screen_review_only"
-                ),
+                "review_status": review_status,
                 "import_ready_candidate": False,
                 "ready_for_label_import": False,
                 "countable_label_candidate": False,
@@ -11513,15 +11614,10 @@ def build_external_hard_negative_next_candidate_uniref_current_reference_screen(
     )
     return {
         "metadata": {
-            "method": (
-                "external_hard_negative_next_candidate_uniref_current_reference_"
-                "screen"
-            ),
+            "method": method,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
-            "blocker_removed": (
-                "next_candidate_uniref90_50_current_reference_cluster_screen_recorded"
-            ),
+            "blocker_removed": blocker_removed,
             "blocker_not_removed": blocker_not_removed,
             "review_only": True,
             "screen_scope": (
@@ -11549,7 +11645,7 @@ def build_external_hard_negative_next_candidate_uniref_current_reference_screen(
             "countable_label_candidate_count": 0,
             "ready_for_label_import": False,
             "source_targeted_uniref_check_method": (
-                targeted_uniref_check.get("metadata", {}).get("method")
+                source_targeted_method
             ),
             "source_sequence_clusters_method": sequence_clusters.get(
                 "metadata", {}
@@ -11585,6 +11681,25 @@ def build_external_hard_negative_next_candidate_inverse_gate_scores(
     if top_k < 1:
         raise ValueError("top_k must be positive")
 
+    source_sourcing_method = next_candidate_sourcing.get("metadata", {}).get("method")
+    is_broader_structural_surface = (
+        source_sourcing_method == "external_hard_negative_broader_structural_sourcing"
+    )
+    method = (
+        "external_hard_negative_broader_structural_inverse_gate_scores"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_inverse_gate_scores"
+    )
+    blocker_removed = (
+        "broader_structural_all_8_out_of_scope_inverse_gate_scored"
+        if is_broader_structural_surface
+        else "next_candidate_all_8_out_of_scope_inverse_gate_scored"
+    )
+    review_status = (
+        "external_hard_negative_broader_structural_inverse_gate_scores_review_only"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_inverse_gate_scores_review_only"
+    )
     sourcing_by_accession = _external_first_row_by_accession(next_candidate_sourcing)
     candidates = [
         row
@@ -11835,9 +11950,7 @@ def build_external_hard_negative_next_candidate_inverse_gate_scores(
                 "countable_label_candidate": False,
                 "ready_for_label_import": False,
                 "import_ready_candidate": False,
-                "review_status": (
-                    "external_hard_negative_next_candidate_inverse_gate_scores_review_only"
-                ),
+                "review_status": review_status,
             }
         )
 
@@ -11849,10 +11962,10 @@ def build_external_hard_negative_next_candidate_inverse_gate_scores(
     )
     return {
         "metadata": {
-            "method": "external_hard_negative_next_candidate_inverse_gate_scores",
+            "method": method,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
-            "blocker_removed": "next_candidate_all_8_out_of_scope_inverse_gate_scored",
+            "blocker_removed": blocker_removed,
             "blocker_not_removed": sorted(blocker_counts),
             "review_only": True,
             "target_label_type": "out_of_scope",
@@ -11879,6 +11992,7 @@ def build_external_hard_negative_next_candidate_inverse_gate_scores(
             "source_next_candidate_sourcing_method": next_candidate_sourcing.get(
                 "metadata", {}
             ).get("method"),
+            "source_candidate_sourcing_method": source_sourcing_method,
             "source_current_countable_structural_screen_method": (
                 current_countable_structural_screen.get("metadata", {}).get("method")
             ),
@@ -12888,6 +13002,26 @@ def build_external_hard_negative_next_candidate_targeted_uniref_check(
     if max_rows < 1:
         raise ValueError("max_rows must be positive")
 
+    source_queue_method = terminal_review_queue.get("metadata", {}).get("method")
+    is_broader_structural_surface = (
+        source_queue_method
+        == "external_hard_negative_broader_structural_terminal_review_queue"
+    )
+    method = (
+        "external_hard_negative_broader_structural_targeted_uniref_check"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_targeted_uniref_check"
+    )
+    blocker_removed = (
+        "broader_structural_targeted_nearest_reference_uniref_check_recorded"
+        if is_broader_structural_surface
+        else "next_candidate_targeted_nearest_reference_uniref_check_recorded"
+    )
+    review_status = (
+        "external_hard_negative_broader_structural_targeted_uniref_check_review_only"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_targeted_uniref_check_review_only"
+    )
     reference_accessions_by_entry_id = {
         str(row.get("entry_id") or ""): [
             _normalize_accession(accession)
@@ -13021,10 +13155,7 @@ def build_external_hard_negative_next_candidate_targeted_uniref_check(
                         ]
                     )
                 ),
-                "review_status": (
-                    "external_hard_negative_next_candidate_targeted_uniref_"
-                    "check_review_only"
-                ),
+                "review_status": review_status,
                 "import_ready_candidate": False,
                 "ready_for_label_import": False,
                 "countable_label_candidate": False,
@@ -13040,12 +13171,10 @@ def build_external_hard_negative_next_candidate_targeted_uniref_check(
     )
     return {
         "metadata": {
-            "method": "external_hard_negative_next_candidate_targeted_uniref_check",
+            "method": method,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
-            "blocker_removed": (
-                "next_candidate_targeted_nearest_reference_uniref_check_recorded"
-            ),
+            "blocker_removed": blocker_removed,
             "blocker_not_removed": [
                 "uniref_wide_duplicate_screening_required",
                 "terminal_review_decision_not_accepted",
@@ -13071,7 +13200,7 @@ def build_external_hard_negative_next_candidate_targeted_uniref_check(
             "countable_label_candidate_count": 0,
             "ready_for_label_import": False,
             "source_terminal_review_queue_method": (
-                terminal_review_queue.get("metadata", {}).get("method")
+                source_queue_method
             ),
             "source_sequence_clusters_method": sequence_clusters.get(
                 "metadata", {}
@@ -13096,10 +13225,16 @@ def build_external_hard_negative_new_candidate_sourcing(
     current_candidate_manifest: dict[str, Any],
     second_tranche_terminal_decisions: dict[str, Any],
     prior_new_candidate_sourcing: dict[str, Any] | None = None,
+    prior_new_candidate_sourcings: tuple[dict[str, Any], ...] | None = None,
     prior_new_candidate_terminal_decisions: dict[str, Any] | None = None,
+    prior_new_candidate_terminal_decision_artifacts: tuple[dict[str, Any], ...]
+    | None = None,
+    prior_deferred_candidate_decisions: tuple[dict[str, Any], ...] | None = None,
     max_records_per_lane: int = 12,
     max_active_site_fetches: int = 16,
     max_candidates: int = 8,
+    max_candidates_per_lane: int | None = None,
+    min_sourced_lanes: int = 1,
     covered_lane_ids: tuple[str, ...] = (
         "external_source:glycan_chemistry",
         "external_source:isomerase",
@@ -13129,8 +13264,27 @@ def build_external_hard_negative_new_candidate_sourcing(
         raise ValueError("max_active_site_fetches must be non-negative")
     if max_candidates < 1:
         raise ValueError("max_candidates must be positive")
+    if max_candidates_per_lane is not None and max_candidates_per_lane < 1:
+        raise ValueError("max_candidates_per_lane must be positive when provided")
+    if min_sourced_lanes < 1:
+        raise ValueError("min_sourced_lanes must be positive")
 
     covered_lanes = {str(lane_id) for lane_id in covered_lane_ids}
+    prior_sourcing_artifacts = [
+        artifact
+        for artifact in (
+            [prior_new_candidate_sourcing] + list(prior_new_candidate_sourcings or ())
+        )
+        if isinstance(artifact, dict)
+    ]
+    prior_terminal_artifacts = [
+        artifact
+        for artifact in (
+            [prior_new_candidate_terminal_decisions]
+            + list(prior_new_candidate_terminal_decision_artifacts or ())
+        )
+        if isinstance(artifact, dict)
+    ]
     current_pool_accessions = {
         _normalize_accession(row.get("accession"))
         for row in current_candidate_manifest.get("rows", []) or []
@@ -13145,7 +13299,8 @@ def build_external_hard_negative_new_candidate_sourcing(
     }
     prior_sourced_accessions = {
         _normalize_accession(row.get("accession"))
-        for row in (prior_new_candidate_sourcing or {}).get("rows", []) or []
+        for artifact in prior_sourcing_artifacts
+        for row in artifact.get("rows", []) or []
         if isinstance(row, dict)
         and _normalize_accession(row.get("accession"))
         and row.get("sourcing_status")
@@ -13153,11 +13308,22 @@ def build_external_hard_negative_new_candidate_sourcing(
     }
     prior_terminal_rejected_accessions = {
         _normalize_accession(row.get("accession"))
-        for row in (prior_new_candidate_terminal_decisions or {}).get("rows", [])
-        or []
+        for artifact in prior_terminal_artifacts
+        for row in artifact.get("rows", []) or []
         if isinstance(row, dict)
         and _normalize_accession(row.get("accession"))
         and str(row.get("terminal_decision_status") or "").startswith("rejected_")
+    }
+    prior_deferred_accessions = {
+        _normalize_accession(row.get("accession"))
+        for artifact in prior_deferred_candidate_decisions or ()
+        for row in artifact.get("rows", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(row.get("accession"))
+        and (
+            str(row.get("cycle_decision_status") or "").startswith("deferred")
+            or "deferred" in " ".join(row.get("remaining_import_blockers", []) or [])
+        )
     }
 
     expanded_sample = build_external_source_candidate_sample(
@@ -13207,6 +13373,8 @@ def build_external_hard_negative_new_candidate_sourcing(
             blockers.append("accession_already_in_prior_new_candidate_sourcing")
         if accession in prior_terminal_rejected_accessions:
             blockers.append("terminal_duplicate_rejection_previous_new_candidate_tranche")
+        if accession in prior_deferred_accessions:
+            blockers.append("accession_deferred_by_prior_go_no_go_decision")
         if not is_reviewed:
             blockers.append("reviewed_swissprot_record_required")
         if not specific_ec_numbers:
@@ -13301,6 +13469,9 @@ def build_external_hard_negative_new_candidate_sourcing(
         elif "accession_already_in_prior_new_candidate_sourcing" in blockers:
             sourcing_status = "excluded_prior_new_candidate_pool"
             next_action = "do not retry prior sourced accession without new evidence"
+        elif "accession_deferred_by_prior_go_no_go_decision" in blockers:
+            sourcing_status = "excluded_prior_deferred_candidate"
+            next_action = "do not retry deferred candidate without an explicit new decision"
         elif "mechanism_lane_not_covered_by_existing_counterevidence_rules" in blockers:
             sourcing_status = "blocked_uncovered_mechanism_lane"
             next_action = "source a covered-lane row instead of adding a new lane"
@@ -13374,15 +13545,23 @@ def build_external_hard_negative_new_candidate_sourcing(
     )
     if max_candidates:
         sourced_seen = 0
+        sourced_seen_by_lane: Counter[str] = Counter()
         filtered_rows: list[dict[str, Any]] = []
         for row in rows:
             if (
                 row["sourcing_status"]
                 == "sourced_pending_sequence_structure_distance_screens"
             ):
+                lane_id = str(row.get("lane_id") or "")
+                if (
+                    max_candidates_per_lane is not None
+                    and sourced_seen_by_lane[lane_id] >= max_candidates_per_lane
+                ):
+                    continue
                 sourced_seen += 1
                 if sourced_seen > max_candidates:
                     continue
+                sourced_seen_by_lane[lane_id] += 1
             filtered_rows.append(row)
         rows = filtered_rows
 
@@ -13398,6 +13577,28 @@ def build_external_hard_negative_new_candidate_sourcing(
         if row["sourcing_status"]
         == "sourced_pending_sequence_structure_distance_screens"
     )
+    sourced_candidate_lane_counts = Counter(
+        str(row.get("lane_id") or "")
+        for row in rows
+        if row["sourcing_status"]
+        == "sourced_pending_sequence_structure_distance_screens"
+    )
+    sourced_lane_count = len(sourced_candidate_lane_counts)
+    if max_candidates_per_lane is None:
+        lane_balance_status = "lane_balance_not_required"
+        lane_balance_guardrail_clean = True
+    elif sourced_candidate_count == 0:
+        lane_balance_status = "no_sourced_candidates_for_lane_balance"
+        lane_balance_guardrail_clean = False
+    elif sourced_lane_count < min_sourced_lanes:
+        lane_balance_status = "insufficient_sourced_lane_diversity"
+        lane_balance_guardrail_clean = False
+    elif max(sourced_candidate_lane_counts.values() or [0]) > max_candidates_per_lane:
+        lane_balance_status = "max_candidates_per_lane_exceeded"
+        lane_balance_guardrail_clean = False
+    else:
+        lane_balance_status = "lane_balance_guardrail_clean"
+        lane_balance_guardrail_clean = True
     blocker_not_removed = [
         "current_reference_backend_sequence_search_required",
         "current_countable_structural_screen_required",
@@ -13409,6 +13610,8 @@ def build_external_hard_negative_new_candidate_sourcing(
     ]
     if sourced_candidate_count == 0:
         blocker_not_removed.append("no_new_candidate_sourced")
+    if not lane_balance_guardrail_clean:
+        blocker_not_removed.append("lane_balance_requirement_not_met")
 
     return {
         "metadata": {
@@ -13428,6 +13631,8 @@ def build_external_hard_negative_new_candidate_sourcing(
             "max_records_per_lane": max_records_per_lane,
             "max_active_site_fetches": max_active_site_fetches,
             "max_candidates": max_candidates,
+            "max_candidates_per_lane": max_candidates_per_lane,
+            "min_sourced_lanes": min_sourced_lanes,
             "queried_lane_count": expanded_sample.get("metadata", {}).get(
                 "lane_count"
             ),
@@ -13436,6 +13641,12 @@ def build_external_hard_negative_new_candidate_sourcing(
             ),
             "emitted_row_count": len(rows),
             "sourced_candidate_count": sourced_candidate_count,
+            "sourced_lane_count": sourced_lane_count,
+            "sourced_candidate_lane_counts": dict(
+                sorted(sourced_candidate_lane_counts.items())
+            ),
+            "lane_balance_status": lane_balance_status,
+            "lane_balance_guardrail_clean": lane_balance_guardrail_clean,
             "current_external_pool_exclusion_count": sum(
                 1
                 for row in rows
@@ -13445,6 +13656,12 @@ def build_external_hard_negative_new_candidate_sourcing(
                 1
                 for row in rows
                 if row["sourcing_status"] == "excluded_prior_new_candidate_pool"
+            ),
+            "prior_deferred_candidate_exclusion_count": sum(
+                1
+                for row in rows
+                if "accession_deferred_by_prior_go_no_go_decision"
+                in row["source_evidence_blockers"]
             ),
             "active_site_fetch_count": active_site_fetch_count,
             "active_site_fetch_failure_count": len(active_site_fetch_failures),
@@ -13467,17 +13684,28 @@ def build_external_hard_negative_new_candidate_sourcing(
                 second_tranche_terminal_decisions.get("metadata", {}).get("method")
             ),
             "source_prior_new_candidate_sourcing_method": (
-                (prior_new_candidate_sourcing or {}).get("metadata", {}).get("method")
+                sorted(
+                    {
+                        artifact.get("metadata", {}).get("method")
+                        for artifact in prior_sourcing_artifacts
+                        if artifact.get("metadata", {}).get("method")
+                    }
+                )
             ),
             "source_prior_new_candidate_terminal_decisions_method": (
-                (prior_new_candidate_terminal_decisions or {})
-                .get("metadata", {})
-                .get("method")
+                sorted(
+                    {
+                        artifact.get("metadata", {}).get("method")
+                        for artifact in prior_terminal_artifacts
+                        if artifact.get("metadata", {}).get("method")
+                    }
+                )
             ),
             "prior_new_candidate_sourced_accessions": sorted(prior_sourced_accessions),
             "prior_new_candidate_terminal_rejected_accessions": sorted(
                 prior_terminal_rejected_accessions
             ),
+            "prior_deferred_candidate_accessions": sorted(prior_deferred_accessions),
             "artifact_lineage": artifact_lineage or {},
         },
         "rows": rows,
@@ -13491,6 +13719,61 @@ def build_external_hard_negative_new_candidate_sourcing(
             )
         ],
     }
+
+
+def build_external_hard_negative_broader_structural_sourcing(
+    *,
+    query_manifest: dict[str, Any],
+    current_candidate_manifest: dict[str, Any],
+    second_tranche_terminal_decisions: dict[str, Any],
+    prior_new_candidate_sourcings: tuple[dict[str, Any], ...],
+    prior_new_candidate_terminal_decision_artifacts: tuple[dict[str, Any], ...],
+    prior_deferred_candidate_decisions: tuple[dict[str, Any], ...] = (),
+    max_records_per_lane: int = 50,
+    max_active_site_fetches: int = 96,
+    max_candidates: int = 8,
+    max_candidates_per_lane: int = 2,
+    min_sourced_lanes: int = 3,
+    fetch_query: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
+    fetch_entry: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Source a broader review-only hard-negative surface with durable exclusions.
+
+    This path exists after the first two external imports and the P22830 deferral:
+    it merges all prior sourcing and terminal-decision surfaces, caps selected
+    rows per lane, and records whether the resulting structural-sourcing surface
+    is broad enough to justify the next duplicate screens.
+    """
+
+    return build_external_hard_negative_new_candidate_sourcing(
+        query_manifest=query_manifest,
+        current_candidate_manifest=current_candidate_manifest,
+        second_tranche_terminal_decisions=second_tranche_terminal_decisions,
+        prior_new_candidate_sourcings=prior_new_candidate_sourcings,
+        prior_new_candidate_terminal_decision_artifacts=(
+            prior_new_candidate_terminal_decision_artifacts
+        ),
+        prior_deferred_candidate_decisions=prior_deferred_candidate_decisions,
+        max_records_per_lane=max_records_per_lane,
+        max_active_site_fetches=max_active_site_fetches,
+        max_candidates=max_candidates,
+        max_candidates_per_lane=max_candidates_per_lane,
+        min_sourced_lanes=min_sourced_lanes,
+        fetch_query=fetch_query,
+        fetch_entry=fetch_entry,
+        method_name="external_hard_negative_broader_structural_sourcing",
+        blocker_removed=(
+            "multi_prior_lane_balanced_broader_structural_sourcing_started"
+        ),
+        selection_scope=(
+            "broader_external_structural_sourcing_after_two_imports_no_import_attempt"
+        ),
+        review_status=(
+            "external_hard_negative_broader_structural_sourcing_review_only"
+        ),
+        artifact_lineage=artifact_lineage,
+    )
 
 
 def build_external_source_pilot_success_criteria(

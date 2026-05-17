@@ -208,6 +208,50 @@ import.
   imports. The canonical registry therefore remains 681 labels and P22830 stays
   review-only pending broader external structural sourcing or a later explicit
   user decision.
+- `artifacts/v3_external_hard_negative_broader_structural_sourcing_1025.json`
+  starts that broader review-only sourcing path with durable multi-prior
+  exclusions. It excludes the original 30-row pool, second-tranche rejects,
+  both prior fresh sourced surfaces, prior terminal duplicate rejections, and
+  the explicit P22830 deferral, then applies a two-per-lane cap. The selected
+  source-evidence rows are `P14550`, `P15428`, `Q969S2`, `Q96FI4`, `P06744`,
+  and `Q9BV20`, spanning oxidoreductase, lyase, and isomerase lanes. The lane
+  balance guardrail is clean, but all six rows remain non-countable and still
+  require sequence, structural, UniRef-wide duplicate, terminal-review, and
+  factory-gate screens before any import attempt.
+- `artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_1025.json`
+  completes the bounded current-reference MMseqs2 screen for those six rows:
+  all six have no near-duplicate signal against the current countable reference
+  FASTA, with 0 exact-reference and 0 near-duplicate rows. The audit is
+  guardrail-clean and remains review-only.
+- `artifacts/v3_external_hard_negative_broader_structural_all_vs_all_sequence_search_1025.json`
+  completes the bounded six-row external all-vs-all sequence screen. It finds
+  0 exact/near-duplicate external sequence pairs and remains review-only; this
+  does not replace UniRef-wide duplicate screening.
+- `artifacts/v3_external_hard_negative_broader_structural_tm_holdout_path_1025.json`
+  and `artifacts/v3_external_hard_negative_broader_structural_cluster_index_1025.json`
+  stage the six-row structural surface. All six AlphaFold sidecars are
+  materialized, the external all-vs-all Foldseek cache covers 15/15 unordered
+  pairs, and no external pair reaches `TM >=0.7`.
+- `artifacts/v3_external_hard_negative_broader_structural_current_countable_structural_screen_1025.json`
+  then screens the six rows against 672 current countable selected structures.
+  Foldseek completes 4,032/4,032 query-target pairs: five rows have high-TM
+  current-countable duplicate signals and only `P06744` has no current-countable
+  structural duplicate signal. `artifacts/v3_external_hard_negative_broader_structural_terminal_decisions_1025.json`
+  records the five duplicate-signal rows as review-only rejections and defers
+  `P06744` behind UniRef-wide duplicate screening, terminal review, and full
+  factory gates. No broader-surface row is import-ready or countable.
+- `artifacts/v3_external_hard_negative_broader_structural_duplicate_evidence_review_1025.json`,
+  `artifacts/v3_external_hard_negative_broader_structural_terminal_review_queue_1025.json`,
+  `artifacts/v3_external_hard_negative_broader_structural_targeted_uniref_check_1025.json`,
+  `artifacts/v3_external_hard_negative_broader_structural_uniref_current_reference_screen_1025.json`,
+  and `artifacts/v3_external_hard_negative_broader_structural_inverse_gate_scores_1025.json`
+  advance only `P06744`. Its bounded duplicate controls are clear, targeted
+  UniRef90/50 nearest-reference checks find no shared cluster, the current-
+  reference UniRef screen finds 0 current-reference cluster overlaps, and all
+  8 current fingerprint scores remain below the `0.4115` out-of-scope floor
+  with top1 `metal_dependent_hydrolase` score `0.3066`. `P06744` remains
+  review-only because terminal review acceptance and full factory gates are
+  still missing.
 
 ## Immediate Pilot Direction
 

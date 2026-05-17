@@ -96,6 +96,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
     build_external_source_transfer_blocker_matrix,
+    build_external_hard_negative_broader_structural_sourcing,
     build_external_hard_negative_new_candidate_sourcing,
     build_external_hard_negative_new_candidate_current_countable_structural_screen,
     build_external_hard_negative_new_candidate_terminal_decisions,
@@ -10503,6 +10504,236 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertFalse(by_accession["PNEW3"]["import_ready_candidate"])
         self.assertFalse(by_accession["PNEW3"]["countable_label_candidate"])
+
+    def test_broader_structural_sourcing_merges_priors_and_balances_lanes(
+        self,
+    ) -> None:
+        def fake_query(query: str, size: int) -> dict:
+            self.assertEqual(size, 6)
+            if "ec:1" in query:
+                return {
+                    "records": [
+                        {
+                            "accession": "POLD1",
+                            "entry_name": "OLD1_HUMAN",
+                            "protein_name": "prior oxidoreductase",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["1.1.1.1"],
+                            "pdb_ids": ["1OLD"],
+                            "alphafold_ids": ["POLD1"],
+                        },
+                        {
+                            "accession": "OXNEW1",
+                            "entry_name": "OX1_HUMAN",
+                            "protein_name": "new oxidoreductase",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["1.1.1.2"],
+                            "pdb_ids": ["1OXN"],
+                            "alphafold_ids": ["OXNEW1"],
+                        },
+                    ]
+                }
+            if "ec:4" in query:
+                return {
+                    "records": [
+                        {
+                            "accession": "PDEF1",
+                            "entry_name": "DEF1_HUMAN",
+                            "protein_name": "deferred lyase",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["4.1.2.13"],
+                            "pdb_ids": ["1DEF"],
+                            "alphafold_ids": ["PDEF1"],
+                        },
+                        {
+                            "accession": "LYNEW1",
+                            "entry_name": "LY1_HUMAN",
+                            "protein_name": "new lyase",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["4.1.2.14"],
+                            "pdb_ids": ["1LYN"],
+                            "alphafold_ids": ["LYNEW1"],
+                        },
+                    ]
+                }
+            return {
+                "records": [
+                    {
+                        "accession": "ISNEW1",
+                        "entry_name": "IS1_HUMAN",
+                        "protein_name": "new isomerase",
+                        "reviewed": "reviewed",
+                        "ec_numbers": ["5.3.1.1"],
+                        "pdb_ids": ["1ISN"],
+                        "alphafold_ids": ["ISNEW1"],
+                    },
+                    {
+                        "accession": "ISNEW2",
+                        "entry_name": "IS2_HUMAN",
+                        "protein_name": "second isomerase",
+                        "reviewed": "reviewed",
+                        "ec_numbers": ["5.3.1.2"],
+                        "pdb_ids": ["2ISN"],
+                        "alphafold_ids": ["ISNEW2"],
+                    },
+                ]
+            }
+
+        def fake_entry(accession: str) -> dict:
+            return {
+                "record": {
+                    "entry_name": f"{accession}_HUMAN",
+                    "entry_type": "Swiss-Prot",
+                    "active_site_features": [
+                        {"feature_type": "Active site", "begin": 11}
+                    ],
+                    "binding_site_features": [],
+                    "catalytic_activity_comments": [
+                        {"reaction": "reviewed reaction", "ec_number": "1.1.1.1"}
+                    ],
+                    "cofactor_comments": [],
+                }
+            }
+
+        sourcing = build_external_hard_negative_broader_structural_sourcing(
+            query_manifest={
+                "metadata": {"method": "external_source_query_manifest"},
+                "rows": [
+                    {
+                        "lane_id": "external_source:oxidoreductase_long_tail",
+                        "scope_signal": "oxidoreductase_long_tail",
+                        "source_query_draft": "(reviewed:true) AND (ec:1.*)",
+                    },
+                    {
+                        "lane_id": "external_source:lyase",
+                        "scope_signal": "lyase",
+                        "source_query_draft": "(reviewed:true) AND (ec:4.*)",
+                    },
+                    {
+                        "lane_id": "external_source:isomerase",
+                        "scope_signal": "isomerase",
+                        "source_query_draft": "(reviewed:true) AND (ec:5.*)",
+                    },
+                ],
+            },
+            current_candidate_manifest={
+                "metadata": {"method": "external_source_candidate_manifest"},
+                "rows": [],
+            },
+            second_tranche_terminal_decisions={
+                "metadata": {
+                    "method": "external_hard_negative_second_tranche_terminal_decisions"
+                },
+                "rows": [],
+            },
+            prior_new_candidate_sourcings=(
+                {
+                    "metadata": {
+                        "method": "external_hard_negative_new_candidate_sourcing"
+                    },
+                    "rows": [
+                        {
+                            "accession": "POLD1",
+                            "sourcing_status": (
+                                "sourced_pending_sequence_structure_distance_screens"
+                            ),
+                        }
+                    ],
+                },
+                {
+                    "metadata": {
+                        "method": "external_hard_negative_next_candidate_sourcing"
+                    },
+                    "rows": [],
+                },
+            ),
+            prior_new_candidate_terminal_decision_artifacts=(
+                {
+                    "metadata": {
+                        "method": (
+                            "external_hard_negative_new_candidate_terminal_decisions"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "POLD1",
+                            "terminal_decision_status": (
+                                "rejected_current_countable_structural_duplicate_signal"
+                            ),
+                        }
+                    ],
+                },
+            ),
+            prior_deferred_candidate_decisions=(
+                {
+                    "metadata": {
+                        "method": "external_hard_negative_p22830_cycle_deferral_decision"
+                    },
+                    "rows": [
+                        {
+                            "accession": "PDEF1",
+                            "cycle_decision_status": "deferred_before_import",
+                        }
+                    ],
+                },
+            ),
+            max_records_per_lane=6,
+            max_active_site_fetches=12,
+            max_candidates=3,
+            max_candidates_per_lane=1,
+            min_sourced_lanes=3,
+            fetch_query=fake_query,
+            fetch_entry=fake_entry,
+            artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+        )
+
+        metadata = sourcing["metadata"]
+        self.assertEqual(
+            metadata["method"], "external_hard_negative_broader_structural_sourcing"
+        )
+        self.assertEqual(metadata["sourced_candidate_count"], 3)
+        self.assertEqual(metadata["sourced_lane_count"], 3)
+        self.assertEqual(metadata["max_candidates_per_lane"], 1)
+        self.assertEqual(metadata["lane_balance_status"], "lane_balance_guardrail_clean")
+        self.assertTrue(metadata["lane_balance_guardrail_clean"])
+        self.assertNotIn("lane_balance_requirement_not_met", metadata["blocker_not_removed"])
+        self.assertEqual(
+            metadata["sourced_candidate_lane_counts"],
+            {
+                "external_source:isomerase": 1,
+                "external_source:lyase": 1,
+                "external_source:oxidoreductase_long_tail": 1,
+            },
+        )
+        by_accession = {row["accession"]: row for row in sourcing["rows"]}
+        self.assertEqual(
+            by_accession["POLD1"]["sourcing_status"],
+            "excluded_prior_new_candidate_pool",
+        )
+        self.assertEqual(
+            by_accession["PDEF1"]["sourcing_status"],
+            "excluded_prior_deferred_candidate",
+        )
+        sourced_accessions = [
+            row["accession"]
+            for row in sourcing["rows"]
+            if row["sourcing_status"]
+            == "sourced_pending_sequence_structure_distance_screens"
+        ]
+        self.assertEqual(sourced_accessions, ["OXNEW1", "LYNEW1", "ISNEW1"])
+        self.assertTrue(
+            all(
+                row["review_status"]
+                == "external_hard_negative_broader_structural_sourcing_review_only"
+                for row in sourcing["rows"]
+            )
+        )
+        self.assertTrue(
+            all(not row["import_ready_candidate"] for row in sourcing["rows"])
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in sourcing["rows"])
+        )
 
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
         self,

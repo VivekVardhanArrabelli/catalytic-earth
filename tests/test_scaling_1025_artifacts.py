@@ -5083,6 +5083,339 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             ["p22830_deferred_for_broader_external_structural_sourcing"],
         )
 
+    def test_external_hard_negative_broader_structural_sourcing(self) -> None:
+        sourcing = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_sourcing_1025.json"
+        )
+
+        metadata = sourcing["metadata"]
+        self.assertEqual(
+            metadata["method"], "external_hard_negative_broader_structural_sourcing"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["target_label_type"], "out_of_scope")
+        self.assertIsNone(metadata["target_fingerprint_id"])
+        self.assertEqual(
+            metadata["ontology_version_at_decision"], "label_factory_v1_8fp"
+        )
+        self.assertEqual(metadata["sourced_candidate_count"], 6)
+        self.assertEqual(metadata["sourced_lane_count"], 3)
+        self.assertEqual(metadata["max_candidates_per_lane"], 2)
+        self.assertEqual(metadata["min_sourced_lanes"], 3)
+        self.assertEqual(
+            metadata["lane_balance_status"], "lane_balance_guardrail_clean"
+        )
+        self.assertTrue(metadata["lane_balance_guardrail_clean"])
+        self.assertEqual(
+            metadata["sourced_candidate_lane_counts"],
+            {
+                "external_source:isomerase": 2,
+                "external_source:lyase": 2,
+                "external_source:oxidoreductase_long_tail": 2,
+            },
+        )
+        self.assertNotIn(
+            "lane_balance_requirement_not_met", metadata["blocker_not_removed"]
+        )
+        self.assertIn(
+            "current_countable_structural_screen_required",
+            metadata["blocker_not_removed"],
+        )
+        self.assertEqual(metadata["prior_deferred_candidate_accessions"], ["P22830"])
+        self.assertEqual(metadata["prior_deferred_candidate_exclusion_count"], 1)
+        self.assertEqual(
+            [
+                row["accession"]
+                for row in sourcing["rows"]
+                if row["sourcing_status"]
+                == "sourced_pending_sequence_structure_distance_screens"
+            ],
+            ["P14550", "P15428", "Q969S2", "Q96FI4", "P06744", "Q9BV20"],
+        )
+        self.assertTrue(
+            all(not row["import_ready_candidate"] for row in sourcing["rows"])
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in sourcing["rows"])
+        )
+
+    def test_external_hard_negative_broader_structural_sequence_screen(self) -> None:
+        sequence_search = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_backend_sequence_search_1025.json"
+        )
+        sequence_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_backend_sequence_search_audit_1025.json"
+        )
+        all_vs_all_sequence = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_all_vs_all_sequence_search_1025.json"
+        )
+        all_vs_all_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_all_vs_all_sequence_search_audit_1025.json"
+        )
+
+        metadata = sequence_search["metadata"]
+        self.assertEqual(metadata["method"], "external_source_backend_sequence_search")
+        self.assertEqual(
+            metadata["sequence_source_artifacts"]["candidate_manifest"],
+            "external_hard_negative_broader_structural_sourcing",
+        )
+        self.assertEqual(metadata["backend_name"], "mmseqs2_easy_search")
+        self.assertTrue(metadata["backend_succeeded"])
+        self.assertEqual(metadata["candidate_count"], 6)
+        self.assertEqual(metadata["expected_external_sequence_count"], 6)
+        self.assertEqual(metadata["external_sequence_count"], 6)
+        self.assertEqual(metadata["no_signal_row_count"], 6)
+        self.assertEqual(metadata["exact_reference_row_count"], 0)
+        self.assertEqual(metadata["near_duplicate_row_count"], 0)
+        self.assertEqual(metadata["failure_row_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["search_status_counts"], {"no_near_duplicate_signal": 6}
+        )
+        self.assertEqual(
+            sorted(row["accession"] for row in sequence_search["rows"]),
+            ["P06744", "P14550", "P15428", "Q969S2", "Q96FI4", "Q9BV20"],
+        )
+        self.assertTrue(
+            all(
+                row["search_status"] == "no_near_duplicate_signal"
+                for row in sequence_search["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                not row["countable_label_candidate"]
+                for row in sequence_search["rows"]
+            )
+        )
+        self.assertTrue(sequence_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(sequence_audit["metadata"]["expected_candidate_count"], 6)
+        self.assertEqual(sequence_audit["blockers"], [])
+        all_vs_all_metadata = all_vs_all_sequence["metadata"]
+        self.assertEqual(
+            all_vs_all_metadata["method"],
+            "external_source_all_vs_all_sequence_search",
+        )
+        self.assertTrue(all_vs_all_metadata["all_vs_all_screen_complete"])
+        self.assertEqual(all_vs_all_metadata["candidate_count"], 6)
+        self.assertEqual(all_vs_all_metadata["no_signal_row_count"], 6)
+        self.assertEqual(all_vs_all_metadata["near_duplicate_row_count"], 0)
+        self.assertEqual(all_vs_all_metadata["near_duplicate_pair_count"], 0)
+        self.assertEqual(all_vs_all_metadata["failure_row_count"], 0)
+        self.assertEqual(all_vs_all_metadata["import_ready_row_count"], 0)
+        self.assertEqual(
+            all_vs_all_metadata["search_status_counts"],
+            {"external_all_vs_all_no_near_duplicate_signal": 6},
+        )
+        self.assertTrue(all_vs_all_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(all_vs_all_audit["metadata"]["expected_candidate_count"], 6)
+        self.assertEqual(all_vs_all_audit["blockers"], [])
+
+    def test_external_hard_negative_broader_structural_duplicate_screen(self) -> None:
+        structural_path = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_tm_holdout_path_1025.json"
+        )
+        structural_index = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_cluster_index_1025.json"
+        )
+        current_screen = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_current_countable_structural_screen_1025.json"
+        )
+        terminal_decisions = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_terminal_decisions_1025.json"
+        )
+        duplicate_review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_duplicate_evidence_review_1025.json"
+        )
+        terminal_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_terminal_review_queue_1025.json"
+        )
+        targeted_uniref = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_targeted_uniref_check_1025.json"
+        )
+        uniref_current = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_uniref_current_reference_screen_1025.json"
+        )
+        inverse_scores = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_inverse_gate_scores_1025.json"
+        )
+
+        self.assertEqual(
+            structural_path["metadata"]["method"], "external_structural_tm_holdout_path"
+        )
+        self.assertEqual(structural_path["metadata"]["candidate_count"], 6)
+        self.assertEqual(structural_path["metadata"]["structure_reference_candidate_count"], 6)
+        self.assertEqual(
+            structural_path["metadata"]["lane_counts"],
+            {
+                "external_source:isomerase": 2,
+                "external_source:lyase": 2,
+                "external_source:oxidoreductase_long_tail": 2,
+            },
+        )
+        self.assertEqual(
+            structural_index["metadata"]["method"], "external_structural_cluster_index"
+        )
+        self.assertEqual(structural_index["metadata"]["candidate_count"], 6)
+        self.assertEqual(structural_index["metadata"]["coordinate_materialized_count"], 6)
+        self.assertTrue(structural_index["metadata"]["all_vs_all_pair_cache_complete"])
+        self.assertEqual(
+            structural_index["metadata"]["unique_unordered_nonself_pair_count"], 15
+        )
+        self.assertEqual(structural_index["metadata"]["high_tm_pair_count"], 0)
+        self.assertEqual(structural_index["metadata"]["tm_cluster_count"], 6)
+        self.assertEqual(
+            current_screen["metadata"]["method"],
+            "external_hard_negative_broader_structural_current_countable_structural_screen",
+        )
+        self.assertEqual(current_screen["metadata"]["candidate_count"], 6)
+        self.assertTrue(current_screen["metadata"]["pair_cache_complete"])
+        self.assertEqual(
+            current_screen["metadata"]["unique_query_target_pair_count"], 4032
+        )
+        self.assertEqual(
+            current_screen["metadata"]["expected_query_target_pair_count"], 4032
+        )
+        self.assertEqual(current_screen["metadata"]["high_tm_candidate_count"], 5)
+        self.assertEqual(
+            current_screen["metadata"]["no_current_countable_structural_signal_count"],
+            1,
+        )
+        self.assertEqual(
+            current_screen["metadata"]["current_countable_structural_screen_status_counts"],
+            {
+                "current_countable_structural_duplicate_signal": 5,
+                "no_current_countable_structural_duplicate_signal": 1,
+            },
+        )
+        screen_by_accession = {
+            row["accession"]: row for row in current_screen["rows"]
+        }
+        self.assertEqual(
+            screen_by_accession["P06744"]["current_countable_structural_screen_status"],
+            "no_current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(
+            screen_by_accession["P15428"]["nearest_current_countable_hit"][
+                "max_pair_tm_score"
+            ],
+            0.8936,
+        )
+        self.assertEqual(
+            terminal_decisions["metadata"]["method"],
+            "external_hard_negative_broader_structural_terminal_decisions",
+        )
+        self.assertEqual(
+            terminal_decisions["metadata"]["terminal_decision_status_counts"],
+            {
+                "deferred_requires_review_and_factory_gate_after_structural_screen": 1,
+                "rejected_current_countable_structural_duplicate_signal": 5,
+            },
+        )
+        self.assertEqual(terminal_decisions["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            terminal_decisions["metadata"]["countable_label_candidate_count"], 0
+        )
+        terminal_by_accession = {
+            row["accession"]: row for row in terminal_decisions["rows"]
+        }
+        self.assertEqual(
+            terminal_by_accession["P06744"]["terminal_decision_status"],
+            "deferred_requires_review_and_factory_gate_after_structural_screen",
+        )
+        self.assertTrue(
+            all(
+                not row["import_ready_candidate"]
+                for row in terminal_decisions["rows"]
+            )
+        )
+        self.assertEqual(
+            duplicate_review["metadata"]["method"],
+            "external_hard_negative_broader_structural_duplicate_evidence_review",
+        )
+        self.assertEqual(duplicate_review["metadata"]["candidate_count"], 1)
+        self.assertEqual(duplicate_review["metadata"]["bounded_duplicate_clear_count"], 1)
+        self.assertEqual(duplicate_review["rows"][0]["accession"], "P06744")
+        self.assertEqual(
+            duplicate_review["rows"][0]["duplicate_evidence_status"],
+            "bounded_duplicate_controls_clear_uniref_pending",
+        )
+        self.assertEqual(
+            terminal_queue["metadata"]["method"],
+            "external_hard_negative_broader_structural_terminal_review_queue",
+        )
+        self.assertEqual(terminal_queue["metadata"]["queued_candidate_count"], 1)
+        self.assertEqual(terminal_queue["rows"][0]["accession"], "P06744")
+        self.assertEqual(
+            targeted_uniref["metadata"]["method"],
+            "external_hard_negative_broader_structural_targeted_uniref_check",
+        )
+        self.assertEqual(targeted_uniref["metadata"]["targeted_no_shared_cluster_count"], 1)
+        self.assertEqual(
+            targeted_uniref["rows"][0]["targeted_uniref_check_status"],
+            "targeted_uniref_nearest_reference_no_shared_cluster",
+        )
+        self.assertEqual(
+            uniref_current["metadata"]["method"],
+            "external_hard_negative_broader_structural_uniref_current_reference_screen",
+        )
+        self.assertEqual(
+            uniref_current["metadata"]["uniref_current_reference_clear_count"], 1
+        )
+        self.assertEqual(
+            uniref_current["rows"][0]["uniref_current_reference_screen_status"],
+            "uniref_current_reference_screen_no_current_reference_overlap",
+        )
+        self.assertEqual(
+            inverse_scores["metadata"]["method"],
+            "external_hard_negative_broader_structural_inverse_gate_scores",
+        )
+        self.assertEqual(inverse_scores["metadata"]["inverse_gate_pass_count"], 1)
+        self.assertEqual(inverse_scores["rows"][0]["accession"], "P06744")
+        self.assertEqual(inverse_scores["rows"][0]["top1_score"], 0.3066)
+        self.assertEqual(
+            inverse_scores["rows"][0]["out_of_scope_inverse_gate"][
+                "observed_current_fingerprint_count"
+            ],
+            8,
+        )
+        self.assertEqual(
+            inverse_scores["rows"][0]["remaining_import_blockers"],
+            ["full_label_factory_gate_not_run", "terminal_review_decision_not_accepted"],
+        )
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

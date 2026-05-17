@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 154
-- Measured elapsed time: 5006.2 minutes (83.44 hours)
+- Entries: 155
+- Measured elapsed time: 5054.2 minutes (84.24 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2845.8 measured minutes (47.43 hours)
+- post-v2: 2893.8 measured minutes (48.23 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1742
-- Evidence references logged: 1362
+- Artifact references logged: 1752
+- Evidence references logged: 1372
 
 ## Recent Entries
-
-### 2026-05-17T05:01:18.923988+00:00 - post-v2
-
-- Task: Close fresh hard-negative structural duplicate tranche
-- Time mode: measured
-- Measured minutes: 34.717
-- Started: 2026-05-17T04:26:35Z
-- Ended: 2026-05-17T05:01:18Z
-- Artifacts: artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_new_candidate_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 380 unit tests passed, startup validate passed with 679 curated labels, Foldseek multi-model current target aliases normalized, new-candidate current-countable structural pair cache completed 4704/4704, all 7 sequence-clean fresh candidates have high-TM current-countable duplicate signals, Q13087 maps to current selected structure 1MEK at TM 0.9039, new-candidate terminal decisions reject all 7 rows review-only, 0 import-ready rows, 0 countable external labels, focused transfer and scaling tests passed
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
 
 ### 2026-05-17T06:10:06.013546+00:00 - post-v2
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_hard_negative_p22830_cycle_deferral_1025.json, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 399 unit tests passed, startup validate passed with 681 curated labels, temporary P22830 later-cycle probe selected one formal import candidate, P22830 deferred before import with 0.0429 margin below 0.4115 floor, registry preserved at 681 labels and 469 out-of-scope labels, final 400 unit tests passed, validate passed with 681 curated labels, compileall passed, git diff --check passed, remaining-time merged-prior sourcing probe found 8 review-only rows all in oxidoreductase_long_tail
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. P22830 remains review-only; raw post-P22830 sourcing probe was not committed because its lineage used a temporary merged prior. Next work should add durable multi-prior lane-balanced broader structural sourcing before any third external import. docs/label_factory.md checked unchanged.
+
+### 2026-05-17T13:25:17.879225+00:00 - post-v2
+
+- Task: Advance broader hard-negative structural surface
+- Time mode: measured
+- Measured minutes: 47.983
+- Started: 2026-05-17T12:37:08Z
+- Ended: 2026-05-17T13:25:07Z
+- Artifacts: artifacts/v3_external_hard_negative_broader_structural_sourcing_1025.json, artifacts/v3_external_hard_negative_broader_structural_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_broader_structural_inverse_gate_scores_1025.json, tests/test_scaling_1025_artifacts.py, tests/test_transfer_scope.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup tests and validate passed, broader sourcing selected 6 rows across 3 lanes, backend and all-vs-all sequence screens found 0 near duplicates, current-countable structural screen rejected 5 duplicate-signal rows, P06744 cleared bounded duplicate and UniRef current-reference checks, P06744 passed all-8 inverse gate at top1 0.3066, final 404 unit tests passed, validate passed over 681 labels, compileall passed, git diff --check passed
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. No labels imported and registry remains 681 labels.
 
 ## Expectation Updates
 
@@ -242,6 +242,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-17T09:08:30+00:00: First external out-of-scope hard-negative import succeeded for P78549; next work should decide whether P22830 or Q3LXA3 should enter a later single-import cycle after litmus remains green.
 - 2026-05-17T09:41:38.959359+00:00: Post-import litmus remains green after P78549; Q3LXA3 is the next review-only candidate if a later explicit single-import cycle is opened.
 - 2026-05-17T10:50:16.595786+00:00: Second external out-of-scope hard-negative import succeeded for Q3LXA3; P22830 remains review-only and should require its own explicit cycle or broader sourcing decision.
+- 2026-05-17T13:25:17.879225+00:00: Broader external sourcing now has one surviving no-current-structural-signal row, P06744; terminal review and full factory/import gates are the active blockers.
 
 ## Scope Adjustments
 
