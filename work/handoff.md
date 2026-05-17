@@ -219,9 +219,25 @@ now pins 680 total labels, 468 out-of-scope labels, 212 seed-fingerprint
 labels, no overlap between in-scope and out-of-scope entry ids, unchanged
 1,000-slice in-scope retention (`0.9858`), held-out sequence identity
 `<=0.284`, 43/43 retained held-out positives correct, and 0 held-out
-out-of-scope false non-abstentions. Next work should decide whether P22830 or
-Q3LXA3 should enter a later single-import cycle; do not retry the 5
-duplicate-signal rows without new evidence.
+out-of-scope false non-abstentions. The 2026-05-17T09:32:49Z run then added
+`artifacts/v3_external_hard_negative_next_candidate_followup_cycle_decision_1025.json`.
+Evidence-based confidence call: the post-import litmus remains green, `P22830`
+and `Q3LXA3` are both eligible only for a later explicit single-import cycle,
+and `Q3LXA3` is the recommended next review target because its maximum
+current-fingerprint score is lower (`0.2929` versus `0.3686`). No second
+external label was imported in this run. Next work should either open that
+explicit Q3LXA3 single-import cycle under the same gates and cap, or switch to
+a broader external structural surface; do not retry the 5 duplicate-signal
+rows without new evidence.
+
+Run verification for the current handoff: started `2026-05-17T09:32:49Z` and
+wrapped at `2026-05-17T09:41:38Z`. Startup checks passed with 393 unit tests
+and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks
+passed with 395 unit tests, `validate`, `compileall`, `git diff --check`, JSON
+parse check for the follow-up artifact, and the external transfer gate at
+68/68. README, `docs/external_source_transfer.md`, `docs/label_factory.md`,
+work scope, handoff, status, progress log, and external transfer notes were
+checked or updated; no registry import was made.
 
 Run verification for the current handoff: started `2026-05-17T08:31:07Z` and
 wrapped at `2026-05-17T09:08:30Z`. Startup checks passed with 388 unit tests

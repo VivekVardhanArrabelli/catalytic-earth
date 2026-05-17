@@ -180,6 +180,11 @@ import.
   factory-gate pass candidates, selects `P78549` under the single-import cap,
   and imports exactly one external out-of-scope hard-negative label. `P22830`
   and `Q3LXA3` remain unimported and non-countable in this cycle.
+- `artifacts/v3_external_hard_negative_next_candidate_followup_cycle_decision_1025.json`
+  resolves the immediate follow-up without count growth. The post-import
+  litmus remains green, `P22830` and `Q3LXA3` are review-only candidates for a
+  later explicit single-import cycle, and `Q3LXA3` is the recommended next
+  target because its max current-fingerprint score is lower (`0.2929`).
 
 ## Immediate Pilot Direction
 

@@ -12393,6 +12393,243 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
     }
 
 
+def build_external_hard_negative_next_candidate_followup_cycle_decision(
+    *,
+    factory_import_gate: dict[str, Any],
+    labels: list[dict[str, Any]],
+    label_summary: dict[str, Any],
+    geometry_evaluation: dict[str, Any],
+    sequence_holdout: dict[str, Any],
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Decide whether unimported factory-pass rows merit a later import cycle."""
+
+    existing_labels = [label for label in labels if isinstance(label, dict)]
+    existing_entry_ids = {str(label.get("entry_id") or "") for label in existing_labels}
+    external_label_entry_ids = sorted(
+        entry_id
+        for entry_id in existing_entry_ids
+        if entry_id.startswith("uniprot:")
+    )
+    seed_entry_ids = {
+        str(label.get("entry_id") or "")
+        for label in existing_labels
+        if label.get("label_type") == "seed_fingerprint"
+    }
+    out_of_scope_entry_ids = {
+        str(label.get("entry_id") or "")
+        for label in existing_labels
+        if label.get("label_type") == "out_of_scope"
+    }
+
+    geometry_meta = geometry_evaluation.get("metadata", {})
+    sequence_meta = sequence_holdout.get("metadata", {})
+    sequence_rows = [
+        row for row in sequence_holdout.get("rows", []) or [] if isinstance(row, dict)
+    ]
+    heldout_in_scope = [
+        row
+        for row in sequence_rows
+        if row.get("partition") == "heldout"
+        and row.get("label_type") == "seed_fingerprint"
+        and row.get("evaluable") is True
+    ]
+    heldout_retained = [
+        row for row in heldout_in_scope if row.get("abstained") is False
+    ]
+    heldout_out_of_scope_retained = [
+        row
+        for row in sequence_rows
+        if row.get("partition") == "heldout"
+        and row.get("label_type") == "out_of_scope"
+        and row.get("abstained") is False
+    ]
+    max_train_test_identity = _external_parse_float(
+        sequence_meta.get("max_observed_train_test_identity")
+    )
+
+    post_import_litmus_checks = {
+        "label_summary_matches_registry_count": (
+            label_summary.get("label_count") == len(existing_labels)
+        ),
+        "seed_fingerprint_count_preserved": (
+            label_summary.get("by_type", {}).get("seed_fingerprint")
+            == len(seed_entry_ids)
+            == 212
+        ),
+        "out_of_scope_count_includes_one_external_hard_negative": (
+            label_summary.get("by_type", {}).get("out_of_scope")
+            == len(out_of_scope_entry_ids)
+            == 468
+        ),
+        "single_external_hard_negative_present": (
+            external_label_entry_ids == ["uniprot:P78549"]
+        ),
+        "zero_seed_out_of_scope_entry_overlap": (
+            len(seed_entry_ids & out_of_scope_entry_ids) == 0
+        ),
+        "geometry_zero_out_of_scope_false_non_abstentions": (
+            geometry_meta.get("out_of_scope_false_non_abstentions") == 0
+            and geometry_meta.get("out_of_scope_false_non_abstentions_evaluable")
+            == 0
+        ),
+        "geometry_in_scope_retention_preserved": (
+            geometry_meta.get("in_scope_count") == 212
+            and geometry_meta.get("in_scope_retention_rate_evaluable") == 0.9858
+        ),
+        "sequence_identity_target_preserved": (
+            sequence_meta.get("sequence_identity_target_achieved") is True
+            and max_train_test_identity is not None
+            and max_train_test_identity <= 0.284
+        ),
+        "heldout_seed_retention_preserved": (
+            len(heldout_in_scope) == 43
+            and len(heldout_retained) == 43
+            and all(row.get("top1_correct") is True for row in heldout_retained)
+            and all(row.get("top3_correct") is True for row in heldout_retained)
+        ),
+        "heldout_out_of_scope_false_non_abstentions_preserved": (
+            heldout_out_of_scope_retained == []
+        ),
+    }
+    post_import_litmus_passed = all(post_import_litmus_checks.values())
+
+    rows: list[dict[str, Any]] = []
+    for source_row in [
+        row for row in factory_import_gate.get("rows", []) or [] if isinstance(row, dict)
+    ]:
+        accession = _normalize_accession(source_row.get("accession"))
+        entry_id = str(source_row.get("entry_id") or f"uniprot:{accession}")
+        if not accession or source_row.get("terminal_import_attempt_status") != (
+            "passed_factory_gate_not_selected_by_single_import_cap"
+        ):
+            continue
+
+        blockers: list[str] = []
+        if entry_id in existing_entry_ids:
+            blockers.append("external_label_entry_already_exists")
+        if not post_import_litmus_passed:
+            blockers.append("post_import_litmus_not_green")
+        if source_row.get("factory_gate_status") != "passed":
+            blockers.append("factory_gate_not_passed")
+        if source_row.get("target_label_type") != "out_of_scope":
+            blockers.append("target_label_type_not_out_of_scope")
+        if source_row.get("target_fingerprint_id") is not None:
+            blockers.append("target_fingerprint_id_not_null")
+        if (
+            source_row.get("ontology_version_at_decision")
+            != DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+        ):
+            blockers.append("ontology_version_at_decision_mismatch")
+        inverse_gate = source_row.get("out_of_scope_inverse_gate", {})
+        if not isinstance(inverse_gate, dict):
+            inverse_gate = {}
+        if inverse_gate.get("all_current_fingerprint_scores_below_threshold") is not True:
+            blockers.append("out_of_scope_false_non_abstention")
+        if inverse_gate.get("target_fingerprint_id") is not None:
+            blockers.append("inverse_gate_target_fingerprint_id_not_null")
+
+        later_cycle_candidate = not blockers
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": entry_id,
+                "lane_id": source_row.get("lane_id"),
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "source_terminal_import_attempt_status": source_row.get(
+                    "terminal_import_attempt_status"
+                ),
+                "source_factory_gate_status": source_row.get("factory_gate_status"),
+                "followup_cycle_decision_status": (
+                    "eligible_for_later_single_import_cycle"
+                    if later_cycle_candidate
+                    else "blocked_from_later_single_import_cycle"
+                ),
+                "later_single_import_cycle_candidate": later_cycle_candidate,
+                "recommended_for_next_cycle": False,
+                "ready_for_label_import": False,
+                "import_ready_candidate": False,
+                "countable_label_candidate": False,
+                "remaining_import_blockers": (
+                    ["requires_explicit_later_single_import_cycle"]
+                    if later_cycle_candidate
+                    else sorted(set(blockers))
+                ),
+                "top1_fingerprint_id": source_row.get("top1_fingerprint_id"),
+                "top1_score": source_row.get("top1_score"),
+                "max_current_fingerprint_score": _external_parse_float(
+                    source_row.get("max_current_fingerprint_score")
+                ),
+                "out_of_scope_inverse_gate": inverse_gate,
+            }
+        )
+
+    eligible_rows = [
+        row for row in rows if row["later_single_import_cycle_candidate"]
+    ]
+    recommended_accession = None
+    if eligible_rows:
+        recommended = sorted(
+            eligible_rows,
+            key=lambda row: (
+                float(row.get("max_current_fingerprint_score") or 1.0),
+                row["accession"],
+            ),
+        )[0]
+        recommended["recommended_for_next_cycle"] = True
+        recommended_accession = recommended["accession"]
+
+    status_counts = Counter(row["followup_cycle_decision_status"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    return {
+        "metadata": {
+            "method": (
+                "external_hard_negative_next_candidate_followup_cycle_decision"
+            ),
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": "post_first_import_followup_candidate_decision",
+            "blocker_not_removed": sorted(blocker_counts),
+            "review_only": True,
+            "ready_for_label_import": False,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "candidate_count": len(rows),
+            "later_single_import_cycle_candidate_count": len(eligible_rows),
+            "recommended_next_single_import_candidate": recommended_accession,
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "existing_external_label_count": len(external_label_entry_ids),
+            "existing_external_label_entry_ids": external_label_entry_ids,
+            "post_import_litmus_status": (
+                "passed" if post_import_litmus_passed else "failed"
+            ),
+            "post_import_litmus_checks": post_import_litmus_checks,
+            "followup_cycle_decision_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_factory_import_gate_method": (
+                factory_import_gate.get("metadata", {}).get("method")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "this is a review-only decision artifact; it recommends at most "
+                "one later single-import-cycle candidate and does not import or "
+                "count another external hard-negative label"
+            )
+        ],
+    }
+
+
 def build_external_hard_negative_next_candidate_targeted_uniref_check(
     *,
     terminal_review_queue: dict[str, Any],

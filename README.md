@@ -524,6 +524,11 @@ terminal decisions. The follow-on
 then runs the full final gate, selects `P78549` under the single-import cap,
 and imports `uniprot:P78549` as an external `out_of_scope` hard-negative label.
 `P22830` and `Q3LXA3` remain non-countable and unimported for this cycle.
+`artifacts/v3_external_hard_negative_next_candidate_followup_cycle_decision_1025.json`
+then keeps the post-import decision review-only: the P78549 litmus remains
+green, both unimported rows are eligible for a later explicit single-import
+cycle, and `Q3LXA3` is the recommended next review target because its maximum
+current-fingerprint score is lower (`0.2929` versus `0.3686` for `P22830`).
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

@@ -101,6 +101,7 @@ from catalytic_earth.transfer_scope import (
     build_external_hard_negative_new_candidate_terminal_decisions,
     build_external_hard_negative_next_candidate_duplicate_evidence_review,
     build_external_hard_negative_next_candidate_factory_import_gate,
+    build_external_hard_negative_next_candidate_followup_cycle_decision,
     build_external_hard_negative_next_candidate_inverse_gate_scores,
     build_external_hard_negative_next_candidate_targeted_uniref_check,
     build_external_hard_negative_next_candidate_terminal_review_decisions,
@@ -13185,3 +13186,129 @@ ATOM 5 C CA LYS A 8 2.5 0.2 0.0 CA LYS A 8
             ],
             1,
         )
+
+    def test_next_candidate_followup_cycle_decision_recommends_later_review_only(
+        self,
+    ) -> None:
+        factory_gate = {
+            "metadata": {
+                "method": "external_hard_negative_next_candidate_factory_import_gate"
+            },
+            "rows": [
+                {
+                    "accession": "P78549",
+                    "entry_id": "uniprot:P78549",
+                    "target_label_type": "out_of_scope",
+                    "target_fingerprint_id": None,
+                    "ontology_version_at_decision": "label_factory_v1_8fp",
+                    "factory_gate_status": "passed",
+                    "terminal_import_attempt_status": "import_ready_candidate",
+                    "max_current_fingerprint_score": 0.115,
+                },
+                {
+                    "accession": "P22830",
+                    "entry_id": "uniprot:P22830",
+                    "target_label_type": "out_of_scope",
+                    "target_fingerprint_id": None,
+                    "ontology_version_at_decision": "label_factory_v1_8fp",
+                    "factory_gate_status": "passed",
+                    "terminal_import_attempt_status": (
+                        "passed_factory_gate_not_selected_by_single_import_cap"
+                    ),
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_score": 0.3686,
+                    "max_current_fingerprint_score": 0.3686,
+                    "out_of_scope_inverse_gate": {
+                        "target_fingerprint_id": None,
+                        "all_current_fingerprint_scores_below_threshold": True,
+                    },
+                },
+                {
+                    "accession": "Q3LXA3",
+                    "entry_id": "uniprot:Q3LXA3",
+                    "target_label_type": "out_of_scope",
+                    "target_fingerprint_id": None,
+                    "ontology_version_at_decision": "label_factory_v1_8fp",
+                    "factory_gate_status": "passed",
+                    "terminal_import_attempt_status": (
+                        "passed_factory_gate_not_selected_by_single_import_cap"
+                    ),
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_score": 0.2929,
+                    "max_current_fingerprint_score": 0.2929,
+                    "out_of_scope_inverse_gate": {
+                        "target_fingerprint_id": None,
+                        "all_current_fingerprint_scores_below_threshold": True,
+                    },
+                },
+            ],
+        }
+        labels = [
+            {"entry_id": f"m_csa:seed_{index}", "label_type": "seed_fingerprint"}
+            for index in range(212)
+        ] + [
+            {"entry_id": f"m_csa:oos_{index}", "label_type": "out_of_scope"}
+            for index in range(467)
+        ] + [{"entry_id": "uniprot:P78549", "label_type": "out_of_scope"}]
+        decision = (
+            build_external_hard_negative_next_candidate_followup_cycle_decision(
+                factory_import_gate=factory_gate,
+                labels=labels,
+                label_summary={
+                    "label_count": 680,
+                    "by_type": {
+                        "seed_fingerprint": 212,
+                        "out_of_scope": 468,
+                    },
+                },
+                geometry_evaluation={
+                    "metadata": {
+                        "in_scope_count": 212,
+                        "out_of_scope_false_non_abstentions": 0,
+                        "out_of_scope_false_non_abstentions_evaluable": 0,
+                        "in_scope_retention_rate_evaluable": 0.9858,
+                    }
+                },
+                sequence_holdout={
+                    "metadata": {
+                        "sequence_identity_target_achieved": True,
+                        "max_observed_train_test_identity": 0.284,
+                    },
+                    "rows": [
+                        {
+                            "partition": "heldout",
+                            "label_type": "seed_fingerprint",
+                            "evaluable": True,
+                            "abstained": False,
+                            "top1_correct": True,
+                            "top3_correct": True,
+                        }
+                        for _ in range(43)
+                    ],
+                },
+                artifact_lineage={"slice_id": 1025},
+            )
+        )
+
+        self.assertEqual(
+            decision["metadata"]["method"],
+            "external_hard_negative_next_candidate_followup_cycle_decision",
+        )
+        self.assertTrue(decision["metadata"]["review_only"])
+        self.assertFalse(decision["metadata"]["ready_for_label_import"])
+        self.assertEqual(decision["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            decision["metadata"]["later_single_import_cycle_candidate_count"], 2
+        )
+        self.assertEqual(
+            decision["metadata"]["recommended_next_single_import_candidate"],
+            "Q3LXA3",
+        )
+        rows = {row["accession"]: row for row in decision["rows"]}
+        self.assertTrue(rows["Q3LXA3"]["recommended_for_next_cycle"])
+        self.assertFalse(rows["P22830"]["recommended_for_next_cycle"])
+        self.assertEqual(
+            rows["Q3LXA3"]["remaining_import_blockers"],
+            ["requires_explicit_later_single_import_cycle"],
+        )
+        self.assertFalse(rows["Q3LXA3"]["countable_label_candidate"])

@@ -192,6 +192,7 @@ from .transfer_scope import (
     build_external_hard_negative_new_candidate_terminal_decisions,
     build_external_hard_negative_next_candidate_duplicate_evidence_review,
     build_external_hard_negative_next_candidate_factory_import_gate,
+    build_external_hard_negative_next_candidate_followup_cycle_decision,
     build_external_hard_negative_next_candidate_inverse_gate_scores,
     build_external_hard_negative_next_candidate_targeted_uniref_check,
     build_external_hard_negative_next_candidate_terminal_review_decisions,
@@ -3847,6 +3848,45 @@ def cmd_build_external_hard_negative_next_candidate_factory_import_gate(
         "Wrote next-candidate factory import gate to "
         f"{args.out} "
         f"({gate['metadata']['selected_import_candidate_count']} selected)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_next_candidate_followup_cycle_decision(
+    args: argparse.Namespace,
+) -> int:
+    factory_import_gate = read_json_object(Path(args.factory_import_gate))
+    labels = [label.to_dict() for label in load_labels(Path(args.labels))]
+    label_summary_payload = read_json_object(Path(args.label_summary))
+    geometry_evaluation = read_json_object(Path(args.geometry_evaluation))
+    sequence_holdout = read_json_object(Path(args.sequence_holdout))
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "factory_import_gate": args.factory_import_gate,
+            "labels": args.labels,
+            "label_summary": args.label_summary,
+            "geometry_evaluation": args.geometry_evaluation,
+            "sequence_holdout": args.sequence_holdout,
+        },
+        "blocker_removed": "post_first_import_followup_candidate_decision",
+    }
+    decision = build_external_hard_negative_next_candidate_followup_cycle_decision(
+        factory_import_gate=factory_import_gate,
+        labels=labels,
+        label_summary=label_summary_payload,
+        geometry_evaluation=geometry_evaluation,
+        sequence_holdout=sequence_holdout,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), decision)
+    print(
+        "Wrote next-candidate follow-up cycle decision to "
+        f"{args.out} "
+        f"({decision['metadata']['later_single_import_cycle_candidate_count']} "
+        "later-cycle candidates)"
     )
     return 0
 
@@ -9658,6 +9698,51 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_hard_negative_next_factory_import_gate.set_defaults(
         func=cmd_build_external_hard_negative_next_candidate_factory_import_gate
+    )
+
+    external_hard_negative_next_followup = subparsers.add_parser(
+        "build-external-hard-negative-next-candidate-followup-cycle-decision",
+        help=(
+            "decide whether unimported factory-pass hard negatives should "
+            "enter a later single-import cycle"
+        ),
+    )
+    external_hard_negative_next_followup.add_argument(
+        "--factory-import-gate",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_factory_import_gate_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_followup.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_hard_negative_next_followup.add_argument(
+        "--label-summary",
+        default="artifacts/v3_label_summary.json",
+    )
+    external_hard_negative_next_followup.add_argument(
+        "--geometry-evaluation",
+        default="artifacts/v3_geometry_label_eval_1000.json",
+    )
+    external_hard_negative_next_followup.add_argument(
+        "--sequence-holdout",
+        default="artifacts/v3_sequence_distance_holdout_eval_1000.json",
+    )
+    external_hard_negative_next_followup.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_followup_cycle_decision_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_followup.set_defaults(
+        func=(
+            cmd_build_external_hard_negative_next_candidate_followup_cycle_decision
+        )
     )
 
     external_transfer_gate = subparsers.add_parser(

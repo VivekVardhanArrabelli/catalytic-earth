@@ -4896,6 +4896,51 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             [],
         )
 
+    def test_external_hard_negative_followup_cycle_decision(self) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_next_candidate_followup_cycle_decision_1025.json"
+        )
+
+        self.assertEqual(
+            decision["metadata"]["method"],
+            "external_hard_negative_next_candidate_followup_cycle_decision",
+        )
+        self.assertTrue(decision["metadata"]["review_only"])
+        self.assertFalse(decision["metadata"]["ready_for_label_import"])
+        self.assertEqual(decision["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(decision["metadata"]["post_import_litmus_status"], "passed")
+        self.assertEqual(
+            decision["metadata"]["existing_external_label_entry_ids"],
+            ["uniprot:P78549"],
+        )
+        self.assertEqual(
+            decision["metadata"]["later_single_import_cycle_candidate_count"], 2
+        )
+        self.assertEqual(
+            decision["metadata"]["recommended_next_single_import_candidate"],
+            "Q3LXA3",
+        )
+        rows = {row["accession"]: row for row in decision["rows"]}
+        self.assertEqual(set(rows), {"P22830", "Q3LXA3"})
+        self.assertTrue(rows["Q3LXA3"]["recommended_for_next_cycle"])
+        self.assertFalse(rows["P22830"]["recommended_for_next_cycle"])
+        self.assertTrue(
+            all(
+                row["target_label_type"] == "out_of_scope"
+                and row["target_fingerprint_id"] is None
+                and row["ontology_version_at_decision"] == "label_factory_v1_8fp"
+                and row["later_single_import_cycle_candidate"]
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                and row["remaining_import_blockers"]
+                == ["requires_explicit_later_single_import_cycle"]
+                for row in rows.values()
+            )
+        )
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

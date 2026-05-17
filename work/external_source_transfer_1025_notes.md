@@ -415,6 +415,11 @@ Current external artifacts:
   (`0.1150`). `uniprot:P78549` is now the first countable external
   out-of-scope hard-negative label. P22830 and Q3LXA3 remain unimported under
   `single_import_cap_not_selected_this_run`.
+- `artifacts/v3_external_hard_negative_next_candidate_followup_cycle_decision_1025.json`
+  keeps the next step review-only. The post-import litmus remains green; P22830
+  and Q3LXA3 are eligible for a later explicit single-import cycle, with Q3LXA3
+  recommended first because its maximum current-fingerprint score is lower
+  (`0.2929` versus `0.3686`).
 - The post-import litmus regression pins the first external count movement:
   680 total labels, 468 out-of-scope labels, 212 seed-fingerprint labels, no
   entry-id overlap between those groups, unchanged 1,000-slice retained
@@ -498,7 +503,7 @@ Sequence-holdout details:
   external candidates for near-duplicate search before any future import
   decision.
 
-Next bounded work should pin the post-import hard-negative litmus tests for
-`uniprot:P78549` and decide whether P22830 or Q3LXA3 should enter a later
-single-import cycle. Do not retry the five duplicate-signal rows or reopen the
-six original pilot repair lanes without new evidence.
+Next bounded work should either start an explicit later single-import cycle for
+Q3LXA3, preserving the same gates and single-import cap, or switch to a broader
+external structural surface. Do not retry the five duplicate-signal rows or
+reopen the six original pilot repair lanes without new evidence.

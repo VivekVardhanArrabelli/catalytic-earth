@@ -598,9 +598,14 @@ Current expectation:
   UniProt active-site features onto their staged AlphaFold sidecars and verifies
   complete 8/8 current-fingerprint coverage below the `0.4115` out-of-scope
   floor. Terminal review decisions now accept all 3 as review-only
-  `accepted_out_of_scope_pending_factory_gate` rows. The active bottleneck is
-  now the external full-factory/import gate for those 3 deferred replacements,
-  not another pass over the exhausted pools.
+  `accepted_out_of_scope_pending_factory_gate` rows. The full-factory/import
+  gate then imports exactly one row, `uniprot:P78549`, under the single-import
+  cap, bringing the canonical registry to 680 labels. A follow-up cycle
+  decision keeps P22830 and Q3LXA3 review-only, confirms the post-import litmus
+  remains green, and recommends Q3LXA3 as the next explicit single-import-cycle
+  target because its max current-fingerprint score is lower. The active
+  bottleneck is now whether to open that explicit Q3LXA3 cycle or switch to a
+  broader external structural surface, not another pass over exhausted pools.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is
