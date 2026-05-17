@@ -55,6 +55,16 @@ EXTERNAL_PILOT_IMPORT_REVIEW_REQUIREMENTS = (
     "review_decision",
     "full_label_factory_gate",
 )
+EXTERNAL_HARD_NEGATIVE_ABSTAIN_THRESHOLD = 0.4115
+EXTERNAL_HARD_NEGATIVE_THRESHOLD_POLICY_VERSION = (
+    "external_hard_negative_threshold_policy_v1_2026_05_17"
+)
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_VERSION = (
+    "external_hard_negative_tranche_v2_2026_05_17"
+)
+EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_ARTIFACT = (
+    "artifacts/v3_external_hard_negative_next_tranche_preregistration_1025.json"
+)
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",
     "ec",
@@ -11671,7 +11681,7 @@ def build_external_hard_negative_next_candidate_inverse_gate_scores(
     current_countable_structural_screen: dict[str, Any],
     max_rows: int = 3,
     top_k: int = 8,
-    abstain_threshold: float = 0.4115,
+    abstain_threshold: float = EXTERNAL_HARD_NEGATIVE_ABSTAIN_THRESHOLD,
     uniprot_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
     cif_fetcher: Callable[[str, str], str] | None = None,
     artifact_lineage: dict[str, Any] | None = None,
@@ -11974,6 +11984,7 @@ def build_external_hard_negative_next_candidate_inverse_gate_scores(
             "target_fingerprint_id": None,
             "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
             "abstain_threshold": round(float(abstain_threshold), 4),
+            "threshold_policy_version": EXTERNAL_HARD_NEGATIVE_THRESHOLD_POLICY_VERSION,
             "top_k": top_k,
             "candidate_count": len(rows),
             "scored_candidate_count": sum(
@@ -12147,6 +12158,41 @@ def build_external_hard_negative_next_candidate_terminal_review_decisions(
         elif "full_label_factory_gate_not_run" not in remaining_blockers:
             remaining_blockers.append("full_label_factory_gate_not_run")
 
+        evidence_separation = _external_hard_negative_evidence_separation(
+            accession=accession,
+            inverse_gate=inverse_gate,
+            predictive_context={
+                "source_active_site_evidence_status": (
+                    "explicit_active_site_and_catalytic_activity_source_present"
+                    if source_ready
+                    else "source_evidence_not_terminally_clear"
+                ),
+                "resolved_active_site_residue_count": inverse_row.get(
+                    "resolved_active_site_residue_count"
+                ),
+            },
+            import_gate_context={
+                "bounded_duplicate_evidence_status": duplicate_row.get(
+                    "duplicate_evidence_status"
+                ),
+                "uniref_current_reference_screen_status": screen_row.get(
+                    "uniref_current_reference_screen_status"
+                ),
+                "terminal_review_decision_status": terminal_status,
+                "factory_gate_status": "not_run",
+            },
+            review_only_context={
+                "accession": accession,
+                "entry_id": screen_row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": screen_row.get("lane_id") or inverse_row.get("lane_id"),
+                "terminal_review_queue_status": queue_row.get(
+                    "review_packet_status"
+                ),
+                "specific_ec_numbers": inverse_row.get("specific_ec_numbers", []),
+                "uniprot_entry_name": inverse_row.get("uniprot_entry_name"),
+            },
+        )
+
         rows.append(
             {
                 "accession": accession,
@@ -12197,6 +12243,7 @@ def build_external_hard_negative_next_candidate_terminal_review_decisions(
                 ),
                 "remaining_import_blockers": sorted(set(remaining_blockers)),
                 "factory_gate_status": "not_run",
+                "evidence_separation": evidence_separation,
                 "countable_label_candidate": False,
                 "ready_for_label_import": False,
                 "import_ready_candidate": False,
@@ -12256,6 +12303,128 @@ def build_external_hard_negative_next_candidate_terminal_review_decisions(
     }
 
 
+def _external_hard_negative_evidence_separation(
+    *,
+    accession: str,
+    inverse_gate: dict[str, Any],
+    predictive_context: dict[str, Any] | None = None,
+    import_gate_context: dict[str, Any] | None = None,
+    review_only_context: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Separate score/import evidence from human-readable review context."""
+
+    predictive = {
+        "all_8_inverse_gate_scores": {
+            "ontology_version_at_decision": inverse_gate.get(
+                "ontology_version_at_decision", DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+            ),
+            "threshold_policy_version": EXTERNAL_HARD_NEGATIVE_THRESHOLD_POLICY_VERSION,
+            "abstain_threshold": inverse_gate.get(
+                "abstain_threshold", EXTERNAL_HARD_NEGATIVE_ABSTAIN_THRESHOLD
+            ),
+            "expected_current_fingerprint_count": inverse_gate.get(
+                "expected_current_fingerprint_count"
+            ),
+            "observed_current_fingerprint_count": inverse_gate.get(
+                "observed_current_fingerprint_count"
+            ),
+            "current_fingerprint_scores": inverse_gate.get(
+                "current_fingerprint_scores", {}
+            ),
+            "max_current_fingerprint_score": inverse_gate.get(
+                "max_current_fingerprint_score"
+            ),
+            "all_current_fingerprint_scores_below_threshold": inverse_gate.get(
+                "all_current_fingerprint_scores_below_threshold"
+            ),
+        }
+    }
+    if predictive_context:
+        predictive["local_structure_context"] = predictive_context
+    import_gate = {
+        "target_label_type": "out_of_scope",
+        "target_fingerprint_id": None,
+        "ontology_version_at_decision": inverse_gate.get(
+            "ontology_version_at_decision", DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+        ),
+        "inverse_gate_status": inverse_gate.get("inverse_gate_status"),
+    }
+    if import_gate_context:
+        import_gate.update(import_gate_context)
+    review_context = {
+        "accession": accession,
+        "note": (
+            "Identifiers, protein names, EC labels, UniProt prose, source "
+            "annotations, and curated mechanism text are review context only."
+        ),
+    }
+    if review_only_context:
+        review_context.update(review_only_context)
+    return {
+        "predictive_evidence": predictive,
+        "import_gate_evidence": import_gate,
+        "review_only_context": review_context,
+        "excluded_context": [
+            "protein_name",
+            "ec_label",
+            "uniprot_prose",
+            "source_annotation",
+            "curated_mechanism_text",
+        ],
+    }
+
+
+def _external_hard_negative_pre_registration_reference(
+    *,
+    pre_registration: dict[str, Any] | None,
+    pre_registration_artifact_path: str | None,
+    require_pre_registration: bool,
+) -> tuple[dict[str, Any] | None, list[str]]:
+    blockers: list[str] = []
+    if pre_registration is None:
+        if require_pre_registration:
+            blockers.append("external_hard_negative_pre_registration_missing")
+        return None, blockers
+
+    metadata = pre_registration.get("metadata", {})
+    if metadata.get("method") != "external_hard_negative_next_tranche_pre_registration":
+        blockers.append("external_hard_negative_pre_registration_method_mismatch")
+    if metadata.get("version") != EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_VERSION:
+        blockers.append("external_hard_negative_pre_registration_version_mismatch")
+    if metadata.get("registration_status") != "frozen_before_candidate_selection":
+        blockers.append("external_hard_negative_pre_registration_not_frozen")
+    if metadata.get("ontology_version_at_decision") != DEFAULT_ONTOLOGY_VERSION_AT_DECISION:
+        blockers.append("external_hard_negative_pre_registration_ontology_mismatch")
+    if (
+        round(float(metadata.get("abstain_threshold", -1.0) or -1.0), 4)
+        != EXTERNAL_HARD_NEGATIVE_ABSTAIN_THRESHOLD
+    ):
+        blockers.append("external_hard_negative_pre_registration_threshold_mismatch")
+    if metadata.get("threshold_policy_version") != EXTERNAL_HARD_NEGATIVE_THRESHOLD_POLICY_VERSION:
+        blockers.append("external_hard_negative_pre_registration_threshold_policy_mismatch")
+    if metadata.get("inverse_gate_rule") != "all_current_fingerprints_below_floor":
+        blockers.append("external_hard_negative_pre_registration_inverse_gate_mismatch")
+    if metadata.get("candidate_selection_started") is not False:
+        blockers.append("external_hard_negative_pre_registration_after_selection")
+    fingerprint_universe = metadata.get("fingerprint_universe", [])
+    expected = sorted(fingerprint.id for fingerprint in load_fingerprints())
+    if sorted(str(item) for item in fingerprint_universe) != expected:
+        blockers.append("external_hard_negative_pre_registration_fingerprint_mismatch")
+
+    reference = {
+        "artifact": (
+            pre_registration_artifact_path
+            or EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_ARTIFACT
+        ),
+        "version": metadata.get("version"),
+        "registration_status": metadata.get("registration_status"),
+        "threshold_policy_version": metadata.get("threshold_policy_version"),
+        "ontology_version_at_decision": metadata.get("ontology_version_at_decision"),
+        "abstain_threshold": metadata.get("abstain_threshold"),
+    }
+    return reference, blockers
+
+
 def build_external_hard_negative_next_candidate_factory_import_gate(
     *,
     terminal_review_decisions: dict[str, Any],
@@ -12264,6 +12433,9 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
     existing_label_entry_ids: list[str] | None = None,
     allowed_existing_external_label_entry_ids: list[str] | None = None,
     max_imports: int = 1,
+    pre_registration: dict[str, Any] | None = None,
+    pre_registration_artifact_path: str | None = None,
+    require_pre_registration: bool = False,
     artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Run the final factory/import gate for accepted next-candidate negatives."""
@@ -12335,6 +12507,13 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
             )
         )
         and not external_transfer_gate.get("blockers")
+    )
+    pre_registration_reference, pre_registration_blockers = (
+        _external_hard_negative_pre_registration_reference(
+            pre_registration=pre_registration,
+            pre_registration_artifact_path=pre_registration_artifact_path,
+            require_pre_registration=require_pre_registration,
+        )
     )
 
     rows: list[dict[str, Any]] = []
@@ -12412,12 +12591,47 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
             blockers.append("baseline_label_factory_gate_not_passed")
         if not transfer_gate_passed:
             blockers.append("external_transfer_gate_not_clean")
+        blockers.extend(pre_registration_blockers)
 
         max_score = _external_parse_float(
             terminal_row.get("max_current_fingerprint_score")
             or inverse_gate.get("max_current_fingerprint_score")
         )
         factory_gate_status = "passed" if not blockers else "failed"
+        evidence_separation = _external_hard_negative_evidence_separation(
+            accession=accession,
+            inverse_gate=inverse_gate,
+            predictive_context=(
+                terminal_row.get("evidence_separation", {})
+                .get("predictive_evidence", {})
+                .get("local_structure_context", {})
+            ),
+            import_gate_context={
+                "terminal_review_decision_status": terminal_row.get(
+                    "terminal_review_decision_status"
+                ),
+                "bounded_duplicate_evidence_status": terminal_row.get(
+                    "bounded_duplicate_evidence_status"
+                ),
+                "uniref_current_reference_screen_status": terminal_row.get(
+                    "uniref_current_reference_screen_status"
+                ),
+                "baseline_label_factory_gate_status": (
+                    "passed" if label_gate_passed else "failed"
+                ),
+                "external_transfer_gate_status": (
+                    "passed" if transfer_gate_passed else "failed"
+                ),
+                "factory_gate_status": factory_gate_status,
+                "pre_registration_reference": pre_registration_reference,
+            },
+            review_only_context={
+                "accession": accession,
+                "entry_id": entry_id,
+                "lane_id": terminal_row.get("lane_id"),
+                "source_terminal_review_decisions_method": source_terminal_method,
+            },
+        )
         rows.append(
             {
                 "accession": accession,
@@ -12441,6 +12655,8 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
                 "top1_score": terminal_row.get("top1_score"),
                 "max_current_fingerprint_score": max_score,
                 "remaining_import_blockers": sorted(set(blockers)),
+                "evidence_separation": evidence_separation,
+                "pre_registration_reference": pre_registration_reference,
                 "countable_label_candidate": False,
                 "ready_for_label_import": False,
                 "import_ready_candidate": False,
@@ -12505,6 +12721,7 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
                     "max_current_fingerprint_score": score,
                     "top1_fingerprint_id": row.get("top1_fingerprint_id"),
                     "top1_score": row.get("top1_score"),
+                    "pre_registration_reference": pre_registration_reference,
                 },
                 "decision": (
                     {
@@ -12523,6 +12740,11 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
                         "ontology_version_at_decision": (
                             DEFAULT_ONTOLOGY_VERSION_AT_DECISION
                         ),
+                        "threshold_policy_version": (
+                            EXTERNAL_HARD_NEGATIVE_THRESHOLD_POLICY_VERSION
+                        ),
+                        "pre_registration_reference": pre_registration_reference,
+                        "evidence_separation": row.get("evidence_separation"),
                         "rationale": rationale,
                     }
                     if accept
@@ -12578,6 +12800,13 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
             "external_transfer_gate_status": (
                 "passed" if transfer_gate_passed else "failed"
             ),
+            "pre_registration_required": require_pre_registration,
+            "pre_registration_status": (
+                "passed"
+                if pre_registration_reference and not pre_registration_blockers
+                else ("missing_or_failed" if require_pre_registration else "not_required")
+            ),
+            "pre_registration_reference": pre_registration_reference,
             "source_terminal_review_decisions_method": source_terminal_method,
             "source_label_factory_gate_method": label_gate_meta.get("method"),
             "source_external_transfer_gate_method": transfer_gate_meta.get("method"),
@@ -12854,6 +13083,9 @@ def build_external_hard_negative_later_single_import_cycle_gate(
     existing_label_entry_ids: list[str] | None = None,
     target_accession: str | None = None,
     max_imports: int = 1,
+    pre_registration: dict[str, Any] | None = None,
+    pre_registration_artifact_path: str | None = None,
+    require_pre_registration: bool = False,
     artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Open one explicit later import cycle from a green follow-up decision."""
@@ -12919,6 +13151,9 @@ def build_external_hard_negative_later_single_import_cycle_gate(
         existing_label_entry_ids=existing_label_entry_ids,
         allowed_existing_external_label_entry_ids=prior_external_entry_ids,
         max_imports=max_imports,
+        pre_registration=pre_registration,
+        pre_registration_artifact_path=pre_registration_artifact_path,
+        require_pre_registration=require_pre_registration,
         artifact_lineage=artifact_lineage,
     )
 
@@ -12979,6 +13214,9 @@ def build_external_hard_negative_later_single_import_cycle_gate(
                     "top1_fingerprint_id": row.get("top1_fingerprint_id"),
                     "top1_score": row.get("top1_score"),
                     "prior_external_label_entry_ids": prior_external_entry_ids,
+                    "pre_registration_reference": row.get(
+                        "pre_registration_reference"
+                    ),
                 },
                 "decision": (
                     {
@@ -13000,6 +13238,13 @@ def build_external_hard_negative_later_single_import_cycle_gate(
                         "ontology_version_at_decision": (
                             DEFAULT_ONTOLOGY_VERSION_AT_DECISION
                         ),
+                        "threshold_policy_version": (
+                            EXTERNAL_HARD_NEGATIVE_THRESHOLD_POLICY_VERSION
+                        ),
+                        "pre_registration_reference": row.get(
+                            "pre_registration_reference"
+                        ),
+                        "evidence_separation": row.get("evidence_separation"),
                         "rationale": rationale,
                     }
                     if accept
@@ -24299,6 +24544,7 @@ def _external_out_of_scope_inverse_gate_result(
         "target_fingerprint_id": None,
         "ontology_version_at_decision": ontology_version_at_decision,
         "abstain_threshold": round(float(abstain_threshold), 4),
+        "threshold_policy_version": EXTERNAL_HARD_NEGATIVE_THRESHOLD_POLICY_VERSION,
         "expected_current_fingerprint_count": len(current_fingerprint_ids),
         "observed_current_fingerprint_count": 0,
         "observed_current_fingerprint_ids": [],

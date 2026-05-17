@@ -247,6 +247,8 @@ class MechanismLabel:
             raise ValueError(f"{entry_id}: evidence.sources must be a non-empty list")
         if not all(isinstance(source, str) and source for source in sources):
             raise ValueError(f"{entry_id}: evidence.sources must contain non-empty strings")
+        if entry_id.startswith("uniprot:") and label_type == "out_of_scope":
+            _validate_external_out_of_scope_evidence_separation(entry_id, evidence)
         if not isinstance(rationale, str) or len(rationale) < 20:
             raise ValueError(f"{entry_id}: rationale is too short")
         if label_type == "seed_fingerprint" and not fingerprint_id:
@@ -354,6 +356,42 @@ def load_labels(path: Path = LABEL_REGISTRY) -> list[MechanismLabel]:
         raise ValueError(f"duplicate labels: {', '.join(sorted(duplicates))}")
     _validate_label_fingerprints(labels)
     return labels
+
+
+def _validate_external_out_of_scope_evidence_separation(
+    entry_id: str, evidence: dict[str, Any]
+) -> None:
+    required = (
+        "predictive_evidence",
+        "import_gate_evidence",
+        "review_only_context",
+        "excluded_context",
+    )
+    for key in required:
+        value = evidence.get(key)
+        if not isinstance(value, list) or not value:
+            raise ValueError(
+                f"{entry_id}: external out_of_scope evidence.{key} must be a non-empty list"
+            )
+    predictive_blob = json.dumps(
+        evidence.get("predictive_evidence", []),
+        sort_keys=True,
+    ).lower()
+    forbidden_predictive_terms = (
+        "protein_name",
+        "ec_label",
+        "uniprot_prose",
+        "source_annotation",
+        "curated_mechanism_text",
+    )
+    leaked_terms = [
+        term for term in forbidden_predictive_terms if term in predictive_blob
+    ]
+    if leaked_terms:
+        raise ValueError(
+            f"{entry_id}: review-only context leaked into predictive_evidence: "
+            + ", ".join(leaked_terms)
+        )
 
 
 def label_summary(labels: list[MechanismLabel]) -> dict[str, Any]:

@@ -4,14 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 158
-- Measured elapsed time: 5111.2 minutes (85.19 hours)
+- Entries: 159
+- Measured elapsed time: 5123.0 minutes (85.38 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
+- leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
@@ -24,21 +25,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1784
-- Evidence references logged: 1397
+- Artifact references logged: 1785
+- Evidence references logged: 1398
 
 ## Recent Entries
-
-### 2026-05-17T09:08:30+00:00 - post-v2
-
-- Task: Import first external hard-negative label
-- Time mode: measured
-- Measured minutes: 37.383
-- Started: 2026-05-17T08:31:07Z
-- Ended: 2026-05-17T09:08:30Z
-- Artifacts: artifacts/v3_external_hard_negative_next_candidate_inverse_gate_scores_1025.json, artifacts/v3_external_hard_negative_next_candidate_terminal_review_decisions_1025.json, artifacts/v3_external_hard_negative_next_candidate_factory_import_gate_1025.json, data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json
-- Evidence: startup 388 unit tests passed, startup validate passed with 679 curated labels, P78549 external out_of_scope import, all 8 current fingerprint scores below 0.4115, post-import litmus regression pinned 680 labels and 468 out-of-scope labels, final 393 unit tests passed, validate passed with 680 curated labels, compileall passed, git diff --check passed, JSON parse checks passed
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed.
 
 ### 2026-05-17T09:41:38.959359+00:00 - post-v2
 
@@ -116,6 +106,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json, artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_1025.json, artifacts/v3_external_hard_negative_post_p06744_all_vs_all_sequence_search_1025.json, artifacts/v3_external_hard_negative_post_p06744_structural_cluster_index_1025.json, artifacts/v3_external_hard_negative_post_p06744_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_post_p06744_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 405 unit tests passed, startup validate passed with 682 curated labels, post-P06744 sourcing selected 6 review-only covered-lane rows, bounded sequence screens were 6/6 no-signal and guardrail-clean, Foldseek current-countable screen completed 4032/4032 pairs and rejected all 6 as structural duplicate signals, terminal decisions recorded 0 import-ready rows and 0 countable candidates, final 409 unit tests passed, validate passed with 682 labels, compileall passed, git diff --check passed
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. Older O14756/Q6NSJ0 import prompt stayed superseded; no countable labels imported.
+
+### 2026-05-17T17:13:28.332690+00:00 - leakage-risk closure
+
+- Task: external hard-negative leakage closure
+- Time mode: measured
+- Measured minutes: 11.8
+- Started: 2026-05-17T17:01:40Z
+- Ended: 2026-05-17T17:13:28Z
+- Artifacts: v3_external_pilot_repair_leakage_closure_1025;v3_external_hard_negative_next_tranche_preregistration_1025;v3_external_hard_negative_threshold_policy_1025;v3_external_hard_negative_ontology_reaudit_policy_1025;v3_external_hard_negative_review_context_separation_audit_1025
+- Evidence: 417 unit tests passed; validate passed on 682 labels
+- Notes: Added pre-registration gate, threshold provenance, ontology re-audit, evidence separation, and M-CSA claim guard regressions.
 
 ## Expectation Updates
 
@@ -244,6 +245,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-17T10:50:16.595786+00:00: Second external out-of-scope hard-negative import succeeded for Q3LXA3; P22830 remains review-only and should require its own explicit cycle or broader sourcing decision.
 - 2026-05-17T13:25:17.879225+00:00: Broader external sourcing now has one surviving no-current-structural-signal row, P06744; terminal review and full factory/import gates are the active blockers.
 - 2026-05-17T13:49:27.020292+00:00: P06744 is now a countable external out-of-scope hard negative; next work should not retry broader duplicate-signal rejects without new evidence.
+- 2026-05-17T17:13:28.332690+00:00: candidate-specific pilot repairs are development evidence only; next external tranche requires frozen preregistration
 
 ## Scope Adjustments
 
@@ -352,3 +354,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-16T22:05:28.138975+00:00: P34949 and Q9BXD5 now have review-only import-safety adjudications; Q9BXD5 still preserves the representation near-duplicate holdout as an import blocker.
 - 2026-05-17T02:10:05.048551+00:00: First external hard-negative import attempt is closed without count growth; next external work starts tranche-2 review-only candidates P33025 Q13907 P35914.
 - 2026-05-17T04:14:25+00:00: Next hard-negative work should complete the missing current-countable pair cache for Q13087/sequence-clean rows, then continue UniRef-wide duplicate and terminal review gates before any import attempt.
+- 2026-05-17T17:13:28.332690+00:00: leakage-risk closure complete; next milestone is infrastructure/artifact strategy before ePK or broad scale-up

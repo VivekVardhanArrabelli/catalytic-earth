@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "method": "external_hard_negative_next_tranche_pre_registration",
+    "version": "external_hard_negative_tranche_v2_2026_05_17",
+    "created_at": "2026-05-17T17:01:40Z",
+    "registration_status": "frozen_before_candidate_selection",
+    "candidate_selection_started": false,
+    "slice_id": "1025",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "threshold_policy_version": "external_hard_negative_threshold_policy_v1_2026_05_17",
+    "abstain_threshold": 0.4115,
+    "abstain_floor": 0.4115,
+    "inverse_gate_rule": "all_current_fingerprints_below_floor",
+    "fingerprint_universe": [
+      "cobalamin_radical_rearrangement",
+      "flavin_dehydrogenase_reductase",
+      "flavin_monooxygenase",
+      "heme_peroxidase_oxidase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "ser_his_acid_hydrolase"
+    ],
+    "countable_label_candidate_count": 0,
+    "ready_for_label_import": false
+  },
+  "frozen_rules": {
+    "abstention_threshold": "Use threshold policy external_hard_negative_threshold_policy_v1_2026_05_17 at floor 0.4115 unless a separately justified global calibration creates a new threshold policy version.",
+    "admissible_source_evidence": [
+      "explicit active-site or catalytic residue evidence",
+      "specific catalytic activity or reaction evidence",
+      "coordinate mapping for the scored local active-site features",
+      "bounded duplicate evidence",
+      "UniRef current-reference screening",
+      "external structural-neighborhood review evidence"
+    ],
+    "duplicate_rules": [
+      "reject exact current-reference overlaps",
+      "reject near-duplicate sequence evidence at the active threshold",
+      "reject current-countable structural duplicate signals",
+      "screen external candidates all-vs-all before terminal import"
+    ],
+    "excluded_context": [
+      "protein_name",
+      "ec_label",
+      "uniprot_prose",
+      "source_annotation",
+      "curated_mechanism_text",
+      "candidate-specific repair rationale"
+    ],
+    "structural_neighborhood_rules": [
+      "native M-CSA strict TM-diverse holdout claims stay disabled",
+      "strict TM-diverse evaluation belongs on external fold-diverse structural data",
+      "structure clusters must be assigned before split construction"
+    ],
+    "success_criteria": [
+      "all current fingerprint scores are below 0.4115",
+      "terminal review accepts out-of-scope only for label_factory_v1_8fp",
+      "full label-factory and external-transfer gates pass",
+      "post-import litmus invariants remain green"
+    ],
+    "failure_criteria": [
+      "any current fingerprint score reaches or exceeds 0.4115",
+      "duplicate or structural-neighborhood controls flag a current-countable neighbor",
+      "source evidence is review-only or incomplete",
+      "review-only context is required for scoring",
+      "ontology version or threshold policy is unrecorded"
+    ]
+  },
+  "warnings": [
+    "This artifact freezes the next external hard-negative tranche before candidate selection; it does not import labels.",
+    "External out_of_scope labels remain scoped to ontology_version_at_decision and must be re-audited after positive fingerprint expansion."
+  ]
+}

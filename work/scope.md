@@ -108,6 +108,14 @@ Post-V2 quality work has started:
   labels plus three external out-of-scope hard negatives, `uniprot:P06744`,
   `uniprot:P78549`, and `uniprot:Q3LXA3`, with pending review-state evidence
   gaps kept outside the countable registry
+- leakage-risk closure for external hard negatives: original repaired pilot
+  lanes are development/review evidence only; the next tranche is frozen before
+  candidate selection in
+  `artifacts/v3_external_hard_negative_next_tranche_preregistration_1025.json`;
+  threshold policy `external_hard_negative_threshold_policy_v1_2026_05_17`
+  preserves the global `0.4115` floor; existing external labels must be
+  re-audited on positive fingerprint expansion; and accepted external labels
+  separate predictive/import evidence from review-only context
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
 - hard-negative controls, in-scope failure analysis, label-expansion candidate

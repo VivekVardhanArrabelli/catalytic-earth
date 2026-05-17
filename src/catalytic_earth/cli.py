@@ -3985,6 +3985,11 @@ def cmd_build_external_hard_negative_next_candidate_factory_import_gate(
     terminal_review_decisions = read_json_object(Path(args.terminal_review_decisions))
     label_factory_gate_check = read_json_object(Path(args.label_factory_gate_check))
     external_transfer_gate = read_json_object(Path(args.external_transfer_gate))
+    pre_registration = (
+        read_json_object(Path(args.pre_registration))
+        if args.pre_registration
+        else None
+    )
     existing_label_entry_ids = [
         label.entry_id for label in load_labels(Path(args.labels))
     ]
@@ -4001,6 +4006,7 @@ def cmd_build_external_hard_negative_next_candidate_factory_import_gate(
             "label_factory_gate_check": args.label_factory_gate_check,
             "external_transfer_gate": args.external_transfer_gate,
             "labels": args.labels,
+            "pre_registration": args.pre_registration,
         },
         "blocker_removed": (
             "broader_structural_factory_import_gate"
@@ -4014,6 +4020,9 @@ def cmd_build_external_hard_negative_next_candidate_factory_import_gate(
         external_transfer_gate=external_transfer_gate,
         existing_label_entry_ids=existing_label_entry_ids,
         max_imports=args.max_imports,
+        pre_registration=pre_registration,
+        pre_registration_artifact_path=args.pre_registration,
+        require_pre_registration=args.require_pre_registration,
         artifact_lineage=artifact_lineage,
     )
     write_json(Path(args.out), gate)
@@ -4077,6 +4086,11 @@ def cmd_build_external_hard_negative_later_single_import_cycle_gate(
     terminal_review_decisions = read_json_object(Path(args.terminal_review_decisions))
     label_factory_gate_check = read_json_object(Path(args.label_factory_gate_check))
     external_transfer_gate = read_json_object(Path(args.external_transfer_gate))
+    pre_registration = (
+        read_json_object(Path(args.pre_registration))
+        if args.pre_registration
+        else None
+    )
     existing_label_entry_ids = [
         label.entry_id for label in load_labels(Path(args.labels))
     ]
@@ -4090,6 +4104,7 @@ def cmd_build_external_hard_negative_later_single_import_cycle_gate(
             "label_factory_gate_check": args.label_factory_gate_check,
             "external_transfer_gate": args.external_transfer_gate,
             "labels": args.labels,
+            "pre_registration": args.pre_registration,
         },
         "blocker_removed": "explicit_later_single_import_cycle_gate",
     }
@@ -4101,6 +4116,9 @@ def cmd_build_external_hard_negative_later_single_import_cycle_gate(
         existing_label_entry_ids=existing_label_entry_ids,
         target_accession=args.target_accession,
         max_imports=args.max_imports,
+        pre_registration=pre_registration,
+        pre_registration_artifact_path=args.pre_registration,
+        require_pre_registration=args.require_pre_registration,
         artifact_lineage=artifact_lineage,
     )
     write_json(Path(args.out), gate)
@@ -10058,6 +10076,19 @@ def build_parser() -> argparse.ArgumentParser:
         "--max-imports", type=int, default=1
     )
     external_hard_negative_next_factory_import_gate.add_argument(
+        "--pre-registration",
+        default=None,
+        help=(
+            "frozen next-tranche pre-registration artifact; required when "
+            "--require-pre-registration is set"
+        ),
+    )
+    external_hard_negative_next_factory_import_gate.add_argument(
+        "--require-pre-registration",
+        action="store_true",
+        help="block imports unless the frozen pre-registration artifact validates",
+    )
+    external_hard_negative_next_factory_import_gate.add_argument(
         "--out",
         default=(
             "artifacts/"
@@ -10156,6 +10187,19 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_hard_negative_later_cycle.add_argument(
         "--max-imports", type=int, default=1
+    )
+    external_hard_negative_later_cycle.add_argument(
+        "--pre-registration",
+        default=None,
+        help=(
+            "frozen next-tranche pre-registration artifact; required when "
+            "--require-pre-registration is set"
+        ),
+    )
+    external_hard_negative_later_cycle.add_argument(
+        "--require-pre-registration",
+        action="store_true",
+        help="block imports unless the frozen pre-registration artifact validates",
     )
     external_hard_negative_later_cycle.add_argument(
         "--out",

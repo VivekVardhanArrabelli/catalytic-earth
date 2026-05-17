@@ -445,6 +445,26 @@ import-ready rows and 0 countable candidates.
 then triages the existing 25-row pool after those rejections and admits 0
 replacement rows, so the next import attempt needs new external candidate
 sourcing rather than another pass over the same pool.
+Leakage-risk closure now records that the original 10 selected external pilot
+candidates and repaired lanes (`O14756`, `Q6NSJ0`, `P34949`, `Q9BXD5`,
+`C9JRZ8`, `P06746`, `P55263`, `O60568`, `O95050`, and `P51580`) are
+development/review evidence only, not clean held-out performance proof. The
+next external hard-negative tranche is pre-registered in
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_1025.json`
+before candidate selection with the 8-fingerprint universe,
+`ontology_version_at_decision=label_factory_v1_8fp`, threshold policy
+`external_hard_negative_threshold_policy_v1_2026_05_17`, floor `0.4115`,
+all-current-fingerprints-below-floor inverse gate, duplicate and structural
+neighborhood rules, admissible source evidence, excluded context, and
+success/failure criteria. `artifacts/v3_external_hard_negative_threshold_policy_1025.json`
+documents that `0.4115` is a global abstention floor, not candidate- or
+tranche-tuned. `artifacts/v3_external_hard_negative_ontology_reaudit_policy_1025.json`
+requires re-auditing existing external hard negatives before any positive
+fingerprint expansion, especially ePK, SDR, AKR, glycoside-hydrolase,
+isomerase, or lyase families. Accepted external labels now separate
+`predictive_evidence`, `import_gate_evidence`, `review_only_context`, and
+`excluded_context`, with protein names, EC labels, UniProt prose, source
+annotations, and curated mechanism text excluded from predictive scoring.
 `artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json` starts
 that sourcing pass as review-only work: a bounded expanded Swiss-Prot fetch
 finds 8 new covered-lane candidates with explicit UniProt active-site and

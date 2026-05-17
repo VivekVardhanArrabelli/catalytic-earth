@@ -23,6 +23,31 @@ require `expert_reviewed` status and cannot be created by retrieval evidence
 alone. External `out_of_scope` terminal decisions must carry
 `ontology_version_at_decision` so future fingerprint expansion cannot
 retroactively redefine what the hard-negative decision meant.
+External hard-negative labels also separate evidence into
+`predictive_evidence`, `import_gate_evidence`, `review_only_context`, and
+`excluded_context`. Predictive evidence is limited to the scored local
+structure/inverse-gate surface. Import-gate evidence covers duplicate screens,
+UniRef/current-reference checks, terminal review, label-factory gates, and
+external-transfer gates. Protein names, EC labels, UniProt prose, source
+annotations, curated mechanism text, and candidate-specific repair rationale
+are review-only or excluded context unless a future rule explicitly permits
+them for a non-predictive gate.
+
+The original 10 selected external pilot candidates and their repaired lanes
+(`O14756`, `Q6NSJ0`, `P34949`, `Q9BXD5`, `C9JRZ8`, `P06746`, `P55263`,
+`O60568`, `O95050`, and `P51580`) are development/review evidence, not clean
+held-out performance evidence. A future candidate from a repaired lane can be
+used for evaluation only if the rule set, threshold policy, ontology version,
+duplicate controls, and structural-neighborhood rules were frozen before
+candidate selection.
+
+The next external hard-negative tranche is pre-registered in
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_1025.json`.
+It freezes the 8-fingerprint universe, `label_factory_v1_8fp`,
+threshold-policy version `external_hard_negative_threshold_policy_v1_2026_05_17`,
+floor `0.4115`, inverse-gate rule, duplicate rules, structural-neighborhood
+rules, admissible source evidence, excluded context, and success/failure
+criteria before candidate selection.
 
 ## Promotion And Demotion
 

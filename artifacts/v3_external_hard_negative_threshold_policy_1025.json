@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "method": "external_hard_negative_threshold_policy",
+    "version": "external_hard_negative_threshold_policy_v1_2026_05_17",
+    "created_at": "2026-05-17T17:01:40Z",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "abstain_threshold": 0.4115,
+    "abstain_floor": 0.4115,
+    "candidate_or_tranche_tuning_permitted": false,
+    "global_recalibration_requires_new_policy_version": true,
+    "countable_label_candidate_count": 0,
+    "ready_for_label_import": false
+  },
+  "provenance": {
+    "selection_rule": "Use the smallest threshold with zero current out-of-scope false non-abstentions while preserving retained in-scope behavior; do not retune per candidate, lane, or external tranche.",
+    "source_artifacts": [
+      "artifacts/v3_abstention_calibration_125.json",
+      "artifacts/v3_geometry_label_eval_1000.json",
+      "artifacts/v3_sequence_distance_holdout_eval_1000.json"
+    ],
+    "post_import_litmus_requirements": [
+      "682 total labels",
+      "212 seed_fingerprint labels",
+      "470 out_of_scope labels",
+      "0 seed/out_of_scope overlap",
+      "0 out-of-scope false non-abstentions",
+      "in-scope retention 0.9858",
+      "held-out sequence identity <= 0.284",
+      "43/43 retained held-out positives correct"
+    ]
+  },
+  "guards": [
+    "Future external hard-negative imports must record this threshold policy version or a newer documented global threshold policy.",
+    "Existing ontology_version_at_decision semantics must be preserved when a new threshold policy is introduced.",
+    "Changing the floor for one candidate or tranche is leakage and must block import."
+  ]
+}

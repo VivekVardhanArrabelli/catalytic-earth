@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "method": "external_pilot_repair_leakage_closure",
+    "created_at": "2026-05-17T17:01:40Z",
+    "slice_id": "1025",
+    "candidate_count": 10,
+    "clean_performance_evidence_candidate_count": 0,
+    "development_review_evidence_candidate_count": 10,
+    "rules_frozen_before_future_candidate_selection_required": true,
+    "countable_label_candidate_count": 0,
+    "ready_for_label_import": false
+  },
+  "candidates": [
+    "O14756",
+    "Q6NSJ0",
+    "P34949",
+    "Q9BXD5",
+    "C9JRZ8",
+    "P06746",
+    "P55263",
+    "O60568",
+    "O95050",
+    "P51580"
+  ],
+  "decision": {
+    "classification": "development_review_evidence_not_clean_performance_evidence",
+    "reason": "The original pilot candidates and repaired lanes informed rule repair, so their post-repair outcomes cannot be used as held-out performance proof.",
+    "future_evaluation_rule": "A future candidate from any repaired lane can count as evaluation evidence only if the applicable rules, thresholds, ontology version, duplicate controls, and structural-neighborhood rules were frozen before candidate selection."
+  },
+  "blocked_claims": [
+    "Do not count repaired-lane pilot outcomes as clean held-out accuracy.",
+    "Do not use O14756, Q6NSJ0, P34949, Q9BXD5, C9JRZ8, P06746, P55263, O60568, O95050, or P51580 as post-repair performance proof.",
+    "Do not merge review-only repair-lane evidence into countable labels without a fresh frozen pre-registration."
+  ]
+}

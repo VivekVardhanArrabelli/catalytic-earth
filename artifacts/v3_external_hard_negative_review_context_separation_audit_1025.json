@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "method": "external_hard_negative_review_context_separation_audit",
+    "created_at": "2026-05-17T17:01:40Z",
+    "external_label_count": 3,
+    "all_external_labels_have_separated_evidence": true,
+    "review_only_terms_absent_from_predictive_evidence": true,
+    "countable_label_candidate_count": 0,
+    "ready_for_label_import": false
+  },
+  "required_evidence_categories": [
+    "predictive_evidence",
+    "import_gate_evidence",
+    "review_only_context",
+    "excluded_context"
+  ],
+  "review_only_or_excluded_terms": [
+    "protein_name",
+    "ec_label",
+    "uniprot_prose",
+    "source_annotation",
+    "curated_mechanism_text"
+  ],
+  "audited_entry_ids": [
+    "uniprot:P06744",
+    "uniprot:P78549",
+    "uniprot:Q3LXA3"
+  ]
+}

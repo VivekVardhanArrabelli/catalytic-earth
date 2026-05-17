@@ -50,6 +50,37 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-17T17:01:40Z run, leakage-risk closure is now the active
+handoff state. The original 10 selected external pilot candidates and repaired
+lanes (`O14756`, `Q6NSJ0`, `P34949`, `Q9BXD5`, `C9JRZ8`, `P06746`, `P55263`,
+`O60568`, `O95050`, and `P51580`) are recorded as development/review evidence
+only in `artifacts/v3_external_pilot_repair_leakage_closure_1025.json`; they
+must not be used as clean held-out performance proof after candidate-specific
+repair. The next external hard-negative tranche is frozen before candidate
+selection in
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_1025.json`
+with the 8-fingerprint universe, `label_factory_v1_8fp`, threshold policy
+`external_hard_negative_threshold_policy_v1_2026_05_17`, floor `0.4115`,
+all-current-fingerprints-below-floor inverse gate, duplicate controls,
+external-only structural-neighborhood rules, admissible source evidence,
+excluded context, and success/failure criteria. Import gates can now be run
+with `--require-pre-registration` to block next-tranche imports that do not
+reference the frozen artifact/version.
+
+Threshold provenance is documented in
+`artifacts/v3_external_hard_negative_threshold_policy_1025.json`; candidate- or
+tranche-specific threshold tuning is disallowed. Existing external hard
+negatives (`uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`) now carry
+separated `predictive_evidence`, `import_gate_evidence`, `review_only_context`,
+and `excluded_context` fields, and
+`artifacts/v3_external_hard_negative_ontology_reaudit_policy_1025.json` requires
+re-audit whenever the positive fingerprint universe expands, especially before
+ePK, SDR, AKR, glycoside-hydrolase, isomerase, or lyase fingerprints. Evidence
+based confidence call: the registry remains at 682 labels and the current
+leakage controls are coherent; the next milestone should be infrastructure and
+artifact strategy before ePK expansion or broad scale-up, not more M-CSA
+strict-TM repair or repaired-pilot performance claims.
+
 As of the 2026-05-17T15:41:11Z run, the project did not reopen the superseded
 O14756/Q6NSJ0 import attempt. Instead, it opened a bounded post-P06744
 review-only sourcing surface and ran the first sequence duplicate screens.

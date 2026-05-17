@@ -1424,3 +1424,22 @@ complete all-8 inverse score check below the active abstention floor, clean
 duplicate evidence, a terminal post-repair review acceptance, and full
 label-factory gates before any registry import. A source-supported mechanism
 description or repaired representation conflict alone is never import-ready.
+The original 10 pilot candidates and repaired lanes (`O14756`, `Q6NSJ0`,
+`P34949`, `Q9BXD5`, `C9JRZ8`, `P06746`, `P55263`, `O60568`, `O95050`, and
+`P51580`) are development/review evidence only and cannot be used as clean
+held-out performance proof.
+
+The next external hard-negative tranche is frozen before candidate selection in
+`artifacts/v3_external_hard_negative_next_tranche_preregistration_1025.json`.
+Future next-tranche imports must reference that artifact/version or a newer
+documented pre-registration. The frozen policy records the 8-fingerprint
+universe, `label_factory_v1_8fp`, the `0.4115` global threshold floor,
+all-current-fingerprints-below-floor inverse gate, duplicate rules,
+external-only structural-neighborhood rules, admissible source evidence,
+excluded context, and success/failure criteria. The threshold provenance is in
+`artifacts/v3_external_hard_negative_threshold_policy_1025.json`; candidate- or
+tranche-specific threshold tuning is leakage and blocks import. Existing
+external hard negatives (`uniprot:P06744`, `uniprot:P78549`, and
+`uniprot:Q3LXA3`) are scoped only to `label_factory_v1_8fp` and must be
+re-audited whenever the positive fingerprint universe expands, especially for
+ePK, SDR, AKR, glycoside-hydrolase, isomerase, or lyase families.

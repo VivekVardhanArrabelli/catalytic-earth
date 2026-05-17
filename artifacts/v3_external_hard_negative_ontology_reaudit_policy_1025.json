@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "method": "external_hard_negative_ontology_reaudit_policy",
+    "created_at": "2026-05-17T17:01:40Z",
+    "current_ontology_version": "label_factory_v1_8fp",
+    "current_external_hard_negative_count": 3,
+    "re_audit_required_on_positive_fingerprint_expansion": true,
+    "countable_label_candidate_count": 0,
+    "ready_for_label_import": false
+  },
+  "external_labels_requiring_reaudit": [
+    {
+      "entry_id": "uniprot:P06744",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "current_label_type": "out_of_scope",
+      "fingerprint_id": null
+    },
+    {
+      "entry_id": "uniprot:P78549",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "current_label_type": "out_of_scope",
+      "fingerprint_id": null
+    },
+    {
+      "entry_id": "uniprot:Q3LXA3",
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "current_label_type": "out_of_scope",
+      "fingerprint_id": null
+    }
+  ],
+  "expansion_triggers": [
+    "epk",
+    "sdr",
+    "akr",
+    "glycoside_hydrolase",
+    "isomerase",
+    "lyase",
+    "any_positive_fingerprint_universe_expansion"
+  ],
+  "policy": [
+    "out_of_scope means outside the recorded ontology version, not permanently outside catalytic scope",
+    "existing external hard negatives must be rechecked before ePK, SDR, AKR, glycoside-hydrolase, isomerase, or lyase expansion is used for evaluation",
+    "old terminal decisions remain historically valid only for label_factory_v1_8fp"
+  ]
+}
