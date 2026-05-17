@@ -37,8 +37,15 @@ class SourceOnlyContractTests(unittest.TestCase):
     def test_cli_help_and_validate_work_from_source_checkout(self) -> None:
         help_result = _run_source_only_command("-m", "catalytic_earth.cli", "--help")
         validate_result = _run_source_only_command("-m", "catalytic_earth.cli", "validate")
+        migration_result = _run_source_only_command(
+            "-m",
+            "catalytic_earth.cli",
+            "validate-artifact-migration",
+            "--dry-run",
+        )
         self.assertIn("validate", help_result.stdout)
         self.assertIn("Validated 682 curated mechanism labels", validate_result.stdout)
+        self.assertIn("artifact migration validation passed", migration_result.stdout)
 
     def test_transfer_scope_public_contract_symbols_are_importable(self) -> None:
         module = importlib.import_module("catalytic_earth.transfer_scope")

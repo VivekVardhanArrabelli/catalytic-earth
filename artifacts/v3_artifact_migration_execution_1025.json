@@ -2,7 +2,7 @@
   "metadata": {
     "baseline": "current_main_three_external_hard_negatives",
     "canonical_countable_label_count": 682,
-    "current_main_commit": "0a68c40335b4af8f00aeafc281e72b4fc6e81cae",
+    "current_main_commit": "75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27",
     "external_hard_negative_fingerprint_id": null,
     "external_hard_negative_label_type": "out_of_scope",
     "external_imported_out_of_scope_labels": [
@@ -11,7 +11,7 @@
       "uniprot:Q3LXA3"
     ],
     "external_imported_seed_fingerprint_label_count": 0,
-    "generated_at": "2026-05-17T21:25:02Z",
+    "generated_at": "2026-05-17T21:52:06Z",
     "information_loss_guard": "Phase 1 instrumentation only. This manifest records exact Git targets for current artifacts but authorizes no upload, migration, artifact removal, Git LFS migration, or history rewrite.",
     "manifest_schema_version": "artifact_migration_execution.v1",
     "method": "artifact_migration_execution_manifest",
@@ -137,7 +137,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_1000.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1000.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1000.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -181,7 +181,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_1025.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1025.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1025.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -225,7 +225,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -270,7 +270,7 @@
       "source_path": "artifacts/v1_graph_1025.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_1025.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_1025.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -315,7 +315,7 @@
       "source_path": "artifacts/v1_graph_1000.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_1000.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_1000.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -360,7 +360,7 @@
       "source_path": "artifacts/v1_graph_975.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_975.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_975.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -405,7 +405,7 @@
       "source_path": "artifacts/v1_graph_950.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_950.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_950.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -450,7 +450,7 @@
       "source_path": "artifacts/v1_graph_925.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_925.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_925.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -495,7 +495,7 @@
       "source_path": "artifacts/v1_graph_900.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_900.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_900.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -540,7 +540,7 @@
       "source_path": "artifacts/v1_graph_875.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_875.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_875.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -585,7 +585,7 @@
       "source_path": "artifacts/v1_graph_850.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_850.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_850.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -629,7 +629,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_975.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_975.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_975.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -674,7 +674,7 @@
       "source_path": "artifacts/v1_graph_825.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_825.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_825.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -718,7 +718,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_950.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_950.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_950.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -763,7 +763,7 @@
       "source_path": "artifacts/v1_graph_800.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_800.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_800.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -807,7 +807,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_925.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_925.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_925.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -852,7 +852,7 @@
       "source_path": "artifacts/v1_graph_775.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_775.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_775.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -896,7 +896,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_900.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_900.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_900.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -940,7 +940,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_875.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_875.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_875.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -985,7 +985,7 @@
       "source_path": "artifacts/v1_graph_750.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_750.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_750.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1018,7 +1018,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_git_lfs_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_1025.json",
@@ -1030,7 +1030,7 @@
       "source_path": "artifacts/v3_geometry_features_1025.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1025.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_1025.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1074,7 +1074,7 @@
       "source_path": "artifacts/v3_geometry_features_1000_selected_pdb_override.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1000_selected_pdb_override.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_1000_selected_pdb_override.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1107,7 +1107,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_git_lfs_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_1000.json",
@@ -1119,7 +1119,7 @@
       "source_path": "artifacts/v3_geometry_features_1000.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1000.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_1000.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1163,7 +1163,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_850.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_850.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_850.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1208,7 +1208,7 @@
       "source_path": "artifacts/v1_graph_725.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_725.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_725.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1241,7 +1241,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_975.json",
@@ -1253,7 +1253,7 @@
       "source_path": "artifacts/v3_geometry_features_975.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_975.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_975.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1297,7 +1297,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_825.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_825.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_825.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1330,7 +1330,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_950.json",
@@ -1342,7 +1342,7 @@
       "source_path": "artifacts/v3_geometry_features_950.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_950.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_950.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1387,7 +1387,7 @@
       "source_path": "artifacts/v1_graph_700.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_700.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_700.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1431,7 +1431,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_800.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_800.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_800.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1464,7 +1464,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_925.json",
@@ -1476,7 +1476,7 @@
       "source_path": "artifacts/v3_geometry_features_925.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_925.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_925.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1521,7 +1521,7 @@
       "source_path": "artifacts/v1_graph_675.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_675.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_675.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1565,7 +1565,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_775.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_775.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_775.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1598,7 +1598,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_900.json",
@@ -1610,7 +1610,7 @@
       "source_path": "artifacts/v3_geometry_features_900.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_900.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_900.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1655,7 +1655,7 @@
       "source_path": "artifacts/v1_graph_650.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_650.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_650.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1699,7 +1699,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_750.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_750.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_750.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1732,7 +1732,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_875.json",
@@ -1744,7 +1744,7 @@
       "source_path": "artifacts/v3_geometry_features_875.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_875.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_875.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1789,7 +1789,7 @@
       "source_path": "artifacts/v1_graph_625.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_625.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_625.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1822,7 +1822,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_850.json",
@@ -1834,7 +1834,7 @@
       "source_path": "artifacts/v3_geometry_features_850.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_850.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_850.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1878,7 +1878,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_725.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_725.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_725.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1923,7 +1923,7 @@
       "source_path": "artifacts/v1_graph_600.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_600.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_600.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1956,7 +1956,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_825.json",
@@ -1968,7 +1968,7 @@
       "source_path": "artifacts/v3_geometry_features_825.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_825.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_825.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2013,7 +2013,7 @@
       "source_path": "artifacts/v1_graph_575.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_575.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_575.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2057,7 +2057,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_700.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_700.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_700.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2090,7 +2090,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_800.json",
@@ -2102,7 +2102,7 @@
       "source_path": "artifacts/v3_geometry_features_800.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_800.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_800.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2147,7 +2147,7 @@
       "source_path": "artifacts/v1_graph_550.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_550.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_550.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2191,7 +2191,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_675.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_675.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_675.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2224,7 +2224,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_775.json",
@@ -2236,7 +2236,7 @@
       "source_path": "artifacts/v3_geometry_features_775.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_775.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_775.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2269,7 +2269,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_750.json",
@@ -2281,7 +2281,7 @@
       "source_path": "artifacts/v3_geometry_features_750.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_750.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_750.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2326,7 +2326,7 @@
       "source_path": "artifacts/v1_graph_525.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_525.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_525.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2370,7 +2370,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_650.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_650.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_650.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "raw_cache",
@@ -2405,7 +2405,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; Foldseek coordinate sidecar staging has a documented command pattern, but exact refetch/restage inputs must be confirmed against the recorded SHA-256 before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
@@ -2417,7 +2417,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2450,7 +2450,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_725.json",
@@ -2462,7 +2462,7 @@
       "source_path": "artifacts/v3_geometry_features_725.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_725.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_725.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2507,7 +2507,7 @@
       "source_path": "artifacts/v1_graph_500.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_500.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_500.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2551,7 +2551,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_625.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_625.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_625.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "raw_cache",
@@ -2586,7 +2586,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; Foldseek coordinate sidecar staging has a documented command pattern, but exact refetch/restage inputs must be confirmed against the recorded SHA-256 before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
@@ -2598,7 +2598,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2631,7 +2631,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_700.json",
@@ -2643,7 +2643,7 @@
       "source_path": "artifacts/v3_geometry_features_700.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_700.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_700.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2687,7 +2687,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_600.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_600.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_600.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2732,7 +2732,7 @@
       "source_path": "artifacts/v1_graph_475.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_475.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_475.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2765,7 +2765,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_675.json",
@@ -2777,7 +2777,7 @@
       "source_path": "artifacts/v3_geometry_features_675.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_675.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_675.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2821,7 +2821,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_575.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_575.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_575.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2854,7 +2854,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_650.json",
@@ -2866,7 +2866,7 @@
       "source_path": "artifacts/v3_geometry_features_650.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_650.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_650.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2910,7 +2910,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_550.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_550.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_550.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2943,7 +2943,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_625.json",
@@ -2955,7 +2955,7 @@
       "source_path": "artifacts/v3_geometry_features_625.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_625.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_625.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3000,7 +3000,7 @@
       "source_path": "artifacts/v1_graph_450.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_450.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_450.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3033,7 +3033,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_600.json",
@@ -3045,7 +3045,7 @@
       "source_path": "artifacts/v3_geometry_features_600.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_600.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_600.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3090,7 +3090,7 @@
       "source_path": "artifacts/v1_graph_425.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_425.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_425.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3134,7 +3134,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_525.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_525.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_525.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3167,7 +3167,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_575.json",
@@ -3179,7 +3179,7 @@
       "source_path": "artifacts/v3_geometry_features_575.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_575.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_575.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3224,7 +3224,7 @@
       "source_path": "artifacts/v1_graph_400.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_400.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_400.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3268,7 +3268,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_500.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_500.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_500.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3301,7 +3301,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_550.json",
@@ -3313,7 +3313,7 @@
       "source_path": "artifacts/v3_geometry_features_550.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_550.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_550.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3357,7 +3357,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_475.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_475.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_475.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3402,7 +3402,7 @@
       "source_path": "artifacts/v1_graph_375.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_375.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_375.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3435,7 +3435,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_525.json",
@@ -3447,7 +3447,7 @@
       "source_path": "artifacts/v3_geometry_features_525.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_525.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_525.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3480,7 +3480,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_500.json",
@@ -3492,7 +3492,7 @@
       "source_path": "artifacts/v3_geometry_features_500.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_500.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_500.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3537,7 +3537,7 @@
       "source_path": "artifacts/v1_graph_350.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_350.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_350.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3581,7 +3581,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_450.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_450.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_450.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3614,7 +3614,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_475.json",
@@ -3626,7 +3626,7 @@
       "source_path": "artifacts/v3_geometry_features_475.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_475.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_475.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3671,7 +3671,7 @@
       "source_path": "artifacts/v1_graph_325.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_325.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_325.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3715,7 +3715,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_425.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_425.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_425.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3748,7 +3748,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_450.json",
@@ -3760,7 +3760,7 @@
       "source_path": "artifacts/v3_geometry_features_450.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_450.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_450.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3805,7 +3805,7 @@
       "source_path": "artifacts/v1_graph_300.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_300.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_300.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3849,7 +3849,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_400.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_400.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_400.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3894,7 +3894,7 @@
       "source_path": "artifacts/v1_graph_275.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_275.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_275.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3927,7 +3927,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_425.json",
@@ -3939,7 +3939,7 @@
       "source_path": "artifacts/v3_geometry_features_425.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_425.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_425.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3983,7 +3983,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_375.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_375.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_375.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4016,7 +4016,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_400.json",
@@ -4028,7 +4028,7 @@
       "source_path": "artifacts/v3_geometry_features_400.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_400.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_400.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4073,7 +4073,7 @@
       "source_path": "artifacts/v1_graph_250.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_250.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_250.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4117,7 +4117,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_350.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_350.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_350.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4150,7 +4150,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_375.json",
@@ -4162,7 +4162,7 @@
       "source_path": "artifacts/v3_geometry_features_375.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_375.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_375.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4207,7 +4207,7 @@
       "source_path": "artifacts/v1_graph_225.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_225.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_225.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4251,7 +4251,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_325.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_325.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_325.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4284,7 +4284,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_350.json",
@@ -4296,7 +4296,7 @@
       "source_path": "artifacts/v3_geometry_features_350.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_350.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_350.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "raw_cache",
@@ -4331,7 +4331,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; Foldseek coordinate sidecar staging has a documented command pattern, but exact refetch/restage inputs must be confirmed against the recorded SHA-256 before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
@@ -4343,7 +4343,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "raw_cache",
@@ -4378,7 +4378,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; Foldseek coordinate sidecar staging has a documented command pattern, but exact refetch/restage inputs must be confirmed against the recorded SHA-256 before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
@@ -4390,7 +4390,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4434,7 +4434,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_300.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_300.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_300.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4467,7 +4467,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_325.json",
@@ -4479,7 +4479,7 @@
       "source_path": "artifacts/v3_geometry_features_325.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_325.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_325.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "raw_cache",
@@ -4514,7 +4514,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; Foldseek coordinate sidecar staging has a documented command pattern, but exact refetch/restage inputs must be confirmed against the recorded SHA-256 before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
@@ -4526,7 +4526,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4570,7 +4570,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_275.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_275.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_275.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4603,7 +4603,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_300.json",
@@ -4615,7 +4615,7 @@
       "source_path": "artifacts/v3_geometry_features_300.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_300.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_300.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4648,7 +4648,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_275.json",
@@ -4660,7 +4660,7 @@
       "source_path": "artifacts/v3_geometry_features_275.json",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_275.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_features_275.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "raw_cache",
@@ -4695,7 +4695,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; Foldseek coordinate sidecar staging has a documented command pattern, but exact refetch/restage inputs must be confirmed against the recorded SHA-256 before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
@@ -4707,7 +4707,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "raw_cache",
@@ -4742,7 +4742,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; Foldseek coordinate sidecar staging has a documented command pattern, but exact refetch/restage inputs must be confirmed against the recorded SHA-256 before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
@@ -4754,7 +4754,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4798,7 +4798,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_250.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_250.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_250.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "raw_cache",
@@ -4833,7 +4833,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; Foldseek coordinate sidecar staging has a documented command pattern, but exact refetch/restage inputs must be confirmed against the recorded SHA-256 before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
@@ -4845,7 +4845,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4890,7 +4890,7 @@
       "source_path": "artifacts/v1_graph_200.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_200.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v1_graph_200.json@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     },
     {
       "artifact_category": "raw_cache",
@@ -4925,7 +4925,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; Foldseek coordinate sidecar staging has a documented command pattern, but exact refetch/restage inputs must be confirmed against the recorded SHA-256 before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
@@ -4937,7 +4937,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
       "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif@75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27"
     }
   ]
 }

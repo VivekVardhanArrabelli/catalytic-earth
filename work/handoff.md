@@ -50,6 +50,39 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-17T21:46:03Z automation run, Phase 1 remains
+instrumentation-only and has one additional fail-closed validator hardening
+slice. The `validate-artifact-migration` path now rejects any
+`storage_class=git` execution row whose `target_uri` is not an explicit
+`git:<source_path>@<commit>` identity matching both the row `source_path` and
+the manifest's recorded `current_main_commit`, and it blocks
+`migration_ready=true` on Git-retained rows or `unknown_blocking` producer
+provenance. The committed execution
+manifest was refreshed against latest pulled `main` commit
+`75d82f0ad0edc1e84501ebe4d9cbc9389f4bbb27`; it still has 108 rows, 0
+migration-ready rows, 0 remote SHA-256 verifications, and 0 removal
+authorizations. The 40 `unknown_blocking` rows remain blocked, but their
+per-row `producer_status_reason` now distinguishes the 31 geometry
+adjacent-slice `--reuse-existing` provenance gaps from the 9 Foldseek
+coordinate sidecar refetch/restage hash-closure gaps. Regression coverage now
+validates the committed execution manifest itself plus a negative path for Git
+target path/commit drift. The `artifact_pointer.v1` validator now rejects empty
+restore contracts, invalid size/hash/storage metadata, and non-SHA-256 restore
+verification before any future pointer replacement can pass tests. The
+source-only contract test also covers `validate-artifact-migration --dry-run`,
+and the sparse-checkout docs now include the small execution manifest without
+restoring large artifact payloads. Verification passed with 436 unit tests,
+targeted artifact/transfer/source-only tests, source compile/import/CLI
+help/validate, migration validation with local file checks, restore smoke
+dry-run, and `git diff --check`.
+Evidence-based confidence call: this was a no-science-recompute Phase 1
+instrumentation hardening pass. No artifact upload, deletion, Git LFS
+migration, externalization, scientific-artifact recompute, label/import
+artifact edit, or history rewrite was performed. The next automation run should
+stay in Phase 1 and continue with provenance tightening for the 40
+`unknown_blocking` producer rows unless a human explicitly authorizes Phase 2
+uploads.
+
 As of the 2026-05-17T21:12:59Z automation run, Phase 1 remains
 instrumentation-only and has been hardened without artifact upload or removal.
 The `validate-artifact-migration` CLI now rejects stale current-main baseline

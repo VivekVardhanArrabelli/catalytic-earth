@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 164
-- Measured elapsed time: 5166.5 minutes (86.11 hours)
+- Entries: 165
+- Measured elapsed time: 5178.8 minutes (86.31 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
-- infrastructure: 43.6 measured minutes (0.73 hours)
+- infrastructure: 55.8 measured minutes (0.93 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -26,21 +26,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1826
-- Evidence references logged: 1436
+- Artifact references logged: 1833
+- Evidence references logged: 1437
 
 ## Recent Entries
-
-### 2026-05-17T14:41:44.473305+00:00 - post-v2
-
-- Task: Verify post-import state and refresh docs
-- Time mode: measured
-- Measured minutes: 3.1
-- Started: 2026-05-17T14:38:38Z
-- Ended: 2026-05-17T14:41:44Z
-- Artifacts: docs/label_factory.md, work/handoff.md
-- Evidence: startup 405 unit tests passed, validate passed with 682 curated labels, SSH deploy-key remote and dry-run push verified, latest pushed repo already contains P06744 P78549 Q3LXA3 external out-of-scope hard negatives, docs corrected from stale 680-label wording to 682-label state
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. Older O14756/Q6NSJ0 prompt was superseded by latest pushed state; no closed import lanes reopened.
 
 ### 2026-05-17T16:23:19.784897+00:00 - post-v2
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_artifact_migration_execution_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, docs/artifact_storage.md, work/handoff.md
 - Evidence: execution rows preserve source producer command status, producer_status_reason documents fail-closed unknown_blocking mapping, targeted artifact and transfer tests passed, full 432 unit tests passed, validate-artifact-migration passed with local file checks, restore smoke dry-run passed, source-only compile/import/CLI help/validate passed
 - Notes: Continuation of the same locked Phase 1 run. Still no artifact upload deletion LFS migration externalization scientific-artifact recompute or history rewrite.
+
+### 2026-05-17T21:58:28.036931+00:00 - infrastructure
+
+- Task: Artifact migration Phase 1 validator hardening
+- Time mode: measured
+- Measured minutes: 12.25
+- Started: 2026-05-17T21:46:03Z
+- Ended: 2026-05-17T21:58:18Z
+- Artifacts: artifacts/v3_artifact_migration_execution_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, tests/test_source_only_contract.py, README.md, docs/artifact_storage.md, work/handoff.md
+- Evidence: 436 unit tests passed; targeted artifact transfer source-only tests passed; validate passed with 682 labels; migration validation passed with local file checks; restore smoke dry-run passed; git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only: no artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite.
 
 ## Expectation Updates
 

@@ -34,7 +34,9 @@ That summary is diagnostic only; it does not make any blocked row
 migration-ready. Each execution row also preserves the source
 `producer_command_status` plus a `producer_status_reason`, so current
 `partially_inferred` provenance remains visible while the execution status maps
-fail-closed to `unknown_blocking`.
+fail-closed to `unknown_blocking`. For blocked rows, that reason now separates
+geometry adjacent-slice `--reuse-existing` provenance gaps from Foldseek
+coordinate sidecar refetch/restage hash-closure gaps.
 
 The execution manifest is explicit about the current-main scientific baseline:
 `baseline=current_main_three_external_hard_negatives`, `slice_id=1025`, and
@@ -46,7 +48,14 @@ and `ontology_version_at_decision=label_factory_v1_8fp`.
 The machine validator now treats this baseline and all execution status counts
 as row-derived contract fields: stale baseline metadata, stale row counts,
 stale migration-ready/removal/remote-verification counts, or stale producer
-status counts fail validation before any future removal gate can pass.
+status counts fail validation before any future removal gate can pass. It also
+checks every current `storage_class=git` row for an explicit
+`git:<source_path>@<commit>` target URI matching the row source path and the
+manifest's recorded `current_main_commit`, so the Phase 1 Git restore identity
+cannot silently drift. A row marked `migration_ready=true` must also have
+non-blocking producer provenance and non-Git target storage; current
+Git-retained rows are therefore blocked from becoming migration-ready by
+metadata drift alone.
 
 ## Categories
 
@@ -162,7 +171,7 @@ code imports:
 export GIT_SSH_COMMAND='ssh -i /Users/vivekvardhanarrabelli/.ssh/catalytic_earth_deploy_ed25519 -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new'
 git clone --filter=blob:none --sparse git@github.com:VivekVardhanArrabelli/catalytic-earth.git catalytic-earth-source
 cd catalytic-earth-source
-git sparse-checkout set src tests docs data
+git sparse-checkout set src tests docs data artifacts/v3_artifact_migration_execution_1025.json
 PYTHONPATH=src python -m catalytic_earth.cli validate
 ```
 
@@ -193,7 +202,10 @@ then run the artifact-dependent scientific regressions.
 Phase 1 is instrumentation only: manifest schema, validator, restore tooling,
 pointer record format, docs, source-only reproducibility checks, and tests. No
 artifact migration, deletion, Git LFS migration, external upload, or history
-rewrite has been performed.
+rewrite has been performed. The `artifact_pointer.v1` validator rejects empty
+restore contracts, malformed hashes, invalid sizes, invalid storage classes,
+and non-SHA-256 restore verification before any future pointer replacement can
+be considered.
 
 Phase 2 may upload approved artifacts only after a human authorizes the storage
 target. Every uploaded artifact must have a target URI, independently verified

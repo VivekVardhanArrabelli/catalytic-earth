@@ -159,6 +159,32 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(guard["metadata"]["covered_large_file_count"], 108)
         self.assertEqual(guard["blockers"], [])
 
+    def test_current_execution_manifest_is_phase_one_fail_closed(self) -> None:
+        execution_path = (
+            ROOT / "artifacts" / "v3_artifact_migration_execution_1025.json"
+        )
+        with execution_path.open("r", encoding="utf-8") as handle:
+            manifest = json.load(handle)
+
+        validation = validate_artifact_migration_manifest(manifest)
+
+        self.assertEqual(validation["metadata"]["status"], "passed")
+        self.assertEqual(manifest["metadata"]["manifest_schema_version"], "artifact_migration_execution.v1")
+        self.assertEqual(manifest["metadata"]["baseline"], "current_main_three_external_hard_negatives")
+        self.assertEqual(manifest["metadata"]["canonical_countable_label_count"], 682)
+        self.assertEqual(manifest["metadata"]["row_count"], 108)
+        self.assertEqual(manifest["metadata"]["migration_ready_count"], 0)
+        self.assertEqual(manifest["metadata"]["remote_sha256_verified_count"], 0)
+        self.assertEqual(manifest["metadata"]["removal_allowed_count"], 0)
+        commit = manifest["metadata"]["current_main_commit"]
+        for row in manifest["rows"]:
+            self.assertEqual(row["storage_class"], "git")
+            self.assertEqual(
+                row["target_uri"],
+                f"git:{row['source_path']}@{commit}",
+            )
+            self.assertFalse(row["removal_allowed"])
+
     def test_large_artifact_manifest_feeds_admission_guard(self) -> None:
         inventory = {
             "metadata": {
@@ -324,6 +350,10 @@ class ArtifactStorageTests(unittest.TestCase):
             "removal cannot use producer_status=unknown_blocking",
             reasons,
         )
+        self.assertIn(
+            "migration_ready cannot use producer_status=unknown_blocking",
+            reasons,
+        )
 
     def test_validator_blocks_stale_baseline_and_metadata_counts(self) -> None:
         row = {
@@ -390,6 +420,111 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertIn("metadata status count mismatch", reasons)
         self.assertIn("metadata producer_status_counts mismatch", reasons)
         self.assertIn("metadata unknown_blocking_summary mismatch", reasons)
+
+    def test_validator_blocks_git_target_identity_drift(self) -> None:
+        row = {
+            "source_path": "artifacts/raw.tsv",
+            "file_exists": True,
+            "size_bytes": 1,
+            "sha256": "0" * 64,
+            "artifact_category": "raw_cache",
+            "canonical_or_noncanonical": "noncanonical",
+            "source_producer_command_status": "known",
+            "producer_status": "known",
+            "producer_status_reason": "producer command provenance is recorded as known",
+            "downstream_consumers": ["consumer"],
+            "canonical_summary_path": "README.md",
+            "storage_class": "git",
+            "target_uri": "git:artifacts/other.tsv@stale123",
+            "restore_command": "restore",
+            "restore_verification": "sha256",
+            "removal_allowed": False,
+            "migration_ready": False,
+            "remote_sha256_verified": False,
+            "restore_test_passed": False,
+            "downstream_consumers_accounted_for": True,
+            "canonical_summary_present": True,
+            "migration_blockers": ["phase_3_removal_not_authorized"],
+        }
+        manifest = {
+            "metadata": {
+                "manifest_schema_version": "artifact_migration_execution.v1",
+                "current_main_commit": "abc123",
+                **CURRENT_MAIN_ARTIFACT_BASELINE,
+                "row_count": 1,
+                "migration_ready_count": 0,
+                "unknown_blocking_count": 0,
+                "removal_allowed_count": 0,
+                "remote_sha256_verified_count": 0,
+                "producer_status_counts": {"known": 1},
+                "unknown_blocking_summary": {
+                    "row_count": 0,
+                    "by_artifact_category": {},
+                    "by_planned_storage_class": {},
+                    "source_paths": [],
+                },
+            },
+            "rows": [row],
+        }
+
+        validation = validate_artifact_migration_manifest(manifest)
+
+        self.assertEqual(validation["metadata"]["status"], "blocked")
+        reasons = {blocker["reason"] for blocker in validation["blockers"]}
+        self.assertIn("git target_uri source path mismatch", reasons)
+        self.assertIn("git target_uri commit mismatch", reasons)
+
+    def test_validator_blocks_migration_ready_git_rows(self) -> None:
+        row = {
+            "source_path": "artifacts/raw.tsv",
+            "file_exists": True,
+            "size_bytes": 1,
+            "sha256": "0" * 64,
+            "artifact_category": "raw_cache",
+            "canonical_or_noncanonical": "noncanonical",
+            "source_producer_command_status": "known",
+            "producer_status": "known",
+            "producer_status_reason": "producer command provenance is recorded as known",
+            "downstream_consumers": ["consumer"],
+            "canonical_summary_path": "README.md",
+            "storage_class": "git",
+            "target_uri": "git:artifacts/raw.tsv@abc123",
+            "restore_command": "restore",
+            "restore_verification": "sha256",
+            "removal_allowed": False,
+            "migration_ready": True,
+            "remote_sha256_verified": False,
+            "restore_test_passed": False,
+            "downstream_consumers_accounted_for": True,
+            "canonical_summary_present": True,
+            "migration_blockers": ["phase_3_removal_not_authorized"],
+        }
+        manifest = {
+            "metadata": {
+                "manifest_schema_version": "artifact_migration_execution.v1",
+                "current_main_commit": "abc123",
+                **CURRENT_MAIN_ARTIFACT_BASELINE,
+                "row_count": 1,
+                "migration_ready_count": 1,
+                "unknown_blocking_count": 0,
+                "removal_allowed_count": 0,
+                "remote_sha256_verified_count": 0,
+                "producer_status_counts": {"known": 1},
+                "unknown_blocking_summary": {
+                    "row_count": 0,
+                    "by_artifact_category": {},
+                    "by_planned_storage_class": {},
+                    "source_paths": [],
+                },
+            },
+            "rows": [row],
+        }
+
+        validation = validate_artifact_migration_manifest(manifest)
+
+        self.assertEqual(validation["metadata"]["status"], "blocked")
+        reasons = {blocker["reason"] for blocker in validation["blockers"]}
+        self.assertIn("migration_ready requires non-git target storage", reasons)
 
     def test_restore_artifacts_supports_local_targets_and_hash_quarantine(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -501,6 +636,30 @@ class ArtifactStorageTests(unittest.TestCase):
         )
         self.assertEqual(pointer["original_path"], "artifacts/raw.tsv")
         self.assertEqual(validate_artifact_pointer_record(pointer), [])
+
+    def test_artifact_pointer_validator_rejects_empty_restore_contract(self) -> None:
+        pointer = {
+            "artifact_pointer_schema_version": ARTIFACT_POINTER_SCHEMA_VERSION,
+            "original_path": "",
+            "sha256": "bad",
+            "size_bytes": 0,
+            "storage_class": "missing",
+            "target_uri": "",
+            "restore_manifest": "",
+            "canonical_summary": "",
+            "restore_verification": "none",
+        }
+
+        blockers = validate_artifact_pointer_record(pointer)
+
+        self.assertIn("missing original_path", blockers)
+        self.assertIn("malformed sha256", blockers)
+        self.assertIn("invalid size_bytes", blockers)
+        self.assertIn("invalid storage_class", blockers)
+        self.assertIn("missing target_uri", blockers)
+        self.assertIn("missing restore_manifest", blockers)
+        self.assertIn("missing canonical_summary", blockers)
+        self.assertIn("restore_verification must be sha256", blockers)
 
 
 if __name__ == "__main__":

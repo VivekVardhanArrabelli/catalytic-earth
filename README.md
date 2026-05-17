@@ -89,7 +89,10 @@ The repository currently contains:
     The execution manifest has 0 migration-ready rows, 0 remote SHA-256
     verifications, 0 restore-test passes, and 0 removal authorizations.
     Its validator also fails closed if the current-main baseline metadata or
-    stored migration status counts drift from the row-level evidence.
+    stored migration status counts drift from the row-level evidence, or if a
+    Git-retained row's `git:<source_path>@<commit>` target identity no longer
+    matches the execution manifest. Git-retained rows also cannot become
+    migration-ready through metadata drift.
     `artifacts/v3_artifact_admission_guard_1025.json` guards future large
     artifact admission. See `docs/artifact_storage.md`.
 

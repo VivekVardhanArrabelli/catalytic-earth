@@ -874,11 +874,26 @@ def _execution_producer_status(status: Any) -> str:
 def _execution_producer_status_reason(
     source_status: Any,
     execution_status: str,
+    source_path: str,
 ) -> str:
     if execution_status == "known":
         return "producer command provenance is recorded as known"
     if execution_status == "unavailable_with_reason":
         return "producer command provenance is explicitly unavailable with reason"
+    if source_path.startswith("artifacts/v3_geometry_features_"):
+        return (
+            f"source producer_command_status={source_status or 'missing'} maps "
+            "fail-closed to unknown_blocking; geometry feature generation uses "
+            "an inferred adjacent-slice --reuse-existing pattern, but the exact "
+            "historical reuse/input closure must be confirmed before migration readiness"
+        )
+    if "/v3_foldseek_coordinates_1000/" in source_path:
+        return (
+            f"source producer_command_status={source_status or 'missing'} maps "
+            "fail-closed to unknown_blocking; Foldseek coordinate sidecar staging "
+            "has a documented command pattern, but exact refetch/restage inputs "
+            "must be confirmed against the recorded SHA-256 before migration readiness"
+        )
     return (
         f"source producer_command_status={source_status or 'missing'} maps "
         "fail-closed to unknown_blocking; exact producer command and input "
@@ -917,6 +932,18 @@ def derive_artifact_removal_allowed(row: dict[str, Any]) -> bool:
             row.get("producer_status") != "unknown_blocking",
         ]
     )
+
+
+def _parse_git_target_uri(target_uri: Any) -> tuple[str, str] | None:
+    if not isinstance(target_uri, str) or not target_uri.startswith("git:"):
+        return None
+    spec = target_uri[len("git:") :]
+    if "@" not in spec:
+        return None
+    source_path, commit = spec.rsplit("@", 1)
+    if not source_path or not commit:
+        return None
+    return source_path, commit
 
 
 def build_artifact_migration_execution_manifest(
@@ -995,6 +1022,7 @@ def build_artifact_migration_execution_manifest(
             "producer_status_reason": _execution_producer_status_reason(
                 source_producer_status,
                 producer_status,
+                source_path,
             ),
             "downstream_consumers": downstream_consumers,
             "canonical_summary_path": canonical_summary_path,
@@ -1265,6 +1293,15 @@ def validate_artifact_migration_manifest(
                     "reason": "malformed SHA-256",
                 }
             )
+        if row.get("canonical_or_noncanonical") not in {"canonical", "noncanonical"}:
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "invalid canonical_or_noncanonical",
+                    "canonical_or_noncanonical": row.get("canonical_or_noncanonical"),
+                }
+            )
         if row.get("producer_status") not in VALID_ARTIFACT_MIGRATION_PRODUCER_STATUSES:
             blockers.append(
                 {
@@ -1284,6 +1321,22 @@ def validate_artifact_migration_manifest(
                     "reason": "producer_status_reason is required",
                 }
             )
+        if not isinstance(row.get("downstream_consumers"), list):
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "downstream_consumers must be a list",
+                }
+            )
+        if not isinstance(row.get("migration_blockers"), list):
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "migration_blockers must be a list",
+                }
+            )
         if row.get("storage_class") not in VALID_ARTIFACT_STORAGE_CLASSES:
             blockers.append(
                 {
@@ -1293,6 +1346,101 @@ def validate_artifact_migration_manifest(
                     "storage_class": row.get("storage_class"),
                 }
             )
+        if row.get("storage_class") == "git":
+            parsed_git_target = _parse_git_target_uri(row.get("target_uri"))
+            if parsed_git_target is None:
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": (
+                            "git storage_class requires target_uri "
+                            "git:<source_path>@<commit>"
+                        ),
+                    }
+                )
+            else:
+                target_source_path, target_commit = parsed_git_target
+                if target_source_path != source_path:
+                    blockers.append(
+                        {
+                            "row_index": index,
+                            "source_path": source_path,
+                            "reason": "git target_uri source path mismatch",
+                            "target_source_path": target_source_path,
+                        }
+                    )
+                expected_commit = metadata.get("current_main_commit")
+                if expected_commit and target_commit != expected_commit:
+                    blockers.append(
+                        {
+                            "row_index": index,
+                            "source_path": source_path,
+                            "reason": "git target_uri commit mismatch",
+                            "target_commit": target_commit,
+                            "expected_commit": expected_commit,
+                        }
+                    )
+        if row.get("migration_ready") is True:
+            if row.get("producer_status") == "unknown_blocking":
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": (
+                            "migration_ready cannot use "
+                            "producer_status=unknown_blocking"
+                        ),
+                    }
+                )
+            if row.get("storage_class") == "git":
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "migration_ready requires non-git target storage",
+                    }
+                )
+            if not row.get("target_uri"):
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "migration_ready requires target_uri",
+                    }
+                )
+            if not row.get("restore_command"):
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "migration_ready requires restore_command",
+                    }
+                )
+            if row.get("downstream_consumers_accounted_for") is not True:
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": (
+                            "migration_ready requires downstream consumers "
+                            "accounted for"
+                        ),
+                    }
+                )
+            if not row.get("canonical_summary_present") and not row.get(
+                "canonical_summary_not_required_reason"
+            ):
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": (
+                            "migration_ready requires canonical summary or "
+                            "explicit not-required reason"
+                        ),
+                    }
+                )
         if row.get("restore_verification") != "sha256":
             blockers.append(
                 {
@@ -1482,12 +1630,32 @@ def validate_artifact_pointer_record(pointer: dict[str, Any]) -> list[str]:
             blockers.append(f"missing {field}")
     if pointer.get("artifact_pointer_schema_version") != ARTIFACT_POINTER_SCHEMA_VERSION:
         blockers.append("invalid artifact_pointer_schema_version")
+    if not isinstance(pointer.get("original_path"), str) or not pointer.get(
+        "original_path"
+    ):
+        blockers.append("missing original_path")
     if not isinstance(pointer.get("sha256"), str) or not SHA256_RE.fullmatch(
         str(pointer.get("sha256", ""))
     ):
         blockers.append("malformed sha256")
+    if not isinstance(pointer.get("size_bytes"), int) or pointer.get(
+        "size_bytes", 0
+    ) <= 0:
+        blockers.append("invalid size_bytes")
     if pointer.get("storage_class") not in VALID_ARTIFACT_STORAGE_CLASSES:
         blockers.append("invalid storage_class")
+    if not isinstance(pointer.get("target_uri"), str) or not pointer.get("target_uri"):
+        blockers.append("missing target_uri")
+    if not isinstance(pointer.get("restore_manifest"), str) or not pointer.get(
+        "restore_manifest"
+    ):
+        blockers.append("missing restore_manifest")
+    if not isinstance(pointer.get("canonical_summary"), str) or not pointer.get(
+        "canonical_summary"
+    ):
+        blockers.append("missing canonical_summary")
+    if pointer.get("restore_verification") != "sha256":
+        blockers.append("restore_verification must be sha256")
     return blockers
 
 
