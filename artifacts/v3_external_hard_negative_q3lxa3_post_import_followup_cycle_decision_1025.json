@@ -1,0 +1,184 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "factory_import_gate": "artifacts/v3_external_hard_negative_next_candidate_factory_import_gate_1025.json",
+        "geometry_evaluation": "artifacts/v3_geometry_label_eval_1000.json",
+        "label_summary": "artifacts/v3_label_summary.json",
+        "labels": "data/registries/curated_mechanism_labels.json",
+        "sequence_holdout": "artifacts/v3_sequence_distance_holdout_eval_1000.json"
+      },
+      "blocker_removed": "post_first_import_followup_candidate_decision",
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 1025
+    },
+    "blocker_not_removed": [
+      "external_label_entry_already_exists",
+      "requires_explicit_later_single_import_cycle"
+    ],
+    "blocker_removed": "post_first_import_followup_candidate_decision",
+    "candidate_count": 2,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T10:42:43Z",
+    "existing_external_label_count": 2,
+    "existing_external_label_entry_ids": [
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "expected_label_count_with_external_hard_negatives": 681,
+    "expected_out_of_scope_count_with_external_hard_negatives": 469,
+    "followup_cycle_decision_status_counts": {
+      "blocked_from_later_single_import_cycle": 1,
+      "eligible_for_later_single_import_cycle": 1
+    },
+    "import_ready_candidate_count": 0,
+    "later_single_import_cycle_candidate_count": 1,
+    "method": "external_hard_negative_next_candidate_followup_cycle_decision",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "post_import_litmus_checks": {
+      "external_hard_negative_count_matches_registry_growth": true,
+      "first_external_hard_negative_present": true,
+      "geometry_in_scope_retention_preserved": true,
+      "geometry_zero_out_of_scope_false_non_abstentions": true,
+      "heldout_out_of_scope_false_non_abstentions_preserved": true,
+      "heldout_seed_retention_preserved": true,
+      "label_summary_matches_registry_count": true,
+      "out_of_scope_count_includes_external_hard_negatives": true,
+      "seed_fingerprint_count_preserved": true,
+      "sequence_identity_target_preserved": true,
+      "zero_seed_out_of_scope_entry_overlap": true
+    },
+    "post_import_litmus_status": "passed",
+    "ready_for_label_import": false,
+    "recommended_next_single_import_candidate": "P22830",
+    "remaining_import_blocker_counts": {
+      "external_label_entry_already_exists": 1,
+      "requires_explicit_later_single_import_cycle": 1
+    },
+    "review_only": true,
+    "slice_id": 1025,
+    "source_factory_import_gate_method": "external_hard_negative_next_candidate_factory_import_gate",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope"
+  },
+  "rows": [
+    {
+      "accession": "P22830",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P22830",
+      "followup_cycle_decision_status": "eligible_for_later_single_import_cycle",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "later_single_import_cycle_candidate": true,
+      "max_current_fingerprint_score": 0.3686,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate": {
+        "abstain_threshold": 0.4115,
+        "all_current_fingerprint_scores_below_threshold": true,
+        "blockers": [],
+        "current_fingerprint_scores": {
+          "cobalamin_radical_rearrangement": 0.1247,
+          "flavin_dehydrogenase_reductase": 0.2992,
+          "flavin_monooxygenase": 0.1516,
+          "heme_peroxidase_oxidase": 0.3074,
+          "metal_dependent_hydrolase": 0.3686,
+          "plp_dependent_enzyme": 0.1422,
+          "radical_sam_enzyme": 0.0979,
+          "ser_his_acid_hydrolase": 0.2203
+        },
+        "expected_current_fingerprint_count": 8,
+        "inverse_gate_status": "passed",
+        "max_current_fingerprint_score": 0.3686,
+        "missing_current_fingerprint_ids": [],
+        "observed_current_fingerprint_count": 8,
+        "observed_current_fingerprint_ids": [
+          "cobalamin_radical_rearrangement",
+          "flavin_dehydrogenase_reductase",
+          "flavin_monooxygenase",
+          "heme_peroxidase_oxidase",
+          "metal_dependent_hydrolase",
+          "plp_dependent_enzyme",
+          "radical_sam_enzyme",
+          "ser_his_acid_hydrolase"
+        ],
+        "ontology_version_at_decision": "label_factory_v1_8fp",
+        "target_fingerprint_id": null,
+        "target_label_type": "out_of_scope",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3686
+      },
+      "ready_for_label_import": false,
+      "recommended_for_next_cycle": true,
+      "remaining_import_blockers": [
+        "requires_explicit_later_single_import_cycle"
+      ],
+      "source_factory_gate_status": "passed",
+      "source_terminal_import_attempt_status": "passed_factory_gate_not_selected_by_single_import_cap",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3686
+    },
+    {
+      "accession": "Q3LXA3",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "followup_cycle_decision_status": "blocked_from_later_single_import_cycle",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "later_single_import_cycle_candidate": false,
+      "max_current_fingerprint_score": 0.2929,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate": {
+        "abstain_threshold": 0.4115,
+        "all_current_fingerprint_scores_below_threshold": true,
+        "blockers": [],
+        "current_fingerprint_scores": {
+          "cobalamin_radical_rearrangement": 0.0771,
+          "flavin_dehydrogenase_reductase": 0.255,
+          "flavin_monooxygenase": 0.1189,
+          "heme_peroxidase_oxidase": 0.2535,
+          "metal_dependent_hydrolase": 0.2929,
+          "plp_dependent_enzyme": 0.0901,
+          "radical_sam_enzyme": 0.025,
+          "ser_his_acid_hydrolase": 0.1425
+        },
+        "expected_current_fingerprint_count": 8,
+        "inverse_gate_status": "passed",
+        "max_current_fingerprint_score": 0.2929,
+        "missing_current_fingerprint_ids": [],
+        "observed_current_fingerprint_count": 8,
+        "observed_current_fingerprint_ids": [
+          "cobalamin_radical_rearrangement",
+          "flavin_dehydrogenase_reductase",
+          "flavin_monooxygenase",
+          "heme_peroxidase_oxidase",
+          "metal_dependent_hydrolase",
+          "plp_dependent_enzyme",
+          "radical_sam_enzyme",
+          "ser_his_acid_hydrolase"
+        ],
+        "ontology_version_at_decision": "label_factory_v1_8fp",
+        "target_fingerprint_id": null,
+        "target_label_type": "out_of_scope",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2929
+      },
+      "ready_for_label_import": false,
+      "recommended_for_next_cycle": false,
+      "remaining_import_blockers": [
+        "external_label_entry_already_exists"
+      ],
+      "source_factory_gate_status": "passed",
+      "source_terminal_import_attempt_status": "passed_factory_gate_not_selected_by_single_import_cap",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.2929
+    }
+  ],
+  "warnings": [
+    "this is a review-only decision artifact; it recommends at most one later single-import-cycle candidate and does not import or count another external hard-negative label"
+  ]
+}

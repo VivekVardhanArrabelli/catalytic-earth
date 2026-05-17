@@ -53,9 +53,9 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 680 entries: 679 accepted M-CSA labels through
-   the 1,000-entry candidate queue plus one factory-gated external
-   out-of-scope hard negative (`uniprot:P78549`).
+8. Curated mechanism labels for 681 entries: 679 accepted M-CSA labels through
+   the 1,000-entry candidate queue plus two factory-gated external
+   out-of-scope hard negatives (`uniprot:P78549` and `uniprot:Q3LXA3`).
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 10. Retrieval evaluation, abstention threshold calibration, hard-negative
     selection, in-scope failure analysis, cofactor coverage analysis,
@@ -186,14 +186,15 @@ a consolidated pilot evidence packet, 10 per-candidate pilot evidence
 dossiers, a 10-row pilot-specific ESM-2 representation sample, and a 68/68
 external transfer gate with backend sequence-search, current-reference sequence
 screen, candidate, artifact-path, and pilot review-only decision validation. The
-first successful external hard-negative import is now `uniprot:P78549`, selected
+first successful external hard-negative import was `uniprot:P78549`, selected
 by the next-candidate factory/import gate after all 8 current fingerprint scores
 stayed below the `0.4115` out-of-scope floor and duplicate controls cleared.
-The other two factory-passing next candidates remain outside this single-import
-cycle. A regression test now pins the post-import invariants: 680 total labels,
-468 out-of-scope labels, 212 seed-fingerprint labels, no in-scope/out-of-scope
-entry overlap, unchanged 1,000-slice retained in-scope behavior, and preserved
-held-out sequence-distance metrics.
+The explicit later single-import cycle has now imported `uniprot:Q3LXA3` under
+the same current-ontology out-of-scope criteria. A regression test now pins the
+post-import invariants: 681 total labels, 469 out-of-scope labels, 212
+seed-fingerprint labels, no in-scope/out-of-scope entry overlap, unchanged
+1,000-slice retained in-scope behavior, and preserved held-out
+sequence-distance metrics.
 evidence plan
 flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
@@ -529,6 +530,15 @@ then keeps the post-import decision review-only: the P78549 litmus remains
 green, both unimported rows are eligible for a later explicit single-import
 cycle, and `Q3LXA3` is the recommended next review target because its maximum
 current-fingerprint score is lower (`0.2929` versus `0.3686` for `P22830`).
+`artifacts/v3_external_hard_negative_q3lxa3_single_import_cycle_gate_1025.json`
+opens that explicit later cycle without relaxing the global one-import default:
+`Q3LXA3` passes the same terminal-review, duplicate, UniRef current-reference,
+all-8 inverse-gate, label-factory, and external-transfer checks, then imports
+as `uniprot:Q3LXA3` with `fingerprint_id=null`. The canonical registry now has
+681 labels: 212 seed fingerprints and 469 out-of-scope labels. The separate
+`artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json`
+keeps the litmus green and leaves `P22830` review-only for any later explicit
+cycle; it is not imported by this run.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

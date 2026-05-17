@@ -18,7 +18,7 @@ slices are countable only through the label-factory batch checks.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-680 countable labels. Review-state registries preserve pending
+681 countable labels. Review-state registries preserve pending
 `needs_expert_review` rows separately so unresolved evidence gaps do not count
 as benchmark labels.
 
@@ -229,6 +229,35 @@ external label was imported in this run. Next work should either open that
 explicit Q3LXA3 single-import cycle under the same gates and cap, or switch to
 a broader external structural surface; do not retry the 5 duplicate-signal
 rows without new evidence.
+
+The 2026-05-17T10:34:03Z run opened that explicit later single-import cycle.
+`artifacts/v3_external_hard_negative_q3lxa3_single_import_cycle_gate_1025.json`
+allows the prior `uniprot:P78549` import only as lineage and selects exactly
+`Q3LXA3`. The row passes terminal review, bounded duplicate evidence, UniRef
+current-reference screening, complete 8/8 out-of-scope inverse-gate scoring
+below `0.4115`, the baseline label-factory gate, and the external transfer
+gate. The accepted review item imports `uniprot:Q3LXA3` as an external
+`out_of_scope` hard-negative label with `fingerprint_id=null` and
+`ontology_version_at_decision=label_factory_v1_8fp`, bringing the canonical
+registry to 681 countable labels: 212 seed fingerprints and 469 out-of-scope
+labels. `artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json`
+records the post-Q3LXA3 litmus as green and leaves `P22830` as the only
+remaining factory-pass row eligible for a future explicit cycle. Evidence-based
+confidence call: the second external import is defensible under the current
+8-fingerprint ontology, but further count growth should not be automatic;
+`P22830` has a much narrower margin to the `0.4115` floor (`0.3686`) and should
+either receive its own explicit cycle or be deferred in favor of broader
+external structural sourcing.
+
+Run verification for the current handoff: started `2026-05-17T10:34:03Z` and
+wrapped at `2026-05-17T10:49:59Z`. Startup checks passed with 395 unit tests
+and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks
+passed with 399 unit tests, `validate` over 681 curated labels, `compileall`,
+`git diff --check`, JSON parse checks for the new Q3LXA3 artifacts and
+registry summary, and the external transfer gate at 68/68. README,
+`docs/external_source_transfer.md`, `docs/label_factory.md`, work scope,
+handoff, status, progress log, and external transfer notes were checked or
+updated.
 
 Run verification for the current handoff: started `2026-05-17T09:32:49Z` and
 wrapped at `2026-05-17T09:41:38Z`. Startup checks passed with 393 unit tests
@@ -2408,9 +2437,9 @@ Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 
 ## Current Metrics
 
-- Curated label registry: 680 bronze automation-curated labels, with 212
-  seed-fingerprint positives and 468 out-of-scope labels. The external
-  out-of-scope member is `uniprot:P78549`.
+- Curated label registry: 681 bronze automation-curated labels, with 212
+  seed-fingerprint positives and 469 out-of-scope labels. The external
+  out-of-scope members are `uniprot:P78549` and `uniprot:Q3LXA3`.
 - 20-entry slice: threshold `0.4104`, 20/20 evaluable, 7/7 in-scope positives
   retained, 0 false non-abstentions, 0 hard negatives.
 - 125-entry slice: threshold `0.4115`, 124/125 evaluable, 38/38 in-scope

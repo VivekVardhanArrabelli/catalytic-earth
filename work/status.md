@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 152
-- Measured elapsed time: 4978.8 minutes (82.98 hours)
+- Entries: 153
+- Measured elapsed time: 4994.7 minutes (83.24 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2818.3 measured minutes (46.97 hours)
+- post-v2: 2834.2 measured minutes (47.24 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1720
-- Evidence references logged: 1341
+- Artifact references logged: 1735
+- Evidence references logged: 1352
 
 ## Recent Entries
-
-### 2026-05-17T02:50:28.945932+00:00 - post-v2
-
-- Task: Close second-tranche hard-negative duplicate screen
-- Time mode: measured
-- Measured minutes: 26.283
-- Started: 2026-05-17T02:23:59Z
-- Ended: 2026-05-17T02:50:16Z
-- Artifacts: artifacts/v3_external_hard_negative_second_tranche_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_second_tranche_terminal_decisions_1025.json, artifacts/v3_external_hard_negative_second_tranche_replacement_triage_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: Foldseek completed tranche-2 current-countable structural screen over 3 external rows against 672 current selected structures; all three admitted rows had high-TM current-countable structural duplicate signals; terminal decisions rejected P33025 Q13907 P35914 as review-only duplicate-risk outcomes; replacement triage admitted 0 rows from current 25-row pool; 378 unit tests passed; validate passed; compileall passed; git diff --check passed; external transfer gate remained 68/68
-- Notes: Normal locked direct run over SSH deploy-key path; no delegation; M-CSA strict TM repair stayed closed; external countable labels remain 0.
 
 ### 2026-05-17T04:14:25+00:00 - post-v2
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_hard_negative_next_candidate_followup_cycle_decision_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 393 unit tests passed, startup validate passed with 680 curated labels, follow-up decision kept P22830 and Q3LXA3 review-only, Q3LXA3 recommended for later explicit single-import cycle, final 395 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON parse check passed, external transfer gate 68/68
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. No second external label imported; docs/label_factory.md checked earlier and required no change.
+
+### 2026-05-17T10:50:16.595786+00:00 - post-v2
+
+- Task: Import Q3LXA3 external hard-negative
+- Time mode: measured
+- Measured minutes: 15.933
+- Started: 2026-05-17T10:34:03Z
+- Ended: 2026-05-17T10:49:59Z
+- Artifacts: artifacts/v3_external_hard_negative_q3lxa3_single_import_cycle_gate_1025.json, artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json, data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_labels.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 395 unit tests passed, startup validate passed with 680 curated labels, Q3LXA3 later single-import gate selected exactly one import, all 8 Q3LXA3 current-fingerprint scores stayed below 0.4115, registry now has 681 labels and 469 out-of-scope labels, post-Q3LXA3 litmus remains green and leaves P22830 review-only, final 399 unit tests passed, validate passed with 681 curated labels, compileall passed, git diff --check passed, external transfer gate remained 68/68
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed. docs/label_factory.md was checked and did not need changes.
 
 ## Expectation Updates
 
@@ -241,6 +241,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-17T07:42:26.961418+00:00: Next-candidate UniRef current-reference duplicate blocker is removed for P22830 P78549 Q3LXA3; terminal review and full factory gates are now the active blockers.
 - 2026-05-17T09:08:30+00:00: First external out-of-scope hard-negative import succeeded for P78549; next work should decide whether P22830 or Q3LXA3 should enter a later single-import cycle after litmus remains green.
 - 2026-05-17T09:41:38.959359+00:00: Post-import litmus remains green after P78549; Q3LXA3 is the next review-only candidate if a later explicit single-import cycle is opened.
+- 2026-05-17T10:50:16.595786+00:00: Second external out-of-scope hard-negative import succeeded for Q3LXA3; P22830 remains review-only and should require its own explicit cycle or broader sourcing decision.
 
 ## Scope Adjustments
 

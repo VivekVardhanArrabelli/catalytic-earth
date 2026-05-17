@@ -104,9 +104,9 @@ Post-V2 quality work has started:
   750-entry, 775-entry, 800-entry, 825-entry, 850-entry, 875-entry,
   900-entry, 925-entry, 950-entry, 975-entry, and 1000-entry slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
-- curated seed mechanism labels for 680 countable entries: 679 accepted M-CSA
-  labels plus the first external out-of-scope hard negative,
-  `uniprot:P78549`, with pending review-state evidence gaps kept outside the
+- curated seed mechanism labels for 681 countable entries: 679 accepted M-CSA
+  labels plus two external out-of-scope hard negatives, `uniprot:P78549` and
+  `uniprot:Q3LXA3`, with pending review-state evidence gaps kept outside the
   countable registry
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
@@ -301,8 +301,8 @@ Current expectation:
   review-state rows have an explicit non-countable deferral audit, and the
   1,025 M-CSA preview is cleanly non-promotable because it adds 0 M-CSA
   countable labels while exposing a source limit at 1,003 records. The
-  canonical registry now has 680 labels after the first external
-  hard-negative import.
+  canonical registry now has 681 labels after the first two external
+  hard-negative imports.
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, 375-,
@@ -312,8 +312,8 @@ Current expectation:
   1000-entry countable slice has 662/678 labeled rows evaluable and 999 geometry entries with 960
   pairwise geometry
   records
-- curated labels now cover 680 entries, with 212 local active-site
-  seed-fingerprint positives in the 1000-entry geometry evaluation and 468 total
+- curated labels now cover 681 entries, with 212 local active-site
+  seed-fingerprint positives in the 1000-entry geometry evaluation and 469 total
   out-of-scope labels; every label has explicit tier, review status,
   confidence, evidence score, and evidence provenance fields
 - the 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
@@ -600,12 +600,12 @@ Current expectation:
   floor. Terminal review decisions now accept all 3 as review-only
   `accepted_out_of_scope_pending_factory_gate` rows. The full-factory/import
   gate then imports exactly one row, `uniprot:P78549`, under the single-import
-  cap, bringing the canonical registry to 680 labels. A follow-up cycle
-  decision keeps P22830 and Q3LXA3 review-only, confirms the post-import litmus
-  remains green, and recommends Q3LXA3 as the next explicit single-import-cycle
-  target because its max current-fingerprint score is lower. The active
-  bottleneck is now whether to open that explicit Q3LXA3 cycle or switch to a
-  broader external structural surface, not another pass over exhausted pools.
+  cap. A follow-up cycle decision keeps P22830 and Q3LXA3 review-only, confirms
+  the post-import litmus remains green, and recommends Q3LXA3 as the next
+  explicit single-import-cycle target because its max current-fingerprint score
+  is lower. The later-cycle gate now imports exactly `uniprot:Q3LXA3`, bringing
+  the canonical registry to 681 labels, and leaves P22830 review-only for any
+  future explicit cycle.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

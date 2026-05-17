@@ -2,9 +2,9 @@
 
 The M-CSA 1,025 preview is not promotable and should stay a source-limit audit
 point: it adds 0 M-CSA countable labels. External-source transfer is now the
-active path for post-M-CSA scaling work, and the first countable external
-hard-negative import is `uniprot:P78549`, bringing the canonical registry to
-680 labels.
+active path for post-M-CSA scaling work. The first two countable external
+hard-negative imports are `uniprot:P78549` and `uniprot:Q3LXA3`, bringing the
+canonical registry to 681 labels.
 
 Current external artifacts:
 
@@ -420,8 +420,16 @@ Current external artifacts:
   and Q3LXA3 are eligible for a later explicit single-import cycle, with Q3LXA3
   recommended first because its maximum current-fingerprint score is lower
   (`0.2929` versus `0.3686`).
-- The post-import litmus regression pins the first external count movement:
-  680 total labels, 468 out-of-scope labels, 212 seed-fingerprint labels, no
+- `artifacts/v3_external_hard_negative_q3lxa3_single_import_cycle_gate_1025.json`
+  opens that explicit later cycle and imports exactly `uniprot:Q3LXA3` after
+  terminal review, duplicate evidence, UniRef current-reference screening,
+  all-8 inverse-gate scoring, the baseline label-factory gate, and the external
+  transfer gate all pass.
+- `artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json`
+  keeps the post-Q3LXA3 litmus green and leaves P22830 review-only for any
+  future explicit cycle.
+- The post-import litmus regression now pins two external count movements:
+  681 total labels, 469 out-of-scope labels, 212 seed-fingerprint labels, no
   entry-id overlap between those groups, unchanged 1,000-slice retained
   in-scope behavior, max held-out train/test identity `0.284`, 43/43 retained
   held-out positives correct, and 0 held-out out-of-scope false

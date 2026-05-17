@@ -8,14 +8,16 @@ import.
 
 ## Current State
 
-- Canonical countable labels now total 680: the accepted 679-label M-CSA
-  surface plus one external out-of-scope hard negative, `uniprot:P78549`.
+- Canonical countable labels now total 681: the accepted 679-label M-CSA
+  surface plus two external out-of-scope hard negatives, `uniprot:P78549` and
+  `uniprot:Q3LXA3`.
 - The 1,025 preview passes 21/21 label-factory gates but adds 0 clean countable
   labels.
 - All 329 preview review-state rows remain non-countable.
 - Most external UniProtKB/Swiss-Prot artifacts remain review-only; the
-  next-candidate factory/import gate is the first countable exception and
-  authorizes exactly one external out-of-scope import.
+  next-candidate factory/import gate is the first countable exception, and the
+  later explicit Q3LXA3 cycle is the second. Each authorizes exactly one
+  external out-of-scope import.
 - The first read-only external sample has 30 candidates across six query lanes,
   0 fetch failures, and a clean non-countable guardrail audit.
 - The external candidate manifest attaches OOD controls, heuristic-control
@@ -45,8 +47,14 @@ import.
   has the lowest maximum current-fingerprint score (`0.1150`). The resulting
   accepted review item imports `uniprot:P78549` as an external `out_of_scope`
   hard-negative label with `fingerprint_id=null`.
+- `artifacts/v3_external_hard_negative_q3lxa3_single_import_cycle_gate_1025.json`
+  opens the explicit later single-import cycle recommended by the follow-up
+  decision. It allows the prior `uniprot:P78549` label only as lineage, then
+  imports exactly `uniprot:Q3LXA3` after the same terminal-review, duplicate,
+  UniRef current-reference, all-8 inverse-gate, baseline label-factory, and
+  external-transfer checks pass. `P22830` remains non-countable.
 - The post-import litmus regression now pins the expected count movement and
-  invariants: label count 680, out-of-scope count 468, seed-fingerprint count
+  invariants: label count 681, out-of-scope count 469, seed-fingerprint count
   212, zero overlap between in-scope and out-of-scope entry ids, unchanged
   1,000-slice in-scope retention (`0.9858`), and the sequence-distance holdout
   target (`max identity 0.284`, 43/43 retained held-out positives correct, 0
@@ -185,6 +193,14 @@ import.
   litmus remains green, `P22830` and `Q3LXA3` are review-only candidates for a
   later explicit single-import cycle, and `Q3LXA3` is the recommended next
   target because its max current-fingerprint score is lower (`0.2929`).
+- `artifacts/v3_external_hard_negative_q3lxa3_single_import_cycle_gate_1025.json`
+  then imports exactly `Q3LXA3` in that later explicit cycle. The follow-up
+  artifact after that import leaves `P22830` review-only and requires another
+  explicit cycle before any further count growth.
+- `artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json`
+  records the post-Q3LXA3 litmus: 681 total labels, 469 out-of-scope labels,
+  unchanged in-scope and held-out sequence-distance invariants, and `P22830` as
+  the only remaining factory-pass row eligible for a future explicit cycle.
 
 ## Immediate Pilot Direction
 

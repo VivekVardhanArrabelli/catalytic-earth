@@ -107,6 +107,7 @@ from catalytic_earth.transfer_scope import (
     build_external_hard_negative_next_candidate_terminal_review_decisions,
     build_external_hard_negative_next_candidate_terminal_review_queue,
     build_external_hard_negative_next_candidate_uniref_current_reference_screen,
+    build_external_hard_negative_later_single_import_cycle_gate,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -13312,3 +13313,215 @@ ATOM 5 C CA LYS A 8 2.5 0.2 0.0 CA LYS A 8
             ["requires_explicit_later_single_import_cycle"],
         )
         self.assertFalse(rows["Q3LXA3"]["countable_label_candidate"])
+
+    def test_later_single_import_cycle_gate_selects_recommended_candidate(
+        self,
+    ) -> None:
+        gate = build_external_hard_negative_later_single_import_cycle_gate(
+            followup_cycle_decision={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_next_candidate_"
+                        "followup_cycle_decision"
+                    ),
+                    "post_import_litmus_status": "passed",
+                    "recommended_next_single_import_candidate": "Q3LXA3",
+                    "existing_external_label_entry_ids": ["uniprot:P78549"],
+                },
+                "rows": [
+                    {
+                        "accession": "P22830",
+                        "entry_id": "uniprot:P22830",
+                        "followup_cycle_decision_status": (
+                            "eligible_for_later_single_import_cycle"
+                        ),
+                        "later_single_import_cycle_candidate": True,
+                    },
+                    {
+                        "accession": "Q3LXA3",
+                        "entry_id": "uniprot:Q3LXA3",
+                        "followup_cycle_decision_status": (
+                            "eligible_for_later_single_import_cycle"
+                        ),
+                        "later_single_import_cycle_candidate": True,
+                    },
+                ],
+            },
+            terminal_review_decisions={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_next_candidate_terminal_"
+                        "review_decisions"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "Q3LXA3",
+                        "entry_id": "uniprot:Q3LXA3",
+                        "lane_id": "external_source:lyase",
+                        "target_label_type": "out_of_scope",
+                        "target_fingerprint_id": None,
+                        "ontology_version_at_decision": "label_factory_v1_8fp",
+                        "terminal_review_decision_status": (
+                            "accepted_out_of_scope_pending_factory_gate"
+                        ),
+                        "source_evidence_status": (
+                            "explicit_active_site_and_catalytic_activity_"
+                            "source_present"
+                        ),
+                        "bounded_duplicate_evidence_status": (
+                            "bounded_duplicate_controls_clear_uniref_pending"
+                        ),
+                        "uniref_current_reference_screen_status": (
+                            "uniref_current_reference_screen_no_current_"
+                            "reference_overlap"
+                        ),
+                        "remaining_import_blockers": [
+                            "full_label_factory_gate_not_run"
+                        ],
+                        "out_of_scope_inverse_gate": {
+                            "target_fingerprint_id": None,
+                            "inverse_gate_status": "passed",
+                            "all_current_fingerprint_scores_below_threshold": True,
+                            "observed_current_fingerprint_count": 8,
+                            "expected_current_fingerprint_count": 8,
+                            "max_current_fingerprint_score": 0.2929,
+                        },
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "top1_score": 0.2929,
+                        "max_current_fingerprint_score": 0.2929,
+                    },
+                ],
+            },
+            label_factory_gate_check={
+                "metadata": {
+                    "method": "label_factory_gate_check",
+                    "gate_count": 21,
+                    "passed_gate_count": 21,
+                },
+                "blockers": [],
+            },
+            external_transfer_gate={
+                "metadata": {
+                    "method": "external_source_transfer_gate_check",
+                    "guardrail_clean": True,
+                },
+                "blockers": [],
+            },
+            existing_label_entry_ids=["uniprot:P78549"],
+            artifact_lineage={"slice_id": 1025},
+        )
+
+        self.assertEqual(
+            gate["metadata"]["method"],
+            "external_hard_negative_later_single_import_cycle_gate",
+        )
+        self.assertEqual(gate["metadata"]["target_accession"], "Q3LXA3")
+        self.assertEqual(gate["metadata"]["prior_external_label_entry_ids"], ["uniprot:P78549"])
+        self.assertEqual(gate["metadata"]["selected_import_accessions"], ["Q3LXA3"])
+        self.assertEqual(gate["metadata"]["import_ready_candidate_count"], 1)
+        row = gate["rows"][0]
+        self.assertTrue(row["ready_for_label_import"])
+        self.assertEqual(row["remaining_import_blockers"], [])
+        self.assertEqual(row["later_single_import_cycle_gate_status"], "passed")
+        accepted = [
+            item
+            for item in gate["review_items"]
+            if item["decision"]["action"] == "accept_label"
+        ]
+        self.assertEqual([item["entry_id"] for item in accepted], ["uniprot:Q3LXA3"])
+
+    def test_later_single_import_cycle_gate_blocks_replay_after_import(
+        self,
+    ) -> None:
+        gate = build_external_hard_negative_later_single_import_cycle_gate(
+            followup_cycle_decision={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_next_candidate_"
+                        "followup_cycle_decision"
+                    ),
+                    "post_import_litmus_status": "passed",
+                    "recommended_next_single_import_candidate": "Q3LXA3",
+                    "existing_external_label_entry_ids": ["uniprot:P78549"],
+                },
+                "rows": [
+                    {
+                        "accession": "Q3LXA3",
+                        "entry_id": "uniprot:Q3LXA3",
+                        "followup_cycle_decision_status": (
+                            "eligible_for_later_single_import_cycle"
+                        ),
+                        "later_single_import_cycle_candidate": True,
+                    },
+                ],
+            },
+            terminal_review_decisions={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_next_candidate_terminal_"
+                        "review_decisions"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "Q3LXA3",
+                        "entry_id": "uniprot:Q3LXA3",
+                        "target_label_type": "out_of_scope",
+                        "target_fingerprint_id": None,
+                        "ontology_version_at_decision": "label_factory_v1_8fp",
+                        "terminal_review_decision_status": (
+                            "accepted_out_of_scope_pending_factory_gate"
+                        ),
+                        "source_evidence_status": (
+                            "explicit_active_site_and_catalytic_activity_"
+                            "source_present"
+                        ),
+                        "bounded_duplicate_evidence_status": (
+                            "bounded_duplicate_controls_clear_uniref_pending"
+                        ),
+                        "uniref_current_reference_screen_status": (
+                            "uniref_current_reference_screen_no_current_"
+                            "reference_overlap"
+                        ),
+                        "out_of_scope_inverse_gate": {
+                            "target_fingerprint_id": None,
+                            "inverse_gate_status": "passed",
+                            "all_current_fingerprint_scores_below_threshold": True,
+                            "observed_current_fingerprint_count": 8,
+                            "expected_current_fingerprint_count": 8,
+                        },
+                    },
+                ],
+            },
+            label_factory_gate_check={
+                "metadata": {
+                    "method": "label_factory_gate_check",
+                    "gate_count": 21,
+                    "passed_gate_count": 21,
+                },
+                "blockers": [],
+            },
+            external_transfer_gate={
+                "metadata": {
+                    "method": "external_source_transfer_gate_check",
+                    "guardrail_clean": True,
+                },
+                "blockers": [],
+            },
+            existing_label_entry_ids=["uniprot:P78549", "uniprot:Q3LXA3"],
+            artifact_lineage={"slice_id": 1025},
+        )
+
+        self.assertEqual(gate["metadata"]["selected_import_accessions"], [])
+        self.assertEqual(gate["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            gate["rows"][0]["remaining_import_blockers"],
+            ["external_label_entry_already_exists"],
+        )
+        self.assertTrue(
+            all(
+                item["decision"]["action"] == "no_decision"
+                for item in gate["review_items"]
+            )
+        )

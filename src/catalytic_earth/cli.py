@@ -198,6 +198,7 @@ from .transfer_scope import (
     build_external_hard_negative_next_candidate_terminal_review_decisions,
     build_external_hard_negative_next_candidate_terminal_review_queue,
     build_external_hard_negative_next_candidate_uniref_current_reference_screen,
+    build_external_hard_negative_later_single_import_cycle_gate,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -3887,6 +3888,48 @@ def cmd_build_external_hard_negative_next_candidate_followup_cycle_decision(
         f"{args.out} "
         f"({decision['metadata']['later_single_import_cycle_candidate_count']} "
         "later-cycle candidates)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_later_single_import_cycle_gate(
+    args: argparse.Namespace,
+) -> int:
+    followup_cycle_decision = read_json_object(Path(args.followup_cycle_decision))
+    terminal_review_decisions = read_json_object(Path(args.terminal_review_decisions))
+    label_factory_gate_check = read_json_object(Path(args.label_factory_gate_check))
+    external_transfer_gate = read_json_object(Path(args.external_transfer_gate))
+    existing_label_entry_ids = [
+        label.entry_id for label in load_labels(Path(args.labels))
+    ]
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "followup_cycle_decision": args.followup_cycle_decision,
+            "terminal_review_decisions": args.terminal_review_decisions,
+            "label_factory_gate_check": args.label_factory_gate_check,
+            "external_transfer_gate": args.external_transfer_gate,
+            "labels": args.labels,
+        },
+        "blocker_removed": "explicit_later_single_import_cycle_gate",
+    }
+    gate = build_external_hard_negative_later_single_import_cycle_gate(
+        followup_cycle_decision=followup_cycle_decision,
+        terminal_review_decisions=terminal_review_decisions,
+        label_factory_gate_check=label_factory_gate_check,
+        external_transfer_gate=external_transfer_gate,
+        existing_label_entry_ids=existing_label_entry_ids,
+        target_accession=args.target_accession,
+        max_imports=args.max_imports,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), gate)
+    print(
+        "Wrote later-cycle external hard-negative import gate to "
+        f"{args.out} "
+        f"({gate['metadata']['selected_import_candidate_count']} selected)"
     )
     return 0
 
@@ -9743,6 +9786,61 @@ def build_parser() -> argparse.ArgumentParser:
         func=(
             cmd_build_external_hard_negative_next_candidate_followup_cycle_decision
         )
+    )
+
+    external_hard_negative_later_cycle = subparsers.add_parser(
+        "build-external-hard-negative-later-single-import-cycle-gate",
+        help=(
+            "open one explicit later import cycle from a green external "
+            "hard-negative follow-up decision"
+        ),
+    )
+    external_hard_negative_later_cycle.add_argument(
+        "--followup-cycle-decision",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_followup_cycle_decision_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_later_cycle.add_argument(
+        "--terminal-review-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_terminal_review_decisions_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_later_cycle.add_argument(
+        "--label-factory-gate-check",
+        default="artifacts/v3_label_factory_gate_check_1025_preview.json",
+    )
+    external_hard_negative_later_cycle.add_argument(
+        "--external-transfer-gate",
+        default="artifacts/v3_external_source_transfer_gate_check_1025.json",
+    )
+    external_hard_negative_later_cycle.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_hard_negative_later_cycle.add_argument(
+        "--target-accession",
+        default=None,
+        help="defaults to the recommended follow-up candidate",
+    )
+    external_hard_negative_later_cycle.add_argument(
+        "--max-imports", type=int, default=1
+    )
+    external_hard_negative_later_cycle.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_q3lxa3_single_import_cycle_gate_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_later_cycle.set_defaults(
+        func=cmd_build_external_hard_negative_later_single_import_cycle_gate
     )
 
     external_transfer_gate = subparsers.add_parser(

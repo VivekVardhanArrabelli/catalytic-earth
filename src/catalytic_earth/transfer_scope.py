@@ -12109,6 +12109,7 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
     label_factory_gate_check: dict[str, Any],
     external_transfer_gate: dict[str, Any],
     existing_label_entry_ids: list[str] | None = None,
+    allowed_existing_external_label_entry_ids: list[str] | None = None,
     max_imports: int = 1,
     artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -12118,8 +12119,17 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
         raise ValueError("max_imports must be positive")
 
     existing_entry_ids = {str(entry_id) for entry_id in existing_label_entry_ids or []}
-    existing_external_label_count = sum(
-        1 for entry_id in existing_entry_ids if entry_id.startswith("uniprot:")
+    existing_external_entry_ids = {
+        entry_id for entry_id in existing_entry_ids if entry_id.startswith("uniprot:")
+    }
+    existing_external_label_count = len(existing_external_entry_ids)
+    allowed_existing_external_entry_ids = {
+        str(entry_id)
+        for entry_id in allowed_existing_external_label_entry_ids or []
+        if str(entry_id).startswith("uniprot:")
+    }
+    unexpected_existing_external_entry_ids = sorted(
+        existing_external_entry_ids - allowed_existing_external_entry_ids
     )
     label_gate_meta = label_factory_gate_check.get("metadata", {})
     label_gate_passed = (
@@ -12202,7 +12212,14 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
             )
         if entry_id in existing_entry_ids:
             blockers.append("external_label_entry_already_exists")
-        if existing_external_label_count and entry_id not in existing_entry_ids:
+        if (
+            existing_external_label_count
+            and entry_id not in existing_entry_ids
+            and (
+                not allowed_existing_external_entry_ids
+                or unexpected_existing_external_entry_ids
+            )
+        ):
             blockers.append("external_hard_negative_single_import_already_present")
         if not label_gate_passed:
             blockers.append("baseline_label_factory_gate_not_passed")
@@ -12357,6 +12374,12 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
             "selected_import_accessions": selected_accessions,
             "single_import_cap": max_imports,
             "existing_external_label_count": existing_external_label_count,
+            "allowed_existing_external_label_entry_ids": sorted(
+                allowed_existing_external_entry_ids
+            ),
+            "unexpected_existing_external_label_entry_ids": (
+                unexpected_existing_external_entry_ids
+            ),
             "ready_for_label_import": bool(selected_accessions),
             "import_ready_candidate_count": len(selected_accessions),
             "countable_label_candidate_count": len(selected_accessions),
@@ -12447,6 +12470,9 @@ def build_external_hard_negative_next_candidate_followup_cycle_decision(
     max_train_test_identity = _external_parse_float(
         sequence_meta.get("max_observed_train_test_identity")
     )
+    external_hard_negative_count = len(external_label_entry_ids)
+    expected_label_count = 679 + external_hard_negative_count
+    expected_out_of_scope_count = 467 + external_hard_negative_count
 
     post_import_litmus_checks = {
         "label_summary_matches_registry_count": (
@@ -12457,13 +12483,17 @@ def build_external_hard_negative_next_candidate_followup_cycle_decision(
             == len(seed_entry_ids)
             == 212
         ),
-        "out_of_scope_count_includes_one_external_hard_negative": (
+        "out_of_scope_count_includes_external_hard_negatives": (
             label_summary.get("by_type", {}).get("out_of_scope")
             == len(out_of_scope_entry_ids)
-            == 468
+            == expected_out_of_scope_count
         ),
-        "single_external_hard_negative_present": (
-            external_label_entry_ids == ["uniprot:P78549"]
+        "external_hard_negative_count_matches_registry_growth": (
+            external_hard_negative_count >= 1
+            and len(existing_labels) == expected_label_count
+        ),
+        "first_external_hard_negative_present": (
+            "uniprot:P78549" in external_label_entry_ids
         ),
         "zero_seed_out_of_scope_entry_overlap": (
             len(seed_entry_ids & out_of_scope_entry_ids) == 0
@@ -12606,6 +12636,12 @@ def build_external_hard_negative_next_candidate_followup_cycle_decision(
             "countable_label_candidate_count": 0,
             "existing_external_label_count": len(external_label_entry_ids),
             "existing_external_label_entry_ids": external_label_entry_ids,
+            "expected_label_count_with_external_hard_negatives": (
+                expected_label_count
+            ),
+            "expected_out_of_scope_count_with_external_hard_negatives": (
+                expected_out_of_scope_count
+            ),
             "post_import_litmus_status": (
                 "passed" if post_import_litmus_passed else "failed"
             ),
@@ -12628,6 +12664,215 @@ def build_external_hard_negative_next_candidate_followup_cycle_decision(
             )
         ],
     }
+
+
+def build_external_hard_negative_later_single_import_cycle_gate(
+    *,
+    followup_cycle_decision: dict[str, Any],
+    terminal_review_decisions: dict[str, Any],
+    label_factory_gate_check: dict[str, Any],
+    external_transfer_gate: dict[str, Any],
+    existing_label_entry_ids: list[str] | None = None,
+    target_accession: str | None = None,
+    max_imports: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Open one explicit later import cycle from a green follow-up decision."""
+
+    followup_meta = followup_cycle_decision.get("metadata", {})
+    recommended_accession = _normalize_accession(
+        followup_meta.get("recommended_next_single_import_candidate")
+    )
+    target = _normalize_accession(target_accession) or recommended_accession
+    prior_external_entry_ids = [
+        str(entry_id)
+        for entry_id in followup_meta.get("existing_external_label_entry_ids", [])
+        if isinstance(entry_id, str) and entry_id.startswith("uniprot:")
+    ]
+    followup_rows = [
+        row
+        for row in followup_cycle_decision.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    followup_row_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in followup_rows
+        if _normalize_accession(row.get("accession"))
+    }
+
+    cycle_blockers: list[str] = []
+    if followup_meta.get("method") != (
+        "external_hard_negative_next_candidate_followup_cycle_decision"
+    ):
+        cycle_blockers.append("followup_cycle_decision_method_mismatch")
+    if followup_meta.get("post_import_litmus_status") != "passed":
+        cycle_blockers.append("post_import_litmus_not_green")
+    if not target:
+        cycle_blockers.append("later_single_import_target_missing")
+    if target and recommended_accession and target != recommended_accession:
+        cycle_blockers.append("target_not_recommended_next_single_import_candidate")
+
+    followup_target_row = followup_row_by_accession.get(target or "")
+    if target and not followup_target_row:
+        cycle_blockers.append("target_missing_from_followup_cycle_decision")
+    elif followup_target_row and not followup_target_row.get(
+        "later_single_import_cycle_candidate"
+    ):
+        cycle_blockers.append("target_not_later_single_import_cycle_candidate")
+
+    target_terminal_rows = [
+        row
+        for row in terminal_review_decisions.get("rows", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(row.get("accession")) == target
+    ]
+    if target and not target_terminal_rows:
+        cycle_blockers.append("target_terminal_review_decision_missing")
+
+    source_terminal_review_decisions = {
+        "metadata": terminal_review_decisions.get("metadata", {}),
+        "rows": target_terminal_rows,
+    }
+    gate = build_external_hard_negative_next_candidate_factory_import_gate(
+        terminal_review_decisions=source_terminal_review_decisions,
+        label_factory_gate_check=label_factory_gate_check,
+        external_transfer_gate=external_transfer_gate,
+        existing_label_entry_ids=existing_label_entry_ids,
+        allowed_existing_external_label_entry_ids=prior_external_entry_ids,
+        max_imports=max_imports,
+        artifact_lineage=artifact_lineage,
+    )
+
+    rows = [row for row in gate.get("rows", []) if isinstance(row, dict)]
+    for row in rows:
+        row["explicit_later_single_import_cycle_target"] = (
+            row.get("accession") == target
+        )
+        row["source_followup_cycle_decision_status"] = (
+            followup_target_row or {}
+        ).get("followup_cycle_decision_status")
+        if cycle_blockers:
+            blockers = sorted(
+                set(row.get("remaining_import_blockers", []) or []) | set(cycle_blockers)
+            )
+            row["factory_gate_status"] = "failed"
+            row["terminal_import_attempt_status"] = (
+                "rejected_later_single_import_cycle_failure"
+            )
+            row["ready_for_label_import"] = False
+            row["import_ready_candidate"] = False
+            row["countable_label_candidate"] = False
+            row["remaining_import_blockers"] = blockers
+        row["later_single_import_cycle_gate_status"] = (
+            "passed"
+            if row.get("ready_for_label_import") and not cycle_blockers
+            else "failed"
+        )
+
+    review_items: list[dict[str, Any]] = []
+    for index, row in enumerate(
+        sorted(rows, key=lambda row: (not row["ready_for_label_import"], row["accession"])),
+        start=1,
+    ):
+        accept = bool(row["ready_for_label_import"])
+        score = row.get("max_current_fingerprint_score")
+        rationale = (
+            f"{row['accession']} is imported as an external out-of-scope hard "
+            "negative in an explicit later single-import cycle for the current "
+            "8-fingerprint ontology: the post-import litmus from the first "
+            "external hard-negative remains green, terminal source evidence, "
+            "bounded duplicate controls, UniRef current-reference screening, "
+            "all-8 inverse gate scores, the baseline label-factory gate, and "
+            "the external transfer gate all passed."
+        )
+        review_items.append(
+            {
+                "rank": index,
+                "accession": row["accession"],
+                "entry_id": row["entry_id"],
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "queue_context": {
+                    "rank": index,
+                    "source": "external_hard_negative_later_single_import_cycle_gate",
+                    "max_current_fingerprint_score": score,
+                    "top1_fingerprint_id": row.get("top1_fingerprint_id"),
+                    "top1_score": row.get("top1_score"),
+                    "prior_external_label_entry_ids": prior_external_entry_ids,
+                },
+                "decision": (
+                    {
+                        "action": "accept_label",
+                        "label_type": "out_of_scope",
+                        "fingerprint_id": None,
+                        "tier": "bronze",
+                        "review_status": "automation_curated",
+                        "confidence": "medium",
+                        "evidence_score": (
+                            round(1.0 - float(score), 4)
+                            if score is not None
+                            else 0.65
+                        ),
+                        "reviewer": (
+                            "automation_external_hard_negative_later_single_"
+                            "import_cycle_gate"
+                        ),
+                        "ontology_version_at_decision": (
+                            DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+                        ),
+                        "rationale": rationale,
+                    }
+                    if accept
+                    else {"action": "no_decision"}
+                ),
+            }
+        )
+
+    status_counts = Counter(row["terminal_import_attempt_status"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    selected_accessions = [
+        row["accession"] for row in rows if row["ready_for_label_import"]
+    ]
+    factory_pass_rows = [
+        row for row in rows if row.get("factory_gate_status") == "passed"
+    ]
+    gate["metadata"] = {
+        **gate.get("metadata", {}),
+        "method": "external_hard_negative_later_single_import_cycle_gate",
+        "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "blocker_removed": "explicit_later_single_import_cycle_completed",
+        "blocker_not_removed": sorted(blocker_counts),
+        "target_accession": target,
+        "recommended_next_single_import_candidate": recommended_accession,
+        "post_import_litmus_status_at_cycle_open": followup_meta.get(
+            "post_import_litmus_status"
+        ),
+        "prior_external_label_entry_ids": prior_external_entry_ids,
+        "candidate_count": len(rows),
+        "factory_gate_pass_candidate_count": len(factory_pass_rows),
+        "selected_import_candidate_count": len(selected_accessions),
+        "selected_import_accessions": selected_accessions,
+        "ready_for_label_import": bool(selected_accessions),
+        "import_ready_candidate_count": len(selected_accessions),
+        "countable_label_candidate_count": len(selected_accessions),
+        "terminal_import_attempt_status_counts": dict(sorted(status_counts.items())),
+        "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+        "source_followup_cycle_decision_method": followup_meta.get("method"),
+        "artifact_lineage": artifact_lineage or {},
+    }
+    gate["rows"] = rows
+    gate["review_items"] = review_items
+    gate["warnings"] = [
+        (
+            "this artifact authorizes at most one explicit later-cycle external "
+            "out-of-scope hard-negative review import for the current ontology; "
+            "it does not validate enzyme function"
+        )
+    ]
+    return gate
 
 
 def build_external_hard_negative_next_candidate_targeted_uniref_check(

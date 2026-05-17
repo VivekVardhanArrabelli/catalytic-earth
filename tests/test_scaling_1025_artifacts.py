@@ -4834,15 +4834,21 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             for label in labels
             if str(label.get("entry_id", "")).startswith("uniprot:")
         ]
-        self.assertEqual([label["entry_id"] for label in external_labels], ["uniprot:P78549"])
-        p78549 = external_labels[0]
-        self.assertEqual(p78549["label_type"], "out_of_scope")
-        self.assertIsNone(p78549["fingerprint_id"])
-        self.assertEqual(p78549["ontology_version_at_decision"], "label_factory_v1_8fp")
+        self.assertEqual(
+            [label["entry_id"] for label in external_labels],
+            ["uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        for external_label in external_labels:
+            self.assertEqual(external_label["label_type"], "out_of_scope")
+            self.assertIsNone(external_label["fingerprint_id"])
+            self.assertEqual(
+                external_label["ontology_version_at_decision"],
+                "label_factory_v1_8fp",
+            )
 
-        self.assertEqual(label_summary["label_count"], 680)
+        self.assertEqual(label_summary["label_count"], 681)
         self.assertEqual(label_summary["by_type"]["seed_fingerprint"], 212)
-        self.assertEqual(label_summary["by_type"]["out_of_scope"], 468)
+        self.assertEqual(label_summary["by_type"]["out_of_scope"], 469)
         seed_entry_ids = {
             label["entry_id"]
             for label in labels
@@ -4939,6 +4945,93 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 == ["requires_explicit_later_single_import_cycle"]
                 for row in rows.values()
             )
+        )
+
+    def test_external_hard_negative_later_single_import_cycle_gate(self) -> None:
+        gate = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_q3lxa3_single_import_cycle_gate_1025.json"
+        )
+
+        self.assertEqual(
+            gate["metadata"]["method"],
+            "external_hard_negative_later_single_import_cycle_gate",
+        )
+        self.assertEqual(gate["metadata"]["target_accession"], "Q3LXA3")
+        self.assertEqual(
+            gate["metadata"]["post_import_litmus_status_at_cycle_open"], "passed"
+        )
+        self.assertEqual(
+            gate["metadata"]["prior_external_label_entry_ids"], ["uniprot:P78549"]
+        )
+        self.assertEqual(gate["metadata"]["selected_import_accessions"], ["Q3LXA3"])
+        self.assertEqual(gate["metadata"]["import_ready_candidate_count"], 1)
+        self.assertEqual(gate["metadata"]["countable_label_candidate_count"], 1)
+        row = gate["rows"][0]
+        self.assertEqual(row["entry_id"], "uniprot:Q3LXA3")
+        self.assertEqual(row["target_label_type"], "out_of_scope")
+        self.assertIsNone(row["target_fingerprint_id"])
+        self.assertEqual(row["ontology_version_at_decision"], "label_factory_v1_8fp")
+        self.assertTrue(row["ready_for_label_import"])
+        self.assertEqual(row["remaining_import_blockers"], [])
+        self.assertEqual(
+            row["out_of_scope_inverse_gate"][
+                "all_current_fingerprint_scores_below_threshold"
+            ],
+            True,
+        )
+        self.assertEqual(
+            row["out_of_scope_inverse_gate"]["observed_current_fingerprint_count"],
+            8,
+        )
+        accepted = [
+            item
+            for item in gate["review_items"]
+            if item["decision"]["action"] == "accept_label"
+        ]
+        self.assertEqual([item["entry_id"] for item in accepted], ["uniprot:Q3LXA3"])
+
+    def test_external_hard_negative_q3lxa3_post_import_followup(self) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json"
+        )
+
+        self.assertEqual(
+            decision["metadata"]["method"],
+            "external_hard_negative_next_candidate_followup_cycle_decision",
+        )
+        self.assertEqual(decision["metadata"]["post_import_litmus_status"], "passed")
+        self.assertEqual(
+            decision["metadata"]["existing_external_label_entry_ids"],
+            ["uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(
+            decision["metadata"]["expected_label_count_with_external_hard_negatives"],
+            681,
+        )
+        self.assertEqual(
+            decision["metadata"][
+                "expected_out_of_scope_count_with_external_hard_negatives"
+            ],
+            469,
+        )
+        self.assertEqual(
+            decision["metadata"]["recommended_next_single_import_candidate"],
+            "P22830",
+        )
+        rows = {row["accession"]: row for row in decision["rows"]}
+        self.assertTrue(rows["P22830"]["later_single_import_cycle_candidate"])
+        self.assertEqual(
+            rows["P22830"]["remaining_import_blockers"],
+            ["requires_explicit_later_single_import_cycle"],
+        )
+        self.assertFalse(rows["Q3LXA3"]["later_single_import_cycle_candidate"])
+        self.assertEqual(
+            rows["Q3LXA3"]["remaining_import_blockers"],
+            ["external_label_entry_already_exists"],
         )
 
 
