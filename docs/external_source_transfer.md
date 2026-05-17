@@ -201,6 +201,13 @@ import.
   records the post-Q3LXA3 litmus: 681 total labels, 469 out-of-scope labels,
   unchanged in-scope and held-out sequence-distance invariants, and `P22830` as
   the only remaining factory-pass row eligible for a future explicit cycle.
+- `artifacts/v3_external_hard_negative_p22830_cycle_deferral_1025.json` records
+  the explicit P22830 no-go decision. The formal later-cycle probe would select
+  P22830, but its inverse-gate margin is only `0.0429` below the active
+  `0.4115` floor, inside the conservative deferral band after two successful
+  imports. The canonical registry therefore remains 681 labels and P22830 stays
+  review-only pending broader external structural sourcing or a later explicit
+  user decision.
 
 ## Immediate Pilot Direction
 

@@ -249,6 +249,29 @@ confidence call: the second external import is defensible under the current
 either receive its own explicit cycle or be deferred in favor of broader
 external structural sourcing.
 
+The 2026-05-17T11:35:39Z run made that explicit go/no-go decision without
+changing registry counts. A temporary later-cycle gate probe selected P22830,
+confirming that the formal terminal-review, duplicate, UniRef current-reference,
+inverse-gate, label-factory, and external-transfer checks would pass for an
+explicit import cycle. `artifacts/v3_external_hard_negative_p22830_cycle_deferral_1025.json`
+nevertheless defers the row before import because its maximum current-fingerprint
+score is `0.3686`, only `0.0429` below the active `0.4115` out-of-scope floor,
+after two external hard-negative imports are already countable. Evidence-based
+confidence call: preserving the 681-label registry and switching to broader
+external structural sourcing is the safer next step than taking automatic third
+count growth from the last remaining factory-pass row. `docs/label_factory.md`
+was checked and still needs no content change for this decision-only slice.
+As a remaining-time probe, the run also reran the existing next-candidate
+sourcing command with the two prior sourced surfaces merged as an exclusion set
+in `/private/tmp`. It found eight review-only source-evidence rows
+(`P14550`, `P15428`, `P23921`, `P26439`, `P28330`, `P30838`, `P31040`, and
+`P36959`), but all eight came from `external_source:oxidoreductase_long_tail`.
+That raw probe artifact was not committed because its lineage pointed to a
+temporary merged-prior file. Next direct work should add a durable
+multi-prior/lane-balanced broader structural sourcing path, or explicitly
+decide that an oxidoreductase-only surface is acceptable before running
+sequence and structural duplicate screens.
+
 Run verification for the current handoff: started `2026-05-17T10:34:03Z` and
 wrapped at `2026-05-17T10:49:59Z`. Startup checks passed with 395 unit tests
 and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks

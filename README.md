@@ -539,6 +539,12 @@ as `uniprot:Q3LXA3` with `fingerprint_id=null`. The canonical registry now has
 `artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json`
 keeps the litmus green and leaves `P22830` review-only for any later explicit
 cycle; it is not imported by this run.
+`artifacts/v3_external_hard_negative_p22830_cycle_deferral_1025.json` records
+the explicit no-go decision for that remaining row. A temporary later-cycle
+probe would select `P22830`, but its maximum current-fingerprint score is only
+`0.0429` below the `0.4115` out-of-scope floor after two successful external
+imports, so the registry intentionally stays at 681 labels and the next work
+should shift to broader external structural sourcing before any third import.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

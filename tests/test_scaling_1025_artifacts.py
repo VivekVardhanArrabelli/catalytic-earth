@@ -5034,6 +5034,55 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             ["external_label_entry_already_exists"],
         )
 
+    def test_external_hard_negative_p22830_cycle_deferral(self) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_p22830_cycle_deferral_1025.json"
+        )
+
+        self.assertEqual(
+            decision["metadata"]["method"],
+            "external_hard_negative_p22830_cycle_deferral_decision",
+        )
+        self.assertTrue(decision["metadata"]["review_only"])
+        self.assertFalse(decision["metadata"]["ready_for_label_import"])
+        self.assertEqual(decision["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(decision["metadata"]["post_import_litmus_status"], "passed")
+        self.assertEqual(
+            decision["metadata"]["formal_later_cycle_probe_selected_accessions"],
+            ["P22830"],
+        )
+        self.assertEqual(
+            decision["metadata"]["blocker_not_removed"],
+            ["p22830_deferred_for_broader_external_structural_sourcing"],
+        )
+        row = decision["rows"][0]
+        self.assertEqual(row["entry_id"], "uniprot:P22830")
+        self.assertEqual(row["target_label_type"], "out_of_scope")
+        self.assertIsNone(row["target_fingerprint_id"])
+        self.assertEqual(row["ontology_version_at_decision"], "label_factory_v1_8fp")
+        self.assertEqual(row["formal_factory_gate_status"], "passed")
+        self.assertEqual(row["formal_later_cycle_gate_probe_status"], "passed")
+        self.assertEqual(row["cycle_decision_status"], "deferred_before_import")
+        self.assertFalse(row["ready_for_label_import"])
+        self.assertFalse(row["import_ready_candidate"])
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertEqual(row["max_current_fingerprint_score"], 0.3686)
+        self.assertEqual(row["abstain_threshold"], 0.4115)
+        self.assertEqual(row["score_margin_to_abstain_threshold"], 0.0429)
+        self.assertLess(
+            row["score_margin_to_abstain_threshold"],
+            row["conservative_deferral_margin_floor"],
+        )
+        self.assertEqual(row["observed_current_fingerprint_count"], 8)
+        self.assertEqual(row["expected_current_fingerprint_count"], 8)
+        self.assertEqual(
+            row["remaining_import_blockers"],
+            ["p22830_deferred_for_broader_external_structural_sourcing"],
+        )
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

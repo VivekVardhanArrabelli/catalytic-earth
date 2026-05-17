@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "method": "external_hard_negative_p22830_cycle_deferral_decision",
+    "created_at": "2026-05-17T11:39:01Z",
+    "slice_id": 1025,
+    "review_only": true,
+    "target_label_type": "out_of_scope",
+    "target_fingerprint_id": null,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "candidate_count": 1,
+    "deferred_candidate_count": 1,
+    "import_ready_candidate_count": 0,
+    "countable_label_candidate_count": 0,
+    "ready_for_label_import": false,
+    "decision_status": "deferred_before_import",
+    "decision_reason": "p22830_formal_gate_passes_but_inverse_gate_margin_is_inside_conservative_deferral_band_after_two_external_imports",
+    "abstain_threshold": 0.4115,
+    "conservative_deferral_margin_floor": 0.05,
+    "post_q3lxa3_label_count": 681,
+    "post_q3lxa3_out_of_scope_count": 469,
+    "post_import_litmus_status": "passed",
+    "formal_later_cycle_probe_status": "would_select_one_import",
+    "formal_later_cycle_probe_selected_accessions": [
+      "P22830"
+    ],
+    "blocker_removed": "p22830_explicit_go_no_go_decision_recorded",
+    "blocker_not_removed": [
+      "p22830_deferred_for_broader_external_structural_sourcing"
+    ],
+    "source_artifacts": {
+      "post_q3lxa3_followup_cycle_decision": "artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json",
+      "inverse_gate_scores": "artifacts/v3_external_hard_negative_next_candidate_inverse_gate_scores_1025.json",
+      "terminal_review_decisions": "artifacts/v3_external_hard_negative_next_candidate_terminal_review_decisions_1025.json",
+      "factory_import_gate": "artifacts/v3_external_hard_negative_next_candidate_factory_import_gate_1025.json",
+      "label_factory_gate_check": "artifacts/v3_label_factory_gate_check_1025_preview.json",
+      "external_transfer_gate": "artifacts/v3_external_source_transfer_gate_check_1025.json"
+    }
+  },
+  "rows": [
+    {
+      "accession": "P22830",
+      "entry_id": "uniprot:P22830",
+      "lane_id": "external_source:lyase",
+      "target_label_type": "out_of_scope",
+      "target_fingerprint_id": null,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "post_q3lxa3_followup_cycle_decision_status": "eligible_for_later_single_import_cycle",
+      "formal_factory_gate_status": "passed",
+      "formal_later_cycle_gate_probe_status": "passed",
+      "formal_later_cycle_gate_probe_import_ready_candidate": true,
+      "cycle_decision_status": "deferred_before_import",
+      "ready_for_label_import": false,
+      "import_ready_candidate": false,
+      "countable_label_candidate": false,
+      "remaining_import_blockers": [
+        "p22830_deferred_for_broader_external_structural_sourcing"
+      ],
+      "deferral_reasons": [
+        "post_q3lxa3_litmus_is_green_but_two_external_hard_negatives_are_already_countable",
+        "max_current_fingerprint_score_margin_below_conservative_deferral_floor",
+        "single_remaining_candidate_should_not_drive_automatic_third_external_import"
+      ],
+      "abstain_threshold": 0.4115,
+      "max_current_fingerprint_score": 0.3686,
+      "score_margin_to_abstain_threshold": 0.0429,
+      "conservative_deferral_margin_floor": 0.05,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3686,
+      "all_current_fingerprint_scores_below_threshold": true,
+      "observed_current_fingerprint_count": 8,
+      "expected_current_fingerprint_count": 8,
+      "current_fingerprint_scores": {
+        "cobalamin_radical_rearrangement": 0.1247,
+        "flavin_dehydrogenase_reductase": 0.2992,
+        "flavin_monooxygenase": 0.1516,
+        "heme_peroxidase_oxidase": 0.3074,
+        "metal_dependent_hydrolase": 0.3686,
+        "plp_dependent_enzyme": 0.1422,
+        "radical_sam_enzyme": 0.0979,
+        "ser_his_acid_hydrolase": 0.2203
+      },
+      "source_evidence_status": "explicit_active_site_and_catalytic_activity_source_present",
+      "bounded_duplicate_evidence_status": "bounded_duplicate_controls_clear_uniref_pending",
+      "uniref_current_reference_screen_status": "uniref_current_reference_screen_no_current_reference_overlap",
+      "post_import_litmus_status": "passed",
+      "recommended_next_action": "switch_to_broader_external_structural_sourcing_before_any_third_external_import"
+    }
+  ],
+  "warnings": [
+    "This artifact is a conservative no-go decision, not a failed formal gate. The temporary later-cycle probe selected P22830, but the registry is intentionally unchanged.",
+    "P22830 remains review-only under the current ontology and does not validate enzyme function."
+  ]
+}

@@ -428,6 +428,12 @@ Current external artifacts:
 - `artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json`
   keeps the post-Q3LXA3 litmus green and leaves P22830 review-only for any
   future explicit cycle.
+- `artifacts/v3_external_hard_negative_p22830_cycle_deferral_1025.json` records
+  the explicit go/no-go decision for the last remaining factory-pass row. A
+  temporary later-cycle probe would select P22830, but the row is deferred
+  before import because its `0.0429` margin below the active `0.4115`
+  out-of-scope floor is inside the conservative deferral band after two
+  successful external imports. P22830 remains review-only and non-countable.
 - The post-import litmus regression now pins two external count movements:
   681 total labels, 469 out-of-scope labels, 212 seed-fingerprint labels, no
   entry-id overlap between those groups, unchanged 1,000-slice retained
@@ -511,7 +517,7 @@ Sequence-holdout details:
   external candidates for near-duplicate search before any future import
   decision.
 
-Next bounded work should either start an explicit later single-import cycle for
-Q3LXA3, preserving the same gates and single-import cap, or switch to a broader
-external structural surface. Do not retry the five duplicate-signal rows or
-reopen the six original pilot repair lanes without new evidence.
+Next bounded work should switch to a broader external structural sourcing
+surface before any third external hard-negative import. Do not retry the five
+duplicate-signal rows, reopen the six original pilot repair lanes, or import
+P22830 without an explicit decision that supersedes the deferral artifact.

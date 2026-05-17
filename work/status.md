@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 153
-- Measured elapsed time: 4994.7 minutes (83.24 hours)
+- Entries: 154
+- Measured elapsed time: 5006.2 minutes (83.44 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2834.2 measured minutes (47.24 hours)
+- post-v2: 2845.8 measured minutes (47.43 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1735
-- Evidence references logged: 1352
+- Artifact references logged: 1742
+- Evidence references logged: 1362
 
 ## Recent Entries
-
-### 2026-05-17T04:14:25+00:00 - post-v2
-
-- Task: Source next external hard-negative candidates
-- Time mode: measured
-- Measured minutes: 49.4
-- Started: 2026-05-17T03:25:01Z
-- Ended: 2026-05-17T04:14:25Z
-- Artifacts: artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json, artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_1025.json, artifacts/v3_external_hard_negative_new_candidate_backend_sequence_search_audit_1025.json, artifacts/v3_external_hard_negative_new_candidate_structural_tm_holdout_path_1025.json, artifacts/v3_external_hard_negative_new_candidate_structural_cluster_index_1025.json, artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, artifacts/v3_external_source_transfer_gate_check_1025.json
-- Evidence: startup 378 unit tests passed, startup validate passed with 679 curated labels, 8 new covered-lane Swiss-Prot sourcing candidates found, 7 sourced candidates cleared bounded current-reference MMseqs2 screen, Q04760 exact-reference holdout identified, 8 sourced AlphaFold structures staged, 28/28 sourced external Foldseek pairs cached, one sourced high-TM pair P04424/P30566 at 0.8338, validate passed, compileall passed, git diff --check passed, external transfer gate remained 68/68, focused scaling artifact regression passed after coordinate normalization, coordinate CIF trailing whitespace normalized and recorded SHA-256 digests rechecked, new-candidate current-countable Foldseek screen completed over 7 sequence-clean rows, 4669/4704 current-countable query-target pairs cached, 6 sourced rows had high-TM current-countable duplicate signals, Q13087 had no high-TM current-countable signal but pair cache remains incomplete, final 380 unit tests passed after wrapper integration, external transfer gate rerun remained 68/68
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed. The delayed broad current-countable structural screen completed during wrap-up and was converted into a reproducible CLI wrapper/test artifact. Coordinate sidecars were whitespace-normalized during wrap-up and digests were rechecked.
 
 ### 2026-05-17T05:01:18.923988+00:00 - post-v2
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_hard_negative_q3lxa3_single_import_cycle_gate_1025.json, artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json, data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_labels.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 395 unit tests passed, startup validate passed with 680 curated labels, Q3LXA3 later single-import gate selected exactly one import, all 8 Q3LXA3 current-fingerprint scores stayed below 0.4115, registry now has 681 labels and 469 out-of-scope labels, post-Q3LXA3 litmus remains green and leaves P22830 review-only, final 399 unit tests passed, validate passed with 681 curated labels, compileall passed, git diff --check passed, external transfer gate remained 68/68
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed. docs/label_factory.md was checked and did not need changes.
+
+### 2026-05-17T11:47:12.000000+00:00 - post-v2
+
+- Task: Defer P22830 external hard-negative cycle
+- Time mode: measured
+- Measured minutes: 11.55
+- Started: 2026-05-17T11:35:39Z
+- Ended: 2026-05-17T11:47:12Z
+- Artifacts: artifacts/v3_external_hard_negative_p22830_cycle_deferral_1025.json, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 399 unit tests passed, startup validate passed with 681 curated labels, temporary P22830 later-cycle probe selected one formal import candidate, P22830 deferred before import with 0.0429 margin below 0.4115 floor, registry preserved at 681 labels and 469 out-of-scope labels, final 400 unit tests passed, validate passed with 681 curated labels, compileall passed, git diff --check passed, remaining-time merged-prior sourcing probe found 8 review-only rows all in oxidoreductase_long_tail
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. P22830 remains review-only; raw post-P22830 sourcing probe was not committed because its lineage used a temporary merged prior. Next work should add durable multi-prior lane-balanced broader structural sourcing before any third external import. docs/label_factory.md checked unchanged.
 
 ## Expectation Updates
 

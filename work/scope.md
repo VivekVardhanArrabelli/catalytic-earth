@@ -605,7 +605,10 @@ Current expectation:
   explicit single-import-cycle target because its max current-fingerprint score
   is lower. The later-cycle gate now imports exactly `uniprot:Q3LXA3`, bringing
   the canonical registry to 681 labels, and leaves P22830 review-only for any
-  future explicit cycle.
+  future explicit cycle. The follow-on P22830 go/no-go artifact records a
+  conservative deferral rather than a third external import: the formal probe
+  would select P22830, but its `0.0429` margin below the `0.4115` floor is too
+  narrow to justify automatic count growth after two external imports.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is
