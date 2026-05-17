@@ -512,7 +512,7 @@ def _producer_consumer_profile(row: dict[str, Any]) -> dict[str, Any]:
     if "/v3_foldseek_coordinates_1000/" in path:
         base.update(
             {
-                "producer_command_status": "partially_inferred",
+                "producer_command_status": "unavailable_with_reason",
                 "likely_producer_cli_commands": [
                     (
                         "PYTHONPATH=src python -m catalytic_earth.cli "
@@ -551,6 +551,10 @@ def _producer_consumer_profile(row: dict[str, Any]) -> dict[str, Any]:
                 ],
                 "migration_blockers": [
                     "replacement object-storage location is not approved",
+                    (
+                        "historical coordinate fetch/restage session is unavailable; "
+                        "committed path, size, and SHA-256 preserve the artifact identity"
+                    ),
                     "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256",
                 ],
             }
@@ -879,6 +883,13 @@ def _execution_producer_status_reason(
     if execution_status == "known":
         return "producer command provenance is recorded as known"
     if execution_status == "unavailable_with_reason":
+        if "/v3_foldseek_coordinates_1000/" in source_path:
+            return (
+                "historical Foldseek coordinate sidecar fetch/restage provenance "
+                "is unavailable with reason; the committed source path, size, "
+                "SHA-256, and Git target URI preserve the current artifact "
+                "identity, and no migration readiness or removal is authorized"
+            )
         return "producer command provenance is explicitly unavailable with reason"
     if source_path.startswith("artifacts/v3_geometry_features_"):
         return (
@@ -1446,6 +1457,14 @@ def validate_artifact_migration_manifest(
                     "source_path": source_path,
                     "reason": "invalid storage_class",
                     "storage_class": row.get("storage_class"),
+                }
+            )
+        if row.get("storage_class") != "git" and not row.get("target_uri"):
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "externalized storage requires target_uri",
                 }
             )
         if row.get("storage_class") == "git":

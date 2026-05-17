@@ -28,19 +28,19 @@ URIs for the same 108 rows and keeps `migration_ready=false`,
 `remote_sha256_verified=false`, `restore_test_passed=false`, and
 `removal_allowed=false` for every row. The admission guard passes only because
 every current large noncanonical row has a manifest row.
-The execution manifest also summarizes the 40 `unknown_blocking` rows: 31 are
-regenerable geometry feature artifacts and 9 are Foldseek coordinate sidecars.
-That summary is diagnostic only; it does not make any blocked row
-migration-ready. Each execution row also preserves the source
-`producer_command_status` plus a `producer_status_reason`, so current
-`partially_inferred` provenance remains visible while the execution status maps
-fail-closed to `unknown_blocking`. For blocked rows, that reason now separates
-geometry adjacent-slice `--reuse-existing` provenance gaps from Foldseek
-coordinate sidecar refetch/restage hash-closure gaps. Rows also carry the
-producer command list, source inputs, parameter assumptions, and explicit
-provenance recovery steps. The validator requires known producers to retain a
-producer command and requires each `unknown_blocking` row to retain recovery
-steps, so future provenance tightening cannot silently erase the next action.
+The execution manifest now records 68 `known`, 9
+`unavailable_with_reason`, and 31 `unknown_blocking` producer rows. The 9
+unavailable rows are Foldseek coordinate sidecars whose historical
+fetch/restage session cannot be reconstructed from committed state; their
+committed path, size, SHA-256, and Git target URI preserve artifact identity
+while migration readiness remains false. The remaining 31 `unknown_blocking`
+rows are regenerable geometry feature artifacts with adjacent-slice
+`--reuse-existing` provenance gaps. Rows also carry the producer command list,
+source inputs, parameter assumptions, and explicit provenance recovery steps
+where provenance remains blocking. The validator requires known producers to
+retain a producer command and requires each `unknown_blocking` row to retain
+recovery steps, so future provenance tightening cannot silently erase the next
+action.
 
 The execution manifest is explicit about the current-main scientific baseline:
 `baseline=current_main_three_external_hard_negatives`, `slice_id=1025`, and

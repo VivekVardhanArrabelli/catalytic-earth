@@ -5,7 +5,7 @@
       "regenerable_intermediate": 99
     },
     "deletion_authorized_count": 0,
-    "generated_at": "2026-05-17T19:37:10Z",
+    "generated_at": "2026-05-17T23:56:15Z",
     "included_file_count": 108,
     "included_total_bytes": 1460658095,
     "large_file_threshold_bytes": 5242880,
@@ -14,7 +14,8 @@
     "policy_version": "artifact_storage_policy_v1_2026_05_17",
     "producer_command_status_counts": {
       "known": 68,
-      "partially_inferred": 40
+      "partially_inferred": 31,
+      "unavailable_with_reason": 9
     },
     "scope": "All current large raw_cache and regenerable_intermediate rows from the storage inventory. Unknown or partially inferred provenance is kept explicit and blocks migration.",
     "source_inventory": "artifacts/v3_artifact_storage_inventory_1025.json"
@@ -1796,6 +1797,7 @@
       ],
       "migration_blockers": [
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "parameter_assumptions": [
@@ -1804,7 +1806,7 @@
         "initial readiness staged 25 selected PDB coordinate files"
       ],
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "1ee64ef75c7c6f6ff174714a919b15c56ade41f29569c74411c988375d6b4ca3",
       "size_bytes": 13841581,
       "source_inputs": [
@@ -1937,6 +1939,7 @@
       ],
       "migration_blockers": [
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "parameter_assumptions": [
@@ -1945,7 +1948,7 @@
         "initial readiness staged 25 selected PDB coordinate files"
       ],
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "eb600990a439bb4a667f90f9f2f0c6900656945feab5ea7e9abf383330a5b76c",
       "size_bytes": 13374918,
       "source_inputs": [
@@ -3278,6 +3281,7 @@
       ],
       "migration_blockers": [
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "parameter_assumptions": [
@@ -3286,7 +3290,7 @@
         "initial readiness staged 25 selected PDB coordinate files"
       ],
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "ec797a8f66cd1d57fd8b88ab3d62990cc3df00a9587b5a74c41f8664b977b235",
       "size_bytes": 6913294,
       "source_inputs": [
@@ -3316,6 +3320,7 @@
       ],
       "migration_blockers": [
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "parameter_assumptions": [
@@ -3324,7 +3329,7 @@
         "initial readiness staged 25 selected PDB coordinate files"
       ],
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "11cf694d2225c33d8c9dbae803d0f7a90f0c0a8a66e58f037a6c1194a5b2127c",
       "size_bytes": 6686819,
       "source_inputs": [
@@ -3422,6 +3427,7 @@
       ],
       "migration_blockers": [
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "parameter_assumptions": [
@@ -3430,7 +3436,7 @@
         "initial readiness staged 25 selected PDB coordinate files"
       ],
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "6587f6eb50fc2c2176e6c9d6d8ec4046d9fa5ef44eb5ef3bea602d6d9d3fb009",
       "size_bytes": 6309247,
       "source_inputs": [
@@ -3562,6 +3568,7 @@
       ],
       "migration_blockers": [
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "parameter_assumptions": [
@@ -3570,7 +3577,7 @@
         "initial readiness staged 25 selected PDB coordinate files"
       ],
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "e4110a9604bbe73cdf62a6a683df28c2fff182d88ba5817727f84e7714cf6bc2",
       "size_bytes": 5572562,
       "source_inputs": [
@@ -3600,6 +3607,7 @@
       ],
       "migration_blockers": [
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "parameter_assumptions": [
@@ -3608,7 +3616,7 @@
         "initial readiness staged 25 selected PDB coordinate files"
       ],
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "f614434a771ed9782d8856ecdfc65d43657623becdca76b65780602dfbc160be",
       "size_bytes": 5507198,
       "source_inputs": [
@@ -3672,6 +3680,7 @@
       ],
       "migration_blockers": [
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "parameter_assumptions": [
@@ -3680,7 +3689,7 @@
         "initial readiness staged 25 selected PDB coordinate files"
       ],
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "30c5e984027ee90aa962dd123fe18220950b9028ddd9cba54a7798e04165d903",
       "size_bytes": 5449692,
       "source_inputs": [
@@ -3745,6 +3754,7 @@
       ],
       "migration_blockers": [
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "parameter_assumptions": [
@@ -3753,7 +3763,7 @@
         "initial readiness staged 25 selected PDB coordinate files"
       ],
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "5f230d1041067adbb3909550f7672e68681ae42d5b9ae7e4f368c6882dba366b",
       "size_bytes": 5299662,
       "source_inputs": [

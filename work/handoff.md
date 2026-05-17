@@ -50,6 +50,31 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-17T23:56:35Z automation run, Phase 1 remains
+instrumentation-only and closed one conservative producer-provenance family.
+The execution manifest was refreshed against latest pulled `main` commit
+`0bf97dc45e98b03ba15139eda98e44c4f6608131` and still covers 108 large
+noncanonical rows with 0 migration-ready rows, 0 remote SHA-256 verifications,
+0 restore-test passes, and 0 removal authorizations. The 9 Foldseek coordinate
+sidecars now use `producer_status=unavailable_with_reason`: their historical
+fetch/restage session is not reconstructable from committed state, but each
+row preserves the committed path, size, SHA-256, Git target URI, source inputs,
+producer command pattern, downstream consumers, and migration blockers. The
+remaining `unknown_blocking_count` is 31, all geometry feature artifacts with
+adjacent-slice `--reuse-existing` provenance gaps. A validator hardening test
+now also blocks non-Git/externalized storage rows that lack `target_uri`, even
+if no removal is authorized yet.
+Evidence-based confidence call: this was a no-science-recompute Phase 1
+manifest/validator provenance pass. No artifact upload, deletion, Git LFS
+migration, externalization, label/import artifact edit, scientific-artifact
+recompute, or history rewrite was performed. Verification passed with targeted
+artifact/transfer/source-only tests, source-only compile, `transfer_scope`
+import, CLI help, CLI `validate`, full 437-test unit suite,
+`validate-artifact-migration --dry-run --check-local-files`, restore smoke
+dry-run, and `git diff --check`. The next automation run should stay in Phase
+1 and continue Step 6 on the 31 geometry-feature provenance gaps; do not start
+Phase 2 uploads without explicit human authorization.
+
 As of the 2026-05-17T22:57:18Z automation run, Phase 1 remains
 instrumentation-only and has a provenance-readability hardening slice. The
 execution manifest was refreshed against latest pulled `main` commit

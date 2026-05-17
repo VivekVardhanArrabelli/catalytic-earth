@@ -176,6 +176,11 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(manifest["metadata"]["migration_ready_count"], 0)
         self.assertEqual(manifest["metadata"]["remote_sha256_verified_count"], 0)
         self.assertEqual(manifest["metadata"]["removal_allowed_count"], 0)
+        self.assertEqual(
+            manifest["metadata"]["producer_status_counts"],
+            {"known": 68, "unavailable_with_reason": 9, "unknown_blocking": 31},
+        )
+        self.assertEqual(manifest["metadata"]["unknown_blocking_count"], 31)
         commit = manifest["metadata"]["current_main_commit"]
         for row in manifest["rows"]:
             self.assertEqual(row["storage_class"], "git")
@@ -555,6 +560,65 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(validation["metadata"]["status"], "blocked")
         reasons = {blocker["reason"] for blocker in validation["blockers"]}
         self.assertIn("migration_ready requires non-git target storage", reasons)
+
+    def test_validator_blocks_externalized_rows_without_target_uri_and_bad_hash(
+        self,
+    ) -> None:
+        row = {
+            "source_path": "artifacts/raw.tsv",
+            "file_exists": True,
+            "size_bytes": 1,
+            "sha256": "not-a-sha",
+            "artifact_category": "raw_cache",
+            "canonical_or_noncanonical": "noncanonical",
+            "source_producer_command_status": "known",
+            "producer_status": "known",
+            "producer_status_reason": "producer command provenance is recorded as known",
+            "producer_commands": ["cmd"],
+            "source_inputs": ["input"],
+            "parameter_assumptions": [],
+            "producer_provenance_recovery_steps": [],
+            "downstream_consumers": ["consumer"],
+            "canonical_summary_path": "README.md",
+            "storage_class": "object_storage",
+            "target_uri": "",
+            "restore_command": "restore",
+            "restore_verification": "sha256",
+            "removal_allowed": False,
+            "migration_ready": False,
+            "remote_sha256_verified": False,
+            "restore_test_passed": False,
+            "downstream_consumers_accounted_for": True,
+            "canonical_summary_present": True,
+            "migration_blockers": ["phase_2_remote_target_uri_not_uploaded_or_verified"],
+        }
+        manifest = {
+            "metadata": {
+                "manifest_schema_version": "artifact_migration_execution.v1",
+                **CURRENT_MAIN_ARTIFACT_BASELINE,
+                "row_count": 1,
+                "migration_ready_count": 0,
+                "unknown_blocking_count": 0,
+                "removal_allowed_count": 0,
+                "remote_sha256_verified_count": 0,
+                "producer_status_counts": {"known": 1},
+                "unknown_blocking_summary": {
+                    "row_count": 0,
+                    "by_artifact_category": {},
+                    "by_planned_storage_class": {},
+                    "by_source_producer_command_status": {},
+                    "source_paths": [],
+                },
+            },
+            "rows": [row],
+        }
+
+        validation = validate_artifact_migration_manifest(manifest)
+
+        self.assertEqual(validation["metadata"]["status"], "blocked")
+        reasons = {blocker["reason"] for blocker in validation["blockers"]}
+        self.assertIn("malformed SHA-256", reasons)
+        self.assertIn("externalized storage requires target_uri", reasons)
 
     def test_restore_artifacts_supports_local_targets_and_hash_quarantine(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

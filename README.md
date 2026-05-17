@@ -94,7 +94,10 @@ The repository currently contains:
     matches the execution manifest. Git-retained rows also cannot become
     migration-ready through metadata drift. Execution rows now carry producer
     commands, source inputs, parameter assumptions, and explicit provenance
-    recovery steps for fail-closed `unknown_blocking` rows.
+    recovery steps for fail-closed `unknown_blocking` rows. Producer status is
+    now 68 `known`, 9 `unavailable_with_reason` Foldseek coordinate sidecars
+    with preserved path/size/SHA identity, and 31 `unknown_blocking` geometry
+    feature rows that still need provenance closure.
     `artifacts/v3_artifact_admission_guard_1025.json` guards future large
     artifact admission. See `docs/artifact_storage.md`.
 

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "deletion_authorized_count": 0,
-    "generated_at": "2026-05-17T19:37:10Z",
+    "generated_at": "2026-05-17T23:56:15Z",
     "method": "artifact_migration_readiness_plan",
     "migration_ready_now_count": 0,
     "planned_file_count": 108,
@@ -1792,11 +1792,12 @@
       "migration_blockers": [
         "producer command is not fully known; confirm provenance before migration",
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_object_storage_later",
       "required_preconditions": [
         "explicit human approval for external object-storage migration",
@@ -1932,11 +1933,12 @@
       "migration_blockers": [
         "producer command is not fully known; confirm provenance before migration",
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_object_storage_later",
       "required_preconditions": [
         "explicit human approval for external object-storage migration",
@@ -3287,11 +3289,12 @@
       "migration_blockers": [
         "producer command is not fully known; confirm provenance before migration",
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_object_storage_later",
       "required_preconditions": [
         "explicit human approval for external object-storage migration",
@@ -3323,11 +3326,12 @@
       "migration_blockers": [
         "producer command is not fully known; confirm provenance before migration",
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_object_storage_later",
       "required_preconditions": [
         "explicit human approval for external object-storage migration",
@@ -3429,11 +3433,12 @@
       "migration_blockers": [
         "producer command is not fully known; confirm provenance before migration",
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_object_storage_later",
       "required_preconditions": [
         "explicit human approval for external object-storage migration",
@@ -3570,11 +3575,12 @@
       "migration_blockers": [
         "producer command is not fully known; confirm provenance before migration",
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_object_storage_later",
       "required_preconditions": [
         "explicit human approval for external object-storage migration",
@@ -3606,11 +3612,12 @@
       "migration_blockers": [
         "producer command is not fully known; confirm provenance before migration",
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_object_storage_later",
       "required_preconditions": [
         "explicit human approval for external object-storage migration",
@@ -3677,11 +3684,12 @@
       "migration_blockers": [
         "producer command is not fully known; confirm provenance before migration",
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_object_storage_later",
       "required_preconditions": [
         "explicit human approval for external object-storage migration",
@@ -3747,11 +3755,12 @@
       "migration_blockers": [
         "producer command is not fully known; confirm provenance before migration",
         "replacement object-storage location is not approved",
+        "historical coordinate fetch/restage session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_object_storage_later",
       "required_preconditions": [
         "explicit human approval for external object-storage migration",

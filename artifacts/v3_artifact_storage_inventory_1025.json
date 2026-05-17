@@ -1129,8 +1129,8 @@
   "metadata": {
     "artifact_dir": "artifacts",
     "category_bytes": {
-      "canonical_evidence": 1293721,
-      "compact_artifact": 563435638,
+      "canonical_evidence": 1296295,
+      "compact_artifact": 563431735,
       "raw_cache": 635178082,
       "regenerable_intermediate": 1544922563
     },
@@ -1142,10 +1142,10 @@
     },
     "deletion_authorized_count": 0,
     "file_count": 2580,
-    "generated_at": "2026-05-17T22:55:25Z",
+    "generated_at": "2026-05-17T23:56:16Z",
     "git_policy_bytes": {
       "external_cache_candidate": 635178082,
-      "keep_in_git": 564729359,
+      "keep_in_git": 564728030,
       "manifest_then_externalize_candidate": 1544922563
     },
     "git_policy_counts": {
@@ -1159,7 +1159,7 @@
     "method": "artifact_storage_inventory",
     "policy_blocker_count": 0,
     "policy_version": "artifact_storage_policy_v1_2026_05_17",
-    "total_bytes": 2744830004,
+    "total_bytes": 2744828675,
     "total_gib": 2.5563
   },
   "policy_findings": {
@@ -4995,8 +4995,8 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "small artifact; keep in git until a later reviewed migration",
-      "sha256": "a134236ee25113d5028afd6fa52a6958576bc4246dc1c44f13257e3f890b6a74",
-      "size_bytes": 347336
+      "sha256": "2487edada85dbdd1398d3e3b60e7bca109bae62cfe46b9cf33877a7ef95976b6",
+      "size_bytes": 343433
     },
     {
       "category": "canonical_evidence",
@@ -5008,8 +5008,8 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "decision, gate, policy, or regression evidence artifact",
-      "sha256": "15dc28e29daf85116dc5cafd3b89bba1c09e072c384ade9655eba9e311866ef9",
-      "size_bytes": 220422
+      "sha256": "18189d5c5ebdf417b45f620a3216a6fe972ed2ba1984e4799cae719ecb440e3c",
+      "size_bytes": 221691
     },
     {
       "category": "canonical_evidence",
@@ -5021,8 +5021,8 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "decision, gate, policy, or regression evidence artifact",
-      "sha256": "6dc07bd97c2379beb7805d9e54247eaa969645e179a0bc49add57cf2ed6206b4",
-      "size_bytes": 170155
+      "sha256": "93a0cb4f84eb0d7b085176ecde21dbb6a2f3a0c4e68b0faaf3d89152fed27aa8",
+      "size_bytes": 171460
     },
     {
       "category": "compact_artifact",
@@ -5034,7 +5034,7 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "small artifact; keep in git until a later reviewed migration",
-      "sha256": "afe0d7f688ab413655b186e937754ba5ba75334c81438b216f15ee5dae932eac",
+      "sha256": "fcb2c124c803a9534eb6f26ba2c46d1ac70cf8950a615a68bff0dbd6672fbd37",
       "size_bytes": 1575397
     },
     {
@@ -5047,7 +5047,7 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "small artifact; keep in git until a later reviewed migration",
-      "sha256": "72b0eba7cb7af99fe30b03b9973b1baab3f625ee36efcf726d3be57cd73d15ba",
+      "sha256": "987bf2e2584447c11651687ce42511b4d4c95d6ffc7d9664f62e3f86a5e7d661",
       "size_bytes": 365
     },
     {

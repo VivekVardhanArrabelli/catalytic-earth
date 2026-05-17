@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 166
-- Measured elapsed time: 5188.4 minutes (86.47 hours)
+- Entries: 167
+- Measured elapsed time: 5196.4 minutes (86.61 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
-- infrastructure: 65.5 measured minutes (1.09 hours)
+- infrastructure: 73.4 measured minutes (1.22 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -26,21 +26,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1842
-- Evidence references logged: 1443
+- Artifact references logged: 1853
+- Evidence references logged: 1444
 
 ## Recent Entries
-
-### 2026-05-17T17:13:28.332690+00:00 - leakage-risk closure
-
-- Task: external hard-negative leakage closure
-- Time mode: measured
-- Measured minutes: 11.8
-- Started: 2026-05-17T17:01:40Z
-- Ended: 2026-05-17T17:13:28Z
-- Artifacts: v3_external_pilot_repair_leakage_closure_1025;v3_external_hard_negative_next_tranche_preregistration_1025;v3_external_hard_negative_threshold_policy_1025;v3_external_hard_negative_ontology_reaudit_policy_1025;v3_external_hard_negative_review_context_separation_audit_1025
-- Evidence: 417 unit tests passed; validate passed on 682 labels
-- Notes: Added pre-registration gate, threshold provenance, ontology re-audit, evidence separation, and M-CSA claim guard regressions.
 
 ### 2026-05-17T18:01:26.215575+00:00 - infrastructure
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
 - Evidence: 436 unit tests passed, targeted artifact and transfer tests passed, source-only compile/import/CLI help/validate passed, validate-artifact-migration passed with local file checks, restore smoke dry-run passed, git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only; no artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite.
+
+### 2026-05-17T23:57:13.778352+00:00 - infrastructure
+
+- Task: Artifact migration Foldseek provenance closure
+- Time mode: measured
+- Measured minutes: 7.933
+- Started: 2026-05-17T23:48:39Z
+- Ended: 2026-05-17T23:56:35Z
+- Artifacts: artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
+- Evidence: 437 unit tests passed; targeted artifact transfer source-only tests passed; validate passed with 682 labels; source-only compile/import/CLI help passed; migration validation passed with local file checks; restore smoke dry-run passed; git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only; no artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite. Foldseek coordinate sidecars moved from unknown_blocking to unavailable_with_reason with path size SHA and Git identity preserved; 31 geometry-feature unknown_blocking rows remain.
 
 ## Expectation Updates
 
