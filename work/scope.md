@@ -577,18 +577,21 @@ Current expectation:
   screen completes 5376/5376 query-target pairs: 5 rows have high-TM current
   duplicate signals, while `P22830`, `P78549`, and `Q3LXA3` have no
   current-countable structural duplicate signal. Terminal decisions reject the
-  5 duplicate-signal rows and defer those 3 no-current-structural-signal rows
-  behind UniRef-wide duplicate screening, terminal review, and full factory
-  gates. The bounded external all-vs-all sequence screen for the same 8 rows
+  5 duplicate-signal rows and initially defer those 3
+  no-current-structural-signal rows behind UniRef-wide duplicate screening,
+  terminal review, and full factory gates. The bounded external all-vs-all
+  sequence screen for the same 8 rows
   is now complete with 0 external exact/near-duplicate sequence pairs, and the
   duplicate-evidence review records `P22830`, `P78549`, and `Q3LXA3` as
   bounded-clear but UniRef-pending. A review-only terminal review queue now
   packages those 3 rows with explicit allowed outcomes, while preserving the
   UniRef-wide and factory blockers. A targeted UniRef90/50 nearest-reference
   check finds 0 shared clusters for `P22830`/`P00518`, `P78549`/`P00750`, and
-  `Q3LXA3`/`P06213`, but this is not a full UniRef-wide screen. The active
-  bottleneck is now full UniRef-wide duplicate screening plus terminal
-  review/factory evidence for those 3 deferred replacements, not another pass
+  `Q3LXA3`/`P06213`. The follow-on UniRef current-reference screen checks each
+  candidate's UniRef90 and UniRef50 cluster members against all 735 current
+  countable reference accessions and finds 0 current-reference overlaps for all
+  3 rows. The active bottleneck is now terminal review acceptance plus full
+  factory-gate evidence for those 3 deferred replacements, not another pass
   over the exhausted pools.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain

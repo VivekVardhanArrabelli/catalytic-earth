@@ -193,6 +193,7 @@ from .transfer_scope import (
     build_external_hard_negative_next_candidate_duplicate_evidence_review,
     build_external_hard_negative_next_candidate_targeted_uniref_check,
     build_external_hard_negative_next_candidate_terminal_review_queue,
+    build_external_hard_negative_next_candidate_uniref_current_reference_screen,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -3692,6 +3693,41 @@ def cmd_build_external_hard_negative_next_candidate_targeted_uniref_check(
         "Wrote next-candidate targeted UniRef check to "
         f"{args.out} ({check['metadata']['targeted_no_shared_cluster_count']} "
         "no-shared-cluster rows)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_next_candidate_uniref_current_reference_screen(
+    args: argparse.Namespace,
+) -> int:
+    targeted_uniref_check = read_json_object(Path(args.targeted_uniref_check))
+    sequence_clusters = read_json_object(Path(args.sequence_clusters))
+    labels = load_labels(Path(args.labels))
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "targeted_uniref_check": args.targeted_uniref_check,
+            "sequence_clusters": args.sequence_clusters,
+            "labels": args.labels,
+        },
+        "blocker_removed": "next_candidate_uniref_current_reference_screen",
+    }
+    screen = (
+        build_external_hard_negative_next_candidate_uniref_current_reference_screen(
+            targeted_uniref_check=targeted_uniref_check,
+            sequence_clusters=sequence_clusters,
+            labels=labels,
+            max_rows=args.max_rows,
+            artifact_lineage=artifact_lineage,
+        )
+    )
+    write_json(Path(args.out), screen)
+    print(
+        "Wrote next-candidate UniRef current-reference screen to "
+        f"{args.out} ({screen['metadata']['uniref_current_reference_clear_count']} "
+        "clear rows)"
     )
     return 0
 
@@ -9328,6 +9364,46 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_hard_negative_next_uniref.set_defaults(
         func=cmd_build_external_hard_negative_next_candidate_targeted_uniref_check
+    )
+
+    external_hard_negative_next_uniref_current = subparsers.add_parser(
+        "build-external-hard-negative-next-candidate-uniref-current-reference-screen",
+        help=(
+            "screen next-surface candidate UniRef90/50 clusters against all "
+            "current countable reference accessions"
+        ),
+    )
+    external_hard_negative_next_uniref_current.add_argument(
+        "--targeted-uniref-check",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_targeted_uniref_check_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_uniref_current.add_argument(
+        "--sequence-clusters",
+        default="artifacts/v3_sequence_cluster_proxy_1025.json",
+    )
+    external_hard_negative_next_uniref_current.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_hard_negative_next_uniref_current.add_argument(
+        "--max-rows", type=int, default=3
+    )
+    external_hard_negative_next_uniref_current.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_uniref_current_reference_"
+            "screen_1025.json"
+        ),
+    )
+    external_hard_negative_next_uniref_current.set_defaults(
+        func=(
+            cmd_build_external_hard_negative_next_candidate_uniref_current_reference_screen
+        )
     )
 
     external_transfer_gate = subparsers.add_parser(

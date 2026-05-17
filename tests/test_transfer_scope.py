@@ -102,6 +102,7 @@ from catalytic_earth.transfer_scope import (
     build_external_hard_negative_next_candidate_duplicate_evidence_review,
     build_external_hard_negative_next_candidate_targeted_uniref_check,
     build_external_hard_negative_next_candidate_terminal_review_queue,
+    build_external_hard_negative_next_candidate_uniref_current_reference_screen,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -12686,3 +12687,151 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             row["remaining_import_blockers"],
         )
         self.assertFalse(row["import_ready_candidate"])
+
+    def test_next_candidate_uniref_current_reference_screen_clears_wide_blocker(
+        self,
+    ) -> None:
+        screen = (
+            build_external_hard_negative_next_candidate_uniref_current_reference_screen(
+                targeted_uniref_check={
+                    "metadata": {
+                        "method": (
+                            "external_hard_negative_next_candidate_targeted_"
+                            "uniref_check"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "PGOOD",
+                            "entry_id": "uniprot:PGOOD",
+                            "lane_id": "external_source:isomerase",
+                            "candidate_uniref90_ids": ["UniRef90_PGOOD"],
+                            "candidate_uniref50_ids": ["UniRef50_PGOOD"],
+                            "targeted_uniref_check_status": (
+                                "targeted_uniref_nearest_reference_no_shared_cluster"
+                            ),
+                        }
+                    ],
+                },
+                sequence_clusters={
+                    "metadata": {"method": "sequence_cluster_proxy_from_reference_uniprot"},
+                    "rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "reference_uniprot_ids": ["PREF"],
+                        },
+                        {
+                            "entry_id": "m_csa:2",
+                            "reference_uniprot_ids": ["POTHER"],
+                        },
+                    ],
+                },
+                labels=[
+                    {
+                        "entry_id": "m_csa:1",
+                        "label_type": "out_of_scope",
+                        "review_status": "automation_curated",
+                    },
+                    {
+                        "entry_id": "m_csa:2",
+                        "label_type": "out_of_scope",
+                        "review_status": "needs_expert_review",
+                    },
+                ],
+                fetcher=lambda cluster_id: {
+                    "cluster_id": cluster_id,
+                    "fetch_status": "ok",
+                    "member_count": 2,
+                    "returned_member_count": 2,
+                    "accession_count": 2,
+                    "accessions": ["PGOOD", "POTHER"],
+                },
+                artifact_lineage={"slice_id": 1025},
+            )
+        )
+
+        self.assertEqual(
+            screen["metadata"]["method"],
+            (
+                "external_hard_negative_next_candidate_uniref_current_reference_"
+                "screen"
+            ),
+        )
+        self.assertEqual(
+            screen["metadata"]["uniref_current_reference_clear_count"], 1
+        )
+        row = screen["rows"][0]
+        self.assertEqual(
+            row["uniref_current_reference_screen_status"],
+            "uniref_current_reference_screen_no_current_reference_overlap",
+        )
+        self.assertEqual(row["uniref_current_reference_blockers"], [])
+        self.assertNotIn(
+            "uniref_wide_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertEqual(
+            row["remaining_import_blockers"],
+            ["full_label_factory_gate_not_run", "terminal_review_decision_not_accepted"],
+        )
+        self.assertFalse(row["import_ready_candidate"])
+
+    def test_next_candidate_uniref_current_reference_screen_blocks_overlap(
+        self,
+    ) -> None:
+        screen = (
+            build_external_hard_negative_next_candidate_uniref_current_reference_screen(
+                targeted_uniref_check={
+                    "rows": [
+                        {
+                            "accession": "PBLOCK",
+                            "entry_id": "uniprot:PBLOCK",
+                            "candidate_uniref90_ids": ["UniRef90_PBLOCK"],
+                            "candidate_uniref50_ids": [],
+                        }
+                    ],
+                },
+                sequence_clusters={
+                    "rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "reference_uniprot_ids": ["PREF"],
+                        }
+                    ],
+                },
+                labels=[
+                    {
+                        "entry_id": "m_csa:1",
+                        "label_type": "seed_fingerprint",
+                        "review_status": "automation_curated",
+                    }
+                ],
+                fetcher=lambda cluster_id: {
+                    "cluster_id": cluster_id,
+                    "fetch_status": "ok",
+                    "member_count": 2,
+                    "returned_member_count": 2,
+                    "accession_count": 2,
+                    "accessions": ["PBLOCK", "PREF"],
+                },
+                artifact_lineage={"slice_id": 1025},
+            )
+        )
+
+        row = screen["rows"][0]
+        self.assertEqual(
+            row["uniref_current_reference_screen_status"],
+            "uniref_current_reference_cluster_overlap_holdout",
+        )
+        self.assertEqual(
+            row["uniref_current_reference_blockers"],
+            ["candidate_uniref90_or_uniref50_contains_current_reference_accession"],
+        )
+        self.assertIn(
+            "uniref_wide_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertEqual(
+            row["overlapping_current_reference_accessions"][0]["reference_accession"],
+            "PREF",
+        )

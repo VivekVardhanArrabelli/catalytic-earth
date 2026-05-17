@@ -120,7 +120,7 @@ import.
   `P78549`, `Q3LXA3`) have no current-countable structural duplicate signal.
 - `artifacts/v3_external_hard_negative_next_candidate_terminal_decisions_1025.json`
   records 5 review-only duplicate-signal rejections and 3 review-only
-  deferrals that still require UniRef-wide duplicate screening, terminal
+  deferrals that initially require UniRef-wide duplicate screening, terminal
   review, and full factory gates. No replacement row is import-ready or
   countable.
 - `artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_1025.json`
@@ -131,9 +131,10 @@ import.
 - `artifacts/v3_external_hard_negative_next_candidate_duplicate_evidence_review_1025.json`
   summarizes the 3 deferred rows (`P22830`, `P78549`, `Q3LXA3`): bounded
   current-reference sequence, external all-vs-all sequence, external
-  structural, and current-countable structural controls are clear, but
-  UniRef-wide duplicate screening, terminal review acceptance, and full factory
-  gates still block import. No replacement row is import-ready or countable.
+  structural, and current-countable structural controls are clear, but at this
+  point UniRef-wide duplicate screening, terminal review acceptance, and full
+  factory gates still block import. No replacement row is import-ready or
+  countable.
 - `artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json`
   packages those 3 bounded-clear rows into review-only terminal review packets
   with explicit allowed outcomes and remaining non-human blockers. It removes
@@ -143,8 +144,13 @@ import.
   performs a targeted UniRef90/50 check against each deferred row's nearest
   current structural-reference accession. `P22830` vs `P00518`, `P78549` vs
   `P00750`, and `Q3LXA3` vs `P06213` all have no shared UniRef90/50 cluster.
-  This reduces nearest-reference duplicate concern but does not replace the
-  required UniRef-wide duplicate screen.
+- `artifacts/v3_external_hard_negative_next_candidate_uniref_current_reference_screen_1025.json`
+  expands that duplicate check from nearest-reference pairs to each candidate's
+  UniRef90 and UniRef50 cluster members against all 735 current countable
+  reference accessions. `P22830`, `P78549`, and `Q3LXA3` all have 0
+  current-reference cluster overlaps. This removes the UniRef current-reference
+  duplicate blocker for those 3 rows, but terminal review acceptance and full
+  factory gates still block import; no row is import-ready or countable.
 
 ## Immediate Pilot Direction
 

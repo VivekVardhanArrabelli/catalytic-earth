@@ -365,7 +365,7 @@ Current review-only external artifacts:
   records terminal review-only outcomes for the replacement surface: 5
   `rejected_current_countable_structural_duplicate_signal` rows and 3
   `deferred_requires_review_and_factory_gate_after_structural_screen` rows.
-  The deferred rows still require UniRef-wide duplicate screening, terminal
+  The deferred rows initially require UniRef-wide duplicate screening, terminal
   review, and full factory gates; 0 rows are import-ready or countable.
 - `artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_1025.json`
   runs the bounded external all-vs-all sequence screen for the 8 replacement
@@ -389,8 +389,15 @@ Current review-only external artifacts:
   queries UniRef for the 3 terminal-review-queued candidates and their nearest
   current structural-reference accessions. `P22830`/`P00518`,
   `P78549`/`P00750`, and `Q3LXA3`/`P06213` share 0 UniRef90/50 clusters, with
-  0 fetch failures. This is nearest-reference evidence only; the artifact
-  explicitly preserves the full UniRef-wide duplicate-screening blocker.
+  0 fetch failures. This is nearest-reference evidence only; at this stage the
+  artifact explicitly preserves the full UniRef-wide duplicate-screening
+  blocker.
+- `artifacts/v3_external_hard_negative_next_candidate_uniref_current_reference_screen_1025.json`
+  fetches each queued candidate's UniRef90 and UniRef50 cluster members and
+  intersects them with all 735 current countable reference accessions. P22830,
+  P78549, and Q3LXA3 all have 0 current-reference cluster overlaps across 6/6
+  fetched candidate clusters. The remaining blockers are terminal review
+  acceptance and the full factory gate; 0 rows are import-ready or countable.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine
@@ -468,11 +475,7 @@ Sequence-holdout details:
   external candidates for near-duplicate search before any future import
   decision.
 
-Next bounded work should keep repairing external-control weaknesses before any
-external label decision: source explicit catalytic residues for the 10
-active-site-feature gaps using
-`artifacts/v3_external_source_active_site_sourcing_export_1025.json`, run
-near-duplicate sequence searches for the 28 rows in
-`artifacts/v3_external_source_sequence_search_export_1025.json`, or select and
-run the real representation backend planned in
-`artifacts/v3_external_source_representation_backend_plan_1025.json`.
+Next bounded work should continue the surviving next-candidate import evidence:
+build terminal review/factory-gate evidence for P22830, P78549, and Q3LXA3
+without retrying the five duplicate-signal rows or reopening the six original
+pilot repair lanes without new evidence.

@@ -4090,6 +4090,14 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "1025.json"
             )
         )
+        next_uniref_current_reference = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_next_candidate_uniref_current_reference_"
+                "screen_1025.json"
+            )
+        )
 
         self.assertTrue(step1a["metadata"]["step_1a_passed"])
         self.assertEqual(step1a["metadata"]["target_label_type"], "out_of_scope")
@@ -4644,6 +4652,52 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "uniref_wide_duplicate_screening_required"
                 in row["remaining_import_blockers"]
                 for row in next_targeted_uniref["rows"]
+            )
+        )
+        self.assertEqual(
+            next_uniref_current_reference["metadata"]["method"],
+            (
+                "external_hard_negative_next_candidate_uniref_current_reference_"
+                "screen"
+            ),
+        )
+        self.assertEqual(
+            next_uniref_current_reference["metadata"]["candidate_count"], 3
+        )
+        self.assertEqual(
+            next_uniref_current_reference["metadata"][
+                "uniref_current_reference_clear_count"
+            ],
+            3,
+        )
+        self.assertEqual(
+            next_uniref_current_reference["metadata"][
+                "uniref_current_reference_overlap_holdout_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            next_uniref_current_reference["metadata"][
+                "uniref_current_reference_incomplete_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            [row["accession"] for row in next_uniref_current_reference["rows"]],
+            ["P22830", "P78549", "Q3LXA3"],
+        )
+        self.assertTrue(
+            all(
+                row["uniref_current_reference_screen_status"]
+                == "uniref_current_reference_screen_no_current_reference_overlap"
+                for row in next_uniref_current_reference["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                "uniref_wide_duplicate_screening_required"
+                not in row["remaining_import_blockers"]
+                for row in next_uniref_current_reference["rows"]
             )
         )
 

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 149
-- Measured elapsed time: 4919.7 minutes (82.00 hours)
+- Entries: 150
+- Measured elapsed time: 4932.6 minutes (82.21 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2759.3 measured minutes (45.99 hours)
+- post-v2: 2772.1 measured minutes (46.20 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1694
-- Evidence references logged: 1311
+- Artifact references logged: 1705
+- Evidence references logged: 1321
 
 ## Recent Entries
-
-### 2026-05-17T00:08:57.473085+00:00 - ops
-
-- Task: Record push blocker for P06746 lane
-- Time mode: measured
-- Measured minutes: 1.683
-- Started: 2026-05-17T00:07:16Z
-- Ended: 2026-05-17T00:08:57Z
-- Artifacts: work/handoff.md, work/status.md, local main ahead by one safe commit
-- Evidence: git credential fill failed with Device not configured, git push --dry-run origin main failed with Device not configured, git push origin main failed with Device not configured, gh auth status reports invalid default token, local main ahead of origin/main by one safe commit
-- Notes: Push blocked in scheduled shell after successful local commit; keep the current local commit safe and recover credentials before pushing.
 
 ### 2026-05-17T00:22:15.473415+00:00 - ops
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_1025.json, artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_audit_1025.json, artifacts/v3_external_hard_negative_next_candidate_duplicate_evidence_review_1025.json, artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json, artifacts/v3_external_hard_negative_next_candidate_targeted_uniref_check_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 383 unit tests passed, startup validate passed with 679 curated labels, next-candidate all-vs-all MMseqs2 sequence screen completed with 8/8 no-signal rows, next-candidate duplicate evidence review recorded 3 bounded-clear UniRef-pending rows, terminal review queue recorded 3 review-only rows, targeted UniRef90/50 nearest-reference check found 0 shared clusters for P22830 P78549 Q3LXA3, final 386 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON parse checks passed
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; label_factory docs checked unchanged.
+
+### 2026-05-17T07:42:26.961418+00:00 - post-v2
+
+- Task: Screen next hard-negative UniRef clusters
+- Time mode: measured
+- Measured minutes: 12.833
+- Started: 2026-05-17T07:29:36Z
+- Ended: 2026-05-17T07:42:26Z
+- Artifacts: artifacts/v3_external_hard_negative_next_candidate_uniref_current_reference_screen_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, artifacts/v3_external_source_transfer_gate_check_1025.json
+- Evidence: startup 386 unit tests passed, startup validate passed with 679 curated labels, UniRef90/50 current-reference screen fetched 6/6 candidate clusters, P22830 P78549 Q3LXA3 had 0 current-reference cluster overlaps, remaining blockers are terminal review acceptance and full factory gate, 388 final unit tests passed, validate passed, compileall passed, git diff --check passed, external transfer gate 68/68
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
 
 ## Expectation Updates
 
@@ -238,6 +238,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-17T02:10:05.048551+00:00: External out-of-scope import requires all-8 inverse gate plus duplicate review and factory gates; O14756 and Q6NSJ0 are blocked despite inverse-gate pass.
 - 2026-05-17T04:14:25+00:00: Fresh external sourcing and the first current-countable structural screen are complete; Q13087 is the only sequence-clean row without a high-TM current-countable signal, but pair-cache completion, UniRef-wide screening, terminal review, and factory gates still block import.
 - 2026-05-17T05:01:18.923988+00:00: Fresh sourced hard-negative tranche is closed by current-countable structural duplicate signals; next work needs new external candidate sourcing or genuinely new evidence.
+- 2026-05-17T07:42:26.961418+00:00: Next-candidate UniRef current-reference duplicate blocker is removed for P22830 P78549 Q3LXA3; terminal review and full factory gates are now the active blockers.
 
 ## Scope Adjustments
 

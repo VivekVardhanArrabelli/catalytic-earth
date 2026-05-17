@@ -159,8 +159,8 @@ query-target pairs. Five rows have high-TM current-countable duplicate signals
 `P78549`, and `Q3LXA3` have no current-countable structural duplicate signal at
 `TM >=0.7`. `artifacts/v3_external_hard_negative_next_candidate_terminal_decisions_1025.json`
 records 5 review-only duplicate-signal rejections and 3 review-only deferrals
-that remain blocked by UniRef-wide duplicate screening, terminal review, and
-full factory gates. Evidence-based confidence call: the immediate
+that initially remain blocked by UniRef-wide duplicate screening, terminal
+review, and full factory gates. Evidence-based confidence call: the immediate
 no-new-candidates blocker is removed and this surface has 3 structurally
 non-duplicate follow-up rows, but none is import-ready or countable yet.
 The 2026-05-17T06:29:04Z run then added
@@ -177,9 +177,9 @@ narrows the surviving surface to `P22830`, `P78549`, and `Q3LXA3`: all 3 are
 current-reference sequence, external all-vs-all sequence, external structural,
 and current-countable structural controls are clear. Evidence-based confidence
 call: these 3 rows are now better duplicate-screened than the previous
-replacement surface, but none is import-ready because UniRef-wide duplicate
-screening, terminal review acceptance, and full factory gates still block all
-3. The same run also added
+replacement surface, but at this stage none is import-ready because UniRef-wide
+duplicate screening, terminal review acceptance, and full factory gates still
+block all 3. The same run also added
 `artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json`,
 which packages those 3 rows into review-only terminal review packets with
 explicit allowed outcomes and remaining non-human blockers; it accepts/imports
@@ -188,10 +188,27 @@ explicit allowed outcomes and remaining non-human blockers; it accepts/imports
 queries UniRef90/50 handles for each queued candidate and its nearest current
 structural-reference accession. `P22830` vs `P00518`, `P78549` vs `P00750`,
 and `Q3LXA3` vs `P06213` have 0 shared UniRef90/50 clusters and 0 fetch
-failures, but this is nearest-reference evidence only and does not replace a
-full UniRef-wide duplicate screen. Continue with full UniRef-wide duplicate
-screening or terminal review/factory evidence for `P22830`, `P78549`, and
-`Q3LXA3`; do not retry the 5 duplicate-signal rows without new evidence.
+failures. The 2026-05-17T07:29:36Z run then added
+`artifacts/v3_external_hard_negative_next_candidate_uniref_current_reference_screen_1025.json`,
+which fetches each candidate's UniRef90 and UniRef50 cluster members and
+intersects them with all 735 current countable reference accessions. `P22830`,
+`P78549`, and `Q3LXA3` all have 0 current-reference cluster overlaps, with 6/6
+candidate UniRef clusters fetched successfully. Evidence-based confidence call:
+the surviving next-candidate surface no longer has a current-reference UniRef
+cluster duplicate blocker, but none is import-ready because terminal review
+acceptance and the full factory gate still block all 3 rows. Continue with
+terminal review/factory evidence for `P22830`, `P78549`, and `Q3LXA3`; do not
+retry the 5 duplicate-signal rows without new evidence.
+
+Run verification for the current handoff: started `2026-05-17T07:29:36Z` and
+wrapped at `2026-05-17T07:42:26Z`. Startup checks passed with 386 unit tests
+and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks
+passed with 388 unit tests, `validate`, `compileall`, `git diff --check`, JSON
+parse checks for the new UniRef current-reference screen, the focused scaling
+artifact regression, and the external transfer gate still at 68/68. README,
+`docs/external_source_transfer.md`, work scope, handoff, status inputs, and
+external transfer notes were updated; `docs/label_factory.md` was checked and
+did not need content changes for this duplicate-screen slice.
 
 Run verification for the current handoff: started `2026-05-17T06:29:04Z` and
 wrapped at `2026-05-17T06:47:24Z`. Startup checks passed with 383 unit tests

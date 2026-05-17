@@ -36,6 +36,7 @@ ALPHAFOLD_MODEL_VERSIONS = (6, 5, 4, 3, 2, 1)
 USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
 UNIPROT_ENTRY_URL = "https://rest.uniprot.org/uniprotkb"
 UNIREF_SEARCH_URL = "https://rest.uniprot.org/uniref/search"
+UNIREF_ENTRY_URL = "https://rest.uniprot.org/uniref/{cluster_id}"
 REPRESENTATION_PREDICTIVE_FEATURE_SOURCES = (
     "sequence_embedding_cosine",
     "sequence_length_coverage",
@@ -11265,6 +11266,304 @@ def fetch_uniref_cluster_summary(accession: str) -> dict[str, Any]:
         "uniref100_ids": sorted(uniref100_ids),
         "uniref90_ids": sorted(uniref90_ids),
         "uniref50_ids": sorted(uniref50_ids),
+    }
+
+
+def fetch_uniref_cluster_members(cluster_id: str) -> dict[str, Any]:
+    """Fetch compact member accession evidence for one UniRef cluster."""
+
+    normalized = str(cluster_id or "").strip()
+    if not normalized:
+        raise ValueError("cluster_id is required")
+    if not normalized.startswith("UniRef"):
+        raise ValueError("cluster_id must be a UniRef identifier")
+    url = f"{UNIREF_ENTRY_URL.format(cluster_id=quote(normalized, safe=''))}?format=json"
+    request = Request(url, headers={"User-Agent": USER_AGENT})
+    with urlopen(request, timeout=30) as response:  # nosec B310 - public UniProt REST
+        payload = json.loads(response.read().decode("utf-8"))
+    representative_member = payload.get("representativeMember", {})
+    members = payload.get("members", [])
+    if not isinstance(members, list):
+        members = []
+    accessions = set()
+    accessions.update(_uniref_member_accessions(representative_member))
+    for member in members:
+        accessions.update(_uniref_member_accessions(member))
+    return {
+        "cluster_id": normalized,
+        "fetch_status": "ok",
+        "query_url": url,
+        "entry_type": payload.get("entryType"),
+        "member_count": payload.get("memberCount"),
+        "returned_member_count": len(members)
+        + (1 if isinstance(representative_member, dict) else 0),
+        "accession_count": len(accessions),
+        "accessions": sorted(accessions),
+    }
+
+
+def build_external_hard_negative_next_candidate_uniref_current_reference_screen(
+    *,
+    targeted_uniref_check: dict[str, Any],
+    sequence_clusters: dict[str, Any],
+    labels: list[Any],
+    max_rows: int = 3,
+    fetcher: Callable[[str], dict[str, Any]] = fetch_uniref_cluster_members,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Screen candidate UniRef90/50 clusters against all current countable references."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    countable_entry_ids = _countable_label_entry_ids(labels)
+    current_reference_entry_ids_by_accession: dict[str, set[str]] = defaultdict(set)
+    for row in sequence_clusters.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        entry_id = str(row.get("entry_id") or "")
+        if entry_id not in countable_entry_ids:
+            continue
+        for accession in row.get("reference_uniprot_ids", []) or []:
+            normalized = _normalize_accession(accession)
+            if normalized:
+                current_reference_entry_ids_by_accession[normalized].add(entry_id)
+    current_reference_accessions = set(current_reference_entry_ids_by_accession)
+
+    fetch_cache: dict[str, dict[str, Any]] = {}
+    fetch_failures: list[dict[str, str]] = []
+
+    def cached_fetch(cluster_id: str) -> dict[str, Any]:
+        normalized = str(cluster_id or "").strip()
+        if not normalized:
+            raise ValueError("cluster_id is required")
+        if normalized not in fetch_cache:
+            try:
+                fetch_cache[normalized] = fetcher(normalized)
+            except Exception as exc:  # pragma: no cover - live fetch safety
+                fetch_cache[normalized] = {
+                    "cluster_id": normalized,
+                    "fetch_status": "failed",
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                    "accessions": [],
+                }
+                fetch_failures.append(
+                    {
+                        "cluster_id": normalized,
+                        "error_type": type(exc).__name__,
+                        "error": str(exc),
+                    }
+                )
+        return fetch_cache[normalized]
+
+    rows: list[dict[str, Any]] = []
+    for targeted_row in [
+        row
+        for row in targeted_uniref_check.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ][:max_rows]:
+        accession = _normalize_accession(targeted_row.get("accession"))
+        candidate_cluster_ids = sorted(
+            {
+                str(cluster_id).strip()
+                for cluster_id in (
+                    (targeted_row.get("candidate_uniref90_ids", []) or [])
+                    + (targeted_row.get("candidate_uniref50_ids", []) or [])
+                )
+                if str(cluster_id).strip()
+            }
+        )
+        cluster_summaries: list[dict[str, Any]] = []
+        accessions_by_cluster: dict[str, set[str]] = {}
+        incomplete = False
+        for cluster_id in candidate_cluster_ids:
+            cluster_summary = cached_fetch(cluster_id)
+            if cluster_summary.get("fetch_status") != "ok":
+                incomplete = True
+            cluster_accessions = {
+                _normalize_accession(member_accession)
+                for member_accession in cluster_summary.get("accessions", []) or []
+                if _normalize_accession(member_accession)
+            }
+            accessions_by_cluster[cluster_id] = cluster_accessions
+            cluster_summaries.append(
+                {
+                    "cluster_id": cluster_id,
+                    "fetch_status": cluster_summary.get("fetch_status"),
+                    "entry_type": cluster_summary.get("entry_type"),
+                    "member_count": cluster_summary.get("member_count"),
+                    "returned_member_count": cluster_summary.get(
+                        "returned_member_count"
+                    ),
+                    "accession_count": cluster_summary.get("accession_count"),
+                    "current_reference_overlap_count": len(
+                        cluster_accessions & current_reference_accessions
+                    ),
+                }
+            )
+
+        overlapping_accessions = sorted(
+            {
+                member_accession
+                for cluster_accessions in accessions_by_cluster.values()
+                for member_accession in cluster_accessions & current_reference_accessions
+                if member_accession != accession
+            }
+        )
+        overlapping_reference_rows = [
+            {
+                "reference_accession": reference_accession,
+                "current_entry_ids": sorted(
+                    current_reference_entry_ids_by_accession[reference_accession],
+                    key=_external_entry_id_sort_key,
+                ),
+                "candidate_uniref_cluster_ids": sorted(
+                    cluster_id
+                    for cluster_id, cluster_accessions in accessions_by_cluster.items()
+                    if reference_accession in cluster_accessions
+                ),
+            }
+            for reference_accession in overlapping_accessions
+        ]
+
+        blockers: list[str]
+        if not candidate_cluster_ids:
+            status = "uniref_current_reference_screen_incomplete"
+            blockers = ["candidate_uniref_cluster_ids_missing"]
+        elif incomplete:
+            status = "uniref_current_reference_screen_incomplete"
+            blockers = ["candidate_uniref_cluster_fetch_incomplete"]
+        elif overlapping_accessions:
+            status = "uniref_current_reference_cluster_overlap_holdout"
+            blockers = [
+                "candidate_uniref90_or_uniref50_contains_current_reference_accession"
+            ]
+        else:
+            status = "uniref_current_reference_screen_no_current_reference_overlap"
+            blockers = []
+
+        remaining_import_blockers = sorted(
+            set(
+                blockers
+                + [
+                    "terminal_review_decision_not_accepted",
+                    "full_label_factory_gate_not_run",
+                ]
+            )
+        )
+        if blockers:
+            remaining_import_blockers = sorted(
+                set(remaining_import_blockers + ["uniref_wide_duplicate_screening_required"])
+            )
+
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": targeted_row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": targeted_row.get("lane_id"),
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "uniref_current_reference_screen_status": status,
+                "candidate_uniref_cluster_ids": candidate_cluster_ids,
+                "candidate_uniref_cluster_summaries": cluster_summaries,
+                "current_countable_reference_accession_count": len(
+                    current_reference_accessions
+                ),
+                "current_countable_reference_entry_count": len(countable_entry_ids),
+                "overlapping_current_reference_accessions": overlapping_reference_rows,
+                "uniref_current_reference_blockers": blockers,
+                "targeted_uniref_check_status": targeted_row.get(
+                    "targeted_uniref_check_status"
+                ),
+                "remaining_import_blockers": remaining_import_blockers,
+                "review_status": (
+                    "external_hard_negative_next_candidate_uniref_current_"
+                    "reference_screen_review_only"
+                ),
+                "import_ready_candidate": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+            }
+        )
+
+    status_counts = Counter(
+        row["uniref_current_reference_screen_status"] for row in rows
+    )
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    clear_count = status_counts.get(
+        "uniref_current_reference_screen_no_current_reference_overlap", 0
+    )
+    incomplete_count = status_counts.get(
+        "uniref_current_reference_screen_incomplete", 0
+    )
+    overlap_count = status_counts.get(
+        "uniref_current_reference_cluster_overlap_holdout", 0
+    )
+    blocker_not_removed = sorted(
+        {
+            blocker
+            for row in rows
+            for blocker in row["remaining_import_blockers"]
+        }
+        | {"no_import_ready_external_rows"}
+    )
+    return {
+        "metadata": {
+            "method": (
+                "external_hard_negative_next_candidate_uniref_current_reference_"
+                "screen"
+            ),
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "next_candidate_uniref90_50_current_reference_cluster_screen_recorded"
+            ),
+            "blocker_not_removed": blocker_not_removed,
+            "review_only": True,
+            "screen_scope": (
+                "candidate UniRef90 and UniRef50 cluster members intersected "
+                "against all current countable M-CSA reference accessions"
+            ),
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "candidate_count": len(rows),
+            "uniref_current_reference_clear_count": clear_count,
+            "uniref_current_reference_overlap_holdout_count": overlap_count,
+            "uniref_current_reference_incomplete_count": incomplete_count,
+            "current_countable_reference_accession_count": len(
+                current_reference_accessions
+            ),
+            "current_countable_reference_entry_count": len(countable_entry_ids),
+            "fetched_uniref_cluster_count": len(fetch_cache),
+            "fetch_failure_count": len(fetch_failures),
+            "uniref_current_reference_screen_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "ready_for_label_import": False,
+            "source_targeted_uniref_check_method": (
+                targeted_uniref_check.get("metadata", {}).get("method")
+            ),
+            "source_sequence_clusters_method": sequence_clusters.get(
+                "metadata", {}
+            ).get("method"),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "fetch_failures": fetch_failures,
+        "warnings": [
+            (
+                "UniRef current-reference screens are duplicate-control evidence "
+                "only; terminal review and full factory gates still block import"
+            )
+        ],
     }
 
 
@@ -22981,6 +23280,19 @@ def _duplicate_accessions(rows: list[dict[str, Any]]) -> list[str]:
 
 def _normalize_accession(value: Any) -> str:
     return str(value or "").strip().upper()
+
+
+def _uniref_member_accessions(member: Any) -> set[str]:
+    if not isinstance(member, dict):
+        return set()
+    accessions = member.get("accessions", [])
+    if not isinstance(accessions, list):
+        accessions = []
+    return {
+        _normalize_accession(accession)
+        for accession in accessions
+        if _normalize_accession(accession)
+    }
 
 
 def _clean_sequence(value: Any) -> str:
