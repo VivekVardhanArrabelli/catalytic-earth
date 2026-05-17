@@ -1,0 +1,244 @@
+{
+  "metadata": {
+    "alphafold_reference_candidate_count": 8,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "candidate_manifest": "artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json",
+        "pilot_candidate_priority": "artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json"
+      },
+      "blocker_removed": "broader_external_fold_diverse_candidate_surface_expanded_for_structure_clustering",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "candidate_manifest": 1025,
+        "pilot_candidate_priority": 1025
+      },
+      "payload_methods": {
+        "candidate_manifest": "external_hard_negative_next_candidate_sourcing",
+        "pilot_candidate_priority": "external_hard_negative_next_candidate_sourcing"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "candidate_manifest": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        },
+        "pilot_candidate_priority": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "candidate_manifest",
+          "pilot_candidate_priority"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "external_structural_cluster_index_not_built",
+      "external_structural_tm_diverse_split_not_assigned"
+    ],
+    "blocker_removed": "broader_external_fold_diverse_candidate_surface_expanded_for_structure_clustering",
+    "broader_surface_candidate_count": 8,
+    "candidate_count": 8,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T05:42:45Z",
+    "foldseek_or_tmalign_backend_required": true,
+    "full_tm_score_holdout_claim_permitted": false,
+    "import_ready_row_count": 0,
+    "lane_counts": {
+      "external_source:lyase": 5,
+      "external_source:oxidoreductase_long_tail": 3
+    },
+    "max_rows": 8,
+    "method": "external_structural_tm_holdout_path",
+    "nearest_neighbor_cache_required": true,
+    "pdb_reference_candidate_count": 5,
+    "ready_for_label_import": false,
+    "review_status": "review_only_non_countable",
+    "selected_pilot_candidate_count": 0,
+    "slice_id": "1025",
+    "source_candidate_manifest": "artifacts/v3_external_source_candidate_manifest_1025.json",
+    "source_candidate_manifest_method": "external_hard_negative_next_candidate_sourcing",
+    "source_pilot_candidate_priority": "artifacts/v3_external_source_pilot_candidate_priority_1025.json",
+    "source_pilot_candidate_priority_method": "external_hard_negative_next_candidate_sourcing",
+    "strict_tm_threshold_target": "<0.7",
+    "structure_cluster_before_split_assignment": true,
+    "structure_reference_candidate_count": 8,
+    "surface_scope": "broader_external_surface",
+    "tm_score_split_claim_permitted": false
+  },
+  "rows": [
+    {
+      "accession": "P00338",
+      "alphafold_ids": [
+        "P00338"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P00338",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_reference_count": 46,
+      "pdb_reference_examples": [
+        "1I10",
+        "4AJP",
+        "4JNK",
+        "4L4R",
+        "4L4S"
+      ],
+      "protein_name": "L-lactate dehydrogenase A chain (LDH-A) (EC 1.1.1.27) (Cell proliferation-inducing gene 19 protein) (LDH muscle subunit) (LDH-M) (Renal carcinoma antigen NY-REN-59)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "P04406",
+      "alphafold_ids": [
+        "P04406"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P04406",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_reference_count": 21,
+      "pdb_reference_examples": [
+        "1U8F",
+        "1ZNQ",
+        "3GPD",
+        "4WNC",
+        "4WNI"
+      ],
+      "protein_name": "Glyceraldehyde-3-phosphate dehydrogenase (GAPDH) (EC 1.2.1.12) (Peptidyl-cysteine S-nitrosylase GAPDH) (EC 2.6.99.-)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "P14060",
+      "alphafold_ids": [
+        "P14060"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P14060",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "protein_name": "3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type 1 (3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type I) (3-beta-HSD I) (3-beta-hydroxy-5-ene steroid dehydrogenase) (3-beta-hydroxy-Delta(5)-steroid dehydrogenase) (EC 1.1.1.145) (3-beta-hydroxysteroid 3-dehydrogenase) (EC 1.1.1.270) (Delta-5-3-ketosteroid isomerase) (Dihydrotestosterone oxidoreductase) (EC 1.1.1.210) (Steroid Delta-isomerase) (EC 5.3.3.1) (Trophoblast antigen FDO161G)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "Q9GZT4",
+      "alphafold_ids": [
+        "Q9GZT4"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9GZT4",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 11,
+      "pdb_reference_examples": [
+        "3L6B",
+        "3L6R",
+        "5X2L",
+        "6SLH",
+        "6ZSP"
+      ],
+      "protein_name": "Serine racemase (EC 5.1.1.18) (D-serine ammonia-lyase) (D-serine dehydratase) (EC 4.3.1.18) (L-serine ammonia-lyase) (L-serine dehydratase) (EC 4.3.1.17)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "P22830",
+      "alphafold_ids": [
+        "P22830"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P22830",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 25,
+      "pdb_reference_examples": [
+        "1HRK",
+        "2HRC",
+        "2HRE",
+        "2PNJ",
+        "2PO5"
+      ],
+      "protein_name": "Ferrochelatase, mitochondrial (EC 4.98.1.1) (Heme synthase) (Protoheme ferro-lyase)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "Q8TB92",
+      "alphafold_ids": [
+        "Q8TB92"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8TB92",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "protein_name": "3-hydroxy-3-methylglutaryl-CoA lyase, cytoplasmic (EC 4.1.3.4) (3-hydroxy-3-methylglutaryl-CoA lyase-like protein 1) (HMGCL-like 1) (Endoplasmic reticulum 3-hydroxy-3-methylglutaryl-CoA lyase) (er-cHL)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "P78549",
+      "alphafold_ids": [
+        "P78549"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P78549",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 2,
+      "pdb_reference_examples": [
+        "7RDS",
+        "7RDT"
+      ],
+      "protein_name": "Endonuclease III-like protein 1 (hNTH1) (EC 3.2.2.-) (EC 4.2.99.18) (Bifunctional DNA N-glycosylase/DNA-(apurinic or apyrimidinic site) lyase) (DNA glycosylase/AP lyase)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "Q3LXA3",
+      "alphafold_ids": [
+        "Q3LXA3"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "protein_name": "Triokinase/FMN cyclase (Bifunctional ATP-dependent dihydroxyacetone kinase/FAD-AMP lyase (cyclizing)) [Includes: ATP-dependent dihydroxyacetone kinase (DHA kinase) (EC 2.7.1.28) (EC 2.7.1.29) (Glycerone kinase) (Triokinase) (Triose kinase); FAD-AMP lyase (cyclizing) (EC 4.6.1.15) (FAD-AMP lyase (cyclic FMN forming)) (FMN cyclase)]",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    }
+  ],
+  "warnings": [
+    "external structural TM holdout path is a review-only candidate surface; it requires clustering before split assignment and does not authorize import"
+  ]
+}

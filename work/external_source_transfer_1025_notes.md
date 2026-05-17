@@ -340,6 +340,33 @@ Current review-only external artifacts:
   records all 7 sequence-clean fresh candidates as terminal review-only
   `rejected_current_countable_structural_duplicate_signal` outcomes. The fresh
   sourced tranche has 0 import-ready rows and 0 countable candidates.
+- `artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json` starts
+  the next replacement sourcing surface after excluding the original 30-row
+  pool, the second-tranche duplicate rejects, and all 8 prior fresh sourced
+  rows. It admits 8 covered-lane Swiss-Prot rows with explicit UniProt
+  active-site plus catalytic-activity context: P00338, P04406, P14060, Q9GZT4,
+  P22830, Q8TB92, P78549, and Q3LXA3. These are review-only sourcing rows, not
+  an import tranche.
+- `artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_1025.json`
+  screens those 8 replacement rows against the current accepted reference FASTA
+  with MMseqs2. The backend succeeds with 8/8 no-signal rows, 0 exact-reference
+  holdouts, and 0 near-duplicate rows; the companion audit is guardrail-clean.
+- `artifacts/v3_external_hard_negative_next_candidate_structural_cluster_index_1025.json`
+  stages all 8 replacement AlphaFold coordinate sidecars and completes the
+  external all-vs-all structural cache. It covers 28/28 unordered nonself
+  Foldseek pairs, forms 8 clusters at `TM >=0.7`, and finds 0 high-TM external
+  pairs.
+- `artifacts/v3_external_hard_negative_next_candidate_current_countable_structural_screen_1025.json`
+  screens the 8 sequence-clean replacement rows against 672 current countable
+  selected structures. Foldseek completes 5376/5376 unique query-target pairs:
+  5 rows have high-TM current-countable duplicate signals, while P22830,
+  P78549, and Q3LXA3 have no current-countable structural duplicate signal.
+- `artifacts/v3_external_hard_negative_next_candidate_terminal_decisions_1025.json`
+  records terminal review-only outcomes for the replacement surface: 5
+  `rejected_current_countable_structural_duplicate_signal` rows and 3
+  `deferred_requires_review_and_factory_gate_after_structural_screen` rows.
+  The deferred rows still require UniRef-wide duplicate screening, terminal
+  review, and full factory gates; 0 rows are import-ready or countable.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine

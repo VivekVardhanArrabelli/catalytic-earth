@@ -462,6 +462,27 @@ row after the completed cache maps it to `1MEK` at `TM=0.9039`.
 records all seven rows as review-only
 `rejected_current_countable_structural_duplicate_signal` decisions with 0
 import-ready rows and 0 countable candidates.
+`artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json` opens
+the next review-only sourcing surface after excluding the original 30-row pool,
+the second-tranche duplicate rejects, and all 8 prior fresh sourced rows. It
+finds 8 replacement covered-lane Swiss-Prot candidates with explicit UniProt
+active-site plus catalytic-activity source context (`P00338`, `P04406`,
+`P14060`, `Q9GZT4`, `P22830`, `Q8TB92`, `P78549`, and `Q3LXA3`). The bounded
+MMseqs2 current-reference screen in
+`artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_1025.json`
+finds 8/8 no-signal rows, 0 exact-reference holdouts, and 0 near-duplicate
+rows. The external all-vs-all structural cache
+`artifacts/v3_external_hard_negative_next_candidate_structural_cluster_index_1025.json`
+materializes 8/8 AlphaFold sidecars, covers 28/28 unordered pairs, and finds
+0 high-TM external pairs. The current-countable structural screen
+`artifacts/v3_external_hard_negative_next_candidate_current_countable_structural_screen_1025.json`
+then completes 5376/5376 query-target pairs: 5 rows have high-TM
+current-countable duplicate signals, while `P22830`, `P78549`, and `Q3LXA3`
+have no current-countable structural duplicate signal at `TM >=0.7`.
+`artifacts/v3_external_hard_negative_next_candidate_terminal_decisions_1025.json`
+keeps all 8 review-only: 5 rejected duplicate-signal rows and 3 deferred rows
+still blocked by UniRef-wide duplicate screening, terminal review, and the full
+factory gate.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

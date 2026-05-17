@@ -5961,10 +5961,10 @@ def _external_backend_sequence_candidate_rows(
         for row in candidate_manifest.get("rows", []) or []
         if isinstance(row, dict) and _normalize_accession(row.get("accession"))
     ]
-    if (
-        candidate_manifest.get("metadata", {}).get("method")
-        == "external_hard_negative_new_candidate_sourcing"
-    ):
+    if candidate_manifest.get("metadata", {}).get("method") in {
+        "external_hard_negative_new_candidate_sourcing",
+        "external_hard_negative_next_candidate_sourcing",
+    }:
         return [
             row
             for row in rows
@@ -10540,6 +10540,10 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
             backend_sequence_search=backend_sequence_search,
         )
     )
+    source_method = new_candidate_sourcing.get("metadata", {}).get("method")
+    is_next_candidate_surface = (
+        source_method == "external_hard_negative_next_candidate_sourcing"
+    )
     sequence_no_signal_rows = list(selection.get("rows", []) or [])
     screen = build_external_hard_negative_second_tranche_current_countable_structural_screen(
         second_tranche_selection=selection,
@@ -10568,18 +10572,31 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
             "max_external_vs_reference_identity"
         )
         row["review_status"] = (
-            "external_hard_negative_new_candidate_current_countable_"
+            "external_hard_negative_next_candidate_current_countable_"
+            "structural_screen_review_only"
+            if is_next_candidate_surface
+            else "external_hard_negative_new_candidate_current_countable_"
             "structural_screen_review_only"
         )
 
     metadata = screen["metadata"]
     metadata["method"] = (
-        "external_hard_negative_new_candidate_current_countable_structural_screen"
+        "external_hard_negative_next_candidate_current_countable_structural_screen"
+        if is_next_candidate_surface
+        else "external_hard_negative_new_candidate_current_countable_structural_screen"
     )
     metadata["blocker_removed"] = (
-        "new_candidate_current_countable_structural_screen_completed"
-        if metadata.get("foldseek_run_status") == "completed"
-        else "new_candidate_current_countable_structural_screen_attempted"
+        (
+            "next_candidate_current_countable_structural_screen_completed"
+            if metadata.get("foldseek_run_status") == "completed"
+            else "next_candidate_current_countable_structural_screen_attempted"
+        )
+        if is_next_candidate_surface
+        else (
+            "new_candidate_current_countable_structural_screen_completed"
+            if metadata.get("foldseek_run_status") == "completed"
+            else "new_candidate_current_countable_structural_screen_attempted"
+        )
     )
     metadata["blocker_not_removed"] = sorted(
         set(metadata.get("blocker_not_removed", []) + ["no_import_ready_external_rows"])
@@ -10595,9 +10612,7 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
     metadata["exact_reference_holdout_count"] = len(
         metadata["exact_reference_holdout_accessions"]
     )
-    metadata["source_new_candidate_sourcing_method"] = new_candidate_sourcing.get(
-        "metadata", {}
-    ).get("method")
+    metadata["source_new_candidate_sourcing_method"] = source_method
     metadata["source_backend_sequence_search_method"] = backend_sequence_search.get(
         "metadata", {}
     ).get("method")
@@ -10607,7 +10622,11 @@ def build_external_hard_negative_new_candidate_current_countable_structural_scre
     metadata["artifact_lineage"] = artifact_lineage or {}
     screen["warnings"] = [
         (
-            "new-candidate current-countable structural screening is review-only; "
+            "next-candidate current-countable structural screening is review-only; "
+            "pair-cache completion, UniRef-wide duplicate screening, terminal "
+            "review acceptance, and full factory gates still block import"
+            if is_next_candidate_surface
+            else "new-candidate current-countable structural screening is review-only; "
             "pair-cache completion, UniRef-wide duplicate screening, terminal "
             "review acceptance, and full factory gates still block import"
         )
@@ -10807,21 +10826,37 @@ def build_external_hard_negative_new_candidate_terminal_decisions(
         artifact_lineage=artifact_lineage,
     )
 
+    source_method = new_candidate_sourcing.get("metadata", {}).get("method")
+    is_next_candidate_surface = (
+        source_method == "external_hard_negative_next_candidate_sourcing"
+    )
+    review_status = (
+        "external_hard_negative_next_candidate_terminal_decision_review_only"
+        if is_next_candidate_surface
+        else "external_hard_negative_new_candidate_terminal_decision_review_only"
+    )
     for row in decisions.get("rows", []) or []:
-        row["review_status"] = (
-            "external_hard_negative_new_candidate_terminal_decision_review_only"
-        )
+        row["review_status"] = review_status
         row["backend_sequence_search_status"] = "no_near_duplicate_signal"
 
     metadata = decisions["metadata"]
-    metadata["method"] = "external_hard_negative_new_candidate_terminal_decisions"
-    metadata["blocker_removed"] = (
-        "new_candidate_terminal_decisions_recorded_after_current_countable_"
-        "structural_screen"
+    metadata["method"] = (
+        "external_hard_negative_next_candidate_terminal_decisions"
+        if is_next_candidate_surface
+        else "external_hard_negative_new_candidate_terminal_decisions"
     )
-    metadata["source_new_candidate_sourcing_method"] = new_candidate_sourcing.get(
-        "metadata", {}
-    ).get("method")
+    metadata["blocker_removed"] = (
+        (
+            "next_candidate_terminal_decisions_recorded_after_current_countable_"
+            "structural_screen"
+        )
+        if is_next_candidate_surface
+        else (
+            "new_candidate_terminal_decisions_recorded_after_current_countable_"
+            "structural_screen"
+        )
+    )
+    metadata["source_new_candidate_sourcing_method"] = source_method
     metadata["source_backend_sequence_search_method"] = backend_sequence_search.get(
         "metadata", {}
     ).get("method")
@@ -10836,7 +10871,11 @@ def build_external_hard_negative_new_candidate_terminal_decisions(
     metadata["artifact_lineage"] = artifact_lineage or {}
     decisions["warnings"] = [
         (
-            "new-candidate terminal decisions are review-only import-safety "
+            "next-candidate terminal decisions are review-only import-safety "
+            "decisions; they close the replacement hard-negative tranche "
+            "without validating enzyme function or creating countable labels"
+            if is_next_candidate_surface
+            else "new-candidate terminal decisions are review-only import-safety "
             "decisions; they close the fresh hard-negative tranche without "
             "validating enzyme function or creating countable labels"
         )
@@ -10849,6 +10888,8 @@ def build_external_hard_negative_new_candidate_sourcing(
     query_manifest: dict[str, Any],
     current_candidate_manifest: dict[str, Any],
     second_tranche_terminal_decisions: dict[str, Any],
+    prior_new_candidate_sourcing: dict[str, Any] | None = None,
+    prior_new_candidate_terminal_decisions: dict[str, Any] | None = None,
     max_records_per_lane: int = 12,
     max_active_site_fetches: int = 16,
     max_candidates: int = 8,
@@ -10860,6 +10901,12 @@ def build_external_hard_negative_new_candidate_sourcing(
     ),
     fetch_query: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
     fetch_entry: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
+    method_name: str = "external_hard_negative_new_candidate_sourcing",
+    blocker_removed: str = (
+        "new_external_candidate_sourcing_started_after_current_pool_exhausted"
+    ),
+    selection_scope: str = "new_external_sourcing_only_no_import_attempt",
+    review_status: str = "external_hard_negative_new_candidate_sourcing_review_only",
     artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Source fresh external hard-negative candidates after the current pool stalls.
@@ -10885,6 +10932,22 @@ def build_external_hard_negative_new_candidate_sourcing(
     terminal_rejected_accessions = {
         _normalize_accession(row.get("accession"))
         for row in second_tranche_terminal_decisions.get("rows", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(row.get("accession"))
+        and str(row.get("terminal_decision_status") or "").startswith("rejected_")
+    }
+    prior_sourced_accessions = {
+        _normalize_accession(row.get("accession"))
+        for row in (prior_new_candidate_sourcing or {}).get("rows", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(row.get("accession"))
+        and row.get("sourcing_status")
+        == "sourced_pending_sequence_structure_distance_screens"
+    }
+    prior_terminal_rejected_accessions = {
+        _normalize_accession(row.get("accession"))
+        for row in (prior_new_candidate_terminal_decisions or {}).get("rows", [])
+        or []
         if isinstance(row, dict)
         and _normalize_accession(row.get("accession"))
         and str(row.get("terminal_decision_status") or "").startswith("rejected_")
@@ -10933,6 +10996,10 @@ def build_external_hard_negative_new_candidate_sourcing(
             blockers.append("accession_already_in_current_external_pool")
         if accession in terminal_rejected_accessions:
             blockers.append("terminal_duplicate_rejection_previous_tranche")
+        if accession in prior_sourced_accessions:
+            blockers.append("accession_already_in_prior_new_candidate_sourcing")
+        if accession in prior_terminal_rejected_accessions:
+            blockers.append("terminal_duplicate_rejection_previous_new_candidate_tranche")
         if not is_reviewed:
             blockers.append("reviewed_swissprot_record_required")
         if not specific_ec_numbers:
@@ -11024,6 +11091,9 @@ def build_external_hard_negative_new_candidate_sourcing(
         elif "accession_already_in_current_external_pool" in blockers:
             sourcing_status = "excluded_current_external_pool"
             next_action = "do not retry current-pool accession without new evidence"
+        elif "accession_already_in_prior_new_candidate_sourcing" in blockers:
+            sourcing_status = "excluded_prior_new_candidate_pool"
+            next_action = "do not retry prior sourced accession without new evidence"
         elif "mechanism_lane_not_covered_by_existing_counterevidence_rules" in blockers:
             sourcing_status = "blocked_uncovered_mechanism_lane"
             next_action = "source a covered-lane row instead of adding a new lane"
@@ -11080,9 +11150,7 @@ def build_external_hard_negative_new_candidate_sourcing(
                 "import_ready_candidate": False,
                 "ready_for_label_import": False,
                 "countable_label_candidate": False,
-                "review_status": (
-                    "external_hard_negative_new_candidate_sourcing_review_only"
-                ),
+                "review_status": review_status,
             }
         )
 
@@ -11137,13 +11205,13 @@ def build_external_hard_negative_new_candidate_sourcing(
 
     return {
         "metadata": {
-            "method": "external_hard_negative_new_candidate_sourcing",
+            "method": method_name,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
-            "blocker_removed": "new_external_candidate_sourcing_started_after_current_pool_exhausted",
+            "blocker_removed": blocker_removed,
             "blocker_not_removed": blocker_not_removed,
             "review_only": True,
-            "selection_scope": "new_external_sourcing_only_no_import_attempt",
+            "selection_scope": selection_scope,
             "target_label_type": "out_of_scope",
             "target_fingerprint_id": None,
             "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
@@ -11166,6 +11234,11 @@ def build_external_hard_negative_new_candidate_sourcing(
                 for row in rows
                 if row["sourcing_status"] == "excluded_current_external_pool"
             ),
+            "prior_new_candidate_pool_exclusion_count": sum(
+                1
+                for row in rows
+                if row["sourcing_status"] == "excluded_prior_new_candidate_pool"
+            ),
             "active_site_fetch_count": active_site_fetch_count,
             "active_site_fetch_failure_count": len(active_site_fetch_failures),
             "query_fetch_failure_count": expanded_sample.get("metadata", {}).get(
@@ -11185,6 +11258,18 @@ def build_external_hard_negative_new_candidate_sourcing(
             ),
             "source_second_tranche_terminal_decisions_method": (
                 second_tranche_terminal_decisions.get("metadata", {}).get("method")
+            ),
+            "source_prior_new_candidate_sourcing_method": (
+                (prior_new_candidate_sourcing or {}).get("metadata", {}).get("method")
+            ),
+            "source_prior_new_candidate_terminal_decisions_method": (
+                (prior_new_candidate_terminal_decisions or {})
+                .get("metadata", {})
+                .get("method")
+            ),
+            "prior_new_candidate_sourced_accessions": sorted(prior_sourced_accessions),
+            "prior_new_candidate_terminal_rejected_accessions": sorted(
+                prior_terminal_rejected_accessions
             ),
             "artifact_lineage": artifact_lineage or {},
         },

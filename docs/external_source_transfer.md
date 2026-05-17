@@ -99,6 +99,30 @@ import.
   `rejected_current_countable_structural_duplicate_signal` outcomes with 0
   import-ready rows and 0 countable candidates. This closes the fresh sourced
   tranche without authorizing import.
+- `artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json`
+  starts the next review-only hard-negative sourcing surface. It excludes the
+  original 30-row pool, the second-tranche rejects, and all 8 prior fresh
+  sourced rows, then admits 8 replacement covered-lane Swiss-Prot rows with
+  explicit UniProt active-site plus catalytic-activity source context.
+- `artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_1025.json`
+  completes the bounded current-reference MMseqs2 screen for those 8
+  replacements. All 8 have no current-reference near-duplicate signal, with 0
+  exact-reference holdouts and a guardrail-clean audit. They remain
+  review-only.
+- `artifacts/v3_external_hard_negative_next_candidate_structural_cluster_index_1025.json`
+  stages all 8 replacement AlphaFold coordinate sidecars and completes the
+  external all-vs-all Foldseek cache. The cache covers 28/28 unordered pairs,
+  forms 8 clusters at `TM >=0.7`, and finds 0 high-TM external pairs.
+- `artifacts/v3_external_hard_negative_next_candidate_current_countable_structural_screen_1025.json`
+  screens those 8 sequence-clean rows against current countable selected
+  structures. Foldseek completes 5376/5376 unique query-target pairs: 5 rows
+  have high-TM current-countable duplicate signals, and 3 rows (`P22830`,
+  `P78549`, `Q3LXA3`) have no current-countable structural duplicate signal.
+- `artifacts/v3_external_hard_negative_next_candidate_terminal_decisions_1025.json`
+  records 5 review-only duplicate-signal rejections and 3 review-only
+  deferrals that still require UniRef-wide duplicate screening, terminal
+  review, and full factory gates. No replacement row is import-ready or
+  countable.
 
 ## Immediate Pilot Direction
 

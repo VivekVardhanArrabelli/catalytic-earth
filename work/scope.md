@@ -562,9 +562,26 @@ Current expectation:
   signals; `Q13087` maps to `1MEK` at `TM=0.9039` and is no longer a viable
   no-signal row. Terminal review-only decisions reject all seven fresh sourced
   rows as `rejected_current_countable_structural_duplicate_signal`, with 0
-  import-ready rows and 0 countable labels. The active bottleneck is new
-  external hard-negative sourcing or new evidence, not another pass over the
-  exhausted current pools.
+  import-ready rows and 0 countable labels. The next replacement sourcing pass
+  now exists in
+  `artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json`: it
+  excludes the exhausted current and prior fresh pools, admits 8 replacement
+  covered-lane Swiss-Prot rows with explicit UniProt active-site plus
+  catalytic-activity context, and keeps them review-only. Its bounded MMseqs2
+  current-reference screen
+  `artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_1025.json`
+  finds 8/8 no-signal rows, 0 exact-reference holdouts, and 0 near-duplicate
+  rows. The replacement external structural cluster index then stages 8/8
+  AlphaFold coordinate sidecars, covers 28/28 external all-vs-all Foldseek
+  pairs, and finds 0 high-TM external pairs. The current-countable structural
+  screen completes 5376/5376 query-target pairs: 5 rows have high-TM current
+  duplicate signals, while `P22830`, `P78549`, and `Q3LXA3` have no
+  current-countable structural duplicate signal. Terminal decisions reject the
+  5 duplicate-signal rows and defer those 3 no-current-structural-signal rows
+  behind UniRef-wide duplicate screening, terminal review, and full factory
+  gates. The active bottleneck is now follow-up duplicate/review/factory
+  evidence for those 3 deferred replacements, not another pass over the
+  exhausted pools.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

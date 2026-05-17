@@ -1,0 +1,572 @@
+{
+  "blockers": [
+    "external_review_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "exact_reference_rows": [],
+  "failure_rows": [],
+  "fetch_failures": [],
+  "metadata": {
+    "alignment_row_count": 3,
+    "backend_available": true,
+    "backend_commands": [
+      "/opt/homebrew/bin/mmseqs easy-search /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_external_1025.fasta /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_reference_1025.fasta /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_1025.tsv /private/tmp/catalytic-earth-external-sequence-mmseqs-b9747a7cbb55dd07/tmp --format-output query,target,pident,alnlen,evalue,bits --min-seq-id 0.0 -c 0.8 --cov-mode 0 --max-seqs 10000 --threads 1"
+    ],
+    "backend_name": "mmseqs2_easy_search",
+    "backend_requested": "auto",
+    "backend_result_tsv": "artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_1025.tsv",
+    "backend_succeeded": true,
+    "backend_version": "18-8cc5c",
+    "blocker_not_removed": [
+      "uniref_wide_or_external_all_vs_all_duplicate_screen_not_run"
+    ],
+    "blocker_removed": "bounded_current_reference_backend_sequence_search",
+    "blocker_removed_for_status": "current_reference_backend_no_signal",
+    "candidate_count": 8,
+    "countable_label_candidate_count": 0,
+    "coverage_threshold": 0.8,
+    "current_reference_accession_count": 735,
+    "current_reference_sequence_count": 737,
+    "exact_coverage_threshold": 0.98,
+    "exact_identity_threshold": 0.999,
+    "exact_reference_row_count": 0,
+    "expected_external_sequence_count": 8,
+    "external_sequence_count": 8,
+    "external_sequence_source": "uniprot_sequence_batch_search",
+    "failure_row_count": 0,
+    "identity_threshold": 0.9,
+    "import_ready_row_count": 0,
+    "inactive_reference_accession_resolutions": {
+      "P03176": [
+        "P0DTH5",
+        "Q9QNF7"
+      ],
+      "Q05489": [
+        "P0DUB8",
+        "P0DUB9"
+      ]
+    },
+    "limitations": [
+      "MMseqs2 easy-search reports heuristic local alignments at the configured coverage threshold; it is not an exhaustive dynamic programming matrix for every low-identity pair",
+      "bounded search compares the 30-row external pilot against current accepted countable reference sequences only; no UniRef database was downloaded or searched",
+      "backend no-signal rows remove complete-search debt for the bounded current-reference pilot screen only; exact and near-duplicate rows remain holdout controls",
+      "Foldseek/TM-score structural duplicate screening is not computed here"
+    ],
+    "max_external_vs_reference_identity": 0.798,
+    "max_rows": 8,
+    "method": "external_source_backend_sequence_search",
+    "missing_external_sequence_accessions": [],
+    "missing_external_sequence_count": 0,
+    "missing_reference_sequence_accessions": [],
+    "missing_reference_sequence_count": 0,
+    "near_duplicate_row_count": 0,
+    "no_signal_row_count": 8,
+    "ready_for_label_import": false,
+    "reference_fasta_record_count": 734,
+    "review_only_rule": "real backend sequence-search evidence is review-only and cannot make external rows countable or import-ready",
+    "row_blocker_counts": {
+      "external_review_decision_artifact_not_built": 8,
+      "full_label_factory_gate_not_run": 8
+    },
+    "search_status_counts": {
+      "no_near_duplicate_signal": 8
+    },
+    "sequence_source_artifacts": {
+      "candidate_manifest": "external_hard_negative_next_candidate_sourcing",
+      "generated_external_fasta": "artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_external_1025.fasta",
+      "generated_reference_fasta": "artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_reference_1025.fasta",
+      "reference_fasta": "artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta",
+      "sequence_clusters": "sequence_cluster_proxy_from_reference_uniprot"
+    }
+  },
+  "near_duplicate_rows": [],
+  "no_signal_rows": [
+    {
+      "accession": "P00338",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P00338",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 332,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.798,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "L-lactate dehydrogenase A chain (LDH-A) (EC 1.1.1.27) (Cell proliferation-inducing gene 19 protein) (LDH muscle subunit) (LDH-M) (Renal carcinoma antigen NY-REN-59)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P00338",
+          "alignment_length": 333,
+          "bits": 549.0,
+          "evalue": 1.735e-178,
+          "external_length": 332,
+          "identity": 0.798,
+          "matched_m_csa_entry_ids": [
+            "m_csa:584"
+          ],
+          "min_coverage": 1.0,
+          "query_coverage": 1.003,
+          "reference_accession": "P00341",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 333,
+          "requested_reference_accession": "P00341",
+          "target_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "accession": "P04406",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P04406",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 335,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Glyceraldehyde-3-phosphate dehydrogenase (GAPDH) (EC 1.2.1.12) (Peptidyl-cysteine S-nitrosylase GAPDH) (EC 2.6.99.-)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P14060",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P14060",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 373,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type 1 (3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type I) (3-beta-HSD I) (3-beta-hydroxy-5-ene steroid dehydrogenase) (3-beta-hydroxy-Delta(5)-steroid dehydrogenase) (EC 1.1.1.145) (3-beta-hydroxysteroid 3-dehydrogenase) (EC 1.1.1.270) (Delta-5-3-ketosteroid isomerase) (Dihydrotestosterone oxidoreductase) (EC 1.1.1.210) (Steroid Delta-isomerase) (EC 5.3.3.1) (Trophoblast antigen FDO161G)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P22830",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P22830",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 423,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Ferrochelatase, mitochondrial (EC 4.98.1.1) (Heme synthase) (Protoheme ferro-lyase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P78549",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P78549",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 304,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Endonuclease III-like protein 1 (hNTH1) (EC 3.2.2.-) (EC 4.2.99.18) (Bifunctional DNA N-glycosylase/DNA-(apurinic or apyrimidinic site) lyase) (DNA glycosylase/AP lyase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q3LXA3",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 575,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Triokinase/FMN cyclase (Bifunctional ATP-dependent dihydroxyacetone kinase/FAD-AMP lyase (cyclizing)) [Includes: ATP-dependent dihydroxyacetone kinase (DHA kinase) (EC 2.7.1.28) (EC 2.7.1.29) (Glycerone kinase) (Triokinase) (Triose kinase); FAD-AMP lyase (cyclizing) (EC 4.6.1.15) (FAD-AMP lyase (cyclic FMN forming)) (FMN cyclase)]",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q8TB92",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8TB92",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 370,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "3-hydroxy-3-methylglutaryl-CoA lyase, cytoplasmic (EC 4.1.3.4) (3-hydroxy-3-methylglutaryl-CoA lyase-like protein 1) (HMGCL-like 1) (Endoplasmic reticulum 3-hydroxy-3-methylglutaryl-CoA lyase) (er-cHL)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q9GZT4",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9GZT4",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 340,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.402,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Serine racemase (EC 5.1.1.18) (D-serine ammonia-lyase) (D-serine dehydratase) (EC 4.3.1.18) (L-serine ammonia-lyase) (L-serine dehydratase) (EC 4.3.1.17)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "Q9GZT4",
+          "alignment_length": 312,
+          "bits": 219.0,
+          "evalue": 2.65e-64,
+          "external_length": 340,
+          "identity": 0.402,
+          "matched_m_csa_entry_ids": [
+            "m_csa:330",
+            "m_csa:956"
+          ],
+          "min_coverage": 0.9176,
+          "query_coverage": 0.9176,
+          "reference_accession": "O59791",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 323,
+          "requested_reference_accession": "O59791",
+          "target_coverage": 0.9659
+        },
+        {
+          "accession": "Q9GZT4",
+          "alignment_length": 343,
+          "bits": 87.0,
+          "evalue": 9.172e-20,
+          "external_length": 340,
+          "identity": 0.266,
+          "matched_m_csa_entry_ids": [
+            "m_csa:186"
+          ],
+          "min_coverage": 0.9449,
+          "query_coverage": 1.0088,
+          "reference_accession": "P09367",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 363,
+          "requested_reference_accession": "P09367",
+          "target_coverage": 0.9449
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "accession": "P00338",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P00338",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 332,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.798,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "L-lactate dehydrogenase A chain (LDH-A) (EC 1.1.1.27) (Cell proliferation-inducing gene 19 protein) (LDH muscle subunit) (LDH-M) (Renal carcinoma antigen NY-REN-59)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P00338",
+          "alignment_length": 333,
+          "bits": 549.0,
+          "evalue": 1.735e-178,
+          "external_length": 332,
+          "identity": 0.798,
+          "matched_m_csa_entry_ids": [
+            "m_csa:584"
+          ],
+          "min_coverage": 1.0,
+          "query_coverage": 1.003,
+          "reference_accession": "P00341",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 333,
+          "requested_reference_accession": "P00341",
+          "target_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "accession": "P04406",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P04406",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 335,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Glyceraldehyde-3-phosphate dehydrogenase (GAPDH) (EC 1.2.1.12) (Peptidyl-cysteine S-nitrosylase GAPDH) (EC 2.6.99.-)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P14060",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P14060",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 373,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type 1 (3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type I) (3-beta-HSD I) (3-beta-hydroxy-5-ene steroid dehydrogenase) (3-beta-hydroxy-Delta(5)-steroid dehydrogenase) (EC 1.1.1.145) (3-beta-hydroxysteroid 3-dehydrogenase) (EC 1.1.1.270) (Delta-5-3-ketosteroid isomerase) (Dihydrotestosterone oxidoreductase) (EC 1.1.1.210) (Steroid Delta-isomerase) (EC 5.3.3.1) (Trophoblast antigen FDO161G)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P22830",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P22830",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 423,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Ferrochelatase, mitochondrial (EC 4.98.1.1) (Heme synthase) (Protoheme ferro-lyase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P78549",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P78549",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 304,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Endonuclease III-like protein 1 (hNTH1) (EC 3.2.2.-) (EC 4.2.99.18) (Bifunctional DNA N-glycosylase/DNA-(apurinic or apyrimidinic site) lyase) (DNA glycosylase/AP lyase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q3LXA3",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 575,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Triokinase/FMN cyclase (Bifunctional ATP-dependent dihydroxyacetone kinase/FAD-AMP lyase (cyclizing)) [Includes: ATP-dependent dihydroxyacetone kinase (DHA kinase) (EC 2.7.1.28) (EC 2.7.1.29) (Glycerone kinase) (Triokinase) (Triose kinase); FAD-AMP lyase (cyclizing) (EC 4.6.1.15) (FAD-AMP lyase (cyclic FMN forming)) (FMN cyclase)]",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q8TB92",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8TB92",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 370,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "3-hydroxy-3-methylglutaryl-CoA lyase, cytoplasmic (EC 4.1.3.4) (3-hydroxy-3-methylglutaryl-CoA lyase-like protein 1) (HMGCL-like 1) (Endoplasmic reticulum 3-hydroxy-3-methylglutaryl-CoA lyase) (er-cHL)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q9GZT4",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9GZT4",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 340,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.402,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Serine racemase (EC 5.1.1.18) (D-serine ammonia-lyase) (D-serine dehydratase) (EC 4.3.1.18) (L-serine ammonia-lyase) (L-serine dehydratase) (EC 4.3.1.17)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "Q9GZT4",
+          "alignment_length": 312,
+          "bits": 219.0,
+          "evalue": 2.65e-64,
+          "external_length": 340,
+          "identity": 0.402,
+          "matched_m_csa_entry_ids": [
+            "m_csa:330",
+            "m_csa:956"
+          ],
+          "min_coverage": 0.9176,
+          "query_coverage": 0.9176,
+          "reference_accession": "O59791",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 323,
+          "requested_reference_accession": "O59791",
+          "target_coverage": 0.9659
+        },
+        {
+          "accession": "Q9GZT4",
+          "alignment_length": 343,
+          "bits": 87.0,
+          "evalue": 9.172e-20,
+          "external_length": 340,
+          "identity": 0.266,
+          "matched_m_csa_entry_ids": [
+            "m_csa:186"
+          ],
+          "min_coverage": 0.9449,
+          "query_coverage": 1.0088,
+          "reference_accession": "P09367",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 363,
+          "requested_reference_accession": "P09367",
+          "target_coverage": 0.9449
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    "the backend search removes bounded current-reference sequence-search debt only for no-signal rows; active-site evidence, representation controls, review decisions, and factory gates remain required"
+  ]
+}

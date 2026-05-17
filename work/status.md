@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 147
-- Measured elapsed time: 4860.0 minutes (81.00 hours)
+- Entries: 148
+- Measured elapsed time: 4901.4 minutes (81.69 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2699.5 measured minutes (44.99 hours)
+- post-v2: 2740.9 measured minutes (45.68 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1666
-- Evidence references logged: 1289
+- Artifact references logged: 1680
+- Evidence references logged: 1300
 
 ## Recent Entries
-
-### 2026-05-16T23:21:31.567236+00:00 - ops
-
-- Task: Recover recurring GitHub token fallback
-- Time mode: measured
-- Measured minutes: 13.383
-- Started: 2026-05-16T23:08:00Z
-- Ended: 2026-05-16T23:21:23Z
-- Artifacts: work/handoff.md, work/status.md, local .git/config credential helper stack
-- Evidence: gh auth valid in interactive session, osxkeychain credential available, git push origin main succeeded, HEAD equals origin/main, local helper stack now tries osxkeychain before gh, no stale lock remains
-- Notes: Recovered the second recurring push blocker. The helper was installed, but scheduled agents reported invalid gh token; added a worktree-local credential fallback order rather than relying on gh alone.
 
 ### 2026-05-17T00:07:16.886468+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_hard_negative_new_candidate_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_new_candidate_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 380 unit tests passed, startup validate passed with 679 curated labels, Foldseek multi-model current target aliases normalized, new-candidate current-countable structural pair cache completed 4704/4704, all 7 sequence-clean fresh candidates have high-TM current-countable duplicate signals, Q13087 maps to current selected structure 1MEK at TM 0.9039, new-candidate terminal decisions reject all 7 rows review-only, 0 import-ready rows, 0 countable external labels, focused transfer and scaling tests passed
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
+
+### 2026-05-17T06:10:06.013546+00:00 - post-v2
+
+- Task: Advance next external hard-negative surface
+- Time mode: measured
+- Measured minutes: 41.433
+- Started: 2026-05-17T05:28:04Z
+- Ended: 2026-05-17T06:09:30Z
+- Artifacts: artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json, artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_1025.json, artifacts/v3_external_hard_negative_next_candidate_structural_cluster_index_1025.json, artifacts/v3_external_hard_negative_next_candidate_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_next_candidate_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: 382 startup unit tests passed, validate passed, 8 replacement candidates sourced, 8/8 current-reference sequence no-signal rows, 8/8 replacement AlphaFold coordinates staged, 28/28 external structural pairs cached, 5376/5376 current-countable structural pairs completed, 5 duplicate-signal rejections, 3 deferred no-current-structural-signal rows, 383 final unit tests passed, external transfer gate 68/68
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; label_factory docs checked unchanged.
 
 ## Expectation Updates
 

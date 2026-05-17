@@ -137,9 +137,44 @@ artifact records all 7 rows as terminal review-only
 `rejected_current_countable_structural_duplicate_signal` outcomes, with 0
 import-ready rows and 0 countable labels. Evidence-based confidence call: the
 fresh sourced tranche is closed by current-countable structural duplicate
-signals, not by an unresolved process blocker. Next direct work should source a
-new external hard-negative surface or add genuinely new evidence; do not retry
-the now-rejected seven rows without new expert/duplicate evidence.
+signals, not by an unresolved process blocker. The 2026-05-17T05:28:04Z run
+then opened the next replacement sourcing surface without retrying those rows.
+`artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json`
+excludes the original 30-row pool, the second-tranche duplicate rejects, and
+all 8 prior fresh sourced rows, then admits 8 replacement covered-lane
+Swiss-Prot rows with explicit UniProt active-site plus catalytic-activity
+context: `P00338`, `P04406`, `P14060`, `Q9GZT4`, `P22830`, `Q8TB92`,
+`P78549`, and `Q3LXA3`. The bounded current-reference MMseqs2 screen
+`artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_1025.json`
+and audit record 8/8 no-signal rows, 0 exact-reference holdouts, 0
+near-duplicate rows, and 0 import-ready/countable rows. The same run also
+staged the replacement structural surface:
+`artifacts/v3_external_hard_negative_next_candidate_structural_cluster_index_1025.json`
+materializes 8/8 AlphaFold sidecars, covers 28/28 external all-vs-all Foldseek
+pairs, and finds 0 high-TM external pairs.
+`artifacts/v3_external_hard_negative_next_candidate_current_countable_structural_screen_1025.json`
+then completes the current-countable Foldseek screen over 5376/5376
+query-target pairs. Five rows have high-TM current-countable duplicate signals
+(`P00338`, `P04406`, `P14060`, `Q8TB92`, and `Q9GZT4`), while `P22830`,
+`P78549`, and `Q3LXA3` have no current-countable structural duplicate signal at
+`TM >=0.7`. `artifacts/v3_external_hard_negative_next_candidate_terminal_decisions_1025.json`
+records 5 review-only duplicate-signal rejections and 3 review-only deferrals
+that remain blocked by UniRef-wide duplicate screening, terminal review, and
+full factory gates. Evidence-based confidence call: the immediate
+no-new-candidates blocker is removed and this surface has 3 structurally
+non-duplicate follow-up rows, but none is import-ready or countable yet.
+Continue with duplicate/review/factory evidence for `P22830`, `P78549`, and
+`Q3LXA3`; do not retry the 5 duplicate-signal rows without new evidence.
+
+Run verification for the current handoff: started `2026-05-17T05:28:04Z` and
+wrapped at `2026-05-17T06:09:30Z`. Startup checks passed with 382 unit tests
+and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks
+passed with 383 unit tests, `validate`, `compileall`, `git diff --check`, JSON
+parse checks for the new sourcing/sequence/structural/terminal artifacts, and
+the external transfer gate still at 68/68. README,
+`docs/external_source_transfer.md`, `docs/label_factory.md`, work scope,
+handoff, status inputs, and external transfer notes were checked; label-factory
+docs required no content change for this replacement-sourcing slice.
 
 Run verification for the current handoff: started `2026-05-17T03:25:01Z`.
 Startup checks passed with 378 unit tests and `PYTHONPATH=src python -m
