@@ -50,6 +50,28 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-17T21:12:59Z automation run, Phase 1 remains
+instrumentation-only and has been hardened without artifact upload or removal.
+The `validate-artifact-migration` CLI now rejects stale current-main baseline
+metadata and stale row-derived execution counts before any future removal gate
+can pass. The execution manifest was refreshed against latest pulled
+`origin/main` commit `0a68c40335b4af8f00aeafc281e72b4fc6e81cae`, so current
+`git:<source_path>@<commit_sha>` target URIs point at that main baseline while
+still reporting `migration_ready_count=0`, `remote_sha256_verified_count=0`,
+`restore_test_passed=false`, and `removal_allowed_count=0`. Its
+`unknown_blocking_summary` records the current 40 blocked producer rows as 31
+regenerable geometry feature artifacts and 9 Foldseek coordinate sidecars; this
+is diagnostic only and does not make any row migration-ready. Each execution row
+now also records the source producer command status and a producer-status reason
+so `partially_inferred` provenance remains visible after fail-closed mapping to
+`unknown_blocking`. Evidence-based confidence call: this is a
+no-science-recompute Phase 1 hardening slice; label
+registries, import-decision artifacts, retrieval outputs, sequence-distance
+metrics, and hard-negative decision artifacts were not edited. The next
+automation run should continue Phase 1 only by tightening/documenting the 40
+`unknown_blocking` producer rows, unless a human explicitly authorizes Phase 2
+uploads.
+
 As of the 2026-05-17T19:28:16Z automation run, Phase 1 of no-loss artifact
 migration instrumentation is implemented and pushed forward from current
 `main`; no Phase 2 upload or Phase 3 artifact removal has been performed.

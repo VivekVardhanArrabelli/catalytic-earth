@@ -7,6 +7,7 @@ from pathlib import Path
 
 from catalytic_earth.artifact_storage import (
     ARTIFACT_POINTER_SCHEMA_VERSION,
+    CURRENT_MAIN_ARTIFACT_BASELINE,
     build_artifact_migration_execution_manifest,
     build_artifact_pointer_record,
     build_artifact_producer_consumer_manifest,
@@ -263,12 +264,22 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(manifest["metadata"]["slice_id"], 1025)
         self.assertEqual(manifest["metadata"]["canonical_countable_label_count"], 682)
         self.assertEqual(row["producer_status"], "unknown_blocking")
+        self.assertEqual(row["source_producer_command_status"], "partially_inferred")
+        self.assertIn("fail-closed", row["producer_status_reason"])
         self.assertEqual(row["storage_class"], "git")
         self.assertEqual(row["target_uri"], "git:artifacts/large.json@abc123")
         self.assertFalse(row["migration_ready"])
         self.assertFalse(row["remote_sha256_verified"])
         self.assertFalse(row["removal_allowed"])
         self.assertEqual(manifest["metadata"]["removal_allowed_count"], 0)
+        self.assertEqual(
+            manifest["metadata"]["unknown_blocking_summary"]["by_artifact_category"],
+            {"regenerable_intermediate": 1},
+        )
+        self.assertEqual(
+            manifest["metadata"]["unknown_blocking_summary"]["source_paths"],
+            ["artifacts/large.json"],
+        )
         validation = validate_artifact_migration_manifest(manifest)
         self.assertEqual(validation["metadata"]["status"], "passed")
 
@@ -280,7 +291,9 @@ class ArtifactStorageTests(unittest.TestCase):
             "sha256": "0" * 64,
             "artifact_category": "raw_cache",
             "canonical_or_noncanonical": "noncanonical",
+            "source_producer_command_status": "unknown",
             "producer_status": "unknown_blocking",
+            "producer_status_reason": "source status maps fail-closed",
             "downstream_consumers": ["consumer"],
             "canonical_summary_path": "README.md",
             "storage_class": "object_storage",
@@ -311,6 +324,72 @@ class ArtifactStorageTests(unittest.TestCase):
             "removal cannot use producer_status=unknown_blocking",
             reasons,
         )
+
+    def test_validator_blocks_stale_baseline_and_metadata_counts(self) -> None:
+        row = {
+            "source_path": "artifacts/raw.tsv",
+            "file_exists": True,
+            "size_bytes": 1,
+            "sha256": "0" * 64,
+            "artifact_category": "raw_cache",
+            "canonical_or_noncanonical": "noncanonical",
+            "source_producer_command_status": "known",
+            "producer_status": "known",
+            "producer_status_reason": "producer command provenance is recorded as known",
+            "downstream_consumers": ["consumer"],
+            "canonical_summary_path": "README.md",
+            "storage_class": "git",
+            "target_uri": "git:artifacts/raw.tsv@abc123",
+            "restore_command": "restore",
+            "restore_verification": "sha256",
+            "removal_allowed": False,
+            "migration_ready": False,
+            "remote_sha256_verified": False,
+            "restore_test_passed": False,
+            "downstream_consumers_accounted_for": True,
+            "canonical_summary_present": True,
+            "migration_blockers": ["phase_3_removal_not_authorized"],
+        }
+        metadata = {
+            "manifest_schema_version": "artifact_migration_execution.v1",
+            **CURRENT_MAIN_ARTIFACT_BASELINE,
+            "row_count": 1,
+            "migration_ready_count": 0,
+            "unknown_blocking_count": 0,
+            "removal_allowed_count": 0,
+            "remote_sha256_verified_count": 0,
+            "producer_status_counts": {"known": 1},
+            "unknown_blocking_summary": {
+                "row_count": 0,
+                "by_artifact_category": {},
+                "by_planned_storage_class": {},
+                "source_paths": [],
+            },
+        }
+        manifest = {"metadata": metadata, "rows": [row]}
+        stale_manifest = json.loads(json.dumps(manifest))
+        stale_manifest["metadata"]["baseline"] = "older_baseline"
+        stale_manifest["metadata"]["removal_allowed_count"] = 1
+        stale_manifest["metadata"]["producer_status_counts"] = {"unknown_blocking": 1}
+        stale_manifest["metadata"]["unknown_blocking_summary"] = {
+            "row_count": 1,
+            "by_artifact_category": {"raw_cache": 1},
+            "by_planned_storage_class": {},
+            "source_paths": ["artifacts/raw.tsv"],
+        }
+
+        self.assertEqual(
+            validate_artifact_migration_manifest(manifest)["metadata"]["status"],
+            "passed",
+        )
+        validation = validate_artifact_migration_manifest(stale_manifest)
+
+        self.assertEqual(validation["metadata"]["status"], "blocked")
+        reasons = {blocker["reason"] for blocker in validation["blockers"]}
+        self.assertIn("metadata baseline invariant mismatch", reasons)
+        self.assertIn("metadata status count mismatch", reasons)
+        self.assertIn("metadata producer_status_counts mismatch", reasons)
+        self.assertIn("metadata unknown_blocking_summary mismatch", reasons)
 
     def test_restore_artifacts_supports_local_targets_and_hash_quarantine(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

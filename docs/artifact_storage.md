@@ -28,6 +28,13 @@ URIs for the same 108 rows and keeps `migration_ready=false`,
 `remote_sha256_verified=false`, `restore_test_passed=false`, and
 `removal_allowed=false` for every row. The admission guard passes only because
 every current large noncanonical row has a manifest row.
+The execution manifest also summarizes the 40 `unknown_blocking` rows: 31 are
+regenerable geometry feature artifacts and 9 are Foldseek coordinate sidecars.
+That summary is diagnostic only; it does not make any blocked row
+migration-ready. Each execution row also preserves the source
+`producer_command_status` plus a `producer_status_reason`, so current
+`partially_inferred` provenance remains visible while the execution status maps
+fail-closed to `unknown_blocking`.
 
 The execution manifest is explicit about the current-main scientific baseline:
 `baseline=current_main_three_external_hard_negatives`, `slice_id=1025`, and
@@ -36,6 +43,10 @@ out-of-scope hard negatives are exactly `uniprot:P06744`, `uniprot:P78549`,
 and `uniprot:Q3LXA3`; there are 0 imported external seed-fingerprint labels.
 Those hard negatives remain `label_type=out_of_scope`, `fingerprint_id=null`,
 and `ontology_version_at_decision=label_factory_v1_8fp`.
+The machine validator now treats this baseline and all execution status counts
+as row-derived contract fields: stale baseline metadata, stale row counts,
+stale migration-ready/removal/remote-verification counts, or stale producer
+status counts fail validation before any future removal gate can pass.
 
 ## Categories
 
@@ -122,6 +133,9 @@ PYTHONPATH=src python -m catalytic_earth.cli validate-artifact-migration \
   --manifest artifacts/v3_artifact_migration_execution_1025.json \
   --dry-run
 ```
+
+For local source/hash verification of the in-repo Phase 1 manifest, add
+`--check-local-files`; routine unit tests avoid network-dependent checks.
 
 Run a fail-closed restore smoke dry run:
 

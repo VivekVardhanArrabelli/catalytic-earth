@@ -2,7 +2,7 @@
   "metadata": {
     "baseline": "current_main_three_external_hard_negatives",
     "canonical_countable_label_count": 682,
-    "current_main_commit": "88368d5078d246632447aae2f6be83c97aa33a80",
+    "current_main_commit": "0a68c40335b4af8f00aeafc281e72b4fc6e81cae",
     "external_hard_negative_fingerprint_id": null,
     "external_hard_negative_label_type": "out_of_scope",
     "external_imported_out_of_scope_labels": [
@@ -11,7 +11,7 @@
       "uniprot:Q3LXA3"
     ],
     "external_imported_seed_fingerprint_label_count": 0,
-    "generated_at": "2026-05-17T19:38:22Z",
+    "generated_at": "2026-05-17T21:25:02Z",
     "information_loss_guard": "Phase 1 instrumentation only. This manifest records exact Git targets for current artifacts but authorizes no upload, migration, artifact removal, Git LFS migration, or history rewrite.",
     "manifest_schema_version": "artifact_migration_execution.v1",
     "method": "artifact_migration_execution_manifest",
@@ -38,7 +38,61 @@
     "slice_id": 1025,
     "source_producer_consumer_manifest": "artifacts/v3_artifact_producer_consumer_manifest_1025.json",
     "source_readiness_plan": "artifacts/v3_artifact_migration_readiness_plan_1025.json",
-    "unknown_blocking_count": 40
+    "unknown_blocking_count": 40,
+    "unknown_blocking_summary": {
+      "by_artifact_category": {
+        "raw_cache": 9,
+        "regenerable_intermediate": 31
+      },
+      "by_planned_storage_class": {
+        "candidate_git_lfs_later": 2,
+        "candidate_object_storage_later": 9,
+        "candidate_release_asset_later": 29
+      },
+      "row_count": 40,
+      "source_paths": [
+        "artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
+        "artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
+        "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+        "artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
+        "artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
+        "artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
+        "artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
+        "artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
+        "artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
+        "artifacts/v3_geometry_features_1000.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_geometry_features_275.json",
+        "artifacts/v3_geometry_features_300.json",
+        "artifacts/v3_geometry_features_325.json",
+        "artifacts/v3_geometry_features_350.json",
+        "artifacts/v3_geometry_features_375.json",
+        "artifacts/v3_geometry_features_400.json",
+        "artifacts/v3_geometry_features_425.json",
+        "artifacts/v3_geometry_features_450.json",
+        "artifacts/v3_geometry_features_475.json",
+        "artifacts/v3_geometry_features_500.json",
+        "artifacts/v3_geometry_features_525.json",
+        "artifacts/v3_geometry_features_550.json",
+        "artifacts/v3_geometry_features_575.json",
+        "artifacts/v3_geometry_features_600.json",
+        "artifacts/v3_geometry_features_625.json",
+        "artifacts/v3_geometry_features_650.json",
+        "artifacts/v3_geometry_features_675.json",
+        "artifacts/v3_geometry_features_700.json",
+        "artifacts/v3_geometry_features_725.json",
+        "artifacts/v3_geometry_features_750.json",
+        "artifacts/v3_geometry_features_775.json",
+        "artifacts/v3_geometry_features_800.json",
+        "artifacts/v3_geometry_features_825.json",
+        "artifacts/v3_geometry_features_850.json",
+        "artifacts/v3_geometry_features_875.json",
+        "artifacts/v3_geometry_features_900.json",
+        "artifacts/v3_geometry_features_925.json",
+        "artifacts/v3_geometry_features_950.json",
+        "artifacts/v3_geometry_features_975.json"
+      ]
+    }
   },
   "rows": [
     {
@@ -71,6 +125,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_git_lfs_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_1000.json",
@@ -80,8 +135,9 @@
       "size_bytes": 32299902,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_1000.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1000.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1000.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -113,6 +169,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_git_lfs_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_1025.json",
@@ -122,8 +179,9 @@
       "size_bytes": 24479409,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_1025.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1025.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1025.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -155,6 +213,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_git_lfs_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json",
@@ -164,8 +223,9 @@
       "size_bytes": 24405932,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -198,6 +258,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_git_lfs_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_1025.json",
@@ -207,8 +268,9 @@
       "size_bytes": 23871866,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_1025.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_1025.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_1025.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -241,6 +303,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_git_lfs_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_1000.json",
@@ -250,8 +313,9 @@
       "size_bytes": 23810301,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_1000.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_1000.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_1000.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -284,6 +348,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_975.json",
@@ -293,8 +358,9 @@
       "size_bytes": 23062288,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_975.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_975.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_975.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -327,6 +393,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_950.json",
@@ -336,8 +403,9 @@
       "size_bytes": 22560935,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_950.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_950.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_950.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -370,6 +438,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_925.json",
@@ -379,8 +448,9 @@
       "size_bytes": 22125045,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_925.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_925.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_925.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -413,6 +483,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_900.json",
@@ -422,8 +493,9 @@
       "size_bytes": 21182285,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_900.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_900.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_900.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -456,6 +528,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_875.json",
@@ -465,8 +538,9 @@
       "size_bytes": 20773842,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_875.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_875.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_875.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -499,6 +573,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_850.json",
@@ -508,8 +583,9 @@
       "size_bytes": 20468291,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_850.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_850.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_850.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -541,6 +617,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_975.json",
@@ -550,8 +627,9 @@
       "size_bytes": 20128731,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_975.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_975.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_975.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -584,6 +662,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_825.json",
@@ -593,8 +672,9 @@
       "size_bytes": 19963703,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_825.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_825.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_825.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -626,6 +706,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_950.json",
@@ -635,8 +716,9 @@
       "size_bytes": 19595930,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_950.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_950.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_950.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -669,6 +751,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_800.json",
@@ -678,8 +761,9 @@
       "size_bytes": 19392814,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_800.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_800.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_800.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -711,6 +795,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_925.json",
@@ -720,8 +805,9 @@
       "size_bytes": 19110611,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_925.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_925.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_925.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -754,6 +840,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_775.json",
@@ -763,8 +850,9 @@
       "size_bytes": 18633860,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_775.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_775.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_775.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -796,6 +884,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_900.json",
@@ -805,8 +894,9 @@
       "size_bytes": 18630705,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_900.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_900.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_900.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -838,6 +928,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_875.json",
@@ -847,8 +938,9 @@
       "size_bytes": 18164931,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_875.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_875.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_875.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -881,6 +973,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_750.json",
@@ -890,8 +983,9 @@
       "size_bytes": 18090156,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_750.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_750.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_750.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -924,6 +1018,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_git_lfs_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_1025.json",
@@ -933,8 +1028,9 @@
       "size_bytes": 17887021,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_1025.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1025.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_1025.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -966,6 +1062,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_git_lfs_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_1000_selected_pdb_override.json",
@@ -975,8 +1072,9 @@
       "size_bytes": 17829438,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_1000_selected_pdb_override.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1000_selected_pdb_override.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_1000_selected_pdb_override.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1009,6 +1107,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_git_lfs_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_1000.json",
@@ -1018,8 +1117,9 @@
       "size_bytes": 17828264,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_1000.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1000.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_1000.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1051,6 +1151,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_850.json",
@@ -1060,8 +1161,9 @@
       "size_bytes": 17676356,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_850.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_850.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_850.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1094,6 +1196,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_725.json",
@@ -1103,8 +1206,9 @@
       "size_bytes": 17495000,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_725.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_725.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_725.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1137,6 +1241,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_975.json",
@@ -1146,8 +1251,9 @@
       "size_bytes": 17390582,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_975.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_975.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_975.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1179,6 +1285,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_825.json",
@@ -1188,8 +1295,9 @@
       "size_bytes": 17186717,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_825.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_825.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_825.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1222,6 +1330,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_950.json",
@@ -1231,8 +1340,9 @@
       "size_bytes": 16934998,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_950.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_950.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_950.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1265,6 +1375,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_700.json",
@@ -1274,8 +1385,9 @@
       "size_bytes": 16812963,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_700.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_700.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_700.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1307,6 +1419,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_800.json",
@@ -1316,8 +1429,9 @@
       "size_bytes": 16745321,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_800.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_800.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_800.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1350,6 +1464,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_925.json",
@@ -1359,8 +1474,9 @@
       "size_bytes": 16526861,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_925.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_925.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_925.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1393,6 +1509,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_675.json",
@@ -1402,8 +1519,9 @@
       "size_bytes": 16343561,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_675.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_675.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_675.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1435,6 +1553,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_775.json",
@@ -1444,8 +1563,9 @@
       "size_bytes": 16257062,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_775.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_775.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_775.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1478,6 +1598,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_900.json",
@@ -1487,8 +1608,9 @@
       "size_bytes": 16143489,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_900.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_900.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_900.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1521,6 +1643,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_650.json",
@@ -1530,8 +1653,9 @@
       "size_bytes": 16026089,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_650.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_650.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_650.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1563,6 +1687,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_750.json",
@@ -1572,8 +1697,9 @@
       "size_bytes": 15822060,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_750.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_750.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_750.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1606,6 +1732,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_875.json",
@@ -1615,8 +1742,9 @@
       "size_bytes": 15777634,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_875.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_875.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_875.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1649,6 +1777,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_625.json",
@@ -1658,8 +1787,9 @@
       "size_bytes": 15553785,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_625.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_625.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_625.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1692,6 +1822,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_850.json",
@@ -1701,8 +1832,9 @@
       "size_bytes": 15391193,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_850.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_850.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_850.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1734,6 +1866,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_725.json",
@@ -1743,8 +1876,9 @@
       "size_bytes": 15315981,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_725.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_725.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_725.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1777,6 +1911,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_600.json",
@@ -1786,8 +1921,9 @@
       "size_bytes": 15179590,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_600.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_600.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_600.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1820,6 +1956,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_825.json",
@@ -1829,8 +1966,9 @@
       "size_bytes": 15005231,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_825.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_825.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_825.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1863,6 +2001,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_575.json",
@@ -1872,8 +2011,9 @@
       "size_bytes": 14805678,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_575.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_575.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_575.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1905,6 +2045,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_700.json",
@@ -1914,8 +2055,9 @@
       "size_bytes": 14804240,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_700.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_700.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_700.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1948,6 +2090,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_800.json",
@@ -1957,8 +2100,9 @@
       "size_bytes": 14672254,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_800.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_800.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_800.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1991,6 +2135,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_550.json",
@@ -2000,8 +2145,9 @@
       "size_bytes": 14426207,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_550.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_550.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_550.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2033,6 +2179,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_675.json",
@@ -2042,8 +2189,9 @@
       "size_bytes": 14325679,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_675.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_675.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_675.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2076,6 +2224,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_775.json",
@@ -2085,8 +2234,9 @@
       "size_bytes": 14273070,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_775.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_775.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_775.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2119,6 +2269,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_750.json",
@@ -2128,8 +2279,9 @@
       "size_bytes": 13958922,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_750.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_750.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_750.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2162,6 +2314,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_525.json",
@@ -2171,8 +2324,9 @@
       "size_bytes": 13932049,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_525.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_525.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_525.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2204,6 +2358,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_650.json",
@@ -2213,8 +2368,9 @@
       "size_bytes": 13871250,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_650.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_650.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_650.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "raw_cache",
@@ -2249,6 +2405,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
@@ -2258,8 +2415,9 @@
       "size_bytes": 13841581,
       "slice_id": 1025,
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2292,6 +2450,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_725.json",
@@ -2301,8 +2460,9 @@
       "size_bytes": 13528170,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_725.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_725.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_725.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2335,6 +2495,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_500.json",
@@ -2344,8 +2505,9 @@
       "size_bytes": 13453635,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_500.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_500.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_500.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2377,6 +2539,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_625.json",
@@ -2386,8 +2549,9 @@
       "size_bytes": 13381376,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_625.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_625.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_625.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "raw_cache",
@@ -2422,6 +2586,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
@@ -2431,8 +2596,9 @@
       "size_bytes": 13374918,
       "slice_id": 1025,
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2465,6 +2631,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_700.json",
@@ -2474,8 +2641,9 @@
       "size_bytes": 13072196,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_700.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_700.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_700.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2507,6 +2675,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_600.json",
@@ -2516,8 +2685,9 @@
       "size_bytes": 12938734,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_600.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_600.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_600.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2550,6 +2720,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_475.json",
@@ -2559,8 +2730,9 @@
       "size_bytes": 12758124,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_475.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_475.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_475.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2593,6 +2765,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_675.json",
@@ -2602,8 +2775,9 @@
       "size_bytes": 12707170,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_675.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_675.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_675.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2635,6 +2809,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_575.json",
@@ -2644,8 +2819,9 @@
       "size_bytes": 12469210,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_575.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_575.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_575.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2678,6 +2854,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_650.json",
@@ -2687,8 +2864,9 @@
       "size_bytes": 12344003,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_650.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_650.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_650.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2720,6 +2898,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_550.json",
@@ -2729,8 +2908,9 @@
       "size_bytes": 11984759,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_550.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_550.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_550.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2763,6 +2943,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_625.json",
@@ -2772,8 +2953,9 @@
       "size_bytes": 11956951,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_625.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_625.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_625.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2806,6 +2988,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_450.json",
@@ -2815,8 +2998,9 @@
       "size_bytes": 11951659,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_450.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_450.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_450.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2849,6 +3033,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_600.json",
@@ -2858,8 +3043,9 @@
       "size_bytes": 11619618,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_600.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_600.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_600.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2892,6 +3078,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_425.json",
@@ -2901,8 +3088,9 @@
       "size_bytes": 11527355,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_425.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_425.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_425.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2934,6 +3122,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_525.json",
@@ -2943,8 +3132,9 @@
       "size_bytes": 11484875,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_525.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_525.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_525.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2977,6 +3167,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_575.json",
@@ -2986,8 +3177,9 @@
       "size_bytes": 11254989,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_575.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_575.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_575.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3020,6 +3212,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_400.json",
@@ -3029,8 +3222,9 @@
       "size_bytes": 11006633,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_400.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_400.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_400.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3062,6 +3256,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_500.json",
@@ -3071,8 +3266,9 @@
       "size_bytes": 10998349,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_500.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_500.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_500.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3105,6 +3301,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_550.json",
@@ -3114,8 +3311,9 @@
       "size_bytes": 10883412,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_550.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_550.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_550.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3147,6 +3345,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_475.json",
@@ -3156,8 +3355,9 @@
       "size_bytes": 10497237,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_475.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_475.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_475.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3190,6 +3390,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_375.json",
@@ -3199,8 +3400,9 @@
       "size_bytes": 10484213,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_375.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_375.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_375.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3233,6 +3435,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_525.json",
@@ -3242,8 +3445,9 @@
       "size_bytes": 10467300,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_525.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_525.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_525.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3276,6 +3480,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_500.json",
@@ -3285,8 +3490,9 @@
       "size_bytes": 10066342,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_500.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_500.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_500.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3319,6 +3525,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_350.json",
@@ -3328,8 +3535,9 @@
       "size_bytes": 9965975,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_350.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_350.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_350.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3361,6 +3569,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_450.json",
@@ -3370,8 +3579,9 @@
       "size_bytes": 9951128,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_450.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_450.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_450.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3404,6 +3614,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_475.json",
@@ -3413,8 +3624,9 @@
       "size_bytes": 9634388,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_475.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_475.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_475.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3447,6 +3659,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_325.json",
@@ -3456,8 +3669,9 @@
       "size_bytes": 9444903,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_325.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_325.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_325.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3489,6 +3703,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_425.json",
@@ -3498,8 +3713,9 @@
       "size_bytes": 9363677,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_425.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_425.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_425.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3532,6 +3748,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_450.json",
@@ -3541,8 +3758,9 @@
       "size_bytes": 9124233,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_450.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_450.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_450.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3575,6 +3793,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_300.json",
@@ -3584,8 +3803,9 @@
       "size_bytes": 9043525,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_300.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_300.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_300.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3617,6 +3837,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_400.json",
@@ -3626,8 +3847,9 @@
       "size_bytes": 8817883,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_400.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_400.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_400.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3660,6 +3882,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_275.json",
@@ -3669,8 +3892,9 @@
       "size_bytes": 8556309,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_275.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_275.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_275.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3703,6 +3927,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_425.json",
@@ -3712,8 +3937,9 @@
       "size_bytes": 8537965,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_425.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_425.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_425.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3745,6 +3971,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_375.json",
@@ -3754,8 +3981,9 @@
       "size_bytes": 8255524,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_375.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_375.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_375.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3788,6 +4016,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_400.json",
@@ -3797,8 +4026,9 @@
       "size_bytes": 8049367,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_400.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_400.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_400.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3831,6 +4061,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_250.json",
@@ -3840,8 +4071,9 @@
       "size_bytes": 8006111,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_250.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_250.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_250.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3873,6 +4105,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_350.json",
@@ -3882,8 +4115,9 @@
       "size_bytes": 7727127,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_350.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_350.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_350.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3916,6 +4150,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_375.json",
@@ -3925,8 +4160,9 @@
       "size_bytes": 7496393,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_375.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_375.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_375.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3959,6 +4195,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_225.json",
@@ -3968,8 +4205,9 @@
       "size_bytes": 7496154,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_225.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_225.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_225.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4001,6 +4239,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_325.json",
@@ -4010,8 +4249,9 @@
       "size_bytes": 7238107,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_325.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_325.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_325.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4044,6 +4284,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_350.json",
@@ -4053,8 +4294,9 @@
       "size_bytes": 7034865,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_350.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_350.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_350.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "raw_cache",
@@ -4089,6 +4331,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
@@ -4098,8 +4341,9 @@
       "size_bytes": 6913294,
       "slice_id": 1025,
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "raw_cache",
@@ -4134,6 +4378,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
@@ -4143,8 +4388,9 @@
       "size_bytes": 6686819,
       "slice_id": 1025,
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4176,6 +4422,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_300.json",
@@ -4185,8 +4432,9 @@
       "size_bytes": 6684416,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_300.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_300.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_300.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4219,6 +4467,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_325.json",
@@ -4228,8 +4477,9 @@
       "size_bytes": 6641911,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_325.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_325.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_325.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "raw_cache",
@@ -4264,6 +4514,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
@@ -4273,8 +4524,9 @@
       "size_bytes": 6309247,
       "slice_id": 1025,
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4306,6 +4558,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_275.json",
@@ -4315,8 +4568,9 @@
       "size_bytes": 6182354,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_275.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_275.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_275.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4349,6 +4603,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_300.json",
@@ -4358,8 +4613,9 @@
       "size_bytes": 6140111,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_300.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_300.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_300.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4392,6 +4648,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_275.json",
@@ -4401,8 +4658,9 @@
       "size_bytes": 5713804,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_features_275.json",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_275.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_features_275.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "raw_cache",
@@ -4437,6 +4695,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
@@ -4446,8 +4705,9 @@
       "size_bytes": 5572562,
       "slice_id": 1025,
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "raw_cache",
@@ -4482,6 +4742,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
@@ -4491,8 +4752,9 @@
       "size_bytes": 5507198,
       "slice_id": 1025,
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4524,6 +4786,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_retrieval_250.json",
@@ -4533,8 +4796,9 @@
       "size_bytes": 5454312,
       "slice_id": 1025,
       "source_path": "artifacts/v3_geometry_retrieval_250.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_250.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_250.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "raw_cache",
@@ -4569,6 +4833,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
@@ -4578,8 +4843,9 @@
       "size_bytes": 5449692,
       "slice_id": 1025,
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4612,6 +4878,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_release_asset_later",
       "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v1_graph_200.json",
@@ -4621,8 +4888,9 @@
       "size_bytes": 5356188,
       "slice_id": 1025,
       "source_path": "artifacts/v1_graph_200.json",
+      "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_200.json@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v1_graph_200.json@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     },
     {
       "artifact_category": "raw_cache",
@@ -4657,6 +4925,7 @@
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "planned_storage_class": "candidate_object_storage_later",
       "producer_status": "unknown_blocking",
+      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; exact producer command and input closure must be confirmed before migration readiness",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
@@ -4666,8 +4935,9 @@
       "size_bytes": 5299662,
       "slice_id": 1025,
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
+      "source_producer_command_status": "partially_inferred",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif@88368d5078d246632447aae2f6be83c97aa33a80"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif@0a68c40335b4af8f00aeafc281e72b4fc6e81cae"
     }
   ]
 }

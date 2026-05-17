@@ -88,6 +88,8 @@ The repository currently contains:
     fail-closed execution manifest for the current-main 1,025 slice baseline.
     The execution manifest has 0 migration-ready rows, 0 remote SHA-256
     verifications, 0 restore-test passes, and 0 removal authorizations.
+    Its validator also fails closed if the current-main baseline metadata or
+    stored migration status counts drift from the row-level evidence.
     `artifacts/v3_artifact_admission_guard_1025.json` guards future large
     artifact admission. See `docs/artifact_storage.md`.
 

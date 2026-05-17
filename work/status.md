@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 162
-- Measured elapsed time: 5153.1 minutes (85.89 hours)
+- Entries: 164
+- Measured elapsed time: 5166.5 minutes (86.11 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
-- infrastructure: 30.2 measured minutes (0.50 hours)
+- infrastructure: 43.6 measured minutes (0.73 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -26,32 +26,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1815
-- Evidence references logged: 1420
+- Artifact references logged: 1826
+- Evidence references logged: 1436
 
 ## Recent Entries
-
-### 2026-05-17T13:25:17.879225+00:00 - post-v2
-
-- Task: Advance broader hard-negative structural surface
-- Time mode: measured
-- Measured minutes: 47.983
-- Started: 2026-05-17T12:37:08Z
-- Ended: 2026-05-17T13:25:07Z
-- Artifacts: artifacts/v3_external_hard_negative_broader_structural_sourcing_1025.json, artifacts/v3_external_hard_negative_broader_structural_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_broader_structural_inverse_gate_scores_1025.json, tests/test_scaling_1025_artifacts.py, tests/test_transfer_scope.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup tests and validate passed, broader sourcing selected 6 rows across 3 lanes, backend and all-vs-all sequence screens found 0 near duplicates, current-countable structural screen rejected 5 duplicate-signal rows, P06744 cleared bounded duplicate and UniRef current-reference checks, P06744 passed all-8 inverse gate at top1 0.3066, final 404 unit tests passed, validate passed over 681 labels, compileall passed, git diff --check passed
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. No labels imported and registry remains 681 labels.
-
-### 2026-05-17T13:49:27.020292+00:00 - post-v2
-
-- Task: Import P06744 broader external hard-negative
-- Time mode: measured
-- Measured minutes: 11.7
-- Started: 2026-05-17T13:37:34Z
-- Ended: 2026-05-17T13:49:16Z
-- Artifacts: artifacts/v3_external_hard_negative_broader_structural_terminal_review_decisions_1025.json, artifacts/v3_external_hard_negative_broader_structural_factory_import_gate_1025.json, data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_labels.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 404 unit tests passed, startup validate passed with 681 labels, P06744 terminal review accepted pending factory gate, P06744 broader structural factory gate selected exactly one import, all 8 P06744 current-fingerprint scores stayed below 0.4115, registry now has 682 labels and 470 out-of-scope labels, final 405 unit tests passed, validate passed with 682 curated labels, compileall passed, git diff --check passed
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
 
 ### 2026-05-17T14:41:44.473305+00:00 - post-v2
 
@@ -118,6 +96,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, src/catalytic_earth/cli.py, tests/test_artifact_storage.py, tests/test_source_only_contract.py, README.md, docs/artifact_storage.md, work/handoff.md
 - Evidence: startup 422 unit tests passed, startup validate passed with 682 labels, source-only compile/import/CLI help/validate passed, targeted artifact+transfer tests passed, full 431 unit tests passed, validate-artifact-migration passed with 108 rows and 0 blockers, restore smoke dry-run passed with 3 existing-match skips, git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only: no artifact deletion, upload, LFS migration, externalization, scientific-artifact recompute, or history rewrite. Execution manifest maps 40 partially inferred producers to unknown_blocking and keeps removal_allowed false for all rows.
+
+### 2026-05-17T21:23:45.693227+00:00 - infrastructure
+
+- Task: Artifact migration validator hardening
+- Time mode: measured
+- Measured minutes: 10.6
+- Started: 2026-05-17T21:12:59Z
+- Ended: 2026-05-17T21:23:35Z
+- Artifacts: artifacts/v3_artifact_migration_execution_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
+- Evidence: startup 431 unit tests passed, final 432 unit tests passed, targeted artifact and transfer tests passed, source-only compile/import/CLI help/validate passed, validate passed with 682 labels, validate-artifact-migration passed with 108 rows and 0 blockers, restore smoke dry-run passed with 3 existing-match skips, unknown_blocking_summary documents 31 geometry feature rows and 9 Foldseek sidecars, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only: no artifact deletion upload LFS migration externalization scientific-artifact recompute or history rewrite. Validator now fails closed on stale baseline metadata status counts producer counts and unknown-blocking summaries.
+
+### 2026-05-17T21:26:30.789892+00:00 - infrastructure
+
+- Task: Artifact migration producer-status documentation
+- Time mode: measured
+- Measured minutes: 2.8
+- Started: 2026-05-17T21:23:35Z
+- Ended: 2026-05-17T21:26:23Z
+- Artifacts: artifacts/v3_artifact_migration_execution_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, docs/artifact_storage.md, work/handoff.md
+- Evidence: execution rows preserve source producer command status, producer_status_reason documents fail-closed unknown_blocking mapping, targeted artifact and transfer tests passed, full 432 unit tests passed, validate-artifact-migration passed with local file checks, restore smoke dry-run passed, source-only compile/import/CLI help/validate passed
+- Notes: Continuation of the same locked Phase 1 run. Still no artifact upload deletion LFS migration externalization scientific-artifact recompute or history rewrite.
 
 ## Expectation Updates
 

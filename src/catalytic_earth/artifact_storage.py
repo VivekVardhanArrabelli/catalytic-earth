@@ -871,6 +871,21 @@ def _execution_producer_status(status: Any) -> str:
     return "unknown_blocking"
 
 
+def _execution_producer_status_reason(
+    source_status: Any,
+    execution_status: str,
+) -> str:
+    if execution_status == "known":
+        return "producer command provenance is recorded as known"
+    if execution_status == "unavailable_with_reason":
+        return "producer command provenance is explicitly unavailable with reason"
+    return (
+        f"source producer_command_status={source_status or 'missing'} maps "
+        "fail-closed to unknown_blocking; exact producer command and input "
+        "closure must be confirmed before migration readiness"
+    )
+
+
 def _first_existing_summary_path(
     paths: list[Any],
     *,
@@ -931,10 +946,11 @@ def build_artifact_migration_execution_manifest(
         actual_size = source_file.stat().st_size if file_exists else plan_row.get("size_bytes")
         actual_sha = sha256_file(source_file) if file_exists else plan_row.get("sha256")
         manifest_row = manifest_rows.get(source_path, {})
-        producer_status = _execution_producer_status(
+        source_producer_status = (
             manifest_row.get("producer_command_status")
             or plan_row.get("producer_command_status")
         )
+        producer_status = _execution_producer_status(source_producer_status)
         downstream_consumers = manifest_row.get("downstream_consumers", [])
         if not isinstance(downstream_consumers, list):
             downstream_consumers = []
@@ -974,7 +990,12 @@ def build_artifact_migration_execution_manifest(
             "sha256": str(actual_sha or ""),
             "artifact_category": plan_row.get("category"),
             "canonical_or_noncanonical": "noncanonical",
+            "source_producer_command_status": source_producer_status,
             "producer_status": producer_status,
+            "producer_status_reason": _execution_producer_status_reason(
+                source_producer_status,
+                producer_status,
+            ),
             "downstream_consumers": downstream_consumers,
             "canonical_summary_path": canonical_summary_path,
             "storage_class": "git",
@@ -1017,6 +1038,9 @@ def build_artifact_migration_execution_manifest(
         rows.append(row)
 
     producer_counts = Counter(row["producer_status"] for row in rows)
+    unknown_blocking_rows = [
+        row for row in rows if row["producer_status"] == "unknown_blocking"
+    ]
     return {
         "metadata": {
             "method": "artifact_migration_execution_manifest",
@@ -1035,6 +1059,28 @@ def build_artifact_migration_execution_manifest(
                 1 for row in rows if row["remote_sha256_verified"]
             ),
             "producer_status_counts": dict(sorted(producer_counts.items())),
+            "unknown_blocking_summary": {
+                "row_count": len(unknown_blocking_rows),
+                "by_artifact_category": dict(
+                    sorted(
+                        Counter(
+                            str(row.get("artifact_category") or "missing")
+                            for row in unknown_blocking_rows
+                        ).items()
+                    )
+                ),
+                "by_planned_storage_class": dict(
+                    sorted(
+                        Counter(
+                            str(row.get("planned_storage_class") or "missing")
+                            for row in unknown_blocking_rows
+                        ).items()
+                    )
+                ),
+                "source_paths": sorted(
+                    row["source_path"] for row in unknown_blocking_rows
+                ),
+            },
             "information_loss_guard": (
                 "Phase 1 instrumentation only. This manifest records exact Git "
                 "targets for current artifacts but authorizes no upload, migration, "
@@ -1073,6 +1119,91 @@ def validate_artifact_migration_manifest(
         blockers.append({"reason": "manifest rows are missing or invalid"})
         rows = []
 
+    for field, expected in CURRENT_MAIN_ARTIFACT_BASELINE.items():
+        observed = metadata.get(field)
+        if observed != expected:
+            blockers.append(
+                {
+                    "reason": "metadata baseline invariant mismatch",
+                    "field": field,
+                    "observed": observed,
+                    "expected": expected,
+                }
+            )
+
+    dict_rows = [row for row in rows if isinstance(row, dict)]
+    producer_counts = Counter(
+        row.get("producer_status")
+        for row in dict_rows
+        if isinstance(row.get("producer_status"), str)
+    )
+    expected_metadata_counts = {
+        "row_count": len(rows),
+        "migration_ready_count": sum(
+            1 for row in dict_rows if row.get("migration_ready")
+        ),
+        "unknown_blocking_count": producer_counts.get("unknown_blocking", 0),
+        "removal_allowed_count": sum(
+            1 for row in dict_rows if row.get("removal_allowed")
+        ),
+        "remote_sha256_verified_count": sum(
+            1 for row in dict_rows if row.get("remote_sha256_verified")
+        ),
+    }
+    for field, expected in expected_metadata_counts.items():
+        observed = metadata.get(field)
+        if observed != expected:
+            blockers.append(
+                {
+                    "reason": "metadata status count mismatch",
+                    "field": field,
+                    "observed": observed,
+                    "expected": expected,
+                }
+            )
+    expected_producer_status_counts = dict(sorted(producer_counts.items()))
+    if metadata.get("producer_status_counts") != expected_producer_status_counts:
+        blockers.append(
+            {
+                "reason": "metadata producer_status_counts mismatch",
+                "observed": metadata.get("producer_status_counts"),
+                "expected": expected_producer_status_counts,
+            }
+        )
+    unknown_blocking_rows = [
+        row for row in dict_rows if row.get("producer_status") == "unknown_blocking"
+    ]
+    expected_unknown_blocking_summary = {
+        "row_count": len(unknown_blocking_rows),
+        "by_artifact_category": dict(
+            sorted(
+                Counter(
+                    str(row.get("artifact_category") or "missing")
+                    for row in unknown_blocking_rows
+                ).items()
+            )
+        ),
+        "by_planned_storage_class": dict(
+            sorted(
+                Counter(
+                    str(row.get("planned_storage_class") or "missing")
+                    for row in unknown_blocking_rows
+                ).items()
+            )
+        ),
+        "source_paths": sorted(
+            str(row.get("source_path")) for row in unknown_blocking_rows
+        ),
+    }
+    if metadata.get("unknown_blocking_summary") != expected_unknown_blocking_summary:
+        blockers.append(
+            {
+                "reason": "metadata unknown_blocking_summary mismatch",
+                "observed": metadata.get("unknown_blocking_summary"),
+                "expected": expected_unknown_blocking_summary,
+            }
+        )
+
     required_fields = {
         "source_path",
         "file_exists",
@@ -1080,7 +1211,9 @@ def validate_artifact_migration_manifest(
         "sha256",
         "artifact_category",
         "canonical_or_noncanonical",
+        "source_producer_command_status",
         "producer_status",
+        "producer_status_reason",
         "downstream_consumers",
         "storage_class",
         "target_uri",
@@ -1139,6 +1272,16 @@ def validate_artifact_migration_manifest(
                     "source_path": source_path,
                     "reason": "invalid producer_status",
                     "producer_status": row.get("producer_status"),
+                }
+            )
+        if not isinstance(row.get("producer_status_reason"), str) or not row.get(
+            "producer_status_reason"
+        ):
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "producer_status_reason is required",
                 }
             )
         if row.get("storage_class") not in VALID_ARTIFACT_STORAGE_CLASSES:
