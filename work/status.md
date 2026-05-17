@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 161
-- Measured elapsed time: 5141.3 minutes (85.69 hours)
+- Entries: 162
+- Measured elapsed time: 5153.1 minutes (85.89 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
-- infrastructure: 18.4 measured minutes (0.31 hours)
+- infrastructure: 30.2 measured minutes (0.50 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -26,21 +26,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1802
-- Evidence references logged: 1412
+- Artifact references logged: 1815
+- Evidence references logged: 1420
 
 ## Recent Entries
-
-### 2026-05-17T11:47:12.000000+00:00 - post-v2
-
-- Task: Defer P22830 external hard-negative cycle
-- Time mode: measured
-- Measured minutes: 11.55
-- Started: 2026-05-17T11:35:39Z
-- Ended: 2026-05-17T11:47:12Z
-- Artifacts: artifacts/v3_external_hard_negative_p22830_cycle_deferral_1025.json, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 399 unit tests passed, startup validate passed with 681 curated labels, temporary P22830 later-cycle probe selected one formal import candidate, P22830 deferred before import with 0.0429 margin below 0.4115 floor, registry preserved at 681 labels and 469 out-of-scope labels, final 400 unit tests passed, validate passed with 681 curated labels, compileall passed, git diff --check passed, remaining-time merged-prior sourcing probe found 8 review-only rows all in oxidoreductase_long_tail
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. P22830 remains review-only; raw post-P22830 sourcing probe was not committed because its lineage used a temporary merged prior. Next work should add durable multi-prior lane-balanced broader structural sourcing before any third external import. docs/label_factory.md checked unchanged.
 
 ### 2026-05-17T13:25:17.879225+00:00 - post-v2
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_admission_guard_1025.json, docs/artifact_storage.md, src/catalytic_earth/artifact_storage.py, src/catalytic_earth/cli.py, tests/test_artifact_storage.py, README.md, work/handoff.md, work/scope.md
 - Evidence: startup 421 unit tests passed, startup validate passed with 682 labels, refreshed inventory covers 2579 files and 2.556 GiB, policy check passed with 0 blockers and 0 deletion authorizations, producer manifest covers 108 large noncanonical rows, admission guard passed with 108 covered large files, final 422 unit tests passed, validate passed with 682 labels, compileall passed, git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. No artifacts were deleted moved externalized or marked safe to delete. Migration plan keeps migration_ready_now_count at 0 and documents source-only sparse checkout.
+
+### 2026-05-17T19:40:15.947653+00:00 - infrastructure
+
+- Task: Artifact migration Phase 1 execution instrumentation
+- Time mode: measured
+- Measured minutes: 11.767
+- Started: 2026-05-17T19:28:16Z
+- Ended: 2026-05-17T19:40:02Z
+- Artifacts: artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, src/catalytic_earth/cli.py, tests/test_artifact_storage.py, tests/test_source_only_contract.py, README.md, docs/artifact_storage.md, work/handoff.md
+- Evidence: startup 422 unit tests passed, startup validate passed with 682 labels, source-only compile/import/CLI help/validate passed, targeted artifact+transfer tests passed, full 431 unit tests passed, validate-artifact-migration passed with 108 rows and 0 blockers, restore smoke dry-run passed with 3 existing-match skips, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only: no artifact deletion, upload, LFS migration, externalization, scientific-artifact recompute, or history rewrite. Execution manifest maps 40 partially inferred producers to unknown_blocking and keeps removal_allowed false for all rows.
 
 ## Expectation Updates
 

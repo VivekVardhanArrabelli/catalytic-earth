@@ -50,6 +50,54 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-17T19:28:16Z automation run, Phase 1 of no-loss artifact
+migration instrumentation is implemented and pushed forward from current
+`main`; no Phase 2 upload or Phase 3 artifact removal has been performed.
+`artifacts/v3_artifact_migration_execution_1025.json` is the execution manifest
+for `artifact_migration_execution.v1`, derived from the existing readiness plan
+and producer/consumer manifest. It targets
+`baseline=current_main_three_external_hard_negatives`, `slice_id=1025`, and
+`canonical_countable_label_count=682`; the external imported out-of-scope labels
+remain exactly `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`, with
+0 imported external seed-fingerprint labels and ontology version
+`label_factory_v1_8fp`.
+
+The execution manifest covers 108 large noncanonical rows. Producer status is
+68 `known` and 40 `unknown_blocking` after mapping historical
+`partially_inferred` provenance to fail-closed blocking status. Every current
+row is explicitly `storage_class=git` with a `git:<source_path>@<commit_sha>`
+target URI. Status counts remain fail-closed:
+`migration_ready_count=0`, `remote_sha256_verified_count=0`,
+`removal_allowed_count=0`, and all stored `removal_allowed` values are derived
+by the validator. The new `validate-artifact-migration` CLI accepts this Phase
+1 draft because every row is explicitly blocked from removal; it rejects
+malformed hashes, unsafe producer/storage states, canonical removal, missing
+restore/summary/target information, missing remote hash verification, missing
+restore tests, unaccounted downstream consumers, and any stored removal value
+that disagrees with the derived gate.
+The storage inventory/policy chain was refreshed after adding the execution
+manifest: inventory now covers 2,580 artifact files and still has 108 large
+files, 0 policy blockers, and 0 deletion authorizations.
+
+Restore support is now fail-closed through `restore-artifacts`. It supports
+`--dry-run`, `--path`, `--subset smoke`, local/file targets for tests, Git
+targets for current in-repo rows, hash verification before writing, quarantine
+on hash mismatch, and no overwrite of an existing mismatched file without
+`--force`. Pointer records are defined as `artifact_pointer.v1`; Phase 1 only
+adds the format and tests and does not replace any artifact with a pointer.
+Source-only reproducibility tests now cover `compileall`, importing
+`catalytic_earth.transfer_scope`, CLI help, CLI `validate`, and a public
+contract import for the transfer-scope symbols previously involved in a clean
+checkout failure.
+
+Evidence-based confidence call: artifact migration instrumentation is coherent
+for Phase 1 and does not alter label registries, import-decision artifacts,
+retrieval outputs, sequence-distance metrics, or other scientific artifacts.
+The next automation run should not upload, remove, migrate to LFS, or rewrite
+history without an explicit Phase 2/Phase 3 human authorization. If continuing
+within Phase 1 only, the highest-value follow-up is tightening or documenting
+the 40 `unknown_blocking` producer rows, while keeping `removal_allowed=false`.
+
 As of the 2026-05-17T18:06:14Z automation run, artifact infrastructure has a
 durable no-loss planning layer but no migration has been performed.
 `artifacts/v3_artifact_storage_inventory_1025.json` now covers 2,579 artifact

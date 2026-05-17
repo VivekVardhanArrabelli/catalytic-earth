@@ -84,6 +84,10 @@ The repository currently contains:
     maps the current 108 large noncanonical artifacts to likely producers and
     downstream consumers, `artifacts/v3_artifact_migration_readiness_plan_1025.json`
     ranks future migration candidates without moving files, and
+    `artifacts/v3_artifact_migration_execution_1025.json` records the Phase 1
+    fail-closed execution manifest for the current-main 1,025 slice baseline.
+    The execution manifest has 0 migration-ready rows, 0 remote SHA-256
+    verifications, 0 restore-test passes, and 0 removal authorizations.
     `artifacts/v3_artifact_admission_guard_1025.json` guards future large
     artifact admission. See `docs/artifact_storage.md`.
 

@@ -1130,27 +1130,27 @@
     "artifact_dir": "artifacts",
     "category_bytes": {
       "canonical_evidence": 1293721,
-      "compact_artifact": 563086197,
+      "compact_artifact": 563311795,
       "raw_cache": 635178082,
       "regenerable_intermediate": 1544922563
     },
     "category_counts": {
       "canonical_evidence": 105,
-      "compact_artifact": 1356,
+      "compact_artifact": 1357,
       "raw_cache": 760,
       "regenerable_intermediate": 358
     },
     "deletion_authorized_count": 0,
-    "file_count": 2579,
-    "generated_at": "2026-05-17T18:14:40Z",
+    "file_count": 2580,
+    "generated_at": "2026-05-17T19:37:06Z",
     "git_policy_bytes": {
       "external_cache_candidate": 635178082,
-      "keep_in_git": 564379918,
+      "keep_in_git": 564605516,
       "manifest_then_externalize_candidate": 1544922563
     },
     "git_policy_counts": {
       "external_cache_candidate": 760,
-      "keep_in_git": 1461,
+      "keep_in_git": 1462,
       "manifest_then_externalize_candidate": 358
     },
     "information_loss_guard": "This inventory authorizes no deletion. Any artifact removal or externalization first requires a committed manifest row with sha256, producer/provenance, downstream-consumer notes, and a canonical summary of the scientific conclusion.",
@@ -1159,8 +1159,8 @@
     "method": "artifact_storage_inventory",
     "policy_blocker_count": 0,
     "policy_version": "artifact_storage_policy_v1_2026_05_17",
-    "total_bytes": 2744480563,
-    "total_gib": 2.556
+    "total_bytes": 2744706161,
+    "total_gib": 2.5562
   },
   "policy_findings": {
     "blockers": [],
@@ -4982,8 +4982,21 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "decision, gate, policy, or regression evidence artifact",
-      "sha256": "5b0770651dce5cac204c05ea695dd0df2d0eb1615b95e926fd60e85e84e744bf",
+      "sha256": "489a7936893d88ab3e073a232c34f214fd98dcc02581f669ddbe16ddd55a48ef",
       "size_bytes": 431
+    },
+    {
+      "category": "compact_artifact",
+      "deletion_authorized": false,
+      "git_policy": "keep_in_git",
+      "path": "artifacts/v3_artifact_migration_execution_1025.json",
+      "preservation_requirements": [
+        "sha256_recorded",
+        "do_not_delete_without_committed_manifest_or_canonical_summary"
+      ],
+      "reason": "small artifact; keep in git until a later reviewed migration",
+      "sha256": "31d473b11e9ad85ebd6cdb3f48dcdb373526cfb0270c025f8ebfe4f2457a77ff",
+      "size_bytes": 224021
     },
     {
       "category": "canonical_evidence",
@@ -4995,7 +5008,7 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "decision, gate, policy, or regression evidence artifact",
-      "sha256": "b30e218865ff12312b527454a4aed8a8fa908e6c3ccc50f9bf07850888b9bc1b",
+      "sha256": "ade4986d06804769428002909d5cd67ba68d320fbc2a7e2c52cd0d23f9adf5c5",
       "size_bytes": 220422
     },
     {
@@ -5008,7 +5021,7 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "decision, gate, policy, or regression evidence artifact",
-      "sha256": "27318a8d2b4e06b4aeb043d46f209d0bf4a2818f1b5357c0269c2d89d4075a09",
+      "sha256": "3f9572ea598f499ef0dafda252924d49522fd070c013ba8bdd323f387bf607ac",
       "size_bytes": 170155
     },
     {
@@ -5021,8 +5034,8 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "small artifact; keep in git until a later reviewed migration",
-      "sha256": "c25cf2d5ac13ef466ff3178ff218735b837df729bda3cc81c5bf64f49510475e",
-      "size_bytes": 1573292
+      "sha256": "476b736911d9063299dc8bf7255f805794bb583a74578206c8b1165fe9def8d5",
+      "size_bytes": 1574869
     },
     {
       "category": "compact_artifact",
@@ -5034,7 +5047,7 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "small artifact; keep in git until a later reviewed migration",
-      "sha256": "c37c2e30b6be34e2d6e5e1cf22e8a4e8b4370d2c3dc6ed987d01dfdef174e288",
+      "sha256": "79a6f4553070cc2fe3a9cfa1e5ed4ec58911ed97a17899e9d07dbfe0205da6d2",
       "size_bytes": 365
     },
     {

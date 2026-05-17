@@ -12,11 +12,14 @@ from typing import Any
 from .adapters import fetch_mcsa_sample, fetch_rhea_sample
 from .artifact_storage import (
     DEFAULT_LARGE_FILE_THRESHOLD_BYTES,
+    build_artifact_migration_execution_manifest,
     build_artifact_migration_readiness_plan,
     build_artifact_producer_consumer_manifest,
     build_artifact_storage_inventory,
     check_artifact_admission_guard,
     check_artifact_storage_policy,
+    restore_artifacts_from_manifest,
+    validate_artifact_migration_manifest,
 )
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
 from .fingerprints import build_mechanism_demo, load_fingerprints
@@ -628,6 +631,63 @@ def cmd_build_artifact_migration_readiness_plan(args: argparse.Namespace) -> int
         f"{args.out} ({plan['metadata']['planned_file_count']} rows)"
     )
     return 0
+
+
+def cmd_build_artifact_migration_execution_manifest(args: argparse.Namespace) -> int:
+    readiness_plan = read_json_object(Path(args.readiness_plan))
+    producer_consumer_manifest = read_json_object(Path(args.producer_consumer_manifest))
+    commit_sha = args.commit_sha or _git_output(Path("."), "rev-parse", "HEAD")
+    manifest = build_artifact_migration_execution_manifest(
+        readiness_plan,
+        producer_consumer_manifest,
+        readiness_plan_path=args.readiness_plan,
+        producer_consumer_manifest_path=args.producer_consumer_manifest,
+        execution_manifest_path=args.out,
+        repo_root=Path("."),
+        commit_sha=commit_sha,
+    )
+    write_json(Path(args.out), manifest)
+    print(
+        "Wrote artifact migration execution manifest to "
+        f"{args.out} ({manifest['metadata']['row_count']} rows, "
+        f"removal_allowed={manifest['metadata']['removal_allowed_count']})"
+    )
+    return 0
+
+
+def cmd_validate_artifact_migration(args: argparse.Namespace) -> int:
+    manifest = read_json_object(Path(args.manifest))
+    validation = validate_artifact_migration_manifest(
+        manifest,
+        repo_root=Path("."),
+        check_local_files=args.check_local_files,
+    )
+    mode = "dry-run " if args.dry_run else ""
+    print(
+        f"{mode}artifact migration validation "
+        f"{validation['metadata']['status']}: "
+        f"{validation['metadata']['row_count']} rows, "
+        f"{validation['metadata']['blocker_count']} blockers, "
+        f"removal_allowed={validation['metadata']['removal_allowed_count']}"
+    )
+    if validation["blockers"]:
+        print(json.dumps(validation["blockers"], indent=2, sort_keys=True))
+    return 0 if validation["metadata"]["status"] == "passed" else 2
+
+
+def cmd_restore_artifacts(args: argparse.Namespace) -> int:
+    manifest = read_json_object(Path(args.manifest))
+    result = restore_artifacts_from_manifest(
+        manifest,
+        repo_root=Path("."),
+        paths=args.path,
+        subset=args.subset,
+        dry_run=args.dry_run,
+        force=args.force,
+        quarantine_dir=Path(args.quarantine_dir) if args.quarantine_dir else None,
+    )
+    print(json.dumps(result, indent=2, sort_keys=True))
+    return 0 if result["metadata"]["status"] == "passed" else 2
 
 
 def cmd_check_artifact_admission_guard(args: argparse.Namespace) -> int:
@@ -6084,6 +6144,58 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_artifact_migration_readiness_plan_1025.json",
     )
     migration_plan.set_defaults(func=cmd_build_artifact_migration_readiness_plan)
+
+    migration_execution = subparsers.add_parser(
+        "build-artifact-migration-execution-manifest",
+        help="build the fail-closed no-loss artifact migration execution manifest",
+    )
+    migration_execution.add_argument(
+        "--readiness-plan",
+        default="artifacts/v3_artifact_migration_readiness_plan_1025.json",
+    )
+    migration_execution.add_argument(
+        "--producer-consumer-manifest",
+        default="artifacts/v3_artifact_producer_consumer_manifest_1025.json",
+    )
+    migration_execution.add_argument(
+        "--commit-sha",
+        default=None,
+        help="Git commit SHA for git:<path>@<commit> targets; defaults to HEAD",
+    )
+    migration_execution.add_argument(
+        "--out",
+        default="artifacts/v3_artifact_migration_execution_1025.json",
+    )
+    migration_execution.set_defaults(
+        func=cmd_build_artifact_migration_execution_manifest
+    )
+
+    migration_validate = subparsers.add_parser(
+        "validate-artifact-migration",
+        help="validate artifact migration execution manifest safety gates",
+    )
+    migration_validate.add_argument(
+        "--manifest",
+        default="artifacts/v3_artifact_migration_execution_1025.json",
+    )
+    migration_validate.add_argument("--dry-run", action="store_true")
+    migration_validate.add_argument("--check-local-files", action="store_true")
+    migration_validate.set_defaults(func=cmd_validate_artifact_migration)
+
+    restore_artifacts = subparsers.add_parser(
+        "restore-artifacts",
+        help="restore exact artifact paths from a migration execution manifest",
+    )
+    restore_artifacts.add_argument(
+        "--manifest",
+        default="artifacts/v3_artifact_migration_execution_1025.json",
+    )
+    restore_artifacts.add_argument("--path", action="append", default=None)
+    restore_artifacts.add_argument("--subset", choices=["smoke"], default=None)
+    restore_artifacts.add_argument("--dry-run", action="store_true")
+    restore_artifacts.add_argument("--force", action="store_true")
+    restore_artifacts.add_argument("--quarantine-dir", default=None)
+    restore_artifacts.set_defaults(func=cmd_restore_artifacts)
 
     admission_guard = subparsers.add_parser(
         "check-artifact-admission-guard",

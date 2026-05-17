@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import re
+import subprocess
+import urllib.request
+from urllib.parse import unquote, urlparse
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -9,8 +12,48 @@ from typing import Any
 
 
 ARTIFACT_STORAGE_POLICY_VERSION = "artifact_storage_policy_v1_2026_05_17"
+ARTIFACT_MIGRATION_EXECUTION_SCHEMA_VERSION = "artifact_migration_execution.v1"
+ARTIFACT_POINTER_SCHEMA_VERSION = "artifact_pointer.v1"
 DEFAULT_LARGE_FILE_THRESHOLD_BYTES = 5 * 1024 * 1024
 HASH_CHUNK_SIZE = 1024 * 1024
+VALID_ARTIFACT_MIGRATION_PRODUCER_STATUSES = {
+    "known",
+    "unavailable_with_reason",
+    "unknown_blocking",
+}
+VALID_ARTIFACT_STORAGE_CLASSES = {
+    "git",
+    "git_lfs",
+    "github_release",
+    "object_storage",
+    "file",
+    "local_path",
+}
+CURRENT_MAIN_ARTIFACT_BASELINE = {
+    "baseline": "current_main_three_external_hard_negatives",
+    "slice_id": 1025,
+    "canonical_countable_label_count": 682,
+    "external_imported_out_of_scope_labels": [
+        "uniprot:P06744",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3",
+    ],
+    "external_imported_seed_fingerprint_label_count": 0,
+    "external_hard_negative_label_type": "out_of_scope",
+    "external_hard_negative_fingerprint_id": None,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "positive_fingerprint_universe": [
+        "ser_his_acid_hydrolase",
+        "metal_dependent_hydrolase",
+        "plp_dependent_enzyme",
+        "radical_sam_enzyme",
+        "cobalamin_radical_rearrangement",
+        "flavin_monooxygenase",
+        "flavin_dehydrogenase_reductase",
+        "heme_peroxidase_oxidase",
+    ],
+}
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
 def sha256_file(path: Path) -> str:
@@ -819,4 +862,694 @@ def check_artifact_admission_guard(
             "status": "passed" if not blockers else "blocked",
         },
         "blockers": blockers,
+    }
+
+
+def _execution_producer_status(status: Any) -> str:
+    if status in {"known", "unavailable_with_reason"}:
+        return str(status)
+    return "unknown_blocking"
+
+
+def _first_existing_summary_path(
+    paths: list[Any],
+    *,
+    repo_root: Path,
+) -> str | None:
+    for path in paths:
+        if not isinstance(path, str) or not path:
+            continue
+        if (repo_root / path).exists():
+            return path
+    for path in paths:
+        if isinstance(path, str) and path:
+            return path
+    return None
+
+
+def derive_artifact_removal_allowed(row: dict[str, Any]) -> bool:
+    return all(
+        [
+            bool(row.get("migration_ready")),
+            bool(row.get("remote_sha256_verified")),
+            bool(row.get("canonical_summary_present")),
+            bool(row.get("restore_test_passed")),
+            bool(row.get("downstream_consumers_accounted_for")),
+            row.get("canonical_or_noncanonical") == "noncanonical",
+            row.get("storage_class") != "git",
+            bool(row.get("target_uri")),
+            bool(row.get("restore_command")),
+            row.get("producer_status") != "unknown_blocking",
+        ]
+    )
+
+
+def build_artifact_migration_execution_manifest(
+    readiness_plan: dict[str, Any],
+    producer_consumer_manifest: dict[str, Any],
+    *,
+    readiness_plan_path: str,
+    producer_consumer_manifest_path: str,
+    execution_manifest_path: str,
+    repo_root: Path,
+    commit_sha: str,
+    generated_at: str | None = None,
+) -> dict[str, Any]:
+    generated_at = generated_at or _utc_timestamp()
+    manifest_rows = {
+        row.get("path"): row
+        for row in producer_consumer_manifest.get("rows", [])
+        if isinstance(row, dict)
+    }
+    rows: list[dict[str, Any]] = []
+    for plan_row in readiness_plan.get("rows", []):
+        if not isinstance(plan_row, dict):
+            continue
+        source_path = str(plan_row.get("path", ""))
+        source_file = repo_root / source_path
+        file_exists = source_file.is_file()
+        actual_size = source_file.stat().st_size if file_exists else plan_row.get("size_bytes")
+        actual_sha = sha256_file(source_file) if file_exists else plan_row.get("sha256")
+        manifest_row = manifest_rows.get(source_path, {})
+        producer_status = _execution_producer_status(
+            manifest_row.get("producer_command_status")
+            or plan_row.get("producer_command_status")
+        )
+        downstream_consumers = manifest_row.get("downstream_consumers", [])
+        if not isinstance(downstream_consumers, list):
+            downstream_consumers = []
+        summary_paths = plan_row.get("canonical_summary_preserving_conclusion")
+        if not isinstance(summary_paths, list):
+            summary_paths = manifest_row.get("canonical_summary_artifacts", [])
+        if not isinstance(summary_paths, list):
+            summary_paths = []
+        canonical_summary_path = _first_existing_summary_path(
+            summary_paths,
+            repo_root=repo_root,
+        )
+        canonical_summary_present = bool(
+            canonical_summary_path and (repo_root / canonical_summary_path).exists()
+        )
+        blockers = list(plan_row.get("migration_blockers", []))
+        if producer_status == "unknown_blocking":
+            blockers.append(
+                "producer_status_unknown_blocking_after_execution_manifest_mapping"
+            )
+        blockers.extend(
+            [
+                "phase_2_remote_target_uri_not_uploaded_or_verified",
+                "restore_test_not_recorded_for_external_target",
+                "phase_3_removal_not_authorized",
+            ]
+        )
+        if not downstream_consumers:
+            blockers.append("downstream_consumers_not_accounted_for")
+        if not canonical_summary_present:
+            blockers.append("canonical_summary_not_present")
+
+        row = {
+            "source_path": source_path,
+            "file_exists": file_exists,
+            "size_bytes": int(actual_size or 0),
+            "sha256": str(actual_sha or ""),
+            "artifact_category": plan_row.get("category"),
+            "canonical_or_noncanonical": "noncanonical",
+            "producer_status": producer_status,
+            "downstream_consumers": downstream_consumers,
+            "canonical_summary_path": canonical_summary_path,
+            "storage_class": "git",
+            "planned_storage_class": plan_row.get("recommended_storage_class"),
+            "target_uri": f"git:{source_path}@{commit_sha}",
+            "restore_command": (
+                "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts "
+                f"--manifest {execution_manifest_path} --path {source_path}"
+            ),
+            "restore_verification": "sha256",
+            "migration_ready": False,
+            "remote_sha256_verified": False,
+            "restore_test_passed": False,
+            "downstream_consumers_accounted_for": bool(downstream_consumers),
+            "canonical_summary_present": canonical_summary_present,
+            "migration_blockers": sorted(dict.fromkeys(blockers)),
+            "baseline": CURRENT_MAIN_ARTIFACT_BASELINE["baseline"],
+            "slice_id": CURRENT_MAIN_ARTIFACT_BASELINE["slice_id"],
+            "canonical_countable_label_count": CURRENT_MAIN_ARTIFACT_BASELINE[
+                "canonical_countable_label_count"
+            ],
+            "external_imported_out_of_scope_labels": CURRENT_MAIN_ARTIFACT_BASELINE[
+                "external_imported_out_of_scope_labels"
+            ],
+            "external_imported_seed_fingerprint_label_count": (
+                CURRENT_MAIN_ARTIFACT_BASELINE[
+                    "external_imported_seed_fingerprint_label_count"
+                ]
+            ),
+            "ontology_version_at_decision": CURRENT_MAIN_ARTIFACT_BASELINE[
+                "ontology_version_at_decision"
+            ],
+        }
+        if canonical_summary_path is None:
+            row["canonical_summary_not_required_reason"] = (
+                "no canonical summary path was available in the readiness plan; "
+                "row is therefore blocked from removal"
+            )
+        row["removal_allowed"] = derive_artifact_removal_allowed(row)
+        rows.append(row)
+
+    producer_counts = Counter(row["producer_status"] for row in rows)
+    return {
+        "metadata": {
+            "method": "artifact_migration_execution_manifest",
+            "manifest_schema_version": ARTIFACT_MIGRATION_EXECUTION_SCHEMA_VERSION,
+            "policy_version": ARTIFACT_STORAGE_POLICY_VERSION,
+            "generated_at": generated_at,
+            "source_readiness_plan": readiness_plan_path,
+            "source_producer_consumer_manifest": producer_consumer_manifest_path,
+            "current_main_commit": commit_sha,
+            **CURRENT_MAIN_ARTIFACT_BASELINE,
+            "row_count": len(rows),
+            "migration_ready_count": sum(1 for row in rows if row["migration_ready"]),
+            "unknown_blocking_count": producer_counts.get("unknown_blocking", 0),
+            "removal_allowed_count": sum(1 for row in rows if row["removal_allowed"]),
+            "remote_sha256_verified_count": sum(
+                1 for row in rows if row["remote_sha256_verified"]
+            ),
+            "producer_status_counts": dict(sorted(producer_counts.items())),
+            "information_loss_guard": (
+                "Phase 1 instrumentation only. This manifest records exact Git "
+                "targets for current artifacts but authorizes no upload, migration, "
+                "artifact removal, Git LFS migration, or history rewrite."
+            ),
+        },
+        "rows": rows,
+    }
+
+
+def validate_artifact_migration_manifest(
+    manifest: dict[str, Any],
+    *,
+    repo_root: Path | None = None,
+    check_local_files: bool = False,
+) -> dict[str, Any]:
+    blockers: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
+    metadata = manifest.get("metadata", {})
+    rows = manifest.get("rows", [])
+    if not isinstance(metadata, dict):
+        blockers.append({"reason": "manifest metadata is missing or invalid"})
+        metadata = {}
+    if (
+        metadata.get("manifest_schema_version")
+        != ARTIFACT_MIGRATION_EXECUTION_SCHEMA_VERSION
+    ):
+        blockers.append(
+            {
+                "reason": "invalid manifest schema version",
+                "observed": metadata.get("manifest_schema_version"),
+                "expected": ARTIFACT_MIGRATION_EXECUTION_SCHEMA_VERSION,
+            }
+        )
+    if not isinstance(rows, list):
+        blockers.append({"reason": "manifest rows are missing or invalid"})
+        rows = []
+
+    required_fields = {
+        "source_path",
+        "file_exists",
+        "size_bytes",
+        "sha256",
+        "artifact_category",
+        "canonical_or_noncanonical",
+        "producer_status",
+        "downstream_consumers",
+        "storage_class",
+        "target_uri",
+        "restore_command",
+        "restore_verification",
+        "removal_allowed",
+        "migration_ready",
+        "remote_sha256_verified",
+        "restore_test_passed",
+        "downstream_consumers_accounted_for",
+        "canonical_summary_present",
+        "migration_blockers",
+    }
+
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict):
+            blockers.append({"row_index": index, "reason": "row is not an object"})
+            continue
+        source_path = row.get("source_path")
+        missing = sorted(field for field in required_fields if field not in row)
+        if missing:
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "row is missing required fields",
+                    "fields": missing,
+                }
+            )
+        if not row.get("canonical_summary_path") and not row.get(
+            "canonical_summary_not_required_reason"
+        ):
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": (
+                        "row must include canonical_summary_path or "
+                        "canonical_summary_not_required_reason"
+                    ),
+                }
+            )
+        sha256 = row.get("sha256")
+        if not isinstance(sha256, str) or not SHA256_RE.fullmatch(sha256):
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "malformed SHA-256",
+                }
+            )
+        if row.get("producer_status") not in VALID_ARTIFACT_MIGRATION_PRODUCER_STATUSES:
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "invalid producer_status",
+                    "producer_status": row.get("producer_status"),
+                }
+            )
+        if row.get("storage_class") not in VALID_ARTIFACT_STORAGE_CLASSES:
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "invalid storage_class",
+                    "storage_class": row.get("storage_class"),
+                }
+            )
+        if row.get("restore_verification") != "sha256":
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "restore_verification must be sha256",
+                }
+            )
+        derived = derive_artifact_removal_allowed(row)
+        if row.get("removal_allowed") is not derived:
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "stored removal_allowed disagrees with derived value",
+                    "stored": row.get("removal_allowed"),
+                    "derived": derived,
+                }
+            )
+        if row.get("removal_allowed"):
+            if row.get("canonical_or_noncanonical") == "canonical":
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "canonical artifacts cannot be marked for removal",
+                    }
+                )
+            if not row.get("restore_command"):
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "removal requires restore_command",
+                    }
+                )
+            if not row.get("canonical_summary_path") and not row.get(
+                "canonical_summary_not_required_reason"
+            ):
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "removal requires canonical summary or explicit reason",
+                    }
+                )
+            if not row.get("target_uri"):
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "removal requires target_uri",
+                    }
+                )
+            if row.get("remote_sha256_verified") is not True:
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "removal requires remote_sha256_verified=true",
+                    }
+                )
+            if row.get("restore_test_passed") is not True:
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "removal requires restore_test_passed=true",
+                    }
+                )
+            if row.get("producer_status") == "unknown_blocking":
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "removal cannot use producer_status=unknown_blocking",
+                    }
+                )
+            if row.get("downstream_consumers_accounted_for") is not True:
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "removal requires downstream consumers accounted for",
+                    }
+                )
+        if row.get("removal_allowed") is False and not row.get("migration_blockers"):
+            warnings.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": "blocked row has no explanatory migration_blockers",
+                }
+            )
+        if check_local_files and repo_root is not None and isinstance(source_path, str):
+            source_file = repo_root / source_path
+            exists = source_file.is_file()
+            if row.get("file_exists") is not exists:
+                blockers.append(
+                    {
+                        "row_index": index,
+                        "source_path": source_path,
+                        "reason": "stored file_exists disagrees with local filesystem",
+                        "stored": row.get("file_exists"),
+                        "observed": exists,
+                    }
+                )
+            if exists:
+                observed_size = source_file.stat().st_size
+                observed_sha = sha256_file(source_file)
+                if row.get("size_bytes") != observed_size:
+                    blockers.append(
+                        {
+                            "row_index": index,
+                            "source_path": source_path,
+                            "reason": "stored size_bytes disagrees with local file",
+                            "stored": row.get("size_bytes"),
+                            "observed": observed_size,
+                        }
+                    )
+                if row.get("sha256") != observed_sha:
+                    blockers.append(
+                        {
+                            "row_index": index,
+                            "source_path": source_path,
+                            "reason": "stored sha256 disagrees with local file",
+                        }
+                    )
+
+    return {
+        "metadata": {
+            "method": "artifact_migration_validation",
+            "manifest_schema_version": metadata.get("manifest_schema_version"),
+            "row_count": len(rows),
+            "blocker_count": len(blockers),
+            "warning_count": len(warnings),
+            "removal_allowed_count": sum(
+                1 for row in rows if isinstance(row, dict) and row.get("removal_allowed")
+            ),
+            "derived_removal_allowed_count": sum(
+                1 for row in rows if isinstance(row, dict) and derive_artifact_removal_allowed(row)
+            ),
+            "status": "passed" if not blockers else "blocked",
+        },
+        "blockers": blockers,
+        "warnings": warnings,
+    }
+
+
+def build_artifact_pointer_record(
+    *,
+    original_path: str,
+    sha256: str,
+    size_bytes: int,
+    storage_class: str,
+    target_uri: str,
+    restore_manifest: str,
+    canonical_summary: str,
+) -> dict[str, Any]:
+    return {
+        "artifact_pointer_schema_version": ARTIFACT_POINTER_SCHEMA_VERSION,
+        "original_path": original_path,
+        "sha256": sha256,
+        "size_bytes": size_bytes,
+        "storage_class": storage_class,
+        "target_uri": target_uri,
+        "restore_manifest": restore_manifest,
+        "canonical_summary": canonical_summary,
+        "restore_verification": "sha256",
+    }
+
+
+def validate_artifact_pointer_record(pointer: dict[str, Any]) -> list[str]:
+    blockers: list[str] = []
+    required = {
+        "artifact_pointer_schema_version",
+        "original_path",
+        "sha256",
+        "size_bytes",
+        "storage_class",
+        "target_uri",
+        "restore_manifest",
+        "canonical_summary",
+    }
+    for field in sorted(required):
+        if field not in pointer:
+            blockers.append(f"missing {field}")
+    if pointer.get("artifact_pointer_schema_version") != ARTIFACT_POINTER_SCHEMA_VERSION:
+        blockers.append("invalid artifact_pointer_schema_version")
+    if not isinstance(pointer.get("sha256"), str) or not SHA256_RE.fullmatch(
+        str(pointer.get("sha256", ""))
+    ):
+        blockers.append("malformed sha256")
+    if pointer.get("storage_class") not in VALID_ARTIFACT_STORAGE_CLASSES:
+        blockers.append("invalid storage_class")
+    return blockers
+
+
+def _selected_restore_rows(
+    manifest: dict[str, Any],
+    *,
+    paths: list[str] | None = None,
+    subset: str | None = None,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    rows = [row for row in manifest.get("rows", []) if isinstance(row, dict)]
+    blockers: list[dict[str, Any]] = []
+    if paths:
+        row_by_path = {row.get("source_path"): row for row in rows}
+        selected = []
+        for path in paths:
+            row = row_by_path.get(path)
+            if row is None:
+                blockers.append({"source_path": path, "reason": "path not in manifest"})
+            else:
+                selected.append(row)
+        return selected, blockers
+    if subset == "smoke":
+        return rows[:3], blockers
+    return rows, blockers
+
+
+def _fetch_target_bytes(target_uri: str, *, repo_root: Path) -> bytes:
+    parsed = urlparse(target_uri)
+    if target_uri.startswith("git:"):
+        spec = target_uri[len("git:") :]
+        if "@" not in spec:
+            raise ValueError("git target_uri must be git:<path>@<commit>")
+        source_path, commit = spec.rsplit("@", 1)
+        result = subprocess.run(
+            ["git", "show", f"{commit}:{source_path}"],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+        )
+        return result.stdout
+    if parsed.scheme == "file":
+        return Path(unquote(parsed.path)).read_bytes()
+    if parsed.scheme in {"http", "https"}:
+        with urllib.request.urlopen(target_uri, timeout=60) as response:
+            return response.read()
+    if parsed.scheme:
+        raise ValueError(f"unsupported target_uri scheme: {parsed.scheme}")
+    local_path = Path(target_uri)
+    if not local_path.is_absolute():
+        local_path = repo_root / local_path
+    return local_path.read_bytes()
+
+
+def restore_artifacts_from_manifest(
+    manifest: dict[str, Any],
+    *,
+    repo_root: Path,
+    paths: list[str] | None = None,
+    subset: str | None = None,
+    dry_run: bool = False,
+    force: bool = False,
+    quarantine_dir: Path | None = None,
+) -> dict[str, Any]:
+    selected_rows, selection_blockers = _selected_restore_rows(
+        manifest,
+        paths=paths,
+        subset=subset,
+    )
+    quarantine_dir = quarantine_dir or repo_root / "artifacts" / "restore_quarantine"
+    actions: list[dict[str, Any]] = []
+    failures: list[dict[str, Any]] = list(selection_blockers)
+    planned_writes: list[tuple[Path, bytes, dict[str, Any]]] = []
+
+    for row in selected_rows:
+        source_path = str(row.get("source_path", ""))
+        source_file = repo_root / source_path
+        expected_sha = str(row.get("sha256", ""))
+        target_uri = str(row.get("target_uri", ""))
+        if not target_uri:
+            action = {
+                "source_path": source_path,
+                "action": "blocked_missing_target_uri",
+            }
+            actions.append(action)
+            failures.append({**action, "reason": "target_uri is required"})
+            continue
+        if not SHA256_RE.fullmatch(expected_sha):
+            action = {"source_path": source_path, "action": "failed_bad_manifest_sha"}
+            actions.append(action)
+            failures.append({**action, "reason": "manifest sha256 is malformed"})
+            continue
+        if source_file.exists():
+            observed_sha = sha256_file(source_file)
+            if observed_sha == expected_sha:
+                actions.append(
+                    {
+                        "source_path": source_path,
+                        "action": "skipped_existing_match",
+                    }
+                )
+                continue
+            if not force:
+                action = {
+                    "source_path": source_path,
+                    "action": "failed_existing_mismatch",
+                }
+                actions.append(action)
+                failures.append(
+                    {
+                        **action,
+                        "reason": "existing file has a different sha256; use --force to overwrite",
+                    }
+                )
+                continue
+        if dry_run:
+            actions.append(
+                {
+                    "source_path": source_path,
+                    "target_uri": target_uri,
+                    "action": (
+                        "would_overwrite_and_restore"
+                        if source_file.exists()
+                        else "would_restore"
+                    ),
+                }
+            )
+            continue
+        try:
+            data = _fetch_target_bytes(target_uri, repo_root=repo_root)
+        except Exception as exc:  # pragma: no cover - exact backend errors vary.
+            action = {"source_path": source_path, "action": "failed_fetch"}
+            actions.append(action)
+            failures.append({**action, "reason": str(exc)})
+            continue
+        observed_sha = hashlib.sha256(data).hexdigest()
+        if observed_sha != expected_sha:
+            quarantine_dir.mkdir(parents=True, exist_ok=True)
+            quarantine_path = quarantine_dir / (
+                source_path.replace("/", "__") + ".sha256_mismatch"
+            )
+            quarantine_path.write_bytes(data)
+            action = {
+                "source_path": source_path,
+                "action": "failed_sha256_mismatch_quarantined",
+                "quarantine_path": quarantine_path.as_posix(),
+            }
+            actions.append(action)
+            failures.append(
+                {
+                    **action,
+                    "reason": "downloaded bytes did not match manifest sha256",
+                    "observed_sha256": observed_sha,
+                    "expected_sha256": expected_sha,
+                }
+            )
+            continue
+        planned_writes.append(
+            (
+                source_file,
+                data,
+                {
+                    "source_path": source_path,
+                    "action": (
+                        "overwrote_existing_mismatch"
+                        if source_file.exists()
+                        else "restored"
+                    ),
+                },
+            )
+        )
+
+    if not dry_run and failures:
+        return {
+            "metadata": {
+                "method": "restore_artifacts",
+                "dry_run": dry_run,
+                "subset": subset,
+                "selected_count": len(selected_rows),
+                "restored_count": 0,
+                "failed_count": len(failures),
+                "status": "blocked",
+            },
+            "actions": actions,
+            "failures": failures,
+        }
+
+    restored_count = 0
+    if not dry_run:
+        for source_file, data, action in planned_writes:
+            source_file.parent.mkdir(parents=True, exist_ok=True)
+            source_file.write_bytes(data)
+            actions.append(action)
+            restored_count += 1
+
+    status = "passed" if not failures else "blocked"
+    return {
+        "metadata": {
+            "method": "restore_artifacts",
+            "dry_run": dry_run,
+            "subset": subset,
+            "selected_count": len(selected_rows),
+            "restored_count": restored_count,
+            "failed_count": len(failures),
+            "status": status,
+        },
+        "actions": actions,
+        "failures": failures,
     }
