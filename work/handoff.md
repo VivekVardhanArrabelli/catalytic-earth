@@ -18,7 +18,7 @@ slices are countable only through the label-factory batch checks.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-681 countable labels. Review-state registries preserve pending
+682 countable labels. Review-state registries preserve pending
 `needs_expert_review` rows separately so unresolved evidence gaps do not count
 as benchmark labels.
 
@@ -49,6 +49,27 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+As of the 2026-05-17T13:37:34Z run, `P06744` is imported as the third external
+out-of-scope hard-negative label. Evidence-based confidence call: the import is
+defensible under the current 8-fingerprint ontology because terminal review,
+bounded duplicate controls, targeted and current-reference UniRef90/50 checks,
+current-countable Foldseek screening, all-8 inverse-gate scoring, the baseline
+label-factory gate, and the external-transfer gate all pass. The canonical
+registry now has 682 labels: 679 accepted M-CSA labels, 212 seed-fingerprint
+positives, and 470 out-of-scope labels including `uniprot:P06744`,
+`uniprot:P78549`, and `uniprot:Q3LXA3`.
+
+New artifacts:
+`artifacts/v3_external_hard_negative_broader_structural_terminal_review_decisions_1025.json`
+records `P06744` as `accepted_out_of_scope_pending_factory_gate`, and
+`artifacts/v3_external_hard_negative_broader_structural_factory_import_gate_1025.json`
+selects exactly `P06744` under a single-import cap while allowing the two prior
+external labels only as lineage. Post-import regression expectations were
+updated to 682 total labels and 470 out-of-scope labels. Next direct work should
+avoid reopening the five broader-surface duplicate-signal rejects and should
+source or screen a fresh structurally lower-risk external hard-negative surface
+only if another explicit import cycle is requested.
 
 As of the 2026-05-17T01:23:28Z run, the first external hard-negative import
 attempt is closed without count growth. Evidence-based confidence call: the
@@ -299,16 +320,14 @@ current-countable structural duplicate signal. `artifacts/v3_external_hard_negat
 therefore rejects `P14550`, `P15428`, `Q969S2`, `Q96FI4`, and `Q9BV20` as
 review-only duplicate-signal rows and defers `P06744` behind UniRef-wide
 duplicate screening, terminal review acceptance, inverse-gate/factory evidence,
-and the full import gate. Follow-on `P06744` artifacts now record clear bounded
+and the full import gate. Follow-on `P06744` artifacts record clear bounded
 duplicate evidence, a targeted UniRef90/50 nearest-reference no-shared-cluster
 result, a UniRef90/50 current-reference screen with 0 current-reference
 overlaps, and an all-8 out-of-scope inverse-gate pass with top1
 `metal_dependent_hydrolase` score `0.3066`. Evidence-based confidence call: the
-broader surface has one surviving no-current-structural-signal row, and its
-duplicate/inverse-gate blockers are now narrower, but no row is import-ready or
-countable because terminal review acceptance and full factory/import gates are
-still missing. Next direct work should decide the `P06744` terminal
-review/factory path without weakening gates; do not retry the five
+broader surface had one surviving no-current-structural-signal row, and its
+duplicate/inverse-gate blockers were narrowed before the later terminal
+review/factory import completed for `P06744`; do not retry the five
 duplicate-signal rows without new evidence.
 
 Run verification for the current handoff: started `2026-05-17T12:37:08Z` and
@@ -2507,9 +2526,10 @@ Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 
 ## Current Metrics
 
-- Curated label registry: 681 bronze automation-curated labels, with 212
-  seed-fingerprint positives and 469 out-of-scope labels. The external
-  out-of-scope members are `uniprot:P78549` and `uniprot:Q3LXA3`.
+- Curated label registry: 682 bronze automation-curated labels, with 212
+  seed-fingerprint positives and 470 out-of-scope labels. The external
+  out-of-scope members are `uniprot:P06744`, `uniprot:P78549`, and
+  `uniprot:Q3LXA3`.
 - 20-entry slice: threshold `0.4104`, 20/20 evaluable, 7/7 in-scope positives
   retained, 0 false non-abstentions, 0 hard negatives.
 - 125-entry slice: threshold `0.4115`, 124/125 evaluable, 38/38 in-scope

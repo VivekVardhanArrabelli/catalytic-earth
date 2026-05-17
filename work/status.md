@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 155
-- Measured elapsed time: 5054.2 minutes (84.24 hours)
+- Entries: 156
+- Measured elapsed time: 5065.9 minutes (84.43 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2893.8 measured minutes (48.23 hours)
+- post-v2: 2905.5 measured minutes (48.42 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1752
-- Evidence references logged: 1372
+- Artifact references logged: 1767
+- Evidence references logged: 1382
 
 ## Recent Entries
-
-### 2026-05-17T06:10:06.013546+00:00 - post-v2
-
-- Task: Advance next external hard-negative surface
-- Time mode: measured
-- Measured minutes: 41.433
-- Started: 2026-05-17T05:28:04Z
-- Ended: 2026-05-17T06:09:30Z
-- Artifacts: artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json, artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_1025.json, artifacts/v3_external_hard_negative_next_candidate_structural_cluster_index_1025.json, artifacts/v3_external_hard_negative_next_candidate_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_next_candidate_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: 382 startup unit tests passed, validate passed, 8 replacement candidates sourced, 8/8 current-reference sequence no-signal rows, 8/8 replacement AlphaFold coordinates staged, 28/28 external structural pairs cached, 5376/5376 current-countable structural pairs completed, 5 duplicate-signal rejections, 3 deferred no-current-structural-signal rows, 383 final unit tests passed, external transfer gate 68/68
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; label_factory docs checked unchanged.
 
 ### 2026-05-17T06:47:35.798677+00:00 - post-v2
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_hard_negative_broader_structural_sourcing_1025.json, artifacts/v3_external_hard_negative_broader_structural_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_broader_structural_inverse_gate_scores_1025.json, tests/test_scaling_1025_artifacts.py, tests/test_transfer_scope.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup tests and validate passed, broader sourcing selected 6 rows across 3 lanes, backend and all-vs-all sequence screens found 0 near duplicates, current-countable structural screen rejected 5 duplicate-signal rows, P06744 cleared bounded duplicate and UniRef current-reference checks, P06744 passed all-8 inverse gate at top1 0.3066, final 404 unit tests passed, validate passed over 681 labels, compileall passed, git diff --check passed
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. No labels imported and registry remains 681 labels.
+
+### 2026-05-17T13:49:27.020292+00:00 - post-v2
+
+- Task: Import P06744 broader external hard-negative
+- Time mode: measured
+- Measured minutes: 11.7
+- Started: 2026-05-17T13:37:34Z
+- Ended: 2026-05-17T13:49:16Z
+- Artifacts: artifacts/v3_external_hard_negative_broader_structural_terminal_review_decisions_1025.json, artifacts/v3_external_hard_negative_broader_structural_factory_import_gate_1025.json, data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_labels.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 404 unit tests passed, startup validate passed with 681 labels, P06744 terminal review accepted pending factory gate, P06744 broader structural factory gate selected exactly one import, all 8 P06744 current-fingerprint scores stayed below 0.4115, registry now has 682 labels and 470 out-of-scope labels, final 405 unit tests passed, validate passed with 682 curated labels, compileall passed, git diff --check passed
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
 
 ## Expectation Updates
 
@@ -243,6 +243,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-17T09:41:38.959359+00:00: Post-import litmus remains green after P78549; Q3LXA3 is the next review-only candidate if a later explicit single-import cycle is opened.
 - 2026-05-17T10:50:16.595786+00:00: Second external out-of-scope hard-negative import succeeded for Q3LXA3; P22830 remains review-only and should require its own explicit cycle or broader sourcing decision.
 - 2026-05-17T13:25:17.879225+00:00: Broader external sourcing now has one surviving no-current-structural-signal row, P06744; terminal review and full factory/import gates are the active blockers.
+- 2026-05-17T13:49:27.020292+00:00: P06744 is now a countable external out-of-scope hard negative; next work should not retry broader duplicate-signal rejects without new evidence.
 
 ## Scope Adjustments
 

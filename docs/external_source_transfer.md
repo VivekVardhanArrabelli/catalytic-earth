@@ -8,16 +8,17 @@ import.
 
 ## Current State
 
-- Canonical countable labels now total 681: the accepted 679-label M-CSA
-  surface plus two external out-of-scope hard negatives, `uniprot:P78549` and
-  `uniprot:Q3LXA3`.
+- Canonical countable labels now total 682: the accepted 679-label M-CSA
+  surface plus three external out-of-scope hard negatives, `uniprot:P06744`,
+  `uniprot:P78549`, and `uniprot:Q3LXA3`.
 - The 1,025 preview passes 21/21 label-factory gates but adds 0 clean countable
   labels.
 - All 329 preview review-state rows remain non-countable.
 - Most external UniProtKB/Swiss-Prot artifacts remain review-only; the
-  next-candidate factory/import gate is the first countable exception, and the
-  later explicit Q3LXA3 cycle is the second. Each authorizes exactly one
-  external out-of-scope import.
+  next-candidate factory/import gate was the first countable exception, the
+  later explicit Q3LXA3 cycle was the second, and the broader structural
+  factory/import gate is the third. Each authorizes exactly one external
+  out-of-scope import.
 - The first read-only external sample has 30 candidates across six query lanes,
   0 fetch failures, and a clean non-countable guardrail audit.
 - The external candidate manifest attaches OOD controls, heuristic-control
@@ -54,7 +55,7 @@ import.
   UniRef current-reference, all-8 inverse-gate, baseline label-factory, and
   external-transfer checks pass. `P22830` remains non-countable.
 - The post-import litmus regression now pins the expected count movement and
-  invariants: label count 681, out-of-scope count 469, seed-fingerprint count
+  invariants: label count 682, out-of-scope count 470, seed-fingerprint count
   212, zero overlap between in-scope and out-of-scope entry ids, unchanged
   1,000-slice in-scope retention (`0.9858`), and the sequence-distance holdout
   target (`max identity 0.284`, 43/43 retained held-out positives correct, 0
@@ -249,9 +250,13 @@ import.
   UniRef90/50 nearest-reference checks find no shared cluster, the current-
   reference UniRef screen finds 0 current-reference cluster overlaps, and all
   8 current fingerprint scores remain below the `0.4115` out-of-scope floor
-  with top1 `metal_dependent_hydrolase` score `0.3066`. `P06744` remains
-  review-only because terminal review acceptance and full factory gates are
-  still missing.
+  with top1 `metal_dependent_hydrolase` score `0.3066`.
+- `artifacts/v3_external_hard_negative_broader_structural_terminal_review_decisions_1025.json`
+  accepts `P06744` as out-of-scope pending factory gates, and
+  `artifacts/v3_external_hard_negative_broader_structural_factory_import_gate_1025.json`
+  completes the full gate, allows prior external labels only as lineage, and
+  imports exactly `uniprot:P06744` with `fingerprint_id=null` and
+  `ontology_version_at_decision=label_factory_v1_8fp`.
 
 ## Immediate Pilot Direction
 

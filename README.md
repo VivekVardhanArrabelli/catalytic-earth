@@ -53,9 +53,10 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 681 entries: 679 accepted M-CSA labels through
-   the 1,000-entry candidate queue plus two factory-gated external
-   out-of-scope hard negatives (`uniprot:P78549` and `uniprot:Q3LXA3`).
+8. Curated mechanism labels for 682 entries: 679 accepted M-CSA labels through
+   the 1,000-entry candidate queue plus three factory-gated external
+   out-of-scope hard negatives (`uniprot:P06744`, `uniprot:P78549`, and
+   `uniprot:Q3LXA3`).
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 10. Retrieval evaluation, abstention threshold calibration, hard-negative
     selection, in-scope failure analysis, cofactor coverage analysis,
@@ -189,9 +190,12 @@ screen, candidate, artifact-path, and pilot review-only decision validation. The
 first successful external hard-negative import was `uniprot:P78549`, selected
 by the next-candidate factory/import gate after all 8 current fingerprint scores
 stayed below the `0.4115` out-of-scope floor and duplicate controls cleared.
-The explicit later single-import cycle has now imported `uniprot:Q3LXA3` under
-the same current-ontology out-of-scope criteria. A regression test now pins the
-post-import invariants: 681 total labels, 469 out-of-scope labels, 212
+The explicit later single-import cycle imported `uniprot:Q3LXA3` under the same
+current-ontology out-of-scope criteria, and the broader structural surface now
+imports `uniprot:P06744` after terminal review, duplicate controls, UniRef
+current-reference screening, all-8 inverse-gate scoring, label-factory gates,
+and external-transfer gates pass. A regression test now pins the post-import
+invariants: 682 total labels, 470 out-of-scope labels, 212
 seed-fingerprint labels, no in-scope/out-of-scope entry overlap, unchanged
 1,000-slice retained in-scope behavior, and preserved held-out
 sequence-distance metrics.
@@ -534,7 +538,7 @@ current-fingerprint score is lower (`0.2929` versus `0.3686` for `P22830`).
 opens that explicit later cycle without relaxing the global one-import default:
 `Q3LXA3` passes the same terminal-review, duplicate, UniRef current-reference,
 all-8 inverse-gate, label-factory, and external-transfer checks, then imports
-as `uniprot:Q3LXA3` with `fingerprint_id=null`. The canonical registry now has
+as `uniprot:Q3LXA3` with `fingerprint_id=null`. The canonical registry then had
 681 labels: 212 seed fingerprints and 469 out-of-scope labels. The separate
 `artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json`
 keeps the litmus green and leaves `P22830` review-only for any later explicit
@@ -543,8 +547,8 @@ cycle; it is not imported by this run.
 the explicit no-go decision for that remaining row. A temporary later-cycle
 probe would select `P22830`, but its maximum current-fingerprint score is only
 `0.0429` below the `0.4115` out-of-scope floor after two successful external
-imports, so the registry intentionally stays at 681 labels and the next work
-should shift to broader external structural sourcing before any third import.
+imports, so the registry stayed at 681 labels until broader external structural
+sourcing produced a stronger third candidate.
 `artifacts/v3_external_hard_negative_broader_structural_sourcing_1025.json`
 now makes that broader sourcing path durable. It merges the prior fresh and
 next-candidate sourcing/terminal-decision surfaces, carries the P22830 deferral
@@ -566,12 +570,16 @@ five rows have high-TM current-countable structural duplicate signals, while
 decisions therefore reject those five rows as review-only duplicate risks and
 defer only `P06744` behind UniRef-wide duplicate screening, terminal review,
 and full factory gates. No external row becomes import-ready or countable.
-Follow-on review-only artifacts advance `P06744` only: bounded duplicate
-evidence is clear, targeted UniRef90/50 checks show no nearest-reference shared
-cluster, the UniRef current-reference cluster screen has 0 overlaps, and the
-all-8 out-of-scope inverse gate passes with top1 `metal_dependent_hydrolase`
-score `0.3066`. It remains blocked by missing terminal review acceptance and
-full factory gates.
+Follow-on artifacts advance `P06744` only: bounded duplicate evidence is clear,
+targeted UniRef90/50 checks show no nearest-reference shared cluster, the
+UniRef current-reference cluster screen has 0 overlaps, and the all-8
+out-of-scope inverse gate passes with top1 `metal_dependent_hydrolase` score
+`0.3066`. `artifacts/v3_external_hard_negative_broader_structural_terminal_review_decisions_1025.json`
+accepts it as out-of-scope pending factory gates, and
+`artifacts/v3_external_hard_negative_broader_structural_factory_import_gate_1025.json`
+then imports exactly `uniprot:P06744` while treating prior external labels as
+lineage. The canonical registry now has 682 labels: 212 seed fingerprints and
+470 out-of-scope labels.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

@@ -13419,6 +13419,86 @@ ATOM 5 C CA LYS A 8 2.5 0.2 0.0 CA LYS A 8
             1,
         )
 
+    def test_broader_structural_factory_gate_allows_prior_external_lineage(
+        self,
+    ) -> None:
+        gate = build_external_hard_negative_next_candidate_factory_import_gate(
+            terminal_review_decisions={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_broader_structural_terminal_"
+                        "review_decisions"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "P06744",
+                        "entry_id": "uniprot:P06744",
+                        "lane_id": "external_source:isomerase",
+                        "target_label_type": "out_of_scope",
+                        "target_fingerprint_id": None,
+                        "ontology_version_at_decision": "label_factory_v1_8fp",
+                        "terminal_review_decision_status": (
+                            "accepted_out_of_scope_pending_factory_gate"
+                        ),
+                        "source_evidence_status": (
+                            "explicit_active_site_and_catalytic_activity_"
+                            "source_present"
+                        ),
+                        "bounded_duplicate_evidence_status": (
+                            "bounded_duplicate_controls_clear_uniref_pending"
+                        ),
+                        "uniref_current_reference_screen_status": (
+                            "uniref_current_reference_screen_no_current_"
+                            "reference_overlap"
+                        ),
+                        "remaining_import_blockers": [
+                            "full_label_factory_gate_not_run"
+                        ],
+                        "out_of_scope_inverse_gate": {
+                            "target_fingerprint_id": None,
+                            "inverse_gate_status": "passed",
+                            "all_current_fingerprint_scores_below_threshold": True,
+                            "observed_current_fingerprint_count": 8,
+                            "expected_current_fingerprint_count": 8,
+                            "max_current_fingerprint_score": 0.3066,
+                        },
+                        "max_current_fingerprint_score": 0.3066,
+                    }
+                ],
+            },
+            label_factory_gate_check={
+                "metadata": {
+                    "method": "label_factory_gate_check",
+                    "gate_count": 21,
+                    "passed_gate_count": 21,
+                },
+                "blockers": [],
+            },
+            external_transfer_gate={
+                "metadata": {
+                    "method": "external_source_transfer_gate_check",
+                    "guardrail_clean": True,
+                },
+                "blockers": [],
+            },
+            existing_label_entry_ids=["uniprot:P78549", "uniprot:Q3LXA3"],
+            artifact_lineage={"slice_id": 1025},
+        )
+
+        self.assertEqual(
+            gate["metadata"]["method"],
+            "external_hard_negative_broader_structural_factory_import_gate",
+        )
+        self.assertEqual(
+            gate["metadata"]["allowed_existing_external_label_entry_ids"],
+            ["uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(gate["metadata"]["selected_import_accessions"], ["P06744"])
+        self.assertEqual(gate["metadata"]["import_ready_candidate_count"], 1)
+        self.assertEqual(gate["rows"][0]["remaining_import_blockers"], [])
+        self.assertTrue(gate["rows"][0]["ready_for_label_import"])
+
     def test_next_candidate_followup_cycle_decision_recommends_later_review_only(
         self,
     ) -> None:

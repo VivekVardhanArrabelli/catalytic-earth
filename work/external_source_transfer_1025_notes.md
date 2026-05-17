@@ -2,9 +2,9 @@
 
 The M-CSA 1,025 preview is not promotable and should stay a source-limit audit
 point: it adds 0 M-CSA countable labels. External-source transfer is now the
-active path for post-M-CSA scaling work. The first two countable external
-hard-negative imports are `uniprot:P78549` and `uniprot:Q3LXA3`, bringing the
-canonical registry to 681 labels.
+active path for post-M-CSA scaling work. The first three countable external
+hard-negative imports are `uniprot:P06744`, `uniprot:P78549`, and
+`uniprot:Q3LXA3`, bringing the canonical registry to 682 labels.
 
 Current external artifacts:
 
@@ -534,21 +534,22 @@ structural cluster index materializes all AlphaFold sidecars, covers 15/15
 unordered pairs, and finds 0 high-TM external pairs. The current-countable
 Foldseek screen completes
 4,032/4,032 query-target pairs and rejects five rows as high-TM
-current-countable duplicate risks. Only `P06744` remains deferred with no
-current-countable structural duplicate signal, and it still needs UniRef-wide
-duplicate screening, terminal review acceptance, inverse-gate/factory evidence,
-and the full import gate before any count growth.
+current-countable duplicate risks. Only `P06744` remained deferred with no
+current-countable structural duplicate signal before the follow-on duplicate,
+terminal review, inverse-gate, and factory evidence cleared.
 
-The follow-on `P06744` review-only artifacts now remove the current-reference
-UniRef duplicate blocker and the inverse-gate blocker. Bounded duplicate
-evidence is clear; targeted UniRef90/50 checks against the nearest current
-reference show no shared cluster; the candidate UniRef90/50 current-reference
-screen has 0 current-reference overlaps; and all 8 current fingerprint scores
-stay below the `0.4115` floor with top1 `metal_dependent_hydrolase` score
-`0.3066`. `P06744` is still not import-ready because terminal review acceptance
-and the full factory/import gate have not run.
+The follow-on `P06744` artifacts remove the current-reference UniRef duplicate
+blocker and the inverse-gate blocker. Bounded duplicate evidence is clear;
+targeted UniRef90/50 checks against the nearest current reference show no
+shared cluster; the candidate UniRef90/50 current-reference screen has 0
+current-reference overlaps; and all 8 current fingerprint scores stay below the
+`0.4115` floor with top1 `metal_dependent_hydrolase` score `0.3066`.
+`artifacts/v3_external_hard_negative_broader_structural_terminal_review_decisions_1025.json`
+accepts `P06744` as out-of-scope pending factory gates, and
+`artifacts/v3_external_hard_negative_broader_structural_factory_import_gate_1025.json`
+imports exactly `uniprot:P06744` after the baseline label-factory and external
+transfer gates pass.
 
-Next bounded work should decide the `P06744` terminal review/factory path
-without weakening gates. Do not retry the five duplicate-signal rows, reopen
-the six original pilot repair lanes, or import P22830 without an explicit
-decision that supersedes the deferral artifact.
+Next bounded work should not retry the five broader duplicate-signal rows,
+reopen the six original pilot repair lanes, or import P22830 without an
+explicit decision that supersedes the deferral artifact.

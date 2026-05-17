@@ -3852,6 +3852,16 @@ def cmd_build_external_hard_negative_next_candidate_terminal_review_decisions(
     uniref_current_reference_screen = read_json_object(
         Path(args.uniref_current_reference_screen)
     )
+    is_broader_structural_surface = (
+        inverse_gate_scores.get("metadata", {}).get("method")
+        == "external_hard_negative_broader_structural_inverse_gate_scores"
+        or duplicate_evidence_review.get("metadata", {}).get("method")
+        == "external_hard_negative_broader_structural_duplicate_evidence_review"
+        or terminal_review_queue.get("metadata", {}).get("method")
+        == "external_hard_negative_broader_structural_terminal_review_queue"
+        or uniref_current_reference_screen.get("metadata", {}).get("method")
+        == "external_hard_negative_broader_structural_uniref_current_reference_screen"
+    )
     artifact_lineage = {
         "method": "external_transfer_artifact_path_lineage_validation",
         "slice_id": 1025,
@@ -3864,7 +3874,11 @@ def cmd_build_external_hard_negative_next_candidate_terminal_review_decisions(
                 args.uniref_current_reference_screen
             ),
         },
-        "blocker_removed": "next_candidate_terminal_review_decisions",
+        "blocker_removed": (
+            "broader_structural_terminal_review_decisions"
+            if is_broader_structural_surface
+            else "next_candidate_terminal_review_decisions"
+        ),
     }
     decisions = (
         build_external_hard_negative_next_candidate_terminal_review_decisions(
@@ -3877,8 +3891,14 @@ def cmd_build_external_hard_negative_next_candidate_terminal_review_decisions(
         )
     )
     write_json(Path(args.out), decisions)
+    surface_name = (
+        "broader-structural"
+        if decisions.get("metadata", {}).get("method")
+        == "external_hard_negative_broader_structural_terminal_review_decisions"
+        else "next-candidate"
+    )
     print(
-        "Wrote next-candidate terminal review decisions to "
+        f"Wrote {surface_name} terminal review decisions to "
         f"{args.out} "
         f"({decisions['metadata']['terminal_review_accepted_pending_factory_count']} "
         "accepted pending factory)"
@@ -3895,6 +3915,10 @@ def cmd_build_external_hard_negative_next_candidate_factory_import_gate(
     existing_label_entry_ids = [
         label.entry_id for label in load_labels(Path(args.labels))
     ]
+    is_broader_structural_surface = (
+        terminal_review_decisions.get("metadata", {}).get("method")
+        == "external_hard_negative_broader_structural_terminal_review_decisions"
+    )
     artifact_lineage = {
         "method": "external_transfer_artifact_path_lineage_validation",
         "slice_id": 1025,
@@ -3905,7 +3929,11 @@ def cmd_build_external_hard_negative_next_candidate_factory_import_gate(
             "external_transfer_gate": args.external_transfer_gate,
             "labels": args.labels,
         },
-        "blocker_removed": "next_candidate_factory_import_gate",
+        "blocker_removed": (
+            "broader_structural_factory_import_gate"
+            if is_broader_structural_surface
+            else "next_candidate_factory_import_gate"
+        ),
     }
     gate = build_external_hard_negative_next_candidate_factory_import_gate(
         terminal_review_decisions=terminal_review_decisions,
@@ -3916,8 +3944,14 @@ def cmd_build_external_hard_negative_next_candidate_factory_import_gate(
         artifact_lineage=artifact_lineage,
     )
     write_json(Path(args.out), gate)
+    surface_name = (
+        "broader-structural"
+        if gate.get("metadata", {}).get("method")
+        == "external_hard_negative_broader_structural_factory_import_gate"
+        else "next-candidate"
+    )
     print(
-        "Wrote next-candidate factory import gate to "
+        f"Wrote {surface_name} factory import gate to "
         f"{args.out} "
         f"({gate['metadata']['selected_import_candidate_count']} selected)"
     )

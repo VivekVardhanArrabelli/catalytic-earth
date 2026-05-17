@@ -4836,7 +4836,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         ]
         self.assertEqual(
             [label["entry_id"] for label in external_labels],
-            ["uniprot:P78549", "uniprot:Q3LXA3"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
         )
         for external_label in external_labels:
             self.assertEqual(external_label["label_type"], "out_of_scope")
@@ -4846,9 +4846,9 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "label_factory_v1_8fp",
             )
 
-        self.assertEqual(label_summary["label_count"], 681)
+        self.assertEqual(label_summary["label_count"], 682)
         self.assertEqual(label_summary["by_type"]["seed_fingerprint"], 212)
-        self.assertEqual(label_summary["by_type"]["out_of_scope"], 469)
+        self.assertEqual(label_summary["by_type"]["out_of_scope"], 470)
         seed_entry_ids = {
             label["entry_id"]
             for label in labels
@@ -5271,6 +5271,19 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_hard_negative_broader_structural_inverse_gate_scores_1025.json"
         )
+        terminal_review_decisions = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_broader_structural_terminal_review_"
+                "decisions_1025.json"
+            )
+        )
+        factory_gate = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_hard_negative_broader_structural_factory_import_gate_1025.json"
+        )
 
         self.assertEqual(
             structural_path["metadata"]["method"], "external_structural_tm_holdout_path"
@@ -5415,6 +5428,44 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             inverse_scores["rows"][0]["remaining_import_blockers"],
             ["full_label_factory_gate_not_run", "terminal_review_decision_not_accepted"],
         )
+        self.assertEqual(
+            terminal_review_decisions["metadata"]["method"],
+            "external_hard_negative_broader_structural_terminal_review_decisions",
+        )
+        self.assertEqual(
+            terminal_review_decisions["metadata"][
+                "terminal_review_accepted_pending_factory_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            terminal_review_decisions["rows"][0]["terminal_review_decision_status"],
+            "accepted_out_of_scope_pending_factory_gate",
+        )
+        self.assertEqual(
+            terminal_review_decisions["rows"][0]["remaining_import_blockers"],
+            ["full_label_factory_gate_not_run"],
+        )
+        self.assertEqual(
+            factory_gate["metadata"]["method"],
+            "external_hard_negative_broader_structural_factory_import_gate",
+        )
+        self.assertEqual(factory_gate["metadata"]["selected_import_accessions"], ["P06744"])
+        self.assertEqual(factory_gate["metadata"]["import_ready_candidate_count"], 1)
+        self.assertEqual(factory_gate["metadata"]["countable_label_candidate_count"], 1)
+        self.assertEqual(
+            factory_gate["metadata"]["allowed_existing_external_label_entry_ids"],
+            ["uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(factory_gate["rows"][0]["entry_id"], "uniprot:P06744")
+        self.assertTrue(factory_gate["rows"][0]["ready_for_label_import"])
+        self.assertEqual(factory_gate["rows"][0]["remaining_import_blockers"], [])
+        accepted = [
+            item
+            for item in factory_gate["review_items"]
+            if item["decision"]["action"] == "accept_label"
+        ]
+        self.assertEqual([item["entry_id"] for item in accepted], ["uniprot:P06744"])
 
 
 def _load_json(path: Path) -> dict:

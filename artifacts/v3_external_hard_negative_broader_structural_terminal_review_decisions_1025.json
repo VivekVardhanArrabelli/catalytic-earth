@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "duplicate_evidence_review": "artifacts/v3_external_hard_negative_broader_structural_duplicate_evidence_review_1025.json",
+        "inverse_gate_scores": "artifacts/v3_external_hard_negative_broader_structural_inverse_gate_scores_1025.json",
+        "terminal_review_queue": "artifacts/v3_external_hard_negative_broader_structural_terminal_review_queue_1025.json",
+        "uniref_current_reference_screen": "artifacts/v3_external_hard_negative_broader_structural_uniref_current_reference_screen_1025.json"
+      },
+      "blocker_removed": "broader_structural_terminal_review_decisions",
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 1025
+    },
+    "blocker_not_removed": [
+      "full_label_factory_gate_not_run"
+    ],
+    "blocker_removed": "broader_structural_terminal_review_decisions_recorded",
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T13:42:20Z",
+    "import_ready_candidate_count": 0,
+    "method": "external_hard_negative_broader_structural_terminal_review_decisions",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "full_label_factory_gate_not_run": 1
+    },
+    "review_only": true,
+    "slice_id": 1025,
+    "source_duplicate_evidence_review_method": "external_hard_negative_broader_structural_duplicate_evidence_review",
+    "source_inverse_gate_scores_method": "external_hard_negative_broader_structural_inverse_gate_scores",
+    "source_terminal_review_queue_method": "external_hard_negative_broader_structural_terminal_review_queue",
+    "source_uniref_current_reference_screen_method": "external_hard_negative_broader_structural_uniref_current_reference_screen",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope",
+    "terminal_review_accepted_pending_factory_count": 1,
+    "terminal_review_decision_status_counts": {
+      "accepted_out_of_scope_pending_factory_gate": 1
+    },
+    "terminal_review_rejected_count": 0
+  },
+  "rows": [
+    {
+      "accession": "P06744",
+      "bounded_duplicate_evidence_status": "bounded_duplicate_controls_clear_uniref_pending",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06744",
+      "factory_gate_status": "not_run",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:isomerase",
+      "max_current_fingerprint_score": 0.3066,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate": {
+        "abstain_threshold": 0.4115,
+        "all_current_fingerprint_scores_below_threshold": true,
+        "blockers": [],
+        "current_fingerprint_scores": {
+          "cobalamin_radical_rearrangement": 0.1062,
+          "flavin_dehydrogenase_reductase": 0.303,
+          "flavin_monooxygenase": 0.0997,
+          "heme_peroxidase_oxidase": 0.298,
+          "metal_dependent_hydrolase": 0.3066,
+          "plp_dependent_enzyme": 0.2269,
+          "radical_sam_enzyme": 0.011,
+          "ser_his_acid_hydrolase": 0.224
+        },
+        "expected_current_fingerprint_count": 8,
+        "inverse_gate_status": "passed",
+        "max_current_fingerprint_score": 0.3066,
+        "missing_current_fingerprint_ids": [],
+        "observed_current_fingerprint_count": 8,
+        "observed_current_fingerprint_ids": [
+          "cobalamin_radical_rearrangement",
+          "flavin_dehydrogenase_reductase",
+          "flavin_monooxygenase",
+          "heme_peroxidase_oxidase",
+          "metal_dependent_hydrolase",
+          "plp_dependent_enzyme",
+          "radical_sam_enzyme",
+          "ser_his_acid_hydrolase"
+        ],
+        "ontology_version_at_decision": "label_factory_v1_8fp",
+        "target_fingerprint_id": null,
+        "target_label_type": "out_of_scope",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3066
+      },
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run"
+      ],
+      "review_status": "external_hard_negative_broader_structural_terminal_review_decision_review_only",
+      "source_evidence_status": "explicit_active_site_and_catalytic_activity_source_present",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "medium",
+      "terminal_review_decision": {
+        "decision_scope": "external_hard_negative_broader_structural",
+        "decision_status": "accepted_out_of_scope_pending_factory_gate",
+        "ontology_version_at_decision": "label_factory_v1_8fp",
+        "rationale": "bounded sequence, structural, UniRef current-reference, source-evidence, and all-8 inverse-gate controls clear; full factory gate still required",
+        "reviewer": "automation_terminal_review",
+        "target_fingerprint_id": null,
+        "target_label_type": "out_of_scope"
+      },
+      "terminal_review_decision_status": "accepted_out_of_scope_pending_factory_gate",
+      "terminal_review_queue_status": "needs_terminal_review_decision",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3066,
+      "uniref_current_reference_screen_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    }
+  ],
+  "warnings": [
+    "terminal review decisions are review-only until the full factory gate passes; accepted-pending-factory rows are not imported"
+  ]
+}

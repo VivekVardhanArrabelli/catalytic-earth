@@ -12026,6 +12026,45 @@ def build_external_hard_negative_next_candidate_terminal_review_decisions(
     if max_rows < 1:
         raise ValueError("max_rows must be positive")
 
+    source_inverse_method = inverse_gate_scores.get("metadata", {}).get("method")
+    source_duplicate_method = duplicate_evidence_review.get("metadata", {}).get(
+        "method"
+    )
+    source_queue_method = terminal_review_queue.get("metadata", {}).get("method")
+    source_uniref_method = uniref_current_reference_screen.get("metadata", {}).get(
+        "method"
+    )
+    is_broader_structural_surface = (
+        source_inverse_method
+        == "external_hard_negative_broader_structural_inverse_gate_scores"
+        or source_duplicate_method
+        == "external_hard_negative_broader_structural_duplicate_evidence_review"
+        or source_queue_method
+        == "external_hard_negative_broader_structural_terminal_review_queue"
+        or source_uniref_method
+        == "external_hard_negative_broader_structural_uniref_current_reference_screen"
+    )
+    method = (
+        "external_hard_negative_broader_structural_terminal_review_decisions"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_terminal_review_decisions"
+    )
+    blocker_removed = (
+        "broader_structural_terminal_review_decisions_recorded"
+        if is_broader_structural_surface
+        else "next_candidate_terminal_review_decisions_recorded"
+    )
+    decision_scope = (
+        "external_hard_negative_broader_structural"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate"
+    )
+    review_status = (
+        "external_hard_negative_broader_structural_terminal_review_decision_review_only"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_terminal_review_decision_review_only"
+    )
+
     inverse_by_accession = _external_first_row_by_accession(inverse_gate_scores)
     duplicate_by_accession = _external_first_row_by_accession(duplicate_evidence_review)
     queue_by_accession = _external_first_row_by_accession(terminal_review_queue)
@@ -12118,7 +12157,7 @@ def build_external_hard_negative_next_candidate_terminal_review_decisions(
                 "terminal_confidence": terminal_confidence,
                 "terminal_review_decision": {
                     "decision_status": terminal_status,
-                    "decision_scope": "external_hard_negative_next_candidate",
+                    "decision_scope": decision_scope,
                     "reviewer": "automation_terminal_review",
                     "target_label_type": "out_of_scope",
                     "target_fingerprint_id": None,
@@ -12159,9 +12198,7 @@ def build_external_hard_negative_next_candidate_terminal_review_decisions(
                 "countable_label_candidate": False,
                 "ready_for_label_import": False,
                 "import_ready_candidate": False,
-                "review_status": (
-                    "external_hard_negative_next_candidate_terminal_review_decision_review_only"
-                ),
+                "review_status": review_status,
             }
         )
 
@@ -12171,10 +12208,10 @@ def build_external_hard_negative_next_candidate_terminal_review_decisions(
     )
     return {
         "metadata": {
-            "method": "external_hard_negative_next_candidate_terminal_review_decisions",
+            "method": method,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
-            "blocker_removed": "next_candidate_terminal_review_decisions_recorded",
+            "blocker_removed": blocker_removed,
             "blocker_not_removed": sorted(blocker_counts),
             "review_only": True,
             "target_label_type": "out_of_scope",
@@ -12237,13 +12274,47 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
         entry_id for entry_id in existing_entry_ids if entry_id.startswith("uniprot:")
     }
     existing_external_label_count = len(existing_external_entry_ids)
+    source_terminal_method = terminal_review_decisions.get("metadata", {}).get(
+        "method"
+    )
+    is_broader_structural_surface = (
+        source_terminal_method
+        == "external_hard_negative_broader_structural_terminal_review_decisions"
+    )
     allowed_existing_external_entry_ids = {
         str(entry_id)
         for entry_id in allowed_existing_external_label_entry_ids or []
         if str(entry_id).startswith("uniprot:")
     }
+    if is_broader_structural_surface and not allowed_existing_external_entry_ids:
+        allowed_existing_external_entry_ids = set(existing_external_entry_ids)
     unexpected_existing_external_entry_ids = sorted(
         existing_external_entry_ids - allowed_existing_external_entry_ids
+    )
+    method = (
+        "external_hard_negative_broader_structural_factory_import_gate"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_factory_import_gate"
+    )
+    blocker_removed = (
+        "broader_structural_full_factory_import_gate_completed"
+        if is_broader_structural_surface
+        else "next_candidate_full_factory_import_gate_completed"
+    )
+    review_status = (
+        "external_hard_negative_broader_structural_factory_import_gate"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_factory_import_gate"
+    )
+    queue_context_source = (
+        "external_hard_negative_broader_structural_factory_import_gate"
+        if is_broader_structural_surface
+        else "external_hard_negative_next_candidate_factory_import_gate"
+    )
+    reviewer = (
+        "automation_external_hard_negative_broader_structural_factory_gate"
+        if is_broader_structural_surface
+        else "automation_external_hard_negative_factory_gate"
     )
     label_gate_meta = label_factory_gate_check.get("metadata", {})
     label_gate_passed = (
@@ -12371,9 +12442,7 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
                 "countable_label_candidate": False,
                 "ready_for_label_import": False,
                 "import_ready_candidate": False,
-                "review_status": (
-                    "external_hard_negative_next_candidate_factory_import_gate"
-                ),
+                "review_status": review_status,
             }
         )
 
@@ -12430,7 +12499,7 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
                 "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
                 "queue_context": {
                     "rank": index,
-                    "source": "external_hard_negative_next_candidate_factory_import_gate",
+                    "source": queue_context_source,
                     "max_current_fingerprint_score": score,
                     "top1_fingerprint_id": row.get("top1_fingerprint_id"),
                     "top1_score": row.get("top1_score"),
@@ -12448,7 +12517,7 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
                             if score is not None
                             else 0.65
                         ),
-                        "reviewer": "automation_external_hard_negative_factory_gate",
+                        "reviewer": reviewer,
                         "ontology_version_at_decision": (
                             DEFAULT_ONTOLOGY_VERSION_AT_DECISION
                         ),
@@ -12469,14 +12538,10 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
     ]
     return {
         "metadata": {
-            "method": (
-                "external_hard_negative_next_candidate_factory_import_gate"
-            ),
+            "method": method,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
-            "blocker_removed": (
-                "next_candidate_full_factory_import_gate_completed"
-            ),
+            "blocker_removed": blocker_removed,
             "blocker_not_removed": sorted(blocker_counts),
             "review_only": False,
             "target_label_type": "out_of_scope",
@@ -12511,9 +12576,7 @@ def build_external_hard_negative_next_candidate_factory_import_gate(
             "external_transfer_gate_status": (
                 "passed" if transfer_gate_passed else "failed"
             ),
-            "source_terminal_review_decisions_method": (
-                terminal_review_decisions.get("metadata", {}).get("method")
-            ),
+            "source_terminal_review_decisions_method": source_terminal_method,
             "source_label_factory_gate_method": label_gate_meta.get("method"),
             "source_external_transfer_gate_method": transfer_gate_meta.get("method"),
             "artifact_lineage": artifact_lineage or {},
