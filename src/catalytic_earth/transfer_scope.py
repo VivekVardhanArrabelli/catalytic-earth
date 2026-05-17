@@ -12,6 +12,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
+from urllib.parse import quote
 from urllib.request import Request, urlopen
 
 from .adapters import fetch_rhea_by_ec, fetch_uniprot_entry, fetch_uniprot_query
@@ -34,6 +35,7 @@ ALPHAFOLD_CIF_URL = "https://alphafold.ebi.ac.uk/files/AF-{accession}-F1-model_v
 ALPHAFOLD_MODEL_VERSIONS = (6, 5, 4, 3, 2, 1)
 USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
 UNIPROT_ENTRY_URL = "https://rest.uniprot.org/uniprotkb"
+UNIREF_SEARCH_URL = "https://rest.uniprot.org/uniref/search"
 REPRESENTATION_PREDICTIVE_FEATURE_SOURCES = (
     "sequence_embedding_cosine",
     "sequence_length_coverage",
@@ -6550,11 +6552,9 @@ def build_external_source_all_vs_all_sequence_search(
 ) -> dict[str, Any]:
     """Run a review-only all-vs-all sequence duplicate screen for external rows."""
 
-    manifest_rows = [
-        row
-        for row in candidate_manifest.get("rows", []) or []
-        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
-    ][:max_rows]
+    manifest_rows = _external_backend_sequence_candidate_rows(candidate_manifest)[
+        :max_rows
+    ]
     manifest_by_accession = {
         _normalize_accession(row.get("accession")): row for row in manifest_rows
     }
@@ -6899,9 +6899,10 @@ def audit_external_source_all_vs_all_sequence_search(
         for row in all_vs_all_sequence_search.get("rows", []) or []
         if isinstance(row, dict)
     ]
+    manifest_rows = _external_backend_sequence_candidate_rows(candidate_manifest)
     manifest_accessions = {
         _normalize_accession(row.get("accession"))
-        for row in candidate_manifest.get("rows", []) or []
+        for row in manifest_rows
         if isinstance(row, dict) and _normalize_accession(row.get("accession"))
     }
     row_accessions = {
@@ -10881,6 +10882,605 @@ def build_external_hard_negative_new_candidate_terminal_decisions(
         )
     ]
     return decisions
+
+
+def build_external_hard_negative_next_candidate_duplicate_evidence_review(
+    *,
+    next_candidate_terminal_decisions: dict[str, Any],
+    backend_sequence_search: dict[str, Any],
+    all_vs_all_sequence_search: dict[str, Any],
+    external_structural_cluster_index: dict[str, Any],
+    current_countable_structural_screen: dict[str, Any],
+    max_rows: int = 3,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Summarize bounded duplicate evidence for deferred next-candidate rows."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    backend_by_accession = _external_first_row_by_accession(backend_sequence_search)
+    all_vs_all_by_accession = _external_first_row_by_accession(
+        all_vs_all_sequence_search
+    )
+    external_structural_by_accession = _external_first_row_by_accession(
+        external_structural_cluster_index
+    )
+    current_structural_by_accession = _external_first_row_by_accession(
+        current_countable_structural_screen
+    )
+    deferred_rows = [
+        row
+        for row in next_candidate_terminal_decisions.get("rows", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(row.get("accession"))
+        and row.get("terminal_decision_status")
+        == "deferred_requires_review_and_factory_gate_after_structural_screen"
+    ][:max_rows]
+
+    rows: list[dict[str, Any]] = []
+    for terminal_row in deferred_rows:
+        accession = _normalize_accession(terminal_row.get("accession"))
+        backend_row = backend_by_accession.get(accession, {})
+        all_vs_all_row = all_vs_all_by_accession.get(accession, {})
+        external_structural_row = external_structural_by_accession.get(accession, {})
+        current_structural_row = current_structural_by_accession.get(accession, {})
+
+        backend_status = str(backend_row.get("search_status") or "")
+        backend_complete = backend_row.get("backend_search_complete") is True
+        all_vs_all_status = str(all_vs_all_row.get("search_status") or "")
+        all_vs_all_complete = all_vs_all_row.get("all_vs_all_search_complete") is True
+        external_structural_status = str(
+            external_structural_row.get("structural_neighbor_cache_status") or ""
+        )
+        current_structural_status = str(
+            current_structural_row.get("current_countable_structural_screen_status")
+            or ""
+        )
+
+        duplicate_blockers: list[str] = []
+        if not backend_complete or backend_status != "no_near_duplicate_signal":
+            duplicate_blockers.append("current_reference_sequence_duplicate_not_clear")
+        if (
+            not all_vs_all_complete
+            or all_vs_all_status
+            != "external_all_vs_all_no_near_duplicate_signal"
+        ):
+            duplicate_blockers.append("external_all_vs_all_sequence_duplicate_not_clear")
+        if (
+            external_structural_status
+            != "no_external_structural_neighbor_above_threshold"
+        ):
+            duplicate_blockers.append("external_structural_duplicate_not_clear")
+        if (
+            current_structural_status
+            != "no_current_countable_structural_duplicate_signal"
+        ):
+            duplicate_blockers.append("current_countable_structural_duplicate_not_clear")
+
+        duplicate_evidence_status = (
+            "bounded_duplicate_controls_clear_uniref_pending"
+            if not duplicate_blockers
+            else "blocked_by_bounded_duplicate_signal_or_incomplete_screen"
+        )
+        remaining_import_blockers = sorted(
+            set(
+                duplicate_blockers
+                + [
+                    "uniref_wide_duplicate_screening_required",
+                    "terminal_review_decision_not_accepted",
+                    "full_label_factory_gate_not_run",
+                ]
+            )
+        )
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": terminal_row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": terminal_row.get("lane_id"),
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "terminal_decision_status": terminal_row.get(
+                    "terminal_decision_status"
+                ),
+                "duplicate_evidence_status": duplicate_evidence_status,
+                "bounded_current_reference_sequence_status": backend_status or None,
+                "bounded_current_reference_sequence_complete": backend_complete,
+                "max_external_vs_reference_identity": backend_row.get(
+                    "max_external_vs_reference_identity"
+                ),
+                "external_all_vs_all_sequence_status": all_vs_all_status or None,
+                "external_all_vs_all_sequence_complete": all_vs_all_complete,
+                "external_all_vs_all_near_duplicate_hit_count": all_vs_all_row.get(
+                    "near_duplicate_hit_count"
+                ),
+                "external_all_vs_all_max_identity": all_vs_all_row.get(
+                    "max_external_vs_external_identity"
+                ),
+                "external_all_vs_all_top_hits": all_vs_all_row.get(
+                    "top_external_hits", []
+                ),
+                "external_structural_neighbor_cache_status": (
+                    external_structural_status or None
+                ),
+                "external_structural_nearest_neighbor": external_structural_row.get(
+                    "nearest_neighbor"
+                ),
+                "tm_cluster_id": external_structural_row.get("tm_cluster_id"),
+                "current_countable_structural_screen_status": (
+                    current_structural_status or None
+                ),
+                "current_countable_high_tm_hit_count": current_structural_row.get(
+                    "current_countable_high_tm_hit_count"
+                ),
+                "nearest_current_countable_hit": current_structural_row.get(
+                    "nearest_current_countable_hit"
+                ),
+                "duplicate_evidence_blockers": sorted(set(duplicate_blockers)),
+                "remaining_import_blockers": remaining_import_blockers,
+                "review_status": (
+                    "external_hard_negative_next_candidate_duplicate_evidence_"
+                    "review_only"
+                ),
+                "import_ready_candidate": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+            }
+        )
+
+    status_counts = Counter(row["duplicate_evidence_status"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    bounded_clear_count = sum(
+        1
+        for row in rows
+        if row["duplicate_evidence_status"]
+        == "bounded_duplicate_controls_clear_uniref_pending"
+    )
+    return {
+        "metadata": {
+            "method": (
+                "external_hard_negative_next_candidate_duplicate_evidence_review"
+            ),
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "next_candidate_bounded_duplicate_evidence_review_recorded"
+            ),
+            "blocker_not_removed": [
+                "uniref_wide_duplicate_screening_required",
+                "terminal_review_decision_not_accepted",
+                "full_label_factory_gate_not_run",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "candidate_count": len(rows),
+            "bounded_duplicate_clear_count": bounded_clear_count,
+            "bounded_duplicate_blocked_count": len(rows) - bounded_clear_count,
+            "duplicate_evidence_status_counts": dict(sorted(status_counts.items())),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "ready_for_label_import": False,
+            "source_next_candidate_terminal_decisions_method": (
+                next_candidate_terminal_decisions.get("metadata", {}).get("method")
+            ),
+            "source_backend_sequence_search_method": (
+                backend_sequence_search.get("metadata", {}).get("method")
+            ),
+            "source_all_vs_all_sequence_search_method": (
+                all_vs_all_sequence_search.get("metadata", {}).get("method")
+            ),
+            "source_external_structural_cluster_index_method": (
+                external_structural_cluster_index.get("metadata", {}).get("method")
+            ),
+            "source_current_countable_structural_screen_method": (
+                current_countable_structural_screen.get("metadata", {}).get("method")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "bounded duplicate-evidence review cannot authorize import; "
+                "UniRef-wide duplicate screening, terminal review acceptance, "
+                "and full factory gates still block count growth"
+            )
+        ],
+    }
+
+
+def build_external_hard_negative_next_candidate_terminal_review_queue(
+    *,
+    duplicate_evidence_review: dict[str, Any],
+    max_rows: int = 3,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Route bounded-clear next-candidate rows to terminal review packets."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    rows: list[dict[str, Any]] = []
+    for row in [
+        item
+        for item in duplicate_evidence_review.get("rows", []) or []
+        if isinstance(item, dict)
+        and item.get("duplicate_evidence_status")
+        == "bounded_duplicate_controls_clear_uniref_pending"
+    ][:max_rows]:
+        accession = _normalize_accession(row.get("accession"))
+        if not accession:
+            continue
+        non_human_blockers = [
+            blocker
+            for blocker in row.get("remaining_import_blockers", []) or []
+            if blocker
+            in {
+                "uniref_wide_duplicate_screening_required",
+                "full_label_factory_gate_not_run",
+            }
+        ]
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": row.get("lane_id"),
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "review_packet_status": "needs_terminal_review_decision",
+                "duplicate_evidence_status": row.get("duplicate_evidence_status"),
+                "duplicate_evidence_summary": {
+                    "bounded_current_reference_sequence_status": row.get(
+                        "bounded_current_reference_sequence_status"
+                    ),
+                    "external_all_vs_all_sequence_status": row.get(
+                        "external_all_vs_all_sequence_status"
+                    ),
+                    "external_structural_neighbor_cache_status": row.get(
+                        "external_structural_neighbor_cache_status"
+                    ),
+                    "current_countable_structural_screen_status": row.get(
+                        "current_countable_structural_screen_status"
+                    ),
+                    "nearest_current_countable_hit": row.get(
+                        "nearest_current_countable_hit"
+                    ),
+                },
+                "terminal_review_question": (
+                    "After UniRef-wide duplicate screening, does the explicit "
+                    "UniProt active-site plus catalytic-activity source context "
+                    f"support treating {accession} as an out_of_scope hard "
+                    "negative for the current 8-fingerprint ontology?"
+                ),
+                "allowed_review_outcomes": [
+                    "accept_out_of_scope_after_uniref_and_factory_gates",
+                    "reject_duplicate_or_near_duplicate",
+                    "reject_existing_fingerprint_match",
+                    "reject_source_evidence_insufficient",
+                    "defer_requires_additional_evidence",
+                ],
+                "non_human_blockers_remaining": sorted(set(non_human_blockers)),
+                "remaining_import_blockers": row.get("remaining_import_blockers", []),
+                "review_status": (
+                    "external_hard_negative_next_candidate_terminal_review_queue_"
+                    "review_only"
+                ),
+                "import_ready_candidate": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+            }
+        )
+
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["non_human_blockers_remaining"]
+    )
+    return {
+        "metadata": {
+            "method": "external_hard_negative_next_candidate_terminal_review_queue",
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": "next_candidate_terminal_review_queue_recorded",
+            "blocker_not_removed": [
+                "terminal_review_decision_not_accepted",
+                "uniref_wide_duplicate_screening_required",
+                "full_label_factory_gate_not_run",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "queued_candidate_count": len(rows),
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "ready_for_label_import": False,
+            "review_packet_status_counts": {
+                "needs_terminal_review_decision": len(rows)
+            },
+            "non_human_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_duplicate_evidence_review_method": (
+                duplicate_evidence_review.get("metadata", {}).get("method")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "terminal review queue rows are review-only packets; they cannot "
+                "create import-ready rows until UniRef-wide screening and full "
+                "factory gates pass"
+            )
+        ],
+    }
+
+
+def fetch_uniref_cluster_summary(accession: str) -> dict[str, Any]:
+    """Fetch compact UniRef cluster handles for one accession."""
+
+    normalized = _normalize_accession(accession)
+    if not normalized:
+        raise ValueError("accession is required")
+    url = f"{UNIREF_SEARCH_URL}?query={quote(normalized)}&format=json&size=10"
+    request = Request(url, headers={"User-Agent": USER_AGENT})
+    with urlopen(request, timeout=30) as response:  # nosec B310 - public UniProt REST
+        payload = json.loads(response.read().decode("utf-8"))
+    results = payload.get("results", []) if isinstance(payload, dict) else []
+    uniref100_ids: set[str] = set()
+    uniref90_ids: set[str] = set()
+    uniref50_ids: set[str] = set()
+    result_ids: list[str] = []
+    for result in results:
+        if not isinstance(result, dict):
+            continue
+        result_id = str(result.get("id") or "")
+        if result_id:
+            result_ids.append(result_id)
+        if result_id.startswith("UniRef100_"):
+            uniref100_ids.add(result_id)
+        elif result_id.startswith("UniRef90_"):
+            uniref90_ids.add(result_id)
+        elif result_id.startswith("UniRef50_"):
+            uniref50_ids.add(result_id)
+        representative = result.get("representativeMember", {})
+        if isinstance(representative, dict):
+            uniref90_id = str(representative.get("uniref90Id") or "")
+            uniref50_id = str(representative.get("uniref50Id") or "")
+            if uniref90_id:
+                uniref90_ids.add(uniref90_id)
+            if uniref50_id:
+                uniref50_ids.add(uniref50_id)
+    return {
+        "accession": normalized,
+        "fetch_status": "ok",
+        "query_url": url,
+        "result_count": len(results),
+        "result_ids": result_ids,
+        "uniref100_ids": sorted(uniref100_ids),
+        "uniref90_ids": sorted(uniref90_ids),
+        "uniref50_ids": sorted(uniref50_ids),
+    }
+
+
+def build_external_hard_negative_next_candidate_targeted_uniref_check(
+    *,
+    terminal_review_queue: dict[str, Any],
+    sequence_clusters: dict[str, Any],
+    max_rows: int = 3,
+    fetcher: Callable[[str], dict[str, Any]] = fetch_uniref_cluster_summary,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Check UniRef90/50 overlap against nearest current-reference hits."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    reference_accessions_by_entry_id = {
+        str(row.get("entry_id") or ""): [
+            _normalize_accession(accession)
+            for accession in row.get("reference_uniprot_ids", []) or []
+            if _normalize_accession(accession)
+        ]
+        for row in sequence_clusters.get("rows", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    fetch_cache: dict[str, dict[str, Any]] = {}
+    fetch_failures: list[dict[str, str]] = []
+
+    def cached_fetch(accession: str) -> dict[str, Any]:
+        normalized = _normalize_accession(accession)
+        if not normalized:
+            raise ValueError("accession is required")
+        if normalized not in fetch_cache:
+            try:
+                fetch_cache[normalized] = fetcher(normalized)
+            except Exception as exc:  # pragma: no cover - live fetch safety
+                fetch_cache[normalized] = {
+                    "accession": normalized,
+                    "fetch_status": "failed",
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                    "uniref90_ids": [],
+                    "uniref50_ids": [],
+                }
+                fetch_failures.append(
+                    {
+                        "accession": normalized,
+                        "error_type": type(exc).__name__,
+                        "error": str(exc),
+                    }
+                )
+        return fetch_cache[normalized]
+
+    rows: list[dict[str, Any]] = []
+    for queue_row in [
+        row
+        for row in terminal_review_queue.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ][:max_rows]:
+        accession = _normalize_accession(queue_row.get("accession"))
+        candidate_summary = cached_fetch(accession)
+        duplicate_summary = queue_row.get("duplicate_evidence_summary", {})
+        if not isinstance(duplicate_summary, dict):
+            duplicate_summary = {}
+        nearest_hit = duplicate_summary.get("nearest_current_countable_hit", {})
+        if not isinstance(nearest_hit, dict):
+            nearest_hit = {}
+        current_entry_ids = [
+            str(entry_id)
+            for entry_id in nearest_hit.get("current_entry_ids", []) or []
+            if entry_id
+        ]
+        reference_accessions = sorted(
+            {
+                accession
+                for entry_id in current_entry_ids
+                for accession in reference_accessions_by_entry_id.get(entry_id, [])
+                if accession
+            }
+        )
+
+        reference_checks: list[dict[str, Any]] = []
+        shared_cluster = False
+        incomplete = candidate_summary.get("fetch_status") != "ok"
+        for reference_accession in reference_accessions:
+            reference_summary = cached_fetch(reference_accession)
+            if reference_summary.get("fetch_status") != "ok":
+                incomplete = True
+            shared_uniref90 = sorted(
+                set(candidate_summary.get("uniref90_ids", []) or [])
+                & set(reference_summary.get("uniref90_ids", []) or [])
+            )
+            shared_uniref50 = sorted(
+                set(candidate_summary.get("uniref50_ids", []) or [])
+                & set(reference_summary.get("uniref50_ids", []) or [])
+            )
+            if shared_uniref90 or shared_uniref50:
+                shared_cluster = True
+            reference_checks.append(
+                {
+                    "reference_accession": reference_accession,
+                    "fetch_status": reference_summary.get("fetch_status"),
+                    "uniref90_ids": reference_summary.get("uniref90_ids", []),
+                    "uniref50_ids": reference_summary.get("uniref50_ids", []),
+                    "shared_uniref90_ids": shared_uniref90,
+                    "shared_uniref50_ids": shared_uniref50,
+                }
+            )
+
+        if not reference_accessions:
+            status = "targeted_uniref_check_incomplete"
+            blockers = ["nearest_current_reference_accessions_missing"]
+        elif incomplete:
+            status = "targeted_uniref_check_incomplete"
+            blockers = ["targeted_uniref_cluster_fetch_incomplete"]
+        elif shared_cluster:
+            status = "targeted_uniref_shared_cluster_holdout"
+            blockers = ["shared_uniref90_or_uniref50_with_nearest_reference"]
+        else:
+            status = "targeted_uniref_nearest_reference_no_shared_cluster"
+            blockers = []
+
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": queue_row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": queue_row.get("lane_id"),
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "targeted_uniref_check_status": status,
+                "candidate_fetch_status": candidate_summary.get("fetch_status"),
+                "candidate_uniref100_ids": candidate_summary.get("uniref100_ids", []),
+                "candidate_uniref90_ids": candidate_summary.get("uniref90_ids", []),
+                "candidate_uniref50_ids": candidate_summary.get("uniref50_ids", []),
+                "nearest_current_entry_ids": current_entry_ids,
+                "nearest_current_reference_accessions": reference_accessions,
+                "nearest_current_reference_checks": reference_checks,
+                "targeted_uniref_blockers": blockers,
+                "remaining_import_blockers": sorted(
+                    set(
+                        blockers
+                        + [
+                            "uniref_wide_duplicate_screening_required",
+                            "terminal_review_decision_not_accepted",
+                            "full_label_factory_gate_not_run",
+                        ]
+                    )
+                ),
+                "review_status": (
+                    "external_hard_negative_next_candidate_targeted_uniref_"
+                    "check_review_only"
+                ),
+                "import_ready_candidate": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+            }
+        )
+
+    status_counts = Counter(row["targeted_uniref_check_status"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    no_shared_count = status_counts.get(
+        "targeted_uniref_nearest_reference_no_shared_cluster", 0
+    )
+    return {
+        "metadata": {
+            "method": "external_hard_negative_next_candidate_targeted_uniref_check",
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "next_candidate_targeted_nearest_reference_uniref_check_recorded"
+            ),
+            "blocker_not_removed": [
+                "uniref_wide_duplicate_screening_required",
+                "terminal_review_decision_not_accepted",
+                "full_label_factory_gate_not_run",
+                "no_import_ready_external_rows",
+            ],
+            "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "candidate_count": len(rows),
+            "targeted_no_shared_cluster_count": no_shared_count,
+            "targeted_shared_cluster_count": status_counts.get(
+                "targeted_uniref_shared_cluster_holdout", 0
+            ),
+            "targeted_incomplete_count": status_counts.get(
+                "targeted_uniref_check_incomplete", 0
+            ),
+            "fetch_failure_count": len(fetch_failures),
+            "targeted_uniref_check_status_counts": dict(sorted(status_counts.items())),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "ready_for_label_import": False,
+            "source_terminal_review_queue_method": (
+                terminal_review_queue.get("metadata", {}).get("method")
+            ),
+            "source_sequence_clusters_method": sequence_clusters.get(
+                "metadata", {}
+            ).get("method"),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "fetch_failures": fetch_failures,
+        "warnings": [
+            (
+                "targeted UniRef90/50 checks cover nearest current references "
+                "only; they do not replace a full UniRef-wide duplicate screen "
+                "or authorize import"
+            )
+        ],
+    }
 
 
 def build_external_hard_negative_new_candidate_sourcing(

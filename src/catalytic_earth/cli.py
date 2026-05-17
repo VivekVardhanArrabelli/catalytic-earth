@@ -190,6 +190,9 @@ from .transfer_scope import (
     build_external_hard_negative_new_candidate_sourcing,
     build_external_hard_negative_new_candidate_current_countable_structural_screen,
     build_external_hard_negative_new_candidate_terminal_decisions,
+    build_external_hard_negative_next_candidate_duplicate_evidence_review,
+    build_external_hard_negative_next_candidate_targeted_uniref_check,
+    build_external_hard_negative_next_candidate_terminal_review_queue,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -3582,6 +3585,113 @@ def cmd_build_external_hard_negative_new_candidate_terminal_decisions(
         "Wrote new-candidate terminal decisions to "
         f"{args.out} ({decisions['metadata']['terminal_decision_count']} "
         "terminal decisions)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_next_candidate_duplicate_evidence_review(
+    args: argparse.Namespace,
+) -> int:
+    next_candidate_terminal_decisions = read_json_object(
+        Path(args.next_candidate_terminal_decisions)
+    )
+    backend_sequence_search = read_json_object(Path(args.backend_sequence_search))
+    all_vs_all_sequence_search = read_json_object(Path(args.all_vs_all_sequence_search))
+    external_structural_cluster_index = read_json_object(
+        Path(args.external_structural_cluster_index)
+    )
+    current_countable_structural_screen = read_json_object(
+        Path(args.current_countable_structural_screen)
+    )
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "next_candidate_terminal_decisions": (
+                args.next_candidate_terminal_decisions
+            ),
+            "backend_sequence_search": args.backend_sequence_search,
+            "all_vs_all_sequence_search": args.all_vs_all_sequence_search,
+            "external_structural_cluster_index": (
+                args.external_structural_cluster_index
+            ),
+            "current_countable_structural_screen": (
+                args.current_countable_structural_screen
+            ),
+        },
+        "blocker_removed": "next_candidate_bounded_duplicate_evidence_review",
+    }
+    review = build_external_hard_negative_next_candidate_duplicate_evidence_review(
+        next_candidate_terminal_decisions=next_candidate_terminal_decisions,
+        backend_sequence_search=backend_sequence_search,
+        all_vs_all_sequence_search=all_vs_all_sequence_search,
+        external_structural_cluster_index=external_structural_cluster_index,
+        current_countable_structural_screen=current_countable_structural_screen,
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote next-candidate duplicate evidence review to "
+        f"{args.out} ({review['metadata']['bounded_duplicate_clear_count']} "
+        "bounded-clear rows)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_next_candidate_terminal_review_queue(
+    args: argparse.Namespace,
+) -> int:
+    duplicate_evidence_review = read_json_object(Path(args.duplicate_evidence_review))
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "duplicate_evidence_review": args.duplicate_evidence_review,
+        },
+        "blocker_removed": "next_candidate_terminal_review_queue",
+    }
+    queue = build_external_hard_negative_next_candidate_terminal_review_queue(
+        duplicate_evidence_review=duplicate_evidence_review,
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote next-candidate terminal review queue to "
+        f"{args.out} ({queue['metadata']['queued_candidate_count']} queued)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_next_candidate_targeted_uniref_check(
+    args: argparse.Namespace,
+) -> int:
+    terminal_review_queue = read_json_object(Path(args.terminal_review_queue))
+    sequence_clusters = read_json_object(Path(args.sequence_clusters))
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "terminal_review_queue": args.terminal_review_queue,
+            "sequence_clusters": args.sequence_clusters,
+        },
+        "blocker_removed": "next_candidate_targeted_uniref_check",
+    }
+    check = build_external_hard_negative_next_candidate_targeted_uniref_check(
+        terminal_review_queue=terminal_review_queue,
+        sequence_clusters=sequence_clusters,
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), check)
+    print(
+        "Wrote next-candidate targeted UniRef check to "
+        f"{args.out} ({check['metadata']['targeted_no_shared_cluster_count']} "
+        "no-shared-cluster rows)"
     )
     return 0
 
@@ -9092,6 +9202,132 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_hard_negative_new_terminal.set_defaults(
         func=cmd_build_external_hard_negative_new_candidate_terminal_decisions
+    )
+
+    external_hard_negative_next_duplicate_review = subparsers.add_parser(
+        "build-external-hard-negative-next-candidate-duplicate-evidence-review",
+        help=(
+            "summarize bounded duplicate evidence for deferred next-surface "
+            "external hard-negative candidates"
+        ),
+    )
+    external_hard_negative_next_duplicate_review.add_argument(
+        "--next-candidate-terminal-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_terminal_decisions_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_duplicate_review.add_argument(
+        "--backend-sequence-search",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_backend_sequence_search_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_duplicate_review.add_argument(
+        "--all-vs-all-sequence-search",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_duplicate_review.add_argument(
+        "--external-structural-cluster-index",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_structural_cluster_index_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_duplicate_review.add_argument(
+        "--current-countable-structural-screen",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_current_countable_"
+            "structural_screen_1025.json"
+        ),
+    )
+    external_hard_negative_next_duplicate_review.add_argument(
+        "--max-rows", type=int, default=3
+    )
+    external_hard_negative_next_duplicate_review.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_duplicate_evidence_review_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_duplicate_review.set_defaults(
+        func=cmd_build_external_hard_negative_next_candidate_duplicate_evidence_review
+    )
+
+    external_hard_negative_next_terminal_queue = subparsers.add_parser(
+        "build-external-hard-negative-next-candidate-terminal-review-queue",
+        help=(
+            "route bounded-clear next-surface external hard-negative rows to "
+            "review-only terminal review packets"
+        ),
+    )
+    external_hard_negative_next_terminal_queue.add_argument(
+        "--duplicate-evidence-review",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_duplicate_evidence_review_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_terminal_queue.add_argument(
+        "--max-rows", type=int, default=3
+    )
+    external_hard_negative_next_terminal_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_terminal_review_queue_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_terminal_queue.set_defaults(
+        func=cmd_build_external_hard_negative_next_candidate_terminal_review_queue
+    )
+
+    external_hard_negative_next_uniref = subparsers.add_parser(
+        "build-external-hard-negative-next-candidate-targeted-uniref-check",
+        help=(
+            "check UniRef90/50 overlap against nearest current-reference hits "
+            "for bounded-clear next-surface candidates"
+        ),
+    )
+    external_hard_negative_next_uniref.add_argument(
+        "--terminal-review-queue",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_terminal_review_queue_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_uniref.add_argument(
+        "--sequence-clusters",
+        default="artifacts/v3_sequence_cluster_proxy_1025.json",
+    )
+    external_hard_negative_next_uniref.add_argument(
+        "--max-rows", type=int, default=3
+    )
+    external_hard_negative_next_uniref.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_targeted_uniref_check_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_uniref.set_defaults(
+        func=cmd_build_external_hard_negative_next_candidate_targeted_uniref_check
     )
 
     external_transfer_gate = subparsers.add_parser(

@@ -123,6 +123,28 @@ import.
   deferrals that still require UniRef-wide duplicate screening, terminal
   review, and full factory gates. No replacement row is import-ready or
   countable.
+- `artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_1025.json`
+  and its audit complete the bounded external all-vs-all sequence screen for
+  those 8 replacements. All 8 rows have no external sequence near-duplicate
+  signal, and the audit remains guardrail-clean while explicitly preserving
+  the UniRef-wide duplicate-screening blocker.
+- `artifacts/v3_external_hard_negative_next_candidate_duplicate_evidence_review_1025.json`
+  summarizes the 3 deferred rows (`P22830`, `P78549`, `Q3LXA3`): bounded
+  current-reference sequence, external all-vs-all sequence, external
+  structural, and current-countable structural controls are clear, but
+  UniRef-wide duplicate screening, terminal review acceptance, and full factory
+  gates still block import. No replacement row is import-ready or countable.
+- `artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json`
+  packages those 3 bounded-clear rows into review-only terminal review packets
+  with explicit allowed outcomes and remaining non-human blockers. It removes
+  only the review-packet scaffolding gap; 0 rows are accepted, import-ready, or
+  countable.
+- `artifacts/v3_external_hard_negative_next_candidate_targeted_uniref_check_1025.json`
+  performs a targeted UniRef90/50 check against each deferred row's nearest
+  current structural-reference accession. `P22830` vs `P00518`, `P78549` vs
+  `P00750`, and `Q3LXA3` vs `P06213` all have no shared UniRef90/50 cluster.
+  This reduces nearest-reference duplicate concern but does not replace the
+  required UniRef-wide duplicate screen.
 
 ## Immediate Pilot Direction
 

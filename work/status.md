@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 148
-- Measured elapsed time: 4901.4 minutes (81.69 hours)
+- Entries: 149
+- Measured elapsed time: 4919.7 minutes (82.00 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2740.9 measured minutes (45.68 hours)
+- post-v2: 2759.3 measured minutes (45.99 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1680
-- Evidence references logged: 1300
+- Artifact references logged: 1694
+- Evidence references logged: 1311
 
 ## Recent Entries
-
-### 2026-05-17T00:07:16.886468+00:00 - external-transfer-spof-hardening
-
-- Task: Implement P06746 DNA Pol X/5'-dRP lyase repair lane
-- Time mode: measured
-- Measured minutes: 16.233
-- Started: 2026-05-16T23:51:02Z
-- Ended: 2026-05-17T00:07:16Z
-- Artifacts: artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json, artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 370 unit tests passed, startup validate passed with 679 curated labels, P06746 DNA Pol X/5'-dRP lyase repair control staged as review-only source-active-site Lys-72 sequence-context control, P06746 import-safety adjudication repaired representation near-duplicate conflict, post-repair P06746 status remains needs_review, 0 import-ready rows, 0 countable external labels, focused 106 tests passed, final 372 unit tests passed, final validate passed, compileall passed, git diff check passed
-- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed. Repaired rows still lack a defensible full import path because duplicate/review/factory blockers remain; docs/label_factory.md checked unchanged. GitHub credential fill still fails in the scheduled shell.
 
 ### 2026-05-17T00:08:57.473085+00:00 - ops
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-17T06:09:30Z
 - Artifacts: artifacts/v3_external_hard_negative_next_candidate_sourcing_1025.json, artifacts/v3_external_hard_negative_next_candidate_backend_sequence_search_1025.json, artifacts/v3_external_hard_negative_next_candidate_structural_cluster_index_1025.json, artifacts/v3_external_hard_negative_next_candidate_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_next_candidate_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: 382 startup unit tests passed, validate passed, 8 replacement candidates sourced, 8/8 current-reference sequence no-signal rows, 8/8 replacement AlphaFold coordinates staged, 28/28 external structural pairs cached, 5376/5376 current-countable structural pairs completed, 5 duplicate-signal rejections, 3 deferred no-current-structural-signal rows, 383 final unit tests passed, external transfer gate 68/68
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; label_factory docs checked unchanged.
+
+### 2026-05-17T06:47:35.798677+00:00 - post-v2
+
+- Task: Advance next-candidate duplicate and review evidence
+- Time mode: measured
+- Measured minutes: 18.333
+- Started: 2026-05-17T06:29:04Z
+- Ended: 2026-05-17T06:47:24Z
+- Artifacts: artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_1025.json, artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_audit_1025.json, artifacts/v3_external_hard_negative_next_candidate_duplicate_evidence_review_1025.json, artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json, artifacts/v3_external_hard_negative_next_candidate_targeted_uniref_check_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 383 unit tests passed, startup validate passed with 679 curated labels, next-candidate all-vs-all MMseqs2 sequence screen completed with 8/8 no-signal rows, next-candidate duplicate evidence review recorded 3 bounded-clear UniRef-pending rows, terminal review queue recorded 3 review-only rows, targeted UniRef90/50 nearest-reference check found 0 shared clusters for P22830 P78549 Q3LXA3, final 386 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON parse checks passed
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; label_factory docs checked unchanged.
 
 ## Expectation Updates

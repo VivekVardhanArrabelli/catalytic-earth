@@ -163,8 +163,46 @@ that remain blocked by UniRef-wide duplicate screening, terminal review, and
 full factory gates. Evidence-based confidence call: the immediate
 no-new-candidates blocker is removed and this surface has 3 structurally
 non-duplicate follow-up rows, but none is import-ready or countable yet.
-Continue with duplicate/review/factory evidence for `P22830`, `P78549`, and
+The 2026-05-17T06:29:04Z run then added
+`artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_1025.json`
+and
+`artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_audit_1025.json`.
+The bounded external all-vs-all sequence screen covers the same 8 replacement
+rows, completes with 8/8 no-signal rows, finds 0 exact/near-duplicate external
+sequence pairs, and remains guardrail-clean while preserving the UniRef-wide
+blocker. The new
+`artifacts/v3_external_hard_negative_next_candidate_duplicate_evidence_review_1025.json`
+narrows the surviving surface to `P22830`, `P78549`, and `Q3LXA3`: all 3 are
+`bounded_duplicate_controls_clear_uniref_pending`, meaning bounded
+current-reference sequence, external all-vs-all sequence, external structural,
+and current-countable structural controls are clear. Evidence-based confidence
+call: these 3 rows are now better duplicate-screened than the previous
+replacement surface, but none is import-ready because UniRef-wide duplicate
+screening, terminal review acceptance, and full factory gates still block all
+3. The same run also added
+`artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json`,
+which packages those 3 rows into review-only terminal review packets with
+explicit allowed outcomes and remaining non-human blockers; it accepts/imports
+0 rows. The follow-on
+`artifacts/v3_external_hard_negative_next_candidate_targeted_uniref_check_1025.json`
+queries UniRef90/50 handles for each queued candidate and its nearest current
+structural-reference accession. `P22830` vs `P00518`, `P78549` vs `P00750`,
+and `Q3LXA3` vs `P06213` have 0 shared UniRef90/50 clusters and 0 fetch
+failures, but this is nearest-reference evidence only and does not replace a
+full UniRef-wide duplicate screen. Continue with full UniRef-wide duplicate
+screening or terminal review/factory evidence for `P22830`, `P78549`, and
 `Q3LXA3`; do not retry the 5 duplicate-signal rows without new evidence.
+
+Run verification for the current handoff: started `2026-05-17T06:29:04Z` and
+wrapped at `2026-05-17T06:47:24Z`. Startup checks passed with 383 unit tests
+and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks
+passed with 386 unit tests, `validate`, `compileall`, `git diff --check`, JSON
+parse checks for the new all-vs-all sequence, duplicate-evidence,
+terminal-review-queue, and targeted-UniRef artifacts, plus focused artifact
+regressions. README, `docs/external_source_transfer.md`, work scope, handoff,
+status inputs, and external transfer notes were updated; `docs/label_factory.md`
+was checked and did not need content changes for this duplicate-screen/review
+slice.
 
 Run verification for the current handoff: started `2026-05-17T05:28:04Z` and
 wrapped at `2026-05-17T06:09:30Z`. Startup checks passed with 382 unit tests

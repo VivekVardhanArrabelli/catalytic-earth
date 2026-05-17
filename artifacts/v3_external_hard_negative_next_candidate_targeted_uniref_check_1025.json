@@ -1,0 +1,200 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "sequence_clusters": "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "terminal_review_queue": "artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json"
+      },
+      "blocker_removed": "next_candidate_targeted_uniref_check",
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 1025
+    },
+    "blocker_not_removed": [
+      "uniref_wide_duplicate_screening_required",
+      "terminal_review_decision_not_accepted",
+      "full_label_factory_gate_not_run",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "next_candidate_targeted_nearest_reference_uniref_check_recorded",
+    "candidate_count": 3,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T06:44:11Z",
+    "fetch_failure_count": 0,
+    "import_ready_candidate_count": 0,
+    "method": "external_hard_negative_next_candidate_targeted_uniref_check",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "full_label_factory_gate_not_run": 3,
+      "terminal_review_decision_not_accepted": 3,
+      "uniref_wide_duplicate_screening_required": 3
+    },
+    "review_only": true,
+    "slice_id": 1025,
+    "source_sequence_clusters_method": "sequence_cluster_proxy_from_reference_uniprot",
+    "source_terminal_review_queue_method": "external_hard_negative_next_candidate_terminal_review_queue",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope",
+    "targeted_incomplete_count": 0,
+    "targeted_no_shared_cluster_count": 3,
+    "targeted_shared_cluster_count": 0,
+    "targeted_uniref_check_status_counts": {
+      "targeted_uniref_nearest_reference_no_shared_cluster": 3
+    }
+  },
+  "rows": [
+    {
+      "accession": "P22830",
+      "candidate_fetch_status": "ok",
+      "candidate_uniref100_ids": [
+        "UniRef100_P22830"
+      ],
+      "candidate_uniref50_ids": [
+        "UniRef50_P22830"
+      ],
+      "candidate_uniref90_ids": [
+        "UniRef90_P22830"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P22830",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "nearest_current_entry_ids": [
+        "m_csa:35"
+      ],
+      "nearest_current_reference_accessions": [
+        "P00518"
+      ],
+      "nearest_current_reference_checks": [
+        {
+          "fetch_status": "ok",
+          "reference_accession": "P00518",
+          "shared_uniref50_ids": [],
+          "shared_uniref90_ids": [],
+          "uniref50_ids": [
+            "UniRef50_Q16816"
+          ],
+          "uniref90_ids": [
+            "UniRef90_P00518",
+            "UniRef90_Q16816"
+          ]
+        }
+      ],
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "review_status": "external_hard_negative_next_candidate_targeted_uniref_check_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "targeted_uniref_blockers": [],
+      "targeted_uniref_check_status": "targeted_uniref_nearest_reference_no_shared_cluster"
+    },
+    {
+      "accession": "P78549",
+      "candidate_fetch_status": "ok",
+      "candidate_uniref100_ids": [
+        "UniRef100_P78549"
+      ],
+      "candidate_uniref50_ids": [
+        "UniRef50_P78549"
+      ],
+      "candidate_uniref90_ids": [
+        "UniRef90_P78549"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P78549",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "nearest_current_entry_ids": [
+        "m_csa:798"
+      ],
+      "nearest_current_reference_accessions": [
+        "P00750"
+      ],
+      "nearest_current_reference_checks": [
+        {
+          "fetch_status": "ok",
+          "reference_accession": "P00750",
+          "shared_uniref50_ids": [],
+          "shared_uniref90_ids": [],
+          "uniref50_ids": [
+            "UniRef50_P00750"
+          ],
+          "uniref90_ids": [
+            "UniRef90_P00750"
+          ]
+        }
+      ],
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "review_status": "external_hard_negative_next_candidate_targeted_uniref_check_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "targeted_uniref_blockers": [],
+      "targeted_uniref_check_status": "targeted_uniref_nearest_reference_no_shared_cluster"
+    },
+    {
+      "accession": "Q3LXA3",
+      "candidate_fetch_status": "ok",
+      "candidate_uniref100_ids": [
+        "UniRef100_Q3LXA3"
+      ],
+      "candidate_uniref50_ids": [
+        "UniRef50_Q3LXA3"
+      ],
+      "candidate_uniref90_ids": [
+        "UniRef90_Q3LXA3"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "nearest_current_entry_ids": [
+        "m_csa:246"
+      ],
+      "nearest_current_reference_accessions": [
+        "P06213"
+      ],
+      "nearest_current_reference_checks": [
+        {
+          "fetch_status": "ok",
+          "reference_accession": "P06213",
+          "shared_uniref50_ids": [],
+          "shared_uniref90_ids": [],
+          "uniref50_ids": [
+            "UniRef50_P06213"
+          ],
+          "uniref90_ids": [
+            "UniRef90_P06213"
+          ]
+        }
+      ],
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "review_status": "external_hard_negative_next_candidate_targeted_uniref_check_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "targeted_uniref_blockers": [],
+      "targeted_uniref_check_status": "targeted_uniref_nearest_reference_no_shared_cluster"
+    }
+  ],
+  "warnings": [
+    "targeted UniRef90/50 checks cover nearest current references only; they do not replace a full UniRef-wide duplicate screen or authorize import"
+  ]
+}

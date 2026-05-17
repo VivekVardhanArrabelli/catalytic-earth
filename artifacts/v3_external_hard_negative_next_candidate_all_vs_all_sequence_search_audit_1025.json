@@ -1,0 +1,22 @@
+{
+  "blockers": [],
+  "metadata": {
+    "all_vs_all_screen_complete": true,
+    "backend_name": "mmseqs2_easy_search",
+    "backend_succeeded": true,
+    "backend_version": "18-8cc5c",
+    "candidate_count": 8,
+    "countable_label_candidate_count": 0,
+    "expected_candidate_count": 8,
+    "failure_row_count": 0,
+    "guardrail_clean": true,
+    "import_ready_row_count": 0,
+    "method": "external_source_all_vs_all_sequence_search_audit",
+    "near_duplicate_pair_count": 0,
+    "ready_for_label_import": false,
+    "real_backend": true
+  },
+  "warnings": [
+    "all-vs-all sequence-search audits verify review-only evidence only; they do not authorize external label import"
+  ]
+}

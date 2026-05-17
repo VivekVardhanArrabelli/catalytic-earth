@@ -483,6 +483,23 @@ have no current-countable structural duplicate signal at `TM >=0.7`.
 keeps all 8 review-only: 5 rejected duplicate-signal rows and 3 deferred rows
 still blocked by UniRef-wide duplicate screening, terminal review, and the full
 factory gate.
+`artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_1025.json`
+and its audit now complete the bounded external all-vs-all sequence screen for
+that replacement surface: 8/8 rows have no external sequence near-duplicate
+signal and the guardrail audit is clean. The follow-on
+`artifacts/v3_external_hard_negative_next_candidate_duplicate_evidence_review_1025.json`
+narrows the surviving surface to `P22830`, `P78549`, and `Q3LXA3`; all 3 have
+bounded duplicate controls clear, but all 3 remain blocked by UniRef-wide
+duplicate screening, terminal review acceptance, and full factory gates.
+`artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json`
+packages those 3 bounded-clear rows into review-only terminal review packets;
+it records the remaining non-human blockers and does not accept, import, or
+count any row.
+`artifacts/v3_external_hard_negative_next_candidate_targeted_uniref_check_1025.json`
+then checks UniRef90/50 overlap between those 3 candidates and their nearest
+current structural-reference accessions (`P00518`, `P00750`, and `P06213`):
+all 3 have no shared UniRef90/50 cluster with that nearest-reference set.
+This is still targeted evidence only; UniRef-wide screening remains required.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

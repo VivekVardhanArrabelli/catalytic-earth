@@ -4050,6 +4050,46 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "1025.json"
             )
         )
+        next_all_vs_all_sequence = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_next_candidate_all_vs_all_sequence_"
+                "search_1025.json"
+            )
+        )
+        next_all_vs_all_sequence_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_next_candidate_all_vs_all_sequence_"
+                "search_audit_1025.json"
+            )
+        )
+        next_duplicate_review = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_next_candidate_duplicate_evidence_"
+                "review_1025.json"
+            )
+        )
+        next_terminal_review_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_next_candidate_terminal_review_queue_"
+                "1025.json"
+            )
+        )
+        next_targeted_uniref = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_next_candidate_targeted_uniref_check_"
+                "1025.json"
+            )
+        )
 
         self.assertTrue(step1a["metadata"]["step_1a_passed"])
         self.assertEqual(step1a["metadata"]["target_label_type"], "out_of_scope")
@@ -4502,6 +4542,109 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertEqual(
             next_terminal_decisions["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(
+            next_all_vs_all_sequence["metadata"]["method"],
+            "external_source_all_vs_all_sequence_search",
+        )
+        self.assertEqual(next_all_vs_all_sequence["metadata"]["candidate_count"], 8)
+        self.assertTrue(
+            next_all_vs_all_sequence["metadata"]["all_vs_all_screen_complete"]
+        )
+        self.assertEqual(
+            next_all_vs_all_sequence["metadata"]["near_duplicate_pair_count"], 0
+        )
+        self.assertEqual(
+            next_all_vs_all_sequence["metadata"]["no_signal_row_count"], 8
+        )
+        self.assertEqual(
+            next_all_vs_all_sequence["metadata"]["blocker_not_removed"],
+            ["uniref_wide_duplicate_screen_not_run"],
+        )
+        self.assertTrue(
+            next_all_vs_all_sequence_audit["metadata"]["guardrail_clean"]
+        )
+        self.assertEqual(
+            next_all_vs_all_sequence_audit["metadata"]["candidate_count"], 8
+        )
+        self.assertEqual(
+            next_duplicate_review["metadata"]["method"],
+            "external_hard_negative_next_candidate_duplicate_evidence_review",
+        )
+        self.assertEqual(next_duplicate_review["metadata"]["candidate_count"], 3)
+        self.assertEqual(
+            next_duplicate_review["metadata"]["bounded_duplicate_clear_count"], 3
+        )
+        self.assertEqual(
+            next_duplicate_review["metadata"]["duplicate_evidence_status_counts"],
+            {"bounded_duplicate_controls_clear_uniref_pending": 3},
+        )
+        self.assertEqual(
+            [row["accession"] for row in next_duplicate_review["rows"]],
+            ["P22830", "P78549", "Q3LXA3"],
+        )
+        self.assertTrue(
+            all(
+                row["remaining_import_blockers"]
+                == [
+                    "full_label_factory_gate_not_run",
+                    "terminal_review_decision_not_accepted",
+                    "uniref_wide_duplicate_screening_required",
+                ]
+                for row in next_duplicate_review["rows"]
+            )
+        )
+        self.assertEqual(
+            next_terminal_review_queue["metadata"]["method"],
+            "external_hard_negative_next_candidate_terminal_review_queue",
+        )
+        self.assertEqual(
+            next_terminal_review_queue["metadata"]["queued_candidate_count"], 3
+        )
+        self.assertEqual(
+            [row["accession"] for row in next_terminal_review_queue["rows"]],
+            ["P22830", "P78549", "Q3LXA3"],
+        )
+        self.assertTrue(
+            all(
+                row["review_packet_status"] == "needs_terminal_review_decision"
+                for row in next_terminal_review_queue["rows"]
+            )
+        )
+        self.assertEqual(
+            next_terminal_review_queue["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertEqual(
+            next_targeted_uniref["metadata"]["method"],
+            "external_hard_negative_next_candidate_targeted_uniref_check",
+        )
+        self.assertEqual(next_targeted_uniref["metadata"]["candidate_count"], 3)
+        self.assertEqual(
+            next_targeted_uniref["metadata"]["targeted_no_shared_cluster_count"],
+            3,
+        )
+        self.assertEqual(
+            next_targeted_uniref["metadata"]["targeted_shared_cluster_count"], 0
+        )
+        self.assertEqual(next_targeted_uniref["metadata"]["fetch_failure_count"], 0)
+        self.assertEqual(
+            [row["accession"] for row in next_targeted_uniref["rows"]],
+            ["P22830", "P78549", "Q3LXA3"],
+        )
+        self.assertTrue(
+            all(
+                row["targeted_uniref_check_status"]
+                == "targeted_uniref_nearest_reference_no_shared_cluster"
+                for row in next_targeted_uniref["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                "uniref_wide_duplicate_screening_required"
+                in row["remaining_import_blockers"]
+                for row in next_targeted_uniref["rows"]
+            )
         )
 
 

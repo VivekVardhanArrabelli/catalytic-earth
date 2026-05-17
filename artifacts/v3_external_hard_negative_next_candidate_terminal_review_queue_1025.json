@@ -1,0 +1,220 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "duplicate_evidence_review": "artifacts/v3_external_hard_negative_next_candidate_duplicate_evidence_review_1025.json"
+      },
+      "blocker_removed": "next_candidate_terminal_review_queue",
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 1025
+    },
+    "blocker_not_removed": [
+      "terminal_review_decision_not_accepted",
+      "uniref_wide_duplicate_screening_required",
+      "full_label_factory_gate_not_run",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "next_candidate_terminal_review_queue_recorded",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T06:39:49Z",
+    "import_ready_candidate_count": 0,
+    "method": "external_hard_negative_next_candidate_terminal_review_queue",
+    "non_human_blocker_counts": {
+      "full_label_factory_gate_not_run": 3,
+      "uniref_wide_duplicate_screening_required": 3
+    },
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "queued_candidate_count": 3,
+    "ready_for_label_import": false,
+    "review_only": true,
+    "review_packet_status_counts": {
+      "needs_terminal_review_decision": 3
+    },
+    "slice_id": 1025,
+    "source_duplicate_evidence_review_method": "external_hard_negative_next_candidate_duplicate_evidence_review",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope"
+  },
+  "rows": [
+    {
+      "accession": "P22830",
+      "allowed_review_outcomes": [
+        "accept_out_of_scope_after_uniref_and_factory_gates",
+        "reject_duplicate_or_near_duplicate",
+        "reject_existing_fingerprint_match",
+        "reject_source_evidence_insufficient",
+        "defer_requires_additional_evidence"
+      ],
+      "countable_label_candidate": false,
+      "duplicate_evidence_status": "bounded_duplicate_controls_clear_uniref_pending",
+      "duplicate_evidence_summary": {
+        "bounded_current_reference_sequence_status": "no_near_duplicate_signal",
+        "current_countable_structural_screen_status": "no_current_countable_structural_duplicate_signal",
+        "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+        "external_structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.8041,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_entry_ids": [
+            "m_csa:35"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "2PHK",
+          "current_selected_structure_key": "pdb:2PHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:35",
+          "max_pair_tm_score": 0.6892,
+          "qtmscore": 0.01651,
+          "raw_query_name": "afdb_P22830",
+          "raw_target_name": "pdb_2PHK_B",
+          "ttmscore": 0.6892
+        }
+      },
+      "entry_id": "uniprot:P22830",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "non_human_blockers_remaining": [
+        "full_label_factory_gate_not_run",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "review_packet_status": "needs_terminal_review_decision",
+      "review_status": "external_hard_negative_next_candidate_terminal_review_queue_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_review_question": "After UniRef-wide duplicate screening, does the explicit UniProt active-site plus catalytic-activity source context support treating P22830 as an out_of_scope hard negative for the current 8-fingerprint ontology?"
+    },
+    {
+      "accession": "P78549",
+      "allowed_review_outcomes": [
+        "accept_out_of_scope_after_uniref_and_factory_gates",
+        "reject_duplicate_or_near_duplicate",
+        "reject_existing_fingerprint_match",
+        "reject_source_evidence_insufficient",
+        "defer_requires_additional_evidence"
+      ],
+      "countable_label_candidate": false,
+      "duplicate_evidence_status": "bounded_duplicate_controls_clear_uniref_pending",
+      "duplicate_evidence_summary": {
+        "bounded_current_reference_sequence_status": "no_near_duplicate_signal",
+        "current_countable_structural_screen_status": "no_current_countable_structural_duplicate_signal",
+        "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+        "external_structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.7992,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "current_entry_ids": [
+            "m_csa:798"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1RTF",
+          "current_selected_structure_key": "pdb:1RTF",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "example_current_entry_id": "m_csa:798",
+          "max_pair_tm_score": 0.685,
+          "qtmscore": 0.02284,
+          "raw_query_name": "afdb_P78549",
+          "raw_target_name": "pdb_1RTF_A",
+          "ttmscore": 0.685
+        }
+      },
+      "entry_id": "uniprot:P78549",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "non_human_blockers_remaining": [
+        "full_label_factory_gate_not_run",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "review_packet_status": "needs_terminal_review_decision",
+      "review_status": "external_hard_negative_next_candidate_terminal_review_queue_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_review_question": "After UniRef-wide duplicate screening, does the explicit UniProt active-site plus catalytic-activity source context support treating P78549 as an out_of_scope hard negative for the current 8-fingerprint ontology?"
+    },
+    {
+      "accession": "Q3LXA3",
+      "allowed_review_outcomes": [
+        "accept_out_of_scope_after_uniref_and_factory_gates",
+        "reject_duplicate_or_near_duplicate",
+        "reject_existing_fingerprint_match",
+        "reject_source_evidence_insufficient",
+        "defer_requires_additional_evidence"
+      ],
+      "countable_label_candidate": false,
+      "duplicate_evidence_status": "bounded_duplicate_controls_clear_uniref_pending",
+      "duplicate_evidence_summary": {
+        "bounded_current_reference_sequence_status": "no_near_duplicate_signal",
+        "current_countable_structural_screen_status": "no_current_countable_structural_duplicate_signal",
+        "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+        "external_structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.7936,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_entry_ids": [
+            "m_csa:246"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1IR3",
+          "current_selected_structure_key": "pdb:1IR3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:246",
+          "max_pair_tm_score": 0.6614,
+          "qtmscore": 0.01041,
+          "raw_query_name": "afdb_Q3LXA3",
+          "raw_target_name": "pdb_1IR3_B",
+          "ttmscore": 0.6614
+        }
+      },
+      "entry_id": "uniprot:Q3LXA3",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "non_human_blockers_remaining": [
+        "full_label_factory_gate_not_run",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "review_packet_status": "needs_terminal_review_decision",
+      "review_status": "external_hard_negative_next_candidate_terminal_review_queue_review_only",
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_review_question": "After UniRef-wide duplicate screening, does the explicit UniProt active-site plus catalytic-activity source context support treating Q3LXA3 as an out_of_scope hard negative for the current 8-fingerprint ontology?"
+    }
+  ],
+  "warnings": [
+    "terminal review queue rows are review-only packets; they cannot create import-ready rows until UniRef-wide screening and full factory gates pass"
+  ]
+}

@@ -99,6 +99,9 @@ from catalytic_earth.transfer_scope import (
     build_external_hard_negative_new_candidate_sourcing,
     build_external_hard_negative_new_candidate_current_countable_structural_screen,
     build_external_hard_negative_new_candidate_terminal_decisions,
+    build_external_hard_negative_next_candidate_duplicate_evidence_review,
+    build_external_hard_negative_next_candidate_targeted_uniref_check,
+    build_external_hard_negative_next_candidate_terminal_review_queue,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -12459,3 +12462,227 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             self.assertTrue(
                 transfer_blocker_matrix_audit_payload["metadata"]["guardrail_clean"]
             )
+
+    def test_next_candidate_duplicate_evidence_review_keeps_uniref_blocker(
+        self,
+    ) -> None:
+        review = build_external_hard_negative_next_candidate_duplicate_evidence_review(
+            next_candidate_terminal_decisions={
+                "metadata": {
+                    "method": "external_hard_negative_next_candidate_terminal_decisions"
+                },
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "entry_id": "uniprot:PGOOD",
+                        "lane_id": "external_source:isomerase",
+                        "terminal_decision_status": (
+                            "deferred_requires_review_and_factory_gate_after_"
+                            "structural_screen"
+                        ),
+                    },
+                    {
+                        "accession": "PDUP",
+                        "terminal_decision_status": (
+                            "rejected_current_countable_structural_duplicate_signal"
+                        ),
+                    },
+                ],
+            },
+            backend_sequence_search={
+                "metadata": {"method": "external_source_backend_sequence_search"},
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "backend_search_complete": True,
+                        "max_external_vs_reference_identity": 0.31,
+                        "search_status": "no_near_duplicate_signal",
+                    }
+                ],
+            },
+            all_vs_all_sequence_search={
+                "metadata": {"method": "external_source_all_vs_all_sequence_search"},
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "all_vs_all_search_complete": True,
+                        "max_external_vs_external_identity": 0.22,
+                        "near_duplicate_hit_count": 0,
+                        "search_status": (
+                            "external_all_vs_all_no_near_duplicate_signal"
+                        ),
+                        "top_external_hits": [],
+                    }
+                ],
+            },
+            external_structural_cluster_index={
+                "metadata": {"method": "external_structural_cluster_index"},
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "nearest_neighbor": {"accession": "POTHER", "tm_score": 0.4},
+                        "structural_neighbor_cache_status": (
+                            "no_external_structural_neighbor_above_threshold"
+                        ),
+                        "tm_cluster_id": "external_tm_cluster:001",
+                    }
+                ],
+            },
+            current_countable_structural_screen={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_next_candidate_current_countable_"
+                        "structural_screen"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "current_countable_high_tm_hit_count": 0,
+                        "current_countable_structural_screen_status": (
+                            "no_current_countable_structural_duplicate_signal"
+                        ),
+                        "nearest_current_countable_hit": {
+                            "current_selected_structure_id": "1ABC",
+                            "max_pair_tm_score": 0.62,
+                        },
+                    }
+                ],
+            },
+            artifact_lineage={"slice_id": 1025},
+        )
+
+        self.assertEqual(
+            review["metadata"]["method"],
+            "external_hard_negative_next_candidate_duplicate_evidence_review",
+        )
+        self.assertEqual(review["metadata"]["candidate_count"], 1)
+        self.assertEqual(review["metadata"]["bounded_duplicate_clear_count"], 1)
+        row = review["rows"][0]
+        self.assertEqual(
+            row["duplicate_evidence_status"],
+            "bounded_duplicate_controls_clear_uniref_pending",
+        )
+        self.assertEqual(row["duplicate_evidence_blockers"], [])
+        self.assertIn(
+            "uniref_wide_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["import_ready_candidate"])
+        self.assertFalse(row["countable_label_candidate"])
+
+    def test_next_candidate_terminal_review_queue_is_review_only(self) -> None:
+        queue = build_external_hard_negative_next_candidate_terminal_review_queue(
+            duplicate_evidence_review={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_next_candidate_duplicate_"
+                        "evidence_review"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "duplicate_evidence_status": (
+                            "bounded_duplicate_controls_clear_uniref_pending"
+                        ),
+                        "entry_id": "uniprot:PGOOD",
+                        "lane_id": "external_source:isomerase",
+                        "remaining_import_blockers": [
+                            "full_label_factory_gate_not_run",
+                            "terminal_review_decision_not_accepted",
+                            "uniref_wide_duplicate_screening_required",
+                        ],
+                    }
+                ],
+            },
+            artifact_lineage={"slice_id": 1025},
+        )
+
+        self.assertEqual(
+            queue["metadata"]["method"],
+            "external_hard_negative_next_candidate_terminal_review_queue",
+        )
+        self.assertEqual(queue["metadata"]["queued_candidate_count"], 1)
+        row = queue["rows"][0]
+        self.assertEqual(row["review_packet_status"], "needs_terminal_review_decision")
+        self.assertIn(
+            "accept_out_of_scope_after_uniref_and_factory_gates",
+            row["allowed_review_outcomes"],
+        )
+        self.assertEqual(
+            row["non_human_blockers_remaining"],
+            [
+                "full_label_factory_gate_not_run",
+                "uniref_wide_duplicate_screening_required",
+            ],
+        )
+        self.assertFalse(row["ready_for_label_import"])
+        self.assertFalse(row["countable_label_candidate"])
+
+    def test_next_candidate_targeted_uniref_check_keeps_wide_screen_blocker(
+        self,
+    ) -> None:
+        summaries = {
+            "PGOOD": {
+                "accession": "PGOOD",
+                "fetch_status": "ok",
+                "uniref90_ids": ["UniRef90_PGOOD"],
+                "uniref50_ids": ["UniRef50_PGOOD"],
+            },
+            "PREF": {
+                "accession": "PREF",
+                "fetch_status": "ok",
+                "uniref90_ids": ["UniRef90_PREF"],
+                "uniref50_ids": ["UniRef50_PREF"],
+            },
+        }
+
+        check = build_external_hard_negative_next_candidate_targeted_uniref_check(
+            terminal_review_queue={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_next_candidate_terminal_"
+                        "review_queue"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "duplicate_evidence_summary": {
+                            "nearest_current_countable_hit": {
+                                "current_entry_ids": ["m_csa:1"]
+                            }
+                        },
+                    }
+                ],
+            },
+            sequence_clusters={
+                "metadata": {"method": "sequence_cluster_proxy_from_reference_uniprot"},
+                "rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "reference_uniprot_ids": ["PREF"],
+                    }
+                ],
+            },
+            fetcher=lambda accession: summaries[accession],
+            artifact_lineage={"slice_id": 1025},
+        )
+
+        self.assertEqual(
+            check["metadata"]["method"],
+            "external_hard_negative_next_candidate_targeted_uniref_check",
+        )
+        self.assertEqual(check["metadata"]["targeted_no_shared_cluster_count"], 1)
+        row = check["rows"][0]
+        self.assertEqual(
+            row["targeted_uniref_check_status"],
+            "targeted_uniref_nearest_reference_no_shared_cluster",
+        )
+        self.assertEqual(row["targeted_uniref_blockers"], [])
+        self.assertIn(
+            "uniref_wide_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["import_ready_candidate"])

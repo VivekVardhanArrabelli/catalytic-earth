@@ -367,6 +367,30 @@ Current review-only external artifacts:
   `deferred_requires_review_and_factory_gate_after_structural_screen` rows.
   The deferred rows still require UniRef-wide duplicate screening, terminal
   review, and full factory gates; 0 rows are import-ready or countable.
+- `artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_1025.json`
+  runs the bounded external all-vs-all sequence screen for the 8 replacement
+  rows using the next-candidate external FASTA. MMseqs2 completes the screen
+  with 8/8 no-signal rows, 0 exact/near-duplicate external sequence pairs, and
+  a guardrail-clean audit in
+  `artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_audit_1025.json`.
+- `artifacts/v3_external_hard_negative_next_candidate_duplicate_evidence_review_1025.json`
+  records the bounded duplicate-evidence status for the 3 deferred rows
+  (`P22830`, `P78549`, and `Q3LXA3`). All 3 are
+  `bounded_duplicate_controls_clear_uniref_pending`: current-reference
+  sequence, external all-vs-all sequence, external structural, and
+  current-countable structural controls are clear. UniRef-wide duplicate
+  screening, terminal review acceptance, and full factory gates still block all
+  3 rows, so 0 rows are import-ready or countable.
+- `artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json`
+  routes those 3 bounded-clear rows into review-only terminal review packets.
+  The queue records allowed outcomes, the remaining UniRef-wide and factory
+  blockers, and 0 accepted/import-ready/countable rows.
+- `artifacts/v3_external_hard_negative_next_candidate_targeted_uniref_check_1025.json`
+  queries UniRef for the 3 terminal-review-queued candidates and their nearest
+  current structural-reference accessions. `P22830`/`P00518`,
+  `P78549`/`P00750`, and `Q3LXA3`/`P06213` share 0 UniRef90/50 clusters, with
+  0 fetch failures. This is nearest-reference evidence only; the artifact
+  explicitly preserves the full UniRef-wide duplicate-screening blocker.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine
