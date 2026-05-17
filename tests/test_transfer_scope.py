@@ -100,7 +100,10 @@ from catalytic_earth.transfer_scope import (
     build_external_hard_negative_new_candidate_current_countable_structural_screen,
     build_external_hard_negative_new_candidate_terminal_decisions,
     build_external_hard_negative_next_candidate_duplicate_evidence_review,
+    build_external_hard_negative_next_candidate_factory_import_gate,
+    build_external_hard_negative_next_candidate_inverse_gate_scores,
     build_external_hard_negative_next_candidate_targeted_uniref_check,
+    build_external_hard_negative_next_candidate_terminal_review_decisions,
     build_external_hard_negative_next_candidate_terminal_review_queue,
     build_external_hard_negative_next_candidate_uniref_current_reference_screen,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
@@ -12834,4 +12837,351 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             row["overlapping_current_reference_accessions"][0]["reference_accession"],
             "PREF",
+        )
+
+    def test_next_candidate_inverse_gate_scores_are_review_only(self) -> None:
+        sample_cif = """data_test
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.auth_atom_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+ATOM 1 N N ASP A 7 0.0 0.0 0.0 N ASP A 7
+ATOM 2 C CA ASP A 7 1.0 0.0 0.0 CA ASP A 7
+ATOM 3 C C ASP A 7 1.0 1.0 0.0 C ASP A 7
+ATOM 4 N N LYS A 8 2.0 0.0 0.0 N LYS A 8
+ATOM 5 C CA LYS A 8 2.5 0.2 0.0 CA LYS A 8
+#
+"""
+        scores = build_external_hard_negative_next_candidate_inverse_gate_scores(
+            next_candidate_sourcing={
+                "metadata": {"method": "external_hard_negative_next_candidate_sourcing"},
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "active_site_evidence_status": (
+                            "explicit_active_site_and_catalytic_activity_source_present"
+                        ),
+                        "lane_id": "external_source:lyase",
+                        "specific_ec_numbers": ["4.2.99.18"],
+                    }
+                ],
+            },
+            current_countable_structural_screen={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_next_candidate_current_countable_"
+                        "structural_screen"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "PGOOD",
+                        "coordinate_path": "/tmp/not-a-real-catalytic-earth-test.cif",
+                        "current_countable_structural_screen_status": (
+                            "no_current_countable_structural_duplicate_signal"
+                        ),
+                        "entry_id": "uniprot:PGOOD",
+                        "lane_id": "external_source:lyase",
+                        "structure_id": "PGOOD",
+                        "structure_source": "alphafold",
+                    }
+                ],
+            },
+            uniprot_fetcher=lambda accession: {
+                "record": {
+                    "entry_name": "PGOOD_TEST",
+                    "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+                    "active_site_features": [
+                        {"begin": 7, "description": "Proton acceptor"}
+                    ],
+                    "binding_site_features": [],
+                    "catalytic_activity_comments": [{"reaction": "test"}],
+                    "cofactor_comments": [],
+                }
+            },
+            cif_fetcher=lambda structure_source, structure_id: sample_cif,
+            artifact_lineage={"slice_id": 1025},
+        )
+
+        self.assertEqual(
+            scores["metadata"]["method"],
+            "external_hard_negative_next_candidate_inverse_gate_scores",
+        )
+        self.assertEqual(scores["metadata"]["candidate_count"], 1)
+        self.assertEqual(scores["metadata"]["scored_candidate_count"], 1)
+        row = scores["rows"][0]
+        self.assertEqual(len(row["top_fingerprints"]), 8)
+        self.assertEqual(
+            row["out_of_scope_inverse_gate"]["observed_current_fingerprint_count"],
+            8,
+        )
+        self.assertIn("full_label_factory_gate_not_run", row["remaining_import_blockers"])
+        self.assertFalse(row["ready_for_label_import"])
+        self.assertFalse(row["countable_label_candidate"])
+
+    def test_next_candidate_terminal_review_accepts_only_pending_factory(
+        self,
+    ) -> None:
+        decisions = (
+            build_external_hard_negative_next_candidate_terminal_review_decisions(
+                inverse_gate_scores={
+                    "metadata": {
+                        "method": (
+                            "external_hard_negative_next_candidate_inverse_gate_scores"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "PGOOD",
+                            "entry_id": "uniprot:PGOOD",
+                            "lane_id": "external_source:lyase",
+                            "source_active_site_evidence_status": (
+                                "explicit_active_site_and_catalytic_activity_source_present"
+                            ),
+                            "active_site_feature_count": 1,
+                            "catalytic_activity_count": 1,
+                            "resolved_active_site_residue_count": 1,
+                            "out_of_scope_inverse_gate": {
+                                "inverse_gate_status": "passed",
+                                "blockers": [],
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "top1_score": 0.2,
+                                "max_current_fingerprint_score": 0.2,
+                            },
+                        }
+                    ],
+                },
+                duplicate_evidence_review={
+                    "metadata": {
+                        "method": (
+                            "external_hard_negative_next_candidate_duplicate_"
+                            "evidence_review"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "PGOOD",
+                            "duplicate_evidence_status": (
+                                "bounded_duplicate_controls_clear_uniref_pending"
+                            ),
+                            "duplicate_evidence_blockers": [],
+                        }
+                    ],
+                },
+                terminal_review_queue={
+                    "metadata": {
+                        "method": (
+                            "external_hard_negative_next_candidate_terminal_"
+                            "review_queue"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "PGOOD",
+                            "review_packet_status": "needs_terminal_review_decision",
+                        }
+                    ],
+                },
+                uniref_current_reference_screen={
+                    "metadata": {
+                        "method": (
+                            "external_hard_negative_next_candidate_uniref_current_"
+                            "reference_screen"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "PGOOD",
+                            "entry_id": "uniprot:PGOOD",
+                            "lane_id": "external_source:lyase",
+                            "uniref_current_reference_screen_status": (
+                                "uniref_current_reference_screen_no_current_reference_overlap"
+                            ),
+                            "uniref_current_reference_blockers": [],
+                        }
+                    ],
+                },
+                artifact_lineage={"slice_id": 1025},
+            )
+        )
+
+        self.assertEqual(
+            decisions["metadata"]["method"],
+            "external_hard_negative_next_candidate_terminal_review_decisions",
+        )
+        self.assertEqual(
+            decisions["metadata"]["terminal_review_accepted_pending_factory_count"],
+            1,
+        )
+        row = decisions["rows"][0]
+        self.assertEqual(
+            row["terminal_review_decision_status"],
+            "accepted_out_of_scope_pending_factory_gate",
+        )
+        self.assertEqual(row["remaining_import_blockers"], ["full_label_factory_gate_not_run"])
+        self.assertFalse(row["ready_for_label_import"])
+        self.assertFalse(row["countable_label_candidate"])
+
+    def test_next_candidate_factory_import_gate_selects_one_label(
+        self,
+    ) -> None:
+        gate = build_external_hard_negative_next_candidate_factory_import_gate(
+            terminal_review_decisions={
+                "metadata": {
+                    "method": (
+                        "external_hard_negative_next_candidate_terminal_"
+                        "review_decisions"
+                    )
+                },
+                "rows": [
+                    {
+                        "accession": "PLOW",
+                        "entry_id": "uniprot:PLOW",
+                        "lane_id": "external_source:lyase",
+                        "target_label_type": "out_of_scope",
+                        "target_fingerprint_id": None,
+                        "ontology_version_at_decision": "label_factory_v1_8fp",
+                        "terminal_review_decision_status": (
+                            "accepted_out_of_scope_pending_factory_gate"
+                        ),
+                        "source_evidence_status": (
+                            "explicit_active_site_and_catalytic_activity_"
+                            "source_present"
+                        ),
+                        "bounded_duplicate_evidence_status": (
+                            "bounded_duplicate_controls_clear_uniref_pending"
+                        ),
+                        "uniref_current_reference_screen_status": (
+                            "uniref_current_reference_screen_no_current_"
+                            "reference_overlap"
+                        ),
+                        "remaining_import_blockers": [
+                            "full_label_factory_gate_not_run"
+                        ],
+                        "out_of_scope_inverse_gate": {
+                            "target_fingerprint_id": None,
+                            "inverse_gate_status": "passed",
+                            "all_current_fingerprint_scores_below_threshold": True,
+                            "observed_current_fingerprint_count": 8,
+                            "expected_current_fingerprint_count": 8,
+                            "max_current_fingerprint_score": 0.1,
+                        },
+                        "max_current_fingerprint_score": 0.1,
+                    },
+                    {
+                        "accession": "PHIGH",
+                        "entry_id": "uniprot:PHIGH",
+                        "lane_id": "external_source:lyase",
+                        "target_label_type": "out_of_scope",
+                        "target_fingerprint_id": None,
+                        "ontology_version_at_decision": "label_factory_v1_8fp",
+                        "terminal_review_decision_status": (
+                            "accepted_out_of_scope_pending_factory_gate"
+                        ),
+                        "source_evidence_status": (
+                            "explicit_active_site_and_catalytic_activity_"
+                            "source_present"
+                        ),
+                        "bounded_duplicate_evidence_status": (
+                            "bounded_duplicate_controls_clear_uniref_pending"
+                        ),
+                        "uniref_current_reference_screen_status": (
+                            "uniref_current_reference_screen_no_current_"
+                            "reference_overlap"
+                        ),
+                        "remaining_import_blockers": [
+                            "full_label_factory_gate_not_run"
+                        ],
+                        "out_of_scope_inverse_gate": {
+                            "target_fingerprint_id": None,
+                            "inverse_gate_status": "passed",
+                            "all_current_fingerprint_scores_below_threshold": True,
+                            "observed_current_fingerprint_count": 8,
+                            "expected_current_fingerprint_count": 8,
+                            "max_current_fingerprint_score": 0.3,
+                        },
+                        "max_current_fingerprint_score": 0.3,
+                    },
+                ],
+            },
+            label_factory_gate_check={
+                "metadata": {
+                    "method": "label_factory_gate_check",
+                    "gate_count": 21,
+                    "passed_gate_count": 21,
+                },
+                "blockers": [],
+            },
+            external_transfer_gate={
+                "metadata": {
+                    "method": "external_source_transfer_gate_check",
+                    "guardrail_clean": True,
+                },
+                "blockers": [],
+            },
+            existing_label_entry_ids=[],
+            artifact_lineage={"slice_id": 1025},
+        )
+
+        self.assertEqual(
+            gate["metadata"]["method"],
+            "external_hard_negative_next_candidate_factory_import_gate",
+        )
+        self.assertEqual(gate["metadata"]["factory_gate_pass_candidate_count"], 2)
+        self.assertEqual(gate["metadata"]["selected_import_accessions"], ["PLOW"])
+        self.assertEqual(gate["metadata"]["import_ready_candidate_count"], 1)
+        rows = {row["accession"]: row for row in gate["rows"]}
+        self.assertTrue(rows["PLOW"]["ready_for_label_import"])
+        self.assertFalse(rows["PHIGH"]["ready_for_label_import"])
+        self.assertEqual(
+            rows["PHIGH"]["remaining_import_blockers"],
+            ["single_import_cap_not_selected_this_run"],
+        )
+        accepted = [
+            item
+            for item in gate["review_items"]
+            if item["decision"]["action"] == "accept_label"
+        ]
+        self.assertEqual([item["accession"] for item in accepted], ["PLOW"])
+
+        replay_gate = build_external_hard_negative_next_candidate_factory_import_gate(
+            terminal_review_decisions=gate,
+            label_factory_gate_check={
+                "metadata": {
+                    "method": "label_factory_gate_check",
+                    "gate_count": 21,
+                    "passed_gate_count": 21,
+                },
+                "blockers": [],
+            },
+            external_transfer_gate={
+                "metadata": {
+                    "method": "external_source_transfer_gate_check",
+                    "guardrail_clean": True,
+                },
+                "blockers": [],
+            },
+            existing_label_entry_ids=["uniprot:PLOW"],
+            artifact_lineage={"slice_id": 1025},
+        )
+        self.assertEqual(
+            replay_gate["metadata"]["selected_import_accessions"], []
+        )
+        self.assertEqual(
+            replay_gate["metadata"]["remaining_import_blocker_counts"][
+                "external_hard_negative_single_import_already_present"
+            ],
+            1,
         )

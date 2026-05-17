@@ -18,7 +18,7 @@ slices are countable only through the label-factory batch checks.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-679 countable labels. Review-state registries preserve pending
+680 countable labels. Review-state registries preserve pending
 `needs_expert_review` rows separately so unresolved evidence gaps do not count
 as benchmark labels.
 
@@ -195,12 +195,45 @@ intersects them with all 735 current countable reference accessions. `P22830`,
 `P78549`, and `Q3LXA3` all have 0 current-reference cluster overlaps, with 6/6
 candidate UniRef clusters fetched successfully. Evidence-based confidence call:
 the surviving next-candidate surface no longer has a current-reference UniRef
-cluster duplicate blocker, but none is import-ready because terminal review
-acceptance and the full factory gate still block all 3 rows. Continue with
-terminal review/factory evidence for `P22830`, `P78549`, and `Q3LXA3`; do not
-retry the 5 duplicate-signal rows without new evidence.
+cluster duplicate blocker. The 2026-05-17T08:31:07Z run then added
+`artifacts/v3_external_hard_negative_next_candidate_inverse_gate_scores_1025.json`,
+which maps the UniProt active-site features for those 3 rows onto their staged
+AlphaFold sidecars and verifies complete 8/8 current-fingerprint coverage below
+the `0.4115` out-of-scope floor: `P22830` top1 `metal_dependent_hydrolase`
+`0.3686`, `P78549` top1 `flavin_dehydrogenase_reductase` `0.1150`, and
+`Q3LXA3` top1 `metal_dependent_hydrolase` `0.2929`. The companion
+`artifacts/v3_external_hard_negative_next_candidate_terminal_review_decisions_1025.json`
+records all 3 as review-only
+`accepted_out_of_scope_pending_factory_gate` decisions. Evidence-based
+confidence call: terminal review acceptance is resolved for this surface. The
+same run then added
+`artifacts/v3_external_hard_negative_next_candidate_factory_import_gate_1025.json`.
+All 3 rows pass the candidate factory gate; the single-import cap selects
+`P78549` because its maximum current-fingerprint score is lowest (`0.1150`).
+The accepted review item imports `uniprot:P78549` as an external
+`out_of_scope` hard-negative label with `fingerprint_id=null` and
+`ontology_version_at_decision=label_factory_v1_8fp`, bringing the canonical
+registry to 680 countable labels. `P22830` and `Q3LXA3` remain unimported under
+`single_import_cap_not_selected_this_run`. The post-import litmus regression
+now pins 680 total labels, 468 out-of-scope labels, 212 seed-fingerprint
+labels, no overlap between in-scope and out-of-scope entry ids, unchanged
+1,000-slice in-scope retention (`0.9858`), held-out sequence identity
+`<=0.284`, 43/43 retained held-out positives correct, and 0 held-out
+out-of-scope false non-abstentions. Next work should decide whether P22830 or
+Q3LXA3 should enter a later single-import cycle; do not retry the 5
+duplicate-signal rows without new evidence.
 
-Run verification for the current handoff: started `2026-05-17T07:29:36Z` and
+Run verification for the current handoff: started `2026-05-17T08:31:07Z` and
+wrapped at `2026-05-17T09:08:30Z`. Startup checks passed with 388 unit tests
+and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks
+passed with 393 unit tests, `validate` over 680 curated labels, `compileall`,
+`git diff --check`, JSON parse checks for the new inverse-gate/terminal/factory
+artifacts and imported registry, and the already-rerun external transfer gate at
+68/68. README, `docs/external_source_transfer.md`, `docs/label_factory.md`,
+work scope, handoff, status, progress log, and external transfer notes were
+updated to reflect the first external hard-negative import.
+
+Run verification for the previous handoff: started `2026-05-17T07:29:36Z` and
 wrapped at `2026-05-17T07:42:26Z`. Startup checks passed with 386 unit tests
 and `PYTHONPATH=src python -m catalytic_earth.cli validate`; final checks
 passed with 388 unit tests, `validate`, `compileall`, `git diff --check`, JSON
@@ -2359,8 +2392,9 @@ Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 
 ## Current Metrics
 
-- Curated label registry: 679 bronze automation-curated labels, with 212
-  seed-fingerprint positives and 467 out-of-scope labels.
+- Curated label registry: 680 bronze automation-curated labels, with 212
+  seed-fingerprint positives and 468 out-of-scope labels. The external
+  out-of-scope member is `uniprot:P78549`.
 - 20-entry slice: threshold `0.4104`, 20/20 evaluable, 7/7 in-scope positives
   retained, 0 false non-abstentions, 0 hard negatives.
 - 125-entry slice: threshold `0.4115`, 124/125 evaluable, 38/38 in-scope

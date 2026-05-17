@@ -2,7 +2,7 @@
   "by_confidence": {
     "high": 75,
     "low": 36,
-    "medium": 568
+    "medium": 569
   },
   "by_fingerprint": {
     "cobalamin_radical_rearrangement": 3,
@@ -15,18 +15,18 @@
     "ser_his_acid_hydrolase": 40
   },
   "by_ontology_version_at_decision": {
-    "label_factory_v1_8fp": 679
+    "label_factory_v1_8fp": 680
   },
   "by_review_status": {
-    "automation_curated": 679
+    "automation_curated": 680
   },
   "by_tier": {
-    "bronze": 679
+    "bronze": 680
   },
   "by_type": {
-    "out_of_scope": 467,
+    "out_of_scope": 468,
     "seed_fingerprint": 212
   },
-  "label_count": 679,
-  "mean_evidence_score": 0.6478
+  "label_count": 680,
+  "mean_evidence_score": 0.6482
 }

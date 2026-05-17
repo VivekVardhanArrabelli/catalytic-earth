@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 150
-- Measured elapsed time: 4932.6 minutes (82.21 hours)
+- Entries: 151
+- Measured elapsed time: 4969.9 minutes (82.83 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2772.1 measured minutes (46.20 hours)
+- post-v2: 2809.5 measured minutes (46.82 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1705
-- Evidence references logged: 1321
+- Artifact references logged: 1710
+- Evidence references logged: 1331
 
 ## Recent Entries
-
-### 2026-05-17T00:22:15.473415+00:00 - ops
-
-- Task: Switch automation push path to SSH deploy key
-- Time mode: measured
-- Measured minutes: 7.117
-- Started: 2026-05-17T00:15:00Z
-- Ended: 2026-05-17T00:22:07Z
-- Artifacts: work/handoff.md, work/status.md, repo-scoped GitHub deploy key, local origin SSH URL, local core.sshCommand
-- Evidence: HTTPS credential fill failed in scheduled run, repo-scoped read-write deploy key added, git ls-remote over SSH succeeded, git push over SSH succeeded, HEAD equals origin/main, no stale lock remains
-- Notes: Moved recurring automation push path from unstable HTTPS gh/keychain credentials to a repo-scoped SSH deploy key without storing plaintext GitHub tokens.
 
 ### 2026-05-17T02:10:05.048551+00:00 - post-v2
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_hard_negative_next_candidate_uniref_current_reference_screen_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, artifacts/v3_external_source_transfer_gate_check_1025.json
 - Evidence: startup 386 unit tests passed, startup validate passed with 679 curated labels, UniRef90/50 current-reference screen fetched 6/6 candidate clusters, P22830 P78549 Q3LXA3 had 0 current-reference cluster overlaps, remaining blockers are terminal review acceptance and full factory gate, 388 final unit tests passed, validate passed, compileall passed, git diff --check passed, external transfer gate 68/68
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
+
+### 2026-05-17T09:08:30+00:00 - post-v2
+
+- Task: Import first external hard-negative label
+- Time mode: measured
+- Measured minutes: 37.383
+- Started: 2026-05-17T08:31:07Z
+- Ended: 2026-05-17T09:08:30Z
+- Artifacts: artifacts/v3_external_hard_negative_next_candidate_inverse_gate_scores_1025.json, artifacts/v3_external_hard_negative_next_candidate_terminal_review_decisions_1025.json, artifacts/v3_external_hard_negative_next_candidate_factory_import_gate_1025.json, data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json
+- Evidence: startup 388 unit tests passed, startup validate passed with 679 curated labels, P78549 external out_of_scope import, all 8 current fingerprint scores below 0.4115, post-import litmus regression pinned 680 labels and 468 out-of-scope labels, final 393 unit tests passed, validate passed with 680 curated labels, compileall passed, git diff --check passed, JSON parse checks passed
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed.
 
 ## Expectation Updates
 
@@ -239,6 +239,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-17T04:14:25+00:00: Fresh external sourcing and the first current-countable structural screen are complete; Q13087 is the only sequence-clean row without a high-TM current-countable signal, but pair-cache completion, UniRef-wide screening, terminal review, and factory gates still block import.
 - 2026-05-17T05:01:18.923988+00:00: Fresh sourced hard-negative tranche is closed by current-countable structural duplicate signals; next work needs new external candidate sourcing or genuinely new evidence.
 - 2026-05-17T07:42:26.961418+00:00: Next-candidate UniRef current-reference duplicate blocker is removed for P22830 P78549 Q3LXA3; terminal review and full factory gates are now the active blockers.
+- 2026-05-17T09:08:30+00:00: First external out-of-scope hard-negative import succeeded for P78549; next work should decide whether P22830 or Q3LXA3 should enter a later single-import cycle after litmus remains green.
 
 ## Scope Adjustments
 

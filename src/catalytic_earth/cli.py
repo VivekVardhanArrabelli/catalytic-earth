@@ -191,7 +191,10 @@ from .transfer_scope import (
     build_external_hard_negative_new_candidate_current_countable_structural_screen,
     build_external_hard_negative_new_candidate_terminal_decisions,
     build_external_hard_negative_next_candidate_duplicate_evidence_review,
+    build_external_hard_negative_next_candidate_factory_import_gate,
+    build_external_hard_negative_next_candidate_inverse_gate_scores,
     build_external_hard_negative_next_candidate_targeted_uniref_check,
+    build_external_hard_negative_next_candidate_terminal_review_decisions,
     build_external_hard_negative_next_candidate_terminal_review_queue,
     build_external_hard_negative_next_candidate_uniref_current_reference_screen,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
@@ -3728,6 +3731,122 @@ def cmd_build_external_hard_negative_next_candidate_uniref_current_reference_scr
         "Wrote next-candidate UniRef current-reference screen to "
         f"{args.out} ({screen['metadata']['uniref_current_reference_clear_count']} "
         "clear rows)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_next_candidate_inverse_gate_scores(
+    args: argparse.Namespace,
+) -> int:
+    next_candidate_sourcing = read_json_object(Path(args.next_candidate_sourcing))
+    current_countable_structural_screen = read_json_object(
+        Path(args.current_countable_structural_screen)
+    )
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "next_candidate_sourcing": args.next_candidate_sourcing,
+            "current_countable_structural_screen": (
+                args.current_countable_structural_screen
+            ),
+        },
+        "blocker_removed": "next_candidate_inverse_gate_scores",
+    }
+    scores = build_external_hard_negative_next_candidate_inverse_gate_scores(
+        next_candidate_sourcing=next_candidate_sourcing,
+        current_countable_structural_screen=current_countable_structural_screen,
+        max_rows=args.max_rows,
+        top_k=args.top_k,
+        abstain_threshold=args.abstain_threshold,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), scores)
+    print(
+        "Wrote next-candidate inverse-gate scores to "
+        f"{args.out} ({scores['metadata']['inverse_gate_pass_count']} passed)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_next_candidate_terminal_review_decisions(
+    args: argparse.Namespace,
+) -> int:
+    inverse_gate_scores = read_json_object(Path(args.inverse_gate_scores))
+    duplicate_evidence_review = read_json_object(Path(args.duplicate_evidence_review))
+    terminal_review_queue = read_json_object(Path(args.terminal_review_queue))
+    uniref_current_reference_screen = read_json_object(
+        Path(args.uniref_current_reference_screen)
+    )
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "inverse_gate_scores": args.inverse_gate_scores,
+            "duplicate_evidence_review": args.duplicate_evidence_review,
+            "terminal_review_queue": args.terminal_review_queue,
+            "uniref_current_reference_screen": (
+                args.uniref_current_reference_screen
+            ),
+        },
+        "blocker_removed": "next_candidate_terminal_review_decisions",
+    }
+    decisions = (
+        build_external_hard_negative_next_candidate_terminal_review_decisions(
+            inverse_gate_scores=inverse_gate_scores,
+            duplicate_evidence_review=duplicate_evidence_review,
+            terminal_review_queue=terminal_review_queue,
+            uniref_current_reference_screen=uniref_current_reference_screen,
+            max_rows=args.max_rows,
+            artifact_lineage=artifact_lineage,
+        )
+    )
+    write_json(Path(args.out), decisions)
+    print(
+        "Wrote next-candidate terminal review decisions to "
+        f"{args.out} "
+        f"({decisions['metadata']['terminal_review_accepted_pending_factory_count']} "
+        "accepted pending factory)"
+    )
+    return 0
+
+
+def cmd_build_external_hard_negative_next_candidate_factory_import_gate(
+    args: argparse.Namespace,
+) -> int:
+    terminal_review_decisions = read_json_object(Path(args.terminal_review_decisions))
+    label_factory_gate_check = read_json_object(Path(args.label_factory_gate_check))
+    external_transfer_gate = read_json_object(Path(args.external_transfer_gate))
+    existing_label_entry_ids = [
+        label.entry_id for label in load_labels(Path(args.labels))
+    ]
+    artifact_lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": 1025,
+        "guardrail_clean": True,
+        "artifact_paths": {
+            "terminal_review_decisions": args.terminal_review_decisions,
+            "label_factory_gate_check": args.label_factory_gate_check,
+            "external_transfer_gate": args.external_transfer_gate,
+            "labels": args.labels,
+        },
+        "blocker_removed": "next_candidate_factory_import_gate",
+    }
+    gate = build_external_hard_negative_next_candidate_factory_import_gate(
+        terminal_review_decisions=terminal_review_decisions,
+        label_factory_gate_check=label_factory_gate_check,
+        external_transfer_gate=external_transfer_gate,
+        existing_label_entry_ids=existing_label_entry_ids,
+        max_imports=args.max_imports,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), gate)
+    print(
+        "Wrote next-candidate factory import gate to "
+        f"{args.out} "
+        f"({gate['metadata']['selected_import_candidate_count']} selected)"
     )
     return 0
 
@@ -9404,6 +9523,141 @@ def build_parser() -> argparse.ArgumentParser:
         func=(
             cmd_build_external_hard_negative_next_candidate_uniref_current_reference_screen
         )
+    )
+
+    external_hard_negative_next_inverse = subparsers.add_parser(
+        "build-external-hard-negative-next-candidate-inverse-gate-scores",
+        help=(
+            "score next-surface bounded-clear candidates against the all-8 "
+            "out-of-scope inverse gate"
+        ),
+    )
+    external_hard_negative_next_inverse.add_argument(
+        "--next-candidate-sourcing",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_sourcing_1025.json"
+        ),
+    )
+    external_hard_negative_next_inverse.add_argument(
+        "--current-countable-structural-screen",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_current_countable_"
+            "structural_screen_1025.json"
+        ),
+    )
+    external_hard_negative_next_inverse.add_argument(
+        "--abstain-threshold", type=float, default=0.4115
+    )
+    external_hard_negative_next_inverse.add_argument("--top-k", type=int, default=8)
+    external_hard_negative_next_inverse.add_argument("--max-rows", type=int, default=3)
+    external_hard_negative_next_inverse.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_inverse_gate_scores_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_inverse.set_defaults(
+        func=cmd_build_external_hard_negative_next_candidate_inverse_gate_scores
+    )
+
+    external_hard_negative_next_terminal_review_decisions = subparsers.add_parser(
+        "build-external-hard-negative-next-candidate-terminal-review-decisions",
+        help=(
+            "record terminal review decisions after next-surface duplicate "
+            "and inverse-gate evidence clears"
+        ),
+    )
+    external_hard_negative_next_terminal_review_decisions.add_argument(
+        "--inverse-gate-scores",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_inverse_gate_scores_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_terminal_review_decisions.add_argument(
+        "--duplicate-evidence-review",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_duplicate_evidence_review_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_terminal_review_decisions.add_argument(
+        "--terminal-review-queue",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_terminal_review_queue_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_terminal_review_decisions.add_argument(
+        "--uniref-current-reference-screen",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_uniref_current_reference_"
+            "screen_1025.json"
+        ),
+    )
+    external_hard_negative_next_terminal_review_decisions.add_argument(
+        "--max-rows", type=int, default=3
+    )
+    external_hard_negative_next_terminal_review_decisions.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_terminal_review_decisions_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_terminal_review_decisions.set_defaults(
+        func=cmd_build_external_hard_negative_next_candidate_terminal_review_decisions
+    )
+
+    external_hard_negative_next_factory_import_gate = subparsers.add_parser(
+        "build-external-hard-negative-next-candidate-factory-import-gate",
+        help=(
+            "run the full factory/import gate for accepted next-candidate "
+            "external hard negatives"
+        ),
+    )
+    external_hard_negative_next_factory_import_gate.add_argument(
+        "--terminal-review-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_terminal_review_decisions_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_factory_import_gate.add_argument(
+        "--label-factory-gate-check",
+        default="artifacts/v3_label_factory_gate_check_1025_preview.json",
+    )
+    external_hard_negative_next_factory_import_gate.add_argument(
+        "--external-transfer-gate",
+        default="artifacts/v3_external_source_transfer_gate_check_1025.json",
+    )
+    external_hard_negative_next_factory_import_gate.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_hard_negative_next_factory_import_gate.add_argument(
+        "--max-imports", type=int, default=1
+    )
+    external_hard_negative_next_factory_import_gate.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_hard_negative_next_candidate_factory_import_gate_"
+            "1025.json"
+        ),
+    )
+    external_hard_negative_next_factory_import_gate.set_defaults(
+        func=cmd_build_external_hard_negative_next_candidate_factory_import_gate
     )
 
     external_transfer_gate = subparsers.add_parser(

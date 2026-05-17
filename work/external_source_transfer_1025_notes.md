@@ -1,11 +1,12 @@
 # External Source Transfer 1025 Notes
 
-The 1,025 preview is not promotable and should stay a source-limit audit point:
-it adds 0 countable labels and leaves the canonical registry at 679 labels.
-External-source transfer is now the active path for post-M-CSA scaling work, but
-all current artifacts are review-only.
+The M-CSA 1,025 preview is not promotable and should stay a source-limit audit
+point: it adds 0 M-CSA countable labels. External-source transfer is now the
+active path for post-M-CSA scaling work, and the first countable external
+hard-negative import is `uniprot:P78549`, bringing the canonical registry to
+680 labels.
 
-Current review-only external artifacts:
+Current external artifacts:
 
 - `artifacts/v3_external_source_candidate_manifest_1025.json` carries 30
   UniProtKB/Swiss-Prot candidates across six lanes with 0 countable candidates.
@@ -396,8 +397,30 @@ Current review-only external artifacts:
   fetches each queued candidate's UniRef90 and UniRef50 cluster members and
   intersects them with all 735 current countable reference accessions. P22830,
   P78549, and Q3LXA3 all have 0 current-reference cluster overlaps across 6/6
-  fetched candidate clusters. The remaining blockers are terminal review
-  acceptance and the full factory gate; 0 rows are import-ready or countable.
+  fetched candidate clusters.
+- `artifacts/v3_external_hard_negative_next_candidate_inverse_gate_scores_1025.json`
+  scores those same 3 rows against the current 8-fingerprint ontology using
+  UniProt active-site features mapped onto staged AlphaFold sidecars. All 3
+  pass the out-of-scope inverse gate at threshold 0.4115: P22830 top1
+  metal_dependent_hydrolase 0.3686, P78549 top1
+  flavin_dehydrogenase_reductase 0.1150, and Q3LXA3 top1
+  metal_dependent_hydrolase 0.2929.
+- `artifacts/v3_external_hard_negative_next_candidate_terminal_review_decisions_1025.json`
+  records P22830, P78549, and Q3LXA3 as review-only
+  accepted_out_of_scope_pending_factory_gate terminal decisions. The remaining
+  blocker is the full factory gate; 0 rows are import-ready or countable.
+- `artifacts/v3_external_hard_negative_next_candidate_factory_import_gate_1025.json`
+  runs that full gate. P22830, P78549, and Q3LXA3 all pass; the single-import
+  cap selects P78549 because its maximum current-fingerprint score is lowest
+  (`0.1150`). `uniprot:P78549` is now the first countable external
+  out-of-scope hard-negative label. P22830 and Q3LXA3 remain unimported under
+  `single_import_cap_not_selected_this_run`.
+- The post-import litmus regression pins the first external count movement:
+  680 total labels, 468 out-of-scope labels, 212 seed-fingerprint labels, no
+  entry-id overlap between those groups, unchanged 1,000-slice retained
+  in-scope behavior, max held-out train/test identity `0.284`, 43/43 retained
+  held-out positives correct, and 0 held-out out-of-scope false
+  non-abstentions.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine
@@ -475,7 +498,7 @@ Sequence-holdout details:
   external candidates for near-duplicate search before any future import
   decision.
 
-Next bounded work should continue the surviving next-candidate import evidence:
-build terminal review/factory-gate evidence for P22830, P78549, and Q3LXA3
-without retrying the five duplicate-signal rows or reopening the six original
-pilot repair lanes without new evidence.
+Next bounded work should pin the post-import hard-negative litmus tests for
+`uniprot:P78549` and decide whether P22830 or Q3LXA3 should enter a later
+single-import cycle. Do not retry the five duplicate-signal rows or reopen the
+six original pilot repair lanes without new evidence.

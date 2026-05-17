@@ -722,23 +722,25 @@ Current 1,000-queue gate state:
 - The 500, 525, 550, 575, 600, 625, 650, 675, 700, 725, 750, 775, 800, 825, and
   850, 875, 900, 925, 950, 975, and 1,000 decision batches accepted 204 new
   countable labels beyond the 475-entry source slice. The canonical registry now contains
-  679 bronze
+  680 bronze
   automation-curated labels, while the review-state registry keeps pending
   `needs_expert_review` placeholders separate from the countable benchmark.
 - The 1,000 batch is now accepted for its 4 clean countable labels:
   `m_csa:978`, `m_csa:988`, `m_csa:990`, and `m_csa:994`.
   `artifacts/v3_accepted_review_debt_deferral_audit_1000.json` explicitly
   defers all 326 review-state rows, including the 21 new 1,000-preview
-  review-debt rows, with 0 countable candidates. The canonical registry now
-  has 679 labels and the 1,000 gate passes 21/21.
+  review-debt rows, with 0 countable candidates. The accepted M-CSA surface has
+  679 labels and the 1,000 gate passes 21/21; the canonical registry now has
+  680 labels after the first external out-of-scope hard-negative import.
 
 Current 1,025-preview state:
 
 - `artifacts/v3_label_factory_gate_check_1025_preview.json` passes 21/21
   checks, preserving the label-quality gates.
 - `artifacts/v3_label_batch_acceptance_check_1025_preview.json` is not
-  accepted for counting because it adds 0 clean labels; the canonical registry
-  remains at 679 countable labels.
+  accepted for M-CSA counting because it adds 0 clean labels; the canonical
+  registry remains at 680 countable labels after the separate external
+  hard-negative import.
 - `artifacts/v3_review_debt_summary_1025_preview.json` records 329 review-debt
   rows with 3 new rows: `m_csa:1003`, `m_csa:1004`, and `m_csa:1005`.
   `artifacts/v3_accepted_review_debt_deferral_audit_1025_preview.json` keeps

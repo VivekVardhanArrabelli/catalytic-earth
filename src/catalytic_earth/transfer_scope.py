@@ -11567,6 +11567,832 @@ def build_external_hard_negative_next_candidate_uniref_current_reference_screen(
     }
 
 
+def build_external_hard_negative_next_candidate_inverse_gate_scores(
+    *,
+    next_candidate_sourcing: dict[str, Any],
+    current_countable_structural_screen: dict[str, Any],
+    max_rows: int = 3,
+    top_k: int = 8,
+    abstain_threshold: float = 0.4115,
+    uniprot_fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
+    cif_fetcher: Callable[[str, str], str] | None = None,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Score surviving next-candidate rows against the current 8-fingerprint gate."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+    if top_k < 1:
+        raise ValueError("top_k must be positive")
+
+    sourcing_by_accession = _external_first_row_by_accession(next_candidate_sourcing)
+    candidates = [
+        row
+        for row in current_countable_structural_screen.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("current_countable_structural_screen_status")
+        == "no_current_countable_structural_duplicate_signal"
+    ][:max_rows]
+
+    entries: list[dict[str, Any]] = []
+    row_contexts: list[dict[str, Any]] = []
+    fetch_failures: list[dict[str, Any]] = []
+    for screen_row in candidates:
+        accession = _normalize_accession(screen_row.get("accession"))
+        if not accession:
+            continue
+        source_row = sourcing_by_accession.get(accession, {})
+        blockers: set[str] = set()
+        source_evidence_status = str(
+            source_row.get("active_site_evidence_status") or "missing_source_row"
+        )
+        if (
+            source_evidence_status
+            != "explicit_active_site_and_catalytic_activity_source_present"
+        ):
+            blockers.add("explicit_active_site_and_catalytic_activity_source_missing")
+
+        active_features: list[dict[str, Any]] = []
+        binding_features: list[dict[str, Any]] = []
+        catalytic_comments: list[dict[str, Any]] = []
+        cofactor_comments: list[dict[str, Any]] = []
+        uniprot_entry_name = None
+        uniprot_review_status = None
+        try:
+            payload = uniprot_fetcher(accession)
+            record = payload.get("record", payload)
+            if not isinstance(record, dict):
+                raise ValueError("UniProt feature payload did not contain a record")
+            active_features = [
+                feature
+                for feature in record.get("active_site_features", []) or []
+                if isinstance(feature, dict)
+            ]
+            binding_features = [
+                feature
+                for feature in record.get("binding_site_features", []) or []
+                if isinstance(feature, dict)
+            ]
+            catalytic_comments = [
+                comment
+                for comment in record.get("catalytic_activity_comments", []) or []
+                if isinstance(comment, dict)
+            ]
+            cofactor_comments = [
+                comment
+                for comment in record.get("cofactor_comments", []) or []
+                if isinstance(comment, dict)
+            ]
+            uniprot_entry_name = record.get("entry_name")
+            uniprot_review_status = record.get("entry_type")
+        except Exception as exc:  # pragma: no cover - live fetch safety
+            blockers.add("uniprot_feature_fetch_failed")
+            fetch_failures.append(
+                {
+                    "accession": accession,
+                    "fetch_type": "uniprot_feature",
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+            )
+        if not active_features:
+            blockers.add("uniprot_active_site_feature_missing")
+        if not catalytic_comments:
+            blockers.add("uniprot_catalytic_activity_comment_missing")
+
+        structure_source = str(screen_row.get("structure_source") or "")
+        structure_id = str(screen_row.get("structure_id") or "")
+        coordinate_path = Path(str(screen_row.get("coordinate_path") or ""))
+        try:
+            if coordinate_path.exists():
+                cif_text = coordinate_path.read_text(encoding="utf-8")
+                coordinate_status = "coordinate_sidecar_reused"
+            elif cif_fetcher is not None and structure_source and structure_id:
+                cif_text = cif_fetcher(structure_source, structure_id)
+                coordinate_status = "coordinate_sidecar_fetched"
+            elif structure_source and structure_id:
+                cif_text = fetch_external_structure_cif(structure_source, structure_id)
+                coordinate_status = "coordinate_sidecar_fetched"
+            else:
+                raise ValueError("no structure source/id or coordinate path available")
+            atoms = parse_atom_site_loop(cif_text)
+        except Exception as exc:  # pragma: no cover - live fetch safety
+            atoms = []
+            coordinate_status = "coordinate_mapping_failed"
+            blockers.add("structure_coordinate_mapping_failed")
+            fetch_failures.append(
+                {
+                    "accession": accession,
+                    "fetch_type": "structure_coordinate",
+                    "structure_source": structure_source,
+                    "structure_id": structure_id,
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+            )
+
+        resolved: list[dict[str, Any]] = []
+        missing_positions: list[dict[str, Any]] = []
+        for position in active_features:
+            residue_atoms = select_residue_atoms(
+                atoms,
+                chain_name=None,
+                resid=position.get("begin"),
+                code=None,
+            )
+            if not residue_atoms:
+                missing_positions.append(position)
+                continue
+            first_atom = residue_atoms[0]
+            resolved.append(
+                {
+                    "residue_node_id": f"uniprot:{accession}:{position.get('begin')}",
+                    "code": first_atom.get("auth_comp_id")
+                    or first_atom.get("label_comp_id"),
+                    "chain_name": first_atom.get("auth_asym_id")
+                    or first_atom.get("label_asym_id"),
+                    "resid": position.get("begin"),
+                    "atom_count": len(residue_atoms),
+                    "centroid": residue_centroid(residue_atoms),
+                    "ca": atom_position(residue_atoms, "CA"),
+                    "roles": _external_active_site_roles(position),
+                }
+            )
+        if not resolved:
+            blockers.add("active_site_positions_unresolved_on_structure")
+
+        entry = {
+            "accession": accession,
+            "countable_label_candidate": False,
+            "entry_id": screen_row.get("entry_id") or f"uniprot:{accession}",
+            "lane_id": screen_row.get("lane_id") or source_row.get("lane_id"),
+            "ligand_context": ligand_context_from_atoms(atoms, resolved)
+            if atoms and resolved
+            else {},
+            "missing_active_site_positions": missing_positions,
+            "pairwise_distances_angstrom": pairwise_distances(resolved),
+            "pocket_context": pocket_context_from_atoms(atoms, resolved)
+            if atoms and resolved
+            else {},
+            "protein_name": screen_row.get("protein_name")
+            or source_row.get("protein_name"),
+            "ready_for_label_import": False,
+            "resolved_residue_count": len(resolved),
+            "residue_count": len(active_features),
+            "residues": resolved,
+            "scope_signal": source_row.get("scope_signal"),
+            "specific_ec_numbers": source_row.get("specific_ec_numbers", []),
+            "status": "ok" if not blockers else "blocked_before_scoring",
+            "structure_id": structure_id,
+            "structure_source": structure_source,
+        }
+        if resolved:
+            entries.append(entry)
+        row_contexts.append(
+            {
+                "accession": accession,
+                "entry_id": entry["entry_id"],
+                "lane_id": entry["lane_id"],
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "source_active_site_evidence_status": source_evidence_status,
+                "active_site_feature_count": len(active_features),
+                "binding_site_feature_count": len(binding_features),
+                "catalytic_activity_count": len(catalytic_comments),
+                "cofactor_comment_count": len(cofactor_comments),
+                "resolved_active_site_residue_count": len(resolved),
+                "missing_active_site_position_count": len(missing_positions),
+                "coordinate_status": coordinate_status,
+                "coordinate_path": str(coordinate_path)
+                if str(coordinate_path)
+                else None,
+                "structure_id": structure_id,
+                "structure_source": structure_source,
+                "uniprot_entry_name": uniprot_entry_name,
+                "uniprot_review_status": uniprot_review_status,
+                "pre_score_blockers": sorted(blockers),
+            }
+        )
+
+    structure_mapping_sample = {
+        "metadata": {
+            "method": "external_hard_negative_next_candidate_structure_mapping_sample",
+            "source_method": current_countable_structural_screen.get(
+                "metadata", {}
+            ).get("method"),
+        },
+        "entries": entries,
+    }
+    heuristic_scores = (
+        build_external_source_heuristic_control_scores(
+            structure_mapping_sample=structure_mapping_sample,
+            top_k=top_k,
+        )
+        if entries
+        else {
+            "metadata": {"method": "external_source_heuristic_control_scores"},
+            "results": [],
+        }
+    )
+    score_by_accession = _external_first_row_by_accession(heuristic_scores)
+
+    rows: list[dict[str, Any]] = []
+    for context in row_contexts:
+        accession = context["accession"]
+        score_row = score_by_accession.get(accession, {})
+        inverse_gate = _external_out_of_scope_inverse_gate_result(
+            accession=accession,
+            heuristic_control_scores=heuristic_scores,
+            abstain_threshold=abstain_threshold,
+        )
+        blockers = set(context["pre_score_blockers"])
+        blockers.update(inverse_gate["blockers"])
+        blockers.update(
+            {
+                "terminal_review_decision_not_accepted",
+                "full_label_factory_gate_not_run",
+            }
+        )
+        top_fingerprints = [
+            hit
+            for hit in score_row.get("top_fingerprints", []) or []
+            if isinstance(hit, dict)
+        ]
+        rows.append(
+            {
+                **context,
+                "heuristic_score_status": (
+                    "scored_all_current_fingerprints"
+                    if inverse_gate["inverse_gate_status"] == "passed"
+                    else "inverse_gate_blocked_or_unscored"
+                ),
+                "top_fingerprints": top_fingerprints,
+                "top1_fingerprint_id": inverse_gate.get("top1_fingerprint_id"),
+                "top1_score": inverse_gate.get("top1_score"),
+                "out_of_scope_inverse_gate": inverse_gate,
+                "remaining_import_blockers": sorted(blockers),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "import_ready_candidate": False,
+                "review_status": (
+                    "external_hard_negative_next_candidate_inverse_gate_scores_review_only"
+                ),
+            }
+        )
+
+    inverse_gate_counts = Counter(
+        row["out_of_scope_inverse_gate"]["inverse_gate_status"] for row in rows
+    )
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    return {
+        "metadata": {
+            "method": "external_hard_negative_next_candidate_inverse_gate_scores",
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": "next_candidate_all_8_out_of_scope_inverse_gate_scored",
+            "blocker_not_removed": sorted(blocker_counts),
+            "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "abstain_threshold": round(float(abstain_threshold), 4),
+            "top_k": top_k,
+            "candidate_count": len(rows),
+            "scored_candidate_count": sum(
+                1 for row in rows if row["top_fingerprints"]
+            ),
+            "inverse_gate_pass_count": inverse_gate_counts.get("passed", 0),
+            "inverse_gate_blocked_count": len(rows)
+            - inverse_gate_counts.get("passed", 0),
+            "active_site_mapped_candidate_count": sum(
+                1 for row in rows if row["resolved_active_site_residue_count"] > 0
+            ),
+            "fetch_failure_count": len(fetch_failures),
+            "ready_for_label_import": False,
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "inverse_gate_status_counts": dict(sorted(inverse_gate_counts.items())),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_next_candidate_sourcing_method": next_candidate_sourcing.get(
+                "metadata", {}
+            ).get("method"),
+            "source_current_countable_structural_screen_method": (
+                current_countable_structural_screen.get("metadata", {}).get("method")
+            ),
+            "source_heuristic_scores_method": heuristic_scores.get(
+                "metadata", {}
+            ).get("method"),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "fetch_failures": fetch_failures,
+        "warnings": [
+            (
+                "next-candidate inverse-gate scores are review-only safety "
+                "evidence; terminal review and the full factory gate still block import"
+            )
+        ],
+    }
+
+
+def build_external_hard_negative_next_candidate_terminal_review_decisions(
+    *,
+    inverse_gate_scores: dict[str, Any],
+    duplicate_evidence_review: dict[str, Any],
+    terminal_review_queue: dict[str, Any],
+    uniref_current_reference_screen: dict[str, Any],
+    max_rows: int = 3,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Record terminal review decisions for next-candidate hard negatives."""
+
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    inverse_by_accession = _external_first_row_by_accession(inverse_gate_scores)
+    duplicate_by_accession = _external_first_row_by_accession(duplicate_evidence_review)
+    queue_by_accession = _external_first_row_by_accession(terminal_review_queue)
+    screen_rows = [
+        row
+        for row in uniref_current_reference_screen.get("rows", []) or []
+        if isinstance(row, dict)
+    ][:max_rows]
+
+    rows: list[dict[str, Any]] = []
+    for screen_row in screen_rows:
+        accession = _normalize_accession(screen_row.get("accession"))
+        if not accession:
+            continue
+        inverse_row = inverse_by_accession.get(accession, {})
+        duplicate_row = duplicate_by_accession.get(accession, {})
+        queue_row = queue_by_accession.get(accession, {})
+        inverse_gate = inverse_row.get("out_of_scope_inverse_gate", {})
+        if not isinstance(inverse_gate, dict):
+            inverse_gate = {}
+
+        source_ready = (
+            inverse_row.get("source_active_site_evidence_status")
+            == "explicit_active_site_and_catalytic_activity_source_present"
+            and int(inverse_row.get("active_site_feature_count", 0) or 0) > 0
+            and int(inverse_row.get("catalytic_activity_count", 0) or 0) > 0
+            and int(inverse_row.get("resolved_active_site_residue_count", 0) or 0) > 0
+        )
+        bounded_duplicate_clear = (
+            duplicate_row.get("duplicate_evidence_status")
+            == "bounded_duplicate_controls_clear_uniref_pending"
+            and not duplicate_row.get("duplicate_evidence_blockers")
+        )
+        uniref_clear = (
+            screen_row.get("uniref_current_reference_screen_status")
+            == "uniref_current_reference_screen_no_current_reference_overlap"
+            and not screen_row.get("uniref_current_reference_blockers")
+        )
+        inverse_passed = inverse_gate.get("inverse_gate_status") == "passed"
+
+        decision_blockers: list[str] = []
+        if not source_ready:
+            decision_blockers.append("source_active_site_or_reaction_evidence_missing")
+        if not bounded_duplicate_clear:
+            decision_blockers.append("bounded_duplicate_controls_not_clear")
+        if not uniref_clear:
+            decision_blockers.append("uniref_current_reference_overlap_or_incomplete")
+        if not inverse_passed:
+            decision_blockers.extend(
+                str(blocker)
+                for blocker in inverse_gate.get("blockers", []) or []
+                if blocker
+            )
+
+        if (
+            "uniref_current_reference_overlap_or_incomplete" in decision_blockers
+            or "bounded_duplicate_controls_not_clear" in decision_blockers
+        ):
+            terminal_status = "rejected_duplicate_or_near_duplicate"
+            terminal_confidence = "high"
+        elif any(
+            blocker.startswith("out_of_scope")
+            or blocker == "out_of_scope_false_non_abstention"
+            for blocker in decision_blockers
+        ):
+            terminal_status = "rejected_existing_fingerprint_match"
+            terminal_confidence = "high"
+        elif "source_active_site_or_reaction_evidence_missing" in decision_blockers:
+            terminal_status = "rejected_source_evidence_insufficient"
+            terminal_confidence = "medium"
+        else:
+            terminal_status = "accepted_out_of_scope_pending_factory_gate"
+            terminal_confidence = "medium"
+
+        remaining_blockers = list(decision_blockers)
+        if terminal_status == "accepted_out_of_scope_pending_factory_gate":
+            remaining_blockers = ["full_label_factory_gate_not_run"]
+        elif "full_label_factory_gate_not_run" not in remaining_blockers:
+            remaining_blockers.append("full_label_factory_gate_not_run")
+
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": screen_row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": screen_row.get("lane_id") or inverse_row.get("lane_id"),
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "terminal_review_decision_status": terminal_status,
+                "terminal_confidence": terminal_confidence,
+                "terminal_review_decision": {
+                    "decision_status": terminal_status,
+                    "decision_scope": "external_hard_negative_next_candidate",
+                    "reviewer": "automation_terminal_review",
+                    "target_label_type": "out_of_scope",
+                    "target_fingerprint_id": None,
+                    "ontology_version_at_decision": (
+                        DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+                    ),
+                    "rationale": (
+                        "bounded sequence, structural, UniRef current-reference, "
+                        "source-evidence, and all-8 inverse-gate controls clear; "
+                        "full factory gate still required"
+                        if terminal_status
+                        == "accepted_out_of_scope_pending_factory_gate"
+                        else "terminal review rejected or deferred because one or more required controls did not clear"
+                    ),
+                },
+                "source_evidence_status": (
+                    "explicit_active_site_and_catalytic_activity_source_present"
+                    if source_ready
+                    else "source_evidence_not_terminally_clear"
+                ),
+                "bounded_duplicate_evidence_status": duplicate_row.get(
+                    "duplicate_evidence_status"
+                ),
+                "uniref_current_reference_screen_status": screen_row.get(
+                    "uniref_current_reference_screen_status"
+                ),
+                "out_of_scope_inverse_gate": inverse_gate,
+                "top1_fingerprint_id": inverse_gate.get("top1_fingerprint_id"),
+                "top1_score": inverse_gate.get("top1_score"),
+                "max_current_fingerprint_score": inverse_gate.get(
+                    "max_current_fingerprint_score"
+                ),
+                "terminal_review_queue_status": queue_row.get(
+                    "review_packet_status"
+                ),
+                "remaining_import_blockers": sorted(set(remaining_blockers)),
+                "factory_gate_status": "not_run",
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "import_ready_candidate": False,
+                "review_status": (
+                    "external_hard_negative_next_candidate_terminal_review_decision_review_only"
+                ),
+            }
+        )
+
+    status_counts = Counter(row["terminal_review_decision_status"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    return {
+        "metadata": {
+            "method": "external_hard_negative_next_candidate_terminal_review_decisions",
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": "next_candidate_terminal_review_decisions_recorded",
+            "blocker_not_removed": sorted(blocker_counts),
+            "review_only": True,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "candidate_count": len(rows),
+            "terminal_review_accepted_pending_factory_count": status_counts.get(
+                "accepted_out_of_scope_pending_factory_gate", 0
+            ),
+            "terminal_review_rejected_count": len(rows)
+            - status_counts.get("accepted_out_of_scope_pending_factory_gate", 0),
+            "terminal_review_decision_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "ready_for_label_import": False,
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "source_inverse_gate_scores_method": inverse_gate_scores.get(
+                "metadata", {}
+            ).get("method"),
+            "source_duplicate_evidence_review_method": duplicate_evidence_review.get(
+                "metadata", {}
+            ).get("method"),
+            "source_terminal_review_queue_method": terminal_review_queue.get(
+                "metadata", {}
+            ).get("method"),
+            "source_uniref_current_reference_screen_method": (
+                uniref_current_reference_screen.get("metadata", {}).get("method")
+            ),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "terminal review decisions are review-only until the full "
+                "factory gate passes; accepted-pending-factory rows are not imported"
+            )
+        ],
+    }
+
+
+def build_external_hard_negative_next_candidate_factory_import_gate(
+    *,
+    terminal_review_decisions: dict[str, Any],
+    label_factory_gate_check: dict[str, Any],
+    external_transfer_gate: dict[str, Any],
+    existing_label_entry_ids: list[str] | None = None,
+    max_imports: int = 1,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Run the final factory/import gate for accepted next-candidate negatives."""
+
+    if max_imports < 1:
+        raise ValueError("max_imports must be positive")
+
+    existing_entry_ids = {str(entry_id) for entry_id in existing_label_entry_ids or []}
+    existing_external_label_count = sum(
+        1 for entry_id in existing_entry_ids if entry_id.startswith("uniprot:")
+    )
+    label_gate_meta = label_factory_gate_check.get("metadata", {})
+    label_gate_passed = (
+        int(label_gate_meta.get("gate_count", 0) or 0) > 0
+        and label_gate_meta.get("passed_gate_count") == label_gate_meta.get("gate_count")
+        and not label_factory_gate_check.get("blockers")
+    )
+    transfer_gate_meta = external_transfer_gate.get("metadata", {})
+    transfer_gate_passed = (
+        (
+            transfer_gate_meta.get("guardrail_clean") is True
+            or (
+                int(transfer_gate_meta.get("gate_count", 0) or 0) > 0
+                and transfer_gate_meta.get("passed_gate_count")
+                == transfer_gate_meta.get("gate_count")
+            )
+        )
+        and not external_transfer_gate.get("blockers")
+    )
+
+    rows: list[dict[str, Any]] = []
+    for terminal_row in [
+        row
+        for row in terminal_review_decisions.get("rows", []) or []
+        if isinstance(row, dict)
+    ]:
+        accession = _normalize_accession(terminal_row.get("accession"))
+        if not accession:
+            continue
+        entry_id = str(terminal_row.get("entry_id") or f"uniprot:{accession}")
+        inverse_gate = terminal_row.get("out_of_scope_inverse_gate", {})
+        if not isinstance(inverse_gate, dict):
+            inverse_gate = {}
+        terminal_blockers = [
+            str(blocker)
+            for blocker in terminal_row.get("remaining_import_blockers", []) or []
+            if blocker and blocker != "full_label_factory_gate_not_run"
+        ]
+        blockers = list(terminal_blockers)
+        if terminal_row.get("terminal_review_decision_status") != (
+            "accepted_out_of_scope_pending_factory_gate"
+        ):
+            blockers.append("terminal_review_decision_not_accepted")
+        if terminal_row.get("target_label_type") != "out_of_scope":
+            blockers.append("target_label_type_not_out_of_scope")
+        if terminal_row.get("target_fingerprint_id") is not None:
+            blockers.append("target_fingerprint_id_not_null")
+        if (
+            terminal_row.get("ontology_version_at_decision")
+            != DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+        ):
+            blockers.append("ontology_version_at_decision_mismatch")
+        if terminal_row.get("source_evidence_status") != (
+            "explicit_active_site_and_catalytic_activity_source_present"
+        ):
+            blockers.append("source_evidence_not_terminally_clear")
+        if terminal_row.get("bounded_duplicate_evidence_status") != (
+            "bounded_duplicate_controls_clear_uniref_pending"
+        ):
+            blockers.append("bounded_duplicate_controls_not_clear")
+        if terminal_row.get("uniref_current_reference_screen_status") != (
+            "uniref_current_reference_screen_no_current_reference_overlap"
+        ):
+            blockers.append("uniref_current_reference_overlap_or_incomplete")
+        if inverse_gate.get("inverse_gate_status") != "passed":
+            blockers.append("out_of_scope_inverse_gate_not_passed")
+        if (
+            inverse_gate.get("all_current_fingerprint_scores_below_threshold")
+            is not True
+        ):
+            blockers.append("out_of_scope_false_non_abstention")
+        if inverse_gate.get("target_fingerprint_id") is not None:
+            blockers.append("inverse_gate_target_fingerprint_id_not_null")
+        if (
+            inverse_gate.get("observed_current_fingerprint_count")
+            != inverse_gate.get("expected_current_fingerprint_count")
+        ):
+            blockers.append(
+                "out_of_scope_inverse_gate_incomplete_current_fingerprint_coverage"
+            )
+        if entry_id in existing_entry_ids:
+            blockers.append("external_label_entry_already_exists")
+        if existing_external_label_count and entry_id not in existing_entry_ids:
+            blockers.append("external_hard_negative_single_import_already_present")
+        if not label_gate_passed:
+            blockers.append("baseline_label_factory_gate_not_passed")
+        if not transfer_gate_passed:
+            blockers.append("external_transfer_gate_not_clean")
+
+        max_score = _external_parse_float(
+            terminal_row.get("max_current_fingerprint_score")
+            or inverse_gate.get("max_current_fingerprint_score")
+        )
+        factory_gate_status = "passed" if not blockers else "failed"
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": entry_id,
+                "lane_id": terminal_row.get("lane_id"),
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "terminal_review_decision_status": terminal_row.get(
+                    "terminal_review_decision_status"
+                ),
+                "factory_gate_status": factory_gate_status,
+                "baseline_label_factory_gate_status": (
+                    "passed" if label_gate_passed else "failed"
+                ),
+                "external_transfer_gate_status": (
+                    "passed" if transfer_gate_passed else "failed"
+                ),
+                "out_of_scope_inverse_gate": inverse_gate,
+                "top1_fingerprint_id": terminal_row.get("top1_fingerprint_id"),
+                "top1_score": terminal_row.get("top1_score"),
+                "max_current_fingerprint_score": max_score,
+                "remaining_import_blockers": sorted(set(blockers)),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "import_ready_candidate": False,
+                "review_status": (
+                    "external_hard_negative_next_candidate_factory_import_gate"
+                ),
+            }
+        )
+
+    passed_rows = [
+        row for row in rows if row["factory_gate_status"] == "passed"
+    ]
+    selected_entry_ids = {
+        row["entry_id"]
+        for row in sorted(
+            passed_rows,
+            key=lambda row: (
+                float(row.get("max_current_fingerprint_score") or 1.0),
+                row["accession"],
+            ),
+        )[:max_imports]
+    }
+    for row in rows:
+        if row["entry_id"] in selected_entry_ids:
+            row["terminal_import_attempt_status"] = "import_ready_candidate"
+            row["countable_label_candidate"] = True
+            row["ready_for_label_import"] = True
+            row["import_ready_candidate"] = True
+        elif row["factory_gate_status"] == "passed":
+            row["terminal_import_attempt_status"] = (
+                "passed_factory_gate_not_selected_by_single_import_cap"
+            )
+            row["remaining_import_blockers"] = [
+                "single_import_cap_not_selected_this_run"
+            ]
+        else:
+            row["terminal_import_attempt_status"] = "rejected_factory_gate_failure"
+
+    review_items: list[dict[str, Any]] = []
+    for index, row in enumerate(
+        sorted(rows, key=lambda row: (not row["ready_for_label_import"], row["accession"])),
+        start=1,
+    ):
+        accept = bool(row["ready_for_label_import"])
+        score = row.get("max_current_fingerprint_score")
+        rationale = (
+            f"{row['accession']} is imported as an external out-of-scope hard "
+            "negative for the current 8-fingerprint ontology: terminal source "
+            "evidence, bounded duplicate controls, UniRef current-reference "
+            "screening, all-8 inverse gate scores, the baseline label-factory "
+            "gate, and the external transfer gate all passed."
+        )
+        review_items.append(
+            {
+                "rank": index,
+                "accession": row["accession"],
+                "entry_id": row["entry_id"],
+                "target_label_type": "out_of_scope",
+                "target_fingerprint_id": None,
+                "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+                "queue_context": {
+                    "rank": index,
+                    "source": "external_hard_negative_next_candidate_factory_import_gate",
+                    "max_current_fingerprint_score": score,
+                    "top1_fingerprint_id": row.get("top1_fingerprint_id"),
+                    "top1_score": row.get("top1_score"),
+                },
+                "decision": (
+                    {
+                        "action": "accept_label",
+                        "label_type": "out_of_scope",
+                        "fingerprint_id": None,
+                        "tier": "bronze",
+                        "review_status": "automation_curated",
+                        "confidence": "medium",
+                        "evidence_score": (
+                            round(1.0 - float(score), 4)
+                            if score is not None
+                            else 0.65
+                        ),
+                        "reviewer": "automation_external_hard_negative_factory_gate",
+                        "ontology_version_at_decision": (
+                            DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+                        ),
+                        "rationale": rationale,
+                    }
+                    if accept
+                    else {"action": "no_decision"}
+                ),
+            }
+        )
+
+    status_counts = Counter(row["terminal_import_attempt_status"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["remaining_import_blockers"]
+    )
+    selected_accessions = [
+        row["accession"] for row in rows if row["ready_for_label_import"]
+    ]
+    return {
+        "metadata": {
+            "method": (
+                "external_hard_negative_next_candidate_factory_import_gate"
+            ),
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "slice_id": _external_artifact_lineage_slice_id(artifact_lineage),
+            "blocker_removed": (
+                "next_candidate_full_factory_import_gate_completed"
+            ),
+            "blocker_not_removed": sorted(blocker_counts),
+            "review_only": False,
+            "target_label_type": "out_of_scope",
+            "target_fingerprint_id": None,
+            "ontology_version_at_decision": DEFAULT_ONTOLOGY_VERSION_AT_DECISION,
+            "candidate_count": len(rows),
+            "factory_gate_pass_candidate_count": len(passed_rows),
+            "selected_import_candidate_count": len(selected_accessions),
+            "selected_import_accessions": selected_accessions,
+            "single_import_cap": max_imports,
+            "existing_external_label_count": existing_external_label_count,
+            "ready_for_label_import": bool(selected_accessions),
+            "import_ready_candidate_count": len(selected_accessions),
+            "countable_label_candidate_count": len(selected_accessions),
+            "terminal_import_attempt_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "remaining_import_blocker_counts": dict(sorted(blocker_counts.items())),
+            "baseline_label_factory_gate_status": (
+                "passed" if label_gate_passed else "failed"
+            ),
+            "baseline_label_factory_gate_count": label_gate_meta.get("gate_count"),
+            "baseline_label_factory_passed_gate_count": label_gate_meta.get(
+                "passed_gate_count"
+            ),
+            "external_transfer_gate_status": (
+                "passed" if transfer_gate_passed else "failed"
+            ),
+            "source_terminal_review_decisions_method": (
+                terminal_review_decisions.get("metadata", {}).get("method")
+            ),
+            "source_label_factory_gate_method": label_gate_meta.get("method"),
+            "source_external_transfer_gate_method": transfer_gate_meta.get("method"),
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": rows,
+        "review_items": review_items,
+        "warnings": [
+            (
+                "this artifact authorizes at most one external out-of-scope "
+                "hard-negative review import for the current ontology; it does "
+                "not validate enzyme function"
+            )
+        ],
+    }
+
+
 def build_external_hard_negative_next_candidate_targeted_uniref_check(
     *,
     terminal_review_queue: dict[str, Any],

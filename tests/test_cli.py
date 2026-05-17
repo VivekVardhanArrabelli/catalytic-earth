@@ -3527,6 +3527,128 @@ class CliTests(unittest.TestCase):
                 "explicit_active_site_source_present",
             )
 
+    def test_next_candidate_factory_import_gate_cli(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            terminal = root / "v3_external_hard_negative_next_candidate_terminal_review_decisions_1025.json"
+            label_gate = root / "v3_label_factory_gate_check_1025_preview.json"
+            transfer_gate = root / "v3_external_source_transfer_gate_check_1025.json"
+            labels = root / "curated_mechanism_labels.json"
+            out = root / "v3_external_hard_negative_next_candidate_factory_import_gate_1025.json"
+            terminal.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "external_hard_negative_next_candidate_terminal_"
+                                "review_decisions"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "accession": "PLOW",
+                                "entry_id": "uniprot:PLOW",
+                                "lane_id": "external_source:lyase",
+                                "target_label_type": "out_of_scope",
+                                "target_fingerprint_id": None,
+                                "ontology_version_at_decision": (
+                                    "label_factory_v1_8fp"
+                                ),
+                                "terminal_review_decision_status": (
+                                    "accepted_out_of_scope_pending_factory_gate"
+                                ),
+                                "source_evidence_status": (
+                                    "explicit_active_site_and_catalytic_activity_"
+                                    "source_present"
+                                ),
+                                "bounded_duplicate_evidence_status": (
+                                    "bounded_duplicate_controls_clear_uniref_pending"
+                                ),
+                                "uniref_current_reference_screen_status": (
+                                    "uniref_current_reference_screen_no_current_"
+                                    "reference_overlap"
+                                ),
+                                "remaining_import_blockers": [
+                                    "full_label_factory_gate_not_run"
+                                ],
+                                "out_of_scope_inverse_gate": {
+                                    "target_fingerprint_id": None,
+                                    "inverse_gate_status": "passed",
+                                    "all_current_fingerprint_scores_below_threshold": True,
+                                    "observed_current_fingerprint_count": 8,
+                                    "expected_current_fingerprint_count": 8,
+                                    "max_current_fingerprint_score": 0.2,
+                                },
+                                "max_current_fingerprint_score": 0.2,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            label_gate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "label_factory_gate_check",
+                            "gate_count": 21,
+                            "passed_gate_count": 21,
+                        },
+                        "blockers": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            transfer_gate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "external_source_transfer_gate_check",
+                            "gate_count": 68,
+                            "passed_gate_count": 68,
+                        },
+                        "blockers": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels.write_text("[]", encoding="utf-8")
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-external-hard-negative-next-candidate-factory-import-gate",
+                    "--terminal-review-decisions",
+                    str(terminal),
+                    "--label-factory-gate-check",
+                    str(label_gate),
+                    "--external-transfer-gate",
+                    str(transfer_gate),
+                    "--labels",
+                    str(labels),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                payload["metadata"]["method"],
+                "external_hard_negative_next_candidate_factory_import_gate",
+            )
+            self.assertEqual(payload["metadata"]["selected_import_accessions"], ["PLOW"])
+            self.assertEqual(payload["metadata"]["import_ready_candidate_count"], 1)
+            self.assertEqual(
+                payload["review_items"][0]["decision"]["action"], "accept_label"
+            )
+
     def test_external_transfer_gate_help_exposes_pilot_active_site_input(self) -> None:
         result = subprocess.run(
             [

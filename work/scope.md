@@ -104,8 +104,10 @@ Post-V2 quality work has started:
   750-entry, 775-entry, 800-entry, 825-entry, 850-entry, 875-entry,
   900-entry, 925-entry, 950-entry, 975-entry, and 1000-entry slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
-- curated seed mechanism labels for 679 countable entries, with pending
-  review-state evidence gaps kept outside the countable registry
+- curated seed mechanism labels for 680 countable entries: 679 accepted M-CSA
+  labels plus the first external out-of-scope hard negative,
+  `uniprot:P78549`, with pending review-state evidence gaps kept outside the
+  countable registry
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
 - hard-negative controls, in-scope failure analysis, label-expansion candidate
@@ -295,10 +297,12 @@ Current expectation:
   GHMP, wired through guardrails, review exports, active learning, adversarial
   negatives, gates, tests, artifacts, and documentation
 - return to factory-gated label scaling toward 10k while preserving quality
-  gates; the accepted 1,000 state has 679 countable labels, its 326
+  gates; the accepted 1,000 M-CSA state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the
-  1,025 preview is cleanly non-promotable because it adds 0 countable labels
-  while exposing an M-CSA source limit at 1,003 records
+  1,025 M-CSA preview is cleanly non-promotable because it adds 0 M-CSA
+  countable labels while exposing a source limit at 1,003 records. The
+  canonical registry now has 680 labels after the first external
+  hard-negative import.
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, 375-,
@@ -308,8 +312,8 @@ Current expectation:
   1000-entry countable slice has 662/678 labeled rows evaluable and 999 geometry entries with 960
   pairwise geometry
   records
-- curated labels now cover 679 entries, with 212 local active-site
-  seed-fingerprint positives in the 1000-entry geometry evaluation and 467 total
+- curated labels now cover 680 entries, with 212 local active-site
+  seed-fingerprint positives in the 1000-entry geometry evaluation and 468 total
   out-of-scope labels; every label has explicit tier, review status,
   confidence, evidence score, and evidence provenance fields
 - the 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
@@ -590,9 +594,13 @@ Current expectation:
   `Q3LXA3`/`P06213`. The follow-on UniRef current-reference screen checks each
   candidate's UniRef90 and UniRef50 cluster members against all 735 current
   countable reference accessions and finds 0 current-reference overlaps for all
-  3 rows. The active bottleneck is now terminal review acceptance plus full
-  factory-gate evidence for those 3 deferred replacements, not another pass
-  over the exhausted pools.
+  3 rows. A follow-on inverse-gate score artifact maps the same 3 rows'
+  UniProt active-site features onto their staged AlphaFold sidecars and verifies
+  complete 8/8 current-fingerprint coverage below the `0.4115` out-of-scope
+  floor. Terminal review decisions now accept all 3 as review-only
+  `accepted_out_of_scope_pending_factory_gate` rows. The active bottleneck is
+  now the external full-factory/import gate for those 3 deferred replacements,
+  not another pass over the exhausted pools.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

@@ -53,9 +53,9 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 679 entries: all entries in the 475-entry
-   source slice plus accepted, factory-gated labels through the 1,000-entry
-   candidate queue.
+8. Curated mechanism labels for 680 entries: 679 accepted M-CSA labels through
+   the 1,000-entry candidate queue plus one factory-gated external
+   out-of-scope hard negative (`uniprot:P78549`).
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 10. Retrieval evaluation, abstention threshold calibration, hard-negative
     selection, in-scope failure analysis, cofactor coverage analysis,
@@ -186,6 +186,14 @@ a consolidated pilot evidence packet, 10 per-candidate pilot evidence
 dossiers, a 10-row pilot-specific ESM-2 representation sample, and a 68/68
 external transfer gate with backend sequence-search, current-reference sequence
 screen, candidate, artifact-path, and pilot review-only decision validation. The
+first successful external hard-negative import is now `uniprot:P78549`, selected
+by the next-candidate factory/import gate after all 8 current fingerprint scores
+stayed below the `0.4115` out-of-scope floor and duplicate controls cleared.
+The other two factory-passing next candidates remain outside this single-import
+cycle. A regression test now pins the post-import invariants: 680 total labels,
+468 out-of-scope labels, 212 seed-fingerprint labels, no in-scope/out-of-scope
+entry overlap, unchanged 1,000-slice retained in-scope behavior, and preserved
+held-out sequence-distance metrics.
 evidence plan
 flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
@@ -504,8 +512,18 @@ all 3 have no shared UniRef90/50 cluster with that nearest-reference set.
 then screens each candidate's UniRef90 and UniRef50 cluster members against all
 735 current countable reference accessions. All 3 rows have 0 current-reference
 cluster overlaps, so the UniRef current-reference duplicate blocker is removed
-for this surface; terminal review acceptance and the full factory gate still
-block import and count growth.
+for this surface. `artifacts/v3_external_hard_negative_next_candidate_inverse_gate_scores_1025.json`
+then maps their UniProt active-site features onto the staged AlphaFold sidecars
+and scores all 8 current fingerprints: `P22830` tops out at `0.3686`,
+`P78549` at `0.1150`, and `Q3LXA3` at `0.2929`, all below the active `0.4115`
+out-of-scope floor with complete 8/8 fingerprint coverage.
+`artifacts/v3_external_hard_negative_next_candidate_terminal_review_decisions_1025.json`
+records all 3 as review-only `accepted_out_of_scope_pending_factory_gate`
+terminal decisions. The follow-on
+`artifacts/v3_external_hard_negative_next_candidate_factory_import_gate_1025.json`
+then runs the full final gate, selects `P78549` under the single-import cap,
+and imports `uniprot:P78549` as an external `out_of_scope` hard-negative label.
+`P22830` and `Q3LXA3` remain non-countable and unimported for this cycle.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

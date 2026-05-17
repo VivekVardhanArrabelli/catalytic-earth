@@ -8,12 +8,14 @@ import.
 
 ## Current State
 
-- Canonical countable labels remain at 679.
+- Canonical countable labels now total 680: the accepted 679-label M-CSA
+  surface plus one external out-of-scope hard negative, `uniprot:P78549`.
 - The 1,025 preview passes 21/21 label-factory gates but adds 0 clean countable
   labels.
 - All 329 preview review-state rows remain non-countable.
-- External UniProtKB/Swiss-Prot artifacts are review-only and create 0
-  countable label candidates.
+- Most external UniProtKB/Swiss-Prot artifacts remain review-only; the
+  next-candidate factory/import gate is the first countable exception and
+  authorizes exactly one external out-of-scope import.
 - The first read-only external sample has 30 candidates across six query lanes,
   0 fetch failures, and a clean non-countable guardrail audit.
 - The external candidate manifest attaches OOD controls, heuristic-control
@@ -37,6 +39,18 @@ import.
   as label-factory out-of-scope evidence: all 8 current fingerprint scores must
   stay below the active abstention floor (`0.4115`), with retained
   above-threshold hits treated as false non-abstentions.
+- `artifacts/v3_external_hard_negative_next_candidate_factory_import_gate_1025.json`
+  runs the full final gate for `P22830`, `P78549`, and `Q3LXA3`. All three pass
+  the candidate factory gate; the single-import cap selects `P78549` because it
+  has the lowest maximum current-fingerprint score (`0.1150`). The resulting
+  accepted review item imports `uniprot:P78549` as an external `out_of_scope`
+  hard-negative label with `fingerprint_id=null`.
+- The post-import litmus regression now pins the expected count movement and
+  invariants: label count 680, out-of-scope count 468, seed-fingerprint count
+  212, zero overlap between in-scope and out-of-scope entry ids, unchanged
+  1,000-slice in-scope retention (`0.9858`), and the sequence-distance holdout
+  target (`max identity 0.284`, 43/43 retained held-out positives correct, 0
+  held-out false non-abstentions).
 - `artifacts/v3_external_sdr_ec_1_1_1_consistency_check_1025.json` records the
   bounded SDR/NAD(P) lane check: 36/36 evaluable SDR-like Swiss-Prot EC 1.1.1.x
   rows were clean abstentions, 0 were SDR false non-abstentions, and 0
@@ -149,8 +163,23 @@ import.
   UniRef90 and UniRef50 cluster members against all 735 current countable
   reference accessions. `P22830`, `P78549`, and `Q3LXA3` all have 0
   current-reference cluster overlaps. This removes the UniRef current-reference
-  duplicate blocker for those 3 rows, but terminal review acceptance and full
-  factory gates still block import; no row is import-ready or countable.
+  duplicate blocker for those 3 rows.
+- `artifacts/v3_external_hard_negative_next_candidate_inverse_gate_scores_1025.json`
+  scores those 3 rows against all 8 current fingerprints from UniProt
+  active-site features mapped onto the staged AlphaFold sidecars. All 3 pass
+  the out-of-scope inverse gate at threshold `0.4115`: `P22830` top1
+  `metal_dependent_hydrolase` `0.3686`, `P78549` top1
+  `flavin_dehydrogenase_reductase` `0.1150`, and `Q3LXA3` top1
+  `metal_dependent_hydrolase` `0.2929`.
+- `artifacts/v3_external_hard_negative_next_candidate_terminal_review_decisions_1025.json`
+  records all 3 as review-only `accepted_out_of_scope_pending_factory_gate`
+  decisions. Terminal review acceptance is no longer the active blocker for
+  this surface.
+- `artifacts/v3_external_hard_negative_next_candidate_factory_import_gate_1025.json`
+  then completes the full final gate for this surface. It marks all 3 rows as
+  factory-gate pass candidates, selects `P78549` under the single-import cap,
+  and imports exactly one external out-of-scope hard-negative label. `P22830`
+  and `Q3LXA3` remain unimported and non-countable in this cycle.
 
 ## Immediate Pilot Direction
 

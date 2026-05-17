@@ -3913,7 +3913,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertFalse(adjudicated_schiff_row["countable_label_candidate"])
         self.assertFalse(adjudicated_schiff_row["ready_for_label_import"])
 
-    def test_external_hard_negative_attempt_stays_non_countable(self) -> None:
+    def test_external_hard_negative_attempt_and_import_gate(self) -> None:
         step1a = _load_json(
             ROOT
             / "artifacts"
@@ -4096,6 +4096,30 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / (
                 "v3_external_hard_negative_next_candidate_uniref_current_reference_"
                 "screen_1025.json"
+            )
+        )
+        next_inverse_gate_scores = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_next_candidate_inverse_gate_scores_"
+                "1025.json"
+            )
+        )
+        next_terminal_review_decisions = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_next_candidate_terminal_review_decisions_"
+                "1025.json"
+            )
+        )
+        next_factory_import_gate = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_hard_negative_next_candidate_factory_import_gate_"
+                "1025.json"
             )
         )
 
@@ -4699,6 +4723,177 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 not in row["remaining_import_blockers"]
                 for row in next_uniref_current_reference["rows"]
             )
+        )
+        self.assertEqual(
+            next_inverse_gate_scores["metadata"]["method"],
+            "external_hard_negative_next_candidate_inverse_gate_scores",
+        )
+        self.assertEqual(next_inverse_gate_scores["metadata"]["candidate_count"], 3)
+        self.assertEqual(next_inverse_gate_scores["metadata"]["scored_candidate_count"], 3)
+        self.assertEqual(next_inverse_gate_scores["metadata"]["inverse_gate_pass_count"], 3)
+        self.assertEqual(
+            [row["accession"] for row in next_inverse_gate_scores["rows"]],
+            ["P22830", "P78549", "Q3LXA3"],
+        )
+        self.assertTrue(
+            all(
+                row["out_of_scope_inverse_gate"]["inverse_gate_status"] == "passed"
+                and row["out_of_scope_inverse_gate"][
+                    "observed_current_fingerprint_count"
+                ]
+                == 8
+                and row["out_of_scope_inverse_gate"][
+                    "all_current_fingerprint_scores_below_threshold"
+                ]
+                for row in next_inverse_gate_scores["rows"]
+            )
+        )
+        self.assertEqual(
+            next_terminal_review_decisions["metadata"]["method"],
+            "external_hard_negative_next_candidate_terminal_review_decisions",
+        )
+        self.assertEqual(
+            next_terminal_review_decisions["metadata"][
+                "terminal_review_accepted_pending_factory_count"
+            ],
+            3,
+        )
+        self.assertEqual(
+            [row["accession"] for row in next_terminal_review_decisions["rows"]],
+            ["P22830", "P78549", "Q3LXA3"],
+        )
+        self.assertTrue(
+            all(
+                row["terminal_review_decision_status"]
+                == "accepted_out_of_scope_pending_factory_gate"
+                and row["remaining_import_blockers"]
+                == ["full_label_factory_gate_not_run"]
+                and not row["ready_for_label_import"]
+                and not row["countable_label_candidate"]
+                for row in next_terminal_review_decisions["rows"]
+            )
+        )
+        self.assertEqual(
+            next_factory_import_gate["metadata"]["method"],
+            "external_hard_negative_next_candidate_factory_import_gate",
+        )
+        self.assertEqual(
+            next_factory_import_gate["metadata"]["factory_gate_pass_candidate_count"],
+            3,
+        )
+        self.assertEqual(
+            next_factory_import_gate["metadata"]["selected_import_accessions"],
+            ["P78549"],
+        )
+        self.assertEqual(
+            next_factory_import_gate["metadata"]["import_ready_candidate_count"], 1
+        )
+        self.assertEqual(
+            next_factory_import_gate["metadata"]["countable_label_candidate_count"], 1
+        )
+        self.assertEqual(
+            next_factory_import_gate["metadata"][
+                "terminal_import_attempt_status_counts"
+            ],
+            {
+                "import_ready_candidate": 1,
+                "passed_factory_gate_not_selected_by_single_import_cap": 2,
+            },
+        )
+        accepted_review_items = [
+            item
+            for item in next_factory_import_gate["review_items"]
+            if item["decision"]["action"] == "accept_label"
+        ]
+        self.assertEqual(
+            [item["entry_id"] for item in accepted_review_items],
+            ["uniprot:P78549"],
+        )
+        self.assertTrue(
+            all(
+                item["decision"].get("label_type") == "out_of_scope"
+                and item["decision"].get("fingerprint_id") is None
+                for item in accepted_review_items
+            )
+        )
+
+    def test_external_hard_negative_post_import_litmus(self) -> None:
+        labels = _load_json(
+            ROOT / "data" / "registries" / "curated_mechanism_labels.json"
+        )
+        label_summary = _load_json(ROOT / "artifacts" / "v3_label_summary.json")
+        geometry_eval = _load_json(
+            ROOT / "artifacts" / "v3_geometry_label_eval_1000.json"
+        )
+        sequence_holdout = _load_json(
+            ROOT / "artifacts" / "v3_sequence_distance_holdout_eval_1000.json"
+        )
+
+        external_labels = [
+            label
+            for label in labels
+            if str(label.get("entry_id", "")).startswith("uniprot:")
+        ]
+        self.assertEqual([label["entry_id"] for label in external_labels], ["uniprot:P78549"])
+        p78549 = external_labels[0]
+        self.assertEqual(p78549["label_type"], "out_of_scope")
+        self.assertIsNone(p78549["fingerprint_id"])
+        self.assertEqual(p78549["ontology_version_at_decision"], "label_factory_v1_8fp")
+
+        self.assertEqual(label_summary["label_count"], 680)
+        self.assertEqual(label_summary["by_type"]["seed_fingerprint"], 212)
+        self.assertEqual(label_summary["by_type"]["out_of_scope"], 468)
+        seed_entry_ids = {
+            label["entry_id"]
+            for label in labels
+            if label["label_type"] == "seed_fingerprint"
+        }
+        out_of_scope_entry_ids = {
+            label["entry_id"]
+            for label in labels
+            if label["label_type"] == "out_of_scope"
+        }
+        self.assertEqual(seed_entry_ids & out_of_scope_entry_ids, set())
+
+        geometry_meta = geometry_eval["metadata"]
+        self.assertEqual(geometry_meta["in_scope_count"], 212)
+        self.assertEqual(geometry_meta["out_of_scope_false_non_abstentions"], 0)
+        self.assertEqual(
+            geometry_meta["out_of_scope_false_non_abstentions_evaluable"], 0
+        )
+        self.assertAlmostEqual(
+            geometry_meta["in_scope_retention_rate_evaluable"], 0.9858
+        )
+        self.assertAlmostEqual(
+            geometry_meta["top3_retained_accuracy_in_scope_evaluable"], 0.9858
+        )
+
+        sequence_meta = sequence_holdout["metadata"]
+        self.assertTrue(sequence_meta["sequence_identity_target_achieved"])
+        self.assertLessEqual(sequence_meta["max_observed_train_test_identity"], 0.284)
+        heldout_in_scope = [
+            row
+            for row in sequence_holdout["rows"]
+            if row["partition"] == "heldout"
+            and row["label_type"] == "seed_fingerprint"
+            and row["evaluable"] is True
+        ]
+        heldout_retained = [
+            row for row in heldout_in_scope if row["abstained"] is False
+        ]
+        self.assertEqual(len(heldout_in_scope), 43)
+        self.assertEqual(len(heldout_retained), 43)
+        self.assertTrue(all(row["top1_correct"] for row in heldout_retained))
+        self.assertTrue(all(row["top3_correct"] for row in heldout_retained))
+        self.assertEqual(
+            [
+                row
+                for row in sequence_holdout["rows"]
+                if row["partition"] == "heldout"
+                and row["label_type"] == "out_of_scope"
+                and row["abstained"] is False
+            ],
+            [],
         )
 
 
