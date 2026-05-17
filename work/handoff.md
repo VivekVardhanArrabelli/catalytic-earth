@@ -50,6 +50,30 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-17T18:06:14Z automation run, artifact infrastructure has a
+durable no-loss planning layer but no migration has been performed.
+`artifacts/v3_artifact_storage_inventory_1025.json` now covers 2,579 artifact
+files and 2.556 GiB of artifact payload, with 108 files above the 5 MiB
+large-file threshold. `artifacts/v3_artifact_storage_policy_check_1025.json`
+passes with 0 blockers and 0 deletion authorizations.
+`artifacts/v3_artifact_producer_consumer_manifest_1025.json` covers all 108
+large noncanonical rows: 99 `regenerable_intermediate` and 9 `raw_cache` rows,
+with 68 `known` producer command statuses and 40 `partially_inferred` statuses.
+`artifacts/v3_artifact_migration_readiness_plan_1025.json` ranks those rows as
+8 `candidate_git_lfs_later`, 91 `candidate_release_asset_later`, and 9
+`candidate_object_storage_later`, while keeping `migration_ready_now_count=0`
+and authorizing no deletion, external upload, or history rewrite.
+`artifacts/v3_artifact_admission_guard_1025.json` passes because all current
+large noncanonical rows have manifest coverage; future large noncanonical rows
+must be canonical evidence or get a producer/consumer manifest row before they
+are acceptable. `docs/artifact_storage.md` now documents the source-only sparse
+checkout path and the need to export the deploy-key `GIT_SSH_COMMAND` for the
+whole session, including lazy blob fetches. Evidence-based confidence call: the
+repo still carries the full artifact payload, but the next storage step is now
+a human-reviewed migration decision or more provenance tightening for the 40
+partially inferred rows, not artifact deletion or LFS/object-storage migration
+by automation.
+
 As of this manual infrastructure pass, artifact migration is being started
 without deleting or externalizing any files. `docs/artifact_storage.md` defines
 the no-information-loss rule: no artifact may leave Git unless a committed

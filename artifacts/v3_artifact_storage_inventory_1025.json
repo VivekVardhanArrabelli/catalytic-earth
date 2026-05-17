@@ -1129,28 +1129,28 @@
   "metadata": {
     "artifact_dir": "artifacts",
     "category_bytes": {
-      "canonical_evidence": 902713,
-      "compact_artifact": 561512540,
+      "canonical_evidence": 1293721,
+      "compact_artifact": 563086197,
       "raw_cache": 635178082,
       "regenerable_intermediate": 1544922563
     },
     "category_counts": {
-      "canonical_evidence": 102,
-      "compact_artifact": 1354,
+      "canonical_evidence": 105,
+      "compact_artifact": 1356,
       "raw_cache": 760,
       "regenerable_intermediate": 358
     },
     "deletion_authorized_count": 0,
-    "file_count": 2574,
-    "generated_at": "2026-05-17T17:58:49Z",
+    "file_count": 2579,
+    "generated_at": "2026-05-17T18:14:40Z",
     "git_policy_bytes": {
       "external_cache_candidate": 635178082,
-      "keep_in_git": 562415253,
+      "keep_in_git": 564379918,
       "manifest_then_externalize_candidate": 1544922563
     },
     "git_policy_counts": {
       "external_cache_candidate": 760,
-      "keep_in_git": 1456,
+      "keep_in_git": 1461,
       "manifest_then_externalize_candidate": 358
     },
     "information_loss_guard": "This inventory authorizes no deletion. Any artifact removal or externalization first requires a committed manifest row with sha256, producer/provenance, downstream-consumer notes, and a canonical summary of the scientific conclusion.",
@@ -1159,8 +1159,8 @@
     "method": "artifact_storage_inventory",
     "policy_blocker_count": 0,
     "policy_version": "artifact_storage_policy_v1_2026_05_17",
-    "total_bytes": 2742515898,
-    "total_gib": 2.5542
+    "total_bytes": 2744480563,
+    "total_gib": 2.556
   },
   "policy_findings": {
     "blockers": [],
@@ -4971,6 +4971,71 @@
       "reason": "small artifact; keep in git until a later reviewed migration",
       "sha256": "6c71fd0dc33688b5f16f150fce610d1475598f71c4a2b28460523b34d7d0d56d",
       "size_bytes": 321080
+    },
+    {
+      "category": "canonical_evidence",
+      "deletion_authorized": false,
+      "git_policy": "keep_in_git",
+      "path": "artifacts/v3_artifact_admission_guard_1025.json",
+      "preservation_requirements": [
+        "sha256_recorded",
+        "do_not_delete_without_committed_manifest_or_canonical_summary"
+      ],
+      "reason": "decision, gate, policy, or regression evidence artifact",
+      "sha256": "5b0770651dce5cac204c05ea695dd0df2d0eb1615b95e926fd60e85e84e744bf",
+      "size_bytes": 431
+    },
+    {
+      "category": "canonical_evidence",
+      "deletion_authorized": false,
+      "git_policy": "keep_in_git",
+      "path": "artifacts/v3_artifact_migration_readiness_plan_1025.json",
+      "preservation_requirements": [
+        "sha256_recorded",
+        "do_not_delete_without_committed_manifest_or_canonical_summary"
+      ],
+      "reason": "decision, gate, policy, or regression evidence artifact",
+      "sha256": "b30e218865ff12312b527454a4aed8a8fa908e6c3ccc50f9bf07850888b9bc1b",
+      "size_bytes": 220422
+    },
+    {
+      "category": "canonical_evidence",
+      "deletion_authorized": false,
+      "git_policy": "keep_in_git",
+      "path": "artifacts/v3_artifact_producer_consumer_manifest_1025.json",
+      "preservation_requirements": [
+        "sha256_recorded",
+        "do_not_delete_without_committed_manifest_or_canonical_summary"
+      ],
+      "reason": "decision, gate, policy, or regression evidence artifact",
+      "sha256": "27318a8d2b4e06b4aeb043d46f209d0bf4a2818f1b5357c0269c2d89d4075a09",
+      "size_bytes": 170155
+    },
+    {
+      "category": "compact_artifact",
+      "deletion_authorized": false,
+      "git_policy": "keep_in_git",
+      "path": "artifacts/v3_artifact_storage_inventory_1025.json",
+      "preservation_requirements": [
+        "sha256_recorded",
+        "do_not_delete_without_committed_manifest_or_canonical_summary"
+      ],
+      "reason": "small artifact; keep in git until a later reviewed migration",
+      "sha256": "c25cf2d5ac13ef466ff3178ff218735b837df729bda3cc81c5bf64f49510475e",
+      "size_bytes": 1573292
+    },
+    {
+      "category": "compact_artifact",
+      "deletion_authorized": false,
+      "git_policy": "keep_in_git",
+      "path": "artifacts/v3_artifact_storage_policy_check_1025.json",
+      "preservation_requirements": [
+        "sha256_recorded",
+        "do_not_delete_without_committed_manifest_or_canonical_summary"
+      ],
+      "reason": "small artifact; keep in git until a later reviewed migration",
+      "sha256": "c37c2e30b6be34e2d6e5e1cf22e8a4e8b4370d2c3dc6ed987d01dfdef174e288",
+      "size_bytes": 365
     },
     {
       "category": "compact_artifact",

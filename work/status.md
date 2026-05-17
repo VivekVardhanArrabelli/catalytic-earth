@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 160
-- Measured elapsed time: 5129.8 minutes (85.50 hours)
+- Entries: 161
+- Measured elapsed time: 5141.3 minutes (85.69 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
-- infrastructure: 6.8 measured minutes (0.11 hours)
+- infrastructure: 18.4 measured minutes (0.31 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -26,21 +26,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1790
-- Evidence references logged: 1402
+- Artifact references logged: 1802
+- Evidence references logged: 1412
 
 ## Recent Entries
-
-### 2026-05-17T10:50:16.595786+00:00 - post-v2
-
-- Task: Import Q3LXA3 external hard-negative
-- Time mode: measured
-- Measured minutes: 15.933
-- Started: 2026-05-17T10:34:03Z
-- Ended: 2026-05-17T10:49:59Z
-- Artifacts: artifacts/v3_external_hard_negative_q3lxa3_single_import_cycle_gate_1025.json, artifacts/v3_external_hard_negative_q3lxa3_post_import_followup_cycle_decision_1025.json, data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_labels.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 395 unit tests passed, startup validate passed with 680 curated labels, Q3LXA3 later single-import gate selected exactly one import, all 8 Q3LXA3 current-fingerprint scores stayed below 0.4115, registry now has 681 labels and 469 out-of-scope labels, post-Q3LXA3 litmus remains green and leaves P22830 review-only, final 399 unit tests passed, validate passed with 681 curated labels, compileall passed, git diff --check passed, external transfer gate remained 68/68
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed. docs/label_factory.md was checked and did not need changes.
 
 ### 2026-05-17T11:47:12.000000+00:00 - post-v2
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, docs/artifact_storage.md, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py
 - Evidence: 421 unit tests passed, validate passed with 682 curated labels, artifact policy check passed with 0 blockers and 0 deletion authorizations, inventory covers 2574 files and 2.55 GiB
 - Notes: Manual locked infrastructure pass; no artifact deletion or externalization performed.
+
+### 2026-05-17T18:17:48.260164+00:00 - infrastructure
+
+- Task: Artifact producer manifest and migration readiness
+- Time mode: measured
+- Measured minutes: 11.567
+- Started: 2026-05-17T18:06:14Z
+- Ended: 2026-05-17T18:17:48Z
+- Artifacts: artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_admission_guard_1025.json, docs/artifact_storage.md, src/catalytic_earth/artifact_storage.py, src/catalytic_earth/cli.py, tests/test_artifact_storage.py, README.md, work/handoff.md, work/scope.md
+- Evidence: startup 421 unit tests passed, startup validate passed with 682 labels, refreshed inventory covers 2579 files and 2.556 GiB, policy check passed with 0 blockers and 0 deletion authorizations, producer manifest covers 108 large noncanonical rows, admission guard passed with 108 covered large files, final 422 unit tests passed, validate passed with 682 labels, compileall passed, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. No artifacts were deleted moved externalized or marked safe to delete. Migration plan keeps migration_ready_now_count at 0 and documents source-only sparse checkout.
 
 ## Expectation Updates
 

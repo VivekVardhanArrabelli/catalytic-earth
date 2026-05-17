@@ -79,8 +79,13 @@ The repository currently contains:
 13. Artifact-storage guardrails that inventory generated artifacts before any
     migration or pruning. `artifacts/v3_artifact_storage_inventory_1025.json`
     records paths, sizes, SHA-256 hashes, storage categories, and preservation
-    requirements for 2,574 artifact files; the companion policy check authorizes
-    0 deletions. See `docs/artifact_storage.md`.
+    requirements for the artifact tree; the companion policy check authorizes
+    0 deletions. `artifacts/v3_artifact_producer_consumer_manifest_1025.json`
+    maps the current 108 large noncanonical artifacts to likely producers and
+    downstream consumers, `artifacts/v3_artifact_migration_readiness_plan_1025.json`
+    ranks future migration candidates without moving files, and
+    `artifacts/v3_artifact_admission_guard_1025.json` guards future large
+    artifact admission. See `docs/artifact_storage.md`.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives

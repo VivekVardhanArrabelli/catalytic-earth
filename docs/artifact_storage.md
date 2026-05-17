@@ -11,12 +11,19 @@ The current storage inventory is:
 ```text
 artifacts/v3_artifact_storage_inventory_1025.json
 artifacts/v3_artifact_storage_policy_check_1025.json
+artifacts/v3_artifact_producer_consumer_manifest_1025.json
+artifacts/v3_artifact_migration_readiness_plan_1025.json
+artifacts/v3_artifact_admission_guard_1025.json
 ```
 
-At creation, the inventory covered 2,574 artifact files and 2.55 GiB of
-artifact payload, with 108 files above the 5 MiB large-file threshold. The
-policy check passed with zero deletion authorization and zero unclassified large
-artifacts.
+The refreshed inventory covers 2,579 artifact files and 2.556 GiB, including
+storage planning artifacts. The large-file surface remains 108 files above the
+5 MiB threshold. The policy check passes with zero deletion authorization and
+zero unclassified large artifacts. The producer/consumer manifest covers all
+108 large `regenerable_intermediate` and `raw_cache` rows; the
+migration-readiness plan ranks those rows for future review but authorizes no
+migration; the admission guard passes only because every current large
+noncanonical row has a manifest row.
 
 ## Categories
 
@@ -74,10 +81,37 @@ PYTHONPATH=src python -m catalytic_earth.cli check-artifact-storage-policy \
   --out artifacts/v3_artifact_storage_policy_check_1025.json
 ```
 
+Build producer/downstream provenance for current large noncanonical rows:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-artifact-producer-consumer-manifest \
+  --inventory artifacts/v3_artifact_storage_inventory_1025.json \
+  --out artifacts/v3_artifact_producer_consumer_manifest_1025.json
+```
+
+Build the migration-readiness plan without moving anything:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-artifact-migration-readiness-plan \
+  --inventory artifacts/v3_artifact_storage_inventory_1025.json \
+  --producer-consumer-manifest artifacts/v3_artifact_producer_consumer_manifest_1025.json \
+  --out artifacts/v3_artifact_migration_readiness_plan_1025.json
+```
+
+Run the future artifact admission guard:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli check-artifact-admission-guard \
+  --inventory artifacts/v3_artifact_storage_inventory_1025.json \
+  --producer-consumer-manifest artifacts/v3_artifact_producer_consumer_manifest_1025.json \
+  --out artifacts/v3_artifact_admission_guard_1025.json
+```
+
 A source-only checkout can avoid the artifact payload while still validating
 code imports:
 
 ```bash
+export GIT_SSH_COMMAND='ssh -i /Users/vivekvardhanarrabelli/.ssh/catalytic_earth_deploy_ed25519 -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new'
 git clone --filter=blob:none --sparse git@github.com:VivekVardhanArrabelli/catalytic-earth.git catalytic-earth-source
 cd catalytic-earth-source
 git sparse-checkout set src tests docs data
@@ -85,7 +119,10 @@ PYTHONPATH=src python -m catalytic_earth.cli validate
 ```
 
 Automation using the repo deploy key should export the project SSH command for
-the whole sparse-checkout session, not only the initial clone.
+the whole sparse-checkout session, not only the initial clone, because later
+lazy blob fetches also use SSH. Do not add network-dependent clone checks to
+the routine unit suite; keep source-only clone validation as an operator or CI
+smoke test with explicit network access.
 
 ## Immediate Migration Candidates
 

@@ -119,7 +119,12 @@ Post-V2 quality work has started:
 - artifact-storage inventory and non-loss policy: large generated files are now
   classified before migration, SHA-256 hashes are recorded in
   `artifacts/v3_artifact_storage_inventory_1025.json`, and
-  `artifacts/v3_artifact_storage_policy_check_1025.json` authorizes 0 deletions
+  `artifacts/v3_artifact_storage_policy_check_1025.json` authorizes 0
+  deletions. The companion producer/consumer manifest covers all 108 current
+  large noncanonical rows, the migration-readiness plan ranks future storage
+  candidates without authorizing movement, the admission guard requires future
+  large noncanonical artifacts to have manifest coverage before acceptance, and
+  `docs/artifact_storage.md` documents a source-only sparse checkout path.
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
 - hard-negative controls, in-scope failure analysis, label-expansion candidate

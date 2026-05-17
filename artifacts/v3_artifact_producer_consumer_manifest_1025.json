@@ -1,0 +1,3767 @@
+{
+  "metadata": {
+    "category_counts": {
+      "raw_cache": 9,
+      "regenerable_intermediate": 99
+    },
+    "deletion_authorized_count": 0,
+    "generated_at": "2026-05-17T18:14:45Z",
+    "included_file_count": 108,
+    "included_total_bytes": 1460658095,
+    "large_file_threshold_bytes": 5242880,
+    "method": "artifact_producer_consumer_manifest",
+    "migration_blocker_count": 40,
+    "policy_version": "artifact_storage_policy_v1_2026_05_17",
+    "producer_command_status_counts": {
+      "known": 68,
+      "partially_inferred": 40
+    },
+    "scope": "All current large raw_cache and regenerable_intermediate rows from the storage inventory. Unknown or partially inferred provenance is kept explicit and blocks migration.",
+    "source_inventory": "artifacts/v3_artifact_storage_inventory_1025.json"
+  },
+  "rows": [
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_1000.json --top-k 5 --out artifacts/v3_geometry_retrieval_1000.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_1000.json",
+      "producer_command_status": "known",
+      "sha256": "bf1119e915492e25b2a1c4494d987ddfc81cf64ff43ef83f498a91d83c392ddd",
+      "size_bytes": 32299902,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_1000.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_1025.json --top-k 5 --out artifacts/v3_geometry_retrieval_1025.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_1025.json",
+      "producer_command_status": "known",
+      "sha256": "27d7b73d7ab31a3ffd329ea2c9c5f76d48e265fc74d30069e9c7d8f3d39fad6a",
+      "size_bytes": 24479409,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_1000_selected_pdb_override.json --top-k 5 --out artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json",
+      "producer_command_status": "known",
+      "sha256": "134a2d463d396adf172eb126ab091f7402c791d3ae273fe03339a494f71f8725",
+      "size_bytes": 24405932,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_1000_selected_pdb_override.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v2_benchmark_1025.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 1025 --page-size 100 --out artifacts/v1_graph_1025.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=1025",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_1025.json",
+      "producer_command_status": "known",
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25",
+      "size_bytes": 23871866,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_1000.json",
+        "artifacts/v2_benchmark_1000.json",
+        "artifacts/v3_sequence_cluster_proxy_1000.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 1000 --page-size 100 --out artifacts/v1_graph_1000.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=1000",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_1000.json",
+      "producer_command_status": "known",
+      "sha256": "444b403dd02d4ebc848b17e32181eee4ca7663fe977cf6d0e21b02764c3b9722",
+      "size_bytes": 23810301,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_975.json",
+        "artifacts/v2_benchmark_975.json",
+        "artifacts/v3_sequence_cluster_proxy_975.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 975 --page-size 100 --out artifacts/v1_graph_975.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=975",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_975.json",
+      "producer_command_status": "known",
+      "sha256": "aa7b951f3a6b0f25356ec2dff3ff818ed5c599883ea40f84309439b722e0249b",
+      "size_bytes": 23062288,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_950.json",
+        "artifacts/v2_benchmark_950.json",
+        "artifacts/v3_sequence_cluster_proxy_950.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 950 --page-size 100 --out artifacts/v1_graph_950.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=950",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_950.json",
+      "producer_command_status": "known",
+      "sha256": "477523bf81df82425c2fe6f426b76e83ca049f8f03f54d12a5dfe4ea2758017d",
+      "size_bytes": 22560935,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_925.json",
+        "artifacts/v2_benchmark_925.json",
+        "artifacts/v3_sequence_cluster_proxy_925.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 925 --page-size 100 --out artifacts/v1_graph_925.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=925",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_925.json",
+      "producer_command_status": "known",
+      "sha256": "b4c9b843b1804d4add2c2dfbb49b3308065eb1c8ed6f2ae7b2b57f83ad173ac7",
+      "size_bytes": 22125045,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_900.json",
+        "artifacts/v2_benchmark_900.json",
+        "artifacts/v3_sequence_cluster_proxy_900.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 900 --page-size 100 --out artifacts/v1_graph_900.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=900",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_900.json",
+      "producer_command_status": "known",
+      "sha256": "0744b813348567f7d731ab72d2fefbdc2bacf7c2e880352488c37e995a5965e5",
+      "size_bytes": 21182285,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_875.json",
+        "artifacts/v2_benchmark_875.json",
+        "artifacts/v3_sequence_cluster_proxy_875.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 875 --page-size 100 --out artifacts/v1_graph_875.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=875",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_875.json",
+      "producer_command_status": "known",
+      "sha256": "99d4d1678490aab0ba1c0ae1a0e199d8299c99fbcd7cd3318ca35af22b9c2638",
+      "size_bytes": 20773842,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_850.json",
+        "artifacts/v2_benchmark_850.json",
+        "artifacts/v3_sequence_cluster_proxy_850.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 850 --page-size 100 --out artifacts/v1_graph_850.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=850",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_850.json",
+      "producer_command_status": "known",
+      "sha256": "6f965c5aa67405ee9a82b6c80eab80a23edae69cb1f8c28625ee6d814fb941f9",
+      "size_bytes": 20468291,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_975.json --top-k 5 --out artifacts/v3_geometry_retrieval_975.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_975.json",
+      "producer_command_status": "known",
+      "sha256": "3420dd01ba4659e36c0254a478b827049ba4553091a9d99c2d80cdeb0f2ef38f",
+      "size_bytes": 20128731,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_975.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_825.json",
+        "artifacts/v2_benchmark_825.json",
+        "artifacts/v3_sequence_cluster_proxy_825.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 825 --page-size 100 --out artifacts/v1_graph_825.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=825",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_825.json",
+      "producer_command_status": "known",
+      "sha256": "874071976122e3938d94a700e9c2be4ab171c8c5eac7cdd46a34dfaa8851c950",
+      "size_bytes": 19963703,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_950.json --top-k 5 --out artifacts/v3_geometry_retrieval_950.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_950.json",
+      "producer_command_status": "known",
+      "sha256": "384646d0c00c1d7a198ff8cee4cf8577f97d61841ceb3fbe6897288384c464af",
+      "size_bytes": 19595930,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_950.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_800.json",
+        "artifacts/v2_benchmark_800.json",
+        "artifacts/v3_sequence_cluster_proxy_800.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 800 --page-size 100 --out artifacts/v1_graph_800.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=800",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_800.json",
+      "producer_command_status": "known",
+      "sha256": "7d254ba40698f3956956027525903b1a78bdcb37e3ddc0a601104d3aac86c432",
+      "size_bytes": 19392814,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_925.json --top-k 5 --out artifacts/v3_geometry_retrieval_925.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_925.json",
+      "producer_command_status": "known",
+      "sha256": "5eb62b7615fda6396d2f60fd4a5f9387e55bf53956412900a7777cbbbb5fa9c6",
+      "size_bytes": 19110611,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_925.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_775.json",
+        "artifacts/v2_benchmark_775.json",
+        "artifacts/v3_sequence_cluster_proxy_775.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 775 --page-size 100 --out artifacts/v1_graph_775.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=775",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_775.json",
+      "producer_command_status": "known",
+      "sha256": "34a887d005c1296256f776e07f6633ea30c744161d9329f79ac325049b03806e",
+      "size_bytes": 18633860,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_900.json --top-k 5 --out artifacts/v3_geometry_retrieval_900.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_900.json",
+      "producer_command_status": "known",
+      "sha256": "194ae9aacc408535a9ad2bf1c0ad424989b14838cf645b7a3ccc81a3dd675ee9",
+      "size_bytes": 18630705,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_900.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_875.json --top-k 5 --out artifacts/v3_geometry_retrieval_875.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_875.json",
+      "producer_command_status": "known",
+      "sha256": "cf5932dde69857cc90a7142cfe32081ae52fd46c8631e6fa91099f32fb91dc7e",
+      "size_bytes": 18164931,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_875.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_750.json",
+        "artifacts/v2_benchmark_750.json",
+        "artifacts/v3_sequence_cluster_proxy_750.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 750 --page-size 100 --out artifacts/v1_graph_750.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=750",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_750.json",
+      "producer_command_status": "known",
+      "sha256": "b9283d4de93c40ff920f79d41f758f8ae06717108888b7d17c81ce4811b95ec1",
+      "size_bytes": 18090156,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_1025.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_1025.json --max-entries 1025 --reuse-existing artifacts/v3_geometry_features_1000.json --out artifacts/v3_geometry_features_1025.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=1025",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_1025.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "be7af8462397425062075ff8df5959cc9b68b165d07017692099deb66db1f8f6",
+      "size_bytes": 17887021,
+      "source_inputs": [
+        "artifacts/v1_graph_1025.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_1000.json --max-entries 1000 --reuse-existing artifacts/v3_geometry_features_1000.json --selected-pdb-overrides artifacts/v3_selected_pdb_override_plan_700.json --out artifacts/v3_geometry_features_1000_selected_pdb_override.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=1000",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "selected PDB override rows are repair evidence, not count growth"
+      ],
+      "path": "artifacts/v3_geometry_features_1000_selected_pdb_override.json",
+      "producer_command_status": "known",
+      "sha256": "a9afdf77bdf76c4f4c57ffc786c147142364d4896993b7cd496dcf9df2d8be40",
+      "size_bytes": 17829438,
+      "source_inputs": [
+        "artifacts/v1_graph_1000.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context",
+        "artifacts/v3_selected_pdb_override_plan_700.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_1000.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_1000.json --max-entries 1000 --reuse-existing artifacts/v3_geometry_features_975.json --out artifacts/v3_geometry_features_1000.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=1000",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_1000.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "9c57e16535a7a66a4892fdea3d2a8d83087f6b0ede31f1135fb2ad64585f0e55",
+      "size_bytes": 17828264,
+      "source_inputs": [
+        "artifacts/v1_graph_1000.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_850.json --top-k 5 --out artifacts/v3_geometry_retrieval_850.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_850.json",
+      "producer_command_status": "known",
+      "sha256": "0858db3da9bca62df09621a4180429d48ee0147bb01df072f57fdd4208fdf39e",
+      "size_bytes": 17676356,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_850.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_725.json",
+        "artifacts/v2_benchmark_725.json",
+        "artifacts/v3_sequence_cluster_proxy_725.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 725 --page-size 100 --out artifacts/v1_graph_725.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=725",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_725.json",
+      "producer_command_status": "known",
+      "sha256": "1f08391995bf5686f052ecbe72dc05d09ff1b1e975b2f7318efe4848696cd579",
+      "size_bytes": 17495000,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_975.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_975.json --max-entries 975 --reuse-existing artifacts/v3_geometry_features_950.json --out artifacts/v3_geometry_features_975.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=975",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_975.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "47d7f6a0462bdad55a0326fb937179b9726baf85e6123b648d9438b4c79ee04d",
+      "size_bytes": 17390582,
+      "source_inputs": [
+        "artifacts/v1_graph_975.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_825.json --top-k 5 --out artifacts/v3_geometry_retrieval_825.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_825.json",
+      "producer_command_status": "known",
+      "sha256": "82801be724211a80247ae4174f12296eb46f993d7e40d26e27a527cc397092e6",
+      "size_bytes": 17186717,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_825.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_950.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_950.json --max-entries 950 --reuse-existing artifacts/v3_geometry_features_925.json --out artifacts/v3_geometry_features_950.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=950",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_950.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "c8e7a0ff8ab789562cce5e888cb65af1e50747f8fd7ae7422c3cfa2902810966",
+      "size_bytes": 16934998,
+      "source_inputs": [
+        "artifacts/v1_graph_950.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_700.json",
+        "artifacts/v2_benchmark_700.json",
+        "artifacts/v3_sequence_cluster_proxy_700.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 700 --page-size 100 --out artifacts/v1_graph_700.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=700",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_700.json",
+      "producer_command_status": "known",
+      "sha256": "4c91eb9e331024629b92117ea11fde644bc3040056b37c717ad51a7e96e7b8f2",
+      "size_bytes": 16812963,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_800.json --top-k 5 --out artifacts/v3_geometry_retrieval_800.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_800.json",
+      "producer_command_status": "known",
+      "sha256": "a2d9c2a733b8b1d58fee8879e72f45f33220b67e8cd9f057aba6a6aea7ebb888",
+      "size_bytes": 16745321,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_800.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_925.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_925.json --max-entries 925 --reuse-existing artifacts/v3_geometry_features_900.json --out artifacts/v3_geometry_features_925.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=925",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_925.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "05cd522e6c1dfc0eeac651762c2885bdb07505d41ca59d406636485b0ab6cd57",
+      "size_bytes": 16526861,
+      "source_inputs": [
+        "artifacts/v1_graph_925.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_675.json",
+        "artifacts/v2_benchmark_675.json",
+        "artifacts/v3_sequence_cluster_proxy_675.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 675 --page-size 100 --out artifacts/v1_graph_675.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=675",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_675.json",
+      "producer_command_status": "known",
+      "sha256": "1e66c6417001fc572995e06c7614b1390312678f7165170a18910f1aa3e27ed9",
+      "size_bytes": 16343561,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_775.json --top-k 5 --out artifacts/v3_geometry_retrieval_775.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_775.json",
+      "producer_command_status": "known",
+      "sha256": "e4a0a75d9ea03b9385f6116622f0f02831066cb4f556cd9ee19764c20ea4d1cd",
+      "size_bytes": 16257062,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_775.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_900.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_900.json --max-entries 900 --reuse-existing artifacts/v3_geometry_features_875.json --out artifacts/v3_geometry_features_900.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=900",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_900.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "1a5ff0050065d76d5fb32cb86c12676c65af1960671a931ff3c2a2e34c33d09f",
+      "size_bytes": 16143489,
+      "source_inputs": [
+        "artifacts/v1_graph_900.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_650.json",
+        "artifacts/v2_benchmark_650.json",
+        "artifacts/v3_sequence_cluster_proxy_650.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 650 --page-size 100 --out artifacts/v1_graph_650.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=650",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_650.json",
+      "producer_command_status": "known",
+      "sha256": "b9566db7033920d9a7982ed8026e5d1b881c2e796324a3a013a5ea2ed9a8a9f1",
+      "size_bytes": 16026089,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_750.json --top-k 5 --out artifacts/v3_geometry_retrieval_750.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_750.json",
+      "producer_command_status": "known",
+      "sha256": "4610954a239651816e72214625f7a41208b1408bf9183d64f9415c67f8f8fb3b",
+      "size_bytes": 15822060,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_750.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_875.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_875.json --max-entries 875 --reuse-existing artifacts/v3_geometry_features_850.json --out artifacts/v3_geometry_features_875.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=875",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_875.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "e9a85221bcc2f9e451bc6ee83b1ae522971bf32ed714e7a4aa38a9ac6fa3c23d",
+      "size_bytes": 15777634,
+      "source_inputs": [
+        "artifacts/v1_graph_875.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_625.json",
+        "artifacts/v2_benchmark_625.json",
+        "artifacts/v3_sequence_cluster_proxy_625.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 625 --page-size 100 --out artifacts/v1_graph_625.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=625",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_625.json",
+      "producer_command_status": "known",
+      "sha256": "97f78b5532282a26b628ab72b150f6962cc40fe089a64b131ad89b3de0d90fa4",
+      "size_bytes": 15553785,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_850.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_850.json --max-entries 850 --reuse-existing artifacts/v3_geometry_features_825.json --out artifacts/v3_geometry_features_850.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=850",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_850.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "d4989bca34f455dfb82618a645c6912dac18c9250037fc8ca4d0b70e9521b5d2",
+      "size_bytes": 15391193,
+      "source_inputs": [
+        "artifacts/v1_graph_850.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_725.json --top-k 5 --out artifacts/v3_geometry_retrieval_725.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_725.json",
+      "producer_command_status": "known",
+      "sha256": "0e15708a4bbed4ff3f2af8ae8cbe60e20f6cefa401d95b0588476fccdcd5b15e",
+      "size_bytes": 15315981,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_725.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_600.json",
+        "artifacts/v2_benchmark_600.json",
+        "artifacts/v3_sequence_cluster_proxy_600.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 600 --page-size 100 --out artifacts/v1_graph_600.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=600",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_600.json",
+      "producer_command_status": "known",
+      "sha256": "3a9cfcc64cc10f06f22f1be7966be6e41afe63999e323f38bf39af1437a42242",
+      "size_bytes": 15179590,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_825.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_825.json --max-entries 825 --reuse-existing artifacts/v3_geometry_features_800.json --out artifacts/v3_geometry_features_825.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=825",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_825.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "db1e1627bd15207fb19eb0f8425769c9b482908996785ee7e264159f3ef28ee3",
+      "size_bytes": 15005231,
+      "source_inputs": [
+        "artifacts/v1_graph_825.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_575.json",
+        "artifacts/v2_benchmark_575.json",
+        "artifacts/v3_sequence_cluster_proxy_575.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 575 --page-size 100 --out artifacts/v1_graph_575.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=575",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_575.json",
+      "producer_command_status": "known",
+      "sha256": "6259b956e9b615a7968b15ee2f3d393d91960fb9fc0f0615b2d5dd68c17c80cd",
+      "size_bytes": 14805678,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_700.json --top-k 5 --out artifacts/v3_geometry_retrieval_700.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_700.json",
+      "producer_command_status": "known",
+      "sha256": "77eeec0b5fab6d18bb642333de9614a8fdd8472f2cc99b2c738b6d19e90e3aee",
+      "size_bytes": 14804240,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_700.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_800.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_800.json --max-entries 800 --reuse-existing artifacts/v3_geometry_features_775.json --out artifacts/v3_geometry_features_800.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=800",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_800.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "520832ce0b63c1d36f82c040d852d168010aa81f20e1b42a3b31e8b76d932886",
+      "size_bytes": 14672254,
+      "source_inputs": [
+        "artifacts/v1_graph_800.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_550.json",
+        "artifacts/v2_benchmark_550.json",
+        "artifacts/v3_sequence_cluster_proxy_550.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 550 --page-size 100 --out artifacts/v1_graph_550.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=550",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_550.json",
+      "producer_command_status": "known",
+      "sha256": "dfaca80491dbf99cd517e96aa34b219676b889442b9d6424cee81525f617cc8e",
+      "size_bytes": 14426207,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_675.json --top-k 5 --out artifacts/v3_geometry_retrieval_675.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_675.json",
+      "producer_command_status": "known",
+      "sha256": "161f4c8a2993b59a4a3fb34958ecabd0e85b375b0fb4573e6c868950ded615f0",
+      "size_bytes": 14325679,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_675.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_775.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_775.json --max-entries 775 --reuse-existing artifacts/v3_geometry_features_750.json --out artifacts/v3_geometry_features_775.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=775",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_775.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "e160ac3cee951dc97f23d5e8e3759fca0c0dcbea6c8c0c875e163155bf890b40",
+      "size_bytes": 14273070,
+      "source_inputs": [
+        "artifacts/v1_graph_775.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_750.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_750.json --max-entries 750 --reuse-existing artifacts/v3_geometry_features_725.json --out artifacts/v3_geometry_features_750.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=750",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_750.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "c294eb4320555d4cf3c69c6db1e17c0aaffe31182a3b5f027f1c26ab784d9075",
+      "size_bytes": 13958922,
+      "source_inputs": [
+        "artifacts/v1_graph_750.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_525.json",
+        "artifacts/v2_benchmark_525.json",
+        "artifacts/v3_sequence_cluster_proxy_525.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 525 --page-size 100 --out artifacts/v1_graph_525.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=525",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_525.json",
+      "producer_command_status": "known",
+      "sha256": "e202be7a6cfbc3f3c5041904dbda842b26b16621a471364d6a0ab13a27d5f833",
+      "size_bytes": 13932049,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_650.json --top-k 5 --out artifacts/v3_geometry_retrieval_650.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_650.json",
+      "producer_command_status": "known",
+      "sha256": "dea1b74c8d3f9aba3813e10697a90c78e67b975d3401a7f731e2e252776009fa",
+      "size_bytes": 13871250,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_650.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/handoff.md",
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+        "later descriptive Foldseek/TM signal artifacts and duplicate-screen workflows"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness --slice-id 1000 --retrieval artifacts/v3_geometry_retrieval_1000.json --labels data/registries/curated_mechanism_labels.json --geometry artifacts/v3_geometry_features_1000.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --coordinate-dir artifacts/v3_foldseek_coordinates_1000 --max-coordinate-files 25 --out artifacts/v3_foldseek_coordinate_readiness_1000.json"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
+      ],
+      "parameter_assumptions": [
+        "slice_id=1000",
+        "coordinate_dir=artifacts/v3_foldseek_coordinates_1000",
+        "initial readiness staged 25 selected PDB coordinate files"
+      ],
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
+      "producer_command_status": "partially_inferred",
+      "sha256": "1ee64ef75c7c6f6ff174714a919b15c56ade41f29569c74411c988375d6b4ca3",
+      "size_bytes": 13841581,
+      "source_inputs": [
+        "artifacts/v3_geometry_retrieval_1000.json",
+        "artifacts/v3_geometry_features_1000.json",
+        "data/registries/curated_mechanism_labels.json",
+        "public PDB mmCIF coordinate source for the sidecar PDB id"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_725.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_725.json --max-entries 725 --reuse-existing artifacts/v3_geometry_features_700.json --out artifacts/v3_geometry_features_725.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=725",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_725.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "03d98403e6996d02e7d9da66f85d6297d223e7be51e9eccefd67bb8fcda2de3d",
+      "size_bytes": 13528170,
+      "source_inputs": [
+        "artifacts/v1_graph_725.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_500.json",
+        "artifacts/v2_benchmark_500.json",
+        "artifacts/v3_sequence_cluster_proxy_500.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 500 --page-size 100 --out artifacts/v1_graph_500.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=500",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_500.json",
+      "producer_command_status": "known",
+      "sha256": "86af471b8a31206d7bc66a0aa36cbc749210ce8212b61a4183451765044946ff",
+      "size_bytes": 13453635,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_625.json --top-k 5 --out artifacts/v3_geometry_retrieval_625.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_625.json",
+      "producer_command_status": "known",
+      "sha256": "6a70b93abc3feff8bf42c13c170dfe08aab676f6ddbb1c5920416438c8dd836f",
+      "size_bytes": 13381376,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_625.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/handoff.md",
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+        "later descriptive Foldseek/TM signal artifacts and duplicate-screen workflows"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness --slice-id 1000 --retrieval artifacts/v3_geometry_retrieval_1000.json --labels data/registries/curated_mechanism_labels.json --geometry artifacts/v3_geometry_features_1000.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --coordinate-dir artifacts/v3_foldseek_coordinates_1000 --max-coordinate-files 25 --out artifacts/v3_foldseek_coordinate_readiness_1000.json"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
+      ],
+      "parameter_assumptions": [
+        "slice_id=1000",
+        "coordinate_dir=artifacts/v3_foldseek_coordinates_1000",
+        "initial readiness staged 25 selected PDB coordinate files"
+      ],
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
+      "producer_command_status": "partially_inferred",
+      "sha256": "eb600990a439bb4a667f90f9f2f0c6900656945feab5ea7e9abf383330a5b76c",
+      "size_bytes": 13374918,
+      "source_inputs": [
+        "artifacts/v3_geometry_retrieval_1000.json",
+        "artifacts/v3_geometry_features_1000.json",
+        "data/registries/curated_mechanism_labels.json",
+        "public PDB mmCIF coordinate source for the sidecar PDB id"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_700.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_700.json --max-entries 700 --reuse-existing artifacts/v3_geometry_features_675.json --out artifacts/v3_geometry_features_700.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=700",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_700.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "a9e9c9c9630e6a6993ad3cdcf5ffbb422de3beec3a88a46bd13874475b491f95",
+      "size_bytes": 13072196,
+      "source_inputs": [
+        "artifacts/v1_graph_700.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_600.json --top-k 5 --out artifacts/v3_geometry_retrieval_600.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_600.json",
+      "producer_command_status": "known",
+      "sha256": "03419a217be3c61cab1e520aaccbe5efd3e81edf9e79bfeac708692739b4de65",
+      "size_bytes": 12938734,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_600.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_475.json",
+        "artifacts/v2_benchmark_475.json",
+        "artifacts/v3_sequence_cluster_proxy_475.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 475 --page-size 100 --out artifacts/v1_graph_475.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=475",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_475.json",
+      "producer_command_status": "known",
+      "sha256": "5a3c8ab1c778453113ae039d975fa49cb8b9d8007b119bed5c55a8fcdd324923",
+      "size_bytes": 12758124,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_675.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_675.json --max-entries 675 --reuse-existing artifacts/v3_geometry_features_650.json --out artifacts/v3_geometry_features_675.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=675",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_675.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "4b71d58e3e9fed61059664ee35d73546ca3e4c1f37066e52ba1035e58466751e",
+      "size_bytes": 12707170,
+      "source_inputs": [
+        "artifacts/v1_graph_675.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_575.json --top-k 5 --out artifacts/v3_geometry_retrieval_575.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_575.json",
+      "producer_command_status": "known",
+      "sha256": "8c2a53ed9c467ff97b4a7b7775d1db56887c7b93b7e8178247b2330ebfd5a986",
+      "size_bytes": 12469210,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_575.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_650.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_650.json --max-entries 650 --reuse-existing artifacts/v3_geometry_features_625.json --out artifacts/v3_geometry_features_650.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=650",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_650.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "545e9ccb252019f296d3878077a4ec908e4bf76a1307208b1cd398af4cbb7ac6",
+      "size_bytes": 12344003,
+      "source_inputs": [
+        "artifacts/v1_graph_650.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_550.json --top-k 5 --out artifacts/v3_geometry_retrieval_550.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_550.json",
+      "producer_command_status": "known",
+      "sha256": "ae476b70d551eae53f06527868c472f6638c5603cf63e26b68c6d29d77251d06",
+      "size_bytes": 11984759,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_550.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_625.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_625.json --max-entries 625 --reuse-existing artifacts/v3_geometry_features_600.json --out artifacts/v3_geometry_features_625.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=625",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_625.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "99f81e0b2706b9be8184b1fe84f3cd39c865e35819bdbb6105822ba9fcb49972",
+      "size_bytes": 11956951,
+      "source_inputs": [
+        "artifacts/v1_graph_625.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_450.json",
+        "artifacts/v2_benchmark_450.json",
+        "artifacts/v3_sequence_cluster_proxy_450.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 450 --page-size 100 --out artifacts/v1_graph_450.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=450",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_450.json",
+      "producer_command_status": "known",
+      "sha256": "c0e9871cbf253ca97deff7039a68112835f12f06e096f0f2b83befa1cdf22c51",
+      "size_bytes": 11951659,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_600.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_600.json --max-entries 600 --reuse-existing artifacts/v3_geometry_features_575.json --out artifacts/v3_geometry_features_600.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=600",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_600.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "dd93e88c9d014e8a3b1fe63574dc610c0aab3b56fbcd4289e547aad9237883e0",
+      "size_bytes": 11619618,
+      "source_inputs": [
+        "artifacts/v1_graph_600.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_425.json",
+        "artifacts/v2_benchmark_425.json",
+        "artifacts/v3_sequence_cluster_proxy_425.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 425 --page-size 100 --out artifacts/v1_graph_425.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=425",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_425.json",
+      "producer_command_status": "known",
+      "sha256": "f64c88ddbcb19af30aa9fb07481474de6d65bef50392b3084c39cdc508a85734",
+      "size_bytes": 11527355,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_525.json --top-k 5 --out artifacts/v3_geometry_retrieval_525.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_525.json",
+      "producer_command_status": "known",
+      "sha256": "52bb55e721edb24c79f40e1a2733e11e211013cbe77312e7c1a18e2b3704fced",
+      "size_bytes": 11484875,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_525.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_575.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_575.json --max-entries 575 --reuse-existing artifacts/v3_geometry_features_550.json --out artifacts/v3_geometry_features_575.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=575",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_575.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "96a57ccc6853904ad2e11859ada919b1b9885402f39d3cda35f68b66cca95099",
+      "size_bytes": 11254989,
+      "source_inputs": [
+        "artifacts/v1_graph_575.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_400.json",
+        "artifacts/v2_benchmark_400.json",
+        "artifacts/v3_sequence_cluster_proxy_400.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 400 --page-size 100 --out artifacts/v1_graph_400.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=400",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_400.json",
+      "producer_command_status": "known",
+      "sha256": "360f9eee69e76d6725d6401e8f32fce5d44a7ce2a96544581612b368e072a0f5",
+      "size_bytes": 11006633,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_500.json --top-k 5 --out artifacts/v3_geometry_retrieval_500.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_500.json",
+      "producer_command_status": "known",
+      "sha256": "ba96b3a97f2e84e5b3eaaac1796970e33ddae62a4643bcda5f1b8bd3bca924d5",
+      "size_bytes": 10998349,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_500.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_550.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_550.json --max-entries 550 --reuse-existing artifacts/v3_geometry_features_525.json --out artifacts/v3_geometry_features_550.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=550",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_550.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "1c671f8d49833c2f9ecb5b90bb42b3e70fc50762cb7e067c6c6e67bdb432b5fd",
+      "size_bytes": 10883412,
+      "source_inputs": [
+        "artifacts/v1_graph_550.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_475.json --top-k 5 --out artifacts/v3_geometry_retrieval_475.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_475.json",
+      "producer_command_status": "known",
+      "sha256": "1a166e589939e4d1f14245d93884180b5ae107fad11c87d1555df9c716e1ff09",
+      "size_bytes": 10497237,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_475.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_375.json",
+        "artifacts/v2_benchmark_375.json",
+        "artifacts/v3_sequence_cluster_proxy_375.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 375 --page-size 100 --out artifacts/v1_graph_375.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=375",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_375.json",
+      "producer_command_status": "known",
+      "sha256": "1d90e34a4fc5e8ca9130cfe48c365c4b655b5a20eca33c525081de62769717f8",
+      "size_bytes": 10484213,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_525.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_525.json --max-entries 525 --reuse-existing artifacts/v3_geometry_features_500.json --out artifacts/v3_geometry_features_525.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=525",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_525.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "a7d999599858bc1ee5426a1b600df3d9f24eeb3d0ff2159c25f8e70c033d40db",
+      "size_bytes": 10467300,
+      "source_inputs": [
+        "artifacts/v1_graph_525.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_500.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_500.json --max-entries 500 --reuse-existing artifacts/v3_geometry_features_475.json --out artifacts/v3_geometry_features_500.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=500",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_500.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "7e295bb7170324f14a9c59954f8f25f97cfc6742e4e6b5c75f7abf524ba5f81e",
+      "size_bytes": 10066342,
+      "source_inputs": [
+        "artifacts/v1_graph_500.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_350.json",
+        "artifacts/v2_benchmark_350.json",
+        "artifacts/v3_sequence_cluster_proxy_350.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 350 --page-size 100 --out artifacts/v1_graph_350.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=350",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_350.json",
+      "producer_command_status": "known",
+      "sha256": "76d3bf20601a16f27ec9822b145da17f5de8a017b8c87cef0f81cae7f03b3d47",
+      "size_bytes": 9965975,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_450.json --top-k 5 --out artifacts/v3_geometry_retrieval_450.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_450.json",
+      "producer_command_status": "known",
+      "sha256": "1799e2eb80971124477ab3883d70f9a3711b2f8705a8c0f3640c897daf8fe3fa",
+      "size_bytes": 9951128,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_450.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_475.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_475.json --max-entries 475 --reuse-existing artifacts/v3_geometry_features_450.json --out artifacts/v3_geometry_features_475.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=475",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_475.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "7f7ac5ebda6c7b76a91c08d4339848041ddb8121f62781e84ad37f07a471218a",
+      "size_bytes": 9634388,
+      "source_inputs": [
+        "artifacts/v1_graph_475.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_325.json",
+        "artifacts/v2_benchmark_325.json",
+        "artifacts/v3_sequence_cluster_proxy_325.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 325 --page-size 100 --out artifacts/v1_graph_325.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=325",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_325.json",
+      "producer_command_status": "known",
+      "sha256": "f1a4b7ee75daffb7d2a58c7c6d4c01d51f4686af657d36660e6d3a3124f2ffe8",
+      "size_bytes": 9444903,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_425.json --top-k 5 --out artifacts/v3_geometry_retrieval_425.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_425.json",
+      "producer_command_status": "known",
+      "sha256": "e6d47554c0c3ac7a4e8e04df0bd27ae8e7623416ac28ff1394ebe6726f042cb8",
+      "size_bytes": 9363677,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_425.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_450.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_450.json --max-entries 450 --reuse-existing artifacts/v3_geometry_features_425.json --out artifacts/v3_geometry_features_450.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=450",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_450.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "d580b389b5b061ba9e5dbdbc78fad6d1be599359c54353509da25a0054fadf7d",
+      "size_bytes": 9124233,
+      "source_inputs": [
+        "artifacts/v1_graph_450.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_300.json",
+        "artifacts/v2_benchmark_300.json",
+        "artifacts/v3_sequence_cluster_proxy_300.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 300 --page-size 100 --out artifacts/v1_graph_300.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=300",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_300.json",
+      "producer_command_status": "known",
+      "sha256": "3869b1ac06a70cda693048eabe1af309e1e3c9efce467e98ebad141fc402d8ba",
+      "size_bytes": 9043525,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_400.json --top-k 5 --out artifacts/v3_geometry_retrieval_400.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_400.json",
+      "producer_command_status": "known",
+      "sha256": "7ea3b0fbd83bfa755dbbd4945b2a764c3be31b9f2b0f6fac57d057630bf314c6",
+      "size_bytes": 8817883,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_400.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_275.json",
+        "artifacts/v2_benchmark_275.json",
+        "artifacts/v3_sequence_cluster_proxy_275.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 275 --page-size 100 --out artifacts/v1_graph_275.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=275",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_275.json",
+      "producer_command_status": "known",
+      "sha256": "b2c2798f4c6f8a75ca8078269678281386f68c65b6be2158fadc43f2dc861a06",
+      "size_bytes": 8556309,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_425.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_425.json --max-entries 425 --reuse-existing artifacts/v3_geometry_features_400.json --out artifacts/v3_geometry_features_425.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=425",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_425.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "1fbf3e76c2b032d57165ea01c67971ca189b1ceccc98eb02624a4bc524c39c32",
+      "size_bytes": 8537965,
+      "source_inputs": [
+        "artifacts/v1_graph_425.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_375.json --top-k 5 --out artifacts/v3_geometry_retrieval_375.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_375.json",
+      "producer_command_status": "known",
+      "sha256": "82c7c985f54b3649afce6de7d4df7a2501d75829215efdbc8df3b6bfe7704132",
+      "size_bytes": 8255524,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_375.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_400.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_400.json --max-entries 400 --reuse-existing artifacts/v3_geometry_features_375.json --out artifacts/v3_geometry_features_400.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=400",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_400.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "242a15dbfcb379b85b8dbfa52c881bc85c8ec31b8c7305a1cd344fc979cb8bd9",
+      "size_bytes": 8049367,
+      "source_inputs": [
+        "artifacts/v1_graph_400.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_250.json",
+        "artifacts/v2_benchmark_250.json",
+        "artifacts/v3_sequence_cluster_proxy_250.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 250 --page-size 100 --out artifacts/v1_graph_250.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=250",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_250.json",
+      "producer_command_status": "known",
+      "sha256": "356e0a67f83feae06ff901d4884b6f510bcc9214aae525920b18e1cb2fa7c41b",
+      "size_bytes": 8006111,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_350.json --top-k 5 --out artifacts/v3_geometry_retrieval_350.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_350.json",
+      "producer_command_status": "known",
+      "sha256": "6deac8200b66ded5c3afc0dd8e39bf5f229d000b59c9cf8f1314f371d9007d42",
+      "size_bytes": 7727127,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_350.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_375.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_375.json --max-entries 375 --reuse-existing artifacts/v3_geometry_features_350.json --out artifacts/v3_geometry_features_375.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=375",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_375.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "6df0a03b3f69985913749c594c0a06b36790565b9485488a0fb8a45897c568b7",
+      "size_bytes": 7496393,
+      "source_inputs": [
+        "artifacts/v1_graph_375.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_225.json",
+        "artifacts/v2_benchmark_225.json",
+        "artifacts/v3_sequence_cluster_proxy_225.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 225 --page-size 100 --out artifacts/v1_graph_225.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=225",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_225.json",
+      "producer_command_status": "known",
+      "sha256": "9436be68f4cf8990b8c61d2b295ea4eda2cc32b946753f186922c6630b5e70ac",
+      "size_bytes": 7496154,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_325.json --top-k 5 --out artifacts/v3_geometry_retrieval_325.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_325.json",
+      "producer_command_status": "known",
+      "sha256": "9f55bb121011fb362daa5dd463801b8a793a5529db77bc08933919b8977d2049",
+      "size_bytes": 7238107,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_325.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_350.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_350.json --max-entries 350 --reuse-existing artifacts/v3_geometry_features_325.json --out artifacts/v3_geometry_features_350.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=350",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_350.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "065a31950d98f17fd48753e0e6e78b4b869e4e4876a2e5163c6afcdfa9b6aecc",
+      "size_bytes": 7034865,
+      "source_inputs": [
+        "artifacts/v1_graph_350.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/handoff.md",
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+        "later descriptive Foldseek/TM signal artifacts and duplicate-screen workflows"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness --slice-id 1000 --retrieval artifacts/v3_geometry_retrieval_1000.json --labels data/registries/curated_mechanism_labels.json --geometry artifacts/v3_geometry_features_1000.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --coordinate-dir artifacts/v3_foldseek_coordinates_1000 --max-coordinate-files 25 --out artifacts/v3_foldseek_coordinate_readiness_1000.json"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
+      ],
+      "parameter_assumptions": [
+        "slice_id=1000",
+        "coordinate_dir=artifacts/v3_foldseek_coordinates_1000",
+        "initial readiness staged 25 selected PDB coordinate files"
+      ],
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
+      "producer_command_status": "partially_inferred",
+      "sha256": "ec797a8f66cd1d57fd8b88ab3d62990cc3df00a9587b5a74c41f8664b977b235",
+      "size_bytes": 6913294,
+      "source_inputs": [
+        "artifacts/v3_geometry_retrieval_1000.json",
+        "artifacts/v3_geometry_features_1000.json",
+        "data/registries/curated_mechanism_labels.json",
+        "public PDB mmCIF coordinate source for the sidecar PDB id"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/handoff.md",
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+        "later descriptive Foldseek/TM signal artifacts and duplicate-screen workflows"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness --slice-id 1000 --retrieval artifacts/v3_geometry_retrieval_1000.json --labels data/registries/curated_mechanism_labels.json --geometry artifacts/v3_geometry_features_1000.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --coordinate-dir artifacts/v3_foldseek_coordinates_1000 --max-coordinate-files 25 --out artifacts/v3_foldseek_coordinate_readiness_1000.json"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
+      ],
+      "parameter_assumptions": [
+        "slice_id=1000",
+        "coordinate_dir=artifacts/v3_foldseek_coordinates_1000",
+        "initial readiness staged 25 selected PDB coordinate files"
+      ],
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+      "producer_command_status": "partially_inferred",
+      "sha256": "11cf694d2225c33d8c9dbae803d0f7a90f0c0a8a66e58f037a6c1194a5b2127c",
+      "size_bytes": 6686819,
+      "source_inputs": [
+        "artifacts/v3_geometry_retrieval_1000.json",
+        "artifacts/v3_geometry_features_1000.json",
+        "data/registries/curated_mechanism_labels.json",
+        "public PDB mmCIF coordinate source for the sidecar PDB id"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_300.json --top-k 5 --out artifacts/v3_geometry_retrieval_300.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_300.json",
+      "producer_command_status": "known",
+      "sha256": "f23c07c7d08cd08d6e1ff078fbde399678f15c6267bfe450dee9f5d527eaf2f7",
+      "size_bytes": 6684416,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_300.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_325.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_325.json --max-entries 325 --reuse-existing artifacts/v3_geometry_features_300.json --out artifacts/v3_geometry_features_325.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=325",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_325.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "6c39e83ced03520830a4b2c54350c1ab7e06451aef12df0c801251510ba7f500",
+      "size_bytes": 6641911,
+      "source_inputs": [
+        "artifacts/v1_graph_325.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/handoff.md",
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+        "later descriptive Foldseek/TM signal artifacts and duplicate-screen workflows"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness --slice-id 1000 --retrieval artifacts/v3_geometry_retrieval_1000.json --labels data/registries/curated_mechanism_labels.json --geometry artifacts/v3_geometry_features_1000.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --coordinate-dir artifacts/v3_foldseek_coordinates_1000 --max-coordinate-files 25 --out artifacts/v3_foldseek_coordinate_readiness_1000.json"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
+      ],
+      "parameter_assumptions": [
+        "slice_id=1000",
+        "coordinate_dir=artifacts/v3_foldseek_coordinates_1000",
+        "initial readiness staged 25 selected PDB coordinate files"
+      ],
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
+      "producer_command_status": "partially_inferred",
+      "sha256": "6587f6eb50fc2c2176e6c9d6d8ec4046d9fa5ef44eb5ef3bea602d6d9d3fb009",
+      "size_bytes": 6309247,
+      "source_inputs": [
+        "artifacts/v3_geometry_retrieval_1000.json",
+        "artifacts/v3_geometry_features_1000.json",
+        "data/registries/curated_mechanism_labels.json",
+        "public PDB mmCIF coordinate source for the sidecar PDB id"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_275.json --top-k 5 --out artifacts/v3_geometry_retrieval_275.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_275.json",
+      "producer_command_status": "known",
+      "sha256": "a8d3dcf2efe0c5b062d4b1b1122b38f84b98814b3476dccd1ae035459f669638",
+      "size_bytes": 6182354,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_275.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_300.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_300.json --max-entries 300 --reuse-existing artifacts/v3_geometry_features_275.json --out artifacts/v3_geometry_features_300.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=300",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_300.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "7101311b2e129e017e13057a86109ff71d43f143dc31d67545f6f9307c4ab0c6",
+      "size_bytes": 6140111,
+      "source_inputs": [
+        "artifacts/v1_graph_300.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_retrieval_275.json",
+        "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
+        "structure-mapping issue analysis and review-debt remediation"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_275.json --max-entries 275 --reuse-existing artifacts/v3_geometry_features_250.json --out artifacts/v3_geometry_features_275.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_entries=275",
+        "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+      ],
+      "path": "artifacts/v3_geometry_features_275.json",
+      "producer_command_status": "partially_inferred",
+      "sha256": "ab424387e3191e08506bb195f114c7895d5c13d5ba04cf03efc84fd87b0564f0",
+      "size_bytes": 5713804,
+      "source_inputs": [
+        "artifacts/v1_graph_275.json",
+        "PDB mmCIF coordinate records fetched or cached at generation time",
+        "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/handoff.md",
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+        "later descriptive Foldseek/TM signal artifacts and duplicate-screen workflows"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness --slice-id 1000 --retrieval artifacts/v3_geometry_retrieval_1000.json --labels data/registries/curated_mechanism_labels.json --geometry artifacts/v3_geometry_features_1000.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --coordinate-dir artifacts/v3_foldseek_coordinates_1000 --max-coordinate-files 25 --out artifacts/v3_foldseek_coordinate_readiness_1000.json"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
+      ],
+      "parameter_assumptions": [
+        "slice_id=1000",
+        "coordinate_dir=artifacts/v3_foldseek_coordinates_1000",
+        "initial readiness staged 25 selected PDB coordinate files"
+      ],
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
+      "producer_command_status": "partially_inferred",
+      "sha256": "e4110a9604bbe73cdf62a6a683df28c2fff182d88ba5817727f84e7714cf6bc2",
+      "size_bytes": 5572562,
+      "source_inputs": [
+        "artifacts/v3_geometry_retrieval_1000.json",
+        "artifacts/v3_geometry_features_1000.json",
+        "data/registries/curated_mechanism_labels.json",
+        "public PDB mmCIF coordinate source for the sidecar PDB id"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/handoff.md",
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+        "later descriptive Foldseek/TM signal artifacts and duplicate-screen workflows"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness --slice-id 1000 --retrieval artifacts/v3_geometry_retrieval_1000.json --labels data/registries/curated_mechanism_labels.json --geometry artifacts/v3_geometry_features_1000.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --coordinate-dir artifacts/v3_foldseek_coordinates_1000 --max-coordinate-files 25 --out artifacts/v3_foldseek_coordinate_readiness_1000.json"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
+      ],
+      "parameter_assumptions": [
+        "slice_id=1000",
+        "coordinate_dir=artifacts/v3_foldseek_coordinates_1000",
+        "initial readiness staged 25 selected PDB coordinate files"
+      ],
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
+      "producer_command_status": "partially_inferred",
+      "sha256": "f614434a771ed9782d8856ecdfc65d43657623becdca76b65780602dfbc160be",
+      "size_bytes": 5507198,
+      "source_inputs": [
+        "artifacts/v3_geometry_retrieval_1000.json",
+        "artifacts/v3_geometry_features_1000.json",
+        "data/registries/curated_mechanism_labels.json",
+        "public PDB mmCIF coordinate source for the sidecar PDB id"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "geometry evaluation and abstention calibration artifacts",
+        "hard-negative, in-scope failure, cofactor coverage, and label-expansion analyses",
+        "label-factory audit, active-learning queue, family guardrails, and batch gates"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_250.json --top-k 5 --out artifacts/v3_geometry_retrieval_250.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "top_k=5",
+        "geometry retrieval scoring policy excludes positive mechanism text",
+        "active abstention floor for current guards is 0.4115"
+      ],
+      "path": "artifacts/v3_geometry_retrieval_250.json",
+      "producer_command_status": "known",
+      "sha256": "78c66de91c99cbdbcde34c70cb0f43bfb59fbe41e36a7f8fbb81a44c0f51546f",
+      "size_bytes": 5454312,
+      "source_inputs": [
+        "artifacts/v3_geometry_features_250.json",
+        "data/registries/mechanism_fingerprints.json",
+        "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/handoff.md",
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+        "later descriptive Foldseek/TM signal artifacts and duplicate-screen workflows"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness --slice-id 1000 --retrieval artifacts/v3_geometry_retrieval_1000.json --labels data/registries/curated_mechanism_labels.json --geometry artifacts/v3_geometry_features_1000.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --coordinate-dir artifacts/v3_foldseek_coordinates_1000 --max-coordinate-files 25 --out artifacts/v3_foldseek_coordinate_readiness_1000.json"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
+      ],
+      "parameter_assumptions": [
+        "slice_id=1000",
+        "coordinate_dir=artifacts/v3_foldseek_coordinates_1000",
+        "initial readiness staged 25 selected PDB coordinate files"
+      ],
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
+      "producer_command_status": "partially_inferred",
+      "sha256": "30c5e984027ee90aa962dd123fe18220950b9028ddd9cba54a7798e04165d903",
+      "size_bytes": 5449692,
+      "source_inputs": [
+        "artifacts/v3_geometry_retrieval_1000.json",
+        "artifacts/v3_geometry_features_1000.json",
+        "data/registries/curated_mechanism_labels.json",
+        "public PDB mmCIF coordinate source for the sidecar PDB id"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/status.md",
+        "work/handoff.md",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "regenerable_intermediate",
+      "downstream_consumers": [
+        "artifacts/v3_geometry_features_200.json",
+        "artifacts/v2_benchmark_200.json",
+        "artifacts/v3_sequence_cluster_proxy_200.json",
+        "label-factory, source-scale, geometry, and review-debt workflows for the same slice"
+      ],
+      "git_policy": "manifest_then_externalize_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph --max-mcsa 200 --page-size 100 --out artifacts/v1_graph_200.json"
+      ],
+      "migration_blockers": [],
+      "parameter_assumptions": [
+        "max_mcsa=200",
+        "page_size=100 for current large-slice regeneration",
+        "network source payloads may drift; preserve current SHA-256 before migration"
+      ],
+      "path": "artifacts/v1_graph_200.json",
+      "producer_command_status": "known",
+      "sha256": "5816c648e56bca9e8beb22f08a94357e7b352068b977b89d3a04ed6f88ab5b21",
+      "size_bytes": 5356188,
+      "source_inputs": [
+        "data/source_registry.json",
+        "live/public M-CSA records at generation time",
+        "live/public Rhea and UniProt references reached by graph ingestion"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "work/handoff.md",
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "docs/artifact_storage.md"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_foldseek_coordinate_readiness_1000.json",
+        "artifacts/v3_foldseek_tm_score_signal_1000_staged25.json",
+        "later descriptive Foldseek/TM signal artifacts and duplicate-screen workflows"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness --slice-id 1000 --retrieval artifacts/v3_geometry_retrieval_1000.json --labels data/registries/curated_mechanism_labels.json --geometry artifacts/v3_geometry_features_1000.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --coordinate-dir artifacts/v3_foldseek_coordinates_1000 --max-coordinate-files 25 --out artifacts/v3_foldseek_coordinate_readiness_1000.json"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "restage/refetch procedure must preserve the recorded PDB id, path, size, and SHA-256"
+      ],
+      "parameter_assumptions": [
+        "slice_id=1000",
+        "coordinate_dir=artifacts/v3_foldseek_coordinates_1000",
+        "initial readiness staged 25 selected PDB coordinate files"
+      ],
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
+      "producer_command_status": "partially_inferred",
+      "sha256": "5f230d1041067adbb3909550f7672e68681ae42d5b9ae7e4f368c6882dba366b",
+      "size_bytes": 5299662,
+      "source_inputs": [
+        "artifacts/v3_geometry_retrieval_1000.json",
+        "artifacts/v3_geometry_features_1000.json",
+        "data/registries/curated_mechanism_labels.json",
+        "public PDB mmCIF coordinate source for the sidecar PDB id"
+      ]
+    }
+  ]
+}

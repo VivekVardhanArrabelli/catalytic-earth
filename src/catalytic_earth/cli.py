@@ -12,7 +12,10 @@ from typing import Any
 from .adapters import fetch_mcsa_sample, fetch_rhea_sample
 from .artifact_storage import (
     DEFAULT_LARGE_FILE_THRESHOLD_BYTES,
+    build_artifact_migration_readiness_plan,
+    build_artifact_producer_consumer_manifest,
     build_artifact_storage_inventory,
+    check_artifact_admission_guard,
     check_artifact_storage_policy,
 )
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
@@ -594,6 +597,49 @@ def cmd_check_artifact_storage_policy(args: argparse.Namespace) -> int:
     write_json(Path(args.out), check)
     print(f"Wrote artifact storage policy check to {args.out}")
     return 0 if check["metadata"]["status"] == "passed" else 2
+
+
+def cmd_build_artifact_producer_consumer_manifest(args: argparse.Namespace) -> int:
+    inventory = read_json_object(Path(args.inventory))
+    manifest = build_artifact_producer_consumer_manifest(
+        inventory,
+        inventory_path=args.inventory,
+    )
+    write_json(Path(args.out), manifest)
+    print(
+        "Wrote artifact producer/consumer manifest to "
+        f"{args.out} ({manifest['metadata']['included_file_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_artifact_migration_readiness_plan(args: argparse.Namespace) -> int:
+    inventory = read_json_object(Path(args.inventory))
+    manifest = read_json_object(Path(args.producer_consumer_manifest))
+    plan = build_artifact_migration_readiness_plan(
+        inventory,
+        manifest,
+        inventory_path=args.inventory,
+        manifest_path=args.producer_consumer_manifest,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote artifact migration-readiness plan to "
+        f"{args.out} ({plan['metadata']['planned_file_count']} rows)"
+    )
+    return 0
+
+
+def cmd_check_artifact_admission_guard(args: argparse.Namespace) -> int:
+    inventory = read_json_object(Path(args.inventory))
+    manifest = read_json_object(Path(args.producer_consumer_manifest))
+    guard = check_artifact_admission_guard(inventory, manifest)
+    write_json(Path(args.out), guard)
+    print(
+        "Wrote artifact admission guard to "
+        f"{args.out} ({guard['metadata']['status']})"
+    )
+    return 0 if guard["metadata"]["status"] == "passed" else 2
 
 
 def cmd_fingerprint_demo(args: argparse.Namespace) -> int:
@@ -6006,6 +6052,56 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_artifact_storage_policy_check_1025.json",
     )
     storage_policy.set_defaults(func=cmd_check_artifact_storage_policy)
+
+    artifact_manifest = subparsers.add_parser(
+        "build-artifact-producer-consumer-manifest",
+        help="map large regenerable/cache artifacts to producer and consumer provenance",
+    )
+    artifact_manifest.add_argument(
+        "--inventory",
+        default="artifacts/v3_artifact_storage_inventory_1025.json",
+    )
+    artifact_manifest.add_argument(
+        "--out",
+        default="artifacts/v3_artifact_producer_consumer_manifest_1025.json",
+    )
+    artifact_manifest.set_defaults(func=cmd_build_artifact_producer_consumer_manifest)
+
+    migration_plan = subparsers.add_parser(
+        "build-artifact-migration-readiness-plan",
+        help="rank large artifact rows for a future no-loss storage migration",
+    )
+    migration_plan.add_argument(
+        "--inventory",
+        default="artifacts/v3_artifact_storage_inventory_1025.json",
+    )
+    migration_plan.add_argument(
+        "--producer-consumer-manifest",
+        default="artifacts/v3_artifact_producer_consumer_manifest_1025.json",
+    )
+    migration_plan.add_argument(
+        "--out",
+        default="artifacts/v3_artifact_migration_readiness_plan_1025.json",
+    )
+    migration_plan.set_defaults(func=cmd_build_artifact_migration_readiness_plan)
+
+    admission_guard = subparsers.add_parser(
+        "check-artifact-admission-guard",
+        help="fail future large noncanonical artifacts without provenance rows",
+    )
+    admission_guard.add_argument(
+        "--inventory",
+        default="artifacts/v3_artifact_storage_inventory_1025.json",
+    )
+    admission_guard.add_argument(
+        "--producer-consumer-manifest",
+        default="artifacts/v3_artifact_producer_consumer_manifest_1025.json",
+    )
+    admission_guard.add_argument(
+        "--out",
+        default="artifacts/v3_artifact_admission_guard_1025.json",
+    )
+    admission_guard.set_defaults(func=cmd_check_artifact_admission_guard)
 
     demo = subparsers.add_parser("fingerprint-demo", help="build mechanism demo artifact")
     demo.add_argument("--out", default="artifacts/mechanism_demo.json")
