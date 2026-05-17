@@ -50,6 +50,18 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-17T14:38:38Z verification run, the latest pushed repository
+state supersedes the older O14756/Q6NSJ0 import-attempt prompt. The two-candidate
+attempt is already terminally closed, `P06744`, `P78549`, and `Q3LXA3` are the
+only external countable hard negatives, and the canonical registry remains at
+682 labels: 212 seed-fingerprint positives and 470 out-of-scope labels.
+Evidence-based confidence call: the current state is coherent and should not
+reopen O14756/Q6NSJ0, P22830, the broader duplicate-signal rejects, the six
+original pilot repair lanes, or M-CSA strict TM repair without explicit new
+evidence. Startup verification passed with 405 unit tests and `validate` over
+682 curated labels. `docs/label_factory.md` was corrected to match the current
+682-label state.
+
 As of the 2026-05-17T13:37:34Z run, `P06744` is imported as the third external
 out-of-scope hard-negative label. Evidence-based confidence call: the import is
 defensible under the current 8-fingerprint ontology because terminal review,

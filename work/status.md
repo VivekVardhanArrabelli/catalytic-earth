@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 156
-- Measured elapsed time: 5065.9 minutes (84.43 hours)
+- Entries: 157
+- Measured elapsed time: 5069.0 minutes (84.48 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2905.5 measured minutes (48.42 hours)
+- post-v2: 2908.6 measured minutes (48.48 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1767
-- Evidence references logged: 1382
+- Artifact references logged: 1769
+- Evidence references logged: 1387
 
 ## Recent Entries
-
-### 2026-05-17T06:47:35.798677+00:00 - post-v2
-
-- Task: Advance next-candidate duplicate and review evidence
-- Time mode: measured
-- Measured minutes: 18.333
-- Started: 2026-05-17T06:29:04Z
-- Ended: 2026-05-17T06:47:24Z
-- Artifacts: artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_1025.json, artifacts/v3_external_hard_negative_next_candidate_all_vs_all_sequence_search_audit_1025.json, artifacts/v3_external_hard_negative_next_candidate_duplicate_evidence_review_1025.json, artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json, artifacts/v3_external_hard_negative_next_candidate_targeted_uniref_check_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 383 unit tests passed, startup validate passed with 679 curated labels, next-candidate all-vs-all MMseqs2 sequence screen completed with 8/8 no-signal rows, next-candidate duplicate evidence review recorded 3 bounded-clear UniRef-pending rows, terminal review queue recorded 3 review-only rows, targeted UniRef90/50 nearest-reference check found 0 shared clusters for P22830 P78549 Q3LXA3, final 386 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON parse checks passed
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; label_factory docs checked unchanged.
 
 ### 2026-05-17T07:42:26.961418+00:00 - post-v2
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_hard_negative_broader_structural_terminal_review_decisions_1025.json, artifacts/v3_external_hard_negative_broader_structural_factory_import_gate_1025.json, data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_labels.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
 - Evidence: startup 404 unit tests passed, startup validate passed with 681 labels, P06744 terminal review accepted pending factory gate, P06744 broader structural factory gate selected exactly one import, all 8 P06744 current-fingerprint scores stayed below 0.4115, registry now has 682 labels and 470 out-of-scope labels, final 405 unit tests passed, validate passed with 682 curated labels, compileall passed, git diff --check passed
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
+
+### 2026-05-17T14:41:44.473305+00:00 - post-v2
+
+- Task: Verify post-import state and refresh docs
+- Time mode: measured
+- Measured minutes: 3.1
+- Started: 2026-05-17T14:38:38Z
+- Ended: 2026-05-17T14:41:44Z
+- Artifacts: docs/label_factory.md, work/handoff.md
+- Evidence: startup 405 unit tests passed, validate passed with 682 curated labels, SSH deploy-key remote and dry-run push verified, latest pushed repo already contains P06744 P78549 Q3LXA3 external out-of-scope hard negatives, docs corrected from stale 680-label wording to 682-label state
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. Older O14756/Q6NSJ0 prompt was superseded by latest pushed state; no closed import lanes reopened.
 
 ## Expectation Updates
 
