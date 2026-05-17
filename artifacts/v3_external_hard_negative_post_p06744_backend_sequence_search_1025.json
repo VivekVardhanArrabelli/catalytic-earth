@@ -1,0 +1,442 @@
+{
+  "blockers": [
+    "external_review_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "exact_reference_rows": [],
+  "failure_rows": [],
+  "fetch_failures": [],
+  "metadata": {
+    "alignment_row_count": 2,
+    "backend_available": true,
+    "backend_commands": [
+      "/opt/homebrew/bin/mmseqs easy-search /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_external_1025.fasta /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_reference_1025.fasta /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_1025.tsv /private/tmp/catalytic-earth-external-sequence-mmseqs-993e368facf886cc/tmp --format-output query,target,pident,alnlen,evalue,bits --min-seq-id 0.0 -c 0.8 --cov-mode 0 --max-seqs 10000 --threads 1"
+    ],
+    "backend_name": "mmseqs2_easy_search",
+    "backend_requested": "auto",
+    "backend_result_tsv": "artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_1025.tsv",
+    "backend_succeeded": true,
+    "backend_version": "18-8cc5c",
+    "blocker_not_removed": [
+      "uniref_wide_or_external_all_vs_all_duplicate_screen_not_run"
+    ],
+    "blocker_removed": "bounded_current_reference_backend_sequence_search",
+    "blocker_removed_for_status": "current_reference_backend_no_signal",
+    "candidate_count": 6,
+    "countable_label_candidate_count": 0,
+    "coverage_threshold": 0.8,
+    "current_reference_accession_count": 735,
+    "current_reference_sequence_count": 737,
+    "exact_coverage_threshold": 0.98,
+    "exact_identity_threshold": 0.999,
+    "exact_reference_row_count": 0,
+    "expected_external_sequence_count": 6,
+    "external_sequence_count": 6,
+    "external_sequence_source": "uniprot_sequence_batch_search",
+    "failure_row_count": 0,
+    "identity_threshold": 0.9,
+    "import_ready_row_count": 0,
+    "inactive_reference_accession_resolutions": {
+      "P03176": [
+        "P0DTH5",
+        "Q9QNF7"
+      ],
+      "Q05489": [
+        "P0DUB8",
+        "P0DUB9"
+      ]
+    },
+    "limitations": [
+      "MMseqs2 easy-search reports heuristic local alignments at the configured coverage threshold; it is not an exhaustive dynamic programming matrix for every low-identity pair",
+      "bounded search compares the provided external candidate manifest against current accepted countable reference sequences only; no UniRef database was downloaded or searched",
+      "backend no-signal rows remove complete-search debt for the bounded current-reference pilot screen only; exact and near-duplicate rows remain holdout controls",
+      "Foldseek/TM-score structural duplicate screening is not computed here"
+    ],
+    "max_external_vs_reference_identity": 0.64,
+    "max_rows": 8,
+    "method": "external_source_backend_sequence_search",
+    "missing_external_sequence_accessions": [],
+    "missing_external_sequence_count": 0,
+    "missing_reference_sequence_accessions": [],
+    "missing_reference_sequence_count": 0,
+    "near_duplicate_row_count": 0,
+    "no_signal_row_count": 6,
+    "ready_for_label_import": false,
+    "reference_fasta_record_count": 734,
+    "review_only_rule": "real backend sequence-search evidence is review-only and cannot make external rows countable or import-ready",
+    "row_blocker_counts": {
+      "external_review_decision_artifact_not_built": 6,
+      "full_label_factory_gate_not_run": 6
+    },
+    "search_status_counts": {
+      "no_near_duplicate_signal": 6
+    },
+    "sequence_source_artifacts": {
+      "candidate_manifest": "external_hard_negative_post_p06744_sourcing",
+      "generated_external_fasta": "artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_external_1025.fasta",
+      "generated_reference_fasta": "artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_reference_1025.fasta",
+      "reference_fasta": "artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta",
+      "sequence_clusters": "sequence_cluster_proxy_from_reference_uniprot"
+    }
+  },
+  "near_duplicate_rows": [],
+  "no_signal_rows": [
+    {
+      "accession": "P09104",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P09104",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 434,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.622,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Gamma-enolase (EC 4.2.1.11) (2-phospho-D-glycerate hydro-lyase) (Enolase 2) (Neural enolase) (Neuron-specific enolase) (NSE)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P09104",
+          "alignment_length": 437,
+          "bits": 564.0,
+          "evalue": 1.433e-181,
+          "external_length": 434,
+          "identity": 0.622,
+          "matched_m_csa_entry_ids": [
+            "m_csa:311"
+          ],
+          "min_coverage": 1.0,
+          "query_coverage": 1.0069,
+          "reference_accession": "P00924",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 437,
+          "requested_reference_accession": "P00924",
+          "target_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "accession": "P13929",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P13929",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 434,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.64,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Beta-enolase (EC 4.2.1.11) (2-phospho-D-glycerate hydro-lyase) (Enolase 3) (Muscle-specific enolase) (MSE) (Skeletal muscle enolase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P13929",
+          "alignment_length": 431,
+          "bits": 573.0,
+          "evalue": 7.557e-185,
+          "external_length": 434,
+          "identity": 0.64,
+          "matched_m_csa_entry_ids": [
+            "m_csa:311"
+          ],
+          "min_coverage": 0.9863,
+          "query_coverage": 0.9931,
+          "reference_accession": "P00924",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 437,
+          "requested_reference_accession": "P00924",
+          "target_coverage": 0.9863
+        }
+      ]
+    },
+    {
+      "accession": "P23921",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P23921",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 792,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Ribonucleoside-diphosphate reductase large subunit (EC 1.17.4.1) (Ribonucleoside-diphosphate reductase subunit M1) (Ribonucleotide reductase large subunit)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P26439",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P26439",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 372,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type 2 (3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type II) (3-beta-HSD II) (3-beta-HSD adrenal and gonadal type) [Includes: 3-beta-hydroxy-Delta(5)-steroid dehydrogenase (EC 1.1.1.145) (3-beta-hydroxy-5-ene steroid dehydrogenase) (Progesterone reductase); Steroid Delta-isomerase (EC 5.3.3.1) (Delta-5-3-ketosteroid isomerase)]",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q15084",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q15084",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 440,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Protein disulfide-isomerase A6 (EC 5.3.4.1) (Endoplasmic reticulum protein 5) (ER protein 5) (ERp5) (Protein disulfide isomerase P5) (Thioredoxin domain-containing protein 7)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q96JJ7",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q96JJ7",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 454,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Protein disulfide-isomerase TMX3 (EC 5.3.4.1) (Thioredoxin domain-containing protein 10) (Thioredoxin-related transmembrane protein 3)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    }
+  ],
+  "rows": [
+    {
+      "accession": "P09104",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P09104",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 434,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.622,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Gamma-enolase (EC 4.2.1.11) (2-phospho-D-glycerate hydro-lyase) (Enolase 2) (Neural enolase) (Neuron-specific enolase) (NSE)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P09104",
+          "alignment_length": 437,
+          "bits": 564.0,
+          "evalue": 1.433e-181,
+          "external_length": 434,
+          "identity": 0.622,
+          "matched_m_csa_entry_ids": [
+            "m_csa:311"
+          ],
+          "min_coverage": 1.0,
+          "query_coverage": 1.0069,
+          "reference_accession": "P00924",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 437,
+          "requested_reference_accession": "P00924",
+          "target_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "accession": "P13929",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P13929",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 434,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.64,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Beta-enolase (EC 4.2.1.11) (2-phospho-D-glycerate hydro-lyase) (Enolase 3) (Muscle-specific enolase) (MSE) (Skeletal muscle enolase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P13929",
+          "alignment_length": 431,
+          "bits": 573.0,
+          "evalue": 7.557e-185,
+          "external_length": 434,
+          "identity": 0.64,
+          "matched_m_csa_entry_ids": [
+            "m_csa:311"
+          ],
+          "min_coverage": 0.9863,
+          "query_coverage": 0.9931,
+          "reference_accession": "P00924",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 437,
+          "requested_reference_accession": "P00924",
+          "target_coverage": 0.9863
+        }
+      ]
+    },
+    {
+      "accession": "P23921",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P23921",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 792,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Ribonucleoside-diphosphate reductase large subunit (EC 1.17.4.1) (Ribonucleoside-diphosphate reductase subunit M1) (Ribonucleotide reductase large subunit)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P26439",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P26439",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 372,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type 2 (3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type II) (3-beta-HSD II) (3-beta-HSD adrenal and gonadal type) [Includes: 3-beta-hydroxy-Delta(5)-steroid dehydrogenase (EC 1.1.1.145) (3-beta-hydroxy-5-ene steroid dehydrogenase) (Progesterone reductase); Steroid Delta-isomerase (EC 5.3.3.1) (Delta-5-3-ketosteroid isomerase)]",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q15084",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q15084",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 440,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Protein disulfide-isomerase A6 (EC 5.3.4.1) (Endoplasmic reticulum protein 5) (ER protein 5) (ERp5) (Protein disulfide isomerase P5) (Thioredoxin domain-containing protein 7)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q96JJ7",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q96JJ7",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 454,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Protein disulfide-isomerase TMX3 (EC 5.3.4.1) (Thioredoxin domain-containing protein 10) (Thioredoxin-related transmembrane protein 3)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    }
+  ],
+  "warnings": [
+    "the backend search removes bounded current-reference sequence-search debt only for no-signal rows; active-site evidence, representation controls, review decisions, and factory gates remain required"
+  ]
+}

@@ -580,6 +580,17 @@ accepts it as out-of-scope pending factory gates, and
 then imports exactly `uniprot:P06744` while treating prior external labels as
 lineage. The canonical registry now has 682 labels: 212 seed fingerprints and
 470 out-of-scope labels.
+`artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json` opens the
+next review-only source surface after that import without authorizing count
+growth. It excludes the prior imported/deferred/rejected rows, selects six
+covered-lane candidates (`P23921`, `P26439`, `P09104`, `P13929`, `Q15084`,
+and `Q96JJ7`) across three lanes, and keeps all rows non-countable. The
+bounded current-reference and external all-vs-all MMseqs2 screens both report
+6/6 no-signal rows with guardrail-clean audits. The follow-on Foldseek surface
+materializes all six AlphaFold sidecars, covers 15/15 external all-vs-all
+pairs, and then rejects all six rows as current-countable structural duplicate
+signals (`TM >=0.7`), so this post-P06744 surface is terminally closed with 0
+import-ready rows.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

@@ -50,6 +50,25 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-17T15:41:11Z run, the project did not reopen the superseded
+O14756/Q6NSJ0 import attempt. Instead, it opened a bounded post-P06744
+review-only sourcing surface and ran the first sequence duplicate screens.
+`artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json` excludes
+the prior fresh, next-candidate, broader-structural, and P22830 deferral
+surfaces, then selects six non-countable covered-lane rows: `P23921`, `P26439`,
+`P09104`, `P13929`, `Q15084`, and `Q96JJ7`. The current-reference MMseqs2
+screen and external all-vs-all sequence screen both report 6/6 no-signal rows
+with guardrail-clean audits. The structural follow-up materializes all six
+AlphaFold sidecars, completes the 15/15 external all-vs-all Foldseek cache, and
+screens all six rows against current countable structures. Every row has a
+high-TM current-countable duplicate signal, so
+`artifacts/v3_external_hard_negative_post_p06744_terminal_decisions_1025.json`
+records six terminal review-only duplicate rejections with 0 import-ready rows
+and 0 countable candidates. Evidence-based confidence call: this surface is
+closed by structural duplicate evidence; next work needs fresh sourcing rather
+than retrying these six rows. Verification passed with 409 unit tests,
+`validate` over 682 curated labels, `compileall`, and `git diff --check`.
+
 As of the 2026-05-17T14:38:38Z verification run, the latest pushed repository
 state supersedes the older O14756/Q6NSJ0 import-attempt prompt. The two-candidate
 attempt is already terminally closed, `P06744`, `P78549`, and `Q3LXA3` are the

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 157
-- Measured elapsed time: 5069.0 minutes (84.48 hours)
+- Entries: 158
+- Measured elapsed time: 5111.2 minutes (85.19 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2908.6 measured minutes (48.48 hours)
+- post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1769
-- Evidence references logged: 1387
+- Artifact references logged: 1784
+- Evidence references logged: 1397
 
 ## Recent Entries
-
-### 2026-05-17T07:42:26.961418+00:00 - post-v2
-
-- Task: Screen next hard-negative UniRef clusters
-- Time mode: measured
-- Measured minutes: 12.833
-- Started: 2026-05-17T07:29:36Z
-- Ended: 2026-05-17T07:42:26Z
-- Artifacts: artifacts/v3_external_hard_negative_next_candidate_uniref_current_reference_screen_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, artifacts/v3_external_source_transfer_gate_check_1025.json
-- Evidence: startup 386 unit tests passed, startup validate passed with 679 curated labels, UniRef90/50 current-reference screen fetched 6/6 candidate clusters, P22830 P78549 Q3LXA3 had 0 current-reference cluster overlaps, remaining blockers are terminal review acceptance and full factory gate, 388 final unit tests passed, validate passed, compileall passed, git diff --check passed, external transfer gate 68/68
-- Notes: Normal locked direct run over SSH deploy-key path with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
 
 ### 2026-05-17T09:08:30+00:00 - post-v2
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: docs/label_factory.md, work/handoff.md
 - Evidence: startup 405 unit tests passed, validate passed with 682 curated labels, SSH deploy-key remote and dry-run push verified, latest pushed repo already contains P06744 P78549 Q3LXA3 external out-of-scope hard negatives, docs corrected from stale 680-label wording to 682-label state
 - Notes: Normal locked direct run over SSH deploy-key path with no delegation. Older O14756/Q6NSJ0 prompt was superseded by latest pushed state; no closed import lanes reopened.
+
+### 2026-05-17T16:23:19.784897+00:00 - post-v2
+
+- Task: Close post-P06744 hard-negative source surface
+- Time mode: measured
+- Measured minutes: 42.133
+- Started: 2026-05-17T15:41:11Z
+- Ended: 2026-05-17T16:23:19Z
+- Artifacts: artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json, artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_1025.json, artifacts/v3_external_hard_negative_post_p06744_all_vs_all_sequence_search_1025.json, artifacts/v3_external_hard_negative_post_p06744_structural_cluster_index_1025.json, artifacts/v3_external_hard_negative_post_p06744_current_countable_structural_screen_1025.json, artifacts/v3_external_hard_negative_post_p06744_terminal_decisions_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 405 unit tests passed, startup validate passed with 682 curated labels, post-P06744 sourcing selected 6 review-only covered-lane rows, bounded sequence screens were 6/6 no-signal and guardrail-clean, Foldseek current-countable screen completed 4032/4032 pairs and rejected all 6 as structural duplicate signals, terminal decisions recorded 0 import-ready rows and 0 countable candidates, final 409 unit tests passed, validate passed with 682 labels, compileall passed, git diff --check passed
+- Notes: Normal locked direct run over SSH deploy-key path with no delegation. Older O14756/Q6NSJ0 import prompt stayed superseded; no countable labels imported.
 
 ## Expectation Updates
 

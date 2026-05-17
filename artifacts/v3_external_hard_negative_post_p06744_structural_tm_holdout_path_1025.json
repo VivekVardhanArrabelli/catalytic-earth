@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "alphafold_reference_candidate_count": 6,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "candidate_manifest": "artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json",
+        "pilot_candidate_priority": "artifacts/v3_external_source_pilot_candidate_priority_1025.json"
+      },
+      "blocker_removed": "broader_external_fold_diverse_candidate_surface_expanded_for_structure_clustering",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "candidate_manifest": 1025,
+        "pilot_candidate_priority": 1025
+      },
+      "payload_methods": {
+        "candidate_manifest": "external_hard_negative_post_p06744_sourcing",
+        "pilot_candidate_priority": "external_source_pilot_candidate_priority"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "candidate_manifest": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "candidate_manifest",
+          "pilot_candidate_priority"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "external_structural_cluster_index_not_built",
+      "external_structural_tm_diverse_split_not_assigned"
+    ],
+    "blocker_removed": "broader_external_fold_diverse_candidate_surface_expanded_for_structure_clustering",
+    "broader_surface_candidate_count": 6,
+    "candidate_count": 6,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T15:56:07Z",
+    "foldseek_or_tmalign_backend_required": true,
+    "full_tm_score_holdout_claim_permitted": false,
+    "import_ready_row_count": 0,
+    "lane_counts": {
+      "external_source:isomerase": 2,
+      "external_source:lyase": 2,
+      "external_source:oxidoreductase_long_tail": 2
+    },
+    "max_rows": 6,
+    "method": "external_structural_tm_holdout_path",
+    "nearest_neighbor_cache_required": true,
+    "pdb_reference_candidate_count": 4,
+    "ready_for_label_import": false,
+    "review_status": "review_only_non_countable",
+    "selected_pilot_candidate_count": 0,
+    "slice_id": "1025",
+    "source_candidate_manifest": "artifacts/v3_external_source_candidate_manifest_1025.json",
+    "source_candidate_manifest_method": "external_hard_negative_post_p06744_sourcing",
+    "source_pilot_candidate_priority": "artifacts/v3_external_source_pilot_candidate_priority_1025.json",
+    "source_pilot_candidate_priority_method": "external_source_pilot_candidate_priority",
+    "strict_tm_threshold_target": "<0.7",
+    "structure_cluster_before_split_assignment": true,
+    "structure_reference_candidate_count": 6,
+    "surface_scope": "broader_external_surface",
+    "tm_score_split_claim_permitted": false
+  },
+  "rows": [
+    {
+      "accession": "P23921",
+      "alphafold_ids": [
+        "P23921"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P23921",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_reference_count": 12,
+      "pdb_reference_examples": [
+        "2WGH",
+        "3HNC",
+        "3HND",
+        "3HNE",
+        "3HNF"
+      ],
+      "protein_name": "Ribonucleoside-diphosphate reductase large subunit (EC 1.17.4.1) (Ribonucleoside-diphosphate reductase subunit M1) (Ribonucleotide reductase large subunit)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "P26439",
+      "alphafold_ids": [
+        "P26439"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P26439",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "protein_name": "3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type 2 (3 beta-hydroxysteroid dehydrogenase/Delta 5-->4-isomerase type II) (3-beta-HSD II) (3-beta-HSD adrenal and gonadal type) [Includes: 3-beta-hydroxy-Delta(5)-steroid dehydrogenase (EC 1.1.1.145) (3-beta-hydroxy-5-ene steroid dehydrogenase) (Progesterone reductase); Steroid Delta-isomerase (EC 5.3.3.1) (Delta-5-3-ketosteroid isomerase)]",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "P09104",
+      "alphafold_ids": [
+        "P09104"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P09104",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 16,
+      "pdb_reference_examples": [
+        "1TE6",
+        "2AKM",
+        "2AKZ",
+        "3UCC",
+        "3UCD"
+      ],
+      "protein_name": "Gamma-enolase (EC 4.2.1.11) (2-phospho-D-glycerate hydro-lyase) (Enolase 2) (Neural enolase) (Neuron-specific enolase) (NSE)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "P13929",
+      "alphafold_ids": [
+        "P13929"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P13929",
+      "lane_id": "external_source:lyase",
+      "pdb_reference_count": 1,
+      "pdb_reference_examples": [
+        "2XSX"
+      ],
+      "protein_name": "Beta-enolase (EC 4.2.1.11) (2-phospho-D-glycerate hydro-lyase) (Enolase 3) (Muscle-specific enolase) (MSE) (Skeletal muscle enolase)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "Q15084",
+      "alphafold_ids": [
+        "Q15084"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q15084",
+      "lane_id": "external_source:isomerase",
+      "pdb_reference_count": 6,
+      "pdb_reference_examples": [
+        "1X5D",
+        "3VWW",
+        "3W8J",
+        "4EF0",
+        "4GWR"
+      ],
+      "protein_name": "Protein disulfide-isomerase A6 (EC 5.3.4.1) (Endoplasmic reticulum protein 5) (ER protein 5) (ERp5) (Protein disulfide isomerase P5) (Thioredoxin domain-containing protein 7)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    },
+    {
+      "accession": "Q96JJ7",
+      "alphafold_ids": [
+        "Q96JJ7"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q96JJ7",
+      "lane_id": "external_source:isomerase",
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "protein_name": "Protein disulfide-isomerase TMX3 (EC 5.3.4.1) (Thioredoxin domain-containing protein 10) (Thioredoxin-related transmembrane protein 3)",
+      "ready_for_label_import": false,
+      "scope_signal": null,
+      "selected_pilot_status": "broader_external_candidate_surface",
+      "structural_holdout_status": "ready_for_external_structure_indexing",
+      "structure_reference_status": "pdb_or_alphafold_reference_present"
+    }
+  ],
+  "warnings": [
+    "external structural TM holdout path is a review-only candidate surface; it requires clustering before split assignment and does not authorize import"
+  ]
+}

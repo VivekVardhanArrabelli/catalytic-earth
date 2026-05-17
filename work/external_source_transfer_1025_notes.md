@@ -553,3 +553,23 @@ transfer gates pass.
 Next bounded work should not retry the five broader duplicate-signal rows,
 reopen the six original pilot repair lanes, or import P22830 without an
 explicit decision that supersedes the deferral artifact.
+
+The post-P06744 sourcing pass is review-only and does not change label counts.
+`artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json` excludes
+the prior fresh, next-candidate, and broader-structural sourcing surfaces plus
+the P22830 deferral before selecting six new covered-lane source-evidence rows:
+`P23921`, `P26439`, `P09104`, `P13929`, `Q15084`, and `Q96JJ7`. The bounded
+current-reference sequence screen
+`artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_1025.json`
+and all-vs-all sequence screen
+`artifacts/v3_external_hard_negative_post_p06744_all_vs_all_sequence_search_1025.json`
+both report 6/6 no-signal rows with guardrail-clean audits. The structural
+follow-up then materializes all six AlphaFold sidecars, completes the 15/15
+external all-vs-all Foldseek cache, and screens all six rows against 672
+current countable structures. Every row has a high-TM current-countable
+duplicate signal: `P09104` and `P13929` to `m_csa:311` at `0.9818`, `P23921`
+to `m_csa:735` at `0.7661`, `P26439` to `m_csa:557` at `0.8169`, and
+`Q15084`/`Q96JJ7` to `m_csa:191` at `0.8371`/`0.7849`. Evidence-based
+confidence call: this post-P06744 surface is terminally closed by structural
+duplicates with 0 import-ready rows and 0 countable candidates; next work needs
+new sourcing rather than retrying these six rows.

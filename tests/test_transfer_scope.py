@@ -109,6 +109,7 @@ from catalytic_earth.transfer_scope import (
     build_external_hard_negative_next_candidate_terminal_review_queue,
     build_external_hard_negative_next_candidate_uniref_current_reference_screen,
     build_external_hard_negative_later_single_import_cycle_gate,
+    build_external_hard_negative_post_p06744_sourcing,
     build_external_hard_negative_second_tranche_current_countable_structural_screen,
     build_external_hard_negative_second_tranche_terminal_decisions,
     check_external_source_transfer_gates,
@@ -10733,6 +10734,228 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertTrue(
             all(not row["countable_label_candidate"] for row in sourcing["rows"])
+        )
+
+    def test_post_p06744_sourcing_excludes_prior_import_surface(self) -> None:
+        def fake_query(query: str, size: int) -> dict:
+            self.assertEqual(size, 4)
+            if "ec:1" in query:
+                return {
+                    "records": [
+                        {
+                            "accession": "P06744",
+                            "entry_name": "P06744_HUMAN",
+                            "protein_name": "already imported external row",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["1.1.1.1"],
+                            "pdb_ids": ["1OLD"],
+                            "alphafold_ids": ["P06744"],
+                        },
+                        {
+                            "accession": "OXPOST",
+                            "entry_name": "OXPOST_HUMAN",
+                            "protein_name": "post import oxidoreductase",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["1.1.1.2"],
+                            "pdb_ids": ["1OXP"],
+                            "alphafold_ids": ["OXPOST"],
+                        },
+                    ]
+                }
+            if "ec:4" in query:
+                return {
+                    "records": [
+                        {
+                            "accession": "Q9BV20",
+                            "entry_name": "Q9BV20_HUMAN",
+                            "protein_name": "prior structural duplicate",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["4.1.1.1"],
+                            "pdb_ids": ["1DUP"],
+                            "alphafold_ids": ["Q9BV20"],
+                        },
+                        {
+                            "accession": "LYPOST",
+                            "entry_name": "LYPOST_HUMAN",
+                            "protein_name": "post import lyase",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["4.1.1.2"],
+                            "pdb_ids": ["1LYP"],
+                            "alphafold_ids": ["LYPOST"],
+                        },
+                    ]
+                }
+            return {
+                "records": [
+                    {
+                        "accession": "P22830",
+                        "entry_name": "P22830_HUMAN",
+                        "protein_name": "prior deferred candidate",
+                        "reviewed": "reviewed",
+                        "ec_numbers": ["5.3.1.1"],
+                        "pdb_ids": ["1DEF"],
+                        "alphafold_ids": ["P22830"],
+                    },
+                    {
+                        "accession": "ISPOST",
+                        "entry_name": "ISPOST_HUMAN",
+                        "protein_name": "post import isomerase",
+                        "reviewed": "reviewed",
+                        "ec_numbers": ["5.3.1.2"],
+                        "pdb_ids": ["1ISP"],
+                        "alphafold_ids": ["ISPOST"],
+                    },
+                ]
+            }
+
+        def fake_entry(accession: str) -> dict:
+            return {
+                "record": {
+                    "entry_name": f"{accession}_HUMAN",
+                    "entry_type": "Swiss-Prot",
+                    "active_site_features": [
+                        {"feature_type": "Active site", "begin": 7}
+                    ],
+                    "binding_site_features": [],
+                    "catalytic_activity_comments": [
+                        {"reaction": "reviewed reaction", "ec_number": "1.1.1.1"}
+                    ],
+                    "cofactor_comments": [],
+                }
+            }
+
+        sourcing = build_external_hard_negative_post_p06744_sourcing(
+            query_manifest={
+                "metadata": {"method": "external_source_query_manifest"},
+                "rows": [
+                    {
+                        "lane_id": "external_source:oxidoreductase_long_tail",
+                        "scope_signal": "oxidoreductase_long_tail",
+                        "source_query_draft": "(reviewed:true) AND (ec:1.*)",
+                    },
+                    {
+                        "lane_id": "external_source:lyase",
+                        "scope_signal": "lyase",
+                        "source_query_draft": "(reviewed:true) AND (ec:4.*)",
+                    },
+                    {
+                        "lane_id": "external_source:isomerase",
+                        "scope_signal": "isomerase",
+                        "source_query_draft": "(reviewed:true) AND (ec:5.*)",
+                    },
+                ],
+            },
+            current_candidate_manifest={
+                "metadata": {"method": "external_source_candidate_manifest"},
+                "rows": [],
+            },
+            second_tranche_terminal_decisions={
+                "metadata": {
+                    "method": "external_hard_negative_second_tranche_terminal_decisions"
+                },
+                "rows": [],
+            },
+            prior_new_candidate_sourcings=(
+                {
+                    "metadata": {
+                        "method": "external_hard_negative_broader_structural_sourcing"
+                    },
+                    "rows": [
+                        {
+                            "accession": "P06744",
+                            "sourcing_status": (
+                                "sourced_pending_sequence_structure_distance_screens"
+                            ),
+                        }
+                    ],
+                },
+            ),
+            prior_new_candidate_terminal_decision_artifacts=(
+                {
+                    "metadata": {
+                        "method": (
+                            "external_hard_negative_broader_structural_terminal_decisions"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "Q9BV20",
+                            "terminal_decision_status": (
+                                "rejected_current_countable_structural_duplicate_signal"
+                            ),
+                        }
+                    ],
+                },
+            ),
+            prior_deferred_candidate_decisions=(
+                {
+                    "metadata": {
+                        "method": "external_hard_negative_p22830_cycle_deferral_decision"
+                    },
+                    "rows": [
+                        {
+                            "accession": "P22830",
+                            "cycle_decision_status": "deferred_before_import",
+                        }
+                    ],
+                },
+            ),
+            max_records_per_lane=4,
+            max_active_site_fetches=8,
+            max_candidates=3,
+            max_candidates_per_lane=1,
+            min_sourced_lanes=3,
+            fetch_query=fake_query,
+            fetch_entry=fake_entry,
+            artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+        )
+
+        metadata = sourcing["metadata"]
+        self.assertEqual(
+            metadata["method"], "external_hard_negative_post_p06744_sourcing"
+        )
+        self.assertEqual(
+            metadata["selection_scope"],
+            "post_p06744_external_sourcing_after_three_imports_no_import_attempt",
+        )
+        self.assertEqual(metadata["sourced_candidate_count"], 3)
+        self.assertEqual(metadata["sourced_lane_count"], 3)
+        self.assertTrue(metadata["lane_balance_guardrail_clean"])
+        by_accession = {row["accession"]: row for row in sourcing["rows"]}
+        self.assertEqual(
+            by_accession["P06744"]["sourcing_status"],
+            "excluded_prior_new_candidate_pool",
+        )
+        self.assertEqual(
+            by_accession["Q9BV20"]["sourcing_status"],
+            "blocked_source_sourcing_criteria",
+        )
+        self.assertIn(
+            "terminal_duplicate_rejection_previous_new_candidate_tranche",
+            by_accession["Q9BV20"]["source_evidence_blockers"],
+        )
+        self.assertEqual(
+            by_accession["P22830"]["sourcing_status"],
+            "excluded_prior_deferred_candidate",
+        )
+        self.assertEqual(
+            [
+                row["accession"]
+                for row in sourcing["rows"]
+                if row["sourcing_status"]
+                == "sourced_pending_sequence_structure_distance_screens"
+            ],
+            ["OXPOST", "LYPOST", "ISPOST"],
+        )
+        self.assertTrue(
+            all(
+                row["review_status"]
+                == "external_hard_negative_post_p06744_sourcing_review_only"
+                for row in sourcing["rows"]
+            )
+        )
+        self.assertTrue(
+            all(not row["import_ready_candidate"] for row in sourcing["rows"])
         )
 
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(

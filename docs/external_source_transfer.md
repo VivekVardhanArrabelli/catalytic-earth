@@ -257,6 +257,17 @@ import.
   completes the full gate, allows prior external labels only as lineage, and
   imports exactly `uniprot:P06744` with `fingerprint_id=null` and
   `ontology_version_at_decision=label_factory_v1_8fp`.
+- `artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json` starts
+  the next review-only sourcing surface after the third external import. It
+  excludes prior imported, deferred, and duplicate-signal rows, selects
+  `P23921`, `P26439`, `P09104`, `P13929`, `Q15084`, and `Q96JJ7` across three
+  covered lanes, and keeps import/count fields false. The companion bounded
+  current-reference and external all-vs-all sequence screens both find 6/6
+  no-signal rows with guardrail-clean audits. The structural follow-up
+  materializes all six AlphaFold sidecars, completes the 15/15 external
+  all-vs-all Foldseek cache, and the current-countable Foldseek screen rejects
+  all six as structural duplicate signals. The terminal decision artifact
+  records 0 import-ready rows and 0 countable candidates.
 
 ## Immediate Pilot Direction
 

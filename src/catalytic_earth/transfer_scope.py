@@ -5968,6 +5968,7 @@ def _external_backend_sequence_candidate_rows(
         "external_hard_negative_new_candidate_sourcing",
         "external_hard_negative_next_candidate_sourcing",
         "external_hard_negative_broader_structural_sourcing",
+        "external_hard_negative_post_p06744_sourcing",
     }:
         return [
             row
@@ -9293,6 +9294,7 @@ def build_external_structural_tm_holdout_path(
         "external_hard_negative_new_candidate_sourcing",
         "external_hard_negative_next_candidate_sourcing",
         "external_hard_negative_broader_structural_sourcing",
+        "external_hard_negative_post_p06744_sourcing",
     }:
         manifest_rows = _external_backend_sequence_candidate_rows(candidate_manifest)
     else:
@@ -13835,6 +13837,56 @@ def build_external_hard_negative_broader_structural_sourcing(
         review_status=(
             "external_hard_negative_broader_structural_sourcing_review_only"
         ),
+        artifact_lineage=artifact_lineage,
+    )
+
+
+def build_external_hard_negative_post_p06744_sourcing(
+    *,
+    query_manifest: dict[str, Any],
+    current_candidate_manifest: dict[str, Any],
+    second_tranche_terminal_decisions: dict[str, Any],
+    prior_new_candidate_sourcings: tuple[dict[str, Any], ...],
+    prior_new_candidate_terminal_decision_artifacts: tuple[dict[str, Any], ...],
+    prior_deferred_candidate_decisions: tuple[dict[str, Any], ...] = (),
+    max_records_per_lane: int = 70,
+    max_active_site_fetches: int = 140,
+    max_candidates: int = 8,
+    max_candidates_per_lane: int = 2,
+    min_sourced_lanes: int = 3,
+    fetch_query: Callable[[str, int], dict[str, Any]] = fetch_uniprot_query,
+    fetch_entry: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Source the next review-only surface after the P06744 import.
+
+    This deliberately stops at sourcing. It excludes the already imported
+    broader-surface row and prior structural duplicate rejects before any later
+    sequence or Foldseek duplicate screens.
+    """
+
+    return build_external_hard_negative_new_candidate_sourcing(
+        query_manifest=query_manifest,
+        current_candidate_manifest=current_candidate_manifest,
+        second_tranche_terminal_decisions=second_tranche_terminal_decisions,
+        prior_new_candidate_sourcings=prior_new_candidate_sourcings,
+        prior_new_candidate_terminal_decision_artifacts=(
+            prior_new_candidate_terminal_decision_artifacts
+        ),
+        prior_deferred_candidate_decisions=prior_deferred_candidate_decisions,
+        max_records_per_lane=max_records_per_lane,
+        max_active_site_fetches=max_active_site_fetches,
+        max_candidates=max_candidates,
+        max_candidates_per_lane=max_candidates_per_lane,
+        min_sourced_lanes=min_sourced_lanes,
+        fetch_query=fetch_query,
+        fetch_entry=fetch_entry,
+        method_name="external_hard_negative_post_p06744_sourcing",
+        blocker_removed="post_p06744_lane_balanced_sourcing_started",
+        selection_scope=(
+            "post_p06744_external_sourcing_after_three_imports_no_import_attempt"
+        ),
+        review_status="external_hard_negative_post_p06744_sourcing_review_only",
         artifact_lineage=artifact_lineage,
     )
 

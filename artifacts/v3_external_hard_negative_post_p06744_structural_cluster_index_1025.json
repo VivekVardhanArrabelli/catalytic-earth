@@ -1,0 +1,470 @@
+{
+  "clusters": [
+    {
+      "accessions": [
+        "P09104",
+        "P13929"
+      ],
+      "cluster_id": "external_tm_cluster:001",
+      "member_count": 2,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    },
+    {
+      "accessions": [
+        "P23921"
+      ],
+      "cluster_id": "external_tm_cluster:002",
+      "member_count": 1,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    },
+    {
+      "accessions": [
+        "P26439"
+      ],
+      "cluster_id": "external_tm_cluster:003",
+      "member_count": 1,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    },
+    {
+      "accessions": [
+        "Q15084"
+      ],
+      "cluster_id": "external_tm_cluster:004",
+      "member_count": 1,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    },
+    {
+      "accessions": [
+        "Q96JJ7"
+      ],
+      "cluster_id": "external_tm_cluster:005",
+      "member_count": 1,
+      "threshold_rule": "connected_components_at_tm_score_ge_0.7"
+    }
+  ],
+  "metadata": {
+    "all_vs_all_pair_cache_complete": true,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "external_structural_tm_holdout_path": "artifacts/v3_external_hard_negative_post_p06744_structural_tm_holdout_path_1025.json",
+        "pilot_terminal_decisions": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json"
+      },
+      "blocker_removed": "external_structure_index_and_nearest_neighbor_cache_for_broader_external_surface",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "external_structural_tm_holdout_path": 1025,
+        "pilot_terminal_decisions": 1025
+      },
+      "payload_methods": {
+        "external_structural_tm_holdout_path": "external_structural_tm_holdout_path",
+        "pilot_terminal_decisions": "external_source_pilot_terminal_decisions"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "external_structural_tm_holdout_path": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        },
+        "pilot_terminal_decisions": {
+          "metadata.artifact_lineage.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "external_structural_tm_holdout_path",
+          "pilot_terminal_decisions"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "external_structural_tm_diverse_split_not_assigned"
+    ],
+    "blocker_removed": "external_structure_index_and_nearest_neighbor_cache_for_broader_external_surface",
+    "broader_surface_candidate_count": 6,
+    "candidate_count": 6,
+    "candidate_with_high_tm_neighbor_count": 2,
+    "coordinate_directory": "artifacts/v3_external_hard_negative_post_p06744_structural_coordinates_1025",
+    "coordinate_materialized_count": 6,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T16:25:08Z",
+    "expected_unique_unordered_nonself_pair_count": 15,
+    "external_structural_split_assignment_status": "not_assigned_cluster_index_only",
+    "fetch_failure_count": 0,
+    "fetch_failures": [],
+    "foldseek_all_vs_all_reporting_mode": "exhaustive_tm_align_exact_tmscore_evalue_infinite",
+    "foldseek_binary_available": true,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-external-structural-68cc6f12a9da3585/selected_coordinates /private/tmp/catalytic-earth-external-structural-68cc6f12a9da3585/selected_coordinates /private/tmp/catalytic-earth-external-structural-68cc6f12a9da3585/external_structural_tm_scores.tsv /private/tmp/catalytic-earth-external-structural-68cc6f12a9da3585/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+    "foldseek_error": null,
+    "foldseek_pair_row_count": 36,
+    "foldseek_run_status": "completed",
+    "foldseek_version": "10.941cd33",
+    "full_tm_score_holdout_claim_permitted": false,
+    "high_tm_pair_count": 1,
+    "import_ready_row_count": 0,
+    "largest_tm_cluster_size": 2,
+    "max_rows": 6,
+    "method": "external_structural_cluster_index",
+    "nearest_neighbor_cache_candidate_count": 6,
+    "nearest_neighbor_cache_candidate_coverage": 1.0,
+    "nearest_neighbor_cache_complete": true,
+    "nearest_neighbor_cache_required": true,
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selected_accessions": [
+      "P23921",
+      "P26439",
+      "P09104",
+      "P13929",
+      "Q15084",
+      "Q96JJ7"
+    ],
+    "selected_pilot_candidate_count": 0,
+    "slice_id": "1025",
+    "source_external_structural_tm_holdout_path_method": "external_structural_tm_holdout_path",
+    "source_pilot_terminal_decisions_method": "external_source_pilot_terminal_decisions",
+    "structural_neighbor_cache_status_counts": {
+      "external_structural_cluster_neighbor_at_or_above_threshold": 2,
+      "no_external_structural_neighbor_above_threshold": 4
+    },
+    "structure_cluster_before_split_assignment": true,
+    "structure_reference_candidate_count": 6,
+    "surface_scope": "broader_external_surface",
+    "terminal_status_counts": {
+      "not_recorded": 6
+    },
+    "tm_cluster_count": 5,
+    "tm_score_split_claim_permitted": false,
+    "tm_score_threshold": 0.7,
+    "tm_singleton_cluster_count": 4,
+    "unique_unordered_nonself_pair_count": 15,
+    "unique_unordered_pair_coverage": 1.0
+  },
+  "pairs": [
+    {
+      "alntmscore": 0.9986,
+      "left_accession": "P09104",
+      "max_pair_tm_score": 0.9986,
+      "qtmscore": 0.9963,
+      "raw_query_name": "afdb_P09104",
+      "raw_target_name": "afdb_P13929",
+      "right_accession": "P13929",
+      "ttmscore": 0.9963
+    },
+    {
+      "alntmscore": 0.536,
+      "left_accession": "Q15084",
+      "max_pair_tm_score": 0.536,
+      "qtmscore": 0.3409,
+      "raw_query_name": "afdb_Q15084",
+      "raw_target_name": "afdb_Q96JJ7",
+      "right_accession": "Q96JJ7",
+      "ttmscore": 0.3325
+    },
+    {
+      "alntmscore": 0.4342,
+      "left_accession": "P13929",
+      "max_pair_tm_score": 0.4342,
+      "qtmscore": 0.2728,
+      "raw_query_name": "afdb_P13929",
+      "raw_target_name": "afdb_P26439",
+      "right_accession": "P26439",
+      "ttmscore": 0.3069
+    },
+    {
+      "alntmscore": 0.4295,
+      "left_accession": "P09104",
+      "max_pair_tm_score": 0.4295,
+      "qtmscore": 0.2723,
+      "raw_query_name": "afdb_P09104",
+      "raw_target_name": "afdb_P26439",
+      "right_accession": "P26439",
+      "ttmscore": 0.3068
+    },
+    {
+      "alntmscore": 0.3471,
+      "left_accession": "P23921",
+      "max_pair_tm_score": 0.3471,
+      "qtmscore": 0.2192,
+      "raw_query_name": "afdb_P23921",
+      "raw_target_name": "afdb_Q96JJ7",
+      "right_accession": "Q96JJ7",
+      "ttmscore": 0.3351
+    },
+    {
+      "alntmscore": 0.3371,
+      "left_accession": "P09104",
+      "max_pair_tm_score": 0.3371,
+      "qtmscore": 0.2131,
+      "raw_query_name": "afdb_P09104",
+      "raw_target_name": "afdb_Q15084",
+      "right_accession": "Q15084",
+      "ttmscore": 0.2109
+    },
+    {
+      "alntmscore": 0.3312,
+      "left_accession": "P26439",
+      "max_pair_tm_score": 0.3312,
+      "qtmscore": 0.2742,
+      "raw_query_name": "afdb_P26439",
+      "raw_target_name": "afdb_Q96JJ7",
+      "right_accession": "Q96JJ7",
+      "ttmscore": 0.2365
+    },
+    {
+      "alntmscore": 0.3202,
+      "left_accession": "P13929",
+      "max_pair_tm_score": 0.3202,
+      "qtmscore": 0.3191,
+      "raw_query_name": "afdb_P13929",
+      "raw_target_name": "afdb_P23921",
+      "right_accession": "P23921",
+      "ttmscore": 0.2067
+    },
+    {
+      "alntmscore": 0.3197,
+      "left_accession": "P09104",
+      "max_pair_tm_score": 0.3197,
+      "qtmscore": 0.3185,
+      "raw_query_name": "afdb_P09104",
+      "raw_target_name": "afdb_P23921",
+      "right_accession": "P23921",
+      "ttmscore": 0.2082
+    },
+    {
+      "alntmscore": 0.306,
+      "left_accession": "P23921",
+      "max_pair_tm_score": 0.306,
+      "qtmscore": 0.1679,
+      "raw_query_name": "afdb_P23921",
+      "raw_target_name": "afdb_P26439",
+      "right_accession": "P26439",
+      "ttmscore": 0.3014
+    },
+    {
+      "alntmscore": 0.3044,
+      "left_accession": "P13929",
+      "max_pair_tm_score": 0.3044,
+      "qtmscore": 0.2297,
+      "raw_query_name": "afdb_P13929",
+      "raw_target_name": "afdb_Q96JJ7",
+      "right_accession": "Q96JJ7",
+      "ttmscore": 0.2225
+    },
+    {
+      "alntmscore": 0.3036,
+      "left_accession": "P13929",
+      "max_pair_tm_score": 0.3036,
+      "qtmscore": 0.206,
+      "raw_query_name": "afdb_P13929",
+      "raw_target_name": "afdb_Q15084",
+      "right_accession": "Q15084",
+      "ttmscore": 0.2044
+    },
+    {
+      "alntmscore": 0.3023,
+      "left_accession": "P23921",
+      "max_pair_tm_score": 0.3023,
+      "qtmscore": 0.1776,
+      "raw_query_name": "afdb_P23921",
+      "raw_target_name": "afdb_Q15084",
+      "right_accession": "Q15084",
+      "ttmscore": 0.2762
+    },
+    {
+      "alntmscore": 0.3006,
+      "left_accession": "P09104",
+      "max_pair_tm_score": 0.3006,
+      "qtmscore": 0.2275,
+      "raw_query_name": "afdb_P09104",
+      "raw_target_name": "afdb_Q96JJ7",
+      "right_accession": "Q96JJ7",
+      "ttmscore": 0.22
+    },
+    {
+      "alntmscore": 0.2635,
+      "left_accession": "P26439",
+      "max_pair_tm_score": 0.2635,
+      "qtmscore": 0.2014,
+      "raw_query_name": "afdb_P26439",
+      "raw_target_name": "afdb_Q15084",
+      "right_accession": "Q15084",
+      "ttmscore": 0.1795
+    }
+  ],
+  "rows": [
+    {
+      "accession": "P23921",
+      "coordinate_byte_count": 726927,
+      "coordinate_digest_sha256": "00cc22a97b627839df0b362d471f10d04382b21c54071042d1e62e0d3c873103",
+      "coordinate_path": "artifacts/v3_external_hard_negative_post_p06744_structural_coordinates_1025/afdb_P23921.cif",
+      "coordinate_status": "coordinate_sidecar_reused",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P23921",
+      "fetch_error": null,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_neighbor": {
+        "accession": "Q96JJ7",
+        "tm_score": 0.3471
+      },
+      "pdb_reference_count": 12,
+      "pdb_reference_examples": [
+        "2WGH",
+        "3HNC",
+        "3HND",
+        "3HNE",
+        "3HNF"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "structure_id": "P23921",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:002"
+    },
+    {
+      "accession": "P26439",
+      "coordinate_byte_count": 348658,
+      "coordinate_digest_sha256": "4745a2095a081e8b4c3687216b2ccb991787746350f5fb4d42ab8d19edcb9bfe",
+      "coordinate_path": "artifacts/v3_external_hard_negative_post_p06744_structural_coordinates_1025/afdb_P26439.cif",
+      "coordinate_status": "coordinate_sidecar_reused",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P26439",
+      "fetch_error": null,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_neighbor": {
+        "accession": "P13929",
+        "tm_score": 0.4342
+      },
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "structure_id": "P26439",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:003"
+    },
+    {
+      "accession": "P09104",
+      "coordinate_byte_count": 389760,
+      "coordinate_digest_sha256": "0c37e26723a95540f00438f2170728e3d5d71a6d93b1b5da2eef2fad0a788df5",
+      "coordinate_path": "artifacts/v3_external_hard_negative_post_p06744_structural_coordinates_1025/afdb_P09104.cif",
+      "coordinate_status": "coordinate_sidecar_reused",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P09104",
+      "fetch_error": null,
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "P13929",
+        "tm_score": 0.9986
+      },
+      "pdb_reference_count": 16,
+      "pdb_reference_examples": [
+        "1TE6",
+        "2AKM",
+        "2AKZ",
+        "3UCC",
+        "3UCD"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "structure_id": "P09104",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:001"
+    },
+    {
+      "accession": "P13929",
+      "coordinate_byte_count": 388151,
+      "coordinate_digest_sha256": "8a1e0c92bbce55ec14b1ce96b94070435bb159addb3e60d589a077c27405e199",
+      "coordinate_path": "artifacts/v3_external_hard_negative_post_p06744_structural_coordinates_1025/afdb_P13929.cif",
+      "coordinate_status": "coordinate_sidecar_reused",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P13929",
+      "fetch_error": null,
+      "lane_id": "external_source:lyase",
+      "nearest_neighbor": {
+        "accession": "P09104",
+        "tm_score": 0.9986
+      },
+      "pdb_reference_count": 1,
+      "pdb_reference_examples": [
+        "2XSX"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "external_structural_cluster_neighbor_at_or_above_threshold",
+      "structure_id": "P13929",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:001"
+    },
+    {
+      "accession": "Q15084",
+      "coordinate_byte_count": 397420,
+      "coordinate_digest_sha256": "2bd1bc3f537a5c6f617b31f1af4de404173a0252fd16cc9eb21cac17eaa6baec",
+      "coordinate_path": "artifacts/v3_external_hard_negative_post_p06744_structural_coordinates_1025/afdb_Q15084.cif",
+      "coordinate_status": "coordinate_sidecar_reused",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q15084",
+      "fetch_error": null,
+      "lane_id": "external_source:isomerase",
+      "nearest_neighbor": {
+        "accession": "Q96JJ7",
+        "tm_score": 0.536
+      },
+      "pdb_reference_count": 6,
+      "pdb_reference_examples": [
+        "1X5D",
+        "3VWW",
+        "3W8J",
+        "4EF0",
+        "4GWR"
+      ],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "structure_id": "Q15084",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:004"
+    },
+    {
+      "accession": "Q96JJ7",
+      "coordinate_byte_count": 427579,
+      "coordinate_digest_sha256": "ce468e7a5b5d9d6a605e34b536bf21431c0d4ff208879d0b9662937d20d0e762",
+      "coordinate_path": "artifacts/v3_external_hard_negative_post_p06744_structural_coordinates_1025/afdb_Q96JJ7.cif",
+      "coordinate_status": "coordinate_sidecar_reused",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q96JJ7",
+      "fetch_error": null,
+      "lane_id": "external_source:isomerase",
+      "nearest_neighbor": {
+        "accession": "Q15084",
+        "tm_score": 0.536
+      },
+      "pdb_reference_count": 0,
+      "pdb_reference_examples": [],
+      "rank": null,
+      "ready_for_label_import": false,
+      "structural_neighbor_cache_status": "no_external_structural_neighbor_above_threshold",
+      "structure_id": "Q96JJ7",
+      "structure_source": "alphafold",
+      "terminal_status_from_pilot": null,
+      "tm_cluster_id": "external_tm_cluster:005"
+    }
+  ],
+  "warnings": [
+    "external structural cluster index is review-only; it stages coordinates and nearest-neighbor evidence but does not assign a train/test split or authorize import"
+  ]
+}

@@ -1,0 +1,378 @@
+{
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "backend_sequence_search": "artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_1025.json",
+        "current_countable_structural_screen": "artifacts/v3_external_hard_negative_post_p06744_current_countable_structural_screen_1025.json",
+        "new_candidate_sourcing": "artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json"
+      },
+      "blocker_removed": "new_candidate_terminal_decisions",
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 1025
+    },
+    "blocker_not_removed": [
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "new_candidate_terminal_decisions_recorded_after_current_countable_structural_screen",
+    "candidate_count": 6,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-17T16:20:07Z",
+    "exact_reference_holdout_accessions": [],
+    "exact_reference_holdout_count": 0,
+    "import_ready_candidate_count": 0,
+    "method": "external_hard_negative_new_candidate_terminal_decisions",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {
+      "full_label_factory_gate_not_run_after_duplicate_rejection": 6,
+      "no_import_ready_external_rows": 6
+    },
+    "review_only": true,
+    "sequence_no_signal_candidate_count": 6,
+    "slice_id": 1025,
+    "source_backend_sequence_search_method": "external_source_backend_sequence_search",
+    "source_current_countable_structural_screen_foldseek_status": "completed",
+    "source_current_countable_structural_screen_method": "external_hard_negative_new_candidate_current_countable_structural_screen",
+    "source_new_candidate_screen_selection_method": "external_hard_negative_new_candidate_screen_selection",
+    "source_new_candidate_sourcing_method": "external_hard_negative_post_p06744_sourcing",
+    "source_second_tranche_selection_method": "external_hard_negative_new_candidate_screen_selection",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope",
+    "terminal_decision_count": 6,
+    "terminal_decision_status_counts": {
+      "rejected_current_countable_structural_duplicate_signal": 6
+    }
+  },
+  "rows": [
+    {
+      "accession": "P09104",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 7,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "entry_id": "uniprot:P09104",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.9862,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_7ENL.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_7ENL.cif",
+        "current_entry_ids": [
+          "m_csa:311"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "7ENL",
+        "current_selected_structure_key": "pdb:7ENL",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:311",
+        "max_pair_tm_score": 0.9818,
+        "qtmscore": 0.9818,
+        "raw_query_name": "afdb_P09104",
+        "raw_target_name": "pdb_7ENL",
+        "ttmscore": 0.9773
+      },
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate_status": "not_scored_for_new_source_row",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run_after_duplicate_rejection",
+        "no_import_ready_external_rows"
+      ],
+      "review_status": "external_hard_negative_new_candidate_terminal_decision_review_only",
+      "selection_status": "admitted_for_second_tranche_review",
+      "source_top1_fingerprint_id": null,
+      "source_top1_score": null,
+      "structural_duplicate_screen_blockers": [
+        "current_countable_structural_duplicate_signal",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "medium",
+      "terminal_decision_status": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "P13929",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 6,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "entry_id": "uniprot:P13929",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:lyase",
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.9863,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_7ENL.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_7ENL.cif",
+        "current_entry_ids": [
+          "m_csa:311"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "7ENL",
+        "current_selected_structure_key": "pdb:7ENL",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:311",
+        "max_pair_tm_score": 0.9818,
+        "qtmscore": 0.9818,
+        "raw_query_name": "afdb_P13929",
+        "raw_target_name": "pdb_7ENL",
+        "ttmscore": 0.9774
+      },
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate_status": "not_scored_for_new_source_row",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run_after_duplicate_rejection",
+        "no_import_ready_external_rows"
+      ],
+      "review_status": "external_hard_negative_new_candidate_terminal_decision_review_only",
+      "selection_status": "admitted_for_second_tranche_review",
+      "source_top1_fingerprint_id": null,
+      "source_top1_score": null,
+      "structural_duplicate_screen_blockers": [
+        "current_countable_structural_duplicate_signal",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "medium",
+      "terminal_decision_status": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "P23921",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "entry_id": "uniprot:P23921",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.7922,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+        "current_entry_ids": [
+          "m_csa:735"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1EHK",
+        "current_selected_structure_key": "pdb:1EHK",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "heme_peroxidase_oxidase"
+        ],
+        "example_current_entry_id": "m_csa:735",
+        "max_pair_tm_score": 0.7661,
+        "qtmscore": 0.03949,
+        "raw_query_name": "afdb_P23921",
+        "raw_target_name": "pdb_1EHK_C",
+        "ttmscore": 0.7661
+      },
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate_status": "not_scored_for_new_source_row",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run_after_duplicate_rejection",
+        "no_import_ready_external_rows"
+      ],
+      "review_status": "external_hard_negative_new_candidate_terminal_decision_review_only",
+      "selection_status": "admitted_for_second_tranche_review",
+      "source_top1_fingerprint_id": null,
+      "source_top1_score": null,
+      "structural_duplicate_screen_blockers": [
+        "current_countable_structural_duplicate_signal",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "medium",
+      "terminal_decision_status": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "P26439",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 11,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "entry_id": "uniprot:P26439",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.8193,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EQ2.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EQ2.cif",
+        "current_entry_ids": [
+          "m_csa:557"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1EQ2",
+        "current_selected_structure_key": "pdb:1EQ2",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:557",
+        "max_pair_tm_score": 0.8169,
+        "qtmscore": 0.6872,
+        "raw_query_name": "afdb_P26439",
+        "raw_target_name": "pdb_1EQ2_I",
+        "ttmscore": 0.8169
+      },
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate_status": "not_scored_for_new_source_row",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run_after_duplicate_rejection",
+        "no_import_ready_external_rows"
+      ],
+      "review_status": "external_hard_negative_new_candidate_terminal_decision_review_only",
+      "selection_status": "admitted_for_second_tranche_review",
+      "source_top1_fingerprint_id": null,
+      "source_top1_score": null,
+      "structural_duplicate_screen_blockers": [
+        "current_countable_structural_duplicate_signal",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "medium",
+      "terminal_decision_status": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "Q15084",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "entry_id": "uniprot:Q15084",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:isomerase",
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.8433,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+        "current_entry_ids": [
+          "m_csa:191"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1MEK",
+        "current_selected_structure_key": "pdb:1MEK",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:191",
+        "max_pair_tm_score": 0.8371,
+        "qtmscore": 0.2498,
+        "raw_query_name": "afdb_Q15084",
+        "raw_target_name": "pdb_1MEK_MODEL_36_A",
+        "ttmscore": 0.8371
+      },
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate_status": "not_scored_for_new_source_row",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run_after_duplicate_rejection",
+        "no_import_ready_external_rows"
+      ],
+      "review_status": "external_hard_negative_new_candidate_terminal_decision_review_only",
+      "selection_status": "admitted_for_second_tranche_review",
+      "source_top1_fingerprint_id": null,
+      "source_top1_score": null,
+      "structural_duplicate_screen_blockers": [
+        "current_countable_structural_duplicate_signal",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "medium",
+      "terminal_decision_status": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "Q96JJ7",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 2,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "entry_id": "uniprot:Q96JJ7",
+      "import_ready_candidate": false,
+      "lane_id": "external_source:isomerase",
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.8144,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+        "current_entry_ids": [
+          "m_csa:191"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1MEK",
+        "current_selected_structure_key": "pdb:1MEK",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:191",
+        "max_pair_tm_score": 0.7849,
+        "qtmscore": 0.2297,
+        "raw_query_name": "afdb_Q96JJ7",
+        "raw_target_name": "pdb_1MEK_MODEL_37_A",
+        "ttmscore": 0.7849
+      },
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "out_of_scope_inverse_gate_status": "not_scored_for_new_source_row",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run_after_duplicate_rejection",
+        "no_import_ready_external_rows"
+      ],
+      "review_status": "external_hard_negative_new_candidate_terminal_decision_review_only",
+      "selection_status": "admitted_for_second_tranche_review",
+      "source_top1_fingerprint_id": null,
+      "source_top1_score": null,
+      "structural_duplicate_screen_blockers": [
+        "current_countable_structural_duplicate_signal",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted",
+        "uniref_wide_duplicate_screening_required"
+      ],
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "medium",
+      "terminal_decision_status": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    }
+  ],
+  "warnings": [
+    "new-candidate terminal decisions are review-only import-safety decisions; they close the fresh hard-negative tranche without validating enzyme function or creating countable labels"
+  ]
+}

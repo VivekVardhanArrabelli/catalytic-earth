@@ -302,7 +302,9 @@ Current expectation:
   1,025 M-CSA preview is cleanly non-promotable because it adds 0 M-CSA
   countable labels while exposing a source limit at 1,003 records. The
   canonical registry now has 682 labels after three external hard-negative
-  imports.
+  imports. The next post-P06744 source surface is review-only: six new
+  covered-lane candidates have clean bounded sequence screens, but all six are
+  terminally rejected as current-countable structural duplicate signals.
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, 375-,
@@ -622,7 +624,11 @@ Current expectation:
   overlap, current-reference UniRef cluster overlap, and the all-8 inverse
   gate. The terminal review and broader structural factory/import gate now pass,
   importing exactly `uniprot:P06744` as the third external out-of-scope hard
-  negative.
+  negative. The post-P06744 sourcing artifact then selects `P23921`, `P26439`,
+  `P09104`, `P13929`, `Q15084`, and `Q96JJ7` as review-only covered-lane rows;
+  both bounded sequence screens are clean, but the current-countable Foldseek
+  screen rejects all six at `TM >=0.7` and the terminal decision artifact keeps
+  import-ready/countable counts at 0.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is
