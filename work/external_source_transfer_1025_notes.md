@@ -259,6 +259,17 @@ Current review-only external artifacts:
   post-repair `needs_review`, but it keeps the row non-countable and not
   import-ready because heuristic scoring, broader duplicate screening, a
   post-repair review decision, and the full factory gate are still unresolved.
+- `artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json`
+  opens the final current repair lane for `P06746`. It stages review-only,
+  non-text DNA Pol X/5'-dRP lyase axis evidence from source-active-site
+  Lys-72, local basic/acidic sequence context, and current-reference contrast
+  rows that lack the complete axis.
+- `artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json`
+  turns that P06746 control into a review-only import-safety adjudication. It
+  repairs the prior representation near-duplicate conflict and records
+  post-repair `needs_review`, but it keeps the row non-countable and not
+  import-ready because heuristic scoring, broader duplicate screening, a
+  post-repair review decision, and the full factory gate are still unresolved.
 - `artifacts/v3_external_structural_cluster_index_1025.json` stages all 10
   selected AlphaFold coordinate sidecars and completes Foldseek
   nearest-neighbor clustering before any split assignment. It finds nine

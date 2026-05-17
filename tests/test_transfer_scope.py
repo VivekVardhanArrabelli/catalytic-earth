@@ -60,6 +60,8 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_active_site_evidence_decisions,
     build_external_source_pilot_akr_nadp_import_safety_adjudication,
     build_external_source_pilot_akr_nadp_repair_control,
+    build_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication,
+    build_external_source_pilot_dna_pol_x_lyase_repair_control,
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_glycoside_hydrolase_boundary_control,
@@ -7936,6 +7938,345 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             row["import_safety_adjudication_status"],
             "akr_nadp_axis_representation_conflict_repaired",
+        )
+        self.assertEqual(
+            row["normalized_decision_status_after_repair"], "needs_review"
+        )
+        self.assertNotIn(
+            "representation_near_duplicate_holdout",
+            row["remaining_import_blockers"],
+        )
+        self.assertIn("heuristic_control_not_scored", row["remaining_import_blockers"])
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_dna_pol_x_lyase_repair_control_stages_axis(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            external_fasta = tmp_path / "external.fasta"
+            reference_fasta = tmp_path / "reference.fasta"
+            external_fasta.write_text(
+                ">ext__P06746\n"
+                "MSKRKAPQETLNGGITDMLTELANFEKNVSQAIHKYNAYRKAASVIAKYPHKIKSGAEAK"
+                "KLPGVGTKIAEKIDEFLATGKLRKLEKIRQDDTSSSINFLTRVSGIGPSAARKFVDEGIK"
+                "TLEDLRKNEDKLNHHQRIGLKYFGDFEKRIPREEMLQMQDIVLNEVKKVDSEYIATVCGS"
+                "FRRGAESSGDMDVLLTHPSFTSESTKQPKLLHQVVEQLQKVHFITDTLSKGETKFMGVCQ"
+                "LPSKNDEKEYPHRRIDIRLIPKDQYYCGVLYFTGSDIFNKNMRAHALEKGFTINEYTIRP"
+                "LGVTGVAGEPLPVDSEKDIFDYIQWKYREPKDRSE\n",
+                encoding="utf-8",
+            )
+            reference_fasta.write_text(
+                ">ref__P31116\n"
+                "MSTKVVNVAVIGAGVVGSAFLDQLLAMKSTITYNLVLLAEAERSLISKDFSPLNVGSDWK"
+                "AALAASTTKTLPLDDLIAHLKTSPKPVILVDNTSSAYIAGFYTKFVENGISIATPNKKAF"
+                "SSDLATWKALFSNKPTNGFVYHEATVGAGLPIISFLREIIQTGDEVEKIEGIFSGTLSYI"
+                "FNEFSTSQANDVKFSDVVKVAKKLGYTEPDPRDDLNGLDVARKVTIVGRISGVEVESPTS"
+                "FPVQSLIPKPLESVKSADEFLEKLSDYDKDLTQLKKEAATENKVLRFIGKVDVATKSVSV"
+                "GIEKYDYSHPFASLKGSDNVISIKTKRYTNPVVIQGAGAGAAVTAAGVLGDVIKIAQRL\n",
+                encoding="utf-8",
+            )
+
+            control = build_external_source_pilot_dna_pol_x_lyase_repair_control(
+                repair_lanes={
+                    "metadata": {
+                        "method": "external_source_pilot_mechanism_repair_lanes"
+                    },
+                    "rows": [
+                        {
+                            "accession": "P06746",
+                            "entry_id": "uniprot:P06746",
+                            "repair_lane": "add_dna_pol_x_lyase_representation_axis",
+                        }
+                    ],
+                },
+                needs_review_resolution={
+                    "metadata": {
+                        "method": "external_source_pilot_needs_review_resolution"
+                    },
+                    "rows": [
+                        {
+                            "accession": "P06746",
+                            "revised_status": "rejected_representation_conflict",
+                            "confidence": "medium",
+                            "active_site_evidence_result": {
+                                "positions": [{"position": 72}],
+                            },
+                            "reaction_mechanism_context_result": {
+                                "status": (
+                                    "source_supports_dna_polymerase_and_"
+                                    "5_drp_lyase_context"
+                                ),
+                                "representative_rhea_reactions": ["RHEA:66592"],
+                                "interpro_or_prosite_context": [
+                                    "IPR002054 DNA-dir_DNA_pol_X"
+                                ],
+                            },
+                        }
+                    ],
+                },
+                pilot_representation_sample={
+                    "metadata": {"embedding_backend": "esm2_t6_8m_ur50d"},
+                    "rows": [
+                        {
+                            "accession": "P06746",
+                            "embedding_backend": "esm2_t6_8m_ur50d",
+                            "nearest_reference": {
+                                "reference_accession": "P31116",
+                            },
+                            "reference_scores": [
+                                {
+                                    "embedding_backend": "esm2_t6_8m_ur50d",
+                                    "embedding_cosine": 0.9275,
+                                    "reference_accession": "P31116",
+                                    "matched_m_csa_entry_ids": ["m_csa:521"],
+                                }
+                            ],
+                        }
+                    ],
+                },
+                pilot_larger_representation_sample={
+                    "metadata": {"embedding_backend": "esm2_t30_150m_ur50d"},
+                    "rows": [
+                        {
+                            "accession": "P06746",
+                            "embedding_backend": "esm2_t30_150m_ur50d",
+                            "nearest_reference": {
+                                "reference_accession": "P31116",
+                            },
+                            "reference_scores": [
+                                {
+                                    "embedding_backend": "esm2_t30_150m_ur50d",
+                                    "embedding_cosine": 0.9604,
+                                    "reference_accession": "P31116",
+                                    "matched_m_csa_entry_ids": ["m_csa:521"],
+                                }
+                            ],
+                        }
+                    ],
+                },
+                pilot_representation_stability_audit={
+                    "metadata": {
+                        "method": "external_source_representation_backend_stability_audit"
+                    },
+                    "rows": [
+                        {
+                            "accession": "P06746",
+                            "baseline_nearest_reference_accession": "P31116",
+                            "comparison_nearest_reference_accession": "P31116",
+                            "nearest_reference_stable": True,
+                            "nearest_reference_entry_ids_stable": True,
+                            "stability_flags": [
+                                "comparison_embedding_backend_fallback_used"
+                            ],
+                        }
+                    ],
+                },
+                heuristic_control_scores={
+                    "metadata": {"method": "external_source_heuristic_control_scores"},
+                    "results": [],
+                },
+                external_sequence_fasta=external_fasta,
+                reference_sequence_fasta=reference_fasta,
+                curated_labels=[
+                    {
+                        "entry_id": "m_csa:521",
+                        "fingerprint_id": None,
+                        "label_type": "out_of_scope",
+                        "review_status": "automation_curated",
+                    }
+                ],
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+
+        metadata = control["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_dna_pol_x_lyase_repair_control",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(
+            metadata["candidate_with_dna_pol_x_lyase_axis_count"], 1
+        )
+        self.assertEqual(
+            metadata["current_reference_dna_pol_x_lyase_axis_match_count"], 0
+        )
+        self.assertEqual(control["blockers"], [])
+        row = control["rows"][0]
+        self.assertEqual(
+            row["control_status"],
+            "review_only_dna_pol_x_lyase_axis_contrast_ready",
+        )
+        self.assertEqual(
+            row["candidate_sequence_features"][
+                "dna_pol_x_lyase_sequence_axis_status"
+            ],
+            "dna_pol_x_lyase_axis_present_with_source_active_site_lys",
+        )
+        self.assertEqual(
+            row["candidate_sequence_features"]["source_active_site_lys_positions"],
+            [72],
+        )
+        self.assertTrue(
+            row["candidate_sequence_features"][
+                "has_active_site_basic_acidic_context"
+            ]
+        )
+        self.assertTrue(
+            all(
+                reference["dna_pol_x_lyase_sequence_axis_status"]
+                != "dna_pol_x_lyase_axis_present"
+                for reference in row["current_reference_contrasts"]
+            )
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
+    def test_external_pilot_dna_pol_x_lyase_import_safety_repairs_representation_only(
+        self,
+    ) -> None:
+        adjudication = (
+            build_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication(
+                dna_pol_x_lyase_repair_control={
+                    "metadata": {
+                        "method": (
+                            "external_source_pilot_dna_pol_x_lyase_repair_control"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "P06746",
+                            "entry_id": "uniprot:P06746",
+                            "control_status": (
+                                "review_only_dna_pol_x_lyase_axis_contrast_ready"
+                            ),
+                            "candidate_sequence_features": {
+                                "dna_pol_x_lyase_sequence_axis_status": (
+                                    "dna_pol_x_lyase_axis_present_with_"
+                                    "source_active_site_lys"
+                                ),
+                                "source_active_site_lys_count": 1,
+                                "source_active_site_lys_positions": [72],
+                                "has_active_site_basic_acidic_context": True,
+                                "active_site_lys_local_windows": [
+                                    {
+                                        "position": 72,
+                                        "residue": "K",
+                                        "local_basic_residue_count": 8,
+                                        "local_acidic_residue_count": 3,
+                                    }
+                                ],
+                            },
+                            "current_reference_contrasts": [
+                                {
+                                    "reference_accession": "P31116",
+                                    "dna_pol_x_lyase_sequence_axis_status": (
+                                        "dna_pol_x_lyase_axis_absent"
+                                    ),
+                                }
+                            ],
+                        }
+                    ],
+                },
+                resolved_pilot_decisions={
+                    "metadata": {
+                        "method": "external_source_pilot_decisions_review_resolved"
+                    },
+                    "rows": [
+                        {
+                            "accession": "P06746",
+                            "normalized_decision_status": (
+                                "rejected_representation_conflict"
+                            ),
+                        }
+                    ],
+                },
+                pilot_active_site_evidence_decisions={
+                    "metadata": {
+                        "method": (
+                            "external_source_pilot_active_site_evidence_decisions"
+                        )
+                    },
+                    "rows": [
+                        {
+                            "accession": "P06746",
+                            "active_site_evidence_source_category": (
+                                "explicit_active_site_source_present"
+                            ),
+                            "backend_sequence_search_status": (
+                                "no_near_duplicate_signal"
+                            ),
+                            "broader_duplicate_screening_status": (
+                                "broader_duplicate_screening_required"
+                            ),
+                            "factory_gate_status": "not_run",
+                            "import_readiness_blockers": [
+                                "broader_duplicate_screening_required",
+                                "external_review_decision_artifact_not_built",
+                                "full_label_factory_gate_not_run",
+                                "heuristic_control_not_scored",
+                                "representation_near_duplicate_holdout",
+                                "representation_control_not_compared",
+                            ],
+                        }
+                    ],
+                },
+                external_import_readiness_audit={
+                    "metadata": {"method": "external_source_import_readiness_audit"},
+                    "rows": [
+                        {
+                            "accession": "P06746",
+                            "backend_sequence_search_status": (
+                                "no_near_duplicate_signal"
+                            ),
+                            "blockers": [
+                                "heuristic_control_not_scored",
+                                "representation_control_not_compared",
+                                "external_review_decision_artifact_not_built",
+                                "full_label_factory_gate_not_run",
+                            ],
+                        }
+                    ],
+                },
+                pilot_success_criteria={
+                    "metadata": {"method": "external_source_pilot_success_criteria"},
+                    "rows": [
+                        {
+                            "accession": "P06746",
+                            "full_label_factory_gate_status": "not_run",
+                            "import_readiness_blockers": [
+                                "broader_duplicate_screening_required",
+                                "heuristic_control_not_scored",
+                                "representation_near_duplicate_holdout",
+                                "external_review_decision_artifact_not_built",
+                                "full_label_factory_gate_not_run",
+                            ],
+                        }
+                    ],
+                },
+                artifact_lineage={"slice_id": 1025, "guardrail_clean": True},
+            )
+        )
+
+        metadata = adjudication["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "external_source_pilot_dna_pol_x_lyase_import_safety_adjudication",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["representation_conflict_repaired_count"], 1)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        row = adjudication["rows"][0]
+        self.assertEqual(
+            row["import_safety_adjudication_status"],
+            "dna_pol_x_lyase_axis_representation_conflict_repaired",
         )
         self.assertEqual(
             row["normalized_decision_status_after_repair"], "needs_review"

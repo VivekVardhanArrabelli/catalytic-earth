@@ -200,25 +200,63 @@ conflict and records post-repair `needs_review`, but import remains blocked by
 `heuristic_control_not_scored`, broader duplicate screening, post-repair review
 decision, and full factory gates. Next direct work should complete remaining
 duplicate/review/factory blockers for repaired external rows if a defensible
-full path exists; otherwise continue the last unimplemented repaired lane,
-P06746 DNA Pol X/5'-dRP lyase. Do not broaden dashboards or generic gates
-before a lane-specific control.
+full path exists. The 2026-05-16T23:51:02Z run then added
+`artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json`
+and
+`artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json`.
+The P06746 control uses only non-text sequence/local evidence:
+source-active-site Lys-72, local basic/acidic sequence context, and
+current-reference contrast rows lacking the complete DNA Pol X/5'-dRP lyase
+axis. The import-safety adjudication repairs the P06746 representation
+near-duplicate conflict and records post-repair `needs_review`, but import
+remains blocked by `heuristic_control_not_scored`, broader duplicate screening,
+post-repair review decision, and full factory gates. Do not broaden dashboards
+or generic gates before resolving a specific import blocker.
 Do not open M-CSA round33, staged index 145 continuation, or more partition repair
 unless the user explicitly reverses the override.
 
-GitHub credential hygiene was recovered after the repeated wrap-up blockers.
-Local `main` is aligned with `origin/main` at commit `09b0d36`, the worktree is
-clean, and no automation lock should remain. The observed root cause is an
-environment-specific credential mismatch: scheduled agents can see the
-installed `gh auth git-credential` helper but still report an invalid `gh`
-token, while this interactive session can read both a valid `gh` token and a
-valid macOS `osxkeychain` GitHub credential. To reduce the single point of
-failure, this worktree's local `.git/config` now resets the GitHub HTTPS helper
-list to try `osxkeychain` first and `gh auth git-credential` second. If a future
-push still fails, do not loop on `gh auth setup-git`; inspect both helpers,
-keep any coherent local commit safe, and record the exact auth/remote error.
+GitHub credential hygiene remains environment-sensitive. Local `main` is now
+ahead of `origin/main` by one safe commit (`Add DNA Pol X lyase external repair
+lane`). The scheduled shell saw the helper list
+`<empty reset>`, `!/opt/homebrew/bin/gh auth git-credential`, `<empty reset>`,
+`osxkeychain`, `!/opt/homebrew/bin/gh auth git-credential`; `gh auth status`
+reported the default token invalid; noninteractive credential fill, `git push
+--dry-run origin main`, and `git push origin main` all failed with
+`fatal: could not read Username for 'https://github.com': Device not
+configured`. Do not redo the P06746 lane; recover push credentials first or
+push the coherent local commit from an interactive shell that can read the
+macOS keychain/GitHub credential. Do not loop on `gh auth setup-git` alone.
 
 ## Start-of-Run Confidence Call
+
+Recorded for the 2026-05-16T23:51:02Z run after acquiring the automation lock,
+syncing clean `origin/main`, verifying that `gh auth status` remains invalid
+and the scheduled shell cannot fill GitHub credentials noninteractively,
+passing startup gates (`370` unit tests passed and `validate` passed with 679
+curated labels), passing focused external-pilot artifact tests (`106` tests),
+and preserving the current safe local commit after push failed with the HTTPS
+username/device error:
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and no
+  M-CSA strict-TM round, query, split-repair, or partition-repair work was
+  resumed.
+- External-source repair/import: Yes for the final current review-only
+  import-safety adjudication lane, no for import or countable labels. The
+  P06746 DNA Pol X/5'-dRP lyase control consumes source-active-site Lys-72,
+  local basic/acidic sequence context, current-reference contrast rows lacking
+  the complete axis, and bounded sequence no-signal status. It repairs the
+  representation near-duplicate conflict and records post-repair
+  `needs_review`, but the row still requires heuristic scoring, broader
+  duplicate screening, a post-repair review decision, and full factory gates
+  before any import claim.
+- Scientific generalization work: No new benchmark or split claim. The all-30
+  external structural split remains review-only with max cross-split TM about
+  `0.6963`; strict TM-diverse claims remain on external fold-diverse surfaces
+  only.
+- SPOF hardening work: Yes. New CLI paths, artifacts, and regression tests make
+  the P06746 DNA Pol X/5'-dRP lyase post-repair import-safety decision path
+  executable while preserving review-only/countable-label separation.
 
 Recorded for the 2026-05-16T17:49:33-05:00 run after acquiring a stale-lock
 recovery lock, syncing with `origin/main`, verifying the GitHub credential

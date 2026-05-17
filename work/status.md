@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 140
-- Measured elapsed time: 4678.3 minutes (77.97 hours)
+- Entries: 142
+- Measured elapsed time: 4696.2 minutes (78.27 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- external-transfer-spof-hardening: 230.5 measured minutes (3.84 hours)
-- ops: 75.5 measured minutes (1.26 hours)
+- external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
+- ops: 77.2 measured minutes (1.29 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -24,32 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1599
-- Evidence references logged: 1227
+- Artifact references logged: 1613
+- Evidence references logged: 1244
 
 ## Recent Entries
-
-### 2026-05-16T16:17:35.092187+00:00 - external-transfer-spof-hardening
-
-- Task: Assign external pilot mechanism repair lanes
-- Time mode: measured
-- Measured minutes: 12.617
-- Started: 2026-05-16T16:04:57Z
-- Ended: 2026-05-16T16:17:34Z
-- Artifacts: artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
-- Evidence: startup 359 unit tests passed, startup validate passed with 679 curated labels, 6 resolved representation conflicts assigned to review-only mechanism repair lanes, 0 needs_review rows, 0 import-ready rows, 0 countable external labels, final 360 unit tests passed, final validate passed, compileall passed, git diff check passed
-- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged.
-
-### 2026-05-16T17:21:15.343286+00:00 - external-transfer-spof-hardening
-
-- Task: Stage SDR redox repair control
-- Time mode: measured
-- Measured minutes: 19.667
-- Started: 2026-05-16T17:06:39Z
-- Ended: 2026-05-16T17:26:19Z
-- Artifacts: artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, local main commit ahead of origin/main
-- Evidence: startup 360 unit tests passed, startup validate passed with 679 curated labels, SDR/NAD(P) O14756 repair lane staged as review-only sequence-derived control, candidate has TGxxxGxG and source-active-site-overlapping YxxxK proxies, conflicting current-reference neighbors lack complete SDR axis, 0 import-ready rows and 0 countable external labels, final 361 unit tests passed, final validate passed, compileall passed, git diff check passed, push blocked: invalid local GitHub credential
-- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed; docs/label_factory.md checked unchanged. Push blocked by invalid local GitHub credential; coherent local commit remains ahead of origin/main for recovery.
 
 ### 2026-05-16T20:03:03.218017+00:00 - external-transfer-spof-hardening
 
@@ -116,6 +94,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/handoff.md, work/status.md, local .git/config credential helper stack
 - Evidence: gh auth valid in interactive session, osxkeychain credential available, git push origin main succeeded, HEAD equals origin/main, local helper stack now tries osxkeychain before gh, no stale lock remains
 - Notes: Recovered the second recurring push blocker. The helper was installed, but scheduled agents reported invalid gh token; added a worktree-local credential fallback order rather than relying on gh alone.
+
+### 2026-05-17T00:07:16.886468+00:00 - external-transfer-spof-hardening
+
+- Task: Implement P06746 DNA Pol X/5'-dRP lyase repair lane
+- Time mode: measured
+- Measured minutes: 16.233
+- Started: 2026-05-16T23:51:02Z
+- Ended: 2026-05-17T00:07:16Z
+- Artifacts: artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json, artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: startup 370 unit tests passed, startup validate passed with 679 curated labels, P06746 DNA Pol X/5'-dRP lyase repair control staged as review-only source-active-site Lys-72 sequence-context control, P06746 import-safety adjudication repaired representation near-duplicate conflict, post-repair P06746 status remains needs_review, 0 import-ready rows, 0 countable external labels, focused 106 tests passed, final 372 unit tests passed, final validate passed, compileall passed, git diff check passed
+- Notes: Normal locked direct run with no delegation. M-CSA strict TM repair stayed closed. Repaired rows still lack a defensible full import path because duplicate/review/factory blockers remain; docs/label_factory.md checked unchanged. GitHub credential fill still fails in the scheduled shell.
+
+### 2026-05-17T00:08:57.473085+00:00 - ops
+
+- Task: Record push blocker for P06746 lane
+- Time mode: measured
+- Measured minutes: 1.683
+- Started: 2026-05-17T00:07:16Z
+- Ended: 2026-05-17T00:08:57Z
+- Artifacts: work/handoff.md, work/status.md, local main ahead by one safe commit
+- Evidence: git credential fill failed with Device not configured, git push --dry-run origin main failed with Device not configured, git push origin main failed with Device not configured, gh auth status reports invalid default token, local main ahead of origin/main by one safe commit
+- Notes: Push blocked in scheduled shell after successful local commit; keep the current local commit safe and recover credentials before pushing.
 
 ## Expectation Updates
 

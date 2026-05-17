@@ -221,6 +221,17 @@ Priority blockers:
   leaves heuristic scoring, broader duplicate screening, post-repair review,
   and the full factory gate unresolved. C9JRZ8 remains review-only and
   post-repair `needs_review`, with 0 import-ready/countable rows.
+- `artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json`
+  starts the P06746 DNA Pol X/5'-dRP lyase lane as review-only non-text
+  control evidence. It uses the source-active-site Lys-72 residue, local
+  basic/acidic sequence context, and current-reference contrast rows that lack
+  the complete DNA Pol X/5'-dRP lyase axis.
+- `artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json`
+  now integrates the P06746 control into the import-safety path. The non-text
+  rule repairs the representation near-duplicate conflict, but deliberately
+  leaves heuristic scoring, broader duplicate screening, post-repair review,
+  and the full factory gate unresolved. P06746 remains review-only and
+  post-repair `needs_review`, with 0 import-ready/countable rows.
 - `artifacts/v3_external_structural_cluster_index_1025.json` removes the
   selected-pilot structure-index blocker by staging all 10 AlphaFold coordinate
   sidecars, recording SHA-256 digests, running Foldseek, and caching
@@ -1012,6 +1023,26 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-schiff-
   --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
   --pilot-success-criteria artifacts/v3_external_source_pilot_success_criteria_1025.json \
   --out artifacts/v3_external_source_pilot_schiff_base_lyase_import_safety_adjudication_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-dna-pol-x-lyase-repair-control \
+  --repair-lanes artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json \
+  --needs-review-resolution artifacts/v3_external_source_pilot_needs_review_resolution_1025.json \
+  --pilot-representation-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
+  --pilot-larger-representation-sample artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json \
+  --pilot-representation-stability-audit artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
+  --external-sequence-fasta artifacts/v3_external_source_backend_sequence_search_external_1025.fasta \
+  --reference-sequence-fasta artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta \
+  --curated-labels data/registries/curated_mechanism_labels.json \
+  --out artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-dna-pol-x-lyase-import-safety-adjudication \
+  --dna-pol-x-lyase-repair-control artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json \
+  --resolved-pilot-decisions artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json \
+  --pilot-active-site-evidence-decisions artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json \
+  --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --pilot-success-criteria artifacts/v3_external_source_pilot_success_criteria_1025.json \
+  --out artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidence-dossiers \
   --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \

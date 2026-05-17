@@ -1,0 +1,245 @@
+{
+  "blockers": [],
+  "metadata": {
+    "artifact_lineage": {
+      "artifact_paths": {
+        "heuristic_control_scores": "artifacts/v3_external_source_heuristic_control_scores_1025.json",
+        "needs_review_resolution": "artifacts/v3_external_source_pilot_needs_review_resolution_1025.json",
+        "pilot_larger_representation_sample": "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+        "pilot_representation_sample": "artifacts/v3_external_source_pilot_representation_backend_sample_1025.json",
+        "pilot_representation_stability_audit": "artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json",
+        "repair_lanes": "artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json"
+      },
+      "blocker_removed": "dna_pol_x_lyase_repair_lane_control_staged",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "heuristic_control_scores": 1025,
+        "needs_review_resolution": 1025,
+        "pilot_larger_representation_sample": 1025,
+        "pilot_representation_sample": 1025,
+        "pilot_representation_stability_audit": 1025,
+        "repair_lanes": 1025
+      },
+      "payload_methods": {
+        "heuristic_control_scores": "external_source_heuristic_control_scores",
+        "needs_review_resolution": "external_source_pilot_needs_review_resolution",
+        "pilot_larger_representation_sample": "external_source_representation_backend_sample",
+        "pilot_representation_sample": "external_source_representation_backend_sample",
+        "pilot_representation_stability_audit": "external_source_representation_backend_stability_audit",
+        "repair_lanes": "external_source_pilot_mechanism_repair_lanes"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "needs_review_resolution": {
+          "metadata.slice_id": 1025
+        },
+        "repair_lanes": {
+          "metadata.artifact_lineage.slice_id": 1025,
+          "metadata.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "heuristic_control_scores",
+          "needs_review_resolution",
+          "pilot_larger_representation_sample",
+          "pilot_representation_sample",
+          "pilot_representation_stability_audit",
+          "repair_lanes"
+        ]
+      }
+    },
+    "blocker_not_removed": [
+      "control_not_integrated_into_geometry_or_representation_scorer",
+      "heuristic_control_not_scored",
+      "full_label_factory_gate_not_run_for_external_import",
+      "no_import_ready_external_rows"
+    ],
+    "blocker_removed": "dna_pol_x_lyase_lane_has_sequence_derived_contrast_control",
+    "candidate_count": 1,
+    "candidate_with_dna_pol_x_lyase_axis_count": 1,
+    "control_status_counts": {
+      "review_only_dna_pol_x_lyase_axis_contrast_ready": 1
+    },
+    "countable_label_candidate_count": 0,
+    "current_reference_dna_pol_x_lyase_axis_match_count": 0,
+    "implemented_control": "dna_pol_x_5drp_lyase_active_site_lys_sequence_context",
+    "import_ready_candidate_count": 0,
+    "max_rows": 1,
+    "method": "external_source_pilot_dna_pol_x_lyase_repair_control",
+    "predictive_feature_sources": [
+      "amino_acid_sequence_active_site_residue",
+      "source_traced_active_site_position_overlap",
+      "active_site_local_sequence_basic_acidic_context"
+    ],
+    "ready_for_label_import": false,
+    "review_context_fields": [
+      "Rhea reaction identifiers and equations",
+      "InterPro/PROSITE source context",
+      "current-reference M-CSA labels",
+      "heuristic fingerprint identifiers"
+    ],
+    "review_only": true,
+    "slice_id": 1025,
+    "source_baseline_representation_backend": "esm2_t6_8m_ur50d",
+    "source_larger_representation_backend": "esm2_t30_150m_ur50d",
+    "source_needs_review_resolution_method": "external_source_pilot_needs_review_resolution",
+    "source_repair_lanes_method": "external_source_pilot_mechanism_repair_lanes",
+    "target_repair_lane": "add_dna_pol_x_lyase_representation_axis"
+  },
+  "rows": [
+    {
+      "accession": "P06746",
+      "candidate_sequence_features": {
+        "active_site_lys_local_acidic_residue_count": 3,
+        "active_site_lys_local_basic_residue_count": 7,
+        "active_site_lys_local_windows": [
+          {
+            "local_acidic_residue_count": 3,
+            "local_basic_residue_count": 7,
+            "position": 72,
+            "residue": "K",
+            "window_end": 84,
+            "window_sequence": "KKLPGVGTKIAEKIDEFLATGKLRK",
+            "window_start": 60
+          }
+        ],
+        "dna_pol_x_lyase_sequence_axis_status": "dna_pol_x_lyase_axis_present_with_source_active_site_lys",
+        "has_active_site_basic_acidic_context": true,
+        "has_source_active_site_lys": true,
+        "sequence_length": 335,
+        "source_active_site_lys_count": 1,
+        "source_active_site_lys_positions": [
+          72
+        ],
+        "source_active_site_positions": [
+          72
+        ]
+      },
+      "control_interpretation": "Candidate carries a sequence-derived DNA Pol X/5'-dRP lyase axis signal with source-active-site Lys overlap, while conflicting current-reference neighbors lack the complete axis. This supports a bounded review-only repair-control experiment, not import.",
+      "control_status": "review_only_dna_pol_x_lyase_axis_contrast_ready",
+      "countable_label_candidate": false,
+      "current_reference_contrasts": [
+        {
+          "active_site_lys_local_windows": [],
+          "current_label_summaries": [
+            {
+              "entry_id": "m_csa:353",
+              "fingerprint_id": "flavin_dehydrogenase_reductase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated"
+            }
+          ],
+          "dna_pol_x_lyase_sequence_axis_status": "dna_pol_x_lyase_axis_absent",
+          "embedding_cosine_by_backend": {
+            "esm2_t30_150m_ur50d": 0.9141,
+            "esm2_t6_8m_ur50d": 0.914
+          },
+          "matched_m_csa_entry_ids": [
+            "m_csa:353"
+          ],
+          "reference_accession": "P08373",
+          "sequence_length": 342,
+          "source_active_site_lys_positions": []
+        },
+        {
+          "active_site_lys_local_windows": [],
+          "current_label_summaries": [
+            {
+              "entry_id": "m_csa:536",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated"
+            }
+          ],
+          "dna_pol_x_lyase_sequence_axis_status": "dna_pol_x_lyase_axis_absent",
+          "embedding_cosine_by_backend": {
+            "esm2_t30_150m_ur50d": 0.9409,
+            "esm2_t6_8m_ur50d": 0.8872
+          },
+          "matched_m_csa_entry_ids": [
+            "m_csa:536"
+          ],
+          "reference_accession": "P26239",
+          "sequence_length": 350,
+          "source_active_site_lys_positions": []
+        },
+        {
+          "active_site_lys_local_windows": [],
+          "current_label_summaries": [
+            {
+              "entry_id": "m_csa:521",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated"
+            }
+          ],
+          "dna_pol_x_lyase_sequence_axis_status": "dna_pol_x_lyase_axis_absent",
+          "embedding_cosine_by_backend": {
+            "esm2_t30_150m_ur50d": 0.9604,
+            "esm2_t6_8m_ur50d": 0.9275
+          },
+          "matched_m_csa_entry_ids": [
+            "m_csa:521"
+          ],
+          "reference_accession": "P31116",
+          "sequence_length": 359,
+          "source_active_site_lys_positions": []
+        }
+      ],
+      "decision_effect": "keeps row rejected_representation_conflict; this control only stages non-text repair evidence for a future scoring experiment",
+      "entry_id": "uniprot:P06746",
+      "heuristic_conflict_summary": {
+        "scope_top1_mismatch": null,
+        "scored": false,
+        "top1_counterevidence": [],
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "implemented_control": "dna_pol_x_5drp_lyase_active_site_lys_sequence_context",
+      "ready_for_label_import": false,
+      "repair_lane": "add_dna_pol_x_lyase_representation_axis",
+      "representation_conflict_summary": {
+        "baseline_backend": "esm2_t6_8m_ur50d",
+        "baseline_nearest_reference_accession": "P31116",
+        "baseline_top_embedding_cosine": 0.9275,
+        "comparison_backend": "esm2_t30_150m_ur50d",
+        "comparison_nearest_reference_accession": "P31116",
+        "comparison_top_embedding_cosine": 0.9604,
+        "nearest_reference_entry_ids_stable": true,
+        "nearest_reference_stable": true,
+        "stability_flags": [
+          "heuristic_disagreement_status_changed",
+          "comparison_embedding_backend_fallback_used"
+        ]
+      },
+      "review_status": "external_pilot_dna_pol_x_lyase_repair_control_review_only",
+      "source_confidence": "medium",
+      "source_context_evidence": {
+        "active_site_positions": [
+          72
+        ],
+        "interpro_or_prosite_context": [
+          "IPR002054 DNA-dir_DNA_pol_X",
+          "IPR027421 DNA_pol_lamdba_lyase_dom_sf",
+          "IPR002008 DNA_pol_X_beta-like",
+          "PROSITE PS00522 DNA_POLYMERASE_X"
+        ],
+        "reaction_context_status": "source_supports_dna_polymerase_and_5_drp_lyase_context",
+        "representative_rhea_reactions": [
+          "RHEA:22508 DNA(n) + a 2'-deoxyribonucleoside 5'-triphosphate = DNA(n+1) + diphosphate",
+          "RHEA:66592 2'-deoxyribonucleotide-(2'-deoxyribose 5'-phosphate)-2'-deoxyribonucleotide-DNA = a 3'-end 2'-deoxyribonucleotide-(2,3-dehydro-2,3-deoxyribose 5'-phosphate)-DNA + a 5'-end 5'-phospho-2'-deoxyribonucleoside-DNA + H(+)"
+        ]
+      },
+      "source_resolved_status": "rejected_representation_conflict"
+    }
+  ],
+  "warnings": [
+    "DNA Pol X/5'-dRP lyase repair controls are review-only contrast evidence; they do not validate enzyme function or authorize import"
+  ]
+}

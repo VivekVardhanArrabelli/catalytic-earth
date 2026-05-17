@@ -388,6 +388,17 @@ the C9JRZ8 representation near-duplicate conflict and records post-repair
 `needs_review`, while heuristic scoring, broader duplicate screening, a
 post-repair review decision, and the full factory gate still block import and
 counting.
+`artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json`
+now opens the P06746 DNA Pol X/5'-dRP lyase lane as review-only control
+evidence: a source-active-site Lys-72 sequence-context axis with local
+basic/acidic residue context separates the candidate from conflicting
+current-reference neighbors, which lack the complete axis. The follow-on
+`artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json`
+now integrates that non-text control into the import-safety path: it repairs
+the P06746 representation near-duplicate conflict and records post-repair
+`needs_review`, while heuristic scoring, broader duplicate screening, a
+post-repair review decision, and the full factory gate still block import and
+counting.
 `artifacts/v3_external_structural_cluster_index_1025.json` now starts the
 external structural-diversity path directly: all 10 selected pilot AlphaFold
 coordinate sidecars are materialized with SHA-256 digests, Foldseek completes a

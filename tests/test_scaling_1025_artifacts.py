@@ -3217,6 +3217,19 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "adjudication_1025.json"
             )
         )
+        dna_pol_x_lyase_control = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json"
+        )
+        dna_pol_x_lyase_import_safety = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_external_source_pilot_dna_pol_x_lyase_import_safety_"
+                "adjudication_1025.json"
+            )
+        )
         glycoside_boundary = _load_json(
             ROOT
             / "artifacts"
@@ -3519,6 +3532,105 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertFalse(adjudicated_akr_row["countable_label_candidate"])
         self.assertFalse(adjudicated_akr_row["ready_for_label_import"])
+
+        self.assertEqual(
+            dna_pol_x_lyase_control["metadata"]["method"],
+            "external_source_pilot_dna_pol_x_lyase_repair_control",
+        )
+        self.assertTrue(dna_pol_x_lyase_control["metadata"]["review_only"])
+        self.assertFalse(
+            dna_pol_x_lyase_control["metadata"]["ready_for_label_import"]
+        )
+        self.assertEqual(
+            dna_pol_x_lyase_control["metadata"]["target_repair_lane"],
+            "add_dna_pol_x_lyase_representation_axis",
+        )
+        self.assertEqual(dna_pol_x_lyase_control["metadata"]["candidate_count"], 1)
+        self.assertEqual(
+            dna_pol_x_lyase_control["metadata"][
+                "candidate_with_dna_pol_x_lyase_axis_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            dna_pol_x_lyase_control["metadata"][
+                "current_reference_dna_pol_x_lyase_axis_match_count"
+            ],
+            0,
+        )
+        self.assertEqual(dna_pol_x_lyase_control["blockers"], [])
+        dna_pol_x_row = dna_pol_x_lyase_control["rows"][0]
+        self.assertEqual(dna_pol_x_row["accession"], "P06746")
+        self.assertEqual(
+            dna_pol_x_row["control_status"],
+            "review_only_dna_pol_x_lyase_axis_contrast_ready",
+        )
+        self.assertEqual(
+            dna_pol_x_row["candidate_sequence_features"][
+                "dna_pol_x_lyase_sequence_axis_status"
+            ],
+            "dna_pol_x_lyase_axis_present_with_source_active_site_lys",
+        )
+        self.assertEqual(
+            dna_pol_x_row["candidate_sequence_features"][
+                "source_active_site_lys_positions"
+            ],
+            [72],
+        )
+        self.assertTrue(
+            all(
+                reference["dna_pol_x_lyase_sequence_axis_status"]
+                != "dna_pol_x_lyase_axis_present"
+                for reference in dna_pol_x_row["current_reference_contrasts"]
+            )
+        )
+        self.assertFalse(dna_pol_x_row["countable_label_candidate"])
+        self.assertFalse(dna_pol_x_row["ready_for_label_import"])
+
+        self.assertEqual(
+            dna_pol_x_lyase_import_safety["metadata"]["method"],
+            "external_source_pilot_dna_pol_x_lyase_import_safety_adjudication",
+        )
+        self.assertTrue(dna_pol_x_lyase_import_safety["metadata"]["review_only"])
+        self.assertFalse(
+            dna_pol_x_lyase_import_safety["metadata"]["ready_for_label_import"]
+        )
+        self.assertEqual(
+            dna_pol_x_lyase_import_safety["metadata"][
+                "representation_conflict_repaired_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            dna_pol_x_lyase_import_safety["metadata"][
+                "import_ready_candidate_count"
+            ],
+            0,
+        )
+        adjudicated_dna_pol_x_row = dna_pol_x_lyase_import_safety["rows"][0]
+        self.assertEqual(adjudicated_dna_pol_x_row["accession"], "P06746")
+        self.assertEqual(
+            adjudicated_dna_pol_x_row["import_safety_adjudication_status"],
+            "dna_pol_x_lyase_axis_representation_conflict_repaired",
+        )
+        self.assertEqual(
+            adjudicated_dna_pol_x_row["normalized_decision_status_after_repair"],
+            "needs_review",
+        )
+        self.assertNotIn(
+            "representation_near_duplicate_holdout",
+            adjudicated_dna_pol_x_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "heuristic_control_not_scored",
+            adjudicated_dna_pol_x_row["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            adjudicated_dna_pol_x_row["remaining_import_blockers"],
+        )
+        self.assertFalse(adjudicated_dna_pol_x_row["countable_label_candidate"])
+        self.assertFalse(adjudicated_dna_pol_x_row["ready_for_label_import"])
 
         self.assertEqual(
             glycoside_boundary["metadata"]["method"],

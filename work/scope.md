@@ -265,6 +265,13 @@ Current expectation:
   C9JRZ8 representation near-duplicate conflict and records post-repair
   `needs_review`; heuristic scoring, broader duplicate screening, a
   post-repair review decision, and the full factory gate still block import.
+  The P06746 DNA Pol X/5'-dRP lyase lane now has a bounded review-only
+  sequence-axis control using source-active-site Lys-72, local basic/acidic
+  sequence context, and current-reference contrast rows that lack the complete
+  axis. Its follow-on import-safety adjudication now repairs the P06746
+  representation near-duplicate conflict and records post-repair `needs_review`;
+  heuristic scoring, broader duplicate screening, a post-repair review
+  decision, and the full factory gate still block import.
   The external structural path now has a
   concrete review-only cluster index for the same 10 selected rows: all 10
   AlphaFold coordinate sidecars are materialized,
