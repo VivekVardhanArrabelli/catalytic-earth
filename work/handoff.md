@@ -50,6 +50,43 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T04:03:36Z automation run, Phase 1 is complete and
+stopped at the Phase 2 approval checkpoint. The execution manifest was
+refreshed against latest pulled `main` commit
+`072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f` and still covers 108 large
+noncanonical rows with 0 migration-ready rows, 0 remote SHA-256 verifications,
+0 restore-test passes, and 0 removal authorizations. Producer status is now
+68 `known`, 40 `unavailable_with_reason`, and 0 `unknown_blocking`. The final
+24 geometry-feature rows from slices 275 through 850 were closed as
+`unavailable_with_reason` rather than known: Git history and the committed
+progress log identify the label-batch/artifact commits, but the exact
+per-row adjacent-slice `--reuse-existing` plus PDB/mmCIF cache closure is not
+reconstructable from committed state. Each row preserves committed path, size,
+SHA-256, Git target URI, source inputs, producer command pattern, downstream
+consumers, and migration blockers.
+
+Phase 2 readiness checklist for human approval: choose the external storage
+target, select the approved row subset, upload only after approval, record
+non-Git `target_uri` values, independently verify remote SHA-256, run restore
+subset tests from the uploaded targets, keep `removal_allowed=false`, and rerun
+the full source-only plus restored-artifact validation suite. Phase 2 is not
+authorized by the current automation prompt, and Phase 3 Git removal is also
+not authorized.
+
+Evidence-based confidence call: this was a no-science-recompute Phase 1
+provenance-manifest closure and readiness-report pass. No artifact upload,
+deletion, Git LFS migration, externalization, label/import artifact edit,
+scientific-artifact recompute, or history rewrite was performed. Verification
+passed with startup 439-test unit discovery, startup CLI `validate`, targeted
+artifact/transfer/source-only tests, final 439-test unit discovery,
+source-only compile/import/CLI-help/validate smokes,
+`validate-artifact-migration --dry-run`, `validate-artifact-migration
+--dry-run --check-local-files`, restore smoke dry-run, transfer-scope public
+contract import, and external label invariant inspection. Early exit exception:
+the measured elapsed time was 9.383 minutes because all remaining safe Phase 1
+steps are complete and the next action is an approval-gated Phase 2 storage
+decision.
+
 As of the 2026-05-18T03:03:01Z automation run, Phase 1 remains
 instrumentation-only and continued Step 6 on the geometry-feature provenance
 gaps. The execution manifest was refreshed against latest pulled `main` commit

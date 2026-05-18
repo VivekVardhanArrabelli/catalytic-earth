@@ -28,21 +28,18 @@ URIs for the same 108 rows and keeps `migration_ready=false`,
 `remote_sha256_verified=false`, `restore_test_passed=false`, and
 `removal_allowed=false` for every row. The admission guard passes only because
 every current large noncanonical row has a manifest row.
-The execution manifest now records 68 `known`, 16
-`unavailable_with_reason`, and 24 `unknown_blocking` producer rows. The
-unavailable rows are 9 Foldseek coordinate sidecars plus the 875, 900, 925,
-950, 975, 1,000, and 1,025 geometry feature artifacts. Their historical
+The execution manifest now records 68 `known`, 40
+`unavailable_with_reason`, and 0 `unknown_blocking` producer rows. The
+unavailable rows are 9 Foldseek coordinate sidecars plus all 31 adjacent-slice
+geometry feature artifacts from 275 through 1,025. Their historical
 fetch/restage or adjacent-slice-reuse plus PDB/mmCIF cache sessions cannot be
 reconstructed from committed state; their committed path, size, SHA-256, and
 Git target URI preserve artifact identity while migration readiness remains
-false. The remaining 24 `unknown_blocking` rows are regenerable geometry
-feature artifacts with adjacent-slice `--reuse-existing` provenance gaps. Rows
-also carry the
-producer command list, source inputs, parameter assumptions, and explicit
-provenance recovery steps where provenance remains blocking. The validator
-requires known producers to retain a producer command and requires each
-`unknown_blocking` row to retain recovery steps, so future provenance
-tightening cannot silently erase the next action.
+false. Rows carry the producer command list, source inputs, parameter
+assumptions, and explicit provenance recovery steps when provenance is still
+blocking. The validator requires known producers to retain a producer command
+and requires any future `unknown_blocking` row to retain recovery steps, so
+future provenance tightening cannot silently erase the next action.
 
 The execution manifest is explicit about the current-main scientific baseline:
 `baseline=current_main_three_external_hard_negatives`, `slice_id=1025`, and
@@ -212,6 +209,12 @@ rewrite has been performed. The `artifact_pointer.v1` validator rejects empty
 restore contracts, malformed hashes, invalid sizes, invalid storage classes,
 and non-SHA-256 restore verification before any future pointer replacement can
 be considered.
+
+Phase 1 readiness checkpoint: the execution manifest has zero
+`unknown_blocking` rows, zero migration-ready rows, zero remote SHA-256
+verifications, zero restore-test passes, and zero removal authorizations. The
+next step is human approval of a Phase 2 storage target and upload plan. Phase
+2 must still be upload-and-verify only; it cannot remove artifacts from Git.
 
 Phase 2 may upload approved artifacts only after a human authorizes the storage
 target. Every uploaded artifact must have a target URI, independently verified

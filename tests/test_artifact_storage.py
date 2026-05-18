@@ -149,7 +149,10 @@ class ArtifactStorageTests(unittest.TestCase):
         )
         self.assertEqual(manifest["metadata"]["included_file_count"], 108)
         self.assertEqual(manifest["metadata"]["deletion_authorized_count"], 0)
-        self.assertIn("partially_inferred", manifest["metadata"]["producer_command_status_counts"])
+        self.assertNotIn(
+            "partially_inferred",
+            manifest["metadata"]["producer_command_status_counts"],
+        )
         self.assertEqual(plan["metadata"]["method"], "artifact_migration_readiness_plan")
         self.assertEqual(plan["metadata"]["planned_file_count"], 108)
         self.assertEqual(plan["metadata"]["migration_ready_now_count"], 0)
@@ -178,9 +181,9 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(manifest["metadata"]["removal_allowed_count"], 0)
         self.assertEqual(
             manifest["metadata"]["producer_status_counts"],
-            {"known": 68, "unavailable_with_reason": 16, "unknown_blocking": 24},
+            {"known": 68, "unavailable_with_reason": 40},
         )
-        self.assertEqual(manifest["metadata"]["unknown_blocking_count"], 24)
+        self.assertEqual(manifest["metadata"]["unknown_blocking_count"], 0)
         commit = manifest["metadata"]["current_main_commit"]
         for row in manifest["rows"]:
             self.assertEqual(row["storage_class"], "git")
@@ -200,6 +203,8 @@ class ArtifactStorageTests(unittest.TestCase):
             for row in manifest["rows"]
             if row["producer_status"] == "unavailable_with_reason"
         }
+        self.assertIn("artifacts/v3_geometry_features_275.json", unavailable_paths)
+        self.assertIn("artifacts/v3_geometry_features_850.json", unavailable_paths)
         self.assertIn("artifacts/v3_geometry_features_875.json", unavailable_paths)
         self.assertIn("artifacts/v3_geometry_features_900.json", unavailable_paths)
         self.assertIn("artifacts/v3_geometry_features_925.json", unavailable_paths)

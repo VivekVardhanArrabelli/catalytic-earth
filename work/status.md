@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 169
-- Measured elapsed time: 5219.8 minutes (87.00 hours)
+- Entries: 170
+- Measured elapsed time: 5229.1 minutes (87.15 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
-- infrastructure: 96.8 measured minutes (1.61 hours)
+- infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -26,21 +26,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1875
-- Evidence references logged: 1462
+- Artifact references logged: 1886
+- Evidence references logged: 1471
 
 ## Recent Entries
-
-### 2026-05-17T19:40:15.947653+00:00 - infrastructure
-
-- Task: Artifact migration Phase 1 execution instrumentation
-- Time mode: measured
-- Measured minutes: 11.767
-- Started: 2026-05-17T19:28:16Z
-- Ended: 2026-05-17T19:40:02Z
-- Artifacts: artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, src/catalytic_earth/cli.py, tests/test_artifact_storage.py, tests/test_source_only_contract.py, README.md, docs/artifact_storage.md, work/handoff.md
-- Evidence: startup 422 unit tests passed, startup validate passed with 682 labels, source-only compile/import/CLI help/validate passed, targeted artifact+transfer tests passed, full 431 unit tests passed, validate-artifact-migration passed with 108 rows and 0 blockers, restore smoke dry-run passed with 3 existing-match skips, git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only: no artifact deletion, upload, LFS migration, externalization, scientific-artifact recompute, or history rewrite. Execution manifest maps 40 partially inferred producers to unknown_blocking and keeps removal_allowed false for all rows.
 
 ### 2026-05-17T21:23:45.693227+00:00 - infrastructure
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
 - Evidence: startup 439-test unit discovery passed, startup validate passed with 682 labels, targeted artifact transfer source-only tests passed, source-only compile import CLI help validate passed, final 439-test unit discovery passed, migration validation passed with local file checks, restore smoke dry-run passed with 3 existing-match skips, manifest producer status now 68 known 16 unavailable_with_reason 24 unknown_blocking, external label invariants remain 682 total 212 seed 470 out_of_scope 3 external out_of_scope, git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only; no artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite. Geometry feature artifacts 875 900 925 950 and 975 moved from unknown_blocking to unavailable_with_reason with path size SHA and Git identity preserved; 24 geometry-feature unknown_blocking rows remain.
+
+### 2026-05-18T04:13:16.733717+00:00 - infrastructure
+
+- Task: Artifact migration Phase 1 readiness checkpoint
+- Time mode: measured
+- Measured minutes: 9.383
+- Started: 2026-05-18T04:03:36Z
+- Ended: 2026-05-18T04:12:59Z
+- Artifacts: artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
+- Evidence: startup 439-test unit discovery passed, startup validate passed with 682 labels, final targeted artifact transfer source-only tests passed, final 439-test unit discovery passed, source-only compile import CLI help validate passed, validate-artifact-migration dry-run and local-file check passed, restore smoke dry-run passed with 3 existing-match skips, manifest producer status now 68 known 40 unavailable_with_reason 0 unknown_blocking, external label invariants remain 682 total 212 seed 470 out_of_scope 3 external out_of_scope
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. early_exit_exception: elapsed 9.383 minutes because every remaining safe Phase 1 step is complete and Phase 2 upload is approval-gated. No artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite.
 
 ## Expectation Updates
 
@@ -247,6 +247,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-17T13:25:17.879225+00:00: Broader external sourcing now has one surviving no-current-structural-signal row, P06744; terminal review and full factory/import gates are the active blockers.
 - 2026-05-17T13:49:27.020292+00:00: P06744 is now a countable external out-of-scope hard negative; next work should not retry broader duplicate-signal rejects without new evidence.
 - 2026-05-17T17:13:28.332690+00:00: candidate-specific pilot repairs are development evidence only; next external tranche requires frozen preregistration
+- 2026-05-18T04:13:16.733717+00:00: Phase 1 artifact-migration instrumentation is complete; next action is human approval for Phase 2 upload target and subset.
 
 ## Scope Adjustments
 

@@ -92,15 +92,15 @@ The repository currently contains:
     stored migration status counts drift from the row-level evidence, or if a
     Git-retained row's `git:<source_path>@<commit>` target identity no longer
     matches the execution manifest. Git-retained rows also cannot become
-    migration-ready through metadata drift. Execution rows now carry producer
+    migration-ready through metadata drift. Execution rows carry producer
     commands, source inputs, parameter assumptions, and explicit provenance
-    recovery steps for fail-closed `unknown_blocking` rows. Producer status is
-    now 68 `known`, 16 `unavailable_with_reason` rows with preserved
-    path/size/SHA identity (9 Foldseek coordinate sidecars plus the 875,
-    900, 925, 950, 975, 1,000, and 1,025 geometry feature artifacts whose
-    exact historical reuse/cache closure is unavailable), and 24
-    `unknown_blocking` geometry feature rows that still need provenance
-    closure.
+    recovery steps for any fail-closed `unknown_blocking` rows. Producer status
+    is now 68 `known`, 40 `unavailable_with_reason`, and 0
+    `unknown_blocking`. The unavailable rows preserve path/size/SHA identity
+    for 9 Foldseek coordinate sidecars plus all 31 adjacent-slice geometry
+    feature artifacts whose exact historical reuse/cache closure is unavailable.
+    Phase 1 is ready for the Phase 2 approval checkpoint, but no upload,
+    migration, Git removal, Git LFS migration, or history rewrite has occurred.
     `artifacts/v3_artifact_admission_guard_1025.json` guards future large
     artifact admission. See `docs/artifact_storage.md`.
 

@@ -2,7 +2,7 @@
   "metadata": {
     "baseline": "current_main_three_external_hard_negatives",
     "canonical_countable_label_count": 682,
-    "current_main_commit": "330180448ddbd407d2b4ccea9c7603ae2fa7b3d5",
+    "current_main_commit": "072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f",
     "external_hard_negative_fingerprint_id": null,
     "external_hard_negative_label_type": "out_of_scope",
     "external_imported_out_of_scope_labels": [
@@ -11,7 +11,7 @@
       "uniprot:Q3LXA3"
     ],
     "external_imported_seed_fingerprint_label_count": 0,
-    "generated_at": "2026-05-18T03:08:30Z",
+    "generated_at": "2026-05-18T04:11:37Z",
     "information_loss_guard": "Phase 1 instrumentation only. This manifest records exact Git targets for current artifacts but authorizes no upload, migration, artifact removal, Git LFS migration, or history rewrite.",
     "manifest_schema_version": "artifact_migration_execution.v1",
     "method": "artifact_migration_execution_manifest",
@@ -30,8 +30,7 @@
     ],
     "producer_status_counts": {
       "known": 68,
-      "unavailable_with_reason": 16,
-      "unknown_blocking": 24
+      "unavailable_with_reason": 40
     },
     "remote_sha256_verified_count": 0,
     "removal_allowed_count": 0,
@@ -39,44 +38,13 @@
     "slice_id": 1025,
     "source_producer_consumer_manifest": "artifacts/v3_artifact_producer_consumer_manifest_1025.json",
     "source_readiness_plan": "artifacts/v3_artifact_migration_readiness_plan_1025.json",
-    "unknown_blocking_count": 24,
+    "unknown_blocking_count": 0,
     "unknown_blocking_summary": {
-      "by_artifact_category": {
-        "regenerable_intermediate": 24
-      },
-      "by_planned_storage_class": {
-        "candidate_release_asset_later": 24
-      },
-      "by_source_producer_command_status": {
-        "partially_inferred": 24
-      },
-      "row_count": 24,
-      "source_paths": [
-        "artifacts/v3_geometry_features_275.json",
-        "artifacts/v3_geometry_features_300.json",
-        "artifacts/v3_geometry_features_325.json",
-        "artifacts/v3_geometry_features_350.json",
-        "artifacts/v3_geometry_features_375.json",
-        "artifacts/v3_geometry_features_400.json",
-        "artifacts/v3_geometry_features_425.json",
-        "artifacts/v3_geometry_features_450.json",
-        "artifacts/v3_geometry_features_475.json",
-        "artifacts/v3_geometry_features_500.json",
-        "artifacts/v3_geometry_features_525.json",
-        "artifacts/v3_geometry_features_550.json",
-        "artifacts/v3_geometry_features_575.json",
-        "artifacts/v3_geometry_features_600.json",
-        "artifacts/v3_geometry_features_625.json",
-        "artifacts/v3_geometry_features_650.json",
-        "artifacts/v3_geometry_features_675.json",
-        "artifacts/v3_geometry_features_700.json",
-        "artifacts/v3_geometry_features_725.json",
-        "artifacts/v3_geometry_features_750.json",
-        "artifacts/v3_geometry_features_775.json",
-        "artifacts/v3_geometry_features_800.json",
-        "artifacts/v3_geometry_features_825.json",
-        "artifacts/v3_geometry_features_850.json"
-      ]
+      "by_artifact_category": {},
+      "by_planned_storage_class": {},
+      "by_source_producer_command_status": {},
+      "row_count": 0,
+      "source_paths": []
     }
   },
   "rows": [
@@ -136,7 +104,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_1000.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1000.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1000.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -194,7 +162,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_1025.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1025.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1025.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -252,7 +220,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -311,7 +279,7 @@
       "source_path": "artifacts/v1_graph_1025.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_1025.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_1025.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -370,7 +338,7 @@
       "source_path": "artifacts/v1_graph_1000.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_1000.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_1000.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -429,7 +397,7 @@
       "source_path": "artifacts/v1_graph_975.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_975.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_975.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -488,7 +456,7 @@
       "source_path": "artifacts/v1_graph_950.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_950.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_950.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -547,7 +515,7 @@
       "source_path": "artifacts/v1_graph_925.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_925.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_925.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -606,7 +574,7 @@
       "source_path": "artifacts/v1_graph_900.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_900.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_900.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -665,7 +633,7 @@
       "source_path": "artifacts/v1_graph_875.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_875.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_875.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -724,7 +692,7 @@
       "source_path": "artifacts/v1_graph_850.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_850.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_850.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -782,7 +750,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_975.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_975.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_975.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -841,7 +809,7 @@
       "source_path": "artifacts/v1_graph_825.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_825.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_825.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -899,7 +867,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_950.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_950.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_950.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -958,7 +926,7 @@
       "source_path": "artifacts/v1_graph_800.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_800.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_800.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1016,7 +984,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_925.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_925.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_925.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1075,7 +1043,7 @@
       "source_path": "artifacts/v1_graph_775.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_775.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_775.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1133,7 +1101,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_900.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_900.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_900.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1191,7 +1159,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_875.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_875.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_875.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1250,7 +1218,7 @@
       "source_path": "artifacts/v1_graph_750.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_750.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_750.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1311,7 +1279,7 @@
       "source_path": "artifacts/v3_geometry_features_1025.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1025.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_1025.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1370,7 +1338,7 @@
       "source_path": "artifacts/v3_geometry_features_1000_selected_pdb_override.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1000_selected_pdb_override.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_1000_selected_pdb_override.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1431,7 +1399,7 @@
       "source_path": "artifacts/v3_geometry_features_1000.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1000.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_1000.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1489,7 +1457,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_850.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_850.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_850.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1548,7 +1516,7 @@
       "source_path": "artifacts/v1_graph_725.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_725.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_725.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1609,7 +1577,7 @@
       "source_path": "artifacts/v3_geometry_features_975.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_975.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_975.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1667,7 +1635,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_825.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_825.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_825.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1728,7 +1696,7 @@
       "source_path": "artifacts/v3_geometry_features_950.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_950.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_950.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1787,7 +1755,7 @@
       "source_path": "artifacts/v1_graph_700.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_700.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_700.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1845,7 +1813,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_800.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_800.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_800.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1906,7 +1874,7 @@
       "source_path": "artifacts/v3_geometry_features_925.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_925.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_925.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1965,7 +1933,7 @@
       "source_path": "artifacts/v1_graph_675.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_675.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_675.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2023,7 +1991,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_775.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_775.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_775.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2084,7 +2052,7 @@
       "source_path": "artifacts/v3_geometry_features_900.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_900.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_900.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2143,7 +2111,7 @@
       "source_path": "artifacts/v1_graph_650.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_650.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_650.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2201,7 +2169,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_750.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_750.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_750.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2262,7 +2230,7 @@
       "source_path": "artifacts/v3_geometry_features_875.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_875.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_875.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2321,7 +2289,7 @@
       "source_path": "artifacts/v1_graph_625.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_625.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_625.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2344,30 +2312,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=850",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_850.json --max-entries 850 --reuse-existing artifacts/v3_geometry_features_825.json --out artifacts/v3_geometry_features_850.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_850.json",
@@ -2382,9 +2348,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_850.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_850.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_850.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2442,7 +2408,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_725.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_725.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_725.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2501,7 +2467,7 @@
       "source_path": "artifacts/v1_graph_600.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_600.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_600.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2524,30 +2490,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=825",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_825.json --max-entries 825 --reuse-existing artifacts/v3_geometry_features_800.json --out artifacts/v3_geometry_features_825.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_825.json",
@@ -2562,9 +2526,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_825.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_825.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_825.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2623,7 +2587,7 @@
       "source_path": "artifacts/v1_graph_575.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_575.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_575.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2681,7 +2645,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_700.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_700.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_700.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2704,30 +2668,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=800",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_800.json --max-entries 800 --reuse-existing artifacts/v3_geometry_features_775.json --out artifacts/v3_geometry_features_800.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_800.json",
@@ -2742,9 +2704,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_800.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_800.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_800.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2803,7 +2765,7 @@
       "source_path": "artifacts/v1_graph_550.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_550.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_550.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2861,7 +2823,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_675.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_675.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_675.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2884,30 +2846,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=775",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_775.json --max-entries 775 --reuse-existing artifacts/v3_geometry_features_750.json --out artifacts/v3_geometry_features_775.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_775.json",
@@ -2922,9 +2882,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_775.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_775.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_775.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2947,30 +2907,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=750",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_750.json --max-entries 750 --reuse-existing artifacts/v3_geometry_features_725.json --out artifacts/v3_geometry_features_750.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_750.json",
@@ -2985,9 +2943,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_750.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_750.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_750.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3046,7 +3004,7 @@
       "source_path": "artifacts/v1_graph_525.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_525.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_525.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3104,7 +3062,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_650.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_650.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_650.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "raw_cache",
@@ -3166,7 +3124,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3189,30 +3147,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=725",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_725.json --max-entries 725 --reuse-existing artifacts/v3_geometry_features_700.json --out artifacts/v3_geometry_features_725.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_725.json",
@@ -3227,9 +3183,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_725.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_725.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_725.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3288,7 +3244,7 @@
       "source_path": "artifacts/v1_graph_500.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_500.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_500.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3346,7 +3302,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_625.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_625.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_625.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "raw_cache",
@@ -3408,7 +3364,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3431,30 +3387,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=700",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_700.json --max-entries 700 --reuse-existing artifacts/v3_geometry_features_675.json --out artifacts/v3_geometry_features_700.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_700.json",
@@ -3469,9 +3423,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_700.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_700.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_700.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3529,7 +3483,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_600.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_600.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_600.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3588,7 +3542,7 @@
       "source_path": "artifacts/v1_graph_475.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_475.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_475.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3611,30 +3565,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=675",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_675.json --max-entries 675 --reuse-existing artifacts/v3_geometry_features_650.json --out artifacts/v3_geometry_features_675.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_675.json",
@@ -3649,9 +3601,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_675.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_675.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_675.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3709,7 +3661,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_575.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_575.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_575.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3732,30 +3684,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=650",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_650.json --max-entries 650 --reuse-existing artifacts/v3_geometry_features_625.json --out artifacts/v3_geometry_features_650.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_650.json",
@@ -3770,9 +3720,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_650.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_650.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_650.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3830,7 +3780,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_550.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_550.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_550.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3853,30 +3803,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=625",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_625.json --max-entries 625 --reuse-existing artifacts/v3_geometry_features_600.json --out artifacts/v3_geometry_features_625.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_625.json",
@@ -3891,9 +3839,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_625.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_625.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_625.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3952,7 +3900,7 @@
       "source_path": "artifacts/v1_graph_450.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_450.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_450.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3975,30 +3923,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=600",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_600.json --max-entries 600 --reuse-existing artifacts/v3_geometry_features_575.json --out artifacts/v3_geometry_features_600.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_600.json",
@@ -4013,9 +3959,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_600.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_600.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_600.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4074,7 +4020,7 @@
       "source_path": "artifacts/v1_graph_425.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_425.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_425.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4132,7 +4078,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_525.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_525.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_525.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4155,30 +4101,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=575",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_575.json --max-entries 575 --reuse-existing artifacts/v3_geometry_features_550.json --out artifacts/v3_geometry_features_575.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_575.json",
@@ -4193,9 +4137,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_575.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_575.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_575.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4254,7 +4198,7 @@
       "source_path": "artifacts/v1_graph_400.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_400.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_400.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4312,7 +4256,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_500.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_500.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_500.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4335,30 +4279,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=550",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_550.json --max-entries 550 --reuse-existing artifacts/v3_geometry_features_525.json --out artifacts/v3_geometry_features_550.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_550.json",
@@ -4373,9 +4315,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_550.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_550.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_550.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4433,7 +4375,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_475.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_475.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_475.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4492,7 +4434,7 @@
       "source_path": "artifacts/v1_graph_375.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_375.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_375.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4515,30 +4457,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=525",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_525.json --max-entries 525 --reuse-existing artifacts/v3_geometry_features_500.json --out artifacts/v3_geometry_features_525.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_525.json",
@@ -4553,9 +4493,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_525.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_525.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_525.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4578,30 +4518,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=500",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_500.json --max-entries 500 --reuse-existing artifacts/v3_geometry_features_475.json --out artifacts/v3_geometry_features_500.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_500.json",
@@ -4616,9 +4554,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_500.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_500.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_500.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4677,7 +4615,7 @@
       "source_path": "artifacts/v1_graph_350.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_350.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_350.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4735,7 +4673,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_450.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_450.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_450.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4758,30 +4696,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=475",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_475.json --max-entries 475 --reuse-existing artifacts/v3_geometry_features_450.json --out artifacts/v3_geometry_features_475.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_475.json",
@@ -4796,9 +4732,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_475.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_475.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_475.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4857,7 +4793,7 @@
       "source_path": "artifacts/v1_graph_325.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_325.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_325.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4915,7 +4851,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_425.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_425.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_425.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4938,30 +4874,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=450",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_450.json --max-entries 450 --reuse-existing artifacts/v3_geometry_features_425.json --out artifacts/v3_geometry_features_450.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_450.json",
@@ -4976,9 +4910,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_450.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_450.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_450.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5037,7 +4971,7 @@
       "source_path": "artifacts/v1_graph_300.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_300.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_300.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5095,7 +5029,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_400.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_400.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_400.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5154,7 +5088,7 @@
       "source_path": "artifacts/v1_graph_275.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_275.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_275.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5177,30 +5111,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=425",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_425.json --max-entries 425 --reuse-existing artifacts/v3_geometry_features_400.json --out artifacts/v3_geometry_features_425.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_425.json",
@@ -5215,9 +5147,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_425.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_425.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_425.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5275,7 +5207,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_375.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_375.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_375.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5298,30 +5230,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=400",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_400.json --max-entries 400 --reuse-existing artifacts/v3_geometry_features_375.json --out artifacts/v3_geometry_features_400.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_400.json",
@@ -5336,9 +5266,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_400.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_400.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_400.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5397,7 +5327,7 @@
       "source_path": "artifacts/v1_graph_250.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_250.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_250.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5455,7 +5385,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_350.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_350.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_350.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5478,30 +5408,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=375",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_375.json --max-entries 375 --reuse-existing artifacts/v3_geometry_features_350.json --out artifacts/v3_geometry_features_375.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_375.json",
@@ -5516,9 +5444,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_375.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_375.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_375.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5577,7 +5505,7 @@
       "source_path": "artifacts/v1_graph_225.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_225.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_225.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5635,7 +5563,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_325.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_325.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_325.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5658,30 +5586,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=350",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_350.json --max-entries 350 --reuse-existing artifacts/v3_geometry_features_325.json --out artifacts/v3_geometry_features_350.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_350.json",
@@ -5696,9 +5622,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_350.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_350.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_350.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "raw_cache",
@@ -5760,7 +5686,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "raw_cache",
@@ -5822,7 +5748,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5880,7 +5806,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_300.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_300.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_300.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5903,30 +5829,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=325",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_325.json --max-entries 325 --reuse-existing artifacts/v3_geometry_features_300.json --out artifacts/v3_geometry_features_325.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_325.json",
@@ -5941,9 +5865,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_325.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_325.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_325.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "raw_cache",
@@ -6005,7 +5929,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -6063,7 +5987,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_275.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_275.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_275.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -6086,30 +6010,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=300",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_300.json --max-entries 300 --reuse-existing artifacts/v3_geometry_features_275.json --out artifacts/v3_geometry_features_300.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_300.json",
@@ -6124,9 +6046,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_300.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_300.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_300.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -6149,30 +6071,28 @@
       "external_imported_seed_fingerprint_label_count": 0,
       "file_exists": true,
       "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
         "phase_2_remote_target_uri_not_uploaded_or_verified",
         "phase_3_removal_not_authorized",
         "producer command is not fully known; confirm provenance before migration",
-        "producer_status_unknown_blocking_after_execution_manifest_mapping",
-        "restore_test_not_recorded_for_external_target"
+        "restore_test_not_recorded_for_external_target",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready": false,
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "parameter_assumptions": [
         "max_entries=275",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "planned_storage_class": "candidate_release_asset_later",
       "producer_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_275.json --max-entries 275 --reuse-existing artifacts/v3_geometry_features_250.json --out artifacts/v3_geometry_features_275.json"
       ],
-      "producer_provenance_recovery_steps": [
-        "Confirm the exact historical geometry feature input closure, including the reuse source artifact and selected-PDB policy.",
-        "If testing regeneration, write to a scratch path only and compare size plus SHA-256 against the committed artifact.",
-        "Keep migration_ready=false unless the regenerated scratch artifact or an explicit unavailable_with_reason record closes provenance without changing committed science artifacts."
-      ],
-      "producer_status": "unknown_blocking",
-      "producer_status_reason": "source producer_command_status=partially_inferred maps fail-closed to unknown_blocking; geometry feature generation uses an inferred adjacent-slice --reuse-existing pattern, but the exact historical reuse/input closure must be confirmed before migration readiness",
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "unavailable_with_reason",
+      "producer_status_reason": "historical geometry feature adjacent-slice reuse and PDB/mmCIF cache provenance is unavailable with reason; the committed source path, size, SHA-256, and Git target URI preserve the current artifact identity, and no migration readiness or removal is authorized",
       "remote_sha256_verified": false,
       "removal_allowed": false,
       "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_geometry_features_275.json",
@@ -6187,9 +6107,9 @@
         "data/registries/curated_mechanism_labels.json for countable/review context"
       ],
       "source_path": "artifacts/v3_geometry_features_275.json",
-      "source_producer_command_status": "partially_inferred",
+      "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_275.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_features_275.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "raw_cache",
@@ -6251,7 +6171,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "raw_cache",
@@ -6313,7 +6233,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -6371,7 +6291,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_250.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_250.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_250.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "raw_cache",
@@ -6433,7 +6353,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -6492,7 +6412,7 @@
       "source_path": "artifacts/v1_graph_200.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_200.json@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v1_graph_200.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     },
     {
       "artifact_category": "raw_cache",
@@ -6554,7 +6474,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif@330180448ddbd407d2b4ccea9c7603ae2fa7b3d5"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
     }
   ]
 }

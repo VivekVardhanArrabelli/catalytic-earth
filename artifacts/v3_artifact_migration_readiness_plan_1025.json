@@ -1,7 +1,7 @@
 {
   "metadata": {
     "deletion_authorized_count": 0,
-    "generated_at": "2026-05-18T03:06:55Z",
+    "generated_at": "2026-05-18T04:09:10Z",
     "method": "artifact_migration_readiness_plan",
     "migration_ready_now_count": 0,
     "planned_file_count": 108,
@@ -1354,11 +1354,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_850.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -1458,11 +1460,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_825.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -1562,11 +1566,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_800.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -1666,11 +1672,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_775.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -1701,11 +1709,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_750.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -1842,11 +1852,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_725.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -1983,11 +1995,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_700.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2087,11 +2101,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_675.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2157,11 +2173,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_650.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2227,11 +2245,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_625.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2296,11 +2316,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_600.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2400,11 +2422,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_575.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2504,11 +2528,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_550.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2608,11 +2634,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_525.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2643,11 +2671,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_500.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2747,11 +2777,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_475.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2851,11 +2883,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_450.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -2989,11 +3023,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_425.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -3059,11 +3095,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_400.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -3163,11 +3201,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_375.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -3267,11 +3307,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_350.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -3411,11 +3453,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_325.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -3518,11 +3562,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_300.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
@@ -3553,11 +3599,13 @@
       "category": "regenerable_intermediate",
       "git_policy": "manifest_then_externalize_candidate",
       "migration_blockers": [
-        "producer command is not fully known; confirm provenance before migration"
+        "producer command is not fully known; confirm provenance before migration",
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
       ],
       "migration_ready_now": false,
       "path": "artifacts/v3_geometry_features_275.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "recommended_storage_class": "candidate_release_asset_later",
       "required_preconditions": [
         "committed producer/consumer manifest row with source graph, parameters, and consumers",
