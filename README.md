@@ -927,6 +927,13 @@ then routes all six missing sibling-control rows to external or homolog
 gamma-capable source search because direct graph-linked repair found 0
 measurement-ready structures. It is a blocker-routing artifact only and does
 not fetch new candidates, measure distances, score ePK, or change labels.
+`artifacts/v3_epk_sibling_control_homolog_source_plan_ndk_1025.json` opens the
+first bounded homolog-source step for NDK. It uses a review-only RCSB shortlist
+(`1WKL`, `3Q86`, `9OAN`, and `9PFY`) with gamma-capable nucleotide plus Mg
+context, but leaves all four candidates mapping-pending and
+measurement-not-ready. It does not measure distances, calibrate a threshold,
+score ePK, run external hard-negative re-audit, edit registries, or import
+labels.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
 `blocked_review_only`: local axes, measured-row acceptor identity review, and
 threshold/control planning pass, non-ready-row exclusion is explicit, and a

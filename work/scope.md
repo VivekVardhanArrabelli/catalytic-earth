@@ -399,12 +399,16 @@ Current expectation:
   measurement-ready repaired structures. The post-repair source decision
   routes all six missing sibling-control rows to external or homolog
   gamma-capable source search and still keeps scoring, threshold calibration,
-  external re-audit, registry edits, and label import closed. The
+  external re-audit, registry edits, and label import closed. The first
+  bounded homolog-source step now targets NDK: four RCSB structures (`1WKL`,
+  `3Q86`, `9OAN`, and `9PFY`) carry gamma-capable nucleotide plus Mg context,
+  but catalytic-residue mapping is still pending and 0 homolog structures are
+  measurement-ready. The
   consolidated ePK pre-count gate status remains `blocked_review_only`:
   local-axis prototyping, measured-row acceptor identity review, and
   gamma-threshold control planning pass, and non-ready-row exclusion plus
-  sibling-control alternate measurements and calibration-sufficiency review are
-  now explicit, while
+  sibling-control alternate measurements, calibration-sufficiency review, and
+  NDK homolog sourcing are now explicit, while
   negative-control readiness, threshold calibration, complete gamma geometry,
   external hard-negative re-audit, and registry/gate extension all fail closed.
 - return to factory-gated label scaling toward 10k while preserving quality

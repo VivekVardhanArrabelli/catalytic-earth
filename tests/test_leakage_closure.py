@@ -1243,6 +1243,20 @@ class LeakageClosureTests(unittest.TestCase):
                 "m_csa:670",
             ],
         )
+        self.assertEqual(
+            metadata["negative_control_homolog_source_plan_method"],
+            "epk_sibling_control_homolog_source_plan",
+        )
+        self.assertEqual(metadata["negative_control_homolog_source_family_id"], "ndk")
+        self.assertEqual(metadata["negative_control_homolog_source_candidate_count"], 4)
+        self.assertEqual(
+            metadata["negative_control_homolog_source_gamma_metal_candidate_count"],
+            4,
+        )
+        self.assertEqual(
+            metadata["negative_control_homolog_source_ready_structure_count"],
+            0,
+        )
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
         self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
         self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
@@ -1317,6 +1331,18 @@ class LeakageClosureTests(unittest.TestCase):
             ],
             "blocked_review_only",
         )
+        self.assertEqual(
+            checks["gamma_negative_control_distance_distribution"]["evidence"][
+                "sibling_control_homolog_source_family_id"
+            ],
+            "ndk",
+        )
+        self.assertEqual(
+            checks["gamma_negative_control_distance_distribution"]["evidence"][
+                "sibling_control_homolog_source_gamma_metal_candidate_count"
+            ],
+            4,
+        )
         self.assertFalse(checks["registry_and_label_factory_extension"]["passed"])
 
     def test_epk_post_repair_source_decision_stays_review_only(self) -> None:
@@ -1368,6 +1394,46 @@ class LeakageClosureTests(unittest.TestCase):
                 "external_or_homolog_source_needed",
             )
             self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_ndk_homolog_source_plan_stays_review_only(self) -> None:
+        plan = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_sibling_control_homolog_source_plan_ndk_1025.json"
+        )
+        metadata = plan["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_sibling_control_homolog_source_plan"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_sibling_family_id"], "ndk")
+        self.assertEqual(metadata["source_entry_ids"], ["m_csa:637"])
+        self.assertEqual(metadata["candidate_pdb_count"], 4)
+        self.assertEqual(metadata["metal_supported_gamma_candidate_count"], 4)
+        self.assertEqual(metadata["measurement_ready_homolog_structure_count"], 0)
+        self.assertEqual(metadata["catalytic_mapping_verified_count"], 0)
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        statuses = {
+            row["pdb_id"]: row["source_candidate_status"] for row in plan["rows"]
+        }
+        self.assertEqual(
+            set(statuses.values()), {"candidate_gamma_metal_source_review_only"}
+        )
+        self.assertEqual(set(statuses), {"1WKL", "3Q86", "9OAN", "9PFY"})
+        for row in plan["rows"]:
+            self.assertEqual(
+                row["catalytic_mapping_status"], "not_mapped_review_pending"
+            )
+            self.assertFalse(row["measurement_ready_for_negative_control"])
             self.assertFalse(row["countable_label_candidate"])
 
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:

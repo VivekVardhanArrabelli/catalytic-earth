@@ -12085,6 +12085,280 @@ def build_epk_missing_sibling_control_post_repair_source_decision(
     }
 
 
+def build_epk_sibling_control_homolog_source_plan(
+    *,
+    epk_missing_sibling_control_post_repair_source_decision: dict[str, Any],
+    family_id: str = "ndk",
+    candidate_pdb_ids: list[str] | None = None,
+    candidate_source_query: str | None = None,
+    cif_text_by_pdb: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    """Screen external or homolog sibling controls after direct repair is exhausted."""
+
+    decision_meta = epk_missing_sibling_control_post_repair_source_decision.get(
+        "metadata", {}
+    )
+    if not isinstance(decision_meta, dict):
+        decision_meta = {}
+    target_family_id = str(family_id or "").strip().lower() or "ndk"
+    family_name = ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(target_family_id)
+    target_fingerprint_id = str(
+        decision_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    source_rows = [
+        row
+        for row in epk_missing_sibling_control_post_repair_source_decision.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+        and str(row.get("family_id") or "") == target_family_id
+        and row.get("post_repair_source_decision")
+        == "external_or_homolog_source_needed"
+    ]
+    source_entry_ids = sorted(
+        [str(row.get("entry_id")) for row in source_rows if row.get("entry_id")],
+        key=_entry_id_sort_key,
+    )
+    candidate_ids = _sorted_strings(
+        str(pdb_id).upper() for pdb_id in candidate_pdb_ids or [] if pdb_id
+    )
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    gamma_capable_codes = {
+        "ATP",
+        "ANP",
+        "AGS",
+        "ACP",
+        "APC",
+        "AP5",
+        "ATP_GAMMA_S",
+        "DTP",
+        "GTP",
+    }
+    product_or_partial_codes = {"ADP", "AMP", "GDP", "DGP"}
+
+    def _cif_scalar(cif_text: str, key: str) -> str | None:
+        lines = cif_text.splitlines()
+        for index, line in enumerate(lines):
+            if not line.startswith(key):
+                continue
+            tail = line[len(key) :].strip()
+            if tail and tail not in {"?", "."}:
+                return tail.strip("'\"")
+            if index + 1 >= len(lines):
+                return None
+            next_line = lines[index + 1].strip()
+            if next_line == ";":
+                collected: list[str] = []
+                for value_line in lines[index + 2 :]:
+                    if value_line.strip() == ";":
+                        break
+                    collected.append(value_line.strip())
+                return " ".join(collected).strip() or None
+            if next_line.startswith(";"):
+                collected = [next_line[1:].strip()]
+                for value_line in lines[index + 2 :]:
+                    if value_line.strip() == ";":
+                        break
+                    collected.append(value_line.strip())
+                return " ".join(collected).strip() or None
+            if next_line and not next_line.startswith("_"):
+                return next_line.strip("'\"")
+        return None
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    fetch_status_counts: Counter[str] = Counter()
+    fetched_pdb_ids: set[str] = set()
+    for pdb_id in candidate_ids:
+        cif_text = cif_text_by_pdb.get(pdb_id)
+        fetch_status = "ok"
+        if cif_text is None:
+            try:
+                cif_text = fetch_pdb_cif(pdb_id)
+                fetched_pdb_ids.add(pdb_id)
+            except Exception as exc:  # pragma: no cover - network fallback path
+                fetch_status = f"fetch_failed:{type(exc).__name__}"
+                cif_text = None
+        fetch_status_counts[fetch_status] += 1
+        ligand_counts: Counter[str] = Counter()
+        structure_title = None
+        if cif_text:
+            structure_title = _cif_scalar(cif_text, "_struct.title")
+            for atom in parse_atom_site_loop(cif_text):
+                if atom.get("group_PDB") != "HETATM":
+                    continue
+                code = str(
+                    atom.get("auth_comp_id") or atom.get("label_comp_id") or ""
+                ).upper()
+                if code:
+                    ligand_counts[code] += 1
+        ligand_codes = sorted(ligand_counts)
+        gamma_codes = [code for code in ligand_codes if code in gamma_capable_codes]
+        product_codes = [
+            code for code in ligand_codes if code in product_or_partial_codes
+        ]
+        metal_codes = [code for code in ligand_codes if code in METAL_ION_CODES]
+        has_gamma = bool(gamma_codes)
+        has_metal = bool(metal_codes)
+        has_product = bool(product_codes)
+        if not cif_text:
+            status = "candidate_cif_unavailable"
+            blockers = ["candidate_cif_unavailable"]
+        elif has_gamma and has_metal:
+            status = "candidate_gamma_metal_source_review_only"
+            blockers = [
+                "homolog_catalytic_residue_mapping_not_verified",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        elif has_gamma:
+            status = "candidate_gamma_source_metal_unresolved"
+            blockers = [
+                "candidate_metal_context_unresolved",
+                "homolog_catalytic_residue_mapping_not_verified",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+            ]
+        elif has_product and has_metal:
+            status = "candidate_product_or_partial_source_not_gamma_capable"
+            blockers = [
+                "candidate_gamma_capable_nucleotide_missing",
+                "homolog_catalytic_residue_mapping_not_verified",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+            ]
+        else:
+            status = "candidate_not_gamma_capable_source"
+            blockers = [
+                "candidate_gamma_capable_nucleotide_missing",
+                "candidate_metal_context_unresolved",
+                "homolog_catalytic_residue_mapping_not_verified",
+                "epk_score_not_computed",
+            ]
+        status_counts[status] += 1
+        rows.append(
+            {
+                "pdb_id": pdb_id,
+                "family_id": target_family_id,
+                "family_name": family_name,
+                "source_entry_ids": source_entry_ids,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "structure_title": structure_title,
+                "fetch_status": fetch_status,
+                "observed_ligand_codes": ligand_codes,
+                "gamma_capable_nucleotide_codes": gamma_codes,
+                "product_or_partial_nucleotide_codes": product_codes,
+                "metal_ligand_codes": metal_codes,
+                "has_gamma_capable_nucleotide": has_gamma,
+                "has_product_or_partial_nucleotide": has_product,
+                "has_metal_ligand": has_metal,
+                "source_candidate_status": status,
+                "catalytic_mapping_status": "not_mapped_review_pending",
+                "measurement_ready_for_negative_control": False,
+                "negative_control_distance_distribution_ready": False,
+                "threshold_calibrated": False,
+                "selected_threshold_angstrom": None,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    gamma_metal_count = status_counts.get("candidate_gamma_metal_source_review_only", 0)
+    family_summary = {
+        "family_id": target_family_id,
+        "family_name": family_name,
+        "source_entry_ids": source_entry_ids,
+        "source_entry_count": len(source_entry_ids),
+        "candidate_pdb_ids": candidate_ids,
+        "candidate_pdb_count": len(candidate_ids),
+        "gamma_capable_candidate_count": sum(
+            1 for row in rows if row.get("has_gamma_capable_nucleotide")
+        ),
+        "metal_supported_gamma_candidate_count": gamma_metal_count,
+        "measurement_ready_homolog_structure_count": 0,
+        "source_plan_status": (
+            "homolog_gamma_metal_candidates_found_mapping_pending"
+            if gamma_metal_count
+            else "homolog_source_candidates_still_incomplete"
+        ),
+        "next_review_action": (
+            "map NDK catalytic histidine and nucleotide-site residues before any distance measurement"
+            if target_family_id == "ndk"
+            else "map sibling-family catalytic residues before any distance measurement"
+        ),
+    }
+    return {
+        "metadata": {
+            "method": "epk_sibling_control_homolog_source_plan",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "reviewed_sibling_family_id": target_family_id,
+            "reviewed_sibling_family_name": family_name,
+            "source_epk_missing_sibling_control_post_repair_source_decision_method": (
+                decision_meta.get("method")
+            ),
+            "candidate_source_query": candidate_source_query,
+            "source_entry_ids": source_entry_ids,
+            "source_entry_count": len(source_entry_ids),
+            "row_count": len(rows),
+            "candidate_pdb_ids": candidate_ids,
+            "candidate_pdb_count": len(candidate_ids),
+            "source_candidate_status_counts": dict(sorted(status_counts.items())),
+            "cif_fetch_status_counts": dict(sorted(fetch_status_counts.items())),
+            "fetched_pdb_ids": sorted(fetched_pdb_ids),
+            "gamma_capable_candidate_count": family_summary[
+                "gamma_capable_candidate_count"
+            ],
+            "metal_supported_gamma_candidate_count": gamma_metal_count,
+            "measurement_ready_homolog_structure_count": 0,
+            "catalytic_mapping_verified_count": 0,
+            "negative_control_homolog_source_started": bool(rows),
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact sources external or homolog sibling-control "
+                "structures after direct graph-linked repair is exhausted. It "
+                "does not verify catalytic-residue mapping, measure distances, "
+                "select thresholds, score ePK, edit registries, run external "
+                "hard-negative re-audits, or import labels."
+            ),
+            "next_actions": [
+                family_summary["next_review_action"],
+                "keep ePK threshold selection closed while homolog mapping remains pending",
+                "do not score external hard negatives until a real ePK scorer exists",
+            ],
+        },
+        "family_summaries": [family_summary],
+        "rows": sorted(rows, key=lambda row: str(row.get("pdb_id"))),
+        "warnings": [
+            (
+                "Homolog source candidates are a review queue only; none are "
+                "negative-control calibration rows until catalytic mapping and "
+                "measurement gates are added."
+            )
+        ],
+    }
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -12106,6 +12380,7 @@ def build_epk_precount_gate_status(
     epk_sibling_control_repair_review: dict[str, Any]
     | list[dict[str, Any]]
     | None = None,
+    epk_sibling_control_homolog_source_plan: dict[str, Any] | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -12231,6 +12506,13 @@ def build_epk_precount_gate_status(
         },
         key=_entry_id_sort_key,
     )
+    homolog_source_meta = (
+        epk_sibling_control_homolog_source_plan.get("metadata", {})
+        if isinstance(epk_sibling_control_homolog_source_plan, dict)
+        else {}
+    )
+    if not isinstance(homolog_source_meta, dict):
+        homolog_source_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -12478,6 +12760,25 @@ def build_epk_precount_gate_status(
                     "sibling_control_repair_ready_structure_count_total": (
                         sibling_control_repair_ready_structure_count_total
                     ),
+                    "sibling_control_homolog_source_plan_method": (
+                        homolog_source_meta.get("method")
+                    ),
+                    "sibling_control_homolog_source_family_id": (
+                        homolog_source_meta.get("reviewed_sibling_family_id")
+                    ),
+                    "sibling_control_homolog_source_candidate_count": (
+                        homolog_source_meta.get("candidate_pdb_count")
+                    ),
+                    "sibling_control_homolog_source_gamma_metal_candidate_count": (
+                        homolog_source_meta.get(
+                            "metal_supported_gamma_candidate_count"
+                        )
+                    ),
+                    "sibling_control_homolog_source_ready_structure_count": (
+                        homolog_source_meta.get(
+                            "measurement_ready_homolog_structure_count"
+                        )
+                    ),
                 },
             }
         )
@@ -12547,6 +12848,18 @@ def build_epk_precount_gate_status(
                 "before measuring those sibling families"
             ),
         )
+    if homolog_source_meta.get("method"):
+        homolog_family = homolog_source_meta.get("reviewed_sibling_family_id")
+        if int(homolog_source_meta.get("measurement_ready_homolog_structure_count") or 0):
+            next_actions.insert(
+                0,
+                f"measure mapped homolog controls for {homolog_family} in a bounded review-only pass",
+            )
+        else:
+            next_actions.insert(
+                0,
+                f"map catalytic residues for sourced {homolog_family} homolog controls before measurement",
+            )
     return {
         "metadata": {
             "method": "epk_precount_gate_status",
@@ -12663,6 +12976,21 @@ def build_epk_precount_gate_status(
             ),
             "negative_control_repair_review_unresolved_entry_ids_all": (
                 sibling_control_repair_unresolved_entry_ids
+            ),
+            "negative_control_homolog_source_plan_method": (
+                homolog_source_meta.get("method")
+            ),
+            "negative_control_homolog_source_family_id": (
+                homolog_source_meta.get("reviewed_sibling_family_id")
+            ),
+            "negative_control_homolog_source_candidate_count": (
+                homolog_source_meta.get("candidate_pdb_count")
+            ),
+            "negative_control_homolog_source_gamma_metal_candidate_count": (
+                homolog_source_meta.get("metal_supported_gamma_candidate_count")
+            ),
+            "negative_control_homolog_source_ready_structure_count": (
+                homolog_source_meta.get("measurement_ready_homolog_structure_count")
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

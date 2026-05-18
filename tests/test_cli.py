@@ -5246,6 +5246,106 @@ class CliTests(unittest.TestCase):
             )
             self.assertIn("metal-supported", row["next_source_evidence_needed"])
 
+    def test_build_epk_sibling_control_homolog_source_plan_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            post_repair = root / "post_repair.json"
+            out = root / "homolog_source_plan.json"
+            (root / "9PFY.cif").write_text(
+                "\n".join(
+                    [
+                        "data_9PFY",
+                        "_struct.title 'Crystal structure of nucleoside-diphosphate kinase with ATP'",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "HETATM ATP ATP PG PG A A 1 1 0.0 0.0 0.0",
+                        "HETATM MG MG MG MG A A 2 2 1.0 0.0 0.0",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            post_repair.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_missing_sibling_control_post_repair_source_decision"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:637",
+                                "family_id": "ndk",
+                                "post_repair_source_decision": (
+                                    "external_or_homolog_source_needed"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-sibling-control-homolog-source-plan",
+                    "--epk-missing-sibling-control-post-repair-source-decision",
+                    str(post_repair),
+                    "--family-id",
+                    "ndk",
+                    "--candidate-pdb-ids",
+                    "9PFY",
+                    "--candidate-source-query",
+                    "RCSB title phrase NDK plus ATP and MG",
+                    "--cif-dir",
+                    str(root),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            plan = json.loads(out.read_text(encoding="utf-8"))
+            metadata = plan["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_sibling_control_homolog_source_plan"
+            )
+            self.assertEqual(metadata["reviewed_sibling_family_id"], "ndk")
+            self.assertEqual(metadata["source_entry_ids"], ["m_csa:637"])
+            self.assertEqual(metadata["candidate_pdb_count"], 1)
+            self.assertEqual(metadata["metal_supported_gamma_candidate_count"], 1)
+            self.assertEqual(metadata["measurement_ready_homolog_structure_count"], 0)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            row = plan["rows"][0]
+            self.assertEqual(
+                row["source_candidate_status"],
+                "candidate_gamma_metal_source_review_only",
+            )
+            self.assertEqual(row["catalytic_mapping_status"], "not_mapped_review_pending")
+            self.assertFalse(row["measurement_ready_for_negative_control"])
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

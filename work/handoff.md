@@ -50,6 +50,49 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T21:52:26Z automation run, the normal direct automation
+protocol passed: the lock was acquired, `git fetch` and
+`git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed,
+startup unit discovery passed, `validate` passed, and
+`validate-artifact-migration --dry-run --check-local-files` again reported 108
+rows, 0 blockers, and `removal_allowed=0`. Phase 1 artifact migration remained
+guard-only and closed.
+
+The scientific work continued the review-only ePK lane without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any
+external hard-negative label. It added
+`artifacts/v3_epk_sibling_control_homolog_source_plan_ndk_1025.json` plus the
+CLI builder `build-epk-sibling-control-homolog-source-plan`. This consumes the
+post-repair sibling-control source decision and opens the first one-family
+homolog-source pass for NDK. The bounded RCSB shortlist contains four
+gamma-capable, Mg-supported NDK structures (`1WKL`, `3Q86`, `9OAN`, and
+`9PFY`), all kept `review_only` with
+`measurement_ready_homolog_structure_count=0` because catalytic-residue mapping
+is still pending. No distance was measured, no threshold was selected, no ePK
+score or external hard-negative re-audit was run, and no registry or label was
+changed.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the NDK
+homolog-source plan attached. The lane remains `blocked_review_only`: NDK now
+has source candidates for a future mapping pass, but the pre-count gate still
+records 0 homolog structures ready for negative-control measurement, and
+negative-control distribution readiness, acceptor-threshold calibration,
+complete gamma geometry, external hard-negative scored re-audit, and
+registry/label-factory extension still fail closed.
+
+Evidence-based confidence call: ePK threshold selection is blocked in a more
+diagnostic way. The direct graph-linked sibling-control repair surface remains
+exhausted, and the first NDK homolog source shortlist is promising only as
+source material, not calibration evidence. The next bounded ePK step should map
+NDK catalytic histidine/nucleotide-site residues onto those four candidates
+before any distance measurement; if mapping fails, move to PfkB
+metal-supported homolog sourcing. Do not add the ePK registry fingerprint,
+import ePK labels, score external hard negatives, or reopen migration Phase 2.
+
+Verification passed with the final 488-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T20:50:54Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and
 `git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed,

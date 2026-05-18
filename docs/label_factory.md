@@ -332,14 +332,22 @@ graph-linked repair produced 0 measurement-ready structures. This is only
 blocker routing; it does not fetch candidates, measure distances, calibrate a
 threshold, score ePK, edit registries, re-audit external hard negatives, or
 import labels.
+`artifacts/v3_epk_sibling_control_homolog_source_plan_ndk_1025.json` then
+starts the first one-family homolog-source pass for NDK. The bounded RCSB
+shortlist has four gamma-capable, Mg-supported NDK structures (`1WKL`, `3Q86`,
+`9OAN`, and `9PFY`), but catalytic-residue mapping is still pending and
+`measurement_ready_homolog_structure_count=0`. The artifact is review-only:
+it does not measure distances, select thresholds, score ePK, edit registries,
+re-audit external hard negatives, or import labels.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
 identity review, gamma-threshold control planning, explicit non-ready-row
 exclusion, sibling alternate-control screening, sibling alternate-control
-distance measurement, and calibration-sufficiency review pass as review-only
-preparation; negative-control distribution readiness, acceptor-threshold
-calibration, complete gamma geometry, external hard-negative scored re-audit,
-and registry/label-factory extension all remain failed gates.
+distance measurement, calibration-sufficiency review, and NDK homolog sourcing
+are now explicit review-only preparation; negative-control distribution
+readiness, acceptor-threshold calibration, complete gamma geometry, external
+hard-negative scored re-audit, and registry/label-factory extension all remain
+failed gates.
 
 ## Active Learning Queue
 

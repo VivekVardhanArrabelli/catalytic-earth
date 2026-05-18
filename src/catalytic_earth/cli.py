@@ -83,6 +83,7 @@ from .labels import (
     build_epk_nonready_ligand_repair_plan,
     build_epk_precount_gate_status,
     build_epk_positive_fingerprint_readiness_packet,
+    build_epk_sibling_control_homolog_source_plan,
     build_epk_sibling_control_repair_review,
     build_epk_sibling_negative_control_alternate_gamma_distance_sample,
     build_epk_sibling_negative_control_alternate_structure_plan,
@@ -5659,6 +5660,31 @@ def cmd_build_epk_missing_sibling_control_post_repair_source_decision(
     return 0
 
 
+def cmd_build_epk_sibling_control_homolog_source_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_missing_sibling_control_post_repair_source_decision).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_missing_sibling_control_post_repair_source_decision = json.load(handle)
+    plan = build_epk_sibling_control_homolog_source_plan(
+        epk_missing_sibling_control_post_repair_source_decision=(
+            epk_missing_sibling_control_post_repair_source_decision
+        ),
+        family_id=args.family_id,
+        candidate_pdb_ids=_split_csv(args.candidate_pdb_ids),
+        candidate_source_query=args.candidate_source_query,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote ePK sibling-control homolog source plan to "
+        f"{args.out} (gamma_metal_candidates="
+        f"{plan['metadata']['metal_supported_gamma_candidate_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_nonready_ligand_alternate_structure_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -5796,6 +5822,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             if len(epk_sibling_control_repair_reviews) == 1
             else epk_sibling_control_repair_reviews
         )
+    epk_sibling_control_homolog_source_plan = None
+    if args.epk_sibling_control_homolog_source_plan:
+        with Path(args.epk_sibling_control_homolog_source_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_sibling_control_homolog_source_plan = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -5829,6 +5861,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             epk_missing_sibling_control_source_request
         ),
         epk_sibling_control_repair_review=epk_sibling_control_repair_review,
+        epk_sibling_control_homolog_source_plan=(
+            epk_sibling_control_homolog_source_plan
+        ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
         ),
@@ -12588,6 +12623,41 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_missing_sibling_control_post_repair_source_decision
     )
 
+    epk_homolog_source_plan = subparsers.add_parser(
+        "build-epk-sibling-control-homolog-source-plan",
+        help="screen review-only homolog source candidates for a missing ePK sibling control",
+    )
+    epk_homolog_source_plan.add_argument(
+        "--epk-missing-sibling-control-post-repair-source-decision",
+        default=(
+            "artifacts/"
+            "v3_epk_missing_sibling_control_post_repair_source_decision.json"
+        ),
+    )
+    epk_homolog_source_plan.add_argument(
+        "--family-id",
+        default="ndk",
+        help="missing sibling family id to source",
+    )
+    epk_homolog_source_plan.add_argument(
+        "--candidate-pdb-ids",
+        default="",
+        help="comma-separated PDB ids from a bounded source query",
+    )
+    epk_homolog_source_plan.add_argument(
+        "--candidate-source-query",
+        default=None,
+        help="human-readable source query used to choose candidate PDB ids",
+    )
+    epk_homolog_source_plan.add_argument("--cif-dir", default=None)
+    epk_homolog_source_plan.add_argument(
+        "--out",
+        default="artifacts/v3_epk_sibling_control_homolog_source_plan.json",
+    )
+    epk_homolog_source_plan.set_defaults(
+        func=cmd_build_epk_sibling_control_homolog_source_plan
+    )
+
     epk_nonready_alternate_plan = subparsers.add_parser(
         "build-epk-nonready-ligand-alternate-structure-plan",
         help="screen review-only alternate structures for non-ready ePK ligand rows",
@@ -12693,6 +12763,10 @@ def build_parser() -> argparse.ArgumentParser:
     epk_precount_gate_status.add_argument(
         "--epk-sibling-control-repair-review",
         action="append",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-sibling-control-homolog-source-plan",
         default=None,
     )
     epk_precount_gate_status.add_argument(
