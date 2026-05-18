@@ -382,6 +382,11 @@ def _previous_geometry_path(slice_id: int | None) -> str | None:
 
 
 GEOMETRY_FEATURE_UNAVAILABLE_WITH_REASON_PATHS = {
+    "artifacts/v3_geometry_features_875.json",
+    "artifacts/v3_geometry_features_900.json",
+    "artifacts/v3_geometry_features_925.json",
+    "artifacts/v3_geometry_features_950.json",
+    "artifacts/v3_geometry_features_975.json",
     "artifacts/v3_geometry_features_1000.json",
     "artifacts/v3_geometry_features_1025.json",
 }

@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 168
-- Measured elapsed time: 5212.5 minutes (86.88 hours)
+- Entries: 169
+- Measured elapsed time: 5219.8 minutes (87.00 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
-- infrastructure: 89.5 measured minutes (1.49 hours)
+- infrastructure: 96.8 measured minutes (1.61 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -26,21 +26,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1864
-- Evidence references logged: 1452
+- Artifact references logged: 1875
+- Evidence references logged: 1462
 
 ## Recent Entries
-
-### 2026-05-17T18:17:48.260164+00:00 - infrastructure
-
-- Task: Artifact producer manifest and migration readiness
-- Time mode: measured
-- Measured minutes: 11.567
-- Started: 2026-05-17T18:06:14Z
-- Ended: 2026-05-17T18:17:48Z
-- Artifacts: artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_admission_guard_1025.json, docs/artifact_storage.md, src/catalytic_earth/artifact_storage.py, src/catalytic_earth/cli.py, tests/test_artifact_storage.py, README.md, work/handoff.md, work/scope.md
-- Evidence: startup 421 unit tests passed, startup validate passed with 682 labels, refreshed inventory covers 2579 files and 2.556 GiB, policy check passed with 0 blockers and 0 deletion authorizations, producer manifest covers 108 large noncanonical rows, admission guard passed with 108 covered large files, final 422 unit tests passed, validate passed with 682 labels, compileall passed, git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. No artifacts were deleted moved externalized or marked safe to delete. Migration plan keeps migration_ready_now_count at 0 and documents source-only sparse checkout.
 
 ### 2026-05-17T19:40:15.947653+00:00 - infrastructure
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
 - Evidence: startup 437 unit tests passed, final 439 unit tests passed, targeted artifact transfer source-only tests passed, validate passed with 682 labels and 3 external out-of-scope labels, migration validation passed with 108 rows and 0 blockers, restore smoke dry-run passed with 3 existing-match skips, manifest producer status now 68 known 11 unavailable_with_reason 29 unknown_blocking, git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only; no artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite. The 1000 and 1025 geometry feature artifacts moved from unknown_blocking to unavailable_with_reason with path size SHA and Git identity preserved; 29 geometry-feature unknown_blocking rows remain.
+
+### 2026-05-18T03:10:31.656741+00:00 - infrastructure
+
+- Task: Artifact migration geometry provenance closure
+- Time mode: measured
+- Measured minutes: 7.25
+- Started: 2026-05-18T03:03:01Z
+- Ended: 2026-05-18T03:10:16Z
+- Artifacts: artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
+- Evidence: startup 439-test unit discovery passed, startup validate passed with 682 labels, targeted artifact transfer source-only tests passed, source-only compile import CLI help validate passed, final 439-test unit discovery passed, migration validation passed with local file checks, restore smoke dry-run passed with 3 existing-match skips, manifest producer status now 68 known 16 unavailable_with_reason 24 unknown_blocking, external label invariants remain 682 total 212 seed 470 out_of_scope 3 external out_of_scope, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only; no artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite. Geometry feature artifacts 875 900 925 950 and 975 moved from unknown_blocking to unavailable_with_reason with path size SHA and Git identity preserved; 24 geometry-feature unknown_blocking rows remain.
 
 ## Expectation Updates
 

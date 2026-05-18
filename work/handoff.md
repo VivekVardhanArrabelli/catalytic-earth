@@ -50,6 +50,36 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T03:03:01Z automation run, Phase 1 remains
+instrumentation-only and continued Step 6 on the geometry-feature provenance
+gaps. The execution manifest was refreshed against latest pulled `main` commit
+`330180448ddbd407d2b4ccea9c7603ae2fa7b3d5` and still covers 108 large
+noncanonical rows with 0 migration-ready rows, 0 remote SHA-256 verifications,
+0 restore-test passes, and 0 removal authorizations. Producer status is now
+68 `known`, 16 `unavailable_with_reason`, and 24 `unknown_blocking`. The new
+unavailable rows are `artifacts/v3_geometry_features_875.json`,
+`artifacts/v3_geometry_features_900.json`,
+`artifacts/v3_geometry_features_925.json`,
+`artifacts/v3_geometry_features_950.json`, and
+`artifacts/v3_geometry_features_975.json`; their exact historical
+adjacent-slice `--reuse-existing` plus PDB/mmCIF cache closure is not
+reconstructable from committed state, but each row preserves committed path,
+size, SHA-256, Git target URI, source inputs, producer command pattern,
+downstream consumers, and migration blockers. The remaining
+`unknown_blocking_count` is 24, all geometry feature artifacts from slices
+275 through 850 with adjacent-slice provenance gaps.
+Evidence-based confidence call: this was a no-science-recompute Phase 1
+provenance-manifest pass. No artifact upload, deletion, Git LFS migration,
+externalization, label/import artifact edit, scientific-artifact recompute, or
+history rewrite was performed. Verification passed with startup and final
+439-test unit discovery, targeted artifact/transfer/source-only tests,
+source-only compile/import/CLI-help/validate smokes, CLI `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, restore smoke
+dry-run, external label invariant inspection, and `git diff --check`. The next
+automation run should stay in Phase 1 Step 6 on the 24 remaining
+geometry-feature provenance gaps; do not start Phase 2 uploads without
+explicit human authorization.
+
 As of the 2026-05-18T02:00:59Z automation run, Phase 1 remains
 instrumentation-only. The run first verified Step 1 through Step 5 readiness,
 then made a narrow Step 2/Step 3 safety hardening pass and one Step 6

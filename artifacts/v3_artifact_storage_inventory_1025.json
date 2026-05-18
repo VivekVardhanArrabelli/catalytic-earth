@@ -1142,7 +1142,7 @@
     },
     "deletion_authorized_count": 0,
     "file_count": 2580,
-    "generated_at": "2026-05-18T02:15:10Z",
+    "generated_at": "2026-05-18T03:06:51Z",
     "git_policy_bytes": {
       "external_cache_candidate": 635178082,
       "keep_in_git": 564728878,
@@ -5034,7 +5034,7 @@
         "do_not_delete_without_committed_manifest_or_canonical_summary"
       ],
       "reason": "small artifact; keep in git until a later reviewed migration",
-      "sha256": "57af191ff58b8b261738bdc829584d43368505a21521868b17c78a8cf94ddd48",
+      "sha256": "6e793256b4ad9aeb83401ef4120eb8bd4a81b3f5e31fe1de8eaf34a60e703ff0",
       "size_bytes": 1575397
     },
     {

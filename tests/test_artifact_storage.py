@@ -178,9 +178,9 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(manifest["metadata"]["removal_allowed_count"], 0)
         self.assertEqual(
             manifest["metadata"]["producer_status_counts"],
-            {"known": 68, "unavailable_with_reason": 11, "unknown_blocking": 29},
+            {"known": 68, "unavailable_with_reason": 16, "unknown_blocking": 24},
         )
-        self.assertEqual(manifest["metadata"]["unknown_blocking_count"], 29)
+        self.assertEqual(manifest["metadata"]["unknown_blocking_count"], 24)
         commit = manifest["metadata"]["current_main_commit"]
         for row in manifest["rows"]:
             self.assertEqual(row["storage_class"], "git")
@@ -200,6 +200,11 @@ class ArtifactStorageTests(unittest.TestCase):
             for row in manifest["rows"]
             if row["producer_status"] == "unavailable_with_reason"
         }
+        self.assertIn("artifacts/v3_geometry_features_875.json", unavailable_paths)
+        self.assertIn("artifacts/v3_geometry_features_900.json", unavailable_paths)
+        self.assertIn("artifacts/v3_geometry_features_925.json", unavailable_paths)
+        self.assertIn("artifacts/v3_geometry_features_950.json", unavailable_paths)
+        self.assertIn("artifacts/v3_geometry_features_975.json", unavailable_paths)
         self.assertIn("artifacts/v3_geometry_features_1000.json", unavailable_paths)
         self.assertIn("artifacts/v3_geometry_features_1025.json", unavailable_paths)
 

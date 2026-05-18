@@ -28,15 +28,16 @@ URIs for the same 108 rows and keeps `migration_ready=false`,
 `remote_sha256_verified=false`, `restore_test_passed=false`, and
 `removal_allowed=false` for every row. The admission guard passes only because
 every current large noncanonical row has a manifest row.
-The execution manifest now records 68 `known`, 11
-`unavailable_with_reason`, and 29 `unknown_blocking` producer rows. The
-unavailable rows are 9 Foldseek coordinate sidecars plus the 1,000 and 1,025
-geometry feature artifacts. Their historical fetch/restage or
-adjacent-slice-reuse plus PDB/mmCIF cache sessions cannot be reconstructed
-from committed state; their committed path, size, SHA-256, and Git target URI
-preserve artifact identity while migration readiness remains false. The
-remaining 29 `unknown_blocking` rows are regenerable geometry feature artifacts
-with adjacent-slice `--reuse-existing` provenance gaps. Rows also carry the
+The execution manifest now records 68 `known`, 16
+`unavailable_with_reason`, and 24 `unknown_blocking` producer rows. The
+unavailable rows are 9 Foldseek coordinate sidecars plus the 875, 900, 925,
+950, 975, 1,000, and 1,025 geometry feature artifacts. Their historical
+fetch/restage or adjacent-slice-reuse plus PDB/mmCIF cache sessions cannot be
+reconstructed from committed state; their committed path, size, SHA-256, and
+Git target URI preserve artifact identity while migration readiness remains
+false. The remaining 24 `unknown_blocking` rows are regenerable geometry
+feature artifacts with adjacent-slice `--reuse-existing` provenance gaps. Rows
+also carry the
 producer command list, source inputs, parameter assumptions, and explicit
 provenance recovery steps where provenance remains blocking. The validator
 requires known producers to retain a producer command and requires each

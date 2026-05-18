@@ -5,7 +5,7 @@
       "regenerable_intermediate": 99
     },
     "deletion_authorized_count": 0,
-    "generated_at": "2026-05-18T02:12:30Z",
+    "generated_at": "2026-05-18T03:06:55Z",
     "included_file_count": 108,
     "included_total_bytes": 1460658095,
     "large_file_threshold_bytes": 5242880,
@@ -14,8 +14,8 @@
     "policy_version": "artifact_storage_policy_v1_2026_05_17",
     "producer_command_status_counts": {
       "known": 68,
-      "partially_inferred": 29,
-      "unavailable_with_reason": 11
+      "partially_inferred": 24,
+      "unavailable_with_reason": 16
     },
     "scope": "All current large raw_cache and regenerable_intermediate rows from the storage inventory. Unknown or partially inferred provenance is kept explicit and blocks migration.",
     "source_inventory": "artifacts/v3_artifact_storage_inventory_1025.json"
@@ -911,14 +911,18 @@
       "likely_producer_cli_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_975.json --max-entries 975 --reuse-existing artifacts/v3_geometry_features_950.json --out artifacts/v3_geometry_features_975.json"
       ],
-      "migration_blockers": [],
+      "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
+      ],
       "parameter_assumptions": [
         "max_entries=975",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "path": "artifacts/v3_geometry_features_975.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "47d7f6a0462bdad55a0326fb937179b9726baf85e6123b648d9438b4c79ee04d",
       "size_bytes": 17390582,
       "source_inputs": [
@@ -979,14 +983,18 @@
       "likely_producer_cli_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_950.json --max-entries 950 --reuse-existing artifacts/v3_geometry_features_925.json --out artifacts/v3_geometry_features_950.json"
       ],
-      "migration_blockers": [],
+      "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
+      ],
       "parameter_assumptions": [
         "max_entries=950",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "path": "artifacts/v3_geometry_features_950.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "c8e7a0ff8ab789562cce5e888cb65af1e50747f8fd7ae7422c3cfa2902810966",
       "size_bytes": 16934998,
       "source_inputs": [
@@ -1082,14 +1090,18 @@
       "likely_producer_cli_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_925.json --max-entries 925 --reuse-existing artifacts/v3_geometry_features_900.json --out artifacts/v3_geometry_features_925.json"
       ],
-      "migration_blockers": [],
+      "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
+      ],
       "parameter_assumptions": [
         "max_entries=925",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "path": "artifacts/v3_geometry_features_925.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "05cd522e6c1dfc0eeac651762c2885bdb07505d41ca59d406636485b0ab6cd57",
       "size_bytes": 16526861,
       "source_inputs": [
@@ -1185,14 +1197,18 @@
       "likely_producer_cli_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_900.json --max-entries 900 --reuse-existing artifacts/v3_geometry_features_875.json --out artifacts/v3_geometry_features_900.json"
       ],
-      "migration_blockers": [],
+      "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
+      ],
       "parameter_assumptions": [
         "max_entries=900",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "path": "artifacts/v3_geometry_features_900.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "1a5ff0050065d76d5fb32cb86c12676c65af1960671a931ff3c2a2e34c33d09f",
       "size_bytes": 16143489,
       "source_inputs": [
@@ -1288,14 +1304,18 @@
       "likely_producer_cli_commands": [
         "PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_875.json --max-entries 875 --reuse-existing artifacts/v3_geometry_features_850.json --out artifacts/v3_geometry_features_875.json"
       ],
-      "migration_blockers": [],
+      "migration_blockers": [
+        "historical geometry feature reuse/cache session is unavailable; committed path, size, and SHA-256 preserve the artifact identity",
+        "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts"
+      ],
       "parameter_assumptions": [
         "max_entries=875",
         "PDB/mmCIF structure availability and selected-PDB choices match the recorded artifact",
-        "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
+        "exact historical reuse source can vary; adjacent prior slice is the documented pattern",
+        "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
       ],
       "path": "artifacts/v3_geometry_features_875.json",
-      "producer_command_status": "partially_inferred",
+      "producer_command_status": "unavailable_with_reason",
       "sha256": "e9a85221bcc2f9e451bc6ee83b1ae522971bf32ed714e7a4aa38a9ac6fa3c23d",
       "size_bytes": 15777634,
       "source_inputs": [
