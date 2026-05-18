@@ -1535,8 +1535,18 @@ measured coverage.
 `artifacts/v3_epk_sibling_control_repair_review_1025.json` remain local
 sibling-control hygiene. The PfkB repair review verifies the mapped
 gamma-capable `m_csa:663`/`1GQT` case but leaves it blocked by absent metal
-context, and it finds no measurement-ready repaired PfkB structures. This does
-not open ePK scoring or external hard-negative rescoring.
+context, and it finds no measurement-ready repaired PfkB structures. The same
+local hygiene now covers the other missing direct graph-linked families through
+`artifacts/v3_epk_sibling_control_repair_review_atp_grasp_1025.json`,
+`artifacts/v3_epk_sibling_control_repair_review_ndk_1025.json`, and
+`artifacts/v3_epk_sibling_control_repair_review_pfka_1025.json`: ATP-grasp,
+NDK, and PfkA all remain at 0 gamma-capable and 0 measurement-ready repaired
+structures. This does not open ePK scoring or external hard-negative
+rescoring.
+`artifacts/v3_epk_missing_sibling_control_post_repair_source_decision_1025.json`
+keeps that outcome local to sibling-control sourcing: all six rows now need
+external or homolog gamma-capable evidence, but no new candidates are fetched
+and no external hard-negative labels are rescored.
 `artifacts/v3_epk_precount_gate_status_1025.json` keeps the external lane
 explicitly blocked: no ePK score exists, the external hard negatives have not
 been rescored, the sibling negative-control distribution is not calibration

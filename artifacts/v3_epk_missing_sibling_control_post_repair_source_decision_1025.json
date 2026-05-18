@@ -1,0 +1,286 @@
+{
+  "family_summaries": [
+    {
+      "candidate_entry_count": 2,
+      "candidate_entry_ids": [
+        "m_csa:310",
+        "m_csa:498"
+      ],
+      "decision_status_counts": {
+        "external_or_homolog_source_needed": 2
+      },
+      "direct_repair_measurement_ready_structure_count": 0,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "post_repair_family_source_status": "external_or_homolog_source_needed"
+    },
+    {
+      "candidate_entry_count": 1,
+      "candidate_entry_ids": [
+        "m_csa:637"
+      ],
+      "decision_status_counts": {
+        "external_or_homolog_source_needed": 1
+      },
+      "direct_repair_measurement_ready_structure_count": 0,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "post_repair_family_source_status": "external_or_homolog_source_needed"
+    },
+    {
+      "candidate_entry_count": 1,
+      "candidate_entry_ids": [
+        "m_csa:365"
+      ],
+      "decision_status_counts": {
+        "external_or_homolog_source_needed": 1
+      },
+      "direct_repair_measurement_ready_structure_count": 0,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "post_repair_family_source_status": "external_or_homolog_source_needed"
+    },
+    {
+      "candidate_entry_count": 2,
+      "candidate_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "decision_status_counts": {
+        "external_or_homolog_source_needed": 2
+      },
+      "direct_repair_measurement_ready_structure_count": 0,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "post_repair_family_source_status": "external_or_homolog_source_needed"
+    }
+  ],
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "direct_repair_measurement_ready_structure_count": 0,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "family_count": 4,
+    "fingerprint_registry_edited": false,
+    "method": "epk_missing_sibling_control_post_repair_source_decision",
+    "missing_sibling_family_ids": [
+      "atp_grasp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "source external or homolog gamma-capable controls for rows whose direct graph-linked repair is exhausted",
+      "keep ePK threshold selection closed while sibling controls remain incomplete",
+      "do not score external hard negatives until a real ePK scorer exists"
+    ],
+    "post_repair_source_decision_counts": {
+      "external_or_homolog_source_needed": 6
+    },
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact routes missing sibling ATP-phosphoryl-transfer negative controls after direct graph-linked repair review. It does not fetch new candidates, measure distances, calibrate a threshold, score ePK, edit registries, run external hard-negative re-audits, or import labels.",
+    "reviewed_sibling_family_ids": [
+      "atp_grasp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "row_count": 6,
+    "selected_threshold_angstrom": null,
+    "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
+    "source_epk_sibling_control_repair_review_methods": [
+      "epk_sibling_control_repair_review"
+    ],
+    "source_escalation_required_entry_count": 6,
+    "source_escalation_required_entry_ids": [
+      "m_csa:310",
+      "m_csa:365",
+      "m_csa:498",
+      "m_csa:637",
+      "m_csa:663",
+      "m_csa:670"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "unreviewed_sibling_family_ids": []
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "direct_repair_candidate_structure_review_count": 0,
+      "direct_repair_measurement_ready_structure_count": 0,
+      "direct_repair_review_status": "no_candidate_structures_to_review",
+      "entry_id": "m_csa:310",
+      "entry_name": "D-alanine-(R)-lactate ligase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "negative_control_distance_distribution_ready": false,
+      "next_source_evidence_needed": "graph-linked or external structure with gamma-capable nucleotide, metal context, and catalytic-residue mapping",
+      "post_repair_source_decision": "external_or_homolog_source_needed",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_sibling_family_gamma_distance_control",
+        "direct_graph_linked_repair_not_measurement_ready",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_request_type": "source_graph_linked_or_external_pdb_structure",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "countable_label_candidate": false,
+      "direct_repair_candidate_structure_review_count": 1,
+      "direct_repair_measurement_ready_structure_count": 0,
+      "direct_repair_review_status": "source_or_repair_still_required",
+      "entry_id": "m_csa:498",
+      "entry_name": "glutathione synthase (eukaryotic)",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "negative_control_distance_distribution_ready": false,
+      "next_source_evidence_needed": "additional gamma-capable structure with metal context and catalytic-residue mapping",
+      "post_repair_source_decision": "external_or_homolog_source_needed",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_sibling_family_gamma_distance_control",
+        "direct_graph_linked_repair_not_measurement_ready",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_request_type": "source_additional_gamma_capable_alternate",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "countable_label_candidate": false,
+      "direct_repair_candidate_structure_review_count": 1,
+      "direct_repair_measurement_ready_structure_count": 0,
+      "direct_repair_review_status": "source_or_repair_still_required",
+      "entry_id": "m_csa:637",
+      "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "negative_control_distance_distribution_ready": false,
+      "next_source_evidence_needed": "ATP-state or gamma-capable nucleotide structure with metal context and mapped catalytic residues",
+      "post_repair_source_decision": "external_or_homolog_source_needed",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_sibling_family_gamma_distance_control",
+        "direct_graph_linked_repair_not_measurement_ready",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_request_type": "source_gamma_capable_atp_state_alternate",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "countable_label_candidate": false,
+      "direct_repair_candidate_structure_review_count": 1,
+      "direct_repair_measurement_ready_structure_count": 0,
+      "direct_repair_review_status": "source_or_repair_still_required",
+      "entry_id": "m_csa:365",
+      "entry_name": "Phosphofructokinase I",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "negative_control_distance_distribution_ready": false,
+      "next_source_evidence_needed": "additional gamma-capable structure with metal context and catalytic-residue mapping",
+      "post_repair_source_decision": "external_or_homolog_source_needed",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_sibling_family_gamma_distance_control",
+        "direct_graph_linked_repair_not_measurement_ready",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_request_type": "source_additional_gamma_capable_alternate",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "countable_label_candidate": false,
+      "direct_repair_candidate_structure_review_count": 4,
+      "direct_repair_measurement_ready_structure_count": 0,
+      "direct_repair_review_status": "mapping_verified_metal_context_unresolved",
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "negative_control_distance_distribution_ready": false,
+      "next_source_evidence_needed": "metal-supported gamma-capable direct or homolog structure for the mapped sibling-control active site",
+      "post_repair_source_decision": "external_or_homolog_source_needed",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_sibling_family_gamma_distance_control",
+        "direct_graph_linked_repair_not_measurement_ready",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_request_type": "repair_gamma_structure_metal_or_mapping_gap",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "countable_label_candidate": false,
+      "direct_repair_candidate_structure_review_count": 1,
+      "direct_repair_measurement_ready_structure_count": 0,
+      "direct_repair_review_status": "source_or_repair_still_required",
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "negative_control_distance_distribution_ready": false,
+      "next_source_evidence_needed": "additional gamma-capable structure with metal context and catalytic-residue mapping",
+      "post_repair_source_decision": "external_or_homolog_source_needed",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_sibling_family_gamma_distance_control",
+        "direct_graph_linked_repair_not_measurement_ready",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_request_type": "source_additional_gamma_capable_alternate",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    }
+  ],
+  "warnings": [
+    "Post-repair source decisions are blocker routing only; they are not an ePK calibration set or positive-fingerprint expansion."
+  ]
+}

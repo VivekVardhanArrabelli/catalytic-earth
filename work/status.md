@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 179
-- Measured elapsed time: 5386.9 minutes (89.78 hours)
+- Entries: 180
+- Measured elapsed time: 5408.6 minutes (90.14 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 157.8 measured minutes (2.63 hours)
+- post-infra-science: 179.4 measured minutes (2.99 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1993
-- Evidence references logged: 1559
+- Artifact references logged: 2007
+- Evidence references logged: 1571
 
 ## Recent Entries
-
-### 2026-05-18T06:29:09.711385+00:00 - post-infra-science
-
-- Task: ePK draft fingerprint spec and local evidence audit
-- Time mode: measured
-- Measured minutes: 15.8
-- Started: 2026-05-18T06:13:08Z
-- Ended: 2026-05-18T06:28:56Z
-- Artifacts: artifacts/v3_epk_draft_fingerprint_spec_1025.json, artifacts/v3_epk_local_evidence_audit_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: final 447-test unit discovery passed after ePK changes, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and 0 blockers, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, ePK draft spec ready for scorer prototype but not expansion, ePK local evidence audit found 3 ready local-axis rows and 2 ligand or structure gaps
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ### 2026-05-18T07:51:37.415598+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-18T20:02:57Z
 - Artifacts: artifacts/v3_epk_sibling_control_repair_review_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
 - Evidence: startup 480-test unit discovery passed, startup validate passed with 682 labels, migration guard passed with 108 rows and 0 blockers, PfkB repair review found m_csa:663 mapped gamma-capable 1GQT ACP but no metal context, PfkB repair review found 0 measurement-ready repaired structures, pre-count gate remains blocked_review_only with PfkB repair review attached, final 482-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
+
+### 2026-05-18T21:12:49.756080+00:00 - post-infra-science
+
+- Task: ePK missing sibling-control source routing
+- Time mode: measured
+- Measured minutes: 21.667
+- Started: 2026-05-18T20:50:54Z
+- Ended: 2026-05-18T21:12:34Z
+- Artifacts: artifacts/v3_epk_sibling_control_repair_review_atp_grasp_1025.json, artifacts/v3_epk_sibling_control_repair_review_ndk_1025.json, artifacts/v3_epk_sibling_control_repair_review_pfka_1025.json, artifacts/v3_epk_missing_sibling_control_post_repair_source_decision_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: startup 482-test unit discovery passed, startup validate passed with 682 labels, migration guard passed with 108 rows and 0 blockers, ATP-grasp NDK and PfkA direct repair reviews found 0 gamma-capable and 0 measurement-ready repaired structures, post-repair source decision routed all six missing sibling-control rows to external or homolog gamma-capable sourcing, pre-count gate remains blocked_review_only with four repair-review families attached, final 486-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ## Expectation Updates
@@ -256,6 +256,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-18T18:01:10.526233+00:00: ePK threshold selection remains blocked after measured sibling alternate controls; next work needs missing ATP-grasp NDK PfkA and PfkB controls or a non-distance-only axis.
 - 2026-05-18T19:01:23.160128+00:00: ePK threshold selection now has explicit ATP-grasp NDK PfkA and PfkB source requests; next work should repair or source one missing sibling family at a time before any score or threshold.
 - 2026-05-18T20:03:10.553576+00:00: ePK PfkB mapping ambiguity is narrowed but threshold selection remains blocked because PfkB still lacks a metal-supported gamma-capable sibling control.
+- 2026-05-18T21:12:49.756080+00:00: ePK direct graph-linked sibling-control repair is exhausted for ATP-grasp NDK PfkA and PfkB; threshold selection now needs external or homolog gamma-capable controls rather than another direct repair review.
 
 ## Scope Adjustments
 

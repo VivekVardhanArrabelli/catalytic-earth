@@ -11824,6 +11824,267 @@ def build_epk_sibling_control_repair_review(
     }
 
 
+def build_epk_missing_sibling_control_post_repair_source_decision(
+    *,
+    epk_missing_sibling_control_source_request: dict[str, Any],
+    epk_sibling_control_repair_reviews: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Route missing ePK sibling controls after direct repair reviews."""
+
+    source_meta = epk_missing_sibling_control_source_request.get("metadata", {})
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    review_metas: list[dict[str, Any]] = []
+    repair_rows_by_entry: dict[str, dict[str, Any]] = {}
+    for review in epk_sibling_control_repair_reviews:
+        if not isinstance(review, dict):
+            continue
+        meta = review.get("metadata", {})
+        if isinstance(meta, dict):
+            review_metas.append(meta)
+        for row in review.get("rows", []) or []:
+            if isinstance(row, dict) and row.get("entry_id"):
+                repair_rows_by_entry[str(row["entry_id"])] = row
+
+    target_fingerprint_id = str(
+        source_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    missing_family_ids = _sorted_strings(
+        source_meta.get("missing_sibling_family_ids", []) or []
+    )
+    reviewed_family_ids = _sorted_strings(
+        meta.get("reviewed_family_id")
+        for meta in review_metas
+        if meta.get("reviewed_family_id")
+    )
+    unreviewed_family_ids = sorted(set(missing_family_ids) - set(reviewed_family_ids))
+
+    def _needed_source_evidence(
+        *, request_type: str, repair_status: str
+    ) -> str:
+        if repair_status == "mapping_verified_metal_context_unresolved":
+            return (
+                "metal-supported gamma-capable direct or homolog structure for "
+                "the mapped sibling-control active site"
+            )
+        if request_type == "source_gamma_capable_atp_state_alternate":
+            return (
+                "ATP-state or gamma-capable nucleotide structure with metal "
+                "context and mapped catalytic residues"
+            )
+        if request_type == "source_graph_linked_or_external_pdb_structure":
+            return (
+                "graph-linked or external structure with gamma-capable "
+                "nucleotide, metal context, and catalytic-residue mapping"
+            )
+        if request_type == "source_additional_gamma_capable_alternate":
+            return (
+                "additional gamma-capable structure with metal context and "
+                "catalytic-residue mapping"
+            )
+        if request_type == "repair_gamma_structure_metal_or_mapping_gap":
+            return (
+                "repair metal context or catalytic-residue mapping for the "
+                "gamma-capable sibling-control structure"
+            )
+        return "gamma-capable, metal-supported sibling-control structure evidence"
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    family_decision_counts: dict[str, Counter[str]] = defaultdict(Counter)
+    for request_row in epk_missing_sibling_control_source_request.get("rows", []) or []:
+        if not isinstance(request_row, dict) or not request_row.get("entry_id"):
+            continue
+        entry_id = str(request_row["entry_id"])
+        family_id = str(request_row.get("family_id") or "")
+        request_type = str(request_row.get("source_request_type") or "")
+        repair_row = repair_rows_by_entry.get(entry_id, {})
+        repair_status = str(repair_row.get("repair_review_status") or "not_reviewed")
+        ready_count = int(repair_row.get("measurement_ready_structure_count") or 0)
+        if ready_count:
+            decision_status = "direct_repair_ready_for_distance_measurement_review_only"
+            next_action = (
+                "measure direct repaired structure only in a bounded review-only "
+                "negative-control distance pass"
+            )
+            remaining_blockers = [
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        elif repair_row:
+            decision_status = "external_or_homolog_source_needed"
+            next_action = _needed_source_evidence(
+                request_type=request_type,
+                repair_status=repair_status,
+            )
+            remaining_blockers = [
+                "missing_sibling_family_gamma_distance_control",
+                "direct_graph_linked_repair_not_measurement_ready",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        else:
+            decision_status = "direct_repair_review_not_run"
+            next_action = "run one-family direct repair review before source escalation"
+            remaining_blockers = [
+                "direct_graph_linked_repair_review_not_run",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        decision_counts[decision_status] += 1
+        family_decision_counts[family_id][decision_status] += 1
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": request_row.get("entry_name"),
+                "family_id": family_id,
+                "family_name": request_row.get("family_name")
+                or ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(family_id),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "source_request_type": request_type,
+                "direct_repair_review_status": repair_status,
+                "direct_repair_candidate_structure_review_count": int(
+                    repair_row.get("candidate_structure_review_count") or 0
+                ),
+                "direct_repair_measurement_ready_structure_count": ready_count,
+                "post_repair_source_decision": decision_status,
+                "next_source_evidence_needed": next_action,
+                "negative_control_distance_distribution_ready": False,
+                "threshold_calibrated": False,
+                "selected_threshold_angstrom": None,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": remaining_blockers,
+            }
+        )
+
+    family_summaries = []
+    for family_id in missing_family_ids:
+        family_rows = [row for row in rows if row.get("family_id") == family_id]
+        ready_rows = [
+            row
+            for row in family_rows
+            if row.get("post_repair_source_decision")
+            == "direct_repair_ready_for_distance_measurement_review_only"
+        ]
+        source_needed_rows = [
+            row
+            for row in family_rows
+            if row.get("post_repair_source_decision")
+            == "external_or_homolog_source_needed"
+        ]
+        if ready_rows:
+            family_status = "direct_repair_ready_for_distance_measurement_review_only"
+        elif source_needed_rows and len(source_needed_rows) == len(family_rows):
+            family_status = "external_or_homolog_source_needed"
+        elif family_rows:
+            family_status = "mixed_or_incomplete_direct_repair_review"
+        else:
+            family_status = "direct_repair_review_not_run"
+        family_summaries.append(
+            {
+                "family_id": family_id,
+                "family_name": ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(family_id),
+                "post_repair_family_source_status": family_status,
+                "candidate_entry_ids": sorted(
+                    [str(row.get("entry_id")) for row in family_rows],
+                    key=_entry_id_sort_key,
+                ),
+                "candidate_entry_count": len(family_rows),
+                "direct_repair_measurement_ready_structure_count": sum(
+                    int(row.get("direct_repair_measurement_ready_structure_count") or 0)
+                    for row in family_rows
+                ),
+                "decision_status_counts": dict(
+                    sorted(family_decision_counts.get(family_id, Counter()).items())
+                ),
+            }
+        )
+
+    source_escalation_rows = [
+        row
+        for row in rows
+        if row.get("post_repair_source_decision")
+        == "external_or_homolog_source_needed"
+    ]
+    return {
+        "metadata": {
+            "method": "epk_missing_sibling_control_post_repair_source_decision",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_missing_sibling_control_source_request_method": (
+                source_meta.get("method")
+            ),
+            "source_epk_sibling_control_repair_review_methods": _sorted_strings(
+                meta.get("method") for meta in review_metas if meta.get("method")
+            ),
+            "missing_sibling_family_ids": missing_family_ids,
+            "reviewed_sibling_family_ids": reviewed_family_ids,
+            "unreviewed_sibling_family_ids": unreviewed_family_ids,
+            "row_count": len(rows),
+            "family_count": len(family_summaries),
+            "post_repair_source_decision_counts": dict(sorted(decision_counts.items())),
+            "source_escalation_required_entry_ids": sorted(
+                [str(row.get("entry_id")) for row in source_escalation_rows],
+                key=_entry_id_sort_key,
+            ),
+            "source_escalation_required_entry_count": len(source_escalation_rows),
+            "direct_repair_measurement_ready_structure_count": sum(
+                int(row.get("direct_repair_measurement_ready_structure_count") or 0)
+                for row in rows
+            ),
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact routes missing sibling ATP-phosphoryl-transfer "
+                "negative controls after direct graph-linked repair review. It "
+                "does not fetch new candidates, measure distances, calibrate a "
+                "threshold, score ePK, edit registries, run external hard-negative "
+                "re-audits, or import labels."
+            ),
+            "next_actions": [
+                "source external or homolog gamma-capable controls for rows whose direct graph-linked repair is exhausted",
+                "keep ePK threshold selection closed while sibling controls remain incomplete",
+                "do not score external hard negatives until a real ePK scorer exists",
+            ],
+        },
+        "family_summaries": sorted(
+            family_summaries,
+            key=lambda row: str(row.get("family_id")),
+        ),
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("family_id")),
+                _entry_id_sort_key(str(row.get("entry_id"))),
+            ),
+        ),
+        "warnings": [
+            (
+                "Post-repair source decisions are blocker routing only; they "
+                "are not an ePK calibration set or positive-fingerprint expansion."
+            )
+        ],
+    }
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -11842,7 +12103,9 @@ def build_epk_precount_gate_status(
     epk_negative_control_calibration_sufficiency_decision: dict[str, Any]
     | None = None,
     epk_missing_sibling_control_source_request: dict[str, Any] | None = None,
-    epk_sibling_control_repair_review: dict[str, Any] | None = None,
+    epk_sibling_control_repair_review: dict[str, Any]
+    | list[dict[str, Any]]
+    | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -11926,13 +12189,48 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(missing_sibling_source_meta, dict):
         missing_sibling_source_meta = {}
-    sibling_control_repair_meta = (
-        epk_sibling_control_repair_review.get("metadata", {})
-        if isinstance(epk_sibling_control_repair_review, dict)
-        else {}
+    sibling_control_repair_reviews = (
+        epk_sibling_control_repair_review
+        if isinstance(epk_sibling_control_repair_review, list)
+        else (
+            [epk_sibling_control_repair_review]
+            if isinstance(epk_sibling_control_repair_review, dict)
+            else []
+        )
     )
-    if not isinstance(sibling_control_repair_meta, dict):
-        sibling_control_repair_meta = {}
+    sibling_control_repair_metas: list[dict[str, Any]] = []
+    for review in sibling_control_repair_reviews:
+        if not isinstance(review, dict):
+            continue
+        meta = review.get("metadata", {})
+        if isinstance(meta, dict):
+            sibling_control_repair_metas.append(meta)
+    sibling_control_repair_meta = (
+        sibling_control_repair_metas[0] if sibling_control_repair_metas else {}
+    )
+    sibling_control_repair_family_ids = _sorted_strings(
+        meta.get("reviewed_family_id")
+        for meta in sibling_control_repair_metas
+        if meta.get("reviewed_family_id")
+    )
+    sibling_control_repair_status_counts = Counter(
+        str(meta.get("family_repair_review_status"))
+        for meta in sibling_control_repair_metas
+        if meta.get("family_repair_review_status")
+    )
+    sibling_control_repair_ready_structure_count_total = sum(
+        int(meta.get("measurement_ready_repaired_structure_count") or 0)
+        for meta in sibling_control_repair_metas
+    )
+    sibling_control_repair_unresolved_entry_ids = sorted(
+        {
+            str(entry_id)
+            for meta in sibling_control_repair_metas
+            for entry_id in meta.get("unresolved_entry_ids", []) or []
+            if entry_id
+        },
+        key=_entry_id_sort_key,
+    )
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -12163,13 +12461,22 @@ def build_epk_precount_gate_status(
                     "sibling_control_repair_review_family_id": (
                         sibling_control_repair_meta.get("reviewed_family_id")
                     ),
+                    "sibling_control_repair_review_family_ids": (
+                        sibling_control_repair_family_ids
+                    ),
                     "sibling_control_repair_review_status": (
                         sibling_control_repair_meta.get("family_repair_review_status")
+                    ),
+                    "sibling_control_repair_review_status_counts": dict(
+                        sorted(sibling_control_repair_status_counts.items())
                     ),
                     "sibling_control_repair_ready_structure_count": (
                         sibling_control_repair_meta.get(
                             "measurement_ready_repaired_structure_count"
                         )
+                    ),
+                    "sibling_control_repair_ready_structure_count_total": (
+                        sibling_control_repair_ready_structure_count_total
                     ),
                 },
             }
@@ -12229,19 +12536,15 @@ def build_epk_precount_gate_status(
         )
     else:
         next_actions.insert(0, "source ATP-state gamma geometry for m_csa:640")
-    if sibling_control_repair_meta.get("method") and not int(
-        sibling_control_repair_meta.get("measurement_ready_repaired_structure_count")
-        or 0
-    ):
-        repair_family = str(
-            sibling_control_repair_meta.get("reviewed_family_id")
-            or "sibling control"
+    if sibling_control_repair_metas and not sibling_control_repair_ready_structure_count_total:
+        repair_family = (
+            ", ".join(sibling_control_repair_family_ids) or "sibling control"
         )
         next_actions.insert(
             0,
             (
-                f"source metal-supported gamma-capable {repair_family} controls "
-                "before measuring that sibling family"
+                f"source metal-supported gamma-capable controls for {repair_family} "
+                "before measuring those sibling families"
             ),
         )
     return {
@@ -12286,6 +12589,11 @@ def build_epk_precount_gate_status(
             ),
             "source_epk_sibling_control_repair_review_method": (
                 sibling_control_repair_meta.get("method")
+            ),
+            "source_epk_sibling_control_repair_review_methods": _sorted_strings(
+                meta.get("method")
+                for meta in sibling_control_repair_metas
+                if meta.get("method")
             ),
             "negative_control_distance_distribution_ready": bool(
                 negative_control_meta.get("negative_control_distance_distribution_ready")
@@ -12333,16 +12641,28 @@ def build_epk_precount_gate_status(
             "negative_control_repair_review_family_id": (
                 sibling_control_repair_meta.get("reviewed_family_id")
             ),
+            "negative_control_repair_review_family_ids": (
+                sibling_control_repair_family_ids
+            ),
             "negative_control_repair_review_status": (
                 sibling_control_repair_meta.get("family_repair_review_status")
+            ),
+            "negative_control_repair_review_status_counts": dict(
+                sorted(sibling_control_repair_status_counts.items())
             ),
             "negative_control_repair_review_ready_structure_count": (
                 sibling_control_repair_meta.get(
                     "measurement_ready_repaired_structure_count"
                 )
             ),
+            "negative_control_repair_review_ready_structure_count_total": (
+                sibling_control_repair_ready_structure_count_total
+            ),
             "negative_control_repair_review_unresolved_entry_ids": (
                 sibling_control_repair_meta.get("unresolved_entry_ids")
+            ),
+            "negative_control_repair_review_unresolved_entry_ids_all": (
+                sibling_control_repair_unresolved_entry_ids
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

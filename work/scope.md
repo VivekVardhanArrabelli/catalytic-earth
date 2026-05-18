@@ -390,7 +390,16 @@ Current expectation:
   catalytic-residue mapping in gamma-capable `1GQT`/`ACP` but no metal ligand
   context, and `m_csa:670` still has no gamma-capable graph-linked alternate.
   PfkB therefore has 0 measurement-ready repaired structures and remains
-  blocked before distance measurement. The
+  blocked before distance measurement. Follow-on one-family reviews now narrow
+  the other missing direct graph-linked families too: ATP-grasp has no
+  candidate structures for `m_csa:310` and only no-target-ligand `8FBZ` for
+  `m_csa:498`; NDK `m_csa:637` has only product/partial `1DEL`
+  `AMP`/`DGP`/`MG` context; and PfkA `m_csa:365` has only no-target-ligand
+  `2PFK` context. All four missing-family repair reviews remain at 0
+  measurement-ready repaired structures. The post-repair source decision
+  routes all six missing sibling-control rows to external or homolog
+  gamma-capable source search and still keeps scoring, threshold calibration,
+  external re-audit, registry edits, and label import closed. The
   consolidated ePK pre-count gate status remains `blocked_review_only`:
   local-axis prototyping, measured-row acceptor identity review, and
   gamma-threshold control planning pass, and non-ready-row exclusion plus

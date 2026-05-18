@@ -74,6 +74,7 @@ from .labels import (
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
     build_epk_local_evidence_audit,
+    build_epk_missing_sibling_control_post_repair_source_decision,
     build_epk_missing_sibling_control_source_request,
     build_epk_negative_control_calibration_sufficiency_decision,
     build_epk_negative_control_gamma_distance_distribution,
@@ -5632,6 +5633,32 @@ def cmd_build_epk_sibling_control_repair_review(args: argparse.Namespace) -> int
     return 0
 
 
+def cmd_build_epk_missing_sibling_control_post_repair_source_decision(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_missing_sibling_control_source_request).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_missing_sibling_control_source_request = json.load(handle)
+    repair_reviews = []
+    for repair_review_path in args.epk_sibling_control_repair_review:
+        with Path(repair_review_path).open("r", encoding="utf-8") as handle:
+            repair_reviews.append(json.load(handle))
+    decision = build_epk_missing_sibling_control_post_repair_source_decision(
+        epk_missing_sibling_control_source_request=(
+            epk_missing_sibling_control_source_request
+        ),
+        epk_sibling_control_repair_reviews=repair_reviews,
+    )
+    write_json(Path(args.out), decision)
+    print(
+        "Wrote ePK missing sibling-control post-repair source decision to "
+        f"{args.out} (source_escalations="
+        f"{decision['metadata']['source_escalation_required_entry_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_nonready_ligand_alternate_structure_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -5755,10 +5782,20 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             epk_missing_sibling_control_source_request = json.load(handle)
     epk_sibling_control_repair_review = None
     if args.epk_sibling_control_repair_review:
-        with Path(args.epk_sibling_control_repair_review).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            epk_sibling_control_repair_review = json.load(handle)
+        epk_sibling_control_repair_reviews = []
+        repair_review_paths = (
+            args.epk_sibling_control_repair_review
+            if isinstance(args.epk_sibling_control_repair_review, list)
+            else [args.epk_sibling_control_repair_review]
+        )
+        for repair_review_path in repair_review_paths:
+            with Path(repair_review_path).open("r", encoding="utf-8") as handle:
+                epk_sibling_control_repair_reviews.append(json.load(handle))
+        epk_sibling_control_repair_review = (
+            epk_sibling_control_repair_reviews[0]
+            if len(epk_sibling_control_repair_reviews) == 1
+            else epk_sibling_control_repair_reviews
+        )
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -12527,6 +12564,30 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_sibling_control_repair_review
     )
 
+    epk_post_repair_source_decision = subparsers.add_parser(
+        "build-epk-missing-sibling-control-post-repair-source-decision",
+        help="route missing ePK sibling controls after direct repair review",
+    )
+    epk_post_repair_source_decision.add_argument(
+        "--epk-missing-sibling-control-source-request",
+        default="artifacts/v3_epk_missing_sibling_control_source_request.json",
+    )
+    epk_post_repair_source_decision.add_argument(
+        "--epk-sibling-control-repair-review",
+        action="append",
+        required=True,
+    )
+    epk_post_repair_source_decision.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_missing_sibling_control_post_repair_source_decision.json"
+        ),
+    )
+    epk_post_repair_source_decision.set_defaults(
+        func=cmd_build_epk_missing_sibling_control_post_repair_source_decision
+    )
+
     epk_nonready_alternate_plan = subparsers.add_parser(
         "build-epk-nonready-ligand-alternate-structure-plan",
         help="screen review-only alternate structures for non-ready ePK ligand rows",
@@ -12631,6 +12692,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-sibling-control-repair-review",
+        action="append",
         default=None,
     )
     epk_precount_gate_status.add_argument(

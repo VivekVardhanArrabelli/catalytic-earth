@@ -50,6 +50,61 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T20:50:54Z automation run, the normal direct automation
+protocol passed: the lock was acquired, `git fetch` and
+`git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed,
+startup unit discovery passed, `validate` passed, and
+`validate-artifact-migration --dry-run --check-local-files` again reported 108
+rows, 0 blockers, and `removal_allowed=0`. Phase 1 artifact migration remained
+guard-only and closed.
+
+The scientific work continued the review-only ePK lane without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any
+external hard-negative label. It completed the direct graph-linked
+one-family repair review for the remaining missing sibling ATP-family controls:
+`artifacts/v3_epk_sibling_control_repair_review_atp_grasp_1025.json`,
+`artifacts/v3_epk_sibling_control_repair_review_ndk_1025.json`, and
+`artifacts/v3_epk_sibling_control_repair_review_pfka_1025.json`. ATP-grasp
+has no candidate structures for `m_csa:310` and only no-target-ligand `8FBZ`
+for `m_csa:498`; NDK `m_csa:637` has only product/partial `1DEL`
+`AMP`/`DGP`/`MG` context; and PfkA `m_csa:365` has only no-target-ligand
+`2PFK` context. Together with the existing PfkB review, all four missing
+families have 0 measurement-ready repaired structures.
+
+The run also added
+`artifacts/v3_epk_missing_sibling_control_post_repair_source_decision_1025.json`
+and the CLI builder
+`build-epk-missing-sibling-control-post-repair-source-decision`. This artifact
+routes all six missing sibling-control rows (`m_csa:310`, `m_csa:365`,
+`m_csa:498`, `m_csa:637`, `m_csa:663`, and `m_csa:670`) to external or homolog
+gamma-capable source search because direct graph-linked repair is exhausted.
+It fetches no new candidates, measures no distances, selects no threshold,
+scores no ePK rows, runs no external hard-negative re-audit, and changes no
+registries.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with all four
+sibling-control repair reviews attached. The lane remains
+`blocked_review_only`: the aggregate repair-review fields now record
+`negative_control_repair_review_family_ids=["atp_grasp","ndk","pfka","pfkb"]`,
+0 total measurement-ready repaired structures, and unresolved rows
+`m_csa:310`/`m_csa:365`/`m_csa:498`/`m_csa:637`/`m_csa:663`/`m_csa:670`, while
+negative-control distribution readiness, acceptor-threshold calibration,
+complete gamma geometry, external hard-negative scored re-audit, and
+registry/label-factory extension still fail closed.
+
+Evidence-based confidence call: ePK threshold selection is now blocked by a
+clearer result, not an unreviewed direct-structure gap. The current direct
+graph-linked sibling-control repair surface is exhausted and yields no
+measurement-ready structures, so the next bounded ePK step should source
+external or homolog gamma-capable controls for one family at a time, with NDK
+ATP-state sourcing or PfkB metal-supported gamma-capable sourcing still the
+highest-value choices. Do not add the ePK registry fingerprint, import ePK
+labels, score external hard negatives, or reopen migration Phase 2.
+
+Verification passed with the final 486-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T19:50:41Z automation run, the normal direct automation
 protocol passed: the lock was acquired after replacing a stale dead-PID lock,
 `git fetch` and `git pull --ff-only origin main` were clean, SSH deploy-key

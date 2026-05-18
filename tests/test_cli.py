@@ -5148,6 +5148,104 @@ class CliTests(unittest.TestCase):
                 [],
             )
 
+    def test_build_epk_missing_sibling_control_post_repair_source_decision_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_request = root / "source_request.json"
+            repair_review = root / "repair_review.json"
+            out = root / "post_repair_decision.json"
+            source_request.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_missing_sibling_control_source_request",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "missing_sibling_family_ids": ["pfkb"],
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:663",
+                                "entry_name": "ribokinase",
+                                "family_id": "pfkb",
+                                "family_name": "PfkB/ribokinase-family kinases",
+                                "source_request_type": (
+                                    "repair_gamma_structure_metal_or_mapping_gap"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            repair_review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_sibling_control_repair_review",
+                            "reviewed_family_id": "pfkb",
+                            "family_repair_review_status": "blocked_review_only",
+                            "measurement_ready_repaired_structure_count": 0,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:663",
+                                "family_id": "pfkb",
+                                "repair_review_status": (
+                                    "mapping_verified_metal_context_unresolved"
+                                ),
+                                "candidate_structure_review_count": 1,
+                                "measurement_ready_structure_count": 0,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-missing-sibling-control-post-repair-source-decision",
+                    "--epk-missing-sibling-control-source-request",
+                    str(source_request),
+                    "--epk-sibling-control-repair-review",
+                    str(repair_review),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            decision = json.loads(out.read_text(encoding="utf-8"))
+            metadata = decision["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_missing_sibling_control_post_repair_source_decision",
+            )
+            self.assertEqual(metadata["reviewed_sibling_family_ids"], ["pfkb"])
+            self.assertEqual(
+                metadata["post_repair_source_decision_counts"],
+                {"external_or_homolog_source_needed": 1},
+            )
+            self.assertEqual(metadata["source_escalation_required_entry_count"], 1)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            row = decision["rows"][0]
+            self.assertEqual(
+                row["post_repair_source_decision"],
+                "external_or_homolog_source_needed",
+            )
+            self.assertIn("metal-supported", row["next_source_evidence_needed"])
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

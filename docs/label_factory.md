@@ -314,6 +314,24 @@ still has no gamma-capable graph-linked alternate. The artifact records 0
 measurement-ready repaired structures, keeps the PfkB lane
 `blocked_review_only`, and remains outside threshold calibration, ePK scoring,
 external re-audit, registry edits, and label import.
+The follow-on one-family reviews
+`artifacts/v3_epk_sibling_control_repair_review_atp_grasp_1025.json`,
+`artifacts/v3_epk_sibling_control_repair_review_ndk_1025.json`, and
+`artifacts/v3_epk_sibling_control_repair_review_pfka_1025.json` apply the same
+review to ATP-grasp, NDK, and PfkA. The direct graph-linked repair surface has
+0 gamma-capable and 0 measurement-ready repaired structures across those three
+families: `m_csa:310` has no candidate structures, `m_csa:498` has only
+no-target-ligand `8FBZ` context, `m_csa:637` has product/partial `1DEL`
+`AMP`/`DGP`/`MG` context, and `m_csa:365` has no-target-ligand `2PFK` context.
+Those families still need gamma-capable source evidence before distance
+measurement.
+`artifacts/v3_epk_missing_sibling_control_post_repair_source_decision_1025.json`
+records the resulting source decision: all six missing sibling-control rows
+now require external or homolog gamma-capable source evidence because direct
+graph-linked repair produced 0 measurement-ready structures. This is only
+blocker routing; it does not fetch candidates, measure distances, calibrate a
+threshold, score ePK, edit registries, re-audit external hard negatives, or
+import labels.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
 identity review, gamma-threshold control planning, explicit non-ready-row

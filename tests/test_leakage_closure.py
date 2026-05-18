@@ -1037,6 +1037,104 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertFalse(row["epk_score_computed"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_ndk_sibling_control_repair_review_stays_review_only(self) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_sibling_control_repair_review_ndk_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(metadata["method"], "epk_sibling_control_repair_review")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_family_id"], "ndk")
+        self.assertEqual(metadata["family_repair_review_status"], "blocked_review_only")
+        self.assertEqual(metadata["gamma_capable_structure_count"], 0)
+        self.assertEqual(metadata["mapped_gamma_structure_count"], 0)
+        self.assertEqual(metadata["metal_supported_gamma_structure_count"], 0)
+        self.assertEqual(metadata["measurement_ready_repaired_structure_count"], 0)
+        self.assertEqual(metadata["unresolved_entry_ids"], ["m_csa:637"])
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["entry_id"]: row for row in review["rows"]}
+        self.assertEqual(
+            rows["m_csa:637"]["repair_review_status"],
+            "source_or_repair_still_required",
+        )
+        self.assertEqual(rows["m_csa:637"]["measurement_ready_structure_count"], 0)
+        structure = rows["m_csa:637"]["candidate_structure_reviews"][0]
+        self.assertEqual(
+            structure["repair_assessment_status"],
+            "product_or_partial_nucleotide_not_gamma_capable",
+        )
+        self.assertIn("MG", structure["observed_metal_ligand_codes"])
+        self.assertFalse(structure["has_gamma_capable_nucleotide"])
+        for row in review["rows"]:
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_remaining_sibling_control_repair_reviews_stay_review_only(self) -> None:
+        expectations = {
+            "atp_grasp": {
+                "path": "v3_epk_sibling_control_repair_review_atp_grasp_1025.json",
+                "unresolved": ["m_csa:310", "m_csa:498"],
+                "row_status_counts": {
+                    "no_candidate_structures_to_review": 1,
+                    "source_or_repair_still_required": 1,
+                },
+            },
+            "pfka": {
+                "path": "v3_epk_sibling_control_repair_review_pfka_1025.json",
+                "unresolved": ["m_csa:365"],
+                "row_status_counts": {"source_or_repair_still_required": 1},
+            },
+        }
+        for family_id, expected in expectations.items():
+            with self.subTest(family_id=family_id):
+                review = _load_json(ROOT / "artifacts" / expected["path"])
+                metadata = review["metadata"]
+                self.assertEqual(
+                    metadata["method"], "epk_sibling_control_repair_review"
+                )
+                self.assertTrue(metadata["review_only"])
+                self.assertEqual(metadata["reviewed_family_id"], family_id)
+                self.assertEqual(
+                    metadata["family_repair_review_status"],
+                    "blocked_review_only",
+                )
+                self.assertEqual(metadata["gamma_capable_structure_count"], 0)
+                self.assertEqual(metadata["mapped_gamma_structure_count"], 0)
+                self.assertEqual(metadata["metal_supported_gamma_structure_count"], 0)
+                self.assertEqual(
+                    metadata["measurement_ready_repaired_structure_count"], 0
+                )
+                self.assertEqual(
+                    metadata["unresolved_entry_ids"], expected["unresolved"]
+                )
+                self.assertEqual(
+                    metadata["row_repair_status_counts"],
+                    expected["row_status_counts"],
+                )
+                self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+                self.assertFalse(metadata["threshold_calibrated"])
+                self.assertFalse(metadata["epk_score_computed"])
+                self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+                self.assertFalse(metadata["ready_to_run_epk_scorer"])
+                self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+                self.assertFalse(metadata["fingerprint_registry_edited"])
+                self.assertFalse(metadata["curated_label_registry_edited"])
+                self.assertEqual(metadata["countable_label_candidate_count"], 0)
+                for row in review["rows"]:
+                    self.assertFalse(row["epk_score_computed"])
+                    self.assertFalse(row["countable_label_candidate"])
+                    self.assertEqual(row["measurement_ready_structure_count"], 0)
+
     def test_epk_precount_gate_status_stays_blocked(self) -> None:
         status = _load_json(
             ROOT / "artifacts" / "v3_epk_precount_gate_status_1025.json"
@@ -1114,13 +1212,36 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(metadata["negative_control_combined_measured_family_count"], 4)
         self.assertEqual(metadata["negative_control_repair_review_family_id"], "pfkb")
         self.assertEqual(
+            metadata["negative_control_repair_review_family_ids"],
+            ["atp_grasp", "ndk", "pfka", "pfkb"],
+        )
+        self.assertEqual(
             metadata["negative_control_repair_review_status"],
             "blocked_review_only",
         )
+        self.assertEqual(
+            metadata["negative_control_repair_review_status_counts"],
+            {"blocked_review_only": 4},
+        )
         self.assertEqual(metadata["negative_control_repair_review_ready_structure_count"], 0)
+        self.assertEqual(
+            metadata["negative_control_repair_review_ready_structure_count_total"],
+            0,
+        )
         self.assertEqual(
             metadata["negative_control_repair_review_unresolved_entry_ids"],
             ["m_csa:663", "m_csa:670"],
+        )
+        self.assertEqual(
+            metadata["negative_control_repair_review_unresolved_entry_ids_all"],
+            [
+                "m_csa:310",
+                "m_csa:365",
+                "m_csa:498",
+                "m_csa:637",
+                "m_csa:663",
+                "m_csa:670",
+            ],
         )
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
         self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
@@ -1143,6 +1264,7 @@ class LeakageClosureTests(unittest.TestCase):
             "nonready_rows_repaired_or_excluded",
             metadata["failing_gate_ids"],
         )
+
         self.assertIn(
             "external_hard_negative_scored_reaudit",
             metadata["failing_gate_ids"],
@@ -1196,6 +1318,57 @@ class LeakageClosureTests(unittest.TestCase):
             "blocked_review_only",
         )
         self.assertFalse(checks["registry_and_label_factory_extension"]["passed"])
+
+    def test_epk_post_repair_source_decision_stays_review_only(self) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_missing_sibling_control_post_repair_source_decision_1025.json"
+        )
+        metadata = decision["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_missing_sibling_control_post_repair_source_decision",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["reviewed_sibling_family_ids"],
+            ["atp_grasp", "ndk", "pfka", "pfkb"],
+        )
+        self.assertEqual(metadata["unreviewed_sibling_family_ids"], [])
+        self.assertEqual(
+            metadata["post_repair_source_decision_counts"],
+            {"external_or_homolog_source_needed": 6},
+        )
+        self.assertEqual(metadata["source_escalation_required_entry_count"], 6)
+        self.assertEqual(metadata["direct_repair_measurement_ready_structure_count"], 0)
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["source_escalation_required_entry_ids"],
+            [
+                "m_csa:310",
+                "m_csa:365",
+                "m_csa:498",
+                "m_csa:637",
+                "m_csa:663",
+                "m_csa:670",
+            ],
+        )
+        for row in decision["rows"]:
+            self.assertEqual(
+                row["post_repair_source_decision"],
+                "external_or_homolog_source_needed",
+            )
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
 
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:
         adjudication = _load_json(

@@ -912,6 +912,21 @@ has complete catalytic-residue mapping in gamma-capable `1GQT`/`ACP`, but no
 metal ligand context, while `m_csa:670` has no gamma-capable alternate in the
 screened graph-linked structure. The PfkB lane therefore remains
 `blocked_review_only` with 0 measurement-ready repaired structures.
+The follow-on one-family reviews
+`artifacts/v3_epk_sibling_control_repair_review_atp_grasp_1025.json`,
+`artifacts/v3_epk_sibling_control_repair_review_ndk_1025.json`, and
+`artifacts/v3_epk_sibling_control_repair_review_pfka_1025.json` close the
+current direct graph-linked repair review for the other missing families. They
+find 0 gamma-capable and 0 measurement-ready repaired structures: ATP-grasp
+has no candidate structures for `m_csa:310` and only no-target-ligand `8FBZ`
+for `m_csa:498`; NDK `m_csa:637` has only product/partial `1DEL`
+`AMP`/`DGP`/`MG` context; and PfkA `m_csa:365` has only no-target-ligand
+`2PFK` context.
+`artifacts/v3_epk_missing_sibling_control_post_repair_source_decision_1025.json`
+then routes all six missing sibling-control rows to external or homolog
+gamma-capable source search because direct graph-linked repair found 0
+measurement-ready structures. It is a blocker-routing artifact only and does
+not fetch new candidates, measure distances, score ePK, or change labels.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
 `blocked_review_only`: local axes, measured-row acceptor identity review, and
 threshold/control planning pass, non-ready-row exclusion is explicit, and a
