@@ -380,7 +380,12 @@ Current expectation:
   calibration-ready. The calibration-sufficiency decision now combines the
   selected and alternate measurements, records 5 measured controls across 4 of
   8 sibling families, leaves ATP-grasp, NDK, PfkA, and PfkB unmeasured, and
-  marks threshold selection `do_not_select_threshold`. The
+  marks threshold selection `do_not_select_threshold`. The missing sibling
+  control source-request packet now makes those four gaps concrete:
+  ATP-grasp and PfkA need additional gamma-capable source evidence, NDK needs
+  an ATP-state/gamma-capable alternate, and PfkB needs metal/context or
+  catalytic-residue mapping repair for an existing gamma-capable alternate.
+  This remains a blocker inventory, not a score or threshold. The
   consolidated ePK pre-count gate status remains `blocked_review_only`:
   local-axis prototyping, measured-row acceptor identity review, and
   gamma-threshold control planning pass, and non-ready-row exclusion plus

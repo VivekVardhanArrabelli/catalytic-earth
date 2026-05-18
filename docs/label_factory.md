@@ -298,6 +298,14 @@ records the calibration decision explicitly. The combined selected and
 alternate control surface has 5 measured entries across 4 sibling families,
 leaves ATP-grasp, NDK, PfkA, and PfkB unmeasured, and keeps threshold
 selection at `do_not_select_threshold`.
+`artifacts/v3_epk_missing_sibling_control_source_request_1025.json` converts
+those four missing family lanes into concrete review-only source requests:
+ATP-grasp and PfkA need additional gamma-capable source evidence, NDK needs an
+ATP-state/gamma-capable alternate, and PfkB needs metal/context or catalytic-
+residue mapping repair for an existing gamma-capable alternate. The request
+packet is a blocker inventory only; it does not measure distances, calibrate a
+threshold, score ePK, edit registries, re-audit external hard negatives, or
+import labels.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
 identity review, gamma-threshold control planning, explicit non-ready-row

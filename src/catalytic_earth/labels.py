@@ -11191,6 +11191,336 @@ def build_epk_negative_control_calibration_sufficiency_decision(
     }
 
 
+def build_epk_missing_sibling_control_source_request(
+    *,
+    epk_negative_control_calibration_sufficiency_decision: dict[str, Any],
+    epk_negative_control_gamma_distance_distribution: dict[str, Any],
+    epk_sibling_negative_control_alternate_structure_plan: dict[str, Any],
+) -> dict[str, Any]:
+    """Package missing ePK sibling-control families into source requests."""
+
+    sufficiency_meta = epk_negative_control_calibration_sufficiency_decision.get(
+        "metadata", {}
+    )
+    if not isinstance(sufficiency_meta, dict):
+        sufficiency_meta = {}
+    distribution_meta = epk_negative_control_gamma_distance_distribution.get(
+        "metadata", {}
+    )
+    if not isinstance(distribution_meta, dict):
+        distribution_meta = {}
+    alternate_meta = epk_sibling_negative_control_alternate_structure_plan.get(
+        "metadata", {}
+    )
+    if not isinstance(alternate_meta, dict):
+        alternate_meta = {}
+
+    target_fingerprint_id = str(
+        sufficiency_meta.get("target_fingerprint_id")
+        or distribution_meta.get("target_fingerprint_id")
+        or alternate_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    missing_family_ids = _sorted_strings(
+        sufficiency_meta.get("missing_sibling_family_ids", []) or []
+    )
+    measured_family_ids = set(
+        _sorted_strings(sufficiency_meta.get("combined_measured_family_ids", []) or [])
+    )
+    selected_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_negative_control_gamma_distance_distribution.get("rows", [])
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    alternate_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_sibling_negative_control_alternate_structure_plan.get("rows", [])
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    def structure_gap_status(structure: dict[str, Any]) -> str:
+        has_gamma = bool(structure.get("has_gamma_capable_nucleotide"))
+        has_metal = bool(structure.get("has_metal_ligand"))
+        mapped = bool(structure.get("all_catalytic_residues_mapped"))
+        if has_gamma and has_metal and mapped:
+            return "gamma_metal_mapped"
+        if has_gamma:
+            return "gamma_capable_metal_or_mapping_gap"
+        if structure.get("has_product_or_partial_nucleotide"):
+            return "product_or_partial_nucleotide"
+        if structure.get("target_ligand_codes"):
+            return "non_gamma_target_ligand_context"
+        return "no_target_ligand_context"
+
+    def source_request_type(alternate_status: str | None) -> str:
+        if alternate_status == "alternate_gamma_metal_mapped_candidate_found_review_only":
+            return "measure_existing_gamma_metal_mapped_alternate"
+        if alternate_status == "alternate_gamma_structure_found_metal_or_mapping_gap":
+            return "repair_gamma_structure_metal_or_mapping_gap"
+        if alternate_status == "alternate_product_state_only":
+            return "source_gamma_capable_atp_state_alternate"
+        if alternate_status == "no_alternate_pdb_structure_screened":
+            return "source_graph_linked_or_external_pdb_structure"
+        if alternate_status == "no_alternate_gamma_control_candidate_found":
+            return "source_additional_gamma_capable_alternate"
+        return "source_missing_family_control_evidence"
+
+    def family_request_status(request_types: set[str]) -> str:
+        if "measure_existing_gamma_metal_mapped_alternate" in request_types:
+            return "ready_for_bounded_distance_measurement"
+        if "repair_gamma_structure_metal_or_mapping_gap" in request_types:
+            return "local_repair_or_new_source_needed"
+        if "source_gamma_capable_atp_state_alternate" in request_types:
+            return "source_atp_state_gamma_capable_structure"
+        if "source_additional_gamma_capable_alternate" in request_types:
+            return "source_additional_gamma_capable_structure"
+        if "source_graph_linked_or_external_pdb_structure" in request_types:
+            return "source_new_structure_evidence"
+        return "source_missing_family_control_evidence"
+
+    entry_ids = sorted(
+        {
+            entry_id
+            for entry_id, row in selected_rows_by_entry.items()
+            if str(row.get("family_id") or "") in missing_family_ids
+        }
+        | {
+            entry_id
+            for entry_id, row in alternate_rows_by_entry.items()
+            if str(row.get("family_id") or "") in missing_family_ids
+        },
+        key=_entry_id_sort_key,
+    )
+    rows: list[dict[str, Any]] = []
+    row_status_counts: Counter[str] = Counter()
+    for entry_id in entry_ids:
+        selected_row = selected_rows_by_entry.get(entry_id, {})
+        alternate_row = alternate_rows_by_entry.get(entry_id, {})
+        family_id = str(
+            alternate_row.get("family_id") or selected_row.get("family_id") or ""
+        )
+        if family_id not in missing_family_ids:
+            continue
+        alternate_status = (
+            str(alternate_row.get("alternate_control_evidence_status"))
+            if alternate_row.get("alternate_control_evidence_status")
+            else None
+        )
+        request_type = source_request_type(alternate_status)
+        row_status_counts[request_type] += 1
+        candidate_summaries = []
+        for structure in alternate_row.get("candidate_structures", []) or []:
+            if not isinstance(structure, dict):
+                continue
+            candidate_summaries.append(
+                {
+                    "pdb_id": structure.get("pdb_id"),
+                    "target_ligand_codes": _sorted_strings(
+                        structure.get("target_ligand_codes", []) or []
+                    ),
+                    "structure_gap_status": structure_gap_status(structure),
+                    "has_gamma_capable_nucleotide": bool(
+                        structure.get("has_gamma_capable_nucleotide")
+                    ),
+                    "has_metal_ligand": bool(structure.get("has_metal_ligand")),
+                    "mapped_catalytic_residue_count": structure.get(
+                        "mapped_catalytic_residue_count"
+                    ),
+                    "expected_catalytic_residue_count": structure.get(
+                        "expected_catalytic_residue_count"
+                    ),
+                    "all_catalytic_residues_mapped": bool(
+                        structure.get("all_catalytic_residues_mapped")
+                    ),
+                }
+            )
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": alternate_row.get("entry_name")
+                or selected_row.get("entry_name"),
+                "family_id": family_id,
+                "family_name": alternate_row.get("family_name")
+                or selected_row.get("family_name")
+                or ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(family_id),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "source_selected_measurement_status": selected_row.get(
+                    "measurement_status"
+                ),
+                "selected_pdb_id": alternate_row.get("selected_pdb_id")
+                or selected_row.get("pdb_id"),
+                "reference_uniprot_id": alternate_row.get("reference_uniprot_id"),
+                "alternate_control_evidence_status": alternate_status,
+                "source_request_type": request_type,
+                "graph_linked_alternate_pdb_count": int(
+                    alternate_row.get("graph_linked_alternate_pdb_count") or 0
+                ),
+                "screened_alternate_pdb_count": int(
+                    alternate_row.get("screened_alternate_pdb_count") or 0
+                ),
+                "alternate_gamma_structure_count": int(
+                    alternate_row.get("alternate_gamma_structure_count") or 0
+                ),
+                "alternate_gamma_metal_mapped_structure_count": int(
+                    alternate_row.get("alternate_gamma_metal_mapped_structure_count")
+                    or 0
+                ),
+                "alternate_product_state_structure_count": int(
+                    alternate_row.get("alternate_product_state_structure_count") or 0
+                ),
+                "candidate_structure_summaries": candidate_summaries,
+                "next_review_action": alternate_row.get("next_review_action")
+                or "source missing sibling-family control evidence",
+                "negative_control_distance_distribution_ready": False,
+                "threshold_calibrated": False,
+                "selected_threshold_angstrom": None,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "missing_sibling_family_gamma_distance_control",
+                    "negative_control_distribution_not_calibrated",
+                    "candidate_threshold_collides_with_sibling_controls",
+                    "epk_score_not_computed",
+                    "external_hard_negative_reaudit_not_run",
+                ],
+            }
+        )
+
+    family_summaries = []
+    family_status_counts: Counter[str] = Counter()
+    for family_id in missing_family_ids:
+        family_rows = [row for row in rows if row.get("family_id") == family_id]
+        request_types = {
+            str(row.get("source_request_type"))
+            for row in family_rows
+            if row.get("source_request_type")
+        }
+        status = family_request_status(request_types)
+        family_status_counts[status] += 1
+        family_summaries.append(
+            {
+                "family_id": family_id,
+                "family_name": ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(family_id),
+                "measured_in_current_distribution": family_id in measured_family_ids,
+                "source_request_status": status,
+                "source_request_types": sorted(request_types),
+                "candidate_entry_ids": sorted(
+                    [str(row.get("entry_id")) for row in family_rows],
+                    key=_entry_id_sort_key,
+                ),
+                "candidate_entry_count": len(family_rows),
+                "graph_linked_alternate_pdb_count": sum(
+                    int(row.get("graph_linked_alternate_pdb_count") or 0)
+                    for row in family_rows
+                ),
+                "screened_alternate_pdb_count": sum(
+                    int(row.get("screened_alternate_pdb_count") or 0)
+                    for row in family_rows
+                ),
+                "gamma_capable_structure_count": sum(
+                    int(row.get("alternate_gamma_structure_count") or 0)
+                    for row in family_rows
+                ),
+                "gamma_metal_mapped_structure_count": sum(
+                    int(row.get("alternate_gamma_metal_mapped_structure_count") or 0)
+                    for row in family_rows
+                ),
+                "product_state_structure_count": sum(
+                    int(row.get("alternate_product_state_structure_count") or 0)
+                    for row in family_rows
+                ),
+                "next_review_action": (
+                    "measure existing mapped gamma-plus-metal alternate controls"
+                    if status == "ready_for_bounded_distance_measurement"
+                    else "source or repair gamma-capable, metal-supported, mapped controls before threshold selection"
+                ),
+            }
+        )
+
+    missing_family_label = ", ".join(missing_family_ids) or "missing sibling-family"
+    return {
+        "metadata": {
+            "method": "epk_missing_sibling_control_source_request",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_negative_control_calibration_sufficiency_decision_method": (
+                sufficiency_meta.get("method")
+            ),
+            "source_epk_negative_control_gamma_distance_distribution_method": (
+                distribution_meta.get("method")
+            ),
+            "source_epk_sibling_negative_control_alternate_structure_plan_method": (
+                alternate_meta.get("method")
+            ),
+            "missing_sibling_family_ids": missing_family_ids,
+            "missing_sibling_family_count": len(missing_family_ids),
+            "row_count": len(rows),
+            "family_source_request_status_counts": dict(
+                sorted(family_status_counts.items())
+            ),
+            "row_source_request_type_counts": dict(sorted(row_status_counts.items())),
+            "families_with_existing_gamma_but_gap_count": sum(
+                1
+                for summary in family_summaries
+                if summary["gamma_capable_structure_count"]
+                and not summary["gamma_metal_mapped_structure_count"]
+            ),
+            "families_without_graph_linked_alternates_count": sum(
+                1
+                for summary in family_summaries
+                if not summary["graph_linked_alternate_pdb_count"]
+            ),
+            "negative_control_source_request_open": bool(missing_family_ids),
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact turns missing sibling ATP-phosphoryl-transfer "
+                "negative-control families into explicit source requests. It "
+                "does not measure distances, select thresholds, score ePK, "
+                "edit registries, run external hard-negative re-audits, or "
+                "import labels."
+            ),
+            "next_actions": [
+                f"source or repair {missing_family_label} gamma-capable controls",
+                "keep gamma-distance threshold selection closed while sibling collisions remain",
+                "do not score external hard negatives until a real ePK scorer exists",
+            ],
+        },
+        "family_summaries": sorted(
+            family_summaries,
+            key=lambda row: str(row.get("family_id")),
+        ),
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("family_id")),
+                _entry_id_sort_key(str(row.get("entry_id"))),
+            ),
+        ),
+        "warnings": [
+            (
+                "This source-request packet is a blocker inventory, not an "
+                "ePK calibration set or positive-fingerprint expansion."
+            )
+        ],
+    }
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -11208,6 +11538,7 @@ def build_epk_precount_gate_status(
     | None = None,
     epk_negative_control_calibration_sufficiency_decision: dict[str, Any]
     | None = None,
+    epk_missing_sibling_control_source_request: dict[str, Any] | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -11284,6 +11615,13 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(negative_control_sufficiency_meta, dict):
         negative_control_sufficiency_meta = {}
+    missing_sibling_source_meta = (
+        epk_missing_sibling_control_source_request.get("metadata", {})
+        if isinstance(epk_missing_sibling_control_source_request, dict)
+        else {}
+    )
+    if not isinstance(missing_sibling_source_meta, dict):
+        missing_sibling_source_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -11497,6 +11835,17 @@ def build_epk_precount_gate_status(
                             "combined_measured_control_count"
                         )
                     ),
+                    "missing_sibling_control_source_request_method": (
+                        missing_sibling_source_meta.get("method")
+                    ),
+                    "missing_sibling_family_ids": (
+                        missing_sibling_source_meta.get("missing_sibling_family_ids")
+                    ),
+                    "negative_control_source_request_open": bool(
+                        missing_sibling_source_meta.get(
+                            "negative_control_source_request_open"
+                        )
+                    ),
                 },
             }
         )
@@ -11592,6 +11941,9 @@ def build_epk_precount_gate_status(
             "source_epk_negative_control_calibration_sufficiency_decision_method": (
                 negative_control_sufficiency_meta.get("method")
             ),
+            "source_epk_missing_sibling_control_source_request_method": (
+                missing_sibling_source_meta.get("method")
+            ),
             "negative_control_distance_distribution_ready": bool(
                 negative_control_meta.get("negative_control_distance_distribution_ready")
             ),
@@ -11627,6 +11979,13 @@ def build_epk_precount_gate_status(
             ),
             "negative_control_combined_measured_family_count": (
                 negative_control_sufficiency_meta.get("combined_measured_family_count")
+            ),
+            "negative_control_missing_sibling_family_ids": (
+                missing_sibling_source_meta.get("missing_sibling_family_ids")
+                or negative_control_sufficiency_meta.get("missing_sibling_family_ids")
+            ),
+            "negative_control_source_request_open": bool(
+                missing_sibling_source_meta.get("negative_control_source_request_open")
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

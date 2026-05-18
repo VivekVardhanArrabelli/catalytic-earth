@@ -899,6 +899,13 @@ then closes the current threshold-selection question for this lane: the
 combined selected plus alternate control surface measures 5 entries across 4
 of 8 sibling ATP-family controls, misses ATP-grasp, NDK, PfkA, and PfkB
 coverage, and marks threshold selection `do_not_select_threshold`.
+`artifacts/v3_epk_missing_sibling_control_source_request_1025.json` turns that
+coverage gap into explicit review-only source requests: ATP-grasp needs
+additional gamma-capable source evidence, NDK needs an ATP-state/gamma-capable
+alternate, PfkA needs additional gamma-capable source evidence, and PfkB has a
+gamma-capable alternate with metal or catalytic-residue mapping gaps. It
+measures no new distances, selects no threshold, scores no ePK rows, and edits
+no registries.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
 `blocked_review_only`: local axes, measured-row acceptor identity review, and
 threshold/control planning pass, non-ready-row exclusion is explicit, and a

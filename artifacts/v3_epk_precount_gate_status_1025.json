@@ -96,8 +96,16 @@
         "combined_measured_control_count": 5,
         "lowest_covering_candidate_negative_control_hit_count": 1,
         "measured_control_count": 2,
+        "missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
+        "missing_sibling_family_ids": [
+          "atp_grasp",
+          "ndk",
+          "pfka",
+          "pfkb"
+        ],
         "negative_control_distance_distribution_ready": false,
         "negative_control_distance_distribution_started": true,
+        "negative_control_source_request_open": true,
         "source_method": "epk_negative_control_gamma_distance_distribution",
         "threshold_selection_status": "blocked_negative_controls_overlap_or_insufficient_distribution"
       },
@@ -132,6 +140,13 @@
     "negative_control_distance_distribution_ready": false,
     "negative_control_lowest_candidate_hit_count": 1,
     "negative_control_measured_control_count": 2,
+    "negative_control_missing_sibling_family_ids": [
+      "atp_grasp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "negative_control_source_request_open": true,
     "next_actions": [
       "expand sibling negative-control coverage beyond measured alternate structures before selecting a threshold",
       "keep explicitly excluded non-ready ligand rows out of threshold calibration",
@@ -151,6 +166,7 @@
     "source_epk_acceptor_identity_review_method": "epk_acceptor_identity_review",
     "source_epk_atp_state_evidence_plan_method": "epk_atp_state_evidence_plan",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
+    "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
     "source_epk_negative_control_calibration_sufficiency_decision_method": "epk_negative_control_calibration_sufficiency_decision",
     "source_epk_negative_control_gamma_distance_distribution_method": "epk_negative_control_gamma_distance_distribution",
     "source_epk_nonready_ligand_exclusion_decision_method": "epk_nonready_ligand_exclusion_decision",

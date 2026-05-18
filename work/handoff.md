@@ -50,6 +50,58 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T18:48:23Z automation run, the normal direct automation
+protocol passed: the lock was acquired, `git fetch` and `git pull --ff-only
+origin main` were clean, SSH deploy-key push hygiene passed, startup unit
+discovery passed, `validate` passed, and
+`validate-artifact-migration --dry-run --check-local-files` again reported 108
+rows, 0 blockers, and `removal_allowed=0`. Phase 1 artifact migration remained
+guard-only and closed.
+
+The scientific work continued the review-only ePK lane without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any
+external hard-negative label. It added
+`artifacts/v3_epk_missing_sibling_control_source_request_1025.json` plus the
+CLI builder `build-epk-missing-sibling-control-source-request`. This consumes
+the negative-control calibration sufficiency decision, selected-structure
+negative-control distribution, and sibling alternate-structure plan, then turns
+the remaining ATP-grasp, NDK, PfkA, and PfkB coverage gaps into explicit
+source/repair requests. The packet has 6 review-only rows: ATP-grasp
+`m_csa:310` needs graph-linked or external structure evidence, ATP-grasp
+`m_csa:498` and PfkA `m_csa:365` need additional gamma-capable source
+evidence, NDK `m_csa:637` needs an ATP-state/gamma-capable alternate, and
+PfkB `m_csa:663`/`m_csa:670` need metal/context or catalytic-residue mapping
+repair plus additional source evidence. It measures no distances, selects no
+threshold, scores no ePK rows, runs no external hard-negative re-audit, and
+changes no registries.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the new
+source-request packet attached. The lane remains `blocked_review_only`:
+negative-control source requests are now explicit and
+`negative_control_source_request_open=true`, while negative-control
+distribution readiness, acceptor-threshold calibration, complete gamma
+geometry, external hard-negative scored re-audit, and registry/label-factory
+extension still fail closed.
+
+Evidence-based confidence call: ePK scorer development is more actionable but
+not closer to countability. The current blocker is now specific source/repair
+work for ATP-grasp, NDK, PfkA, and PfkB sibling controls, plus the already
+observed sibling-control collisions at candidate thresholds. There is still no
+ePK scorer, calibrated threshold, positive-universe expansion, external
+hard-negative ePK re-audit, registry edit, or label import. The active
+fingerprint universe remains 8; curated labels remain 682 with 212
+`seed_fingerprint` and 470 `out_of_scope` labels; external imported labels
+remain exactly `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`;
+external imported seed-fingerprint labels remain 0. The next bounded ePK step
+should use the source-request packet to repair or source one missing sibling
+family at a time, starting with PfkB mapping/metal-context repair or NDK
+ATP-state sourcing. Do not add the ePK registry fingerprint, import ePK
+labels, score external hard negatives, or reopen migration Phase 2.
+
+Verification passed with the final 480-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T17:46:25Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and `git pull --ff-only
 origin main` were clean, SSH deploy-key push hygiene passed, startup unit

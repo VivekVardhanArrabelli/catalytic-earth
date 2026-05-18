@@ -4853,6 +4853,164 @@ class CliTests(unittest.TestCase):
             self.assertEqual(collisions[6.0]["combined_negative_control_hit_count"], 2)
             self.assertEqual(len(decision["rows"]), 2)
 
+    def test_build_epk_missing_sibling_control_source_request_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sufficiency = root / "sufficiency.json"
+            distribution = root / "distribution.json"
+            alternate_plan = root / "alternate_plan.json"
+            out = root / "source_request.json"
+            sufficiency.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_negative_control_calibration_sufficiency_decision"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "combined_measured_family_ids": ["askha", "dnk"],
+                            "missing_sibling_family_ids": ["atp_grasp", "pfkb"],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            distribution.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_negative_control_gamma_distance_distribution"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:310",
+                                "entry_name": "D-alanine ligase",
+                                "family_id": "atp_grasp",
+                                "family_name": "ATP-grasp ligases",
+                                "pdb_id": "1E4E",
+                                "measurement_status": (
+                                    "selected_structure_product_or_no_gamma_nucleotide_skipped"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:663",
+                                "entry_name": "ribokinase",
+                                "family_id": "pfkb",
+                                "family_name": "PfkB/ribokinase-family kinases",
+                                "pdb_id": "1RK2",
+                                "measurement_status": (
+                                    "selected_structure_product_or_no_gamma_nucleotide_skipped"
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            alternate_plan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_sibling_negative_control_alternate_structure_plan"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:310",
+                                "entry_name": "D-alanine ligase",
+                                "family_id": "atp_grasp",
+                                "family_name": "ATP-grasp ligases",
+                                "selected_pdb_id": "1E4E",
+                                "alternate_control_evidence_status": (
+                                    "no_alternate_pdb_structure_screened"
+                                ),
+                                "graph_linked_alternate_pdb_count": 0,
+                                "screened_alternate_pdb_count": 0,
+                                "candidate_structures": [],
+                            },
+                            {
+                                "entry_id": "m_csa:663",
+                                "entry_name": "ribokinase",
+                                "family_id": "pfkb",
+                                "family_name": "PfkB/ribokinase-family kinases",
+                                "selected_pdb_id": "1RK2",
+                                "alternate_control_evidence_status": (
+                                    "alternate_gamma_structure_found_metal_or_mapping_gap"
+                                ),
+                                "graph_linked_alternate_pdb_count": 1,
+                                "screened_alternate_pdb_count": 1,
+                                "alternate_gamma_structure_count": 1,
+                                "alternate_gamma_metal_mapped_structure_count": 0,
+                                "candidate_structures": [
+                                    {
+                                        "pdb_id": "1RKA",
+                                        "target_ligand_codes": ["ANP"],
+                                        "has_gamma_capable_nucleotide": True,
+                                        "has_metal_ligand": False,
+                                        "mapped_catalytic_residue_count": 1,
+                                        "expected_catalytic_residue_count": 2,
+                                        "all_catalytic_residues_mapped": False,
+                                    }
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-missing-sibling-control-source-request",
+                    "--epk-negative-control-calibration-sufficiency-decision",
+                    str(sufficiency),
+                    "--epk-negative-control-gamma-distance-distribution",
+                    str(distribution),
+                    "--epk-sibling-negative-control-alternate-structure-plan",
+                    str(alternate_plan),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            request = json.loads(out.read_text(encoding="utf-8"))
+            metadata = request["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_missing_sibling_control_source_request",
+            )
+            self.assertEqual(metadata["missing_sibling_family_count"], 2)
+            self.assertEqual(metadata["row_count"], 2)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            rows = {row["entry_id"]: row for row in request["rows"]}
+            self.assertEqual(
+                rows["m_csa:310"]["source_request_type"],
+                "source_graph_linked_or_external_pdb_structure",
+            )
+            self.assertEqual(
+                rows["m_csa:663"]["source_request_type"],
+                "repair_gamma_structure_metal_or_mapping_gap",
+            )
+            self.assertEqual(
+                rows["m_csa:663"]["candidate_structure_summaries"][0][
+                    "structure_gap_status"
+                ],
+                "gamma_capable_metal_or_mapping_gap",
+            )
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

@@ -74,6 +74,7 @@ from .labels import (
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
     build_epk_local_evidence_audit,
+    build_epk_missing_sibling_control_source_request,
     build_epk_negative_control_calibration_sufficiency_decision,
     build_epk_negative_control_gamma_distance_distribution,
     build_epk_nonready_ligand_alternate_structure_plan,
@@ -5569,6 +5570,40 @@ def cmd_build_epk_negative_control_calibration_sufficiency_decision(
     return 0
 
 
+def cmd_build_epk_missing_sibling_control_source_request(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_negative_control_calibration_sufficiency_decision).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_negative_control_calibration_sufficiency_decision = json.load(handle)
+    with Path(args.epk_negative_control_gamma_distance_distribution).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_negative_control_gamma_distance_distribution = json.load(handle)
+    with Path(args.epk_sibling_negative_control_alternate_structure_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_negative_control_alternate_structure_plan = json.load(handle)
+    request = build_epk_missing_sibling_control_source_request(
+        epk_negative_control_calibration_sufficiency_decision=(
+            epk_negative_control_calibration_sufficiency_decision
+        ),
+        epk_negative_control_gamma_distance_distribution=(
+            epk_negative_control_gamma_distance_distribution
+        ),
+        epk_sibling_negative_control_alternate_structure_plan=(
+            epk_sibling_negative_control_alternate_structure_plan
+        ),
+    )
+    write_json(Path(args.out), request)
+    print(
+        "Wrote ePK missing sibling-control source request to "
+        f"{args.out} (families={request['metadata']['missing_sibling_family_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_nonready_ligand_alternate_structure_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -5684,6 +5719,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_negative_control_calibration_sufficiency_decision = json.load(handle)
+    epk_missing_sibling_control_source_request = None
+    if args.epk_missing_sibling_control_source_request:
+        with Path(args.epk_missing_sibling_control_source_request).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_missing_sibling_control_source_request = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -5712,6 +5753,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_negative_control_calibration_sufficiency_decision=(
             epk_negative_control_calibration_sufficiency_decision
+        ),
+        epk_missing_sibling_control_source_request=(
+            epk_missing_sibling_control_source_request
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -12383,6 +12427,42 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_negative_control_calibration_sufficiency_decision
     )
 
+    epk_missing_sibling_control_source_request = subparsers.add_parser(
+        "build-epk-missing-sibling-control-source-request",
+        help="package missing ePK sibling negative-control families for sourcing",
+    )
+    epk_missing_sibling_control_source_request.add_argument(
+        "--epk-negative-control-calibration-sufficiency-decision",
+        default=(
+            "artifacts/"
+            "v3_epk_negative_control_calibration_sufficiency_decision.json"
+        ),
+    )
+    epk_missing_sibling_control_source_request.add_argument(
+        "--epk-negative-control-gamma-distance-distribution",
+        default=(
+            "artifacts/"
+            "v3_epk_negative_control_gamma_distance_distribution.json"
+        ),
+    )
+    epk_missing_sibling_control_source_request.add_argument(
+        "--epk-sibling-negative-control-alternate-structure-plan",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_negative_control_alternate_structure_plan.json"
+        ),
+    )
+    epk_missing_sibling_control_source_request.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_missing_sibling_control_source_request.json"
+        ),
+    )
+    epk_missing_sibling_control_source_request.set_defaults(
+        func=cmd_build_epk_missing_sibling_control_source_request
+    )
+
     epk_nonready_alternate_plan = subparsers.add_parser(
         "build-epk-nonready-ligand-alternate-structure-plan",
         help="screen review-only alternate structures for non-ready ePK ligand rows",
@@ -12479,6 +12559,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-negative-control-calibration-sufficiency-decision",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-missing-sibling-control-source-request",
         default=None,
     )
     epk_precount_gate_status.add_argument(
