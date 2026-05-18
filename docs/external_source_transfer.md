@@ -1462,3 +1462,30 @@ review and label-factory gates.
 contract. It only profiles local ePK-row evidence for future scorer design and
 leaves every external label outside ePK predictive evidence until the scorer and
 re-audit gates exist.
+`artifacts/v3_epk_text_free_local_axis_prototype_1025.json` also stays inside
+that boundary: it materializes only three ready local M-CSA ePK rows as binary
+geometry-derived axes and still keeps all existing external hard negatives
+unscored under ePK until an expanded-ontology scorer, threshold policy,
+terminal-review rerun, and label-factory gate exist.
+`artifacts/v3_epk_acceptor_geometry_axis_gap_plan_1025.json` remains local to
+the same M-CSA ePK scorer-development lane. It does not score any external hard
+negative under ePK and does not change the `label_factory_v1_8fp` contract for
+`uniprot:P06744`, `uniprot:P78549`, or `uniprot:Q3LXA3`.
+`artifacts/v3_epk_nonready_ligand_repair_plan_1025.json` is also local to the
+M-CSA ePK preparation lane; it only records repair actions for `m_csa:282` and
+`m_csa:662` and does not reopen external import evidence.
+`artifacts/v3_epk_acceptor_axis_threshold_design_1025.json` records candidate
+local acceptor cutoffs for later ePK scorer work, but it selects no threshold
+and therefore does not trigger any external hard-negative re-audit yet.
+`artifacts/v3_epk_gamma_geometry_feasibility_plan_1025.json` only classifies
+which local M-CSA ePK rows could support future atom-level gamma-phosphate
+geometry measurement. It performs no measurement and still does not score
+external labels under ePK.
+`artifacts/v3_epk_gamma_geometry_measurement_sample_1025.json` measures
+PG-to-candidate-hydroxyl distances for the two local gamma-capable M-CSA rows,
+but it is still not an external hard-negative score or expanded-ontology
+terminal review.
+`artifacts/v3_epk_precount_gate_status_1025.json` keeps the external lane
+explicitly blocked: no ePK score exists, the external hard negatives have not
+been rescored, and their `label_factory_v1_8fp` out-of-scope labels are
+unchanged.

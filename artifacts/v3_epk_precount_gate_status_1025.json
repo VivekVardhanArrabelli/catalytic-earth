@@ -1,0 +1,98 @@
+{
+  "gate_checks": [
+    {
+      "evidence": {
+        "prototype_ready_row_count": 3,
+        "source_method": "epk_text_free_local_axis_prototype"
+      },
+      "gate_id": "local_axis_prototype",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "selected_threshold_angstrom": null,
+        "threshold_calibrated": false
+      },
+      "gate_id": "acceptor_threshold_calibrated",
+      "passed": false
+    },
+    {
+      "evidence": {
+        "measured_row_count": 2,
+        "measurement_status_counts": {
+          "gamma_to_hydroxyl_distance_measured_review_only": 2,
+          "product_or_missing_gamma_nucleotide_skipped": 1
+        },
+        "prototype_ready_row_count": 3
+      },
+      "gate_id": "gamma_geometry_measured_for_all_prototype_rows",
+      "passed": false
+    },
+    {
+      "evidence": {
+        "nonready_row_count": 2,
+        "repair_lane_counts": {
+          "selected_structure_ligand_axis_missing": 1,
+          "structure_ligand_signal_not_local_axis": 1
+        }
+      },
+      "gate_id": "nonready_rows_repaired_or_excluded",
+      "passed": false
+    },
+    {
+      "evidence": {
+        "external_hard_negative_reaudit_scored": false,
+        "ready_to_run_scored_reaudit": false,
+        "source_method": "epk_external_hard_negative_reaudit_plan"
+      },
+      "gate_id": "external_hard_negative_scored_reaudit",
+      "passed": false
+    },
+    {
+      "evidence": {
+        "curated_label_registry_edited": false,
+        "fingerprint_registry_edited": false,
+        "label_factory_gate_extended_for_epk": false
+      },
+      "gate_id": "registry_and_label_factory_extension",
+      "passed": false
+    }
+  ],
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "failing_gate_ids": [
+      "acceptor_threshold_calibrated",
+      "gamma_geometry_measured_for_all_prototype_rows",
+      "nonready_rows_repaired_or_excluded",
+      "external_hard_negative_scored_reaudit",
+      "registry_and_label_factory_extension"
+    ],
+    "fingerprint_registry_edited": false,
+    "gamma_measured_row_count": 2,
+    "method": "epk_precount_gate_status",
+    "next_actions": [
+      "verify true substrate-acceptor identity for measured hydroxyl atoms",
+      "source ATP-state gamma geometry for m_csa:640",
+      "repair or keep excluded the two non-ready ligand rows",
+      "run external hard-negative re-audit only after a real ePK score exists"
+    ],
+    "nonready_ligand_repair_row_count": 2,
+    "precount_gate_status": "blocked_review_only",
+    "prototype_ready_row_count": 3,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This status artifact summarizes why ePK remains blocked before any countable fingerprint, score, external re-audit, or label import work.",
+    "selected_acceptor_threshold_angstrom": null,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "warnings": [
+    "A blocked pre-count gate is expected; this artifact is a review-only handoff aid and not a promotion request."
+  ]
+}

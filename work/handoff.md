@@ -50,6 +50,94 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T07:14:59Z automation run, Phase 1 artifact migration was
+checked only as a guard and remains closed/non-blocking:
+`validate-artifact-migration --dry-run --check-local-files` still reports 108
+rows, 0 blockers, and `removal_allowed=0`. The scientific work continued the
+review-only ePK positive-fingerprint path without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any external
+hard-negative label.
+
+The run added `artifacts/v3_epk_text_free_local_axis_prototype_1025.json` plus
+the CLI builder `build-epk-text-free-local-axis-prototype`. The artifact
+materializes binary local feature axes only for the three rows already marked
+ready by the local-evidence audit: `m_csa:35`, `m_csa:246`, and `m_csa:640`.
+Each row has local adenine-nucleotide, metal-ligand, and catalytic acid/base
+axes from geometry evidence. `m_csa:282` and `m_csa:662` remain excluded from
+the prototype because their local ligand axes are not ready. The artifact keeps
+entry names as traceability only and explicitly excludes names, EC/Rhea IDs,
+UniProt prose, M-CSA text, curated label strings, and expert rationales from
+predictive use.
+
+The run also added
+`artifacts/v3_epk_acceptor_geometry_axis_gap_plan_1025.json` plus the CLI
+builder `build-epk-acceptor-geometry-axis-gap-plan`. This stays review-only and
+uses current geometry features to expose candidate acceptor context for the
+same three prototype rows: hydroxyl-residue pocket context for all three rows
+and near acceptor-like `KAN` ligand context for `m_csa:640`. `m_csa:282` and
+`m_csa:662` remain excluded until their local ligand axes are repaired. The
+artifact does not verify acceptor identity, threshold the acceptor axis, measure
+gamma-phosphate-to-acceptor geometry, compute an ePK score, or score external
+hard negatives under ePK.
+
+Finally, `artifacts/v3_epk_nonready_ligand_repair_plan_1025.json` plus
+`build-epk-nonready-ligand-repair-plan` now make the two excluded-row repair
+lanes explicit. `m_csa:282` has ATP and Mg only as nonlocal structure-level
+ligands in selected structure `1S9I`, so it needs local ligand-distance,
+residue-mapping, or selected-structure repair. `m_csa:662` has no
+selected-structure ligand axis in `1BO1`, so it needs alternate ligand evidence
+or alternate-structure sourcing before it can join any ePK scorer prototype.
+
+`artifacts/v3_epk_acceptor_axis_threshold_design_1025.json` plus
+`build-epk-acceptor-axis-threshold-design` records candidate acceptor-axis
+cutoffs of 4, 6, and 8 Angstrom. The 6 Angstrom candidate is the smallest one
+that covers the three current prototype rows by hydroxyl-residue context, but
+it is explicitly not selected or calibrated and cannot be used as an ePK
+threshold until gamma-phosphate-to-acceptor geometry and external re-audit
+controls exist.
+
+`artifacts/v3_epk_gamma_geometry_feasibility_plan_1025.json` plus
+`build-epk-gamma-geometry-feasibility-plan` closes the run by separating
+atom-level reaction-center feasibility from scoring. `m_csa:35` and
+`m_csa:246` have local ATP/ANP plus acceptor context and are ready for a future
+gamma-phosphate atom-geometry measurement. `m_csa:640` has local ADP plus
+acceptor context, so it needs ATP-state or analog evidence before gamma
+geometry can support scoring.
+
+The run then added `artifacts/v3_epk_gamma_geometry_measurement_sample_1025.json`
+plus `build-epk-gamma-geometry-measurement-sample`, using RCSB mmCIF atom
+coordinates for `2PHK` and `1IR3`. It measures review-only nearest
+PG-to-candidate-hydroxyl distances of 3.610 Angstrom for `m_csa:35` and
+5.082 Angstrom for `m_csa:246`; `m_csa:640` remains skipped because the
+selected structure is local ADP/product-state rather than ATP/gamma-capable.
+These distances are not accepted substrate identities, thresholds, ePK scores,
+external-hard-negative re-audit evidence, or label gates.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` plus
+`build-epk-precount-gate-status` consolidates the current lane as
+`blocked_review_only`. The local-axis prototype gate passes, while acceptor
+threshold calibration, complete gamma geometry across all prototype rows,
+non-ready-row repair, external hard-negative scored re-audit, and registry/
+label-factory extension all fail closed.
+
+Evidence-based confidence call: this is a useful scorer-development surface,
+but still not an ePK scorer or positive fingerprint expansion. The active
+fingerprint universe remains 8; curated labels remain 682 with 212
+`seed_fingerprint` and 470 `out_of_scope` labels; external imported labels
+remain exactly `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`;
+external imported seed-fingerprint labels remain 0. Acceptor geometry,
+gamma-phosphoryl-transfer reaction-center geometry, ePK threshold calibration,
+external hard-negative scored re-audit, terminal review, label-factory gate
+extension, and registry edits remain blockers before any countable ePK work.
+The next bounded ePK step, if chosen, should verify whether the measured
+hydroxyl atoms are true substrate acceptors, source ATP-state evidence for
+`m_csa:640`, or act on the two explicit ligand-repair lanes; do not add the ePK
+registry fingerprint, import ePK labels, or score external hard negatives until
+the full pre-count gate path is implemented.
+Verification passed with the final 461-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T06:13:08Z automation run, Phase 1 artifact migration was
 checked only as a guard and remains closed/non-blocking:
 `validate-artifact-migration --dry-run --check-local-files` still reports 108

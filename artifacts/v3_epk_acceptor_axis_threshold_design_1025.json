@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "candidate_thresholds_angstrom": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_acceptor_axis_threshold_design",
+    "next_actions": [
+      "test candidate cutoffs against external hard negatives only after an ePK score exists",
+      "add gamma-phosphate-to-acceptor geometry before threshold calibration",
+      "keep the smallest covering cutoff as a hypothesis, not a selected threshold"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "Candidate cutoffs are descriptive design points from three prototype rows only. They are not calibrated thresholds and cannot be used for ePK scoring or label import.",
+    "selected_threshold_angstrom": null,
+    "smallest_candidate_hydroxyl_cutoff_covering_current_prototype_rows": 6.0,
+    "source_epk_acceptor_geometry_axis_gap_plan_method": "epk_acceptor_geometry_axis_gap_plan",
+    "source_prototype_ready_row_count": 3,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "acceptor_axis_status": "hydroxyl_residue_context_present_not_scored",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "nearest_acceptor_ligand_distance_angstrom": null,
+      "nearest_hydroxyl_residue_distance_angstrom": 2.493,
+      "review_only": true
+    },
+    {
+      "acceptor_axis_status": "hydroxyl_residue_context_present_not_scored",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "nearest_acceptor_ligand_distance_angstrom": 10.75,
+      "nearest_hydroxyl_residue_distance_angstrom": 5.806,
+      "review_only": true
+    },
+    {
+      "acceptor_axis_status": "hydroxyl_residue_and_acceptor_ligand_context_present_not_scored",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "nearest_acceptor_ligand_distance_angstrom": 6.243,
+      "nearest_hydroxyl_residue_distance_angstrom": 5.147,
+      "review_only": true
+    }
+  ],
+  "threshold_rows": [
+    {
+      "acceptor_ligand_hit_count": 0,
+      "acceptor_ligand_hit_entry_ids": [],
+      "candidate_threshold_angstrom": 4.0,
+      "combined_candidate_context_hit_count": 1,
+      "combined_candidate_context_hit_entry_ids": [
+        "m_csa:35"
+      ],
+      "hydroxyl_residue_hit_count": 1,
+      "hydroxyl_residue_hit_entry_ids": [
+        "m_csa:35"
+      ],
+      "review_only": true
+    },
+    {
+      "acceptor_ligand_hit_count": 0,
+      "acceptor_ligand_hit_entry_ids": [],
+      "candidate_threshold_angstrom": 6.0,
+      "combined_candidate_context_hit_count": 3,
+      "combined_candidate_context_hit_entry_ids": [
+        "m_csa:35",
+        "m_csa:246",
+        "m_csa:640"
+      ],
+      "hydroxyl_residue_hit_count": 3,
+      "hydroxyl_residue_hit_entry_ids": [
+        "m_csa:35",
+        "m_csa:246",
+        "m_csa:640"
+      ],
+      "review_only": true
+    },
+    {
+      "acceptor_ligand_hit_count": 1,
+      "acceptor_ligand_hit_entry_ids": [
+        "m_csa:640"
+      ],
+      "candidate_threshold_angstrom": 8.0,
+      "combined_candidate_context_hit_count": 3,
+      "combined_candidate_context_hit_entry_ids": [
+        "m_csa:35",
+        "m_csa:246",
+        "m_csa:640"
+      ],
+      "hydroxyl_residue_hit_count": 3,
+      "hydroxyl_residue_hit_entry_ids": [
+        "m_csa:35",
+        "m_csa:246",
+        "m_csa:640"
+      ],
+      "review_only": true
+    }
+  ],
+  "warnings": [
+    "The current prototype rows are too few to calibrate an ePK threshold; this artifact only records candidate cutoffs to test."
+  ]
+}

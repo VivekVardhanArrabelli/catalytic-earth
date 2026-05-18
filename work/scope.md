@@ -327,7 +327,32 @@ Current expectation:
   as review-only planning while preserving the 8-fingerprint universe. The
   local-evidence audit finds 3/5 ePK boundary rows ready for a text-free
   ATP/metal/acid-base axis prototype and 2/5 still blocked by local ligand or
-  selected-structure gaps.
+  selected-structure gaps. The first local-axis prototype now materializes only
+  those 3 ready rows as binary geometry-derived ATP/adenine-nucleotide,
+  metal-ligand, and catalytic acid/base axes while keeping acceptor geometry,
+  threshold calibration, external hard-negative re-audit, registry edits, and
+  label import closed. The acceptor-axis gap plan now finds candidate hydroxyl
+  context for all 3 prototype rows and near acceptor-like ligand context for
+  `m_csa:640`, but it remains review-only and keeps acceptor identity,
+  gamma-phosphate geometry, thresholding, ePK scoring, and external re-audit
+  unresolved. The non-ready ligand repair plan keeps `m_csa:282` and
+  `m_csa:662` out of scorer prototyping: `m_csa:282` needs local
+  ligand-distance or selected-structure repair, and `m_csa:662` needs ligand
+  evidence or alternate-structure sourcing. The acceptor-axis threshold design
+  records 4, 6, and 8 Angstrom candidate cutoffs for later validation; 6
+  Angstrom covers the current three prototype rows by hydroxyl context, but no
+  ePK threshold is selected or calibrated. The gamma-geometry feasibility plan
+  identifies `m_csa:35` and `m_csa:246` as ATP/ANP plus acceptor-context rows
+  ready for future atom-level gamma-phosphate measurement, while `m_csa:640`
+  needs ATP-state evidence because the selected structure is ADP/product-state.
+  The first review-only atom-level sample measures nearest PG-to-candidate-
+  hydroxyl distances of 3.610 Angstrom for `m_csa:35` and 5.082 Angstrom for
+  `m_csa:246`; it skips `m_csa:640` and still treats acceptor identity,
+  thresholding, external re-audit, and scoring as unresolved. The consolidated
+  ePK pre-count gate status remains `blocked_review_only`: only the local-axis
+  prototype passes, while threshold calibration, complete gamma geometry,
+  non-ready-row repair, external hard-negative re-audit, and registry/gate
+  extension all fail closed.
 - return to factory-gated label scaling toward 10k while preserving quality
   gates; the accepted 1,000 M-CSA state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the

@@ -1,0 +1,318 @@
+{
+  "excluded_rows": [
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:282",
+      "entry_name": "mitogen-activated protein kinase kinase",
+      "excluded_from_acceptor_axis_plan": true,
+      "exclusion_reasons": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "local_atp_or_adenine_nucleotide_ligand_missing",
+        "local_mg_or_metal_ligand_missing"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_scorer_input_readiness": "needs_ligand_distance_or_structure_repair",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "excluded_from_acceptor_axis_plan": true,
+      "exclusion_reasons": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "local_atp_or_adenine_nucleotide_ligand_missing",
+        "local_mg_or_metal_ligand_missing"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_scorer_input_readiness": "needs_ligand_source_or_alternate_structure",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "metadata": {
+    "acceptor_axis_implemented_as_score": false,
+    "acceptor_axis_status_counts": {
+      "hydroxyl_residue_and_acceptor_ligand_context_present_not_scored": 1,
+      "hydroxyl_residue_context_present_not_scored": 2
+    },
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "excluded_row_count": 2,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_acceptor_geometry_axis_gap_plan",
+    "next_actions": [
+      "define an acceptor-axis threshold before scoring these candidates",
+      "measure gamma-phosphate to acceptor geometry before ePK scoring",
+      "keep non-ready ePK rows excluded until local ligand gaps are repaired",
+      "rerun external hard-negative re-audit only after a real ePK score exists"
+    ],
+    "prototype_ready_row_count": 3,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact converts the acceptor requirement into a review-only geometry gap plan. It records candidate hydroxyl residue and acceptor-like ligand context, but does not score ePK chemistry or authorize label/import work.",
+    "rows_with_candidate_acceptor_context_count": 3,
+    "source_epk_text_free_local_axis_prototype_method": "epk_text_free_local_axis_prototype",
+    "source_excluded_row_count": 2,
+    "source_geometry_method": "active_site_geometry_features",
+    "source_geometry_slice": 1000,
+    "source_prototype_ready_row_count": 3,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "acceptor_axis_implemented_as_score": false,
+      "acceptor_axis_status": "hydroxyl_residue_context_present_not_scored",
+      "acceptor_like_structure_ligand_count": 0,
+      "acceptor_like_structure_ligands": [],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "epk_score_computed": false,
+      "geometry_status": "ok",
+      "hydroxyl_residue_candidate_count": 7,
+      "hydroxyl_residue_candidates": [
+        {
+          "atom_count": 7,
+          "chain_name": "A",
+          "code": "THR",
+          "min_distance_to_active_site": 2.493,
+          "resid": "166"
+        },
+        {
+          "atom_count": 12,
+          "chain_name": "A",
+          "code": "TYR",
+          "min_distance_to_active_site": 4.345,
+          "resid": "189"
+        },
+        {
+          "atom_count": 6,
+          "chain_name": "B",
+          "code": "SER",
+          "min_distance_to_active_site": 4.552,
+          "resid": "5"
+        },
+        {
+          "atom_count": 6,
+          "chain_name": "A",
+          "code": "SER",
+          "min_distance_to_active_site": 4.817,
+          "resid": "188"
+        },
+        {
+          "atom_count": 6,
+          "chain_name": "A",
+          "code": "SER",
+          "min_distance_to_active_site": 6.073,
+          "resid": "214"
+        },
+        {
+          "atom_count": 6,
+          "chain_name": "A",
+          "code": "SER",
+          "min_distance_to_active_site": 7.139,
+          "resid": "171"
+        },
+        {
+          "atom_count": 7,
+          "chain_name": "A",
+          "code": "THR",
+          "min_distance_to_active_site": 7.436,
+          "resid": "215"
+        }
+      ],
+      "nearest_acceptor_ligand_distance_angstrom": null,
+      "nearest_hydroxyl_residue_distance_angstrom": 2.493,
+      "pdb_id": "2PHK",
+      "predictive_use_status": "review_only_candidate_axis_not_thresholded",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "acceptor_axis_not_thresholded",
+        "acceptor_identity_not_verified",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run",
+        "gamma_phosphoryl_transfer_geometry_not_measured"
+      ],
+      "review_only": true,
+      "source_axis_presence_count": 3,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_axis_implemented_as_score": false,
+      "acceptor_axis_status": "hydroxyl_residue_context_present_not_scored",
+      "acceptor_like_structure_ligand_count": 1,
+      "acceptor_like_structure_ligands": [
+        {
+          "atom_count": 48,
+          "code": "PTR",
+          "instance_count": 3,
+          "min_distance_to_active_site": 10.75
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "epk_score_computed": false,
+      "geometry_status": "ok",
+      "hydroxyl_residue_candidate_count": 4,
+      "hydroxyl_residue_candidates": [
+        {
+          "atom_count": 12,
+          "chain_name": "B",
+          "code": "TYR",
+          "min_distance_to_active_site": 5.806,
+          "resid": "10"
+        },
+        {
+          "atom_count": 6,
+          "chain_name": "A",
+          "code": "SER",
+          "min_distance_to_active_site": 5.815,
+          "resid": "1194"
+        },
+        {
+          "atom_count": 6,
+          "chain_name": "A",
+          "code": "SER",
+          "min_distance_to_active_site": 5.956,
+          "resid": "1086"
+        },
+        {
+          "atom_count": 7,
+          "chain_name": "A",
+          "code": "THR",
+          "min_distance_to_active_site": 6.531,
+          "resid": "1154"
+        }
+      ],
+      "nearest_acceptor_ligand_distance_angstrom": 10.75,
+      "nearest_hydroxyl_residue_distance_angstrom": 5.806,
+      "pdb_id": "1IR3",
+      "predictive_use_status": "review_only_candidate_axis_not_thresholded",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "acceptor_axis_not_thresholded",
+        "acceptor_identity_not_verified",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run",
+        "gamma_phosphoryl_transfer_geometry_not_measured"
+      ],
+      "review_only": true,
+      "source_axis_presence_count": 3,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_axis_implemented_as_score": false,
+      "acceptor_axis_status": "hydroxyl_residue_and_acceptor_ligand_context_present_not_scored",
+      "acceptor_like_structure_ligand_count": 1,
+      "acceptor_like_structure_ligands": [
+        {
+          "atom_count": 33,
+          "code": "KAN",
+          "instance_count": 1,
+          "min_distance_to_active_site": 6.243
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "epk_score_computed": false,
+      "geometry_status": "ok",
+      "hydroxyl_residue_candidate_count": 9,
+      "hydroxyl_residue_candidates": [
+        {
+          "atom_count": 12,
+          "chain_name": "A",
+          "code": "TYR",
+          "min_distance_to_active_site": 5.147,
+          "resid": "219"
+        },
+        {
+          "atom_count": 12,
+          "chain_name": "A",
+          "code": "TYR",
+          "min_distance_to_active_site": 5.192,
+          "resid": "32"
+        },
+        {
+          "atom_count": 12,
+          "chain_name": "A",
+          "code": "TYR",
+          "min_distance_to_active_site": 5.474,
+          "resid": "42"
+        },
+        {
+          "atom_count": 7,
+          "chain_name": "A",
+          "code": "THR",
+          "min_distance_to_active_site": 5.912,
+          "resid": "46"
+        },
+        {
+          "atom_count": 6,
+          "chain_name": "A",
+          "code": "SER",
+          "min_distance_to_active_site": 5.966,
+          "resid": "86"
+        },
+        {
+          "atom_count": 6,
+          "chain_name": "A",
+          "code": "SER",
+          "min_distance_to_active_site": 6.618,
+          "resid": "212"
+        },
+        {
+          "atom_count": 6,
+          "chain_name": "A",
+          "code": "SER",
+          "min_distance_to_active_site": 7.442,
+          "resid": "187"
+        },
+        {
+          "atom_count": 6,
+          "chain_name": "A",
+          "code": "SER",
+          "min_distance_to_active_site": 7.595,
+          "resid": "99"
+        },
+        {
+          "atom_count": 7,
+          "chain_name": "A",
+          "code": "THR",
+          "min_distance_to_active_site": 7.927,
+          "resid": "54"
+        }
+      ],
+      "nearest_acceptor_ligand_distance_angstrom": 6.243,
+      "nearest_hydroxyl_residue_distance_angstrom": 5.147,
+      "pdb_id": "1L8T",
+      "predictive_use_status": "review_only_candidate_axis_not_thresholded",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "acceptor_axis_not_thresholded",
+        "acceptor_identity_not_verified",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run",
+        "gamma_phosphoryl_transfer_geometry_not_measured"
+      ],
+      "review_only": true,
+      "source_axis_presence_count": 3,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    }
+  ],
+  "warnings": [
+    "Candidate acceptor context is not proof of ePK activity; it is a bounded, text-free review surface for future scorer design."
+  ]
+}

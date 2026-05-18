@@ -342,6 +342,242 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertFalse(row["countable_label_candidate"])
             self.assertIn("no_epk_score_computed", row["audit_blockers"])
 
+    def test_epk_text_free_local_axis_prototype_stays_review_only(self) -> None:
+        prototype = _load_json(
+            ROOT / "artifacts" / "v3_epk_text_free_local_axis_prototype_1025.json"
+        )
+        metadata = prototype["metadata"]
+        self.assertEqual(metadata["method"], "epk_text_free_local_axis_prototype")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["prototype_ready_row_count"], 3)
+        self.assertEqual(metadata["excluded_row_count"], 2)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        rows = {row["entry_id"]: row for row in prototype["rows"]}
+        self.assertEqual(set(rows), {"m_csa:35", "m_csa:246", "m_csa:640"})
+        for row in rows.values():
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertEqual(row["axis_presence_count"], 3)
+            self.assertFalse(row["epk_score_computed"])
+            self.assertIn("epk_threshold_not_calibrated", row["audit_blockers"])
+        excluded = {row["entry_id"]: row for row in prototype["excluded_rows"]}
+        self.assertEqual(set(excluded), {"m_csa:282", "m_csa:662"})
+        self.assertTrue(excluded["m_csa:282"]["excluded_from_axis_prototype"])
+        self.assertTrue(excluded["m_csa:662"]["excluded_from_axis_prototype"])
+
+    def test_epk_acceptor_geometry_axis_gap_plan_stays_review_only(self) -> None:
+        plan = _load_json(
+            ROOT / "artifacts" / "v3_epk_acceptor_geometry_axis_gap_plan_1025.json"
+        )
+        metadata = plan["metadata"]
+        self.assertEqual(metadata["method"], "epk_acceptor_geometry_axis_gap_plan")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["prototype_ready_row_count"], 3)
+        self.assertEqual(metadata["excluded_row_count"], 2)
+        self.assertEqual(metadata["rows_with_candidate_acceptor_context_count"], 3)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["acceptor_axis_implemented_as_score"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        rows = {row["entry_id"]: row for row in plan["rows"]}
+        self.assertEqual(set(rows), {"m_csa:35", "m_csa:246", "m_csa:640"})
+        for row in rows.values():
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertFalse(row["epk_score_computed"])
+            self.assertGreater(row["hydroxyl_residue_candidate_count"], 0)
+            self.assertIn("acceptor_axis_not_thresholded", row["remaining_blockers"])
+        self.assertEqual(
+            rows["m_csa:640"]["acceptor_axis_status"],
+            "hydroxyl_residue_and_acceptor_ligand_context_present_not_scored",
+        )
+        excluded = {row["entry_id"]: row for row in plan["excluded_rows"]}
+        self.assertEqual(set(excluded), {"m_csa:282", "m_csa:662"})
+
+    def test_epk_nonready_ligand_repair_plan_stays_review_only(self) -> None:
+        plan = _load_json(
+            ROOT / "artifacts" / "v3_epk_nonready_ligand_repair_plan_1025.json"
+        )
+        metadata = plan["metadata"]
+        self.assertEqual(metadata["method"], "epk_nonready_ligand_repair_plan")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["nonready_row_count"], 2)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        rows = {row["entry_id"]: row for row in plan["rows"]}
+        self.assertEqual(set(rows), {"m_csa:282", "m_csa:662"})
+        self.assertEqual(
+            rows["m_csa:282"]["repair_lane"],
+            "structure_ligand_signal_not_local_axis",
+        )
+        self.assertEqual(
+            rows["m_csa:662"]["repair_lane"],
+            "selected_structure_ligand_axis_missing",
+        )
+        self.assertTrue(rows["m_csa:282"]["structure_nucleotide_ligand_leads"])
+        self.assertFalse(rows["m_csa:662"]["structure_nucleotide_ligand_leads"])
+        for row in rows.values():
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertIn(
+                "not_ready_for_text_free_axis_prototype",
+                row["remaining_blockers"],
+            )
+
+    def test_epk_acceptor_axis_threshold_design_stays_review_only(self) -> None:
+        design = _load_json(
+            ROOT / "artifacts" / "v3_epk_acceptor_axis_threshold_design_1025.json"
+        )
+        metadata = design["metadata"]
+        self.assertEqual(metadata["method"], "epk_acceptor_axis_threshold_design")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["candidate_thresholds_angstrom"], [4.0, 6.0, 8.0])
+        self.assertEqual(
+            metadata[
+                "smallest_candidate_hydroxyl_cutoff_covering_current_prototype_rows"
+            ],
+            6.0,
+        )
+        self.assertIsNone(metadata["selected_threshold_angstrom"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        threshold_rows = {
+            row["candidate_threshold_angstrom"]: row
+            for row in design["threshold_rows"]
+        }
+        self.assertEqual(threshold_rows[4.0]["hydroxyl_residue_hit_count"], 1)
+        self.assertEqual(threshold_rows[6.0]["hydroxyl_residue_hit_count"], 3)
+        self.assertEqual(threshold_rows[8.0]["combined_candidate_context_hit_count"], 3)
+
+    def test_epk_gamma_geometry_feasibility_plan_stays_review_only(self) -> None:
+        plan = _load_json(
+            ROOT / "artifacts" / "v3_epk_gamma_geometry_feasibility_plan_1025.json"
+        )
+        metadata = plan["metadata"]
+        self.assertEqual(metadata["method"], "epk_gamma_geometry_feasibility_plan")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["prototype_ready_row_count"], 3)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["gamma_phosphate_geometry_measured"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        rows = {row["entry_id"]: row for row in plan["rows"]}
+        self.assertEqual(set(rows), {"m_csa:35", "m_csa:246", "m_csa:640"})
+        self.assertEqual(
+            rows["m_csa:35"]["gamma_geometry_feasibility_status"],
+            "gamma_capable_nucleotide_and_acceptor_context_present_not_measured",
+        )
+        self.assertEqual(
+            rows["m_csa:246"]["gamma_geometry_feasibility_status"],
+            "gamma_capable_nucleotide_and_acceptor_context_present_not_measured",
+        )
+        self.assertEqual(
+            rows["m_csa:640"]["gamma_geometry_feasibility_status"],
+            "product_state_nucleotide_acceptor_context_present_needs_gamma_source",
+        )
+        for row in rows.values():
+            self.assertFalse(row["gamma_phosphate_geometry_measured"])
+            self.assertFalse(row["epk_score_computed"])
+
+    def test_epk_gamma_geometry_measurement_sample_stays_review_only(self) -> None:
+        sample = _load_json(
+            ROOT / "artifacts" / "v3_epk_gamma_geometry_measurement_sample_1025.json"
+        )
+        metadata = sample["metadata"]
+        self.assertEqual(metadata["method"], "epk_gamma_geometry_measurement_sample")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["row_count"], 3)
+        self.assertEqual(metadata["measured_row_count"], 2)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertTrue(metadata["gamma_phosphate_geometry_measured"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        rows = {row["entry_id"]: row for row in sample["rows"]}
+        self.assertEqual(set(rows), {"m_csa:35", "m_csa:246", "m_csa:640"})
+        self.assertEqual(
+            rows["m_csa:35"]["measurement_status"],
+            "gamma_to_hydroxyl_distance_measured_review_only",
+        )
+        self.assertEqual(
+            rows["m_csa:246"]["measurement_status"],
+            "gamma_to_hydroxyl_distance_measured_review_only",
+        )
+        self.assertEqual(
+            rows["m_csa:640"]["measurement_status"],
+            "product_or_missing_gamma_nucleotide_skipped",
+        )
+        for row in rows.values():
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_precount_gate_status_stays_blocked(self) -> None:
+        status = _load_json(
+            ROOT / "artifacts" / "v3_epk_precount_gate_status_1025.json"
+        )
+        metadata = status["metadata"]
+        self.assertEqual(metadata["method"], "epk_precount_gate_status")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["precount_gate_status"], "blocked_review_only")
+        self.assertEqual(metadata["prototype_ready_row_count"], 3)
+        self.assertEqual(metadata["gamma_measured_row_count"], 2)
+        self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
+        self.assertIsNone(metadata["selected_acceptor_threshold_angstrom"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertIn("acceptor_threshold_calibrated", metadata["failing_gate_ids"])
+        self.assertIn(
+            "gamma_geometry_measured_for_all_prototype_rows",
+            metadata["failing_gate_ids"],
+        )
+        self.assertIn("nonready_rows_repaired_or_excluded", metadata["failing_gate_ids"])
+        self.assertIn(
+            "external_hard_negative_scored_reaudit",
+            metadata["failing_gate_ids"],
+        )
+        checks = {check["gate_id"]: check for check in status["gate_checks"]}
+        self.assertTrue(checks["local_axis_prototype"]["passed"])
+        self.assertFalse(checks["registry_and_label_factory_extension"]["passed"])
+
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:
         adjudication = _load_json(
             ROOT / "artifacts" / "v3_mcsa_tm_holdout_feasibility_adjudication_1000.json"

@@ -2760,6 +2760,759 @@ class CliTests(unittest.TestCase):
                 "needs_ligand_source_or_alternate_structure",
             )
 
+    def test_build_epk_text_free_local_axis_prototype_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            audit = root / "epk_local_audit.json"
+            out = root / "epk_axis_prototype.json"
+            audit.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_local_evidence_audit",
+                            "audit_status": "local_evidence_profile_ready_not_scored",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "boundary_row_count": 2,
+                            "ready_for_text_free_axis_prototype_count": 1,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                                "pdb_id": "2PHK",
+                                "geometry_status": "ok",
+                                "scorer_input_readiness": (
+                                    "ready_for_text_free_axis_prototype"
+                                ),
+                                "local_nucleotide_ligand_codes": ["ATP"],
+                                "local_metal_ligand_codes": ["MG"],
+                                "acid_base_residues": [
+                                    {
+                                        "code": "Asp",
+                                        "resid": 136,
+                                        "chain_name": "A",
+                                        "roles": ["proton acceptor"],
+                                    }
+                                ],
+                                "audit_blockers": [
+                                    "acceptor_axis_still_source_traced_not_geometry_scored",
+                                    "no_epk_score_computed",
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:662",
+                                "entry_name": "phosphatidylinositol kinase",
+                                "scorer_input_readiness": (
+                                    "needs_ligand_source_or_alternate_structure"
+                                ),
+                                "local_feature_status": "local_ligand_axis_missing",
+                                "audit_blockers": [
+                                    "local_atp_or_adenine_nucleotide_ligand_missing",
+                                    "local_mg_or_metal_ligand_missing",
+                                    "no_epk_score_computed",
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-text-free-local-axis-prototype",
+                    "--epk-local-evidence-audit",
+                    str(audit),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            prototype = json.loads(out.read_text(encoding="utf-8"))
+            metadata = prototype["metadata"]
+            self.assertEqual(metadata["method"], "epk_text_free_local_axis_prototype")
+            self.assertEqual(metadata["prototype_ready_row_count"], 1)
+            self.assertEqual(metadata["excluded_row_count"], 1)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            self.assertEqual(metadata["countable_label_candidate_count"], 0)
+            self.assertEqual(prototype["rows"][0]["axis_presence_count"], 3)
+            self.assertFalse(prototype["rows"][0]["epk_score_computed"])
+            self.assertIn(
+                "external_hard_negative_inverse_axis",
+                metadata["blocked_axis_ids"],
+            )
+            self.assertEqual(
+                prototype["excluded_rows"][0]["entry_id"],
+                "m_csa:662",
+            )
+
+    def test_build_epk_acceptor_geometry_axis_gap_plan_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            prototype_path = root / "epk_axis_prototype.json"
+            geometry = root / "geometry.json"
+            out = root / "epk_acceptor_plan.json"
+            prototype_path.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_text_free_local_axis_prototype",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "prototype_ready_row_count": 1,
+                            "excluded_row_count": 1,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                                "pdb_id": "2PHK",
+                                "geometry_status": "ok",
+                                "axis_presence_count": 3,
+                            }
+                        ],
+                        "excluded_rows": [
+                            {
+                                "entry_id": "m_csa:662",
+                                "entry_name": "phosphatidylinositol kinase",
+                                "source_scorer_input_readiness": (
+                                    "needs_ligand_source_or_alternate_structure"
+                                ),
+                                "exclusion_reasons": ["local_ligand_axis_missing"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "active_site_geometry_features",
+                            "slice_size": 1000,
+                        },
+                        "entries": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                                "status": "ok",
+                                "pdb_id": "2PHK",
+                                "ligand_context": {
+                                    "structure_ligands": [
+                                        {
+                                            "code": "PTR",
+                                            "min_distance_to_active_site": 7.5,
+                                            "atom_count": 20,
+                                            "instance_count": 1,
+                                        }
+                                    ]
+                                },
+                                "pocket_context": {
+                                    "distance_cutoff_angstrom": 8.0,
+                                    "nearby_residue_sites": [
+                                        {
+                                            "code": "THR",
+                                            "resid": "166",
+                                            "chain_name": "A",
+                                            "min_distance_to_active_site": 3.2,
+                                            "atom_count": 7,
+                                        },
+                                        {
+                                            "code": "ASP",
+                                            "resid": "154",
+                                            "chain_name": "A",
+                                            "min_distance_to_active_site": 4.0,
+                                            "atom_count": 8,
+                                        },
+                                    ],
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-acceptor-geometry-axis-gap-plan",
+                    "--epk-text-free-local-axis-prototype",
+                    str(prototype_path),
+                    "--geometry",
+                    str(geometry),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            plan = json.loads(out.read_text(encoding="utf-8"))
+            metadata = plan["metadata"]
+            self.assertEqual(metadata["method"], "epk_acceptor_geometry_axis_gap_plan")
+            self.assertEqual(metadata["prototype_ready_row_count"], 1)
+            self.assertEqual(metadata["excluded_row_count"], 1)
+            self.assertEqual(metadata["rows_with_candidate_acceptor_context_count"], 1)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            row = plan["rows"][0]
+            self.assertEqual(
+                row["acceptor_axis_status"],
+                "hydroxyl_residue_and_acceptor_ligand_context_present_not_scored",
+            )
+            self.assertEqual(row["hydroxyl_residue_candidate_count"], 1)
+            self.assertEqual(row["acceptor_like_structure_ligand_count"], 1)
+            self.assertFalse(row["epk_score_computed"])
+            self.assertIn("acceptor_axis_not_thresholded", row["remaining_blockers"])
+
+    def test_build_epk_nonready_ligand_repair_plan_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            audit = root / "epk_local_audit.json"
+            geometry = root / "geometry.json"
+            out = root / "epk_nonready_repair.json"
+            audit.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_local_evidence_audit",
+                            "audit_status": "local_evidence_profile_ready_not_scored",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "boundary_row_count": 2,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "scorer_input_readiness": (
+                                    "ready_for_text_free_axis_prototype"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:282",
+                                "entry_name": "MAP kinase kinase",
+                                "pdb_id": "1S9I",
+                                "geometry_status": "ok",
+                                "scorer_input_readiness": (
+                                    "needs_ligand_distance_or_structure_repair"
+                                ),
+                                "local_feature_status": (
+                                    "structure_ligand_signal_not_local_axis"
+                                ),
+                                "local_ligand_codes": [],
+                                "structure_ligand_codes": ["ATP", "MG"],
+                                "audit_blockers": [
+                                    "local_atp_or_adenine_nucleotide_ligand_missing",
+                                    "local_mg_or_metal_ligand_missing",
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "active_site_geometry_features"},
+                        "entries": [
+                            {
+                                "entry_id": "m_csa:282",
+                                "status": "ok",
+                                "pdb_id": "1S9I",
+                                "ligand_context": {
+                                    "structure_ligands": [
+                                        {
+                                            "code": "ATP",
+                                            "min_distance_to_active_site": 14.7,
+                                            "atom_count": 62,
+                                            "instance_count": 2,
+                                        },
+                                        {
+                                            "code": "MG",
+                                            "min_distance_to_active_site": 16.1,
+                                            "atom_count": 2,
+                                            "instance_count": 2,
+                                        },
+                                    ]
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-nonready-ligand-repair-plan",
+                    "--epk-local-evidence-audit",
+                    str(audit),
+                    "--geometry",
+                    str(geometry),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            plan = json.loads(out.read_text(encoding="utf-8"))
+            metadata = plan["metadata"]
+            self.assertEqual(metadata["method"], "epk_nonready_ligand_repair_plan")
+            self.assertEqual(metadata["nonready_row_count"], 1)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            row = plan["rows"][0]
+            self.assertEqual(row["entry_id"], "m_csa:282")
+            self.assertEqual(row["repair_lane"], "structure_ligand_signal_not_local_axis")
+            self.assertEqual(row["structure_nucleotide_ligand_leads"][0]["code"], "ATP")
+            self.assertEqual(row["structure_metal_ligand_leads"][0]["code"], "MG")
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_build_epk_acceptor_axis_threshold_design_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            acceptor_plan = root / "epk_acceptor_plan.json"
+            out = root / "epk_threshold_design.json"
+            acceptor_plan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_acceptor_geometry_axis_gap_plan",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "prototype_ready_row_count": 2,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                                "nearest_hydroxyl_residue_distance_angstrom": 2.5,
+                                "nearest_acceptor_ligand_distance_angstrom": None,
+                                "acceptor_axis_status": (
+                                    "hydroxyl_residue_context_present_not_scored"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:640",
+                                "entry_name": "kanamycin kinase",
+                                "nearest_hydroxyl_residue_distance_angstrom": 5.2,
+                                "nearest_acceptor_ligand_distance_angstrom": 6.3,
+                                "acceptor_axis_status": (
+                                    "hydroxyl_residue_and_acceptor_ligand_context_present_not_scored"
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-acceptor-axis-threshold-design",
+                    "--epk-acceptor-geometry-axis-gap-plan",
+                    str(acceptor_plan),
+                    "--candidate-thresholds",
+                    "4,6,8",
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            design = json.loads(out.read_text(encoding="utf-8"))
+            metadata = design["metadata"]
+            self.assertEqual(metadata["method"], "epk_acceptor_axis_threshold_design")
+            self.assertEqual(metadata["candidate_thresholds_angstrom"], [4.0, 6.0, 8.0])
+            self.assertEqual(
+                metadata[
+                    "smallest_candidate_hydroxyl_cutoff_covering_current_prototype_rows"
+                ],
+                6.0,
+            )
+            self.assertIsNone(metadata["selected_threshold_angstrom"])
+            self.assertFalse(metadata["threshold_calibrated"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            threshold_rows = {
+                row["candidate_threshold_angstrom"]: row
+                for row in design["threshold_rows"]
+            }
+            self.assertEqual(threshold_rows[4.0]["hydroxyl_residue_hit_count"], 1)
+            self.assertEqual(threshold_rows[6.0]["hydroxyl_residue_hit_count"], 2)
+            self.assertEqual(threshold_rows[8.0]["acceptor_ligand_hit_count"], 1)
+
+    def test_build_epk_gamma_geometry_feasibility_plan_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            prototype_path = root / "epk_axis_prototype.json"
+            acceptor_plan = root / "epk_acceptor_plan.json"
+            out = root / "epk_gamma_feasibility.json"
+            prototype_path.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_text_free_local_axis_prototype",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                                "text_free_axis_inputs": {
+                                    "local_adenine_nucleotide_ligand": {
+                                        "evidence_codes": ["ATP"]
+                                    }
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:640",
+                                "entry_name": "kanamycin kinase",
+                                "text_free_axis_inputs": {
+                                    "local_adenine_nucleotide_ligand": {
+                                        "evidence_codes": ["ADP"]
+                                    }
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            acceptor_plan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "epk_acceptor_geometry_axis_gap_plan"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "acceptor_axis_status": (
+                                    "hydroxyl_residue_context_present_not_scored"
+                                ),
+                                "nearest_hydroxyl_residue_distance_angstrom": 2.5,
+                            },
+                            {
+                                "entry_id": "m_csa:640",
+                                "acceptor_axis_status": (
+                                    "hydroxyl_residue_and_acceptor_ligand_context_present_not_scored"
+                                ),
+                                "nearest_hydroxyl_residue_distance_angstrom": 5.2,
+                                "nearest_acceptor_ligand_distance_angstrom": 6.3,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-gamma-geometry-feasibility-plan",
+                    "--epk-text-free-local-axis-prototype",
+                    str(prototype_path),
+                    "--epk-acceptor-geometry-axis-gap-plan",
+                    str(acceptor_plan),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            plan = json.loads(out.read_text(encoding="utf-8"))
+            metadata = plan["metadata"]
+            self.assertEqual(metadata["method"], "epk_gamma_geometry_feasibility_plan")
+            self.assertFalse(metadata["gamma_phosphate_geometry_measured"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            rows = {row["entry_id"]: row for row in plan["rows"]}
+            self.assertEqual(
+                rows["m_csa:35"]["gamma_geometry_feasibility_status"],
+                "gamma_capable_nucleotide_and_acceptor_context_present_not_measured",
+            )
+            self.assertEqual(
+                rows["m_csa:640"]["gamma_geometry_feasibility_status"],
+                "product_state_nucleotide_acceptor_context_present_needs_gamma_source",
+            )
+            self.assertFalse(rows["m_csa:35"]["epk_score_computed"])
+
+    def test_build_epk_gamma_geometry_measurement_sample_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            feasibility = root / "epk_gamma_feasibility.json"
+            geometry = root / "geometry.json"
+            cif_dir = root / "cif"
+            cif_dir.mkdir()
+            out = root / "epk_gamma_measurement.json"
+            feasibility.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_gamma_geometry_feasibility_plan",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                                "gamma_capable_nucleotide_codes": ["ATP"],
+                            },
+                            {
+                                "entry_id": "m_csa:640",
+                                "entry_name": "kanamycin kinase",
+                                "gamma_capable_nucleotide_codes": [],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "active_site_geometry_features"},
+                        "entries": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "pdb_id": "2PHK",
+                                "pocket_context": {
+                                    "nearby_residue_sites": [
+                                        {
+                                            "code": "THR",
+                                            "chain_name": "A",
+                                            "resid": "166",
+                                        }
+                                    ]
+                                },
+                            },
+                            {"entry_id": "m_csa:640", "pdb_id": "1L8T"},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (cif_dir / "2PHK.cif").write_text(
+                "\n".join(
+                    [
+                        "data_2PHK",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.id",
+                        "_atom_site.type_symbol",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "HETATM 1 P PG ATP A 1 0.0 0.0 0.0 PG ATP A 1",
+                        "ATOM 2 O OG1 THR A 166 3.0 4.0 0.0 OG1 THR A 166",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-gamma-geometry-measurement-sample",
+                    "--epk-gamma-geometry-feasibility-plan",
+                    str(feasibility),
+                    "--geometry",
+                    str(geometry),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            sample = json.loads(out.read_text(encoding="utf-8"))
+            metadata = sample["metadata"]
+            self.assertEqual(metadata["method"], "epk_gamma_geometry_measurement_sample")
+            self.assertEqual(metadata["measured_row_count"], 1)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            rows = {row["entry_id"]: row for row in sample["rows"]}
+            self.assertEqual(
+                rows["m_csa:35"]["measurement_status"],
+                "gamma_to_hydroxyl_distance_measured_review_only",
+            )
+            self.assertEqual(
+                rows["m_csa:35"]["nearest_gamma_to_hydroxyl_distance_angstrom"],
+                5.0,
+            )
+            self.assertEqual(
+                rows["m_csa:640"]["measurement_status"],
+                "product_or_missing_gamma_nucleotide_skipped",
+            )
+            self.assertFalse(rows["m_csa:35"]["epk_score_computed"])
+
+    def test_build_epk_precount_gate_status_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            axis = root / "axis.json"
+            threshold = root / "threshold.json"
+            gamma = root / "gamma.json"
+            repair = root / "repair.json"
+            reaudit = root / "reaudit.json"
+            out = root / "gate_status.json"
+            axis.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_text_free_local_axis_prototype",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "prototype_ready_row_count": 3,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_acceptor_axis_threshold_design",
+                            "selected_threshold_angstrom": None,
+                            "threshold_calibrated": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gamma.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_gamma_geometry_measurement_sample",
+                            "measured_row_count": 2,
+                            "measurement_status_counts": {
+                                "gamma_to_hydroxyl_distance_measured_review_only": 2,
+                                "product_or_missing_gamma_nucleotide_skipped": 1,
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            repair.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_nonready_ligand_repair_plan",
+                            "nonready_row_count": 2,
+                            "repair_lane_counts": {
+                                "selected_structure_ligand_axis_missing": 1
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            reaudit.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_external_hard_negative_reaudit_plan",
+                            "ready_to_run_scored_reaudit": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-precount-gate-status",
+                    "--epk-text-free-local-axis-prototype",
+                    str(axis),
+                    "--epk-acceptor-axis-threshold-design",
+                    str(threshold),
+                    "--epk-gamma-geometry-measurement-sample",
+                    str(gamma),
+                    "--epk-nonready-ligand-repair-plan",
+                    str(repair),
+                    "--epk-external-hard-negative-reaudit-plan",
+                    str(reaudit),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            status = json.loads(out.read_text(encoding="utf-8"))
+            metadata = status["metadata"]
+            self.assertEqual(metadata["method"], "epk_precount_gate_status")
+            self.assertEqual(metadata["precount_gate_status"], "blocked_review_only")
+            self.assertIn("acceptor_threshold_calibrated", metadata["failing_gate_ids"])
+            self.assertIn(
+                "gamma_geometry_measured_for_all_prototype_rows",
+                metadata["failing_gate_ids"],
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            checks = {check["gate_id"]: check for check in status["gate_checks"]}
+            self.assertTrue(checks["local_axis_prototype"]["passed"])
+            self.assertFalse(checks["external_hard_negative_scored_reaudit"]["passed"])
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

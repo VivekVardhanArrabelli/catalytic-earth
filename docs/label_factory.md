@@ -201,6 +201,46 @@ text-free ATP/metal/acid-base axis prototype, one row with structure-level ATP/M
 signal that is not local to the active-site axis, and one row with no local
 ligand axis. The audit is deliberately not an ePK scorer and keeps
 `ready_to_run_epk_scorer=false`.
+`artifacts/v3_epk_text_free_local_axis_prototype_1025.json` is the first
+review-only axis materialization from that audit. It uses only the three ready
+rows, emits binary local adenine-nucleotide, metal-ligand, and catalytic
+acid/base axes from geometry evidence, excludes text/name/identifier/prose and
+expert-rationale inputs from predictive use, and leaves ePK scoring, threshold
+calibration, external hard-negative re-audit, registry edits, and label import
+closed.
+`artifacts/v3_epk_acceptor_geometry_axis_gap_plan_1025.json` extends the same
+review-only scorer-development surface to the acceptor axis. It records
+candidate hydroxyl-residue context for the three prototype rows and the
+nearby `KAN` acceptor-like ligand context for `m_csa:640`, but keeps acceptor
+identity verification, gamma-phosphate-to-acceptor geometry, thresholding, ePK
+scoring, external hard-negative re-audit, and countable label gates blocked.
+`artifacts/v3_epk_nonready_ligand_repair_plan_1025.json` keeps
+`m_csa:282` and `m_csa:662` outside that prototype. It identifies
+`m_csa:282` as a structure-level ATP/Mg signal that is not local to the
+active-site axis, and `m_csa:662` as selected-structure ligand-axis missing;
+both require repair and a rerun of the local-evidence audit before scorer
+development can include them.
+`artifacts/v3_epk_acceptor_axis_threshold_design_1025.json` records candidate
+acceptor-axis cutoffs of 4, 6, and 8 Angstrom for later validation. The
+6-Angstrom candidate covers the current three prototype rows by local
+hydroxyl-residue context, but it remains a hypothesis rather than a calibrated
+or selected ePK threshold.
+`artifacts/v3_epk_gamma_geometry_feasibility_plan_1025.json` then classifies
+whether the prototype rows are ready for a future atom-level gamma-phosphate
+geometry pass. `m_csa:35` and `m_csa:246` have local ATP/ANP plus acceptor
+context, while `m_csa:640` is product-state ADP context and needs ATP-state
+evidence before a gamma-phosphate geometry measurement can support scoring.
+`artifacts/v3_epk_gamma_geometry_measurement_sample_1025.json` runs the first
+review-only atom-level sample for those gamma-capable rows. It measures nearest
+PG-to-candidate-hydroxyl distances of 3.610 Angstrom for `m_csa:35` and
+5.082 Angstrom for `m_csa:246`, skips `m_csa:640` because only ADP is local,
+and still leaves acceptor identity, threshold calibration, external re-audit,
+and score construction unresolved.
+`artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
+into a blocked pre-count status. The only passing gate is the local-axis
+prototype; acceptor-threshold calibration, complete gamma geometry, non-ready
+row repair, external hard-negative scored re-audit, and registry/label-factory
+extension all remain failed gates.
 
 ## Active Learning Queue
 

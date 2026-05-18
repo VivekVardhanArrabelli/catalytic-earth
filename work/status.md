@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 172
-- Measured elapsed time: 5260.5 minutes (87.67 hours)
+- Entries: 173
+- Measured elapsed time: 5296.8 minutes (88.28 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 31.4 measured minutes (0.52 hours)
+- post-infra-science: 67.7 measured minutes (1.13 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1908
-- Evidence references logged: 1485
+- Artifact references logged: 1924
+- Evidence references logged: 1497
 
 ## Recent Entries
-
-### 2026-05-17T21:58:28.036931+00:00 - infrastructure
-
-- Task: Artifact migration Phase 1 validator hardening
-- Time mode: measured
-- Measured minutes: 12.25
-- Started: 2026-05-17T21:46:03Z
-- Ended: 2026-05-17T21:58:18Z
-- Artifacts: artifacts/v3_artifact_migration_execution_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, tests/test_source_only_contract.py, README.md, docs/artifact_storage.md, work/handoff.md
-- Evidence: 436 unit tests passed; targeted artifact transfer source-only tests passed; validate passed with 682 labels; migration validation passed with local file checks; restore smoke dry-run passed; git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only: no artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite.
 
 ### 2026-05-17T22:58:00.622782+00:00 - infrastructure
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-18T06:28:56Z
 - Artifacts: artifacts/v3_epk_draft_fingerprint_spec_1025.json, artifacts/v3_epk_local_evidence_audit_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
 - Evidence: final 447-test unit discovery passed after ePK changes, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and 0 blockers, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, ePK draft spec ready for scorer prototype but not expansion, ePK local evidence audit found 3 ready local-axis rows and 2 ligand or structure gaps
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
+
+### 2026-05-18T07:51:37.415598+00:00 - post-infra-science
+
+- Task: ePK review-only local axis and gamma geometry gate status
+- Time mode: measured
+- Measured minutes: 36.3
+- Started: 2026-05-18T07:14:59Z
+- Ended: 2026-05-18T07:51:17Z
+- Artifacts: artifacts/v3_epk_text_free_local_axis_prototype_1025.json, artifacts/v3_epk_acceptor_geometry_axis_gap_plan_1025.json, artifacts/v3_epk_nonready_ligand_repair_plan_1025.json, artifacts/v3_epk_acceptor_axis_threshold_design_1025.json, artifacts/v3_epk_gamma_geometry_feasibility_plan_1025.json, artifacts/v3_epk_gamma_geometry_measurement_sample_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: startup 447-test unit discovery passed, startup validate passed with 682 labels, migration guard passed with 108 rows and 0 blockers, targeted ePK tests passed, final 461-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, gamma measurement sample measured 2 review-only rows and skipped 1 ADP product-state row, pre-count gate remains blocked_review_only, compileall passed, git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ## Expectation Updates
@@ -249,6 +249,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-17T13:49:27.020292+00:00: P06744 is now a countable external out-of-scope hard negative; next work should not retry broader duplicate-signal rejects without new evidence.
 - 2026-05-17T17:13:28.332690+00:00: candidate-specific pilot repairs are development evidence only; next external tranche requires frozen preregistration
 - 2026-05-18T04:13:16.733717+00:00: Phase 1 artifact-migration instrumentation is complete; next action is human approval for Phase 2 upload target and subset.
+- 2026-05-18T07:51:37.415598+00:00: ePK now has review-only local axes, acceptor threshold hypotheses, gamma-distance samples, and a blocked pre-count gate; positive-universe expansion still requires true acceptor identity, ATP-state repair, threshold calibration, external re-audit, and label-factory extension.
 
 ## Scope Adjustments
 

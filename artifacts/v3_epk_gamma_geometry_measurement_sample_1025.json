@@ -1,0 +1,205 @@
+{
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "1IR3",
+      "2PHK"
+    ],
+    "fingerprint_registry_edited": false,
+    "gamma_phosphate_geometry_measured": true,
+    "measured_row_count": 2,
+    "measurement_status_counts": {
+      "gamma_to_hydroxyl_distance_measured_review_only": 2,
+      "product_or_missing_gamma_nucleotide_skipped": 1
+    },
+    "method": "epk_gamma_geometry_measurement_sample",
+    "next_actions": [
+      "verify whether measured hydroxyl atoms are true substrate acceptors",
+      "calibrate any distance threshold against negatives only after a score exists",
+      "source ATP-state evidence for product-state rows before measurement"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact measures PG-to-candidate-hydroxyl distances as review-only geometry evidence. It does not verify acceptor identity, calibrate a threshold, compute an ePK score, or change any label registry.",
+    "row_count": 3,
+    "source_epk_gamma_geometry_feasibility_plan_method": "epk_gamma_geometry_feasibility_plan",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "distance_rows": [
+        {
+          "distance_angstrom": 3.61,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "5",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 9.897,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "166",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "distance_angstrom": 11.836,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "171",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 12.368,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "189",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "distance_angstrom": 13.008,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "188",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 13.394,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "214",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 16.986,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "215",
+          "hydroxyl_residue_code": "THR"
+        }
+      ],
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "epk_score_computed": false,
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "gamma_phosphate_geometry_measured": true,
+      "hydroxyl_acceptor_atom_count": 7,
+      "measurement_blockers": [
+        "acceptor_identity_not_verified",
+        "distance_threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": 3.61,
+      "pdb_id": "2PHK",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "distance_rows": [
+        {
+          "distance_angstrom": 5.082,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "10",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "distance_angstrom": 9.054,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "1086",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 13.392,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "1154",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "distance_angstrom": 14.269,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "1194",
+          "hydroxyl_residue_code": "SER"
+        }
+      ],
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "epk_score_computed": false,
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "gamma_phosphate_geometry_measured": true,
+      "hydroxyl_acceptor_atom_count": 4,
+      "measurement_blockers": [
+        "acceptor_identity_not_verified",
+        "distance_threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": 5.082,
+      "pdb_id": "1IR3",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "epk_score_computed": false,
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "measurement_blockers": [
+        "no_gamma_capable_local_nucleotide_in_current_structure"
+      ],
+      "measurement_status": "product_or_missing_gamma_nucleotide_skipped",
+      "pdb_id": "1L8T",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Measured PG-to-hydroxyl distance is candidate geometry only; it is not an ePK score or a countable label gate."
+  ]
+}

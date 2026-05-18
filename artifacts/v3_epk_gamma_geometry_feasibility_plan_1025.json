@@ -1,0 +1,120 @@
+{
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "gamma_geometry_feasibility_status_counts": {
+      "gamma_capable_nucleotide_and_acceptor_context_present_not_measured": 2,
+      "product_state_nucleotide_acceptor_context_present_needs_gamma_source": 1
+    },
+    "gamma_phosphate_geometry_measured": false,
+    "method": "epk_gamma_geometry_feasibility_plan",
+    "next_actions": [
+      "measure ATP or analog gamma-phosphate atom geometry for gamma-capable rows",
+      "source ATP-state evidence for product-state ADP rows before scoring",
+      "combine gamma geometry with calibrated acceptor thresholds only after validation"
+    ],
+    "prototype_ready_row_count": 3,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact only classifies whether current local nucleotide and acceptor context can support a future atom-level gamma-phosphate geometry pass. It performs no atom-level measurement and computes no ePK score.",
+    "source_epk_acceptor_geometry_axis_gap_plan_method": "epk_acceptor_geometry_axis_gap_plan",
+    "source_epk_text_free_local_axis_prototype_method": "epk_text_free_local_axis_prototype",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "acceptor_axis_status": "hydroxyl_residue_context_present_not_scored",
+      "acceptor_context_present": true,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "epk_score_computed": false,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "gamma_geometry_feasibility_status": "gamma_capable_nucleotide_and_acceptor_context_present_not_measured",
+      "gamma_phosphate_geometry_measured": false,
+      "local_nucleotide_ligand_codes": [
+        "ATP"
+      ],
+      "nearest_acceptor_ligand_distance_angstrom": null,
+      "nearest_hydroxyl_residue_distance_angstrom": 2.493,
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "gamma_phosphate_atom_geometry_not_measured",
+        "acceptor_identity_not_verified",
+        "threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_axis_status": "hydroxyl_residue_context_present_not_scored",
+      "acceptor_context_present": true,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "epk_score_computed": false,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "gamma_geometry_feasibility_status": "gamma_capable_nucleotide_and_acceptor_context_present_not_measured",
+      "gamma_phosphate_geometry_measured": false,
+      "local_nucleotide_ligand_codes": [
+        "ANP"
+      ],
+      "nearest_acceptor_ligand_distance_angstrom": 10.75,
+      "nearest_hydroxyl_residue_distance_angstrom": 5.806,
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "gamma_phosphate_atom_geometry_not_measured",
+        "acceptor_identity_not_verified",
+        "threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_axis_status": "hydroxyl_residue_and_acceptor_ligand_context_present_not_scored",
+      "acceptor_context_present": true,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "epk_score_computed": false,
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_geometry_feasibility_status": "product_state_nucleotide_acceptor_context_present_needs_gamma_source",
+      "gamma_phosphate_geometry_measured": false,
+      "local_nucleotide_ligand_codes": [
+        "ADP"
+      ],
+      "nearest_acceptor_ligand_distance_angstrom": 6.243,
+      "nearest_hydroxyl_residue_distance_angstrom": 5.147,
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "gamma_phosphate_atom_geometry_not_measured",
+        "acceptor_identity_not_verified",
+        "threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Gamma feasibility is not gamma geometry; atom-level phosphate and acceptor coordinates still need a separate measured pass."
+  ]
+}

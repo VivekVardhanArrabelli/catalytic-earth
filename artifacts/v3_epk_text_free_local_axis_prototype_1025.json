@@ -1,0 +1,347 @@
+{
+  "excluded_rows": [
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:282",
+      "entry_name": "mitogen-activated protein kinase kinase",
+      "excluded_from_axis_prototype": true,
+      "exclusion_reasons": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "local_atp_or_adenine_nucleotide_ligand_missing",
+        "local_mg_or_metal_ligand_missing"
+      ],
+      "local_feature_status": "structure_ligand_signal_not_local_axis",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_scorer_input_readiness": "needs_ligand_distance_or_structure_repair",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "excluded_from_axis_prototype": true,
+      "exclusion_reasons": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "local_atp_or_adenine_nucleotide_ligand_missing",
+        "local_mg_or_metal_ligand_missing"
+      ],
+      "local_feature_status": "local_ligand_axis_missing",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_scorer_input_readiness": "needs_ligand_source_or_alternate_structure",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "metadata": {
+    "allowed_source_readiness": "ready_for_text_free_axis_prototype",
+    "axis_ids": [
+      "local_adenine_nucleotide_ligand",
+      "local_metal_ligand",
+      "catalytic_acid_base_residue"
+    ],
+    "axis_prototype_ready_for_scorer_development": true,
+    "blocked_axis_ids": [
+      "acceptor_geometry_axis",
+      "gamma_phosphoryl_transfer_reaction_center_axis",
+      "external_hard_negative_inverse_axis"
+    ],
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "excluded_row_count": 2,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_text_free_local_axis_prototype",
+    "next_actions": [
+      "convert acceptor geometry into a local feature before scoring",
+      "calibrate an ePK-specific threshold only after a scorer exists",
+      "run a scored external hard-negative re-audit before any countable claim",
+      "keep excluded rows out of scorer development until ligand gaps are repaired"
+    ],
+    "prototype_ready_row_count": 3,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact materializes binary local feature axes for the already-ready ePK boundary rows only. It does not compute an ePK score, calibrate a threshold, import labels, or expand the positive fingerprint universe.",
+    "source_boundary_row_count": 5,
+    "source_epk_local_evidence_audit_method": "epk_local_evidence_audit",
+    "source_epk_local_evidence_audit_status": "local_evidence_profile_ready_not_scored",
+    "source_ready_for_text_free_axis_prototype_count": 3,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "text_free_predictive_input_policy": {
+      "allowed": [
+        "local ligand codes from geometry features",
+        "local metal ligand codes from geometry features",
+        "local catalytic residue codes and roles from geometry features"
+      ],
+      "excluded": [
+        "entry names",
+        "EC numbers",
+        "Rhea identifiers",
+        "UniProt prose",
+        "M-CSA mechanism text",
+        "curated label strings",
+        "expert rationales"
+      ]
+    },
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "all_local_axes_present": true,
+      "audit_blockers": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "epk_score_not_computed",
+        "epk_threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_run",
+        "no_epk_score_computed"
+      ],
+      "axis_presence_count": 3,
+      "blocked_axes": [
+        {
+          "axis_id": "acceptor_geometry_axis",
+          "reason": "acceptor hydroxyl/source chemistry is still source-traced and has not been converted to a local geometry feature"
+        },
+        {
+          "axis_id": "gamma_phosphoryl_transfer_reaction_center_axis",
+          "reason": "gamma-phosphate to acceptor geometry is not yet measured as a thresholded local feature"
+        },
+        {
+          "axis_id": "external_hard_negative_inverse_axis",
+          "reason": "external hard negatives have not been rescored under an ePK-specific text-free rule"
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "epk_score_computed": false,
+      "geometry_status": "ok",
+      "pdb_id": "2PHK",
+      "prototype_scope": "ready_rows_only",
+      "prototype_vector": {
+        "catalytic_acid_base_residue": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 1
+      },
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_scorer_input_readiness": "ready_for_text_free_axis_prototype",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_axis_inputs": {
+        "catalytic_acid_base_residue": {
+          "predictive_source": "local_geometry_catalytic_residue_context",
+          "present": true,
+          "residue_count": 2,
+          "residues": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "resid": 136,
+              "roles": [
+                "hydrogen bond acceptor",
+                "hydrogen bond donor",
+                "proton acceptor",
+                "proton donor"
+              ]
+            },
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "resid": 154,
+              "roles": [
+                "metal ligand"
+              ]
+            }
+          ]
+        },
+        "local_adenine_nucleotide_ligand": {
+          "evidence_codes": [
+            "ATP"
+          ],
+          "predictive_source": "local_geometry_ligand_context",
+          "present": true
+        },
+        "local_metal_ligand": {
+          "evidence_codes": [
+            "MN"
+          ],
+          "predictive_source": "local_geometry_ligand_context",
+          "present": true
+        }
+      },
+      "threshold_calibrated": false
+    },
+    {
+      "all_local_axes_present": true,
+      "audit_blockers": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "epk_score_not_computed",
+        "epk_threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_run",
+        "no_epk_score_computed"
+      ],
+      "axis_presence_count": 3,
+      "blocked_axes": [
+        {
+          "axis_id": "acceptor_geometry_axis",
+          "reason": "acceptor hydroxyl/source chemistry is still source-traced and has not been converted to a local geometry feature"
+        },
+        {
+          "axis_id": "gamma_phosphoryl_transfer_reaction_center_axis",
+          "reason": "gamma-phosphate to acceptor geometry is not yet measured as a thresholded local feature"
+        },
+        {
+          "axis_id": "external_hard_negative_inverse_axis",
+          "reason": "external hard negatives have not been rescored under an ePK-specific text-free rule"
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "epk_score_computed": false,
+      "geometry_status": "ok",
+      "pdb_id": "1IR3",
+      "prototype_scope": "ready_rows_only",
+      "prototype_vector": {
+        "catalytic_acid_base_residue": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 1
+      },
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_scorer_input_readiness": "ready_for_text_free_axis_prototype",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_axis_inputs": {
+        "catalytic_acid_base_residue": {
+          "predictive_source": "local_geometry_catalytic_residue_context",
+          "present": true,
+          "residue_count": 2,
+          "residues": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "resid": 173,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "resid": 155,
+              "roles": [
+                "increase nucleophilicity",
+                "proton acceptor",
+                "proton donor",
+                "steric role"
+              ]
+            }
+          ]
+        },
+        "local_adenine_nucleotide_ligand": {
+          "evidence_codes": [
+            "ANP"
+          ],
+          "predictive_source": "local_geometry_ligand_context",
+          "present": true
+        },
+        "local_metal_ligand": {
+          "evidence_codes": [
+            "MG"
+          ],
+          "predictive_source": "local_geometry_ligand_context",
+          "present": true
+        }
+      },
+      "threshold_calibrated": false
+    },
+    {
+      "all_local_axes_present": true,
+      "audit_blockers": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "epk_score_not_computed",
+        "epk_threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_run",
+        "no_epk_score_computed"
+      ],
+      "axis_presence_count": 3,
+      "blocked_axes": [
+        {
+          "axis_id": "acceptor_geometry_axis",
+          "reason": "acceptor hydroxyl/source chemistry is still source-traced and has not been converted to a local geometry feature"
+        },
+        {
+          "axis_id": "gamma_phosphoryl_transfer_reaction_center_axis",
+          "reason": "gamma-phosphate to acceptor geometry is not yet measured as a thresholded local feature"
+        },
+        {
+          "axis_id": "external_hard_negative_inverse_axis",
+          "reason": "external hard negatives have not been rescored under an ePK-specific text-free rule"
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "epk_score_computed": false,
+      "geometry_status": "ok",
+      "pdb_id": "1L8T",
+      "prototype_scope": "ready_rows_only",
+      "prototype_vector": {
+        "catalytic_acid_base_residue": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 1
+      },
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_scorer_input_readiness": "ready_for_text_free_axis_prototype",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_axis_inputs": {
+        "catalytic_acid_base_residue": {
+          "predictive_source": "local_geometry_catalytic_residue_context",
+          "present": true,
+          "residue_count": 2,
+          "residues": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "resid": 207,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "resid": 189,
+              "roles": [
+                "proton acceptor",
+                "proton shuttle (general acid/base)"
+              ]
+            }
+          ]
+        },
+        "local_adenine_nucleotide_ligand": {
+          "evidence_codes": [
+            "ADP"
+          ],
+          "predictive_source": "local_geometry_ligand_context",
+          "present": true
+        },
+        "local_metal_ligand": {
+          "evidence_codes": [
+            "MG"
+          ],
+          "predictive_source": "local_geometry_ligand_context",
+          "present": true
+        }
+      },
+      "threshold_calibrated": false
+    }
+  ],
+  "warnings": [
+    "This is a local-axis prototype, not an ePK scorer; all registry, threshold, terminal-review, and label-factory gates remain closed."
+  ]
+}

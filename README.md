@@ -807,6 +807,43 @@ boundary rows against the current 1,000-slice geometry artifact. Three rows
 metal, and acid/base axes for a future text-free prototype; `m_csa:282` needs
 ligand-distance or selected-structure repair, and `m_csa:662` lacks a local
 ligand axis. No ePK score is computed.
+`artifacts/v3_epk_text_free_local_axis_prototype_1025.json` now materializes
+that prototype surface only for the three ready rows. It records binary local
+adenine-nucleotide, metal-ligand, and catalytic acid/base axes from geometry
+evidence, excludes names, EC/Rhea IDs, UniProt prose, M-CSA text, label strings,
+and expert rationales from predictive use, and keeps acceptor geometry,
+gamma-phosphoryl-transfer geometry, threshold calibration, external
+hard-negative re-audit, and label-factory gates blocked. It is not an ePK
+score and still edits no registry.
+`artifacts/v3_epk_acceptor_geometry_axis_gap_plan_1025.json` then converts the
+acceptor requirement into a review-only geometry gap plan for the same three
+ready rows. It finds candidate hydroxyl-residue context for all three and a
+near acceptor-like ligand context for `m_csa:640`, but still treats acceptor
+identity, acceptor-axis thresholds, gamma-phosphate-to-acceptor geometry, ePK
+score calibration, and external hard-negative re-audit as unresolved.
+`artifacts/v3_epk_nonready_ligand_repair_plan_1025.json` keeps the other two
+ePK boundary rows out of scorer prototyping: `m_csa:282` has ATP/Mg only as a
+nonlocal structure-level signal, while `m_csa:662` has no selected-structure
+ligand axis and needs alternate ligand evidence or structure sourcing.
+`artifacts/v3_epk_acceptor_axis_threshold_design_1025.json` records candidate
+acceptor-axis cutoffs of 4, 6, and 8 Angstrom for future testing; 6 Angstrom is
+the smallest candidate that covers the current three prototype rows by
+hydroxyl-residue context, but no threshold is selected or calibrated.
+`artifacts/v3_epk_gamma_geometry_feasibility_plan_1025.json` classifies the
+next reaction-center measurement: `m_csa:35` and `m_csa:246` have local
+ATP/ANP plus acceptor context ready for a future atom-level gamma-phosphate
+geometry pass, while `m_csa:640` is an ADP/product-state row that needs
+ATP-state evidence before gamma geometry can support scoring.
+`artifacts/v3_epk_gamma_geometry_measurement_sample_1025.json` performs that
+first review-only atom-level pass for the gamma-capable rows: nearest
+PG-to-candidate-hydroxyl distances are 3.610 Angstrom for `m_csa:35` and
+5.082 Angstrom for `m_csa:246`; `m_csa:640` is skipped as product-state ADP.
+These distances are candidate geometry only, not verified substrate-acceptor
+identity, calibrated thresholds, ePK scores, or label/import gates.
+`artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
+`blocked_review_only`: local axes exist, but acceptor threshold calibration,
+complete gamma geometry, non-ready-row repair, external hard-negative scored
+re-audit, and label-factory/registry extension all remain failing gates.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_nonready_ligand_repair_plan",
+    "next_actions": [
+      "repair m_csa:282 with local ligand-distance or selected-structure evidence",
+      "source ligand evidence or an alternate structure for m_csa:662",
+      "rerun the local evidence audit before adding either row to scorer prototyping"
+    ],
+    "nonready_row_count": 2,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "repair_lane_counts": {
+      "selected_structure_ligand_axis_missing": 1,
+      "structure_ligand_signal_not_local_axis": 1
+    },
+    "review_only": true,
+    "review_only_rule": "This repair plan keeps non-ready ePK rows out of scorer development and records the smallest ligand-evidence work needed before they can join the local-axis prototype.",
+    "source_boundary_row_count": 5,
+    "source_epk_local_evidence_audit_method": "epk_local_evidence_audit",
+    "source_epk_local_evidence_audit_status": "local_evidence_profile_ready_not_scored",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:282",
+      "entry_name": "mitogen-activated protein kinase kinase",
+      "geometry_status": "ok",
+      "local_feature_status": "structure_ligand_signal_not_local_axis",
+      "local_ligand_codes": [],
+      "pdb_id": "1S9I",
+      "ready_for_label_import": false,
+      "recommended_actions": [
+        "inspect residue mapping and chain context around the selected structure",
+        "source an alternate holo structure or conformer with local ATP/Mg context",
+        "do not relax the local ligand cutoff without a preregistered threshold rule"
+      ],
+      "remaining_blockers": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run",
+        "local_atp_or_adenine_nucleotide_ligand_missing",
+        "local_mg_or_metal_ligand_missing",
+        "no_epk_score_computed",
+        "not_ready_for_text_free_axis_prototype"
+      ],
+      "repair_lane": "structure_ligand_signal_not_local_axis",
+      "review_only": true,
+      "source_scorer_input_readiness": "needs_ligand_distance_or_structure_repair",
+      "structure_ligand_codes": [
+        "5EA",
+        "ATP",
+        "MG"
+      ],
+      "structure_metal_ligand_leads": [
+        {
+          "atom_count": 2,
+          "code": "MG",
+          "instance_count": 2,
+          "min_distance_to_active_site": 16.127
+        }
+      ],
+      "structure_nucleotide_ligand_leads": [
+        {
+          "atom_count": 62,
+          "code": "ATP",
+          "instance_count": 2,
+          "min_distance_to_active_site": 14.706
+        }
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "geometry_status": "ok",
+      "local_feature_status": "local_ligand_axis_missing",
+      "local_ligand_codes": [],
+      "pdb_id": "1BO1",
+      "ready_for_label_import": false,
+      "recommended_actions": [
+        "source an alternate ligand-bound structure or curated ligand mapping",
+        "keep the row excluded from ePK scorer prototyping until local ATP/Mg evidence exists",
+        "record any alternate-structure override as non-countable repair evidence first"
+      ],
+      "remaining_blockers": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run",
+        "local_atp_or_adenine_nucleotide_ligand_missing",
+        "local_mg_or_metal_ligand_missing",
+        "no_epk_score_computed",
+        "not_ready_for_text_free_axis_prototype"
+      ],
+      "repair_lane": "selected_structure_ligand_axis_missing",
+      "review_only": true,
+      "source_scorer_input_readiness": "needs_ligand_source_or_alternate_structure",
+      "structure_ligand_codes": [],
+      "structure_metal_ligand_leads": [],
+      "structure_nucleotide_ligand_leads": [],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Repair lanes are not positive ePK labels and cannot be used as countable evidence until the scorer and gates exist."
+  ]
+}

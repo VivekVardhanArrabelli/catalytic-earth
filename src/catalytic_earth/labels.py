@@ -6881,6 +6881,1382 @@ def build_epk_local_evidence_audit(
     }
 
 
+def build_epk_text_free_local_axis_prototype(
+    *,
+    epk_local_evidence_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Build a review-only ePK local feature-axis prototype from ready rows."""
+
+    audit_meta = epk_local_evidence_audit.get("metadata", {})
+    if not isinstance(audit_meta, dict):
+        audit_meta = {}
+    target_fingerprint_id = str(
+        audit_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    rows: list[dict[str, Any]] = []
+    excluded_rows: list[dict[str, Any]] = []
+    axis_ids = [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+    ]
+    blocked_axis_ids = [
+        "acceptor_geometry_axis",
+        "gamma_phosphoryl_transfer_reaction_center_axis",
+        "external_hard_negative_inverse_axis",
+    ]
+    source_rows = [
+        row
+        for row in epk_local_evidence_audit.get("rows", [])
+        if isinstance(row, dict)
+    ]
+    for row in source_rows:
+        readiness = str(row.get("scorer_input_readiness") or "")
+        blockers = _sorted_strings(row.get("audit_blockers", []))
+        base = {
+            "entry_id": row.get("entry_id"),
+            "entry_name": row.get("entry_name"),
+            "target_fingerprint_id": target_fingerprint_id,
+            "review_only": True,
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "source_scorer_input_readiness": readiness,
+        }
+        if readiness != "ready_for_text_free_axis_prototype":
+            excluded_rows.append(
+                {
+                    **base,
+                    "excluded_from_axis_prototype": True,
+                    "exclusion_reasons": [
+                        blocker
+                        for blocker in blockers
+                        if blocker != "no_epk_score_computed"
+                    ]
+                    or ["source_row_not_marked_ready_for_text_free_axis_prototype"],
+                    "local_feature_status": row.get("local_feature_status"),
+                }
+            )
+            continue
+
+        nucleotide_codes = _sorted_strings(row.get("local_nucleotide_ligand_codes", []))
+        metal_codes = _sorted_strings(row.get("local_metal_ligand_codes", []))
+        acid_base_residues = [
+            residue
+            for residue in row.get("acid_base_residues", [])
+            if isinstance(residue, dict)
+        ]
+        axis_inputs = {
+            "local_adenine_nucleotide_ligand": {
+                "present": bool(nucleotide_codes),
+                "evidence_codes": nucleotide_codes,
+                "predictive_source": "local_geometry_ligand_context",
+            },
+            "local_metal_ligand": {
+                "present": bool(metal_codes),
+                "evidence_codes": metal_codes,
+                "predictive_source": "local_geometry_ligand_context",
+            },
+            "catalytic_acid_base_residue": {
+                "present": bool(acid_base_residues),
+                "residue_count": len(acid_base_residues),
+                "residues": acid_base_residues,
+                "predictive_source": "local_geometry_catalytic_residue_context",
+            },
+        }
+        prototype_vector = {
+            axis_id: int(bool(axis_inputs[axis_id]["present"]))
+            for axis_id in axis_ids
+        }
+        rows.append(
+            {
+                **base,
+                "pdb_id": row.get("pdb_id"),
+                "geometry_status": row.get("geometry_status"),
+                "prototype_scope": "ready_rows_only",
+                "text_free_axis_inputs": axis_inputs,
+                "prototype_vector": prototype_vector,
+                "axis_presence_count": sum(prototype_vector.values()),
+                "all_local_axes_present": all(prototype_vector.values()),
+                "blocked_axes": [
+                    {
+                        "axis_id": "acceptor_geometry_axis",
+                        "reason": (
+                            "acceptor hydroxyl/source chemistry is still "
+                            "source-traced and has not been converted to a "
+                            "local geometry feature"
+                        ),
+                    },
+                    {
+                        "axis_id": "gamma_phosphoryl_transfer_reaction_center_axis",
+                        "reason": (
+                            "gamma-phosphate to acceptor geometry is not yet "
+                            "measured as a thresholded local feature"
+                        ),
+                    },
+                    {
+                        "axis_id": "external_hard_negative_inverse_axis",
+                        "reason": (
+                            "external hard negatives have not been rescored "
+                            "under an ePK-specific text-free rule"
+                        ),
+                    },
+                ],
+                "epk_score_computed": False,
+                "threshold_calibrated": False,
+                "audit_blockers": sorted(
+                    set(
+                        blockers
+                        + [
+                            "epk_score_not_computed",
+                            "epk_threshold_not_calibrated",
+                            "external_hard_negative_reaudit_not_run",
+                        ]
+                    )
+                ),
+            }
+        )
+
+    return {
+        "metadata": {
+            "method": "epk_text_free_local_axis_prototype",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_local_evidence_audit_method": audit_meta.get("method"),
+            "source_epk_local_evidence_audit_status": audit_meta.get("audit_status"),
+            "source_ready_for_text_free_axis_prototype_count": audit_meta.get(
+                "ready_for_text_free_axis_prototype_count"
+            ),
+            "source_boundary_row_count": audit_meta.get("boundary_row_count"),
+            "prototype_ready_row_count": len(rows),
+            "excluded_row_count": len(excluded_rows),
+            "axis_ids": axis_ids,
+            "blocked_axis_ids": blocked_axis_ids,
+            "allowed_source_readiness": "ready_for_text_free_axis_prototype",
+            "text_free_predictive_input_policy": {
+                "allowed": [
+                    "local ligand codes from geometry features",
+                    "local metal ligand codes from geometry features",
+                    "local catalytic residue codes and roles from geometry features",
+                ],
+                "excluded": [
+                    "entry names",
+                    "EC numbers",
+                    "Rhea identifiers",
+                    "UniProt prose",
+                    "M-CSA mechanism text",
+                    "curated label strings",
+                    "expert rationales",
+                ],
+            },
+            "axis_prototype_ready_for_scorer_development": bool(rows),
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "threshold_calibrated": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact materializes binary local feature axes for the "
+                "already-ready ePK boundary rows only. It does not compute an "
+                "ePK score, calibrate a threshold, import labels, or expand "
+                "the positive fingerprint universe."
+            ),
+            "next_actions": [
+                "convert acceptor geometry into a local feature before scoring",
+                "calibrate an ePK-specific threshold only after a scorer exists",
+                "run a scored external hard-negative re-audit before any countable claim",
+                "keep excluded rows out of scorer development until ligand gaps are repaired",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "excluded_rows": sorted(
+            excluded_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "warnings": [
+            (
+                "This is a local-axis prototype, not an ePK scorer; all "
+                "registry, threshold, terminal-review, and label-factory gates "
+                "remain closed."
+            )
+        ],
+    }
+
+
+def build_epk_acceptor_geometry_axis_gap_plan(
+    *,
+    epk_text_free_local_axis_prototype: dict[str, Any],
+    geometry_features: dict[str, Any],
+) -> dict[str, Any]:
+    """Plan the review-only acceptor-geometry axis for ready ePK rows."""
+
+    prototype_meta = epk_text_free_local_axis_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    target_fingerprint_id = str(
+        prototype_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    raw_geometry_rows = (
+        geometry_features.get("rows")
+        or geometry_features.get("entries")
+        or geometry_features.get("features")
+        or []
+    )
+    geometry_rows = [row for row in raw_geometry_rows if isinstance(row, dict)]
+    geometry_by_entry = {
+        str(row.get("entry_id")): row
+        for row in geometry_rows
+        if isinstance(row.get("entry_id"), str)
+    }
+    hydroxyl_residue_codes = {"SER", "THR", "TYR"}
+    acceptor_like_ligand_codes = {
+        "KAN",
+        "PTR",
+        "SEP",
+        "TPO",
+        "PIP",
+        "P1P",
+        "PIP2",
+        "IPT",
+    }
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    for source_row in epk_text_free_local_axis_prototype.get("rows", []):
+        if not isinstance(source_row, dict):
+            continue
+        entry_id = str(source_row.get("entry_id") or "")
+        geometry = geometry_by_entry.get(entry_id, {})
+        pocket_context = geometry.get("pocket_context", {})
+        if not isinstance(pocket_context, dict):
+            pocket_context = {}
+        ligand_context = geometry.get("ligand_context", {})
+        if not isinstance(ligand_context, dict):
+            ligand_context = {}
+
+        hydroxyl_candidates = []
+        for site in pocket_context.get("nearby_residue_sites", []) or []:
+            if not isinstance(site, dict):
+                continue
+            code = str(site.get("code") or "").upper()
+            if code not in hydroxyl_residue_codes:
+                continue
+            distance = site.get("min_distance_to_active_site")
+            hydroxyl_candidates.append(
+                {
+                    "code": code,
+                    "chain_name": site.get("chain_name"),
+                    "resid": site.get("resid"),
+                    "min_distance_to_active_site": distance,
+                    "atom_count": site.get("atom_count"),
+                }
+            )
+        hydroxyl_candidates.sort(
+            key=lambda item: (
+                float(item.get("min_distance_to_active_site") or 999.0),
+                str(item.get("code")),
+                str(item.get("resid")),
+            )
+        )
+
+        acceptor_ligands = []
+        for ligand in ligand_context.get("structure_ligands", []) or []:
+            if not isinstance(ligand, dict):
+                continue
+            code = str(ligand.get("code") or "").upper()
+            if code not in acceptor_like_ligand_codes:
+                continue
+            acceptor_ligands.append(
+                {
+                    "code": code,
+                    "min_distance_to_active_site": ligand.get(
+                        "min_distance_to_active_site"
+                    ),
+                    "atom_count": ligand.get("atom_count"),
+                    "instance_count": ligand.get("instance_count"),
+                }
+            )
+        acceptor_ligands.sort(
+            key=lambda item: (
+                float(item.get("min_distance_to_active_site") or 999.0),
+                str(item.get("code")),
+            )
+        )
+        nearest_hydroxyl_distance = (
+            hydroxyl_candidates[0].get("min_distance_to_active_site")
+            if hydroxyl_candidates
+            else None
+        )
+        nearest_acceptor_ligand_distance = (
+            acceptor_ligands[0].get("min_distance_to_active_site")
+            if acceptor_ligands
+            else None
+        )
+        local_hydroxyl_context = (
+            nearest_hydroxyl_distance is not None
+            and float(nearest_hydroxyl_distance) <= float(
+                pocket_context.get("distance_cutoff_angstrom") or 8.0
+            )
+        )
+        near_acceptor_ligand_context = (
+            nearest_acceptor_ligand_distance is not None
+            and float(nearest_acceptor_ligand_distance) <= 8.0
+        )
+        if local_hydroxyl_context and near_acceptor_ligand_context:
+            axis_status = "hydroxyl_residue_and_acceptor_ligand_context_present_not_scored"
+        elif local_hydroxyl_context:
+            axis_status = "hydroxyl_residue_context_present_not_scored"
+        elif near_acceptor_ligand_context:
+            axis_status = "acceptor_ligand_context_present_not_scored"
+        else:
+            axis_status = "acceptor_geometry_context_missing_or_nonlocal"
+        status_counts[axis_status] += 1
+
+        blockers = [
+            "acceptor_identity_not_verified",
+            "acceptor_axis_not_thresholded",
+            "gamma_phosphoryl_transfer_geometry_not_measured",
+            "epk_score_not_computed",
+            "external_hard_negative_reaudit_not_run",
+        ]
+        if axis_status == "acceptor_geometry_context_missing_or_nonlocal":
+            blockers.append("acceptor_context_missing_or_nonlocal")
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": source_row.get("entry_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "pdb_id": geometry.get("pdb_id") or source_row.get("pdb_id"),
+                "geometry_status": geometry.get("status")
+                or source_row.get("geometry_status"),
+                "text_free_inputs_only": True,
+                "source_axis_presence_count": source_row.get("axis_presence_count"),
+                "hydroxyl_residue_candidate_count": len(hydroxyl_candidates),
+                "hydroxyl_residue_candidates": hydroxyl_candidates,
+                "acceptor_like_structure_ligand_count": len(acceptor_ligands),
+                "acceptor_like_structure_ligands": acceptor_ligands,
+                "nearest_hydroxyl_residue_distance_angstrom": nearest_hydroxyl_distance,
+                "nearest_acceptor_ligand_distance_angstrom": (
+                    nearest_acceptor_ligand_distance
+                ),
+                "acceptor_axis_status": axis_status,
+                "predictive_use_status": "review_only_candidate_axis_not_thresholded",
+                "acceptor_axis_implemented_as_score": False,
+                "epk_score_computed": False,
+                "remaining_blockers": sorted(set(blockers)),
+            }
+        )
+
+    excluded_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "entry_name": row.get("entry_name"),
+            "target_fingerprint_id": target_fingerprint_id,
+            "review_only": True,
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "excluded_from_acceptor_axis_plan": True,
+            "source_scorer_input_readiness": row.get("source_scorer_input_readiness"),
+            "exclusion_reasons": _sorted_strings(row.get("exclusion_reasons", [])),
+        }
+        for row in epk_text_free_local_axis_prototype.get("excluded_rows", [])
+        if isinstance(row, dict)
+    ]
+    return {
+        "metadata": {
+            "method": "epk_acceptor_geometry_axis_gap_plan",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_text_free_local_axis_prototype_method": prototype_meta.get(
+                "method"
+            ),
+            "source_prototype_ready_row_count": prototype_meta.get(
+                "prototype_ready_row_count"
+            ),
+            "source_excluded_row_count": prototype_meta.get("excluded_row_count"),
+            "source_geometry_method": geometry_features.get("metadata", {}).get(
+                "method"
+            )
+            or geometry_features.get("metadata", {}).get("artifact"),
+            "source_geometry_slice": geometry_features.get("metadata", {}).get(
+                "slice_size"
+            )
+            or geometry_features.get("metadata", {}).get("slice_id")
+            or geometry_features.get("metadata", {}).get("max_entries"),
+            "prototype_ready_row_count": len(rows),
+            "excluded_row_count": len(excluded_rows),
+            "acceptor_axis_status_counts": dict(sorted(status_counts.items())),
+            "rows_with_candidate_acceptor_context_count": sum(
+                count
+                for status, count in status_counts.items()
+                if status != "acceptor_geometry_context_missing_or_nonlocal"
+            ),
+            "acceptor_axis_implemented_as_score": False,
+            "epk_score_computed": False,
+            "threshold_calibrated": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact converts the acceptor requirement into a "
+                "review-only geometry gap plan. It records candidate hydroxyl "
+                "residue and acceptor-like ligand context, but does not score "
+                "ePK chemistry or authorize label/import work."
+            ),
+            "next_actions": [
+                "define an acceptor-axis threshold before scoring these candidates",
+                "measure gamma-phosphate to acceptor geometry before ePK scoring",
+                "keep non-ready ePK rows excluded until local ligand gaps are repaired",
+                "rerun external hard-negative re-audit only after a real ePK score exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "excluded_rows": sorted(
+            excluded_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "warnings": [
+            (
+                "Candidate acceptor context is not proof of ePK activity; it "
+                "is a bounded, text-free review surface for future scorer design."
+            )
+        ],
+    }
+
+
+def build_epk_nonready_ligand_repair_plan(
+    *,
+    epk_local_evidence_audit: dict[str, Any],
+    geometry_features: dict[str, Any],
+) -> dict[str, Any]:
+    """Summarize repair lanes for ePK rows excluded from local-axis work."""
+
+    audit_meta = epk_local_evidence_audit.get("metadata", {})
+    if not isinstance(audit_meta, dict):
+        audit_meta = {}
+    target_fingerprint_id = str(
+        audit_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    raw_geometry_rows = (
+        geometry_features.get("rows")
+        or geometry_features.get("entries")
+        or geometry_features.get("features")
+        or []
+    )
+    geometry_rows = [row for row in raw_geometry_rows if isinstance(row, dict)]
+    geometry_by_entry = {
+        str(row.get("entry_id")): row
+        for row in geometry_rows
+        if isinstance(row.get("entry_id"), str)
+    }
+    nucleotide_codes = {
+        "ATP",
+        "ADP",
+        "AMP",
+        "ANP",
+        "ACP",
+        "AGS",
+        "APC",
+        "AP5",
+        "ATP_GAMMA_S",
+    }
+    rows: list[dict[str, Any]] = []
+    lane_counts: Counter[str] = Counter()
+    for audit_row in epk_local_evidence_audit.get("rows", []):
+        if not isinstance(audit_row, dict):
+            continue
+        readiness = str(audit_row.get("scorer_input_readiness") or "")
+        if readiness == "ready_for_text_free_axis_prototype":
+            continue
+        entry_id = str(audit_row.get("entry_id") or "")
+        geometry = geometry_by_entry.get(entry_id, {})
+        ligand_context = geometry.get("ligand_context", {})
+        if not isinstance(ligand_context, dict):
+            ligand_context = {}
+        structure_ligands = [
+            ligand
+            for ligand in ligand_context.get("structure_ligands", []) or []
+            if isinstance(ligand, dict)
+        ]
+        nucleotide_leads = [
+            {
+                "code": str(ligand.get("code") or "").upper(),
+                "min_distance_to_active_site": ligand.get(
+                    "min_distance_to_active_site"
+                ),
+                "atom_count": ligand.get("atom_count"),
+                "instance_count": ligand.get("instance_count"),
+            }
+            for ligand in structure_ligands
+            if str(ligand.get("code") or "").upper() in nucleotide_codes
+        ]
+        metal_leads = [
+            {
+                "code": str(ligand.get("code") or "").upper(),
+                "min_distance_to_active_site": ligand.get(
+                    "min_distance_to_active_site"
+                ),
+                "atom_count": ligand.get("atom_count"),
+                "instance_count": ligand.get("instance_count"),
+            }
+            for ligand in structure_ligands
+            if str(ligand.get("code") or "").upper() in METAL_ION_CODES
+        ]
+        if nucleotide_leads or metal_leads:
+            repair_lane = "structure_ligand_signal_not_local_axis"
+            recommended_actions = [
+                "inspect residue mapping and chain context around the selected structure",
+                "source an alternate holo structure or conformer with local ATP/Mg context",
+                "do not relax the local ligand cutoff without a preregistered threshold rule",
+            ]
+        else:
+            repair_lane = "selected_structure_ligand_axis_missing"
+            recommended_actions = [
+                "source an alternate ligand-bound structure or curated ligand mapping",
+                "keep the row excluded from ePK scorer prototyping until local ATP/Mg evidence exists",
+                "record any alternate-structure override as non-countable repair evidence first",
+            ]
+        lane_counts[repair_lane] += 1
+        blockers = _sorted_strings(audit_row.get("audit_blockers", []))
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": audit_row.get("entry_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "source_scorer_input_readiness": readiness,
+                "local_feature_status": audit_row.get("local_feature_status"),
+                "pdb_id": geometry.get("pdb_id") or audit_row.get("pdb_id"),
+                "geometry_status": geometry.get("status")
+                or audit_row.get("geometry_status"),
+                "local_ligand_codes": _sorted_strings(
+                    audit_row.get("local_ligand_codes", [])
+                ),
+                "structure_ligand_codes": _sorted_strings(
+                    audit_row.get("structure_ligand_codes", [])
+                ),
+                "structure_nucleotide_ligand_leads": sorted(
+                    nucleotide_leads,
+                    key=lambda item: (
+                        float(item.get("min_distance_to_active_site") or 999.0),
+                        str(item.get("code")),
+                    ),
+                ),
+                "structure_metal_ligand_leads": sorted(
+                    metal_leads,
+                    key=lambda item: (
+                        float(item.get("min_distance_to_active_site") or 999.0),
+                        str(item.get("code")),
+                    ),
+                ),
+                "repair_lane": repair_lane,
+                "recommended_actions": recommended_actions,
+                "remaining_blockers": sorted(
+                    set(
+                        blockers
+                        + [
+                            "not_ready_for_text_free_axis_prototype",
+                            "epk_score_not_computed",
+                            "external_hard_negative_reaudit_not_run",
+                        ]
+                    )
+                ),
+            }
+        )
+
+    return {
+        "metadata": {
+            "method": "epk_nonready_ligand_repair_plan",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_local_evidence_audit_method": audit_meta.get("method"),
+            "source_epk_local_evidence_audit_status": audit_meta.get("audit_status"),
+            "source_boundary_row_count": audit_meta.get("boundary_row_count"),
+            "nonready_row_count": len(rows),
+            "repair_lane_counts": dict(sorted(lane_counts.items())),
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "threshold_calibrated": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This repair plan keeps non-ready ePK rows out of scorer "
+                "development and records the smallest ligand-evidence work "
+                "needed before they can join the local-axis prototype."
+            ),
+            "next_actions": [
+                "repair m_csa:282 with local ligand-distance or selected-structure evidence",
+                "source ligand evidence or an alternate structure for m_csa:662",
+                "rerun the local evidence audit before adding either row to scorer prototyping",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "warnings": [
+            (
+                "Repair lanes are not positive ePK labels and cannot be used "
+                "as countable evidence until the scorer and gates exist."
+            )
+        ],
+    }
+
+
+def build_epk_acceptor_axis_threshold_design(
+    *,
+    epk_acceptor_geometry_axis_gap_plan: dict[str, Any],
+    candidate_thresholds_angstrom: list[float] | None = None,
+) -> dict[str, Any]:
+    """Evaluate candidate acceptor-axis cutoffs without selecting a threshold."""
+
+    plan_meta = epk_acceptor_geometry_axis_gap_plan.get("metadata", {})
+    if not isinstance(plan_meta, dict):
+        plan_meta = {}
+    target_fingerprint_id = str(
+        plan_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    thresholds = candidate_thresholds_angstrom or [4.0, 6.0, 8.0]
+    thresholds = sorted({round(float(value), 3) for value in thresholds if value > 0})
+    source_rows = [
+        row
+        for row in epk_acceptor_geometry_axis_gap_plan.get("rows", [])
+        if isinstance(row, dict)
+    ]
+    threshold_rows: list[dict[str, Any]] = []
+    smallest_full_hydroxyl_cutoff: float | None = None
+    for threshold in thresholds:
+        hydroxyl_hits = []
+        ligand_hits = []
+        for row in source_rows:
+            entry_id = str(row.get("entry_id") or "")
+            hydroxyl_distance = row.get("nearest_hydroxyl_residue_distance_angstrom")
+            ligand_distance = row.get("nearest_acceptor_ligand_distance_angstrom")
+            if hydroxyl_distance is not None and float(hydroxyl_distance) <= threshold:
+                hydroxyl_hits.append(entry_id)
+            if ligand_distance is not None and float(ligand_distance) <= threshold:
+                ligand_hits.append(entry_id)
+        if len(hydroxyl_hits) == len(source_rows) and source_rows:
+            if smallest_full_hydroxyl_cutoff is None:
+                smallest_full_hydroxyl_cutoff = threshold
+        threshold_rows.append(
+            {
+                "candidate_threshold_angstrom": threshold,
+                "review_only": True,
+                "hydroxyl_residue_hit_count": len(hydroxyl_hits),
+                "hydroxyl_residue_hit_entry_ids": sorted(
+                    hydroxyl_hits, key=_entry_id_sort_key
+                ),
+                "acceptor_ligand_hit_count": len(ligand_hits),
+                "acceptor_ligand_hit_entry_ids": sorted(
+                    ligand_hits, key=_entry_id_sort_key
+                ),
+                "combined_candidate_context_hit_count": len(
+                    set(hydroxyl_hits) | set(ligand_hits)
+                ),
+                "combined_candidate_context_hit_entry_ids": sorted(
+                    set(hydroxyl_hits) | set(ligand_hits),
+                    key=_entry_id_sort_key,
+                ),
+            }
+        )
+
+    row_summaries = []
+    for row in source_rows:
+        row_summaries.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "entry_name": row.get("entry_name"),
+                "review_only": True,
+                "countable_label_candidate": False,
+                "nearest_hydroxyl_residue_distance_angstrom": row.get(
+                    "nearest_hydroxyl_residue_distance_angstrom"
+                ),
+                "nearest_acceptor_ligand_distance_angstrom": row.get(
+                    "nearest_acceptor_ligand_distance_angstrom"
+                ),
+                "acceptor_axis_status": row.get("acceptor_axis_status"),
+            }
+        )
+
+    return {
+        "metadata": {
+            "method": "epk_acceptor_axis_threshold_design",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_acceptor_geometry_axis_gap_plan_method": plan_meta.get(
+                "method"
+            ),
+            "source_prototype_ready_row_count": plan_meta.get(
+                "prototype_ready_row_count"
+            ),
+            "candidate_thresholds_angstrom": thresholds,
+            "smallest_candidate_hydroxyl_cutoff_covering_current_prototype_rows": (
+                smallest_full_hydroxyl_cutoff
+            ),
+            "selected_threshold_angstrom": None,
+            "threshold_calibrated": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "Candidate cutoffs are descriptive design points from three "
+                "prototype rows only. They are not calibrated thresholds and "
+                "cannot be used for ePK scoring or label import."
+            ),
+            "next_actions": [
+                "test candidate cutoffs against external hard negatives only after an ePK score exists",
+                "add gamma-phosphate-to-acceptor geometry before threshold calibration",
+                "keep the smallest covering cutoff as a hypothesis, not a selected threshold",
+            ],
+        },
+        "threshold_rows": threshold_rows,
+        "rows": sorted(
+            row_summaries,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "warnings": [
+            (
+                "The current prototype rows are too few to calibrate an ePK "
+                "threshold; this artifact only records candidate cutoffs to test."
+            )
+        ],
+    }
+
+
+def build_epk_gamma_geometry_feasibility_plan(
+    *,
+    epk_text_free_local_axis_prototype: dict[str, Any],
+    epk_acceptor_geometry_axis_gap_plan: dict[str, Any],
+) -> dict[str, Any]:
+    """Classify nucleotide/acceptor readiness before gamma-geometry measurement."""
+
+    prototype_meta = epk_text_free_local_axis_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    target_fingerprint_id = str(
+        prototype_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    acceptor_rows = {
+        str(row.get("entry_id")): row
+        for row in epk_acceptor_geometry_axis_gap_plan.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    gamma_capable_codes = {"ATP", "ANP", "AGS", "ACP", "APC", "AP5", "ATP_GAMMA_S"}
+    product_or_partial_codes = {"ADP", "AMP"}
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    for source_row in epk_text_free_local_axis_prototype.get("rows", []):
+        if not isinstance(source_row, dict):
+            continue
+        entry_id = str(source_row.get("entry_id") or "")
+        axis_inputs = source_row.get("text_free_axis_inputs", {})
+        if not isinstance(axis_inputs, dict):
+            axis_inputs = {}
+        nucleotide_axis = axis_inputs.get("local_adenine_nucleotide_ligand", {})
+        if not isinstance(nucleotide_axis, dict):
+            nucleotide_axis = {}
+        nucleotide_codes = _sorted_strings(nucleotide_axis.get("evidence_codes", []))
+        gamma_codes = [
+            code for code in nucleotide_codes if str(code).upper() in gamma_capable_codes
+        ]
+        product_codes = [
+            code
+            for code in nucleotide_codes
+            if str(code).upper() in product_or_partial_codes
+        ]
+        acceptor_row = acceptor_rows.get(entry_id, {})
+        acceptor_context_present = bool(
+            acceptor_row
+            and acceptor_row.get("acceptor_axis_status")
+            != "acceptor_geometry_context_missing_or_nonlocal"
+        )
+        if gamma_codes and acceptor_context_present:
+            feasibility_status = (
+                "gamma_capable_nucleotide_and_acceptor_context_present_not_measured"
+            )
+        elif product_codes and acceptor_context_present:
+            feasibility_status = (
+                "product_state_nucleotide_acceptor_context_present_needs_gamma_source"
+            )
+        elif gamma_codes:
+            feasibility_status = "gamma_capable_nucleotide_without_acceptor_context"
+        else:
+            feasibility_status = "gamma_geometry_source_missing"
+        status_counts[feasibility_status] += 1
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": source_row.get("entry_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "local_nucleotide_ligand_codes": nucleotide_codes,
+                "gamma_capable_nucleotide_codes": gamma_codes,
+                "product_or_partial_nucleotide_codes": product_codes,
+                "acceptor_context_present": acceptor_context_present,
+                "acceptor_axis_status": acceptor_row.get("acceptor_axis_status"),
+                "nearest_hydroxyl_residue_distance_angstrom": acceptor_row.get(
+                    "nearest_hydroxyl_residue_distance_angstrom"
+                ),
+                "nearest_acceptor_ligand_distance_angstrom": acceptor_row.get(
+                    "nearest_acceptor_ligand_distance_angstrom"
+                ),
+                "gamma_geometry_feasibility_status": feasibility_status,
+                "gamma_phosphate_geometry_measured": False,
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "gamma_phosphate_atom_geometry_not_measured",
+                    "acceptor_identity_not_verified",
+                    "threshold_not_calibrated",
+                    "external_hard_negative_reaudit_not_run",
+                ],
+            }
+        )
+
+    return {
+        "metadata": {
+            "method": "epk_gamma_geometry_feasibility_plan",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_text_free_local_axis_prototype_method": prototype_meta.get(
+                "method"
+            ),
+            "source_epk_acceptor_geometry_axis_gap_plan_method": (
+                epk_acceptor_geometry_axis_gap_plan.get("metadata", {}).get("method")
+            ),
+            "prototype_ready_row_count": len(rows),
+            "gamma_geometry_feasibility_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "gamma_phosphate_geometry_measured": False,
+            "epk_score_computed": False,
+            "threshold_calibrated": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact only classifies whether current local nucleotide "
+                "and acceptor context can support a future atom-level "
+                "gamma-phosphate geometry pass. It performs no atom-level "
+                "measurement and computes no ePK score."
+            ),
+            "next_actions": [
+                "measure ATP or analog gamma-phosphate atom geometry for gamma-capable rows",
+                "source ATP-state evidence for product-state ADP rows before scoring",
+                "combine gamma geometry with calibrated acceptor thresholds only after validation",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "warnings": [
+            (
+                "Gamma feasibility is not gamma geometry; atom-level phosphate "
+                "and acceptor coordinates still need a separate measured pass."
+            )
+        ],
+    }
+
+
+def build_epk_gamma_geometry_measurement_sample(
+    *,
+    epk_gamma_geometry_feasibility_plan: dict[str, Any],
+    geometry_features: dict[str, Any],
+    cif_text_by_pdb: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    """Measure review-only PG-to-hydroxyl distances for feasible ePK rows."""
+
+    feasibility_meta = epk_gamma_geometry_feasibility_plan.get("metadata", {})
+    if not isinstance(feasibility_meta, dict):
+        feasibility_meta = {}
+    target_fingerprint_id = str(
+        feasibility_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    raw_geometry_rows = (
+        geometry_features.get("rows")
+        or geometry_features.get("entries")
+        or geometry_features.get("features")
+        or []
+    )
+    geometry_rows = [row for row in raw_geometry_rows if isinstance(row, dict)]
+    geometry_by_entry = {
+        str(row.get("entry_id")): row
+        for row in geometry_rows
+        if isinstance(row.get("entry_id"), str)
+    }
+    cif_text_by_pdb = cif_text_by_pdb or {}
+    hydroxyl_atom_names = {
+        "SER": {"OG"},
+        "THR": {"OG1"},
+        "TYR": {"OH"},
+    }
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    fetched_pdb_ids: set[str] = set()
+    for feasibility_row in epk_gamma_geometry_feasibility_plan.get("rows", []):
+        if not isinstance(feasibility_row, dict):
+            continue
+        entry_id = str(feasibility_row.get("entry_id") or "")
+        geometry = geometry_by_entry.get(entry_id, {})
+        pdb_id = str(geometry.get("pdb_id") or "").upper()
+        gamma_codes = _sorted_strings(
+            feasibility_row.get("gamma_capable_nucleotide_codes", [])
+        )
+        if not gamma_codes:
+            status = "product_or_missing_gamma_nucleotide_skipped"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "entry_name": feasibility_row.get("entry_name"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "pdb_id": pdb_id or None,
+                    "gamma_capable_nucleotide_codes": gamma_codes,
+                    "measurement_status": status,
+                    "gamma_phosphate_geometry_measured": False,
+                    "epk_score_computed": False,
+                    "measurement_blockers": [
+                        "no_gamma_capable_local_nucleotide_in_current_structure"
+                    ],
+                }
+            )
+            continue
+        if not pdb_id:
+            status = "pdb_id_missing"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "entry_name": feasibility_row.get("entry_name"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "pdb_id": None,
+                    "gamma_capable_nucleotide_codes": gamma_codes,
+                    "measurement_status": status,
+                    "gamma_phosphate_geometry_measured": False,
+                    "epk_score_computed": False,
+                    "measurement_blockers": ["pdb_id_missing"],
+                }
+            )
+            continue
+        cif_text = cif_text_by_pdb.get(pdb_id)
+        if cif_text is None:
+            cif_text = fetch_pdb_cif(pdb_id)
+            fetched_pdb_ids.add(pdb_id)
+        atoms = parse_atom_site_loop(cif_text)
+        gamma_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "HETATM"
+            and str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+            in {code.upper() for code in gamma_codes}
+            and str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+            == "PG"
+        ]
+        pocket_context = geometry.get("pocket_context", {})
+        if not isinstance(pocket_context, dict):
+            pocket_context = {}
+        hydroxyl_candidates = [
+            site
+            for site in pocket_context.get("nearby_residue_sites", []) or []
+            if isinstance(site, dict)
+            and str(site.get("code") or "").upper() in hydroxyl_atom_names
+        ]
+        hydroxyl_atoms = []
+        for candidate in hydroxyl_candidates:
+            if not isinstance(candidate, dict):
+                continue
+            code = str(candidate.get("code") or "").upper()
+            chain = str(candidate.get("chain_name") or "")
+            resid = str(candidate.get("resid") or "")
+            allowed_atom_names = hydroxyl_atom_names.get(code, set())
+            for atom in atoms:
+                atom_name = str(
+                    atom.get("auth_atom_id") or atom.get("label_atom_id") or ""
+                ).upper()
+                if atom_name not in allowed_atom_names:
+                    continue
+                atom_code = str(
+                    atom.get("auth_comp_id") or atom.get("label_comp_id") or ""
+                ).upper()
+                if atom_code != code:
+                    continue
+                if chain and chain not in _label_atom_chain_ids(atom):
+                    continue
+                if resid and resid not in _label_atom_residue_ids(atom):
+                    continue
+                hydroxyl_atoms.append(atom)
+        distance_rows = []
+        for gamma_atom in gamma_atoms:
+            gamma_point = _atom_point(gamma_atom)
+            for hydroxyl_atom in hydroxyl_atoms:
+                hydroxyl_point = _atom_point(hydroxyl_atom)
+                distance_rows.append(
+                    {
+                        "gamma_ligand_code": str(
+                            gamma_atom.get("auth_comp_id")
+                            or gamma_atom.get("label_comp_id")
+                        ).upper(),
+                        "gamma_atom_name": str(
+                            gamma_atom.get("auth_atom_id")
+                            or gamma_atom.get("label_atom_id")
+                        ),
+                        "hydroxyl_residue_code": str(
+                            hydroxyl_atom.get("auth_comp_id")
+                            or hydroxyl_atom.get("label_comp_id")
+                        ).upper(),
+                        "hydroxyl_atom_name": str(
+                            hydroxyl_atom.get("auth_atom_id")
+                            or hydroxyl_atom.get("label_atom_id")
+                        ),
+                        "hydroxyl_chain_name": str(
+                            hydroxyl_atom.get("auth_asym_id")
+                            or hydroxyl_atom.get("label_asym_id")
+                        ),
+                        "hydroxyl_resid": str(
+                            hydroxyl_atom.get("auth_seq_id")
+                            or hydroxyl_atom.get("label_seq_id")
+                        ),
+                        "distance_angstrom": round(
+                            _point_distance(gamma_point, hydroxyl_point), 3
+                        ),
+                    }
+                )
+        distance_rows.sort(
+            key=lambda row: (
+                float(row["distance_angstrom"]),
+                str(row["hydroxyl_residue_code"]),
+                str(row["hydroxyl_resid"]),
+            )
+        )
+        if distance_rows:
+            status = "gamma_to_hydroxyl_distance_measured_review_only"
+            blockers = [
+                "acceptor_identity_not_verified",
+                "distance_threshold_not_calibrated",
+                "external_hard_negative_reaudit_not_run",
+            ]
+            measured = True
+        elif not gamma_atoms:
+            status = "gamma_phosphate_atom_missing"
+            blockers = ["gamma_phosphate_atom_missing"]
+            measured = False
+        else:
+            status = "hydroxyl_acceptor_atom_missing"
+            blockers = ["hydroxyl_acceptor_atom_missing"]
+            measured = False
+        status_counts[status] += 1
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": feasibility_row.get("entry_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "pdb_id": pdb_id,
+                "gamma_capable_nucleotide_codes": gamma_codes,
+                "gamma_atom_count": len(gamma_atoms),
+                "hydroxyl_acceptor_atom_count": len(hydroxyl_atoms),
+                "nearest_gamma_to_hydroxyl_distance_angstrom": (
+                    distance_rows[0]["distance_angstrom"] if distance_rows else None
+                ),
+                "distance_rows": distance_rows[:12],
+                "measurement_status": status,
+                "gamma_phosphate_geometry_measured": measured,
+                "epk_score_computed": False,
+                "measurement_blockers": blockers,
+            }
+        )
+
+    return {
+        "metadata": {
+            "method": "epk_gamma_geometry_measurement_sample",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_gamma_geometry_feasibility_plan_method": (
+                feasibility_meta.get("method")
+            ),
+            "row_count": len(rows),
+            "measurement_status_counts": dict(sorted(status_counts.items())),
+            "measured_row_count": status_counts.get(
+                "gamma_to_hydroxyl_distance_measured_review_only",
+                0,
+            ),
+            "fetched_pdb_ids": sorted(fetched_pdb_ids),
+            "gamma_phosphate_geometry_measured": bool(
+                status_counts.get("gamma_to_hydroxyl_distance_measured_review_only", 0)
+            ),
+            "epk_score_computed": False,
+            "threshold_calibrated": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact measures PG-to-candidate-hydroxyl distances as "
+                "review-only geometry evidence. It does not verify acceptor "
+                "identity, calibrate a threshold, compute an ePK score, or "
+                "change any label registry."
+            ),
+            "next_actions": [
+                "verify whether measured hydroxyl atoms are true substrate acceptors",
+                "calibrate any distance threshold against negatives only after a score exists",
+                "source ATP-state evidence for product-state rows before measurement",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "warnings": [
+            (
+                "Measured PG-to-hydroxyl distance is candidate geometry only; "
+                "it is not an ePK score or a countable label gate."
+            )
+        ],
+    }
+
+
+def build_epk_precount_gate_status(
+    *,
+    epk_text_free_local_axis_prototype: dict[str, Any],
+    epk_acceptor_axis_threshold_design: dict[str, Any],
+    epk_gamma_geometry_measurement_sample: dict[str, Any],
+    epk_nonready_ligand_repair_plan: dict[str, Any],
+    epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Consolidate review-only ePK artifacts into a pre-count gate status."""
+
+    axis_meta = epk_text_free_local_axis_prototype.get("metadata", {})
+    if not isinstance(axis_meta, dict):
+        axis_meta = {}
+    threshold_meta = epk_acceptor_axis_threshold_design.get("metadata", {})
+    if not isinstance(threshold_meta, dict):
+        threshold_meta = {}
+    gamma_meta = epk_gamma_geometry_measurement_sample.get("metadata", {})
+    if not isinstance(gamma_meta, dict):
+        gamma_meta = {}
+    repair_meta = epk_nonready_ligand_repair_plan.get("metadata", {})
+    if not isinstance(repair_meta, dict):
+        repair_meta = {}
+    reaudit_meta = (
+        epk_external_hard_negative_reaudit_plan.get("metadata", {})
+        if isinstance(epk_external_hard_negative_reaudit_plan, dict)
+        else {}
+    )
+    if not isinstance(reaudit_meta, dict):
+        reaudit_meta = {}
+    target_fingerprint_id = str(
+        axis_meta.get("target_fingerprint_id")
+        or threshold_meta.get("target_fingerprint_id")
+        or gamma_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    prototype_ready_count = int(axis_meta.get("prototype_ready_row_count") or 0)
+    gamma_measured_count = int(gamma_meta.get("measured_row_count") or 0)
+    nonready_count = int(repair_meta.get("nonready_row_count") or 0)
+    selected_threshold = threshold_meta.get("selected_threshold_angstrom")
+    external_reaudit_scored = bool(
+        reaudit_meta.get("ready_to_run_scored_reaudit")
+        or reaudit_meta.get("external_hard_negative_reaudit_scored")
+    )
+    gate_checks = [
+        {
+            "gate_id": "local_axis_prototype",
+            "passed": prototype_ready_count > 0,
+            "evidence": {
+                "prototype_ready_row_count": prototype_ready_count,
+                "source_method": axis_meta.get("method"),
+            },
+        },
+        {
+            "gate_id": "acceptor_threshold_calibrated",
+            "passed": selected_threshold is not None
+            and bool(threshold_meta.get("threshold_calibrated")),
+            "evidence": {
+                "selected_threshold_angstrom": selected_threshold,
+                "threshold_calibrated": bool(threshold_meta.get("threshold_calibrated")),
+            },
+        },
+        {
+            "gate_id": "gamma_geometry_measured_for_all_prototype_rows",
+            "passed": prototype_ready_count > 0
+            and gamma_measured_count == prototype_ready_count,
+            "evidence": {
+                "prototype_ready_row_count": prototype_ready_count,
+                "measured_row_count": gamma_measured_count,
+                "measurement_status_counts": gamma_meta.get(
+                    "measurement_status_counts",
+                    {},
+                ),
+            },
+        },
+        {
+            "gate_id": "nonready_rows_repaired_or_excluded",
+            "passed": nonready_count == 0,
+            "evidence": {
+                "nonready_row_count": nonready_count,
+                "repair_lane_counts": repair_meta.get("repair_lane_counts", {}),
+            },
+        },
+        {
+            "gate_id": "external_hard_negative_scored_reaudit",
+            "passed": external_reaudit_scored,
+            "evidence": {
+                "source_method": reaudit_meta.get("method"),
+                "ready_to_run_scored_reaudit": bool(
+                    reaudit_meta.get("ready_to_run_scored_reaudit")
+                ),
+                "external_hard_negative_reaudit_scored": bool(
+                    reaudit_meta.get("external_hard_negative_reaudit_scored")
+                ),
+            },
+        },
+        {
+            "gate_id": "registry_and_label_factory_extension",
+            "passed": False,
+            "evidence": {
+                "fingerprint_registry_edited": False,
+                "curated_label_registry_edited": False,
+                "label_factory_gate_extended_for_epk": False,
+            },
+        },
+    ]
+    failing_gate_ids = [
+        str(check["gate_id"]) for check in gate_checks if not bool(check["passed"])
+    ]
+    return {
+        "metadata": {
+            "method": "epk_precount_gate_status",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "precount_gate_status": (
+                "passed" if not failing_gate_ids else "blocked_review_only"
+            ),
+            "failing_gate_ids": failing_gate_ids,
+            "prototype_ready_row_count": prototype_ready_count,
+            "gamma_measured_row_count": gamma_measured_count,
+            "nonready_ligand_repair_row_count": nonready_count,
+            "selected_acceptor_threshold_angstrom": selected_threshold,
+            "external_hard_negative_reaudit_scored": external_reaudit_scored,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "threshold_calibrated": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This status artifact summarizes why ePK remains blocked before "
+                "any countable fingerprint, score, external re-audit, or label "
+                "import work."
+            ),
+            "next_actions": [
+                "verify true substrate-acceptor identity for measured hydroxyl atoms",
+                "source ATP-state gamma geometry for m_csa:640",
+                "repair or keep excluded the two non-ready ligand rows",
+                "run external hard-negative re-audit only after a real ePK score exists",
+            ],
+        },
+        "gate_checks": gate_checks,
+        "warnings": [
+            (
+                "A blocked pre-count gate is expected; this artifact is a "
+                "review-only handoff aid and not a promotion request."
+            )
+        ],
+    }
+
+
+def _atom_point(atom: dict[str, Any]) -> dict[str, float]:
+    return {
+        "x": float(atom["Cartn_x"]),
+        "y": float(atom["Cartn_y"]),
+        "z": float(atom["Cartn_z"]),
+    }
+
+
+def _label_atom_chain_ids(atom: dict[str, Any]) -> set[str]:
+    return {
+        str(value)
+        for value in [atom.get("auth_asym_id"), atom.get("label_asym_id")]
+        if value not in {None, "", ".", "?"}
+    }
+
+
+def _label_atom_residue_ids(atom: dict[str, Any]) -> set[str]:
+    return {
+        str(value)
+        for value in [atom.get("auth_seq_id"), atom.get("label_seq_id")]
+        if value not in {None, "", ".", "?"}
+    }
+
+
+def _point_distance(left: dict[str, float], right: dict[str, float]) -> float:
+    return (
+        (left["x"] - right["x"]) ** 2
+        + (left["y"] - right["y"]) ** 2
+        + (left["z"] - right["z"]) ** 2
+    ) ** 0.5
+
+
 def _atp_target_family_record(
     family_id: str,
     family: dict[str, Any],

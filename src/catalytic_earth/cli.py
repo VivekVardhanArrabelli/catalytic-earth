@@ -64,10 +64,17 @@ from .labels import (
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
     build_atp_phosphoryl_transfer_family_expansion,
+    build_epk_acceptor_axis_threshold_design,
+    build_epk_acceptor_geometry_axis_gap_plan,
     build_epk_draft_fingerprint_spec,
     build_epk_external_hard_negative_reaudit_plan,
+    build_epk_gamma_geometry_feasibility_plan,
+    build_epk_gamma_geometry_measurement_sample,
     build_epk_local_evidence_audit,
+    build_epk_nonready_ligand_repair_plan,
+    build_epk_precount_gate_status,
     build_epk_positive_fingerprint_readiness_packet,
+    build_epk_text_free_local_axis_prototype,
     build_expert_label_decision_local_evidence_review_export,
     build_expert_label_decision_review_export,
     build_expert_review_export,
@@ -5219,6 +5226,160 @@ def cmd_build_epk_local_evidence_audit(args: argparse.Namespace) -> int:
     print(
         "Wrote ePK local evidence audit to "
         f"{args.out} (ready_rows={audit['metadata']['ready_for_text_free_axis_prototype_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_text_free_local_axis_prototype(args: argparse.Namespace) -> int:
+    with Path(args.epk_local_evidence_audit).open("r", encoding="utf-8") as handle:
+        epk_local_evidence_audit = json.load(handle)
+    prototype = build_epk_text_free_local_axis_prototype(
+        epk_local_evidence_audit=epk_local_evidence_audit,
+    )
+    write_json(Path(args.out), prototype)
+    print(
+        "Wrote ePK text-free local-axis prototype to "
+        f"{args.out} (ready_rows={prototype['metadata']['prototype_ready_row_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_acceptor_geometry_axis_gap_plan(args: argparse.Namespace) -> int:
+    with Path(args.epk_text_free_local_axis_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_text_free_local_axis_prototype = json.load(handle)
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    plan = build_epk_acceptor_geometry_axis_gap_plan(
+        epk_text_free_local_axis_prototype=epk_text_free_local_axis_prototype,
+        geometry_features=geometry,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote ePK acceptor-geometry axis gap plan to "
+        f"{args.out} (candidate_rows={plan['metadata']['rows_with_candidate_acceptor_context_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_nonready_ligand_repair_plan(args: argparse.Namespace) -> int:
+    with Path(args.epk_local_evidence_audit).open("r", encoding="utf-8") as handle:
+        epk_local_evidence_audit = json.load(handle)
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    plan = build_epk_nonready_ligand_repair_plan(
+        epk_local_evidence_audit=epk_local_evidence_audit,
+        geometry_features=geometry,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote ePK non-ready ligand repair plan to "
+        f"{args.out} (nonready_rows={plan['metadata']['nonready_row_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_acceptor_axis_threshold_design(args: argparse.Namespace) -> int:
+    with Path(args.epk_acceptor_geometry_axis_gap_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_acceptor_geometry_axis_gap_plan = json.load(handle)
+    design = build_epk_acceptor_axis_threshold_design(
+        epk_acceptor_geometry_axis_gap_plan=epk_acceptor_geometry_axis_gap_plan,
+        candidate_thresholds_angstrom=_parse_float_list(args.candidate_thresholds),
+    )
+    write_json(Path(args.out), design)
+    print(
+        "Wrote ePK acceptor-axis threshold design to "
+        f"{args.out} (thresholds={len(design['metadata']['candidate_thresholds_angstrom'])})"
+    )
+    return 0
+
+
+def cmd_build_epk_gamma_geometry_feasibility_plan(args: argparse.Namespace) -> int:
+    with Path(args.epk_text_free_local_axis_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_text_free_local_axis_prototype = json.load(handle)
+    with Path(args.epk_acceptor_geometry_axis_gap_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_acceptor_geometry_axis_gap_plan = json.load(handle)
+    plan = build_epk_gamma_geometry_feasibility_plan(
+        epk_text_free_local_axis_prototype=epk_text_free_local_axis_prototype,
+        epk_acceptor_geometry_axis_gap_plan=epk_acceptor_geometry_axis_gap_plan,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote ePK gamma-geometry feasibility plan to "
+        f"{args.out} (rows={plan['metadata']['prototype_ready_row_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_gamma_geometry_measurement_sample(args: argparse.Namespace) -> int:
+    with Path(args.epk_gamma_geometry_feasibility_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_gamma_geometry_feasibility_plan = json.load(handle)
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    cif_text_by_pdb: dict[str, str] = {}
+    if args.cif_dir:
+        cif_dir = Path(args.cif_dir)
+        for suffix in ("*.cif", "*.mmcif"):
+            for path in cif_dir.glob(suffix):
+                cif_text_by_pdb[path.stem.upper()] = path.read_text(encoding="utf-8")
+    sample = build_epk_gamma_geometry_measurement_sample(
+        epk_gamma_geometry_feasibility_plan=epk_gamma_geometry_feasibility_plan,
+        geometry_features=geometry,
+        cif_text_by_pdb=cif_text_by_pdb or None,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote ePK gamma-geometry measurement sample to "
+        f"{args.out} (measured_rows={sample['metadata']['measured_row_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
+    with Path(args.epk_text_free_local_axis_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_text_free_local_axis_prototype = json.load(handle)
+    with Path(args.epk_acceptor_axis_threshold_design).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_acceptor_axis_threshold_design = json.load(handle)
+    with Path(args.epk_gamma_geometry_measurement_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_gamma_geometry_measurement_sample = json.load(handle)
+    with Path(args.epk_nonready_ligand_repair_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_nonready_ligand_repair_plan = json.load(handle)
+    epk_external_hard_negative_reaudit_plan = None
+    if args.epk_external_hard_negative_reaudit_plan:
+        with Path(args.epk_external_hard_negative_reaudit_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_external_hard_negative_reaudit_plan = json.load(handle)
+    status = build_epk_precount_gate_status(
+        epk_text_free_local_axis_prototype=epk_text_free_local_axis_prototype,
+        epk_acceptor_axis_threshold_design=epk_acceptor_axis_threshold_design,
+        epk_gamma_geometry_measurement_sample=epk_gamma_geometry_measurement_sample,
+        epk_nonready_ligand_repair_plan=epk_nonready_ligand_repair_plan,
+        epk_external_hard_negative_reaudit_plan=(
+            epk_external_hard_negative_reaudit_plan
+        ),
+    )
+    write_json(Path(args.out), status)
+    print(
+        "Wrote ePK pre-count gate status to "
+        f"{args.out} (status={status['metadata']['precount_gate_status']})"
     )
     return 0
 
@@ -11555,6 +11716,154 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_epk_local_evidence_audit.json",
     )
     epk_local_audit.set_defaults(func=cmd_build_epk_local_evidence_audit)
+
+    epk_local_axis_prototype = subparsers.add_parser(
+        "build-epk-text-free-local-axis-prototype",
+        help="prototype review-only text-free ePK local feature axes",
+    )
+    epk_local_axis_prototype.add_argument(
+        "--epk-local-evidence-audit",
+        default="artifacts/v3_epk_local_evidence_audit.json",
+    )
+    epk_local_axis_prototype.add_argument(
+        "--out",
+        default="artifacts/v3_epk_text_free_local_axis_prototype.json",
+    )
+    epk_local_axis_prototype.set_defaults(
+        func=cmd_build_epk_text_free_local_axis_prototype
+    )
+
+    epk_acceptor_axis_gap = subparsers.add_parser(
+        "build-epk-acceptor-geometry-axis-gap-plan",
+        help="plan review-only ePK acceptor geometry axis gaps",
+    )
+    epk_acceptor_axis_gap.add_argument(
+        "--epk-text-free-local-axis-prototype",
+        default="artifacts/v3_epk_text_free_local_axis_prototype.json",
+    )
+    epk_acceptor_axis_gap.add_argument(
+        "--geometry",
+        default="artifacts/v3_geometry_features_1000.json",
+    )
+    epk_acceptor_axis_gap.add_argument(
+        "--out",
+        default="artifacts/v3_epk_acceptor_geometry_axis_gap_plan.json",
+    )
+    epk_acceptor_axis_gap.set_defaults(
+        func=cmd_build_epk_acceptor_geometry_axis_gap_plan
+    )
+
+    epk_nonready_ligand_repair = subparsers.add_parser(
+        "build-epk-nonready-ligand-repair-plan",
+        help="plan review-only ligand repairs for non-ready ePK rows",
+    )
+    epk_nonready_ligand_repair.add_argument(
+        "--epk-local-evidence-audit",
+        default="artifacts/v3_epk_local_evidence_audit.json",
+    )
+    epk_nonready_ligand_repair.add_argument(
+        "--geometry",
+        default="artifacts/v3_geometry_features_1000.json",
+    )
+    epk_nonready_ligand_repair.add_argument(
+        "--out",
+        default="artifacts/v3_epk_nonready_ligand_repair_plan.json",
+    )
+    epk_nonready_ligand_repair.set_defaults(
+        func=cmd_build_epk_nonready_ligand_repair_plan
+    )
+
+    epk_acceptor_threshold_design = subparsers.add_parser(
+        "build-epk-acceptor-axis-threshold-design",
+        help="record review-only candidate cutoffs for the ePK acceptor axis",
+    )
+    epk_acceptor_threshold_design.add_argument(
+        "--epk-acceptor-geometry-axis-gap-plan",
+        default="artifacts/v3_epk_acceptor_geometry_axis_gap_plan.json",
+    )
+    epk_acceptor_threshold_design.add_argument(
+        "--candidate-thresholds",
+        default="4.0,6.0,8.0",
+        help="comma-separated candidate thresholds in angstroms",
+    )
+    epk_acceptor_threshold_design.add_argument(
+        "--out",
+        default="artifacts/v3_epk_acceptor_axis_threshold_design.json",
+    )
+    epk_acceptor_threshold_design.set_defaults(
+        func=cmd_build_epk_acceptor_axis_threshold_design
+    )
+
+    epk_gamma_geometry_feasibility = subparsers.add_parser(
+        "build-epk-gamma-geometry-feasibility-plan",
+        help="classify review-only ePK gamma-geometry measurement readiness",
+    )
+    epk_gamma_geometry_feasibility.add_argument(
+        "--epk-text-free-local-axis-prototype",
+        default="artifacts/v3_epk_text_free_local_axis_prototype.json",
+    )
+    epk_gamma_geometry_feasibility.add_argument(
+        "--epk-acceptor-geometry-axis-gap-plan",
+        default="artifacts/v3_epk_acceptor_geometry_axis_gap_plan.json",
+    )
+    epk_gamma_geometry_feasibility.add_argument(
+        "--out",
+        default="artifacts/v3_epk_gamma_geometry_feasibility_plan.json",
+    )
+    epk_gamma_geometry_feasibility.set_defaults(
+        func=cmd_build_epk_gamma_geometry_feasibility_plan
+    )
+
+    epk_gamma_geometry_measurement = subparsers.add_parser(
+        "build-epk-gamma-geometry-measurement-sample",
+        help="measure review-only ePK gamma-to-hydroxyl geometry samples",
+    )
+    epk_gamma_geometry_measurement.add_argument(
+        "--epk-gamma-geometry-feasibility-plan",
+        default="artifacts/v3_epk_gamma_geometry_feasibility_plan.json",
+    )
+    epk_gamma_geometry_measurement.add_argument(
+        "--geometry",
+        default="artifacts/v3_geometry_features_1000.json",
+    )
+    epk_gamma_geometry_measurement.add_argument("--cif-dir", default=None)
+    epk_gamma_geometry_measurement.add_argument(
+        "--out",
+        default="artifacts/v3_epk_gamma_geometry_measurement_sample.json",
+    )
+    epk_gamma_geometry_measurement.set_defaults(
+        func=cmd_build_epk_gamma_geometry_measurement_sample
+    )
+
+    epk_precount_gate_status = subparsers.add_parser(
+        "build-epk-precount-gate-status",
+        help="summarize review-only ePK pre-count gate blockers",
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-text-free-local-axis-prototype",
+        default="artifacts/v3_epk_text_free_local_axis_prototype.json",
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-acceptor-axis-threshold-design",
+        default="artifacts/v3_epk_acceptor_axis_threshold_design.json",
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-gamma-geometry-measurement-sample",
+        default="artifacts/v3_epk_gamma_geometry_measurement_sample.json",
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-nonready-ligand-repair-plan",
+        default="artifacts/v3_epk_nonready_ligand_repair_plan.json",
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-external-hard-negative-reaudit-plan",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--out",
+        default="artifacts/v3_epk_precount_gate_status.json",
+    )
+    epk_precount_gate_status.set_defaults(func=cmd_build_epk_precount_gate_status)
 
     learned_retrieval_manifest = subparsers.add_parser(
         "build-learned-retrieval-manifest",
