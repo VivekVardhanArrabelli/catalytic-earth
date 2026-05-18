@@ -5011,6 +5011,143 @@ class CliTests(unittest.TestCase):
                 "gamma_capable_metal_or_mapping_gap",
             )
 
+    def test_build_epk_sibling_control_repair_review_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_request = root / "source_request.json"
+            alternate_plan = root / "alternate_plan.json"
+            out = root / "repair_review.json"
+            (root / "1GQT.cif").write_text(
+                "\n".join(
+                    [
+                        "data_1GQT",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "HETATM ACP ACP PG PG A A 1 1 0.0 0.0 0.0",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            source_request.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_missing_sibling_control_source_request",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:663",
+                                "entry_name": "ribokinase",
+                                "family_id": "pfkb",
+                                "family_name": "PfkB/ribokinase-family kinases",
+                                "source_request_type": (
+                                    "repair_gamma_structure_metal_or_mapping_gap"
+                                ),
+                                "selected_pdb_id": "1RK2",
+                                "reference_uniprot_id": "P0A9J6",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            alternate_plan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_sibling_negative_control_alternate_structure_plan"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:663",
+                                "entry_name": "ribokinase",
+                                "family_id": "pfkb",
+                                "family_name": "PfkB/ribokinase-family kinases",
+                                "selected_pdb_id": "1RK2",
+                                "reference_uniprot_id": "P0A9J6",
+                                "candidate_structures": [
+                                    {
+                                        "pdb_id": "1GQT",
+                                        "target_ligand_codes": ["ACP"],
+                                        "has_gamma_capable_nucleotide": True,
+                                        "has_product_or_partial_nucleotide": False,
+                                        "has_metal_ligand": False,
+                                        "mapped_catalytic_residue_count": 4,
+                                        "expected_catalytic_residue_count": 4,
+                                        "all_catalytic_residues_mapped": True,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-sibling-control-repair-review",
+                    "--epk-missing-sibling-control-source-request",
+                    str(source_request),
+                    "--epk-sibling-negative-control-alternate-structure-plan",
+                    str(alternate_plan),
+                    "--family-id",
+                    "pfkb",
+                    "--cif-dir",
+                    str(root),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            review = json.loads(out.read_text(encoding="utf-8"))
+            metadata = review["metadata"]
+            self.assertEqual(metadata["method"], "epk_sibling_control_repair_review")
+            self.assertEqual(metadata["reviewed_family_id"], "pfkb")
+            self.assertEqual(metadata["family_repair_review_status"], "blocked_review_only")
+            self.assertEqual(metadata["mapped_gamma_structure_count"], 1)
+            self.assertEqual(metadata["metal_supported_gamma_structure_count"], 0)
+            self.assertEqual(metadata["measurement_ready_repaired_structure_count"], 0)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            row = review["rows"][0]
+            self.assertEqual(
+                row["repair_review_status"],
+                "mapping_verified_metal_context_unresolved",
+            )
+            self.assertEqual(
+                row["candidate_structure_reviews"][0]["repair_assessment_status"],
+                "mapping_verified_metal_context_unresolved",
+            )
+            self.assertEqual(
+                row["candidate_structure_reviews"][0]["observed_metal_ligand_codes"],
+                [],
+            )
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

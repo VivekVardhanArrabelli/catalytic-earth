@@ -11521,6 +11521,309 @@ def build_epk_missing_sibling_control_source_request(
     }
 
 
+def build_epk_sibling_control_repair_review(
+    *,
+    epk_missing_sibling_control_source_request: dict[str, Any],
+    epk_sibling_negative_control_alternate_structure_plan: dict[str, Any],
+    family_id: str = "pfkb",
+    cif_text_by_pdb: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    """Review one missing ePK sibling-control family for local repair status."""
+
+    source_meta = epk_missing_sibling_control_source_request.get("metadata", {})
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    alternate_meta = epk_sibling_negative_control_alternate_structure_plan.get(
+        "metadata", {}
+    )
+    if not isinstance(alternate_meta, dict):
+        alternate_meta = {}
+    target_family_id = str(family_id or "").strip().lower() or "pfkb"
+    target_fingerprint_id = str(
+        source_meta.get("target_fingerprint_id")
+        or alternate_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    family_name = ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(target_family_id)
+    cif_text_by_pdb = cif_text_by_pdb or {}
+
+    request_rows = [
+        row
+        for row in epk_missing_sibling_control_source_request.get("rows", []) or []
+        if isinstance(row, dict) and str(row.get("family_id") or "") == target_family_id
+    ]
+    alternate_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_sibling_negative_control_alternate_structure_plan.get("rows", [])
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    def _structure_review_status(
+        *,
+        has_gamma: bool,
+        has_metal: bool,
+        mapped: bool,
+        has_product: bool,
+        target_ligand_codes: list[str],
+    ) -> str:
+        if has_gamma and has_metal and mapped:
+            return "ready_for_bounded_distance_measurement_review_only"
+        if has_gamma and mapped and not has_metal:
+            return "mapping_verified_metal_context_unresolved"
+        if has_gamma and has_metal and not mapped:
+            return "metal_context_present_mapping_unresolved"
+        if has_gamma:
+            return "gamma_structure_metal_and_mapping_unresolved"
+        if has_product:
+            return "product_or_partial_nucleotide_not_gamma_capable"
+        if target_ligand_codes:
+            return "non_gamma_ligand_context_only"
+        return "no_target_ligand_context"
+
+    rows: list[dict[str, Any]] = []
+    fetched_pdb_ids: set[str] = set()
+    status_counts: Counter[str] = Counter()
+    row_status_counts: Counter[str] = Counter()
+    fetch_status_counts: Counter[str] = Counter()
+    reviewed_structure_count = 0
+    gamma_structure_count = 0
+    mapped_gamma_structure_count = 0
+    metal_supported_gamma_structure_count = 0
+    measurement_ready_structure_count = 0
+    for request_row in request_rows:
+        entry_id = str(request_row.get("entry_id") or "")
+        alternate_row = alternate_rows_by_entry.get(entry_id, {})
+        candidate_reviews: list[dict[str, Any]] = []
+        row_ready_count = 0
+        for structure in alternate_row.get("candidate_structures", []) or []:
+            if not isinstance(structure, dict):
+                continue
+            pdb_id = str(structure.get("pdb_id") or "").upper()
+            target_ligand_codes = _sorted_strings(
+                structure.get("target_ligand_codes", []) or []
+            )
+            has_gamma = bool(structure.get("has_gamma_capable_nucleotide"))
+            has_product = bool(structure.get("has_product_or_partial_nucleotide"))
+            mapped = bool(structure.get("all_catalytic_residues_mapped"))
+            has_metal = bool(structure.get("has_metal_ligand"))
+            fetch_status = "not_requested"
+            observed_ligand_codes: list[str] = []
+            observed_metal_ligand_codes: list[str] = []
+            if pdb_id:
+                cif_text = cif_text_by_pdb.get(pdb_id)
+                fetch_status = "ok"
+                if cif_text is None:
+                    try:
+                        cif_text = fetch_pdb_cif(pdb_id)
+                        fetched_pdb_ids.add(pdb_id)
+                    except Exception as exc:  # pragma: no cover - network fallback path
+                        fetch_status = f"fetch_failed:{type(exc).__name__}"
+                        cif_text = None
+                if cif_text:
+                    ligand_codes: set[str] = set()
+                    metal_codes: set[str] = set()
+                    for atom in parse_atom_site_loop(cif_text):
+                        if atom.get("group_PDB") != "HETATM":
+                            continue
+                        code = str(
+                            atom.get("auth_comp_id")
+                            or atom.get("label_comp_id")
+                            or ""
+                        ).upper()
+                        if not code:
+                            continue
+                        ligand_codes.add(code)
+                        if code in METAL_ION_CODES:
+                            metal_codes.add(code)
+                    observed_ligand_codes = sorted(ligand_codes)
+                    observed_metal_ligand_codes = sorted(metal_codes)
+                    has_metal = has_metal or bool(observed_metal_ligand_codes)
+            fetch_status_counts[fetch_status] += 1
+            reviewed_structure_count += 1
+            if has_gamma:
+                gamma_structure_count += 1
+            if has_gamma and mapped:
+                mapped_gamma_structure_count += 1
+            if has_gamma and has_metal:
+                metal_supported_gamma_structure_count += 1
+            if has_gamma and has_metal and mapped:
+                measurement_ready_structure_count += 1
+                row_ready_count += 1
+            status = _structure_review_status(
+                has_gamma=has_gamma,
+                has_metal=has_metal,
+                mapped=mapped,
+                has_product=has_product,
+                target_ligand_codes=target_ligand_codes,
+            )
+            status_counts[status] += 1
+            candidate_reviews.append(
+                {
+                    "pdb_id": pdb_id or None,
+                    "fetch_status": fetch_status,
+                    "target_ligand_codes": target_ligand_codes,
+                    "observed_ligand_codes": observed_ligand_codes,
+                    "observed_metal_ligand_codes": observed_metal_ligand_codes,
+                    "has_gamma_capable_nucleotide": has_gamma,
+                    "has_product_or_partial_nucleotide": has_product,
+                    "has_metal_ligand_after_review": has_metal,
+                    "mapped_catalytic_residue_count": structure.get(
+                        "mapped_catalytic_residue_count"
+                    ),
+                    "expected_catalytic_residue_count": structure.get(
+                        "expected_catalytic_residue_count"
+                    ),
+                    "all_catalytic_residues_mapped": mapped,
+                    "repair_assessment_status": status,
+                    "measurement_ready_after_repair_review": (
+                        status == "ready_for_bounded_distance_measurement_review_only"
+                    ),
+                }
+            )
+
+        if row_ready_count:
+            row_status = "ready_for_bounded_distance_measurement_review_only"
+            row_blockers = [
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        elif any(
+            review["repair_assessment_status"]
+            == "mapping_verified_metal_context_unresolved"
+            for review in candidate_reviews
+        ):
+            row_status = "mapping_verified_metal_context_unresolved"
+            row_blockers = [
+                "metal_context_unresolved_for_gamma_capable_structure",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        elif candidate_reviews:
+            row_status = "source_or_repair_still_required"
+            row_blockers = [
+                "missing_sibling_family_gamma_distance_control",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        else:
+            row_status = "no_candidate_structures_to_review"
+            row_blockers = [
+                "source_graph_linked_or_external_pdb_structure",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        row_status_counts[row_status] += 1
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": request_row.get("entry_name")
+                or alternate_row.get("entry_name"),
+                "family_id": target_family_id,
+                "family_name": request_row.get("family_name")
+                or alternate_row.get("family_name")
+                or family_name,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "source_request_type": request_row.get("source_request_type"),
+                "selected_pdb_id": request_row.get("selected_pdb_id")
+                or alternate_row.get("selected_pdb_id"),
+                "reference_uniprot_id": request_row.get("reference_uniprot_id")
+                or alternate_row.get("reference_uniprot_id"),
+                "candidate_structure_review_count": len(candidate_reviews),
+                "measurement_ready_structure_count": row_ready_count,
+                "repair_review_status": row_status,
+                "candidate_structure_reviews": candidate_reviews,
+                "negative_control_distance_distribution_ready": False,
+                "threshold_calibrated": False,
+                "selected_threshold_angstrom": None,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": row_blockers,
+            }
+        )
+
+    ready = measurement_ready_structure_count > 0
+    unresolved_rows = [row for row in rows if not row["measurement_ready_structure_count"]]
+    return {
+        "metadata": {
+            "method": "epk_sibling_control_repair_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "reviewed_family_id": target_family_id,
+            "reviewed_family_name": family_name,
+            "source_epk_missing_sibling_control_source_request_method": (
+                source_meta.get("method")
+            ),
+            "source_epk_sibling_negative_control_alternate_structure_plan_method": (
+                alternate_meta.get("method")
+            ),
+            "row_count": len(rows),
+            "reviewed_candidate_structure_count": reviewed_structure_count,
+            "gamma_capable_structure_count": gamma_structure_count,
+            "mapped_gamma_structure_count": mapped_gamma_structure_count,
+            "metal_supported_gamma_structure_count": metal_supported_gamma_structure_count,
+            "measurement_ready_repaired_structure_count": (
+                measurement_ready_structure_count
+            ),
+            "unresolved_row_count": len(unresolved_rows),
+            "unresolved_entry_ids": sorted(
+                [str(row.get("entry_id")) for row in unresolved_rows],
+                key=_entry_id_sort_key,
+            ),
+            "structure_repair_status_counts": dict(sorted(status_counts.items())),
+            "row_repair_status_counts": dict(sorted(row_status_counts.items())),
+            "cif_fetch_status_counts": dict(sorted(fetch_status_counts.items())),
+            "fetched_pdb_ids": sorted(fetched_pdb_ids),
+            "family_repair_review_status": (
+                "ready_for_bounded_distance_measurement_review_only"
+                if ready
+                else "blocked_review_only"
+            ),
+            "negative_control_repair_review_started": bool(rows),
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact reviews one missing sibling ATP-phosphoryl-transfer "
+                "negative-control family for local repair readiness. It does not "
+                "measure distances, select thresholds, score ePK, edit registries, "
+                "run external hard-negative re-audits, or import labels."
+            ),
+            "next_actions": [
+                (
+                    f"measure {target_family_id} only if a gamma-capable, "
+                    "metal-supported, mapped structure is available"
+                ),
+                "keep ePK threshold selection closed while sibling controls remain incomplete",
+                "do not score external hard negatives until a real ePK scorer exists",
+            ],
+        },
+        "rows": sorted(rows, key=lambda row: _entry_id_sort_key(str(row["entry_id"]))),
+        "warnings": [
+            (
+                "Sibling-control repair review is blocker triage only; it is "
+                "not an ePK calibration set or positive-fingerprint expansion."
+            )
+        ],
+    }
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -11539,6 +11842,7 @@ def build_epk_precount_gate_status(
     epk_negative_control_calibration_sufficiency_decision: dict[str, Any]
     | None = None,
     epk_missing_sibling_control_source_request: dict[str, Any] | None = None,
+    epk_sibling_control_repair_review: dict[str, Any] | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -11622,6 +11926,13 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(missing_sibling_source_meta, dict):
         missing_sibling_source_meta = {}
+    sibling_control_repair_meta = (
+        epk_sibling_control_repair_review.get("metadata", {})
+        if isinstance(epk_sibling_control_repair_review, dict)
+        else {}
+    )
+    if not isinstance(sibling_control_repair_meta, dict):
+        sibling_control_repair_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -11846,6 +12157,20 @@ def build_epk_precount_gate_status(
                             "negative_control_source_request_open"
                         )
                     ),
+                    "sibling_control_repair_review_method": (
+                        sibling_control_repair_meta.get("method")
+                    ),
+                    "sibling_control_repair_review_family_id": (
+                        sibling_control_repair_meta.get("reviewed_family_id")
+                    ),
+                    "sibling_control_repair_review_status": (
+                        sibling_control_repair_meta.get("family_repair_review_status")
+                    ),
+                    "sibling_control_repair_ready_structure_count": (
+                        sibling_control_repair_meta.get(
+                            "measurement_ready_repaired_structure_count"
+                        )
+                    ),
                 },
             }
         )
@@ -11904,6 +12229,21 @@ def build_epk_precount_gate_status(
         )
     else:
         next_actions.insert(0, "source ATP-state gamma geometry for m_csa:640")
+    if sibling_control_repair_meta.get("method") and not int(
+        sibling_control_repair_meta.get("measurement_ready_repaired_structure_count")
+        or 0
+    ):
+        repair_family = str(
+            sibling_control_repair_meta.get("reviewed_family_id")
+            or "sibling control"
+        )
+        next_actions.insert(
+            0,
+            (
+                f"source metal-supported gamma-capable {repair_family} controls "
+                "before measuring that sibling family"
+            ),
+        )
     return {
         "metadata": {
             "method": "epk_precount_gate_status",
@@ -11943,6 +12283,9 @@ def build_epk_precount_gate_status(
             ),
             "source_epk_missing_sibling_control_source_request_method": (
                 missing_sibling_source_meta.get("method")
+            ),
+            "source_epk_sibling_control_repair_review_method": (
+                sibling_control_repair_meta.get("method")
             ),
             "negative_control_distance_distribution_ready": bool(
                 negative_control_meta.get("negative_control_distance_distribution_ready")
@@ -11986,6 +12329,20 @@ def build_epk_precount_gate_status(
             ),
             "negative_control_source_request_open": bool(
                 missing_sibling_source_meta.get("negative_control_source_request_open")
+            ),
+            "negative_control_repair_review_family_id": (
+                sibling_control_repair_meta.get("reviewed_family_id")
+            ),
+            "negative_control_repair_review_status": (
+                sibling_control_repair_meta.get("family_repair_review_status")
+            ),
+            "negative_control_repair_review_ready_structure_count": (
+                sibling_control_repair_meta.get(
+                    "measurement_ready_repaired_structure_count"
+                )
+            ),
+            "negative_control_repair_review_unresolved_entry_ids": (
+                sibling_control_repair_meta.get("unresolved_entry_ids")
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

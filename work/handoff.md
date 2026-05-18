@@ -50,6 +50,54 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T19:50:41Z automation run, the normal direct automation
+protocol passed: the lock was acquired after replacing a stale dead-PID lock,
+`git fetch` and `git pull --ff-only origin main` were clean, SSH deploy-key
+push hygiene passed, startup unit discovery passed, `validate` passed, and
+`validate-artifact-migration --dry-run --check-local-files` again reported 108
+rows, 0 blockers, and `removal_allowed=0`. Phase 1 artifact migration remained
+guard-only and closed.
+
+The scientific work continued the review-only ePK lane without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any
+external hard-negative label. It added
+`artifacts/v3_epk_sibling_control_repair_review_1025.json` plus the CLI
+builder `build-epk-sibling-control-repair-review`. This consumes the missing
+sibling-control source request and sibling alternate-structure plan for one
+family, PfkB. The review confirms that ribokinase `m_csa:663` has complete
+catalytic-residue mapping in gamma-capable `1GQT`/`ACP`, but the fetched CIF
+has no metal ligand context. `m_csa:670` still has no gamma-capable
+graph-linked alternate. The PfkB lane therefore remains `blocked_review_only`
+with 0 measurement-ready repaired structures; no distance is measured, no
+threshold is calibrated, no ePK score is computed, and no external
+hard-negative re-audit is run.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the
+PfkB repair-review artifact attached. The lane remains `blocked_review_only`:
+the status now records `negative_control_repair_review_family_id=pfkb`,
+`negative_control_repair_review_status=blocked_review_only`, and unresolved
+PfkB rows `m_csa:663`/`m_csa:670`, while negative-control distribution
+readiness, acceptor-threshold calibration, complete gamma geometry, external
+hard-negative scored re-audit, and registry/label-factory extension still fail
+closed.
+
+Evidence-based confidence call: ePK scorer development is narrowed but still
+not closer to countability. PfkB mapping ambiguity is resolved for `m_csa:663`,
+but the missing metal context means PfkB still cannot be measured as a sibling
+negative control. The active fingerprint universe remains 8; curated labels
+remain 682 with 212 `seed_fingerprint` and 470 `out_of_scope` labels; external
+imported labels remain exactly `uniprot:P06744`, `uniprot:P78549`, and
+`uniprot:Q3LXA3`; external imported seed-fingerprint labels remain 0. The next
+bounded ePK step should source a metal-supported PfkB gamma-capable control or
+move to another missing sibling family, preferably NDK ATP-state sourcing or
+ATP-grasp/PfkA gamma-capable sourcing. Do not add the ePK registry
+fingerprint, import ePK labels, score external hard negatives, or reopen
+migration Phase 2.
+
+Verification passed with the final 482-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T18:48:23Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and `git pull --ff-only
 origin main` were clean, SSH deploy-key push hygiene passed, startup unit

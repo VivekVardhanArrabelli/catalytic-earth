@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "cif_fetch_status_counts": {
+      "ok": 5
+    },
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "family_repair_review_status": "blocked_review_only",
+    "fetched_pdb_ids": [
+      "1GQT",
+      "1JXI",
+      "1RKA",
+      "1RKD",
+      "1RKS"
+    ],
+    "fingerprint_registry_edited": false,
+    "gamma_capable_structure_count": 1,
+    "mapped_gamma_structure_count": 1,
+    "measurement_ready_repaired_structure_count": 0,
+    "metal_supported_gamma_structure_count": 0,
+    "method": "epk_sibling_control_repair_review",
+    "negative_control_distance_distribution_ready": false,
+    "negative_control_repair_review_started": true,
+    "next_actions": [
+      "measure pfkb only if a gamma-capable, metal-supported, mapped structure is available",
+      "keep ePK threshold selection closed while sibling controls remain incomplete",
+      "do not score external hard negatives until a real ePK scorer exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact reviews one missing sibling ATP-phosphoryl-transfer negative-control family for local repair readiness. It does not measure distances, select thresholds, score ePK, edit registries, run external hard-negative re-audits, or import labels.",
+    "reviewed_candidate_structure_count": 5,
+    "reviewed_family_id": "pfkb",
+    "reviewed_family_name": "PfkB/ribokinase-family kinases",
+    "row_count": 2,
+    "row_repair_status_counts": {
+      "mapping_verified_metal_context_unresolved": 1,
+      "source_or_repair_still_required": 1
+    },
+    "selected_threshold_angstrom": null,
+    "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
+    "source_epk_sibling_negative_control_alternate_structure_plan_method": "epk_sibling_negative_control_alternate_structure_plan",
+    "structure_repair_status_counts": {
+      "mapping_verified_metal_context_unresolved": 1,
+      "no_target_ligand_context": 3,
+      "product_or_partial_nucleotide_not_gamma_capable": 1
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "unresolved_entry_ids": [
+      "m_csa:663",
+      "m_csa:670"
+    ],
+    "unresolved_row_count": 2
+  },
+  "rows": [
+    {
+      "candidate_structure_review_count": 4,
+      "candidate_structure_reviews": [
+        {
+          "all_catalytic_residues_mapped": true,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": true,
+          "has_metal_ligand_after_review": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 4,
+          "measurement_ready_after_repair_review": false,
+          "observed_ligand_codes": [
+            "ACP",
+            "CS",
+            "HOH",
+            "RIB"
+          ],
+          "observed_metal_ligand_codes": [],
+          "pdb_id": "1GQT",
+          "repair_assessment_status": "mapping_verified_metal_context_unresolved",
+          "target_ligand_codes": [
+            "ACP"
+          ]
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand_after_review": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 4,
+          "measurement_ready_after_repair_review": false,
+          "observed_ligand_codes": [
+            "HOH"
+          ],
+          "observed_metal_ligand_codes": [],
+          "pdb_id": "1RKA",
+          "repair_assessment_status": "no_target_ligand_context",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand_after_review": false,
+          "has_product_or_partial_nucleotide": true,
+          "mapped_catalytic_residue_count": 4,
+          "measurement_ready_after_repair_review": false,
+          "observed_ligand_codes": [
+            "ADP",
+            "HOH",
+            "PO4",
+            "RIB"
+          ],
+          "observed_metal_ligand_codes": [],
+          "pdb_id": "1RKD",
+          "repair_assessment_status": "product_or_partial_nucleotide_not_gamma_capable",
+          "target_ligand_codes": [
+            "ADP"
+          ]
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand_after_review": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 4,
+          "measurement_ready_after_repair_review": false,
+          "observed_ligand_codes": [
+            "HOH",
+            "PO4",
+            "RIB"
+          ],
+          "observed_metal_ligand_codes": [],
+          "pdb_id": "1RKS",
+          "repair_assessment_status": "no_target_ligand_context",
+          "target_ligand_codes": []
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "measurement_ready_structure_count": 0,
+      "negative_control_distance_distribution_ready": false,
+      "ready_for_label_import": false,
+      "reference_uniprot_id": "P0A9J6",
+      "remaining_blockers": [
+        "metal_context_unresolved_for_gamma_capable_structure",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "repair_review_status": "mapping_verified_metal_context_unresolved",
+      "review_only": true,
+      "selected_pdb_id": "1RK2",
+      "selected_threshold_angstrom": null,
+      "source_request_type": "repair_gamma_structure_metal_or_mapping_gap",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "candidate_structure_review_count": 1,
+      "candidate_structure_reviews": [
+        {
+          "all_catalytic_residues_mapped": true,
+          "expected_catalytic_residue_count": 7,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand_after_review": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 7,
+          "measurement_ready_after_repair_review": false,
+          "observed_ligand_codes": [
+            "HMH",
+            "HOH",
+            "SO4"
+          ],
+          "observed_metal_ligand_codes": [],
+          "pdb_id": "1JXI",
+          "repair_assessment_status": "no_target_ligand_context",
+          "target_ligand_codes": []
+        }
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "measurement_ready_structure_count": 0,
+      "negative_control_distance_distribution_ready": false,
+      "ready_for_label_import": false,
+      "reference_uniprot_id": "P55882",
+      "remaining_blockers": [
+        "missing_sibling_family_gamma_distance_control",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "repair_review_status": "source_or_repair_still_required",
+      "review_only": true,
+      "selected_pdb_id": "1JXH",
+      "selected_threshold_angstrom": null,
+      "source_request_type": "source_additional_gamma_capable_alternate",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    }
+  ],
+  "warnings": [
+    "Sibling-control repair review is blocker triage only; it is not an ePK calibration set or positive-fingerprint expansion."
+  ]
+}

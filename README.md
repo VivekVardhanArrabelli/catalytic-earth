@@ -906,6 +906,12 @@ alternate, PfkA needs additional gamma-capable source evidence, and PfkB has a
 gamma-capable alternate with metal or catalytic-residue mapping gaps. It
 measures no new distances, selects no threshold, scores no ePK rows, and edits
 no registries.
+`artifacts/v3_epk_sibling_control_repair_review_1025.json` then starts the
+one-family repair review with PfkB. It verifies that ribokinase `m_csa:663`
+has complete catalytic-residue mapping in gamma-capable `1GQT`/`ACP`, but no
+metal ligand context, while `m_csa:670` has no gamma-capable alternate in the
+screened graph-linked structure. The PfkB lane therefore remains
+`blocked_review_only` with 0 measurement-ready repaired structures.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
 `blocked_review_only`: local axes, measured-row acceptor identity review, and
 threshold/control planning pass, non-ready-row exclusion is explicit, and a

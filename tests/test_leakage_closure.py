@@ -998,6 +998,45 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertFalse(row["epk_score_computed"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_sibling_control_repair_review_stays_review_only(self) -> None:
+        review = _load_json(
+            ROOT / "artifacts" / "v3_epk_sibling_control_repair_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(metadata["method"], "epk_sibling_control_repair_review")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_family_id"], "pfkb")
+        self.assertEqual(metadata["family_repair_review_status"], "blocked_review_only")
+        self.assertEqual(metadata["gamma_capable_structure_count"], 1)
+        self.assertEqual(metadata["mapped_gamma_structure_count"], 1)
+        self.assertEqual(metadata["metal_supported_gamma_structure_count"], 0)
+        self.assertEqual(metadata["measurement_ready_repaired_structure_count"], 0)
+        self.assertEqual(metadata["unresolved_entry_ids"], ["m_csa:663", "m_csa:670"])
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["entry_id"]: row for row in review["rows"]}
+        self.assertEqual(
+            rows["m_csa:663"]["repair_review_status"],
+            "mapping_verified_metal_context_unresolved",
+        )
+        self.assertEqual(rows["m_csa:663"]["measurement_ready_structure_count"], 0)
+        self.assertEqual(
+            rows["m_csa:663"]["candidate_structure_reviews"][0][
+                "repair_assessment_status"
+            ],
+            "mapping_verified_metal_context_unresolved",
+        )
+        for row in review["rows"]:
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_epk_precount_gate_status_stays_blocked(self) -> None:
         status = _load_json(
             ROOT / "artifacts" / "v3_epk_precount_gate_status_1025.json"
@@ -1049,6 +1088,10 @@ class LeakageClosureTests(unittest.TestCase):
             ],
             "epk_negative_control_calibration_sufficiency_decision",
         )
+        self.assertEqual(
+            metadata["source_epk_sibling_control_repair_review_method"],
+            "epk_sibling_control_repair_review",
+        )
         self.assertTrue(metadata["gamma_threshold_control_plan_ready"])
         self.assertFalse(metadata["negative_control_distance_distribution_ready"])
         self.assertEqual(metadata["negative_control_measured_control_count"], 2)
@@ -1069,6 +1112,16 @@ class LeakageClosureTests(unittest.TestCase):
         )
         self.assertEqual(metadata["negative_control_combined_measured_control_count"], 5)
         self.assertEqual(metadata["negative_control_combined_measured_family_count"], 4)
+        self.assertEqual(metadata["negative_control_repair_review_family_id"], "pfkb")
+        self.assertEqual(
+            metadata["negative_control_repair_review_status"],
+            "blocked_review_only",
+        )
+        self.assertEqual(metadata["negative_control_repair_review_ready_structure_count"], 0)
+        self.assertEqual(
+            metadata["negative_control_repair_review_unresolved_entry_ids"],
+            ["m_csa:663", "m_csa:670"],
+        )
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
         self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
         self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
@@ -1135,6 +1188,12 @@ class LeakageClosureTests(unittest.TestCase):
                 "combined_measured_control_count"
             ],
             5,
+        )
+        self.assertEqual(
+            checks["gamma_negative_control_distance_distribution"]["evidence"][
+                "sibling_control_repair_review_status"
+            ],
+            "blocked_review_only",
         )
         self.assertFalse(checks["registry_and_label_factory_extension"]["passed"])
 

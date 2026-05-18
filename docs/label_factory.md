@@ -306,6 +306,14 @@ residue mapping repair for an existing gamma-capable alternate. The request
 packet is a blocker inventory only; it does not measure distances, calibrate a
 threshold, score ePK, edit registries, re-audit external hard negatives, or
 import labels.
+`artifacts/v3_epk_sibling_control_repair_review_1025.json` begins that repair
+work for one missing family, PfkB. It reviews the two PfkB rows from the source
+request and confirms that `m_csa:663` has complete catalytic-residue mapping
+in gamma-capable `1GQT`/`ACP` but no metal ligand context, while `m_csa:670`
+still has no gamma-capable graph-linked alternate. The artifact records 0
+measurement-ready repaired structures, keeps the PfkB lane
+`blocked_review_only`, and remains outside threshold calibration, ePK scoring,
+external re-audit, registry edits, and label import.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
 identity review, gamma-threshold control planning, explicit non-ready-row

@@ -385,7 +385,12 @@ Current expectation:
   ATP-grasp and PfkA need additional gamma-capable source evidence, NDK needs
   an ATP-state/gamma-capable alternate, and PfkB needs metal/context or
   catalytic-residue mapping repair for an existing gamma-capable alternate.
-  This remains a blocker inventory, not a score or threshold. The
+  This remains a blocker inventory, not a score or threshold. The first
+  one-family repair review now narrows PfkB: `m_csa:663` has complete
+  catalytic-residue mapping in gamma-capable `1GQT`/`ACP` but no metal ligand
+  context, and `m_csa:670` still has no gamma-capable graph-linked alternate.
+  PfkB therefore has 0 measurement-ready repaired structures and remains
+  blocked before distance measurement. The
   consolidated ePK pre-count gate status remains `blocked_review_only`:
   local-axis prototyping, measured-row acceptor identity review, and
   gamma-threshold control planning pass, and non-ready-row exclusion plus

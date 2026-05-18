@@ -1531,6 +1531,12 @@ keeps that conclusion machine-readable: the combined local negative-control
 surface remains `blocked_review_only`, threshold selection is
 `do_not_select_threshold`, and four sibling ATP-family controls still lack
 measured coverage.
+`artifacts/v3_epk_missing_sibling_control_source_request_1025.json` and
+`artifacts/v3_epk_sibling_control_repair_review_1025.json` remain local
+sibling-control hygiene. The PfkB repair review verifies the mapped
+gamma-capable `m_csa:663`/`1GQT` case but leaves it blocked by absent metal
+context, and it finds no measurement-ready repaired PfkB structures. This does
+not open ePK scoring or external hard-negative rescoring.
 `artifacts/v3_epk_precount_gate_status_1025.json` keeps the external lane
 explicitly blocked: no ePK score exists, the external hard negatives have not
 been rescored, the sibling negative-control distribution is not calibration
