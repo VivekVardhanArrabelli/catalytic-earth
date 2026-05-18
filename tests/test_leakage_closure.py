@@ -1257,6 +1257,24 @@ class LeakageClosureTests(unittest.TestCase):
             metadata["negative_control_homolog_source_ready_structure_count"],
             0,
         )
+        self.assertEqual(
+            metadata["source_epk_sibling_control_homolog_mapping_review_method"],
+            "epk_sibling_control_homolog_mapping_review",
+        )
+        self.assertEqual(metadata["negative_control_homolog_mapping_family_id"], "ndk")
+        self.assertEqual(metadata["negative_control_homolog_mapping_candidate_count"], 4)
+        self.assertEqual(
+            metadata["negative_control_homolog_mapping_histidine_mapped_count"],
+            4,
+        )
+        self.assertEqual(
+            metadata["negative_control_homolog_mapping_nucleotide_site_mapped_count"],
+            4,
+        )
+        self.assertEqual(
+            metadata["negative_control_homolog_mapping_ready_structure_count"],
+            4,
+        )
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
         self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
         self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
@@ -1340,6 +1358,12 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(
             checks["gamma_negative_control_distance_distribution"]["evidence"][
                 "sibling_control_homolog_source_gamma_metal_candidate_count"
+            ],
+            4,
+        )
+        self.assertEqual(
+            checks["gamma_negative_control_distance_distribution"]["evidence"][
+                "sibling_control_homolog_mapping_ready_structure_count"
             ],
             4,
         )
@@ -1435,6 +1459,52 @@ class LeakageClosureTests(unittest.TestCase):
             )
             self.assertFalse(row["measurement_ready_for_negative_control"])
             self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_ndk_homolog_mapping_review_stays_review_only(self) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_sibling_control_homolog_mapping_review"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_sibling_family_id"], "ndk")
+        self.assertEqual(
+            metadata["source_epk_sibling_control_homolog_source_plan_method"],
+            "epk_sibling_control_homolog_source_plan",
+        )
+        self.assertEqual(metadata["mapping_reviewed_candidate_count"], 4)
+        self.assertEqual(metadata["catalytic_histidine_mapped_candidate_count"], 4)
+        self.assertEqual(metadata["nucleotide_site_mapped_candidate_count"], 4)
+        self.assertEqual(metadata["measurement_ready_homolog_structure_count"], 4)
+        self.assertFalse(metadata["calibration_distance_measured"])
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        statuses = {
+            row["pdb_id"]: row["homolog_mapping_status"] for row in review["rows"]
+        }
+        self.assertEqual(
+            set(statuses.values()),
+            {"homolog_mapping_ready_for_distance_measurement_review_only"},
+        )
+        self.assertEqual(set(statuses), {"1WKL", "3Q86", "9OAN", "9PFY"})
+        for row in review["rows"]:
+            self.assertTrue(row["measurement_ready_for_negative_control"])
+            self.assertFalse(row["negative_control_distance_distribution_ready"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertTrue(row["chain_mappings"])
+            self.assertTrue(row["catalytic_histidine_mapping_verified"])
+            self.assertTrue(row["nucleotide_site_mapping_verified"])
 
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:
         adjudication = _load_json(

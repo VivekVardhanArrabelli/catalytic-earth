@@ -934,13 +934,20 @@ context, but leaves all four candidates mapping-pending and
 measurement-not-ready. It does not measure distances, calibrate a threshold,
 score ePK, run external hard-negative re-audit, edit registries, or import
 labels.
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json` then
+maps the four NDK homolog candidates to review-only catalytic histidine and
+nucleotide-site residue evidence. All four structures now have mapped
+histidine plus local nucleotide-site context and are ready for a future
+bounded negative-control measurement pass, but no calibration distance,
+threshold, ePK score, external hard-negative re-audit, registry edit, or label
+import is performed.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
 `blocked_review_only`: local axes, measured-row acceptor identity review, and
 threshold/control planning pass, non-ready-row exclusion is explicit, and a
-sibling alternate-control measurement surface exists, but negative-control
-distribution readiness, acceptor threshold calibration, complete gamma
-geometry, external hard-negative scored re-audit, and label-factory/registry
-extension all remain failing gates.
+sibling alternate-control measurement surface plus mapped NDK homolog controls
+exist, but negative-control distribution readiness, acceptor threshold
+calibration, complete gamma geometry, external hard-negative scored re-audit,
+and label-factory/registry extension all remain failing gates.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

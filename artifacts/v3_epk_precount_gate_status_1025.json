@@ -106,6 +106,11 @@
         "negative_control_distance_distribution_ready": false,
         "negative_control_distance_distribution_started": true,
         "negative_control_source_request_open": true,
+        "sibling_control_homolog_mapping_family_id": "ndk",
+        "sibling_control_homolog_mapping_histidine_mapped_count": 4,
+        "sibling_control_homolog_mapping_nucleotide_site_mapped_count": 4,
+        "sibling_control_homolog_mapping_ready_structure_count": 4,
+        "sibling_control_homolog_mapping_review_method": "epk_sibling_control_homolog_mapping_review",
         "sibling_control_homolog_source_candidate_count": 4,
         "sibling_control_homolog_source_family_id": "ndk",
         "sibling_control_homolog_source_gamma_metal_candidate_count": 4,
@@ -157,6 +162,11 @@
     "negative_control_combined_measured_control_count": 5,
     "negative_control_combined_measured_family_count": 4,
     "negative_control_distance_distribution_ready": false,
+    "negative_control_homolog_mapping_candidate_count": 4,
+    "negative_control_homolog_mapping_family_id": "ndk",
+    "negative_control_homolog_mapping_histidine_mapped_count": 4,
+    "negative_control_homolog_mapping_nucleotide_site_mapped_count": 4,
+    "negative_control_homolog_mapping_ready_structure_count": 4,
     "negative_control_homolog_source_candidate_count": 4,
     "negative_control_homolog_source_family_id": "ndk",
     "negative_control_homolog_source_gamma_metal_candidate_count": 4,
@@ -197,8 +207,8 @@
     ],
     "negative_control_source_request_open": true,
     "next_actions": [
-      "map catalytic residues for sourced ndk homolog controls before measurement",
-      "source metal-supported gamma-capable controls for atp_grasp, ndk, pfka, pfkb before measuring those sibling families",
+      "measure mapped homolog controls for ndk in a bounded review-only pass",
+      "source metal-supported gamma-capable controls for atp_grasp, pfka, pfkb before measuring those sibling families",
       "expand sibling negative-control coverage beyond measured alternate structures before selecting a threshold",
       "keep explicitly excluded non-ready ligand rows out of threshold calibration",
       "run external hard-negative re-audit only after a real ePK score exists"
@@ -221,6 +231,7 @@
     "source_epk_negative_control_calibration_sufficiency_decision_method": "epk_negative_control_calibration_sufficiency_decision",
     "source_epk_negative_control_gamma_distance_distribution_method": "epk_negative_control_gamma_distance_distribution",
     "source_epk_nonready_ligand_exclusion_decision_method": "epk_nonready_ligand_exclusion_decision",
+    "source_epk_sibling_control_homolog_mapping_review_method": "epk_sibling_control_homolog_mapping_review",
     "source_epk_sibling_control_repair_review_method": "epk_sibling_control_repair_review",
     "source_epk_sibling_control_repair_review_methods": [
       "epk_sibling_control_repair_review"

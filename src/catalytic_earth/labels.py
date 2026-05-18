@@ -12359,6 +12359,443 @@ def build_epk_sibling_control_homolog_source_plan(
     }
 
 
+def build_epk_sibling_control_homolog_mapping_review(
+    *,
+    epk_sibling_control_homolog_source_plan: dict[str, Any],
+    family_id: str = "ndk",
+    cif_text_by_pdb: dict[str, str] | None = None,
+    catalytic_histidine_cutoff_angstrom: float = 4.0,
+    nucleotide_site_cutoff_angstrom: float = 5.5,
+) -> dict[str, Any]:
+    """Map sourced homolog sibling controls before any calibration measurement."""
+
+    source_meta = epk_sibling_control_homolog_source_plan.get("metadata", {})
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    target_family_id = str(family_id or "").strip().lower() or str(
+        source_meta.get("reviewed_sibling_family_id") or "ndk"
+    )
+    family_name = ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(target_family_id)
+    target_fingerprint_id = str(
+        source_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    gamma_atom_names = {"PG"}
+    catalytic_histidine_codes = {"HIS", "HIP"}
+    nucleotide_context_codes = {
+        "ARG",
+        "ASN",
+        "GLY",
+        "HIS",
+        "ILE",
+        "LYS",
+        "MET",
+        "THR",
+        "TYR",
+        "HIP",
+    }
+    basic_site_codes = {"ARG", "LYS"}
+    histidine_cutoff_sq = catalytic_histidine_cutoff_angstrom**2
+    site_cutoff_sq = nucleotide_site_cutoff_angstrom**2
+
+    def _atom_code(atom: dict[str, Any]) -> str:
+        return str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+
+    def _atom_name(atom: dict[str, Any]) -> str:
+        return str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+
+    def _residue_key(atom: dict[str, Any]) -> tuple[str, str, str, str, str]:
+        return (
+            str(atom.get("auth_asym_id") or atom.get("label_asym_id") or ""),
+            str(atom.get("label_asym_id") or atom.get("auth_asym_id") or ""),
+            str(atom.get("auth_seq_id") or atom.get("label_seq_id") or ""),
+            str(atom.get("label_seq_id") or atom.get("auth_seq_id") or ""),
+            _atom_code(atom),
+        )
+
+    def _residue_record(
+        key: tuple[str, str, str, str, str],
+        *,
+        evidence_role: str,
+    ) -> dict[str, Any]:
+        auth_chain, label_chain, auth_seq, label_seq, residue_code = key
+        return {
+            "residue_code": residue_code,
+            "auth_asym_id": auth_chain,
+            "label_asym_id": label_chain,
+            "auth_seq_id": auth_seq,
+            "label_seq_id": label_seq,
+            "evidence_role": evidence_role,
+        }
+
+    def _residue_site_key(key: tuple[str, str, str, str, str]) -> tuple[str, str, str, str]:
+        return key[:4]
+
+    def _same_chain(left: dict[str, Any], right: dict[str, Any]) -> bool:
+        return bool(_label_atom_chain_ids(left) & _label_atom_chain_ids(right))
+
+    def _squared_distance(left: dict[str, Any], right: dict[str, Any]) -> float:
+        return (
+            (float(left["Cartn_x"]) - float(right["Cartn_x"])) ** 2
+            + (float(left["Cartn_y"]) - float(right["Cartn_y"])) ** 2
+            + (float(left["Cartn_z"]) - float(right["Cartn_z"])) ** 2
+        )
+
+    def _residue_sort_number(value: str) -> int:
+        match = re.search(r"-?\d+", value)
+        return int(match.group(0)) if match else 0
+
+    def _mapping_rows_for_atoms(
+        *,
+        atoms: list[dict[str, Any]],
+        gamma_codes: set[str],
+    ) -> list[dict[str, Any]]:
+        gamma_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "HETATM"
+            and _atom_code(atom) in gamma_codes
+            and _atom_name(atom) in gamma_atom_names
+        ]
+        residue_atoms_by_key: dict[tuple[str, str, str, str, str], list[dict[str, Any]]] = defaultdict(list)
+        for atom in atoms:
+            code = _atom_code(atom)
+            if atom.get("group_PDB") == "ATOM" and code in STANDARD_AMINO_ACIDS:
+                residue_atoms_by_key[_residue_key(atom)].append(atom)
+            elif atom.get("group_PDB") == "HETATM" and code == "HIP":
+                residue_atoms_by_key[_residue_key(atom)].append(atom)
+
+        mappings: list[dict[str, Any]] = []
+        for gamma_atom in gamma_atoms:
+            residue_distances: list[
+                tuple[float, tuple[str, str, str, str, str]]
+            ] = []
+            for key, residue_atoms in residue_atoms_by_key.items():
+                same_chain_atoms = [
+                    atom for atom in residue_atoms if _same_chain(atom, gamma_atom)
+                ]
+                if not same_chain_atoms:
+                    continue
+                min_sq = min(_squared_distance(atom, gamma_atom) for atom in same_chain_atoms)
+                if min_sq <= site_cutoff_sq:
+                    residue_distances.append((min_sq, key))
+            residue_distances.sort(
+                key=lambda item: (
+                    item[0],
+                    item[1][0],
+                    _residue_sort_number(item[1][2]),
+                    item[1][4],
+                )
+            )
+            histidine_candidates = [
+                (distance_sq, key)
+                for distance_sq, key in residue_distances
+                if key[4] in catalytic_histidine_codes
+                and distance_sq <= histidine_cutoff_sq
+            ]
+            nucleotide_site_candidates = [
+                (distance_sq, key)
+                for distance_sq, key in residue_distances
+                if key[4] in nucleotide_context_codes
+            ]
+            catalytic_histidines = []
+            seen_histidine_sites: set[tuple[str, str, str, str]] = set()
+            for _distance_sq, key in histidine_candidates:
+                site_key = _residue_site_key(key)
+                if site_key in seen_histidine_sites:
+                    continue
+                seen_histidine_sites.add(site_key)
+                catalytic_histidines.append(
+                    _residue_record(
+                        key, evidence_role="catalytic_histidine_candidate"
+                    )
+                )
+                if len(catalytic_histidines) >= 3:
+                    break
+            nucleotide_site_residues = []
+            seen_site_keys: set[tuple[str, str, str, str]] = set()
+            for _distance_sq, key in nucleotide_site_candidates:
+                site_key = _residue_site_key(key)
+                if site_key in seen_site_keys:
+                    continue
+                seen_site_keys.add(site_key)
+                role = (
+                    "phosphate_binding_basic_residue"
+                    if key[4] in basic_site_codes
+                    else "nucleotide_site_context_residue"
+                )
+                nucleotide_site_residues.append(
+                    _residue_record(key, evidence_role=role)
+                )
+                if len(nucleotide_site_residues) >= 8:
+                    break
+            basic_count = sum(
+                1
+                for residue in nucleotide_site_residues
+                if residue["residue_code"] in basic_site_codes
+            )
+            histidine_mapped = bool(catalytic_histidines)
+            nucleotide_site_mapped = len(nucleotide_site_residues) >= 4 and basic_count > 0
+            if histidine_mapped and nucleotide_site_mapped:
+                mapping_status = "mapped_catalytic_histidine_and_nucleotide_site_review_only"
+            elif histidine_mapped:
+                mapping_status = "mapped_catalytic_histidine_nucleotide_site_incomplete"
+            elif nucleotide_site_mapped:
+                mapping_status = "mapped_nucleotide_site_catalytic_histidine_unresolved"
+            else:
+                mapping_status = "homolog_mapping_unresolved"
+            mappings.append(
+                {
+                    "chain_id": str(
+                        gamma_atom.get("auth_asym_id")
+                        or gamma_atom.get("label_asym_id")
+                        or ""
+                    ),
+                    "gamma_ligand_code": _atom_code(gamma_atom),
+                    "gamma_atom_name": _atom_name(gamma_atom),
+                    "gamma_ligand_auth_seq_id": str(
+                        gamma_atom.get("auth_seq_id")
+                        or gamma_atom.get("label_seq_id")
+                        or ""
+                    ),
+                    "gamma_ligand_label_seq_id": str(
+                        gamma_atom.get("label_seq_id")
+                        or gamma_atom.get("auth_seq_id")
+                        or ""
+                    ),
+                    "catalytic_histidine_mapping_status": (
+                        "mapped_review_only"
+                        if histidine_mapped
+                        else "not_mapped_review_pending"
+                    ),
+                    "nucleotide_site_mapping_status": (
+                        "mapped_review_only"
+                        if nucleotide_site_mapped
+                        else "not_mapped_review_pending"
+                    ),
+                    "mapping_status": mapping_status,
+                    "catalytic_histidine_residues": catalytic_histidines,
+                    "nucleotide_site_residues": nucleotide_site_residues,
+                    "nucleotide_site_residue_count": len(nucleotide_site_residues),
+                    "phosphate_binding_basic_residue_count": basic_count,
+                }
+            )
+        return mappings
+
+    rows: list[dict[str, Any]] = []
+    fetch_status_counts: Counter[str] = Counter()
+    mapping_status_counts: Counter[str] = Counter()
+    fetched_pdb_ids: set[str] = set()
+    for source_row in epk_sibling_control_homolog_source_plan.get("rows", []) or []:
+        if not isinstance(source_row, dict):
+            continue
+        if str(source_row.get("family_id") or "") != target_family_id:
+            continue
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        if not pdb_id:
+            continue
+        cif_text = cif_text_by_pdb.get(pdb_id)
+        fetch_status = "ok"
+        if cif_text is None:
+            try:
+                cif_text = fetch_pdb_cif(pdb_id)
+                fetched_pdb_ids.add(pdb_id)
+            except Exception as exc:  # pragma: no cover - network fallback path
+                fetch_status = f"fetch_failed:{type(exc).__name__}"
+                cif_text = None
+        fetch_status_counts[fetch_status] += 1
+        gamma_codes = {
+            str(code).upper()
+            for code in source_row.get("gamma_capable_nucleotide_codes", []) or []
+            if code
+        }
+        atoms = parse_atom_site_loop(cif_text) if cif_text else []
+        chain_mappings = (
+            _mapping_rows_for_atoms(atoms=atoms, gamma_codes=gamma_codes)
+            if atoms and gamma_codes
+            else []
+        )
+        mapped_chain_mappings = [
+            mapping
+            for mapping in chain_mappings
+            if mapping.get("mapping_status")
+            == "mapped_catalytic_histidine_and_nucleotide_site_review_only"
+        ]
+        histidine_mapped = any(
+            mapping.get("catalytic_histidine_mapping_status") == "mapped_review_only"
+            for mapping in chain_mappings
+        )
+        nucleotide_site_mapped = any(
+            mapping.get("nucleotide_site_mapping_status") == "mapped_review_only"
+            for mapping in chain_mappings
+        )
+        if not cif_text:
+            mapping_status = "candidate_cif_unavailable"
+            blockers = ["candidate_cif_unavailable"]
+        elif mapped_chain_mappings and source_row.get("has_metal_ligand"):
+            mapping_status = "homolog_mapping_ready_for_distance_measurement_review_only"
+            blockers = [
+                "negative_control_distance_not_measured",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        elif not histidine_mapped:
+            mapping_status = "homolog_catalytic_histidine_mapping_unresolved"
+            blockers = [
+                "homolog_catalytic_histidine_mapping_unresolved",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        elif not nucleotide_site_mapped:
+            mapping_status = "homolog_nucleotide_site_mapping_incomplete"
+            blockers = [
+                "homolog_nucleotide_site_mapping_incomplete",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        else:
+            mapping_status = "homolog_metal_or_gamma_context_unresolved"
+            blockers = [
+                "homolog_metal_or_gamma_context_unresolved",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        mapping_status_counts[mapping_status] += 1
+        rows.append(
+            {
+                "pdb_id": pdb_id,
+                "family_id": target_family_id,
+                "family_name": family_name,
+                "source_entry_ids": source_row.get("source_entry_ids", []),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "structure_title": source_row.get("structure_title"),
+                "source_candidate_status": source_row.get("source_candidate_status"),
+                "fetch_status": fetch_status,
+                "has_gamma_capable_nucleotide": bool(
+                    source_row.get("has_gamma_capable_nucleotide")
+                ),
+                "has_metal_ligand": bool(source_row.get("has_metal_ligand")),
+                "gamma_capable_nucleotide_codes": sorted(gamma_codes),
+                "metal_ligand_codes": source_row.get("metal_ligand_codes", []),
+                "homolog_mapping_status": mapping_status,
+                "chain_mapping_count": len(chain_mappings),
+                "mapped_chain_count": len(mapped_chain_mappings),
+                "catalytic_histidine_mapping_verified": histidine_mapped,
+                "nucleotide_site_mapping_verified": nucleotide_site_mapped,
+                "chain_mappings": chain_mappings,
+                "measurement_ready_for_negative_control": (
+                    mapping_status
+                    == "homolog_mapping_ready_for_distance_measurement_review_only"
+                ),
+                "calibration_distance_measured": False,
+                "negative_control_distance_distribution_ready": False,
+                "threshold_calibrated": False,
+                "selected_threshold_angstrom": None,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    ready_rows = [
+        row for row in rows if row.get("measurement_ready_for_negative_control")
+    ]
+    histidine_mapped_count = sum(
+        1 for row in rows if row.get("catalytic_histidine_mapping_verified")
+    )
+    nucleotide_site_mapped_count = sum(
+        1 for row in rows if row.get("nucleotide_site_mapping_verified")
+    )
+    family_summary = {
+        "family_id": target_family_id,
+        "family_name": family_name,
+        "candidate_pdb_ids": sorted([str(row["pdb_id"]) for row in rows]),
+        "candidate_pdb_count": len(rows),
+        "catalytic_histidine_mapped_candidate_count": histidine_mapped_count,
+        "nucleotide_site_mapped_candidate_count": nucleotide_site_mapped_count,
+        "measurement_ready_homolog_structure_count": len(ready_rows),
+        "mapping_review_status": (
+            "homolog_mapping_ready_for_distance_measurement_review_only"
+            if ready_rows
+            else "homolog_mapping_blocked_review_only"
+        ),
+        "next_review_action": (
+            "measure mapped NDK homolog gamma-to-site controls in a bounded review-only pass"
+            if ready_rows
+            else "source or map additional NDK homolog controls before any distance measurement"
+        ),
+    }
+    return {
+        "metadata": {
+            "method": "epk_sibling_control_homolog_mapping_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "reviewed_sibling_family_id": target_family_id,
+            "reviewed_sibling_family_name": family_name,
+            "source_epk_sibling_control_homolog_source_plan_method": (
+                source_meta.get("method")
+            ),
+            "source_candidate_pdb_count": source_meta.get("candidate_pdb_count"),
+            "row_count": len(rows),
+            "mapping_reviewed_candidate_count": len(rows),
+            "cif_fetch_status_counts": dict(sorted(fetch_status_counts.items())),
+            "fetched_pdb_ids": sorted(fetched_pdb_ids),
+            "homolog_mapping_status_counts": dict(
+                sorted(mapping_status_counts.items())
+            ),
+            "catalytic_histidine_cutoff_angstrom": catalytic_histidine_cutoff_angstrom,
+            "nucleotide_site_cutoff_angstrom": nucleotide_site_cutoff_angstrom,
+            "catalytic_histidine_mapped_candidate_count": histidine_mapped_count,
+            "nucleotide_site_mapped_candidate_count": nucleotide_site_mapped_count,
+            "measurement_ready_homolog_structure_count": len(ready_rows),
+            "ready_for_future_distance_measurement_count": len(ready_rows),
+            "calibration_distance_measured": False,
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact maps catalytic histidine and nucleotide-site "
+                "residue evidence for sourced sibling-control homologs. It "
+                "does not measure calibration distances, select thresholds, "
+                "score ePK, edit registries, run external hard-negative "
+                "re-audits, or import labels."
+            ),
+            "next_actions": [
+                family_summary["next_review_action"],
+                "keep ePK threshold selection closed until mapped controls are measured and audited",
+                "do not score external hard negatives until a real ePK scorer exists",
+            ],
+        },
+        "family_summaries": [family_summary],
+        "rows": sorted(rows, key=lambda row: str(row.get("pdb_id"))),
+        "warnings": [
+            (
+                "Mapped homolog controls are measurement candidates only; "
+                "they are not a calibrated negative-control distribution."
+            )
+        ],
+    }
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -12381,6 +12818,7 @@ def build_epk_precount_gate_status(
     | list[dict[str, Any]]
     | None = None,
     epk_sibling_control_homolog_source_plan: dict[str, Any] | None = None,
+    epk_sibling_control_homolog_mapping_review: dict[str, Any] | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -12513,6 +12951,13 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(homolog_source_meta, dict):
         homolog_source_meta = {}
+    homolog_mapping_meta = (
+        epk_sibling_control_homolog_mapping_review.get("metadata", {})
+        if isinstance(epk_sibling_control_homolog_mapping_review, dict)
+        else {}
+    )
+    if not isinstance(homolog_mapping_meta, dict):
+        homolog_mapping_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -12779,6 +13224,27 @@ def build_epk_precount_gate_status(
                             "measurement_ready_homolog_structure_count"
                         )
                     ),
+                    "sibling_control_homolog_mapping_review_method": (
+                        homolog_mapping_meta.get("method")
+                    ),
+                    "sibling_control_homolog_mapping_family_id": (
+                        homolog_mapping_meta.get("reviewed_sibling_family_id")
+                    ),
+                    "sibling_control_homolog_mapping_ready_structure_count": (
+                        homolog_mapping_meta.get(
+                            "measurement_ready_homolog_structure_count"
+                        )
+                    ),
+                    "sibling_control_homolog_mapping_histidine_mapped_count": (
+                        homolog_mapping_meta.get(
+                            "catalytic_histidine_mapped_candidate_count"
+                        )
+                    ),
+                    "sibling_control_homolog_mapping_nucleotide_site_mapped_count": (
+                        homolog_mapping_meta.get(
+                            "nucleotide_site_mapped_candidate_count"
+                        )
+                    ),
                 },
             }
         )
@@ -12838,19 +13304,39 @@ def build_epk_precount_gate_status(
     else:
         next_actions.insert(0, "source ATP-state gamma geometry for m_csa:640")
     if sibling_control_repair_metas and not sibling_control_repair_ready_structure_count_total:
-        repair_family = (
-            ", ".join(sibling_control_repair_family_ids) or "sibling control"
+        mapped_homolog_family_id = (
+            str(homolog_mapping_meta.get("reviewed_sibling_family_id") or "")
+            if int(
+                homolog_mapping_meta.get("measurement_ready_homolog_structure_count")
+                or 0
+            )
+            else ""
         )
-        next_actions.insert(
-            0,
-            (
-                f"source metal-supported gamma-capable controls for {repair_family} "
-                "before measuring those sibling families"
-            ),
-        )
+        source_still_needed_family_ids = [
+            family_id
+            for family_id in sibling_control_repair_family_ids
+            if family_id != mapped_homolog_family_id
+        ]
+        if source_still_needed_family_ids:
+            repair_family = ", ".join(source_still_needed_family_ids)
+            next_actions.insert(
+                0,
+                (
+                    f"source metal-supported gamma-capable controls for {repair_family} "
+                    "before measuring those sibling families"
+                ),
+            )
     if homolog_source_meta.get("method"):
         homolog_family = homolog_source_meta.get("reviewed_sibling_family_id")
-        if int(homolog_source_meta.get("measurement_ready_homolog_structure_count") or 0):
+        homolog_mapping_ready_count = int(
+            homolog_mapping_meta.get("measurement_ready_homolog_structure_count") or 0
+        )
+        if homolog_mapping_ready_count:
+            next_actions.insert(
+                0,
+                f"measure mapped homolog controls for {homolog_family} in a bounded review-only pass",
+            )
+        elif int(homolog_source_meta.get("measurement_ready_homolog_structure_count") or 0):
             next_actions.insert(
                 0,
                 f"measure mapped homolog controls for {homolog_family} in a bounded review-only pass",
@@ -12991,6 +13477,24 @@ def build_epk_precount_gate_status(
             ),
             "negative_control_homolog_source_ready_structure_count": (
                 homolog_source_meta.get("measurement_ready_homolog_structure_count")
+            ),
+            "source_epk_sibling_control_homolog_mapping_review_method": (
+                homolog_mapping_meta.get("method")
+            ),
+            "negative_control_homolog_mapping_family_id": (
+                homolog_mapping_meta.get("reviewed_sibling_family_id")
+            ),
+            "negative_control_homolog_mapping_candidate_count": (
+                homolog_mapping_meta.get("mapping_reviewed_candidate_count")
+            ),
+            "negative_control_homolog_mapping_histidine_mapped_count": (
+                homolog_mapping_meta.get("catalytic_histidine_mapped_candidate_count")
+            ),
+            "negative_control_homolog_mapping_nucleotide_site_mapped_count": (
+                homolog_mapping_meta.get("nucleotide_site_mapped_candidate_count")
+            ),
+            "negative_control_homolog_mapping_ready_structure_count": (
+                homolog_mapping_meta.get("measurement_ready_homolog_structure_count")
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

@@ -5346,6 +5346,112 @@ class CliTests(unittest.TestCase):
             self.assertEqual(row["catalytic_mapping_status"], "not_mapped_review_pending")
             self.assertFalse(row["measurement_ready_for_negative_control"])
 
+    def test_build_epk_sibling_control_homolog_mapping_review_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_plan = root / "source_plan.json"
+            out = root / "homolog_mapping_review.json"
+            (root / "9PFY.cif").write_text(
+                "\n".join(
+                    [
+                        "data_9PFY",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "HETATM ATP ATP PG PG A A 201 201 0.0 0.0 0.0",
+                        "HETATM MG MG MG MG A A 202 202 1.0 0.0 0.0",
+                        "ATOM HIS HIS ND1 ND1 A A 139 139 3.0 0.0 0.0",
+                        "ATOM LYS LYS NZ NZ A A 34 34 3.5 0.2 0.0",
+                        "ATOM ARG ARG NH1 NH1 A A 126 126 3.7 0.0 0.0",
+                        "ATOM ASN ASN OD1 OD1 A A 136 136 4.0 0.1 0.0",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            source_plan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_sibling_control_homolog_source_plan",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "reviewed_sibling_family_id": "ndk",
+                            "candidate_pdb_count": 1,
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9PFY",
+                                "family_id": "ndk",
+                                "family_name": "Nucleoside diphosphate kinases",
+                                "source_entry_ids": ["m_csa:637"],
+                                "source_candidate_status": (
+                                    "candidate_gamma_metal_source_review_only"
+                                ),
+                                "has_gamma_capable_nucleotide": True,
+                                "has_metal_ligand": True,
+                                "gamma_capable_nucleotide_codes": ["ATP"],
+                                "metal_ligand_codes": ["MG"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-sibling-control-homolog-mapping-review",
+                    "--epk-sibling-control-homolog-source-plan",
+                    str(source_plan),
+                    "--family-id",
+                    "ndk",
+                    "--cif-dir",
+                    str(root),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            review = json.loads(out.read_text(encoding="utf-8"))
+            metadata = review["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_sibling_control_homolog_mapping_review"
+            )
+            self.assertEqual(metadata["reviewed_sibling_family_id"], "ndk")
+            self.assertEqual(metadata["mapping_reviewed_candidate_count"], 1)
+            self.assertEqual(metadata["catalytic_histidine_mapped_candidate_count"], 1)
+            self.assertEqual(metadata["nucleotide_site_mapped_candidate_count"], 1)
+            self.assertEqual(metadata["measurement_ready_homolog_structure_count"], 1)
+            self.assertFalse(metadata["calibration_distance_measured"])
+            self.assertFalse(metadata["epk_score_computed"])
+            row = review["rows"][0]
+            self.assertEqual(
+                row["homolog_mapping_status"],
+                "homolog_mapping_ready_for_distance_measurement_review_only",
+            )
+            self.assertTrue(row["measurement_ready_for_negative_control"])
+            self.assertFalse(row["negative_control_distance_distribution_ready"])
+            self.assertEqual(row["chain_mappings"][0]["chain_id"], "A")
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

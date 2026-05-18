@@ -83,6 +83,7 @@ from .labels import (
     build_epk_nonready_ligand_repair_plan,
     build_epk_precount_gate_status,
     build_epk_positive_fingerprint_readiness_packet,
+    build_epk_sibling_control_homolog_mapping_review,
     build_epk_sibling_control_homolog_source_plan,
     build_epk_sibling_control_repair_review,
     build_epk_sibling_negative_control_alternate_gamma_distance_sample,
@@ -5685,6 +5686,33 @@ def cmd_build_epk_sibling_control_homolog_source_plan(
     return 0
 
 
+def cmd_build_epk_sibling_control_homolog_mapping_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_sibling_control_homolog_source_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_control_homolog_source_plan = json.load(handle)
+    review = build_epk_sibling_control_homolog_mapping_review(
+        epk_sibling_control_homolog_source_plan=(
+            epk_sibling_control_homolog_source_plan
+        ),
+        family_id=args.family_id,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+        catalytic_histidine_cutoff_angstrom=(
+            args.catalytic_histidine_cutoff_angstrom
+        ),
+        nucleotide_site_cutoff_angstrom=args.nucleotide_site_cutoff_angstrom,
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK sibling-control homolog mapping review to "
+        f"{args.out} (ready="
+        f"{review['metadata']['measurement_ready_homolog_structure_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_nonready_ligand_alternate_structure_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -5828,6 +5856,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_sibling_control_homolog_source_plan = json.load(handle)
+    epk_sibling_control_homolog_mapping_review = None
+    if args.epk_sibling_control_homolog_mapping_review:
+        with Path(args.epk_sibling_control_homolog_mapping_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_sibling_control_homolog_mapping_review = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -5863,6 +5897,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         epk_sibling_control_repair_review=epk_sibling_control_repair_review,
         epk_sibling_control_homolog_source_plan=(
             epk_sibling_control_homolog_source_plan
+        ),
+        epk_sibling_control_homolog_mapping_review=(
+            epk_sibling_control_homolog_mapping_review
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -12658,6 +12695,38 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_sibling_control_homolog_source_plan
     )
 
+    epk_homolog_mapping_review = subparsers.add_parser(
+        "build-epk-sibling-control-homolog-mapping-review",
+        help="map review-only homolog sibling-control catalytic residues before measurement",
+    )
+    epk_homolog_mapping_review.add_argument(
+        "--epk-sibling-control-homolog-source-plan",
+        default="artifacts/v3_epk_sibling_control_homolog_source_plan.json",
+    )
+    epk_homolog_mapping_review.add_argument(
+        "--family-id",
+        default="ndk",
+        help="missing sibling family id to map",
+    )
+    epk_homolog_mapping_review.add_argument("--cif-dir", default=None)
+    epk_homolog_mapping_review.add_argument(
+        "--catalytic-histidine-cutoff-angstrom",
+        type=float,
+        default=4.0,
+    )
+    epk_homolog_mapping_review.add_argument(
+        "--nucleotide-site-cutoff-angstrom",
+        type=float,
+        default=5.5,
+    )
+    epk_homolog_mapping_review.add_argument(
+        "--out",
+        default="artifacts/v3_epk_sibling_control_homolog_mapping_review.json",
+    )
+    epk_homolog_mapping_review.set_defaults(
+        func=cmd_build_epk_sibling_control_homolog_mapping_review
+    )
+
     epk_nonready_alternate_plan = subparsers.add_parser(
         "build-epk-nonready-ligand-alternate-structure-plan",
         help="screen review-only alternate structures for non-ready ePK ligand rows",
@@ -12767,6 +12836,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-sibling-control-homolog-source-plan",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-sibling-control-homolog-mapping-review",
         default=None,
     )
     epk_precount_gate_status.add_argument(

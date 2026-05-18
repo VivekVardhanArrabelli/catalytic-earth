@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 181
-- Measured elapsed time: 5421.3 minutes (90.36 hours)
+- Entries: 182
+- Measured elapsed time: 5434.3 minutes (90.57 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 192.2 measured minutes (3.20 hours)
+- post-infra-science: 205.2 measured minutes (3.42 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2017
-- Evidence references logged: 1580
+- Artifact references logged: 2027
+- Evidence references logged: 1591
 
 ## Recent Entries
-
-### 2026-05-18T13:55:35.875542+00:00 - post-infra-science
-
-- Task: ePK acceptor identity, ATP-state, and threshold-control review
-- Time mode: measured
-- Measured minutes: 12.2
-- Started: 2026-05-18T13:42:59Z
-- Ended: 2026-05-18T13:55:11Z
-- Artifacts: artifacts/v3_epk_acceptor_identity_review_1025.json, artifacts/v3_epk_atp_state_evidence_plan_1025.json, artifacts/v3_epk_gamma_threshold_control_plan_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: startup 465-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and 0 blockers, targeted ePK tests passed, final 467-test unit discovery passed, compileall passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, gamma threshold control plan keeps selected_threshold null and threshold_calibrated false, pre-count gate remains blocked_review_only, git diff --check passed
-- Notes: Recovered stale lock with dead PID and coherent dirty ePK work, then continued directly without delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ### 2026-05-18T15:03:10.233611+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-18T22:05:11Z
 - Artifacts: artifacts/v3_epk_sibling_control_homolog_source_plan_ndk_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: startup 486-test unit discovery passed, final 488-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, NDK homolog source plan found 4 gamma-capable Mg-supported candidates and 0 measurement-ready mapped structures, pre-count gate remains blocked_review_only, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
+
+### 2026-05-18T23:06:35.869912+00:00 - post-infra-science
+
+- Task: ePK NDK homolog mapping review
+- Time mode: measured
+- Measured minutes: 13.0
+- Started: 2026-05-18T22:53:24Z
+- Ended: 2026-05-18T23:06:24Z
+- Artifacts: artifacts/v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
+- Evidence: startup 488-test unit discovery passed, startup validate passed with 682 labels, migration guard passed with 108 rows and 0 blockers, NDK homolog mapping review mapped 4 gamma-metal candidates and 4 measurement-ready review-only structures, pre-count gate remains blocked_review_only, final 490-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ## Expectation Updates
@@ -258,6 +258,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-18T20:03:10.553576+00:00: ePK PfkB mapping ambiguity is narrowed but threshold selection remains blocked because PfkB still lacks a metal-supported gamma-capable sibling control.
 - 2026-05-18T21:12:49.756080+00:00: ePK direct graph-linked sibling-control repair is exhausted for ATP-grasp NDK PfkA and PfkB; threshold selection now needs external or homolog gamma-capable controls rather than another direct repair review.
 - 2026-05-18T22:05:23.696999+00:00: ePK NDK now has homolog gamma-metal source candidates but threshold selection remains blocked until catalytic-residue mapping succeeds.
+- 2026-05-18T23:06:35.869912+00:00: ePK NDK mapping is no longer the active blocker; next work should measure mapped NDK homolog controls review-only before threshold selection.
 
 ## Scope Adjustments
 

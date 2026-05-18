@@ -50,6 +50,46 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T22:53:24Z automation run, the normal direct automation
+protocol passed: the lock was acquired, `git fetch` and
+`git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed,
+startup unit discovery passed, `validate` passed, and
+`validate-artifact-migration --dry-run --check-local-files` again reported 108
+rows, 0 blockers, and `removal_allowed=0`. Phase 1 artifact migration remained
+guard-only and closed.
+
+The scientific work continued the review-only ePK lane without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any
+external hard-negative label. It added
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json` plus
+the CLI builder `build-epk-sibling-control-homolog-mapping-review`. This
+consumes the NDK homolog-source plan and maps all four sourced NDK structures
+(`1WKL`, `3Q86`, `9OAN`, and `9PFY`) to catalytic histidine plus local
+nucleotide-site residue context. The mapping review sets
+`measurement_ready_homolog_structure_count=4` for a future bounded
+negative-control measurement pass, but it measures no calibration distance,
+selects no threshold, computes no ePK score, runs no external hard-negative
+re-audit, and changes no registry or label.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the NDK
+homolog mapping review attached. The lane remains `blocked_review_only`: NDK
+mapping is no longer the immediate blocker, but the pre-count gate still fails
+negative-control distribution readiness, acceptor-threshold calibration,
+complete gamma geometry, external hard-negative scored re-audit, and
+registry/label-factory extension.
+
+Evidence-based confidence call: ePK threshold selection is now blocked by the
+next measurement/calibration step rather than NDK mapping. The highest-value
+next bounded ePK action is to measure the mapped NDK homolog controls in a
+review-only pass and then re-run the calibration sufficiency status; in
+parallel only as needed, source metal-supported gamma-capable controls for
+ATP-grasp, PfkA, and PfkB. Do not add the ePK registry fingerprint, import ePK
+labels, score external hard negatives, or reopen migration Phase 2.
+
+Verification passed with the final 490-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T21:52:26Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and
 `git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed,

@@ -339,15 +339,23 @@ shortlist has four gamma-capable, Mg-supported NDK structures (`1WKL`, `3Q86`,
 `measurement_ready_homolog_structure_count=0`. The artifact is review-only:
 it does not measure distances, select thresholds, score ePK, edit registries,
 re-audit external hard negatives, or import labels.
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json`
+removes that mapping blocker for NDK without converting it into calibration
+evidence. It maps all four sourced structures to catalytic histidine and local
+nucleotide-site residue context, setting
+`measurement_ready_homolog_structure_count=4` for a future bounded measurement
+pass. It still does not measure calibration distances, select thresholds,
+score ePK, edit registries, re-audit external hard negatives, or import
+labels.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
 identity review, gamma-threshold control planning, explicit non-ready-row
 exclusion, sibling alternate-control screening, sibling alternate-control
-distance measurement, calibration-sufficiency review, and NDK homolog sourcing
-are now explicit review-only preparation; negative-control distribution
-readiness, acceptor-threshold calibration, complete gamma geometry, external
-hard-negative scored re-audit, and registry/label-factory extension all remain
-failed gates.
+distance measurement, calibration-sufficiency review, NDK homolog sourcing, and
+NDK homolog mapping are now explicit review-only preparation; negative-control
+distribution readiness, acceptor-threshold calibration, complete gamma
+geometry, external hard-negative scored re-audit, and registry/label-factory
+extension all remain failed gates.
 
 ## Active Learning Queue
 
