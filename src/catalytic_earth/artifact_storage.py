@@ -381,6 +381,12 @@ def _previous_geometry_path(slice_id: int | None) -> str | None:
     return f"artifacts/v3_geometry_features_{previous}.json"
 
 
+GEOMETRY_FEATURE_UNAVAILABLE_WITH_REASON_PATHS = {
+    "artifacts/v3_geometry_features_1000.json",
+    "artifacts/v3_geometry_features_1025.json",
+}
+
+
 def _producer_consumer_profile(row: dict[str, Any]) -> dict[str, Any]:
     path = str(row["path"])
     stem = Path(path).stem
@@ -462,13 +468,28 @@ def _producer_consumer_profile(row: dict[str, Any]) -> dict[str, Any]:
             assumptions.append(
                 "exact historical reuse source can vary; adjacent prior slice is the documented pattern"
             )
+            if path in GEOMETRY_FEATURE_UNAVAILABLE_WITH_REASON_PATHS:
+                status = "unavailable_with_reason"
+                assumptions.append(
+                    "historical adjacent-slice reuse plus PDB/mmCIF cache closure is not reconstructable from committed state"
+                )
         command += f"--out {path}"
+        blockers = []
+        if status == "unavailable_with_reason":
+            blockers = [
+                (
+                    "historical geometry feature reuse/cache session is unavailable; "
+                    "committed path, size, and SHA-256 preserve the artifact identity"
+                ),
+                "scratch regeneration may be used only for comparison and must not replace committed scientific artifacts",
+            ]
         base.update(
             {
                 "producer_command_status": status,
                 "likely_producer_cli_commands": [command],
                 "source_inputs": inputs,
                 "parameter_assumptions": assumptions,
+                "migration_blockers": blockers,
                 "downstream_consumers": [
                     path.replace("v3_geometry_features", "v3_geometry_retrieval"),
                     "geometry evaluation, abstention calibration, hard-negative controls, label-factory gates",
@@ -889,6 +910,14 @@ def _execution_producer_status_reason(
                 "is unavailable with reason; the committed source path, size, "
                 "SHA-256, and Git target URI preserve the current artifact "
                 "identity, and no migration readiness or removal is authorized"
+            )
+        if source_path in GEOMETRY_FEATURE_UNAVAILABLE_WITH_REASON_PATHS:
+            return (
+                "historical geometry feature adjacent-slice reuse and PDB/mmCIF "
+                "cache provenance is unavailable with reason; the committed source "
+                "path, size, SHA-256, and Git target URI preserve the current "
+                "artifact identity, and no migration readiness or removal is "
+                "authorized"
             )
         return "producer command provenance is explicitly unavailable with reason"
     if source_path.startswith("artifacts/v3_geometry_features_"):
@@ -1434,12 +1463,26 @@ def validate_artifact_migration_manifest(
                     ),
                 }
             )
-        if not isinstance(row.get("downstream_consumers"), list):
+        downstream_consumers = row.get("downstream_consumers")
+        if not isinstance(downstream_consumers, list):
             blockers.append(
                 {
                     "row_index": index,
                     "source_path": source_path,
                     "reason": "downstream_consumers must be a list",
+                }
+            )
+        elif row.get("downstream_consumers_accounted_for") is not bool(
+            downstream_consumers
+        ):
+            blockers.append(
+                {
+                    "row_index": index,
+                    "source_path": source_path,
+                    "reason": (
+                        "downstream_consumers_accounted_for disagrees with "
+                        "downstream_consumers"
+                    ),
                 }
             )
         if not isinstance(row.get("migration_blockers"), list):

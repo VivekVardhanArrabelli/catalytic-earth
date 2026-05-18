@@ -178,9 +178,9 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(manifest["metadata"]["removal_allowed_count"], 0)
         self.assertEqual(
             manifest["metadata"]["producer_status_counts"],
-            {"known": 68, "unavailable_with_reason": 9, "unknown_blocking": 31},
+            {"known": 68, "unavailable_with_reason": 11, "unknown_blocking": 29},
         )
-        self.assertEqual(manifest["metadata"]["unknown_blocking_count"], 31)
+        self.assertEqual(manifest["metadata"]["unknown_blocking_count"], 29)
         commit = manifest["metadata"]["current_main_commit"]
         for row in manifest["rows"]:
             self.assertEqual(row["storage_class"], "git")
@@ -195,6 +195,13 @@ class ArtifactStorageTests(unittest.TestCase):
             if row["producer_status"] == "unknown_blocking":
                 self.assertGreater(len(row["producer_provenance_recovery_steps"]), 0)
             self.assertFalse(row["removal_allowed"])
+        unavailable_paths = {
+            row["source_path"]
+            for row in manifest["rows"]
+            if row["producer_status"] == "unavailable_with_reason"
+        }
+        self.assertIn("artifacts/v3_geometry_features_1000.json", unavailable_paths)
+        self.assertIn("artifacts/v3_geometry_features_1025.json", unavailable_paths)
 
     def test_large_artifact_manifest_feeds_admission_guard(self) -> None:
         inventory = {
@@ -620,6 +627,77 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertIn("malformed SHA-256", reasons)
         self.assertIn("externalized storage requires target_uri", reasons)
 
+    def test_validator_blocks_unsafe_removal_contract_drift(self) -> None:
+        row = {
+            "source_path": "artifacts/raw.tsv",
+            "file_exists": True,
+            "size_bytes": 1,
+            "sha256": "",
+            "artifact_category": "raw_cache",
+            "canonical_or_noncanonical": "canonical",
+            "source_producer_command_status": "known",
+            "producer_status": "invalid_status",
+            "producer_status_reason": "producer command provenance is recorded as known",
+            "producer_commands": ["cmd"],
+            "source_inputs": ["input"],
+            "parameter_assumptions": [],
+            "producer_provenance_recovery_steps": [],
+            "downstream_consumers": [],
+            "storage_class": "invalid_storage",
+            "target_uri": "",
+            "restore_command": "",
+            "restore_verification": "sha256",
+            "removal_allowed": True,
+            "migration_ready": True,
+            "remote_sha256_verified": True,
+            "restore_test_passed": True,
+            "downstream_consumers_accounted_for": True,
+            "canonical_summary_present": False,
+            "migration_blockers": [],
+        }
+        manifest = {
+            "metadata": {
+                "manifest_schema_version": "artifact_migration_execution.v1",
+                **CURRENT_MAIN_ARTIFACT_BASELINE,
+                "row_count": 1,
+                "migration_ready_count": 1,
+                "unknown_blocking_count": 0,
+                "removal_allowed_count": 1,
+                "remote_sha256_verified_count": 1,
+                "producer_status_counts": {"invalid_status": 1},
+                "unknown_blocking_summary": {
+                    "row_count": 0,
+                    "by_artifact_category": {},
+                    "by_planned_storage_class": {},
+                    "by_source_producer_command_status": {},
+                    "source_paths": [],
+                },
+            },
+            "rows": [row],
+        }
+
+        validation = validate_artifact_migration_manifest(manifest)
+
+        self.assertEqual(validation["metadata"]["status"], "blocked")
+        reasons = {blocker["reason"] for blocker in validation["blockers"]}
+        self.assertIn("malformed SHA-256", reasons)
+        self.assertIn(
+            "row must include canonical_summary_path or canonical_summary_not_required_reason",
+            reasons,
+        )
+        self.assertIn("invalid producer_status", reasons)
+        self.assertIn("invalid storage_class", reasons)
+        self.assertIn("externalized storage requires target_uri", reasons)
+        self.assertIn(
+            "downstream_consumers_accounted_for disagrees with downstream_consumers",
+            reasons,
+        )
+        self.assertIn("stored removal_allowed disagrees with derived value", reasons)
+        self.assertIn("canonical artifacts cannot be marked for removal", reasons)
+        self.assertIn("removal requires restore_command", reasons)
+        self.assertIn("removal requires canonical summary or explicit reason", reasons)
+        self.assertIn("removal requires target_uri", reasons)
+
     def test_restore_artifacts_supports_local_targets_and_hash_quarantine(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -675,6 +753,47 @@ class ArtifactStorageTests(unittest.TestCase):
             bad["actions"][0]["action"],
             "failed_sha256_mismatch_quarantined",
         )
+
+    def test_restore_artifacts_blocks_existing_mismatch_without_force(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            payload = root / "payload.bin"
+            payload.write_bytes(b"good")
+            artifact_path = root / "artifacts" / "existing.bin"
+            artifact_path.parent.mkdir()
+            artifact_path.write_bytes(b"wrong")
+            manifest = {
+                "rows": [
+                    {
+                        "source_path": "artifacts/existing.bin",
+                        "sha256": (
+                            "770e607624d689265ca6c44884d0807d9b054d23c473c106"
+                            "c72be9de08b7376c"
+                        ),
+                        "target_uri": payload.as_uri(),
+                    }
+                ]
+            }
+
+            dry = restore_artifacts_from_manifest(
+                manifest,
+                repo_root=root,
+                paths=["artifacts/existing.bin"],
+                dry_run=True,
+            )
+            restored = restore_artifacts_from_manifest(
+                manifest,
+                repo_root=root,
+                paths=["artifacts/existing.bin"],
+                dry_run=False,
+            )
+            observed_existing = artifact_path.read_bytes()
+
+        self.assertEqual(dry["metadata"]["status"], "blocked")
+        self.assertEqual(dry["actions"][0]["action"], "failed_existing_mismatch")
+        self.assertEqual(restored["metadata"]["status"], "blocked")
+        self.assertEqual(restored["actions"][0]["action"], "failed_existing_mismatch")
+        self.assertEqual(observed_existing, b"wrong")
 
     def test_restore_artifacts_does_not_partially_write_on_later_failure(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

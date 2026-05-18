@@ -95,9 +95,11 @@ The repository currently contains:
     migration-ready through metadata drift. Execution rows now carry producer
     commands, source inputs, parameter assumptions, and explicit provenance
     recovery steps for fail-closed `unknown_blocking` rows. Producer status is
-    now 68 `known`, 9 `unavailable_with_reason` Foldseek coordinate sidecars
-    with preserved path/size/SHA identity, and 31 `unknown_blocking` geometry
-    feature rows that still need provenance closure.
+    now 68 `known`, 11 `unavailable_with_reason` rows with preserved
+    path/size/SHA identity (9 Foldseek coordinate sidecars plus the 1,000 and
+    1,025 geometry feature artifacts whose exact historical reuse/cache
+    closure is unavailable), and 29 `unknown_blocking` geometry feature rows
+    that still need provenance closure.
     `artifacts/v3_artifact_admission_guard_1025.json` guards future large
     artifact admission. See `docs/artifact_storage.md`.
 
