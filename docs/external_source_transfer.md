@@ -1453,3 +1453,12 @@ blocker concrete: all three current external labels are present and evidence
 separated, but their ePK status is only `planned_not_scored` until a future ePK
 scoring rule and inverse-gate policy are implemented and terminal review is
 rerun under the expanded ontology.
+`artifacts/v3_epk_draft_fingerprint_spec_1025.json` carries the same restriction
+forward into the draft scorer plan: the three external hard negatives are listed
+only as review-only re-audit rows, not as ePK evaluation evidence, until they are
+rescored with a text-free ePK rule and pass the expanded-ontology terminal
+review and label-factory gates.
+`artifacts/v3_epk_local_evidence_audit_1025.json` does not change that external
+contract. It only profiles local ePK-row evidence for future scorer design and
+leaves every external label outside ePK predictive evidence until the scorer and
+re-audit gates exist.

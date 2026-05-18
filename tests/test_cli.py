@@ -2495,6 +2495,271 @@ class CliTests(unittest.TestCase):
             self.assertEqual(plan["metadata"]["external_label_reaudit_row_count"], 1)
             self.assertEqual(plan["metadata"]["countable_label_candidate_count"], 0)
 
+    def test_build_epk_draft_fingerprint_spec_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            epk_readiness = root / "epk_readiness.json"
+            reaudit_plan = root / "reaudit_plan.json"
+            out = root / "epk_draft_spec.json"
+            epk_readiness.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_positive_fingerprint_readiness_packet",
+                            "target_parent_family_id": "atp_phosphoryl_transfer",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "readiness_status": (
+                                "draft_fingerprint_spec_ready_not_countable"
+                            ),
+                            "evidence_ready_for_draft_fingerprint_spec": True,
+                            "ready_to_expand_positive_fingerprint_universe": False,
+                            "current_positive_fingerprint_ids": [
+                                "ser_his_acid_hydrolase",
+                                "metal_dependent_hydrolase",
+                                "plp_dependent_enzyme",
+                                "radical_sam_enzyme",
+                                "cobalamin_radical_rearrangement",
+                                "flavin_monooxygenase",
+                                "flavin_dehydrogenase_reductase",
+                                "heme_peroxidase_oxidase",
+                            ],
+                        },
+                        "target_fingerprint_draft": {
+                            "id": "epk_atp_gamma_phosphoryl_transfer",
+                            "name": "ePK/ePK-like ATP gamma-phosphoryl transfer",
+                            "family_id": "epk",
+                            "parent_family_id": "atp_phosphoryl_transfer",
+                            "cofactors": ["ATP", "Mg2+"],
+                        },
+                        "rows": [
+                            {
+                                "entry_id": entry_id,
+                                "entry_name": name,
+                                "family_id": "epk",
+                                "source_family_support_level": (
+                                    "expert_review_supported_family_boundary"
+                                ),
+                                "expert_supported_family_boundary": True,
+                                "active_site_base_evidence_status": (
+                                    "review_text_support"
+                                ),
+                                "cofactor_evidence_status": (
+                                    "review_text_mg_atp_context"
+                                ),
+                                "reaction_center_evidence_status": (
+                                    "review_text_atp_gamma_phosphoryl_transfer"
+                                ),
+                                "acceptor_scope_evidence_status": (
+                                    "review_text_hydroxyl_acceptor"
+                                ),
+                                "current_top1_fingerprint_id": (
+                                    "metal_dependent_hydrolase"
+                                ),
+                                "current_top1_score": 0.3,
+                                "readiness_blockers": [
+                                    "positive_fingerprint_registry_not_expanded"
+                                ],
+                                "review_only": True,
+                                "countable_label_candidate": False,
+                            }
+                            for entry_id, name in [
+                                ("m_csa:35", "phosphorylase kinase"),
+                                ("m_csa:246", "receptor protein-tyrosine kinase"),
+                                ("m_csa:282", "MAP kinase kinase"),
+                            ]
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            reaudit_plan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_external_hard_negative_reaudit_plan",
+                            "reaudit_plan_ready": True,
+                            "ready_to_run_scored_reaudit": False,
+                            "scored_reaudit_blockers": [
+                                "epk_positive_scoring_rule_not_implemented"
+                            ],
+                        },
+                        "rows": [
+                            {
+                                "entry_id": entry_id,
+                                "reaudit_status": "planned_not_scored",
+                                "current_label_contract_valid": True,
+                                "evidence_separation_valid": True,
+                                "review_only": True,
+                                "countable_label_candidate": False,
+                            }
+                            for entry_id in [
+                                "uniprot:P06744",
+                                "uniprot:P78549",
+                                "uniprot:Q3LXA3",
+                            ]
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-draft-fingerprint-spec",
+                    "--epk-positive-fingerprint-readiness-packet",
+                    str(epk_readiness),
+                    "--epk-external-hard-negative-reaudit-plan",
+                    str(reaudit_plan),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            spec = json.loads(out.read_text(encoding="utf-8"))
+            self.assertTrue(
+                spec["metadata"]["draft_spec_ready_for_scorer_prototype"]
+            )
+            self.assertFalse(
+                spec["metadata"]["ready_to_expand_positive_fingerprint_universe"]
+            )
+            self.assertFalse(spec["metadata"]["fingerprint_registry_edited"])
+            self.assertEqual(spec["metadata"]["countable_label_candidate_count"], 0)
+            self.assertEqual(spec["metadata"]["current_positive_fingerprint_count"], 8)
+            self.assertEqual(spec["metadata"]["external_reaudit_row_count"], 3)
+            self.assertEqual(
+                spec["external_hard_negative_reaudit_summary"]["reaudit_status"],
+                "planned_not_scored",
+            )
+            self.assertIn(
+                "M-CSA mechanism text",
+                spec["draft_fingerprint_spec"]["predictive_evidence_exclusions"],
+            )
+
+    def test_build_epk_local_evidence_audit_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            draft_spec = root / "epk_draft_spec.json"
+            geometry = root / "geometry.json"
+            out = root / "epk_local_audit.json"
+            draft_spec.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_draft_fingerprint_spec",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "draft_spec_ready_for_scorer_prototype": True,
+                        },
+                        "boundary_rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                            },
+                            {
+                                "entry_id": "m_csa:662",
+                                "entry_name": "phosphatidylinositol kinase",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "geometry_feature_extraction",
+                            "slice_size": 1000,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "status": "ok",
+                                "pdb_id": "2PHK",
+                                "resolved_residue_count": 3,
+                                "ligand_context": {
+                                    "ligand_codes": ["ATP", "MG"],
+                                    "structure_ligand_codes": ["ATP", "MG"],
+                                },
+                                "residues": [
+                                    {
+                                        "code": "Asp",
+                                        "resid": 149,
+                                        "chain_name": "A",
+                                        "roles": ["proton acceptor"],
+                                    }
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:662",
+                                "status": "ok",
+                                "pdb_id": "1BO1",
+                                "resolved_residue_count": 2,
+                                "ligand_context": {
+                                    "ligand_codes": [],
+                                    "structure_ligand_codes": [],
+                                },
+                                "residues": [
+                                    {
+                                        "code": "Asp",
+                                        "resid": 278,
+                                        "chain_name": "A",
+                                        "roles": ["proton shuttle"],
+                                    }
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-local-evidence-audit",
+                    "--epk-draft-fingerprint-spec",
+                    str(draft_spec),
+                    "--geometry",
+                    str(geometry),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(audit["metadata"]["method"], "epk_local_evidence_audit")
+            self.assertEqual(audit["metadata"]["boundary_row_count"], 2)
+            self.assertEqual(
+                audit["metadata"]["ready_for_text_free_axis_prototype_count"], 1
+            )
+            self.assertFalse(audit["metadata"]["ready_to_run_epk_scorer"])
+            rows = {row["entry_id"]: row for row in audit["rows"]}
+            self.assertEqual(
+                rows["m_csa:35"]["scorer_input_readiness"],
+                "ready_for_text_free_axis_prototype",
+            )
+            self.assertEqual(
+                rows["m_csa:662"]["scorer_input_readiness"],
+                "needs_ligand_source_or_alternate_structure",
+            )
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

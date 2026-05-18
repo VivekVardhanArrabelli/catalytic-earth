@@ -6315,6 +6315,572 @@ def build_epk_external_hard_negative_reaudit_plan(
     }
 
 
+def build_epk_draft_fingerprint_spec(
+    *,
+    epk_positive_fingerprint_readiness_packet: dict[str, Any],
+    epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Turn the review-only ePK packet into a non-countable draft spec.
+
+    This artifact is the next step after readiness: it freezes the intended
+    evidence axes and gates for an eventual scorer while keeping the positive
+    fingerprint universe unchanged.
+    """
+
+    readiness_meta = epk_positive_fingerprint_readiness_packet.get("metadata", {})
+    if not isinstance(readiness_meta, dict):
+        readiness_meta = {}
+    reaudit_meta = (
+        epk_external_hard_negative_reaudit_plan.get("metadata", {})
+        if isinstance(epk_external_hard_negative_reaudit_plan, dict)
+        else {}
+    )
+    if not isinstance(reaudit_meta, dict):
+        reaudit_meta = {}
+    target_draft = epk_positive_fingerprint_readiness_packet.get(
+        "target_fingerprint_draft", {}
+    )
+    if not isinstance(target_draft, dict):
+        target_draft = {}
+    target_fingerprint_id = str(
+        readiness_meta.get("target_fingerprint_id")
+        or target_draft.get("id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    current_fingerprint_ids = _sorted_strings(
+        readiness_meta.get("current_positive_fingerprint_ids", [])
+    )
+    if not current_fingerprint_ids:
+        current_fingerprint_ids = sorted(
+            fingerprint.id for fingerprint in load_fingerprints()
+        )
+    readiness_rows = [
+        row
+        for row in epk_positive_fingerprint_readiness_packet.get("rows", [])
+        if isinstance(row, dict)
+    ]
+    boundary_rows: list[dict[str, Any]] = []
+    row_blocker_counts: Counter[str] = Counter()
+    for row in readiness_rows:
+        blockers = _sorted_strings(row.get("readiness_blockers", []))
+        row_blocker_counts.update(blockers)
+        evidence_axes = {
+            "active_site_base": row.get("active_site_base_evidence_status"),
+            "atp_mg_cofactor": row.get("cofactor_evidence_status"),
+            "reaction_center": row.get("reaction_center_evidence_status"),
+            "acceptor_scope": row.get("acceptor_scope_evidence_status"),
+            "current_counterevidence": (
+                "hydrolase_top1_control"
+                if row.get("current_top1_fingerprint_id")
+                == "metal_dependent_hydrolase"
+                else "current_top1_not_hydrolase"
+            ),
+        }
+        boundary_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "entry_name": row.get("entry_name"),
+                "family_id": row.get("family_id") or "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "source_family_support_level": row.get("source_family_support_level"),
+                "expert_supported_family_boundary": bool(
+                    row.get("expert_supported_family_boundary")
+                ),
+                "review_text_evidence_axes": evidence_axes,
+                "current_top1_fingerprint_id": row.get("current_top1_fingerprint_id"),
+                "current_top1_score": row.get("current_top1_score"),
+                "predictive_use_status": (
+                    "review_context_only_until_local_scorer_implemented"
+                ),
+                "future_predictive_local_evidence_requirements": [
+                    "resolved catalytic base or acid-base residue in the active-site pocket",
+                    "local ATP/Mg2+ or phosphate-positioning evidence from structure features",
+                    "hydroxyl acceptor geometry or source-traced acceptor residue/substrate mapping",
+                    "reaction-center rule for ATP gamma-phosphoryl transfer rather than water hydrolysis",
+                    "neighbor-family counterevidence against ASKHA, Pfk, GHMP, GHKL, ATP-grasp, dNK, and NDK lanes",
+                ],
+                "readiness_blockers": blockers,
+            }
+        )
+
+    reaudit_rows = [
+        row
+        for row in (
+            epk_external_hard_negative_reaudit_plan or {}
+        ).get("rows", [])
+        if isinstance(row, dict)
+    ]
+    external_reaudit_row_count = len(reaudit_rows)
+    external_reaudit_planned_count = sum(
+        1 for row in reaudit_rows if row.get("reaudit_status") == "planned_not_scored"
+    )
+    external_reaudit_contract_valid_count = sum(
+        1
+        for row in reaudit_rows
+        if row.get("current_label_contract_valid")
+        and row.get("evidence_separation_valid")
+    )
+    source_ready = bool(
+        readiness_meta.get("evidence_ready_for_draft_fingerprint_spec")
+    )
+    source_rows_review_only = all(
+        row.get("review_only") is True
+        and row.get("countable_label_candidate") is False
+        for row in boundary_rows
+    )
+    reaudit_plan_ready = bool(reaudit_meta.get("reaudit_plan_ready"))
+    scored_reaudit_ready = bool(reaudit_meta.get("ready_to_run_scored_reaudit"))
+    draft_spec_ready = (
+        source_ready
+        and bool(target_draft)
+        and len(boundary_rows) >= 3
+        and source_rows_review_only
+        and (
+            epk_external_hard_negative_reaudit_plan is None
+            or (
+                reaudit_plan_ready
+                and external_reaudit_row_count > 0
+                and external_reaudit_contract_valid_count == external_reaudit_row_count
+            )
+        )
+    )
+    pre_count_blockers = {
+        "positive_fingerprint_registry_not_expanded",
+        "curated_seed_labels_not_imported",
+        "epk_positive_scoring_rule_not_implemented",
+        "epk_inverse_gate_threshold_not_calibrated",
+        "external_hard_negatives_not_scored_against_epk_draft",
+        "label_factory_gate_not_extended_for_epk",
+        "post_import_litmus_not_rerun_under_expanded_ontology",
+    }
+    if epk_external_hard_negative_reaudit_plan is None:
+        pre_count_blockers.add("external_hard_negative_reaudit_plan_missing")
+    elif not reaudit_plan_ready:
+        pre_count_blockers.add("external_hard_negative_reaudit_plan_not_ready")
+    if scored_reaudit_ready:
+        pre_count_blockers.discard("external_hard_negatives_not_scored_against_epk_draft")
+    if not draft_spec_ready:
+        pre_count_blockers.add("draft_fingerprint_spec_not_ready")
+
+    future_gate_plan = [
+        {
+            "gate_id": "draft_spec_review",
+            "status": "ready" if draft_spec_ready else "blocked",
+            "required_evidence": [
+                "expert-supported boundary rows",
+                "draft evidence axes",
+                "neighbor-family controls",
+            ],
+        },
+        {
+            "gate_id": "local_feature_scorer",
+            "status": "blocked_not_implemented",
+            "required_evidence": [
+                "text-free ATP/Mg2+ local feature extraction",
+                "hydroxyl-acceptor geometry or source-traced active-site mapping",
+                "hydrolase and neighboring ATP-family counterevidence",
+            ],
+        },
+        {
+            "gate_id": "inverse_gate_threshold",
+            "status": "blocked_needs_scorer",
+            "required_evidence": [
+                "calibrated ePK score floor",
+                "hard-negative false-non-abstention audit",
+                "retained performance for existing 8 fingerprints",
+            ],
+        },
+        {
+            "gate_id": "external_hard_negative_reaudit",
+            "status": "blocked_not_scored",
+            "required_evidence": [
+                "score P06744, P78549, and Q3LXA3 against the ePK draft",
+                "rerun duplicate and terminal-review checks under expanded ontology",
+                "preserve predictive/import/review-only evidence separation",
+            ],
+        },
+        {
+            "gate_id": "label_factory_gate_extension",
+            "status": "blocked_needs_scored_reaudit",
+            "required_evidence": [
+                "typed gate input for ePK artifacts",
+                "post-import litmus under the expanded ontology",
+                "sequence-distance holdout invariant recheck",
+            ],
+        },
+        {
+            "gate_id": "registry_import",
+            "status": "blocked_needs_human_review_and_green_gates",
+            "required_evidence": [
+                "explicit registry change review",
+                "countable seed-label import path",
+                "all factory/import/litmus checks green",
+            ],
+        },
+    ]
+
+    return {
+        "metadata": {
+            "method": "epk_draft_fingerprint_spec",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_parent_family_id": (
+                readiness_meta.get("target_parent_family_id")
+                or target_draft.get("parent_family_id")
+                or ATP_PHOSPHORYL_PARENT_FAMILY_ID
+            ),
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_readiness_method": readiness_meta.get("method"),
+            "source_epk_readiness_status": readiness_meta.get("readiness_status"),
+            "source_epk_evidence_ready_for_draft_fingerprint_spec": source_ready,
+            "source_epk_ready_to_expand_positive_fingerprint_universe": bool(
+                readiness_meta.get("ready_to_expand_positive_fingerprint_universe")
+            ),
+            "source_epk_reaudit_method": reaudit_meta.get("method"),
+            "external_reaudit_plan_ready": reaudit_plan_ready,
+            "external_reaudit_scored_ready": scored_reaudit_ready,
+            "external_reaudit_row_count": external_reaudit_row_count,
+            "external_reaudit_planned_not_scored_count": external_reaudit_planned_count,
+            "external_reaudit_contract_valid_count": (
+                external_reaudit_contract_valid_count
+            ),
+            "draft_spec_ready_for_scorer_prototype": draft_spec_ready,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "active_fingerprint_universe_unchanged": True,
+            "current_positive_fingerprint_count": len(current_fingerprint_ids),
+            "current_positive_fingerprint_ids": current_fingerprint_ids,
+            "boundary_row_count": len(boundary_rows),
+            "countable_label_candidate_count": 0,
+            "pre_count_gate_status": "blocked_pre_count_gates",
+            "pre_count_blockers": sorted(pre_count_blockers),
+            "source_row_readiness_blocker_counts": dict(
+                sorted(row_blocker_counts.items())
+            ),
+            "review_only_rule": (
+                "The ePK draft spec defines future scorer and gate requirements "
+                "only. It does not edit mechanism_fingerprints.json, import "
+                "labels, score external hard negatives, or authorize count growth."
+            ),
+        },
+        "draft_fingerprint_spec": {
+            "id": target_fingerprint_id,
+            "name": target_draft.get("name")
+            or "ePK/ePK-like ATP gamma-phosphoryl transfer",
+            "family_id": "epk",
+            "parent_family_id": (
+                target_draft.get("parent_family_id")
+                or ATP_PHOSPHORYL_PARENT_FAMILY_ID
+            ),
+            "status": "draft_review_only_not_registry_record",
+            "active_site_signature": target_draft.get("active_site_signature", []),
+            "cofactors": target_draft.get("cofactors", ["ATP", "Mg2+"]),
+            "reaction_center": target_draft.get("reaction_center", {}),
+            "substrate_constraints": target_draft.get("substrate_constraints", []),
+            "positive_evidence_axes": [
+                {
+                    "axis_id": "atp_gamma_phosphoryl_transfer",
+                    "predictive_requirement": (
+                        "local structure/source evidence for ATP gamma-phosphate "
+                        "transfer, not mechanism text alone"
+                    ),
+                },
+                {
+                    "axis_id": "hydroxyl_acceptor",
+                    "predictive_requirement": (
+                        "Ser/Thr/Tyr, aminoglycoside, phosphoinositide, or "
+                        "other hydroxyl acceptor mapped to the reaction center"
+                    ),
+                },
+                {
+                    "axis_id": "atp_mg_positioning",
+                    "predictive_requirement": (
+                        "ATP/Mg2+ or phosphate-positioning local context "
+                        "without treating Mg2+ as hydrolytic-metal evidence"
+                    ),
+                },
+                {
+                    "axis_id": "acid_base_activation",
+                    "predictive_requirement": (
+                        "Asp/Glu or equivalent base/acid context consistent "
+                        "with acceptor activation"
+                    ),
+                },
+            ],
+            "negative_control_axes": [
+                "metal_hydrolase_top1_without_phosphoryl_transfer_context",
+                "ASKHA_or_Pfk_sugar_kinase_without_ePK_family_support",
+                "GHKL_or_NDK_phosphohistidine_context",
+                "ATP_grasp_ligase_or_acyl_phosphate_intermediate_context",
+                "generic ATP_or_Mg2_binding_without_reaction_center_support",
+            ],
+            "predictive_evidence_exclusions": [
+                "protein names",
+                "EC numbers",
+                "Rhea identifiers",
+                "UniProt annotation prose",
+                "M-CSA mechanism text",
+                "curator rationale text",
+                "target label strings",
+            ],
+        },
+        "boundary_rows": sorted(
+            boundary_rows, key=lambda row: _entry_id_sort_key(str(row.get("entry_id")))
+        ),
+        "external_hard_negative_reaudit_summary": {
+            "review_only": True,
+            "reaudit_status": (
+                "planned_not_scored"
+                if external_reaudit_planned_count == external_reaudit_row_count
+                and external_reaudit_row_count > 0
+                else "not_ready"
+            ),
+            "entry_ids": sorted(
+                str(row.get("entry_id"))
+                for row in reaudit_rows
+                if isinstance(row.get("entry_id"), str)
+            ),
+            "remaining_blockers": _sorted_strings(
+                reaudit_meta.get("scored_reaudit_blockers", [])
+            )
+            or [
+                "epk_positive_scoring_rule_not_implemented",
+                "epk_inverse_gate_threshold_not_calibrated",
+                "external_labels_not_rescored_against_epk_draft",
+            ],
+        },
+        "future_gate_plan": future_gate_plan,
+        "warnings": [
+            (
+                "draft spec is review-only and cannot be used as a positive "
+                "fingerprint until scorer, external re-audit, label-factory, "
+                "and registry gates pass"
+            )
+        ],
+    }
+
+
+def build_epk_local_evidence_audit(
+    *,
+    epk_draft_fingerprint_spec: dict[str, Any],
+    geometry_features: dict[str, Any],
+) -> dict[str, Any]:
+    """Audit local geometry evidence available for a future ePK scorer."""
+
+    draft_meta = epk_draft_fingerprint_spec.get("metadata", {})
+    if not isinstance(draft_meta, dict):
+        draft_meta = {}
+    target_fingerprint_id = str(
+        draft_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    raw_geometry_rows = (
+        geometry_features.get("rows")
+        or geometry_features.get("entries")
+        or geometry_features.get("features")
+        or []
+    )
+    geometry_rows = [row for row in raw_geometry_rows if isinstance(row, dict)]
+    geometry_by_entry = {
+        str(row.get("entry_id")): row
+        for row in geometry_rows
+        if isinstance(row.get("entry_id"), str)
+    }
+    nucleotide_codes = {
+        "ATP",
+        "ADP",
+        "AMP",
+        "ANP",
+        "ACP",
+        "AGS",
+        "APC",
+        "AP5",
+        "ATP_GAMMA_S",
+    }
+    rows: list[dict[str, Any]] = []
+    readiness_counts: Counter[str] = Counter()
+    local_nucleotide_count = 0
+    local_metal_count = 0
+    local_acid_base_count = 0
+    for draft_row in epk_draft_fingerprint_spec.get("boundary_rows", []):
+        if not isinstance(draft_row, dict):
+            continue
+        entry_id = str(draft_row.get("entry_id") or "")
+        geometry = geometry_by_entry.get(entry_id, {})
+        ligand_context = geometry.get("ligand_context", {})
+        if not isinstance(ligand_context, dict):
+            ligand_context = {}
+        residues = geometry.get("residues", [])
+        if not isinstance(residues, list):
+            residues = []
+        local_ligand_codes = _sorted_strings(ligand_context.get("ligand_codes", []))
+        structure_ligand_codes = _sorted_strings(
+            ligand_context.get("structure_ligand_codes", [])
+        )
+        local_nucleotide_codes = sorted(
+            code for code in local_ligand_codes if str(code).upper() in nucleotide_codes
+        )
+        structure_nucleotide_codes = sorted(
+            code
+            for code in structure_ligand_codes
+            if str(code).upper() in nucleotide_codes
+        )
+        local_metal_codes = sorted(
+            code for code in local_ligand_codes if str(code).upper() in METAL_ION_CODES
+        )
+        structure_metal_codes = sorted(
+            code
+            for code in structure_ligand_codes
+            if str(code).upper() in METAL_ION_CODES
+        )
+        acid_base_residues = []
+        for residue in residues:
+            if not isinstance(residue, dict):
+                continue
+            code = str(residue.get("code") or "").upper()
+            roles = _sorted_strings(residue.get("roles", []))
+            role_text = " ".join(roles).lower()
+            if code in {"ASP", "GLU"} or any(
+                term in role_text
+                for term in (
+                    "proton acceptor",
+                    "proton donor",
+                    "general acid",
+                    "general base",
+                    "increase nucleophilicity",
+                    "deproton",
+                )
+            ):
+                acid_base_residues.append(
+                    {
+                        "code": residue.get("code"),
+                        "resid": residue.get("resid"),
+                        "chain_name": residue.get("chain_name"),
+                        "roles": roles,
+                    }
+                )
+        blockers: list[str] = ["no_epk_score_computed"]
+        if not geometry:
+            blockers.append("geometry_row_missing")
+        if geometry.get("status") != "ok":
+            blockers.append("geometry_status_not_ok")
+        if not local_nucleotide_codes:
+            blockers.append("local_atp_or_adenine_nucleotide_ligand_missing")
+        if not local_metal_codes:
+            blockers.append("local_mg_or_metal_ligand_missing")
+        if not acid_base_residues:
+            blockers.append("acid_base_residue_not_resolved")
+        blockers.append("acceptor_axis_still_source_traced_not_geometry_scored")
+
+        if local_nucleotide_codes and local_metal_codes and acid_base_residues:
+            local_feature_status = "local_atp_metal_acid_base_axis_present"
+            scorer_input_readiness = "ready_for_text_free_axis_prototype"
+            local_nucleotide_count += 1
+            local_metal_count += 1
+            local_acid_base_count += 1
+        elif structure_nucleotide_codes or structure_metal_codes:
+            local_feature_status = "structure_ligand_signal_not_local_axis"
+            scorer_input_readiness = "needs_ligand_distance_or_structure_repair"
+            if acid_base_residues:
+                local_acid_base_count += 1
+        else:
+            local_feature_status = "local_ligand_axis_missing"
+            scorer_input_readiness = "needs_ligand_source_or_alternate_structure"
+            if acid_base_residues:
+                local_acid_base_count += 1
+        readiness_counts[scorer_input_readiness] += 1
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": draft_row.get("entry_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "geometry_status": geometry.get("status"),
+                "pdb_id": geometry.get("pdb_id"),
+                "resolved_residue_count": geometry.get("resolved_residue_count"),
+                "local_ligand_codes": local_ligand_codes,
+                "structure_ligand_codes": structure_ligand_codes,
+                "local_nucleotide_ligand_codes": local_nucleotide_codes,
+                "structure_nucleotide_ligand_codes": structure_nucleotide_codes,
+                "local_metal_ligand_codes": local_metal_codes,
+                "structure_metal_ligand_codes": structure_metal_codes,
+                "acid_base_residue_count": len(acid_base_residues),
+                "acid_base_residues": acid_base_residues,
+                "local_feature_status": local_feature_status,
+                "scorer_input_readiness": scorer_input_readiness,
+                "audit_blockers": sorted(set(blockers)),
+            }
+        )
+
+    ready_count = readiness_counts.get("ready_for_text_free_axis_prototype", 0)
+    return {
+        "metadata": {
+            "method": "epk_local_evidence_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_draft_spec_method": draft_meta.get("method"),
+            "source_epk_draft_spec_ready_for_scorer_prototype": bool(
+                draft_meta.get("draft_spec_ready_for_scorer_prototype")
+            ),
+            "source_geometry_method": geometry_features.get("metadata", {}).get(
+                "method"
+            )
+            or geometry_features.get("metadata", {}).get(
+                "artifact"
+            ),
+            "source_geometry_slice": geometry_features.get("metadata", {}).get(
+                "slice_size"
+            )
+            or geometry_features.get("metadata", {}).get("slice_id")
+            or geometry_features.get("metadata", {}).get("max_entries"),
+            "source_geometry_max_entries": geometry_features.get("metadata", {}).get(
+                "max_entries"
+            ),
+            "boundary_row_count": len(rows),
+            "local_nucleotide_axis_count": local_nucleotide_count,
+            "local_metal_axis_count": local_metal_count,
+            "local_acid_base_axis_count": local_acid_base_count,
+            "ready_for_text_free_axis_prototype_count": ready_count,
+            "needs_ligand_or_structure_repair_count": len(rows) - ready_count,
+            "scorer_input_readiness_counts": dict(sorted(readiness_counts.items())),
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "audit_status": "local_evidence_profile_ready_not_scored",
+            "next_actions": [
+                "prototype text-free ePK local feature scorer on ready rows only",
+                "repair or override ligand-distance gaps before scoring non-ready rows",
+                "source acceptor geometry before countable seed-label import",
+                "rerun external hard-negative re-audit after any scorer exists",
+            ],
+            "review_only_rule": (
+                "This audit profiles current local geometry evidence for ePK "
+                "scorer design only. It does not score rows, import labels, "
+                "or expand the positive fingerprint universe."
+            ),
+        },
+        "rows": sorted(rows, key=lambda row: _entry_id_sort_key(str(row.get("entry_id")))),
+        "warnings": [
+            (
+                "ready_for_text_free_axis_prototype means ATP/metal/acid-base "
+                "local evidence is present; acceptor geometry, scorer logic, "
+                "threshold calibration, and external re-audit still block counting"
+            )
+        ],
+    }
+
+
 def _atp_target_family_record(
     family_id: str,
     family: dict[str, Any],

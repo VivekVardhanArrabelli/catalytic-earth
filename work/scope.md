@@ -322,7 +322,12 @@ Current expectation:
   re-audited before any future ePK counting claim. The companion ePK external
   hard-negative re-audit plan now confirms those three labels are present and
   evidence-separated, while keeping all rows `planned_not_scored` until an ePK
-  scorer, inverse-gate threshold, and terminal-review rerun exist.
+  scorer, inverse-gate threshold, and terminal-review rerun exist. The draft
+  ePK fingerprint spec now freezes those future scorer axes and pre-count gates
+  as review-only planning while preserving the 8-fingerprint universe. The
+  local-evidence audit finds 3/5 ePK boundary rows ready for a text-free
+  ATP/metal/acid-base axis prototype and 2/5 still blocked by local ligand or
+  selected-structure gaps.
 - return to factory-gated label scaling toward 10k while preserving quality
   gates; the accepted 1,000 M-CSA state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the

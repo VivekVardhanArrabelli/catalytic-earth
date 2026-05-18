@@ -1,0 +1,379 @@
+{
+  "boundary_rows": [
+    {
+      "countable_label_candidate": false,
+      "current_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "current_top1_score": 0.4069,
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "expert_supported_family_boundary": true,
+      "family_id": "epk",
+      "future_predictive_local_evidence_requirements": [
+        "resolved catalytic base or acid-base residue in the active-site pocket",
+        "local ATP/Mg2+ or phosphate-positioning evidence from structure features",
+        "hydroxyl acceptor geometry or source-traced acceptor residue/substrate mapping",
+        "reaction-center rule for ATP gamma-phosphoryl transfer rather than water hydrolysis",
+        "neighbor-family counterevidence against ASKHA, Pfk, GHMP, GHKL, ATP-grasp, dNK, and NDK lanes"
+      ],
+      "predictive_use_status": "review_context_only_until_local_scorer_implemented",
+      "readiness_blockers": [
+        "countable_label_candidate_false",
+        "current_retrieval_routes_to_hydrolase_control",
+        "positive_fingerprint_registry_not_expanded",
+        "review_only_family_boundary_not_seed_fingerprint_label"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_text_evidence_axes": {
+        "acceptor_scope": "review_text_hydroxyl_acceptor",
+        "active_site_base": "review_text_support",
+        "atp_mg_cofactor": "review_text_mg_atp_context",
+        "current_counterevidence": "hydrolase_top1_control",
+        "reaction_center": "review_text_atp_gamma_phosphoryl_transfer"
+      },
+      "source_family_support_level": "expert_review_supported_family_boundary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "current_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "current_top1_score": 0.4033,
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "expert_supported_family_boundary": true,
+      "family_id": "epk",
+      "future_predictive_local_evidence_requirements": [
+        "resolved catalytic base or acid-base residue in the active-site pocket",
+        "local ATP/Mg2+ or phosphate-positioning evidence from structure features",
+        "hydroxyl acceptor geometry or source-traced acceptor residue/substrate mapping",
+        "reaction-center rule for ATP gamma-phosphoryl transfer rather than water hydrolysis",
+        "neighbor-family counterevidence against ASKHA, Pfk, GHMP, GHKL, ATP-grasp, dNK, and NDK lanes"
+      ],
+      "predictive_use_status": "review_context_only_until_local_scorer_implemented",
+      "readiness_blockers": [
+        "countable_label_candidate_false",
+        "current_retrieval_routes_to_hydrolase_control",
+        "positive_fingerprint_registry_not_expanded",
+        "review_only_family_boundary_not_seed_fingerprint_label"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_text_evidence_axes": {
+        "acceptor_scope": "review_text_hydroxyl_acceptor",
+        "active_site_base": "review_text_support",
+        "atp_mg_cofactor": "review_text_mg_atp_context",
+        "current_counterevidence": "hydrolase_top1_control",
+        "reaction_center": "review_text_atp_gamma_phosphoryl_transfer"
+      },
+      "source_family_support_level": "expert_review_supported_family_boundary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "current_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "current_top1_score": 0.3223,
+      "entry_id": "m_csa:282",
+      "entry_name": "mitogen-activated protein kinase kinase",
+      "expert_supported_family_boundary": true,
+      "family_id": "epk",
+      "future_predictive_local_evidence_requirements": [
+        "resolved catalytic base or acid-base residue in the active-site pocket",
+        "local ATP/Mg2+ or phosphate-positioning evidence from structure features",
+        "hydroxyl acceptor geometry or source-traced acceptor residue/substrate mapping",
+        "reaction-center rule for ATP gamma-phosphoryl transfer rather than water hydrolysis",
+        "neighbor-family counterevidence against ASKHA, Pfk, GHMP, GHKL, ATP-grasp, dNK, and NDK lanes"
+      ],
+      "predictive_use_status": "review_context_only_until_local_scorer_implemented",
+      "readiness_blockers": [
+        "countable_label_candidate_false",
+        "current_retrieval_routes_to_hydrolase_control",
+        "positive_fingerprint_registry_not_expanded",
+        "review_only_family_boundary_not_seed_fingerprint_label"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_text_evidence_axes": {
+        "acceptor_scope": "review_text_hydroxyl_acceptor",
+        "active_site_base": "review_text_support",
+        "atp_mg_cofactor": "review_text_mg_atp_context",
+        "current_counterevidence": "hydrolase_top1_control",
+        "reaction_center": "review_text_atp_gamma_phosphoryl_transfer"
+      },
+      "source_family_support_level": "expert_review_supported_family_boundary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "current_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "current_top1_score": 0.4066,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "expert_supported_family_boundary": true,
+      "family_id": "epk",
+      "future_predictive_local_evidence_requirements": [
+        "resolved catalytic base or acid-base residue in the active-site pocket",
+        "local ATP/Mg2+ or phosphate-positioning evidence from structure features",
+        "hydroxyl acceptor geometry or source-traced acceptor residue/substrate mapping",
+        "reaction-center rule for ATP gamma-phosphoryl transfer rather than water hydrolysis",
+        "neighbor-family counterevidence against ASKHA, Pfk, GHMP, GHKL, ATP-grasp, dNK, and NDK lanes"
+      ],
+      "predictive_use_status": "review_context_only_until_local_scorer_implemented",
+      "readiness_blockers": [
+        "countable_label_candidate_false",
+        "current_retrieval_routes_to_hydrolase_control",
+        "positive_fingerprint_registry_not_expanded",
+        "review_only_family_boundary_not_seed_fingerprint_label"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_text_evidence_axes": {
+        "acceptor_scope": "review_text_hydroxyl_acceptor",
+        "active_site_base": "review_text_support",
+        "atp_mg_cofactor": "review_text_mg_atp_context",
+        "current_counterevidence": "hydrolase_top1_control",
+        "reaction_center": "review_text_atp_gamma_phosphoryl_transfer"
+      },
+      "source_family_support_level": "expert_review_supported_family_boundary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "current_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "current_top1_score": 0.3263,
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "expert_supported_family_boundary": true,
+      "family_id": "epk",
+      "future_predictive_local_evidence_requirements": [
+        "resolved catalytic base or acid-base residue in the active-site pocket",
+        "local ATP/Mg2+ or phosphate-positioning evidence from structure features",
+        "hydroxyl acceptor geometry or source-traced acceptor residue/substrate mapping",
+        "reaction-center rule for ATP gamma-phosphoryl transfer rather than water hydrolysis",
+        "neighbor-family counterevidence against ASKHA, Pfk, GHMP, GHKL, ATP-grasp, dNK, and NDK lanes"
+      ],
+      "predictive_use_status": "review_context_only_until_local_scorer_implemented",
+      "readiness_blockers": [
+        "countable_label_candidate_false",
+        "current_retrieval_routes_to_hydrolase_control",
+        "positive_fingerprint_registry_not_expanded",
+        "review_only_family_boundary_not_seed_fingerprint_label"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_text_evidence_axes": {
+        "acceptor_scope": "review_text_hydroxyl_acceptor",
+        "active_site_base": "review_text_support",
+        "atp_mg_cofactor": "review_text_mg_atp_context",
+        "current_counterevidence": "hydrolase_top1_control",
+        "reaction_center": "review_text_atp_gamma_phosphoryl_transfer"
+      },
+      "source_family_support_level": "expert_review_supported_family_boundary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "draft_fingerprint_spec": {
+    "active_site_signature": [
+      {
+        "constraints": [
+          "activates substrate hydroxyl for gamma-phosphate attack"
+        ],
+        "residue": "Asp/Glu",
+        "role": "general_base"
+      },
+      {
+        "constraints": [
+          "positions ATP phosphates without implying hydrolysis"
+        ],
+        "residue": "Lys/Arg or Mg2+-coordinating residues",
+        "role": "phosphate_positioning"
+      },
+      {
+        "constraints": [
+          "hydroxyl acceptor attacks ATP gamma phosphate"
+        ],
+        "residue": "Ser/Thr/Tyr or substrate hydroxyl",
+        "role": "acceptor"
+      }
+    ],
+    "cofactors": [
+      "ATP",
+      "Mg2+"
+    ],
+    "family_id": "epk",
+    "id": "epk_atp_gamma_phosphoryl_transfer",
+    "name": "ePK/ePK-like ATP gamma-phosphoryl transfer",
+    "negative_control_axes": [
+      "metal_hydrolase_top1_without_phosphoryl_transfer_context",
+      "ASKHA_or_Pfk_sugar_kinase_without_ePK_family_support",
+      "GHKL_or_NDK_phosphohistidine_context",
+      "ATP_grasp_ligase_or_acyl_phosphate_intermediate_context",
+      "generic ATP_or_Mg2_binding_without_reaction_center_support"
+    ],
+    "parent_family_id": "atp_phosphoryl_transfer",
+    "positive_evidence_axes": [
+      {
+        "axis_id": "atp_gamma_phosphoryl_transfer",
+        "predictive_requirement": "local structure/source evidence for ATP gamma-phosphate transfer, not mechanism text alone"
+      },
+      {
+        "axis_id": "hydroxyl_acceptor",
+        "predictive_requirement": "Ser/Thr/Tyr, aminoglycoside, phosphoinositide, or other hydroxyl acceptor mapped to the reaction center"
+      },
+      {
+        "axis_id": "atp_mg_positioning",
+        "predictive_requirement": "ATP/Mg2+ or phosphate-positioning local context without treating Mg2+ as hydrolytic-metal evidence"
+      },
+      {
+        "axis_id": "acid_base_activation",
+        "predictive_requirement": "Asp/Glu or equivalent base/acid context consistent with acceptor activation"
+      }
+    ],
+    "predictive_evidence_exclusions": [
+      "protein names",
+      "EC numbers",
+      "Rhea identifiers",
+      "UniProt annotation prose",
+      "M-CSA mechanism text",
+      "curator rationale text",
+      "target label strings"
+    ],
+    "reaction_center": {
+      "bond_changes": [
+        "ATP gamma-phosphoryl transfer to hydroxyl acceptor"
+      ],
+      "chemical_operation": "associative or dissociative phosphoryl transfer, not metal-activated water hydrolysis"
+    },
+    "status": "draft_review_only_not_registry_record",
+    "substrate_constraints": [
+      "protein Ser/Thr/Tyr hydroxyl, aminoglycoside hydroxyl, or phosphoinositide hydroxyl",
+      "ATP/Mg2+ positioned for phosphate transfer",
+      "no water-activated hydrolytic leaving-group assignment"
+    ]
+  },
+  "external_hard_negative_reaudit_summary": {
+    "entry_ids": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "reaudit_status": "planned_not_scored",
+    "remaining_blockers": [
+      "epk_inverse_gate_threshold_not_calibrated",
+      "epk_positive_scoring_rule_not_implemented",
+      "external_labels_not_rescored_against_epk_draft"
+    ],
+    "review_only": true
+  },
+  "future_gate_plan": [
+    {
+      "gate_id": "draft_spec_review",
+      "required_evidence": [
+        "expert-supported boundary rows",
+        "draft evidence axes",
+        "neighbor-family controls"
+      ],
+      "status": "ready"
+    },
+    {
+      "gate_id": "local_feature_scorer",
+      "required_evidence": [
+        "text-free ATP/Mg2+ local feature extraction",
+        "hydroxyl-acceptor geometry or source-traced active-site mapping",
+        "hydrolase and neighboring ATP-family counterevidence"
+      ],
+      "status": "blocked_not_implemented"
+    },
+    {
+      "gate_id": "inverse_gate_threshold",
+      "required_evidence": [
+        "calibrated ePK score floor",
+        "hard-negative false-non-abstention audit",
+        "retained performance for existing 8 fingerprints"
+      ],
+      "status": "blocked_needs_scorer"
+    },
+    {
+      "gate_id": "external_hard_negative_reaudit",
+      "required_evidence": [
+        "score P06744, P78549, and Q3LXA3 against the ePK draft",
+        "rerun duplicate and terminal-review checks under expanded ontology",
+        "preserve predictive/import/review-only evidence separation"
+      ],
+      "status": "blocked_not_scored"
+    },
+    {
+      "gate_id": "label_factory_gate_extension",
+      "required_evidence": [
+        "typed gate input for ePK artifacts",
+        "post-import litmus under the expanded ontology",
+        "sequence-distance holdout invariant recheck"
+      ],
+      "status": "blocked_needs_scored_reaudit"
+    },
+    {
+      "gate_id": "registry_import",
+      "required_evidence": [
+        "explicit registry change review",
+        "countable seed-label import path",
+        "all factory/import/litmus checks green"
+      ],
+      "status": "blocked_needs_human_review_and_green_gates"
+    }
+  ],
+  "metadata": {
+    "active_fingerprint_universe_unchanged": true,
+    "boundary_row_count": 5,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_positive_fingerprint_count": 8,
+    "current_positive_fingerprint_ids": [
+      "cobalamin_radical_rearrangement",
+      "flavin_dehydrogenase_reductase",
+      "flavin_monooxygenase",
+      "heme_peroxidase_oxidase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "ser_his_acid_hydrolase"
+    ],
+    "draft_spec_ready_for_scorer_prototype": true,
+    "external_reaudit_contract_valid_count": 3,
+    "external_reaudit_plan_ready": true,
+    "external_reaudit_planned_not_scored_count": 3,
+    "external_reaudit_row_count": 3,
+    "external_reaudit_scored_ready": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_draft_fingerprint_spec",
+    "pre_count_blockers": [
+      "curated_seed_labels_not_imported",
+      "epk_inverse_gate_threshold_not_calibrated",
+      "epk_positive_scoring_rule_not_implemented",
+      "external_hard_negatives_not_scored_against_epk_draft",
+      "label_factory_gate_not_extended_for_epk",
+      "positive_fingerprint_registry_not_expanded",
+      "post_import_litmus_not_rerun_under_expanded_ontology"
+    ],
+    "pre_count_gate_status": "blocked_pre_count_gates",
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "review_only_rule": "The ePK draft spec defines future scorer and gate requirements only. It does not edit mechanism_fingerprints.json, import labels, score external hard negatives, or authorize count growth.",
+    "source_epk_evidence_ready_for_draft_fingerprint_spec": true,
+    "source_epk_readiness_method": "epk_positive_fingerprint_readiness_packet",
+    "source_epk_readiness_status": "draft_fingerprint_spec_ready_not_countable",
+    "source_epk_ready_to_expand_positive_fingerprint_universe": false,
+    "source_epk_reaudit_method": "epk_external_hard_negative_reaudit_plan",
+    "source_row_readiness_blocker_counts": {
+      "countable_label_candidate_false": 5,
+      "current_retrieval_routes_to_hydrolase_control": 5,
+      "positive_fingerprint_registry_not_expanded": 5,
+      "review_only_family_boundary_not_seed_fingerprint_label": 5
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "target_parent_family_id": "atp_phosphoryl_transfer"
+  },
+  "warnings": [
+    "draft spec is review-only and cannot be used as a positive fingerprint until scorer, external re-audit, label-factory, and registry gates pass"
+  ]
+}

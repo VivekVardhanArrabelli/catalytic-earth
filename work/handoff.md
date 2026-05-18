@@ -50,6 +50,51 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T06:13:08Z automation run, Phase 1 artifact migration was
+checked only as a guard and remains closed/non-blocking:
+`validate-artifact-migration --dry-run --check-local-files` still reports 108
+rows, 0 blockers, and `removal_allowed=0`. The scientific work stayed on the
+post-infra ePK positive-fingerprint path without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any
+external hard-negative label.
+
+The run added `artifacts/v3_epk_draft_fingerprint_spec_1025.json`, a
+review-only draft fingerprint specification for
+`epk_atp_gamma_phosphoryl_transfer`. It freezes the intended local predictive
+axes (ATP/Mg2+ positioning, ATP gamma-phosphoryl-transfer reaction center,
+hydroxyl-acceptor scope, acid/base activation, and neighboring ATP-family
+counterevidence), explicitly excludes protein names, EC/Rhea identifiers,
+UniProt prose, M-CSA mechanism text, curator rationales, and label strings from
+predictive use, and keeps the pre-count gate state blocked. The artifact keeps
+the positive fingerprint universe at 8, imports 0 labels, scores 0 external hard
+negatives, and leaves all three imported external hard negatives only as
+review-only re-audit rows.
+
+The same run added `artifacts/v3_epk_local_evidence_audit_1025.json`, which
+profiles those five ePK boundary rows against the current 1,000-slice geometry
+artifact. Three rows (`m_csa:35`, `m_csa:246`, and `m_csa:640`) have local
+nucleotide, metal, and acid/base axes ready for a future text-free axis
+prototype. `m_csa:282` has ATP/Mg structure-level signal but not a local active
+site ligand axis, and `m_csa:662` lacks a local ligand axis. The audit computes
+no ePK score, keeps `ready_to_run_epk_scorer=false`, and leaves acceptor
+geometry, threshold calibration, external hard-negative re-audit, terminal
+review, and label-factory gates as blockers before any countable ePK work.
+
+Evidence-based confidence call: the ePK lane is now better specified and has a
+first local-evidence readiness profile, but it is still not a positive
+fingerprint expansion. The active fingerprint universe remains 8; curated
+labels remain 682 with 212 `seed_fingerprint` and 470 `out_of_scope` labels;
+external imported labels remain exactly `uniprot:P06744`, `uniprot:P78549`, and
+`uniprot:Q3LXA3`; external imported seed-fingerprint labels remain 0. The next
+bounded ePK step, if chosen, should prototype a text-free local ePK feature axis
+only on the three ready rows, or repair the `m_csa:282`/`m_csa:662`
+ligand/structure gaps. Do not import ePK labels, add the ePK registry
+fingerprint, or reuse external hard negatives under ePK until scorer,
+threshold, re-audit, terminal-review, and label-factory gates pass.
+Verification passed with the final 447-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T05:10:47Z automation run, Phase 1 artifact migration was
 checked only as a guard and remains closed/non-blocking: `validate`, the 439
 unit-test suite, and `validate-artifact-migration --dry-run

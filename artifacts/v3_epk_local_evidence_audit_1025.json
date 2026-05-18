@@ -1,0 +1,314 @@
+{
+  "metadata": {
+    "audit_status": "local_evidence_profile_ready_not_scored",
+    "boundary_row_count": 5,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "local_acid_base_axis_count": 5,
+    "local_metal_axis_count": 3,
+    "local_nucleotide_axis_count": 3,
+    "method": "epk_local_evidence_audit",
+    "needs_ligand_or_structure_repair_count": 2,
+    "next_actions": [
+      "prototype text-free ePK local feature scorer on ready rows only",
+      "repair or override ligand-distance gaps before scoring non-ready rows",
+      "source acceptor geometry before countable seed-label import",
+      "rerun external hard-negative re-audit after any scorer exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_text_free_axis_prototype_count": 3,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This audit profiles current local geometry evidence for ePK scorer design only. It does not score rows, import labels, or expand the positive fingerprint universe.",
+    "scorer_input_readiness_counts": {
+      "needs_ligand_distance_or_structure_repair": 1,
+      "needs_ligand_source_or_alternate_structure": 1,
+      "ready_for_text_free_axis_prototype": 3
+    },
+    "source_epk_draft_spec_method": "epk_draft_fingerprint_spec",
+    "source_epk_draft_spec_ready_for_scorer_prototype": true,
+    "source_geometry_max_entries": 1000,
+    "source_geometry_method": "active_site_geometry_features",
+    "source_geometry_slice": 1000,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "acid_base_residue_count": 2,
+      "acid_base_residues": [
+        {
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 136,
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 154,
+          "roles": [
+            "metal ligand"
+          ]
+        }
+      ],
+      "audit_blockers": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "no_epk_score_computed"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "geometry_status": "ok",
+      "local_feature_status": "local_atp_metal_acid_base_axis_present",
+      "local_ligand_codes": [
+        "ATP",
+        "MN"
+      ],
+      "local_metal_ligand_codes": [
+        "MN"
+      ],
+      "local_nucleotide_ligand_codes": [
+        "ATP"
+      ],
+      "pdb_id": "2PHK",
+      "ready_for_label_import": false,
+      "resolved_residue_count": 5,
+      "review_only": true,
+      "scorer_input_readiness": "ready_for_text_free_axis_prototype",
+      "structure_ligand_codes": [
+        "ATP",
+        "GOL",
+        "MN"
+      ],
+      "structure_metal_ligand_codes": [
+        "MN"
+      ],
+      "structure_nucleotide_ligand_codes": [
+        "ATP"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acid_base_residue_count": 2,
+      "acid_base_residues": [
+        {
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 173,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 155,
+          "roles": [
+            "increase nucleophilicity",
+            "proton acceptor",
+            "proton donor",
+            "steric role"
+          ]
+        }
+      ],
+      "audit_blockers": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "no_epk_score_computed"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "geometry_status": "ok",
+      "local_feature_status": "local_atp_metal_acid_base_axis_present",
+      "local_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "local_metal_ligand_codes": [
+        "MG"
+      ],
+      "local_nucleotide_ligand_codes": [
+        "ANP"
+      ],
+      "pdb_id": "1IR3",
+      "ready_for_label_import": false,
+      "resolved_residue_count": 4,
+      "review_only": true,
+      "scorer_input_readiness": "ready_for_text_free_axis_prototype",
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "PTR"
+      ],
+      "structure_metal_ligand_codes": [
+        "MG"
+      ],
+      "structure_nucleotide_ligand_codes": [
+        "ANP"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acid_base_residue_count": 2,
+      "acid_base_residues": [
+        {
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 140,
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 167,
+          "roles": [
+            "attractive charge-charge interaction",
+            "electrostatic stabiliser",
+            "steric role"
+          ]
+        }
+      ],
+      "audit_blockers": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "local_atp_or_adenine_nucleotide_ligand_missing",
+        "local_mg_or_metal_ligand_missing",
+        "no_epk_score_computed"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:282",
+      "entry_name": "mitogen-activated protein kinase kinase",
+      "geometry_status": "ok",
+      "local_feature_status": "structure_ligand_signal_not_local_axis",
+      "local_ligand_codes": [],
+      "local_metal_ligand_codes": [],
+      "local_nucleotide_ligand_codes": [],
+      "pdb_id": "1S9I",
+      "ready_for_label_import": false,
+      "resolved_residue_count": 2,
+      "review_only": true,
+      "scorer_input_readiness": "needs_ligand_distance_or_structure_repair",
+      "structure_ligand_codes": [
+        "5EA",
+        "ATP",
+        "MG"
+      ],
+      "structure_metal_ligand_codes": [
+        "MG"
+      ],
+      "structure_nucleotide_ligand_codes": [
+        "ATP"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acid_base_residue_count": 2,
+      "acid_base_residues": [
+        {
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 207,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 189,
+          "roles": [
+            "proton acceptor",
+            "proton shuttle (general acid/base)"
+          ]
+        }
+      ],
+      "audit_blockers": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "no_epk_score_computed"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "geometry_status": "ok",
+      "local_feature_status": "local_atp_metal_acid_base_axis_present",
+      "local_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "local_metal_ligand_codes": [
+        "MG"
+      ],
+      "local_nucleotide_ligand_codes": [
+        "ADP"
+      ],
+      "pdb_id": "1L8T",
+      "ready_for_label_import": false,
+      "resolved_residue_count": 4,
+      "review_only": true,
+      "scorer_input_readiness": "ready_for_text_free_axis_prototype",
+      "structure_ligand_codes": [
+        "ADP",
+        "KAN",
+        "MG"
+      ],
+      "structure_metal_ligand_codes": [
+        "MG"
+      ],
+      "structure_nucleotide_ligand_codes": [
+        "ADP"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acid_base_residue_count": 1,
+      "acid_base_residues": [
+        {
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 278,
+          "roles": [
+            "proton shuttle (general acid/base)"
+          ]
+        }
+      ],
+      "audit_blockers": [
+        "acceptor_axis_still_source_traced_not_geometry_scored",
+        "local_atp_or_adenine_nucleotide_ligand_missing",
+        "local_mg_or_metal_ligand_missing",
+        "no_epk_score_computed"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "geometry_status": "ok",
+      "local_feature_status": "local_ligand_axis_missing",
+      "local_ligand_codes": [],
+      "local_metal_ligand_codes": [],
+      "local_nucleotide_ligand_codes": [],
+      "pdb_id": "1BO1",
+      "ready_for_label_import": false,
+      "resolved_residue_count": 2,
+      "review_only": true,
+      "scorer_input_readiness": "needs_ligand_source_or_alternate_structure",
+      "structure_ligand_codes": [],
+      "structure_metal_ligand_codes": [],
+      "structure_nucleotide_ligand_codes": [],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "ready_for_text_free_axis_prototype means ATP/metal/acid-base local evidence is present; acceptor geometry, scorer logic, threshold calibration, and external re-audit still block counting"
+  ]
+}

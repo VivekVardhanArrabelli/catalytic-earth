@@ -64,7 +64,9 @@ from .labels import (
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
     build_atp_phosphoryl_transfer_family_expansion,
+    build_epk_draft_fingerprint_spec,
     build_epk_external_hard_negative_reaudit_plan,
+    build_epk_local_evidence_audit,
     build_epk_positive_fingerprint_readiness_packet,
     build_expert_label_decision_local_evidence_review_export,
     build_expert_label_decision_review_export,
@@ -5177,6 +5179,46 @@ def cmd_build_epk_external_hard_negative_reaudit_plan(args: argparse.Namespace) 
     print(
         "Wrote ePK external hard-negative re-audit plan to "
         f"{args.out} (ready={plan['metadata']['reaudit_plan_ready']})"
+    )
+    return 0
+
+
+def cmd_build_epk_draft_fingerprint_spec(args: argparse.Namespace) -> int:
+    with Path(args.epk_positive_fingerprint_readiness_packet).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_readiness = json.load(handle)
+    epk_reaudit_plan = None
+    if args.epk_external_hard_negative_reaudit_plan:
+        with Path(args.epk_external_hard_negative_reaudit_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_reaudit_plan = json.load(handle)
+    spec = build_epk_draft_fingerprint_spec(
+        epk_positive_fingerprint_readiness_packet=epk_readiness,
+        epk_external_hard_negative_reaudit_plan=epk_reaudit_plan,
+    )
+    write_json(Path(args.out), spec)
+    print(
+        "Wrote ePK draft fingerprint spec to "
+        f"{args.out} (ready={spec['metadata']['draft_spec_ready_for_scorer_prototype']})"
+    )
+    return 0
+
+
+def cmd_build_epk_local_evidence_audit(args: argparse.Namespace) -> int:
+    with Path(args.epk_draft_fingerprint_spec).open("r", encoding="utf-8") as handle:
+        epk_draft_spec = json.load(handle)
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    audit = build_epk_local_evidence_audit(
+        epk_draft_fingerprint_spec=epk_draft_spec,
+        geometry_features=geometry,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK local evidence audit to "
+        f"{args.out} (ready_rows={audit['metadata']['ready_for_text_free_axis_prototype_count']})"
     )
     return 0
 
@@ -11477,6 +11519,42 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_epk_external_hard_negative_reaudit_plan.json",
     )
     epk_reaudit.set_defaults(func=cmd_build_epk_external_hard_negative_reaudit_plan)
+
+    epk_draft_spec = subparsers.add_parser(
+        "build-epk-draft-fingerprint-spec",
+        help="freeze review-only ePK draft fingerprint evidence axes and gates",
+    )
+    epk_draft_spec.add_argument(
+        "--epk-positive-fingerprint-readiness-packet",
+        default="artifacts/v3_epk_positive_fingerprint_readiness_packet.json",
+    )
+    epk_draft_spec.add_argument(
+        "--epk-external-hard-negative-reaudit-plan",
+        default=None,
+    )
+    epk_draft_spec.add_argument(
+        "--out",
+        default="artifacts/v3_epk_draft_fingerprint_spec.json",
+    )
+    epk_draft_spec.set_defaults(func=cmd_build_epk_draft_fingerprint_spec)
+
+    epk_local_audit = subparsers.add_parser(
+        "build-epk-local-evidence-audit",
+        help="audit local geometry evidence for future ePK scorer design",
+    )
+    epk_local_audit.add_argument(
+        "--epk-draft-fingerprint-spec",
+        default="artifacts/v3_epk_draft_fingerprint_spec.json",
+    )
+    epk_local_audit.add_argument(
+        "--geometry",
+        default="artifacts/v3_geometry_features_1000.json",
+    )
+    epk_local_audit.add_argument(
+        "--out",
+        default="artifacts/v3_epk_local_evidence_audit.json",
+    )
+    epk_local_audit.set_defaults(func=cmd_build_epk_local_evidence_audit)
 
     learned_retrieval_manifest = subparsers.add_parser(
         "build-learned-retrieval-manifest",

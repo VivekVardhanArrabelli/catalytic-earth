@@ -267,6 +267,81 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertTrue(row["evidence_separation_valid"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_draft_fingerprint_spec_stays_review_only(self) -> None:
+        spec = _load_json(
+            ROOT / "artifacts" / "v3_epk_draft_fingerprint_spec_1025.json"
+        )
+        metadata = spec["metadata"]
+        self.assertEqual(metadata["method"], "epk_draft_fingerprint_spec")
+        self.assertTrue(metadata["draft_spec_ready_for_scorer_prototype"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertTrue(metadata["active_fingerprint_universe_unchanged"])
+        self.assertEqual(metadata["current_positive_fingerprint_count"], 8)
+        self.assertEqual(metadata["boundary_row_count"], 5)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["external_reaudit_row_count"], 3)
+        self.assertEqual(
+            spec["external_hard_negative_reaudit_summary"]["reaudit_status"],
+            "planned_not_scored",
+        )
+        self.assertEqual(
+            set(spec["external_hard_negative_reaudit_summary"]["entry_ids"]),
+            EXTERNAL_HARD_NEGATIVES,
+        )
+        self.assertIn(
+            "M-CSA mechanism text",
+            spec["draft_fingerprint_spec"]["predictive_evidence_exclusions"],
+        )
+        for row in spec["boundary_rows"]:
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertEqual(
+                row["predictive_use_status"],
+                "review_context_only_until_local_scorer_implemented",
+            )
+
+    def test_epk_local_evidence_audit_stays_review_only(self) -> None:
+        audit = _load_json(
+            ROOT / "artifacts" / "v3_epk_local_evidence_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(metadata["method"], "epk_local_evidence_audit")
+        self.assertEqual(metadata["boundary_row_count"], 5)
+        self.assertEqual(metadata["ready_for_text_free_axis_prototype_count"], 3)
+        self.assertEqual(metadata["needs_ligand_or_structure_repair_count"], 2)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["entry_id"]: row for row in audit["rows"]}
+        self.assertEqual(
+            rows["m_csa:35"]["scorer_input_readiness"],
+            "ready_for_text_free_axis_prototype",
+        )
+        self.assertEqual(
+            rows["m_csa:246"]["scorer_input_readiness"],
+            "ready_for_text_free_axis_prototype",
+        )
+        self.assertEqual(
+            rows["m_csa:640"]["scorer_input_readiness"],
+            "ready_for_text_free_axis_prototype",
+        )
+        self.assertEqual(
+            rows["m_csa:282"]["scorer_input_readiness"],
+            "needs_ligand_distance_or_structure_repair",
+        )
+        self.assertEqual(
+            rows["m_csa:662"]["scorer_input_readiness"],
+            "needs_ligand_source_or_alternate_structure",
+        )
+        for row in audit["rows"]:
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertIn("no_epk_score_computed", row["audit_blockers"])
+
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:
         adjudication = _load_json(
             ROOT / "artifacts" / "v3_mcsa_tm_holdout_feasibility_adjudication_1000.json"

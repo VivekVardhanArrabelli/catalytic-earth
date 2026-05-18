@@ -795,6 +795,18 @@ current `out_of_scope`/null-fingerprint label contracts and separated evidence
 fields are intact, but leaves every row `planned_not_scored` until an ePK
 scoring rule, ePK inverse-gate threshold policy, terminal-review path, and
 post-import litmus rerun exist.
+`artifacts/v3_epk_draft_fingerprint_spec_1025.json` now freezes the review-only
+draft ePK fingerprint specification from that packet. It names the future
+positive evidence axes, predictive exclusions, neighbor-family negative
+controls, external hard-negative re-audit summary, and pre-count gate plan while
+keeping `mechanism_fingerprints.json`, `curated_mechanism_labels.json`, the
+8-fingerprint universe, and all external hard negatives unchanged.
+`artifacts/v3_epk_local_evidence_audit_1025.json` then profiles the five ePK
+boundary rows against the current 1,000-slice geometry artifact. Three rows
+(`m_csa:35`, `m_csa:246`, and `m_csa:640`) already have local nucleotide,
+metal, and acid/base axes for a future text-free prototype; `m_csa:282` needs
+ligand-distance or selected-structure repair, and `m_csa:662` lacks a local
+ligand axis. No ePK score is computed.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

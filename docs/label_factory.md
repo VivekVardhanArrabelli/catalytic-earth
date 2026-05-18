@@ -187,6 +187,20 @@ blocker into three explicit review-only rows for `uniprot:P06744`,
 `uniprot:P78549`, and `uniprot:Q3LXA3`. The plan is ready as a checklist, but
 `ready_to_run_scored_reaudit=false` because no ePK positive scoring rule,
 inverse-gate threshold, or terminal-review rerun has been implemented.
+`artifacts/v3_epk_draft_fingerprint_spec_1025.json` is the next review-only
+step: it turns the packet into a draft scorer specification without adding the
+fingerprint. The spec names the local predictive evidence requirements
+(ATP/Mg2+ positioning, ATP gamma-phosphoryl-transfer reaction center,
+hydroxyl-acceptor scope, acid/base activation, and sibling ATP-family
+counterevidence), excludes text/name/EC/Rhea/UniProt context from predictive
+use, and lists the blocked pre-count gates. It remains
+`ready_to_expand_positive_fingerprint_universe=false` and edits no registries.
+`artifacts/v3_epk_local_evidence_audit_1025.json` profiles those five rows
+against current local geometry evidence. It finds three rows ready for a
+text-free ATP/metal/acid-base axis prototype, one row with structure-level ATP/Mg
+signal that is not local to the active-site axis, and one row with no local
+ligand axis. The audit is deliberately not an ePK scorer and keeps
+`ready_to_run_epk_scorer=false`.
 
 ## Active Learning Queue
 
