@@ -158,6 +158,7 @@ and priority repair guardrail audit for those 321 rows, audits/exports the 92
 priority local-evidence gap lanes as review-only items, emits a local-evidence
 repair plan, verifies review-only import safety, maps expert-reviewed
 ATP/phosphoryl-transfer mismatch lanes to nine concrete fingerprint families,
+packages the ePK lane as a review-only positive-fingerprint readiness packet,
 and passes the 21-check 1,000-slice gate after the accepted-review-debt deferral
 audit confirms all 326 accepted-1,000 review-state rows remain non-countable.
 The gate also
@@ -779,6 +780,21 @@ review-only while routing the 7 unlabeled rows to reviewed out-of-scope repair
 decisions and rejecting 17 controls. Countable import refuses
 review-only artifacts even when they carry reviewed repair decisions, so these
 lanes cannot enter the benchmark.
+`artifacts/v3_epk_positive_fingerprint_readiness_packet_1025.json` now packages
+the five expert-supported ePK/ePK-like boundary rows (`m_csa:35`, `m_csa:246`,
+`m_csa:282`, `m_csa:640`, and `m_csa:662`) into a draft positive-fingerprint
+evidence packet. It records ATP gamma-phosphoryl-transfer reaction-center
+evidence, hydroxyl-acceptor scope, Mg/ATP context, hydrolase-top1
+counterevidence, and neighboring ATP-family controls, but it keeps the active
+positive fingerprint universe at 8, edits no registry labels, imports no seed
+labels, and blocks count growth on external-hard-negative re-audit plus future
+scorer and label-factory gates.
+`artifacts/v3_epk_external_hard_negative_reaudit_plan_1025.json` then scopes
+that re-audit for the three imported external hard negatives. It confirms their
+current `out_of_scope`/null-fingerprint label contracts and separated evidence
+fields are intact, but leaves every row `planned_not_scored` until an ePK
+scoring rule, ePK inverse-gate threshold policy, terminal-review path, and
+post-import litmus rerun exist.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

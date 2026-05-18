@@ -5724,6 +5724,597 @@ def build_atp_phosphoryl_transfer_family_expansion(
     }
 
 
+def build_epk_positive_fingerprint_readiness_packet(
+    *,
+    atp_phosphoryl_transfer_family_expansion: dict[str, Any],
+    reaction_substrate_mismatch_decision_batch: dict[str, Any] | None = None,
+    family_propagation_guardrails: dict[str, Any] | None = None,
+    external_hard_negative_ontology_reaudit_policy: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Package review-only evidence for a future ePK positive fingerprint.
+
+    The packet is deliberately not a registry edit. It decides whether the
+    existing expert-reviewed ePK boundary rows are sufficient to draft a
+    fingerprint specification, while keeping countable labels and the active
+    positive-fingerprint universe unchanged.
+    """
+
+    ontology = load_mechanism_ontology()
+    family_records = {
+        str(family.get("id")): family
+        for family in ontology.get("families", [])
+        if isinstance(family, dict) and isinstance(family.get("id"), str)
+    }
+    epk_family = family_records.get("epk", {})
+    atp_parent = family_records.get(ATP_PHOSPHORYL_PARENT_FAMILY_ID, {})
+    sibling_family_ids = _sorted_strings(epk_family.get("sibling_ids", []))
+    current_fingerprint_ids = sorted(fingerprint.id for fingerprint in load_fingerprints())
+    target_fingerprint_id = "epk_atp_gamma_phosphoryl_transfer"
+
+    decision_context_by_entry: dict[str, dict[str, Any]] = {}
+    for item in (reaction_substrate_mismatch_decision_batch or {}).get(
+        "review_items", []
+    ):
+        if isinstance(item, dict) and isinstance(item.get("entry_id"), str):
+            decision_context_by_entry[str(item["entry_id"])] = item
+
+    guardrail_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (family_propagation_guardrails or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    expansion_rows = [
+        row
+        for row in atp_phosphoryl_transfer_family_expansion.get("rows", [])
+        if isinstance(row, dict) and row.get("family_id") == "epk"
+    ]
+
+    rows: list[dict[str, Any]] = []
+    for expansion_row in expansion_rows:
+        entry_id = str(expansion_row.get("entry_id"))
+        decision_item = decision_context_by_entry.get(entry_id, {})
+        decision = decision_item.get("decision", {})
+        if not isinstance(decision, dict):
+            decision = {}
+        mismatch_context = decision_item.get("mismatch_context", {})
+        if not isinstance(mismatch_context, dict):
+            mismatch_context = {}
+        guardrail = guardrail_by_entry.get(entry_id, {})
+        mechanism_text_snippets = _sorted_strings(
+            mismatch_context.get("mechanism_text_snippets", [])
+            or guardrail.get("mechanism_text_snippets", [])
+        )
+        rationale = str(decision.get("rationale") or "")
+        text_blob = " ".join([rationale, *mechanism_text_snippets]).lower()
+        has_atp_gamma_transfer = (
+            "atp" in text_blob
+            and ("gamma" in text_blob or "terminal-phosphate" in text_blob)
+            and (
+                "phosphate" in text_blob
+                or "phosphoryl" in text_blob
+                or "phospho" in text_blob
+            )
+        )
+        has_hydroxyl_acceptor = any(
+            term in text_blob
+            for term in (
+                "hydroxyl",
+                "tyrosine",
+                "serine",
+                "threonine",
+                "aminoglycoside",
+                "inositol",
+                "protein substrate",
+                "lipid kinase",
+            )
+        )
+        has_active_site_base = any(
+            term in text_blob for term in ("asp", "glu", "base", "deproton")
+        )
+        has_mg_atp_context = any(term in text_blob for term in ("mg2", "mg", "atp"))
+        top1_fingerprint_id = (
+            expansion_row.get("top1_fingerprint_id")
+            or mismatch_context.get("top1_fingerprint_id")
+            or guardrail.get("top1_fingerprint_id")
+        )
+        mismatch_reasons = _sorted_strings(
+            expansion_row.get("mismatch_reasons", [])
+            or mismatch_context.get("mismatch_reasons", [])
+            or guardrail.get("reaction_substrate_mismatch_reasons", [])
+        )
+        propagation_blockers = _sorted_strings(
+            expansion_row.get("propagation_blockers", [])
+            or mismatch_context.get("propagation_blockers", [])
+            or guardrail.get("propagation_blockers", [])
+        )
+        expert_supported = (
+            expansion_row.get("support_level")
+            == "expert_review_supported_family_boundary"
+            and expansion_row.get("decision_review_status") == "expert_reviewed"
+        )
+        row_blockers = [
+            "review_only_family_boundary_not_seed_fingerprint_label",
+            "countable_label_candidate_false",
+            "positive_fingerprint_registry_not_expanded",
+        ]
+        if top1_fingerprint_id == "metal_dependent_hydrolase":
+            row_blockers.append("current_retrieval_routes_to_hydrolase_control")
+        if not has_atp_gamma_transfer:
+            row_blockers.append("atp_gamma_phosphoryl_transfer_not_text_supported")
+        if not has_hydroxyl_acceptor:
+            row_blockers.append("acceptor_hydroxyl_evidence_missing")
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": expansion_row.get("entry_name")
+                or mismatch_context.get("entry_name"),
+                "family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "source_family_support_level": expansion_row.get("support_level"),
+                "expert_supported_family_boundary": expert_supported,
+                "decision_action": expansion_row.get("decision_action"),
+                "decision_label_type": expansion_row.get("decision_label_type"),
+                "decision_review_status": expansion_row.get("decision_review_status"),
+                "reaction_substrate_resolution": expansion_row.get(
+                    "reaction_substrate_resolution"
+                ),
+                "reviewer": expansion_row.get("reviewer"),
+                "current_top1_fingerprint_id": top1_fingerprint_id,
+                "current_top1_ontology_family": (
+                    expansion_row.get("top1_ontology_family")
+                    or mismatch_context.get("top1_ontology_family")
+                    or guardrail.get("top1_ontology_family")
+                ),
+                "current_top1_score": mismatch_context.get("top1_score"),
+                "active_site_base_evidence_status": (
+                    "review_text_support"
+                    if has_active_site_base
+                    else "not_established_in_current_packet"
+                ),
+                "cofactor_evidence_status": (
+                    "review_text_mg_atp_context"
+                    if has_mg_atp_context
+                    else "not_established_in_current_packet"
+                ),
+                "reaction_center_evidence_status": (
+                    "review_text_atp_gamma_phosphoryl_transfer"
+                    if has_atp_gamma_transfer
+                    else "not_established_in_current_packet"
+                ),
+                "acceptor_scope_evidence_status": (
+                    "review_text_hydroxyl_acceptor"
+                    if has_hydroxyl_acceptor
+                    else "not_established_in_current_packet"
+                ),
+                "mechanism_text_snippets": mechanism_text_snippets,
+                "expert_rationale": rationale,
+                "mismatch_reasons": mismatch_reasons,
+                "propagation_blockers": propagation_blockers,
+                "readiness_blockers": sorted(set(row_blockers)),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_only": True,
+            }
+        )
+
+    external_triggers = _sorted_strings(
+        (external_hard_negative_ontology_reaudit_policy or {}).get(
+            "expansion_triggers", []
+        )
+    )
+    external_reaudit_rows = [
+        row
+        for row in (
+            external_hard_negative_ontology_reaudit_policy or {}
+        ).get("external_labels_requiring_reaudit", [])
+        if isinstance(row, dict)
+    ]
+    external_reaudit_required = (
+        "epk" in external_triggers
+        or "any_positive_fingerprint_universe_expansion" in external_triggers
+    )
+    if external_hard_negative_ontology_reaudit_policy is None:
+        external_reaudit_required = True
+
+    expert_supported_count = sum(
+        1 for row in rows if row["expert_supported_family_boundary"]
+    )
+    reaction_center_supported_count = sum(
+        1
+        for row in rows
+        if row["reaction_center_evidence_status"]
+        == "review_text_atp_gamma_phosphoryl_transfer"
+    )
+    acceptor_supported_count = sum(
+        1
+        for row in rows
+        if row["acceptor_scope_evidence_status"] == "review_text_hydroxyl_acceptor"
+    )
+    ontology_family_ready = (
+        bool(epk_family)
+        and epk_family.get("parent_id") == ATP_PHOSPHORYL_PARENT_FAMILY_ID
+        and bool(epk_family.get("scope_note"))
+        and bool(sibling_family_ids)
+    )
+    evidence_ready_for_draft_fingerprint_spec = (
+        ontology_family_ready
+        and len(rows) >= 3
+        and expert_supported_count == len(rows)
+        and reaction_center_supported_count >= 3
+        and acceptor_supported_count >= 3
+        and target_fingerprint_id not in current_fingerprint_ids
+    )
+    expansion_blockers = [
+        "review_only_packet_does_not_edit_mechanism_fingerprint_registry",
+        "countable_seed_labels_not_imported",
+        "new_positive_scoring_rules_and_label_factory_gates_required",
+    ]
+    if external_reaudit_required:
+        expansion_blockers.append(
+            "external_hard_negative_reaudit_required_before_positive_expansion_counts"
+        )
+    if not evidence_ready_for_draft_fingerprint_spec:
+        expansion_blockers.append("draft_fingerprint_spec_evidence_incomplete")
+
+    neighbor_family_controls = [
+        {
+            "family_id": family_id,
+            "family_name": (
+                family_records.get(family_id, {}).get("name")
+                or ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(family_id)
+            ),
+            "scope_note": family_records.get(family_id, {}).get("scope_note"),
+            "guardrails": _sorted_strings(
+                family_records.get(family_id, {}).get(
+                    "family_boundary_guardrails", []
+                )
+            ),
+            "control_rule": (
+                "require direct local phosphoryl-transfer evidence before "
+                "separating ePK-like rows from this neighboring ATP family"
+            ),
+        }
+        for family_id in sibling_family_ids
+        if family_id in ATP_PHOSPHORYL_TRANSFER_FAMILY_IDS
+    ]
+
+    return {
+        "metadata": {
+            "method": "epk_positive_fingerprint_readiness_packet",
+            "review_only": True,
+            "ontology_version": ontology.get("version"),
+            "target_family_id": "epk",
+            "target_parent_family_id": ATP_PHOSPHORYL_PARENT_FAMILY_ID,
+            "target_fingerprint_id": target_fingerprint_id,
+            "current_positive_fingerprint_count": len(current_fingerprint_ids),
+            "current_positive_fingerprint_ids": current_fingerprint_ids,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_candidate_count": 0,
+            "ready_for_label_import": False,
+            "evidence_ready_for_draft_fingerprint_spec": (
+                evidence_ready_for_draft_fingerprint_spec
+            ),
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "readiness_status": (
+                "draft_fingerprint_spec_ready_not_countable"
+                if evidence_ready_for_draft_fingerprint_spec
+                else "blocked_missing_review_evidence"
+            ),
+            "epk_boundary_row_count": len(rows),
+            "expert_supported_boundary_count": expert_supported_count,
+            "reaction_center_supported_count": reaction_center_supported_count,
+            "acceptor_supported_count": acceptor_supported_count,
+            "ontology_family_ready": ontology_family_ready,
+            "neighbor_family_control_count": len(neighbor_family_controls),
+            "external_hard_negative_reaudit_required_before_counting": (
+                external_reaudit_required
+            ),
+            "external_hard_negative_reaudit_entry_ids": sorted(
+                str(row.get("entry_id"))
+                for row in external_reaudit_rows
+                if isinstance(row.get("entry_id"), str)
+            ),
+            "expansion_blockers": sorted(set(expansion_blockers)),
+            "source_atp_family_expansion_method": (
+                atp_phosphoryl_transfer_family_expansion.get("metadata", {}).get(
+                    "method"
+                )
+            ),
+            "source_decision_batch_method": (
+                (reaction_substrate_mismatch_decision_batch or {})
+                .get("metadata", {})
+                .get("method")
+            ),
+            "source_family_guardrail_method": (
+                (family_propagation_guardrails or {})
+                .get("metadata", {})
+                .get("method")
+            ),
+            "source_external_reaudit_policy_method": (
+                (external_hard_negative_ontology_reaudit_policy or {})
+                .get("metadata", {})
+                .get("method")
+            ),
+            "review_only_rule": (
+                "This packet can support future ePK fingerprint authoring, but "
+                "it cannot add a positive fingerprint, import labels, or count "
+                "external hard negatives without explicit registry, scoring, "
+                "re-audit, and label-factory gate work."
+            ),
+        },
+        "target_fingerprint_draft": {
+            "id": target_fingerprint_id,
+            "name": "ePK/ePK-like ATP gamma-phosphoryl transfer",
+            "family_id": "epk",
+            "parent_family_id": ATP_PHOSPHORYL_PARENT_FAMILY_ID,
+            "enzyme_space": [
+                "protein Ser/Thr kinases",
+                "protein Tyr kinases",
+                "dual-specificity MAP kinase kinases",
+                "ePK-like aminoglycoside phosphotransferases",
+                "ePK-like phosphoinositide kinases",
+            ],
+            "active_site_signature": [
+                {
+                    "role": "general_base",
+                    "residue": "Asp/Glu",
+                    "constraints": [
+                        "activates substrate hydroxyl for gamma-phosphate attack"
+                    ],
+                },
+                {
+                    "role": "phosphate_positioning",
+                    "residue": "Lys/Arg or Mg2+-coordinating residues",
+                    "constraints": [
+                        "positions ATP phosphates without implying hydrolysis"
+                    ],
+                },
+                {
+                    "role": "acceptor",
+                    "residue": "Ser/Thr/Tyr or substrate hydroxyl",
+                    "constraints": [
+                        "hydroxyl acceptor attacks ATP gamma phosphate"
+                    ],
+                },
+            ],
+            "cofactors": ["ATP", "Mg2+"],
+            "reaction_center": {
+                "bond_changes": [
+                    "ATP gamma-phosphoryl transfer to hydroxyl acceptor"
+                ],
+                "chemical_operation": (
+                    "associative or dissociative phosphoryl transfer, not "
+                    "metal-activated water hydrolysis"
+                ),
+            },
+            "substrate_constraints": [
+                "protein Ser/Thr/Tyr hydroxyl, aminoglycoside hydroxyl, or phosphoinositide hydroxyl",
+                "ATP/Mg2+ positioned for phosphate transfer",
+                "no water-activated hydrolytic leaving-group assignment",
+            ],
+            "evidence_features": [
+                "expert-reviewed ePK family boundary",
+                "ATP gamma-phosphate or terminal-phosphate reaction text",
+                "hydroxyl acceptor substrate text",
+                "current hydrolase top1 treated as counterevidence, not a label",
+            ],
+            "counterevidence_features": [
+                "ASKHA/Pfk/GHMP sugar kinase wording without ePK/ePK-like fold evidence",
+                "GHKL histidine-kinase/Bergerat context",
+                "ATP-grasp ligase or acyl-phosphate intermediate context",
+                "NDK phosphohistidine exchange context",
+                "generic Mg2+ binding without ATP gamma-phosphoryl transfer",
+            ],
+            "uncertainty_axes": [
+                "direct local ATP/Mg2+ ligand mapping",
+                "substrate hydroxyl identity and active-site distance",
+                "ePK versus neighboring ATP-transfer family boundary",
+                "external hard-negative re-audit after ontology expansion",
+            ],
+        },
+        "ontology_family": {
+            "id": "epk",
+            "name": epk_family.get("name"),
+            "parent_id": epk_family.get("parent_id"),
+            "scope_note": epk_family.get("scope_note"),
+            "family_boundary_guardrails": _sorted_strings(
+                epk_family.get("family_boundary_guardrails", [])
+            ),
+            "parent_scope_note": atp_parent.get("scope_note"),
+        },
+        "neighbor_family_controls": neighbor_family_controls,
+        "rows": sorted(rows, key=lambda row: _entry_id_sort_key(row["entry_id"])),
+        "warnings": [
+            (
+                "review-only ePK readiness does not change the active "
+                "8-fingerprint universe or authorize new countable labels"
+            )
+        ],
+    }
+
+
+def build_epk_external_hard_negative_reaudit_plan(
+    *,
+    epk_positive_fingerprint_readiness_packet: dict[str, Any],
+    external_hard_negative_ontology_reaudit_policy: dict[str, Any],
+    curated_label_records: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Plan the external hard-negative re-audit required by an ePK expansion."""
+
+    if curated_label_records is None:
+        label_records = [label.to_dict() for label in load_labels()]
+    else:
+        label_records = [
+            MechanismLabel.from_dict(record).to_dict()
+            for record in curated_label_records
+            if isinstance(record, dict)
+        ]
+    labels_by_entry = {
+        str(record.get("entry_id")): record
+        for record in label_records
+        if isinstance(record.get("entry_id"), str)
+    }
+    policy_rows = [
+        row
+        for row in external_hard_negative_ontology_reaudit_policy.get(
+            "external_labels_requiring_reaudit", []
+        )
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    ]
+    policy_entry_ids = sorted(str(row["entry_id"]) for row in policy_rows)
+    readiness_meta = epk_positive_fingerprint_readiness_packet.get("metadata", {})
+    target_fingerprint_id = str(
+        readiness_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    expansion_triggers = _sorted_strings(
+        external_hard_negative_ontology_reaudit_policy.get("expansion_triggers", [])
+    )
+    epk_triggered = (
+        "epk" in expansion_triggers
+        or "any_positive_fingerprint_universe_expansion" in expansion_triggers
+    )
+
+    rows: list[dict[str, Any]] = []
+    missing_registry_entry_ids: list[str] = []
+    incompatible_label_entry_ids: list[str] = []
+    evidence_not_separated_entry_ids: list[str] = []
+    for entry_id in policy_entry_ids:
+        label = labels_by_entry.get(entry_id)
+        if label is None:
+            missing_registry_entry_ids.append(entry_id)
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "registry_label_present": False,
+                    "reaudit_status": "blocked_missing_current_label",
+                    "required_checks": [],
+                    "ready_for_label_import": False,
+                    "countable_label_candidate": False,
+                    "review_only": True,
+                }
+            )
+            continue
+        evidence = label.get("evidence", {})
+        evidence_keys = (
+            "predictive_evidence",
+            "import_gate_evidence",
+            "review_only_context",
+            "excluded_context",
+        )
+        evidence_separated = all(
+            isinstance(evidence, dict)
+            and isinstance(evidence.get(key), list)
+            and bool(evidence.get(key))
+            for key in evidence_keys
+        )
+        label_compatible = (
+            label.get("label_type") == "out_of_scope"
+            and label.get("fingerprint_id") is None
+            and label.get("ontology_version_at_decision")
+            == DEFAULT_ONTOLOGY_VERSION_AT_DECISION
+        )
+        if not label_compatible:
+            incompatible_label_entry_ids.append(entry_id)
+        if not evidence_separated:
+            evidence_not_separated_entry_ids.append(entry_id)
+        row_blockers = [
+            "epk_positive_scoring_rule_not_implemented",
+            "external_label_not_rescored_against_epk_draft",
+            "epk_inverse_gate_threshold_not_calibrated",
+            "terminal_review_not_reopened_under_expanded_ontology",
+        ]
+        if not label_compatible:
+            row_blockers.append("current_external_label_contract_mismatch")
+        if not evidence_separated:
+            row_blockers.append("external_label_evidence_not_separated")
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "registry_label_present": True,
+                "current_label_type": label.get("label_type"),
+                "current_fingerprint_id": label.get("fingerprint_id"),
+                "current_ontology_version_at_decision": label.get(
+                    "ontology_version_at_decision"
+                ),
+                "current_label_contract_valid": label_compatible,
+                "evidence_separation_valid": evidence_separated,
+                "target_reaudit_fingerprint_id": target_fingerprint_id,
+                "reaudit_status": "planned_not_scored",
+                "required_checks": [
+                    "compute ePK draft-fingerprint score from predictive local evidence only",
+                    "verify no ATP gamma-phosphoryl-transfer ePK signal clears the active floor",
+                    "re-run duplicate and terminal-review checks under the expanded ontology",
+                    "preserve review-only and excluded context outside predictive evidence",
+                    "rerun post-import litmus before any countable external claim",
+                ],
+                "reaudit_blockers": sorted(set(row_blockers)),
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "review_only": True,
+            }
+        )
+
+    plan_ready = (
+        bool(readiness_meta.get("evidence_ready_for_draft_fingerprint_spec"))
+        and epk_triggered
+        and not missing_registry_entry_ids
+        and not incompatible_label_entry_ids
+        and not evidence_not_separated_entry_ids
+    )
+    return {
+        "metadata": {
+            "method": "epk_external_hard_negative_reaudit_plan",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_readiness_status": readiness_meta.get("readiness_status"),
+            "source_epk_evidence_ready_for_draft_fingerprint_spec": bool(
+                readiness_meta.get("evidence_ready_for_draft_fingerprint_spec")
+            ),
+            "source_epk_ready_to_expand_positive_fingerprint_universe": bool(
+                readiness_meta.get("ready_to_expand_positive_fingerprint_universe")
+            ),
+            "policy_triggers_epk_reaudit": epk_triggered,
+            "external_label_reaudit_row_count": len(rows),
+            "missing_registry_entry_ids": missing_registry_entry_ids,
+            "incompatible_label_entry_ids": incompatible_label_entry_ids,
+            "evidence_not_separated_entry_ids": evidence_not_separated_entry_ids,
+            "reaudit_plan_ready": plan_ready,
+            "ready_to_run_scored_reaudit": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "scored_reaudit_blockers": [
+                "epk_positive_scoring_rule_not_implemented",
+                "epk_inverse_gate_threshold_not_calibrated",
+                "external_labels_not_rescored_against_epk_draft",
+            ],
+            "source_epk_readiness_method": readiness_meta.get("method"),
+            "source_external_reaudit_policy_method": (
+                external_hard_negative_ontology_reaudit_policy.get(
+                    "metadata", {}
+                ).get("method")
+            ),
+            "review_only_rule": (
+                "This plan enumerates the ePK-specific external hard-negative "
+                "re-audit work required before any positive-universe expansion "
+                "can use existing external hard negatives as evaluation controls."
+            ),
+        },
+        "rows": sorted(rows, key=lambda row: str(row.get("entry_id") or "")),
+        "warnings": [
+            (
+                "no ePK score is computed here; all external hard negatives "
+                "remain scoped to label_factory_v1_8fp until a future scored "
+                "re-audit passes"
+            )
+        ],
+    }
+
+
 def _atp_target_family_record(
     family_id: str,
     family: dict[str, Any],

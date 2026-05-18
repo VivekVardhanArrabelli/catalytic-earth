@@ -313,6 +313,16 @@ Current expectation:
   ontology coverage for ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and
   GHMP, wired through guardrails, review exports, active learning, adversarial
   negatives, gates, tests, artifacts, and documentation
+- post-infra positive-fingerprint preparation has started with ePK only as a
+  review-only evidence packet. The ePK packet is ready for draft fingerprint
+  authoring because five expert-supported boundary rows carry ATP
+  gamma-phosphoryl-transfer and hydroxyl-acceptor evidence, but it is not ready
+  for positive-universe expansion or count growth: the registry remains at 8
+  fingerprints, no labels were imported, and external hard negatives must be
+  re-audited before any future ePK counting claim. The companion ePK external
+  hard-negative re-audit plan now confirms those three labels are present and
+  evidence-separated, while keeping all rows `planned_not_scored` until an ePK
+  scorer, inverse-gate threshold, and terminal-review rerun exist.
 - return to factory-gated label scaling toward 10k while preserving quality
   gates; the accepted 1,000 M-CSA state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the

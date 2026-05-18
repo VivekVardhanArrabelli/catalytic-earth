@@ -170,6 +170,24 @@ documented, and gate-clean, the project resumed scaling through the accepted
 1000 batch. The accepted-1000 review-debt surface is now explicitly deferred by
 `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`.
 
+The first post-infra positive-fingerprint preparation step is review-only:
+`artifacts/v3_epk_positive_fingerprint_readiness_packet_1025.json` packages the
+five expert-supported ePK/ePK-like boundary rows into a draft fingerprint
+evidence packet. It records active-site base, ATP/Mg2+ cofactor,
+ATP gamma-phosphoryl-transfer reaction-center, hydroxyl-acceptor, hydrolase
+counterevidence, and neighboring ATP-family control requirements. The packet is
+`evidence_ready_for_draft_fingerprint_spec=true`, but
+`ready_to_expand_positive_fingerprint_universe=false`: it edits neither
+`mechanism_fingerprints.json` nor `curated_mechanism_labels.json`, keeps all
+rows non-countable, preserves the 8-fingerprint universe, and requires
+external-hard-negative re-audit plus future scorer/factory gates before any ePK
+counting work.
+`artifacts/v3_epk_external_hard_negative_reaudit_plan_1025.json` expands that
+blocker into three explicit review-only rows for `uniprot:P06744`,
+`uniprot:P78549`, and `uniprot:Q3LXA3`. The plan is ready as a checklist, but
+`ready_to_run_scored_reaudit=false` because no ePK positive scoring rule,
+inverse-gate threshold, or terminal-review rerun has been implemented.
+
 ## Active Learning Queue
 
 `build-active-learning-queue` ranks entries by:

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 170
-- Measured elapsed time: 5229.1 minutes (87.15 hours)
+- Entries: 171
+- Measured elapsed time: 5244.7 minutes (87.41 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,6 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
+- post-infra-science: 15.6 measured minutes (0.26 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -26,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1886
-- Evidence references logged: 1471
+- Artifact references logged: 1897
+- Evidence references logged: 1479
 
 ## Recent Entries
-
-### 2026-05-17T21:23:45.693227+00:00 - infrastructure
-
-- Task: Artifact migration validator hardening
-- Time mode: measured
-- Measured minutes: 10.6
-- Started: 2026-05-17T21:12:59Z
-- Ended: 2026-05-17T21:23:35Z
-- Artifacts: artifacts/v3_artifact_migration_execution_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
-- Evidence: startup 431 unit tests passed, final 432 unit tests passed, targeted artifact and transfer tests passed, source-only compile/import/CLI help/validate passed, validate passed with 682 labels, validate-artifact-migration passed with 108 rows and 0 blockers, restore smoke dry-run passed with 3 existing-match skips, unknown_blocking_summary documents 31 geometry feature rows and 9 Foldseek sidecars, git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only: no artifact deletion upload LFS migration externalization scientific-artifact recompute or history rewrite. Validator now fails closed on stale baseline metadata status counts producer counts and unknown-blocking summaries.
 
 ### 2026-05-17T21:26:30.789892+00:00 - infrastructure
 
@@ -118,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
 - Evidence: startup 439-test unit discovery passed, startup validate passed with 682 labels, final targeted artifact transfer source-only tests passed, final 439-test unit discovery passed, source-only compile import CLI help validate passed, validate-artifact-migration dry-run and local-file check passed, restore smoke dry-run passed with 3 existing-match skips, manifest producer status now 68 known 40 unavailable_with_reason 0 unknown_blocking, external label invariants remain 682 total 212 seed 470 out_of_scope 3 external out_of_scope
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. early_exit_exception: elapsed 9.383 minutes because every remaining safe Phase 1 step is complete and Phase 2 upload is approval-gated. No artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite.
+
+### 2026-05-18T05:26:10.455344+00:00 - post-infra-science
+
+- Task: ePK positive-fingerprint readiness packet
+- Time mode: measured
+- Measured minutes: 15.55
+- Started: 2026-05-18T05:10:47Z
+- Ended: 2026-05-18T05:26:20Z
+- Artifacts: artifacts/v3_epk_positive_fingerprint_readiness_packet_1025.json, artifacts/v3_epk_external_hard_negative_reaudit_plan_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: startup 439-test unit discovery passed, startup validate passed with 682 labels, migration guard passed with 108 rows and 0 blockers, final 443-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit scientific artifact recompute or history rewrite.
 
 ## Expectation Updates
 
@@ -357,3 +358,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-17T02:10:05.048551+00:00: First external hard-negative import attempt is closed without count growth; next external work starts tranche-2 review-only candidates P33025 Q13907 P35914.
 - 2026-05-17T04:14:25+00:00: Next hard-negative work should complete the missing current-countable pair cache for Q13087/sequence-clean rows, then continue UniRef-wide duplicate and terminal review gates before any import attempt.
 - 2026-05-17T17:13:28.332690+00:00: leakage-risk closure complete; next milestone is infrastructure/artifact strategy before ePK or broad scale-up
+- 2026-05-18T05:26:10.455344+00:00: ePK is ready for draft fingerprint specification but not positive-universe expansion; external hard negatives require scored ePK re-audit before any future counting claim.

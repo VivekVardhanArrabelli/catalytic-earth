@@ -64,6 +64,8 @@ from .labels import (
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
     build_atp_phosphoryl_transfer_family_expansion,
+    build_epk_external_hard_negative_reaudit_plan,
+    build_epk_positive_fingerprint_readiness_packet,
     build_expert_label_decision_local_evidence_review_export,
     build_expert_label_decision_review_export,
     build_expert_review_export,
@@ -5114,6 +5116,67 @@ def cmd_build_atp_phosphoryl_transfer_family_expansion(args: argparse.Namespace)
     print(
         "Wrote ATP/phosphoryl-transfer family expansion to "
         f"{args.out} (ready={expansion['metadata']['boundary_guardrail_ready']})"
+    )
+    return 0
+
+
+def cmd_build_epk_positive_fingerprint_readiness_packet(args: argparse.Namespace) -> int:
+    with Path(args.atp_phosphoryl_transfer_family_expansion).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        atp_expansion = json.load(handle)
+    decision_batch = None
+    if args.reaction_substrate_mismatch_decision_batch:
+        with Path(args.reaction_substrate_mismatch_decision_batch).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            decision_batch = json.load(handle)
+    family_guardrails = None
+    if args.family_propagation_guardrails:
+        with Path(args.family_propagation_guardrails).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            family_guardrails = json.load(handle)
+    external_reaudit_policy = None
+    if args.external_hard_negative_ontology_reaudit_policy:
+        with Path(args.external_hard_negative_ontology_reaudit_policy).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            external_reaudit_policy = json.load(handle)
+    packet = build_epk_positive_fingerprint_readiness_packet(
+        atp_phosphoryl_transfer_family_expansion=atp_expansion,
+        reaction_substrate_mismatch_decision_batch=decision_batch,
+        family_propagation_guardrails=family_guardrails,
+        external_hard_negative_ontology_reaudit_policy=external_reaudit_policy,
+    )
+    write_json(Path(args.out), packet)
+    print(
+        "Wrote ePK positive-fingerprint readiness packet to "
+        f"{args.out} (status={packet['metadata']['readiness_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_external_hard_negative_reaudit_plan(args: argparse.Namespace) -> int:
+    with Path(args.epk_positive_fingerprint_readiness_packet).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_readiness = json.load(handle)
+    with Path(args.external_hard_negative_ontology_reaudit_policy).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        external_reaudit_policy = json.load(handle)
+    with Path(args.labels).open("r", encoding="utf-8") as handle:
+        label_records = json.load(handle)
+    plan = build_epk_external_hard_negative_reaudit_plan(
+        epk_positive_fingerprint_readiness_packet=epk_readiness,
+        external_hard_negative_ontology_reaudit_policy=external_reaudit_policy,
+        curated_label_records=label_records,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote ePK external hard-negative re-audit plan to "
+        f"{args.out} (ready={plan['metadata']['reaudit_plan_ready']})"
     )
     return 0
 
@@ -11367,6 +11430,53 @@ def build_parser() -> argparse.ArgumentParser:
     atp_family_expansion.set_defaults(
         func=cmd_build_atp_phosphoryl_transfer_family_expansion
     )
+
+    epk_readiness = subparsers.add_parser(
+        "build-epk-positive-fingerprint-readiness-packet",
+        help="package review-only evidence for a future ePK positive fingerprint",
+    )
+    epk_readiness.add_argument(
+        "--atp-phosphoryl-transfer-family-expansion",
+        default="artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+    )
+    epk_readiness.add_argument(
+        "--reaction-substrate-mismatch-decision-batch",
+        default=None,
+    )
+    epk_readiness.add_argument("--family-propagation-guardrails", default=None)
+    epk_readiness.add_argument(
+        "--external-hard-negative-ontology-reaudit-policy",
+        default=None,
+    )
+    epk_readiness.add_argument(
+        "--out",
+        default="artifacts/v3_epk_positive_fingerprint_readiness_packet.json",
+    )
+    epk_readiness.set_defaults(
+        func=cmd_build_epk_positive_fingerprint_readiness_packet
+    )
+
+    epk_reaudit = subparsers.add_parser(
+        "build-epk-external-hard-negative-reaudit-plan",
+        help="plan ePK-specific re-audit of existing external hard negatives",
+    )
+    epk_reaudit.add_argument(
+        "--epk-positive-fingerprint-readiness-packet",
+        default="artifacts/v3_epk_positive_fingerprint_readiness_packet.json",
+    )
+    epk_reaudit.add_argument(
+        "--external-hard-negative-ontology-reaudit-policy",
+        default="artifacts/v3_external_hard_negative_ontology_reaudit_policy_1025.json",
+    )
+    epk_reaudit.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    epk_reaudit.add_argument(
+        "--out",
+        default="artifacts/v3_epk_external_hard_negative_reaudit_plan.json",
+    )
+    epk_reaudit.set_defaults(func=cmd_build_epk_external_hard_negative_reaudit_plan)
 
     learned_retrieval_manifest = subparsers.add_parser(
         "build-learned-retrieval-manifest",

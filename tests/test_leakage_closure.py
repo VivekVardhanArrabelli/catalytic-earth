@@ -216,6 +216,57 @@ class LeakageClosureTests(unittest.TestCase):
         for trigger in ("epk", "sdr", "akr", "glycoside_hydrolase", "isomerase", "lyase"):
             self.assertIn(trigger, artifact["expansion_triggers"])
 
+    def test_epk_readiness_packet_stays_review_only(self) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_positive_fingerprint_readiness_packet_1025.json"
+        )
+        metadata = packet["metadata"]
+        self.assertEqual(metadata["method"], "epk_positive_fingerprint_readiness_packet")
+        self.assertTrue(metadata["evidence_ready_for_draft_fingerprint_spec"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["current_positive_fingerprint_count"], 8)
+        self.assertEqual(metadata["epk_boundary_row_count"], 5)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            set(metadata["external_hard_negative_reaudit_entry_ids"]),
+            EXTERNAL_HARD_NEGATIVES,
+        )
+        self.assertEqual(
+            {row["entry_id"] for row in packet["rows"]},
+            {"m_csa:35", "m_csa:246", "m_csa:282", "m_csa:640", "m_csa:662"},
+        )
+        for row in packet["rows"]:
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertIn(
+                "positive_fingerprint_registry_not_expanded",
+                row["readiness_blockers"],
+            )
+
+    def test_epk_external_hard_negative_reaudit_plan_is_unscored(self) -> None:
+        plan = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_hard_negative_reaudit_plan_1025.json"
+        )
+        metadata = plan["metadata"]
+        self.assertEqual(metadata["method"], "epk_external_hard_negative_reaudit_plan")
+        self.assertTrue(metadata["reaudit_plan_ready"])
+        self.assertFalse(metadata["ready_to_run_scored_reaudit"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertEqual(metadata["external_label_reaudit_row_count"], 3)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(set(row["entry_id"] for row in plan["rows"]), EXTERNAL_HARD_NEGATIVES)
+        for row in plan["rows"]:
+            self.assertEqual(row["reaudit_status"], "planned_not_scored")
+            self.assertTrue(row["current_label_contract_valid"])
+            self.assertTrue(row["evidence_separation_valid"])
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:
         adjudication = _load_json(
             ROOT / "artifacts" / "v3_mcsa_tm_holdout_feasibility_adjudication_1000.json"

@@ -1443,3 +1443,13 @@ external hard negatives (`uniprot:P06744`, `uniprot:P78549`, and
 `uniprot:Q3LXA3`) are scoped only to `label_factory_v1_8fp` and must be
 re-audited whenever the positive fingerprint universe expands, especially for
 ePK, SDR, AKR, glycoside-hydrolase, isomerase, or lyase families.
+The review-only ePK readiness packet
+`artifacts/v3_epk_positive_fingerprint_readiness_packet_1025.json` therefore
+does not expand the universe or reuse these external labels under ePK; it
+records the re-audit blocker that must be cleared before any future ePK
+counting or external hard-negative claim.
+`artifacts/v3_epk_external_hard_negative_reaudit_plan_1025.json` keeps that
+blocker concrete: all three current external labels are present and evidence
+separated, but their ePK status is only `planned_not_scored` until a future ePK
+scoring rule and inverse-gate policy are implemented and terminal review is
+rerun under the expanded ontology.

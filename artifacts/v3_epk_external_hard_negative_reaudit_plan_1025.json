@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "evidence_not_separated_entry_ids": [],
+    "external_label_reaudit_row_count": 3,
+    "incompatible_label_entry_ids": [],
+    "method": "epk_external_hard_negative_reaudit_plan",
+    "missing_registry_entry_ids": [],
+    "policy_triggers_epk_reaudit": true,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_scored_reaudit": false,
+    "reaudit_plan_ready": true,
+    "review_only": true,
+    "review_only_rule": "This plan enumerates the ePK-specific external hard-negative re-audit work required before any positive-universe expansion can use existing external hard negatives as evaluation controls.",
+    "scored_reaudit_blockers": [
+      "epk_positive_scoring_rule_not_implemented",
+      "epk_inverse_gate_threshold_not_calibrated",
+      "external_labels_not_rescored_against_epk_draft"
+    ],
+    "source_epk_evidence_ready_for_draft_fingerprint_spec": true,
+    "source_epk_readiness_method": "epk_positive_fingerprint_readiness_packet",
+    "source_epk_readiness_status": "draft_fingerprint_spec_ready_not_countable",
+    "source_epk_ready_to_expand_positive_fingerprint_universe": false,
+    "source_external_reaudit_policy_method": "external_hard_negative_ontology_reaudit_policy",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "current_fingerprint_id": null,
+      "current_label_contract_valid": true,
+      "current_label_type": "out_of_scope",
+      "current_ontology_version_at_decision": "label_factory_v1_8fp",
+      "entry_id": "uniprot:P06744",
+      "evidence_separation_valid": true,
+      "ready_for_label_import": false,
+      "reaudit_blockers": [
+        "epk_inverse_gate_threshold_not_calibrated",
+        "epk_positive_scoring_rule_not_implemented",
+        "external_label_not_rescored_against_epk_draft",
+        "terminal_review_not_reopened_under_expanded_ontology"
+      ],
+      "reaudit_status": "planned_not_scored",
+      "registry_label_present": true,
+      "required_checks": [
+        "compute ePK draft-fingerprint score from predictive local evidence only",
+        "verify no ATP gamma-phosphoryl-transfer ePK signal clears the active floor",
+        "re-run duplicate and terminal-review checks under the expanded ontology",
+        "preserve review-only and excluded context outside predictive evidence",
+        "rerun post-import litmus before any countable external claim"
+      ],
+      "review_only": true,
+      "target_reaudit_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "current_fingerprint_id": null,
+      "current_label_contract_valid": true,
+      "current_label_type": "out_of_scope",
+      "current_ontology_version_at_decision": "label_factory_v1_8fp",
+      "entry_id": "uniprot:P78549",
+      "evidence_separation_valid": true,
+      "ready_for_label_import": false,
+      "reaudit_blockers": [
+        "epk_inverse_gate_threshold_not_calibrated",
+        "epk_positive_scoring_rule_not_implemented",
+        "external_label_not_rescored_against_epk_draft",
+        "terminal_review_not_reopened_under_expanded_ontology"
+      ],
+      "reaudit_status": "planned_not_scored",
+      "registry_label_present": true,
+      "required_checks": [
+        "compute ePK draft-fingerprint score from predictive local evidence only",
+        "verify no ATP gamma-phosphoryl-transfer ePK signal clears the active floor",
+        "re-run duplicate and terminal-review checks under the expanded ontology",
+        "preserve review-only and excluded context outside predictive evidence",
+        "rerun post-import litmus before any countable external claim"
+      ],
+      "review_only": true,
+      "target_reaudit_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "current_fingerprint_id": null,
+      "current_label_contract_valid": true,
+      "current_label_type": "out_of_scope",
+      "current_ontology_version_at_decision": "label_factory_v1_8fp",
+      "entry_id": "uniprot:Q3LXA3",
+      "evidence_separation_valid": true,
+      "ready_for_label_import": false,
+      "reaudit_blockers": [
+        "epk_inverse_gate_threshold_not_calibrated",
+        "epk_positive_scoring_rule_not_implemented",
+        "external_label_not_rescored_against_epk_draft",
+        "terminal_review_not_reopened_under_expanded_ontology"
+      ],
+      "reaudit_status": "planned_not_scored",
+      "registry_label_present": true,
+      "required_checks": [
+        "compute ePK draft-fingerprint score from predictive local evidence only",
+        "verify no ATP gamma-phosphoryl-transfer ePK signal clears the active floor",
+        "re-run duplicate and terminal-review checks under the expanded ontology",
+        "preserve review-only and excluded context outside predictive evidence",
+        "rerun post-import litmus before any countable external claim"
+      ],
+      "review_only": true,
+      "target_reaudit_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "no ePK score is computed here; all external hard negatives remain scoped to label_factory_v1_8fp until a future scored re-audit passes"
+  ]
+}

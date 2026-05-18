@@ -2235,6 +2235,266 @@ class CliTests(unittest.TestCase):
                 ],
             )
 
+    def test_build_epk_positive_fingerprint_readiness_packet_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            atp_expansion = root / "atp_expansion.json"
+            decision_batch = root / "mismatch_decisions.json"
+            reaudit_policy = root / "reaudit_policy.json"
+            out = root / "epk_readiness.json"
+            epk_rows = [
+                (
+                    "m_csa:35",
+                    "phosphorylase kinase",
+                    "Asp149 deprotonates the protein substrate hydroxyl group before attack on the gamma-phosphate of ATP.",
+                ),
+                (
+                    "m_csa:246",
+                    "receptor protein-tyrosine kinase",
+                    "A tyrosine hydroxyl attacks the gamma phosphate of ATP with Mg2+ phosphate positioning.",
+                ),
+                (
+                    "m_csa:640",
+                    "kanamycin kinase",
+                    "A substrate hydroxyl attacks ATP gamma phosphate during aminoglycoside phosphorylation.",
+                ),
+            ]
+            atp_expansion.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "atp_phosphoryl_transfer_family_expansion"
+                        },
+                        "rows": [
+                            {
+                                "entry_id": entry_id,
+                                "entry_name": entry_name,
+                                "family_id": "epk",
+                                "support_level": (
+                                    "expert_review_supported_family_boundary"
+                                ),
+                                "decision_action": "reject_label",
+                                "decision_label_type": "out_of_scope",
+                                "decision_review_status": "expert_reviewed",
+                                "reaction_substrate_resolution": (
+                                    "confirm_current_label_or_out_of_scope"
+                                ),
+                                "reviewer": "test_reviewer",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "top1_ontology_family": "hydrolysis",
+                                "mismatch_reasons": [
+                                    "kinase_name_with_hydrolase_top1"
+                                ],
+                                "propagation_blockers": [
+                                    "reaction_substrate_mismatch"
+                                ],
+                                "countable_label_candidate": False,
+                            }
+                            for entry_id, entry_name, _snippet in epk_rows
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            decision_batch.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "provisional_label_review_decision_batch"
+                        },
+                        "review_items": [
+                            {
+                                "entry_id": entry_id,
+                                "entry_name": entry_name,
+                                "mismatch_context": {
+                                    "entry_id": entry_id,
+                                    "entry_name": entry_name,
+                                    "top1_fingerprint_id": (
+                                        "metal_dependent_hydrolase"
+                                    ),
+                                    "top1_ontology_family": "hydrolysis",
+                                    "mechanism_text_snippets": [snippet],
+                                    "mismatch_reasons": [
+                                        "kinase_name_with_hydrolase_top1"
+                                    ],
+                                },
+                                "decision": {
+                                    "action": "reject_label",
+                                    "label_type": "out_of_scope",
+                                    "review_status": "expert_reviewed",
+                                    "reviewer": "test_reviewer",
+                                    "reaction_substrate_resolution": (
+                                        "confirm_current_label_or_out_of_scope"
+                                    ),
+                                    "future_fingerprint_family_hint": "ePK",
+                                    "rationale": (
+                                        f"{entry_name} is ePK-like ATP "
+                                        "gamma-phosphoryl transfer to a "
+                                        "hydroxyl acceptor."
+                                    ),
+                                },
+                            }
+                            for entry_id, entry_name, snippet in epk_rows
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            reaudit_policy.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "external_hard_negative_ontology_reaudit_policy"
+                            )
+                        },
+                        "expansion_triggers": [
+                            "epk",
+                            "any_positive_fingerprint_universe_expansion",
+                        ],
+                        "external_labels_requiring_reaudit": [
+                            {"entry_id": "uniprot:P06744"}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-positive-fingerprint-readiness-packet",
+                    "--atp-phosphoryl-transfer-family-expansion",
+                    str(atp_expansion),
+                    "--reaction-substrate-mismatch-decision-batch",
+                    str(decision_batch),
+                    "--external-hard-negative-ontology-reaudit-policy",
+                    str(reaudit_policy),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            packet = json.loads(out.read_text(encoding="utf-8"))
+            self.assertTrue(
+                packet["metadata"]["evidence_ready_for_draft_fingerprint_spec"]
+            )
+            self.assertFalse(
+                packet["metadata"]["ready_to_expand_positive_fingerprint_universe"]
+            )
+            self.assertEqual(packet["metadata"]["current_positive_fingerprint_count"], 8)
+            self.assertEqual(packet["metadata"]["epk_boundary_row_count"], 3)
+            self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
+            self.assertIn(
+                "external_hard_negative_reaudit_required_before_positive_expansion_counts",
+                packet["metadata"]["expansion_blockers"],
+            )
+
+    def test_build_epk_external_hard_negative_reaudit_plan_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            epk_readiness = root / "epk_readiness.json"
+            reaudit_policy = root / "reaudit_policy.json"
+            labels = root / "labels.json"
+            out = root / "reaudit_plan.json"
+            epk_readiness.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_positive_fingerprint_readiness_packet",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "readiness_status": (
+                                "draft_fingerprint_spec_ready_not_countable"
+                            ),
+                            "evidence_ready_for_draft_fingerprint_spec": True,
+                            "ready_to_expand_positive_fingerprint_universe": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            reaudit_policy.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "external_hard_negative_ontology_reaudit_policy"
+                            )
+                        },
+                        "expansion_triggers": ["epk"],
+                        "external_labels_requiring_reaudit": [
+                            {"entry_id": "uniprot:P06744"}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels.write_text(
+                json.dumps(
+                    [
+                        {
+                            "entry_id": "uniprot:P06744",
+                            "fingerprint_id": None,
+                            "label_type": "out_of_scope",
+                            "tier": "bronze",
+                            "review_status": "automation_curated",
+                            "ontology_version_at_decision": "label_factory_v1_8fp",
+                            "confidence": "medium",
+                            "evidence_score": 0.65,
+                            "rationale": (
+                                "External hard-negative label retained for "
+                                "the current ontology version only."
+                            ),
+                            "evidence": {
+                                "predictive_evidence": ["scored local surface"],
+                                "import_gate_evidence": ["factory gate passed"],
+                                "review_only_context": ["source context"],
+                                "excluded_context": ["annotation prose"],
+                            },
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-external-hard-negative-reaudit-plan",
+                    "--epk-positive-fingerprint-readiness-packet",
+                    str(epk_readiness),
+                    "--external-hard-negative-ontology-reaudit-policy",
+                    str(reaudit_policy),
+                    "--labels",
+                    str(labels),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            plan = json.loads(out.read_text(encoding="utf-8"))
+            self.assertTrue(plan["metadata"]["reaudit_plan_ready"])
+            self.assertFalse(plan["metadata"]["ready_to_run_scored_reaudit"])
+            self.assertFalse(
+                plan["metadata"]["ready_to_expand_positive_fingerprint_universe"]
+            )
+            self.assertEqual(plan["metadata"]["external_label_reaudit_row_count"], 1)
+            self.assertEqual(plan["metadata"]["countable_label_candidate_count"], 0)
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

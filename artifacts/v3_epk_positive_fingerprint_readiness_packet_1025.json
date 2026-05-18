@@ -1,0 +1,429 @@
+{
+  "metadata": {
+    "acceptor_supported_count": 5,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_positive_fingerprint_count": 8,
+    "current_positive_fingerprint_ids": [
+      "cobalamin_radical_rearrangement",
+      "flavin_dehydrogenase_reductase",
+      "flavin_monooxygenase",
+      "heme_peroxidase_oxidase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "ser_his_acid_hydrolase"
+    ],
+    "epk_boundary_row_count": 5,
+    "evidence_ready_for_draft_fingerprint_spec": true,
+    "expansion_blockers": [
+      "countable_seed_labels_not_imported",
+      "external_hard_negative_reaudit_required_before_positive_expansion_counts",
+      "new_positive_scoring_rules_and_label_factory_gates_required",
+      "review_only_packet_does_not_edit_mechanism_fingerprint_registry"
+    ],
+    "expert_supported_boundary_count": 5,
+    "external_hard_negative_reaudit_entry_ids": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_hard_negative_reaudit_required_before_counting": true,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "epk_positive_fingerprint_readiness_packet",
+    "neighbor_family_control_count": 8,
+    "ontology_family_ready": true,
+    "ontology_version": "label_factory_v1",
+    "reaction_center_supported_count": 5,
+    "readiness_status": "draft_fingerprint_spec_ready_not_countable",
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "review_only_rule": "This packet can support future ePK fingerprint authoring, but it cannot add a positive fingerprint, import labels, or count external hard negatives without explicit registry, scoring, re-audit, and label-factory gate work.",
+    "source_atp_family_expansion_method": "atp_phosphoryl_transfer_family_expansion",
+    "source_decision_batch_method": "provisional_label_review_decision_batch",
+    "source_external_reaudit_policy_method": "external_hard_negative_ontology_reaudit_policy",
+    "source_family_guardrail_method": "family_propagation_guardrail_audit",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "target_parent_family_id": "atp_phosphoryl_transfer"
+  },
+  "neighbor_family_controls": [
+    {
+      "control_rule": "require direct local phosphoryl-transfer evidence before separating ePK-like rows from this neighboring ATP family",
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "guardrails": [
+        "Do not merge ASKHA sugar kinases with PfkA, PfkB, or GHMP solely by ATP wording.",
+        "Keep hexokinase/glucokinase/acetate kinase review lanes out of hydrolase labels even when Mg2+ is local."
+      ],
+      "scope_note": "Actin-like/ASKHA kinases including hexokinase/glucokinase and acetate kinase lanes with ATP gamma-phosphoryl transfer to sugar hydroxyls or carboxylates."
+    },
+    {
+      "control_rule": "require direct local phosphoryl-transfer evidence before separating ePK-like rows from this neighboring ATP family",
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "guardrails": [
+        "Do not count ATP-grasp rows as hydrolases because a phospho-intermediate later collapses.",
+        "Require ligase/phospho-intermediate context before mapping ATP-grasp boundary rows."
+      ],
+      "scope_note": "ATP-grasp ligases that form acyl-phosphate or related phosphorylated intermediates before ligation. This is ATP-coupled transfer/ligation chemistry, not hydrolytic bond cleavage."
+    },
+    {
+      "control_rule": "require direct local phosphoryl-transfer evidence before separating ePK-like rows from this neighboring ATP family",
+      "family_id": "dnk",
+      "family_name": "Deoxynucleoside kinases",
+      "guardrails": [
+        "Do not merge dNK substrate hydroxyl phosphorylation with NDK ping-pong phosphohistidine chemistry.",
+        "Keep dNK lanes review-only until substrate-class and local phosphoryl-transfer evidence are explicit."
+      ],
+      "scope_note": "dNK-fold nucleoside kinases that transfer ATP gamma-phosphate to deoxynucleoside 5-prime hydroxyl acceptors. Kept separate from NDK phosphohistidine exchange."
+    },
+    {
+      "control_rule": "require direct local phosphoryl-transfer evidence before separating ePK-like rows from this neighboring ATP family",
+      "family_id": "ghkl",
+      "family_name": "GHKL/Bergerat ATP-binding kinases",
+      "guardrails": [
+        "Do not propagate ePK rules into GHKL histidine-kinase or PDK lanes.",
+        "Local ATP/Mg2+ support must be interpreted as GHKL transfer evidence only with matching family context."
+      ],
+      "scope_note": "Bergerat/GHKL ATP-binding kinases such as histidine kinases and pyruvate dehydrogenase kinase lanes. Kept separate from ePK and hydrolase chemistry."
+    },
+    {
+      "control_rule": "require direct local phosphoryl-transfer evidence before separating ePK-like rows from this neighboring ATP family",
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "guardrails": [
+        "Do not count GHMP rows as hydrolases when ATP/Mg2+ is the local cofactor context.",
+        "Do not identify GHMP from ATP text alone; require GHMP-family or substrate-class evidence."
+      ],
+      "scope_note": "GHMP-superfamily kinase lanes such as CDP-ME kinase, mevalonate-family kinase chemistry, and related ATP gamma-phosphoryl transfers. Kept separate from ASKHA, PfkA, and PfkB sugar kinases."
+    },
+    {
+      "control_rule": "require direct local phosphoryl-transfer evidence before separating ePK-like rows from this neighboring ATP family",
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "guardrails": [
+        "Do not propagate NDK phosphohistidine chemistry into dNK substrate-hydroxyl phosphorylation.",
+        "Do not treat nucleotide phosphate transfer as metal hydrolase chemistry based on Mg2+ alone."
+      ],
+      "scope_note": "NDK-family nucleotide phosphate-transfer lanes using a phosphohistidine intermediate to exchange phosphate between nucleotides."
+    },
+    {
+      "control_rule": "require direct local phosphoryl-transfer evidence before separating ePK-like rows from this neighboring ATP family",
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "guardrails": [
+        "Do not infer PfkA from generic sugar kinase text without phosphofructokinase/PfkA evidence.",
+        "PfkA lanes remain hydrolase boundary controls until countable seed evidence is added."
+      ],
+      "scope_note": "PfkA-fold phosphofructokinase lanes transferring ATP gamma-phosphate to fructose-6-phosphate. Kept separate from PfkB ribokinase-like folds and ASKHA hexokinases."
+    },
+    {
+      "control_rule": "require direct local phosphoryl-transfer evidence before separating ePK-like rows from this neighboring ATP family",
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "guardrails": [
+        "Do not collapse PfkB/ribokinase lanes into PfkA or ASKHA solely by sugar-kinase wording.",
+        "Keep PfkB family evidence review-only when local active-site support is incomplete."
+      ],
+      "scope_note": "Ribokinase/PfkB-superfamily lanes including ribokinase and hydroxymethylpyrimidine kinase, transferring ATP gamma-phosphate to small-molecule hydroxyl acceptors."
+    }
+  ],
+  "ontology_family": {
+    "family_boundary_guardrails": [
+      "Do not propagate from ePK-like names into countable labels without local acceptor-hydroxyl and ATP gamma-phosphate evidence.",
+      "Treat ATP-bound Mg2+ as phosphoryl-transfer cofactor evidence, not as metal-hydrolase catalytic evidence."
+    ],
+    "id": "epk",
+    "name": "ePK-fold protein and ePK-like kinases",
+    "parent_id": "atp_phosphoryl_transfer",
+    "parent_scope_note": "Parent family for expert-reviewed ATP phosphoryl-transfer and ATP-coupled phospho-intermediate lanes surfaced by reaction/substrate mismatch review. This family is ontology boundary evidence only until a row has direct local mechanistic support and a countable seed fingerprint.",
+    "scope_note": "Protein, lipid, and ePK-like antibiotic-resistance kinases using ATP gamma-phosphoryl transfer to hydroxyl acceptors. Includes ePK/RTK/MAPK-family and ePK-related lanes; excludes GHKL histidine kinases and ASKHA/Pfk sugar kinases."
+  },
+  "rows": [
+    {
+      "acceptor_scope_evidence_status": "review_text_hydroxyl_acceptor",
+      "active_site_base_evidence_status": "review_text_support",
+      "cofactor_evidence_status": "review_text_mg_atp_context",
+      "countable_label_candidate": false,
+      "current_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "current_top1_ontology_family": "hydrolysis",
+      "current_top1_score": 0.4069,
+      "decision_action": "reject_label",
+      "decision_label_type": "out_of_scope",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "expert_rationale": "phosphorylase kinase (EC 2.7.11.19): ePK-fold Ser/Thr protein kinase, ATP gamma-phosphoryl transfer. Pocket Mg2+ is ATP cofactor, not catalytic hydrolytic metal. Out_of_scope confirmed; future fingerprint family: ePK.",
+      "expert_supported_family_boundary": true,
+      "family_id": "epk",
+      "mechanism_text_snippets": [
+        "Asp149 deprotonates the protein substrate hydroxyl group, initiating nucleophilic attack upon the gamma-phosphate of ATP in a substitution reaction that eliminates ADP. The phosphorylated protein deprotonates Asp149 [PMID:10545198]."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "reaction_center_evidence_status": "review_text_atp_gamma_phosphoryl_transfer",
+      "reaction_substrate_resolution": "confirm_current_label_or_out_of_scope",
+      "readiness_blockers": [
+        "countable_label_candidate_false",
+        "current_retrieval_routes_to_hydrolase_control",
+        "positive_fingerprint_registry_not_expanded",
+        "review_only_family_boundary_not_seed_fingerprint_label"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "reviewer": "vivek",
+      "source_family_support_level": "expert_review_supported_family_boundary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_scope_evidence_status": "review_text_hydroxyl_acceptor",
+      "active_site_base_evidence_status": "review_text_support",
+      "cofactor_evidence_status": "review_text_mg_atp_context",
+      "countable_label_candidate": false,
+      "current_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "current_top1_ontology_family": "hydrolysis",
+      "current_top1_score": 0.4033,
+      "decision_action": "reject_label",
+      "decision_label_type": "out_of_scope",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "expert_rationale": "receptor protein-tyrosine kinase (EC 2.7.10.x): ePK-fold Tyr protein kinase. ATP gamma-phosphoryl transfer to tyrosine. Out_of_scope confirmed; future fingerprint family: ePK (RTK subclass).",
+      "expert_supported_family_boundary": true,
+      "family_id": "epk",
+      "mechanism_text_snippets": [
+        "The entry represents the proposed dissociative (S<sub>N</sub>1-type) mechanism. Here a metaphosphate anion is eliminated from the ATP substrate in an intramolecular elimination. This extremely reactive intermediate then attacks the protein tyrosine substrate in an addition reaction with concomitt...",
+        "This entry represents the associative (S<sub>N</sub>2-type) mechanism. Here Asp1132 deprotonates the substrate Tyr hydroxide, activating it for nucleophilic attack on the gamma phosphate of ATP, which forms a pentavalent transition state. The transition state is stabilised by hydrogen bonding to..."
+      ],
+      "mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "reaction_center_evidence_status": "review_text_atp_gamma_phosphoryl_transfer",
+      "reaction_substrate_resolution": "confirm_current_label_or_out_of_scope",
+      "readiness_blockers": [
+        "countable_label_candidate_false",
+        "current_retrieval_routes_to_hydrolase_control",
+        "positive_fingerprint_registry_not_expanded",
+        "review_only_family_boundary_not_seed_fingerprint_label"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "reviewer": "vivek",
+      "source_family_support_level": "expert_review_supported_family_boundary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_scope_evidence_status": "review_text_hydroxyl_acceptor",
+      "active_site_base_evidence_status": "review_text_support",
+      "cofactor_evidence_status": "review_text_mg_atp_context",
+      "countable_label_candidate": false,
+      "current_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "current_top1_ontology_family": "hydrolysis",
+      "current_top1_score": 0.3223,
+      "decision_action": "reject_label",
+      "decision_label_type": "out_of_scope",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:282",
+      "entry_name": "mitogen-activated protein kinase kinase",
+      "expert_rationale": "MAP2K / MAPKK (EC 2.7.12.2): dual-specificity ePK-fold kinase. ATP gamma-phosphoryl transfer. Out_of_scope confirmed; future fingerprint family: ePK.",
+      "expert_supported_family_boundary": true,
+      "family_id": "epk",
+      "mechanism_text_snippets": [
+        "The serine residue of the protein substrate attacks the terminal, pentavalent phosphorous of ATP. Asp194 abstracts a proton from the phospho-serine residue. Asp194 relays the proton to ADP, regenerating the active site."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
+        "reaction_substrate_mismatch",
+        "top1_cofactor_absent"
+      ],
+      "reaction_center_evidence_status": "review_text_atp_gamma_phosphoryl_transfer",
+      "reaction_substrate_resolution": "confirm_current_label_or_out_of_scope",
+      "readiness_blockers": [
+        "countable_label_candidate_false",
+        "current_retrieval_routes_to_hydrolase_control",
+        "positive_fingerprint_registry_not_expanded",
+        "review_only_family_boundary_not_seed_fingerprint_label"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "reviewer": "vivek",
+      "source_family_support_level": "expert_review_supported_family_boundary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_scope_evidence_status": "review_text_hydroxyl_acceptor",
+      "active_site_base_evidence_status": "review_text_support",
+      "cofactor_evidence_status": "review_text_mg_atp_context",
+      "countable_label_candidate": false,
+      "current_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "current_top1_ontology_family": "hydrolysis",
+      "current_top1_score": 0.4066,
+      "decision_action": "reject_label",
+      "decision_label_type": "out_of_scope",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "expert_rationale": "aminoglycoside 3'-phosphotransferase / APH(3') / kanamycin kinase (EC 2.7.1.95): ePK-fold-related antibiotic-resistance kinase. ATP gamma-phosphoryl transfer to aminoglycoside hydroxyl. Out_of_scope confirmed; future fingerprint family: ePK (APH branch).",
+      "expert_supported_family_boundary": true,
+      "family_id": "epk",
+      "mechanism_text_snippets": [
+        "Nucleophilic attack on the gamma phosphate of ATP by the 3' or 5' OH group of the substrate allows formation of a pentavalent phosphate transition state which collapses to release the products. In order to accelerate this the deprotonation of the OH group is accomplished by Asp 190 and the transi..."
+      ],
+      "mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "reaction_center_evidence_status": "review_text_atp_gamma_phosphoryl_transfer",
+      "reaction_substrate_resolution": "confirm_current_label_or_out_of_scope",
+      "readiness_blockers": [
+        "countable_label_candidate_false",
+        "current_retrieval_routes_to_hydrolase_control",
+        "positive_fingerprint_registry_not_expanded",
+        "review_only_family_boundary_not_seed_fingerprint_label"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "reviewer": "vivek",
+      "source_family_support_level": "expert_review_supported_family_boundary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_scope_evidence_status": "review_text_hydroxyl_acceptor",
+      "active_site_base_evidence_status": "review_text_support",
+      "cofactor_evidence_status": "review_text_mg_atp_context",
+      "countable_label_candidate": false,
+      "current_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "current_top1_ontology_family": "hydrolysis",
+      "current_top1_score": 0.3263,
+      "decision_action": "accept_label",
+      "decision_label_type": "out_of_scope",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "expert_rationale": "phosphatidylinositol-5-phosphate 4-kinase / PIP5K (EC 2.7.1.149): atypical PK-fold lipid kinase, related to ePK. ATP gamma-phosphoryl transfer to PI-5-P. Should be labeled out_of_scope; future fingerprint family: ePK (PIP-kinase subclass).",
+      "expert_supported_family_boundary": true,
+      "family_id": "epk",
+      "mechanism_text_snippets": [
+        "Asp278 acts as a base to deprotonate the 4-hydroxyl group of inositol ring. The negatively charged oxygen atom of the hydroxyl group acts as a nucleophile and directly attack the terminal-phosphate of ATP. The product is formed via a SN2 mechanism. Mg2+ and Lys150 which coordinates with alpha-pho..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
+        "reaction_substrate_mismatch",
+        "top1_cofactor_absent",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "reaction_center_evidence_status": "review_text_atp_gamma_phosphoryl_transfer",
+      "reaction_substrate_resolution": "confirm_current_label_or_out_of_scope",
+      "readiness_blockers": [
+        "countable_label_candidate_false",
+        "current_retrieval_routes_to_hydrolase_control",
+        "positive_fingerprint_registry_not_expanded",
+        "review_only_family_boundary_not_seed_fingerprint_label"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "reviewer": "vivek",
+      "source_family_support_level": "expert_review_supported_family_boundary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "target_fingerprint_draft": {
+    "active_site_signature": [
+      {
+        "constraints": [
+          "activates substrate hydroxyl for gamma-phosphate attack"
+        ],
+        "residue": "Asp/Glu",
+        "role": "general_base"
+      },
+      {
+        "constraints": [
+          "positions ATP phosphates without implying hydrolysis"
+        ],
+        "residue": "Lys/Arg or Mg2+-coordinating residues",
+        "role": "phosphate_positioning"
+      },
+      {
+        "constraints": [
+          "hydroxyl acceptor attacks ATP gamma phosphate"
+        ],
+        "residue": "Ser/Thr/Tyr or substrate hydroxyl",
+        "role": "acceptor"
+      }
+    ],
+    "cofactors": [
+      "ATP",
+      "Mg2+"
+    ],
+    "counterevidence_features": [
+      "ASKHA/Pfk/GHMP sugar kinase wording without ePK/ePK-like fold evidence",
+      "GHKL histidine-kinase/Bergerat context",
+      "ATP-grasp ligase or acyl-phosphate intermediate context",
+      "NDK phosphohistidine exchange context",
+      "generic Mg2+ binding without ATP gamma-phosphoryl transfer"
+    ],
+    "enzyme_space": [
+      "protein Ser/Thr kinases",
+      "protein Tyr kinases",
+      "dual-specificity MAP kinase kinases",
+      "ePK-like aminoglycoside phosphotransferases",
+      "ePK-like phosphoinositide kinases"
+    ],
+    "evidence_features": [
+      "expert-reviewed ePK family boundary",
+      "ATP gamma-phosphate or terminal-phosphate reaction text",
+      "hydroxyl acceptor substrate text",
+      "current hydrolase top1 treated as counterevidence, not a label"
+    ],
+    "family_id": "epk",
+    "id": "epk_atp_gamma_phosphoryl_transfer",
+    "name": "ePK/ePK-like ATP gamma-phosphoryl transfer",
+    "parent_family_id": "atp_phosphoryl_transfer",
+    "reaction_center": {
+      "bond_changes": [
+        "ATP gamma-phosphoryl transfer to hydroxyl acceptor"
+      ],
+      "chemical_operation": "associative or dissociative phosphoryl transfer, not metal-activated water hydrolysis"
+    },
+    "substrate_constraints": [
+      "protein Ser/Thr/Tyr hydroxyl, aminoglycoside hydroxyl, or phosphoinositide hydroxyl",
+      "ATP/Mg2+ positioned for phosphate transfer",
+      "no water-activated hydrolytic leaving-group assignment"
+    ],
+    "uncertainty_axes": [
+      "direct local ATP/Mg2+ ligand mapping",
+      "substrate hydroxyl identity and active-site distance",
+      "ePK versus neighboring ATP-transfer family boundary",
+      "external hard-negative re-audit after ontology expansion"
+    ]
+  },
+  "warnings": [
+    "review-only ePK readiness does not change the active 8-fingerprint universe or authorize new countable labels"
+  ]
+}

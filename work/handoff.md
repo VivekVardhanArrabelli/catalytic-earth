@@ -50,6 +50,43 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T05:10:47Z automation run, Phase 1 artifact migration was
+checked only as a guard and remains closed/non-blocking: `validate`, the 439
+unit-test suite, and `validate-artifact-migration --dry-run
+--check-local-files` all passed with the 682-label, 8-fingerprint baseline.
+The run then moved to bounded science work and created
+`artifacts/v3_epk_positive_fingerprint_readiness_packet_1025.json`.
+
+The new ePK packet packages the five expert-supported ePK/ePK-like
+ATP/phosphoryl-transfer boundary rows (`m_csa:35`, `m_csa:246`, `m_csa:282`,
+`m_csa:640`, and `m_csa:662`) as review-only evidence for a future positive
+fingerprint. It records ATP gamma-phosphoryl-transfer reaction-center evidence,
+hydroxyl-acceptor scope, ATP/Mg2+ context, hydrolase-top1 counterevidence, and
+neighboring ATP-family controls. Evidence-based confidence call: the ePK lane
+is ready for draft fingerprint specification work, but not for registry
+expansion, countable seed labels, or external hard-negative evaluation claims.
+The active positive fingerprint universe remains 8, curated labels remain 682,
+external imported out-of-scope labels remain exactly `uniprot:P06744`,
+`uniprot:P78549`, and `uniprot:Q3LXA3`, and the ePK packet explicitly blocks
+count growth on external-hard-negative re-audit plus future scoring and
+label-factory gates.
+
+The same run also added
+`artifacts/v3_epk_external_hard_negative_reaudit_plan_1025.json`, a review-only
+checklist for `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`. It
+confirms all three external label contracts and evidence-separation fields are
+intact, but keeps their ePK status `planned_not_scored`; no ePK score,
+threshold, terminal decision, or label change was produced.
+
+Next automation should continue from this ePK readiness surface only if it can
+stay review-only or explicitly implement the missing pre-count gates. Do not
+add the ePK fingerprint to `mechanism_fingerprints.json`, import ePK labels, or
+use external hard negatives under a widened ontology until an ePK scorer,
+inverse-gate threshold policy, external hard-negative re-audit, terminal-review
+rerun, and label-factory gate plan are implemented and pass. If the next run
+does not take ePK forward, choose another bounded external-source
+mechanism-readiness task rather than artifact migration.
+
 As of the 2026-05-18T04:03:36Z automation run, Phase 1 is complete and
 stopped at the Phase 2 approval checkpoint. The execution manifest was
 refreshed against latest pulled `main` commit
