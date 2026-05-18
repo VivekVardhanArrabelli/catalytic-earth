@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "alternate_gamma_metal_mapped_structure_count": 0,
+    "alternate_gamma_structure_count": 3,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "exclude_from_current_epk_threshold_calibration": 2
+    },
+    "epk_score_computed": false,
+    "excluded_nonready_entry_ids": [
+      "m_csa:282",
+      "m_csa:662"
+    ],
+    "excluded_nonready_row_count": 2,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_nonready_ligand_exclusion_decision",
+    "next_actions": [
+      "keep excluded non-ready rows out of ePK threshold calibration",
+      "reopen a row only with local gamma plus metal evidence and residue mapping",
+      "rerun local-evidence audit before any scorer prototype can include an excluded row"
+    ],
+    "nonready_rows_repaired_or_excluded": true,
+    "pending_alternate_override_review_count": 0,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_rerun_local_evidence_audit": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact makes a terminal review-only calibration decision for non-ready ePK ligand rows. Exclusion keeps them out of threshold selection; it is not a registry edit, score, or label.",
+    "row_count": 2,
+    "source_epk_nonready_ligand_alternate_structure_plan_method": "epk_nonready_ligand_alternate_structure_plan",
+    "source_epk_nonready_ligand_repair_plan_method": "epk_nonready_ligand_repair_plan",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "alternate_gamma_metal_mapped_structure_count": 0,
+      "alternate_gamma_structure_count": 1,
+      "calibration_use_status": "excluded_noncountable_review_only",
+      "candidate_structure_count": 2,
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "1S9I",
+      "entry_id": "m_csa:282",
+      "entry_name": "mitogen-activated protein kinase kinase",
+      "epk_score_computed": false,
+      "excluded_from_current_epk_threshold_calibration": true,
+      "exclusion_decision": "exclude_from_current_epk_threshold_calibration",
+      "exclusion_reason": "selected_structure_signal_is_nonlocal_and_no_alternate_gamma_metal_mapped_structure",
+      "next_review_action": "keep excluded from threshold calibration until new local gamma plus metal mapped evidence exists",
+      "ready_for_label_import": false,
+      "ready_to_rerun_local_evidence_audit": false,
+      "remaining_blockers": [
+        "excluded_from_current_threshold_calibration",
+        "local_gamma_metal_mapped_repair_missing",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "repair_evidence_status": "alternate_gamma_structure_found_metal_or_mapping_gap",
+      "review_only": true,
+      "selected_gamma_metal_mapped_structure_count": 1,
+      "source_repair_lane": "structure_ligand_signal_not_local_axis",
+      "source_scorer_input_readiness": "needs_ligand_distance_or_structure_repair",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "alternate_gamma_metal_mapped_structure_count": 0,
+      "alternate_gamma_structure_count": 2,
+      "calibration_use_status": "excluded_noncountable_review_only",
+      "candidate_structure_count": 26,
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "1BO1",
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "epk_score_computed": false,
+      "excluded_from_current_epk_threshold_calibration": true,
+      "exclusion_decision": "exclude_from_current_epk_threshold_calibration",
+      "exclusion_reason": "alternate_gamma_structures_lack_metal_context_or_complete_catalytic_mapping",
+      "next_review_action": "keep excluded from threshold calibration until new local gamma plus metal mapped evidence exists",
+      "ready_for_label_import": false,
+      "ready_to_rerun_local_evidence_audit": false,
+      "remaining_blockers": [
+        "excluded_from_current_threshold_calibration",
+        "local_gamma_metal_mapped_repair_missing",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "repair_evidence_status": "alternate_gamma_structure_found_metal_or_mapping_gap",
+      "review_only": true,
+      "selected_gamma_metal_mapped_structure_count": 0,
+      "source_repair_lane": "selected_structure_ligand_axis_missing",
+      "source_scorer_input_readiness": "needs_ligand_source_or_alternate_structure",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Exclusion from calibration is a safety decision, not evidence that a row is negative or countable."
+  ]
+}

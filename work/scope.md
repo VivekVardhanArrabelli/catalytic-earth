@@ -341,8 +341,11 @@ Current expectation:
   evidence or alternate-structure sourcing. The alternate-structure repair
   screen finds three gamma-capable alternates across those two rows, but zero
   alternates with gamma-capable nucleotide, metal context, and complete
-  catalytic-residue mapping, so both rows remain unrepaired. The acceptor-axis
-  threshold design records 4, 6, and 8 Angstrom candidate cutoffs for later
+  catalytic-residue mapping, so both rows remain unrepaired. The explicit
+  non-ready ligand exclusion decision now keeps both rows out of current ePK
+  threshold calibration until local gamma-plus-metal mapped evidence exists,
+  without treating the exclusion as a score, label, or registry change. The
+  acceptor-axis threshold design records 4, 6, and 8 Angstrom candidate cutoffs for later
   validation; 6 Angstrom covers the current three prototype rows by hydroxyl
   context, but no ePK threshold is selected or calibrated. The gamma-geometry
   feasibility plan
@@ -367,12 +370,16 @@ Current expectation:
   negative-control distribution now measures two selected-structure controls:
   dNK `m_csa:615` at 3.232 Angstrom and GHMP `m_csa:654` at 6.184 Angstrom.
   The close dNK control is counterevidence against gamma-distance-only ePK
-  threshold selection, and the distribution remains not calibration-ready. The
+  threshold selection. The sibling alternate-structure screen then covers 38
+  graph-linked alternates for the 13 unmeasured controls and identifies three
+  gamma-plus-metal mapped candidates for future distance measurement, while the
+  distribution remains not calibration-ready. The
   consolidated ePK pre-count gate status remains `blocked_review_only`:
   local-axis prototyping, measured-row acceptor identity review, and
-  gamma-threshold control planning pass, while negative-control readiness,
-  threshold calibration, complete gamma geometry, non-ready-row repair,
-  external hard-negative re-audit, and registry/gate extension all fail closed.
+  gamma-threshold control planning pass, and non-ready-row exclusion is now
+  explicit, while negative-control readiness, threshold calibration, complete
+  gamma geometry, external hard-negative re-audit, and registry/gate extension
+  all fail closed.
 - return to factory-gated label scaling toward 10k while preserving quality
   gates; the accepted 1,000 M-CSA state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the

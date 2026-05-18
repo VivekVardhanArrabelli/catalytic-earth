@@ -480,6 +480,55 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertFalse(row["epk_score_computed"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_nonready_ligand_exclusion_decision_stays_review_only(self) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_nonready_ligand_exclusion_decision_1025.json"
+        )
+        metadata = decision["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_nonready_ligand_exclusion_decision",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["row_count"], 2)
+        self.assertEqual(metadata["excluded_nonready_row_count"], 2)
+        self.assertEqual(
+            metadata["excluded_nonready_entry_ids"],
+            ["m_csa:282", "m_csa:662"],
+        )
+        self.assertEqual(metadata["alternate_gamma_structure_count"], 3)
+        self.assertEqual(metadata["alternate_gamma_metal_mapped_structure_count"], 0)
+        self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
+        self.assertFalse(metadata["ready_to_rerun_local_evidence_audit"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["entry_id"]: row for row in decision["rows"]}
+        self.assertEqual(set(rows), {"m_csa:282", "m_csa:662"})
+        self.assertEqual(
+            rows["m_csa:282"]["exclusion_reason"],
+            "selected_structure_signal_is_nonlocal_and_no_alternate_gamma_metal_mapped_structure",
+        )
+        self.assertEqual(
+            rows["m_csa:662"]["exclusion_reason"],
+            "alternate_gamma_structures_lack_metal_context_or_complete_catalytic_mapping",
+        )
+        for row in decision["rows"]:
+            self.assertEqual(
+                row["exclusion_decision"],
+                "exclude_from_current_epk_threshold_calibration",
+            )
+            self.assertTrue(row["excluded_from_current_epk_threshold_calibration"])
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_epk_acceptor_axis_threshold_design_stays_review_only(self) -> None:
         design = _load_json(
             ROOT / "artifacts" / "v3_epk_acceptor_axis_threshold_design_1025.json"
@@ -772,6 +821,55 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertFalse(row["epk_score_computed"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_sibling_negative_control_alternate_plan_stays_review_only(
+        self,
+    ) -> None:
+        plan = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_sibling_negative_control_alternate_structure_plan_1025.json"
+        )
+        metadata = plan["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_sibling_negative_control_alternate_structure_plan",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["source_control_row_count"], 15)
+        self.assertEqual(metadata["source_unmeasured_control_row_count"], 13)
+        self.assertEqual(metadata["row_count"], 13)
+        self.assertEqual(metadata["max_structures_per_entry"], 8)
+        self.assertEqual(metadata["screened_alternate_pdb_count"], 38)
+        self.assertEqual(metadata["alternate_gamma_structure_count"], 7)
+        self.assertEqual(metadata["alternate_gamma_metal_mapped_structure_count"], 3)
+        self.assertEqual(metadata["ready_for_future_distance_measurement_count"], 3)
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertIsNone(metadata["selected_threshold_angstrom"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["entry_id"]: row for row in plan["rows"]}
+        self.assertEqual(
+            rows["m_csa:592"]["alternate_control_evidence_status"],
+            "alternate_gamma_metal_mapped_candidate_found_review_only",
+        )
+        self.assertEqual(
+            rows["m_csa:696"]["alternate_control_evidence_status"],
+            "alternate_gamma_metal_mapped_candidate_found_review_only",
+        )
+        self.assertEqual(
+            rows["m_csa:603"]["alternate_control_evidence_status"],
+            "alternate_gamma_metal_mapped_candidate_found_review_only",
+        )
+        for row in plan["rows"]:
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_epk_precount_gate_status_stays_blocked(self) -> None:
         status = _load_json(
             ROOT / "artifacts" / "v3_epk_precount_gate_status_1025.json"
@@ -801,11 +899,24 @@ class LeakageClosureTests(unittest.TestCase):
             ],
             "epk_negative_control_gamma_distance_distribution",
         )
+        self.assertEqual(
+            metadata["source_epk_nonready_ligand_exclusion_decision_method"],
+            "epk_nonready_ligand_exclusion_decision",
+        )
+        self.assertEqual(
+            metadata[
+                "source_epk_sibling_negative_control_alternate_structure_plan_method"
+            ],
+            "epk_sibling_negative_control_alternate_structure_plan",
+        )
         self.assertTrue(metadata["gamma_threshold_control_plan_ready"])
         self.assertFalse(metadata["negative_control_distance_distribution_ready"])
         self.assertEqual(metadata["negative_control_measured_control_count"], 2)
         self.assertEqual(metadata["negative_control_lowest_candidate_hit_count"], 1)
+        self.assertEqual(metadata["negative_control_alternate_ready_for_measurement_count"], 3)
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
+        self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
+        self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
         self.assertIsNone(metadata["selected_acceptor_threshold_angstrom"])
         self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
@@ -820,7 +931,10 @@ class LeakageClosureTests(unittest.TestCase):
             "gamma_geometry_measured_for_all_prototype_rows",
             metadata["failing_gate_ids"],
         )
-        self.assertIn("nonready_rows_repaired_or_excluded", metadata["failing_gate_ids"])
+        self.assertNotIn(
+            "nonready_rows_repaired_or_excluded",
+            metadata["failing_gate_ids"],
+        )
         self.assertIn(
             "external_hard_negative_scored_reaudit",
             metadata["failing_gate_ids"],
@@ -832,9 +946,16 @@ class LeakageClosureTests(unittest.TestCase):
         checks = {check["gate_id"]: check for check in status["gate_checks"]}
         self.assertTrue(checks["local_axis_prototype"]["passed"])
         self.assertTrue(checks["measured_acceptor_identity_reviewed"]["passed"])
+        self.assertTrue(checks["nonready_rows_repaired_or_excluded"]["passed"])
         self.assertTrue(checks["gamma_threshold_control_plan"]["passed"])
         self.assertFalse(
             checks["gamma_negative_control_distance_distribution"]["passed"]
+        )
+        self.assertEqual(
+            checks["gamma_negative_control_distance_distribution"]["evidence"][
+                "alternate_structure_ready_for_measurement_count"
+            ],
+            3,
         )
         self.assertFalse(checks["registry_and_label_factory_extension"]["passed"])
 

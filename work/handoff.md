@@ -50,6 +50,69 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T16:45:55Z automation run, the normal direct automation
+protocol passed: the lock was acquired, `git fetch` and `git pull --ff-only
+origin main` were clean, SSH deploy-key push hygiene passed, startup unit
+discovery passed, `validate` passed, and
+`validate-artifact-migration --dry-run --check-local-files` again reported 108
+rows, 0 blockers, and `removal_allowed=0`. Phase 1 artifact migration remained
+guard-only and closed.
+
+The scientific work continued the review-only ePK lane without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any
+external hard-negative label. First, it added
+`artifacts/v3_epk_nonready_ligand_exclusion_decision_1025.json` plus the CLI
+builder `build-epk-nonready-ligand-exclusion-decision`. This consumes the
+non-ready ligand repair and alternate-structure artifacts and makes the current
+calibration decision explicit: `m_csa:282` and `m_csa:662` stay excluded from
+ePK threshold calibration because the alternate review found 3 gamma-capable
+alternates but 0 alternates with gamma-capable nucleotide, metal context, and
+complete catalytic-residue mapping. `m_csa:282` keeps its selected-structure
+ATP/Mg signal classified as nonlocal, and `m_csa:662` remains metal-context
+missing in its ANP alternates. The updated pre-count gate now passes only the
+non-ready-row repaired-or-excluded gate; no local evidence audit, scorer,
+threshold, registry, or label import is opened.
+
+The run then added
+`artifacts/v3_epk_sibling_negative_control_alternate_structure_plan_1025.json`
+plus `build-epk-sibling-negative-control-alternate-structure-plan`. It expands
+the sibling ATP-phosphoryl-transfer negative-control surface beyond selected
+structures by screening 38 graph-linked alternate PDB structures for the 13
+unmeasured non-ePK sibling controls under an 8-structure-per-entry cap. The
+screen finds 7 gamma-capable alternate structures and 3 review-only
+gamma-plus-metal mapped candidates for a future distance-measurement pass:
+`m_csa:592`, `m_csa:603`, and `m_csa:696`. This is not a distance
+distribution, threshold calibration, or ePK score; the selected-structure dNK
+negative-control hit at 3.232 Angstrom remains the active warning against
+gamma-distance-only thresholds.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with both
+new artifacts attached. The lane remains `blocked_review_only`: local-axis
+prototyping, measured-row acceptor identity review, gamma-threshold control
+planning, and non-ready-row exclusion pass, but negative-control distribution
+readiness, acceptor-threshold calibration, complete gamma geometry, external
+hard-negative scored re-audit, and registry/label-factory extension still fail
+closed.
+
+Evidence-based confidence call: ePK scorer-development is cleaner because the
+two non-ready rows can no longer silently influence threshold selection, and
+the sibling-family control surface now has three concrete alternate structures
+to measure next. There is still no ePK scorer, calibrated threshold,
+positive-universe expansion, external hard-negative ePK re-audit, registry
+edit, or label import. The active fingerprint universe remains 8; curated
+labels remain 682 with 212 `seed_fingerprint` and 470 `out_of_scope` labels;
+external imported labels remain exactly `uniprot:P06744`, `uniprot:P78549`,
+and `uniprot:Q3LXA3`; external imported seed-fingerprint labels remain 0. The
+next bounded ePK step should measure review-only gamma-to-hydroxyl distances
+for the three mapped sibling alternate-control candidates, then decide whether
+the negative-control distribution is still too sparse for threshold selection.
+Do not add the ePK registry fingerprint, import ePK labels, score external hard
+negatives, or reopen migration Phase 2.
+
+Verification passed with the final 475-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T14:43:23Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and `git pull --ff-only
 origin main` were clean, SSH deploy-key push hygiene passed, startup unit

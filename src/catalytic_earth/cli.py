@@ -76,9 +76,11 @@ from .labels import (
     build_epk_local_evidence_audit,
     build_epk_negative_control_gamma_distance_distribution,
     build_epk_nonready_ligand_alternate_structure_plan,
+    build_epk_nonready_ligand_exclusion_decision,
     build_epk_nonready_ligand_repair_plan,
     build_epk_precount_gate_status,
     build_epk_positive_fingerprint_readiness_packet,
+    build_epk_sibling_negative_control_alternate_structure_plan,
     build_epk_text_free_local_axis_prototype,
     build_expert_label_decision_local_evidence_review_export,
     build_expert_label_decision_review_export,
@@ -5477,6 +5479,39 @@ def cmd_build_epk_negative_control_gamma_distance_distribution(
     return 0
 
 
+def cmd_build_epk_sibling_negative_control_alternate_structure_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_negative_control_gamma_distance_distribution).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_negative_control_gamma_distance_distribution = json.load(handle)
+    with Path(args.atp_phosphoryl_transfer_family_expansion).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        atp_phosphoryl_transfer_family_expansion = json.load(handle)
+    with Path(args.graph).open("r", encoding="utf-8") as handle:
+        graph = json.load(handle)
+    plan = build_epk_sibling_negative_control_alternate_structure_plan(
+        epk_negative_control_gamma_distance_distribution=(
+            epk_negative_control_gamma_distance_distribution
+        ),
+        atp_phosphoryl_transfer_family_expansion=(
+            atp_phosphoryl_transfer_family_expansion
+        ),
+        graph=graph,
+        entry_ids=_split_csv(args.entry_ids),
+        max_structures_per_entry=args.max_structures_per_entry,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote ePK sibling negative-control alternate-structure plan to "
+        f"{args.out} (ready_for_measurement={plan['metadata']['ready_for_future_distance_measurement_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_nonready_ligand_alternate_structure_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -5500,6 +5535,31 @@ def cmd_build_epk_nonready_ligand_alternate_structure_plan(
     return 0
 
 
+def cmd_build_epk_nonready_ligand_exclusion_decision(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_nonready_ligand_repair_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_nonready_ligand_repair_plan = json.load(handle)
+    with Path(args.epk_nonready_ligand_alternate_structure_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_nonready_ligand_alternate_structure_plan = json.load(handle)
+    decision = build_epk_nonready_ligand_exclusion_decision(
+        epk_nonready_ligand_repair_plan=epk_nonready_ligand_repair_plan,
+        epk_nonready_ligand_alternate_structure_plan=(
+            epk_nonready_ligand_alternate_structure_plan
+        ),
+    )
+    write_json(Path(args.out), decision)
+    print(
+        "Wrote ePK non-ready ligand exclusion decision to "
+        f"{args.out} (excluded={decision['metadata']['excluded_nonready_row_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
     with Path(args.epk_text_free_local_axis_prototype).open(
         "r", encoding="utf-8"
@@ -5517,6 +5577,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         "r", encoding="utf-8"
     ) as handle:
         epk_nonready_ligand_repair_plan = json.load(handle)
+    epk_nonready_ligand_exclusion_decision = None
+    if args.epk_nonready_ligand_exclusion_decision:
+        with Path(args.epk_nonready_ligand_exclusion_decision).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_nonready_ligand_exclusion_decision = json.load(handle)
     epk_acceptor_identity_review = None
     if args.epk_acceptor_identity_review:
         with Path(args.epk_acceptor_identity_review).open(
@@ -5541,6 +5607,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_negative_control_gamma_distance_distribution = json.load(handle)
+    epk_sibling_negative_control_alternate_structure_plan = None
+    if args.epk_sibling_negative_control_alternate_structure_plan:
+        with Path(args.epk_sibling_negative_control_alternate_structure_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_sibling_negative_control_alternate_structure_plan = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -5552,11 +5624,17 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         epk_acceptor_axis_threshold_design=epk_acceptor_axis_threshold_design,
         epk_gamma_geometry_measurement_sample=epk_gamma_geometry_measurement_sample,
         epk_nonready_ligand_repair_plan=epk_nonready_ligand_repair_plan,
+        epk_nonready_ligand_exclusion_decision=(
+            epk_nonready_ligand_exclusion_decision
+        ),
         epk_acceptor_identity_review=epk_acceptor_identity_review,
         epk_atp_state_evidence_plan=epk_atp_state_evidence_plan,
         epk_gamma_threshold_control_plan=epk_gamma_threshold_control_plan,
         epk_negative_control_gamma_distance_distribution=(
             epk_negative_control_gamma_distance_distribution
+        ),
+        epk_sibling_negative_control_alternate_structure_plan=(
+            epk_sibling_negative_control_alternate_structure_plan
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -12127,6 +12205,47 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_negative_control_gamma_distance_distribution
     )
 
+    epk_sibling_negative_control_alternate_plan = subparsers.add_parser(
+        "build-epk-sibling-negative-control-alternate-structure-plan",
+        help="screen alternate structures for sibling ePK negative controls",
+    )
+    epk_sibling_negative_control_alternate_plan.add_argument(
+        "--epk-negative-control-gamma-distance-distribution",
+        default=(
+            "artifacts/"
+            "v3_epk_negative_control_gamma_distance_distribution.json"
+        ),
+    )
+    epk_sibling_negative_control_alternate_plan.add_argument(
+        "--atp-phosphoryl-transfer-family-expansion",
+        default="artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+    )
+    epk_sibling_negative_control_alternate_plan.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1000.json",
+    )
+    epk_sibling_negative_control_alternate_plan.add_argument(
+        "--entry-ids",
+        default="",
+        help="comma-separated entry ids to screen; defaults to unmeasured controls",
+    )
+    epk_sibling_negative_control_alternate_plan.add_argument(
+        "--max-structures-per-entry",
+        type=int,
+        default=8,
+    )
+    epk_sibling_negative_control_alternate_plan.add_argument("--cif-dir", default=None)
+    epk_sibling_negative_control_alternate_plan.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_negative_control_alternate_structure_plan.json"
+        ),
+    )
+    epk_sibling_negative_control_alternate_plan.set_defaults(
+        func=cmd_build_epk_sibling_negative_control_alternate_structure_plan
+    )
+
     epk_nonready_alternate_plan = subparsers.add_parser(
         "build-epk-nonready-ligand-alternate-structure-plan",
         help="screen review-only alternate structures for non-ready ePK ligand rows",
@@ -12153,6 +12272,26 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_nonready_ligand_alternate_structure_plan
     )
 
+    epk_nonready_exclusion_decision = subparsers.add_parser(
+        "build-epk-nonready-ligand-exclusion-decision",
+        help="decide review-only calibration exclusion for non-ready ePK ligand rows",
+    )
+    epk_nonready_exclusion_decision.add_argument(
+        "--epk-nonready-ligand-repair-plan",
+        default="artifacts/v3_epk_nonready_ligand_repair_plan.json",
+    )
+    epk_nonready_exclusion_decision.add_argument(
+        "--epk-nonready-ligand-alternate-structure-plan",
+        default="artifacts/v3_epk_nonready_ligand_alternate_structure_plan.json",
+    )
+    epk_nonready_exclusion_decision.add_argument(
+        "--out",
+        default="artifacts/v3_epk_nonready_ligand_exclusion_decision.json",
+    )
+    epk_nonready_exclusion_decision.set_defaults(
+        func=cmd_build_epk_nonready_ligand_exclusion_decision
+    )
+
     epk_precount_gate_status = subparsers.add_parser(
         "build-epk-precount-gate-status",
         help="summarize review-only ePK pre-count gate blockers",
@@ -12174,6 +12313,10 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_epk_nonready_ligand_repair_plan.json",
     )
     epk_precount_gate_status.add_argument(
+        "--epk-nonready-ligand-exclusion-decision",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
         "--epk-acceptor-identity-review",
         default=None,
     )
@@ -12187,6 +12330,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-negative-control-gamma-distance-distribution",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-sibling-negative-control-alternate-structure-plan",
         default=None,
     )
     epk_precount_gate_status.add_argument(

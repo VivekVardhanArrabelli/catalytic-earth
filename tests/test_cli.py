@@ -3242,6 +3242,116 @@ class CliTests(unittest.TestCase):
             self.assertFalse(row["epk_score_computed"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_build_epk_nonready_ligand_exclusion_decision_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            repair = root / "repair.json"
+            alternate = root / "alternate.json"
+            out = root / "exclusion.json"
+            repair.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_nonready_ligand_repair_plan",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:282",
+                                "entry_name": "MAP kinase kinase",
+                                "pdb_id": "1AAA",
+                                "repair_lane": "structure_ligand_signal_not_local_axis",
+                                "source_scorer_input_readiness": (
+                                    "needs_ligand_distance_or_structure_repair"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            alternate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_nonready_ligand_alternate_structure_plan"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:282",
+                                "entry_name": "MAP kinase kinase",
+                                "current_selected_pdb_id": "1AAA",
+                                "repair_evidence_status": (
+                                    "alternate_gamma_structure_found_metal_or_mapping_gap"
+                                ),
+                                "candidate_structures": [
+                                    {
+                                        "pdb_id": "1AAA",
+                                        "current_selected_structure": True,
+                                        "has_gamma_capable_nucleotide": True,
+                                        "has_metal_ligand": True,
+                                        "all_catalytic_residues_mapped": True,
+                                    },
+                                    {
+                                        "pdb_id": "1AAB",
+                                        "current_selected_structure": False,
+                                        "has_gamma_capable_nucleotide": True,
+                                        "has_metal_ligand": False,
+                                        "all_catalytic_residues_mapped": False,
+                                    },
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-nonready-ligand-exclusion-decision",
+                    "--epk-nonready-ligand-repair-plan",
+                    str(repair),
+                    "--epk-nonready-ligand-alternate-structure-plan",
+                    str(alternate),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            decision = json.loads(out.read_text(encoding="utf-8"))
+            metadata = decision["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_nonready_ligand_exclusion_decision",
+            )
+            self.assertEqual(metadata["excluded_nonready_row_count"], 1)
+            self.assertEqual(metadata["excluded_nonready_entry_ids"], ["m_csa:282"])
+            self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            row = decision["rows"][0]
+            self.assertEqual(
+                row["exclusion_decision"],
+                "exclude_from_current_epk_threshold_calibration",
+            )
+            self.assertTrue(row["excluded_from_current_epk_threshold_calibration"])
+            self.assertEqual(row["alternate_gamma_structure_count"], 1)
+            self.assertEqual(row["alternate_gamma_metal_mapped_structure_count"], 0)
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_build_epk_acceptor_axis_threshold_design_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -4334,6 +4444,189 @@ class CliTests(unittest.TestCase):
                 "selected_structure_product_or_no_gamma_nucleotide_skipped",
             )
             self.assertFalse(rows["m_csa:615"]["epk_score_computed"])
+
+    def test_build_epk_sibling_negative_control_alternate_structure_plan_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            distribution = root / "negative_controls.json"
+            family = root / "family_expansion.json"
+            graph = root / "graph.json"
+            cif_dir = root / "cif"
+            cif_dir.mkdir()
+            out = root / "alternate_controls.json"
+            distribution.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_negative_control_gamma_distance_distribution"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "control_row_count": 2,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:592",
+                                "entry_name": "glucokinase",
+                                "family_id": "askha",
+                                "family_name": "ASKHA sugar and acetate kinases",
+                                "pdb_id": "1AAA",
+                                "measurement_status": (
+                                    "selected_structure_product_or_no_gamma_nucleotide_skipped"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:615",
+                                "entry_name": "deoxyguanosine kinase",
+                                "family_id": "dnk",
+                                "measurement_status": (
+                                    "selected_structure_gamma_to_hydroxyl_distance_measured_review_only"
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            family.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "atp_phosphoryl_transfer_family_expansion"
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:592",
+                                "entry_name": "glucokinase",
+                                "family_id": "askha",
+                            },
+                            {
+                                "entry_id": "m_csa:615",
+                                "entry_name": "deoxyguanosine kinase",
+                                "family_id": "dnk",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "v1_graph"},
+                        "nodes": [
+                            {
+                                "id": "m_csa:592",
+                                "type": "m_csa_entry",
+                                "reference_uniprot_id": "PTEST",
+                            },
+                            {
+                                "id": "m_csa:592:residue:1",
+                                "type": "catalytic_residue",
+                                "sequence_positions": [
+                                    {
+                                        "uniprot_id": "PTEST",
+                                        "resid": 44,
+                                        "code": "Lys",
+                                    }
+                                ],
+                            },
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:592",
+                                "target": "uniprot:PTEST",
+                                "predicate": "has_reference_protein",
+                            },
+                            {
+                                "source": "uniprot:PTEST",
+                                "target": "pdb:1AAA",
+                                "predicate": "has_structure",
+                            },
+                            {
+                                "source": "uniprot:PTEST",
+                                "target": "pdb:1AAB",
+                                "predicate": "has_structure",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (cif_dir / "pdb_1AAB.cif").write_text(
+                "\n".join(
+                    [
+                        "data_1AAB",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.id",
+                        "_atom_site.type_symbol",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "HETATM 1 P PG ATP A 1 0.0 0.0 0.0 PG ATP A 1",
+                        "HETATM 2 MG MG MG A 2 1.0 0.0 0.0 MG MG A 2",
+                        "ATOM 3 N NZ LYS A 44 2.0 0.0 0.0 NZ LYS A 44",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-sibling-negative-control-alternate-structure-plan",
+                    "--epk-negative-control-gamma-distance-distribution",
+                    str(distribution),
+                    "--atp-phosphoryl-transfer-family-expansion",
+                    str(family),
+                    "--graph",
+                    str(graph),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            plan = json.loads(out.read_text(encoding="utf-8"))
+            metadata = plan["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_sibling_negative_control_alternate_structure_plan",
+            )
+            self.assertEqual(metadata["source_unmeasured_control_row_count"], 1)
+            self.assertEqual(metadata["ready_for_future_distance_measurement_count"], 1)
+            self.assertEqual(metadata["alternate_gamma_metal_mapped_structure_count"], 1)
+            self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            rows = {row["entry_id"]: row for row in plan["rows"]}
+            self.assertEqual(set(rows), {"m_csa:592"})
+            self.assertEqual(
+                rows["m_csa:592"]["alternate_control_evidence_status"],
+                "alternate_gamma_metal_mapped_candidate_found_review_only",
+            )
+            self.assertFalse(rows["m_csa:592"]["epk_score_computed"])
+            self.assertFalse(rows["m_csa:592"]["countable_label_candidate"])
 
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

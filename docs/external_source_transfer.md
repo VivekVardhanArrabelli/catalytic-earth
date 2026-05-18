@@ -1478,6 +1478,11 @@ M-CSA ePK preparation lane; it only records repair actions for `m_csa:282` and
 in that same local repair lane. It screens graph-linked alternates for those
 two M-CSA rows, but still does not approve an override, rerun local evidence,
 or score external hard negatives under ePK.
+`artifacts/v3_epk_nonready_ligand_exclusion_decision_1025.json` is likewise
+local to M-CSA ePK preparation. It excludes `m_csa:282` and `m_csa:662` from
+current ePK threshold calibration because the alternate review found no
+gamma-plus-metal mapped repair structure; it does not rescore or reinterpret
+the imported external hard negatives.
 `artifacts/v3_epk_acceptor_axis_threshold_design_1025.json` records candidate
 local acceptor cutoffs for later ePK scorer work, but it selects no threshold
 and therefore does not trigger any external hard-negative re-audit yet.
@@ -1510,7 +1515,14 @@ also local review evidence only. It starts sibling ATP-phosphoryl-transfer
 negative controls and finds a close dNK non-ePK control at 3.232 Angstrom,
 which blocks gamma-distance-only threshold selection before any external
 hard-negative ePK re-audit can be meaningful.
+`artifacts/v3_epk_sibling_negative_control_alternate_structure_plan_1025.json`
+extends only that local control surface: it screens bounded graph-linked
+alternate PDB structures for unmeasured sibling controls and identifies three
+future distance-measurement candidates. It still does not score ePK or touch
+the external hard-negative labels.
 `artifacts/v3_epk_precount_gate_status_1025.json` keeps the external lane
 explicitly blocked: no ePK score exists, the external hard negatives have not
 been rescored, the sibling negative-control distribution is not calibration
-ready, and their `label_factory_v1_8fp` out-of-scope labels are unchanged.
+ready, and their `label_factory_v1_8fp` out-of-scope labels are unchanged. The
+new non-ready-row exclusion decision and sibling alternate-control screen are
+local calibration hygiene only.

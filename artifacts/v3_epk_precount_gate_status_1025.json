@@ -30,14 +30,17 @@
     },
     {
       "evidence": {
+        "excluded_nonready_row_count": 2,
         "nonready_row_count": 2,
+        "nonready_rows_repaired_or_excluded": true,
         "repair_lane_counts": {
           "selected_structure_ligand_axis_missing": 1,
           "structure_ligand_signal_not_local_axis": 1
-        }
+        },
+        "source_exclusion_method": "epk_nonready_ligand_exclusion_decision"
       },
       "gate_id": "nonready_rows_repaired_or_excluded",
-      "passed": false
+      "passed": true
     },
     {
       "evidence": {
@@ -83,6 +86,8 @@
     },
     {
       "evidence": {
+        "alternate_structure_plan_method": "epk_sibling_negative_control_alternate_structure_plan",
+        "alternate_structure_ready_for_measurement_count": 3,
         "lowest_covering_candidate_negative_control_hit_count": 1,
         "measured_control_count": 2,
         "negative_control_distance_distribution_ready": false,
@@ -102,7 +107,6 @@
     "failing_gate_ids": [
       "acceptor_threshold_calibrated",
       "gamma_geometry_measured_for_all_prototype_rows",
-      "nonready_rows_repaired_or_excluded",
       "external_hard_negative_scored_reaudit",
       "registry_and_label_factory_extension",
       "gamma_negative_control_distance_distribution"
@@ -112,15 +116,18 @@
     "gamma_threshold_control_plan_ready": true,
     "measured_acceptor_identity_source_supported_count": 2,
     "method": "epk_precount_gate_status",
+    "negative_control_alternate_ready_for_measurement_count": 3,
     "negative_control_distance_distribution_ready": false,
     "negative_control_lowest_candidate_hit_count": 1,
     "negative_control_measured_control_count": 2,
     "next_actions": [
       "expand negative-control gamma-distance distributions before selecting a threshold",
-      "repair or keep excluded the two non-ready ligand rows",
+      "keep explicitly excluded non-ready ligand rows out of threshold calibration",
       "run external hard-negative re-audit only after a real ePK score exists"
     ],
+    "nonready_ligand_excluded_count": 2,
     "nonready_ligand_repair_row_count": 2,
+    "nonready_rows_repaired_or_excluded": true,
     "precount_gate_status": "blocked_review_only",
     "prototype_ready_row_count": 3,
     "ready_for_label_import": false,
@@ -133,6 +140,8 @@
     "source_epk_atp_state_evidence_plan_method": "epk_atp_state_evidence_plan",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
     "source_epk_negative_control_gamma_distance_distribution_method": "epk_negative_control_gamma_distance_distribution",
+    "source_epk_nonready_ligand_exclusion_decision_method": "epk_nonready_ligand_exclusion_decision",
+    "source_epk_sibling_negative_control_alternate_structure_plan_method": "epk_sibling_negative_control_alternate_structure_plan",
     "target_family_id": "epk",
     "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
     "threshold_calibrated": false

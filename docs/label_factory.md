@@ -225,6 +225,13 @@ that repair review without changing the prototype: it finds one gamma-capable
 alternate for `m_csa:282` and two for `m_csa:662`, but none combine
 gamma-capable nucleotide, metal context, and complete catalytic-residue
 mapping. The non-ready rows therefore remain excluded.
+`artifacts/v3_epk_nonready_ligand_exclusion_decision_1025.json` now records
+that exclusion as a terminal review-only calibration decision for the current
+ePK lane. `m_csa:282` and `m_csa:662` are kept out of threshold calibration
+unless future evidence provides local gamma-capable nucleotide, metal context,
+and catalytic-residue mapping. This passes only the non-ready-row
+repaired-or-excluded pre-count gate; it does not score ePK, rerun local
+evidence, edit registries, or import labels.
 `artifacts/v3_epk_acceptor_axis_threshold_design_1025.json` records candidate
 acceptor-axis cutoffs of 4, 6, and 8 Angstrom for later validation. The
 6-Angstrom candidate covers the current three prototype rows by local
@@ -272,12 +279,20 @@ control with DTP PG-to-Ser hydroxyl distance 3.232 Angstrom, while GHMP
 `m_csa:654` contributes ANP PG-to-Ser hydroxyl distance 6.184 Angstrom. This
 is review-only counterevidence against using gamma-distance geometry alone as
 an ePK threshold; the distribution is explicitly not ready for calibration.
+`artifacts/v3_epk_sibling_negative_control_alternate_structure_plan_1025.json`
+opens the next bounded control-coverage step. It screens 38 graph-linked
+alternate PDB structures for the 13 unmeasured sibling-family controls, under
+an 8-structure-per-entry cap. Three rows (`m_csa:592`, `m_csa:603`, and
+`m_csa:696`) now have review-only gamma-plus-metal mapped alternate candidates
+for a future distance measurement pass, while the distribution still remains
+not calibration-ready.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
-identity review, and gamma-threshold control planning pass; negative-control
-distribution readiness, acceptor-threshold calibration, complete gamma
-geometry, non-ready row repair, external hard-negative scored re-audit, and
-registry/label-factory extension all remain failed gates.
+identity review, gamma-threshold control planning, explicit non-ready-row
+exclusion, and sibling alternate-control screening pass as review-only
+preparation; negative-control distribution readiness, acceptor-threshold
+calibration, complete gamma geometry, external hard-negative scored re-audit,
+and registry/label-factory extension all remain failed gates.
 
 ## Active Learning Queue
 
