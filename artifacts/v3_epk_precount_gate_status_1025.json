@@ -80,6 +80,18 @@
       },
       "gate_id": "gamma_threshold_control_plan",
       "passed": true
+    },
+    {
+      "evidence": {
+        "lowest_covering_candidate_negative_control_hit_count": 1,
+        "measured_control_count": 2,
+        "negative_control_distance_distribution_ready": false,
+        "negative_control_distance_distribution_started": true,
+        "source_method": "epk_negative_control_gamma_distance_distribution",
+        "threshold_selection_status": "blocked_negative_controls_overlap_or_insufficient_distribution"
+      },
+      "gate_id": "gamma_negative_control_distance_distribution",
+      "passed": false
     }
   ],
   "metadata": {
@@ -92,15 +104,19 @@
       "gamma_geometry_measured_for_all_prototype_rows",
       "nonready_rows_repaired_or_excluded",
       "external_hard_negative_scored_reaudit",
-      "registry_and_label_factory_extension"
+      "registry_and_label_factory_extension",
+      "gamma_negative_control_distance_distribution"
     ],
     "fingerprint_registry_edited": false,
     "gamma_measured_row_count": 2,
     "gamma_threshold_control_plan_ready": true,
     "measured_acceptor_identity_source_supported_count": 2,
     "method": "epk_precount_gate_status",
+    "negative_control_distance_distribution_ready": false,
+    "negative_control_lowest_candidate_hit_count": 1,
+    "negative_control_measured_control_count": 2,
     "next_actions": [
-      "collect negative-control gamma-distance distributions before selecting a threshold",
+      "expand negative-control gamma-distance distributions before selecting a threshold",
       "repair or keep excluded the two non-ready ligand rows",
       "run external hard-negative re-audit only after a real ePK score exists"
     ],
@@ -116,6 +132,7 @@
     "source_epk_acceptor_identity_review_method": "epk_acceptor_identity_review",
     "source_epk_atp_state_evidence_plan_method": "epk_atp_state_evidence_plan",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
+    "source_epk_negative_control_gamma_distance_distribution_method": "epk_negative_control_gamma_distance_distribution",
     "target_family_id": "epk",
     "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
     "threshold_calibrated": false

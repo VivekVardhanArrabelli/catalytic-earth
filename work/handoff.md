@@ -50,6 +50,64 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T14:43:23Z automation run, the normal direct automation
+protocol passed: the lock was acquired, `git fetch` and `git pull --ff-only
+origin main` were clean, SSH deploy-key push hygiene passed, startup unit
+discovery passed, `validate` passed, and
+`validate-artifact-migration --dry-run --check-local-files` again reported 108
+rows, 0 blockers, and `removal_allowed=0`. Phase 1 artifact migration remained
+guard-only and closed.
+
+The scientific work continued the review-only ePK lane by adding
+`artifacts/v3_epk_negative_control_gamma_distance_distribution_1025.json` plus
+the CLI builder `build-epk-negative-control-gamma-distance-distribution`. It
+screens the 15 non-ePK sibling ATP-phosphoryl-transfer boundary rows from the
+family-expansion artifact against selected-structure gamma-to-hydroxyl geometry.
+Only two controls are currently measured: dNK `m_csa:615` has nearest DTP
+PG-to-Ser hydroxyl distance 3.232 Angstrom, and GHMP `m_csa:654` has nearest
+ANP PG-to-Ser hydroxyl distance 6.184 Angstrom. The close `m_csa:615` hit
+falls under the 4-, 6-, and 8-Angstrom candidate scenarios, so gamma-distance
+geometry alone is counterevidence, not an ePK threshold. The distribution is
+started but `negative_control_distance_distribution_ready=false`.
+
+The run also added
+`artifacts/v3_epk_nonready_ligand_alternate_structure_plan_1025.json` plus
+`build-epk-nonready-ligand-alternate-structure-plan`. It screens the two
+non-ready ePK rows, `m_csa:282` and `m_csa:662`, across graph-linked PDB
+structures. `m_csa:282` has one alternate gamma-capable structure (`4H3Q`) but
+lacks metal context and catalytic-residue mapping; `m_csa:662` has two
+alternate gamma-capable structures (`3X03` and `6K4H`) but no metal-supported
+complete repair. The artifact records 3 alternate gamma-capable structures, 0
+alternate gamma+metal+mapped structures, and keeps
+`nonready_rows_repaired_or_excluded=false`.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the new
+negative-control artifact attached. The lane remains `blocked_review_only`:
+local-axis prototyping, measured-row acceptor identity review, and
+gamma-threshold control planning pass, but negative-control distribution
+readiness, acceptor-threshold calibration, complete gamma geometry,
+non-ready-row repair, external hard-negative scored re-audit, and registry/
+label-factory extension all fail closed.
+
+Evidence-based confidence call: ePK now has a stronger pre-score control
+surface, and the first sibling-family negative control shows why a simple
+gamma-distance cutoff would be unsafe. There is still no ePK scorer, calibrated
+threshold, positive-universe expansion, external hard-negative ePK re-audit,
+registry edit, or label import. The active fingerprint universe remains 8;
+curated labels remain 682 with 212 `seed_fingerprint` and 470 `out_of_scope`
+labels; external imported labels remain exactly `uniprot:P06744`,
+`uniprot:P78549`, and `uniprot:Q3LXA3`; external imported seed-fingerprint
+labels remain 0. The next bounded ePK step should expand sibling-family
+negative-control coverage, review the `4H3Q`/`3X03`/`6K4H` alternate-structure
+repair gaps, or keep `m_csa:282`/`m_csa:662` explicitly excluded before any
+threshold selection. Do not add the ePK registry fingerprint, import ePK
+labels, or score external hard negatives until the full pre-count gate path is
+implemented.
+
+Verification passed with the final 471-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T13:54:41Z automation run, a stale automation lock from an
 interrupted ePK run was recovered after confirming the prior PID was not alive
 and the dirty worktree was coherent. `git fetch`, `git pull --ff-only origin

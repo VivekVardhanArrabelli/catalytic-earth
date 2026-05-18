@@ -1,0 +1,1117 @@
+{
+  "metadata": {
+    "alternate_gamma_metal_mapped_structure_count": 0,
+    "alternate_gamma_structure_count": 3,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "1BO1",
+      "3WZZ",
+      "3X01",
+      "3X02",
+      "3X03",
+      "3X04",
+      "3X05",
+      "3X06",
+      "3X07",
+      "3X08",
+      "3X09",
+      "3X0A",
+      "3X0B",
+      "3X0C",
+      "4H3Q",
+      "6K4G",
+      "6K4H",
+      "7EM1",
+      "7EM2",
+      "7EM3",
+      "7EM4",
+      "7EM5",
+      "7EM6",
+      "7EM7",
+      "7EM8",
+      "7N80",
+      "7N81"
+    ],
+    "fingerprint_registry_edited": false,
+    "method": "epk_nonready_ligand_alternate_structure_plan",
+    "next_actions": [
+      "review alternate structures for local ATP/ANP plus metal geometry",
+      "approve or reject any selected-structure override before rerunning local evidence",
+      "keep m_csa:282 and m_csa:662 non-countable until repair is explicit"
+    ],
+    "nonready_rows_repaired_or_excluded": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_rerun_local_evidence_audit": false,
+    "ready_to_run_epk_scorer": false,
+    "repair_evidence_status_counts": {
+      "alternate_gamma_structure_found_metal_or_mapping_gap": 2
+    },
+    "review_only": true,
+    "review_only_rule": "This artifact screens alternate structures for the ePK rows excluded from local-axis prototyping. It does not approve an override, rerun local evidence, score ePK, or alter labels.",
+    "row_count": 2,
+    "source_epk_nonready_ligand_repair_plan_method": "epk_nonready_ligand_repair_plan",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "alternate_gamma_metal_mapped_structure_count": 0,
+      "alternate_gamma_structure_count": 1,
+      "candidate_structure_count": 2,
+      "candidate_structures": [
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": true,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": true,
+          "has_metal_ligand": true,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:282:residue:1",
+              "uniprot_resid": 194
+            },
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:282:residue:2",
+              "uniprot_resid": 221
+            }
+          ],
+          "pdb_id": "1S9I",
+          "target_ligand_codes": [
+            "ATP",
+            "MG"
+          ]
+        },
+        {
+          "all_catalytic_residues_mapped": false,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": true,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 0,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": false,
+              "mapped_chain_names": [],
+              "residue_node_id": "m_csa:282:residue:1",
+              "uniprot_resid": 194
+            },
+            {
+              "expected_code": "ASP",
+              "mapped": false,
+              "mapped_chain_names": [],
+              "residue_node_id": "m_csa:282:residue:2",
+              "uniprot_resid": 221
+            }
+          ],
+          "pdb_id": "4H3Q",
+          "target_ligand_codes": [
+            "ANP"
+          ]
+        }
+      ],
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "1S9I",
+      "entry_id": "m_csa:282",
+      "entry_name": "mitogen-activated protein kinase kinase",
+      "epk_score_computed": false,
+      "graph_linked_pdb_ids": [
+        "1S9I",
+        "4H3Q"
+      ],
+      "next_review_action": "review alternate structures for metal context and catalytic residue mapping",
+      "ready_for_label_import": false,
+      "ready_to_rerun_local_evidence_audit": false,
+      "reference_uniprot_id": "P36507",
+      "remaining_blockers": [
+        "alternate_structure_local_distance_not_measured",
+        "selected_structure_override_not_approved",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "repair_evidence_status": "alternate_gamma_structure_found_metal_or_mapping_gap",
+      "review_only": true,
+      "source_repair_lane": "structure_ligand_signal_not_local_axis",
+      "source_scorer_input_readiness": "needs_ligand_distance_or_structure_repair",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "alternate_gamma_metal_mapped_structure_count": 0,
+      "alternate_gamma_structure_count": 2,
+      "candidate_structure_count": 26,
+      "candidate_structures": [
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": true,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "1BO1",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3WZZ",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": true,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X01",
+          "target_ligand_codes": [
+            "AMP"
+          ]
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X02",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": true,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X03",
+          "target_ligand_codes": [
+            "ANP"
+          ]
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X04",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": true,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X05",
+          "target_ligand_codes": [
+            "AMP"
+          ]
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X06",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": true,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X07",
+          "target_ligand_codes": [
+            "AMP"
+          ]
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X08",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": true,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X09",
+          "target_ligand_codes": [
+            "AMP"
+          ]
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X0A",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": true,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X0B",
+          "target_ligand_codes": [
+            "AMP"
+          ]
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "3X0C",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "6K4G",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": true,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "6K4H",
+          "target_ligand_codes": [
+            "ANP"
+          ]
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "7EM1",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "7EM2",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "7EM3",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "7EM4",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "7EM5",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "7EM6",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "7EM7",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "7EM8",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "7N80",
+          "target_ligand_codes": []
+        },
+        {
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 2,
+          "fetch_status": "ok",
+          "has_gamma_capable_nucleotide": false,
+          "has_metal_ligand": false,
+          "has_product_or_partial_nucleotide": false,
+          "mapped_catalytic_residue_count": 2,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:1",
+              "uniprot_resid": 278
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:662:residue:2",
+              "uniprot_resid": 150
+            }
+          ],
+          "pdb_id": "7N81",
+          "target_ligand_codes": []
+        }
+      ],
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "1BO1",
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "epk_score_computed": false,
+      "graph_linked_pdb_ids": [
+        "1BO1",
+        "3WZZ",
+        "3X01",
+        "3X02",
+        "3X03",
+        "3X04",
+        "3X05",
+        "3X06",
+        "3X07",
+        "3X08",
+        "3X09",
+        "3X0A",
+        "3X0B",
+        "3X0C",
+        "6K4G",
+        "6K4H",
+        "7EM1",
+        "7EM2",
+        "7EM3",
+        "7EM4",
+        "7EM5",
+        "7EM6",
+        "7EM7",
+        "7EM8",
+        "7N80",
+        "7N81"
+      ],
+      "next_review_action": "review alternate structures for metal context and catalytic residue mapping",
+      "ready_for_label_import": false,
+      "ready_to_rerun_local_evidence_audit": false,
+      "reference_uniprot_id": "P78356",
+      "remaining_blockers": [
+        "alternate_structure_local_distance_not_measured",
+        "selected_structure_override_not_approved",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "repair_evidence_status": "alternate_gamma_structure_found_metal_or_mapping_gap",
+      "review_only": true,
+      "source_repair_lane": "selected_structure_ligand_axis_missing",
+      "source_scorer_input_readiness": "needs_ligand_source_or_alternate_structure",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Alternate ligand evidence is repair context only; it is not a positive fingerprint label or scorer input until an explicit override and gate rerun exist."
+  ]
+}

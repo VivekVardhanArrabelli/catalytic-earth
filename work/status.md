@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 174
-- Measured elapsed time: 5309.0 minutes (88.48 hours)
+- Entries: 175
+- Measured elapsed time: 5328.6 minutes (88.81 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 79.9 measured minutes (1.33 hours)
+- post-infra-science: 99.4 measured minutes (1.66 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1937
-- Evidence references logged: 1507
+- Artifact references logged: 1949
+- Evidence references logged: 1516
 
 ## Recent Entries
-
-### 2026-05-17T23:57:13.778352+00:00 - infrastructure
-
-- Task: Artifact migration Foldseek provenance closure
-- Time mode: measured
-- Measured minutes: 7.933
-- Started: 2026-05-17T23:48:39Z
-- Ended: 2026-05-17T23:56:35Z
-- Artifacts: artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_readiness_plan_1025.json, artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_storage_policy_check_1025.json, artifacts/v3_artifact_admission_guard_1025.json, src/catalytic_earth/artifact_storage.py, tests/test_artifact_storage.py, README.md, docs/artifact_storage.md, work/handoff.md
-- Evidence: 437 unit tests passed; targeted artifact transfer source-only tests passed; validate passed with 682 labels; source-only compile/import/CLI help passed; migration validation passed with local file checks; restore smoke dry-run passed; git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 instrumentation only; no artifact upload deletion LFS migration externalization scientific-artifact recompute label/import artifact edit or history rewrite. Foldseek coordinate sidecars moved from unknown_blocking to unavailable_with_reason with path size SHA and Git identity preserved; 31 geometry-feature unknown_blocking rows remain.
 
 ### 2026-05-18T02:17:25.299182+00:00 - infrastructure
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_acceptor_identity_review_1025.json, artifacts/v3_epk_atp_state_evidence_plan_1025.json, artifacts/v3_epk_gamma_threshold_control_plan_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
 - Evidence: startup 465-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and 0 blockers, targeted ePK tests passed, final 467-test unit discovery passed, compileall passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, gamma threshold control plan keeps selected_threshold null and threshold_calibrated false, pre-count gate remains blocked_review_only, git diff --check passed
 - Notes: Recovered stale lock with dead PID and coherent dirty ePK work, then continued directly without delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
+
+### 2026-05-18T15:03:10.233611+00:00 - post-infra-science
+
+- Task: ePK negative controls and nonready repair screens
+- Time mode: measured
+- Measured minutes: 19.567
+- Started: 2026-05-18T14:43:23Z
+- Ended: 2026-05-18T15:02:57Z
+- Artifacts: artifacts/v3_epk_negative_control_gamma_distance_distribution_1025.json, artifacts/v3_epk_nonready_ligand_alternate_structure_plan_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: startup 467-test unit discovery passed, final 471-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and 0 blockers, negative control m_csa:615 DTP PG-to-Ser distance 3.232 Angstrom blocks gamma-only threshold, nonready alternate screen found 3 gamma-capable alternates but 0 gamma+metal+mapped repairs, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ## Expectation Updates
 
@@ -251,6 +251,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-18T04:13:16.733717+00:00: Phase 1 artifact-migration instrumentation is complete; next action is human approval for Phase 2 upload target and subset.
 - 2026-05-18T07:51:37.415598+00:00: ePK now has review-only local axes, acceptor threshold hypotheses, gamma-distance samples, and a blocked pre-count gate; positive-universe expansion still requires true acceptor identity, ATP-state repair, threshold calibration, external re-audit, and label-factory extension.
 - 2026-05-18T13:55:35.875542+00:00: ePK threshold selection is now blocked on negative-control distance distributions and non-ready row repair rather than threshold design itself.
+- 2026-05-18T15:03:10.233611+00:00: ePK threshold selection is now blocked by observed sibling-family gamma-distance overlap plus incomplete non-ready row repair.
 
 ## Scope Adjustments
 

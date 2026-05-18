@@ -1,0 +1,717 @@
+{
+  "metadata": {
+    "candidate_thresholds_angstrom": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "control_family_ids": [
+      "askha",
+      "atp_grasp",
+      "dnk",
+      "ghkl",
+      "ghmp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "control_row_count": 15,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "1OJ4"
+    ],
+    "fingerprint_registry_edited": false,
+    "lowest_covering_candidate_negative_control_hit_count": 1,
+    "lowest_review_geometry_covering_candidate_angstrom": 6.0,
+    "measured_control_count": 2,
+    "measured_control_family_ids": [
+      "dnk",
+      "ghmp"
+    ],
+    "measurement_status_counts": {
+      "selected_structure_gamma_nucleotide_hydroxyl_context_missing": 1,
+      "selected_structure_gamma_to_hydroxyl_distance_measured_review_only": 2,
+      "selected_structure_product_or_no_gamma_nucleotide_skipped": 12
+    },
+    "method": "epk_negative_control_gamma_distance_distribution",
+    "negative_control_distance_distribution_ready": false,
+    "negative_control_distance_distribution_started": true,
+    "next_actions": [
+      "expand negative controls across sibling ATP-phosphoryl-transfer families",
+      "treat close sibling-family gamma-to-hydroxyl distances as threshold blockers",
+      "keep ePK threshold selection closed until control coverage is sufficient"
+    ],
+    "observed_negative_control_distance_max_angstrom": 6.184,
+    "observed_negative_control_distance_min_angstrom": 3.232,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact starts the sibling ATP-phosphoryl-transfer negative-control gamma-distance distribution. It is not an ePK score, calibrated threshold, registry edit, label import, or external hard-negative re-audit.",
+    "selected_threshold_angstrom": null,
+    "source_atp_phosphoryl_transfer_family_expansion_method": "atp_phosphoryl_transfer_family_expansion",
+    "source_control_row_count": 15,
+    "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
+    "source_geometry_max_entries": 1000,
+    "source_geometry_method": null,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "threshold_collision_rows": [
+      {
+        "measured_negative_control_hit_count": 1,
+        "measured_negative_control_hit_entry_ids": [
+          "m_csa:615"
+        ],
+        "selection_status": "not_selectable_for_epk_without_more_controls",
+        "threshold_angstrom": 4.0
+      },
+      {
+        "measured_negative_control_hit_count": 1,
+        "measured_negative_control_hit_entry_ids": [
+          "m_csa:615"
+        ],
+        "selection_status": "not_selectable_for_epk_without_more_controls",
+        "threshold_angstrom": 6.0
+      },
+      {
+        "measured_negative_control_hit_count": 2,
+        "measured_negative_control_hit_entry_ids": [
+          "m_csa:615",
+          "m_csa:654"
+        ],
+        "selection_status": "not_selectable_for_epk_without_more_controls",
+        "threshold_angstrom": 8.0
+      }
+    ],
+    "threshold_selection_status": "blocked_negative_controls_overlap_or_insufficient_distribution"
+  },
+  "rows": [
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "3IDH",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "GLC",
+        "K"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "1G99",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "ADP",
+        "SO4"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:651",
+      "entry_name": "hexokinase (type II)",
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "1IG8",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "SO4"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:696",
+      "entry_name": "hexokinase (type I)",
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "1DGK",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "ADP",
+        "GLC",
+        "PO4"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:310",
+      "entry_name": "D-alanine-(R)-lactate ligase",
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "1E4E",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "ADP",
+        "GOL",
+        "MG",
+        "PHY",
+        "SO4"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:498",
+      "entry_name": "glutathione synthase (eukaryotic)",
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "2HGS",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "ADP",
+        "GSH",
+        "MG",
+        "SO4"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:588",
+      "entry_name": "thymidine kinase",
+      "epk_score_computed": false,
+      "family_id": "dnk",
+      "family_name": "Deoxynucleoside kinases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "1KIM",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "SO4",
+        "THM"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_threshold_hits_angstrom": [
+        4.0,
+        6.0,
+        8.0
+      ],
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "decision_action": "reject_label",
+      "distance_rows": [
+        {
+          "distance_angstrom": 3.232,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "52",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 10.263,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "69",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "distance_angstrom": 12.459,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "146",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 13.403,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "74",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "distance_angstrom": 14.122,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "42",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 14.227,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "117",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 14.806,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "143",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 22.116,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "145",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "distance_angstrom": 29.844,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "182",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 36.946,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "117",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 37.113,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "182",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 38.601,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "DTP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "145",
+          "hydroxyl_residue_code": "TYR"
+        }
+      ],
+      "entry_id": "m_csa:615",
+      "entry_name": "deoxyguanosine kinase",
+      "epk_score_computed": false,
+      "family_id": "dnk",
+      "family_name": "Deoxynucleoside kinases",
+      "gamma_atom_count": 8,
+      "gamma_capable_nucleotide_codes": [
+        "DTP"
+      ],
+      "gamma_phosphate_geometry_measured": true,
+      "geometry_status": "ok",
+      "hydroxyl_acceptor_atom_count": 9,
+      "measurement_blockers": [
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "threshold_not_selected"
+      ],
+      "measurement_status": "selected_structure_gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": 3.232,
+      "pdb_id": "2OCP",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "DTP"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_threshold_hits_angstrom": [],
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "decision_action": "reject_label",
+      "distance_rows": [],
+      "entry_id": "m_csa:327",
+      "entry_name": "protein histidine kinase (CheA)",
+      "epk_score_computed": false,
+      "family_id": "ghkl",
+      "family_name": "GHKL/Bergerat ATP-binding kinases",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ACP"
+      ],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "insufficient_resolved_residues",
+      "hydroxyl_acceptor_atom_count": 0,
+      "measurement_blockers": [
+        "selected_structure_hydroxyl_acceptor_atom_missing"
+      ],
+      "measurement_status": "selected_structure_gamma_nucleotide_hydroxyl_context_missing",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": null,
+      "pdb_id": "1I58",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "ACP",
+        "ACT",
+        "ADP",
+        "MG"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:603",
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "epk_score_computed": false,
+      "family_id": "ghkl",
+      "family_name": "GHKL/Bergerat ATP-binding kinases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "1JM6",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_threshold_hits_angstrom": [
+        8.0
+      ],
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "decision_action": "accept_label",
+      "distance_rows": [
+        {
+          "distance_angstrom": 6.184,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "108",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 7.851,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "238",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "distance_angstrom": 10.288,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "109",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 14.775,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "37",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "distance_angstrom": 32.345,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "108",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 37.334,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "109",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "distance_angstrom": 43.541,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "238",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "distance_angstrom": 46.027,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "37",
+          "hydroxyl_residue_code": "TYR"
+        }
+      ],
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "gamma_atom_count": 2,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "gamma_phosphate_geometry_measured": true,
+      "geometry_status": "ok",
+      "hydroxyl_acceptor_atom_count": 4,
+      "measurement_blockers": [
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "threshold_not_selected"
+      ],
+      "measurement_status": "selected_structure_gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": 6.184,
+      "pdb_id": "1OJ4",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "ANP",
+        "CDM",
+        "CL",
+        "MSE"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:637",
+      "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "1DEK",
+      "product_or_partial_nucleotide_codes": [
+        "DGP"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "DGP",
+        "MG",
+        "OCS"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:365",
+      "entry_name": "Phosphofructokinase I",
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "1PFK",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "ADP",
+        "FBP",
+        "MG"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "1RK2",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "ADP",
+        "ALF",
+        "MG",
+        "RIB"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "control_use_status": "negative_control_candidate_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [],
+      "gamma_phosphate_geometry_measured": false,
+      "geometry_status": "ok",
+      "measurement_blockers": [
+        "no_selected_structure_gamma_capable_nucleotide"
+      ],
+      "measurement_status": "selected_structure_product_or_no_gamma_nucleotide_skipped",
+      "pdb_id": "1JXH",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "selected_ligand_codes": [
+        "SO4"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "A selected-structure gamma-distance match in a sibling family is counterevidence against using gamma geometry alone as an ePK threshold."
+  ]
+}

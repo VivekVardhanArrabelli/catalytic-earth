@@ -7531,6 +7531,357 @@ def build_epk_nonready_ligand_repair_plan(
     }
 
 
+def build_epk_nonready_ligand_alternate_structure_plan(
+    *,
+    epk_nonready_ligand_repair_plan: dict[str, Any],
+    graph: dict[str, Any],
+    entry_ids: list[str] | None = None,
+    cif_text_by_pdb: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    """Screen graph-linked structures for non-ready ePK ligand repair lanes."""
+
+    repair_meta = epk_nonready_ligand_repair_plan.get("metadata", {})
+    if not isinstance(repair_meta, dict):
+        repair_meta = {}
+    target_fingerprint_id = str(
+        repair_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    requested_entry_ids = {str(entry_id) for entry_id in entry_ids or [] if entry_id}
+    repair_rows = [
+        row
+        for row in epk_nonready_ligand_repair_plan.get("rows", []) or []
+        if isinstance(row, dict)
+        and (
+            not requested_entry_ids
+            or str(row.get("entry_id") or "") in requested_entry_ids
+        )
+    ]
+
+    nodes_by_id = {
+        str(node.get("id")): node
+        for node in graph.get("nodes", []) or []
+        if isinstance(node, dict) and node.get("id")
+    }
+    reference_by_entry: dict[str, str] = {}
+    catalytic_sequence_positions_by_entry: dict[str, list[dict[str, Any]]] = (
+        defaultdict(list)
+    )
+    pdbs_by_uniprot: dict[str, set[str]] = defaultdict(set)
+    for node_id, node in nodes_by_id.items():
+        if node_id.startswith("m_csa:") and isinstance(node, dict):
+            reference = str(node.get("reference_uniprot_id") or "")
+            if reference:
+                reference_by_entry[node_id] = reference
+        parts = node_id.split(":")
+        if (
+            len(parts) >= 3
+            and parts[0] == "m_csa"
+            and isinstance(node, dict)
+            and node.get("type") == "catalytic_residue"
+        ):
+            source_entry_id = f"{parts[0]}:{parts[1]}"
+            for position in node.get("sequence_positions", []) or []:
+                if not isinstance(position, dict):
+                    continue
+                catalytic_sequence_positions_by_entry[source_entry_id].append(
+                    {
+                        "residue_node_id": node_id,
+                        "uniprot_id": position.get("uniprot_id"),
+                        "resid": position.get("resid"),
+                        "code": position.get("code"),
+                        "roles": node.get("roles", []),
+                    }
+                )
+    for edge in graph.get("edges", []) or []:
+        if not isinstance(edge, dict):
+            continue
+        source = str(edge.get("source") or "")
+        target = str(edge.get("target") or "")
+        predicate = str(edge.get("predicate") or "")
+        if predicate == "has_reference_protein" and source.startswith("m_csa:"):
+            if target.startswith("uniprot:"):
+                reference_by_entry[source] = target.split(":", 1)[1]
+        if (
+            predicate == "has_structure"
+            and source.startswith("uniprot:")
+            and target.startswith("pdb:")
+        ):
+            pdbs_by_uniprot[source.split(":", 1)[1]].add(target.split(":", 1)[1])
+
+    cif_text_by_pdb = cif_text_by_pdb or {}
+    gamma_capable_codes = {"ATP", "ANP", "AGS", "ACP", "APC", "AP5", "ATP_GAMMA_S"}
+    product_or_partial_codes = {"ADP", "AMP"}
+    residue_code_3 = {
+        "ALA": "ALA",
+        "ARG": "ARG",
+        "ASN": "ASN",
+        "ASP": "ASP",
+        "CYS": "CYS",
+        "GLN": "GLN",
+        "GLU": "GLU",
+        "GLY": "GLY",
+        "HIS": "HIS",
+        "ILE": "ILE",
+        "LEU": "LEU",
+        "LYS": "LYS",
+        "MET": "MET",
+        "PHE": "PHE",
+        "PRO": "PRO",
+        "SER": "SER",
+        "THR": "THR",
+        "TRP": "TRP",
+        "TYR": "TYR",
+        "VAL": "VAL",
+    }
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    fetched_pdb_ids: set[str] = set()
+    alternate_gamma_structure_count = 0
+    alternate_gamma_metal_mapped_structure_count = 0
+    for repair_row in repair_rows:
+        entry_id = str(repair_row.get("entry_id") or "")
+        reference_uniprot_id = reference_by_entry.get(entry_id)
+        graph_pdb_ids = (
+            sorted(pdbs_by_uniprot.get(reference_uniprot_id or "", set()))
+            if reference_uniprot_id
+            else []
+        )
+        selected_pdb_id = str(repair_row.get("pdb_id") or "").upper()
+        catalytic_sequence_positions = catalytic_sequence_positions_by_entry.get(
+            entry_id,
+            [],
+        )
+        candidate_structures: list[dict[str, Any]] = []
+        for pdb_id in graph_pdb_ids:
+            pdb_id_upper = pdb_id.upper()
+            fetch_status = "ok"
+            ligand_codes: list[str] = []
+            ligand_counts: Counter[str] = Counter()
+            polymer_residue_index: dict[tuple[str, str], set[str]] = defaultdict(set)
+            atoms: list[dict[str, Any]] = []
+            cif_text = cif_text_by_pdb.get(pdb_id_upper)
+            if cif_text is None:
+                try:
+                    cif_text = fetch_pdb_cif(pdb_id_upper)
+                    fetched_pdb_ids.add(pdb_id_upper)
+                except Exception as exc:  # pragma: no cover - network fallback path
+                    fetch_status = f"fetch_failed:{type(exc).__name__}"
+                    cif_text = None
+            if cif_text:
+                atoms = parse_atom_site_loop(cif_text)
+                for atom in atoms:
+                    if atom.get("group_PDB") == "ATOM":
+                        code = str(
+                            atom.get("auth_comp_id")
+                            or atom.get("label_comp_id")
+                            or ""
+                        ).upper()
+                        resid = str(
+                            atom.get("auth_seq_id")
+                            or atom.get("label_seq_id")
+                            or ""
+                        )
+                        chain = str(
+                            atom.get("auth_asym_id")
+                            or atom.get("label_asym_id")
+                            or ""
+                        )
+                        if code and resid:
+                            polymer_residue_index[(resid, code)].add(chain)
+                        continue
+                    if atom.get("group_PDB") != "HETATM":
+                        continue
+                    code = str(
+                        atom.get("auth_comp_id") or atom.get("label_comp_id") or ""
+                    ).upper()
+                    if code:
+                        ligand_counts[code] += 1
+                ligand_codes = sorted(ligand_counts)
+            mapped_catalytic_residues = []
+            for position in catalytic_sequence_positions:
+                resid = str(position.get("resid") or "")
+                code = residue_code_3.get(str(position.get("code") or "").upper()[:3])
+                chains = sorted(polymer_residue_index.get((resid, code or ""), set()))
+                mapped_catalytic_residues.append(
+                    {
+                        "residue_node_id": position.get("residue_node_id"),
+                        "uniprot_resid": position.get("resid"),
+                        "expected_code": code,
+                        "mapped_chain_names": chains,
+                        "mapped": bool(chains),
+                    }
+                )
+            mapped_count = sum(1 for item in mapped_catalytic_residues if item["mapped"])
+            all_catalytic_residues_mapped = bool(
+                mapped_catalytic_residues
+                and mapped_count == len(mapped_catalytic_residues)
+            )
+            has_gamma_capable = any(code in gamma_capable_codes for code in ligand_codes)
+            has_product_or_partial = any(
+                code in product_or_partial_codes for code in ligand_codes
+            )
+            has_metal = any(code in METAL_ION_CODES for code in ligand_codes)
+            target_ligand_codes = sorted(
+                code
+                for code in ligand_codes
+                if code in gamma_capable_codes
+                or code in product_or_partial_codes
+                or code in METAL_ION_CODES
+            )
+            current_selected = bool(
+                selected_pdb_id and pdb_id_upper == selected_pdb_id.upper()
+            )
+            if has_gamma_capable and not current_selected:
+                alternate_gamma_structure_count += 1
+            if (
+                has_gamma_capable
+                and has_metal
+                and all_catalytic_residues_mapped
+                and not current_selected
+            ):
+                alternate_gamma_metal_mapped_structure_count += 1
+            candidate_structures.append(
+                {
+                    "pdb_id": pdb_id_upper,
+                    "fetch_status": fetch_status,
+                    "current_selected_structure": current_selected,
+                    "target_ligand_codes": target_ligand_codes,
+                    "has_gamma_capable_nucleotide": has_gamma_capable,
+                    "has_product_or_partial_nucleotide": has_product_or_partial,
+                    "has_metal_ligand": has_metal,
+                    "mapped_catalytic_residue_count": mapped_count,
+                    "expected_catalytic_residue_count": len(
+                        mapped_catalytic_residues
+                    ),
+                    "all_catalytic_residues_mapped": all_catalytic_residues_mapped,
+                    "mapped_catalytic_residues": mapped_catalytic_residues,
+                }
+            )
+        alternate_gamma_metal_mapped = [
+            structure
+            for structure in candidate_structures
+            if structure.get("has_gamma_capable_nucleotide")
+            and structure.get("has_metal_ligand")
+            and structure.get("all_catalytic_residues_mapped")
+            and not structure.get("current_selected_structure")
+        ]
+        alternate_gamma = [
+            structure
+            for structure in candidate_structures
+            if structure.get("has_gamma_capable_nucleotide")
+            and not structure.get("current_selected_structure")
+        ]
+        selected_gamma_metal = [
+            structure
+            for structure in candidate_structures
+            if structure.get("has_gamma_capable_nucleotide")
+            and structure.get("has_metal_ligand")
+            and structure.get("current_selected_structure")
+        ]
+        if alternate_gamma_metal_mapped:
+            status = "alternate_gamma_metal_structure_found_review_only"
+            next_action = "review alternate local ligand geometry before rerunning the local evidence audit"
+        elif alternate_gamma:
+            status = "alternate_gamma_structure_found_metal_or_mapping_gap"
+            next_action = "review alternate structures for metal context and catalytic residue mapping"
+        elif selected_gamma_metal:
+            status = "selected_structure_signal_remains_nonlocal_review_only"
+            next_action = "inspect selected-structure chain and distance context before changing local cutoffs"
+        elif candidate_structures:
+            status = "no_alternate_gamma_ligand_repair_candidate_found"
+            next_action = "source additional ligand-bound structures or keep excluded"
+        else:
+            status = "no_graph_linked_pdb_structure_found"
+            next_action = "source an external ligand-bound structure before repair"
+        status_counts[status] += 1
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": repair_row.get("entry_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "source_repair_lane": repair_row.get("repair_lane"),
+                "source_scorer_input_readiness": repair_row.get(
+                    "source_scorer_input_readiness"
+                ),
+                "reference_uniprot_id": reference_uniprot_id,
+                "current_selected_pdb_id": selected_pdb_id or None,
+                "graph_linked_pdb_ids": graph_pdb_ids,
+                "candidate_structure_count": len(candidate_structures),
+                "alternate_gamma_structure_count": len(alternate_gamma),
+                "alternate_gamma_metal_mapped_structure_count": len(
+                    alternate_gamma_metal_mapped
+                ),
+                "repair_evidence_status": status,
+                "candidate_structures": candidate_structures,
+                "next_review_action": next_action,
+                "ready_to_rerun_local_evidence_audit": False,
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "alternate_structure_local_distance_not_measured",
+                    "selected_structure_override_not_approved",
+                    "epk_score_not_computed",
+                    "external_hard_negative_reaudit_not_run",
+                ],
+            }
+        )
+
+    return {
+        "metadata": {
+            "method": "epk_nonready_ligand_alternate_structure_plan",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_nonready_ligand_repair_plan_method": repair_meta.get(
+                "method"
+            ),
+            "row_count": len(rows),
+            "repair_evidence_status_counts": dict(sorted(status_counts.items())),
+            "fetched_pdb_ids": sorted(fetched_pdb_ids),
+            "alternate_gamma_structure_count": alternate_gamma_structure_count,
+            "alternate_gamma_metal_mapped_structure_count": (
+                alternate_gamma_metal_mapped_structure_count
+            ),
+            "nonready_rows_repaired_or_excluded": False,
+            "ready_to_rerun_local_evidence_audit": False,
+            "epk_score_computed": False,
+            "threshold_calibrated": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact screens alternate structures for the ePK rows "
+                "excluded from local-axis prototyping. It does not approve an "
+                "override, rerun local evidence, score ePK, or alter labels."
+            ),
+            "next_actions": [
+                "review alternate structures for local ATP/ANP plus metal geometry",
+                "approve or reject any selected-structure override before rerunning local evidence",
+                "keep m_csa:282 and m_csa:662 non-countable until repair is explicit",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "warnings": [
+            (
+                "Alternate ligand evidence is repair context only; it is not a "
+                "positive fingerprint label or scorer input until an explicit "
+                "override and gate rerun exist."
+            )
+        ],
+    }
+
+
 def build_epk_acceptor_axis_threshold_design(
     *,
     epk_acceptor_geometry_axis_gap_plan: dict[str, Any],
@@ -9103,6 +9454,499 @@ def build_epk_gamma_threshold_control_plan(
     }
 
 
+def build_epk_negative_control_gamma_distance_distribution(
+    *,
+    epk_gamma_threshold_control_plan: dict[str, Any],
+    atp_phosphoryl_transfer_family_expansion: dict[str, Any],
+    geometry_features: dict[str, Any],
+    cif_text_by_pdb: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    """Measure review-only sibling-family gamma-distance controls for ePK."""
+
+    threshold_meta = epk_gamma_threshold_control_plan.get("metadata", {})
+    if not isinstance(threshold_meta, dict):
+        threshold_meta = {}
+    family_meta = atp_phosphoryl_transfer_family_expansion.get("metadata", {})
+    if not isinstance(family_meta, dict):
+        family_meta = {}
+
+    target_fingerprint_id = str(
+        threshold_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    candidate_thresholds = []
+    for value in threshold_meta.get("candidate_thresholds_angstrom", []) or []:
+        try:
+            candidate_thresholds.append(float(value))
+        except (TypeError, ValueError):
+            continue
+    candidate_thresholds = sorted(set(candidate_thresholds))
+
+    raw_geometry_rows = (
+        geometry_features.get("rows")
+        or geometry_features.get("entries")
+        or geometry_features.get("features")
+        or []
+    )
+    geometry_rows = [row for row in raw_geometry_rows if isinstance(row, dict)]
+    geometry_by_entry = {
+        str(row.get("entry_id")): row
+        for row in geometry_rows
+        if isinstance(row.get("entry_id"), str)
+    }
+
+    sibling_rows = [
+        row
+        for row in atp_phosphoryl_transfer_family_expansion.get("rows", []) or []
+        if isinstance(row, dict)
+        and str(row.get("family_id") or "") not in {"", "epk"}
+    ]
+    sibling_family_ids = sorted(
+        {
+            str(row.get("family_id"))
+            for row in sibling_rows
+            if str(row.get("family_id") or "")
+        }
+    )
+
+    cif_text_by_pdb = cif_text_by_pdb or {}
+    gamma_capable_codes = {
+        "ATP",
+        "ANP",
+        "AGS",
+        "ACP",
+        "APC",
+        "AP5",
+        "ATP_GAMMA_S",
+        "DTP",
+        "GTP",
+    }
+    product_or_partial_codes = {"ADP", "AMP", "GDP", "DGP"}
+    hydroxyl_atom_names = {
+        "SER": {"OG"},
+        "THR": {"OG1"},
+        "TYR": {"OH"},
+    }
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    fetched_pdb_ids: set[str] = set()
+    for family_row in sibling_rows:
+        entry_id = str(family_row.get("entry_id") or "")
+        geometry = geometry_by_entry.get(entry_id)
+        if not geometry:
+            status = "selected_geometry_missing"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "entry_name": family_row.get("entry_name"),
+                    "family_id": family_row.get("family_id"),
+                    "family_name": family_row.get("family_name"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "measurement_status": status,
+                    "epk_score_computed": False,
+                    "control_use_status": (
+                        "negative_control_candidate_review_only_not_calibration"
+                    ),
+                }
+            )
+            continue
+
+        pdb_id = str(geometry.get("pdb_id") or "").upper()
+        ligand_context = geometry.get("ligand_context", {})
+        if not isinstance(ligand_context, dict):
+            ligand_context = {}
+        selected_ligand_codes = _sorted_strings(
+            (ligand_context.get("ligand_codes", []) or [])
+            + (ligand_context.get("structure_ligand_codes", []) or [])
+        )
+        gamma_codes = [
+            code
+            for code in selected_ligand_codes
+            if str(code).upper() in gamma_capable_codes
+        ]
+        product_codes = [
+            code
+            for code in selected_ligand_codes
+            if str(code).upper() in product_or_partial_codes
+        ]
+        if not pdb_id:
+            status = "selected_structure_pdb_id_missing"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "entry_name": family_row.get("entry_name"),
+                    "family_id": family_row.get("family_id"),
+                    "family_name": family_row.get("family_name"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "geometry_status": geometry.get("status"),
+                    "selected_ligand_codes": selected_ligand_codes,
+                    "gamma_capable_nucleotide_codes": gamma_codes,
+                    "product_or_partial_nucleotide_codes": product_codes,
+                    "measurement_status": status,
+                    "epk_score_computed": False,
+                    "control_use_status": (
+                        "negative_control_candidate_review_only_not_calibration"
+                    ),
+                }
+            )
+            continue
+        if not gamma_codes:
+            status = "selected_structure_product_or_no_gamma_nucleotide_skipped"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "entry_name": family_row.get("entry_name"),
+                    "family_id": family_row.get("family_id"),
+                    "family_name": family_row.get("family_name"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "pdb_id": pdb_id,
+                    "geometry_status": geometry.get("status"),
+                    "selected_ligand_codes": selected_ligand_codes,
+                    "gamma_capable_nucleotide_codes": gamma_codes,
+                    "product_or_partial_nucleotide_codes": product_codes,
+                    "measurement_status": status,
+                    "gamma_phosphate_geometry_measured": False,
+                    "epk_score_computed": False,
+                    "measurement_blockers": [
+                        "no_selected_structure_gamma_capable_nucleotide"
+                    ],
+                    "control_use_status": (
+                        "negative_control_candidate_review_only_not_calibration"
+                    ),
+                }
+            )
+            continue
+
+        cif_text = cif_text_by_pdb.get(pdb_id)
+        fetch_status = "ok"
+        if cif_text is None:
+            try:
+                cif_text = fetch_pdb_cif(pdb_id)
+                fetched_pdb_ids.add(pdb_id)
+            except Exception as exc:  # pragma: no cover - network fallback path
+                fetch_status = f"fetch_failed:{type(exc).__name__}"
+                cif_text = None
+        if not cif_text:
+            status = "selected_structure_cif_unavailable"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "entry_name": family_row.get("entry_name"),
+                    "family_id": family_row.get("family_id"),
+                    "family_name": family_row.get("family_name"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "pdb_id": pdb_id,
+                    "geometry_status": geometry.get("status"),
+                    "selected_ligand_codes": selected_ligand_codes,
+                    "gamma_capable_nucleotide_codes": gamma_codes,
+                    "product_or_partial_nucleotide_codes": product_codes,
+                    "fetch_status": fetch_status,
+                    "measurement_status": status,
+                    "gamma_phosphate_geometry_measured": False,
+                    "epk_score_computed": False,
+                    "measurement_blockers": ["selected_structure_cif_unavailable"],
+                    "control_use_status": (
+                        "negative_control_candidate_review_only_not_calibration"
+                    ),
+                }
+            )
+            continue
+
+        atoms = parse_atom_site_loop(cif_text)
+        gamma_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "HETATM"
+            and str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+            in {code.upper() for code in gamma_codes}
+            and str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+            == "PG"
+        ]
+        pocket_context = geometry.get("pocket_context", {})
+        if not isinstance(pocket_context, dict):
+            pocket_context = {}
+        hydroxyl_candidates = [
+            site
+            for site in pocket_context.get("nearby_residue_sites", []) or []
+            if isinstance(site, dict)
+            and str(site.get("code") or "").upper() in hydroxyl_atom_names
+        ]
+        hydroxyl_atoms = []
+        for candidate in hydroxyl_candidates:
+            code = str(candidate.get("code") or "").upper()
+            chain = str(candidate.get("chain_name") or "")
+            resid = str(candidate.get("resid") or "")
+            allowed_atom_names = hydroxyl_atom_names.get(code, set())
+            for atom in atoms:
+                atom_name = str(
+                    atom.get("auth_atom_id") or atom.get("label_atom_id") or ""
+                ).upper()
+                if atom_name not in allowed_atom_names:
+                    continue
+                atom_code = str(
+                    atom.get("auth_comp_id") or atom.get("label_comp_id") or ""
+                ).upper()
+                if atom_code != code:
+                    continue
+                if chain and chain not in _label_atom_chain_ids(atom):
+                    continue
+                if resid and resid not in _label_atom_residue_ids(atom):
+                    continue
+                hydroxyl_atoms.append(atom)
+
+        distance_rows = []
+        for gamma_atom in gamma_atoms:
+            gamma_point = _atom_point(gamma_atom)
+            for hydroxyl_atom in hydroxyl_atoms:
+                hydroxyl_point = _atom_point(hydroxyl_atom)
+                distance_rows.append(
+                    {
+                        "gamma_ligand_code": str(
+                            gamma_atom.get("auth_comp_id")
+                            or gamma_atom.get("label_comp_id")
+                        ).upper(),
+                        "gamma_atom_name": str(
+                            gamma_atom.get("auth_atom_id")
+                            or gamma_atom.get("label_atom_id")
+                        ),
+                        "hydroxyl_residue_code": str(
+                            hydroxyl_atom.get("auth_comp_id")
+                            or hydroxyl_atom.get("label_comp_id")
+                        ).upper(),
+                        "hydroxyl_atom_name": str(
+                            hydroxyl_atom.get("auth_atom_id")
+                            or hydroxyl_atom.get("label_atom_id")
+                        ),
+                        "hydroxyl_chain_name": str(
+                            hydroxyl_atom.get("auth_asym_id")
+                            or hydroxyl_atom.get("label_asym_id")
+                        ),
+                        "hydroxyl_resid": str(
+                            hydroxyl_atom.get("auth_seq_id")
+                            or hydroxyl_atom.get("label_seq_id")
+                        ),
+                        "distance_angstrom": round(
+                            _point_distance(gamma_point, hydroxyl_point), 3
+                        ),
+                    }
+                )
+        distance_rows.sort(
+            key=lambda row: (
+                float(row["distance_angstrom"]),
+                str(row["hydroxyl_residue_code"]),
+                str(row["hydroxyl_resid"]),
+            )
+        )
+        if distance_rows:
+            status = "selected_structure_gamma_to_hydroxyl_distance_measured_review_only"
+            blockers = [
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "threshold_not_selected",
+            ]
+            measured = True
+        elif not gamma_atoms:
+            status = "selected_structure_gamma_phosphate_atom_missing"
+            blockers = ["selected_structure_gamma_phosphate_atom_missing"]
+            measured = False
+        else:
+            status = "selected_structure_gamma_nucleotide_hydroxyl_context_missing"
+            blockers = ["selected_structure_hydroxyl_acceptor_atom_missing"]
+            measured = False
+        nearest_distance = (
+            distance_rows[0]["distance_angstrom"] if distance_rows else None
+        )
+        threshold_hits = [
+            threshold
+            for threshold in candidate_thresholds
+            if nearest_distance is not None and float(nearest_distance) <= threshold
+        ]
+        status_counts[status] += 1
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": family_row.get("entry_name"),
+                "family_id": family_row.get("family_id"),
+                "family_name": family_row.get("family_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "pdb_id": pdb_id,
+                "geometry_status": geometry.get("status"),
+                "decision_action": family_row.get("decision_action"),
+                "selected_ligand_codes": selected_ligand_codes,
+                "gamma_capable_nucleotide_codes": gamma_codes,
+                "product_or_partial_nucleotide_codes": product_codes,
+                "gamma_atom_count": len(gamma_atoms),
+                "hydroxyl_acceptor_atom_count": len(hydroxyl_atoms),
+                "nearest_gamma_to_hydroxyl_distance_angstrom": nearest_distance,
+                "candidate_threshold_hits_angstrom": threshold_hits,
+                "distance_rows": distance_rows[:12],
+                "measurement_status": status,
+                "gamma_phosphate_geometry_measured": measured,
+                "epk_score_computed": False,
+                "measurement_blockers": blockers,
+                "control_use_status": (
+                    "negative_control_candidate_review_only_not_calibration"
+                ),
+            }
+        )
+
+    measured_rows = [
+        row
+        for row in rows
+        if row.get("nearest_gamma_to_hydroxyl_distance_angstrom") is not None
+    ]
+    measured_distances = [
+        float(row["nearest_gamma_to_hydroxyl_distance_angstrom"])
+        for row in measured_rows
+        if row.get("nearest_gamma_to_hydroxyl_distance_angstrom") is not None
+    ]
+    threshold_collision_rows = []
+    for threshold in candidate_thresholds:
+        hit_entry_ids = [
+            str(row.get("entry_id"))
+            for row in measured_rows
+            if float(row.get("nearest_gamma_to_hydroxyl_distance_angstrom") or 0.0)
+            <= threshold
+        ]
+        threshold_collision_rows.append(
+            {
+                "threshold_angstrom": threshold,
+                "measured_negative_control_hit_count": len(hit_entry_ids),
+                "measured_negative_control_hit_entry_ids": sorted(
+                    set(hit_entry_ids),
+                    key=_entry_id_sort_key,
+                ),
+                "selection_status": "not_selectable_for_epk_without_more_controls",
+            }
+        )
+
+    lowest_covering_candidate = threshold_meta.get(
+        "lowest_review_geometry_covering_candidate_angstrom"
+    )
+    lowest_candidate_collision_count = 0
+    if lowest_covering_candidate is not None:
+        try:
+            cutoff = float(lowest_covering_candidate)
+            lowest_candidate_collision_count = sum(
+                1 for distance in measured_distances if distance <= cutoff
+            )
+        except (TypeError, ValueError):
+            lowest_candidate_collision_count = 0
+    measured_family_ids = sorted(
+        {
+            str(row.get("family_id"))
+            for row in measured_rows
+            if str(row.get("family_id") or "")
+        }
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_negative_control_gamma_distance_distribution",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_gamma_threshold_control_plan_method": threshold_meta.get(
+                "method"
+            ),
+            "source_atp_phosphoryl_transfer_family_expansion_method": (
+                family_meta.get("method")
+            ),
+            "source_geometry_method": geometry_features.get("metadata", {}).get(
+                "method"
+            )
+            if isinstance(geometry_features.get("metadata"), dict)
+            else None,
+            "source_geometry_max_entries": geometry_features.get("metadata", {}).get(
+                "max_entries"
+            )
+            if isinstance(geometry_features.get("metadata"), dict)
+            else None,
+            "source_control_row_count": len(sibling_rows),
+            "control_row_count": len(rows),
+            "control_family_ids": sibling_family_ids,
+            "measured_control_count": len(measured_rows),
+            "measured_control_family_ids": measured_family_ids,
+            "measurement_status_counts": dict(sorted(status_counts.items())),
+            "fetched_pdb_ids": sorted(fetched_pdb_ids),
+            "candidate_thresholds_angstrom": candidate_thresholds,
+            "threshold_collision_rows": threshold_collision_rows,
+            "lowest_review_geometry_covering_candidate_angstrom": (
+                lowest_covering_candidate
+            ),
+            "lowest_covering_candidate_negative_control_hit_count": (
+                lowest_candidate_collision_count
+            ),
+            "observed_negative_control_distance_min_angstrom": (
+                min(measured_distances) if measured_distances else None
+            ),
+            "observed_negative_control_distance_max_angstrom": (
+                max(measured_distances) if measured_distances else None
+            ),
+            "negative_control_distance_distribution_started": bool(measured_rows),
+            "negative_control_distance_distribution_ready": False,
+            "threshold_selection_status": (
+                "blocked_negative_controls_overlap_or_insufficient_distribution"
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact starts the sibling ATP-phosphoryl-transfer "
+                "negative-control gamma-distance distribution. It is not an "
+                "ePK score, calibrated threshold, registry edit, label import, "
+                "or external hard-negative re-audit."
+            ),
+            "next_actions": [
+                "expand negative controls across sibling ATP-phosphoryl-transfer families",
+                "treat close sibling-family gamma-to-hydroxyl distances as threshold blockers",
+                "keep ePK threshold selection closed until control coverage is sufficient",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("family_id")),
+                _entry_id_sort_key(str(row.get("entry_id"))),
+            ),
+        ),
+        "warnings": [
+            (
+                "A selected-structure gamma-distance match in a sibling family "
+                "is counterevidence against using gamma geometry alone as an "
+                "ePK threshold."
+            )
+        ],
+    }
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -9112,6 +9956,7 @@ def build_epk_precount_gate_status(
     epk_acceptor_identity_review: dict[str, Any] | None = None,
     epk_atp_state_evidence_plan: dict[str, Any] | None = None,
     epk_gamma_threshold_control_plan: dict[str, Any] | None = None,
+    epk_negative_control_gamma_distance_distribution: dict[str, Any] | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -9149,6 +9994,13 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(threshold_control_meta, dict):
         threshold_control_meta = {}
+    negative_control_meta = (
+        epk_negative_control_gamma_distance_distribution.get("metadata", {})
+        if isinstance(epk_negative_control_gamma_distance_distribution, dict)
+        else {}
+    )
+    if not isinstance(negative_control_meta, dict):
+        negative_control_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -9280,6 +10132,48 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if negative_control_meta:
+        gate_checks.append(
+            {
+                "gate_id": "gamma_negative_control_distance_distribution",
+                "passed": bool(
+                    negative_control_meta.get(
+                        "negative_control_distance_distribution_ready"
+                    )
+                )
+                and int(
+                    negative_control_meta.get(
+                        "lowest_covering_candidate_negative_control_hit_count"
+                    )
+                    or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": negative_control_meta.get("method"),
+                    "negative_control_distance_distribution_started": bool(
+                        negative_control_meta.get(
+                            "negative_control_distance_distribution_started"
+                        )
+                    ),
+                    "negative_control_distance_distribution_ready": bool(
+                        negative_control_meta.get(
+                            "negative_control_distance_distribution_ready"
+                        )
+                    ),
+                    "measured_control_count": negative_control_meta.get(
+                        "measured_control_count"
+                    ),
+                    "lowest_covering_candidate_negative_control_hit_count": (
+                        negative_control_meta.get(
+                            "lowest_covering_candidate_negative_control_hit_count"
+                        )
+                    ),
+                    "threshold_selection_status": negative_control_meta.get(
+                        "threshold_selection_status"
+                    ),
+                },
+            }
+        )
     failing_gate_ids = [
         str(check["gate_id"]) for check in gate_checks if not bool(check["passed"])
     ]
@@ -9295,7 +10189,12 @@ def build_epk_precount_gate_status(
     if not isinstance(atp_status_counts, dict):
         atp_status_counts = {}
     if int(atp_state_meta.get("alternate_gamma_acceptor_geometry_measured_count") or 0):
-        if threshold_control_meta.get("method"):
+        if negative_control_meta.get("method"):
+            next_actions.insert(
+                0,
+                "expand negative-control gamma-distance distributions before selecting a threshold",
+            )
+        elif threshold_control_meta.get("method"):
             next_actions.insert(
                 0,
                 "collect negative-control gamma-distance distributions before selecting a threshold",
@@ -9339,6 +10238,18 @@ def build_epk_precount_gate_status(
             ),
             "source_epk_gamma_threshold_control_plan_method": (
                 threshold_control_meta.get("method")
+            ),
+            "source_epk_negative_control_gamma_distance_distribution_method": (
+                negative_control_meta.get("method")
+            ),
+            "negative_control_distance_distribution_ready": bool(
+                negative_control_meta.get("negative_control_distance_distribution_ready")
+            ),
+            "negative_control_measured_control_count": negative_control_meta.get(
+                "measured_control_count"
+            ),
+            "negative_control_lowest_candidate_hit_count": negative_control_meta.get(
+                "lowest_covering_candidate_negative_control_hit_count"
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "selected_acceptor_threshold_angstrom": selected_threshold,

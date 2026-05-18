@@ -338,10 +338,14 @@ Current expectation:
   unresolved. The non-ready ligand repair plan keeps `m_csa:282` and
   `m_csa:662` out of scorer prototyping: `m_csa:282` needs local
   ligand-distance or selected-structure repair, and `m_csa:662` needs ligand
-  evidence or alternate-structure sourcing. The acceptor-axis threshold design
-  records 4, 6, and 8 Angstrom candidate cutoffs for later validation; 6
-  Angstrom covers the current three prototype rows by hydroxyl context, but no
-  ePK threshold is selected or calibrated. The gamma-geometry feasibility plan
+  evidence or alternate-structure sourcing. The alternate-structure repair
+  screen finds three gamma-capable alternates across those two rows, but zero
+  alternates with gamma-capable nucleotide, metal context, and complete
+  catalytic-residue mapping, so both rows remain unrepaired. The acceptor-axis
+  threshold design records 4, 6, and 8 Angstrom candidate cutoffs for later
+  validation; 6 Angstrom covers the current three prototype rows by hydroxyl
+  context, but no ePK threshold is selected or calibrated. The gamma-geometry
+  feasibility plan
   identifies `m_csa:35` and `m_csa:246` as ATP/ANP plus acceptor-context rows
   ready for future atom-level gamma-phosphate measurement, while `m_csa:640`
   needs ATP-state evidence because the selected structure is ADP/product-state.
@@ -359,12 +363,16 @@ Current expectation:
   positive-like review distances; no threshold is selected because
   negative-control distance distributions, sibling ATP-family controls,
   external hard-negative ePK re-audit, non-ready row handling, and
-  alternate-structure policy remain unresolved. The consolidated ePK pre-count
-  gate status remains `blocked_review_only`: local-axis prototyping,
-  measured-row acceptor identity review, and gamma-threshold control planning
-  pass, while threshold calibration, complete gamma geometry, non-ready-row
-  repair, external hard-negative re-audit, and registry/gate extension all fail
-  closed.
+  alternate-structure policy remain unresolved. The first sibling-family
+  negative-control distribution now measures two selected-structure controls:
+  dNK `m_csa:615` at 3.232 Angstrom and GHMP `m_csa:654` at 6.184 Angstrom.
+  The close dNK control is counterevidence against gamma-distance-only ePK
+  threshold selection, and the distribution remains not calibration-ready. The
+  consolidated ePK pre-count gate status remains `blocked_review_only`:
+  local-axis prototyping, measured-row acceptor identity review, and
+  gamma-threshold control planning pass, while negative-control readiness,
+  threshold calibration, complete gamma geometry, non-ready-row repair,
+  external hard-negative re-audit, and registry/gate extension all fail closed.
 - return to factory-gated label scaling toward 10k while preserving quality
   gates; the accepted 1,000 M-CSA state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the

@@ -3093,6 +3093,155 @@ class CliTests(unittest.TestCase):
             self.assertEqual(row["structure_metal_ligand_leads"][0]["code"], "MG")
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_build_epk_nonready_ligand_alternate_structure_plan_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            repair = root / "repair.json"
+            graph = root / "graph.json"
+            cif_dir = root / "cif"
+            cif_dir.mkdir()
+            out = root / "alternate_plan.json"
+            repair.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_nonready_ligand_repair_plan",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:282",
+                                "entry_name": "MAP kinase kinase",
+                                "pdb_id": "1AAA",
+                                "repair_lane": "structure_ligand_signal_not_local_axis",
+                                "source_scorer_input_readiness": (
+                                    "needs_ligand_distance_or_structure_repair"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "v1_graph"},
+                        "nodes": [
+                            {
+                                "id": "m_csa:282",
+                                "type": "m_csa_entry",
+                                "reference_uniprot_id": "PTEST",
+                            },
+                            {
+                                "id": "m_csa:282:residue:1",
+                                "type": "catalytic_residue",
+                                "sequence_positions": [
+                                    {
+                                        "uniprot_id": "PTEST",
+                                        "resid": 44,
+                                        "code": "Lys",
+                                    }
+                                ],
+                            },
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:282",
+                                "target": "uniprot:PTEST",
+                                "predicate": "has_reference_protein",
+                            },
+                            {
+                                "source": "uniprot:PTEST",
+                                "target": "pdb:1AAA",
+                                "predicate": "has_structure",
+                            },
+                            {
+                                "source": "uniprot:PTEST",
+                                "target": "pdb:1AAB",
+                                "predicate": "has_structure",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            for pdb_id in ("1AAA", "1AAB"):
+                (cif_dir / f"pdb_{pdb_id}.cif").write_text(
+                    "\n".join(
+                        [
+                            f"data_{pdb_id}",
+                            "loop_",
+                            "_atom_site.group_PDB",
+                            "_atom_site.id",
+                            "_atom_site.type_symbol",
+                            "_atom_site.label_atom_id",
+                            "_atom_site.label_comp_id",
+                            "_atom_site.label_asym_id",
+                            "_atom_site.label_seq_id",
+                            "_atom_site.Cartn_x",
+                            "_atom_site.Cartn_y",
+                            "_atom_site.Cartn_z",
+                            "_atom_site.auth_atom_id",
+                            "_atom_site.auth_comp_id",
+                            "_atom_site.auth_asym_id",
+                            "_atom_site.auth_seq_id",
+                            "HETATM 1 P PG ATP A 1 0.0 0.0 0.0 PG ATP A 1",
+                            "HETATM 2 MG MG MG A 2 1.0 0.0 0.0 MG MG A 2",
+                            "ATOM 3 N NZ LYS A 44 2.0 0.0 0.0 NZ LYS A 44",
+                            "#",
+                        ]
+                    ),
+                    encoding="utf-8",
+                )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-nonready-ligand-alternate-structure-plan",
+                    "--epk-nonready-ligand-repair-plan",
+                    str(repair),
+                    "--graph",
+                    str(graph),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            plan = json.loads(out.read_text(encoding="utf-8"))
+            metadata = plan["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_nonready_ligand_alternate_structure_plan",
+            )
+            self.assertEqual(metadata["row_count"], 1)
+            self.assertEqual(metadata["alternate_gamma_structure_count"], 1)
+            self.assertEqual(
+                metadata["alternate_gamma_metal_mapped_structure_count"],
+                1,
+            )
+            self.assertFalse(metadata["ready_to_rerun_local_evidence_audit"])
+            row = plan["rows"][0]
+            self.assertEqual(
+                row["repair_evidence_status"],
+                "alternate_gamma_metal_structure_found_review_only",
+            )
+            self.assertEqual(row["alternate_gamma_metal_mapped_structure_count"], 1)
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_build_epk_acceptor_axis_threshold_design_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -3405,6 +3554,7 @@ class CliTests(unittest.TestCase):
             threshold = root / "threshold.json"
             gamma = root / "gamma.json"
             repair = root / "repair.json"
+            negative = root / "negative_controls.json"
             reaudit = root / "reaudit.json"
             out = root / "gate_status.json"
             axis.write_text(
@@ -3462,6 +3612,25 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            negative.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_negative_control_gamma_distance_distribution"
+                            ),
+                            "negative_control_distance_distribution_started": True,
+                            "negative_control_distance_distribution_ready": False,
+                            "measured_control_count": 1,
+                            "lowest_covering_candidate_negative_control_hit_count": 1,
+                            "threshold_selection_status": (
+                                "blocked_negative_controls_overlap_or_insufficient_distribution"
+                            ),
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
             reaudit.write_text(
                 json.dumps(
                     {
@@ -3488,6 +3657,8 @@ class CliTests(unittest.TestCase):
                     str(gamma),
                     "--epk-nonready-ligand-repair-plan",
                     str(repair),
+                    "--epk-negative-control-gamma-distance-distribution",
+                    str(negative),
                     "--epk-external-hard-negative-reaudit-plan",
                     str(reaudit),
                     "--out",
@@ -3512,6 +3683,9 @@ class CliTests(unittest.TestCase):
             checks = {check["gate_id"]: check for check in status["gate_checks"]}
             self.assertTrue(checks["local_axis_prototype"]["passed"])
             self.assertFalse(checks["external_hard_negative_scored_reaudit"]["passed"])
+            self.assertFalse(
+                checks["gamma_negative_control_distance_distribution"]["passed"]
+            )
 
     def test_build_epk_acceptor_identity_review_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -3989,6 +4163,177 @@ class CliTests(unittest.TestCase):
                 "alternate_graph_linked_structure",
             )
             self.assertFalse(rows["m_csa:640"]["epk_score_computed"])
+
+    def test_build_epk_negative_control_gamma_distance_distribution_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            threshold = root / "threshold_control.json"
+            family = root / "family_expansion.json"
+            geometry = root / "geometry.json"
+            cif_dir = root / "cif"
+            cif_dir.mkdir()
+            out = root / "negative_controls.json"
+            threshold.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_gamma_threshold_control_plan",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "candidate_thresholds_angstrom": [4.0, 6.0, 8.0],
+                            "lowest_review_geometry_covering_candidate_angstrom": 6.0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            family.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "atp_phosphoryl_transfer_family_expansion"
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                                "family_id": "epk",
+                            },
+                            {
+                                "entry_id": "m_csa:615",
+                                "entry_name": "deoxyguanosine kinase",
+                                "family_id": "dnk",
+                                "family_name": "Deoxynucleoside kinases",
+                                "decision_action": "reject_label",
+                            },
+                            {
+                                "entry_id": "m_csa:643",
+                                "entry_name": "acetate kinase",
+                                "family_id": "askha",
+                                "family_name": "ASKHA sugar and acetate kinases",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"max_entries": 1000},
+                        "entries": [
+                            {
+                                "entry_id": "m_csa:615",
+                                "pdb_id": "2OCP",
+                                "status": "ok",
+                                "ligand_context": {
+                                    "ligand_codes": ["DTP"],
+                                    "structure_ligand_codes": ["DTP"],
+                                },
+                                "pocket_context": {
+                                    "nearby_residue_sites": [
+                                        {
+                                            "code": "SER",
+                                            "chain_name": "A",
+                                            "resid": "52",
+                                        }
+                                    ]
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:643",
+                                "pdb_id": "1G99",
+                                "status": "ok",
+                                "ligand_context": {
+                                    "structure_ligand_codes": ["ADP"]
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (cif_dir / "pdb_2OCP.cif").write_text(
+                "\n".join(
+                    [
+                        "data_2OCP",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.id",
+                        "_atom_site.type_symbol",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "HETATM 1 P PG DTP A 1 0.0 0.0 0.0 PG DTP A 1",
+                        "ATOM 2 O OG SER A 52 3.0 4.0 0.0 OG SER A 52",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-negative-control-gamma-distance-distribution",
+                    "--epk-gamma-threshold-control-plan",
+                    str(threshold),
+                    "--atp-phosphoryl-transfer-family-expansion",
+                    str(family),
+                    "--geometry",
+                    str(geometry),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            distribution = json.loads(out.read_text(encoding="utf-8"))
+            metadata = distribution["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_negative_control_gamma_distance_distribution",
+            )
+            self.assertEqual(metadata["source_control_row_count"], 2)
+            self.assertEqual(metadata["measured_control_count"], 1)
+            self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+            self.assertEqual(
+                metadata["lowest_covering_candidate_negative_control_hit_count"],
+                1,
+            )
+            rows = {row["entry_id"]: row for row in distribution["rows"]}
+            self.assertNotIn("m_csa:35", rows)
+            self.assertEqual(
+                rows["m_csa:615"]["measurement_status"],
+                "selected_structure_gamma_to_hydroxyl_distance_measured_review_only",
+            )
+            self.assertEqual(
+                rows["m_csa:615"]["nearest_gamma_to_hydroxyl_distance_angstrom"],
+                5.0,
+            )
+            self.assertEqual(
+                rows["m_csa:643"]["measurement_status"],
+                "selected_structure_product_or_no_gamma_nucleotide_skipped",
+            )
+            self.assertFalse(rows["m_csa:615"]["epk_score_computed"])
 
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

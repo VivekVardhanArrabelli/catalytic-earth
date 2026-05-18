@@ -74,6 +74,8 @@ from .labels import (
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
     build_epk_local_evidence_audit,
+    build_epk_negative_control_gamma_distance_distribution,
+    build_epk_nonready_ligand_alternate_structure_plan,
     build_epk_nonready_ligand_repair_plan,
     build_epk_precount_gate_status,
     build_epk_positive_fingerprint_readiness_packet,
@@ -5429,6 +5431,75 @@ def cmd_build_epk_gamma_threshold_control_plan(args: argparse.Namespace) -> int:
     return 0
 
 
+def _load_cif_texts_from_dir(cif_dir_arg: str | None) -> dict[str, str]:
+    cif_text_by_pdb: dict[str, str] = {}
+    if not cif_dir_arg:
+        return cif_text_by_pdb
+    cif_dir = Path(cif_dir_arg)
+    for suffix in ("*.cif", "*.mmcif"):
+        for path in cif_dir.glob(suffix):
+            text = path.read_text(encoding="utf-8")
+            stem = path.stem.upper()
+            cif_text_by_pdb[stem] = text
+            if stem.startswith("PDB_"):
+                cif_text_by_pdb[stem.split("_", 1)[1]] = text
+            if stem.startswith("AFDB_"):
+                cif_text_by_pdb[stem.split("_", 1)[1]] = text
+    return cif_text_by_pdb
+
+
+def cmd_build_epk_negative_control_gamma_distance_distribution(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_gamma_threshold_control_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_gamma_threshold_control_plan = json.load(handle)
+    with Path(args.atp_phosphoryl_transfer_family_expansion).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        atp_phosphoryl_transfer_family_expansion = json.load(handle)
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    distribution = build_epk_negative_control_gamma_distance_distribution(
+        epk_gamma_threshold_control_plan=epk_gamma_threshold_control_plan,
+        atp_phosphoryl_transfer_family_expansion=(
+            atp_phosphoryl_transfer_family_expansion
+        ),
+        geometry_features=geometry,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), distribution)
+    print(
+        "Wrote ePK negative-control gamma-distance distribution to "
+        f"{args.out} (measured_controls={distribution['metadata']['measured_control_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_nonready_ligand_alternate_structure_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_nonready_ligand_repair_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_nonready_ligand_repair_plan = json.load(handle)
+    with Path(args.graph).open("r", encoding="utf-8") as handle:
+        graph = json.load(handle)
+    plan = build_epk_nonready_ligand_alternate_structure_plan(
+        epk_nonready_ligand_repair_plan=epk_nonready_ligand_repair_plan,
+        graph=graph,
+        entry_ids=_split_csv(args.entry_ids),
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote ePK non-ready ligand alternate-structure plan to "
+        f"{args.out} (rows={plan['metadata']['row_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
     with Path(args.epk_text_free_local_axis_prototype).open(
         "r", encoding="utf-8"
@@ -5464,6 +5535,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_gamma_threshold_control_plan = json.load(handle)
+    epk_negative_control_gamma_distance_distribution = None
+    if args.epk_negative_control_gamma_distance_distribution:
+        with Path(args.epk_negative_control_gamma_distance_distribution).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_negative_control_gamma_distance_distribution = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -5478,6 +5555,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         epk_acceptor_identity_review=epk_acceptor_identity_review,
         epk_atp_state_evidence_plan=epk_atp_state_evidence_plan,
         epk_gamma_threshold_control_plan=epk_gamma_threshold_control_plan,
+        epk_negative_control_gamma_distance_distribution=(
+            epk_negative_control_gamma_distance_distribution
+        ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
         ),
@@ -12019,6 +12099,60 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_gamma_threshold_control_plan
     )
 
+    epk_negative_control_distribution = subparsers.add_parser(
+        "build-epk-negative-control-gamma-distance-distribution",
+        help="measure review-only ePK sibling-family gamma-distance controls",
+    )
+    epk_negative_control_distribution.add_argument(
+        "--epk-gamma-threshold-control-plan",
+        default="artifacts/v3_epk_gamma_threshold_control_plan.json",
+    )
+    epk_negative_control_distribution.add_argument(
+        "--atp-phosphoryl-transfer-family-expansion",
+        default="artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+    )
+    epk_negative_control_distribution.add_argument(
+        "--geometry",
+        default="artifacts/v3_geometry_features_1000.json",
+    )
+    epk_negative_control_distribution.add_argument("--cif-dir", default=None)
+    epk_negative_control_distribution.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_negative_control_gamma_distance_distribution.json"
+        ),
+    )
+    epk_negative_control_distribution.set_defaults(
+        func=cmd_build_epk_negative_control_gamma_distance_distribution
+    )
+
+    epk_nonready_alternate_plan = subparsers.add_parser(
+        "build-epk-nonready-ligand-alternate-structure-plan",
+        help="screen review-only alternate structures for non-ready ePK ligand rows",
+    )
+    epk_nonready_alternate_plan.add_argument(
+        "--epk-nonready-ligand-repair-plan",
+        default="artifacts/v3_epk_nonready_ligand_repair_plan.json",
+    )
+    epk_nonready_alternate_plan.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1000.json",
+    )
+    epk_nonready_alternate_plan.add_argument(
+        "--entry-ids",
+        default="",
+        help="comma-separated entry ids to screen; defaults to all repair rows",
+    )
+    epk_nonready_alternate_plan.add_argument("--cif-dir", default=None)
+    epk_nonready_alternate_plan.add_argument(
+        "--out",
+        default="artifacts/v3_epk_nonready_ligand_alternate_structure_plan.json",
+    )
+    epk_nonready_alternate_plan.set_defaults(
+        func=cmd_build_epk_nonready_ligand_alternate_structure_plan
+    )
+
     epk_precount_gate_status = subparsers.add_parser(
         "build-epk-precount-gate-status",
         help="summarize review-only ePK pre-count gate blockers",
@@ -12049,6 +12183,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-gamma-threshold-control-plan",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-negative-control-gamma-distance-distribution",
         default=None,
     )
     epk_precount_gate_status.add_argument(

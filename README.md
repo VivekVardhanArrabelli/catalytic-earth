@@ -825,6 +825,11 @@ score calibration, and external hard-negative re-audit as unresolved.
 ePK boundary rows out of scorer prototyping: `m_csa:282` has ATP/Mg only as a
 nonlocal structure-level signal, while `m_csa:662` has no selected-structure
 ligand axis and needs alternate ligand evidence or structure sourcing.
+`artifacts/v3_epk_nonready_ligand_alternate_structure_plan_1025.json` screens
+their graph-linked alternates as repair context only. It finds three
+gamma-capable alternate structures across the two rows, but zero alternates
+with both gamma-capable nucleotide, metal context, and complete catalytic
+residue mapping; both rows therefore remain unrepaired and non-countable.
 `artifacts/v3_epk_acceptor_axis_threshold_design_1025.json` records candidate
 acceptor-axis cutoffs of 4, 6, and 8 Angstrom for future testing; 6 Angstrom is
 the smallest candidate that covers the current three prototype rows by
@@ -862,11 +867,20 @@ while 6 and 8 Angstrom cover the review geometry, but no threshold is selected
 because negative-control distance distributions, sibling ATP-family controls,
 external hard-negative ePK re-audit, non-ready row handling, and alternate
 structure policy remain unresolved.
+`artifacts/v3_epk_negative_control_gamma_distance_distribution_1025.json`
+starts that sibling-family control surface without scoring. It measures two
+selected-structure non-ePK ATP-phosphoryl-transfer controls: dNK `m_csa:615`
+has a nearest DTP PG-to-Ser hydroxyl distance of 3.232 Angstrom, and GHMP
+`m_csa:654` has a nearest ANP PG-to-Ser hydroxyl distance of 6.184 Angstrom.
+The close dNK hit blocks any ePK threshold based on gamma geometry alone; the
+distribution remains not ready because most sibling-family rows lack
+selected-structure gamma-capable nucleotide context.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
 `blocked_review_only`: local axes, measured-row acceptor identity review, and
-threshold/control planning pass, but acceptor threshold calibration, complete
-gamma geometry, non-ready-row repair, external hard-negative scored re-audit,
-and label-factory/registry extension all remain failing gates.
+threshold/control planning pass, but negative-control distribution readiness,
+acceptor threshold calibration, complete gamma geometry, non-ready-row repair,
+external hard-negative scored re-audit, and label-factory/registry extension
+all remain failing gates.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

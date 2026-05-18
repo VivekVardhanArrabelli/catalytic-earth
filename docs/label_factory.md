@@ -220,6 +220,11 @@ scoring, external hard-negative re-audit, and countable label gates blocked.
 active-site axis, and `m_csa:662` as selected-structure ligand-axis missing;
 both require repair and a rerun of the local-evidence audit before scorer
 development can include them.
+`artifacts/v3_epk_nonready_ligand_alternate_structure_plan_1025.json` starts
+that repair review without changing the prototype: it finds one gamma-capable
+alternate for `m_csa:282` and two for `m_csa:662`, but none combine
+gamma-capable nucleotide, metal context, and complete catalytic-residue
+mapping. The non-ready rows therefore remain excluded.
 `artifacts/v3_epk_acceptor_axis_threshold_design_1025.json` records candidate
 acceptor-axis cutoffs of 4, 6, and 8 Angstrom for later validation. The
 6-Angstrom candidate covers the current three prototype rows by local
@@ -260,12 +265,19 @@ Those are still only candidate scenarios: no threshold is selected until
 negative-control distance distributions, sibling ATP-phosphoryl-transfer
 controls, external hard-negative re-audit, non-ready row handling, and
 alternate-structure policy are resolved.
+`artifacts/v3_epk_negative_control_gamma_distance_distribution_1025.json`
+starts the sibling-family negative-control distribution and immediately keeps
+threshold selection blocked: dNK `m_csa:615` is a selected-structure non-ePK
+control with DTP PG-to-Ser hydroxyl distance 3.232 Angstrom, while GHMP
+`m_csa:654` contributes ANP PG-to-Ser hydroxyl distance 6.184 Angstrom. This
+is review-only counterevidence against using gamma-distance geometry alone as
+an ePK threshold; the distribution is explicitly not ready for calibration.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
-identity review, and gamma-threshold control planning pass; acceptor-threshold
-calibration, complete gamma geometry, non-ready row repair, external
-hard-negative scored re-audit, and registry/label-factory extension all remain
-failed gates.
+identity review, and gamma-threshold control planning pass; negative-control
+distribution readiness, acceptor-threshold calibration, complete gamma
+geometry, non-ready row repair, external hard-negative scored re-audit, and
+registry/label-factory extension all remain failed gates.
 
 ## Active Learning Queue
 
