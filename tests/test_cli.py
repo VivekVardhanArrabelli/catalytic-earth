@@ -3513,6 +3513,483 @@ class CliTests(unittest.TestCase):
             self.assertTrue(checks["local_axis_prototype"]["passed"])
             self.assertFalse(checks["external_hard_negative_scored_reaudit"]["passed"])
 
+    def test_build_epk_acceptor_identity_review_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            gamma = root / "gamma.json"
+            graph = root / "graph.json"
+            out = root / "acceptor_identity.json"
+            gamma.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_gamma_geometry_measurement_sample",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "measured_row_count": 1,
+                            "gamma_phosphate_geometry_measured": True,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                                "pdb_id": "2PHK",
+                                "measurement_status": (
+                                    "gamma_to_hydroxyl_distance_measured_review_only"
+                                ),
+                                "distance_rows": [
+                                    {
+                                        "gamma_ligand_code": "ATP",
+                                        "gamma_atom_name": "PG",
+                                        "hydroxyl_residue_code": "SER",
+                                        "hydroxyl_atom_name": "OG",
+                                        "hydroxyl_chain_name": "B",
+                                        "hydroxyl_resid": "5",
+                                        "distance_angstrom": 3.6,
+                                    }
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:640",
+                                "entry_name": "kanamycin kinase",
+                                "pdb_id": "1L8T",
+                                "measurement_status": (
+                                    "product_or_missing_gamma_nucleotide_skipped"
+                                ),
+                                "distance_rows": [],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "v1_graph"},
+                        "nodes": [
+                            {
+                                "id": "m_csa:35:mechanism:1",
+                                "type": "mechanism_text",
+                                "text": (
+                                    "Asp149 deprotonates the protein substrate "
+                                    "hydroxyl group for attack on the "
+                                    "gamma-phosphate of ATP."
+                                ),
+                            },
+                            {
+                                "id": "m_csa:35:residue:1",
+                                "type": "catalytic_residue",
+                                "structure_positions": [
+                                    {"chain_name": "A", "resid": 136}
+                                ],
+                            },
+                            {
+                                "id": "m_csa:640:mechanism:1",
+                                "type": "mechanism_text",
+                                "text": (
+                                    "Nucleophilic attack on the gamma phosphate "
+                                    "of ATP by the 3' or 5' OH group of the "
+                                    "substrate."
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-acceptor-identity-review",
+                    "--epk-gamma-geometry-measurement-sample",
+                    str(gamma),
+                    "--graph",
+                    str(graph),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            review = json.loads(out.read_text(encoding="utf-8"))
+            metadata = review["metadata"]
+            self.assertEqual(metadata["method"], "epk_acceptor_identity_review")
+            self.assertEqual(
+                metadata["measured_acceptor_identity_source_supported_count"],
+                1,
+            )
+            self.assertTrue(metadata["measured_acceptor_identity_review_complete"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            rows = {row["entry_id"]: row for row in review["rows"]}
+            self.assertEqual(
+                rows["m_csa:35"]["acceptor_identity_review_status"],
+                "measured_acceptor_identity_source_supported_review_only",
+            )
+            self.assertTrue(
+                rows["m_csa:35"]["nearest_measured_hydroxyl"][
+                    "on_non_catalytic_chain"
+                ]
+            )
+            self.assertEqual(
+                rows["m_csa:640"]["acceptor_identity_review_status"],
+                "source_acceptor_supported_gamma_geometry_missing",
+            )
+            self.assertFalse(rows["m_csa:35"]["epk_score_computed"])
+
+    def test_build_epk_atp_state_evidence_plan_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            identity = root / "identity.json"
+            graph = root / "graph.json"
+            geometry = root / "geometry.json"
+            cif_dir = root / "cif"
+            cif_dir.mkdir()
+            out = root / "atp_state.json"
+            identity.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_acceptor_identity_review",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:640",
+                                "entry_name": "kanamycin kinase",
+                                "pdb_id": "1BBB",
+                                "acceptor_identity_review_status": (
+                                    "source_acceptor_supported_gamma_geometry_missing"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "v1_graph"},
+                        "nodes": [
+                            {
+                                "id": "m_csa:640",
+                                "type": "m_csa_entry",
+                                "reference_uniprot_id": "PTEST",
+                            },
+                            {
+                                "id": "m_csa:640:residue:1",
+                                "type": "catalytic_residue",
+                                "sequence_positions": [
+                                    {
+                                        "uniprot_id": "PTEST",
+                                        "resid": 44,
+                                        "code": "Lys",
+                                    }
+                                ],
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:640",
+                                "target": "uniprot:PTEST",
+                                "predicate": "has_reference_protein",
+                            },
+                            {
+                                "source": "uniprot:PTEST",
+                                "target": "pdb:1AAA",
+                                "predicate": "has_structure",
+                            },
+                            {
+                                "source": "uniprot:PTEST",
+                                "target": "pdb:1BBB",
+                                "predicate": "has_structure",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "active_site_geometry_features"},
+                        "entries": [
+                            {
+                                "entry_id": "m_csa:640",
+                                "pdb_id": "1BBB",
+                                "ligand_context": {
+                                    "structure_ligand_codes": ["ADP", "KAN"]
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (cif_dir / "1AAA.cif").write_text(
+                "\n".join(
+                    [
+                        "data_1AAA",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.id",
+                        "_atom_site.type_symbol",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "HETATM 1 P PG ATP A 1 0.0 0.0 0.0 PG ATP A 1",
+                        "HETATM 2 C C1 KAN B 1 1.0 0.0 0.0 C1 KAN B 1",
+                        "HETATM 3 O O1 KAN B 1 2.0 0.0 0.0 O1 KAN B 1",
+                        "ATOM 4 N NZ LYS A 44 3.0 0.0 0.0 NZ LYS A 44",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            (cif_dir / "1BBB.cif").write_text(
+                "\n".join(
+                    [
+                        "data_1BBB",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.id",
+                        "_atom_site.type_symbol",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "HETATM 1 P PB ADP A 1 0.0 0.0 0.0 PB ADP A 1",
+                        "HETATM 2 C C1 KAN B 1 1.0 0.0 0.0 C1 KAN B 1",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-atp-state-evidence-plan",
+                    "--epk-acceptor-identity-review",
+                    str(identity),
+                    "--graph",
+                    str(graph),
+                    "--geometry",
+                    str(geometry),
+                    "--entry-ids",
+                    "m_csa:640",
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            plan = json.loads(out.read_text(encoding="utf-8"))
+            metadata = plan["metadata"]
+            self.assertEqual(metadata["method"], "epk_atp_state_evidence_plan")
+            self.assertEqual(metadata["candidate_atp_state_acceptor_row_count"], 1)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            row = plan["rows"][0]
+            self.assertEqual(
+                row["atp_state_evidence_status"],
+                "candidate_atp_state_acceptor_structure_found_review_only",
+            )
+            self.assertEqual(row["gamma_capable_acceptor_candidate_structure_count"], 1)
+            self.assertEqual(
+                row["alternate_gamma_acceptor_geometry_measured_structure_count"],
+                1,
+            )
+            self.assertEqual(
+                metadata["gamma_capable_residue_mapped_candidate_structure_count"],
+                1,
+            )
+            self.assertEqual(
+                metadata["alternate_gamma_acceptor_geometry_measured_count"],
+                1,
+            )
+            self.assertFalse(row["epk_score_computed"])
+
+    def test_build_epk_gamma_threshold_control_plan_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            gamma = root / "gamma.json"
+            identity = root / "identity.json"
+            atp_state = root / "atp_state.json"
+            threshold = root / "threshold.json"
+            out = root / "threshold_control.json"
+            gamma.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_gamma_geometry_measurement_sample",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                                "pdb_id": "2PHK",
+                                "measurement_status": (
+                                    "gamma_to_hydroxyl_distance_measured_review_only"
+                                ),
+                                "distance_rows": [
+                                    {
+                                        "gamma_ligand_code": "ATP",
+                                        "gamma_atom_name": "PG",
+                                        "hydroxyl_residue_code": "SER",
+                                        "hydroxyl_atom_name": "OG",
+                                        "hydroxyl_chain_name": "B",
+                                        "hydroxyl_resid": "5",
+                                        "distance_angstrom": 3.6,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            identity.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "epk_acceptor_identity_review"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "acceptor_identity_review_status": (
+                                    "measured_acceptor_identity_source_supported_review_only"
+                                ),
+                                "acceptor_identity_source_supported": True,
+                            },
+                            {
+                                "entry_id": "m_csa:640",
+                                "acceptor_identity_review_status": (
+                                    "source_acceptor_supported_gamma_geometry_missing"
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            atp_state.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "epk_atp_state_evidence_plan"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:640",
+                                "entry_name": "kanamycin kinase",
+                                "candidate_structures": [
+                                    {
+                                        "pdb_id": "3TM0",
+                                        "current_selected_structure": False,
+                                        "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom": 3.5,
+                                        "nearest_gamma_acceptor_atom_pair": {
+                                            "gamma_ligand_code": "ANP",
+                                            "gamma_atom_name": "PG",
+                                            "acceptor_ligand_code": "B31",
+                                            "acceptor_atom_name": "O14",
+                                            "acceptor_chain_name": "A",
+                                            "acceptor_resid": "305",
+                                        },
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_acceptor_axis_threshold_design",
+                            "candidate_thresholds_angstrom": [3.0, 4.0, 6.0],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-gamma-threshold-control-plan",
+                    "--epk-gamma-geometry-measurement-sample",
+                    str(gamma),
+                    "--epk-acceptor-identity-review",
+                    str(identity),
+                    "--epk-atp-state-evidence-plan",
+                    str(atp_state),
+                    "--epk-acceptor-axis-threshold-design",
+                    str(threshold),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            plan = json.loads(out.read_text(encoding="utf-8"))
+            metadata = plan["metadata"]
+            self.assertEqual(metadata["method"], "epk_gamma_threshold_control_plan")
+            self.assertEqual(metadata["row_count"], 2)
+            self.assertEqual(
+                metadata["lowest_review_geometry_covering_candidate_angstrom"],
+                4.0,
+            )
+            self.assertTrue(metadata["threshold_control_plan_ready"])
+            self.assertIsNone(metadata["selected_threshold_angstrom"])
+            self.assertFalse(metadata["threshold_calibrated"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertEqual(metadata["control_requirement_count"], 4)
+            rows = {row["entry_id"]: row for row in plan["rows"]}
+            self.assertEqual(
+                rows["m_csa:640"]["geometry_scope"],
+                "alternate_graph_linked_structure",
+            )
+            self.assertFalse(rows["m_csa:640"]["epk_score_computed"])
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

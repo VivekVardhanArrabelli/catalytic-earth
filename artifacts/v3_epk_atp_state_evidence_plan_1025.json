@@ -1,0 +1,598 @@
+{
+  "metadata": {
+    "alternate_gamma_acceptor_geometry_measured_count": 1,
+    "atp_state_evidence_status_counts": {
+      "candidate_atp_state_acceptor_structure_found_review_only": 1
+    },
+    "candidate_atp_state_acceptor_row_count": 1,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "1J7I",
+      "1J7L",
+      "1J7U",
+      "1L8T",
+      "2B0Q",
+      "2BKK",
+      "3Q2J",
+      "3TM0"
+    ],
+    "fingerprint_registry_edited": false,
+    "gamma_capable_residue_mapped_candidate_structure_count": 2,
+    "gamma_geometry_measured": false,
+    "method": "epk_atp_state_evidence_plan",
+    "next_actions": [
+      "review candidate ATP-state structures for residue mapping before measurement",
+      "measure gamma-to-acceptor geometry only after alternate-structure mapping passes",
+      "keep external hard-negative re-audit closed until a real ePK score exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact screens graph-linked structures for ATP-state or analog evidence after a product-state gamma geometry gap. It does not remap residues, measure gamma geometry, score ePK, or change labels.",
+    "row_count": 1,
+    "source_epk_acceptor_identity_review_method": "epk_acceptor_identity_review",
+    "source_geometry_method": null,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "alternate_gamma_acceptor_geometry_measured_structure_count": 1,
+      "atp_state_evidence_status": "candidate_atp_state_acceptor_structure_found_review_only",
+      "candidate_structure_count": 8,
+      "candidate_structures": [
+        {
+          "acceptor_like_oxygen_atom_count": 0,
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "gamma_atom_count": 0,
+          "has_acceptor_like_ligand": false,
+          "has_gamma_capable_nucleotide": false,
+          "has_product_or_partial_nucleotide": false,
+          "ligand_codes": [],
+          "mapped_catalytic_residue_count": 4,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:1",
+              "uniprot_resid": 208
+            },
+            {
+              "expected_code": "ASN",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:2",
+              "uniprot_resid": 195
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:3",
+              "uniprot_resid": 44
+            },
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:4",
+              "uniprot_resid": 190
+            }
+          ],
+          "nearest_gamma_acceptor_atom_pair": null,
+          "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom": null,
+          "pdb_id": "1J7I",
+          "target_ligand_counts": {}
+        },
+        {
+          "acceptor_like_oxygen_atom_count": 0,
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "gamma_atom_count": 0,
+          "has_acceptor_like_ligand": false,
+          "has_gamma_capable_nucleotide": false,
+          "has_product_or_partial_nucleotide": true,
+          "ligand_codes": [
+            "ADP",
+            "HOH",
+            "MG"
+          ],
+          "mapped_catalytic_residue_count": 4,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:1",
+              "uniprot_resid": 208
+            },
+            {
+              "expected_code": "ASN",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:2",
+              "uniprot_resid": 195
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:3",
+              "uniprot_resid": 44
+            },
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:4",
+              "uniprot_resid": 190
+            }
+          ],
+          "nearest_gamma_acceptor_atom_pair": null,
+          "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom": null,
+          "pdb_id": "1J7L",
+          "target_ligand_counts": {
+            "ADP": 54
+          }
+        },
+        {
+          "acceptor_like_oxygen_atom_count": 0,
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "gamma_atom_count": 2,
+          "has_acceptor_like_ligand": false,
+          "has_gamma_capable_nucleotide": true,
+          "has_product_or_partial_nucleotide": false,
+          "ligand_codes": [
+            "ANP",
+            "HOH",
+            "MG"
+          ],
+          "mapped_catalytic_residue_count": 4,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:1",
+              "uniprot_resid": 208
+            },
+            {
+              "expected_code": "ASN",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:2",
+              "uniprot_resid": 195
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:3",
+              "uniprot_resid": 44
+            },
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:4",
+              "uniprot_resid": 190
+            }
+          ],
+          "nearest_gamma_acceptor_atom_pair": null,
+          "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom": null,
+          "pdb_id": "1J7U",
+          "target_ligand_counts": {
+            "ANP": 62
+          }
+        },
+        {
+          "acceptor_like_oxygen_atom_count": 11,
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": true,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "gamma_atom_count": 0,
+          "has_acceptor_like_ligand": true,
+          "has_gamma_capable_nucleotide": false,
+          "has_product_or_partial_nucleotide": true,
+          "ligand_codes": [
+            "ADP",
+            "HOH",
+            "KAN",
+            "MG"
+          ],
+          "mapped_catalytic_residue_count": 4,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:1",
+              "uniprot_resid": 208
+            },
+            {
+              "expected_code": "ASN",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:2",
+              "uniprot_resid": 195
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:3",
+              "uniprot_resid": 44
+            },
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:4",
+              "uniprot_resid": 190
+            }
+          ],
+          "nearest_gamma_acceptor_atom_pair": null,
+          "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom": null,
+          "pdb_id": "1L8T",
+          "target_ligand_counts": {
+            "ADP": 27,
+            "KAN": 33
+          }
+        },
+        {
+          "acceptor_like_oxygen_atom_count": 13,
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "gamma_atom_count": 0,
+          "has_acceptor_like_ligand": true,
+          "has_gamma_capable_nucleotide": false,
+          "has_product_or_partial_nucleotide": true,
+          "ligand_codes": [
+            "ADP",
+            "HOH",
+            "MG",
+            "NMY"
+          ],
+          "mapped_catalytic_residue_count": 4,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:1",
+              "uniprot_resid": 208
+            },
+            {
+              "expected_code": "ASN",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:2",
+              "uniprot_resid": 195
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:3",
+              "uniprot_resid": 44
+            },
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:4",
+              "uniprot_resid": 190
+            }
+          ],
+          "nearest_gamma_acceptor_atom_pair": null,
+          "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom": null,
+          "pdb_id": "2B0Q",
+          "target_ligand_counts": {
+            "ADP": 27,
+            "NMY": 42
+          }
+        },
+        {
+          "acceptor_like_oxygen_atom_count": 0,
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "gamma_atom_count": 0,
+          "has_acceptor_like_ligand": false,
+          "has_gamma_capable_nucleotide": false,
+          "has_product_or_partial_nucleotide": true,
+          "ligand_codes": [
+            "ADP",
+            "HOH",
+            "MG"
+          ],
+          "mapped_catalytic_residue_count": 4,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "C"
+              ],
+              "residue_node_id": "m_csa:640:residue:1",
+              "uniprot_resid": 208
+            },
+            {
+              "expected_code": "ASN",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "C"
+              ],
+              "residue_node_id": "m_csa:640:residue:2",
+              "uniprot_resid": 195
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "C"
+              ],
+              "residue_node_id": "m_csa:640:residue:3",
+              "uniprot_resid": 44
+            },
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "C"
+              ],
+              "residue_node_id": "m_csa:640:residue:4",
+              "uniprot_resid": 190
+            }
+          ],
+          "nearest_gamma_acceptor_atom_pair": null,
+          "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom": null,
+          "pdb_id": "2BKK",
+          "target_ligand_counts": {
+            "ADP": 54
+          }
+        },
+        {
+          "acceptor_like_oxygen_atom_count": 0,
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "gamma_atom_count": 0,
+          "has_acceptor_like_ligand": false,
+          "has_gamma_capable_nucleotide": false,
+          "has_product_or_partial_nucleotide": false,
+          "ligand_codes": [
+            "CA",
+            "CKI",
+            "HOH"
+          ],
+          "mapped_catalytic_residue_count": 4,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:1",
+              "uniprot_resid": 208
+            },
+            {
+              "expected_code": "ASN",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:2",
+              "uniprot_resid": 195
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:3",
+              "uniprot_resid": 44
+            },
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A",
+                "B"
+              ],
+              "residue_node_id": "m_csa:640:residue:4",
+              "uniprot_resid": 190
+            }
+          ],
+          "nearest_gamma_acceptor_atom_pair": null,
+          "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom": null,
+          "pdb_id": "3Q2J",
+          "target_ligand_counts": {}
+        },
+        {
+          "acceptor_like_oxygen_atom_count": 12,
+          "all_catalytic_residues_mapped": true,
+          "current_selected_structure": false,
+          "expected_catalytic_residue_count": 4,
+          "fetch_status": "ok",
+          "gamma_atom_count": 1,
+          "has_acceptor_like_ligand": true,
+          "has_gamma_capable_nucleotide": true,
+          "has_product_or_partial_nucleotide": false,
+          "ligand_codes": [
+            "ANP",
+            "B31",
+            "HOH",
+            "MG"
+          ],
+          "mapped_catalytic_residue_count": 4,
+          "mapped_catalytic_residues": [
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:1",
+              "uniprot_resid": 208
+            },
+            {
+              "expected_code": "ASN",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:2",
+              "uniprot_resid": 195
+            },
+            {
+              "expected_code": "LYS",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:3",
+              "uniprot_resid": 44
+            },
+            {
+              "expected_code": "ASP",
+              "mapped": true,
+              "mapped_chain_names": [
+                "A"
+              ],
+              "residue_node_id": "m_csa:640:residue:4",
+              "uniprot_resid": 190
+            }
+          ],
+          "nearest_gamma_acceptor_atom_pair": {
+            "acceptor_atom_name": "O14",
+            "acceptor_chain_name": "A",
+            "acceptor_ligand_code": "B31",
+            "acceptor_resid": "305",
+            "distance_angstrom": 3.558,
+            "gamma_atom_name": "PG",
+            "gamma_ligand_code": "ANP"
+          },
+          "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom": 3.558,
+          "pdb_id": "3TM0",
+          "target_ligand_counts": {
+            "ANP": 31,
+            "B31": 38
+          }
+        }
+      ],
+      "countable_label_candidate": false,
+      "current_selected_ligand_codes": [
+        "ADP",
+        "KAN",
+        "MG"
+      ],
+      "current_selected_pdb_id": "1L8T",
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "epk_score_computed": false,
+      "gamma_capable_acceptor_candidate_structure_count": 1,
+      "gamma_capable_candidate_structure_count": 2,
+      "graph_linked_pdb_ids": [
+        "1J7I",
+        "1J7L",
+        "1J7U",
+        "1L8T",
+        "2B0Q",
+        "2BKK",
+        "3Q2J",
+        "3TM0"
+      ],
+      "next_review_action": "review alternate gamma-to-acceptor distance before threshold design",
+      "ready_for_label_import": false,
+      "reference_uniprot_id": "P0A3Y5",
+      "remaining_blockers": [
+        "alternate_structure_residue_mapping_not_reviewed",
+        "gamma_geometry_not_measured_in_candidate_atp_state",
+        "acceptor_threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "ATP-state evidence screening is review-only and does not replace selected-structure geometry or label-factory gates."
+  ]
+}

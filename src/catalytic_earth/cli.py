@@ -66,10 +66,13 @@ from .labels import (
     build_atp_phosphoryl_transfer_family_expansion,
     build_epk_acceptor_axis_threshold_design,
     build_epk_acceptor_geometry_axis_gap_plan,
+    build_epk_acceptor_identity_review,
+    build_epk_atp_state_evidence_plan,
     build_epk_draft_fingerprint_spec,
     build_epk_external_hard_negative_reaudit_plan,
     build_epk_gamma_geometry_feasibility_plan,
     build_epk_gamma_geometry_measurement_sample,
+    build_epk_gamma_threshold_control_plan,
     build_epk_local_evidence_audit,
     build_epk_nonready_ligand_repair_plan,
     build_epk_precount_gate_status,
@@ -5344,6 +5347,88 @@ def cmd_build_epk_gamma_geometry_measurement_sample(args: argparse.Namespace) ->
     return 0
 
 
+def cmd_build_epk_acceptor_identity_review(args: argparse.Namespace) -> int:
+    with Path(args.epk_gamma_geometry_measurement_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_gamma_geometry_measurement_sample = json.load(handle)
+    with Path(args.graph).open("r", encoding="utf-8") as handle:
+        graph = json.load(handle)
+    review = build_epk_acceptor_identity_review(
+        epk_gamma_geometry_measurement_sample=(
+            epk_gamma_geometry_measurement_sample
+        ),
+        graph=graph,
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK acceptor-identity review to "
+        f"{args.out} (source_supported={review['metadata']['measured_acceptor_identity_source_supported_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_atp_state_evidence_plan(args: argparse.Namespace) -> int:
+    with Path(args.epk_acceptor_identity_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_acceptor_identity_review = json.load(handle)
+    with Path(args.graph).open("r", encoding="utf-8") as handle:
+        graph = json.load(handle)
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    cif_text_by_pdb: dict[str, str] = {}
+    if args.cif_dir:
+        cif_dir = Path(args.cif_dir)
+        for suffix in ("*.cif", "*.mmcif"):
+            for path in cif_dir.glob(suffix):
+                cif_text_by_pdb[path.stem.upper()] = path.read_text(encoding="utf-8")
+    plan = build_epk_atp_state_evidence_plan(
+        epk_acceptor_identity_review=epk_acceptor_identity_review,
+        graph=graph,
+        geometry_features=geometry,
+        entry_ids=_split_csv(args.entry_ids),
+        cif_text_by_pdb=cif_text_by_pdb or None,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote ePK ATP-state evidence plan to "
+        f"{args.out} (rows={plan['metadata']['row_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_gamma_threshold_control_plan(args: argparse.Namespace) -> int:
+    with Path(args.epk_gamma_geometry_measurement_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_gamma_geometry_measurement_sample = json.load(handle)
+    with Path(args.epk_acceptor_identity_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_acceptor_identity_review = json.load(handle)
+    with Path(args.epk_atp_state_evidence_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_atp_state_evidence_plan = json.load(handle)
+    with Path(args.epk_acceptor_axis_threshold_design).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_acceptor_axis_threshold_design = json.load(handle)
+    plan = build_epk_gamma_threshold_control_plan(
+        epk_gamma_geometry_measurement_sample=epk_gamma_geometry_measurement_sample,
+        epk_acceptor_identity_review=epk_acceptor_identity_review,
+        epk_atp_state_evidence_plan=epk_atp_state_evidence_plan,
+        epk_acceptor_axis_threshold_design=epk_acceptor_axis_threshold_design,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote ePK gamma-threshold control plan to "
+        f"{args.out} (rows={plan['metadata']['row_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
     with Path(args.epk_text_free_local_axis_prototype).open(
         "r", encoding="utf-8"
@@ -5361,6 +5446,24 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         "r", encoding="utf-8"
     ) as handle:
         epk_nonready_ligand_repair_plan = json.load(handle)
+    epk_acceptor_identity_review = None
+    if args.epk_acceptor_identity_review:
+        with Path(args.epk_acceptor_identity_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_acceptor_identity_review = json.load(handle)
+    epk_atp_state_evidence_plan = None
+    if args.epk_atp_state_evidence_plan:
+        with Path(args.epk_atp_state_evidence_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_atp_state_evidence_plan = json.load(handle)
+    epk_gamma_threshold_control_plan = None
+    if args.epk_gamma_threshold_control_plan:
+        with Path(args.epk_gamma_threshold_control_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_gamma_threshold_control_plan = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -5372,6 +5475,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         epk_acceptor_axis_threshold_design=epk_acceptor_axis_threshold_design,
         epk_gamma_geometry_measurement_sample=epk_gamma_geometry_measurement_sample,
         epk_nonready_ligand_repair_plan=epk_nonready_ligand_repair_plan,
+        epk_acceptor_identity_review=epk_acceptor_identity_review,
+        epk_atp_state_evidence_plan=epk_atp_state_evidence_plan,
+        epk_gamma_threshold_control_plan=epk_gamma_threshold_control_plan,
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
         ),
@@ -11835,6 +11941,84 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_gamma_geometry_measurement_sample
     )
 
+    epk_acceptor_identity_review = subparsers.add_parser(
+        "build-epk-acceptor-identity-review",
+        help="review measured ePK hydroxyl acceptor identity without scoring",
+    )
+    epk_acceptor_identity_review.add_argument(
+        "--epk-gamma-geometry-measurement-sample",
+        default="artifacts/v3_epk_gamma_geometry_measurement_sample.json",
+    )
+    epk_acceptor_identity_review.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1000.json",
+    )
+    epk_acceptor_identity_review.add_argument(
+        "--out",
+        default="artifacts/v3_epk_acceptor_identity_review.json",
+    )
+    epk_acceptor_identity_review.set_defaults(
+        func=cmd_build_epk_acceptor_identity_review
+    )
+
+    epk_atp_state_evidence_plan = subparsers.add_parser(
+        "build-epk-atp-state-evidence-plan",
+        help="screen graph-linked structures for review-only ePK ATP-state evidence",
+    )
+    epk_atp_state_evidence_plan.add_argument(
+        "--epk-acceptor-identity-review",
+        default="artifacts/v3_epk_acceptor_identity_review.json",
+    )
+    epk_atp_state_evidence_plan.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1000.json",
+    )
+    epk_atp_state_evidence_plan.add_argument(
+        "--geometry",
+        default="artifacts/v3_geometry_features_1000.json",
+    )
+    epk_atp_state_evidence_plan.add_argument(
+        "--entry-ids",
+        default="m_csa:640",
+        help="comma-separated entry ids to screen",
+    )
+    epk_atp_state_evidence_plan.add_argument("--cif-dir", default=None)
+    epk_atp_state_evidence_plan.add_argument(
+        "--out",
+        default="artifacts/v3_epk_atp_state_evidence_plan.json",
+    )
+    epk_atp_state_evidence_plan.set_defaults(
+        func=cmd_build_epk_atp_state_evidence_plan
+    )
+
+    epk_gamma_threshold_control_plan = subparsers.add_parser(
+        "build-epk-gamma-threshold-control-plan",
+        help="design review-only ePK gamma-distance threshold controls",
+    )
+    epk_gamma_threshold_control_plan.add_argument(
+        "--epk-gamma-geometry-measurement-sample",
+        default="artifacts/v3_epk_gamma_geometry_measurement_sample.json",
+    )
+    epk_gamma_threshold_control_plan.add_argument(
+        "--epk-acceptor-identity-review",
+        default="artifacts/v3_epk_acceptor_identity_review.json",
+    )
+    epk_gamma_threshold_control_plan.add_argument(
+        "--epk-atp-state-evidence-plan",
+        default="artifacts/v3_epk_atp_state_evidence_plan.json",
+    )
+    epk_gamma_threshold_control_plan.add_argument(
+        "--epk-acceptor-axis-threshold-design",
+        default="artifacts/v3_epk_acceptor_axis_threshold_design.json",
+    )
+    epk_gamma_threshold_control_plan.add_argument(
+        "--out",
+        default="artifacts/v3_epk_gamma_threshold_control_plan.json",
+    )
+    epk_gamma_threshold_control_plan.set_defaults(
+        func=cmd_build_epk_gamma_threshold_control_plan
+    )
+
     epk_precount_gate_status = subparsers.add_parser(
         "build-epk-precount-gate-status",
         help="summarize review-only ePK pre-count gate blockers",
@@ -11854,6 +12038,18 @@ def build_parser() -> argparse.ArgumentParser:
     epk_precount_gate_status.add_argument(
         "--epk-nonready-ligand-repair-plan",
         default="artifacts/v3_epk_nonready_ligand_repair_plan.json",
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-acceptor-identity-review",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-atp-state-evidence-plan",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-gamma-threshold-control-plan",
+        default=None,
     )
     epk_precount_gate_status.add_argument(
         "--epk-external-hard-negative-reaudit-plan",

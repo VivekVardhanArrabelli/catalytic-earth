@@ -347,12 +347,24 @@ Current expectation:
   needs ATP-state evidence because the selected structure is ADP/product-state.
   The first review-only atom-level sample measures nearest PG-to-candidate-
   hydroxyl distances of 3.610 Angstrom for `m_csa:35` and 5.082 Angstrom for
-  `m_csa:246`; it skips `m_csa:640` and still treats acceptor identity,
-  thresholding, external re-audit, and scoring as unresolved. The consolidated
-  ePK pre-count gate status remains `blocked_review_only`: only the local-axis
-  prototype passes, while threshold calibration, complete gamma geometry,
-  non-ready-row repair, external hard-negative re-audit, and registry/gate
-  extension all fail closed.
+  `m_csa:246`; it skips `m_csa:640` because the selected structure is
+  ADP/product-state. The acceptor-identity review now marks those two measured
+  hydroxyl atoms as source-supported review-only acceptor candidates while
+  keeping mechanism text out of predictive scoring. The ATP-state evidence plan
+  for `m_csa:640` finds two gamma-capable ANP/Mg alternate structures (`1J7U`
+  and `3TM0`) that map all four catalytic sequence-position residues, with
+  acceptor-like `B31` context present in `3TM0` and nearest ANP PG-to-B31
+  oxygen distance 3.558 Angstrom. The threshold/control plan now records that
+  4 Angstrom misses `m_csa:246`, while 6 and 8 Angstrom cover the three
+  positive-like review distances; no threshold is selected because
+  negative-control distance distributions, sibling ATP-family controls,
+  external hard-negative ePK re-audit, non-ready row handling, and
+  alternate-structure policy remain unresolved. The consolidated ePK pre-count
+  gate status remains `blocked_review_only`: local-axis prototyping,
+  measured-row acceptor identity review, and gamma-threshold control planning
+  pass, while threshold calibration, complete gamma geometry, non-ready-row
+  repair, external hard-negative re-audit, and registry/gate extension all fail
+  closed.
 - return to factory-gated label scaling toward 10k while preserving quality
   gates; the accepted 1,000 M-CSA state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the

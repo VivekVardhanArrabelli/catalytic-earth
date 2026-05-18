@@ -234,13 +234,38 @@ evidence before a gamma-phosphate geometry measurement can support scoring.
 review-only atom-level sample for those gamma-capable rows. It measures nearest
 PG-to-candidate-hydroxyl distances of 3.610 Angstrom for `m_csa:35` and
 5.082 Angstrom for `m_csa:246`, skips `m_csa:640` because only ADP is local,
-and still leaves acceptor identity, threshold calibration, external re-audit,
-and score construction unresolved.
+and still leaves threshold calibration, external re-audit, and score
+construction unresolved.
+`artifacts/v3_epk_acceptor_identity_review_1025.json` closes the measured-row
+acceptor identity review gap without converting it into a score. The two
+gamma-measured rows are source-supported review-only acceptor candidates:
+`m_csa:35` maps nearest PG to a non-catalytic-chain Ser hydroxyl consistent
+with protein substrate hydroxyl context, and `m_csa:246` maps nearest PG to a
+non-catalytic-chain Tyr hydroxyl consistent with tyrosine substrate context.
+`m_csa:640` remains source-supported but unmeasured because the current
+structure is ADP/product-state. Mechanism text remains review context only and
+is not a predictive ePK feature.
+`artifacts/v3_epk_atp_state_evidence_plan_1025.json` then screens graph-linked
+PDB structures for the `m_csa:640` product-state gap. It finds two
+gamma-capable ANP/Mg alternate structures (`1J7U` and `3TM0`) that map all
+four catalytic sequence-position residues; `3TM0` also has the acceptor-like
+aminoglycoside ligand code `B31`, with nearest ANP PG-to-B31 oxygen distance
+3.558 Angstrom. It remains review-only because no threshold, score, or external
+re-audit is run.
+`artifacts/v3_epk_gamma_threshold_control_plan_1025.json` then turns the
+observed review geometry into threshold/control requirements. It records that
+4 Angstrom covers `m_csa:35` plus the alternate `m_csa:640` geometry but misses
+`m_csa:246`, while 6 and 8 Angstrom cover all three positive-like review rows.
+Those are still only candidate scenarios: no threshold is selected until
+negative-control distance distributions, sibling ATP-phosphoryl-transfer
+controls, external hard-negative re-audit, non-ready row handling, and
+alternate-structure policy are resolved.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
-into a blocked pre-count status. The only passing gate is the local-axis
-prototype; acceptor-threshold calibration, complete gamma geometry, non-ready
-row repair, external hard-negative scored re-audit, and registry/label-factory
-extension all remain failed gates.
+into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
+identity review, and gamma-threshold control planning pass; acceptor-threshold
+calibration, complete gamma geometry, non-ready row repair, external
+hard-negative scored re-audit, and registry/label-factory extension all remain
+failed gates.
 
 ## Active Learning Queue
 

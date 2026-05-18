@@ -56,6 +56,30 @@
       },
       "gate_id": "registry_and_label_factory_extension",
       "passed": false
+    },
+    {
+      "evidence": {
+        "acceptor_identity_review_status_counts": {
+          "measured_acceptor_identity_source_supported_review_only": 2,
+          "source_acceptor_supported_gamma_geometry_missing": 1
+        },
+        "gamma_measured_row_count": 2,
+        "measured_acceptor_identity_source_supported_count": 2,
+        "mechanism_text_used_as_review_context_only": true,
+        "source_method": "epk_acceptor_identity_review"
+      },
+      "gate_id": "measured_acceptor_identity_reviewed",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "negative_control_distance_distribution_ready": false,
+        "selected_threshold_angstrom": null,
+        "source_method": "epk_gamma_threshold_control_plan",
+        "threshold_control_plan_ready": true
+      },
+      "gate_id": "gamma_threshold_control_plan",
+      "passed": true
     }
   ],
   "metadata": {
@@ -72,10 +96,11 @@
     ],
     "fingerprint_registry_edited": false,
     "gamma_measured_row_count": 2,
+    "gamma_threshold_control_plan_ready": true,
+    "measured_acceptor_identity_source_supported_count": 2,
     "method": "epk_precount_gate_status",
     "next_actions": [
-      "verify true substrate-acceptor identity for measured hydroxyl atoms",
-      "source ATP-state gamma geometry for m_csa:640",
+      "collect negative-control gamma-distance distributions before selecting a threshold",
       "repair or keep excluded the two non-ready ligand rows",
       "run external hard-negative re-audit only after a real ePK score exists"
     ],
@@ -88,6 +113,9 @@
     "review_only": true,
     "review_only_rule": "This status artifact summarizes why ePK remains blocked before any countable fingerprint, score, external re-audit, or label import work.",
     "selected_acceptor_threshold_angstrom": null,
+    "source_epk_acceptor_identity_review_method": "epk_acceptor_identity_review",
+    "source_epk_atp_state_evidence_plan_method": "epk_atp_state_evidence_plan",
+    "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
     "target_family_id": "epk",
     "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
     "threshold_calibrated": false

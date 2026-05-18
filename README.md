@@ -840,10 +840,33 @@ PG-to-candidate-hydroxyl distances are 3.610 Angstrom for `m_csa:35` and
 5.082 Angstrom for `m_csa:246`; `m_csa:640` is skipped as product-state ADP.
 These distances are candidate geometry only, not verified substrate-acceptor
 identity, calibrated thresholds, ePK scores, or label/import gates.
+`artifacts/v3_epk_acceptor_identity_review_1025.json` then reviews the two
+measured hydroxyl atoms against source-supported substrate-acceptor context.
+It marks both measured rows as source-supported review-only acceptor candidates
+(`m_csa:35` nearest Ser on the non-catalytic substrate chain and `m_csa:246`
+nearest Tyr on the non-catalytic substrate chain), while `m_csa:640` remains
+source-supported but gamma-geometry-missing because the selected structure is
+ADP/product-state. Mechanism text is used only as review context, not as an ePK
+scoring feature.
+`artifacts/v3_epk_atp_state_evidence_plan_1025.json` screens the graph-linked
+PDB structures for the `m_csa:640` ATP-state blocker. Two alternate structures
+(`1J7U` and `3TM0`) carry gamma-capable ANP/Mg context and map all four
+catalytic sequence-position residues; `3TM0` also carries the acceptor-like
+aminoglycoside ligand code `B31`, with nearest ANP PG-to-B31 oxygen distance
+3.558 Angstrom. This narrows the next action to review-only threshold design
+and controls before any scorer work.
+`artifacts/v3_epk_gamma_threshold_control_plan_1025.json` converts the three
+positive-like review distances (`3.558`, `3.610`, and `5.082` Angstrom) into a
+threshold/control checklist. The 4-Angstrom candidate would miss `m_csa:246`,
+while 6 and 8 Angstrom cover the review geometry, but no threshold is selected
+because negative-control distance distributions, sibling ATP-family controls,
+external hard-negative ePK re-audit, non-ready row handling, and alternate
+structure policy remain unresolved.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
-`blocked_review_only`: local axes exist, but acceptor threshold calibration,
-complete gamma geometry, non-ready-row repair, external hard-negative scored
-re-audit, and label-factory/registry extension all remain failing gates.
+`blocked_review_only`: local axes, measured-row acceptor identity review, and
+threshold/control planning pass, but acceptor threshold calibration, complete
+gamma geometry, non-ready-row repair, external hard-negative scored re-audit,
+and label-factory/registry extension all remain failing gates.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

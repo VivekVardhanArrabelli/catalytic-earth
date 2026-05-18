@@ -1,0 +1,163 @@
+{
+  "metadata": {
+    "acceptor_identity_review_status_counts": {
+      "measured_acceptor_identity_source_supported_review_only": 2,
+      "source_acceptor_supported_gamma_geometry_missing": 1
+    },
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "gamma_phosphate_geometry_measured": true,
+    "measured_acceptor_identity_review_complete": true,
+    "measured_acceptor_identity_source_supported_count": 2,
+    "measured_row_count": 2,
+    "mechanism_text_used_as_review_context_only": true,
+    "method": "epk_acceptor_identity_review",
+    "next_actions": [
+      "calibrate acceptor and gamma-distance thresholds only after negative controls exist",
+      "source ATP-state gamma geometry for product-state rows such as m_csa:640",
+      "rerun external hard-negative re-audit only after a real ePK score exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact reviews whether measured hydroxyl atoms match source-supported substrate-acceptor identity. Mechanism text is review context only and is not an ePK scoring feature.",
+    "row_count": 3,
+    "source_acceptor_supported_gamma_missing_count": 1,
+    "source_epk_gamma_geometry_measurement_sample_method": "epk_gamma_geometry_measurement_sample",
+    "source_graph_method": null,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "text_free_scoring_preserved": true,
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "acceptor_identity_review_status": "measured_acceptor_identity_source_supported_review_only",
+      "acceptor_identity_source_supported": true,
+      "catalytic_structure_chain_names": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "epk_score_computed": false,
+      "measurement_status": "gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_measured_hydroxyl": {
+        "distance_angstrom": 3.61,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "hydroxyl_atom_name": "OG",
+        "hydroxyl_chain_name": "B",
+        "hydroxyl_resid": "5",
+        "hydroxyl_residue_code": "SER",
+        "on_non_catalytic_chain": true
+      },
+      "pdb_id": "2PHK",
+      "predictive_use_status": "review_context_only_not_epk_scoring_input",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_review_not_predictive_score",
+        "acceptor_threshold_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "source_acceptor_evidence_terms": [
+        "atp_gamma_phosphate_reaction_center",
+        "protein_substrate_hydroxyl",
+        "substrate_hydroxyl"
+      ],
+      "source_mechanism_ids": [
+        "m_csa:35:mechanism:1"
+      ],
+      "supporting_review_evidence": [
+        "nearest_hydroxyl_matches_source_substrate_class",
+        "nearest_protein_hydroxyl_on_non_catalytic_chain"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_identity_review_status": "measured_acceptor_identity_source_supported_review_only",
+      "acceptor_identity_source_supported": true,
+      "catalytic_structure_chain_names": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "epk_score_computed": false,
+      "measurement_status": "gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_measured_hydroxyl": {
+        "distance_angstrom": 5.082,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "hydroxyl_atom_name": "OH",
+        "hydroxyl_chain_name": "B",
+        "hydroxyl_resid": "10",
+        "hydroxyl_residue_code": "TYR",
+        "on_non_catalytic_chain": true
+      },
+      "pdb_id": "1IR3",
+      "predictive_use_status": "review_context_only_not_epk_scoring_input",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_review_not_predictive_score",
+        "acceptor_threshold_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "source_acceptor_evidence_terms": [
+        "atp_gamma_phosphate_reaction_center",
+        "tyrosine_substrate_hydroxyl"
+      ],
+      "source_mechanism_ids": [
+        "m_csa:246:mechanism:1",
+        "m_csa:246:mechanism:2"
+      ],
+      "supporting_review_evidence": [
+        "nearest_tyr_hydroxyl_on_non_catalytic_chain"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_identity_review_status": "source_acceptor_supported_gamma_geometry_missing",
+      "acceptor_identity_source_supported": false,
+      "catalytic_structure_chain_names": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "epk_score_computed": false,
+      "measurement_status": "product_or_missing_gamma_nucleotide_skipped",
+      "nearest_measured_hydroxyl": null,
+      "pdb_id": "1L8T",
+      "predictive_use_status": "review_context_only_not_epk_scoring_input",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "gamma_geometry_missing_for_current_structure",
+        "acceptor_identity_not_atom_measured",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "source_acceptor_evidence_terms": [
+        "atp_gamma_phosphate_reaction_center",
+        "substrate_3_or_5_oh"
+      ],
+      "source_mechanism_ids": [
+        "m_csa:640:mechanism:1"
+      ],
+      "supporting_review_evidence": [],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Acceptor identity review is not a score, threshold, registry edit, label import, or external hard-negative re-audit."
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "control_requirements": [
+    {
+      "control_id": "external_hard_negative_expanded_ontology_reaudit",
+      "current_status": "not_run",
+      "required_before": "threshold_selection",
+      "required_evidence": "rescore uniprot:P06744, uniprot:P78549, and uniprot:Q3LXA3 with any future ePK scorer and preserve zero false non-abstentions"
+    },
+    {
+      "control_id": "sibling_atp_phosphoryl_transfer_family_controls",
+      "current_status": "not_scored",
+      "required_before": "threshold_selection",
+      "required_evidence": "ASKHA, ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and GHMP boundary examples must not pass as ePK solely by ATP geometry"
+    },
+    {
+      "control_id": "nonready_epk_ligand_rows",
+      "current_status": "unrepaired_or_excluded",
+      "required_before": "threshold_selection",
+      "required_evidence": "m_csa:282 and m_csa:662 need repaired local evidence or explicit exclusion before they can influence calibration"
+    },
+    {
+      "control_id": "alternate_structure_policy_for_m_csa_640",
+      "current_status": "review_only",
+      "required_before": "scorer_use",
+      "required_evidence": "3TM0 ANP/B31 geometry needs residue-map and ligand-analog admissibility review before supplementing selected-structure evidence"
+    }
+  ],
+  "metadata": {
+    "alternate_structure_measured_row_count": 1,
+    "candidate_thresholds_angstrom": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "control_requirement_count": 4,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_selected_measured_row_count": 2,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "lowest_review_geometry_covering_candidate_angstrom": 6.0,
+    "method": "epk_gamma_threshold_control_plan",
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "collect negative-control gamma-distance distributions before selecting a threshold",
+      "review 3TM0 residue mapping and B31 analog admissibility for m_csa:640",
+      "keep external hard-negative re-audit closed until a real ePK score exists"
+    ],
+    "observed_review_geometry_distance_max_angstrom": 5.082,
+    "observed_review_geometry_distance_min_angstrom": 3.558,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact turns observed positive-like ePK gamma-distance geometry into threshold/control requirements. It does not select or calibrate a threshold, compute a score, or alter labels.",
+    "row_count": 3,
+    "selected_threshold_angstrom": null,
+    "source_epk_acceptor_axis_threshold_design_method": "epk_acceptor_axis_threshold_design",
+    "source_epk_acceptor_identity_review_method": "epk_acceptor_identity_review",
+    "source_epk_atp_state_evidence_plan_method": "epk_atp_state_evidence_plan",
+    "source_epk_gamma_geometry_measurement_sample_method": "epk_gamma_geometry_measurement_sample",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "threshold_control_plan_ready": true,
+    "threshold_scenarios": [
+      {
+        "covered_review_geometry_count": 2,
+        "covered_review_geometry_entry_ids": [
+          "m_csa:35",
+          "m_csa:640"
+        ],
+        "missed_review_geometry_entry_ids": [
+          "m_csa:246"
+        ],
+        "selection_status": "not_selectable_without_negative_controls",
+        "threshold_angstrom": 4.0
+      },
+      {
+        "covered_review_geometry_count": 3,
+        "covered_review_geometry_entry_ids": [
+          "m_csa:246",
+          "m_csa:35",
+          "m_csa:640"
+        ],
+        "missed_review_geometry_entry_ids": [],
+        "selection_status": "not_selectable_without_negative_controls",
+        "threshold_angstrom": 6.0
+      },
+      {
+        "covered_review_geometry_count": 3,
+        "covered_review_geometry_entry_ids": [
+          "m_csa:246",
+          "m_csa:35",
+          "m_csa:640"
+        ],
+        "missed_review_geometry_entry_ids": [],
+        "selection_status": "not_selectable_without_negative_controls",
+        "threshold_angstrom": 8.0
+      }
+    ]
+  },
+  "rows": [
+    {
+      "acceptor_atom_name": "OG",
+      "acceptor_chain_name": "B",
+      "acceptor_context_type": "source_supported_hydroxyl_residue",
+      "acceptor_identity_review_status": "measured_acceptor_identity_source_supported_review_only",
+      "acceptor_ligand_or_residue_code": "SER",
+      "acceptor_resid": "5",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "epk_score_computed": false,
+      "gamma_ligand_code": "ATP",
+      "gamma_to_acceptor_distance_angstrom": 3.61,
+      "geometry_scope": "current_selected_structure",
+      "pdb_id": "2PHK",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_support_status": "source_supported_current_structure_acceptor_review_only",
+      "structure_review_requirements": [
+        "confirm atom/residue mapping is compatible with substrate acceptor chemistry",
+        "keep mechanism text as review context only"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_atom_name": "OH",
+      "acceptor_chain_name": "B",
+      "acceptor_context_type": "source_supported_hydroxyl_residue",
+      "acceptor_identity_review_status": "measured_acceptor_identity_source_supported_review_only",
+      "acceptor_ligand_or_residue_code": "TYR",
+      "acceptor_resid": "10",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "epk_score_computed": false,
+      "gamma_ligand_code": "ANP",
+      "gamma_to_acceptor_distance_angstrom": 5.082,
+      "geometry_scope": "current_selected_structure",
+      "pdb_id": "1IR3",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_support_status": "source_supported_current_structure_acceptor_review_only",
+      "structure_review_requirements": [
+        "confirm atom/residue mapping is compatible with substrate acceptor chemistry",
+        "keep mechanism text as review context only"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_atom_name": "O14",
+      "acceptor_chain_name": "A",
+      "acceptor_context_type": "acceptor_like_ligand_analog",
+      "acceptor_identity_review_status": "source_acceptor_supported_gamma_geometry_missing",
+      "acceptor_ligand_or_residue_code": "B31",
+      "acceptor_resid": "305",
+      "countable_label_candidate": false,
+      "current_selected_structure": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "epk_score_computed": false,
+      "gamma_ligand_code": "ANP",
+      "gamma_to_acceptor_distance_angstrom": 3.558,
+      "geometry_scope": "alternate_graph_linked_structure",
+      "pdb_id": "3TM0",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_support_status": "source_supported_alternate_analog_context_review_only",
+      "structure_review_requirements": [
+        "review alternate-structure residue mapping before scorer use",
+        "confirm acceptor-like ligand analog is chemically admissible",
+        "decide whether alternate-structure evidence can supplement selected-structure policy"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Candidate thresholds that cover review-only positive-like geometry are not calibrated thresholds without negative controls."
+  ]
+}

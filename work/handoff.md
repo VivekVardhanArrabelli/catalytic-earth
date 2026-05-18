@@ -50,6 +50,113 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T13:54:41Z automation run, a stale automation lock from an
+interrupted ePK run was recovered after confirming the prior PID was not alive
+and the dirty worktree was coherent. `git fetch`, `git pull --ff-only origin
+main`, SSH deploy-key hygiene, unit discovery, `validate`, and
+`validate-artifact-migration --dry-run --check-local-files` all passed before
+continuing. Phase 1 artifact migration was again checked only as a guard and
+remains closed/non-blocking: the manifest still reports 108 rows, 0 blockers,
+and `removal_allowed=0`.
+
+The recovered scientific work added the review-only
+`artifacts/v3_epk_acceptor_identity_review_1025.json` and
+`artifacts/v3_epk_atp_state_evidence_plan_1025.json` builders. The former
+confirms the two measured ePK gamma-to-acceptor rows are source-supported
+review candidates (`m_csa:35` Ser hydroxyl and `m_csa:246` Tyr hydroxyl on
+non-catalytic substrate chains). The latter narrows the `m_csa:640` product-
+state blocker to graph-linked ATP-state analog evidence: `1J7U` and `3TM0`
+carry ANP/Mg context and map all four catalytic sequence-position residues,
+while `3TM0` also carries acceptor-like `B31` with nearest ANP PG-to-B31 oxygen
+distance 3.558 Angstrom. Both artifacts are review-only and do not compute an
+ePK score.
+
+This run then added
+`artifacts/v3_epk_gamma_threshold_control_plan_1025.json` plus the CLI builder
+`build-epk-gamma-threshold-control-plan`. It combines the two selected-
+structure positive-like distances (`m_csa:35` 3.610 Angstrom and `m_csa:246`
+5.082 Angstrom) with the alternate `m_csa:640` `3TM0` ANP/B31 distance (3.558
+Angstrom). The 4-Angstrom candidate threshold misses `m_csa:246`; 6 and
+8 Angstrom cover the review geometry, but every scenario is marked
+`not_selectable_without_negative_controls`. Required controls remain external
+hard-negative expanded-ontology re-audit, sibling ATP-phosphoryl-transfer
+family controls, repaired/excluded `m_csa:282` and `m_csa:662`, and an explicit
+alternate-structure policy for `m_csa:640`.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the
+threshold-control plan attached. The lane remains `blocked_review_only`:
+local-axis prototyping, measured-row acceptor identity review, and gamma-
+threshold control planning pass, while acceptor-threshold calibration,
+complete gamma geometry, non-ready row repair, external hard-negative scored
+re-audit, and registry/label-factory extension still fail closed.
+
+Evidence-based confidence call: ePK has a cleaner pre-score review surface, but
+there is still no ePK scorer, calibrated threshold, positive-universe
+expansion, external hard-negative ePK re-audit, registry edit, or label import.
+The active fingerprint universe remains 8; curated labels remain 682 with 212
+`seed_fingerprint` and 470 `out_of_scope` labels; external imported labels
+remain exactly `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`;
+external imported seed-fingerprint labels remain 0. The next bounded ePK step
+should collect negative-control gamma-distance distributions or repair/exclude
+`m_csa:282` and `m_csa:662` before any threshold selection. Verification
+passed with the final 467-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
+As of the 2026-05-18T08:16:50Z automation run, Phase 1 artifact migration was
+checked only as a guard and remains closed/non-blocking:
+`validate-artifact-migration --dry-run --check-local-files` still reports 108
+rows, 0 blockers, and `removal_allowed=0`. The scientific work continued the
+review-only ePK positive-fingerprint path without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any external
+hard-negative label.
+
+The run added `artifacts/v3_epk_acceptor_identity_review_1025.json` plus the
+CLI builder `build-epk-acceptor-identity-review`. It consumes the review-only
+gamma-geometry measurement sample and the current 1,000-slice graph to review
+whether the measured hydroxyl atoms match source-supported substrate-acceptor
+identity. Both gamma-measured rows pass that review context: `m_csa:35` maps
+nearest ATP PG to a non-catalytic-chain Ser hydroxyl consistent with protein
+substrate hydroxyl context, and `m_csa:246` maps nearest ANP PG to a
+non-catalytic-chain Tyr hydroxyl consistent with tyrosine substrate context.
+`m_csa:640` remains source-supported but unmeasured because the selected
+structure is local ADP/product-state rather than ATP/gamma-capable.
+
+The run then added `artifacts/v3_epk_atp_state_evidence_plan_1025.json` plus
+the CLI builder `build-epk-atp-state-evidence-plan`. It screens the
+graph-linked PDB structures for `m_csa:640` and finds eight candidate
+structures. Two alternates (`1J7U` and `3TM0`) have gamma-capable ANP/Mg
+context and map all four catalytic sequence-position residues. `3TM0` also
+carries the acceptor-like aminoglycoside ligand code `B31`; the current
+selected `1L8T` retains ADP/Mg plus KAN context. The same artifact measures
+nearest ANP PG-to-B31 oxygen distance at 3.558 Angstrom in `3TM0`, still
+review-only. This narrows the next action to threshold/control design before
+any scorer work.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with that
+acceptor-identity review and the ATP-state evidence plan attached. The
+measured-row acceptor identity gate now passes, but the overall lane remains
+`blocked_review_only`: acceptor-threshold calibration, complete gamma geometry
+across all prototype rows, non-ready-row repair, external hard-negative scored
+re-audit, and registry/label-factory extension still fail closed. Mechanism
+text is explicitly review context only and is not an ePK scoring feature.
+
+Evidence-based confidence call: this removes the measured-row acceptor identity
+ambiguity for `m_csa:35` and `m_csa:246`, but it is still not an ePK scorer or
+positive fingerprint expansion. The active fingerprint universe remains 8;
+curated labels remain 682 with 212 `seed_fingerprint` and 470 `out_of_scope`
+labels; external imported labels remain exactly `uniprot:P06744`,
+`uniprot:P78549`, and `uniprot:Q3LXA3`; external imported seed-fingerprint
+labels remain 0. The next bounded ePK step should design threshold/control
+criteria for the measured `m_csa:640` alternate geometry, calibrate
+acceptor/gamma thresholds only after appropriate negative controls exist, or
+act on the `m_csa:282`/`m_csa:662` ligand-repair lanes. Do not add the ePK
+registry fingerprint, import ePK labels, or score external hard negatives until
+the full pre-count gate path is implemented.
+Verification passed with the final 465-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T07:14:59Z automation run, Phase 1 artifact migration was
 checked only as a guard and remains closed/non-blocking:
 `validate-artifact-migration --dry-run --check-local-files` still reports 108

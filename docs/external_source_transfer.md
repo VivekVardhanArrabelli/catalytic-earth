@@ -1485,6 +1485,22 @@ external labels under ePK.
 PG-to-candidate-hydroxyl distances for the two local gamma-capable M-CSA rows,
 but it is still not an external hard-negative score or expanded-ontology
 terminal review.
+`artifacts/v3_epk_acceptor_identity_review_1025.json` reviews those measured
+hydroxyl atoms as local source-supported acceptor candidates only. It keeps
+mechanism text in review context, preserves text-free scoring boundaries, and
+does not rescore or reinterpret `uniprot:P06744`, `uniprot:P78549`, or
+`uniprot:Q3LXA3` under ePK.
+`artifacts/v3_epk_atp_state_evidence_plan_1025.json` is also local to M-CSA
+ePK preparation: it screens `m_csa:640` graph-linked PDB structures for
+ATP-state analog context, finds gamma-capable ANP/Mg alternates with catalytic
+residue mapping, and identifies `3TM0` as the only gamma-capable alternate with
+acceptor-like `B31` context plus a 3.558 Angstrom ANP PG-to-B31 oxygen
+measurement. It still does not run external ePK scoring.
+`artifacts/v3_epk_gamma_threshold_control_plan_1025.json` remains inside that
+same local scorer-design boundary. It uses the three review-only positive-like
+distances to define threshold-control requirements, but it selects no
+threshold, builds no ePK score, and keeps the external hard negatives outside
+ePK predictive evidence until a future scored re-audit is implemented.
 `artifacts/v3_epk_precount_gate_status_1025.json` keeps the external lane
 explicitly blocked: no ePK score exists, the external hard negatives have not
 been rescored, and their `label_factory_v1_8fp` out-of-scope labels are
