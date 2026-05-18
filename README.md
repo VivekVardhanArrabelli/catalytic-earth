@@ -885,9 +885,20 @@ then screens a bounded set of graph-linked alternate PDB structures for the 13
 unmeasured sibling-family controls. It screens 38 alternates under an
 8-structure-per-entry cap, finds seven gamma-capable alternates, and identifies
 three review-only gamma-plus-metal mapped candidates (`m_csa:592`, `m_csa:603`,
-and `m_csa:696`) for future distance measurement. It still measures no
-distances, calibrates no threshold, and leaves the negative-control
-distribution not ready.
+and `m_csa:696`) for distance measurement.
+`artifacts/v3_epk_sibling_negative_control_alternate_gamma_distance_sample_1025.json`
+then measures those three alternate controls as review-only counterevidence:
+`m_csa:592` has nearest ANP PG-to-Thr hydroxyl distance 4.175 Angstrom,
+`m_csa:603` has nearest ANP PG-to-Ser hydroxyl distance 7.910 Angstrom, and
+`m_csa:696` has nearest ANP PG-to-Thr hydroxyl distance 9.920 Angstrom. The
+6-Angstrom candidate scenario therefore already collides with a sibling
+control, no threshold is calibrated, and the negative-control distribution
+remains not ready.
+`artifacts/v3_epk_negative_control_calibration_sufficiency_decision_1025.json`
+then closes the current threshold-selection question for this lane: the
+combined selected plus alternate control surface measures 5 entries across 4
+of 8 sibling ATP-family controls, misses ATP-grasp, NDK, PfkA, and PfkB
+coverage, and marks threshold selection `do_not_select_threshold`.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
 `blocked_review_only`: local axes, measured-row acceptor identity review, and
 threshold/control planning pass, non-ready-row exclusion is explicit, and a

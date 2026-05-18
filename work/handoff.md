@@ -50,6 +50,68 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T17:46:25Z automation run, the normal direct automation
+protocol passed: the lock was acquired, `git fetch` and `git pull --ff-only
+origin main` were clean, SSH deploy-key push hygiene passed, startup unit
+discovery passed, `validate` passed, and
+`validate-artifact-migration --dry-run --check-local-files` again reported 108
+rows, 0 blockers, and `removal_allowed=0`. Phase 1 artifact migration remained
+guard-only and closed.
+
+The scientific work continued the review-only ePK lane without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any external
+hard-negative label. It added
+`artifacts/v3_epk_sibling_negative_control_alternate_gamma_distance_sample_1025.json`
+plus the CLI builder
+`build-epk-sibling-negative-control-alternate-gamma-distance-sample`. This
+consumes the sibling alternate-control plan and measures only the three
+gamma-plus-metal mapped candidates from that plan. All three are measured as
+review-only counterevidence: ASKHA `m_csa:592`/`3FGU` has nearest ANP
+PG-to-Thr hydroxyl distance 4.175 Angstrom, GHKL `m_csa:603`/`3CRL` has
+nearest ANP PG-to-Ser hydroxyl distance 7.910 Angstrom, and ASKHA
+`m_csa:696`/`1QHA` has nearest ANP PG-to-Thr hydroxyl distance 9.920 Angstrom.
+No threshold is selected, no ePK score is computed, no external hard-negative
+re-audit is run, and no registry is changed.
+
+The run then added
+`artifacts/v3_epk_negative_control_calibration_sufficiency_decision_1025.json`
+plus `build-epk-negative-control-calibration-sufficiency-decision`. It combines
+the two selected-structure sibling controls with the three alternate-control
+measurements. The combined surface has 5 measured controls across 4 of 8
+sibling ATP-family controls, leaves ATP-grasp, NDK, PfkA, and PfkB unmeasured,
+and records `threshold_calibration_decision=do_not_select_threshold`. The
+candidate 6-Angstrom scenario already collides with `m_csa:592` and
+`m_csa:615`, while the 8-Angstrom scenario collides with `m_csa:592`,
+`m_csa:603`, `m_csa:615`, and `m_csa:654`.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with both
+new artifacts attached. The lane remains `blocked_review_only`: local-axis
+prototyping, measured-row acceptor identity review, gamma-threshold control
+planning, non-ready-row exclusion, sibling alternate-control measurement, and
+negative-control sufficiency review are explicit, but negative-control
+distribution readiness, acceptor-threshold calibration, complete gamma
+geometry, external hard-negative scored re-audit, and registry/label-factory
+extension still fail closed.
+
+Evidence-based confidence call: ePK scorer-development now has a measured
+negative-control warning surface rather than only a to-measure alternate list.
+The conclusion is stricter, not looser: gamma-distance-only threshold selection
+is unsafe and under-covered. There is still no ePK scorer, calibrated
+threshold, positive-universe expansion, external hard-negative ePK re-audit,
+registry edit, or label import. The active fingerprint universe remains 8;
+curated labels remain 682 with 212 `seed_fingerprint` and 470 `out_of_scope`
+labels; external imported labels remain exactly `uniprot:P06744`,
+`uniprot:P78549`, and `uniprot:Q3LXA3`; external imported seed-fingerprint
+labels remain 0. The next bounded ePK step should source or measure missing
+ATP-grasp, NDK, PfkA, and PfkB sibling controls, or design a non-distance-only
+control axis before any threshold selection. Do not add the ePK registry
+fingerprint, import ePK labels, score external hard negatives, or reopen
+migration Phase 2.
+
+Verification passed with the final 479-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T16:45:55Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and `git pull --ff-only
 origin main` were clean, SSH deploy-key push hygiene passed, startup unit

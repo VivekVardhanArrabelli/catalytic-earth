@@ -1520,9 +1520,21 @@ extends only that local control surface: it screens bounded graph-linked
 alternate PDB structures for unmeasured sibling controls and identifies three
 future distance-measurement candidates. It still does not score ePK or touch
 the external hard-negative labels.
+`artifacts/v3_epk_sibling_negative_control_alternate_gamma_distance_sample_1025.json`
+then measures those three local sibling alternate controls as review-only
+counterevidence, with nearest ANP PG-to-hydroxyl distances of 4.175 Angstrom
+for `m_csa:592`, 7.910 Angstrom for `m_csa:603`, and 9.920 Angstrom for
+`m_csa:696`. It calibrates no threshold and still does not trigger external
+hard-negative ePK scoring.
+`artifacts/v3_epk_negative_control_calibration_sufficiency_decision_1025.json`
+keeps that conclusion machine-readable: the combined local negative-control
+surface remains `blocked_review_only`, threshold selection is
+`do_not_select_threshold`, and four sibling ATP-family controls still lack
+measured coverage.
 `artifacts/v3_epk_precount_gate_status_1025.json` keeps the external lane
 explicitly blocked: no ePK score exists, the external hard negatives have not
 been rescored, the sibling negative-control distribution is not calibration
 ready, and their `label_factory_v1_8fp` out-of-scope labels are unchanged. The
-new non-ready-row exclusion decision and sibling alternate-control screen are
-local calibration hygiene only.
+non-ready-row exclusion decision, sibling alternate-control screen, and
+sibling alternate-control distance and sufficiency artifacts are local
+calibration hygiene only.

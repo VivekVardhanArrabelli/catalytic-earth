@@ -372,14 +372,22 @@ Current expectation:
   The close dNK control is counterevidence against gamma-distance-only ePK
   threshold selection. The sibling alternate-structure screen then covers 38
   graph-linked alternates for the 13 unmeasured controls and identifies three
-  gamma-plus-metal mapped candidates for future distance measurement, while the
-  distribution remains not calibration-ready. The
+  gamma-plus-metal mapped candidates. The follow-on alternate gamma-distance
+  sample measures all three as review-only sibling controls: `m_csa:592` at
+  4.175 Angstrom, `m_csa:603` at 7.910 Angstrom, and `m_csa:696` at
+  9.920 Angstrom. The 6-Angstrom candidate scenario now collides with one
+  alternate sibling control, while the distribution remains not
+  calibration-ready. The calibration-sufficiency decision now combines the
+  selected and alternate measurements, records 5 measured controls across 4 of
+  8 sibling families, leaves ATP-grasp, NDK, PfkA, and PfkB unmeasured, and
+  marks threshold selection `do_not_select_threshold`. The
   consolidated ePK pre-count gate status remains `blocked_review_only`:
   local-axis prototyping, measured-row acceptor identity review, and
-  gamma-threshold control planning pass, and non-ready-row exclusion is now
-  explicit, while negative-control readiness, threshold calibration, complete
-  gamma geometry, external hard-negative re-audit, and registry/gate extension
-  all fail closed.
+  gamma-threshold control planning pass, and non-ready-row exclusion plus
+  sibling-control alternate measurements and calibration-sufficiency review are
+  now explicit, while
+  negative-control readiness, threshold calibration, complete gamma geometry,
+  external hard-negative re-audit, and registry/gate extension all fail closed.
 - return to factory-gated label scaling toward 10k while preserving quality
   gates; the accepted 1,000 M-CSA state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the

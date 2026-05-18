@@ -74,12 +74,14 @@ from .labels import (
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
     build_epk_local_evidence_audit,
+    build_epk_negative_control_calibration_sufficiency_decision,
     build_epk_negative_control_gamma_distance_distribution,
     build_epk_nonready_ligand_alternate_structure_plan,
     build_epk_nonready_ligand_exclusion_decision,
     build_epk_nonready_ligand_repair_plan,
     build_epk_precount_gate_status,
     build_epk_positive_fingerprint_readiness_packet,
+    build_epk_sibling_negative_control_alternate_gamma_distance_sample,
     build_epk_sibling_negative_control_alternate_structure_plan,
     build_epk_text_free_local_axis_prototype,
     build_expert_label_decision_local_evidence_review_export,
@@ -5512,6 +5514,61 @@ def cmd_build_epk_sibling_negative_control_alternate_structure_plan(
     return 0
 
 
+def cmd_build_epk_sibling_negative_control_alternate_gamma_distance_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_sibling_negative_control_alternate_structure_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_negative_control_alternate_structure_plan = json.load(handle)
+    sample = build_epk_sibling_negative_control_alternate_gamma_distance_sample(
+        epk_sibling_negative_control_alternate_structure_plan=(
+            epk_sibling_negative_control_alternate_structure_plan
+        ),
+        candidate_thresholds_angstrom=[
+            float(value)
+            for value in _split_csv(args.candidate_thresholds)
+            if value
+        ],
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote ePK sibling negative-control alternate gamma-distance sample to "
+        f"{args.out} (measured={sample['metadata']['measured_candidate_structure_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_negative_control_calibration_sufficiency_decision(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_negative_control_gamma_distance_distribution).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_negative_control_gamma_distance_distribution = json.load(handle)
+    with Path(
+        args.epk_sibling_negative_control_alternate_gamma_distance_sample
+    ).open("r", encoding="utf-8") as handle:
+        epk_sibling_negative_control_alternate_gamma_distance_sample = json.load(
+            handle
+        )
+    decision = build_epk_negative_control_calibration_sufficiency_decision(
+        epk_negative_control_gamma_distance_distribution=(
+            epk_negative_control_gamma_distance_distribution
+        ),
+        epk_sibling_negative_control_alternate_gamma_distance_sample=(
+            epk_sibling_negative_control_alternate_gamma_distance_sample
+        ),
+    )
+    write_json(Path(args.out), decision)
+    print(
+        "Wrote ePK negative-control calibration sufficiency decision to "
+        f"{args.out} (status={decision['metadata']['calibration_sufficiency_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_nonready_ligand_alternate_structure_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -5613,6 +5670,20 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_sibling_negative_control_alternate_structure_plan = json.load(handle)
+    epk_sibling_negative_control_alternate_gamma_distance_sample = None
+    if args.epk_sibling_negative_control_alternate_gamma_distance_sample:
+        with Path(
+            args.epk_sibling_negative_control_alternate_gamma_distance_sample
+        ).open("r", encoding="utf-8") as handle:
+            epk_sibling_negative_control_alternate_gamma_distance_sample = json.load(
+                handle
+            )
+    epk_negative_control_calibration_sufficiency_decision = None
+    if args.epk_negative_control_calibration_sufficiency_decision:
+        with Path(args.epk_negative_control_calibration_sufficiency_decision).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_negative_control_calibration_sufficiency_decision = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -5635,6 +5706,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_sibling_negative_control_alternate_structure_plan=(
             epk_sibling_negative_control_alternate_structure_plan
+        ),
+        epk_sibling_negative_control_alternate_gamma_distance_sample=(
+            epk_sibling_negative_control_alternate_gamma_distance_sample
+        ),
+        epk_negative_control_calibration_sufficiency_decision=(
+            epk_negative_control_calibration_sufficiency_decision
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -12246,6 +12323,66 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_sibling_negative_control_alternate_structure_plan
     )
 
+    epk_sibling_negative_control_alternate_gamma_sample = subparsers.add_parser(
+        "build-epk-sibling-negative-control-alternate-gamma-distance-sample",
+        help="measure review-only alternate sibling-control gamma distances",
+    )
+    epk_sibling_negative_control_alternate_gamma_sample.add_argument(
+        "--epk-sibling-negative-control-alternate-structure-plan",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_negative_control_alternate_structure_plan.json"
+        ),
+    )
+    epk_sibling_negative_control_alternate_gamma_sample.add_argument(
+        "--candidate-thresholds",
+        default="4.0,6.0,8.0",
+        help="comma-separated candidate thresholds in angstroms",
+    )
+    epk_sibling_negative_control_alternate_gamma_sample.add_argument(
+        "--cif-dir",
+        default=None,
+    )
+    epk_sibling_negative_control_alternate_gamma_sample.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_negative_control_alternate_gamma_distance_sample.json"
+        ),
+    )
+    epk_sibling_negative_control_alternate_gamma_sample.set_defaults(
+        func=cmd_build_epk_sibling_negative_control_alternate_gamma_distance_sample
+    )
+
+    epk_negative_control_sufficiency = subparsers.add_parser(
+        "build-epk-negative-control-calibration-sufficiency-decision",
+        help="decide review-only ePK negative-control calibration sufficiency",
+    )
+    epk_negative_control_sufficiency.add_argument(
+        "--epk-negative-control-gamma-distance-distribution",
+        default=(
+            "artifacts/"
+            "v3_epk_negative_control_gamma_distance_distribution.json"
+        ),
+    )
+    epk_negative_control_sufficiency.add_argument(
+        "--epk-sibling-negative-control-alternate-gamma-distance-sample",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_negative_control_alternate_gamma_distance_sample.json"
+        ),
+    )
+    epk_negative_control_sufficiency.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_negative_control_calibration_sufficiency_decision.json"
+        ),
+    )
+    epk_negative_control_sufficiency.set_defaults(
+        func=cmd_build_epk_negative_control_calibration_sufficiency_decision
+    )
+
     epk_nonready_alternate_plan = subparsers.add_parser(
         "build-epk-nonready-ligand-alternate-structure-plan",
         help="screen review-only alternate structures for non-ready ePK ligand rows",
@@ -12334,6 +12471,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-sibling-negative-control-alternate-structure-plan",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-sibling-negative-control-alternate-gamma-distance-sample",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-negative-control-calibration-sufficiency-decision",
         default=None,
     )
     epk_precount_gate_status.add_argument(

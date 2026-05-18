@@ -4628,6 +4628,231 @@ class CliTests(unittest.TestCase):
             self.assertFalse(rows["m_csa:592"]["epk_score_computed"])
             self.assertFalse(rows["m_csa:592"]["countable_label_candidate"])
 
+    def test_build_epk_sibling_negative_control_alternate_gamma_distance_sample_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            plan = root / "alternate_controls.json"
+            cif_dir = root / "cif"
+            cif_dir.mkdir()
+            out = root / "alternate_distances.json"
+            plan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_sibling_negative_control_alternate_structure_plan"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "ready_for_future_distance_measurement_count": 1,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:592",
+                                "entry_name": "glucokinase",
+                                "family_id": "askha",
+                                "family_name": "ASKHA sugar and acetate kinases",
+                                "source_selected_measurement_status": (
+                                    "selected_structure_product_or_no_gamma_nucleotide_skipped"
+                                ),
+                                "candidate_structures": [
+                                    {
+                                        "pdb_id": "1AAB",
+                                        "target_ligand_codes": ["ANP", "MG"],
+                                        "has_gamma_capable_nucleotide": True,
+                                        "has_metal_ligand": True,
+                                        "all_catalytic_residues_mapped": True,
+                                        "mapped_catalytic_residue_count": 1,
+                                        "expected_catalytic_residue_count": 1,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (cif_dir / "pdb_1AAB.cif").write_text(
+                "\n".join(
+                    [
+                        "data_1AAB",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.id",
+                        "_atom_site.type_symbol",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "HETATM 1 P PG ANP A 1 0.0 0.0 0.0 PG ANP A 1",
+                        "HETATM 2 MG MG MG A 2 1.0 0.0 0.0 MG MG A 2",
+                        "ATOM 3 O OG SER A 52 3.0 4.0 0.0 OG SER A 52",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-sibling-negative-control-alternate-gamma-distance-sample",
+                    "--epk-sibling-negative-control-alternate-structure-plan",
+                    str(plan),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            sample = json.loads(out.read_text(encoding="utf-8"))
+            metadata = sample["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_sibling_negative_control_alternate_gamma_distance_sample",
+            )
+            self.assertEqual(metadata["candidate_structure_count"], 1)
+            self.assertEqual(metadata["measured_candidate_structure_count"], 1)
+            self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            row = sample["rows"][0]
+            self.assertEqual(
+                row["measurement_status"],
+                "alternate_gamma_to_hydroxyl_distance_measured_review_only",
+            )
+            self.assertEqual(
+                row["nearest_gamma_to_hydroxyl_distance_angstrom"],
+                5.0,
+            )
+            self.assertEqual(row["candidate_threshold_hits_angstrom"], [6.0, 8.0])
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_build_epk_negative_control_calibration_sufficiency_decision_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            distribution = root / "selected_distribution.json"
+            alternate = root / "alternate_sample.json"
+            out = root / "sufficiency.json"
+            distribution.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_negative_control_gamma_distance_distribution"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "candidate_thresholds_angstrom": [4.0, 6.0, 8.0],
+                            "lowest_review_geometry_covering_candidate_angstrom": 6.0,
+                            "control_family_ids": ["askha", "dnk"],
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:615",
+                                "entry_name": "deoxyguanosine kinase",
+                                "family_id": "dnk",
+                                "pdb_id": "1ABC",
+                                "measurement_status": (
+                                    "selected_structure_gamma_to_hydroxyl_distance_measured_review_only"
+                                ),
+                                "nearest_gamma_to_hydroxyl_distance_angstrom": 3.2,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            alternate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_sibling_negative_control_alternate_gamma_distance_sample"
+                            ),
+                            "candidate_thresholds_angstrom": [4.0, 6.0, 8.0],
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:592",
+                                "entry_name": "glucokinase",
+                                "family_id": "askha",
+                                "pdb_id": "3FGU",
+                                "measurement_status": (
+                                    "alternate_gamma_to_hydroxyl_distance_measured_review_only"
+                                ),
+                                "nearest_gamma_to_hydroxyl_distance_angstrom": 4.2,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-negative-control-calibration-sufficiency-decision",
+                    "--epk-negative-control-gamma-distance-distribution",
+                    str(distribution),
+                    "--epk-sibling-negative-control-alternate-gamma-distance-sample",
+                    str(alternate),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            decision = json.loads(out.read_text(encoding="utf-8"))
+            metadata = decision["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_negative_control_calibration_sufficiency_decision",
+            )
+            self.assertEqual(metadata["combined_measured_control_count"], 2)
+            self.assertEqual(metadata["combined_measured_family_count"], 2)
+            self.assertEqual(
+                metadata["calibration_sufficiency_status"],
+                "blocked_review_only",
+            )
+            self.assertEqual(
+                metadata["threshold_calibration_decision"],
+                "do_not_select_threshold",
+            )
+            self.assertFalse(metadata["threshold_calibrated"])
+            self.assertFalse(metadata["epk_score_computed"])
+            collisions = {
+                row["threshold_angstrom"]: row
+                for row in metadata["threshold_collision_rows"]
+            }
+            self.assertEqual(collisions[6.0]["combined_negative_control_hit_count"], 2)
+            self.assertEqual(len(decision["rows"]), 2)
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

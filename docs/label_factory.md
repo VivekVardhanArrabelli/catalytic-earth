@@ -284,12 +284,25 @@ opens the next bounded control-coverage step. It screens 38 graph-linked
 alternate PDB structures for the 13 unmeasured sibling-family controls, under
 an 8-structure-per-entry cap. Three rows (`m_csa:592`, `m_csa:603`, and
 `m_csa:696`) now have review-only gamma-plus-metal mapped alternate candidates
-for a future distance measurement pass, while the distribution still remains
-not calibration-ready.
+for distance measurement.
+`artifacts/v3_epk_sibling_negative_control_alternate_gamma_distance_sample_1025.json`
+measures those candidates without turning them into calibration evidence:
+ASKHA `m_csa:592`/`3FGU` has nearest ANP PG-to-Thr hydroxyl distance
+4.175 Angstrom, GHKL `m_csa:603`/`3CRL` has nearest ANP PG-to-Ser hydroxyl
+distance 7.910 Angstrom, and ASKHA `m_csa:696`/`1QHA` has nearest ANP
+PG-to-Thr hydroxyl distance 9.920 Angstrom. The 6-Angstrom candidate scenario
+already hits one sibling control, so the distribution still remains not
+calibration-ready.
+`artifacts/v3_epk_negative_control_calibration_sufficiency_decision_1025.json`
+records the calibration decision explicitly. The combined selected and
+alternate control surface has 5 measured entries across 4 sibling families,
+leaves ATP-grasp, NDK, PfkA, and PfkB unmeasured, and keeps threshold
+selection at `do_not_select_threshold`.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
 identity review, gamma-threshold control planning, explicit non-ready-row
-exclusion, and sibling alternate-control screening pass as review-only
+exclusion, sibling alternate-control screening, sibling alternate-control
+distance measurement, and calibration-sufficiency review pass as review-only
 preparation; negative-control distribution readiness, acceptor-threshold
 calibration, complete gamma geometry, external hard-negative scored re-audit,
 and registry/label-factory extension all remain failed gates.

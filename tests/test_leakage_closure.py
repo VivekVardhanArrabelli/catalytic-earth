@@ -870,6 +870,134 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertFalse(row["epk_score_computed"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_sibling_negative_control_alternate_gamma_sample_stays_review_only(
+        self,
+    ) -> None:
+        sample = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_sibling_negative_control_alternate_gamma_distance_sample_1025.json"
+        )
+        metadata = sample["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_sibling_negative_control_alternate_gamma_distance_sample",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["candidate_structure_count"], 3)
+        self.assertEqual(metadata["measured_candidate_structure_count"], 3)
+        self.assertEqual(metadata["measured_entry_count"], 3)
+        self.assertEqual(
+            metadata["measured_entry_ids"],
+            ["m_csa:592", "m_csa:603", "m_csa:696"],
+        )
+        self.assertEqual(metadata["measured_family_ids"], ["askha", "ghkl"])
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertEqual(
+            metadata["lowest_covering_candidate_alternate_negative_control_hit_count"],
+            1,
+        )
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {(row["entry_id"], row["pdb_id"]): row for row in sample["rows"]}
+        self.assertEqual(
+            rows[("m_csa:592", "3FGU")][
+                "nearest_gamma_to_hydroxyl_distance_angstrom"
+            ],
+            4.175,
+        )
+        self.assertEqual(
+            rows[("m_csa:603", "3CRL")][
+                "nearest_gamma_to_hydroxyl_distance_angstrom"
+            ],
+            7.91,
+        )
+        self.assertEqual(
+            rows[("m_csa:696", "1QHA")][
+                "nearest_gamma_to_hydroxyl_distance_angstrom"
+            ],
+            9.92,
+        )
+        for row in sample["rows"]:
+            self.assertEqual(
+                row["measurement_status"],
+                "alternate_gamma_to_hydroxyl_distance_measured_review_only",
+            )
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_negative_control_calibration_sufficiency_stays_blocked(
+        self,
+    ) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_negative_control_calibration_sufficiency_decision_1025.json"
+        )
+        metadata = decision["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_negative_control_calibration_sufficiency_decision",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["selected_structure_measured_control_count"], 2)
+        self.assertEqual(metadata["alternate_structure_measured_control_count"], 3)
+        self.assertEqual(metadata["combined_measured_control_count"], 5)
+        self.assertEqual(metadata["combined_measured_family_count"], 4)
+        self.assertEqual(
+            metadata["missing_sibling_family_ids"],
+            ["atp_grasp", "ndk", "pfka", "pfkb"],
+        )
+        self.assertEqual(
+            metadata["calibration_sufficiency_status"],
+            "blocked_review_only",
+        )
+        self.assertEqual(
+            metadata["threshold_calibration_decision"],
+            "do_not_select_threshold",
+        )
+        self.assertEqual(
+            metadata["negative_control_calibration_blockers"],
+            [
+                "sibling_family_coverage_incomplete",
+                "candidate_threshold_collides_with_sibling_controls",
+            ],
+        )
+        self.assertEqual(
+            metadata["lowest_covering_candidate_negative_control_hit_count"],
+            2,
+        )
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        collisions = {
+            row["threshold_angstrom"]: row
+            for row in metadata["threshold_collision_rows"]
+        }
+        self.assertEqual(
+            collisions[6.0]["combined_negative_control_hit_entry_ids"],
+            ["m_csa:592", "m_csa:615"],
+        )
+        self.assertEqual(
+            collisions[8.0]["combined_negative_control_hit_entry_ids"],
+            ["m_csa:592", "m_csa:603", "m_csa:615", "m_csa:654"],
+        )
+        for row in decision["rows"]:
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_epk_precount_gate_status_stays_blocked(self) -> None:
         status = _load_json(
             ROOT / "artifacts" / "v3_epk_precount_gate_status_1025.json"
@@ -909,11 +1037,38 @@ class LeakageClosureTests(unittest.TestCase):
             ],
             "epk_sibling_negative_control_alternate_structure_plan",
         )
+        self.assertEqual(
+            metadata[
+                "source_epk_sibling_negative_control_alternate_gamma_distance_sample_method"
+            ],
+            "epk_sibling_negative_control_alternate_gamma_distance_sample",
+        )
+        self.assertEqual(
+            metadata[
+                "source_epk_negative_control_calibration_sufficiency_decision_method"
+            ],
+            "epk_negative_control_calibration_sufficiency_decision",
+        )
         self.assertTrue(metadata["gamma_threshold_control_plan_ready"])
         self.assertFalse(metadata["negative_control_distance_distribution_ready"])
         self.assertEqual(metadata["negative_control_measured_control_count"], 2)
         self.assertEqual(metadata["negative_control_lowest_candidate_hit_count"], 1)
         self.assertEqual(metadata["negative_control_alternate_ready_for_measurement_count"], 3)
+        self.assertEqual(
+            metadata["negative_control_alternate_measured_candidate_structure_count"],
+            3,
+        )
+        self.assertEqual(metadata["negative_control_alternate_measured_entry_count"], 3)
+        self.assertEqual(
+            metadata["negative_control_alternate_lowest_candidate_hit_count"],
+            1,
+        )
+        self.assertEqual(
+            metadata["negative_control_calibration_sufficiency_status"],
+            "blocked_review_only",
+        )
+        self.assertEqual(metadata["negative_control_combined_measured_control_count"], 5)
+        self.assertEqual(metadata["negative_control_combined_measured_family_count"], 4)
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
         self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
         self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
@@ -956,6 +1111,30 @@ class LeakageClosureTests(unittest.TestCase):
                 "alternate_structure_ready_for_measurement_count"
             ],
             3,
+        )
+        self.assertEqual(
+            checks["gamma_negative_control_distance_distribution"]["evidence"][
+                "alternate_structure_measured_candidate_structure_count"
+            ],
+            3,
+        )
+        self.assertEqual(
+            checks["gamma_negative_control_distance_distribution"]["evidence"][
+                "alternate_structure_lowest_candidate_hit_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            checks["gamma_negative_control_distance_distribution"]["evidence"][
+                "calibration_sufficiency_status"
+            ],
+            "blocked_review_only",
+        )
+        self.assertEqual(
+            checks["gamma_negative_control_distance_distribution"]["evidence"][
+                "combined_measured_control_count"
+            ],
+            5,
         )
         self.assertFalse(checks["registry_and_label_factory_extension"]["passed"])
 

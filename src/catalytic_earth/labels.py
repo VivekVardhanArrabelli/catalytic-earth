@@ -10568,6 +10568,629 @@ def build_epk_sibling_negative_control_alternate_structure_plan(
     }
 
 
+def build_epk_sibling_negative_control_alternate_gamma_distance_sample(
+    *,
+    epk_sibling_negative_control_alternate_structure_plan: dict[str, Any],
+    candidate_thresholds_angstrom: list[float] | None = None,
+    max_reported_distance_rows: int = 12,
+    cif_text_by_pdb: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    """Measure review-only alternate sibling-control gamma distances."""
+
+    plan_meta = epk_sibling_negative_control_alternate_structure_plan.get(
+        "metadata", {}
+    )
+    if not isinstance(plan_meta, dict):
+        plan_meta = {}
+    target_fingerprint_id = str(
+        plan_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    thresholds = []
+    for value in candidate_thresholds_angstrom or [4.0, 6.0, 8.0]:
+        try:
+            thresholds.append(float(value))
+        except (TypeError, ValueError):
+            continue
+    thresholds = sorted(set(thresholds))
+
+    cif_text_by_pdb = cif_text_by_pdb or {}
+    gamma_capable_codes = {
+        "ATP",
+        "ANP",
+        "AGS",
+        "ACP",
+        "APC",
+        "AP5",
+        "ATP_GAMMA_S",
+        "DTP",
+        "GTP",
+    }
+    hydroxyl_atom_names = {
+        "SER": {"OG"},
+        "THR": {"OG1"},
+        "TYR": {"OH"},
+    }
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    fetched_pdb_ids: set[str] = set()
+    candidate_structure_count = 0
+    for plan_row in epk_sibling_negative_control_alternate_structure_plan.get(
+        "rows", []
+    ) or []:
+        if not isinstance(plan_row, dict):
+            continue
+        entry_id = str(plan_row.get("entry_id") or "")
+        ready_structures = [
+            structure
+            for structure in plan_row.get("candidate_structures", []) or []
+            if isinstance(structure, dict)
+            and structure.get("has_gamma_capable_nucleotide")
+            and structure.get("has_metal_ligand")
+            and structure.get("all_catalytic_residues_mapped")
+        ]
+        for structure in ready_structures:
+            candidate_structure_count += 1
+            pdb_id = str(structure.get("pdb_id") or "").upper()
+            gamma_codes = [
+                str(code).upper()
+                for code in structure.get("target_ligand_codes", []) or []
+                if str(code).upper() in gamma_capable_codes
+            ]
+            if not pdb_id:
+                status = "alternate_structure_pdb_id_missing"
+                status_counts[status] += 1
+                rows.append(
+                    {
+                        "entry_id": entry_id,
+                        "entry_name": plan_row.get("entry_name"),
+                        "family_id": plan_row.get("family_id"),
+                        "family_name": plan_row.get("family_name"),
+                        "target_fingerprint_id": target_fingerprint_id,
+                        "review_only": True,
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                        "pdb_id": None,
+                        "measurement_status": status,
+                        "gamma_phosphate_geometry_measured": False,
+                        "epk_score_computed": False,
+                        "measurement_blockers": ["alternate_structure_pdb_id_missing"],
+                    }
+                )
+                continue
+
+            cif_text = cif_text_by_pdb.get(pdb_id)
+            fetch_status = "ok"
+            if cif_text is None:
+                try:
+                    cif_text = fetch_pdb_cif(pdb_id)
+                    fetched_pdb_ids.add(pdb_id)
+                except Exception as exc:  # pragma: no cover - network fallback path
+                    fetch_status = f"fetch_failed:{type(exc).__name__}"
+                    cif_text = None
+            if not cif_text:
+                status = "alternate_structure_cif_unavailable"
+                status_counts[status] += 1
+                rows.append(
+                    {
+                        "entry_id": entry_id,
+                        "entry_name": plan_row.get("entry_name"),
+                        "family_id": plan_row.get("family_id"),
+                        "family_name": plan_row.get("family_name"),
+                        "target_fingerprint_id": target_fingerprint_id,
+                        "review_only": True,
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                        "pdb_id": pdb_id,
+                        "gamma_capable_nucleotide_codes": gamma_codes,
+                        "fetch_status": fetch_status,
+                        "measurement_status": status,
+                        "gamma_phosphate_geometry_measured": False,
+                        "epk_score_computed": False,
+                        "measurement_blockers": ["alternate_structure_cif_unavailable"],
+                    }
+                )
+                continue
+
+            atoms = parse_atom_site_loop(cif_text)
+            gamma_atoms = [
+                atom
+                for atom in atoms
+                if atom.get("group_PDB") == "HETATM"
+                and str(
+                    atom.get("auth_comp_id") or atom.get("label_comp_id") or ""
+                ).upper()
+                in {code.upper() for code in gamma_codes}
+                and str(
+                    atom.get("auth_atom_id") or atom.get("label_atom_id") or ""
+                ).upper()
+                == "PG"
+            ]
+            hydroxyl_atoms = [
+                atom
+                for atom in atoms
+                if atom.get("group_PDB") == "ATOM"
+                and str(
+                    atom.get("auth_comp_id") or atom.get("label_comp_id") or ""
+                ).upper()
+                in hydroxyl_atom_names
+                and str(
+                    atom.get("auth_atom_id") or atom.get("label_atom_id") or ""
+                ).upper()
+                in hydroxyl_atom_names.get(
+                    str(
+                        atom.get("auth_comp_id") or atom.get("label_comp_id") or ""
+                    ).upper(),
+                    set(),
+                )
+            ]
+            distance_rows = []
+            for gamma_atom in gamma_atoms:
+                gamma_point = _atom_point(gamma_atom)
+                for hydroxyl_atom in hydroxyl_atoms:
+                    hydroxyl_point = _atom_point(hydroxyl_atom)
+                    distance_rows.append(
+                        {
+                            "gamma_ligand_code": str(
+                                gamma_atom.get("auth_comp_id")
+                                or gamma_atom.get("label_comp_id")
+                            ).upper(),
+                            "gamma_atom_name": str(
+                                gamma_atom.get("auth_atom_id")
+                                or gamma_atom.get("label_atom_id")
+                            ),
+                            "hydroxyl_residue_code": str(
+                                hydroxyl_atom.get("auth_comp_id")
+                                or hydroxyl_atom.get("label_comp_id")
+                            ).upper(),
+                            "hydroxyl_atom_name": str(
+                                hydroxyl_atom.get("auth_atom_id")
+                                or hydroxyl_atom.get("label_atom_id")
+                            ),
+                            "hydroxyl_chain_name": str(
+                                hydroxyl_atom.get("auth_asym_id")
+                                or hydroxyl_atom.get("label_asym_id")
+                            ),
+                            "hydroxyl_resid": str(
+                                hydroxyl_atom.get("auth_seq_id")
+                                or hydroxyl_atom.get("label_seq_id")
+                            ),
+                            "distance_angstrom": round(
+                                _point_distance(gamma_point, hydroxyl_point), 3
+                            ),
+                        }
+                    )
+            distance_rows.sort(
+                key=lambda row: (
+                    float(row["distance_angstrom"]),
+                    str(row["hydroxyl_residue_code"]),
+                    str(row["hydroxyl_resid"]),
+                )
+            )
+            if distance_rows:
+                status = "alternate_gamma_to_hydroxyl_distance_measured_review_only"
+                blockers = [
+                    "negative_control_distribution_not_calibrated",
+                    "epk_score_not_computed",
+                    "threshold_not_selected",
+                ]
+                measured = True
+            elif not gamma_atoms:
+                status = "alternate_gamma_phosphate_atom_missing"
+                blockers = ["alternate_gamma_phosphate_atom_missing"]
+                measured = False
+            else:
+                status = "alternate_gamma_hydroxyl_context_missing"
+                blockers = ["alternate_hydroxyl_acceptor_atom_missing"]
+                measured = False
+
+            nearest_distance = (
+                distance_rows[0]["distance_angstrom"] if distance_rows else None
+            )
+            threshold_hits = [
+                threshold
+                for threshold in thresholds
+                if nearest_distance is not None and float(nearest_distance) <= threshold
+            ]
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "entry_name": plan_row.get("entry_name"),
+                    "family_id": plan_row.get("family_id"),
+                    "family_name": plan_row.get("family_name"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "pdb_id": pdb_id,
+                    "source_selected_measurement_status": plan_row.get(
+                        "source_selected_measurement_status"
+                    ),
+                    "gamma_capable_nucleotide_codes": gamma_codes,
+                    "target_ligand_codes": _sorted_strings(
+                        structure.get("target_ligand_codes", []) or []
+                    ),
+                    "mapped_catalytic_residue_count": structure.get(
+                        "mapped_catalytic_residue_count"
+                    ),
+                    "expected_catalytic_residue_count": structure.get(
+                        "expected_catalytic_residue_count"
+                    ),
+                    "gamma_atom_count": len(gamma_atoms),
+                    "hydroxyl_acceptor_atom_count": len(hydroxyl_atoms),
+                    "nearest_gamma_to_hydroxyl_distance_angstrom": nearest_distance,
+                    "candidate_threshold_hits_angstrom": threshold_hits,
+                    "distance_rows": distance_rows[: max(0, max_reported_distance_rows)],
+                    "measurement_status": status,
+                    "gamma_phosphate_geometry_measured": measured,
+                    "epk_score_computed": False,
+                    "measurement_blockers": blockers,
+                    "control_use_status": (
+                        "alternate_negative_control_candidate_review_only_not_calibration"
+                    ),
+                }
+            )
+
+    measured_rows = [
+        row
+        for row in rows
+        if row.get("nearest_gamma_to_hydroxyl_distance_angstrom") is not None
+    ]
+    measured_distances = [
+        float(row["nearest_gamma_to_hydroxyl_distance_angstrom"])
+        for row in measured_rows
+    ]
+    measured_entry_ids = sorted(
+        {str(row.get("entry_id")) for row in measured_rows if row.get("entry_id")},
+        key=_entry_id_sort_key,
+    )
+    threshold_collision_rows = []
+    for threshold in thresholds:
+        hit_entry_ids = [
+            str(row.get("entry_id"))
+            for row in measured_rows
+            if float(row.get("nearest_gamma_to_hydroxyl_distance_angstrom") or 0.0)
+            <= threshold
+        ]
+        threshold_collision_rows.append(
+            {
+                "threshold_angstrom": threshold,
+                "measured_alternate_negative_control_hit_count": len(hit_entry_ids),
+                "measured_alternate_negative_control_hit_entry_ids": sorted(
+                    set(hit_entry_ids),
+                    key=_entry_id_sort_key,
+                ),
+                "selection_status": "not_selectable_for_epk_without_more_controls",
+            }
+        )
+    lowest_candidate_collision_count = 0
+    if 6.0 in thresholds:
+        lowest_candidate_collision_count = sum(
+            1 for distance in measured_distances if distance <= 6.0
+        )
+    measured_family_ids = sorted(
+        {
+            str(row.get("family_id"))
+            for row in measured_rows
+            if str(row.get("family_id") or "")
+        }
+    )
+
+    return {
+        "metadata": {
+            "method": (
+                "epk_sibling_negative_control_alternate_gamma_distance_sample"
+            ),
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_sibling_negative_control_alternate_structure_plan_method": (
+                plan_meta.get("method")
+            ),
+            "source_ready_for_future_distance_measurement_count": plan_meta.get(
+                "ready_for_future_distance_measurement_count"
+            ),
+            "candidate_structure_count": candidate_structure_count,
+            "row_count": len(rows),
+            "measured_candidate_structure_count": len(measured_rows),
+            "measured_entry_count": len(measured_entry_ids),
+            "measured_entry_ids": measured_entry_ids,
+            "measured_family_ids": measured_family_ids,
+            "measurement_status_counts": dict(sorted(status_counts.items())),
+            "fetched_pdb_ids": sorted(fetched_pdb_ids),
+            "candidate_thresholds_angstrom": thresholds,
+            "threshold_collision_rows": threshold_collision_rows,
+            "lowest_covering_candidate_alternate_negative_control_hit_count": (
+                lowest_candidate_collision_count
+            ),
+            "observed_alternate_negative_control_distance_min_angstrom": (
+                min(measured_distances) if measured_distances else None
+            ),
+            "observed_alternate_negative_control_distance_max_angstrom": (
+                max(measured_distances) if measured_distances else None
+            ),
+            "negative_control_alternate_distance_sample_started": bool(measured_rows),
+            "negative_control_distance_distribution_ready": False,
+            "threshold_selection_status": (
+                "blocked_negative_controls_overlap_or_insufficient_distribution"
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact measures gamma-to-hydroxyl distances only for "
+                "alternate sibling ATP-phosphoryl-transfer negative controls "
+                "that already have gamma-capable nucleotide, metal context, "
+                "and mapped catalytic residues. It does not calibrate a "
+                "threshold, score ePK, edit registries, or import labels."
+            ),
+            "next_actions": [
+                "treat close alternate sibling-control distances as threshold blockers",
+                "keep ePK threshold selection closed until control coverage is sufficient",
+                "do not score external hard negatives until a real ePK scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("family_id")),
+                _entry_id_sort_key(str(row.get("entry_id"))),
+                str(row.get("pdb_id")),
+            ),
+        ),
+        "warnings": [
+            (
+                "Alternate sibling-control distances are counterevidence for "
+                "gamma-distance-only ePK thresholds; they are not calibration "
+                "or countable label evidence."
+            )
+        ],
+    }
+
+
+def build_epk_negative_control_calibration_sufficiency_decision(
+    *,
+    epk_negative_control_gamma_distance_distribution: dict[str, Any],
+    epk_sibling_negative_control_alternate_gamma_distance_sample: dict[str, Any],
+) -> dict[str, Any]:
+    """Decide whether ePK negative-control gamma distances are calibratable."""
+
+    distribution_meta = epk_negative_control_gamma_distance_distribution.get(
+        "metadata", {}
+    )
+    if not isinstance(distribution_meta, dict):
+        distribution_meta = {}
+    alternate_meta = epk_sibling_negative_control_alternate_gamma_distance_sample.get(
+        "metadata", {}
+    )
+    if not isinstance(alternate_meta, dict):
+        alternate_meta = {}
+
+    target_fingerprint_id = str(
+        distribution_meta.get("target_fingerprint_id")
+        or alternate_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    candidate_thresholds: set[float] = set()
+    for meta in (distribution_meta, alternate_meta):
+        for value in meta.get("candidate_thresholds_angstrom", []) or []:
+            try:
+                candidate_thresholds.add(float(value))
+            except (TypeError, ValueError):
+                continue
+    if not candidate_thresholds:
+        candidate_thresholds = {4.0, 6.0, 8.0}
+    thresholds = sorted(candidate_thresholds)
+
+    sibling_family_ids = _sorted_strings(
+        distribution_meta.get("control_family_ids", []) or []
+    )
+    rows: list[dict[str, Any]] = []
+    for source_artifact, source_label in (
+        (epk_negative_control_gamma_distance_distribution, "selected_structure"),
+        (
+            epk_sibling_negative_control_alternate_gamma_distance_sample,
+            "alternate_structure",
+        ),
+    ):
+        for row in source_artifact.get("rows", []) or []:
+            if not isinstance(row, dict):
+                continue
+            nearest_distance = row.get("nearest_gamma_to_hydroxyl_distance_angstrom")
+            if nearest_distance is None:
+                continue
+            try:
+                distance = float(nearest_distance)
+            except (TypeError, ValueError):
+                continue
+            rows.append(
+                {
+                    "entry_id": row.get("entry_id"),
+                    "entry_name": row.get("entry_name"),
+                    "family_id": row.get("family_id"),
+                    "family_name": row.get("family_name"),
+                    "pdb_id": row.get("pdb_id"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "measurement_source": source_label,
+                    "nearest_gamma_to_hydroxyl_distance_angstrom": round(
+                        distance, 3
+                    ),
+                    "candidate_threshold_hits_angstrom": [
+                        threshold for threshold in thresholds if distance <= threshold
+                    ],
+                    "measurement_status": row.get("measurement_status"),
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "epk_score_computed": False,
+                    "control_use_status": (
+                        "negative_control_sufficiency_review_only_not_calibration"
+                    ),
+                }
+            )
+
+    selected_rows = [
+        row for row in rows if row.get("measurement_source") == "selected_structure"
+    ]
+    alternate_rows = [
+        row for row in rows if row.get("measurement_source") == "alternate_structure"
+    ]
+    measured_entry_ids = sorted(
+        {str(row.get("entry_id")) for row in rows if row.get("entry_id")},
+        key=_entry_id_sort_key,
+    )
+    measured_family_ids = _sorted_strings(
+        row.get("family_id") for row in rows if row.get("family_id")
+    )
+    missing_family_ids = [
+        family_id for family_id in sibling_family_ids if family_id not in measured_family_ids
+    ]
+
+    threshold_collision_rows = []
+    for threshold in thresholds:
+        selected_hits = [
+            str(row.get("entry_id"))
+            for row in selected_rows
+            if float(row["nearest_gamma_to_hydroxyl_distance_angstrom"]) <= threshold
+        ]
+        alternate_hits = [
+            str(row.get("entry_id"))
+            for row in alternate_rows
+            if float(row["nearest_gamma_to_hydroxyl_distance_angstrom"]) <= threshold
+        ]
+        hit_entry_ids = sorted(set(selected_hits + alternate_hits), key=_entry_id_sort_key)
+        threshold_collision_rows.append(
+            {
+                "threshold_angstrom": threshold,
+                "selected_structure_hit_entry_ids": sorted(
+                    set(selected_hits), key=_entry_id_sort_key
+                ),
+                "alternate_structure_hit_entry_ids": sorted(
+                    set(alternate_hits), key=_entry_id_sort_key
+                ),
+                "combined_negative_control_hit_entry_ids": hit_entry_ids,
+                "combined_negative_control_hit_count": len(hit_entry_ids),
+                "selection_status": "not_selectable_for_epk",
+            }
+        )
+
+    lowest_covering_candidate = distribution_meta.get(
+        "lowest_review_geometry_covering_candidate_angstrom"
+    )
+    try:
+        lowest_covering_candidate_float = float(lowest_covering_candidate)
+    except (TypeError, ValueError):
+        lowest_covering_candidate_float = 6.0 if 6.0 in thresholds else thresholds[0]
+    lowest_candidate_hits = [
+        row
+        for row in threshold_collision_rows
+        if float(row["threshold_angstrom"]) == lowest_covering_candidate_float
+    ]
+    lowest_candidate_hit_count = (
+        int(lowest_candidate_hits[0]["combined_negative_control_hit_count"])
+        if lowest_candidate_hits
+        else 0
+    )
+    all_sibling_families_measured = bool(sibling_family_ids) and not missing_family_ids
+    no_lowest_candidate_collision = lowest_candidate_hit_count == 0
+    ready = all_sibling_families_measured and no_lowest_candidate_collision
+    blockers: list[str] = []
+    if not all_sibling_families_measured:
+        blockers.append("sibling_family_coverage_incomplete")
+    if not no_lowest_candidate_collision:
+        blockers.append("candidate_threshold_collides_with_sibling_controls")
+    if not rows:
+        blockers.append("no_negative_control_distances_measured")
+
+    return {
+        "metadata": {
+            "method": "epk_negative_control_calibration_sufficiency_decision",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_negative_control_gamma_distance_distribution_method": (
+                distribution_meta.get("method")
+            ),
+            "source_epk_sibling_negative_control_alternate_gamma_distance_sample_method": (
+                alternate_meta.get("method")
+            ),
+            "candidate_thresholds_angstrom": thresholds,
+            "lowest_review_geometry_covering_candidate_angstrom": (
+                lowest_covering_candidate_float
+            ),
+            "selected_structure_measured_control_count": len(selected_rows),
+            "alternate_structure_measured_control_count": len(alternate_rows),
+            "combined_measured_control_count": len(rows),
+            "combined_measured_entry_count": len(measured_entry_ids),
+            "combined_measured_entry_ids": measured_entry_ids,
+            "combined_measured_family_count": len(measured_family_ids),
+            "combined_measured_family_ids": measured_family_ids,
+            "sibling_family_ids": sibling_family_ids,
+            "missing_sibling_family_ids": missing_family_ids,
+            "all_sibling_families_measured": all_sibling_families_measured,
+            "threshold_collision_rows": threshold_collision_rows,
+            "lowest_covering_candidate_negative_control_hit_count": (
+                lowest_candidate_hit_count
+            ),
+            "negative_control_calibration_blockers": blockers,
+            "negative_control_distance_distribution_ready": ready,
+            "threshold_calibration_decision": (
+                "ready_for_future_threshold_selection"
+                if ready
+                else "do_not_select_threshold"
+            ),
+            "calibration_sufficiency_status": (
+                "ready_review_only" if ready else "blocked_review_only"
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact decides whether the current sibling "
+                "negative-control gamma-distance evidence is sufficient for "
+                "future ePK threshold selection. It selects no threshold, "
+                "scores no ePK rows, and changes no labels."
+            ),
+            "next_actions": [
+                "source or measure missing sibling-family negative controls",
+                "do not select a gamma-distance threshold while sibling collisions remain",
+                "keep external hard-negative re-audit closed until a real ePK score exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("family_id")),
+                _entry_id_sort_key(str(row.get("entry_id"))),
+                str(row.get("measurement_source")),
+                str(row.get("pdb_id")),
+            ),
+        ),
+        "warnings": [
+            (
+                "The current negative-control evidence remains a blocker, not "
+                "a calibration set for an ePK score."
+            )
+        ],
+    }
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -10580,6 +11203,10 @@ def build_epk_precount_gate_status(
     epk_gamma_threshold_control_plan: dict[str, Any] | None = None,
     epk_negative_control_gamma_distance_distribution: dict[str, Any] | None = None,
     epk_sibling_negative_control_alternate_structure_plan: dict[str, Any]
+    | None = None,
+    epk_sibling_negative_control_alternate_gamma_distance_sample: dict[str, Any]
+    | None = None,
+    epk_negative_control_calibration_sufficiency_decision: dict[str, Any]
     | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -10639,6 +11266,24 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(sibling_alternate_meta, dict):
         sibling_alternate_meta = {}
+    sibling_alternate_distance_meta = (
+        epk_sibling_negative_control_alternate_gamma_distance_sample.get(
+            "metadata", {}
+        )
+        if isinstance(
+            epk_sibling_negative_control_alternate_gamma_distance_sample, dict
+        )
+        else {}
+    )
+    if not isinstance(sibling_alternate_distance_meta, dict):
+        sibling_alternate_distance_meta = {}
+    negative_control_sufficiency_meta = (
+        epk_negative_control_calibration_sufficiency_decision.get("metadata", {})
+        if isinstance(epk_negative_control_calibration_sufficiency_decision, dict)
+        else {}
+    )
+    if not isinstance(negative_control_sufficiency_meta, dict):
+        negative_control_sufficiency_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -10826,6 +11471,32 @@ def build_epk_precount_gate_status(
                             "ready_for_future_distance_measurement_count"
                         )
                     ),
+                    "alternate_structure_distance_sample_method": (
+                        sibling_alternate_distance_meta.get("method")
+                    ),
+                    "alternate_structure_measured_candidate_structure_count": (
+                        sibling_alternate_distance_meta.get(
+                            "measured_candidate_structure_count"
+                        )
+                    ),
+                    "alternate_structure_lowest_candidate_hit_count": (
+                        sibling_alternate_distance_meta.get(
+                            "lowest_covering_candidate_alternate_negative_control_hit_count"
+                        )
+                    ),
+                    "calibration_sufficiency_decision_method": (
+                        negative_control_sufficiency_meta.get("method")
+                    ),
+                    "calibration_sufficiency_status": (
+                        negative_control_sufficiency_meta.get(
+                            "calibration_sufficiency_status"
+                        )
+                    ),
+                    "combined_measured_control_count": (
+                        negative_control_sufficiency_meta.get(
+                            "combined_measured_control_count"
+                        )
+                    ),
                 },
             }
         )
@@ -10851,10 +11522,16 @@ def build_epk_precount_gate_status(
         atp_status_counts = {}
     if int(atp_state_meta.get("alternate_gamma_acceptor_geometry_measured_count") or 0):
         if negative_control_meta.get("method"):
-            next_actions.insert(
-                0,
-                "expand negative-control gamma-distance distributions before selecting a threshold",
-            )
+            if sibling_alternate_distance_meta.get("method"):
+                next_actions.insert(
+                    0,
+                    "expand sibling negative-control coverage beyond measured alternate structures before selecting a threshold",
+                )
+            else:
+                next_actions.insert(
+                    0,
+                    "expand negative-control gamma-distance distributions before selecting a threshold",
+                )
         elif threshold_control_meta.get("method"):
             next_actions.insert(
                 0,
@@ -10909,6 +11586,12 @@ def build_epk_precount_gate_status(
             "source_epk_sibling_negative_control_alternate_structure_plan_method": (
                 sibling_alternate_meta.get("method")
             ),
+            "source_epk_sibling_negative_control_alternate_gamma_distance_sample_method": (
+                sibling_alternate_distance_meta.get("method")
+            ),
+            "source_epk_negative_control_calibration_sufficiency_decision_method": (
+                negative_control_sufficiency_meta.get("method")
+            ),
             "negative_control_distance_distribution_ready": bool(
                 negative_control_meta.get("negative_control_distance_distribution_ready")
             ),
@@ -10922,6 +11605,28 @@ def build_epk_precount_gate_status(
                 sibling_alternate_meta.get(
                     "ready_for_future_distance_measurement_count"
                 )
+            ),
+            "negative_control_alternate_measured_candidate_structure_count": (
+                sibling_alternate_distance_meta.get(
+                    "measured_candidate_structure_count"
+                )
+            ),
+            "negative_control_alternate_measured_entry_count": (
+                sibling_alternate_distance_meta.get("measured_entry_count")
+            ),
+            "negative_control_alternate_lowest_candidate_hit_count": (
+                sibling_alternate_distance_meta.get(
+                    "lowest_covering_candidate_alternate_negative_control_hit_count"
+                )
+            ),
+            "negative_control_calibration_sufficiency_status": (
+                negative_control_sufficiency_meta.get("calibration_sufficiency_status")
+            ),
+            "negative_control_combined_measured_control_count": (
+                negative_control_sufficiency_meta.get("combined_measured_control_count")
+            ),
+            "negative_control_combined_measured_family_count": (
+                negative_control_sufficiency_meta.get("combined_measured_family_count")
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

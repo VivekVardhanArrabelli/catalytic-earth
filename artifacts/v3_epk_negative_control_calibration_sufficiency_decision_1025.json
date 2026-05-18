@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "all_sibling_families_measured": false,
+    "alternate_structure_measured_control_count": 3,
+    "calibration_sufficiency_status": "blocked_review_only",
+    "candidate_thresholds_angstrom": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "combined_measured_control_count": 5,
+    "combined_measured_entry_count": 5,
+    "combined_measured_entry_ids": [
+      "m_csa:592",
+      "m_csa:603",
+      "m_csa:615",
+      "m_csa:654",
+      "m_csa:696"
+    ],
+    "combined_measured_family_count": 4,
+    "combined_measured_family_ids": [
+      "askha",
+      "dnk",
+      "ghkl",
+      "ghmp"
+    ],
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "lowest_covering_candidate_negative_control_hit_count": 2,
+    "lowest_review_geometry_covering_candidate_angstrom": 6.0,
+    "method": "epk_negative_control_calibration_sufficiency_decision",
+    "missing_sibling_family_ids": [
+      "atp_grasp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "negative_control_calibration_blockers": [
+      "sibling_family_coverage_incomplete",
+      "candidate_threshold_collides_with_sibling_controls"
+    ],
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "source or measure missing sibling-family negative controls",
+      "do not select a gamma-distance threshold while sibling collisions remain",
+      "keep external hard-negative re-audit closed until a real ePK score exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact decides whether the current sibling negative-control gamma-distance evidence is sufficient for future ePK threshold selection. It selects no threshold, scores no ePK rows, and changes no labels.",
+    "selected_structure_measured_control_count": 2,
+    "selected_threshold_angstrom": null,
+    "sibling_family_ids": [
+      "askha",
+      "atp_grasp",
+      "dnk",
+      "ghkl",
+      "ghmp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "source_epk_negative_control_gamma_distance_distribution_method": "epk_negative_control_gamma_distance_distribution",
+    "source_epk_sibling_negative_control_alternate_gamma_distance_sample_method": "epk_sibling_negative_control_alternate_gamma_distance_sample",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "threshold_calibration_decision": "do_not_select_threshold",
+    "threshold_collision_rows": [
+      {
+        "alternate_structure_hit_entry_ids": [],
+        "combined_negative_control_hit_count": 1,
+        "combined_negative_control_hit_entry_ids": [
+          "m_csa:615"
+        ],
+        "selected_structure_hit_entry_ids": [
+          "m_csa:615"
+        ],
+        "selection_status": "not_selectable_for_epk",
+        "threshold_angstrom": 4.0
+      },
+      {
+        "alternate_structure_hit_entry_ids": [
+          "m_csa:592"
+        ],
+        "combined_negative_control_hit_count": 2,
+        "combined_negative_control_hit_entry_ids": [
+          "m_csa:592",
+          "m_csa:615"
+        ],
+        "selected_structure_hit_entry_ids": [
+          "m_csa:615"
+        ],
+        "selection_status": "not_selectable_for_epk",
+        "threshold_angstrom": 6.0
+      },
+      {
+        "alternate_structure_hit_entry_ids": [
+          "m_csa:592",
+          "m_csa:603"
+        ],
+        "combined_negative_control_hit_count": 4,
+        "combined_negative_control_hit_entry_ids": [
+          "m_csa:592",
+          "m_csa:603",
+          "m_csa:615",
+          "m_csa:654"
+        ],
+        "selected_structure_hit_entry_ids": [
+          "m_csa:615",
+          "m_csa:654"
+        ],
+        "selection_status": "not_selectable_for_epk",
+        "threshold_angstrom": 8.0
+      }
+    ]
+  },
+  "rows": [
+    {
+      "candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "control_use_status": "negative_control_sufficiency_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "measurement_source": "alternate_structure",
+      "measurement_status": "alternate_gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": 4.175,
+      "pdb_id": "3FGU",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_threshold_hits_angstrom": [],
+      "control_use_status": "negative_control_sufficiency_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:696",
+      "entry_name": "hexokinase (type I)",
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "measurement_source": "alternate_structure",
+      "measurement_status": "alternate_gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": 9.92,
+      "pdb_id": "1QHA",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_threshold_hits_angstrom": [
+        4.0,
+        6.0,
+        8.0
+      ],
+      "control_use_status": "negative_control_sufficiency_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:615",
+      "entry_name": "deoxyguanosine kinase",
+      "epk_score_computed": false,
+      "family_id": "dnk",
+      "family_name": "Deoxynucleoside kinases",
+      "measurement_source": "selected_structure",
+      "measurement_status": "selected_structure_gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": 3.232,
+      "pdb_id": "2OCP",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_threshold_hits_angstrom": [
+        8.0
+      ],
+      "control_use_status": "negative_control_sufficiency_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:603",
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "epk_score_computed": false,
+      "family_id": "ghkl",
+      "family_name": "GHKL/Bergerat ATP-binding kinases",
+      "measurement_source": "alternate_structure",
+      "measurement_status": "alternate_gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": 7.91,
+      "pdb_id": "3CRL",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_threshold_hits_angstrom": [
+        8.0
+      ],
+      "control_use_status": "negative_control_sufficiency_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "measurement_source": "selected_structure",
+      "measurement_status": "selected_structure_gamma_to_hydroxyl_distance_measured_review_only",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": 6.184,
+      "pdb_id": "1OJ4",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "The current negative-control evidence remains a blocker, not a calibration set for an ePK score."
+  ]
+}
