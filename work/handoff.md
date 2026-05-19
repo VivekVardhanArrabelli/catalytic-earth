@@ -50,6 +50,65 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T03:58:32Z automation run, the ePK lane remains
+review-only and scientifically blocked from production fingerprint expansion.
+Startup protocol passed: the repo lock was acquired, `git fetch` and
+`git pull --ff-only origin main` were clean, SSH deploy-key fetch/push hygiene
+passed, the 516-test unit discovery passed, and `validate` preserved the 682
+label / 8 fingerprint baseline. Artifact migration Phase 1 stayed guard-only;
+no Phase 2/3 upload, deletion, Git LFS change, history rewrite, registry edit,
+or label import was performed.
+
+The run tightened the ePK acceptor story with three new review-only artifacts.
+`artifacts/v3_epk_protein_substrate_acceptor_candidate_audit_1025.json` strips
+ligand-analog rescue from the chain/ligand acceptor feature. It keeps 2/3
+current positives, blocks all 25 negative-control rows with 0 false hits, and
+abstains on all three imported external hard negatives, but misses
+`m_csa:640`; this makes the positive-coverage blocker explicit.
+`artifacts/v3_epk_ligand_analog_policy_blocker_decision_1025.json` records the
+policy decision that ligand-analog acceptor evidence is not
+production-admissible for `m_csa:640` without a future pre-registered analog
+policy and scored external re-audit.
+
+The source-repair path also advanced and failed closed. `artifacts/v3_epk_protein_substrate_positive_source_triage_1025.json`
+identifies three additional non-countable ePK-family source rows:
+`m_csa:756`, `m_csa:757`, and `m_csa:760`, with `m_csa:760` first because its
+selected structure has ADP/Mg product-state context. `artifacts/v3_epk_m_csa760_atp_state_repair_scan_1025.json`
+then scans the known `m_csa:760` alternate structures: `1TID` and `1TIL` have
+ATP/Mg catalytic context, while `1TH8` and `1THN` have protein-substrate
+product-state context, but no single structure combines ATP/Mg with the
+protein-substrate acceptor. The row is split-state blocked with 0
+measurement-ready candidates.
+
+A bounded follow-on inventory screen should guide the next run but is not a
+label, score, or held-out claim: among the first 25 `m_csa:757` candidate
+structures, `1CDK` has ANP/Mn/TPO and `1Q24` has ATP/Mg/SEP/TPO context; among
+the 15 `m_csa:756` candidates, `5LI1` has ANP/Mg/SEP/TPO, `5LIH` has ADP/Mn,
+and `9EJM` has ADP/Mg. `m_csa:757` is the next best bounded source-repair
+target because it has protein-substrate review context plus ATP/Mg alternate
+leads.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` now includes the
+`m_csa760_atp_state_repair_scan` gate. The lane remains
+`blocked_review_only`; failing gates are acceptor threshold calibration,
+external hard-negative scored re-audit, registry/label-factory extension,
+text-free acceptor production admissibility, protein-substrate positive
+coverage, `m_csa:760` split-state repair, and gamma negative-control
+distribution readiness.
+
+Evidence-based confidence call: confidence increased that the current
+protein-substrate acceptor axis is scientifically useful because it has 0
+control false hits and 0 external hard-negative non-abstentions, but confidence
+is low that current positives are enough for production ePK scoring. Both
+`m_csa:640` and `m_csa:760` now fail for evidence-policy reasons rather than
+implementation gaps. The next bounded science step should pivot to another
+protein-substrate ePK source (`m_csa:757`, then `m_csa:756`) or pre-register a
+strict analog/product-state policy before any score, registry change, label
+import, or external hard-negative performance claim.
+
+Verification so far in this run: targeted CLI/leakage tests for the new
+builders passed, and full unit discovery now reports 524 tests passing.
+
 As of the 2026-05-19T02:57:27Z automation run, the direct automation protocol
 passed: the lock was acquired, `git fetch` and
 `git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed

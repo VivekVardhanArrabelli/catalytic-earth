@@ -173,6 +173,62 @@
     },
     {
       "evidence": {
+        "candidate_feature_id": "protein_substrate_non_catalytic_chain_acceptor_v0",
+        "candidate_feature_status": "blocked_review_only_positive_coverage_gap",
+        "current_positive_feature_hit_count": 2,
+        "current_positive_feature_miss_count": 1,
+        "external_hard_negative_feature_abstention_count": 3,
+        "feature_admissible_for_production_scoring": false,
+        "ligand_analog_only_positive_miss_count": 1,
+        "ligand_analog_only_positive_miss_entry_ids": [
+          "m_csa:640"
+        ],
+        "negative_control_false_hit_count": 0,
+        "primary_blocker": "protein_substrate_feature_misses_ligand_analog_positive",
+        "source_method": "epk_protein_substrate_acceptor_candidate_audit"
+      },
+      "gate_id": "protein_substrate_acceptor_candidate_audit",
+      "passed": false
+    },
+    {
+      "evidence": {
+        "feature_admissible_for_production_scoring": false,
+        "ligand_analog_dependency_count": 1,
+        "ligand_analog_dependency_entry_ids": [
+          "m_csa:640"
+        ],
+        "ligand_analog_policy_decision": "do_not_use_ligand_analog_as_production_acceptor_evidence",
+        "ligand_analog_production_admissible_count": 0,
+        "protein_substrate_positive_coverage_gap": true,
+        "source_method": "epk_ligand_analog_policy_blocker_decision"
+      },
+      "gate_id": "ligand_analog_policy_blocker_decision",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "atp_metal_state_candidate_count": 2,
+        "atp_metal_state_candidate_pdb_ids": [
+          "1TID",
+          "1TIL"
+        ],
+        "combined_atp_metal_substrate_context_candidate_count": 0,
+        "entry_id": "m_csa:760",
+        "measurement_ready_candidate_count": 0,
+        "protein_substrate_acceptor_context_candidate_count": 2,
+        "protein_substrate_acceptor_context_candidate_pdb_ids": [
+          "1TH8",
+          "1THN"
+        ],
+        "repair_status": "blocked_review_only_split_atp_and_substrate_context",
+        "source_method": "epk_m_csa760_atp_state_repair_scan",
+        "split_state_blocker_detected": true
+      },
+      "gate_id": "m_csa760_atp_state_repair_scan",
+      "passed": false
+    },
+    {
+      "evidence": {
         "alternate_structure_distance_sample_method": "epk_sibling_negative_control_alternate_gamma_distance_sample",
         "alternate_structure_lowest_candidate_hit_count": 1,
         "alternate_structure_measured_candidate_structure_count": 3,
@@ -327,15 +383,29 @@
       "external_hard_negative_scored_reaudit",
       "registry_and_label_factory_extension",
       "text_free_acceptor_feature_gap_audit",
+      "protein_substrate_acceptor_candidate_audit",
+      "m_csa760_atp_state_repair_scan",
       "gamma_negative_control_distance_distribution"
     ],
     "fingerprint_registry_edited": false,
     "gamma_measured_or_reviewed_row_count": 3,
     "gamma_measured_row_count": 2,
     "gamma_threshold_control_plan_ready": true,
+    "ligand_analog_dependency_count": 1,
+    "ligand_analog_dependency_entry_ids": [
+      "m_csa:640"
+    ],
+    "ligand_analog_policy_decision": "do_not_use_ligand_analog_as_production_acceptor_evidence",
+    "ligand_analog_production_admissible_count": 0,
     "m_csa640_alternate_gamma_distance_min_angstrom": 3.558,
     "m_csa640_alternate_gamma_geometry_review_complete": true,
     "m_csa640_alternate_gamma_geometry_support_count": 1,
+    "m_csa760_atp_metal_state_candidate_count": 2,
+    "m_csa760_combined_atp_metal_substrate_context_candidate_count": 0,
+    "m_csa760_measurement_ready_candidate_count": 0,
+    "m_csa760_protein_substrate_acceptor_context_candidate_count": 2,
+    "m_csa760_repair_status": "blocked_review_only_split_atp_and_substrate_context",
+    "m_csa760_split_state_blocker_detected": true,
     "measured_acceptor_identity_source_supported_count": 2,
     "method": "epk_precount_gate_status",
     "negative_control_alternate_lowest_candidate_hit_count": 1,
@@ -456,6 +526,9 @@
       "expand sibling negative-control coverage beyond measured alternate structures before selecting a threshold",
       "use reviewed m_csa:640 alternate gamma geometry only in review-only prototype diagnostics",
       "keep explicitly excluded non-ready ligand rows out of threshold calibration",
+      "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
+      "source another ePK protein-substrate positive or pre-register a ligand-analog admissibility policy",
+      "resolve ligand-analog-only ePK positive coverage before production scorer calibration",
       "calibrate and generalize chain/ligand acceptor disambiguation before production scoring",
       "replace review-context acceptor support with a text-free predictive acceptor feature before production scoring",
       "run external hard-negative re-audit only after a real ePK score exists"
@@ -464,6 +537,18 @@
     "nonready_ligand_repair_row_count": 2,
     "nonready_rows_repaired_or_excluded": true,
     "precount_gate_status": "blocked_review_only",
+    "protein_substrate_acceptor_candidate_feature_id": "protein_substrate_non_catalytic_chain_acceptor_v0",
+    "protein_substrate_acceptor_candidate_feature_status": "blocked_review_only_positive_coverage_gap",
+    "protein_substrate_acceptor_external_hard_negative_abstention_count": 3,
+    "protein_substrate_acceptor_feature_admissible_for_production_scoring": false,
+    "protein_substrate_acceptor_feature_passes_current_review_controls": false,
+    "protein_substrate_acceptor_ligand_analog_only_miss_count": 1,
+    "protein_substrate_acceptor_ligand_analog_only_miss_entry_ids": [
+      "m_csa:640"
+    ],
+    "protein_substrate_acceptor_negative_control_false_hit_count": 0,
+    "protein_substrate_acceptor_positive_hit_count": 2,
+    "protein_substrate_acceptor_positive_miss_count": 1,
     "prototype_ready_row_count": 3,
     "ready_for_label_import": false,
     "ready_to_expand_positive_fingerprint_universe": false,
@@ -489,11 +574,14 @@
     ],
     "source_epk_family_specific_mapping_template_validation_review_method": "epk_family_specific_mapping_template_validation_review",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
+    "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
     "source_epk_m_csa640_alternate_gamma_geometry_review_method": "epk_m_csa640_alternate_gamma_geometry_review",
+    "source_epk_m_csa760_atp_state_repair_scan_method": "epk_m_csa760_atp_state_repair_scan",
     "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
     "source_epk_negative_control_calibration_sufficiency_decision_method": "epk_negative_control_calibration_sufficiency_decision",
     "source_epk_negative_control_gamma_distance_distribution_method": "epk_negative_control_gamma_distance_distribution",
     "source_epk_nonready_ligand_exclusion_decision_method": "epk_nonready_ligand_exclusion_decision",
+    "source_epk_protein_substrate_acceptor_candidate_audit_method": "epk_protein_substrate_acceptor_candidate_audit",
     "source_epk_sibling_control_homolog_gamma_distance_sample_method": "epk_sibling_control_homolog_gamma_distance_sample",
     "source_epk_sibling_control_homolog_mapping_review_method": "epk_sibling_control_homolog_mapping_review",
     "source_epk_sibling_control_repair_review_method": "epk_sibling_control_repair_review",

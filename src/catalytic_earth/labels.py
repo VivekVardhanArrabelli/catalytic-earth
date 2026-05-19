@@ -17173,6 +17173,1140 @@ def build_epk_chain_ligand_external_hard_negative_feature_screen(
     }
 
 
+def build_epk_protein_substrate_acceptor_candidate_audit(
+    *,
+    epk_chain_ligand_acceptor_disambiguation_audit: dict[str, Any],
+    imported_external_entry_ids: list[str] | None = None,
+) -> dict[str, Any]:
+    """Test the chain/ligand feature without ligand-analog positive evidence."""
+
+    audit_meta = epk_chain_ligand_acceptor_disambiguation_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(audit_meta, dict):
+        audit_meta = {}
+    target_fingerprint_id = str(
+        audit_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    expected_external_ids = set(
+        imported_external_entry_ids
+        or ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"]
+    )
+    feature_id = "protein_substrate_non_catalytic_chain_acceptor_v0"
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    positive_row_count = 0
+    positive_hit_count = 0
+    positive_miss_count = 0
+    ligand_analog_only_positive_miss_count = 0
+    control_row_count = 0
+    control_false_hit_count = 0
+    external_abstention_count = 0
+
+    for source_row in epk_chain_ligand_acceptor_disambiguation_audit.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        row_type = str(source_row.get("row_type") or "")
+        entry_id = str(source_row.get("entry_id") or "")
+        source_feature_hit = bool(source_row.get("candidate_feature_hit"))
+        non_catalytic_chain_acceptor = bool(
+            source_row.get("non_catalytic_chain_acceptor")
+        )
+        ligand_analog_acceptor = bool(source_row.get("ligand_analog_acceptor"))
+        protein_substrate_feature_hit = bool(
+            source_feature_hit
+            and non_catalytic_chain_acceptor
+            and not ligand_analog_acceptor
+        )
+
+        if row_type == "current_epk_positive_prototype":
+            positive_row_count += 1
+            if protein_substrate_feature_hit:
+                decision = "positive_protein_substrate_acceptor_hit_review_only"
+                positive_hit_count += 1
+            elif source_feature_hit and ligand_analog_acceptor:
+                decision = (
+                    "positive_ligand_analog_only_miss_blocks_production_candidate"
+                )
+                positive_miss_count += 1
+                ligand_analog_only_positive_miss_count += 1
+            else:
+                decision = "positive_protein_substrate_acceptor_miss_review_only"
+                positive_miss_count += 1
+        elif row_type == "imported_external_hard_negative":
+            if entry_id not in expected_external_ids:
+                continue
+            if protein_substrate_feature_hit:
+                decision = (
+                    "external_hard_negative_protein_substrate_feature_non_abstention"
+                )
+            else:
+                decision = "external_hard_negative_protein_substrate_feature_abstention"
+                external_abstention_count += 1
+        elif row_type.endswith("negative_control"):
+            control_row_count += 1
+            if protein_substrate_feature_hit:
+                decision = (
+                    "control_false_hit_blocks_protein_substrate_acceptor_candidate"
+                )
+                control_false_hit_count += 1
+            else:
+                decision = "control_nonhit_review_only"
+        else:
+            continue
+
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": row_type,
+                "entry_id": source_row.get("entry_id"),
+                "pdb_id": source_row.get("pdb_id"),
+                "family_id": source_row.get("family_id"),
+                "family_name": source_row.get("family_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only", True)
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "candidate_feature_id": feature_id,
+                "source_candidate_feature_id": source_row.get("candidate_feature_id"),
+                "source_candidate_feature_hit": source_feature_hit,
+                "candidate_feature_hit": protein_substrate_feature_hit,
+                "feature_audit_decision": decision,
+                "non_catalytic_chain_acceptor": non_catalytic_chain_acceptor,
+                "ligand_analog_acceptor": ligand_analog_acceptor,
+                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                    source_row.get(
+                        "nearest_gamma_to_candidate_acceptor_distance_angstrom"
+                    )
+                ),
+                "source_feature_audit_decision": source_row.get(
+                    "feature_audit_decision"
+                ),
+                "predictive_use_status": (
+                    "review_only_production_candidate_not_calibrated"
+                ),
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "positive_coverage_gap_or_uncalibrated_candidate_feature",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    missing_expected_external_ids = sorted(
+        expected_external_ids
+        - {
+            str(row.get("entry_id") or "")
+            for row in rows
+            if row.get("row_type") == "imported_external_hard_negative"
+        },
+        key=_entry_id_sort_key,
+    )
+    positive_hit_rate = (
+        round(positive_hit_count / positive_row_count, 4)
+        if positive_row_count
+        else None
+    )
+    false_hit_rate = (
+        round(control_false_hit_count / control_row_count, 4)
+        if control_row_count
+        else None
+    )
+    feature_passes_current_review_controls = (
+        positive_row_count > 0
+        and positive_hit_count == positive_row_count
+        and control_false_hit_count == 0
+        and not missing_expected_external_ids
+    )
+    false_hit_rows = [
+        row
+        for row in rows
+        if row.get("feature_audit_decision")
+        == "control_false_hit_blocks_protein_substrate_acceptor_candidate"
+    ]
+    ligand_analog_miss_rows = [
+        row
+        for row in rows
+        if row.get("feature_audit_decision")
+        == "positive_ligand_analog_only_miss_blocks_production_candidate"
+    ]
+    candidate_status = (
+        "passes_current_review_controls_review_only"
+        if feature_passes_current_review_controls
+        else "blocked_review_only_positive_coverage_gap"
+        if positive_miss_count
+        else "blocked_review_only_control_false_hit"
+    )
+    primary_blocker = (
+        "protein_substrate_feature_misses_ligand_analog_positive"
+        if ligand_analog_only_positive_miss_count
+        else "protein_substrate_feature_false_hits_sibling_controls"
+        if control_false_hit_count
+        else None
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_protein_substrate_acceptor_candidate_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_chain_ligand_acceptor_disambiguation_audit_method": (
+                audit_meta.get("method")
+            ),
+            "source_chain_ligand_candidate_feature_id": audit_meta.get(
+                "candidate_feature_id"
+            ),
+            "candidate_feature_id": feature_id,
+            "candidate_threshold_angstrom": audit_meta.get(
+                "candidate_threshold_angstrom"
+            ),
+            "row_count": len(rows),
+            "current_positive_row_count": positive_row_count,
+            "current_positive_feature_hit_count": positive_hit_count,
+            "current_positive_feature_hit_rate": positive_hit_rate,
+            "current_positive_feature_miss_count": positive_miss_count,
+            "ligand_analog_only_positive_miss_count": (
+                ligand_analog_only_positive_miss_count
+            ),
+            "ligand_analog_only_positive_miss_entry_ids": [
+                row.get("entry_id") for row in ligand_analog_miss_rows
+            ],
+            "negative_control_row_count": control_row_count,
+            "negative_control_false_hit_count": control_false_hit_count,
+            "negative_control_false_hit_rate": false_hit_rate,
+            "negative_control_false_hit_family_ids": _sorted_strings(
+                row.get("family_id") for row in false_hit_rows
+            ),
+            "external_hard_negative_feature_abstention_count": (
+                external_abstention_count
+            ),
+            "missing_expected_external_hard_negative_entry_ids": (
+                missing_expected_external_ids
+            ),
+            "feature_audit_decision_counts": dict(sorted(decision_counts.items())),
+            "candidate_feature_status": candidate_status,
+            "feature_passes_current_review_controls": (
+                feature_passes_current_review_controls
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision_surface_changed": True,
+            "primary_blocker": primary_blocker,
+            "production_blockers": [
+                "protein_substrate_feature_positive_coverage_gap",
+                "external_hard_negative_reaudit_not_scored",
+                "threshold_not_calibrated_against_negative_controls",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact tightens the chain/ligand ePK acceptor feature "
+                "to protein-substrate non-catalytic-chain acceptor context only. "
+                "It deliberately excludes ligand-analog rescue evidence and must "
+                "fail closed unless positive coverage and controls both pass."
+            ),
+            "next_actions": [
+                "resolve whether ligand-analog acceptor evidence can ever become production-admissible",
+                "seek another protein-substrate ePK positive or a text-free analog policy before scorer calibration",
+                "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("family_id") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The protein-substrate acceptor candidate is a stricter "
+                "review-only negative result and is not production ePK scoring "
+                "evidence."
+            )
+        ],
+    }
+
+
+def build_epk_ligand_analog_policy_blocker_decision(
+    *,
+    epk_protein_substrate_acceptor_candidate_audit: dict[str, Any],
+    epk_chain_ligand_acceptor_disambiguation_audit: dict[str, Any],
+    epk_m_csa640_alternate_gamma_geometry_review: dict[str, Any],
+) -> dict[str, Any]:
+    """Record whether ligand-analog acceptor evidence can support ePK scoring."""
+
+    protein_meta = epk_protein_substrate_acceptor_candidate_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(protein_meta, dict):
+        protein_meta = {}
+    chain_meta = epk_chain_ligand_acceptor_disambiguation_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(chain_meta, dict):
+        chain_meta = {}
+    alternate_meta = epk_m_csa640_alternate_gamma_geometry_review.get(
+        "metadata", {}
+    )
+    if not isinstance(alternate_meta, dict):
+        alternate_meta = {}
+
+    target_fingerprint_id = str(
+        protein_meta.get("target_fingerprint_id")
+        or chain_meta.get("target_fingerprint_id")
+        or alternate_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    chain_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_chain_ligand_acceptor_disambiguation_audit.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    alternate_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_m_csa640_alternate_gamma_geometry_review.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    rows: list[dict[str, Any]] = []
+    for source_row in epk_protein_substrate_acceptor_candidate_audit.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        if (
+            source_row.get("feature_audit_decision")
+            != "positive_ligand_analog_only_miss_blocks_production_candidate"
+        ):
+            continue
+        entry_id = str(source_row.get("entry_id") or "")
+        chain_row = chain_rows_by_entry.get(entry_id, {})
+        alternate_row = alternate_rows_by_entry.get(entry_id, {})
+        production_admissible = False
+        decision = "do_not_use_ligand_analog_as_production_acceptor_evidence"
+        blockers = [
+            "ligand_analog_policy_not_pre_registered",
+            "analog_context_not_generalized_against_external_epk_like_controls",
+            "external_hard_negative_reaudit_not_real_scorer",
+            "threshold_not_calibrated_against_negative_controls",
+        ]
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "pdb_id": source_row.get("pdb_id") or alternate_row.get("pdb_id"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only", True)
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "chain_ligand_feature_hit": bool(
+                    chain_row.get("candidate_feature_hit")
+                ),
+                "protein_substrate_feature_hit": bool(
+                    source_row.get("candidate_feature_hit")
+                ),
+                "ligand_analog_acceptor": bool(
+                    source_row.get("ligand_analog_acceptor")
+                    or chain_row.get("ligand_analog_acceptor")
+                    or alternate_row.get("acceptor_like_ligand_present")
+                ),
+                "acceptor_ligand_code": alternate_row.get("acceptor_ligand_code"),
+                "gamma_to_acceptor_distance_angstrom": (
+                    alternate_row.get("gamma_to_acceptor_distance_angstrom")
+                    or source_row.get(
+                        "nearest_gamma_to_candidate_acceptor_distance_angstrom"
+                    )
+                ),
+                "alternate_gamma_geometry_review_status": alternate_row.get(
+                    "alternate_gamma_geometry_review_status"
+                ),
+                "ligand_analog_policy_decision": decision,
+                "ligand_analog_evidence_admissible_for_production_scoring": (
+                    production_admissible
+                ),
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    ligand_analog_dependency_count = len(rows)
+    production_admissible_count = sum(
+        1
+        for row in rows
+        if row.get("ligand_analog_evidence_admissible_for_production_scoring")
+    )
+    policy_decision = (
+        "do_not_use_ligand_analog_as_production_acceptor_evidence"
+        if ligand_analog_dependency_count
+        else "no_ligand_analog_dependency_detected"
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_ligand_analog_policy_blocker_decision",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_protein_substrate_acceptor_candidate_audit_method": (
+                protein_meta.get("method")
+            ),
+            "source_epk_chain_ligand_acceptor_disambiguation_audit_method": (
+                chain_meta.get("method")
+            ),
+            "source_epk_m_csa640_alternate_gamma_geometry_review_method": (
+                alternate_meta.get("method")
+            ),
+            "ligand_analog_dependency_count": ligand_analog_dependency_count,
+            "ligand_analog_dependency_entry_ids": [
+                row.get("entry_id") for row in rows
+            ],
+            "ligand_analog_production_admissible_count": production_admissible_count,
+            "ligand_analog_policy_decision": policy_decision,
+            "ligand_analog_policy_status": (
+                "blocked_review_only"
+                if ligand_analog_dependency_count
+                else "not_applicable_review_only"
+            ),
+            "protein_substrate_positive_coverage_gap": bool(
+                ligand_analog_dependency_count
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact records the current policy decision for ePK "
+                "ligand-analog acceptor evidence. Ligand analogs stay review-only "
+                "and cannot rescue production positive coverage until a future "
+                "pre-registered policy and scored re-audit exist."
+            ),
+            "next_actions": [
+                "source another ePK protein-substrate positive or pre-register a ligand-analog admissibility policy",
+                "do not use m_csa:640 ligand-analog evidence as production scoring support",
+                "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "warnings": [
+            (
+                "Ligand-analog acceptor context is review-only policy evidence, "
+                "not production ePK scoring evidence."
+            )
+        ],
+    }
+
+
+def build_epk_protein_substrate_positive_source_triage(
+    *,
+    active_learning_queue: dict[str, Any],
+    geometry_features: dict[str, Any],
+    geometry_retrieval: dict[str, Any],
+    epk_positive_fingerprint_readiness_packet: dict[str, Any],
+    epk_protein_substrate_acceptor_candidate_audit: dict[str, Any],
+    max_rows: int = 10,
+) -> dict[str, Any]:
+    """Triage additional review-only ePK rows for protein-substrate coverage."""
+
+    queue_meta = active_learning_queue.get("metadata", {})
+    if not isinstance(queue_meta, dict):
+        queue_meta = {}
+    geometry_meta = geometry_features.get("metadata", {})
+    if not isinstance(geometry_meta, dict):
+        geometry_meta = {}
+    retrieval_meta = geometry_retrieval.get("metadata", {})
+    if not isinstance(retrieval_meta, dict):
+        retrieval_meta = {}
+    readiness_meta = epk_positive_fingerprint_readiness_packet.get(
+        "metadata", {}
+    )
+    if not isinstance(readiness_meta, dict):
+        readiness_meta = {}
+    protein_meta = epk_protein_substrate_acceptor_candidate_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(protein_meta, dict):
+        protein_meta = {}
+
+    target_fingerprint_id = str(
+        readiness_meta.get("target_fingerprint_id")
+        or protein_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    known_epk_entry_ids = {
+        str(row.get("entry_id"))
+        for row in epk_positive_fingerprint_readiness_packet.get("rows", [])
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    known_epk_entry_ids.update(
+        str(row.get("entry_id"))
+        for row in epk_protein_substrate_acceptor_candidate_audit.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+        and row.get("row_type") == "current_epk_positive_prototype"
+        and row.get("entry_id")
+    )
+
+    geometry_by_entry = {
+        str(entry.get("entry_id")): entry
+        for entry in geometry_features.get("entries", []) or []
+        if isinstance(entry, dict) and entry.get("entry_id")
+    }
+    retrieval_by_entry = {
+        str(result.get("entry_id")): result
+        for result in geometry_retrieval.get("results", []) or []
+        if isinstance(result, dict) and result.get("entry_id")
+    }
+
+    nucleotide_codes = {"ATP", "ANP", "DTP", "ACP", "ADP", "AMP", "DGP"}
+    gamma_capable_codes = {"ATP", "ANP", "DTP", "ACP"}
+
+    def _rank_value(row: dict[str, Any]) -> tuple[int, float]:
+        rank = row.get("rank")
+        try:
+            rank_int = int(rank)
+        except (TypeError, ValueError):
+            rank_int = 1_000_000
+        try:
+            review_score = -float(row.get("review_score") or 0.0)
+        except (TypeError, ValueError):
+            review_score = 0.0
+        return rank_int, review_score
+
+    candidate_queue_rows = [
+        row
+        for row in active_learning_queue.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("atp_phosphoryl_transfer_family_id") == "epk"
+        and str(row.get("entry_id") or "") not in known_epk_entry_ids
+    ]
+    candidate_queue_rows.sort(key=_rank_value)
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    for queue_row in candidate_queue_rows[: max(0, int(max_rows))]:
+        entry_id = str(queue_row.get("entry_id") or "")
+        geometry_row = geometry_by_entry.get(entry_id, {})
+        retrieval_row = retrieval_by_entry.get(entry_id, {})
+        ligand_context = geometry_row.get("ligand_context", {})
+        if not isinstance(ligand_context, dict):
+            ligand_context = {}
+        ligand_codes = _sorted_strings(ligand_context.get("ligand_codes", []))
+        structure_ligand_codes = _sorted_strings(
+            ligand_context.get("structure_ligand_codes", [])
+        )
+        cofactor_families = _sorted_strings(
+            ligand_context.get("cofactor_families", [])
+        )
+        all_ligand_codes = set(ligand_codes) | set(structure_ligand_codes)
+        has_local_nucleotide = bool(set(ligand_codes) & nucleotide_codes)
+        has_gamma_capable_local_nucleotide = bool(
+            set(ligand_codes) & gamma_capable_codes
+        )
+        has_product_state_nucleotide = bool(
+            "ADP" in set(ligand_codes) and not has_gamma_capable_local_nucleotide
+        )
+        has_local_metal = "metal_ion" in cofactor_families
+        snippets = queue_row.get("mechanism_text_snippets", []) or []
+        snippets_text = " ".join(str(snippet).lower() for snippet in snippets)
+        protein_substrate_review_context = any(
+            token in snippets_text
+            for token in ["protein", "serine", "threonine", "tyrosine", "ser "]
+        )
+        top_fingerprints = retrieval_row.get("top_fingerprints", [])
+        top1 = top_fingerprints[0] if top_fingerprints else {}
+        if not isinstance(top1, dict):
+            top1 = {}
+
+        if has_gamma_capable_local_nucleotide and has_local_metal:
+            triage_decision = (
+                "candidate_needs_acceptor_geometry_review_before_measurement"
+            )
+            priority_bucket = "highest_existing_gamma_metal_context"
+        elif has_product_state_nucleotide and has_local_metal:
+            triage_decision = "product_state_atp_repair_candidate_review_only"
+            priority_bucket = "first_alternate_atp_state_repair_target"
+        elif all_ligand_codes:
+            triage_decision = "selected_structure_ligand_axis_missing_review_only"
+            priority_bucket = "needs_active_state_ligand_source"
+        else:
+            triage_decision = "selected_structure_no_ligand_axis_review_only"
+            priority_bucket = "needs_structure_or_ligand_source"
+        measurement_ready = False
+        decision_counts[triage_decision] += 1
+
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": queue_row.get("entry_name"),
+                "rank": queue_row.get("rank"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "text_free_predictive_use_ready": False,
+                "review_context_only_used_for_sourcing": True,
+                "mechanism_text_snippets": snippets,
+                "mechanism_text_used_for_sourcing_only": bool(snippets),
+                "protein_substrate_review_context": protein_substrate_review_context,
+                "geometry_status": geometry_row.get("status"),
+                "pdb_id": geometry_row.get("pdb_id"),
+                "resolved_residue_count": geometry_row.get("resolved_residue_count"),
+                "local_ligand_codes": ligand_codes,
+                "structure_ligand_codes": structure_ligand_codes,
+                "local_cofactor_families": cofactor_families,
+                "has_local_nucleotide": has_local_nucleotide,
+                "has_gamma_capable_local_nucleotide": (
+                    has_gamma_capable_local_nucleotide
+                ),
+                "has_product_state_nucleotide": has_product_state_nucleotide,
+                "has_local_metal": has_local_metal,
+                "top1_fingerprint_id": top1.get("fingerprint_id")
+                or queue_row.get("top1_fingerprint_id"),
+                "top1_score": top1.get("score"),
+                "top1_counterevidence_reasons": top1.get(
+                    "counterevidence_reasons",
+                    [],
+                ),
+                "triage_decision": triage_decision,
+                "priority_bucket": priority_bucket,
+                "measurement_ready": measurement_ready,
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "not_in_current_epk_readiness_packet",
+                    "active_state_gamma_geometry_not_measured",
+                    "acceptor_identity_not_reviewed",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ],
+            }
+        )
+
+    product_state_candidates = [
+        row
+        for row in rows
+        if row.get("triage_decision")
+        == "product_state_atp_repair_candidate_review_only"
+    ]
+    measurement_ready_count = sum(1 for row in rows if row.get("measurement_ready"))
+    return {
+        "metadata": {
+            "method": "epk_protein_substrate_positive_source_triage",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_active_learning_queue_method": queue_meta.get("method"),
+            "source_geometry_features_artifact": geometry_meta.get("artifact")
+            or geometry_meta.get("method"),
+            "source_geometry_retrieval_method": retrieval_meta.get("method"),
+            "source_epk_positive_fingerprint_readiness_packet_method": (
+                readiness_meta.get("method")
+            ),
+            "source_epk_protein_substrate_acceptor_candidate_audit_method": (
+                protein_meta.get("method")
+            ),
+            "known_epk_readiness_entry_ids": sorted(
+                known_epk_entry_ids, key=_entry_id_sort_key
+            ),
+            "candidate_row_count": len(rows),
+            "measurement_ready_candidate_count": measurement_ready_count,
+            "product_state_repair_candidate_count": len(product_state_candidates),
+            "product_state_repair_candidate_entry_ids": [
+                row.get("entry_id") for row in product_state_candidates
+            ],
+            "triage_decision_counts": dict(sorted(decision_counts.items())),
+            "recommended_next_entry_id": (
+                product_state_candidates[0].get("entry_id")
+                if product_state_candidates
+                else (rows[0].get("entry_id") if rows else None)
+            ),
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact triages additional active-learning ePK-family rows "
+                "only as source candidates for the protein-substrate coverage gap. "
+                "Mechanism text is review context for sourcing, not predictive "
+                "scoring evidence."
+            ),
+            "next_actions": [
+                "review the product-state ADP/Mg candidate for alternate ATP-state gamma geometry first",
+                "keep all source-triage rows non-countable until active-site geometry and gates pass",
+                "do not use mechanism text as predictive ePK scoring evidence",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("priority_bucket") or ""),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+            ),
+        ),
+        "warnings": [
+            (
+                "Source triage rows are not ePK labels, scores, or held-out "
+                "performance evidence."
+            )
+        ],
+    }
+
+
+def build_epk_m_csa760_atp_state_repair_scan(
+    *,
+    epk_protein_substrate_positive_source_triage: dict[str, Any],
+    review_debt_remediation: dict[str, Any],
+    entry_id: str = "m_csa:760",
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Scan the m_csa:760 alternate structures for combined ATP/substrate context."""
+
+    triage_meta = epk_protein_substrate_positive_source_triage.get("metadata", {})
+    if not isinstance(triage_meta, dict):
+        triage_meta = {}
+    remediation_meta = review_debt_remediation.get("metadata", {})
+    if not isinstance(remediation_meta, dict):
+        remediation_meta = {}
+    target_fingerprint_id = str(
+        triage_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+
+    triage_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_protein_substrate_positive_source_triage.get("rows", [])
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    remediation_by_entry = {
+        str(row.get("entry_id")): row
+        for row in review_debt_remediation.get("rows", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    triage_row = triage_by_entry.get(entry_id, {})
+    remediation_row = remediation_by_entry.get(entry_id, {})
+
+    selected_pdb_id = str(
+        remediation_row.get("selected_pdb_id")
+        or triage_row.get("pdb_id")
+        or ""
+    ).upper()
+    candidate_pdb_ids = _sorted_strings(
+        remediation_row.get("candidate_pdb_structure_ids", [])
+    )
+    if selected_pdb_id and selected_pdb_id not in candidate_pdb_ids:
+        candidate_pdb_ids = [selected_pdb_id, *candidate_pdb_ids]
+    if not candidate_pdb_ids and triage_row.get("pdb_id"):
+        candidate_pdb_ids = [str(triage_row.get("pdb_id")).upper()]
+
+    residue_positions_by_pdb = {
+        str(pdb_id).upper(): _review_debt_normalized_residue_positions(positions)
+        for pdb_id, positions in (
+            remediation_row.get("candidate_pdb_residue_positions", {}) or {}
+        ).items()
+        if isinstance(positions, list)
+    }
+    substrate_acceptor_hint = _epk_substrate_acceptor_hint_from_text(
+        triage_row.get("mechanism_text_snippets", [])
+    )
+    gamma_capable_codes = {"ACP", "ANP", "ATP", "DTP"}
+    nucleotide_codes = gamma_capable_codes | {"ADP", "AMP", "DGP"}
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    for pdb_id in candidate_pdb_ids:
+        pdb_id_upper = str(pdb_id).upper()
+        row_base: dict[str, Any] = {
+            "entry_id": entry_id,
+            "entry_name": triage_row.get("entry_name")
+            or remediation_row.get("entry_name"),
+            "pdb_id": pdb_id_upper,
+            "is_selected_structure": pdb_id_upper == selected_pdb_id,
+            "target_fingerprint_id": target_fingerprint_id,
+            "review_only": True,
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "substrate_acceptor_hint": substrate_acceptor_hint,
+            "mechanism_text_used_for_review_context_only": bool(
+                substrate_acceptor_hint
+            ),
+        }
+        cif_text = cif_text_by_pdb.get(pdb_id_upper)
+        fetch_status = "provided_cif_text" if cif_text is not None else "fetched_rcsb_cif"
+        try:
+            if cif_text is None:
+                cif_text = cif_fetcher(pdb_id_upper)
+            atoms = parse_atom_site_loop(cif_text)
+        except Exception as exc:
+            decision = "structure_fetch_failed_review_only"
+            decision_counts[decision] += 1
+            rows.append(
+                {
+                    **row_base,
+                    "fetch_status": "failed",
+                    "fetch_error": str(exc),
+                    "structure_ligand_codes": [],
+                    "local_ligand_codes": [],
+                    "local_cofactor_families": [],
+                    "residue_position_source": "none",
+                    "local_resolved_residue_count": 0,
+                    "has_local_gamma_capable_nucleotide": False,
+                    "has_local_product_state_nucleotide": False,
+                    "has_local_metal": False,
+                    "has_non_catalytic_substrate_acceptor_hint": False,
+                    "non_catalytic_substrate_acceptor_hint_chains": [],
+                    "measurement_ready": False,
+                    "repair_scan_decision": decision,
+                    "remaining_blockers": ["structure_fetch_failed"],
+                }
+            )
+            continue
+
+        inventory = structure_ligand_inventory_from_atoms(atoms)
+        explicit_positions = residue_positions_by_pdb.get(pdb_id_upper, [])
+        remap_result = {"positions": [], "basis": None, "warnings": []}
+        residue_position_source = "none"
+        active_positions = explicit_positions
+        if explicit_positions:
+            residue_position_source = "mcsa_explicit"
+        elif _review_debt_reference_residue_positions(
+            residue_positions_by_pdb, selected_pdb_id
+        ):
+            remap_result = _review_debt_infer_residue_positions(
+                atoms,
+                residue_positions_by_pdb,
+                selected_pdb_id=selected_pdb_id,
+            )
+            active_positions = _review_debt_normalized_residue_positions(
+                remap_result.get("positions", []) or []
+            )
+            if active_positions:
+                residue_position_source = "selected_position_remap"
+
+        local_positions_by_pdb = dict(residue_positions_by_pdb)
+        if active_positions:
+            local_positions_by_pdb[pdb_id_upper] = active_positions
+        local_context = _review_debt_local_ligand_context(
+            atoms,
+            pdb_id_upper,
+            local_positions_by_pdb,
+        )
+        local_ligand_codes = _sorted_strings(local_context.get("ligand_codes", []))
+        local_cofactor_families = _sorted_strings(
+            local_context.get("cofactor_families", [])
+        )
+        catalytic_chains = _sorted_strings(
+            position.get("chain_name") for position in active_positions
+        )
+        acceptor_chains = _epk_substrate_acceptor_hint_chains(
+            atoms,
+            substrate_acceptor_hint,
+            catalytic_chains=set(catalytic_chains),
+        )
+        has_gamma = bool(set(local_ligand_codes) & gamma_capable_codes)
+        has_product_state = bool(
+            "ADP" in set(local_ligand_codes) and not has_gamma
+        )
+        has_local_nucleotide = bool(set(local_ligand_codes) & nucleotide_codes)
+        has_metal = "metal_ion" in set(local_cofactor_families)
+        has_acceptor = bool(acceptor_chains)
+        measurement_ready = bool(
+            has_gamma
+            and has_metal
+            and has_acceptor
+            and int(local_context.get("resolved_residue_count", 0) or 0) >= 2
+        )
+        if measurement_ready:
+            decision = "measurement_ready_review_only"
+            blockers: list[str] = [
+                "distance_measurement_not_yet_materialized",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        elif has_gamma and has_metal:
+            decision = "atp_metal_state_without_protein_substrate_acceptor_review_only"
+            blockers = [
+                "protein_substrate_acceptor_not_resolved_in_atp_state_structure",
+                "gamma_to_acceptor_distance_not_measurable",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        elif has_product_state and has_acceptor:
+            decision = "substrate_acceptor_product_state_no_gamma_review_only"
+            blockers = [
+                "product_state_adp_lacks_gamma_phosphate",
+                "active_state_gamma_geometry_not_measurable",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        elif has_product_state:
+            decision = "product_state_no_gamma_review_only"
+            blockers = [
+                "product_state_adp_lacks_gamma_phosphate",
+                "protein_substrate_acceptor_not_resolved",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        elif has_acceptor:
+            decision = "substrate_acceptor_without_local_atp_metal_review_only"
+            blockers = [
+                "local_atp_metal_context_missing",
+                "gamma_to_acceptor_distance_not_measurable",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        else:
+            decision = "no_combined_atp_substrate_evidence_review_only"
+            blockers = [
+                "combined_atp_metal_and_protein_substrate_context_missing",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        decision_counts[decision] += 1
+
+        rows.append(
+            {
+                **row_base,
+                "fetch_status": fetch_status,
+                "structure_ligand_codes": _sorted_strings(
+                    inventory.get("ligand_codes", [])
+                ),
+                "structure_cofactor_families": _sorted_strings(
+                    inventory.get("cofactor_families", [])
+                ),
+                "local_ligand_codes": local_ligand_codes,
+                "local_cofactor_families": local_cofactor_families,
+                "local_resolved_residue_count": local_context.get(
+                    "resolved_residue_count", 0
+                ),
+                "residue_position_source": residue_position_source,
+                "residue_position_remap_basis": remap_result.get("basis"),
+                "residue_position_remap_warnings": remap_result.get("warnings", []),
+                "catalytic_residue_chains": catalytic_chains,
+                "has_local_nucleotide": has_local_nucleotide,
+                "has_local_gamma_capable_nucleotide": has_gamma,
+                "has_local_product_state_nucleotide": has_product_state,
+                "has_local_metal": has_metal,
+                "has_non_catalytic_substrate_acceptor_hint": has_acceptor,
+                "non_catalytic_substrate_acceptor_hint_chains": acceptor_chains,
+                "measurement_ready": measurement_ready,
+                "repair_scan_decision": decision,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    atp_state_rows = [
+        row
+        for row in rows
+        if row.get("has_local_gamma_capable_nucleotide") and row.get("has_local_metal")
+    ]
+    acceptor_rows = [
+        row for row in rows if row.get("has_non_catalytic_substrate_acceptor_hint")
+    ]
+    combined_rows = [
+        row
+        for row in rows
+        if row.get("has_local_gamma_capable_nucleotide")
+        and row.get("has_local_metal")
+        and row.get("has_non_catalytic_substrate_acceptor_hint")
+    ]
+    measurement_ready_rows = [row for row in rows if row.get("measurement_ready")]
+    split_state_blocker = bool(atp_state_rows and acceptor_rows and not combined_rows)
+    repair_status = (
+        "measurement_ready_review_only"
+        if measurement_ready_rows
+        else "blocked_review_only_split_atp_and_substrate_context"
+        if split_state_blocker
+        else "blocked_review_only_no_combined_active_state_context"
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_m_csa760_atp_state_repair_scan",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_protein_substrate_positive_source_triage_method": (
+                triage_meta.get("method")
+            ),
+            "source_review_debt_remediation_method": remediation_meta.get("method"),
+            "entry_id": entry_id,
+            "selected_pdb_id": selected_pdb_id or None,
+            "candidate_pdb_count": len(rows),
+            "candidate_pdb_ids": [row.get("pdb_id") for row in rows],
+            "atp_metal_state_candidate_count": len(atp_state_rows),
+            "atp_metal_state_candidate_pdb_ids": [
+                row.get("pdb_id") for row in atp_state_rows
+            ],
+            "protein_substrate_acceptor_context_candidate_count": len(acceptor_rows),
+            "protein_substrate_acceptor_context_candidate_pdb_ids": [
+                row.get("pdb_id") for row in acceptor_rows
+            ],
+            "combined_atp_metal_substrate_context_candidate_count": len(
+                combined_rows
+            ),
+            "combined_atp_metal_substrate_context_candidate_pdb_ids": [
+                row.get("pdb_id") for row in combined_rows
+            ],
+            "measurement_ready_candidate_count": len(measurement_ready_rows),
+            "measurement_ready_candidate_pdb_ids": [
+                row.get("pdb_id") for row in measurement_ready_rows
+            ],
+            "split_state_blocker_detected": split_state_blocker,
+            "repair_status": repair_status,
+            "ready_to_measure_gamma_acceptor_distance": bool(measurement_ready_rows),
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "repair_scan_decision_counts": dict(sorted(decision_counts.items())),
+            "review_only_rule": (
+                "This artifact uses m_csa:760 alternate structures only to test "
+                "whether product-state ADP/Mg evidence can be repaired into a "
+                "combined ATP/Mg plus protein-substrate acceptor geometry. "
+                "Mechanism text may identify a substrate-residue hint for review "
+                "context, but no ePK score, registry edit, label import, or "
+                "held-out claim is produced."
+            ),
+            "next_actions": [
+                "do not count m_csa:760 until a combined ATP/Mg plus protein-substrate acceptor structure or pre-registered analog policy exists",
+                "if no combined m_csa:760 structure is sourced, pivot protein-substrate coverage repair to m_csa:757 or m_csa:756",
+                "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                0 if row.get("is_selected_structure") else 1,
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "m_csa:760 ATP-state repair evidence is review-only and cannot "
+                "be used as production ePK scoring evidence."
+            )
+        ],
+    }
+
+
+def _epk_substrate_acceptor_hint_from_text(snippets: Any) -> dict[str, Any] | None:
+    try:
+        text = " ".join(str(snippet) for snippet in snippets)
+    except TypeError:
+        text = str(snippets or "")
+    residue_code_by_token = {
+        "ser": "SER",
+        "serine": "SER",
+        "thr": "THR",
+        "threonine": "THR",
+        "tyr": "TYR",
+        "tyrosine": "TYR",
+    }
+    match = re.search(
+        r"\b(serine|threonine|tyrosine|ser|thr|tyr)\s+(-?\d+)\b",
+        text,
+        flags=re.IGNORECASE,
+    )
+    if not match:
+        return None
+    token = match.group(1).lower()
+    return {
+        "residue_code": residue_code_by_token[token],
+        "residue_token": match.group(1),
+        "resid": match.group(2),
+        "source": "mechanism_text_review_context",
+    }
+
+
+def _epk_substrate_acceptor_hint_chains(
+    atoms: list[dict[str, Any]],
+    substrate_acceptor_hint: dict[str, Any] | None,
+    *,
+    catalytic_chains: set[str],
+) -> list[str]:
+    if not substrate_acceptor_hint:
+        return []
+    residue_code = str(substrate_acceptor_hint.get("residue_code") or "").upper()
+    resid = str(substrate_acceptor_hint.get("resid") or "")
+    if not residue_code or not resid:
+        return []
+    chains: set[str] = set()
+    for atom in atoms:
+        if atom.get("group_PDB") != "ATOM":
+            continue
+        code = str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        if code != residue_code:
+            continue
+        residue_ids = {
+            str(value)
+            for value in [atom.get("auth_seq_id"), atom.get("label_seq_id")]
+            if value not in {None, "", ".", "?"}
+        }
+        if resid not in residue_ids:
+            continue
+        for chain in [
+            atom.get("auth_asym_id"),
+            atom.get("label_asym_id"),
+        ]:
+            if chain in {None, "", ".", "?"}:
+                continue
+            chain_text = str(chain)
+            if chain_text not in catalytic_chains:
+                chains.add(chain_text)
+    return sorted(chains)
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -17214,6 +18348,9 @@ def build_epk_precount_gate_status(
     epk_chain_ligand_acceptor_disambiguation_audit: dict[str, Any] | None = None,
     epk_chain_ligand_external_hard_negative_feature_screen: dict[str, Any]
     | None = None,
+    epk_protein_substrate_acceptor_candidate_audit: dict[str, Any] | None = None,
+    epk_ligand_analog_policy_blocker_decision: dict[str, Any] | None = None,
+    epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -17520,6 +18657,27 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(chain_ligand_external_meta, dict):
         chain_ligand_external_meta = {}
+    protein_substrate_acceptor_meta = (
+        epk_protein_substrate_acceptor_candidate_audit.get("metadata", {})
+        if isinstance(epk_protein_substrate_acceptor_candidate_audit, dict)
+        else {}
+    )
+    if not isinstance(protein_substrate_acceptor_meta, dict):
+        protein_substrate_acceptor_meta = {}
+    ligand_analog_policy_meta = (
+        epk_ligand_analog_policy_blocker_decision.get("metadata", {})
+        if isinstance(epk_ligand_analog_policy_blocker_decision, dict)
+        else {}
+    )
+    if not isinstance(ligand_analog_policy_meta, dict):
+        ligand_analog_policy_meta = {}
+    m_csa760_repair_meta = (
+        epk_m_csa760_atp_state_repair_scan.get("metadata", {})
+        if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
+        else {}
+    )
+    if not isinstance(m_csa760_repair_meta, dict):
+        m_csa760_repair_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -17882,6 +19040,190 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if protein_substrate_acceptor_meta:
+        gate_checks.append(
+            {
+                "gate_id": "protein_substrate_acceptor_candidate_audit",
+                "passed": bool(
+                    protein_substrate_acceptor_meta.get(
+                        "feature_passes_current_review_controls"
+                    )
+                )
+                and int(
+                    protein_substrate_acceptor_meta.get(
+                        "current_positive_feature_miss_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    protein_substrate_acceptor_meta.get(
+                        "negative_control_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": protein_substrate_acceptor_meta.get("method"),
+                    "candidate_feature_id": protein_substrate_acceptor_meta.get(
+                        "candidate_feature_id"
+                    ),
+                    "candidate_feature_status": (
+                        protein_substrate_acceptor_meta.get(
+                            "candidate_feature_status"
+                        )
+                    ),
+                    "current_positive_feature_hit_count": (
+                        protein_substrate_acceptor_meta.get(
+                            "current_positive_feature_hit_count"
+                        )
+                    ),
+                    "current_positive_feature_miss_count": (
+                        protein_substrate_acceptor_meta.get(
+                            "current_positive_feature_miss_count"
+                        )
+                    ),
+                    "ligand_analog_only_positive_miss_count": (
+                        protein_substrate_acceptor_meta.get(
+                            "ligand_analog_only_positive_miss_count"
+                        )
+                    ),
+                    "ligand_analog_only_positive_miss_entry_ids": (
+                        protein_substrate_acceptor_meta.get(
+                            "ligand_analog_only_positive_miss_entry_ids",
+                            [],
+                        )
+                    ),
+                    "negative_control_false_hit_count": (
+                        protein_substrate_acceptor_meta.get(
+                            "negative_control_false_hit_count"
+                        )
+                    ),
+                    "external_hard_negative_feature_abstention_count": (
+                        protein_substrate_acceptor_meta.get(
+                            "external_hard_negative_feature_abstention_count"
+                        )
+                    ),
+                    "feature_admissible_for_production_scoring": bool(
+                        protein_substrate_acceptor_meta.get(
+                            "feature_admissible_for_production_scoring"
+                        )
+                    ),
+                    "primary_blocker": protein_substrate_acceptor_meta.get(
+                        "primary_blocker"
+                    ),
+                },
+            }
+        )
+    if ligand_analog_policy_meta:
+        gate_checks.append(
+            {
+                "gate_id": "ligand_analog_policy_blocker_decision",
+                "passed": bool(ligand_analog_policy_meta.get("method"))
+                and int(
+                    ligand_analog_policy_meta.get(
+                        "ligand_analog_dependency_count"
+                    )
+                    or 0
+                )
+                >= 0
+                and not bool(
+                    ligand_analog_policy_meta.get(
+                        "feature_admissible_for_production_scoring"
+                    )
+                ),
+                "evidence": {
+                    "source_method": ligand_analog_policy_meta.get("method"),
+                    "ligand_analog_policy_decision": (
+                        ligand_analog_policy_meta.get(
+                            "ligand_analog_policy_decision"
+                        )
+                    ),
+                    "ligand_analog_dependency_count": (
+                        ligand_analog_policy_meta.get(
+                            "ligand_analog_dependency_count"
+                        )
+                    ),
+                    "ligand_analog_dependency_entry_ids": (
+                        ligand_analog_policy_meta.get(
+                            "ligand_analog_dependency_entry_ids",
+                            [],
+                        )
+                    ),
+                    "ligand_analog_production_admissible_count": (
+                        ligand_analog_policy_meta.get(
+                            "ligand_analog_production_admissible_count"
+                        )
+                    ),
+                    "protein_substrate_positive_coverage_gap": bool(
+                        ligand_analog_policy_meta.get(
+                            "protein_substrate_positive_coverage_gap"
+                        )
+                    ),
+                    "feature_admissible_for_production_scoring": bool(
+                        ligand_analog_policy_meta.get(
+                            "feature_admissible_for_production_scoring"
+                        )
+                    ),
+                },
+            }
+        )
+    if m_csa760_repair_meta:
+        gate_checks.append(
+            {
+                "gate_id": "m_csa760_atp_state_repair_scan",
+                "passed": bool(
+                    m_csa760_repair_meta.get(
+                        "ready_to_measure_gamma_acceptor_distance"
+                    )
+                )
+                and int(
+                    m_csa760_repair_meta.get("measurement_ready_candidate_count")
+                    or 0
+                )
+                > 0,
+                "evidence": {
+                    "source_method": m_csa760_repair_meta.get("method"),
+                    "entry_id": m_csa760_repair_meta.get("entry_id"),
+                    "repair_status": m_csa760_repair_meta.get("repair_status"),
+                    "atp_metal_state_candidate_count": (
+                        m_csa760_repair_meta.get(
+                            "atp_metal_state_candidate_count"
+                        )
+                    ),
+                    "atp_metal_state_candidate_pdb_ids": (
+                        m_csa760_repair_meta.get(
+                            "atp_metal_state_candidate_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "protein_substrate_acceptor_context_candidate_count": (
+                        m_csa760_repair_meta.get(
+                            "protein_substrate_acceptor_context_candidate_count"
+                        )
+                    ),
+                    "protein_substrate_acceptor_context_candidate_pdb_ids": (
+                        m_csa760_repair_meta.get(
+                            "protein_substrate_acceptor_context_candidate_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "combined_atp_metal_substrate_context_candidate_count": (
+                        m_csa760_repair_meta.get(
+                            "combined_atp_metal_substrate_context_candidate_count"
+                        )
+                    ),
+                    "measurement_ready_candidate_count": (
+                        m_csa760_repair_meta.get(
+                            "measurement_ready_candidate_count"
+                        )
+                    ),
+                    "split_state_blocker_detected": bool(
+                        m_csa760_repair_meta.get("split_state_blocker_detected")
+                    ),
+                },
+            }
+        )
     if negative_control_meta:
         gate_checks.append(
             {
@@ -18167,6 +19509,38 @@ def build_epk_precount_gate_status(
             0,
             "calibrate and generalize chain/ligand acceptor disambiguation before production scoring",
         )
+    if protein_substrate_acceptor_meta.get("method"):
+        if int(
+            protein_substrate_acceptor_meta.get(
+                "ligand_analog_only_positive_miss_count"
+            )
+            or 0
+        ):
+            next_actions.insert(
+                0,
+                "resolve ligand-analog-only ePK positive coverage before production scorer calibration",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "use protein-substrate acceptor candidate only after scored external re-audit and threshold calibration",
+            )
+    if ligand_analog_policy_meta.get("method"):
+        next_actions.insert(
+            0,
+            "source another ePK protein-substrate positive or pre-register a ligand-analog admissibility policy",
+        )
+    if m_csa760_repair_meta.get("method"):
+        if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
+            next_actions.insert(
+                0,
+                "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
+            )
+        elif int(m_csa760_repair_meta.get("measurement_ready_candidate_count") or 0):
+            next_actions.insert(
+                0,
+                "measure m_csa:760 gamma-to-protein-substrate acceptor distances before any ePK scoring claim",
+            )
     elif text_free_acceptor_meta.get("method"):
         next_actions.insert(
             0,
@@ -18747,6 +20121,101 @@ def build_epk_precount_gate_status(
                 chain_ligand_external_meta.get(
                     "review_only_external_hard_negative_feature_non_abstention_count"
                 )
+            ),
+            "source_epk_protein_substrate_acceptor_candidate_audit_method": (
+                protein_substrate_acceptor_meta.get("method")
+            ),
+            "protein_substrate_acceptor_candidate_feature_id": (
+                protein_substrate_acceptor_meta.get("candidate_feature_id")
+            ),
+            "protein_substrate_acceptor_candidate_feature_status": (
+                protein_substrate_acceptor_meta.get("candidate_feature_status")
+            ),
+            "protein_substrate_acceptor_positive_hit_count": (
+                protein_substrate_acceptor_meta.get(
+                    "current_positive_feature_hit_count"
+                )
+            ),
+            "protein_substrate_acceptor_positive_miss_count": (
+                protein_substrate_acceptor_meta.get(
+                    "current_positive_feature_miss_count"
+                )
+            ),
+            "protein_substrate_acceptor_ligand_analog_only_miss_count": (
+                protein_substrate_acceptor_meta.get(
+                    "ligand_analog_only_positive_miss_count"
+                )
+            ),
+            "protein_substrate_acceptor_ligand_analog_only_miss_entry_ids": (
+                protein_substrate_acceptor_meta.get(
+                    "ligand_analog_only_positive_miss_entry_ids",
+                    [],
+                )
+            ),
+            "protein_substrate_acceptor_negative_control_false_hit_count": (
+                protein_substrate_acceptor_meta.get(
+                    "negative_control_false_hit_count"
+                )
+            ),
+            "protein_substrate_acceptor_external_hard_negative_abstention_count": (
+                protein_substrate_acceptor_meta.get(
+                    "external_hard_negative_feature_abstention_count"
+                )
+            ),
+            "protein_substrate_acceptor_feature_passes_current_review_controls": bool(
+                protein_substrate_acceptor_meta.get(
+                    "feature_passes_current_review_controls"
+                )
+            ),
+            "protein_substrate_acceptor_feature_admissible_for_production_scoring": bool(
+                protein_substrate_acceptor_meta.get(
+                    "feature_admissible_for_production_scoring"
+                )
+            ),
+            "source_epk_ligand_analog_policy_blocker_decision_method": (
+                ligand_analog_policy_meta.get("method")
+            ),
+            "ligand_analog_policy_decision": (
+                ligand_analog_policy_meta.get("ligand_analog_policy_decision")
+            ),
+            "ligand_analog_dependency_count": (
+                ligand_analog_policy_meta.get("ligand_analog_dependency_count")
+            ),
+            "ligand_analog_dependency_entry_ids": (
+                ligand_analog_policy_meta.get(
+                    "ligand_analog_dependency_entry_ids",
+                    [],
+                )
+            ),
+            "ligand_analog_production_admissible_count": (
+                ligand_analog_policy_meta.get(
+                    "ligand_analog_production_admissible_count"
+                )
+            ),
+            "source_epk_m_csa760_atp_state_repair_scan_method": (
+                m_csa760_repair_meta.get("method")
+            ),
+            "m_csa760_repair_status": (
+                m_csa760_repair_meta.get("repair_status")
+            ),
+            "m_csa760_atp_metal_state_candidate_count": (
+                m_csa760_repair_meta.get("atp_metal_state_candidate_count")
+            ),
+            "m_csa760_protein_substrate_acceptor_context_candidate_count": (
+                m_csa760_repair_meta.get(
+                    "protein_substrate_acceptor_context_candidate_count"
+                )
+            ),
+            "m_csa760_combined_atp_metal_substrate_context_candidate_count": (
+                m_csa760_repair_meta.get(
+                    "combined_atp_metal_substrate_context_candidate_count"
+                )
+            ),
+            "m_csa760_measurement_ready_candidate_count": (
+                m_csa760_repair_meta.get("measurement_ready_candidate_count")
+            ),
+            "m_csa760_split_state_blocker_detected": bool(
+                m_csa760_repair_meta.get("split_state_blocker_detected")
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

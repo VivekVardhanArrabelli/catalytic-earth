@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "candidate_row_count": 3,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "known_epk_readiness_entry_ids": [
+      "m_csa:35",
+      "m_csa:246",
+      "m_csa:282",
+      "m_csa:640",
+      "m_csa:662"
+    ],
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_protein_substrate_positive_source_triage",
+    "next_actions": [
+      "review the product-state ADP/Mg candidate for alternate ATP-state gamma geometry first",
+      "keep all source-triage rows non-countable until active-site geometry and gates pass",
+      "do not use mechanism text as predictive ePK scoring evidence"
+    ],
+    "product_state_repair_candidate_count": 1,
+    "product_state_repair_candidate_entry_ids": [
+      "m_csa:760"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "recommended_next_entry_id": "m_csa:760",
+    "review_only": true,
+    "review_only_rule": "This artifact triages additional active-learning ePK-family rows only as source candidates for the protein-substrate coverage gap. Mechanism text is review context for sourcing, not predictive scoring evidence.",
+    "source_active_learning_queue_method": "active_learning_label_review_queue",
+    "source_epk_positive_fingerprint_readiness_packet_method": "epk_positive_fingerprint_readiness_packet",
+    "source_epk_protein_substrate_acceptor_candidate_audit_method": "epk_protein_substrate_acceptor_candidate_audit",
+    "source_geometry_features_artifact": "active_site_geometry_features",
+    "source_geometry_retrieval_method": "geometry_aware_seed_fingerprint_retrieval",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "triage_decision_counts": {
+      "product_state_atp_repair_candidate_review_only": 1,
+      "selected_structure_ligand_axis_missing_review_only": 2
+    }
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "epk_score_computed": false,
+      "geometry_status": "ok",
+      "has_gamma_capable_local_nucleotide": false,
+      "has_local_metal": true,
+      "has_local_nucleotide": true,
+      "has_product_state_nucleotide": true,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "measurement_ready": false,
+      "mechanism_text_snippets": [
+        "The basic mechanism is the inline displacement of ADP, by nucleophilic attack of the SpoIIAA Ser 58 on the gamma-phosphate of ATP. Various residues and an Mg cofactor aid the reaction: Mg2+, bound by Asn 50 coordinates all three phosphate groups of ATP. This stabilises the transition state by red..."
+      ],
+      "mechanism_text_used_for_sourcing_only": true,
+      "pdb_id": "1L0O",
+      "priority_bucket": "first_alternate_atp_state_repair_target",
+      "protein_substrate_review_context": true,
+      "rank": 13,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "not_in_current_epk_readiness_packet",
+        "active_state_gamma_geometry_not_measured",
+        "acceptor_identity_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "resolved_residue_count": 3,
+      "review_context_only_used_for_sourcing": true,
+      "review_only": true,
+      "structure_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_predictive_use_ready": false,
+      "top1_counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3977,
+      "triage_decision": "product_state_atp_repair_candidate_review_only"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:756",
+      "entry_name": "protein kinase C",
+      "epk_score_computed": false,
+      "geometry_status": "ok",
+      "has_gamma_capable_local_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_product_state_nucleotide": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "BI1"
+      ],
+      "measurement_ready": false,
+      "mechanism_text_snippets": [
+        "Asp 369 acts as a base by abstracting a proton from the phosphoacceptor, activating it for nucleophilic attack on the gamma phosphorus atom of ATP. Asp 369 is stabilised by a hydrogen bond to its main chain carbonyl from Asn 374. The reaction goes through a pentavalent transition state which is s..."
+      ],
+      "mechanism_text_used_for_sourcing_only": true,
+      "pdb_id": "1ZRZ",
+      "priority_bucket": "needs_active_state_ligand_source",
+      "protein_substrate_review_context": false,
+      "rank": 11,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "not_in_current_epk_readiness_packet",
+        "active_state_gamma_geometry_not_measured",
+        "acceptor_identity_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "resolved_residue_count": 3,
+      "review_context_only_used_for_sourcing": true,
+      "review_only": true,
+      "structure_ligand_codes": [
+        "BI1",
+        "TPO"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_predictive_use_ready": false,
+      "top1_counterevidence_reasons": [],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3721,
+      "triage_decision": "selected_structure_ligand_axis_missing_review_only"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "geometry_status": "ok",
+      "has_gamma_capable_local_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_product_state_nucleotide": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "STU"
+      ],
+      "measurement_ready": false,
+      "mechanism_text_snippets": [
+        "Asp 166 activates the phosphoacceptor, serine causing it to act as a nucleophile and attack the gamma phosphorus of ATP, creating a pentavalent transition state, stabilised by Lys 168 and Thr202 (part of the catalytic triad along with Asp167). Once the gamma phosphoryl transfer has taken place, A..."
+      ],
+      "mechanism_text_used_for_sourcing_only": true,
+      "pdb_id": "1STC",
+      "priority_bucket": "needs_active_state_ligand_source",
+      "protein_substrate_review_context": true,
+      "rank": 12,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "not_in_current_epk_readiness_packet",
+        "active_state_gamma_geometry_not_measured",
+        "acceptor_identity_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "resolved_residue_count": 5,
+      "review_context_only_used_for_sourcing": true,
+      "review_only": true,
+      "structure_ligand_codes": [
+        "SEP",
+        "STU",
+        "TPO"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_predictive_use_ready": false,
+      "top1_counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4252,
+      "triage_decision": "selected_structure_ligand_axis_missing_review_only"
+    }
+  ],
+  "warnings": [
+    "Source triage rows are not ePK labels, scores, or held-out performance evidence."
+  ]
+}

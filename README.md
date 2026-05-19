@@ -1036,6 +1036,32 @@ three imported external hard negatives abstained. The paired
 `artifacts/v3_epk_chain_ligand_external_hard_negative_feature_screen_1025.json`
 records 0 external hard-negative non-abstentions while still forbidding clean
 held-out claims, real ePK scoring, registry edits, or label import.
+`artifacts/v3_epk_protein_substrate_acceptor_candidate_audit_1025.json` then
+tightens that feature to protein-substrate non-catalytic-chain acceptor context
+only. It keeps 2/3 current positives, blocks all 25 negative-control rows with
+0 false hits, and abstains on all three imported external hard negatives, but
+misses `m_csa:640` because that row currently depends on ligand-analog
+acceptor evidence. This is a useful negative result: a production-like ePK
+acceptor feature now needs either an admissible ligand-analog policy or another
+protein-substrate positive before scorer calibration.
+`artifacts/v3_epk_ligand_analog_policy_blocker_decision_1025.json` records
+that policy decision explicitly: ligand-analog acceptor evidence stays
+review-only and must not rescue production positive coverage for `m_csa:640`
+unless a future pre-registered analog policy and scored external re-audit exist.
+`artifacts/v3_epk_protein_substrate_positive_source_triage_1025.json` then
+looks for the next bounded repair target in the current active-learning queue.
+It finds three additional ePK-family rows outside the current readiness packet
+(`m_csa:756`, `m_csa:757`, and `m_csa:760`), marks all non-countable and not
+measurement-ready, and recommends `m_csa:760` first because its selected
+structure already has local ADP/Mg product-state context for an alternate
+ATP-state geometry search.
+`artifacts/v3_epk_m_csa760_atp_state_repair_scan_1025.json` follows that
+recommendation and tests the known alternate PDB structures. The scan finds
+two ATP/Mg structures (`1TID` and `1TIL`) with mapped catalytic residues and
+two substrate-acceptor/product-state structures (`1TH8` and `1THN`), but 0
+combined ATP/Mg plus protein-substrate acceptor contexts. `m_csa:760` is
+therefore split-state blocked, not measurement-ready, and still cannot support
+an ePK scorer or label import.
 `artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json`
 closes the older family-template review gap by downstream evidence only:
 PfkB, PfkA, and ATP-grasp templates all now have mapped and measured homolog
@@ -1047,9 +1073,10 @@ sibling alternate-control measurement surface plus NDK homolog counter-axis
 measurement and PfkB/PfkA/ATP-grasp family-specific counterevidence exist. The
 family-specific template gate now passes by downstream validation, and the
 chain/ligand feature and external feature screen pass current review controls,
-but negative-control distribution readiness, acceptor threshold calibration,
-text-free acceptor feature production admissibility, external hard-negative
-scored re-audit, and label-factory/registry extension all remain failing gates.
+but the stricter protein-substrate feature, the `m_csa:760` split-state repair
+scan, acceptor thresholding, external scored re-audit, and label-factory
+extension all remain failing gates; the negative-control distribution blocker
+also stays open.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

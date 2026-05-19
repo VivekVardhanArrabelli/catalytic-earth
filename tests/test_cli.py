@@ -3670,6 +3670,7 @@ class CliTests(unittest.TestCase):
             template_validation = root / "template_validation.json"
             chain_ligand = root / "chain_ligand.json"
             chain_external = root / "chain_external.json"
+            ligand_policy = root / "ligand_policy.json"
             out = root / "gate_status.json"
             axis.write_text(
                 json.dumps(
@@ -3834,6 +3835,26 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            ligand_policy.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_ligand_analog_policy_blocker_decision"
+                            ),
+                            "ligand_analog_policy_decision": (
+                                "do_not_use_ligand_analog_as_production_acceptor_evidence"
+                            ),
+                            "ligand_analog_dependency_count": 1,
+                            "ligand_analog_dependency_entry_ids": ["m_csa:640"],
+                            "ligand_analog_production_admissible_count": 0,
+                            "protein_substrate_positive_coverage_gap": True,
+                            "feature_admissible_for_production_scoring": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -3859,6 +3880,8 @@ class CliTests(unittest.TestCase):
                     str(chain_ligand),
                     "--epk-chain-ligand-external-hard-negative-feature-screen",
                     str(chain_external),
+                    "--epk-ligand-analog-policy-blocker-decision",
+                    str(ligand_policy),
                     "--epk-external-hard-negative-reaudit-plan",
                     str(reaudit),
                     "--out",
@@ -3911,6 +3934,11 @@ class CliTests(unittest.TestCase):
                 ]
             )
             self.assertTrue(metadata["chain_ligand_external_feature_screen_passed"])
+            self.assertEqual(
+                metadata["source_epk_ligand_analog_policy_blocker_decision_method"],
+                "epk_ligand_analog_policy_blocker_decision",
+            )
+            self.assertEqual(metadata["ligand_analog_dependency_entry_ids"], ["m_csa:640"])
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
             checks = {check["gate_id"]: check for check in status["gate_checks"]}
             self.assertTrue(checks["local_axis_prototype"]["passed"])
@@ -3927,6 +3955,7 @@ class CliTests(unittest.TestCase):
                     "chain_ligand_external_hard_negative_feature_screen"
                 ]["passed"]
             )
+            self.assertTrue(checks["ligand_analog_policy_blocker_decision"]["passed"])
 
     def test_build_epk_acceptor_identity_review_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -7115,6 +7144,595 @@ class CliTests(unittest.TestCase):
             self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
             self.assertFalse(metadata["clean_heldout_performance_claim_permitted"])
             self.assertEqual(screen["rows"][0]["review_only_feature_score"], 0.0)
+
+    def test_build_epk_protein_substrate_acceptor_candidate_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            chain_ligand = root / "chain_ligand.json"
+            out = root / "protein_substrate.json"
+            chain_ligand.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_chain_ligand_acceptor_disambiguation_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "candidate_feature_id": (
+                                "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0"
+                            ),
+                            "candidate_threshold_angstrom": 6.0,
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:35",
+                                "pdb_id": "2PHK",
+                                "candidate_feature_hit": True,
+                                "non_catalytic_chain_acceptor": True,
+                                "ligand_analog_acceptor": False,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:640",
+                                "pdb_id": "3TM0",
+                                "candidate_feature_hit": True,
+                                "non_catalytic_chain_acceptor": False,
+                                "ligand_analog_acceptor": True,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": "sibling_family_specific_negative_control",
+                                "family_id": "pfkb",
+                                "pdb_id": "1TZ6",
+                                "candidate_feature_hit": False,
+                                "non_catalytic_chain_acceptor": False,
+                                "ligand_analog_acceptor": False,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": "imported_external_hard_negative",
+                                "entry_id": "uniprot:P78549",
+                                "candidate_feature_hit": False,
+                                "text_free_inputs_only": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-protein-substrate-acceptor-candidate-audit",
+                    "--epk-chain-ligand-acceptor-disambiguation-audit",
+                    str(chain_ligand),
+                    "--imported-external-entry-ids",
+                    "uniprot:P78549",
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_protein_substrate_acceptor_candidate_audit",
+            )
+            self.assertEqual(metadata["current_positive_feature_hit_count"], 1)
+            self.assertEqual(metadata["current_positive_feature_miss_count"], 1)
+            self.assertEqual(metadata["ligand_analog_only_positive_miss_count"], 1)
+            self.assertEqual(metadata["negative_control_false_hit_count"], 0)
+            self.assertEqual(
+                metadata["external_hard_negative_feature_abstention_count"],
+                1,
+            )
+            self.assertEqual(
+                metadata["candidate_feature_status"],
+                "blocked_review_only_positive_coverage_gap",
+            )
+            self.assertFalse(metadata["feature_admissible_for_production_scoring"])
+            self.assertFalse(metadata["epk_score_computed"])
+            decisions = {row["feature_audit_decision"] for row in audit["rows"]}
+            self.assertIn(
+                "positive_protein_substrate_acceptor_hit_review_only",
+                decisions,
+            )
+            self.assertIn(
+                "positive_ligand_analog_only_miss_blocks_production_candidate",
+                decisions,
+            )
+
+    def test_build_epk_ligand_analog_policy_blocker_decision_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            protein = root / "protein.json"
+            chain_ligand = root / "chain_ligand.json"
+            alternate = root / "alternate.json"
+            out = root / "ligand_policy.json"
+            protein.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_protein_substrate_acceptor_candidate_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:640",
+                                "pdb_id": "3TM0",
+                                "candidate_feature_hit": False,
+                                "ligand_analog_acceptor": True,
+                                "feature_audit_decision": (
+                                    "positive_ligand_analog_only_miss_blocks_production_candidate"
+                                ),
+                                "text_free_inputs_only": True,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            chain_ligand.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_chain_ligand_acceptor_disambiguation_audit"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:640",
+                                "candidate_feature_hit": True,
+                                "ligand_analog_acceptor": True,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            alternate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_m_csa640_alternate_gamma_geometry_review"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:640",
+                                "pdb_id": "3TM0",
+                                "acceptor_ligand_code": "B31",
+                                "acceptor_like_ligand_present": True,
+                                "gamma_to_acceptor_distance_angstrom": 3.558,
+                                "alternate_gamma_geometry_review_status": (
+                                    "alternate_gamma_to_acceptor_analog_distance_reviewed_review_only"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-ligand-analog-policy-blocker-decision",
+                    "--epk-protein-substrate-acceptor-candidate-audit",
+                    str(protein),
+                    "--epk-chain-ligand-acceptor-disambiguation-audit",
+                    str(chain_ligand),
+                    "--epk-m-csa640-alternate-gamma-geometry-review",
+                    str(alternate),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            decision = json.loads(out.read_text(encoding="utf-8"))
+            metadata = decision["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_ligand_analog_policy_blocker_decision",
+            )
+            self.assertEqual(metadata["ligand_analog_dependency_count"], 1)
+            self.assertEqual(
+                metadata["ligand_analog_policy_decision"],
+                "do_not_use_ligand_analog_as_production_acceptor_evidence",
+            )
+            self.assertFalse(metadata["feature_admissible_for_production_scoring"])
+            self.assertFalse(metadata["epk_score_computed"])
+            row = decision["rows"][0]
+            self.assertEqual(row["entry_id"], "m_csa:640")
+            self.assertEqual(row["acceptor_ligand_code"], "B31")
+            self.assertFalse(
+                row["ligand_analog_evidence_admissible_for_production_scoring"]
+            )
+
+    def test_build_epk_protein_substrate_positive_source_triage_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue = root / "queue.json"
+            geometry = root / "geometry.json"
+            retrieval = root / "retrieval.json"
+            readiness = root / "readiness.json"
+            protein = root / "protein.json"
+            out = root / "source_triage.json"
+            queue.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "active_learning_review_queue"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "known ePK",
+                                "rank": 1,
+                                "atp_phosphoryl_transfer_family_id": "epk",
+                            },
+                            {
+                                "entry_id": "m_csa:760",
+                                "entry_name": "new protein kinase",
+                                "rank": 2,
+                                "review_score": 6.8,
+                                "atp_phosphoryl_transfer_family_id": "epk",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "mechanism_text_snippets": [
+                                    "Serine substrate attacks ATP gamma phosphate."
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"artifact": "active_site_geometry_features"},
+                        "entries": [
+                            {
+                                "entry_id": "m_csa:760",
+                                "entry_name": "new protein kinase",
+                                "status": "ok",
+                                "pdb_id": "1L0O",
+                                "resolved_residue_count": 3,
+                                "ligand_context": {
+                                    "ligand_codes": ["ADP", "MG"],
+                                    "structure_ligand_codes": ["ADP", "MG"],
+                                    "cofactor_families": ["metal_ion"],
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            retrieval.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "geometry_aware_seed_fingerprint_retrieval"
+                        },
+                        "results": [
+                            {
+                                "entry_id": "m_csa:760",
+                                "top_fingerprints": [
+                                    {
+                                        "fingerprint_id": (
+                                            "metal_dependent_hydrolase"
+                                        ),
+                                        "score": 0.39,
+                                        "counterevidence_reasons": [
+                                            "nucleotide_transfer_ligand_context"
+                                        ],
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_positive_fingerprint_readiness_packet"
+                        },
+                        "rows": [{"entry_id": "m_csa:35"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            protein.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_protein_substrate_acceptor_candidate_audit"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:35",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-protein-substrate-positive-source-triage",
+                    "--active-learning-queue",
+                    str(queue),
+                    "--geometry",
+                    str(geometry),
+                    "--retrieval",
+                    str(retrieval),
+                    "--epk-positive-fingerprint-readiness-packet",
+                    str(readiness),
+                    "--epk-protein-substrate-acceptor-candidate-audit",
+                    str(protein),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            triage = json.loads(out.read_text(encoding="utf-8"))
+            metadata = triage["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_protein_substrate_positive_source_triage",
+            )
+            self.assertEqual(metadata["candidate_row_count"], 1)
+            self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+            self.assertEqual(metadata["product_state_repair_candidate_count"], 1)
+            self.assertEqual(metadata["recommended_next_entry_id"], "m_csa:760")
+            self.assertFalse(metadata["epk_score_computed"])
+            row = triage["rows"][0]
+            self.assertEqual(row["entry_id"], "m_csa:760")
+            self.assertEqual(
+                row["triage_decision"],
+                "product_state_atp_repair_candidate_review_only",
+            )
+            self.assertTrue(row["has_product_state_nucleotide"])
+            self.assertTrue(row["has_local_metal"])
+            self.assertFalse(row["measurement_ready"])
+
+    def test_build_epk_m_csa760_atp_state_repair_scan_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            triage = root / "source_triage.json"
+            remediation = root / "remediation.json"
+            cif_dir = root / "cifs"
+            cif_dir.mkdir()
+            out = root / "repair_scan.json"
+
+            def write_cif(path: Path, rows: list[str]) -> None:
+                path.write_text(
+                    "\n".join(
+                        [
+                            f"data_{path.stem}",
+                            "loop_",
+                            "_atom_site.group_PDB",
+                            "_atom_site.auth_comp_id",
+                            "_atom_site.label_comp_id",
+                            "_atom_site.auth_asym_id",
+                            "_atom_site.label_asym_id",
+                            "_atom_site.auth_seq_id",
+                            "_atom_site.label_seq_id",
+                            "_atom_site.auth_atom_id",
+                            "_atom_site.label_atom_id",
+                            "_atom_site.Cartn_x",
+                            "_atom_site.Cartn_y",
+                            "_atom_site.Cartn_z",
+                            *rows,
+                            "#",
+                        ]
+                    ),
+                    encoding="utf-8",
+                )
+
+            residue_rows = [
+                "ATOM ASN ASN A A 50 50 CA CA 0.0 0.0 0.0",
+                "ATOM GLU GLU A A 46 46 CA CA 1.0 0.0 0.0",
+                "ATOM ARG ARG A A 105 105 CA CA 0.0 1.0 0.0",
+            ]
+            write_cif(
+                cif_dir / "pdb_1L0O.cif",
+                [
+                    *residue_rows,
+                    "HETATM ADP ADP A A 200 200 PB PB 1.0 1.0 0.0",
+                    "HETATM MG MG A A 300 300 MG MG 2.0 1.0 0.0",
+                ],
+            )
+            write_cif(
+                cif_dir / "pdb_1TID.cif",
+                [
+                    *residue_rows,
+                    "HETATM ATP ATP A A 200 200 PG PG 1.0 1.0 0.0",
+                    "HETATM MG MG A A 300 300 MG MG 2.0 1.0 0.0",
+                ],
+            )
+            write_cif(
+                cif_dir / "pdb_1TH8.cif",
+                [
+                    *residue_rows,
+                    "ATOM SER SER B B 58 58 OG OG 2.0 2.0 0.0",
+                    "HETATM ADP ADP A A 200 200 PB PB 1.0 1.0 0.0",
+                    "HETATM MG MG A A 300 300 MG MG 2.0 1.0 0.0",
+                ],
+            )
+            triage.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_protein_substrate_positive_source_triage"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:760",
+                                "entry_name": "non-specific kinase",
+                                "pdb_id": "1L0O",
+                                "mechanism_text_snippets": [
+                                    "SpoIIAA Ser 58 attacks the gamma-phosphate of ATP."
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            remediation.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "review_debt_remediation_plan"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:760",
+                                "entry_name": "non-specific kinase",
+                                "selected_pdb_id": "1L0O",
+                                "candidate_pdb_structure_ids": [
+                                    "1L0O",
+                                    "1TID",
+                                    "1TH8",
+                                ],
+                                "candidate_pdb_residue_positions": {
+                                    "1L0O": [
+                                        {
+                                            "chain_name": "A",
+                                            "code": "ASN",
+                                            "resid": 50,
+                                            "residue_node_id": (
+                                                "m_csa:760:residue:1"
+                                            ),
+                                        },
+                                        {
+                                            "chain_name": "A",
+                                            "code": "GLU",
+                                            "resid": 46,
+                                            "residue_node_id": (
+                                                "m_csa:760:residue:2"
+                                            ),
+                                        },
+                                        {
+                                            "chain_name": "A",
+                                            "code": "ARG",
+                                            "resid": 105,
+                                            "residue_node_id": (
+                                                "m_csa:760:residue:3"
+                                            ),
+                                        },
+                                    ]
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-m-csa760-atp-state-repair-scan",
+                    "--epk-protein-substrate-positive-source-triage",
+                    str(triage),
+                    "--review-debt-remediation",
+                    str(remediation),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            scan = json.loads(out.read_text(encoding="utf-8"))
+            metadata = scan["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_m_csa760_atp_state_repair_scan",
+            )
+            self.assertEqual(metadata["candidate_pdb_count"], 3)
+            self.assertEqual(metadata["atp_metal_state_candidate_count"], 1)
+            self.assertEqual(
+                metadata["protein_substrate_acceptor_context_candidate_count"],
+                1,
+            )
+            self.assertEqual(
+                metadata["combined_atp_metal_substrate_context_candidate_count"],
+                0,
+            )
+            self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+            self.assertTrue(metadata["split_state_blocker_detected"])
+            self.assertEqual(
+                metadata["repair_status"],
+                "blocked_review_only_split_atp_and_substrate_context",
+            )
+            self.assertFalse(metadata["epk_score_computed"])
+            rows = {row["pdb_id"]: row for row in scan["rows"]}
+            self.assertEqual(
+                rows["1TID"]["repair_scan_decision"],
+                "atp_metal_state_without_protein_substrate_acceptor_review_only",
+            )
+            self.assertEqual(
+                rows["1TH8"]["repair_scan_decision"],
+                "substrate_acceptor_product_state_no_gamma_review_only",
+            )
+            for row in rows.values():
+                self.assertTrue(row["review_only"])
+                self.assertFalse(row["countable_label_candidate"])
 
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

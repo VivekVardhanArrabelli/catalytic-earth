@@ -440,6 +440,33 @@ abstentions. The paired
 `artifacts/v3_epk_chain_ligand_external_hard_negative_feature_screen_1025.json`
 keeps external hard-negative non-abstentions at 0 while explicitly remaining
 not a scored re-audit or held-out performance claim.
+`artifacts/v3_epk_protein_substrate_acceptor_candidate_audit_1025.json`
+tightens the same feature to protein-substrate non-catalytic-chain acceptor
+context only. It keeps `m_csa:35` and `m_csa:246`, blocks all 25 current
+negative-control rows with 0 false hits, and abstains on the three imported
+external hard negatives, but misses `m_csa:640` because the only current
+support for that row is the review-only ligand-analog acceptor context. The
+artifact therefore fails closed with
+`primary_blocker=protein_substrate_feature_misses_ligand_analog_positive`.
+`artifacts/v3_epk_ligand_analog_policy_blocker_decision_1025.json` makes the
+policy outcome explicit for that dependency: current ligand-analog acceptor
+evidence is not production-admissible, `m_csa:640` cannot rescue the
+protein-substrate positive coverage gap, and the next scorer step needs either
+another protein-substrate ePK positive or a pre-registered ligand-analog policy
+plus scored external re-audit.
+`artifacts/v3_epk_protein_substrate_positive_source_triage_1025.json` scopes
+the next bounded source experiment from existing active-learning rows. It
+excludes the five current readiness-packet entries, emits three non-countable
+ePK-family source candidates (`m_csa:756`, `m_csa:757`, and `m_csa:760`), and
+recommends `m_csa:760` first because its selected structure has local ADP/Mg
+product-state context. None of the three is measurement-ready; all need
+active-state gamma geometry and acceptor identity review before scorer work.
+`artifacts/v3_epk_m_csa760_atp_state_repair_scan_1025.json` then scans the
+known `m_csa:760` alternate structures. It finds ATP/Mg catalytic-residue
+contexts in `1TID` and `1TIL`, and protein-substrate/product-state contexts in
+`1TH8` and `1THN`, but no single structure with both ATP/Mg and the
+protein-substrate acceptor. The row is split-state blocked, has 0
+measurement-ready candidates, and stays non-countable.
 `artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json`
 validates the PfkB, PfkA, and ATP-grasp family templates by downstream mapping
 and distance evidence only. It closes the template-review gap for pre-count
@@ -455,7 +482,8 @@ The `m_csa:640` alternate geometry review lets the prototype gamma-geometry
 gate pass, the family-template gate passes by downstream validation, and the
 chain/ligand feature screen passes current review controls. Negative-control
 distribution readiness, acceptor-threshold calibration, text-free acceptor
-feature production admissibility, external hard-negative scored re-audit, and
+feature production admissibility, protein-substrate acceptor coverage,
+`m_csa:760` split-state repair, external hard-negative scored re-audit, and
 registry/label-factory extension all remain failed gates.
 
 ## Active Learning Queue

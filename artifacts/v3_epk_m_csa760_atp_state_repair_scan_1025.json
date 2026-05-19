@@ -1,0 +1,333 @@
+{
+  "metadata": {
+    "atp_metal_state_candidate_count": 2,
+    "atp_metal_state_candidate_pdb_ids": [
+      "1TID",
+      "1TIL"
+    ],
+    "candidate_pdb_count": 5,
+    "candidate_pdb_ids": [
+      "1L0O",
+      "1TH8",
+      "1THN",
+      "1TID",
+      "1TIL"
+    ],
+    "combined_atp_metal_substrate_context_candidate_count": 0,
+    "combined_atp_metal_substrate_context_candidate_pdb_ids": [],
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "entry_id": "m_csa:760",
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_candidate_count": 0,
+    "measurement_ready_candidate_pdb_ids": [],
+    "method": "epk_m_csa760_atp_state_repair_scan",
+    "next_actions": [
+      "do not count m_csa:760 until a combined ATP/Mg plus protein-substrate acceptor structure or pre-registered analog policy exists",
+      "if no combined m_csa:760 structure is sourced, pivot protein-substrate coverage repair to m_csa:757 or m_csa:756",
+      "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists"
+    ],
+    "protein_substrate_acceptor_context_candidate_count": 2,
+    "protein_substrate_acceptor_context_candidate_pdb_ids": [
+      "1TH8",
+      "1THN"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "repair_scan_decision_counts": {
+      "atp_metal_state_without_protein_substrate_acceptor_review_only": 2,
+      "product_state_no_gamma_review_only": 1,
+      "substrate_acceptor_product_state_no_gamma_review_only": 2
+    },
+    "repair_status": "blocked_review_only_split_atp_and_substrate_context",
+    "review_only": true,
+    "review_only_rule": "This artifact uses m_csa:760 alternate structures only to test whether product-state ADP/Mg evidence can be repaired into a combined ATP/Mg plus protein-substrate acceptor geometry. Mechanism text may identify a substrate-residue hint for review context, but no ePK score, registry edit, label import, or held-out claim is produced.",
+    "selected_pdb_id": "1L0O",
+    "source_epk_protein_substrate_positive_source_triage_method": "epk_protein_substrate_positive_source_triage",
+    "source_review_debt_remediation_method": "review_debt_remediation_plan",
+    "split_state_blocker_detected": true,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": true,
+      "has_local_nucleotide": true,
+      "has_local_product_state_nucleotide": true,
+      "has_non_catalytic_substrate_acceptor_hint": false,
+      "is_selected_structure": true,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "local_resolved_residue_count": 3,
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": true,
+      "non_catalytic_substrate_acceptor_hint_chains": [],
+      "pdb_id": "1L0O",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "product_state_adp_lacks_gamma_phosphate",
+        "protein_substrate_acceptor_not_resolved",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "product_state_no_gamma_review_only",
+      "residue_position_remap_basis": null,
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "mcsa_explicit",
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "substrate_acceptor_hint": {
+        "resid": "58",
+        "residue_code": "SER",
+        "residue_token": "Ser",
+        "source": "mechanism_text_review_context"
+      },
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": true,
+      "has_local_nucleotide": true,
+      "has_local_product_state_nucleotide": true,
+      "has_non_catalytic_substrate_acceptor_hint": true,
+      "is_selected_structure": false,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "local_resolved_residue_count": 3,
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": true,
+      "non_catalytic_substrate_acceptor_hint_chains": [
+        "B"
+      ],
+      "pdb_id": "1TH8",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "product_state_adp_lacks_gamma_phosphate",
+        "active_state_gamma_geometry_not_measurable",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "substrate_acceptor_product_state_no_gamma_review_only",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "substrate_acceptor_hint": {
+        "resid": "58",
+        "residue_code": "SER",
+        "residue_token": "Ser",
+        "source": "mechanism_text_review_context"
+      },
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": true,
+      "has_local_product_state_nucleotide": true,
+      "has_non_catalytic_substrate_acceptor_hint": true,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "ADP"
+      ],
+      "local_resolved_residue_count": 3,
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": true,
+      "non_catalytic_substrate_acceptor_hint_chains": [
+        "B",
+        "D"
+      ],
+      "pdb_id": "1THN",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "product_state_adp_lacks_gamma_phosphate",
+        "active_state_gamma_geometry_not_measurable",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "substrate_acceptor_product_state_no_gamma_review_only",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "ADP",
+        "DMF"
+      ],
+      "substrate_acceptor_hint": {
+        "resid": "58",
+        "residue_code": "SER",
+        "residue_token": "Ser",
+        "source": "mechanism_text_review_context"
+      },
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": true,
+      "has_local_metal": true,
+      "has_local_nucleotide": true,
+      "has_local_product_state_nucleotide": false,
+      "has_non_catalytic_substrate_acceptor_hint": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "ATP",
+        "MG",
+        "MSE"
+      ],
+      "local_resolved_residue_count": 3,
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": true,
+      "non_catalytic_substrate_acceptor_hint_chains": [],
+      "pdb_id": "1TID",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_resolved_in_atp_state_structure",
+        "gamma_to_acceptor_distance_not_measurable",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "atp_metal_state_without_protein_substrate_acceptor_review_only",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ATP",
+        "MG",
+        "MSE"
+      ],
+      "substrate_acceptor_hint": {
+        "resid": "58",
+        "residue_code": "SER",
+        "residue_token": "Ser",
+        "source": "mechanism_text_review_context"
+      },
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": true,
+      "has_local_metal": true,
+      "has_local_nucleotide": true,
+      "has_local_product_state_nucleotide": false,
+      "has_non_catalytic_substrate_acceptor_hint": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "local_resolved_residue_count": 3,
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": true,
+      "non_catalytic_substrate_acceptor_hint_chains": [],
+      "pdb_id": "1TIL",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_resolved_in_atp_state_structure",
+        "gamma_to_acceptor_distance_not_measurable",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "atp_metal_state_without_protein_substrate_acceptor_review_only",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "substrate_acceptor_hint": {
+        "resid": "58",
+        "residue_code": "SER",
+        "residue_token": "Ser",
+        "source": "mechanism_text_review_context"
+      },
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "m_csa:760 ATP-state repair evidence is review-only and cannot be used as production ePK scoring evidence."
+  ]
+}

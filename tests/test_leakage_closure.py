@@ -342,6 +342,182 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertEqual(row["review_only_feature_score"], 0.0)
             self.assertFalse(row["external_hard_negative_reaudit_scored"])
 
+    def test_epk_protein_substrate_acceptor_candidate_fails_closed(self) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_protein_substrate_acceptor_candidate_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_protein_substrate_acceptor_candidate_audit",
+        )
+        self.assertEqual(
+            metadata["candidate_feature_id"],
+            "protein_substrate_non_catalytic_chain_acceptor_v0",
+        )
+        self.assertEqual(
+            metadata["candidate_feature_status"],
+            "blocked_review_only_positive_coverage_gap",
+        )
+        self.assertEqual(metadata["current_positive_feature_hit_count"], 2)
+        self.assertEqual(metadata["current_positive_feature_miss_count"], 1)
+        self.assertEqual(metadata["ligand_analog_only_positive_miss_count"], 1)
+        self.assertEqual(
+            metadata["ligand_analog_only_positive_miss_entry_ids"],
+            ["m_csa:640"],
+        )
+        self.assertEqual(metadata["negative_control_row_count"], 25)
+        self.assertEqual(metadata["negative_control_false_hit_count"], 0)
+        self.assertEqual(
+            metadata["external_hard_negative_feature_abstention_count"],
+            3,
+        )
+        self.assertFalse(metadata["feature_passes_current_review_controls"])
+        self.assertFalse(metadata["feature_admissible_for_production_scoring"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        external_rows = {
+            row["entry_id"]
+            for row in audit["rows"]
+            if row["row_type"] == "imported_external_hard_negative"
+        }
+        self.assertEqual(external_rows, EXTERNAL_HARD_NEGATIVES)
+
+    def test_epk_ligand_analog_policy_blocker_stays_review_only(self) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_analog_policy_blocker_decision_1025.json"
+        )
+        metadata = decision["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_ligand_analog_policy_blocker_decision",
+        )
+        self.assertEqual(metadata["ligand_analog_dependency_count"], 1)
+        self.assertEqual(metadata["ligand_analog_dependency_entry_ids"], ["m_csa:640"])
+        self.assertEqual(
+            metadata["ligand_analog_policy_decision"],
+            "do_not_use_ligand_analog_as_production_acceptor_evidence",
+        )
+        self.assertEqual(metadata["ligand_analog_production_admissible_count"], 0)
+        self.assertTrue(metadata["protein_substrate_positive_coverage_gap"])
+        self.assertFalse(metadata["feature_admissible_for_production_scoring"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["entry_id"]: row for row in decision["rows"]}
+        self.assertEqual(set(rows), {"m_csa:640"})
+        self.assertEqual(rows["m_csa:640"]["acceptor_ligand_code"], "B31")
+        self.assertFalse(
+            rows["m_csa:640"][
+                "ligand_analog_evidence_admissible_for_production_scoring"
+            ]
+        )
+
+    def test_epk_protein_substrate_positive_source_triage_stays_review_only(
+        self,
+    ) -> None:
+        triage = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_protein_substrate_positive_source_triage_1025.json"
+        )
+        metadata = triage["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_protein_substrate_positive_source_triage",
+        )
+        self.assertEqual(metadata["candidate_row_count"], 3)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertEqual(metadata["product_state_repair_candidate_count"], 1)
+        self.assertEqual(
+            metadata["product_state_repair_candidate_entry_ids"],
+            ["m_csa:760"],
+        )
+        self.assertEqual(metadata["recommended_next_entry_id"], "m_csa:760")
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["entry_id"]: row for row in triage["rows"]}
+        self.assertEqual(set(rows), {"m_csa:756", "m_csa:757", "m_csa:760"})
+        self.assertEqual(
+            rows["m_csa:760"]["triage_decision"],
+            "product_state_atp_repair_candidate_review_only",
+        )
+        self.assertTrue(rows["m_csa:760"]["has_product_state_nucleotide"])
+        for row in rows.values():
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["measurement_ready"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertTrue(row["review_context_only_used_for_sourcing"])
+
+    def test_epk_m_csa760_atp_state_repair_scan_stays_review_only(self) -> None:
+        scan = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_m_csa760_atp_state_repair_scan_1025.json"
+        )
+        metadata = scan["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_m_csa760_atp_state_repair_scan",
+        )
+        self.assertEqual(metadata["entry_id"], "m_csa:760")
+        self.assertEqual(metadata["candidate_pdb_count"], 5)
+        self.assertEqual(
+            metadata["atp_metal_state_candidate_pdb_ids"],
+            ["1TID", "1TIL"],
+        )
+        self.assertEqual(
+            metadata["protein_substrate_acceptor_context_candidate_pdb_ids"],
+            ["1TH8", "1THN"],
+        )
+        self.assertEqual(
+            metadata["combined_atp_metal_substrate_context_candidate_count"],
+            0,
+        )
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertTrue(metadata["split_state_blocker_detected"])
+        self.assertEqual(
+            metadata["repair_status"],
+            "blocked_review_only_split_atp_and_substrate_context",
+        )
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["pdb_id"]: row for row in scan["rows"]}
+        self.assertEqual(set(rows), {"1L0O", "1TH8", "1THN", "1TID", "1TIL"})
+        for pdb_id in ["1TID", "1TIL"]:
+            self.assertEqual(
+                rows[pdb_id]["repair_scan_decision"],
+                "atp_metal_state_without_protein_substrate_acceptor_review_only",
+            )
+            self.assertFalse(rows[pdb_id]["measurement_ready"])
+        for pdb_id in ["1TH8", "1THN"]:
+            self.assertEqual(
+                rows[pdb_id]["repair_scan_decision"],
+                "substrate_acceptor_product_state_no_gamma_review_only",
+            )
+            self.assertFalse(rows[pdb_id]["measurement_ready"])
+
     def test_epk_family_specific_template_validation_stays_review_only(
         self,
     ) -> None:
@@ -1336,6 +1512,48 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertFalse(
             metadata["text_free_acceptor_feature_admissible_for_scoring"]
         )
+        self.assertEqual(
+            metadata[
+                "source_epk_protein_substrate_acceptor_candidate_audit_method"
+            ],
+            "epk_protein_substrate_acceptor_candidate_audit",
+        )
+        self.assertEqual(
+            metadata["protein_substrate_acceptor_positive_hit_count"],
+            2,
+        )
+        self.assertEqual(
+            metadata["protein_substrate_acceptor_positive_miss_count"],
+            1,
+        )
+        self.assertEqual(
+            metadata[
+                "protein_substrate_acceptor_ligand_analog_only_miss_entry_ids"
+            ],
+            ["m_csa:640"],
+        )
+        self.assertEqual(
+            metadata[
+                "protein_substrate_acceptor_negative_control_false_hit_count"
+            ],
+            0,
+        )
+        self.assertFalse(
+            metadata[
+                "protein_substrate_acceptor_feature_passes_current_review_controls"
+            ]
+        )
+        self.assertEqual(
+            metadata["source_epk_ligand_analog_policy_blocker_decision_method"],
+            "epk_ligand_analog_policy_blocker_decision",
+        )
+        self.assertEqual(
+            metadata["ligand_analog_policy_decision"],
+            "do_not_use_ligand_analog_as_production_acceptor_evidence",
+        )
+        self.assertEqual(metadata["ligand_analog_dependency_count"], 1)
+        self.assertEqual(metadata["ligand_analog_dependency_entry_ids"], ["m_csa:640"])
+        self.assertEqual(metadata["ligand_analog_production_admissible_count"], 0)
         self.assertEqual(metadata["measured_acceptor_identity_source_supported_count"], 2)
         self.assertEqual(
             metadata["source_epk_acceptor_identity_review_method"],
@@ -1609,6 +1827,33 @@ class LeakageClosureTests(unittest.TestCase):
             "text_free_acceptor_feature_gap_audit",
             metadata["failing_gate_ids"],
         )
+        self.assertIn(
+            "protein_substrate_acceptor_candidate_audit",
+            metadata["failing_gate_ids"],
+        )
+        self.assertIn(
+            "m_csa760_atp_state_repair_scan",
+            metadata["failing_gate_ids"],
+        )
+        self.assertEqual(
+            metadata["m_csa760_repair_status"],
+            "blocked_review_only_split_atp_and_substrate_context",
+        )
+        self.assertEqual(metadata["m_csa760_atp_metal_state_candidate_count"], 2)
+        self.assertEqual(
+            metadata[
+                "m_csa760_protein_substrate_acceptor_context_candidate_count"
+            ],
+            2,
+        )
+        self.assertEqual(
+            metadata[
+                "m_csa760_combined_atp_metal_substrate_context_candidate_count"
+            ],
+            0,
+        )
+        self.assertEqual(metadata["m_csa760_measurement_ready_candidate_count"], 0)
+        self.assertTrue(metadata["m_csa760_split_state_blocker_detected"])
         self.assertNotIn(
             "family_specific_homolog_mapping_template",
             metadata["failing_gate_ids"],
@@ -1625,6 +1870,11 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertTrue(checks["m_csa640_alternate_gamma_geometry_reviewed"]["passed"])
         self.assertTrue(checks["substrate_acceptor_counteraxis_prototype"]["passed"])
         self.assertFalse(checks["text_free_acceptor_feature_gap_audit"]["passed"])
+        self.assertFalse(
+            checks["protein_substrate_acceptor_candidate_audit"]["passed"]
+        )
+        self.assertTrue(checks["ligand_analog_policy_blocker_decision"]["passed"])
+        self.assertFalse(checks["m_csa760_atp_state_repair_scan"]["passed"])
         self.assertEqual(
             checks["text_free_acceptor_feature_gap_audit"]["evidence"][
                 "negative_control_false_hit_count"

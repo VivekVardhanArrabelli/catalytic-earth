@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "feature_admissible_for_production_scoring": false,
+    "fingerprint_registry_edited": false,
+    "ligand_analog_dependency_count": 1,
+    "ligand_analog_dependency_entry_ids": [
+      "m_csa:640"
+    ],
+    "ligand_analog_policy_decision": "do_not_use_ligand_analog_as_production_acceptor_evidence",
+    "ligand_analog_policy_status": "blocked_review_only",
+    "ligand_analog_production_admissible_count": 0,
+    "method": "epk_ligand_analog_policy_blocker_decision",
+    "next_actions": [
+      "source another ePK protein-substrate positive or pre-register a ligand-analog admissibility policy",
+      "do not use m_csa:640 ligand-analog evidence as production scoring support",
+      "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists"
+    ],
+    "protein_substrate_positive_coverage_gap": true,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact records the current policy decision for ePK ligand-analog acceptor evidence. Ligand analogs stay review-only and cannot rescue production positive coverage until a future pre-registered policy and scored re-audit exist.",
+    "selected_threshold_angstrom": null,
+    "source_epk_chain_ligand_acceptor_disambiguation_audit_method": "epk_chain_ligand_acceptor_disambiguation_audit",
+    "source_epk_m_csa640_alternate_gamma_geometry_review_method": "epk_m_csa640_alternate_gamma_geometry_review",
+    "source_epk_protein_substrate_acceptor_candidate_audit_method": "epk_protein_substrate_acceptor_candidate_audit",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "acceptor_ligand_code": "B31",
+      "alternate_gamma_geometry_review_status": null,
+      "chain_ligand_feature_hit": true,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:640",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "gamma_to_acceptor_distance_angstrom": 3.558,
+      "ligand_analog_acceptor": true,
+      "ligand_analog_evidence_admissible_for_production_scoring": false,
+      "ligand_analog_policy_decision": "do_not_use_ligand_analog_as_production_acceptor_evidence",
+      "pdb_id": "3TM0",
+      "protein_substrate_feature_hit": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "ligand_analog_policy_not_pre_registered",
+        "analog_context_not_generalized_against_external_epk_like_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "threshold_not_calibrated_against_negative_controls"
+      ],
+      "review_only": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    }
+  ],
+  "warnings": [
+    "Ligand-analog acceptor context is review-only policy evidence, not production ePK scoring evidence."
+  ]
+}

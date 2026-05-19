@@ -82,6 +82,8 @@ from .labels import (
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
     build_epk_local_evidence_audit,
+    build_epk_ligand_analog_policy_blocker_decision,
+    build_epk_m_csa760_atp_state_repair_scan,
     build_epk_m_csa640_alternate_gamma_geometry_review,
     build_epk_missing_sibling_control_post_repair_source_decision,
     build_epk_missing_sibling_control_source_request,
@@ -92,6 +94,8 @@ from .labels import (
     build_epk_nonready_ligand_repair_plan,
     build_epk_precount_gate_status,
     build_epk_positive_fingerprint_readiness_packet,
+    build_epk_protein_substrate_positive_source_triage,
+    build_epk_protein_substrate_acceptor_candidate_audit,
     build_epk_review_only_scoring_prototype,
     build_epk_sibling_control_homolog_gamma_distance_sample,
     build_epk_sibling_control_homolog_mapping_review,
@@ -6181,6 +6185,126 @@ def cmd_build_epk_chain_ligand_external_hard_negative_feature_screen(
     return 0
 
 
+def cmd_build_epk_protein_substrate_acceptor_candidate_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_chain_ligand_acceptor_disambiguation_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_chain_ligand_acceptor_disambiguation_audit = json.load(handle)
+    audit = build_epk_protein_substrate_acceptor_candidate_audit(
+        epk_chain_ligand_acceptor_disambiguation_audit=(
+            epk_chain_ligand_acceptor_disambiguation_audit
+        ),
+        imported_external_entry_ids=_split_csv(args.imported_external_entry_ids),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK protein-substrate acceptor candidate audit to "
+        f"{args.out} (positive_misses="
+        f"{audit['metadata']['current_positive_feature_miss_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_ligand_analog_policy_blocker_decision(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_protein_substrate_acceptor_candidate_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_acceptor_candidate_audit = json.load(handle)
+    with Path(args.epk_chain_ligand_acceptor_disambiguation_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_chain_ligand_acceptor_disambiguation_audit = json.load(handle)
+    with Path(args.epk_m_csa640_alternate_gamma_geometry_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_m_csa640_alternate_gamma_geometry_review = json.load(handle)
+    decision = build_epk_ligand_analog_policy_blocker_decision(
+        epk_protein_substrate_acceptor_candidate_audit=(
+            epk_protein_substrate_acceptor_candidate_audit
+        ),
+        epk_chain_ligand_acceptor_disambiguation_audit=(
+            epk_chain_ligand_acceptor_disambiguation_audit
+        ),
+        epk_m_csa640_alternate_gamma_geometry_review=(
+            epk_m_csa640_alternate_gamma_geometry_review
+        ),
+    )
+    write_json(Path(args.out), decision)
+    print(
+        "Wrote ePK ligand-analog policy blocker decision to "
+        f"{args.out} (dependencies="
+        f"{decision['metadata']['ligand_analog_dependency_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_protein_substrate_positive_source_triage(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
+        active_learning_queue = json.load(handle)
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry_features = json.load(handle)
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        geometry_retrieval = json.load(handle)
+    with Path(args.epk_positive_fingerprint_readiness_packet).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_positive_fingerprint_readiness_packet = json.load(handle)
+    with Path(args.epk_protein_substrate_acceptor_candidate_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_acceptor_candidate_audit = json.load(handle)
+    triage = build_epk_protein_substrate_positive_source_triage(
+        active_learning_queue=active_learning_queue,
+        geometry_features=geometry_features,
+        geometry_retrieval=geometry_retrieval,
+        epk_positive_fingerprint_readiness_packet=(
+            epk_positive_fingerprint_readiness_packet
+        ),
+        epk_protein_substrate_acceptor_candidate_audit=(
+            epk_protein_substrate_acceptor_candidate_audit
+        ),
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), triage)
+    print(
+        "Wrote ePK protein-substrate positive source triage to "
+        f"{args.out} (candidates={triage['metadata']['candidate_row_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_m_csa760_atp_state_repair_scan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_protein_substrate_positive_source_triage).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_positive_source_triage = json.load(handle)
+    with Path(args.review_debt_remediation).open("r", encoding="utf-8") as handle:
+        review_debt_remediation = json.load(handle)
+    scan = build_epk_m_csa760_atp_state_repair_scan(
+        epk_protein_substrate_positive_source_triage=(
+            epk_protein_substrate_positive_source_triage
+        ),
+        review_debt_remediation=review_debt_remediation,
+        entry_id=args.entry_id,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), scan)
+    print(
+        "Wrote ePK m_csa:760 ATP-state repair scan to "
+        f"{args.out} (measurement_ready="
+        f"{scan['metadata']['measurement_ready_candidate_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_nonready_ligand_alternate_structure_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -6420,6 +6544,24 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_chain_ligand_external_hard_negative_feature_screen = json.load(handle)
+    epk_protein_substrate_acceptor_candidate_audit = None
+    if args.epk_protein_substrate_acceptor_candidate_audit:
+        with Path(args.epk_protein_substrate_acceptor_candidate_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_protein_substrate_acceptor_candidate_audit = json.load(handle)
+    epk_ligand_analog_policy_blocker_decision = None
+    if args.epk_ligand_analog_policy_blocker_decision:
+        with Path(args.epk_ligand_analog_policy_blocker_decision).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_ligand_analog_policy_blocker_decision = json.load(handle)
+    epk_m_csa760_atp_state_repair_scan = None
+    if args.epk_m_csa760_atp_state_repair_scan:
+        with Path(args.epk_m_csa760_atp_state_repair_scan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_m_csa760_atp_state_repair_scan = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -6488,6 +6630,15 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_chain_ligand_external_hard_negative_feature_screen=(
             epk_chain_ligand_external_hard_negative_feature_screen
+        ),
+        epk_protein_substrate_acceptor_candidate_audit=(
+            epk_protein_substrate_acceptor_candidate_audit
+        ),
+        epk_ligand_analog_policy_blocker_decision=(
+            epk_ligand_analog_policy_blocker_decision
+        ),
+        epk_m_csa760_atp_state_repair_scan=(
+            epk_m_csa760_atp_state_repair_scan
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -13737,6 +13888,135 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_chain_ligand_external_hard_negative_feature_screen
     )
 
+    epk_protein_substrate_acceptor = subparsers.add_parser(
+        "build-epk-protein-substrate-acceptor-candidate-audit",
+        help="audit a stricter review-only protein-substrate ePK acceptor feature",
+    )
+    epk_protein_substrate_acceptor.add_argument(
+        "--epk-chain-ligand-acceptor-disambiguation-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_chain_ligand_acceptor_disambiguation_audit.json"
+        ),
+    )
+    epk_protein_substrate_acceptor.add_argument(
+        "--imported-external-entry-ids",
+        default="uniprot:P06744,uniprot:P78549,uniprot:Q3LXA3",
+    )
+    epk_protein_substrate_acceptor.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_acceptor_candidate_audit.json"
+        ),
+    )
+    epk_protein_substrate_acceptor.set_defaults(
+        func=cmd_build_epk_protein_substrate_acceptor_candidate_audit
+    )
+
+    epk_ligand_analog_policy = subparsers.add_parser(
+        "build-epk-ligand-analog-policy-blocker-decision",
+        help="record review-only ePK ligand-analog production-admissibility blockers",
+    )
+    epk_ligand_analog_policy.add_argument(
+        "--epk-protein-substrate-acceptor-candidate-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_acceptor_candidate_audit.json"
+        ),
+    )
+    epk_ligand_analog_policy.add_argument(
+        "--epk-chain-ligand-acceptor-disambiguation-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_chain_ligand_acceptor_disambiguation_audit.json"
+        ),
+    )
+    epk_ligand_analog_policy.add_argument(
+        "--epk-m-csa640-alternate-gamma-geometry-review",
+        default=(
+            "artifacts/"
+            "v3_epk_m_csa640_alternate_gamma_geometry_review.json"
+        ),
+    )
+    epk_ligand_analog_policy.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_analog_policy_blocker_decision.json"
+        ),
+    )
+    epk_ligand_analog_policy.set_defaults(
+        func=cmd_build_epk_ligand_analog_policy_blocker_decision
+    )
+
+    epk_positive_source_triage = subparsers.add_parser(
+        "build-epk-protein-substrate-positive-source-triage",
+        help="triage review-only ePK source rows for protein-substrate coverage",
+    )
+    epk_positive_source_triage.add_argument(
+        "--active-learning-queue",
+        default="artifacts/v3_active_learning_review_queue_1000.json",
+    )
+    epk_positive_source_triage.add_argument(
+        "--geometry",
+        default="artifacts/v3_geometry_features_1000.json",
+    )
+    epk_positive_source_triage.add_argument(
+        "--retrieval",
+        default="artifacts/v3_geometry_retrieval_1000.json",
+    )
+    epk_positive_source_triage.add_argument(
+        "--epk-positive-fingerprint-readiness-packet",
+        default=(
+            "artifacts/"
+            "v3_epk_positive_fingerprint_readiness_packet_1025.json"
+        ),
+    )
+    epk_positive_source_triage.add_argument(
+        "--epk-protein-substrate-acceptor-candidate-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_acceptor_candidate_audit.json"
+        ),
+    )
+    epk_positive_source_triage.add_argument("--max-rows", type=int, default=10)
+    epk_positive_source_triage.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_positive_source_triage.json"
+        ),
+    )
+    epk_positive_source_triage.set_defaults(
+        func=cmd_build_epk_protein_substrate_positive_source_triage
+    )
+
+    epk_m_csa760_atp_repair = subparsers.add_parser(
+        "build-epk-m-csa760-atp-state-repair-scan",
+        help="scan review-only m_csa:760 alternate structures for ATP/substrate context",
+    )
+    epk_m_csa760_atp_repair.add_argument(
+        "--epk-protein-substrate-positive-source-triage",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_positive_source_triage.json"
+        ),
+    )
+    epk_m_csa760_atp_repair.add_argument(
+        "--review-debt-remediation",
+        default="artifacts/v3_review_debt_remediation_1025_preview_all.json",
+    )
+    epk_m_csa760_atp_repair.add_argument("--entry-id", default="m_csa:760")
+    epk_m_csa760_atp_repair.add_argument("--cif-dir", default=None)
+    epk_m_csa760_atp_repair.add_argument(
+        "--out",
+        default="artifacts/v3_epk_m_csa760_atp_state_repair_scan.json",
+    )
+    epk_m_csa760_atp_repair.set_defaults(
+        func=cmd_build_epk_m_csa760_atp_state_repair_scan
+    )
+
     epk_nonready_alternate_plan = subparsers.add_parser(
         "build-epk-nonready-ligand-alternate-structure-plan",
         help="screen review-only alternate structures for non-ready ePK ligand rows",
@@ -13893,6 +14173,18 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-chain-ligand-external-hard-negative-feature-screen",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-protein-substrate-acceptor-candidate-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-ligand-analog-policy-blocker-decision",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-m-csa760-atp-state-repair-scan",
         default=None,
     )
     epk_precount_gate_status.add_argument(

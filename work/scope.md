@@ -13,8 +13,16 @@ Current ePK scope: the lane is still review-only and blocked from production
 fingerprint expansion. The chain/ligand acceptor disambiguation experiment now
 keeps 3/3 current ePK positives, blocks 20/20 current sibling controls with 0
 false hits, and leaves all three imported external hard negatives abstained.
-That improves the scorer-design surface, but the feature is not production
-admissible, the external hard-negative re-audit is not scored, thresholds are
+The stricter protein-substrate-only acceptor candidate keeps 2/3 positives and
+0 false hits but misses `m_csa:640`; a follow-on policy decision keeps that
+ligand-analog evidence review-only, so another protein-substrate positive or a
+pre-registered analog policy is now an explicit blocker. The active-learning
+queue exposes three additional non-countable ePK-family source candidates;
+`m_csa:760` is the first repair target because it already has local ADP/Mg
+product-state context. That repair target is now split-state blocked: `1TID`
+and `1TIL` provide ATP/Mg catalytic context, while `1TH8` and `1THN` provide
+protein-substrate/product-state context, with 0 combined measurement-ready
+structures. The external hard-negative re-audit is not scored, thresholds are
 not calibrated, and registry or label-factory extension remains out of scope
 until those gates pass.
 
@@ -445,15 +453,24 @@ Current expectation:
   negative result machine-readable and keeps threshold selection at
   `do_not_select_threshold`. No calibrated threshold, production ePK score,
   external re-audit, registry edit, or label import has occurred. The
-  consolidated ePK pre-count gate status remains `blocked_review_only`:
-  local-axis prototyping, measured-row acceptor identity review, and
-  gamma-threshold control planning pass, and non-ready-row exclusion plus
-  sibling-control alternate measurements, calibration-sufficiency review, and
-  NDK homolog sourcing/mapping/measurement plus PfkB/PfkA/ATP-grasp
-  family-specific sibling counterevidence are now explicit, while
-  negative-control readiness, threshold calibration, complete gamma geometry,
-  external hard-negative re-audit, template readiness, and registry/gate
-  extension all fail closed.
+  consolidated ePK pre-count gate status remains `blocked_review_only`.
+  Chain/ligand acceptor disambiguation removes the nearest-oxygen false hits,
+  but the stricter protein-substrate-only acceptor candidate misses
+  `m_csa:640` because that row depends on ligand-analog context; the current
+  policy decision keeps that analog evidence non-production. Local-axis
+  prototyping, measured-row acceptor identity review, gamma-threshold control
+  planning, non-ready-row exclusion, sibling-control alternate measurements,
+  calibration-sufficiency review, NDK homolog sourcing/mapping/measurement,
+  and PfkB/PfkA/ATP-grasp family-specific sibling counterevidence are explicit.
+  The new source triage identifies `m_csa:756`, `m_csa:757`, and `m_csa:760`
+  as additional non-countable ePK-family rows, with `m_csa:760` first for
+  alternate ATP-state repair because its selected structure has ADP/Mg
+  product-state context. The follow-on `m_csa:760` scan finds ATP/Mg structures
+  and protein-substrate product-state structures in different PDBs but 0
+  combined measurement-ready contexts, so source repair must pivot unless a
+  combined structure or pre-registered analog policy appears. Negative-control
+  readiness, threshold calibration, protein-substrate acceptor coverage,
+  external hard-negative re-audit, and registry/gate extension all fail closed.
 - return to factory-gated label scaling toward 10k while preserving quality
   gates; the accepted 1,000 M-CSA state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the
