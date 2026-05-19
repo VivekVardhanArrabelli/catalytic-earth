@@ -955,8 +955,25 @@ missing sibling families:
 `artifacts/v3_epk_sibling_control_homolog_source_plan_pfka_1025.json` finds
 5/10 PfkA candidates, and
 `artifacts/v3_epk_sibling_control_homolog_source_plan_atp_grasp_1025.json`
-finds 2/12 ATP-grasp candidates. These are source queues only; all rows remain
-mapping-pending, measurement-not-ready, non-countable, and review-only.
+finds 2/12 ATP-grasp candidates.
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_pfkb_1025.json`,
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_pfka_1025.json`, and
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_atp_grasp_1025.json`
+then fail those queues closed under the current histidine-centric homolog
+mapper: 0 PfkB, 0 PfkA, and 0 ATP-grasp candidates are measurement-ready.
+PfkB and PfkA still show some nucleotide-site context, but the catalytic
+histidine axis is unresolved for every candidate, so these remain
+measurement-not-ready, non-countable, and review-only until family-specific
+catalytic-residue templates exist.
+`artifacts/v3_epk_family_specific_mapping_template_review_pfkb_1025.json`,
+`artifacts/v3_epk_family_specific_mapping_template_review_pfka_1025.json`, and
+`artifacts/v3_epk_family_specific_mapping_template_review_atp_grasp_1025.json`
+seed the first source-family residue-role templates for those blockers.
+Together they record 35 non-countable review-only residue-role seeds across
+five M-CSA source entries. Each artifact explicitly keeps
+`family_specific_mapping_ready=false`, forbids exact residue-position transfer,
+and requires a future family-specific mapper before any homolog distance
+measurement.
 `artifacts/v3_epk_review_only_scoring_prototype_1025.json` then evaluates a
 deliberately fail-closed ePK prototype surface. Two current ePK rows have all
 provisional axes under the uncalibrated 6-Angstrom candidate cutoff, `m_csa:640`
@@ -971,7 +988,8 @@ threshold/control planning pass, non-ready-row exclusion is explicit, and a
 sibling alternate-control measurement surface plus NDK homolog counter-axis
 measurement exist, but negative-control distribution readiness, acceptor
 threshold calibration, complete gamma geometry, external hard-negative scored
-re-audit, and label-factory/registry extension all remain failing gates.
+re-audit, family-specific homolog mapping from the PfkB template, and
+label-factory/registry extension all remain failing gates.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

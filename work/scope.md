@@ -410,8 +410,15 @@ Current expectation:
   unsafe unless a future scorer distinguishes hydroxyl acceptors from
   phosphohistidine transfer. PfkB, PfkA, and ATP-grasp now have bounded
   homolog source queues with 9, 5, and 2 gamma-plus-metal candidates,
-  respectively, but all remain catalytic-mapping-pending and
-  measurement-not-ready. A fail-closed review-only ePK prototype now evaluates
+  respectively. Follow-on mapping reviews fail those queues closed under the
+  current histidine-centric mapper: PfkB maps nucleotide-site context in 4
+  candidates but 0 catalytic histidines, PfkA maps 5 and 0, and ATP-grasp maps
+  0 and 0. All three families remain measurement-not-ready until
+  family-specific catalytic-residue templates exist. The first template
+  reviews now seed 35 source-family residue roles across PfkB, PfkA, and
+  ATP-grasp, but keep exact position transfer and automated mapping closed
+  until family-specific mappers exist. A fail-closed
+  review-only ePK prototype now evaluates
   the provisional axis surface: two current ePK rows have all provisional axes,
   `m_csa:640` abstains, all four NDK homolog rows are blocked by the
   phosphohistidine counter-axis, and all three imported external hard negatives
@@ -422,9 +429,10 @@ Current expectation:
   local-axis prototyping, measured-row acceptor identity review, and
   gamma-threshold control planning pass, and non-ready-row exclusion plus
   sibling-control alternate measurements, calibration-sufficiency review, and
-  NDK homolog sourcing/mapping/measurement are now explicit, while
-  negative-control readiness, threshold calibration, complete gamma geometry,
-  external hard-negative re-audit, and registry/gate extension all fail closed.
+  NDK homolog sourcing/mapping/measurement plus the PfkB mapping-template
+  blocker are now explicit, while negative-control readiness, threshold
+  calibration, complete gamma geometry, external hard-negative re-audit,
+  family-specific homolog mapping, and registry/gate extension all fail closed.
 - return to factory-gated label scaling toward 10k while preserving quality
   gates; the accepted 1,000 M-CSA state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the

@@ -70,6 +70,7 @@ from .labels import (
     build_epk_atp_state_evidence_plan,
     build_epk_draft_fingerprint_spec,
     build_epk_external_hard_negative_reaudit_plan,
+    build_epk_family_specific_mapping_template_review,
     build_epk_gamma_geometry_feasibility_plan,
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
@@ -5715,6 +5716,31 @@ def cmd_build_epk_sibling_control_homolog_mapping_review(
     return 0
 
 
+def cmd_build_epk_family_specific_mapping_template_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.geometry_features).open("r", encoding="utf-8") as handle:
+        geometry_features = json.load(handle)
+    with Path(args.epk_sibling_control_homolog_mapping_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_control_homolog_mapping_review = json.load(handle)
+    review = build_epk_family_specific_mapping_template_review(
+        geometry_features=geometry_features,
+        epk_sibling_control_homolog_mapping_review=(
+            epk_sibling_control_homolog_mapping_review
+        ),
+        family_id=args.family_id,
+        source_entry_ids=_split_csv(args.source_entry_ids),
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK family-specific mapping template review to "
+        f"{args.out} (templates={review['metadata']['seeded_template_entry_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_sibling_control_homolog_gamma_distance_sample(
     args: argparse.Namespace,
 ) -> int:
@@ -5937,6 +5963,22 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_sibling_control_homolog_gamma_distance_sample = json.load(handle)
+    epk_family_specific_mapping_template_review = None
+    if args.epk_family_specific_mapping_template_review:
+        family_template_reviews = []
+        template_review_paths = (
+            args.epk_family_specific_mapping_template_review
+            if isinstance(args.epk_family_specific_mapping_template_review, list)
+            else [args.epk_family_specific_mapping_template_review]
+        )
+        for template_review_path in template_review_paths:
+            with Path(template_review_path).open("r", encoding="utf-8") as handle:
+                family_template_reviews.append(json.load(handle))
+        epk_family_specific_mapping_template_review = (
+            family_template_reviews[0]
+            if len(family_template_reviews) == 1
+            else family_template_reviews
+        )
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -5978,6 +6020,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_sibling_control_homolog_gamma_distance_sample=(
             epk_sibling_control_homolog_gamma_distance_sample
+        ),
+        epk_family_specific_mapping_template_review=(
+            epk_family_specific_mapping_template_review
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -12805,6 +12850,39 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_sibling_control_homolog_mapping_review
     )
 
+    epk_family_mapping_template = subparsers.add_parser(
+        "build-epk-family-specific-mapping-template-review",
+        help="seed a review-only family-specific residue template for homolog mapping",
+    )
+    epk_family_mapping_template.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    epk_family_mapping_template.add_argument(
+        "--epk-sibling-control-homolog-mapping-review",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_control_homolog_mapping_review.json"
+        ),
+    )
+    epk_family_mapping_template.add_argument(
+        "--family-id",
+        default="pfkb",
+        help="sibling family id to seed a template for",
+    )
+    epk_family_mapping_template.add_argument(
+        "--source-entry-ids",
+        default="",
+        help="comma-separated source entry ids; defaults to mapping-review source ids",
+    )
+    epk_family_mapping_template.add_argument(
+        "--out",
+        default="artifacts/v3_epk_family_specific_mapping_template_review.json",
+    )
+    epk_family_mapping_template.set_defaults(
+        func=cmd_build_epk_family_specific_mapping_template_review
+    )
+
     epk_homolog_distance_sample = subparsers.add_parser(
         "build-epk-sibling-control-homolog-gamma-distance-sample",
         help="measure review-only homolog sibling-control gamma-to-mapped-site distances",
@@ -12995,6 +13073,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-sibling-control-homolog-gamma-distance-sample",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-family-specific-mapping-template-review",
+        action="append",
         default=None,
     )
     epk_precount_gate_status.add_argument(

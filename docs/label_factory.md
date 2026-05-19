@@ -358,7 +358,22 @@ axis.
 `artifacts/v3_epk_sibling_control_homolog_source_plan_atp_grasp_1025.json`
 open bounded source-only queues for the remaining missing sibling families.
 They find 9 PfkB, 5 PfkA, and 2 ATP-grasp gamma-plus-metal candidates,
-respectively, but all remain mapping-pending and measurement-not-ready.
+respectively.
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_pfkb_1025.json`,
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_pfka_1025.json`, and
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_atp_grasp_1025.json`
+then record the first family-specific mapping result for those queues. All
+three families fail closed under the current histidine-centric mapper:
+PfkB has 4 nucleotide-site mapped candidates but 0 catalytic-histidine mapped
+candidates, PfkA has 5 and 0, and ATP-grasp has 0 and 0. The result is useful
+counterevidence for the next experiment, but no row is measurement-ready.
+`artifacts/v3_epk_family_specific_mapping_template_review_pfkb_1025.json`,
+`artifacts/v3_epk_family_specific_mapping_template_review_pfka_1025.json`, and
+`artifacts/v3_epk_family_specific_mapping_template_review_atp_grasp_1025.json`
+then seed source-family mapping templates for those blockers. They record
+35 non-countable residue-role seeds across five M-CSA source entries while
+keeping `family_specific_mapping_ready=false` and forbidding exact
+residue-position transfer to homolog candidates.
 `artifacts/v3_epk_review_only_scoring_prototype_1025.json` evaluates a
 fail-closed prototype decision surface against current ePK rows, the NDK
 homolog counter-axis, and the three imported external hard negatives. It
@@ -374,7 +389,8 @@ distance measurement, calibration-sufficiency review, NDK homolog sourcing,
 NDK homolog mapping, and NDK homolog histidine-axis measurement are now
 explicit review-only preparation; negative-control distribution readiness,
 acceptor-threshold calibration, complete gamma geometry, external hard-negative
-scored re-audit, and registry/label-factory extension all remain failed gates.
+scored re-audit, family-specific homolog mapping from the PfkB template, and
+registry/label-factory extension all remain failed gates.
 
 ## Active Learning Queue
 

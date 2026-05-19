@@ -78,8 +78,28 @@ sibling families:
 `artifacts/v3_epk_sibling_control_homolog_source_plan_pfka_1025.json` finds
 5/10 PfkA candidates, and
 `artifacts/v3_epk_sibling_control_homolog_source_plan_atp_grasp_1025.json`
-finds 2/12 ATP-grasp candidates. All of those rows remain mapping-pending,
-measurement-not-ready, non-countable, and review-only.
+finds 2/12 ATP-grasp candidates. Those source-plan rows start as
+mapping-pending, measurement-not-ready, non-countable, and review-only.
+
+The same run continued into the first mapping audit for those queues:
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_pfkb_1025.json`,
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_pfka_1025.json`, and
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_atp_grasp_1025.json`.
+All three fail closed under the current histidine-centric homolog mapper.
+PfkB has 4 nucleotide-site mapped candidates but 0 catalytic-histidine mapped
+candidates, PfkA has 5 and 0, and ATP-grasp has 0 and 0. None are
+measurement-ready. This is a useful negative result: the remaining sibling
+families need family-specific catalytic-residue templates before distance
+measurement, not another blind gamma-distance pass.
+
+`artifacts/v3_epk_family_specific_mapping_template_review_pfkb_1025.json`,
+`artifacts/v3_epk_family_specific_mapping_template_review_pfka_1025.json`, and
+`artifacts/v3_epk_family_specific_mapping_template_review_atp_grasp_1025.json`
+seed the first family-specific templates from existing source-family geometry
+evidence. Together they record 35 residue-role seeds across five M-CSA source
+entries, but keep `family_specific_mapping_ready=false`, forbid exact
+residue-position transfer to homolog candidates, and do not measure distances
+or change any scorer.
 
 `artifacts/v3_epk_review_only_scoring_prototype_1025.json` is the first
 fail-closed ePK prototype evaluation surface. It records two uncalibrated
@@ -94,21 +114,25 @@ imported external hard-negative abstentions for `uniprot:P06744`,
 NDK homolog measurement attached. The lane remains `blocked_review_only`:
 local axes, measured-row acceptor identity review, threshold/control planning,
 non-ready-row exclusion, sibling alternate-control measurement, and NDK
-homolog counter-axis measurement are explicit, but negative-control
-distribution readiness, acceptor-threshold calibration, complete gamma
-geometry, external hard-negative scored re-audit, and registry/label-factory
-extension still fail closed.
+homolog counter-axis measurement plus the PfkB/PfkA/ATP-grasp source templates
+are explicit, but negative-control distribution readiness, acceptor-threshold
+calibration, complete gamma geometry, family-specific homolog mapping from the
+seeded templates, external hard-negative scored re-audit, and
+registry/label-factory extension still fail closed.
 
 Evidence-based confidence call: ePK now has a better falsification surface, not
-a countable fingerprint. The next bounded ePK action should map one remaining
-source queue family-specifically, preferably PfkB first because it has 9
-gamma-plus-metal candidates, then PfkA and ATP-grasp. Do not add the ePK
-registry fingerprint, import ePK labels, score external hard negatives as clean
-held-out performance, or reopen migration Phase 2.
+a countable fingerprint. The next bounded ePK action should implement the
+PfkB family-specific homolog mapper from the seeded source template because
+PfkB has 9 gamma-plus-metal candidates and partial nucleotide-site mapping,
+then re-run mapping before any measurement. PfkA is second; ATP-grasp still
+needs better gamma-capable/source diversity as well as a mapper. Do not add
+the ePK registry fingerprint, import ePK labels, score external hard negatives
+as clean held-out performance, or reopen migration Phase 2.
 
-Verification passed with the final 495-test unit suite, `validate`,
+Verification passed with the final 498-test unit suite, `validate`,
 `validate-artifact-migration --dry-run --check-local-files`, `compileall`,
-external label invariant inspection, and `git diff --check`.
+external label invariant inspection, `jq empty` on the new ePK JSON artifacts,
+and `git diff --check`.
 
 As of the 2026-05-18T22:53:24Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and

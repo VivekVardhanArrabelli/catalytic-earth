@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "family_specific_mapping_ready": false,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_homolog_structure_count": 0,
+    "method": "epk_family_specific_mapping_template_review",
+    "missing_source_entry_ids": [],
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "implement a pfkb mapper using the seeded family-specific residue roles instead of the NDK histidine-axis mapper",
+      "rerun pfkb homolog mapping before any distance measurement",
+      "keep threshold selection and external hard-negative scoring closed"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact seeds a family-specific catalytic-residue template from existing geometry evidence. It does not map homolog residue correspondences, measure distances, select thresholds, score ePK, edit registries, re-audit external hard negatives, or import labels.",
+    "reviewed_sibling_family_id": "pfkb",
+    "reviewed_sibling_family_name": "PfkB/ribokinase-family kinases",
+    "row_count": 2,
+    "seeded_template_entry_count": 2,
+    "selected_threshold_angstrom": null,
+    "source_entry_ids": [
+      "m_csa:663",
+      "m_csa:670"
+    ],
+    "source_epk_sibling_control_homolog_mapping_review_method": "epk_sibling_control_homolog_mapping_review",
+    "source_geometry_features_method": null,
+    "source_mapping_review_candidate_count": 10,
+    "source_mapping_review_family_id": "pfkb",
+    "source_mapping_review_histidine_mapped_count": 0,
+    "source_mapping_review_measurement_ready_count": 0,
+    "source_mapping_review_nucleotide_site_mapped_count": 4,
+    "source_mapping_review_status_counts": {
+      "homolog_catalytic_histidine_mapping_unresolved": 10
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "template_residue_count": 11,
+    "template_review_status": "template_seeded_mapping_algorithm_pending_review_only",
+    "template_role_counts": {
+      "acid_base_or_acceptor_seed": 1,
+      "metal_ligand_seed": 2,
+      "phosphate_or_transition_state_stabilizer_seed": 8
+    },
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "exact_residue_position_transfer_allowed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "family_specific_mapping_algorithm_not_implemented",
+        "homolog_candidate_residue_correspondence_not_mapped",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "source_pdb_id": "1RK2",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "template_can_be_used_for_distance_measurement": false,
+      "template_ready_for_automated_mapping": false,
+      "template_residue_count": 4,
+      "template_residues": [
+        {
+          "chain_id": "A",
+          "resid": 252,
+          "residue_code": "Ala",
+          "residue_node_id": "m_csa:663:residue:1",
+          "source_roles": [
+            "electrostatic stabiliser",
+            "polar interaction"
+          ],
+          "template_role": "phosphate_or_transition_state_stabilizer_seed"
+        },
+        {
+          "chain_id": "A",
+          "resid": 253,
+          "residue_code": "Ala",
+          "residue_node_id": "m_csa:663:residue:2",
+          "source_roles": [
+            "electrostatic stabiliser",
+            "polar interaction"
+          ],
+          "template_role": "phosphate_or_transition_state_stabilizer_seed"
+        },
+        {
+          "chain_id": "A",
+          "resid": 254,
+          "residue_code": "Gly",
+          "residue_node_id": "m_csa:663:residue:3",
+          "source_roles": [
+            "electrostatic stabiliser",
+            "polar interaction"
+          ],
+          "template_role": "phosphate_or_transition_state_stabilizer_seed"
+        },
+        {
+          "chain_id": "A",
+          "resid": 255,
+          "residue_code": "Asp",
+          "residue_node_id": "m_csa:663:residue:4",
+          "source_roles": [
+            "electrostatic stabiliser",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "template_role": "acid_base_or_acceptor_seed"
+        }
+      ],
+      "template_status": "source_geometry_template_seed_review_only"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "exact_residue_position_transfer_allowed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "family_specific_mapping_algorithm_not_implemented",
+        "homolog_candidate_residue_correspondence_not_mapped",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "source_pdb_id": "1JXH",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "template_can_be_used_for_distance_measurement": false,
+      "template_ready_for_automated_mapping": false,
+      "template_residue_count": 7,
+      "template_residues": [
+        {
+          "chain_id": "A",
+          "resid": 230,
+          "residue_code": "Thr",
+          "residue_node_id": "m_csa:670:residue:1",
+          "source_roles": [
+            "metal ligand"
+          ],
+          "template_role": "metal_ligand_seed"
+        },
+        {
+          "chain_id": "A",
+          "resid": 230,
+          "residue_code": "Thr",
+          "residue_node_id": "m_csa:670:residue:2",
+          "source_roles": [
+            "metal ligand"
+          ],
+          "template_role": "metal_ligand_seed"
+        },
+        {
+          "chain_id": "A",
+          "resid": 233,
+          "residue_code": "Thr",
+          "residue_node_id": "m_csa:670:residue:3",
+          "source_roles": [
+            "electrostatic stabiliser"
+          ],
+          "template_role": "phosphate_or_transition_state_stabilizer_seed"
+        },
+        {
+          "chain_id": "A",
+          "resid": 234,
+          "residue_code": "Gly",
+          "residue_node_id": "m_csa:670:residue:4",
+          "source_roles": [
+            "electrostatic stabiliser"
+          ],
+          "template_role": "phosphate_or_transition_state_stabilizer_seed"
+        },
+        {
+          "chain_id": "A",
+          "resid": 235,
+          "residue_code": "Cys",
+          "residue_node_id": "m_csa:670:residue:5",
+          "source_roles": [
+            "electrostatic stabiliser"
+          ],
+          "template_role": "phosphate_or_transition_state_stabilizer_seed"
+        },
+        {
+          "chain_id": "A",
+          "resid": 198,
+          "residue_code": "Lys",
+          "residue_node_id": "m_csa:670:residue:6",
+          "source_roles": [
+            "electrostatic stabiliser"
+          ],
+          "template_role": "phosphate_or_transition_state_stabilizer_seed"
+        },
+        {
+          "chain_id": "A",
+          "resid": 232,
+          "residue_code": "Gly",
+          "residue_node_id": "m_csa:670:residue:7",
+          "source_roles": [
+            "electrostatic stabiliser"
+          ],
+          "template_role": "phosphate_or_transition_state_stabilizer_seed"
+        }
+      ],
+      "template_status": "source_geometry_template_seed_review_only"
+    }
+  ],
+  "warnings": [
+    "Template residues are source-family review evidence only; exact residue numbers must not be transferred to homolog candidates without a family-specific mapping step."
+  ]
+}

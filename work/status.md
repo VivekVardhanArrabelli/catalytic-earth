@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 183
-- Measured elapsed time: 5453.9 minutes (90.90 hours)
+- Entries: 184
+- Measured elapsed time: 5478.6 minutes (91.31 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 224.8 measured minutes (3.75 hours)
+- post-infra-science: 249.5 measured minutes (4.16 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2041
-- Evidence references logged: 1602
+- Artifact references logged: 2056
+- Evidence references logged: 1614
 
 ## Recent Entries
-
-### 2026-05-18T17:05:01.231831+00:00 - post-infra-science
-
-- Task: ePK nonready exclusions and sibling alternate controls
-- Time mode: measured
-- Measured minutes: 18.9
-- Started: 2026-05-18T16:45:55Z
-- Ended: 2026-05-18T17:04:49Z
-- Artifacts: artifacts/v3_epk_nonready_ligand_exclusion_decision_1025.json, artifacts/v3_epk_sibling_negative_control_alternate_structure_plan_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: startup 471-test unit discovery passed, final 475-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and 0 blockers, nonready ePK rows m_csa:282 and m_csa:662 explicitly excluded from current threshold calibration, sibling alternate screen found 3 gamma-plus-metal mapped controls for future measurement, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ### 2026-05-18T18:01:10.526233+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json, artifacts/v3_epk_sibling_control_homolog_source_plan_pfkb_1025.json, artifacts/v3_epk_sibling_control_homolog_source_plan_pfka_1025.json, artifacts/v3_epk_sibling_control_homolog_source_plan_atp_grasp_1025.json, artifacts/v3_epk_review_only_scoring_prototype_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: startup 490-test unit discovery passed, final 495-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, NDK homolog sample measured 4 mapped phosphohistidine-axis controls at 2.899-3.339 Angstrom, PfkB source plan found 9 gamma-metal candidates mapping-pending, PfkA source plan found 5 gamma-metal candidates mapping-pending, ATP-grasp source plan found 2 gamma-metal candidates mapping-pending, review-only ePK prototype failed closed with 2 positive-like rows 1 positive abstention 4 NDK counter-axis blocks and 3 external hard-negative abstentions, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative import or history rewrite.
+
+### 2026-05-19T00:38:30.189051+00:00 - post-infra-science
+
+- Task: ePK family-specific homolog mapping blockers
+- Time mode: measured
+- Measured minutes: 24.7
+- Started: 2026-05-19T00:13:31Z
+- Ended: 2026-05-19T00:38:13Z
+- Artifacts: artifacts/v3_epk_sibling_control_homolog_mapping_review_pfkb_1025.json, artifacts/v3_epk_sibling_control_homolog_mapping_review_pfka_1025.json, artifacts/v3_epk_sibling_control_homolog_mapping_review_atp_grasp_1025.json, artifacts/v3_epk_family_specific_mapping_template_review_pfkb_1025.json, artifacts/v3_epk_family_specific_mapping_template_review_pfka_1025.json, artifacts/v3_epk_family_specific_mapping_template_review_atp_grasp_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
+- Evidence: PfkB homolog mapping reviewed 10 candidates with 4 nucleotide-site mapped and 0 catalytic-histidine mapped; ready=0, PfkA homolog mapping reviewed 10 candidates with 5 nucleotide-site mapped and 0 catalytic-histidine mapped; ready=0, ATP-grasp homolog mapping reviewed 12 candidates with 0 nucleotide-site mapped and 0 catalytic-histidine mapped; ready=0, family-specific template reviews seeded 35 source-family residue roles across PfkB PfkA and ATP-grasp but kept mapping_ready=false, pre-count gate remains blocked_review_only with family_specific_homolog_mapping_template failing, final 498-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, jq empty passed on new ePK JSON artifacts, git diff --check passed
+- Notes: Continuation of the same locked direct automation run after the NDK measurement/prototype commit. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative import or history rewrite.
 
 ## Expectation Updates
 
@@ -260,6 +260,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-18T22:05:23.696999+00:00: ePK NDK now has homolog gamma-metal source candidates but threshold selection remains blocked until catalytic-residue mapping succeeds.
 - 2026-05-18T23:06:35.869912+00:00: ePK NDK mapping is no longer the active blocker; next work should measure mapped NDK homolog controls review-only before threshold selection.
 - 2026-05-19T00:13:47.867615+00:00: ePK gamma distance alone remains unsafe; NDK histidine counter-axis evidence and fail-closed external-negative abstentions make family-specific mapping for PfkB PfkA and ATP-grasp the next bounded step before any scorer or threshold claim.
+- 2026-05-19T00:38:30.189051+00:00: ePK remaining sibling controls now need family-specific homolog mappers from seeded source templates before any distance measurement or threshold claim.
 
 ## Scope Adjustments
 

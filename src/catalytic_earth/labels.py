@@ -12730,9 +12730,9 @@ def build_epk_sibling_control_homolog_mapping_review(
             else "homolog_mapping_blocked_review_only"
         ),
         "next_review_action": (
-            "measure mapped NDK homolog gamma-to-site controls in a bounded review-only pass"
+            f"measure mapped {target_family_id} homolog gamma-to-site controls in a bounded review-only pass"
             if ready_rows
-            else "source or map additional NDK homolog controls before any distance measurement"
+            else f"source or map additional {target_family_id} homolog controls before any distance measurement"
         ),
     }
     return {
@@ -12791,6 +12791,232 @@ def build_epk_sibling_control_homolog_mapping_review(
             (
                 "Mapped homolog controls are measurement candidates only; "
                 "they are not a calibrated negative-control distribution."
+            )
+        ],
+    }
+
+
+def build_epk_family_specific_mapping_template_review(
+    *,
+    geometry_features: dict[str, Any],
+    epk_sibling_control_homolog_mapping_review: dict[str, Any],
+    family_id: str = "pfkb",
+    source_entry_ids: list[str] | None = None,
+) -> dict[str, Any]:
+    """Seed a fail-closed family-specific catalytic-residue mapping template."""
+
+    mapping_meta = epk_sibling_control_homolog_mapping_review.get("metadata", {})
+    if not isinstance(mapping_meta, dict):
+        mapping_meta = {}
+    target_family_id = str(
+        family_id or mapping_meta.get("reviewed_sibling_family_id") or "pfkb"
+    ).strip().lower()
+    family_name = ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(target_family_id)
+    target_fingerprint_id = str(
+        mapping_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    inferred_entry_ids = {
+        str(entry_id)
+        for row in epk_sibling_control_homolog_mapping_review.get("rows", []) or []
+        if isinstance(row, dict)
+        for entry_id in row.get("source_entry_ids", []) or []
+        if entry_id
+    }
+    reviewed_entry_ids = _sorted_strings(source_entry_ids or inferred_entry_ids)
+    entries = geometry_features.get("entries", [])
+    geometry_by_entry_id = {
+        str(entry.get("entry_id")): entry
+        for entry in entries
+        if isinstance(entry, dict) and entry.get("entry_id")
+    }
+
+    def _template_role(residue: dict[str, Any]) -> str:
+        roles = [str(role).lower() for role in residue.get("roles", []) or []]
+        role_text = " ".join(roles)
+        code = str(residue.get("code") or "").upper()
+        if (
+            "proton acceptor" in role_text
+            or "proton donor" in role_text
+            or "general base" in role_text
+            or code in {"ASP", "GLU"}
+        ):
+            return "acid_base_or_acceptor_seed"
+        if "metal ligand" in role_text:
+            return "metal_ligand_seed"
+        if "electrostatic stabiliser" in role_text or "polar interaction" in role_text:
+            return "phosphate_or_transition_state_stabilizer_seed"
+        return "active_site_context_seed"
+
+    rows: list[dict[str, Any]] = []
+    template_role_counts: Counter[str] = Counter()
+    missing_entry_ids: list[str] = []
+    for entry_id in reviewed_entry_ids:
+        entry = geometry_by_entry_id.get(entry_id)
+        if not isinstance(entry, dict):
+            missing_entry_ids.append(entry_id)
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "family_id": target_family_id,
+                    "family_name": family_name,
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "template_status": "source_geometry_template_missing",
+                    "template_ready_for_automated_mapping": False,
+                    "template_can_be_used_for_distance_measurement": False,
+                    "exact_residue_position_transfer_allowed": False,
+                    "remaining_blockers": [
+                        "source_geometry_template_missing",
+                        "family_specific_mapping_algorithm_not_implemented",
+                        "negative_control_distribution_not_calibrated",
+                        "epk_score_not_computed",
+                    ],
+                }
+            )
+            continue
+        template_residues = []
+        for residue in entry.get("residues", []) or []:
+            if not isinstance(residue, dict):
+                continue
+            role = _template_role(residue)
+            template_role_counts[role] += 1
+            template_residues.append(
+                {
+                    "residue_code": str(residue.get("code") or ""),
+                    "chain_id": str(residue.get("chain_name") or ""),
+                    "resid": residue.get("resid"),
+                    "source_roles": _sorted_strings(residue.get("roles", []) or []),
+                    "template_role": role,
+                    "residue_node_id": residue.get("residue_node_id"),
+                }
+            )
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": entry.get("entry_name"),
+                "source_pdb_id": entry.get("pdb_id"),
+                "family_id": target_family_id,
+                "family_name": family_name,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "template_status": "source_geometry_template_seed_review_only",
+                "template_ready_for_automated_mapping": False,
+                "template_can_be_used_for_distance_measurement": False,
+                "exact_residue_position_transfer_allowed": False,
+                "template_residue_count": len(template_residues),
+                "template_residues": template_residues,
+                "remaining_blockers": [
+                    "family_specific_mapping_algorithm_not_implemented",
+                    "homolog_candidate_residue_correspondence_not_mapped",
+                    "negative_control_distribution_not_calibrated",
+                    "epk_score_not_computed",
+                    "external_hard_negative_reaudit_not_run",
+                ],
+            }
+        )
+
+    mapping_ready_count = int(
+        mapping_meta.get("measurement_ready_homolog_structure_count") or 0
+    )
+    mapped_histidine_count = int(
+        mapping_meta.get("catalytic_histidine_mapped_candidate_count") or 0
+    )
+    nucleotide_site_mapped_count = int(
+        mapping_meta.get("nucleotide_site_mapped_candidate_count") or 0
+    )
+    template_residue_count = sum(
+        int(row.get("template_residue_count") or 0) for row in rows
+    )
+    seeded_template_entry_count = sum(
+        1
+        for row in rows
+        if row.get("template_status") == "source_geometry_template_seed_review_only"
+    )
+    return {
+        "metadata": {
+            "method": "epk_family_specific_mapping_template_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "reviewed_sibling_family_id": target_family_id,
+            "reviewed_sibling_family_name": family_name,
+            "source_geometry_features_method": (
+                geometry_features.get("metadata", {}).get("method")
+                if isinstance(geometry_features.get("metadata"), dict)
+                else None
+            ),
+            "source_epk_sibling_control_homolog_mapping_review_method": (
+                mapping_meta.get("method")
+            ),
+            "source_mapping_review_family_id": (
+                mapping_meta.get("reviewed_sibling_family_id")
+            ),
+            "source_mapping_review_candidate_count": (
+                mapping_meta.get("mapping_reviewed_candidate_count")
+            ),
+            "source_mapping_review_status_counts": (
+                mapping_meta.get("homolog_mapping_status_counts", {})
+            ),
+            "source_mapping_review_histidine_mapped_count": mapped_histidine_count,
+            "source_mapping_review_nucleotide_site_mapped_count": (
+                nucleotide_site_mapped_count
+            ),
+            "source_mapping_review_measurement_ready_count": mapping_ready_count,
+            "source_entry_ids": reviewed_entry_ids,
+            "missing_source_entry_ids": missing_entry_ids,
+            "row_count": len(rows),
+            "seeded_template_entry_count": seeded_template_entry_count,
+            "template_residue_count": template_residue_count,
+            "template_role_counts": dict(sorted(template_role_counts.items())),
+            "template_review_status": (
+                "template_seeded_mapping_algorithm_pending_review_only"
+                if seeded_template_entry_count
+                else "template_missing_review_only"
+            ),
+            "family_specific_mapping_ready": False,
+            "measurement_ready_homolog_structure_count": 0,
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact seeds a family-specific catalytic-residue "
+                "template from existing geometry evidence. It does not map "
+                "homolog residue correspondences, measure distances, select "
+                "thresholds, score ePK, edit registries, re-audit external "
+                "hard negatives, or import labels."
+            ),
+            "next_actions": [
+                (
+                    f"implement a {target_family_id} mapper using the seeded "
+                    "family-specific residue roles instead of the NDK "
+                    "histidine-axis mapper"
+                ),
+                (
+                    f"rerun {target_family_id} homolog mapping before any "
+                    "distance measurement"
+                ),
+                "keep threshold selection and external hard-negative scoring closed",
+            ],
+        },
+        "rows": sorted(rows, key=lambda row: _entry_id_sort_key(str(row["entry_id"]))),
+        "warnings": [
+            (
+                "Template residues are source-family review evidence only; "
+                "exact residue numbers must not be transferred to homolog "
+                "candidates without a family-specific mapping step."
             )
         ],
     }
@@ -13672,6 +13898,9 @@ def build_epk_precount_gate_status(
     epk_sibling_control_homolog_source_plan: dict[str, Any] | None = None,
     epk_sibling_control_homolog_mapping_review: dict[str, Any] | None = None,
     epk_sibling_control_homolog_gamma_distance_sample: dict[str, Any] | None = None,
+    epk_family_specific_mapping_template_review: dict[str, Any]
+    | list[dict[str, Any]]
+    | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -13818,6 +14047,47 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(homolog_distance_meta, dict):
         homolog_distance_meta = {}
+    family_template_reviews = (
+        epk_family_specific_mapping_template_review
+        if isinstance(epk_family_specific_mapping_template_review, list)
+        else (
+            [epk_family_specific_mapping_template_review]
+            if isinstance(epk_family_specific_mapping_template_review, dict)
+            else []
+        )
+    )
+    family_template_metas: list[dict[str, Any]] = []
+    for review in family_template_reviews:
+        if not isinstance(review, dict):
+            continue
+        meta = review.get("metadata", {})
+        if isinstance(meta, dict):
+            family_template_metas.append(meta)
+    family_template_meta = family_template_metas[0] if family_template_metas else {}
+    family_template_family_ids = _sorted_strings(
+        meta.get("reviewed_sibling_family_id")
+        for meta in family_template_metas
+        if meta.get("reviewed_sibling_family_id")
+    )
+    family_template_status_counts = Counter(
+        str(meta.get("template_review_status"))
+        for meta in family_template_metas
+        if meta.get("template_review_status")
+    )
+    family_template_seeded_entry_count_total = sum(
+        int(meta.get("seeded_template_entry_count") or 0)
+        for meta in family_template_metas
+    )
+    family_template_residue_count_total = sum(
+        int(meta.get("template_residue_count") or 0)
+        for meta in family_template_metas
+    )
+    family_template_ready_family_ids = _sorted_strings(
+        meta.get("reviewed_sibling_family_id")
+        for meta in family_template_metas
+        if meta.get("reviewed_sibling_family_id")
+        and bool(meta.get("family_specific_mapping_ready"))
+    )
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -14130,6 +14400,43 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if family_template_metas:
+        gate_checks.append(
+            {
+                "gate_id": "family_specific_homolog_mapping_template",
+                "passed": len(family_template_ready_family_ids)
+                == len(family_template_family_ids),
+                "evidence": {
+                    "source_methods": _sorted_strings(
+                        meta.get("method")
+                        for meta in family_template_metas
+                        if meta.get("method")
+                    ),
+                    "reviewed_sibling_family_ids": family_template_family_ids,
+                    "ready_family_ids": family_template_ready_family_ids,
+                    "seeded_template_entry_count_total": (
+                        family_template_seeded_entry_count_total
+                    ),
+                    "template_residue_count_total": (
+                        family_template_residue_count_total
+                    ),
+                    "template_review_status_counts": dict(
+                        sorted(family_template_status_counts.items())
+                    ),
+                    "family_specific_mapping_ready": (
+                        len(family_template_ready_family_ids)
+                        == len(family_template_family_ids)
+                    ),
+                    "measurement_ready_homolog_structure_count_total": sum(
+                        int(
+                            meta.get("measurement_ready_homolog_structure_count")
+                            or 0
+                        )
+                        for meta in family_template_metas
+                    ),
+                },
+            }
+        )
     failing_gate_ids = [
         str(check["gate_id"]) for check in gate_checks if not bool(check["passed"])
     ]
@@ -14239,6 +14546,20 @@ def build_epk_precount_gate_status(
                 0,
                 f"map catalytic residues for sourced {homolog_family} homolog controls before measurement",
             )
+    if family_template_metas:
+        template_not_ready_family_ids = [
+            family_id
+            for family_id in family_template_family_ids
+            if family_id not in family_template_ready_family_ids
+        ]
+        template_family_text = ", ".join(template_not_ready_family_ids)
+        next_actions.insert(
+            0,
+            (
+                f"implement family-specific homolog mapping for {template_family_text} "
+                "from the seeded templates before distance measurement"
+            ),
+        )
     return {
         "metadata": {
             "method": "epk_precount_gate_status",
@@ -14410,6 +14731,46 @@ def build_epk_precount_gate_status(
                 homolog_distance_meta.get(
                     "observed_homolog_histidine_distance_max_angstrom"
                 )
+            ),
+            "source_epk_family_specific_mapping_template_review_method": (
+                family_template_meta.get("method")
+            ),
+            "source_epk_family_specific_mapping_template_review_methods": (
+                _sorted_strings(
+                    meta.get("method")
+                    for meta in family_template_metas
+                    if meta.get("method")
+                )
+            ),
+            "negative_control_family_template_family_id": (
+                family_template_meta.get("reviewed_sibling_family_id")
+            ),
+            "negative_control_family_template_family_ids": (
+                family_template_family_ids
+            ),
+            "negative_control_family_template_seeded_entry_count": (
+                family_template_meta.get("seeded_template_entry_count")
+            ),
+            "negative_control_family_template_seeded_entry_count_total": (
+                family_template_seeded_entry_count_total
+            ),
+            "negative_control_family_template_residue_count": (
+                family_template_meta.get("template_residue_count")
+            ),
+            "negative_control_family_template_residue_count_total": (
+                family_template_residue_count_total
+            ),
+            "negative_control_family_template_review_status": (
+                family_template_meta.get("template_review_status")
+            ),
+            "negative_control_family_template_review_status_counts": dict(
+                sorted(family_template_status_counts.items())
+            ),
+            "negative_control_family_template_mapping_ready": bool(
+                family_template_meta.get("family_specific_mapping_ready")
+            ),
+            "negative_control_family_template_ready_family_ids": (
+                family_template_ready_family_ids
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

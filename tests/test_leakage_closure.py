@@ -1291,6 +1291,42 @@ class LeakageClosureTests(unittest.TestCase):
             metadata["negative_control_homolog_distance_sample_axis"],
             "mapped_phosphohistidine_site_not_hydroxyl_acceptor",
         )
+        self.assertEqual(
+            metadata["source_epk_family_specific_mapping_template_review_method"],
+            "epk_family_specific_mapping_template_review",
+        )
+        self.assertEqual(
+            metadata["source_epk_family_specific_mapping_template_review_methods"],
+            ["epk_family_specific_mapping_template_review"],
+        )
+        self.assertEqual(metadata["negative_control_family_template_family_id"], "pfkb")
+        self.assertEqual(
+            metadata["negative_control_family_template_family_ids"],
+            ["atp_grasp", "pfka", "pfkb"],
+        )
+        self.assertEqual(
+            metadata["negative_control_family_template_seeded_entry_count"],
+            2,
+        )
+        self.assertEqual(
+            metadata["negative_control_family_template_seeded_entry_count_total"],
+            5,
+        )
+        self.assertEqual(metadata["negative_control_family_template_residue_count"], 11)
+        self.assertEqual(
+            metadata["negative_control_family_template_residue_count_total"],
+            35,
+        )
+        self.assertEqual(
+            metadata["negative_control_family_template_review_status"],
+            "template_seeded_mapping_algorithm_pending_review_only",
+        )
+        self.assertEqual(
+            metadata["negative_control_family_template_review_status_counts"],
+            {"template_seeded_mapping_algorithm_pending_review_only": 3},
+        )
+        self.assertFalse(metadata["negative_control_family_template_mapping_ready"])
+        self.assertEqual(metadata["negative_control_family_template_ready_family_ids"], [])
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
         self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
         self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
@@ -1321,6 +1357,10 @@ class LeakageClosureTests(unittest.TestCase):
             "gamma_negative_control_distance_distribution",
             metadata["failing_gate_ids"],
         )
+        self.assertIn(
+            "family_specific_homolog_mapping_template",
+            metadata["failing_gate_ids"],
+        )
         checks = {check["gate_id"]: check for check in status["gate_checks"]}
         self.assertTrue(checks["local_axis_prototype"]["passed"])
         self.assertTrue(checks["measured_acceptor_identity_reviewed"]["passed"])
@@ -1329,6 +1369,7 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertFalse(
             checks["gamma_negative_control_distance_distribution"]["passed"]
         )
+        self.assertFalse(checks["family_specific_homolog_mapping_template"]["passed"])
         self.assertEqual(
             checks["gamma_negative_control_distance_distribution"]["evidence"][
                 "alternate_structure_ready_for_measurement_count"
@@ -1667,6 +1708,180 @@ class LeakageClosureTests(unittest.TestCase):
                         row["catalytic_mapping_status"],
                         "not_mapped_review_pending",
                     )
+
+    def test_epk_remaining_homolog_mapping_reviews_fail_closed(self) -> None:
+        expectations = {
+            "pfkb": {
+                "path": "v3_epk_sibling_control_homolog_mapping_review_pfkb_1025.json",
+                "candidate_pdb_count": 10,
+                "nucleotide_site_mapped_candidate_count": 4,
+            },
+            "pfka": {
+                "path": "v3_epk_sibling_control_homolog_mapping_review_pfka_1025.json",
+                "candidate_pdb_count": 10,
+                "nucleotide_site_mapped_candidate_count": 5,
+            },
+            "atp_grasp": {
+                "path": (
+                    "v3_epk_sibling_control_homolog_mapping_review_atp_grasp_1025.json"
+                ),
+                "candidate_pdb_count": 12,
+                "nucleotide_site_mapped_candidate_count": 0,
+            },
+        }
+        for family_id, expected in expectations.items():
+            with self.subTest(family_id=family_id):
+                review = _load_json(ROOT / "artifacts" / expected["path"])
+                metadata = review["metadata"]
+                self.assertEqual(
+                    metadata["method"], "epk_sibling_control_homolog_mapping_review"
+                )
+                self.assertTrue(metadata["review_only"])
+                self.assertEqual(metadata["reviewed_sibling_family_id"], family_id)
+                self.assertEqual(
+                    metadata["mapping_reviewed_candidate_count"],
+                    expected["candidate_pdb_count"],
+                )
+                self.assertEqual(
+                    metadata["homolog_mapping_status_counts"],
+                    {
+                        "homolog_catalytic_histidine_mapping_unresolved": (
+                            expected["candidate_pdb_count"]
+                        )
+                    },
+                )
+                self.assertEqual(metadata["catalytic_histidine_mapped_candidate_count"], 0)
+                self.assertEqual(
+                    metadata["nucleotide_site_mapped_candidate_count"],
+                    expected["nucleotide_site_mapped_candidate_count"],
+                )
+                self.assertEqual(metadata["measurement_ready_homolog_structure_count"], 0)
+                self.assertIn(family_id, metadata["next_actions"][0])
+                self.assertNotIn("NDK", metadata["next_actions"][0])
+                self.assertFalse(metadata["calibration_distance_measured"])
+                self.assertFalse(
+                    metadata["negative_control_distance_distribution_ready"]
+                )
+                self.assertFalse(metadata["threshold_calibrated"])
+                self.assertFalse(metadata["epk_score_computed"])
+                self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+                self.assertFalse(metadata["ready_to_run_epk_scorer"])
+                self.assertFalse(
+                    metadata["ready_to_expand_positive_fingerprint_universe"]
+                )
+                self.assertFalse(metadata["fingerprint_registry_edited"])
+                self.assertFalse(metadata["curated_label_registry_edited"])
+                self.assertEqual(metadata["countable_label_candidate_count"], 0)
+                for row in review["rows"]:
+                    self.assertEqual(
+                        row["homolog_mapping_status"],
+                        "homolog_catalytic_histidine_mapping_unresolved",
+                    )
+                    self.assertFalse(row["measurement_ready_for_negative_control"])
+                    self.assertFalse(row["negative_control_distance_distribution_ready"])
+                    self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_family_specific_mapping_template_reviews_stay_review_only(
+        self,
+    ) -> None:
+        expectations = {
+            "pfkb": {
+                "path": "v3_epk_family_specific_mapping_template_review_pfkb_1025.json",
+                "source_entry_ids": ["m_csa:663", "m_csa:670"],
+                "seeded_template_entry_count": 2,
+                "template_residue_count": 11,
+                "mapping_candidate_count": 10,
+                "nucleotide_site_mapped_candidate_count": 4,
+            },
+            "pfka": {
+                "path": "v3_epk_family_specific_mapping_template_review_pfka_1025.json",
+                "source_entry_ids": ["m_csa:365"],
+                "seeded_template_entry_count": 1,
+                "template_residue_count": 7,
+                "mapping_candidate_count": 10,
+                "nucleotide_site_mapped_candidate_count": 5,
+            },
+            "atp_grasp": {
+                "path": (
+                    "v3_epk_family_specific_mapping_template_review_atp_grasp_1025.json"
+                ),
+                "source_entry_ids": ["m_csa:310", "m_csa:498"],
+                "seeded_template_entry_count": 2,
+                "template_residue_count": 17,
+                "mapping_candidate_count": 12,
+                "nucleotide_site_mapped_candidate_count": 0,
+            },
+        }
+        for family_id, expected in expectations.items():
+            with self.subTest(family_id=family_id):
+                review = _load_json(ROOT / "artifacts" / expected["path"])
+                metadata = review["metadata"]
+                self.assertEqual(
+                    metadata["method"], "epk_family_specific_mapping_template_review"
+                )
+                self.assertTrue(metadata["review_only"])
+                self.assertEqual(metadata["reviewed_sibling_family_id"], family_id)
+                self.assertEqual(
+                    metadata["source_epk_sibling_control_homolog_mapping_review_method"],
+                    "epk_sibling_control_homolog_mapping_review",
+                )
+                self.assertEqual(
+                    metadata["source_entry_ids"], expected["source_entry_ids"]
+                )
+                self.assertEqual(
+                    metadata["seeded_template_entry_count"],
+                    expected["seeded_template_entry_count"],
+                )
+                self.assertEqual(
+                    metadata["template_residue_count"],
+                    expected["template_residue_count"],
+                )
+                self.assertEqual(
+                    metadata["source_mapping_review_status_counts"],
+                    {
+                        "homolog_catalytic_histidine_mapping_unresolved": (
+                            expected["mapping_candidate_count"]
+                        )
+                    },
+                )
+                self.assertEqual(
+                    metadata["source_mapping_review_histidine_mapped_count"], 0
+                )
+                self.assertEqual(
+                    metadata["source_mapping_review_nucleotide_site_mapped_count"],
+                    expected["nucleotide_site_mapped_candidate_count"],
+                )
+                self.assertEqual(
+                    metadata["source_mapping_review_measurement_ready_count"],
+                    0,
+                )
+                self.assertFalse(metadata["family_specific_mapping_ready"])
+                self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+                self.assertFalse(metadata["threshold_calibrated"])
+                self.assertFalse(metadata["epk_score_computed"])
+                self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+                self.assertFalse(metadata["ready_to_run_epk_scorer"])
+                self.assertFalse(
+                    metadata["ready_to_expand_positive_fingerprint_universe"]
+                )
+                self.assertFalse(metadata["fingerprint_registry_edited"])
+                self.assertFalse(metadata["curated_label_registry_edited"])
+                self.assertEqual(metadata["countable_label_candidate_count"], 0)
+                rows = {row["entry_id"]: row for row in review["rows"]}
+                self.assertEqual(set(rows), set(expected["source_entry_ids"]))
+                self.assertIn(
+                    "acid_base_or_acceptor_seed",
+                    {
+                        residue["template_role"]
+                        for row in review["rows"]
+                        for residue in row["template_residues"]
+                    },
+                )
+                for row in review["rows"]:
+                    self.assertFalse(row["template_ready_for_automated_mapping"])
+                    self.assertFalse(row["template_can_be_used_for_distance_measurement"])
+                    self.assertFalse(row["exact_residue_position_transfer_allowed"])
+                    self.assertFalse(row["countable_label_candidate"])
 
     def test_epk_review_only_scoring_prototype_fails_closed(self) -> None:
         prototype = _load_json(

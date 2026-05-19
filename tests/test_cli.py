@@ -3666,6 +3666,7 @@ class CliTests(unittest.TestCase):
             repair = root / "repair.json"
             negative = root / "negative_controls.json"
             reaudit = root / "reaudit.json"
+            template = root / "template.json"
             out = root / "gate_status.json"
             axis.write_text(
                 json.dumps(
@@ -3752,6 +3753,24 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            template.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_family_specific_mapping_template_review",
+                            "reviewed_sibling_family_id": "pfkb",
+                            "seeded_template_entry_count": 1,
+                            "template_residue_count": 2,
+                            "template_review_status": (
+                                "template_seeded_mapping_algorithm_pending_review_only"
+                            ),
+                            "family_specific_mapping_ready": False,
+                            "measurement_ready_homolog_structure_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -3769,6 +3788,8 @@ class CliTests(unittest.TestCase):
                     str(repair),
                     "--epk-negative-control-gamma-distance-distribution",
                     str(negative),
+                    "--epk-family-specific-mapping-template-review",
+                    str(template),
                     "--epk-external-hard-negative-reaudit-plan",
                     str(reaudit),
                     "--out",
@@ -3789,6 +3810,15 @@ class CliTests(unittest.TestCase):
                 "gamma_geometry_measured_for_all_prototype_rows",
                 metadata["failing_gate_ids"],
             )
+            self.assertIn(
+                "family_specific_homolog_mapping_template",
+                metadata["failing_gate_ids"],
+            )
+            self.assertEqual(
+                metadata["source_epk_family_specific_mapping_template_review_method"],
+                "epk_family_specific_mapping_template_review",
+            )
+            self.assertEqual(metadata["negative_control_family_template_family_id"], "pfkb")
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
             checks = {check["gate_id"]: check for check in status["gate_checks"]}
             self.assertTrue(checks["local_axis_prototype"]["passed"])
@@ -3796,6 +3826,7 @@ class CliTests(unittest.TestCase):
             self.assertFalse(
                 checks["gamma_negative_control_distance_distribution"]["passed"]
             )
+            self.assertFalse(checks["family_specific_homolog_mapping_template"]["passed"])
 
     def test_build_epk_acceptor_identity_review_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -5451,6 +5482,109 @@ class CliTests(unittest.TestCase):
             self.assertTrue(row["measurement_ready_for_negative_control"])
             self.assertFalse(row["negative_control_distance_distribution_ready"])
             self.assertEqual(row["chain_mappings"][0]["chain_id"], "A")
+
+    def test_build_epk_family_specific_mapping_template_review_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            geometry_features = root / "geometry_features.json"
+            mapping_review = root / "homolog_mapping_review.json"
+            out = root / "template_review.json"
+            geometry_features.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "geometry_fixture"},
+                        "entries": [
+                            {
+                                "entry_id": "m_csa:663",
+                                "entry_name": "ribokinase",
+                                "pdb_id": "1RK2",
+                                "residues": [
+                                    {
+                                        "code": "Asp",
+                                        "chain_name": "A",
+                                        "resid": 255,
+                                        "roles": ["proton acceptor"],
+                                        "residue_node_id": "m_csa:663:residue:4",
+                                    },
+                                    {
+                                        "code": "Gly",
+                                        "chain_name": "A",
+                                        "resid": 254,
+                                        "roles": ["electrostatic stabiliser"],
+                                        "residue_node_id": "m_csa:663:residue:3",
+                                    },
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            mapping_review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_sibling_control_homolog_mapping_review",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "reviewed_sibling_family_id": "pfkb",
+                            "mapping_reviewed_candidate_count": 1,
+                            "homolog_mapping_status_counts": {
+                                "homolog_catalytic_histidine_mapping_unresolved": 1
+                            },
+                            "catalytic_histidine_mapped_candidate_count": 0,
+                            "nucleotide_site_mapped_candidate_count": 1,
+                            "measurement_ready_homolog_structure_count": 0,
+                        },
+                        "rows": [{"source_entry_ids": ["m_csa:663"]}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-family-specific-mapping-template-review",
+                    "--geometry-features",
+                    str(geometry_features),
+                    "--epk-sibling-control-homolog-mapping-review",
+                    str(mapping_review),
+                    "--family-id",
+                    "pfkb",
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            review = json.loads(out.read_text(encoding="utf-8"))
+            metadata = review["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_family_specific_mapping_template_review"
+            )
+            self.assertEqual(metadata["reviewed_sibling_family_id"], "pfkb")
+            self.assertEqual(metadata["seeded_template_entry_count"], 1)
+            self.assertEqual(metadata["template_residue_count"], 2)
+            self.assertEqual(metadata["source_mapping_review_histidine_mapped_count"], 0)
+            self.assertEqual(metadata["source_mapping_review_nucleotide_site_mapped_count"], 1)
+            self.assertFalse(metadata["family_specific_mapping_ready"])
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            row = review["rows"][0]
+            self.assertEqual(row["entry_id"], "m_csa:663")
+            self.assertFalse(row["template_ready_for_automated_mapping"])
+            self.assertFalse(row["template_can_be_used_for_distance_measurement"])
+            self.assertEqual(
+                row["template_residues"][0]["template_role"],
+                "acid_base_or_acceptor_seed",
+            )
 
     def test_build_epk_sibling_control_homolog_gamma_distance_sample_command(
         self,

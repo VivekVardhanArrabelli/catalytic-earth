@@ -1,0 +1,1482 @@
+{
+  "family_summaries": [
+    {
+      "candidate_pdb_count": 10,
+      "candidate_pdb_ids": [
+        "1ESQ",
+        "1TZ6",
+        "2C4E",
+        "3CQD",
+        "3IQ0",
+        "3UMO",
+        "3UMP",
+        "3UQD",
+        "3UQE",
+        "6ILT"
+      ],
+      "catalytic_histidine_mapped_candidate_count": 0,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "mapping_review_status": "homolog_mapping_blocked_review_only",
+      "measurement_ready_homolog_structure_count": 0,
+      "next_review_action": "source or map additional pfkb homolog controls before any distance measurement",
+      "nucleotide_site_mapped_candidate_count": 4
+    }
+  ],
+  "metadata": {
+    "calibration_distance_measured": false,
+    "catalytic_histidine_cutoff_angstrom": 4.0,
+    "catalytic_histidine_mapped_candidate_count": 0,
+    "cif_fetch_status_counts": {
+      "ok": 10
+    },
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "1ESQ",
+      "1TZ6",
+      "2C4E",
+      "3CQD",
+      "3IQ0",
+      "3UMO",
+      "3UMP",
+      "3UQD",
+      "3UQE",
+      "6ILT"
+    ],
+    "fingerprint_registry_edited": false,
+    "homolog_mapping_status_counts": {
+      "homolog_catalytic_histidine_mapping_unresolved": 10
+    },
+    "mapping_reviewed_candidate_count": 10,
+    "measurement_ready_homolog_structure_count": 0,
+    "method": "epk_sibling_control_homolog_mapping_review",
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "source or map additional pfkb homolog controls before any distance measurement",
+      "keep ePK threshold selection closed until mapped controls are measured and audited",
+      "do not score external hard negatives until a real ePK scorer exists"
+    ],
+    "nucleotide_site_cutoff_angstrom": 5.5,
+    "nucleotide_site_mapped_candidate_count": 4,
+    "ready_for_future_distance_measurement_count": 0,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact maps catalytic histidine and nucleotide-site residue evidence for sourced sibling-control homologs. It does not measure calibration distances, select thresholds, score ePK, edit registries, run external hard-negative re-audits, or import labels.",
+    "reviewed_sibling_family_id": "pfkb",
+    "reviewed_sibling_family_name": "PfkB/ribokinase-family kinases",
+    "row_count": 10,
+    "selected_threshold_angstrom": null,
+    "source_candidate_pdb_count": 10,
+    "source_epk_sibling_control_homolog_source_plan_method": "epk_sibling_control_homolog_source_plan",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "calibration_distance_measured": false,
+      "catalytic_histidine_mapping_verified": false,
+      "chain_mapping_count": 3,
+      "chain_mappings": [
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "300",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "300",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "123",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "135",
+              "residue_code": "ASN"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "305",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "305",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "123",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "135",
+              "residue_code": "ASN"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "C",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "310",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "310",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "C",
+              "auth_seq_id": "123",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "C",
+              "label_seq_id": "135",
+              "residue_code": "ASN"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "homolog_mapping_status": "homolog_catalytic_histidine_mapping_unresolved",
+      "mapped_chain_count": 0,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "nucleotide_site_mapping_verified": false,
+      "pdb_id": "1ESQ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_histidine_mapping_unresolved",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "CRYSTAL STRUCTURE OF THIAZOLE KINASE MUTANT (C198S) WITH ATP AND THIAZOLE PHOSPHATE.",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "calibration_distance_measured": false,
+      "catalytic_histidine_mapping_verified": false,
+      "chain_mapping_count": 2,
+      "chain_mappings": [
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "401",
+          "gamma_ligand_code": "ACP",
+          "gamma_ligand_label_seq_id": "401",
+          "mapping_status": "mapped_nucleotide_site_catalytic_histidine_unresolved",
+          "nucleotide_site_mapping_status": "mapped_review_only",
+          "nucleotide_site_residue_count": 4,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "187",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "207",
+              "residue_code": "LYS"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "160",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "180",
+              "residue_code": "ASN"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "271",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "162",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "182",
+              "residue_code": "ARG"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 2
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "501",
+          "gamma_ligand_code": "ACP",
+          "gamma_ligand_label_seq_id": "501",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 3,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "160",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "180",
+              "residue_code": "ASN"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "187",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "207",
+              "residue_code": "LYS"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "271",
+              "residue_code": "GLY"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ACP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "homolog_mapping_status": "homolog_catalytic_histidine_mapping_unresolved",
+      "mapped_chain_count": 0,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "nucleotide_site_mapping_verified": true,
+      "pdb_id": "1TZ6",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_histidine_mapping_unresolved",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of aminoimidazole riboside kinase from Salmonella enterica complexed with aminoimidazole riboside and ATP analog",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "calibration_distance_measured": false,
+      "catalytic_histidine_mapping_verified": false,
+      "chain_mapping_count": 0,
+      "chain_mappings": [],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [],
+      "has_gamma_capable_nucleotide": false,
+      "has_metal_ligand": true,
+      "homolog_mapping_status": "homolog_catalytic_histidine_mapping_unresolved",
+      "mapped_chain_count": 0,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "nucleotide_site_mapping_verified": false,
+      "pdb_id": "2C4E",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_histidine_mapping_unresolved",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_not_gamma_capable_source",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal Structure of Methanocaldococcus jannaschii Nucleoside Kinase - An Archaeal Member of the Ribokinase Family",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "calibration_distance_measured": false,
+      "catalytic_histidine_mapping_verified": false,
+      "chain_mapping_count": 4,
+      "chain_mappings": [
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "313",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "313",
+          "mapping_status": "mapped_nucleotide_site_catalytic_histidine_unresolved",
+          "nucleotide_site_mapping_status": "mapped_review_only",
+          "nucleotide_site_residue_count": 4,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "255",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "251",
+              "residue_code": "THR"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "105",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "105",
+              "residue_code": "ARG"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "253",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "253",
+              "residue_code": "GLY"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "314",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "314",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "311",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "311",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 3,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "255",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "251",
+              "residue_code": "THR"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "253",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "253",
+              "residue_code": "GLY"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "312",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "312",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "homolog_mapping_status": "homolog_catalytic_histidine_mapping_unresolved",
+      "mapped_chain_count": 0,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "nucleotide_site_mapping_verified": true,
+      "pdb_id": "3CQD",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_histidine_mapping_unresolved",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Structure of the tetrameric inhibited form of phosphofructokinase-2 from Escherichia coli",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "calibration_distance_measured": false,
+      "catalytic_histidine_mapping_verified": false,
+      "chain_mapping_count": 2,
+      "chain_mappings": [
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "900",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "900",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 3,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "257",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "259",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "254",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "256",
+              "residue_code": "THR"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "167",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "169",
+              "residue_code": "ASN"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "900",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "900",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 3,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "257",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "259",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "167",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "169",
+              "residue_code": "ASN"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "254",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "256",
+              "residue_code": "THR"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "homolog_mapping_status": "homolog_catalytic_histidine_mapping_unresolved",
+      "mapped_chain_count": 0,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "nucleotide_site_mapping_verified": false,
+      "pdb_id": "3IQ0",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_histidine_mapping_unresolved",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of a putative Ribokinase II in complex with ATP and Mg+2 from E.coli",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "calibration_distance_measured": false,
+      "catalytic_histidine_mapping_verified": false,
+      "chain_mapping_count": 6,
+      "chain_mappings": [
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "313",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "313",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 2,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "255",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "251",
+              "residue_code": "THR"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "315",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "315",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "315",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "315",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "312",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "312",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "312",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "312",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "313",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "313",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 3,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "255",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "253",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "253",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "251",
+              "residue_code": "THR"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "homolog_mapping_status": "homolog_catalytic_histidine_mapping_unresolved",
+      "mapped_chain_count": 0,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "nucleotide_site_mapping_verified": false,
+      "pdb_id": "3UMO",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_histidine_mapping_unresolved",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 from Escherichia coli in complex with Potassium",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "calibration_distance_measured": false,
+      "catalytic_histidine_mapping_verified": false,
+      "chain_mapping_count": 6,
+      "chain_mappings": [
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "313",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "313",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 2,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "255",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "251",
+              "residue_code": "THR"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "314",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "314",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "314",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "314",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "312",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "312",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "312",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "312",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "313",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "313",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 2,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "255",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "251",
+              "residue_code": "THR"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "homolog_mapping_status": "homolog_catalytic_histidine_mapping_unresolved",
+      "mapped_chain_count": 0,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "nucleotide_site_mapping_verified": false,
+      "pdb_id": "3UMP",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_histidine_mapping_unresolved",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 from Escherichia coli in complex with Cesium and ATP",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "calibration_distance_measured": false,
+      "catalytic_histidine_mapping_verified": false,
+      "chain_mapping_count": 4,
+      "chain_mappings": [
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "401",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "401",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 2,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "255",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "251",
+              "residue_code": "THR"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "404",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "404",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 1,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "27",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "27",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "C",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "401",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "401",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 0,
+          "nucleotide_site_residues": [],
+          "phosphate_binding_basic_residue_count": 0
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "D",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "401",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "401",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 2,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "D",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "D",
+              "label_seq_id": "255",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "D",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "D",
+              "label_seq_id": "251",
+              "residue_code": "THR"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "homolog_mapping_status": "homolog_catalytic_histidine_mapping_unresolved",
+      "mapped_chain_count": 0,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "nucleotide_site_mapping_verified": false,
+      "pdb_id": "3UQD",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_histidine_mapping_unresolved",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 from Escherichia coli in complex with substrates and products",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "calibration_distance_measured": false,
+      "catalytic_histidine_mapping_verified": false,
+      "chain_mapping_count": 2,
+      "chain_mappings": [
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "401",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "401",
+          "mapping_status": "mapped_nucleotide_site_catalytic_histidine_unresolved",
+          "nucleotide_site_mapping_status": "mapped_review_only",
+          "nucleotide_site_residue_count": 4,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "255",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "251",
+              "residue_code": "THR"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "253",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "253",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "105",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "105",
+              "residue_code": "ARG"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "404",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "404",
+          "mapping_status": "homolog_mapping_unresolved",
+          "nucleotide_site_mapping_status": "not_mapped_review_pending",
+          "nucleotide_site_residue_count": 2,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "255",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "251",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "251",
+              "residue_code": "THR"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 0
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "homolog_mapping_status": "homolog_catalytic_histidine_mapping_unresolved",
+      "mapped_chain_count": 0,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "nucleotide_site_mapping_verified": true,
+      "pdb_id": "3UQE",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_histidine_mapping_unresolved",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 mutant Y23D from Escherichia coli",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "calibration_distance_measured": false,
+      "catalytic_histidine_mapping_verified": false,
+      "chain_mapping_count": 2,
+      "chain_mappings": [
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "A",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "401",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "401",
+          "mapping_status": "mapped_nucleotide_site_catalytic_histidine_unresolved",
+          "nucleotide_site_mapping_status": "mapped_review_only",
+          "nucleotide_site_residue_count": 4,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "324",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "258",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "320",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "254",
+              "residue_code": "THR"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "322",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "256",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "A",
+              "auth_seq_id": "107",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "A",
+              "label_seq_id": "41",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        },
+        {
+          "catalytic_histidine_mapping_status": "not_mapped_review_pending",
+          "catalytic_histidine_residues": [],
+          "chain_id": "B",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "401",
+          "gamma_ligand_code": "ATP",
+          "gamma_ligand_label_seq_id": "401",
+          "mapping_status": "mapped_nucleotide_site_catalytic_histidine_unresolved",
+          "nucleotide_site_mapping_status": "mapped_review_only",
+          "nucleotide_site_residue_count": 5,
+          "nucleotide_site_residues": [
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "324",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "258",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "320",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "254",
+              "residue_code": "THR"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "322",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "256",
+              "residue_code": "GLY"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "255",
+              "evidence_role": "nucleotide_site_context_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "189",
+              "residue_code": "ASN"
+            },
+            {
+              "auth_asym_id": "B",
+              "auth_seq_id": "107",
+              "evidence_role": "phosphate_binding_basic_residue",
+              "label_asym_id": "B",
+              "label_seq_id": "41",
+              "residue_code": "LYS"
+            }
+          ],
+          "phosphate_binding_basic_residue_count": 1
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "homolog_mapping_status": "homolog_catalytic_histidine_mapping_unresolved",
+      "mapped_chain_count": 0,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "nucleotide_site_mapping_verified": true,
+      "pdb_id": "6ILT",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_histidine_mapping_unresolved",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Structure of Arabidopsis thaliana Ribokinase complexed with ATP and Magnesium ion",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    }
+  ],
+  "warnings": [
+    "Mapped homolog controls are measurement candidates only; they are not a calibrated negative-control distribution."
+  ]
+}

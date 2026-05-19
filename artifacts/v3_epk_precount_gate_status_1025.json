@@ -141,6 +141,28 @@
       },
       "gate_id": "gamma_negative_control_distance_distribution",
       "passed": false
+    },
+    {
+      "evidence": {
+        "family_specific_mapping_ready": false,
+        "measurement_ready_homolog_structure_count_total": 0,
+        "ready_family_ids": [],
+        "reviewed_sibling_family_ids": [
+          "atp_grasp",
+          "pfka",
+          "pfkb"
+        ],
+        "seeded_template_entry_count_total": 5,
+        "source_methods": [
+          "epk_family_specific_mapping_template_review"
+        ],
+        "template_residue_count_total": 35,
+        "template_review_status_counts": {
+          "template_seeded_mapping_algorithm_pending_review_only": 3
+        }
+      },
+      "gate_id": "family_specific_homolog_mapping_template",
+      "passed": false
     }
   ],
   "metadata": {
@@ -153,7 +175,8 @@
       "gamma_geometry_measured_for_all_prototype_rows",
       "external_hard_negative_scored_reaudit",
       "registry_and_label_factory_extension",
-      "gamma_negative_control_distance_distribution"
+      "gamma_negative_control_distance_distribution",
+      "family_specific_homolog_mapping_template"
     ],
     "fingerprint_registry_edited": false,
     "gamma_measured_row_count": 2,
@@ -168,6 +191,22 @@
     "negative_control_combined_measured_control_count": 5,
     "negative_control_combined_measured_family_count": 4,
     "negative_control_distance_distribution_ready": false,
+    "negative_control_family_template_family_id": "pfkb",
+    "negative_control_family_template_family_ids": [
+      "atp_grasp",
+      "pfka",
+      "pfkb"
+    ],
+    "negative_control_family_template_mapping_ready": false,
+    "negative_control_family_template_ready_family_ids": [],
+    "negative_control_family_template_residue_count": 11,
+    "negative_control_family_template_residue_count_total": 35,
+    "negative_control_family_template_review_status": "template_seeded_mapping_algorithm_pending_review_only",
+    "negative_control_family_template_review_status_counts": {
+      "template_seeded_mapping_algorithm_pending_review_only": 3
+    },
+    "negative_control_family_template_seeded_entry_count": 2,
+    "negative_control_family_template_seeded_entry_count_total": 5,
     "negative_control_homolog_distance_max_angstrom": 3.339,
     "negative_control_homolog_distance_min_angstrom": 2.899,
     "negative_control_homolog_distance_sample_axis": "mapped_phosphohistidine_site_not_hydroxyl_acceptor",
@@ -218,6 +257,7 @@
     ],
     "negative_control_source_request_open": true,
     "next_actions": [
+      "implement family-specific homolog mapping for atp_grasp, pfka, pfkb from the seeded templates before distance measurement",
       "use measured ndk homolog histidine-axis counterevidence while sourcing remaining sibling controls",
       "source metal-supported gamma-capable controls for atp_grasp, pfka, pfkb before measuring those sibling families",
       "expand sibling negative-control coverage beyond measured alternate structures before selecting a threshold",
@@ -237,6 +277,10 @@
     "selected_acceptor_threshold_angstrom": null,
     "source_epk_acceptor_identity_review_method": "epk_acceptor_identity_review",
     "source_epk_atp_state_evidence_plan_method": "epk_atp_state_evidence_plan",
+    "source_epk_family_specific_mapping_template_review_method": "epk_family_specific_mapping_template_review",
+    "source_epk_family_specific_mapping_template_review_methods": [
+      "epk_family_specific_mapping_template_review"
+    ],
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
     "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
     "source_epk_negative_control_calibration_sufficiency_decision_method": "epk_negative_control_calibration_sufficiency_decision",
