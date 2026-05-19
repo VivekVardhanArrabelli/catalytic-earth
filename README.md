@@ -1258,6 +1258,25 @@ then measures the three source-valid review leads from the carried topology
 hits: nearest ANP gamma distances span 3.482-5.607 Angstrom across the same two
 unique pairs. This removes the immediate "accepted lead not measured" blocker
 only for review controls; it is still not a calibrated score.
+`artifacts/v3_epk_heteromeric_source_valid_control_rerun_1025.json` reruns the
+fail-closed review control surface with those measured leads. The surface now
+has seven positive-like review rows, preserves 20 sibling controls with 0 false
+hits, keeps the three imported external hard negatives at 0 non-abstentions,
+and separates ambiguous `7M0T`/`7M0W` plus rejected `8ZN6` from the positive
+set. The follow-on
+`artifacts/v3_epk_heteromeric_text_free_axis_gap_audit_1025.json` shows that
+all four source-authority-dependent positive-like rows have local geometry
+axes but 0 have source-free role assignment or source-free acceptor identity.
+`artifacts/v3_epk_heteromeric_source_free_role_rule_probe_1025.json` then
+tests topology plus gamma distance as the obvious local rule and fails closed:
+it hits all six reviewed candidates, including nonaccepted `7M0T`, `7M0W`, and
+`8ZN6`.
+`artifacts/v3_epk_heteromeric_acceptor_chain_counteraxis_audit_1025.json`
+adds a first local counter-axis by blocking topology/gamma hits whose candidate
+acceptor chain itself carries nucleotide or metal ligand context. On the
+current six-row review surface, it retains the three source-valid positives,
+blocks the three nonaccepted hits, and leaves 0 residual nonaccepted hits; it
+is still review-only and needs broader controls before scorer use.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,
@@ -1281,8 +1300,12 @@ chain-topology signal gate also passes current hit controls as review-only
 counterevidence, and the broadened heteromeric candidate scout now passes as
 a source-validation queue. The source-validation review also passes with three
 accepted review-only structures across two unique kinase/substrate pairs, and
-the carried distance sample measures all three leads, but neither is scorer or
-label evidence. Real scorer design, the `m_csa:760`
+the carried distance sample measures all three leads. The heteromeric control
+rerun passes only as a fail-closed diagnostic, while the text-free gap audit
+and source-free role-rule probe show that role-direction and acceptor identity
+still need local replacements. The acceptor-chain counter-axis passes current
+review controls only. None of these is scorer or label evidence. Real
+scorer design, the `m_csa:760`
 split-state repair scan, the
 `m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,
 external scored re-audit, and label-factory extension all remain failing

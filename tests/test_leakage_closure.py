@@ -22,6 +22,10 @@ from catalytic_earth.labels import (
     build_epk_heteromeric_chain_topology_signal_audit,
     build_epk_heteromeric_positive_coverage_candidate_scout,
     build_epk_heteromeric_source_valid_candidate_gamma_distance_sample,
+    build_epk_heteromeric_source_free_role_rule_probe,
+    build_epk_heteromeric_source_valid_control_rerun,
+    build_epk_heteromeric_text_free_axis_gap_audit,
+    build_epk_heteromeric_acceptor_chain_counteraxis_audit,
     build_epk_source_authority_axis_replacement_gap_audit,
     build_epk_source_free_chain_topology_role_audit,
     load_labels,
@@ -2367,6 +2371,203 @@ class LeakageClosureTests(unittest.TestCase):
                 "threshold_not_calibrated_against_negative_controls",
                 row["remaining_blockers"],
             )
+
+    def test_epk_heteromeric_source_valid_control_rerun_is_review_only(
+        self,
+    ) -> None:
+        rerun = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_valid_control_rerun_1025.json"
+        )
+        metadata = rerun["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_source_valid_control_rerun",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["control_rerun_status"],
+            "passes_review_only_controls_but_scorer_blocked",
+        )
+        self.assertEqual(metadata["heteromeric_source_valid_candidate_row_count"], 3)
+        self.assertEqual(metadata["heteromeric_source_valid_axis_complete_count"], 3)
+        self.assertEqual(
+            metadata["heteromeric_source_valid_pdb_ids"],
+            ["6Z3R", "8OXM", "8OXO"],
+        )
+        self.assertEqual(
+            metadata["heteromeric_source_valid_unique_pair_ids"],
+            ["atm_p53", "smg1_upf1"],
+        )
+        self.assertEqual(metadata["heteromeric_ambiguous_candidate_count"], 2)
+        self.assertEqual(metadata["heteromeric_rejected_candidate_count"], 1)
+        self.assertTrue(metadata["heteromeric_ambiguous_and_rejected_separated"])
+        self.assertEqual(metadata["positive_like_review_row_count"], 7)
+        self.assertEqual(metadata["sibling_control_false_hit_count"], 0)
+        self.assertEqual(
+            metadata["imported_external_hard_negative_non_abstention_count"], 0
+        )
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        source_valid_rows = [
+            row
+            for row in rerun["rows"]
+            if row["row_type"] == "heteromeric_source_valid_positive_candidate"
+        ]
+        self.assertEqual(len(source_valid_rows), 3)
+        for row in source_valid_rows:
+            self.assertEqual(
+                row["prototype_decision"],
+                "source_valid_heteromeric_positive_signal_review_only_not_calibrated",
+            )
+            self.assertFalse(row["text_free_inputs_only"])
+            self.assertIn(
+                "external_hard_negative_reaudit_not_real_scorer",
+                row["remaining_blockers"],
+            )
+        separated_rows = [
+            row
+            for row in rerun["rows"]
+            if row["row_type"] == "heteromeric_candidate_separated_nonpositive_control"
+        ]
+        self.assertEqual(len(separated_rows), 3)
+        self.assertFalse(any(row["candidate_feature_hit"] for row in separated_rows))
+
+    def test_epk_heteromeric_text_free_axis_gap_audit_is_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_text_free_axis_gap_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_text_free_axis_gap_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["gap_audit_status"],
+            "blocked_review_only_source_free_role_acceptor_axes_missing",
+        )
+        self.assertEqual(metadata["source_authority_dependent_positive_like_count"], 4)
+        self.assertEqual(metadata["local_geometry_axis_present_count"], 4)
+        self.assertEqual(metadata["source_free_role_assignment_ready_count"], 0)
+        self.assertEqual(metadata["source_free_acceptor_identity_ready_count"], 0)
+        self.assertEqual(metadata["production_admissible_positive_like_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(len(audit["rows"]), 4)
+        for row in audit["rows"]:
+            self.assertTrue(row["local_geometry_axis_present"])
+            self.assertFalse(row["source_free_role_assignment_present"])
+            self.assertFalse(row["source_free_acceptor_identity_present"])
+            self.assertFalse(row["production_scoring_admissible"])
+            self.assertIn(
+                "source_free_kinase_substrate_role_assignment_missing",
+                row["remaining_blockers"],
+            )
+
+    def test_epk_heteromeric_source_free_role_rule_probe_fails_closed(
+        self,
+    ) -> None:
+        probe = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_free_role_rule_probe_1025.json"
+        )
+        metadata = probe["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_source_free_role_rule_probe",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["source_free_rule_status"],
+            "blocked_review_only_source_free_rule_false_hit_risk",
+        )
+        self.assertEqual(metadata["reviewed_candidate_count"], 6)
+        self.assertEqual(metadata["source_free_rule_hit_count"], 6)
+        self.assertEqual(metadata["accepted_rule_hit_count"], 3)
+        self.assertEqual(metadata["ambiguous_rule_hit_count"], 2)
+        self.assertEqual(metadata["rejected_rule_hit_count"], 1)
+        self.assertEqual(metadata["nonaccepted_rule_hit_count"], 3)
+        self.assertEqual(
+            metadata["nonaccepted_rule_hit_pdb_ids"],
+            ["7M0T", "7M0W", "8ZN6"],
+        )
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        false_hit_rows = [
+            row
+            for row in probe["rows"]
+            if row["source_free_rule_decision"]
+            == "source_free_rule_false_hit_risk_review_only"
+        ]
+        self.assertEqual({row["pdb_id"] for row in false_hit_rows}, {"7M0T", "7M0W", "8ZN6"})
+        for row in false_hit_rows:
+            self.assertTrue(row["text_free_inputs_only"])
+            self.assertFalse(row["production_scoring_admissible"])
+            self.assertIn("source_free_rule_false_hit_risk", row["remaining_blockers"])
+
+    def test_epk_heteromeric_acceptor_chain_counteraxis_audit_is_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_acceptor_chain_counteraxis_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_acceptor_chain_counteraxis_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["counteraxis_status"],
+            "passes_current_review_controls_not_scoring_admissible",
+        )
+        self.assertEqual(metadata["reviewed_candidate_count"], 6)
+        self.assertEqual(metadata["fetch_failure_count"], 0)
+        self.assertEqual(metadata["initial_topology_gamma_rule_hit_count"], 6)
+        self.assertEqual(metadata["retained_source_valid_hit_count"], 3)
+        self.assertEqual(metadata["blocked_nonaccepted_rule_hit_count"], 3)
+        self.assertEqual(
+            metadata["blocked_nonaccepted_rule_hit_pdb_ids"],
+            ["7M0T", "7M0W", "8ZN6"],
+        )
+        self.assertEqual(metadata["residual_nonaccepted_rule_hit_count"], 0)
+        self.assertEqual(metadata["accepted_lost_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        retained = [
+            row
+            for row in audit["rows"]
+            if row["counteraxis_decision"]
+            == "source_free_counteraxis_retains_source_valid_review_positive"
+        ]
+        blocked = [
+            row
+            for row in audit["rows"]
+            if row["counteraxis_decision"]
+            == "source_free_counteraxis_blocks_nonaccepted_rule_hit"
+        ]
+        self.assertEqual({row["pdb_id"] for row in retained}, {"6Z3R", "8OXM", "8OXO"})
+        self.assertEqual({row["pdb_id"] for row in blocked}, {"7M0T", "7M0W", "8ZN6"})
+        for row in audit["rows"]:
+            self.assertTrue(row["text_free_inputs_only"])
+            self.assertFalse(row["production_scoring_admissible"])
 
     def test_epk_external_source_scout_builder_keeps_rows_non_countable(
         self,
@@ -4884,6 +5085,117 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             metadata[
                 "heteromeric_distance_minimum_positive_coverage_measured_review_only"
             ]
+        )
+        self.assertEqual(
+            metadata["source_epk_heteromeric_source_valid_control_rerun_method"],
+            "epk_heteromeric_source_valid_control_rerun",
+        )
+        self.assertEqual(
+            metadata["heteromeric_control_rerun_status"],
+            "passes_review_only_controls_but_scorer_blocked",
+        )
+        self.assertEqual(
+            metadata["heteromeric_control_positive_like_review_row_count"], 7
+        )
+        self.assertEqual(
+            metadata["heteromeric_control_source_valid_candidate_row_count"], 3
+        )
+        self.assertEqual(
+            metadata["heteromeric_control_source_valid_pdb_ids"],
+            ["6Z3R", "8OXM", "8OXO"],
+        )
+        self.assertEqual(
+            metadata["heteromeric_control_source_valid_unique_pair_ids"],
+            ["atm_p53", "smg1_upf1"],
+        )
+        self.assertEqual(metadata["heteromeric_control_ambiguous_candidate_count"], 2)
+        self.assertEqual(metadata["heteromeric_control_rejected_candidate_count"], 1)
+        self.assertEqual(metadata["heteromeric_control_sibling_false_hit_count"], 0)
+        self.assertEqual(metadata["heteromeric_control_external_non_abstention_count"], 0)
+        self.assertEqual(
+            metadata["source_epk_heteromeric_text_free_axis_gap_audit_method"],
+            "epk_heteromeric_text_free_axis_gap_audit",
+        )
+        self.assertEqual(
+            metadata["heteromeric_text_free_axis_gap_audit_status"],
+            "blocked_review_only_source_free_role_acceptor_axes_missing",
+        )
+        self.assertEqual(
+            metadata[
+                "heteromeric_text_free_source_authority_dependent_positive_like_count"
+            ],
+            4,
+        )
+        self.assertEqual(
+            metadata["heteromeric_text_free_local_geometry_axis_present_count"],
+            4,
+        )
+        self.assertEqual(
+            metadata["heteromeric_text_free_role_assignment_ready_count"], 0
+        )
+        self.assertEqual(
+            metadata["heteromeric_text_free_acceptor_identity_ready_count"], 0
+        )
+        self.assertEqual(
+            metadata[
+                "heteromeric_text_free_production_admissible_positive_like_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            metadata["source_epk_heteromeric_source_free_role_rule_probe_method"],
+            "epk_heteromeric_source_free_role_rule_probe",
+        )
+        self.assertEqual(
+            metadata["heteromeric_source_free_rule_status"],
+            "blocked_review_only_source_free_rule_false_hit_risk",
+        )
+        self.assertEqual(metadata["heteromeric_source_free_rule_hit_count"], 6)
+        self.assertEqual(metadata["heteromeric_source_free_accepted_rule_hit_count"], 3)
+        self.assertEqual(metadata["heteromeric_source_free_ambiguous_rule_hit_count"], 2)
+        self.assertEqual(metadata["heteromeric_source_free_rejected_rule_hit_count"], 1)
+        self.assertEqual(metadata["heteromeric_source_free_nonaccepted_rule_hit_count"], 3)
+        self.assertEqual(
+            metadata["heteromeric_source_free_nonaccepted_rule_hit_pdb_ids"],
+            ["7M0T", "7M0W", "8ZN6"],
+        )
+        self.assertEqual(
+            metadata[
+                "source_epk_heteromeric_acceptor_chain_counteraxis_audit_method"
+            ],
+            "epk_heteromeric_acceptor_chain_counteraxis_audit",
+        )
+        self.assertEqual(
+            metadata["heteromeric_acceptor_counteraxis_status"],
+            "passes_current_review_controls_not_scoring_admissible",
+        )
+        self.assertEqual(
+            metadata["heteromeric_acceptor_counteraxis_initial_hit_count"], 6
+        )
+        self.assertEqual(
+            metadata[
+                "heteromeric_acceptor_counteraxis_retained_source_valid_hit_count"
+            ],
+            3,
+        )
+        self.assertEqual(
+            metadata[
+                "heteromeric_acceptor_counteraxis_blocked_nonaccepted_hit_count"
+            ],
+            3,
+        )
+        self.assertEqual(
+            metadata["heteromeric_acceptor_counteraxis_blocked_nonaccepted_pdb_ids"],
+            ["7M0T", "7M0W", "8ZN6"],
+        )
+        self.assertEqual(
+            metadata[
+                "heteromeric_acceptor_counteraxis_residual_nonaccepted_hit_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            metadata["heteromeric_acceptor_counteraxis_accepted_lost_count"], 0
         )
         self.assertEqual(metadata["measured_acceptor_identity_source_supported_count"], 2)
         self.assertEqual(

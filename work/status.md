@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 195
-- Measured elapsed time: 5965.5 minutes (99.42 hours)
+- Entries: 196
+- Measured elapsed time: 6014.1 minutes (100.23 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 736.3 measured minutes (12.27 hours)
+- post-infra-science: 784.9 measured minutes (13.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2218
-- Evidence references logged: 1747
+- Artifact references logged: 2233
+- Evidence references logged: 1759
 
 ## Recent Entries
-
-### 2026-05-19T12:03:38.595849+00:00 - post-infra-science
-
-- Task: ePK source-repair terminal decision
-- Time mode: measured
-- Measured minutes: 36.6
-- Started: 2026-05-19T11:26:44Z
-- Ended: 2026-05-19T12:03:20Z
-- Artifacts: artifacts/v3_epk_m_csa757_active_state_repair_scan_1025.json, artifacts/v3_epk_m_csa756_active_state_repair_scan_1025.json, artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json, artifacts/v3_epk_analog_product_state_policy_preregistration_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: recovered previous dirty ePK source-repair audits as commit 59c7634, m_csa757 scan found active-state leads 1CDK and 1Q24 but 0 mapped acceptors, m_csa756 scan found 5LI1 structure-level ANP/Mg but no conservative remap, terminal source-repair decision closed m_csa760 m_csa757 and m_csa756 with 0 measurement-ready candidates, analog/product-state policy preregistration remains inactive and review-only, final 529-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ### 2026-05-19T13:17:33.402946+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_heteromeric_positive_coverage_candidate_scout_1025.json, artifacts/v3_epk_heteromeric_candidate_source_validation_review_1025.json, artifacts/v3_epk_heteromeric_source_valid_candidate_gamma_distance_sample_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 584 unittest discovery passed, final 590 unittest discovery passed, tests.test_cli passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed 0, label invariants preserved, candidate scout reviewed 50 PDB entries and found 6 heteromeric leads, source validation accepted 3 review-only structures across 2 pairs, distance sample measured 3 accepted leads at 3.482-5.607 Angstrom
 - Notes: No artifact migration Phase 2/3 action; no registry or label import edits.
+
+### 2026-05-19T20:23:20.534717+00:00 - post-infra-science
+
+- Task: ePK heteromeric counteraxis controls
+- Time mode: measured
+- Measured minutes: 48.617
+- Started: 2026-05-19T19:34:43Z
+- Ended: 2026-05-19T20:23:20Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_leakage_closure.py, tests/test_cli.py, artifacts/v3_epk_heteromeric_source_valid_control_rerun_1025.json, artifacts/v3_epk_heteromeric_text_free_axis_gap_audit_1025.json, artifacts/v3_epk_heteromeric_source_free_role_rule_probe_1025.json, artifacts/v3_epk_heteromeric_acceptor_chain_counteraxis_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 590 unittest discovery passed, final 595 unittest discovery passed, tests.test_cli passed with 89 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed 0, label invariants preserved 682 total 212 seed 470 out_of_scope, heteromeric control rerun has 7 positive-like review rows with 0 sibling false hits and 0 imported external non-abstentions, text-free gap audit found 4 source-authority-dependent positives and 0 production-admissible positives, topology plus gamma source-free rule false-hit 7M0T 7M0W 8ZN6, acceptor-chain counteraxis retained 3 source-valid hits and blocked 3 nonaccepted hits with 0 residual nonaccepted hits, pre-count gate remains blocked_review_only, CLI fixtures cover four new heteromeric commands and pre-count wiring
+- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
 
 ## Expectation Updates
 
@@ -272,6 +272,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-19T17:07:27.421941+00:00: 5HVK reduces the ligand-analog dependency for ePK scorer development, but production scoring remains blocked by source-authority chain-role dependence, threshold calibration, broader controls, and real external hard-negative scored re-audit.
 - 2026-05-19T18:22:33.619263+00:00: Source-free local topology alone false-hits same-accession phosphosite controls, but a heteromeric author-chain polymer entity counter-axis separates current hits; production remains blocked by one-positive coverage, threshold calibration, real external hard-negative scored re-audit, and registry/factory extension.
 - 2026-05-19T19:16:16.071899+00:00: ePK heteromeric topology now has measured source-valid review leads beyond 5HVK, but scorer threshold external re-audit and registry gates remain closed.
+- 2026-05-19T20:23:20.534717+00:00: ePK heteromeric topology now has a review-only local counteraxis that clears the current six-row review surface, but production scoring still needs broader controls thresholds and a real external scored re-audit.
 
 ## Scope Adjustments
 

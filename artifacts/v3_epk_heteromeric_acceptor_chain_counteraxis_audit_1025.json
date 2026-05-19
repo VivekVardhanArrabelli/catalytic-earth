@@ -1,0 +1,343 @@
+{
+  "metadata": {
+    "accepted_lost_count": 0,
+    "accepted_lost_pdb_ids": [],
+    "blocked_nonaccepted_rule_hit_count": 3,
+    "blocked_nonaccepted_rule_hit_pdb_ids": [
+      "7M0T",
+      "7M0W",
+      "8ZN6"
+    ],
+    "blocker_not_removed": [
+      "broader_heteromeric_counteraxis_controls_not_run",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "current_heteromeric_false_hits_have_local_counteraxis",
+    "candidate_threshold_angstrom": 6.0,
+    "countable_label_candidate_count": 0,
+    "counteraxis_status": "passes_current_review_controls_not_scoring_admissible",
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "initial_topology_gamma_rule_hit_count": 6,
+    "method": "epk_heteromeric_acceptor_chain_counteraxis_audit",
+    "next_actions": [
+      "run the acceptor-chain counteraxis on broader heteromeric and sibling controls before scorer design",
+      "keep the counteraxis review-only until external hard-negative scored re-audit and thresholds exist",
+      "do not use source-validation text as an orphan discovery input"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "residual_nonaccepted_rule_hit_count": 0,
+    "residual_nonaccepted_rule_hit_pdb_ids": [],
+    "retained_source_valid_hit_count": 3,
+    "review_only": true,
+    "review_only_rule": "This audit keeps only local mmCIF ligand context: a heteromeric topology/gamma hit is blocked when the candidate acceptor chain itself carries nucleotide or metal context. Source-validation outcomes are used only to evaluate the review probe, not as predictive inputs.",
+    "reviewed_candidate_count": 6,
+    "selected_threshold_angstrom": null,
+    "source_epk_heteromeric_candidate_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "acceptor_chain_has_nucleotide_or_metal_context": false,
+      "acceptor_chain_ids": [
+        "E"
+      ],
+      "acceptor_chain_ligand_context": {
+        "E": []
+      },
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "counteraxis_decision": "source_free_counteraxis_retains_source_valid_review_positive",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_associated_chain_ids": [
+        "A"
+      ],
+      "gamma_chain_ligand_context": {
+        "A": [
+          "ANP"
+        ]
+      },
+      "initial_topology_gamma_rule_hit": true,
+      "pdb_id": "6Z3R",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "broader_heteromeric_counteraxis_controls_not_run"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_acceptor_chain_counteraxis",
+      "source_free_counteraxis_hit": true,
+      "source_pair_id": "smg1_upf1",
+      "source_validated_positive_like_review_context": true,
+      "source_validation_status_review_context": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_chain_has_nucleotide_or_metal_context": false,
+      "acceptor_chain_ids": [
+        "F"
+      ],
+      "acceptor_chain_ligand_context": {
+        "F": []
+      },
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "counteraxis_decision": "source_free_counteraxis_retains_source_valid_review_positive",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_associated_chain_ids": [
+        "B"
+      ],
+      "gamma_chain_ligand_context": {
+        "B": [
+          "ANP",
+          "MG",
+          "ZN"
+        ]
+      },
+      "initial_topology_gamma_rule_hit": true,
+      "pdb_id": "8OXM",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "broader_heteromeric_counteraxis_controls_not_run"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_acceptor_chain_counteraxis",
+      "source_free_counteraxis_hit": true,
+      "source_pair_id": "atm_p53",
+      "source_validated_positive_like_review_context": true,
+      "source_validation_status_review_context": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_chain_has_nucleotide_or_metal_context": false,
+      "acceptor_chain_ids": [
+        "F"
+      ],
+      "acceptor_chain_ligand_context": {
+        "F": []
+      },
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "counteraxis_decision": "source_free_counteraxis_retains_source_valid_review_positive",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_associated_chain_ids": [
+        "B"
+      ],
+      "gamma_chain_ligand_context": {
+        "B": [
+          "ANP",
+          "MG",
+          "ZN"
+        ]
+      },
+      "initial_topology_gamma_rule_hit": true,
+      "pdb_id": "8OXO",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "broader_heteromeric_counteraxis_controls_not_run"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_acceptor_chain_counteraxis",
+      "source_free_counteraxis_hit": true,
+      "source_pair_id": "atm_p53",
+      "source_validated_positive_like_review_context": true,
+      "source_validation_status_review_context": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_chain_has_nucleotide_or_metal_context": true,
+      "acceptor_chain_ids": [
+        "A"
+      ],
+      "acceptor_chain_ligand_context": {
+        "A": [
+          "ANP",
+          "MG"
+        ]
+      },
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "counteraxis_decision": "source_free_counteraxis_blocks_nonaccepted_rule_hit",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_associated_chain_ids": [
+        "A"
+      ],
+      "gamma_chain_ligand_context": {
+        "A": [
+          "ANP",
+          "MG"
+        ]
+      },
+      "initial_topology_gamma_rule_hit": true,
+      "pdb_id": "7M0T",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "counteraxis_row_not_positive_like"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_acceptor_chain_counteraxis",
+      "source_free_counteraxis_hit": false,
+      "source_pair_id": null,
+      "source_validated_positive_like_review_context": false,
+      "source_validation_status_review_context": "blocked_ambiguous_kinase_kinase_role_direction_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_chain_has_nucleotide_or_metal_context": true,
+      "acceptor_chain_ids": [
+        "A"
+      ],
+      "acceptor_chain_ligand_context": {
+        "A": [
+          "ANP",
+          "MG"
+        ]
+      },
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "counteraxis_decision": "source_free_counteraxis_blocks_nonaccepted_rule_hit",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_associated_chain_ids": [
+        "A"
+      ],
+      "gamma_chain_ligand_context": {
+        "A": [
+          "ANP",
+          "MG"
+        ]
+      },
+      "initial_topology_gamma_rule_hit": true,
+      "pdb_id": "7M0W",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "counteraxis_row_not_positive_like"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_acceptor_chain_counteraxis",
+      "source_free_counteraxis_hit": false,
+      "source_pair_id": null,
+      "source_validated_positive_like_review_context": false,
+      "source_validation_status_review_context": "blocked_ambiguous_kinase_kinase_role_direction_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_chain_has_nucleotide_or_metal_context": true,
+      "acceptor_chain_ids": [
+        "B",
+        "I",
+        "J"
+      ],
+      "acceptor_chain_ligand_context": {
+        "B": [
+          "ANP",
+          "MG"
+        ],
+        "I": [
+          "ANP",
+          "MG"
+        ],
+        "J": [
+          "ANP",
+          "MG"
+        ]
+      },
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "counteraxis_decision": "source_free_counteraxis_blocks_nonaccepted_rule_hit",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_associated_chain_ids": [
+        "B",
+        "I",
+        "J"
+      ],
+      "gamma_chain_ligand_context": {
+        "B": [
+          "ANP",
+          "MG"
+        ],
+        "I": [
+          "ANP",
+          "MG"
+        ],
+        "J": [
+          "ANP",
+          "MG"
+        ]
+      },
+      "initial_topology_gamma_rule_hit": true,
+      "pdb_id": "8ZN6",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "counteraxis_row_not_positive_like"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_acceptor_chain_counteraxis",
+      "source_free_counteraxis_hit": false,
+      "source_pair_id": null,
+      "source_validated_positive_like_review_context": false,
+      "source_validation_status_review_context": "rejected_non_epk_substrate_cocomplex_or_designed_clock_protein_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    }
+  ],
+  "warnings": [
+    "Acceptor-chain ligand context is a review-only counteraxis until broader controls and scoring gates pass."
+  ]
+}

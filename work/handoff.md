@@ -50,69 +50,67 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-As of the 2026-05-19T18:34:27Z automation run, the ePK lane remains
+As of the 2026-05-19T19:34:43Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
 externalization, Git LFS change, history rewrite, registry edit, label import,
-or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/dry-run push
-hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
 preserved.
 
-The NDK homolog queue item named in the automation prompt was already complete
-in the latest pushed repo state: `1WKL`, `3Q86`, `9OAN`, and `9PFY` are mapped
-in `artifacts/v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json`
-and measured in
-`artifacts/v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json`.
-This run therefore moved to the next documented ePK blocker: broadening the
-source-free heteromeric positive-coverage surface beyond the single 5HVK case.
+`artifacts/v3_epk_heteromeric_source_valid_control_rerun_1025.json` now reruns
+the fail-closed ePK review surface with the three measured source-valid
+heteromeric leads from the prior run. It carries the existing three current ePK
+positive-like rows plus source-valid 5HVK, adds `6Z3R`, `8OXM`, and `8OXO` as
+new source-valid heteromeric review positives, and explicitly separates
+ambiguous `7M0T`/`7M0W` plus rejected `8ZN6`. The review surface now has seven
+positive-like rows, 20 sibling controls with 0 false hits, and three imported
+external hard negatives with 0 non-abstentions. It remains
+`passes_review_only_controls_but_scorer_blocked`, with no calibrated score,
+external scored re-audit, registry edit, or label import.
 
-`artifacts/v3_epk_heteromeric_positive_coverage_candidate_scout_1025.json`
-adds a bounded follow-on scan over the next 50 RCSB ANP/Mg EC 2.7.11.1 entries
-after the prior first-60 ligand-specific co-complex probe. It finds six local
-heteromeric topology candidates (`6Z3R`, `7M0T`, `7M0W`, `8OXM`, `8OXO`, and
-`8ZN6`) and marks them as source-validation leads.
+`artifacts/v3_epk_heteromeric_text_free_axis_gap_audit_1025.json` makes the
+next blocker explicit. All four source-authority-dependent positive-like rows
+(5HVK plus the three new heteromeric leads) have local geometry axes present,
+but 0 have source-free role assignment, 0 have source-free acceptor identity,
+and 0 are production-admissible positive rows. This is a blocker inventory only.
 
-`artifacts/v3_epk_heteromeric_candidate_source_validation_review_1025.json`
-now source-reviews those six leads. It accepts `6Z3R` as an SMG1/UPF1
-positive-like review structure and accepts `8OXM` plus `8OXO` as ATM/p53
-positive-like review structures. That gives three accepted review-only
-structures across two unique pairs (`smg1_upf1`, `atm_p53`) and satisfies the
-broader minimum-positive-coverage check only in review mode. It blocks `7M0T`
-and `7M0W` as BRAF/MEK role-direction ambiguous and rejects `8ZN6` as a
-non-ePK/designed clock-protein context. All rows remain non-countable with
-`epk_score_computed=false`; no protein-substrate acceptor source mapping,
-threshold calibration, real external scored re-audit, registry edit, or label
-import has been opened.
+`artifacts/v3_epk_heteromeric_source_free_role_rule_probe_1025.json` then tests
+the obvious local rule directly: heteromeric entity topology plus gamma-distance
+within the 6 Angstrom candidate cutoff. It fails closed because the rule hits
+all six reviewed heteromeric candidates, including the three nonaccepted rows
+(`7M0T`, `7M0W`, and `8ZN6`). The next useful ePK experiment is therefore a
+source-free role-direction disambiguation signal beyond topology plus gamma
+distance, not threshold calibration.
 
-`artifacts/v3_epk_heteromeric_source_valid_candidate_gamma_distance_sample_1025.json`
-then carries forward the topology-hit measurements for the accepted leads. All
-three source-valid review structures are measured, with nearest ANP gamma to
-candidate acceptor distances from 3.482 to 5.607 Angstrom across the two unique
-pairs. This removes only the immediate review-control measurement blocker; it
-does not compute an ePK score or calibrate a threshold.
+`artifacts/v3_epk_heteromeric_acceptor_chain_counteraxis_audit_1025.json` adds
+that first local counter-axis. It blocks a topology/gamma hit when the candidate
+acceptor chain itself carries nucleotide or metal ligand context. On the
+current six reviewed heteromeric candidates it retains the three source-valid
+review positives, blocks the three nonaccepted hits (`7M0T`, `7M0W`, `8ZN6`),
+loses 0 accepted rows, and leaves 0 residual nonaccepted hits. This is still
+review-only: broader heteromeric/sibling controls, threshold calibration, and a
+real external hard-negative scored re-audit are not run.
 
 `artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the new
-candidate scout and source-validation review. Overall status remains
-`blocked_review_only`. The new `heteromeric_positive_coverage_candidate_scout`
-gate passes as a source-validation queue, and
-`heteromeric_candidate_source_validation_review` passes with three accepted
-review-only structures. The new source-valid candidate distance-sample gate
-also passes with all three accepted leads measured; none of these gates
-satisfies production scoring or label import. The failing gate set still
-includes acceptor threshold calibration,
-external scored hard-negative re-audit, registry/label-factory extension,
-text-free acceptor feature gap, protein-substrate acceptor candidate audit,
-source-free topology role audit, `m_csa:760`, `m_csa:757`, `m_csa:756`, and
-gamma negative-control distance distribution.
+control rerun, text-free gap audit, source-free rule probe, and acceptor-chain
+counter-axis. Overall status remains `blocked_review_only`; the new diagnostics
+are review-only and do not satisfy production scoring, external hard-negative
+scored re-audit, registry extension, or label import.
 
-Evidence-based confidence call: confidence is higher that the 5HVK
-heteromeric topology signal is not an isolated local geometry pattern, because
-six additional candidate structures now show the same source-free entity
-separation and three of them have source context consistent with ePK
-kinase/substrate pairs. Confidence remains low that the axis can support
-production scoring: source-free role direction is not generalized, accepted
-leads still need control reruns, and
-threshold/external-hard-negative/registry gates are still absent.
+CLI regression coverage now exercises the four new heteromeric follow-on
+commands with local fixture inputs, including the pass/fail transitions from
+source-valid control rerun through source-free false-hit probe and
+acceptor-chain counter-axis, and the pre-count CLI test now loads the same
+four artifact types into the consolidated gate.
+
+Evidence-based confidence call: confidence is higher that heteromeric
+protein-substrate geometry can provide useful ePK review controls, because the
+expanded surface keeps sibling and imported external hard-negative diagnostics
+clean. Confidence remains low for production scoring because topology plus
+gamma distance false-hits ambiguous/rejected heteromeric rows, and every
+expanded positive-like row still needs broader text-free controls before it can
+become a scorer input.
 
 As of the 2026-05-19T17:33:55Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact

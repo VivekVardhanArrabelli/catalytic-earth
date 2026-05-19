@@ -24736,6 +24736,959 @@ def build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
     }
 
 
+def build_epk_heteromeric_source_valid_control_rerun(
+    *,
+    epk_ligand_specific_5hvk_prototype_control_rerun: dict[str, Any],
+    epk_heteromeric_candidate_source_validation_review: dict[str, Any],
+    epk_heteromeric_source_valid_candidate_gamma_distance_sample: dict[str, Any],
+    candidate_threshold_angstrom: float = 6.0,
+) -> dict[str, Any]:
+    """Rerun review-only ePK controls with measured heteromeric leads."""
+
+    base_meta = epk_ligand_specific_5hvk_prototype_control_rerun.get(
+        "metadata", {}
+    )
+    if not isinstance(base_meta, dict):
+        base_meta = {}
+    validation_meta = epk_heteromeric_candidate_source_validation_review.get(
+        "metadata", {}
+    )
+    if not isinstance(validation_meta, dict):
+        validation_meta = {}
+    distance_meta = epk_heteromeric_source_valid_candidate_gamma_distance_sample.get(
+        "metadata", {}
+    )
+    if not isinstance(distance_meta, dict):
+        distance_meta = {}
+
+    target_fingerprint_id = str(
+        base_meta.get("target_fingerprint_id")
+        or validation_meta.get("target_fingerprint_id")
+        or distance_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    blockers = [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+    ]
+
+    validation_rows = [
+        row
+        for row in epk_heteromeric_candidate_source_validation_review.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+    ]
+    validation_by_pdb = {
+        str(row.get("pdb_id") or "").upper(): row for row in validation_rows
+    }
+    measured_rows = [
+        row
+        for row in epk_heteromeric_source_valid_candidate_gamma_distance_sample.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+        and bool(row.get("measurement_ready_for_review_controls"))
+    ]
+
+    decision_counts: Counter[str] = Counter()
+    rows: list[dict[str, Any]] = []
+    base_rows = [
+        row
+        for row in epk_ligand_specific_5hvk_prototype_control_rerun.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+    ]
+    for row in base_rows:
+        decision = str(row.get("prototype_decision") or "unknown_review_only")
+        decision_counts[decision] += 1
+        carried = dict(row)
+        carried["heteromeric_control_surface_role"] = (
+            "carried_5hvk_control_surface_row"
+        )
+        carried["target_fingerprint_id"] = target_fingerprint_id
+        carried["review_only"] = True
+        carried["countable_label_candidate"] = False
+        carried["ready_for_label_import"] = False
+        carried["epk_score_computed"] = False
+        rows.append(carried)
+
+    measured_positive_pdb_ids: list[str] = []
+    measured_pair_ids: list[str] = []
+    heteromeric_axis_complete_count = 0
+    for measured_row in measured_rows:
+        pdb_id = str(measured_row.get("pdb_id") or "").upper()
+        validation_row = validation_by_pdb.get(pdb_id, {})
+        entity_descriptions = validation_row.get("entity_descriptions", [])
+        if not isinstance(entity_descriptions, list):
+            entity_descriptions = []
+        source_pair_id = str(measured_row.get("source_pair_id") or "")
+        distance = measured_row.get("nearest_gamma_acceptor_distance_angstrom")
+        try:
+            distance_within_cutoff = (
+                distance is not None
+                and float(distance) <= float(candidate_threshold_angstrom)
+            )
+        except (TypeError, ValueError):
+            distance_within_cutoff = False
+        source_axis_values = {
+            "local_adenine_nucleotide_ligand": int(
+                any(
+                    str(candidate.get("gamma_ligand_code") or "").upper()
+                    in {"ACP", "ANP", "ATP", "DTP"}
+                    for candidate in measured_row.get("distance_candidates", [])
+                    or []
+                    if isinstance(candidate, dict)
+                )
+            ),
+            "local_metal_ligand": int("MAGNESIUM ION" in entity_descriptions),
+            "heteromeric_entity_topology": int(
+                bool(validation_row.get("source_validated_positive_like"))
+            ),
+            "source_validated_kinase_substrate_pair": int(
+                bool(validation_row.get("source_validated_positive_like"))
+            ),
+            "gamma_to_acceptor_distance_within_candidate_cutoff": int(
+                distance_within_cutoff
+            ),
+        }
+        axis_complete = all(value == 1 for value in source_axis_values.values())
+        decision = (
+            "source_valid_heteromeric_positive_signal_review_only_not_calibrated"
+            if axis_complete
+            else "source_valid_heteromeric_abstain_missing_required_axis_review_only"
+        )
+        decision_counts[decision] += 1
+        if axis_complete:
+            heteromeric_axis_complete_count += 1
+            measured_positive_pdb_ids.append(pdb_id)
+            if source_pair_id:
+                measured_pair_ids.append(source_pair_id)
+        rows.append(
+            {
+                "row_type": "heteromeric_source_valid_positive_candidate",
+                "pdb_id": pdb_id,
+                "source_pair_id": source_pair_id or None,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "prototype_axis_values": source_axis_values,
+                "review_only_prototype_score": round(
+                    sum(source_axis_values.values()) / len(source_axis_values), 4
+                ),
+                "prototype_decision": decision,
+                "nearest_gamma_to_acceptor_distance_angstrom": distance,
+                "source_validation_status": validation_row.get(
+                    "source_validation_status"
+                ),
+                "source_validation_evidence": validation_row.get(
+                    "source_validation_evidence", []
+                ),
+                "acceptor_context_type": "source_validated_heteromeric_protein_substrate_hydroxyl",
+                "predictive_use_status": (
+                    "review_only_source_validity_not_production_scoring_input"
+                ),
+                "text_free_inputs_only": False,
+                "heteromeric_control_surface_role": (
+                    "new_source_valid_heteromeric_positive_lead"
+                ),
+                "remaining_blockers": blockers,
+            }
+        )
+
+    separated_nonpositive_rows = [
+        row
+        for row in validation_rows
+        if not bool(row.get("source_validated_positive_like"))
+    ]
+    for row in separated_nonpositive_rows:
+        status = str(
+            row.get("source_validation_status")
+            or "blocked_source_context_insufficient_review_only"
+        )
+        decision_counts[status] += 1
+        separated_role = (
+            "separated_ambiguous_heteromeric_candidate"
+            if status.startswith("blocked_ambiguous")
+            else "separated_rejected_heteromeric_candidate"
+        )
+        rows.append(
+            {
+                "row_type": "heteromeric_candidate_separated_nonpositive_control",
+                "pdb_id": row.get("pdb_id"),
+                "source_pair_id": row.get("source_pair_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "prototype_axis_values": {},
+                "review_only_prototype_score": 0.0,
+                "prototype_decision": status,
+                "candidate_feature_hit": False,
+                "source_validation_status": status,
+                "source_validation_evidence": row.get(
+                    "source_validation_evidence", []
+                ),
+                "heteromeric_candidate_hit_count": row.get(
+                    "heteromeric_candidate_hit_count"
+                ),
+                "nearest_heteromeric_candidate_distance_angstrom": row.get(
+                    "nearest_heteromeric_candidate_distance_angstrom"
+                ),
+                "heteromeric_control_surface_role": separated_role,
+                "remaining_blockers": row.get("remaining_blockers", blockers),
+            }
+        )
+
+    sibling_false_hit_count = sum(
+        1
+        for row in rows
+        if row.get("rerun_surface_role") == "carried_sibling_control"
+        and bool(row.get("candidate_feature_hit"))
+    )
+    external_non_abstention_count = sum(
+        1
+        for row in rows
+        if row.get("rerun_surface_role")
+        == "carried_imported_external_hard_negative"
+        and row.get("prototype_decision")
+        != "external_hard_negative_abstain_missing_epk_axes_review_only"
+    )
+    ambiguous_count = sum(
+        1
+        for row in separated_nonpositive_rows
+        if str(row.get("source_validation_status") or "").startswith(
+            "blocked_ambiguous"
+        )
+    )
+    rejected_count = len(separated_nonpositive_rows) - ambiguous_count
+    measured_pair_ids = _sorted_strings(measured_pair_ids)
+    controls_passed = (
+        base_meta.get("control_rerun_status")
+        == "passes_review_only_controls_but_scorer_blocked"
+        and bool(distance_meta.get("all_source_valid_candidates_measured"))
+        and heteromeric_axis_complete_count == len(measured_rows)
+        and heteromeric_axis_complete_count > 0
+        and sibling_false_hit_count == 0
+        and external_non_abstention_count == 0
+    )
+    control_rerun_status = (
+        "passes_review_only_controls_but_scorer_blocked"
+        if controls_passed
+        else "blocked_review_only_control_rerun"
+    )
+    positive_like_review_row_count = int(
+        base_meta.get("positive_like_review_row_count") or 0
+    ) + heteromeric_axis_complete_count
+
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_source_valid_control_rerun",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": (
+                base_meta.get("method")
+            ),
+            "source_epk_heteromeric_candidate_source_validation_review_method": (
+                validation_meta.get("method")
+            ),
+            "source_epk_heteromeric_source_valid_candidate_gamma_distance_sample_method": (
+                distance_meta.get("method")
+            ),
+            "candidate_threshold_angstrom": candidate_threshold_angstrom,
+            "control_rerun_status": control_rerun_status,
+            "current_positive_prototype_row_count": base_meta.get(
+                "current_positive_prototype_row_count"
+            ),
+            "source_valid_5hvk_candidate_row_count": base_meta.get(
+                "source_valid_5hvk_candidate_row_count"
+            ),
+            "heteromeric_source_valid_candidate_row_count": len(measured_rows),
+            "heteromeric_source_valid_axis_complete_count": (
+                heteromeric_axis_complete_count
+            ),
+            "heteromeric_source_valid_pdb_ids": _sorted_strings(
+                measured_positive_pdb_ids
+            ),
+            "heteromeric_source_valid_unique_pair_count": len(measured_pair_ids),
+            "heteromeric_source_valid_unique_pair_ids": measured_pair_ids,
+            "heteromeric_ambiguous_candidate_count": ambiguous_count,
+            "heteromeric_rejected_candidate_count": rejected_count,
+            "heteromeric_ambiguous_and_rejected_separated": (
+                len(separated_nonpositive_rows)
+                == ambiguous_count + rejected_count
+            ),
+            "positive_like_review_row_count": positive_like_review_row_count,
+            "sibling_control_row_count": base_meta.get("sibling_control_row_count"),
+            "sibling_control_false_hit_count": sibling_false_hit_count,
+            "imported_external_hard_negative_row_count": base_meta.get(
+                "imported_external_hard_negative_row_count"
+            ),
+            "imported_external_hard_negative_non_abstention_count": (
+                external_non_abstention_count
+            ),
+            "source_authority_dependent_positive_like_count": (
+                int(base_meta.get("source_valid_5hvk_candidate_row_count") or 0)
+                + heteromeric_axis_complete_count
+            ),
+            "not_a_real_scored_reaudit": True,
+            "row_count": len(rows),
+            "prototype_decision_counts": dict(sorted(decision_counts.items())),
+            "prototype_gate_status": "fail_closed_review_only",
+            "prototype_failed_closed": True,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "negative_control_distance_distribution_ready": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "source_valid_heteromeric_review_controls_rerun",
+            "blocker_not_removed": [
+                "source_validity_axes_not_production_scoring_inputs",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This artifact reruns the fail-closed ePK review surface after "
+                "adding measured source-valid heteromeric SMG1/UPF1 and "
+                "ATM/p53 leads. Ambiguous BRAF/MEK and rejected non-ePK rows "
+                "are explicitly separated from positive-like controls. It is "
+                "not a calibrated ePK score, external hard-negative scored "
+                "re-audit, registry edit, or label gate."
+            ),
+            "next_actions": [
+                "replace source-valid heteromeric positive axes with local text-free role and acceptor evidence before scoring",
+                "calibrate thresholds only after negative-control distributions remain clean under the expanded positive-like surface",
+                "run a real external hard-negative scored re-audit only after a frozen ePK scorer exists",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Expanded heteromeric positive-like controls remain "
+                "review-only and source-authority dependent."
+            )
+        ],
+    }
+
+
+def build_epk_heteromeric_text_free_axis_gap_audit(
+    *,
+    epk_heteromeric_source_valid_control_rerun: dict[str, Any],
+) -> dict[str, Any]:
+    """Audit text-free blockers on source-valid heteromeric review positives."""
+
+    rerun_meta = epk_heteromeric_source_valid_control_rerun.get("metadata", {})
+    if not isinstance(rerun_meta, dict):
+        rerun_meta = {}
+    target_fingerprint_id = str(
+        rerun_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    source_positive_decisions = {
+        "source_valid_5hvk_positive_signal_review_only_not_calibrated",
+        "source_valid_heteromeric_positive_signal_review_only_not_calibrated",
+    }
+    source_rows = [
+        row
+        for row in epk_heteromeric_source_valid_control_rerun.get("rows", [])
+        or []
+        if isinstance(row, dict)
+        and row.get("prototype_decision") in source_positive_decisions
+    ]
+
+    rows: list[dict[str, Any]] = []
+    local_geometry_axis_present_count = 0
+    source_free_role_assignment_ready_count = 0
+    source_free_acceptor_identity_ready_count = 0
+    production_admissible_positive_like_count = 0
+    for row in source_rows:
+        axis_values = row.get("prototype_axis_values", {})
+        if not isinstance(axis_values, dict):
+            axis_values = {}
+        local_gamma_axis_present = bool(
+            axis_values.get("gamma_to_acceptor_distance_within_candidate_cutoff")
+        )
+        local_nucleotide_metal_axis_present = bool(
+            axis_values.get("local_adenine_nucleotide_ligand")
+            and axis_values.get("local_metal_ligand")
+        )
+        local_geometry_axis_present = (
+            local_gamma_axis_present and local_nucleotide_metal_axis_present
+        )
+        if local_geometry_axis_present:
+            local_geometry_axis_present_count += 1
+        source_free_role_assignment_present = False
+        source_free_acceptor_identity_present = False
+        if source_free_role_assignment_present:
+            source_free_role_assignment_ready_count += 1
+        if source_free_acceptor_identity_present:
+            source_free_acceptor_identity_ready_count += 1
+        production_admissible = (
+            local_geometry_axis_present
+            and source_free_role_assignment_present
+            and source_free_acceptor_identity_present
+        )
+        if production_admissible:
+            production_admissible_positive_like_count += 1
+        rows.append(
+            {
+                "row_type": "source_valid_heteromeric_text_free_axis_gap",
+                "pdb_id": row.get("pdb_id"),
+                "entry_id": row.get("entry_id"),
+                "source_pair_id": row.get("source_pair_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "source_prototype_decision": row.get("prototype_decision"),
+                "local_geometry_axis_present": local_geometry_axis_present,
+                "local_gamma_axis_present": local_gamma_axis_present,
+                "local_nucleotide_metal_axis_present": (
+                    local_nucleotide_metal_axis_present
+                ),
+                "source_free_role_assignment_present": (
+                    source_free_role_assignment_present
+                ),
+                "source_free_acceptor_identity_present": (
+                    source_free_acceptor_identity_present
+                ),
+                "production_scoring_admissible": production_admissible,
+                "text_free_inputs_only": False,
+                "gap_status": (
+                    "blocked_source_authority_dependent_role_and_acceptor_identity"
+                ),
+                "remaining_blockers": [
+                    "source_free_kinase_substrate_role_assignment_missing",
+                    "source_free_acceptor_identity_evidence_missing",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    gap_audit_status = (
+        "blocked_review_only_source_free_role_acceptor_axes_missing"
+        if rows and production_admissible_positive_like_count == 0
+        else "blocked_no_source_valid_heteromeric_positive_rows"
+    )
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_text_free_axis_gap_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_heteromeric_source_valid_control_rerun_method": (
+                rerun_meta.get("method")
+            ),
+            "gap_audit_status": gap_audit_status,
+            "source_authority_dependent_positive_like_count": len(source_rows),
+            "local_geometry_axis_present_count": local_geometry_axis_present_count,
+            "source_free_role_assignment_ready_count": (
+                source_free_role_assignment_ready_count
+            ),
+            "source_free_acceptor_identity_ready_count": (
+                source_free_acceptor_identity_ready_count
+            ),
+            "production_admissible_positive_like_count": (
+                production_admissible_positive_like_count
+            ),
+            "sibling_control_false_hit_count": rerun_meta.get(
+                "sibling_control_false_hit_count"
+            ),
+            "imported_external_hard_negative_non_abstention_count": (
+                rerun_meta.get(
+                    "imported_external_hard_negative_non_abstention_count"
+                )
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "heteromeric_source_authority_gap_made_explicit",
+            "blocker_not_removed": [
+                "source_free_kinase_substrate_role_assignment_missing",
+                "source_free_acceptor_identity_evidence_missing",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This audit separates local geometry evidence from source "
+                "authority in the expanded heteromeric ePK review surface. It "
+                "is a blocker inventory only, not a scorer, threshold, external "
+                "hard-negative re-audit, registry edit, or label gate."
+            ),
+            "next_actions": [
+                "build a local source-free kinase/substrate role rule for heteromeric co-complexes",
+                "build source-free acceptor identity evidence before treating heteromeric positives as production scorer inputs",
+                "keep expanded heteromeric controls review-only until thresholds and external scored re-audit pass",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "All expanded heteromeric positive-like rows still depend on "
+                "source authority for role or acceptor identity."
+            )
+        ],
+    }
+
+
+def build_epk_heteromeric_source_free_role_rule_probe(
+    *,
+    epk_heteromeric_candidate_source_validation_review: dict[str, Any],
+    candidate_threshold_angstrom: float = 6.0,
+) -> dict[str, Any]:
+    """Probe a source-free heteromeric topology rule against reviewed leads."""
+
+    review_meta = epk_heteromeric_candidate_source_validation_review.get(
+        "metadata", {}
+    )
+    if not isinstance(review_meta, dict):
+        review_meta = {}
+    target_fingerprint_id = str(
+        review_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+
+    rows: list[dict[str, Any]] = []
+    source_free_rule_hit_count = 0
+    accepted_rule_hit_count = 0
+    ambiguous_rule_hit_count = 0
+    rejected_rule_hit_count = 0
+    nonaccepted_rule_hit_pdb_ids: list[str] = []
+    for row in epk_heteromeric_candidate_source_validation_review.get(
+        "rows", []
+    ) or []:
+        if not isinstance(row, dict):
+            continue
+        pdb_id = str(row.get("pdb_id") or "").upper()
+        candidate_hits = [
+            hit for hit in row.get("candidate_hits", []) or [] if isinstance(hit, dict)
+        ]
+        nearest_distance = row.get("nearest_heteromeric_candidate_distance_angstrom")
+        if nearest_distance is None and candidate_hits:
+            nearest_distance = candidate_hits[0].get(
+                "nearest_gamma_distance_angstrom"
+            )
+        try:
+            within_cutoff = (
+                nearest_distance is not None
+                and float(nearest_distance) <= float(candidate_threshold_angstrom)
+            )
+        except (TypeError, ValueError):
+            within_cutoff = False
+        source_free_rule_hit = bool(candidate_hits) and within_cutoff
+        source_validated = bool(row.get("source_validated_positive_like"))
+        status = str(row.get("source_validation_status") or "")
+        if source_free_rule_hit:
+            source_free_rule_hit_count += 1
+            if source_validated:
+                accepted_rule_hit_count += 1
+            elif status.startswith("blocked_ambiguous"):
+                ambiguous_rule_hit_count += 1
+                nonaccepted_rule_hit_pdb_ids.append(pdb_id)
+            else:
+                rejected_rule_hit_count += 1
+                nonaccepted_rule_hit_pdb_ids.append(pdb_id)
+        rows.append(
+            {
+                "row_type": "heteromeric_source_free_role_rule_probe",
+                "pdb_id": pdb_id,
+                "source_pair_id": row.get("source_pair_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "source_free_rule_inputs": {
+                    "heteromeric_entity_topology_hit": bool(candidate_hits),
+                    "nearest_gamma_distance_within_candidate_cutoff": within_cutoff,
+                },
+                "source_free_rule_hit": source_free_rule_hit,
+                "source_validation_status_review_context": status,
+                "source_validated_positive_like_review_context": source_validated,
+                "source_free_rule_decision": (
+                    "source_free_rule_hits_source_valid_review_positive"
+                    if source_free_rule_hit and source_validated
+                    else (
+                        "source_free_rule_false_hit_risk_review_only"
+                        if source_free_rule_hit
+                        else "source_free_rule_abstain_review_only"
+                    )
+                ),
+                "nearest_heteromeric_candidate_distance_angstrom": nearest_distance,
+                "text_free_inputs_only": True,
+                "production_scoring_admissible": False,
+                "remaining_blockers": [
+                    "source_free_rule_false_hit_risk"
+                    if source_free_rule_hit and not source_validated
+                    else "threshold_not_calibrated_against_negative_controls",
+                    "role_direction_disambiguation_missing",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    nonaccepted_rule_hit_pdb_ids = _sorted_strings(nonaccepted_rule_hit_pdb_ids)
+    rule_status = (
+        "blocked_review_only_source_free_rule_false_hit_risk"
+        if nonaccepted_rule_hit_pdb_ids
+        else "passes_review_only_source_free_rule_probe_not_scoring_admissible"
+    )
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_source_free_role_rule_probe",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_heteromeric_candidate_source_validation_review_method": (
+                review_meta.get("method")
+            ),
+            "candidate_threshold_angstrom": candidate_threshold_angstrom,
+            "source_free_rule_status": rule_status,
+            "reviewed_candidate_count": len(rows),
+            "source_free_rule_hit_count": source_free_rule_hit_count,
+            "accepted_rule_hit_count": accepted_rule_hit_count,
+            "ambiguous_rule_hit_count": ambiguous_rule_hit_count,
+            "rejected_rule_hit_count": rejected_rule_hit_count,
+            "nonaccepted_rule_hit_count": len(nonaccepted_rule_hit_pdb_ids),
+            "nonaccepted_rule_hit_pdb_ids": nonaccepted_rule_hit_pdb_ids,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "source_free_topology_gamma_rule_probe_executed",
+            "blocker_not_removed": [
+                "source_free_rule_false_hit_risk",
+                "role_direction_disambiguation_missing",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This probe applies only local heteromeric topology plus "
+                "gamma-distance evidence, then evaluates it against source "
+                "validation outcomes as review context. It fails closed if the "
+                "local rule also hits ambiguous or rejected candidates."
+            ),
+            "next_actions": [
+                "add a source-free role-direction disambiguation signal before using heteromeric topology for scoring",
+                "keep BRAF/MEK and non-ePK designed-clock hits as review-only counterexamples",
+                "do not calibrate an ePK threshold from topology-plus-gamma alone",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Heteromeric topology plus gamma distance alone is not a "
+                "production-admissible ePK role rule."
+            )
+        ],
+    }
+
+
+def build_epk_heteromeric_acceptor_chain_counteraxis_audit(
+    *,
+    epk_heteromeric_candidate_source_validation_review: dict[str, Any],
+    candidate_threshold_angstrom: float = 6.0,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Audit acceptor-chain nucleotide context as a heteromeric counter-axis."""
+
+    review_meta = epk_heteromeric_candidate_source_validation_review.get(
+        "metadata", {}
+    )
+    if not isinstance(review_meta, dict):
+        review_meta = {}
+    target_fingerprint_id = str(
+        review_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    cif_texts = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    nucleotide_codes = {"ACP", "ADP", "AMP", "ANP", "ATP", "DTP"}
+    metal_codes = {"CA", "MG", "MN", "ZN"}
+    ligand_context_codes = nucleotide_codes | metal_codes
+
+    def _chain_ligand_context(cif_text: str) -> dict[str, list[str]]:
+        by_chain: dict[str, set[str]] = defaultdict(set)
+        for atom in parse_atom_site_loop(cif_text):
+            if atom.get("group_PDB") != "HETATM":
+                continue
+            code = _epk_atom_code(atom)
+            if code not in ligand_context_codes:
+                continue
+            chain_id = str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
+            if chain_id:
+                by_chain[chain_id].add(code)
+        return {chain: sorted(codes) for chain, codes in sorted(by_chain.items())}
+
+    rows: list[dict[str, Any]] = []
+    fetch_failure_count = 0
+    initial_rule_hit_count = 0
+    retained_source_valid_hit_count = 0
+    blocked_nonaccepted_rule_hit_count = 0
+    residual_nonaccepted_rule_hit_pdb_ids: list[str] = []
+    accepted_lost_pdb_ids: list[str] = []
+    blocked_nonaccepted_pdb_ids: list[str] = []
+    for row in epk_heteromeric_candidate_source_validation_review.get(
+        "rows", []
+    ) or []:
+        if not isinstance(row, dict):
+            continue
+        pdb_id = str(row.get("pdb_id") or "").upper()
+        source_validated = bool(row.get("source_validated_positive_like"))
+        status = str(row.get("source_validation_status") or "")
+        candidate_hits = [
+            hit for hit in row.get("candidate_hits", []) or [] if isinstance(hit, dict)
+        ]
+        try:
+            cif_text = cif_texts.get(pdb_id)
+            fetch_status = "provided_cif_text" if cif_text is not None else "fetched"
+            if cif_text is None:
+                cif_text = cif_fetcher(pdb_id)
+            ligand_context_by_chain = _chain_ligand_context(cif_text)
+        except Exception as exc:  # pragma: no cover - live fetch safety
+            fetch_failure_count += 1
+            rows.append(
+                {
+                    "row_type": "heteromeric_acceptor_chain_counteraxis",
+                    "pdb_id": pdb_id,
+                    "target_family_id": "epk",
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "fetch_status": "fetch_failed",
+                    "fetch_error": str(exc),
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                    "counteraxis_decision": "blocked_structure_fetch_failed_review_only",
+                    "remaining_blockers": ["structure_fetch_failed"],
+                }
+            )
+            continue
+
+        within_cutoff_hits: list[dict[str, Any]] = []
+        for hit in candidate_hits:
+            distance = hit.get("nearest_gamma_distance_angstrom")
+            try:
+                within_cutoff = (
+                    distance is not None
+                    and float(distance) <= float(candidate_threshold_angstrom)
+                )
+            except (TypeError, ValueError):
+                within_cutoff = False
+            if within_cutoff:
+                within_cutoff_hits.append(hit)
+        initial_rule_hit = bool(within_cutoff_hits)
+        if initial_rule_hit:
+            initial_rule_hit_count += 1
+        acceptor_chain_ids = _sorted_strings(
+            hit.get("candidate_chain_name") for hit in within_cutoff_hits
+        )
+        gamma_chain_ids = _sorted_strings(
+            hit.get("gamma_associated_polymer_chain_name")
+            for hit in within_cutoff_hits
+        )
+        acceptor_chain_ligand_context = {
+            chain_id: ligand_context_by_chain.get(chain_id, [])
+            for chain_id in acceptor_chain_ids
+        }
+        gamma_chain_ligand_context = {
+            chain_id: ligand_context_by_chain.get(chain_id, [])
+            for chain_id in gamma_chain_ids
+        }
+        acceptor_chain_has_nucleotide_or_metal = any(
+            bool(codes) for codes in acceptor_chain_ligand_context.values()
+        )
+        counteraxis_hit = initial_rule_hit and not acceptor_chain_has_nucleotide_or_metal
+        if source_validated and counteraxis_hit:
+            retained_source_valid_hit_count += 1
+            decision = "source_free_counteraxis_retains_source_valid_review_positive"
+        elif source_validated and initial_rule_hit:
+            accepted_lost_pdb_ids.append(pdb_id)
+            decision = "blocked_counteraxis_loses_source_valid_review_positive"
+        elif initial_rule_hit and acceptor_chain_has_nucleotide_or_metal:
+            blocked_nonaccepted_rule_hit_count += 1
+            blocked_nonaccepted_pdb_ids.append(pdb_id)
+            decision = "source_free_counteraxis_blocks_nonaccepted_rule_hit"
+        elif initial_rule_hit:
+            residual_nonaccepted_rule_hit_pdb_ids.append(pdb_id)
+            decision = "source_free_counteraxis_residual_false_hit_risk"
+        else:
+            decision = "source_free_counteraxis_abstain_review_only"
+        rows.append(
+            {
+                "row_type": "heteromeric_acceptor_chain_counteraxis",
+                "pdb_id": pdb_id,
+                "source_pair_id": row.get("source_pair_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "fetch_status": fetch_status,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "initial_topology_gamma_rule_hit": initial_rule_hit,
+                "acceptor_chain_ids": acceptor_chain_ids,
+                "gamma_associated_chain_ids": gamma_chain_ids,
+                "acceptor_chain_ligand_context": acceptor_chain_ligand_context,
+                "gamma_chain_ligand_context": gamma_chain_ligand_context,
+                "acceptor_chain_has_nucleotide_or_metal_context": (
+                    acceptor_chain_has_nucleotide_or_metal
+                ),
+                "source_free_counteraxis_hit": counteraxis_hit,
+                "counteraxis_decision": decision,
+                "source_validation_status_review_context": status,
+                "source_validated_positive_like_review_context": source_validated,
+                "text_free_inputs_only": True,
+                "production_scoring_admissible": False,
+                "remaining_blockers": [
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                    (
+                        "broader_heteromeric_counteraxis_controls_not_run"
+                        if counteraxis_hit and source_validated
+                        else "counteraxis_row_not_positive_like"
+                    ),
+                ],
+            }
+        )
+
+    residual_nonaccepted_rule_hit_pdb_ids = _sorted_strings(
+        residual_nonaccepted_rule_hit_pdb_ids
+    )
+    accepted_lost_pdb_ids = _sorted_strings(accepted_lost_pdb_ids)
+    blocked_nonaccepted_pdb_ids = _sorted_strings(blocked_nonaccepted_pdb_ids)
+    counteraxis_status = (
+        "passes_current_review_controls_not_scoring_admissible"
+        if rows
+        and fetch_failure_count == 0
+        and not residual_nonaccepted_rule_hit_pdb_ids
+        and not accepted_lost_pdb_ids
+        else "blocked_review_only_counteraxis_needs_repair"
+    )
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_acceptor_chain_counteraxis_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_heteromeric_candidate_source_validation_review_method": (
+                review_meta.get("method")
+            ),
+            "candidate_threshold_angstrom": candidate_threshold_angstrom,
+            "counteraxis_status": counteraxis_status,
+            "reviewed_candidate_count": len(rows),
+            "fetch_failure_count": fetch_failure_count,
+            "initial_topology_gamma_rule_hit_count": initial_rule_hit_count,
+            "retained_source_valid_hit_count": retained_source_valid_hit_count,
+            "blocked_nonaccepted_rule_hit_count": blocked_nonaccepted_rule_hit_count,
+            "blocked_nonaccepted_rule_hit_pdb_ids": blocked_nonaccepted_pdb_ids,
+            "residual_nonaccepted_rule_hit_count": len(
+                residual_nonaccepted_rule_hit_pdb_ids
+            ),
+            "residual_nonaccepted_rule_hit_pdb_ids": (
+                residual_nonaccepted_rule_hit_pdb_ids
+            ),
+            "accepted_lost_count": len(accepted_lost_pdb_ids),
+            "accepted_lost_pdb_ids": accepted_lost_pdb_ids,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "current_heteromeric_false_hits_have_local_counteraxis",
+            "blocker_not_removed": [
+                "broader_heteromeric_counteraxis_controls_not_run",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This audit keeps only local mmCIF ligand context: a "
+                "heteromeric topology/gamma hit is blocked when the candidate "
+                "acceptor chain itself carries nucleotide or metal context. "
+                "Source-validation outcomes are used only to evaluate the "
+                "review probe, not as predictive inputs."
+            ),
+            "next_actions": [
+                "run the acceptor-chain counteraxis on broader heteromeric and sibling controls before scorer design",
+                "keep the counteraxis review-only until external hard-negative scored re-audit and thresholds exist",
+                "do not use source-validation text as an orphan discovery input",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Acceptor-chain ligand context is a review-only counteraxis "
+                "until broader controls and scoring gates pass."
+            )
+        ],
+    }
+
+
 def build_epk_external_source_lower_priority_ligand_sourcing_review(
     *,
     epk_external_source_structure_mapping_review: dict[str, Any],
@@ -26432,6 +27385,11 @@ def build_epk_precount_gate_status(
     | None = None,
     epk_heteromeric_source_valid_candidate_gamma_distance_sample: dict[str, Any]
     | None = None,
+    epk_heteromeric_source_valid_control_rerun: dict[str, Any] | None = None,
+    epk_heteromeric_text_free_axis_gap_audit: dict[str, Any] | None = None,
+    epk_heteromeric_source_free_role_rule_probe: dict[str, Any] | None = None,
+    epk_heteromeric_acceptor_chain_counteraxis_audit: dict[str, Any]
+    | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
@@ -26844,6 +27802,34 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(heteromeric_distance_sample_meta, dict):
         heteromeric_distance_sample_meta = {}
+    heteromeric_control_rerun_meta = (
+        epk_heteromeric_source_valid_control_rerun.get("metadata", {})
+        if isinstance(epk_heteromeric_source_valid_control_rerun, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_control_rerun_meta, dict):
+        heteromeric_control_rerun_meta = {}
+    heteromeric_text_free_gap_meta = (
+        epk_heteromeric_text_free_axis_gap_audit.get("metadata", {})
+        if isinstance(epk_heteromeric_text_free_axis_gap_audit, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_text_free_gap_meta, dict):
+        heteromeric_text_free_gap_meta = {}
+    heteromeric_source_free_probe_meta = (
+        epk_heteromeric_source_free_role_rule_probe.get("metadata", {})
+        if isinstance(epk_heteromeric_source_free_role_rule_probe, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_source_free_probe_meta, dict):
+        heteromeric_source_free_probe_meta = {}
+    heteromeric_acceptor_counteraxis_meta = (
+        epk_heteromeric_acceptor_chain_counteraxis_audit.get("metadata", {})
+        if isinstance(epk_heteromeric_acceptor_chain_counteraxis_audit, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_acceptor_counteraxis_meta, dict):
+        heteromeric_acceptor_counteraxis_meta = {}
     m_csa760_repair_meta = (
         epk_m_csa760_atp_state_repair_scan.get("metadata", {})
         if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
@@ -28118,6 +29104,308 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if heteromeric_control_rerun_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_source_valid_control_rerun",
+                "passed": heteromeric_control_rerun_meta.get(
+                    "control_rerun_status"
+                )
+                == "passes_review_only_controls_but_scorer_blocked"
+                and int(
+                    heteromeric_control_rerun_meta.get(
+                        "sibling_control_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_control_rerun_meta.get(
+                        "imported_external_hard_negative_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_control_rerun_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_control_rerun_meta.get("epk_score_computed")
+                ),
+                "evidence": {
+                    "source_method": heteromeric_control_rerun_meta.get(
+                        "method"
+                    ),
+                    "control_rerun_status": (
+                        heteromeric_control_rerun_meta.get(
+                            "control_rerun_status"
+                        )
+                    ),
+                    "positive_like_review_row_count": (
+                        heteromeric_control_rerun_meta.get(
+                            "positive_like_review_row_count"
+                        )
+                    ),
+                    "heteromeric_source_valid_candidate_row_count": (
+                        heteromeric_control_rerun_meta.get(
+                            "heteromeric_source_valid_candidate_row_count"
+                        )
+                    ),
+                    "heteromeric_source_valid_pdb_ids": (
+                        heteromeric_control_rerun_meta.get(
+                            "heteromeric_source_valid_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "heteromeric_source_valid_unique_pair_ids": (
+                        heteromeric_control_rerun_meta.get(
+                            "heteromeric_source_valid_unique_pair_ids",
+                            [],
+                        )
+                    ),
+                    "heteromeric_ambiguous_candidate_count": (
+                        heteromeric_control_rerun_meta.get(
+                            "heteromeric_ambiguous_candidate_count"
+                        )
+                    ),
+                    "heteromeric_rejected_candidate_count": (
+                        heteromeric_control_rerun_meta.get(
+                            "heteromeric_rejected_candidate_count"
+                        )
+                    ),
+                    "heteromeric_ambiguous_and_rejected_separated": bool(
+                        heteromeric_control_rerun_meta.get(
+                            "heteromeric_ambiguous_and_rejected_separated"
+                        )
+                    ),
+                    "sibling_control_false_hit_count": (
+                        heteromeric_control_rerun_meta.get(
+                            "sibling_control_false_hit_count"
+                        )
+                    ),
+                    "imported_external_hard_negative_non_abstention_count": (
+                        heteromeric_control_rerun_meta.get(
+                            "imported_external_hard_negative_non_abstention_count"
+                        )
+                    ),
+                    "source_authority_dependent_positive_like_count": (
+                        heteromeric_control_rerun_meta.get(
+                            "source_authority_dependent_positive_like_count"
+                        )
+                    ),
+                },
+            }
+        )
+    if heteromeric_text_free_gap_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_text_free_axis_gap_audit",
+                "passed": bool(
+                    heteromeric_text_free_gap_meta.get("gap_audit_status")
+                )
+                and int(
+                    heteromeric_text_free_gap_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_text_free_gap_meta.get("epk_score_computed")
+                ),
+                "evidence": {
+                    "source_method": heteromeric_text_free_gap_meta.get(
+                        "method"
+                    ),
+                    "gap_audit_status": heteromeric_text_free_gap_meta.get(
+                        "gap_audit_status"
+                    ),
+                    "source_authority_dependent_positive_like_count": (
+                        heteromeric_text_free_gap_meta.get(
+                            "source_authority_dependent_positive_like_count"
+                        )
+                    ),
+                    "local_geometry_axis_present_count": (
+                        heteromeric_text_free_gap_meta.get(
+                            "local_geometry_axis_present_count"
+                        )
+                    ),
+                    "source_free_role_assignment_ready_count": (
+                        heteromeric_text_free_gap_meta.get(
+                            "source_free_role_assignment_ready_count"
+                        )
+                    ),
+                    "source_free_acceptor_identity_ready_count": (
+                        heteromeric_text_free_gap_meta.get(
+                            "source_free_acceptor_identity_ready_count"
+                        )
+                    ),
+                    "production_admissible_positive_like_count": (
+                        heteromeric_text_free_gap_meta.get(
+                            "production_admissible_positive_like_count"
+                        )
+                    ),
+                    "sibling_control_false_hit_count": (
+                        heteromeric_text_free_gap_meta.get(
+                            "sibling_control_false_hit_count"
+                        )
+                    ),
+                    "imported_external_hard_negative_non_abstention_count": (
+                        heteromeric_text_free_gap_meta.get(
+                            "imported_external_hard_negative_non_abstention_count"
+                        )
+                    ),
+                },
+            }
+        )
+    if heteromeric_source_free_probe_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_source_free_role_rule_probe",
+                "passed": bool(
+                    heteromeric_source_free_probe_meta.get(
+                        "source_free_rule_status"
+                    )
+                )
+                and int(
+                    heteromeric_source_free_probe_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_source_free_probe_meta.get("epk_score_computed")
+                ),
+                "evidence": {
+                    "source_method": heteromeric_source_free_probe_meta.get(
+                        "method"
+                    ),
+                    "source_free_rule_status": (
+                        heteromeric_source_free_probe_meta.get(
+                            "source_free_rule_status"
+                        )
+                    ),
+                    "reviewed_candidate_count": (
+                        heteromeric_source_free_probe_meta.get(
+                            "reviewed_candidate_count"
+                        )
+                    ),
+                    "source_free_rule_hit_count": (
+                        heteromeric_source_free_probe_meta.get(
+                            "source_free_rule_hit_count"
+                        )
+                    ),
+                    "accepted_rule_hit_count": (
+                        heteromeric_source_free_probe_meta.get(
+                            "accepted_rule_hit_count"
+                        )
+                    ),
+                    "ambiguous_rule_hit_count": (
+                        heteromeric_source_free_probe_meta.get(
+                            "ambiguous_rule_hit_count"
+                        )
+                    ),
+                    "rejected_rule_hit_count": (
+                        heteromeric_source_free_probe_meta.get(
+                            "rejected_rule_hit_count"
+                        )
+                    ),
+                    "nonaccepted_rule_hit_count": (
+                        heteromeric_source_free_probe_meta.get(
+                            "nonaccepted_rule_hit_count"
+                        )
+                    ),
+                    "nonaccepted_rule_hit_pdb_ids": (
+                        heteromeric_source_free_probe_meta.get(
+                            "nonaccepted_rule_hit_pdb_ids",
+                            [],
+                        )
+                    ),
+                },
+            }
+        )
+    if heteromeric_acceptor_counteraxis_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_acceptor_chain_counteraxis_audit",
+                "passed": heteromeric_acceptor_counteraxis_meta.get(
+                    "counteraxis_status"
+                )
+                == "passes_current_review_controls_not_scoring_admissible"
+                and int(
+                    heteromeric_acceptor_counteraxis_meta.get(
+                        "residual_nonaccepted_rule_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_acceptor_counteraxis_meta.get(
+                        "accepted_lost_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_acceptor_counteraxis_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_acceptor_counteraxis_meta.get(
+                        "epk_score_computed"
+                    )
+                ),
+                "evidence": {
+                    "source_method": heteromeric_acceptor_counteraxis_meta.get(
+                        "method"
+                    ),
+                    "counteraxis_status": (
+                        heteromeric_acceptor_counteraxis_meta.get(
+                            "counteraxis_status"
+                        )
+                    ),
+                    "initial_topology_gamma_rule_hit_count": (
+                        heteromeric_acceptor_counteraxis_meta.get(
+                            "initial_topology_gamma_rule_hit_count"
+                        )
+                    ),
+                    "retained_source_valid_hit_count": (
+                        heteromeric_acceptor_counteraxis_meta.get(
+                            "retained_source_valid_hit_count"
+                        )
+                    ),
+                    "blocked_nonaccepted_rule_hit_count": (
+                        heteromeric_acceptor_counteraxis_meta.get(
+                            "blocked_nonaccepted_rule_hit_count"
+                        )
+                    ),
+                    "blocked_nonaccepted_rule_hit_pdb_ids": (
+                        heteromeric_acceptor_counteraxis_meta.get(
+                            "blocked_nonaccepted_rule_hit_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "residual_nonaccepted_rule_hit_count": (
+                        heteromeric_acceptor_counteraxis_meta.get(
+                            "residual_nonaccepted_rule_hit_count"
+                        )
+                    ),
+                    "accepted_lost_count": (
+                        heteromeric_acceptor_counteraxis_meta.get(
+                            "accepted_lost_count"
+                        )
+                    ),
+                },
+            }
+        )
     if m_csa760_repair_meta:
         gate_checks.append(
             {
@@ -28771,10 +30059,36 @@ def build_epk_precount_gate_status(
             or 0
         ):
             if heteromeric_distance_sample_meta.get("method"):
-                next_actions.insert(
-                    0,
-                    "rerun review-only controls with measured source-valid SMG1/UPF1 and ATM/p53 leads separated from ambiguous heteromeric rows",
-                )
+                if heteromeric_control_rerun_meta.get("method"):
+                    if heteromeric_text_free_gap_meta.get("method"):
+                        if heteromeric_source_free_probe_meta.get("method"):
+                            if heteromeric_acceptor_counteraxis_meta.get(
+                                "method"
+                            ):
+                                next_actions.insert(
+                                    0,
+                                    "run the acceptor-chain nucleotide counteraxis on broader heteromeric and sibling controls before scorer design",
+                                )
+                            else:
+                                next_actions.insert(
+                                    0,
+                                    "add a source-free role-direction disambiguation signal beyond topology plus gamma distance",
+                                )
+                        else:
+                            next_actions.insert(
+                                0,
+                                "build a local source-free kinase/substrate role and acceptor-identity rule for heteromeric co-complexes before scoring",
+                            )
+                    else:
+                        next_actions.insert(
+                            0,
+                            "replace source-valid heteromeric review controls with local text-free role and acceptor evidence before scoring",
+                        )
+                else:
+                    next_actions.insert(
+                        0,
+                        "rerun review-only controls with measured source-valid SMG1/UPF1 and ATM/p53 leads separated from ambiguous heteromeric rows",
+                    )
             else:
                 next_actions.insert(
                     0,
@@ -29849,6 +31163,154 @@ def build_epk_precount_gate_status(
                 heteromeric_distance_sample_meta.get(
                     "minimum_positive_coverage_measured_review_only"
                 )
+            ),
+            "source_epk_heteromeric_source_valid_control_rerun_method": (
+                heteromeric_control_rerun_meta.get("method")
+            ),
+            "heteromeric_control_rerun_status": (
+                heteromeric_control_rerun_meta.get("control_rerun_status")
+            ),
+            "heteromeric_control_positive_like_review_row_count": (
+                heteromeric_control_rerun_meta.get("positive_like_review_row_count")
+            ),
+            "heteromeric_control_source_valid_candidate_row_count": (
+                heteromeric_control_rerun_meta.get(
+                    "heteromeric_source_valid_candidate_row_count"
+                )
+            ),
+            "heteromeric_control_source_valid_pdb_ids": (
+                heteromeric_control_rerun_meta.get(
+                    "heteromeric_source_valid_pdb_ids",
+                    [],
+                )
+            ),
+            "heteromeric_control_source_valid_unique_pair_ids": (
+                heteromeric_control_rerun_meta.get(
+                    "heteromeric_source_valid_unique_pair_ids",
+                    [],
+                )
+            ),
+            "heteromeric_control_ambiguous_candidate_count": (
+                heteromeric_control_rerun_meta.get(
+                    "heteromeric_ambiguous_candidate_count"
+                )
+            ),
+            "heteromeric_control_rejected_candidate_count": (
+                heteromeric_control_rerun_meta.get(
+                    "heteromeric_rejected_candidate_count"
+                )
+            ),
+            "heteromeric_control_sibling_false_hit_count": (
+                heteromeric_control_rerun_meta.get(
+                    "sibling_control_false_hit_count"
+                )
+            ),
+            "heteromeric_control_external_non_abstention_count": (
+                heteromeric_control_rerun_meta.get(
+                    "imported_external_hard_negative_non_abstention_count"
+                )
+            ),
+            "heteromeric_control_source_authority_dependent_positive_like_count": (
+                heteromeric_control_rerun_meta.get(
+                    "source_authority_dependent_positive_like_count"
+                )
+            ),
+            "source_epk_heteromeric_text_free_axis_gap_audit_method": (
+                heteromeric_text_free_gap_meta.get("method")
+            ),
+            "heteromeric_text_free_axis_gap_audit_status": (
+                heteromeric_text_free_gap_meta.get("gap_audit_status")
+            ),
+            "heteromeric_text_free_source_authority_dependent_positive_like_count": (
+                heteromeric_text_free_gap_meta.get(
+                    "source_authority_dependent_positive_like_count"
+                )
+            ),
+            "heteromeric_text_free_local_geometry_axis_present_count": (
+                heteromeric_text_free_gap_meta.get(
+                    "local_geometry_axis_present_count"
+                )
+            ),
+            "heteromeric_text_free_role_assignment_ready_count": (
+                heteromeric_text_free_gap_meta.get(
+                    "source_free_role_assignment_ready_count"
+                )
+            ),
+            "heteromeric_text_free_acceptor_identity_ready_count": (
+                heteromeric_text_free_gap_meta.get(
+                    "source_free_acceptor_identity_ready_count"
+                )
+            ),
+            "heteromeric_text_free_production_admissible_positive_like_count": (
+                heteromeric_text_free_gap_meta.get(
+                    "production_admissible_positive_like_count"
+                )
+            ),
+            "source_epk_heteromeric_source_free_role_rule_probe_method": (
+                heteromeric_source_free_probe_meta.get("method")
+            ),
+            "heteromeric_source_free_rule_status": (
+                heteromeric_source_free_probe_meta.get("source_free_rule_status")
+            ),
+            "heteromeric_source_free_rule_hit_count": (
+                heteromeric_source_free_probe_meta.get(
+                    "source_free_rule_hit_count"
+                )
+            ),
+            "heteromeric_source_free_accepted_rule_hit_count": (
+                heteromeric_source_free_probe_meta.get("accepted_rule_hit_count")
+            ),
+            "heteromeric_source_free_ambiguous_rule_hit_count": (
+                heteromeric_source_free_probe_meta.get("ambiguous_rule_hit_count")
+            ),
+            "heteromeric_source_free_rejected_rule_hit_count": (
+                heteromeric_source_free_probe_meta.get("rejected_rule_hit_count")
+            ),
+            "heteromeric_source_free_nonaccepted_rule_hit_count": (
+                heteromeric_source_free_probe_meta.get(
+                    "nonaccepted_rule_hit_count"
+                )
+            ),
+            "heteromeric_source_free_nonaccepted_rule_hit_pdb_ids": (
+                heteromeric_source_free_probe_meta.get(
+                    "nonaccepted_rule_hit_pdb_ids",
+                    [],
+                )
+            ),
+            "source_epk_heteromeric_acceptor_chain_counteraxis_audit_method": (
+                heteromeric_acceptor_counteraxis_meta.get("method")
+            ),
+            "heteromeric_acceptor_counteraxis_status": (
+                heteromeric_acceptor_counteraxis_meta.get("counteraxis_status")
+            ),
+            "heteromeric_acceptor_counteraxis_initial_hit_count": (
+                heteromeric_acceptor_counteraxis_meta.get(
+                    "initial_topology_gamma_rule_hit_count"
+                )
+            ),
+            "heteromeric_acceptor_counteraxis_retained_source_valid_hit_count": (
+                heteromeric_acceptor_counteraxis_meta.get(
+                    "retained_source_valid_hit_count"
+                )
+            ),
+            "heteromeric_acceptor_counteraxis_blocked_nonaccepted_hit_count": (
+                heteromeric_acceptor_counteraxis_meta.get(
+                    "blocked_nonaccepted_rule_hit_count"
+                )
+            ),
+            "heteromeric_acceptor_counteraxis_blocked_nonaccepted_pdb_ids": (
+                heteromeric_acceptor_counteraxis_meta.get(
+                    "blocked_nonaccepted_rule_hit_pdb_ids",
+                    [],
+                )
+            ),
+            "heteromeric_acceptor_counteraxis_residual_nonaccepted_hit_count": (
+                heteromeric_acceptor_counteraxis_meta.get(
+                    "residual_nonaccepted_rule_hit_count"
+                )
+            ),
+            "heteromeric_acceptor_counteraxis_accepted_lost_count": (
+                heteromeric_acceptor_counteraxis_meta.get("accepted_lost_count")
             ),
             "source_epk_m_csa760_atp_state_repair_scan_method": (
                 m_csa760_repair_meta.get("method")

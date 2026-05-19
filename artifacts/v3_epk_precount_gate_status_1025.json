@@ -409,6 +409,83 @@
     },
     {
       "evidence": {
+        "control_rerun_status": "passes_review_only_controls_but_scorer_blocked",
+        "heteromeric_ambiguous_and_rejected_separated": true,
+        "heteromeric_ambiguous_candidate_count": 2,
+        "heteromeric_rejected_candidate_count": 1,
+        "heteromeric_source_valid_candidate_row_count": 3,
+        "heteromeric_source_valid_pdb_ids": [
+          "6Z3R",
+          "8OXM",
+          "8OXO"
+        ],
+        "heteromeric_source_valid_unique_pair_ids": [
+          "atm_p53",
+          "smg1_upf1"
+        ],
+        "imported_external_hard_negative_non_abstention_count": 0,
+        "positive_like_review_row_count": 7,
+        "sibling_control_false_hit_count": 0,
+        "source_authority_dependent_positive_like_count": 4,
+        "source_method": "epk_heteromeric_source_valid_control_rerun"
+      },
+      "gate_id": "heteromeric_source_valid_control_rerun",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "gap_audit_status": "blocked_review_only_source_free_role_acceptor_axes_missing",
+        "imported_external_hard_negative_non_abstention_count": 0,
+        "local_geometry_axis_present_count": 4,
+        "production_admissible_positive_like_count": 0,
+        "sibling_control_false_hit_count": 0,
+        "source_authority_dependent_positive_like_count": 4,
+        "source_free_acceptor_identity_ready_count": 0,
+        "source_free_role_assignment_ready_count": 0,
+        "source_method": "epk_heteromeric_text_free_axis_gap_audit"
+      },
+      "gate_id": "heteromeric_text_free_axis_gap_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "accepted_rule_hit_count": 3,
+        "ambiguous_rule_hit_count": 2,
+        "nonaccepted_rule_hit_count": 3,
+        "nonaccepted_rule_hit_pdb_ids": [
+          "7M0T",
+          "7M0W",
+          "8ZN6"
+        ],
+        "rejected_rule_hit_count": 1,
+        "reviewed_candidate_count": 6,
+        "source_free_rule_hit_count": 6,
+        "source_free_rule_status": "blocked_review_only_source_free_rule_false_hit_risk",
+        "source_method": "epk_heteromeric_source_free_role_rule_probe"
+      },
+      "gate_id": "heteromeric_source_free_role_rule_probe",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "accepted_lost_count": 0,
+        "blocked_nonaccepted_rule_hit_count": 3,
+        "blocked_nonaccepted_rule_hit_pdb_ids": [
+          "7M0T",
+          "7M0W",
+          "8ZN6"
+        ],
+        "counteraxis_status": "passes_current_review_controls_not_scoring_admissible",
+        "initial_topology_gamma_rule_hit_count": 6,
+        "residual_nonaccepted_rule_hit_count": 0,
+        "retained_source_valid_hit_count": 3,
+        "source_method": "epk_heteromeric_acceptor_chain_counteraxis_audit"
+      },
+      "gate_id": "heteromeric_acceptor_chain_counteraxis_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
         "atp_metal_state_candidate_count": 2,
         "atp_metal_state_candidate_pdb_ids": [
           "1TID",
@@ -677,6 +754,17 @@
     "gamma_measured_or_reviewed_row_count": 3,
     "gamma_measured_row_count": 2,
     "gamma_threshold_control_plan_ready": true,
+    "heteromeric_acceptor_counteraxis_accepted_lost_count": 0,
+    "heteromeric_acceptor_counteraxis_blocked_nonaccepted_hit_count": 3,
+    "heteromeric_acceptor_counteraxis_blocked_nonaccepted_pdb_ids": [
+      "7M0T",
+      "7M0W",
+      "8ZN6"
+    ],
+    "heteromeric_acceptor_counteraxis_initial_hit_count": 6,
+    "heteromeric_acceptor_counteraxis_residual_nonaccepted_hit_count": 0,
+    "heteromeric_acceptor_counteraxis_retained_source_valid_hit_count": 3,
+    "heteromeric_acceptor_counteraxis_status": "passes_current_review_controls_not_scoring_admissible",
     "heteromeric_chain_topology_5hvk_role_direction_supported": true,
     "heteromeric_chain_topology_audit_status": "passes_current_hit_controls_but_insufficient_positive_coverage_review_only",
     "heteromeric_chain_topology_current_hit_controls_passed": true,
@@ -696,6 +784,23 @@
     ],
     "heteromeric_chain_topology_same_accession_false_hit_count": 0,
     "heteromeric_chain_topology_source_authority_eliminated": false,
+    "heteromeric_control_ambiguous_candidate_count": 2,
+    "heteromeric_control_external_non_abstention_count": 0,
+    "heteromeric_control_positive_like_review_row_count": 7,
+    "heteromeric_control_rejected_candidate_count": 1,
+    "heteromeric_control_rerun_status": "passes_review_only_controls_but_scorer_blocked",
+    "heteromeric_control_sibling_false_hit_count": 0,
+    "heteromeric_control_source_authority_dependent_positive_like_count": 4,
+    "heteromeric_control_source_valid_candidate_row_count": 3,
+    "heteromeric_control_source_valid_pdb_ids": [
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
+    "heteromeric_control_source_valid_unique_pair_ids": [
+      "atm_p53",
+      "smg1_upf1"
+    ],
     "heteromeric_distance_max_angstrom": 5.607,
     "heteromeric_distance_measured_candidate_count": 3,
     "heteromeric_distance_measured_candidate_pdb_ids": [
@@ -725,6 +830,17 @@
     "heteromeric_positive_coverage_reviewed_candidate_count": 50,
     "heteromeric_positive_coverage_source_validation_queue_ready": true,
     "heteromeric_positive_coverage_status": "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+    "heteromeric_source_free_accepted_rule_hit_count": 3,
+    "heteromeric_source_free_ambiguous_rule_hit_count": 2,
+    "heteromeric_source_free_nonaccepted_rule_hit_count": 3,
+    "heteromeric_source_free_nonaccepted_rule_hit_pdb_ids": [
+      "7M0T",
+      "7M0W",
+      "8ZN6"
+    ],
+    "heteromeric_source_free_rejected_rule_hit_count": 1,
+    "heteromeric_source_free_rule_hit_count": 6,
+    "heteromeric_source_free_rule_status": "blocked_review_only_source_free_rule_false_hit_risk",
     "heteromeric_source_validation_accepted_candidate_count": 3,
     "heteromeric_source_validation_accepted_candidate_pdb_ids": [
       "6Z3R",
@@ -739,6 +855,12 @@
       "atm_p53",
       "smg1_upf1"
     ],
+    "heteromeric_text_free_acceptor_identity_ready_count": 0,
+    "heteromeric_text_free_axis_gap_audit_status": "blocked_review_only_source_free_role_acceptor_axes_missing",
+    "heteromeric_text_free_local_geometry_axis_present_count": 4,
+    "heteromeric_text_free_production_admissible_positive_like_count": 0,
+    "heteromeric_text_free_role_assignment_ready_count": 0,
+    "heteromeric_text_free_source_authority_dependent_positive_like_count": 4,
     "ligand_analog_dependency_count": 1,
     "ligand_analog_dependency_entry_ids": [
       "m_csa:640"
@@ -923,7 +1045,7 @@
       "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
       "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
-      "rerun review-only controls with measured source-valid SMG1/UPF1 and ATM/p53 leads separated from ambiguous heteromeric rows",
+      "run the acceptor-chain nucleotide counteraxis on broader heteromeric and sibling controls before scorer design",
       "add a source-free catalytic-chain assignment signal before using local chain-topology hits for scoring",
       "freeze a real protein-substrate acceptor scorer design before any 5HVK-informed threshold calibration",
       "use the 5HVK rerun result to design calibrated protein-substrate acceptor scoring while keeping production gates closed",
@@ -980,10 +1102,14 @@
     ],
     "source_epk_family_specific_mapping_template_validation_review_method": "epk_family_specific_mapping_template_validation_review",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
+    "source_epk_heteromeric_acceptor_chain_counteraxis_audit_method": "epk_heteromeric_acceptor_chain_counteraxis_audit",
     "source_epk_heteromeric_candidate_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
     "source_epk_heteromeric_chain_topology_signal_audit_method": "epk_heteromeric_chain_topology_signal_audit",
     "source_epk_heteromeric_positive_coverage_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "source_epk_heteromeric_source_free_role_rule_probe_method": "epk_heteromeric_source_free_role_rule_probe",
     "source_epk_heteromeric_source_valid_candidate_gamma_distance_sample_method": "epk_heteromeric_source_valid_candidate_gamma_distance_sample",
+    "source_epk_heteromeric_source_valid_control_rerun_method": "epk_heteromeric_source_valid_control_rerun",
+    "source_epk_heteromeric_text_free_axis_gap_audit_method": "epk_heteromeric_text_free_axis_gap_audit",
     "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
     "source_epk_ligand_specific_5hvk_control_rerun_queue_method": "epk_ligand_specific_5hvk_control_rerun_queue",
     "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": "epk_ligand_specific_5hvk_prototype_control_rerun",

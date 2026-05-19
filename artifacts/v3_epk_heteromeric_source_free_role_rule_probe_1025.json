@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "accepted_rule_hit_count": 3,
+    "ambiguous_rule_hit_count": 2,
+    "blocker_not_removed": [
+      "source_free_rule_false_hit_risk",
+      "role_direction_disambiguation_missing",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "source_free_topology_gamma_rule_probe_executed",
+    "candidate_threshold_angstrom": 6.0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_heteromeric_source_free_role_rule_probe",
+    "next_actions": [
+      "add a source-free role-direction disambiguation signal before using heteromeric topology for scoring",
+      "keep BRAF/MEK and non-ePK designed-clock hits as review-only counterexamples",
+      "do not calibrate an ePK threshold from topology-plus-gamma alone"
+    ],
+    "nonaccepted_rule_hit_count": 3,
+    "nonaccepted_rule_hit_pdb_ids": [
+      "7M0T",
+      "7M0W",
+      "8ZN6"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "rejected_rule_hit_count": 1,
+    "review_only": true,
+    "review_only_rule": "This probe applies only local heteromeric topology plus gamma-distance evidence, then evaluates it against source validation outcomes as review context. It fails closed if the local rule also hits ambiguous or rejected candidates.",
+    "reviewed_candidate_count": 6,
+    "selected_threshold_angstrom": null,
+    "source_epk_heteromeric_candidate_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
+    "source_free_rule_hit_count": 6,
+    "source_free_rule_status": "blocked_review_only_source_free_rule_false_hit_risk",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 5.607,
+      "pdb_id": "6Z3R",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "role_direction_disambiguation_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_source_free_role_rule_probe",
+      "source_free_rule_decision": "source_free_rule_hits_source_valid_review_positive",
+      "source_free_rule_hit": true,
+      "source_free_rule_inputs": {
+        "heteromeric_entity_topology_hit": true,
+        "nearest_gamma_distance_within_candidate_cutoff": true
+      },
+      "source_pair_id": "smg1_upf1",
+      "source_validated_positive_like_review_context": true,
+      "source_validation_status_review_context": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.482,
+      "pdb_id": "8OXM",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "role_direction_disambiguation_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_source_free_role_rule_probe",
+      "source_free_rule_decision": "source_free_rule_hits_source_valid_review_positive",
+      "source_free_rule_hit": true,
+      "source_free_rule_inputs": {
+        "heteromeric_entity_topology_hit": true,
+        "nearest_gamma_distance_within_candidate_cutoff": true
+      },
+      "source_pair_id": "atm_p53",
+      "source_validated_positive_like_review_context": true,
+      "source_validation_status_review_context": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.747,
+      "pdb_id": "8OXO",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "role_direction_disambiguation_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_source_free_role_rule_probe",
+      "source_free_rule_decision": "source_free_rule_hits_source_valid_review_positive",
+      "source_free_rule_hit": true,
+      "source_free_rule_inputs": {
+        "heteromeric_entity_topology_hit": true,
+        "nearest_gamma_distance_within_candidate_cutoff": true
+      },
+      "source_pair_id": "atm_p53",
+      "source_validated_positive_like_review_context": true,
+      "source_validation_status_review_context": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.81,
+      "pdb_id": "7M0T",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_free_rule_false_hit_risk",
+        "role_direction_disambiguation_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_source_free_role_rule_probe",
+      "source_free_rule_decision": "source_free_rule_false_hit_risk_review_only",
+      "source_free_rule_hit": true,
+      "source_free_rule_inputs": {
+        "heteromeric_entity_topology_hit": true,
+        "nearest_gamma_distance_within_candidate_cutoff": true
+      },
+      "source_pair_id": null,
+      "source_validated_positive_like_review_context": false,
+      "source_validation_status_review_context": "blocked_ambiguous_kinase_kinase_role_direction_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.993,
+      "pdb_id": "7M0W",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_free_rule_false_hit_risk",
+        "role_direction_disambiguation_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_source_free_role_rule_probe",
+      "source_free_rule_decision": "source_free_rule_false_hit_risk_review_only",
+      "source_free_rule_hit": true,
+      "source_free_rule_inputs": {
+        "heteromeric_entity_topology_hit": true,
+        "nearest_gamma_distance_within_candidate_cutoff": true
+      },
+      "source_pair_id": null,
+      "source_validated_positive_like_review_context": false,
+      "source_validation_status_review_context": "blocked_ambiguous_kinase_kinase_role_direction_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.473,
+      "pdb_id": "8ZN6",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_free_rule_false_hit_risk",
+        "role_direction_disambiguation_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_source_free_role_rule_probe",
+      "source_free_rule_decision": "source_free_rule_false_hit_risk_review_only",
+      "source_free_rule_hit": true,
+      "source_free_rule_inputs": {
+        "heteromeric_entity_topology_hit": true,
+        "nearest_gamma_distance_within_candidate_cutoff": true
+      },
+      "source_pair_id": null,
+      "source_validated_positive_like_review_context": false,
+      "source_validation_status_review_context": "rejected_non_epk_substrate_cocomplex_or_designed_clock_protein_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    }
+  ],
+  "warnings": [
+    "Heteromeric topology plus gamma distance alone is not a production-admissible ePK role rule."
+  ]
+}

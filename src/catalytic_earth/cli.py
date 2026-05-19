@@ -102,6 +102,10 @@ from .labels import (
     build_epk_heteromeric_chain_topology_signal_audit,
     build_epk_heteromeric_positive_coverage_candidate_scout,
     build_epk_heteromeric_source_valid_candidate_gamma_distance_sample,
+    build_epk_heteromeric_source_valid_control_rerun,
+    build_epk_heteromeric_source_free_role_rule_probe,
+    build_epk_heteromeric_text_free_axis_gap_audit,
+    build_epk_heteromeric_acceptor_chain_counteraxis_audit,
     build_epk_ligand_specific_5hvk_control_rerun_queue,
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
@@ -7105,6 +7109,106 @@ def cmd_build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
     return 0
 
 
+def cmd_build_epk_heteromeric_source_valid_control_rerun(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_ligand_specific_5hvk_prototype_control_rerun).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_5hvk_prototype_control_rerun = json.load(handle)
+    with Path(args.epk_heteromeric_candidate_source_validation_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_candidate_source_validation_review = json.load(handle)
+    with Path(args.epk_heteromeric_source_valid_candidate_gamma_distance_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_source_valid_candidate_gamma_distance_sample = json.load(
+            handle
+        )
+    rerun = build_epk_heteromeric_source_valid_control_rerun(
+        epk_ligand_specific_5hvk_prototype_control_rerun=(
+            epk_ligand_specific_5hvk_prototype_control_rerun
+        ),
+        epk_heteromeric_candidate_source_validation_review=(
+            epk_heteromeric_candidate_source_validation_review
+        ),
+        epk_heteromeric_source_valid_candidate_gamma_distance_sample=(
+            epk_heteromeric_source_valid_candidate_gamma_distance_sample
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+    )
+    write_json(Path(args.out), rerun)
+    print(
+        "Wrote ePK heteromeric source-valid control rerun to "
+        f"{args.out} (status={rerun['metadata']['control_rerun_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_heteromeric_text_free_axis_gap_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_source_valid_control_rerun).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_source_valid_control_rerun = json.load(handle)
+    audit = build_epk_heteromeric_text_free_axis_gap_audit(
+        epk_heteromeric_source_valid_control_rerun=(
+            epk_heteromeric_source_valid_control_rerun
+        )
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK heteromeric text-free axis gap audit to "
+        f"{args.out} (status={audit['metadata']['gap_audit_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_heteromeric_source_free_role_rule_probe(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_candidate_source_validation_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_candidate_source_validation_review = json.load(handle)
+    probe = build_epk_heteromeric_source_free_role_rule_probe(
+        epk_heteromeric_candidate_source_validation_review=(
+            epk_heteromeric_candidate_source_validation_review
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+    )
+    write_json(Path(args.out), probe)
+    print(
+        "Wrote ePK heteromeric source-free role-rule probe to "
+        f"{args.out} (status={probe['metadata']['source_free_rule_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_heteromeric_acceptor_chain_counteraxis_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_candidate_source_validation_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_candidate_source_validation_review = json.load(handle)
+    audit = build_epk_heteromeric_acceptor_chain_counteraxis_audit(
+        epk_heteromeric_candidate_source_validation_review=(
+            epk_heteromeric_candidate_source_validation_review
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK heteromeric acceptor-chain counteraxis audit to "
+        f"{args.out} (status={audit['metadata']['counteraxis_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
     args: argparse.Namespace,
 ) -> int:
@@ -7653,6 +7757,30 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             epk_heteromeric_source_valid_candidate_gamma_distance_sample = json.load(
                 handle
             )
+    epk_heteromeric_source_valid_control_rerun = None
+    if args.epk_heteromeric_source_valid_control_rerun:
+        with Path(args.epk_heteromeric_source_valid_control_rerun).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_source_valid_control_rerun = json.load(handle)
+    epk_heteromeric_text_free_axis_gap_audit = None
+    if args.epk_heteromeric_text_free_axis_gap_audit:
+        with Path(args.epk_heteromeric_text_free_axis_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_text_free_axis_gap_audit = json.load(handle)
+    epk_heteromeric_source_free_role_rule_probe = None
+    if args.epk_heteromeric_source_free_role_rule_probe:
+        with Path(args.epk_heteromeric_source_free_role_rule_probe).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_source_free_role_rule_probe = json.load(handle)
+    epk_heteromeric_acceptor_chain_counteraxis_audit = None
+    if args.epk_heteromeric_acceptor_chain_counteraxis_audit:
+        with Path(args.epk_heteromeric_acceptor_chain_counteraxis_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_acceptor_chain_counteraxis_audit = json.load(handle)
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -7787,6 +7915,18 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_heteromeric_source_valid_candidate_gamma_distance_sample=(
             epk_heteromeric_source_valid_candidate_gamma_distance_sample
+        ),
+        epk_heteromeric_source_valid_control_rerun=(
+            epk_heteromeric_source_valid_control_rerun
+        ),
+        epk_heteromeric_text_free_axis_gap_audit=(
+            epk_heteromeric_text_free_axis_gap_audit
+        ),
+        epk_heteromeric_source_free_role_rule_probe=(
+            epk_heteromeric_source_free_role_rule_probe
+        ),
+        epk_heteromeric_acceptor_chain_counteraxis_audit=(
+            epk_heteromeric_acceptor_chain_counteraxis_audit
         ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
@@ -15919,6 +16059,128 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_heteromeric_source_valid_candidate_gamma_distance_sample
     )
 
+    epk_heteromeric_control_rerun = subparsers.add_parser(
+        "build-epk-heteromeric-source-valid-control-rerun",
+        help="rerun review-only ePK controls with source-valid heteromeric leads",
+    )
+    epk_heteromeric_control_rerun.add_argument(
+        "--epk-ligand-specific-5hvk-prototype-control-rerun",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_prototype_control_rerun_1025.json"
+        ),
+    )
+    epk_heteromeric_control_rerun.add_argument(
+        "--epk-heteromeric-candidate-source-validation-review",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_candidate_source_validation_review_1025.json"
+        ),
+    )
+    epk_heteromeric_control_rerun.add_argument(
+        "--epk-heteromeric-source-valid-candidate-gamma-distance-sample",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_source_valid_candidate_gamma_distance_sample_1025.json"
+        ),
+    )
+    epk_heteromeric_control_rerun.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_heteromeric_control_rerun.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_source_valid_control_rerun_1025.json"
+        ),
+    )
+    epk_heteromeric_control_rerun.set_defaults(
+        func=cmd_build_epk_heteromeric_source_valid_control_rerun
+    )
+
+    epk_heteromeric_text_free_gap = subparsers.add_parser(
+        "build-epk-heteromeric-text-free-axis-gap-audit",
+        help="audit text-free blockers on source-valid heteromeric ePK leads",
+    )
+    epk_heteromeric_text_free_gap.add_argument(
+        "--epk-heteromeric-source-valid-control-rerun",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_source_valid_control_rerun_1025.json"
+        ),
+    )
+    epk_heteromeric_text_free_gap.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_text_free_axis_gap_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_text_free_gap.set_defaults(
+        func=cmd_build_epk_heteromeric_text_free_axis_gap_audit
+    )
+
+    epk_heteromeric_source_free_probe = subparsers.add_parser(
+        "build-epk-heteromeric-source-free-role-rule-probe",
+        help="probe source-free heteromeric topology plus gamma role rule",
+    )
+    epk_heteromeric_source_free_probe.add_argument(
+        "--epk-heteromeric-candidate-source-validation-review",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_candidate_source_validation_review_1025.json"
+        ),
+    )
+    epk_heteromeric_source_free_probe.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_heteromeric_source_free_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_source_free_role_rule_probe_1025.json"
+        ),
+    )
+    epk_heteromeric_source_free_probe.set_defaults(
+        func=cmd_build_epk_heteromeric_source_free_role_rule_probe
+    )
+
+    epk_heteromeric_acceptor_counteraxis = subparsers.add_parser(
+        "build-epk-heteromeric-acceptor-chain-counteraxis-audit",
+        help="audit acceptor-chain nucleotide context as heteromeric counteraxis",
+    )
+    epk_heteromeric_acceptor_counteraxis.add_argument(
+        "--epk-heteromeric-candidate-source-validation-review",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_candidate_source_validation_review_1025.json"
+        ),
+    )
+    epk_heteromeric_acceptor_counteraxis.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_heteromeric_acceptor_counteraxis.add_argument(
+        "--cif-dir",
+        default=None,
+        help="optional directory of cached CIF/mmCIF files keyed by PDB id",
+    )
+    epk_heteromeric_acceptor_counteraxis.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_acceptor_chain_counteraxis_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_acceptor_counteraxis.set_defaults(
+        func=cmd_build_epk_heteromeric_acceptor_chain_counteraxis_audit
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -16355,6 +16617,22 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-heteromeric-source-valid-candidate-gamma-distance-sample",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-source-valid-control-rerun",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-text-free-axis-gap-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-source-free-role-rule-probe",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-acceptor-chain-counteraxis-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(

@@ -3677,6 +3677,10 @@ class CliTests(unittest.TestCase):
             fivehvk = root / "fivehvk.json"
             fivehvk_queue = root / "fivehvk_queue.json"
             five_li1 = root / "5li1.json"
+            heteromeric_control = root / "heteromeric_control.json"
+            heteromeric_gap = root / "heteromeric_gap.json"
+            heteromeric_probe = root / "heteromeric_probe.json"
+            heteromeric_counteraxis = root / "heteromeric_counteraxis.json"
             out = root / "gate_status.json"
             axis.write_text(
                 json.dumps(
@@ -3998,6 +4002,113 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            heteromeric_control.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_source_valid_control_rerun",
+                            "control_rerun_status": (
+                                "passes_review_only_controls_but_scorer_blocked"
+                            ),
+                            "positive_like_review_row_count": 7,
+                            "heteromeric_source_valid_candidate_row_count": 3,
+                            "heteromeric_source_valid_pdb_ids": [
+                                "6Z3R",
+                                "8OXM",
+                                "8OXO",
+                            ],
+                            "heteromeric_source_valid_unique_pair_ids": [
+                                "atm_p53",
+                                "smg1_upf1",
+                            ],
+                            "heteromeric_ambiguous_candidate_count": 2,
+                            "heteromeric_rejected_candidate_count": 1,
+                            "heteromeric_ambiguous_and_rejected_separated": True,
+                            "sibling_control_false_hit_count": 0,
+                            "imported_external_hard_negative_non_abstention_count": 0,
+                            "source_authority_dependent_positive_like_count": 4,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            heteromeric_gap.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_text_free_axis_gap_audit",
+                            "gap_audit_status": (
+                                "blocked_review_only_source_free_role_acceptor_axes_missing"
+                            ),
+                            "source_authority_dependent_positive_like_count": 4,
+                            "local_geometry_axis_present_count": 4,
+                            "source_free_role_assignment_ready_count": 0,
+                            "source_free_acceptor_identity_ready_count": 0,
+                            "production_admissible_positive_like_count": 0,
+                            "sibling_control_false_hit_count": 0,
+                            "imported_external_hard_negative_non_abstention_count": 0,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            heteromeric_probe.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_source_free_role_rule_probe",
+                            "source_free_rule_status": (
+                                "blocked_review_only_source_free_rule_false_hit_risk"
+                            ),
+                            "reviewed_candidate_count": 6,
+                            "source_free_rule_hit_count": 6,
+                            "accepted_rule_hit_count": 3,
+                            "ambiguous_rule_hit_count": 2,
+                            "rejected_rule_hit_count": 1,
+                            "nonaccepted_rule_hit_count": 3,
+                            "nonaccepted_rule_hit_pdb_ids": [
+                                "7M0T",
+                                "7M0W",
+                                "8ZN6",
+                            ],
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            heteromeric_counteraxis.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_acceptor_chain_counteraxis_audit"
+                            ),
+                            "counteraxis_status": (
+                                "passes_current_review_controls_not_scoring_admissible"
+                            ),
+                            "initial_topology_gamma_rule_hit_count": 6,
+                            "retained_source_valid_hit_count": 3,
+                            "blocked_nonaccepted_rule_hit_count": 3,
+                            "blocked_nonaccepted_rule_hit_pdb_ids": [
+                                "7M0T",
+                                "7M0W",
+                                "8ZN6",
+                            ],
+                            "residual_nonaccepted_rule_hit_count": 0,
+                            "accepted_lost_count": 0,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -4037,6 +4148,14 @@ class CliTests(unittest.TestCase):
                     str(fivehvk_queue),
                     "--epk-m-csa756-5li1-residue-evidence-audit",
                     str(five_li1),
+                    "--epk-heteromeric-source-valid-control-rerun",
+                    str(heteromeric_control),
+                    "--epk-heteromeric-text-free-axis-gap-audit",
+                    str(heteromeric_gap),
+                    "--epk-heteromeric-source-free-role-rule-probe",
+                    str(heteromeric_probe),
+                    "--epk-heteromeric-acceptor-chain-counteraxis-audit",
+                    str(heteromeric_counteraxis),
                     "--epk-external-hard-negative-reaudit-plan",
                     str(reaudit),
                     "--out",
@@ -4149,6 +4268,36 @@ class CliTests(unittest.TestCase):
                 metadata["m_csa756_5li1_noncanonical_terminal_atom_names_detected"],
                 ["PB"],
             )
+            self.assertEqual(
+                metadata["source_epk_heteromeric_source_valid_control_rerun_method"],
+                "epk_heteromeric_source_valid_control_rerun",
+            )
+            self.assertEqual(
+                metadata["heteromeric_control_rerun_status"],
+                "passes_review_only_controls_but_scorer_blocked",
+            )
+            self.assertEqual(
+                metadata["heteromeric_control_source_valid_pdb_ids"],
+                ["6Z3R", "8OXM", "8OXO"],
+            )
+            self.assertEqual(
+                metadata["heteromeric_text_free_axis_gap_audit_status"],
+                "blocked_review_only_source_free_role_acceptor_axes_missing",
+            )
+            self.assertEqual(
+                metadata["heteromeric_source_free_nonaccepted_rule_hit_pdb_ids"],
+                ["7M0T", "7M0W", "8ZN6"],
+            )
+            self.assertEqual(
+                metadata["heteromeric_acceptor_counteraxis_status"],
+                "passes_current_review_controls_not_scoring_admissible",
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_acceptor_counteraxis_residual_nonaccepted_hit_count"
+                ],
+                0,
+            )
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
             checks = {check["gate_id"]: check for check in status["gate_checks"]}
             self.assertTrue(checks["local_axis_prototype"]["passed"])
@@ -4183,6 +4332,18 @@ class CliTests(unittest.TestCase):
             )
             self.assertTrue(
                 checks["m_csa756_5li1_residue_evidence_audit"]["passed"]
+            )
+            self.assertTrue(
+                checks["heteromeric_source_valid_control_rerun"]["passed"]
+            )
+            self.assertTrue(
+                checks["heteromeric_text_free_axis_gap_audit"]["passed"]
+            )
+            self.assertTrue(
+                checks["heteromeric_source_free_role_rule_probe"]["passed"]
+            )
+            self.assertTrue(
+                checks["heteromeric_acceptor_chain_counteraxis_audit"]["passed"]
             )
 
     def test_build_epk_acceptor_identity_review_command(self) -> None:
@@ -8063,6 +8224,325 @@ class CliTests(unittest.TestCase):
             self.assertEqual(row["entry_id"], "uniprot:P06744")
             self.assertEqual(row["review_only_probe_score"], 0.0)
             self.assertFalse(row["review_only_score_probe_non_abstention"])
+
+    def test_build_epk_heteromeric_followon_commands(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            cif_dir = root / "cif"
+            cif_dir.mkdir()
+            base = root / "base.json"
+            validation = root / "validation.json"
+            distances = root / "distances.json"
+            rerun_out = root / "rerun.json"
+            gap_out = root / "gap.json"
+            probe_out = root / "probe.json"
+            counteraxis_out = root / "counteraxis.json"
+
+            base.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_ligand_specific_5hvk_prototype_control_rerun"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "control_rerun_status": (
+                                "passes_review_only_controls_but_scorer_blocked"
+                            ),
+                            "current_positive_prototype_row_count": 1,
+                            "positive_like_review_row_count": 2,
+                            "source_valid_5hvk_candidate_row_count": 1,
+                            "sibling_control_row_count": 1,
+                            "imported_external_hard_negative_row_count": 1,
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "pdb_id": "2PHK",
+                                "prototype_decision": (
+                                    "candidate_positive_signal_review_only_not_calibrated"
+                                ),
+                                "rerun_surface_role": "carried_current_positive",
+                            },
+                            {
+                                "row_type": (
+                                    "ligand_specific_5hvk_source_valid_positive_candidate"
+                                ),
+                                "pdb_id": "5HVK",
+                                "prototype_decision": (
+                                    "source_valid_5hvk_positive_signal_review_only_not_calibrated"
+                                ),
+                                "rerun_surface_role": "source_valid_5hvk",
+                            },
+                            {
+                                "row_type": "sibling_family_specific_negative_control",
+                                "pdb_id": "1ESQ",
+                                "prototype_decision": (
+                                    "blocked_by_family_specific_sibling_counteraxis_review_only"
+                                ),
+                                "candidate_feature_hit": False,
+                                "rerun_surface_role": "carried_sibling_control",
+                            },
+                            {
+                                "row_type": "imported_external_hard_negative",
+                                "entry_id": "uniprot:P06744",
+                                "prototype_decision": (
+                                    "external_hard_negative_abstain_missing_epk_axes_review_only"
+                                ),
+                                "rerun_surface_role": (
+                                    "carried_imported_external_hard_negative"
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            validation.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_candidate_source_validation_review"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "6Z3R",
+                                "source_pair_id": "smg1_upf1",
+                                "source_validated_positive_like": True,
+                                "source_validation_status": (
+                                    "accepted_source_valid_heteromeric_kinase_substrate_review_only"
+                                ),
+                                "entity_descriptions": ["MAGNESIUM ION"],
+                                "candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "E",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 4.2,
+                                    }
+                                ],
+                                "nearest_heteromeric_candidate_distance_angstrom": 4.2,
+                            },
+                            {
+                                "pdb_id": "7M0T",
+                                "source_pair_id": "braf_mek",
+                                "source_validated_positive_like": False,
+                                "source_validation_status": (
+                                    "blocked_ambiguous_kinase_kinase_role_direction_review_only"
+                                ),
+                                "candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "B",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 4.5,
+                                    }
+                                ],
+                                "nearest_heteromeric_candidate_distance_angstrom": 4.5,
+                            },
+                            {
+                                "pdb_id": "8ZN6",
+                                "source_pair_id": "kaic_design",
+                                "source_validated_positive_like": False,
+                                "source_validation_status": (
+                                    "rejected_non_epk_substrate_cocomplex_or_designed_clock_protein_review_only"
+                                ),
+                                "candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "C",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 4.8,
+                                    }
+                                ],
+                                "nearest_heteromeric_candidate_distance_angstrom": 4.8,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            distances.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_source_valid_candidate_gamma_distance_sample"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "all_source_valid_candidates_measured": True,
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "6Z3R",
+                                "source_pair_id": "smg1_upf1",
+                                "measurement_ready_for_review_controls": True,
+                                "nearest_gamma_acceptor_distance_angstrom": 4.2,
+                                "distance_candidates": [
+                                    {"gamma_ligand_code": "ANP"}
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            for pdb_id, acceptor_chain, acceptor_context in [
+                ("6Z3R", "E", []),
+                ("7M0T", "B", ["ANP", "MG"]),
+                ("8ZN6", "C", ["ANP", "MG"]),
+            ]:
+                lines = [
+                    f"data_{pdb_id}",
+                    "loop_",
+                    "_atom_site.group_PDB",
+                    "_atom_site.id",
+                    "_atom_site.type_symbol",
+                    "_atom_site.label_atom_id",
+                    "_atom_site.label_comp_id",
+                    "_atom_site.label_asym_id",
+                    "_atom_site.label_seq_id",
+                    "_atom_site.Cartn_x",
+                    "_atom_site.Cartn_y",
+                    "_atom_site.Cartn_z",
+                    "_atom_site.auth_atom_id",
+                    "_atom_site.auth_comp_id",
+                    "_atom_site.auth_asym_id",
+                    "_atom_site.auth_seq_id",
+                    "HETATM 1 P PG ANP A 701 0 0 0 PG ANP A 701",
+                ]
+                for idx, code in enumerate(acceptor_context, start=2):
+                    lines.append(
+                        "HETATM "
+                        f"{idx} X X {code} {acceptor_chain} 900 0 0 0 "
+                        f"X {code} {acceptor_chain} 900"
+                    )
+                lines.append("#")
+                (cif_dir / f"{pdb_id.lower()}.cif").write_text(
+                    "\n".join(lines),
+                    encoding="utf-8",
+                )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-source-valid-control-rerun",
+                    "--epk-ligand-specific-5hvk-prototype-control-rerun",
+                    str(base),
+                    "--epk-heteromeric-candidate-source-validation-review",
+                    str(validation),
+                    "--epk-heteromeric-source-valid-candidate-gamma-distance-sample",
+                    str(distances),
+                    "--out",
+                    str(rerun_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            rerun = json.loads(rerun_out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                rerun["metadata"]["control_rerun_status"],
+                "passes_review_only_controls_but_scorer_blocked",
+            )
+            self.assertEqual(
+                rerun["metadata"]["heteromeric_source_valid_pdb_ids"], ["6Z3R"]
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-text-free-axis-gap-audit",
+                    "--epk-heteromeric-source-valid-control-rerun",
+                    str(rerun_out),
+                    "--out",
+                    str(gap_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            gap = json.loads(gap_out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                gap["metadata"]["gap_audit_status"],
+                "blocked_review_only_source_free_role_acceptor_axes_missing",
+            )
+            self.assertEqual(
+                gap["metadata"]["production_admissible_positive_like_count"], 0
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-source-free-role-rule-probe",
+                    "--epk-heteromeric-candidate-source-validation-review",
+                    str(validation),
+                    "--out",
+                    str(probe_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            probe = json.loads(probe_out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                probe["metadata"]["source_free_rule_status"],
+                "blocked_review_only_source_free_rule_false_hit_risk",
+            )
+            self.assertEqual(
+                probe["metadata"]["nonaccepted_rule_hit_pdb_ids"],
+                ["7M0T", "8ZN6"],
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-acceptor-chain-counteraxis-audit",
+                    "--epk-heteromeric-candidate-source-validation-review",
+                    str(validation),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(counteraxis_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            counteraxis = json.loads(counteraxis_out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                counteraxis["metadata"]["counteraxis_status"],
+                "passes_current_review_controls_not_scoring_admissible",
+            )
+            self.assertEqual(
+                counteraxis["metadata"]["blocked_nonaccepted_rule_hit_pdb_ids"],
+                ["7M0T", "8ZN6"],
+            )
+            self.assertEqual(
+                counteraxis["metadata"]["residual_nonaccepted_rule_hit_count"], 0
+            )
 
     def test_build_epk_ligand_specific_5hvk_source_validity_command(
         self,

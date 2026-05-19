@@ -103,10 +103,21 @@ review-only positive-like structures across two kinase/substrate pairs:
 `6Z3R` as SMG1/UPF1 and `8OXM`/`8OXO` as ATM/p53. It blocks `7M0T` and `7M0W`
 as BRAF/MEK role-direction ambiguous and rejects `8ZN6` as a non-ePK/designed
 clock-protein context. The carried gamma-distance sample measures all three
-accepted leads at 3.482-5.607 Angstrom, so the next ePK work should rerun
-review-only controls with those source-valid measured leads separated from the
-ambiguous/rejected candidates. Threshold/external-hard-negative calibration
-remains closed before any production scoring.
+accepted leads at 3.482-5.607 Angstrom. The review-only control rerun now
+adds those leads to the fail-closed surface: seven positive-like review rows,
+20 sibling controls with 0 false hits, and three imported external hard
+negatives with 0 non-abstentions, while ambiguous `7M0T`/`7M0W` and rejected
+`8ZN6` are separated from the positive-like set. The text-free gap audit shows
+that all four source-authority-dependent positive-like rows have local
+geometry evidence but 0 source-free role-assignment or acceptor-identity
+evidence. The source-free topology-plus-gamma rule probe then fails closed by
+hitting all six heteromeric candidates, including the three nonaccepted rows.
+An acceptor-chain nucleotide/metal counter-axis now blocks those three
+nonaccepted hits while retaining the three source-valid positives, with 0
+accepted losses and 0 residual nonaccepted hits on the current review surface.
+Threshold/external-hard-negative calibration remains closed before any
+production scoring; the next useful ePK work is to run this counter-axis on
+broader heteromeric and sibling controls before any scorer design.
 
 ## Time Calibration Rule
 

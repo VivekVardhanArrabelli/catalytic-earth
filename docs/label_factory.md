@@ -647,6 +647,27 @@ then carries forward the local topology hits for the three source-valid review
 leads and records nearest ANP gamma distances from 3.482 to 5.607 Angstrom.
 This gives measured review controls for the accepted leads without turning the
 axis into a calibrated scorer.
+`artifacts/v3_epk_heteromeric_source_valid_control_rerun_1025.json` reruns the
+fail-closed review surface with those measured leads. It now carries seven
+positive-like review rows (the three current ePK rows, source-valid 5HVK, and
+`6Z3R`/`8OXM`/`8OXO`), preserves 20 sibling controls with 0 false hits, keeps
+the three imported external hard negatives at 0 non-abstentions, and separates
+ambiguous `7M0T`/`7M0W` plus rejected `8ZN6` from the positive-like set.
+`artifacts/v3_epk_heteromeric_text_free_axis_gap_audit_1025.json` then
+classifies why this is still blocked: all four source-authority-dependent
+positive-like rows have local geometry evidence, but none has source-free role
+assignment or source-free acceptor identity, so 0 are production-admissible.
+`artifacts/v3_epk_heteromeric_source_free_role_rule_probe_1025.json` tests the
+obvious local replacement rule, heteromeric topology plus gamma distance, and
+fails closed because it hits all six reviewed candidates, including nonaccepted
+`7M0T`, `7M0W`, and `8ZN6`.
+`artifacts/v3_epk_heteromeric_acceptor_chain_counteraxis_audit_1025.json` adds
+a first local counter-axis: block a topology/gamma hit when the candidate
+acceptor chain itself carries nucleotide or metal ligand context. On the
+current six-row review surface it retains all three source-valid positives,
+blocks the three nonaccepted hits, and leaves 0 residual nonaccepted hits, but
+remains review-only until broader heteromeric/sibling controls, thresholds, and
+external scored re-audits exist.
 The 1025 preview/expanded source-triage artifacts repeat the same exhausted
 source candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) and do not open
 a new protein-substrate ePK source lane; the expanded terminal decision stays
@@ -673,7 +694,12 @@ only as one-positive review-only evidence. The broadened heteromeric candidate
 scout passes as a source-validation queue, and the source-validation review
 passes with three accepted review-only structures across two unique pairs. The
 source-valid distance sample also passes with all three accepted leads
-measured; it still does not make scoring or label import admissible.
+measured, the heteromeric control rerun passes as a fail-closed diagnostic
+surface, and the text-free gap/probe artifacts make the next blocker explicit:
+topology plus gamma distance is not enough without source-free role-direction
+and acceptor-identity evidence. The acceptor-chain counter-axis passes only the
+current review controls. None of these artifacts makes scoring or label import
+admissible.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state
