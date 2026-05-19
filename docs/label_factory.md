@@ -555,6 +555,25 @@ executes that first source-mapping item and fails closed. All five active-state
 `Q8IVT5` candidates map to MEK1 `P29678` Ser194, while source phosphoserine
 evidence is at Ser218/Ser222; therefore the nearby geometry hits are not
 source-mapped protein-substrate acceptors.
+`artifacts/v3_epk_external_source_q8ivt5_alternate_cocomplex_review_1025.json`
+checks the exact P29678/Q02750 phospho-acceptor residues in the same
+co-complex surface and still finds 0 within-threshold source acceptors. Two
+additional broad UniProt/PDB-backed source passes are captured by
+`artifacts/v3_epk_external_source_three_pass_terminal_decision_1025.json`:
+24 sourced candidates and 63 reviewed structure rows produce 0
+measurement-ready positives, so repeat broad scouting is closed for this lane.
+`artifacts/v3_epk_ligand_specific_active_state_source_scout_1025.json` opens
+the next route with an RCSB ANP/Mg EC 2.7.11.1 query. It finds 11 review-only
+source rows and one active-state mapped lead (`P53355`/`1JKK`), but
+`artifacts/v3_epk_ligand_specific_p53355_substrate_cocomplex_review_1025.json`
+keeps that lead blocked because active-state kinase structures and mapped
+source phospho-acceptor structures are split. The broader
+`artifacts/v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json`
+finds one cross-accession review lead (`5HVK`: source-ready `P53667` with
+`P23528` Ser3 near gamma), but it is not measurement-ready until manual source
+review confirms the acceptor is valid protein-substrate evidence.
+`artifacts/v3_epk_ligand_specific_5hvk_review_priority_1025.json` packages
+that lead for the next source-validity check without opening scoring or import.
 The 1025 preview/expanded source-triage artifacts repeat the same exhausted
 source candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) and do not open
 a new protein-substrate ePK source lane; the expanded terminal decision stays

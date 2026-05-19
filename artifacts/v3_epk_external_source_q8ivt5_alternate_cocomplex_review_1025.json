@@ -1,0 +1,672 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "acceptor_accessions_reviewed": [
+      "P29678",
+      "Q02750"
+    ],
+    "acceptor_entry_fetch_failure_count": 0,
+    "active_state_structure_count": 6,
+    "alternate_cocomplex_status_counts": {
+      "inactive_or_incomplete_active_state_review_only": 2,
+      "source_phosphoacceptor_geometry_outside_threshold_review_only": 6
+    },
+    "blocker_not_removed": [
+      "protein_substrate_acceptor_not_source_mapped",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "alternate_active_state_substrate_cocomplex_review_executed",
+    "candidate_threshold_angstrom": 6.0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "gamma_to_source_acceptor_distances_measured": true,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_external_source_alternate_cocomplex_review",
+    "nearest_source_phosphoacceptor_distance_angstrom": 9.061,
+    "next_actions": [
+      "treat Q8IVT5 exact phosphoacceptor geometry as terminally not measurement-ready unless new source structures appear",
+      "continue to lower-priority mapped accessions with active gamma/metal sourcing",
+      "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact tests exact source phosphoacceptor residues in alternate Q8IVT5 co-complex structures. It records negative geometry evidence only; it does not score ePK, edit registries, import labels, or create held-out performance evidence.",
+    "reviewed_pdb_count": 8,
+    "source_epk_external_protein_substrate_source_scout_method": "epk_external_protein_substrate_source_scout",
+    "source_epk_external_source_acceptor_source_mapping_review_method": "epk_external_source_acceptor_source_mapping_review",
+    "source_mapped_phosphoacceptor_candidate_count": 16,
+    "source_phosphoacceptor_positions_by_accession": {
+      "P29678": [
+        218,
+        222,
+        286,
+        292,
+        298
+      ],
+      "Q02750": [
+        218,
+        222,
+        286,
+        292,
+        298
+      ]
+    },
+    "source_phosphoacceptor_within_threshold_count": 0,
+    "target_accession": "Q8IVT5",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "target_mapping_unambiguous_structure_count": 6
+  },
+  "rows": [
+    {
+      "acceptor_accessions_reviewed": [
+        "P29678",
+        "Q02750"
+      ],
+      "accession": "Q8IVT5",
+      "alternate_cocomplex_status": "inactive_or_incomplete_active_state_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "nearest_source_phosphoacceptor_distance_angstrom": null,
+      "pdb_id": "5VYK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "active_state_terminal_gamma_or_metal_missing",
+        "protein_substrate_acceptor_not_source_mapped"
+      ],
+      "review_only": true,
+      "source_mapped_phosphoacceptor_candidate_count": 0,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "GOL"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_mapped_position_count": 0,
+      "target_mapping_chain_count": 0,
+      "target_mapping_chains": [],
+      "target_mapping_complete": false,
+      "target_mapping_unambiguous": false,
+      "target_requested_position_count": 4,
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "acceptor_accessions_reviewed": [
+        "P29678",
+        "Q02750"
+      ],
+      "accession": "Q8IVT5",
+      "alternate_cocomplex_status": "source_phosphoacceptor_geometry_outside_threshold_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "nearest_source_phosphoacceptor_distance_angstrom": 12.202,
+      "pdb_id": "7JUW",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped",
+        "source_phosphoacceptor_geometry_outside_candidate_threshold"
+      ],
+      "review_only": true,
+      "source_mapped_phosphoacceptor_candidate_count": 2,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 222,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "222",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 12.202,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 218,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "218",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 16.748,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_mapped_position_count": 4,
+      "target_mapping_chain_count": 1,
+      "target_mapping_chains": [
+        "B"
+      ],
+      "target_mapping_complete": true,
+      "target_mapping_unambiguous": true,
+      "target_requested_position_count": 4,
+      "terminal_gamma_atom_count": 2
+    },
+    {
+      "acceptor_accessions_reviewed": [
+        "P29678",
+        "Q02750"
+      ],
+      "accession": "Q8IVT5",
+      "alternate_cocomplex_status": "source_phosphoacceptor_geometry_outside_threshold_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "nearest_source_phosphoacceptor_distance_angstrom": 9.25,
+      "pdb_id": "7JUX",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped",
+        "source_phosphoacceptor_geometry_outside_candidate_threshold"
+      ],
+      "review_only": true,
+      "source_mapped_phosphoacceptor_candidate_count": 2,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 222,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "222",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 9.25,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 218,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "218",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 18.14,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "QOM"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_mapped_position_count": 4,
+      "target_mapping_chain_count": 1,
+      "target_mapping_chains": [
+        "A"
+      ],
+      "target_mapping_complete": true,
+      "target_mapping_unambiguous": true,
+      "target_requested_position_count": 4,
+      "terminal_gamma_atom_count": 2
+    },
+    {
+      "acceptor_accessions_reviewed": [
+        "P29678",
+        "Q02750"
+      ],
+      "accession": "Q8IVT5",
+      "alternate_cocomplex_status": "source_phosphoacceptor_geometry_outside_threshold_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "nearest_source_phosphoacceptor_distance_angstrom": 12.652,
+      "pdb_id": "7JUY",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped",
+        "source_phosphoacceptor_geometry_outside_candidate_threshold"
+      ],
+      "review_only": true,
+      "source_mapped_phosphoacceptor_candidate_count": 2,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 222,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "222",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 12.652,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 218,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "218",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 17.009,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "EUI",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_mapped_position_count": 4,
+      "target_mapping_chain_count": 1,
+      "target_mapping_chains": [
+        "B"
+      ],
+      "target_mapping_complete": true,
+      "target_mapping_unambiguous": true,
+      "target_requested_position_count": 4,
+      "terminal_gamma_atom_count": 2
+    },
+    {
+      "acceptor_accessions_reviewed": [
+        "P29678",
+        "Q02750"
+      ],
+      "accession": "Q8IVT5",
+      "alternate_cocomplex_status": "inactive_or_incomplete_active_state_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "nearest_source_phosphoacceptor_distance_angstrom": 12.142,
+      "pdb_id": "7JUZ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "active_state_terminal_gamma_or_metal_missing",
+        "protein_substrate_acceptor_not_source_mapped"
+      ],
+      "review_only": true,
+      "source_mapped_phosphoacceptor_candidate_count": 2,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 222,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "222",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 12.142,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 218,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "218",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 15.784,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "3EW",
+        "ANP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_mapped_position_count": 4,
+      "target_mapping_chain_count": 1,
+      "target_mapping_chains": [
+        "A"
+      ],
+      "target_mapping_complete": true,
+      "target_mapping_unambiguous": true,
+      "target_requested_position_count": 4,
+      "terminal_gamma_atom_count": 2
+    },
+    {
+      "acceptor_accessions_reviewed": [
+        "P29678",
+        "Q02750"
+      ],
+      "accession": "Q8IVT5",
+      "alternate_cocomplex_status": "source_phosphoacceptor_geometry_outside_threshold_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "nearest_source_phosphoacceptor_distance_angstrom": 11.189,
+      "pdb_id": "7JV0",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped",
+        "source_phosphoacceptor_geometry_outside_candidate_threshold"
+      ],
+      "review_only": true,
+      "source_mapped_phosphoacceptor_candidate_count": 2,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 222,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "222",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 11.189,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 218,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "218",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 16.903,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "4BM",
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_mapped_position_count": 4,
+      "target_mapping_chain_count": 1,
+      "target_mapping_chains": [
+        "A"
+      ],
+      "target_mapping_complete": true,
+      "target_mapping_unambiguous": true,
+      "target_requested_position_count": 4,
+      "terminal_gamma_atom_count": 2
+    },
+    {
+      "acceptor_accessions_reviewed": [
+        "P29678",
+        "Q02750"
+      ],
+      "accession": "Q8IVT5",
+      "alternate_cocomplex_status": "source_phosphoacceptor_geometry_outside_threshold_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "nearest_source_phosphoacceptor_distance_angstrom": 9.061,
+      "pdb_id": "7JV1",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped",
+        "source_phosphoacceptor_geometry_outside_candidate_threshold"
+      ],
+      "review_only": true,
+      "source_mapped_phosphoacceptor_candidate_count": 2,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 222,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "222",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 9.061,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_accession": "P29678",
+          "acceptor_uniprot_position": 218,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "218",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 18.569,
+          "source_description": "Phosphoserine; by RAF",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "VKG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_mapped_position_count": 4,
+      "target_mapping_chain_count": 1,
+      "target_mapping_chains": [
+        "D"
+      ],
+      "target_mapping_complete": true,
+      "target_mapping_unambiguous": true,
+      "target_requested_position_count": 4,
+      "terminal_gamma_atom_count": 2
+    },
+    {
+      "acceptor_accessions_reviewed": [
+        "P29678",
+        "Q02750"
+      ],
+      "accession": "Q8IVT5",
+      "alternate_cocomplex_status": "source_phosphoacceptor_geometry_outside_threshold_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "nearest_source_phosphoacceptor_distance_angstrom": 12.34,
+      "pdb_id": "9AXH",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped",
+        "source_phosphoacceptor_geometry_outside_candidate_threshold",
+        "target_mapping_multiple_chains_review_only"
+      ],
+      "review_only": true,
+      "source_mapped_phosphoacceptor_candidate_count": 4,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_accession": "Q02750",
+          "acceptor_uniprot_position": 222,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "222",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 12.34,
+          "source_description": "Phosphoserine; by BRAF and RAF1",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_accession": "Q02750",
+          "acceptor_uniprot_position": 222,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "222",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 12.464,
+          "source_description": "Phosphoserine; by BRAF and RAF1",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_accession": "Q02750",
+          "acceptor_uniprot_position": 218,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "218",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 16.571,
+          "source_description": "Phosphoserine; by BRAF and RAF1",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_accession": "Q02750",
+          "acceptor_uniprot_position": 218,
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "218",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 16.954,
+          "source_description": "Phosphoserine; by BRAF and RAF1",
+          "source_evidence_codes": [
+            "ECO:0000269"
+          ],
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "A1AHE",
+        "ANP",
+        "CL",
+        "EDO",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_mapped_position_count": 4,
+      "target_mapping_chain_count": 2,
+      "target_mapping_chains": [
+        "C",
+        "D"
+      ],
+      "target_mapping_complete": true,
+      "target_mapping_unambiguous": false,
+      "target_requested_position_count": 4,
+      "terminal_gamma_atom_count": 4
+    }
+  ],
+  "warnings": [
+    "Alternate co-complex source evidence remains review-only and cannot promote an ePK fingerprint without calibrated controls."
+  ]
+}

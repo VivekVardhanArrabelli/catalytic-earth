@@ -6,6 +6,9 @@ from pathlib import Path
 
 from catalytic_earth.labels import (
     build_epk_external_protein_substrate_source_scout,
+    build_epk_external_source_alternate_cocomplex_review,
+    build_epk_external_source_lower_priority_ligand_sourcing_review,
+    build_epk_external_source_scout_pass_terminal_decision,
     build_epk_external_source_structure_mapping_review,
     load_labels,
 )
@@ -1235,6 +1238,537 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertFalse(row["measurement_ready"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_external_source_alternate_cocomplex_review_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_q8ivt5_alternate_cocomplex_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_external_source_alternate_cocomplex_review"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["target_accession"], "Q8IVT5")
+        self.assertEqual(
+            metadata["acceptor_accessions_reviewed"], ["P29678", "Q02750"]
+        )
+        self.assertEqual(metadata["reviewed_pdb_count"], 8)
+        self.assertEqual(metadata["active_state_structure_count"], 6)
+        self.assertEqual(metadata["target_mapping_unambiguous_structure_count"], 6)
+        self.assertEqual(metadata["source_mapped_phosphoacceptor_candidate_count"], 16)
+        self.assertEqual(metadata["source_phosphoacceptor_within_threshold_count"], 0)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["alternate_cocomplex_status_counts"],
+            {
+                "inactive_or_incomplete_active_state_review_only": 2,
+                "source_phosphoacceptor_geometry_outside_threshold_review_only": 6,
+            },
+        )
+        self.assertGreater(
+            metadata["nearest_source_phosphoacceptor_distance_angstrom"], 6.0
+        )
+        rows = {row["pdb_id"]: row for row in review["rows"]}
+        self.assertEqual(
+            {
+                pdb_id
+                for pdb_id, row in rows.items()
+                if row["alternate_cocomplex_status"]
+                == "source_phosphoacceptor_geometry_outside_threshold_review_only"
+            },
+            {"7JUW", "7JUX", "7JUY", "7JV0", "7JV1", "9AXH"},
+        )
+        self.assertTrue(all(row["review_only"] for row in review["rows"]))
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in review["rows"])
+        )
+
+    def test_epk_external_source_lower_priority_ligand_review_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_lower_priority_ligand_sourcing_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_external_source_lower_priority_ligand_sourcing_review",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_row_count"], 4)
+        self.assertEqual(metadata["active_gamma_metal_current_structure_count"], 0)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["ligand_sourcing_status_counts"],
+            {
+                "gamma_without_metal_needs_alternate_review_only": 1,
+                "inactive_analog_metal_only_needs_policy_or_alternate_review_only": 1,
+                "metal_without_gamma_needs_alternate_review_only": 1,
+                "no_ligand_context_needs_alternate_review_only": 1,
+            },
+        )
+        rows = {row["accession"]: row for row in review["rows"]}
+        self.assertEqual(
+            rows["Q5TCX8"]["ligand_sourcing_status"],
+            "inactive_analog_metal_only_needs_policy_or_alternate_review_only",
+        )
+        self.assertEqual(
+            rows["Q8IVT5"]["ligand_sourcing_status"],
+            "gamma_without_metal_needs_alternate_review_only",
+        )
+        self.assertTrue(all(row["review_only"] for row in review["rows"]))
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in review["rows"])
+        )
+
+    def test_epk_external_source_second_pass_scout_stays_review_only(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_protein_substrate_source_scout_second_pass_1025.json"
+        )
+        metadata = scout["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_external_protein_substrate_source_scout"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["sourced_candidate_count"], 8)
+        self.assertEqual(metadata["entry_feature_record_available_count"], 24)
+        self.assertEqual(metadata["query_fetch_failure_count"], 0)
+        self.assertEqual(metadata["entry_feature_fetch_failure_count"], 0)
+        self.assertEqual(
+            metadata["sourced_candidate_accessions"],
+            [
+                "O00506",
+                "O60307",
+                "O94768",
+                "Q15772",
+                "Q59H18",
+                "Q8IXL6",
+                "Q8N2I9",
+                "Q8WU08",
+            ],
+        )
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+
+    def test_epk_external_source_second_pass_mapping_fails_closed(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_structure_mapping_review_second_pass_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_external_source_structure_mapping_review"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_candidate_count"], 8)
+        self.assertEqual(metadata["structure_row_count"], 20)
+        self.assertEqual(metadata["active_state_mapping_ready_structure_count"], 0)
+        self.assertEqual(metadata["direct_position_mapping_ready_structure_count"], 9)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(
+            metadata["mapping_review_status_counts"],
+            {
+                "blocked_direct_position_mapping_ambiguous_or_missing_review_only": 11,
+                "direct_position_mapping_ready_ligand_context_incomplete_review_only": 9,
+            },
+        )
+
+    def test_epk_external_source_second_pass_ligand_review_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_lower_priority_ligand_sourcing_review_second_pass_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_external_source_lower_priority_ligand_sourcing_review",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_row_count"], 9)
+        self.assertEqual(metadata["active_gamma_metal_current_structure_count"], 0)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(
+            metadata["ligand_sourcing_status_counts"],
+            {
+                "gamma_without_metal_needs_alternate_review_only": 1,
+                "metal_without_gamma_needs_alternate_review_only": 1,
+                "non_atp_or_remote_ligand_context_needs_alternate_review_only": 7,
+            },
+        )
+        self.assertTrue(all(row["review_only"] for row in review["rows"]))
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in review["rows"])
+        )
+
+    def test_epk_external_source_third_pass_stays_review_only(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_protein_substrate_source_scout_third_pass_1025.json"
+        )
+        mapping = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_structure_mapping_review_third_pass_1025.json"
+        )
+        ligand = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_lower_priority_ligand_sourcing_review_third_pass_1025.json"
+        )
+        self.assertEqual(scout["metadata"]["sourced_candidate_count"], 8)
+        self.assertEqual(scout["metadata"]["entry_feature_fetch_failure_count"], 0)
+        self.assertEqual(mapping["metadata"]["structure_row_count"], 27)
+        self.assertEqual(
+            mapping["metadata"]["active_state_mapping_ready_structure_count"], 0
+        )
+        self.assertEqual(
+            mapping["metadata"]["direct_position_mapping_ready_structure_count"], 13
+        )
+        self.assertEqual(ligand["metadata"]["reviewed_row_count"], 13)
+        self.assertEqual(
+            ligand["metadata"]["active_gamma_metal_current_structure_count"], 0
+        )
+        self.assertEqual(ligand["metadata"]["measurement_ready_candidate_count"], 0)
+        self.assertFalse(ligand["metadata"]["ready_to_run_epk_scorer"])
+        self.assertFalse(ligand["metadata"]["external_hard_negative_reaudit_scored"])
+        self.assertFalse(ligand["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(ligand["metadata"]["curated_label_registry_edited"])
+        self.assertEqual(ligand["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            ligand["metadata"]["ligand_sourcing_status_counts"],
+            {
+                "metal_without_gamma_needs_alternate_review_only": 1,
+                "non_atp_or_remote_ligand_context_needs_alternate_review_only": 12,
+            },
+        )
+
+    def test_epk_external_source_three_pass_terminal_decision_stays_review_only(
+        self,
+    ) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_three_pass_terminal_decision_1025.json"
+        )
+        metadata = decision["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_external_source_scout_pass_terminal_decision"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["source_pass_count"], 3)
+        self.assertEqual(metadata["unique_sourced_candidate_count"], 24)
+        self.assertEqual(metadata["total_sourced_candidate_rows"], 24)
+        self.assertEqual(metadata["total_structure_row_count"], 63)
+        self.assertEqual(metadata["total_active_state_mapping_ready_structure_count"], 5)
+        self.assertEqual(
+            metadata["alternate_cocomplex_source_phosphoacceptor_within_threshold_count"],
+            0,
+        )
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["terminal_decision"],
+            "current_three_pass_external_source_surface_exhausted_review_only",
+        )
+        self.assertTrue(metadata["current_source_candidates_exhausted"])
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(len(decision["rows"]), 3)
+        self.assertTrue(all(row["review_only"] for row in decision["rows"]))
+
+    def test_epk_ligand_specific_active_state_source_stays_review_only(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_active_state_source_scout_1025.json"
+        )
+        mapping = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_active_state_structure_mapping_review_1025.json"
+        )
+        acceptor = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_active_state_acceptor_gap_audit_1025.json"
+        )
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_active_state_next_experiment_queue_1025.json"
+        )
+        self.assertEqual(
+            scout["metadata"]["method"],
+            "epk_ligand_specific_active_state_source_scout",
+        )
+        self.assertTrue(scout["metadata"]["review_only"])
+        self.assertEqual(scout["metadata"]["query_pdb_count"], 30)
+        self.assertEqual(scout["metadata"]["sourced_candidate_count"], 11)
+        self.assertEqual(scout["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(scout["metadata"]["ready_to_run_epk_scorer"])
+        self.assertFalse(scout["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(scout["metadata"]["curated_label_registry_edited"])
+        self.assertEqual(
+            mapping["metadata"]["active_state_mapping_ready_accessions"], ["P53355"]
+        )
+        self.assertEqual(mapping["metadata"]["active_state_mapping_ready_pdb_ids"], ["1JKK"])
+        self.assertEqual(mapping["metadata"]["active_state_mapping_ready_structure_count"], 1)
+        self.assertEqual(mapping["metadata"]["measurement_ready_candidate_count"], 0)
+        self.assertFalse(mapping["metadata"]["ready_to_run_epk_scorer"])
+        self.assertEqual(
+            acceptor["metadata"]["acceptor_gap_status_counts"],
+            {"no_acceptor_like_hydroxyl_within_threshold_review_only": 1},
+        )
+        self.assertEqual(acceptor["metadata"]["measurement_ready_candidate_count"], 0)
+        self.assertEqual(
+            queue["metadata"]["top_priority_accession"],
+            "P53355",
+        )
+        self.assertEqual(
+            queue["metadata"]["top_priority_next_experiment"],
+            "source_alternate_active_state_substrate_cocomplex",
+        )
+        self.assertFalse(queue["metadata"]["ready_to_run_epk_scorer"])
+        self.assertEqual(queue["metadata"]["countable_label_candidate_count"], 0)
+
+    def test_epk_ligand_specific_lower_priority_ligand_review_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_active_state_lower_priority_ligand_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_external_source_lower_priority_ligand_sourcing_review",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_row_count"], 4)
+        self.assertEqual(metadata["active_gamma_metal_current_structure_count"], 0)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["ligand_sourcing_status_counts"],
+            {"non_atp_or_remote_ligand_context_needs_alternate_review_only": 4},
+        )
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_epk_ligand_specific_p53355_cocomplex_review_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_p53355_substrate_cocomplex_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_ligand_specific_p53355_substrate_cocomplex_review",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["accession"], "P53355")
+        self.assertEqual(metadata["pdb_crossref_count"], 78)
+        self.assertEqual(metadata["reviewed_pdb_count"], 78)
+        self.assertEqual(metadata["active_state_gamma_metal_structure_count"], 5)
+        self.assertEqual(metadata["source_phosphoacceptor_mapped_structure_count"], 13)
+        self.assertEqual(metadata["source_phosphoacceptor_within_threshold_count"], 0)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["cocomplex_review_status_counts"],
+            {
+                "active_state_without_source_phosphoacceptor_mapping_review_only": 5,
+                "gamma_without_metal_no_acceptor_mapping_review_only": 4,
+                "no_active_state_or_source_acceptor_context_review_only": 56,
+                "source_phosphoacceptor_mapping_without_gamma_review_only": 13,
+            },
+        )
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertTrue(all(row["review_only"] for row in review["rows"]))
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in review["rows"])
+        )
+
+    def test_epk_ligand_specific_terminal_decision_stays_review_only(
+        self,
+    ) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_active_state_terminal_decision_1025.json"
+        )
+        metadata = decision["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_ligand_specific_active_state_terminal_decision"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["sourced_candidate_count"], 11)
+        self.assertEqual(metadata["active_state_mapping_ready_structure_count"], 1)
+        self.assertEqual(metadata["p53355_source_phosphoacceptor_within_threshold_count"], 0)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["terminal_decision"],
+            "ligand_specific_active_state_surface_blocked_no_source_mapped_acceptor_review_only",
+        )
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(len(decision["rows"]), 5)
+        self.assertTrue(all(row["review_only"] for row in decision["rows"]))
+
+    def test_epk_ligand_specific_substrate_cocomplex_probe_stays_review_only(
+        self,
+    ) -> None:
+        probe = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json"
+        )
+        metadata = probe["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_ligand_specific_substrate_cocomplex_query_probe"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["query_pdb_count"], 60)
+        self.assertEqual(metadata["reviewed_pdb_count"], 60)
+        self.assertEqual(metadata["source_ready_structure_count"], 42)
+        self.assertEqual(metadata["acceptor_hit_structure_count_within_6_angstrom"], 4)
+        self.assertEqual(
+            metadata["cross_accession_acceptor_hit_structure_count_within_6_angstrom"],
+            1,
+        )
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["probe_status_counts"],
+            {
+                "no_source_acceptor_pair_review_only": 18,
+                "source_ready_cross_accession_acceptor_hit_review_only": 1,
+                "source_ready_no_acceptor_hit_review_only": 38,
+                "source_ready_same_accession_acceptor_hit_review_only": 3,
+            },
+        )
+        cross_rows = [
+            row
+            for row in probe["rows"]
+            if row["probe_status"]
+            == "source_ready_cross_accession_acceptor_hit_review_only"
+        ]
+        self.assertEqual([row["pdb_id"] for row in cross_rows], ["5HVK"])
+
+    def test_epk_ligand_specific_5hvk_priority_stays_review_only(
+        self,
+    ) -> None:
+        priority = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_5hvk_review_priority_1025.json"
+        )
+        metadata = priority["metadata"]
+        self.assertEqual(metadata["method"], "epk_ligand_specific_5hvk_review_priority")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["priority_pdb_id"], "5HVK")
+        self.assertEqual(metadata["source_ready_accessions"], ["P53667"])
+        self.assertEqual(metadata["cross_accession_acceptor_hit_count"], 1)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["priority_status"],
+            "manual_source_review_required_before_measurement_ready",
+        )
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(len(priority["rows"]), 2)
+        self.assertTrue(all(row["review_only"] for row in priority["rows"]))
+
     def test_epk_external_source_scout_builder_keeps_rows_non_countable(
         self,
     ) -> None:
@@ -1282,6 +1816,184 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(scout["metadata"]["countable_label_candidate_count"], 0)
         self.assertFalse(scout["metadata"]["ready_for_label_import"])
         self.assertFalse(scout["rows"][0]["countable_label_candidate"])
+
+    def test_epk_external_source_alternate_cocomplex_builder_can_find_review_hit(
+        self,
+    ) -> None:
+        cif_text = """data_1ABC
+loop_
+_struct_ref_seq.align_id
+_struct_ref_seq.ref_id
+_struct_ref_seq.pdbx_PDB_id_code
+_struct_ref_seq.pdbx_strand_id
+_struct_ref_seq.seq_align_beg
+_struct_ref_seq.pdbx_auth_seq_align_beg
+_struct_ref_seq.seq_align_end
+_struct_ref_seq.pdbx_auth_seq_align_end
+_struct_ref_seq.pdbx_db_accession
+_struct_ref_seq.db_align_beg
+_struct_ref_seq.db_align_end
+1 1 1ABC A 1 10 11 20 QKIN 10 20
+2 2 1ABC B 1 5 5 5 QSUB 5 5
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.auth_atom_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+ATOM 1 C CA ILE A 10 8.0 0.0 0.0 CA ILE A 10
+ATOM 2 C CA ASP A 20 9.0 0.0 0.0 CA ASP A 20
+ATOM 3 O OG SER B 5 3.0 0.0 0.0 OG SER B 5
+HETATM 4 P PG ATP A 901 0.0 0.0 0.0 PG ATP A 901
+HETATM 5 M MG MG A 902 0.0 0.0 1.0 MG MG A 902
+#
+"""
+        review = build_epk_external_source_alternate_cocomplex_review(
+            epk_external_protein_substrate_source_scout={
+                "metadata": {"method": "fixture"},
+                "rows": [
+                    {
+                        "sourcing_status": (
+                            "sourced_pending_structure_mapping_review"
+                        ),
+                        "accession": "QKIN",
+                        "active_site_positions": [20],
+                        "atp_binding_positions": [10],
+                        "pdb_ids": ["1ABC"],
+                    }
+                ],
+            },
+            target_accession="QKIN",
+            acceptor_entry_records_by_accession={
+                "QSUB": {
+                    "modified_residue_features": [
+                        {
+                            "begin": 5,
+                            "description": "Phosphoserine",
+                            "evidence": [{"evidence_code": "ECO:0000269"}],
+                        }
+                    ]
+                }
+            },
+            cif_text_by_pdb={"1ABC": cif_text},
+        )
+        metadata = review["metadata"]
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 1)
+        self.assertTrue(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["countable_label_candidate_count"])
+        self.assertEqual(
+            metadata["alternate_cocomplex_status_counts"],
+            {"measurement_ready_review_only": 1},
+        )
+        row = review["rows"][0]
+        self.assertTrue(row["measurement_ready"])
+        self.assertEqual(row["source_phosphoacceptor_within_threshold_count"], 1)
+        self.assertEqual(
+            row["source_phosphoacceptor_distance_candidates"][0][
+                "nearest_gamma_distance_angstrom"
+            ],
+            3.0,
+        )
+
+    def test_epk_external_source_lower_priority_ligand_builder_blocks_analog(
+        self,
+    ) -> None:
+        review = build_epk_external_source_lower_priority_ligand_sourcing_review(
+            epk_external_source_structure_mapping_review={
+                "metadata": {"method": "mapping_fixture"},
+                "rows": [
+                    {
+                        "accession": "QLOW",
+                        "entry_id": "uniprot:QLOW",
+                        "pdb_id": "1LOW",
+                        "mapping_review_status": (
+                            "direct_position_mapping_ready_ligand_context_incomplete_review_only"
+                        ),
+                        "mapped_residue_positions": [{"chain_name": "A"}],
+                        "local_ligand_codes": [],
+                        "local_cofactor_families": [],
+                        "structure_ligand_codes": ["AGS", "MG"],
+                        "structure_cofactor_families": ["metal_ion"],
+                    }
+                ],
+            },
+            epk_external_protein_substrate_source_scout={
+                "metadata": {"method": "scout_fixture"},
+                "rows": [
+                    {
+                        "accession": "QLOW",
+                        "pdb_ids": ["1LOW"],
+                    }
+                ],
+            },
+        )
+        metadata = review["metadata"]
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertEqual(
+            metadata["ligand_sourcing_status_counts"],
+            {
+                "inactive_analog_metal_only_needs_policy_or_alternate_review_only": 1
+            },
+        )
+        row = review["rows"][0]
+        self.assertFalse(row["measurement_ready"])
+        self.assertIn("analog_policy_not_active", row["remaining_blockers"])
+
+    def test_epk_external_source_terminal_decision_builder_closes_empty_passes(
+        self,
+    ) -> None:
+        decision = build_epk_external_source_scout_pass_terminal_decision(
+            epk_external_protein_substrate_source_scouts=[
+                {
+                    "metadata": {
+                        "sourced_candidate_count": 1,
+                        "sourced_candidate_accessions": ["QA"],
+                    }
+                },
+                {
+                    "metadata": {
+                        "sourced_candidate_count": 1,
+                        "sourced_candidate_accessions": ["QB"],
+                    }
+                },
+                {
+                    "metadata": {
+                        "sourced_candidate_count": 1,
+                        "sourced_candidate_accessions": ["QC"],
+                    }
+                },
+            ],
+            epk_external_source_structure_mapping_reviews=[
+                {"metadata": {"structure_row_count": 1}},
+                {"metadata": {"structure_row_count": 1}},
+                {"metadata": {"structure_row_count": 1}},
+            ],
+            epk_external_source_ligand_sourcing_reviews=[
+                {"metadata": {"measurement_ready_candidate_count": 0}},
+                {"metadata": {"measurement_ready_candidate_count": 0}},
+                {"metadata": {"measurement_ready_candidate_count": 0}},
+            ],
+        )
+        metadata = decision["metadata"]
+        self.assertEqual(
+            metadata["terminal_decision"],
+            "current_three_pass_external_source_surface_exhausted_review_only",
+        )
+        self.assertTrue(metadata["current_source_candidates_exhausted"])
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
     def test_epk_external_source_mapping_uses_struct_ref_seq_auth_residues(
         self,

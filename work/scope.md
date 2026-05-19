@@ -62,7 +62,17 @@ two outside-threshold active-state rows second. The source-mapping check then
 fails closed: all five `Q8IVT5` candidates are MEK1 `P29678` Ser194, while
 source phospho-acceptor evidence is at Ser218/Ser222. Thresholds are not
 calibrated, and registry or label-factory extension remains out of scope until
-those gates pass.
+those gates pass. The exact Q8IVT5 phospho-acceptor co-complex review also
+fails closed: mapped Ser218/Ser222 residues stay outside threshold, with best
+exact-source distance 9.061 Angstrom. Two more broad reviewed-UniProt/PDB
+source passes are now adjudicated as exhausted: 24 sourced candidates and 63
+reviewed structures yielded 0 measurement-ready positives. A ligand-specific
+RCSB ANP/Mg EC 2.7.11.1 route found one active-state mapped lead
+(`P53355`/`1JKK`) and then blocked it because P53355 active-state structures do
+not co-materialize mapped source phospho-acceptors. The broader ligand-specific
+substrate/co-complex probe found one cross-accession review lead (`5HVK`,
+source-ready `P53667` with `P23528` Ser3 near gamma), but this remains manual
+source-review work only, not measurement-ready evidence.
 
 ## Time Calibration Rule
 

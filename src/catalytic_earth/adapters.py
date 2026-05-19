@@ -393,6 +393,11 @@ def normalize_uniprot_entry_json(payload: dict[str, Any]) -> dict[str, Any]:
         "site_features": [
             feature for feature in features if feature["feature_type"] == "Site"
         ],
+        "modified_residue_features": [
+            feature
+            for feature in features
+            if feature["feature_type"] == "Modified residue"
+        ],
         "catalytic_activity_comments": catalytic_activity_comments,
         "cofactor_comments": cofactor_comments,
         "evidence_level": "uniprot_active_site_and_catalytic_activity_context",

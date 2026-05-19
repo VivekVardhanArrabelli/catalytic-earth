@@ -1,0 +1,2104 @@
+{
+  "fetch_failures": [
+    {
+      "accession": "4JDI",
+      "error": "HTTP Error 400: Bad Request",
+      "error_type": "HTTPError"
+    },
+    {
+      "accession": "6S8F",
+      "error": "HTTP Error 400: Bad Request",
+      "error_type": "HTTPError"
+    }
+  ],
+  "metadata": {
+    "acceptor_hit_structure_count_within_6_angstrom": 4,
+    "blocker_not_removed": [
+      "source_mapped_protein_substrate_acceptor_missing",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "ligand_specific_substrate_cocomplex_probe_executed",
+    "countable_label_candidate_count": 0,
+    "cross_accession_acceptor_hit_structure_count_within_6_angstrom": 1,
+    "curated_label_registry_edited": false,
+    "entry_fetch_count": 56,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_failure_count": 2,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_ligand_specific_substrate_cocomplex_query_probe",
+    "next_actions": [
+      "if continuing ligand-specific sourcing, prioritize cross-accession acceptor-hit rows only after manual source review",
+      "do not use same-accession or annotation-only phosphosite hits as production acceptor evidence",
+      "keep scorer and external hard-negative re-audit closed"
+    ],
+    "probe_status_counts": {
+      "no_source_acceptor_pair_review_only": 18,
+      "source_ready_cross_accession_acceptor_hit_review_only": 1,
+      "source_ready_no_acceptor_hit_review_only": 38,
+      "source_ready_same_accession_acceptor_hit_review_only": 3
+    },
+    "query_pdb_count": 60,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This bounded probe searches active ANP/MG EC 2.7.11.1 structures for source-ready kinase chains plus source-mapped phosphoacceptor residues. It is review-only and cannot score or import labels.",
+    "reviewed_pdb_count": 60,
+    "source_query": "RCSB ANP AND MG AND EC lineage 2.7.11.1; first 60 entries",
+    "source_ready_structure_count": 42,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "1DAW",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P28523"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "P28523"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "1JKK",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P53355"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "P53355"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "1LP4",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P28523"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "P28523"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "1PYX",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P49841"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "P49841"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "1XR1",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P11309"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "P11309"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "1ZY5",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "P15442"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "2A19",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P19525"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "PO4",
+        "TPO"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "P19525",
+        "P20459"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "2R5T",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "O00141"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "O00141"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "2V55",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q13464"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "GTP",
+        "MG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "P61587",
+        "Q13464"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "2VWI",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "O95747"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "AU",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 4,
+      "uniprot_accessions": [
+        "O95747"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3A99",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "P11309"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3AKL",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ADP",
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 3,
+      "uniprot_accessions": [
+        "Q9ZKJ5"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3DAK",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "O95747"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 4,
+      "uniprot_accessions": [
+        "O95747"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3F5U",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P53355"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "P53355"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3GU5",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P53355"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "P53355"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3HKO",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "GOL",
+        "MG",
+        "ZN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q5CZ29"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3LIJ",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CA",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q5CS01"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3NSZ",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P68400"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "GOL",
+        "MG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0,
+      "uniprot_accessions": [
+        "P68400"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 1,
+      "acceptor_hit_count_within_8_angstrom": 1,
+      "acceptor_hits": [
+        {
+          "acceptor_accession": "Q13153",
+          "acceptor_uniprot_position": 423,
+          "candidate_auth_seq_id": "423",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "nearest_gamma_distance_angstrom": 5.802,
+          "same_as_source_accession": true,
+          "source_description": "Phosphothreonine; by autocatalysis, BRSK2 and PDPK1",
+          "within_candidate_threshold": true
+        }
+      ],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3Q4Z",
+      "probe_status": "source_ready_same_accession_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q13153"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q13153"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3Q5I",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CA",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q4YRR5"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3U87",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P68400"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CL",
+        "GOL",
+        "MG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "P19784",
+        "P68400"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "3WOW",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P68400"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "EDO",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "P68400"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4E01",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "0F1",
+        "ANP",
+        "K",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q00972"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4E02",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "K",
+        "MG",
+        "WJ1"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q00972"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4FIG",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "SEP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "O96013"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 1,
+      "acceptor_hit_count_within_8_angstrom": 3,
+      "acceptor_hits": [
+        {
+          "acceptor_accession": "Q9FHD7",
+          "acceptor_uniprot_position": 213,
+          "candidate_auth_seq_id": "213",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 6.44,
+          "same_as_source_accession": true,
+          "source_description": "Phosphoserine",
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_accession": "Q9FHD7",
+          "acceptor_uniprot_position": 213,
+          "candidate_auth_seq_id": "213",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 5.418,
+          "same_as_source_accession": true,
+          "source_description": "Phosphoserine",
+          "within_candidate_threshold": true
+        },
+        {
+          "acceptor_accession": "Q9FHD7",
+          "acceptor_uniprot_position": 213,
+          "candidate_auth_seq_id": "213",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 6.706,
+          "same_as_source_accession": true,
+          "source_description": "Phosphoserine",
+          "within_candidate_threshold": false
+        }
+      ],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4I94",
+      "probe_status": "source_ready_same_accession_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q9FHD7"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q9FHD7"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4IIR",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q13523"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "PTR",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q13523"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4JDI",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "O96013"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "SEP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0,
+      "uniprot_accessions": [
+        "4JDI",
+        "O96013"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4JRN",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q2PAY2"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "FRU",
+        "GLC",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q2PAY2"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4LGD",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q13188"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "NA",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 4,
+      "uniprot_accessions": [
+        "Q13188",
+        "Q8WWW0"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4LRJ",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q8X831"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 1,
+      "acceptor_hits": [
+        {
+          "acceptor_accession": "Q9QZL0",
+          "acceptor_uniprot_position": 187,
+          "candidate_auth_seq_id": "187",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "THR",
+          "nearest_gamma_distance_angstrom": 6.409,
+          "same_as_source_accession": true,
+          "source_description": "Phosphothreonine",
+          "within_candidate_threshold": false
+        }
+      ],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4M69",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q9QZL0"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CL",
+        "MG",
+        "SEP",
+        "SO4",
+        "TPO"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q9D2Y4",
+        "Q9QZL0"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4PU5",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q8EIX3"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "NA"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q8EIX3"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4QML",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q9Y6E0"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "EDO",
+        "MG",
+        "TPO"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q9Y6E0"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4TL6",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CL",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 3,
+      "uniprot_accessions": [
+        "Q79PF4"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4TLA",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ADP",
+        "ANP",
+        "CL",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q79PF4"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "4U40",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "O95819"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "O95819"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "5CKW",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CA",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q5WZW9"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 1,
+      "acceptor_hits": [
+        {
+          "acceptor_accession": "Q9Z1W9",
+          "acceptor_uniprot_position": 247,
+          "candidate_auth_seq_id": "247",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "THR",
+          "nearest_gamma_distance_angstrom": 7.747,
+          "same_as_source_accession": true,
+          "source_description": "Phosphothreonine",
+          "within_candidate_threshold": false
+        }
+      ],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "5DBX",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q9Z1W9"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CAS",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q9Z1W9"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 1,
+      "acceptor_hit_count_within_8_angstrom": 1,
+      "acceptor_hits": [
+        {
+          "acceptor_accession": "P23528",
+          "acceptor_uniprot_position": 3,
+          "candidate_auth_seq_id": "3",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 4.236,
+          "same_as_source_accession": false,
+          "source_description": "Phosphoserine; by NRK",
+          "within_candidate_threshold": true
+        }
+      ],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 1,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "5HVK",
+      "probe_status": "source_ready_cross_accession_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "P53667"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "SEP",
+        "TPO"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "P23528",
+        "P53667"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "5O26",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q9BYP7"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "EDO",
+        "MG",
+        "SEP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q9BYP7"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "5UPK",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "GNP",
+        "MG",
+        "SEP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0,
+      "uniprot_accessions": [
+        "O96013",
+        "P60953"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 4,
+      "acceptor_hit_count_within_8_angstrom": 4,
+      "acceptor_hits": [
+        {
+          "acceptor_accession": "Q9LUT0",
+          "acceptor_uniprot_position": 79,
+          "candidate_auth_seq_id": "79",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 3.638,
+          "same_as_source_accession": true,
+          "source_description": "Phosphoserine",
+          "within_candidate_threshold": true
+        },
+        {
+          "acceptor_accession": "Q9LUT0",
+          "acceptor_uniprot_position": 79,
+          "candidate_auth_seq_id": "79",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 3.632,
+          "same_as_source_accession": true,
+          "source_description": "Phosphoserine",
+          "within_candidate_threshold": true
+        },
+        {
+          "acceptor_accession": "Q9LUT0",
+          "acceptor_uniprot_position": 203,
+          "candidate_auth_seq_id": "203",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 5.35,
+          "same_as_source_accession": true,
+          "source_description": "Phosphoserine",
+          "within_candidate_threshold": true
+        },
+        {
+          "acceptor_accession": "Q9LUT0",
+          "acceptor_uniprot_position": 203,
+          "candidate_auth_seq_id": "203",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 5.079,
+          "same_as_source_accession": true,
+          "source_description": "Phosphoserine",
+          "within_candidate_threshold": true
+        }
+      ],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "5XD6",
+      "probe_status": "source_ready_same_accession_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q9LUT0"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q9LUT0"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "5YJ9",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "D6WMX4"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "MSE"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "D6WMX4"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "5YZ8",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CL",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 6,
+      "uniprot_accessions": [
+        "Q79PF4"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6AC9",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q99986"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CL",
+        "GOL",
+        "MG",
+        "PG4",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 4,
+      "uniprot_accessions": [
+        "Q99986"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6AO5",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q13188"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q13188",
+        "Q9H4B6"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6BXI",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q15208"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q15208"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6CQD",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q92918"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q92918"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6EGF",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q9NWZ3"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q9NWZ3"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6KO6",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "J9VNH4"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6PP9",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 2,
+      "source_ready_accessions": [
+        "P15056",
+        "Q02750"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CL",
+        "GOL",
+        "LCJ",
+        "MG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "P15056",
+        "Q02750"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6S8F",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "6S8F",
+        "P38110"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6V2W",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 2,
+      "source_ready_accessions": [
+        "P15056",
+        "Q02750"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "P15056",
+        "Q02750"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6VPG",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "O14965"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CL",
+        "GOL",
+        "MG",
+        "TPO"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "O14965",
+        "Q9ULW0"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6VPI",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "O14965"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "MLA"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "O14965",
+        "Q9ULW0"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6VPL",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "O14965"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "GOL",
+        "MG",
+        "MLA",
+        "R7D",
+        "TPO"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "O14965",
+        "Q9ULW0"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6WQX",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q96S44"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "Q96S44",
+        "Q9Y3C4"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6XX7",
+      "probe_status": "source_ready_no_acceptor_hit_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 1,
+      "source_ready_accessions": [
+        "Q08467"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "CL",
+        "MG",
+        "PGE",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1,
+      "uniprot_accessions": [
+        "Q08467"
+      ]
+    },
+    {
+      "acceptor_hit_count_within_6_angstrom": 0,
+      "acceptor_hit_count_within_8_angstrom": 0,
+      "acceptor_hits": [],
+      "countable_label_candidate": false,
+      "cross_accession_acceptor_hit_count_within_6_angstrom": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready": false,
+      "pdb_id": "6Z2W",
+      "probe_status": "no_source_acceptor_pair_review_only",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_ready_accession_count": 0,
+      "source_ready_accessions": [],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "ZN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2,
+      "uniprot_accessions": [
+        "P38111",
+        "Q04377"
+      ]
+    }
+  ],
+  "warnings": [
+    "This probe is a bounded source screen, not clean held-out evidence."
+  ]
+}

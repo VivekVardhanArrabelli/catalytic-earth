@@ -1159,6 +1159,29 @@ then executes the `Q8IVT5` source-mapping experiment. All five candidate
 hydroxyls map to MEK1 `P29678` Ser194, but UniProt phospho-acceptor evidence
 is at Ser218 and Ser222 rather than Ser194, so the geometry hits are
 terminally not source-mapped and measurement readiness remains 0.
+`artifacts/v3_epk_external_source_q8ivt5_alternate_cocomplex_review_1025.json`
+then checks exact source phospho-acceptor residues across the `Q8IVT5`
+co-complex set. P29678/Q02750 Ser218/Ser222 are mapped where present, but the
+nearest exact-source distances stay outside the 6 Angstrom review threshold
+(best 9.061 Angstrom), while active-state structures lacking mapped acceptors
+remain blocked. The lower-priority mapped rows and two additional broad
+UniProt/PDB-backed source passes are also fail-closed:
+`artifacts/v3_epk_external_source_three_pass_terminal_decision_1025.json`
+adjudicates 24 sourced candidates and 63 reviewed structure rows with 0
+measurement-ready positives.
+The next route is ligand-specific rather than another broad scout.
+`artifacts/v3_epk_ligand_specific_active_state_source_scout_1025.json`
+queries RCSB for ANP/Mg EC 2.7.11.1 structures and finds 11 review-only
+source rows. Only `P53355`/`1JKK` maps as active-state source geometry, and
+`artifacts/v3_epk_ligand_specific_p53355_substrate_cocomplex_review_1025.json`
+shows P53355 alternate structures split active-state kinase context from
+source phospho-acceptor context. A broader substrate/co-complex probe,
+`artifacts/v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json`,
+finds one cross-accession acceptor-hit row (`5HVK`, source-ready `P53667` with
+`P23528` Ser3 near gamma) but keeps it review-only pending manual source
+validation. `artifacts/v3_epk_ligand_specific_5hvk_review_priority_1025.json`
+packages that single lead for the next review step; no scorer, threshold,
+registry edit, label import, or held-out claim is opened.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,

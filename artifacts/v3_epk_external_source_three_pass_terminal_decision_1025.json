@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "alternate_cocomplex_nearest_source_phosphoacceptor_distance_angstrom": 9.061,
+    "alternate_cocomplex_review_method": "epk_external_source_alternate_cocomplex_review",
+    "alternate_cocomplex_source_phosphoacceptor_within_threshold_count": 0,
+    "blocker_not_removed": [
+      "measurement_ready_external_positive_missing",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "bounded_external_source_passes_adjudicated",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_source_candidates_exhausted": true,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_external_source_scout_pass_terminal_decision",
+    "next_actions": [
+      "do not repeat the same broad UniProt PDB-backed ePK source scout without a ligand-specific active-state query",
+      "try ligand-specific RCSB active ATP/ANP plus metal sourcing or a pre-frozen analog policy path",
+      "keep the external hard-negative scored re-audit closed until a real calibrated ePK scorer exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact adjudicates the bounded external ePK positive source-scout passes. It stops repeat UniProt/PDB-backed scout loops without changing labels, scores, registries, or held-out claims.",
+    "source_pass_count": 3,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "terminal_decision": "current_three_pass_external_source_surface_exhausted_review_only",
+    "total_active_state_mapping_ready_structure_count": 5,
+    "total_direct_position_mapping_ready_structure_count": 31,
+    "total_ligand_sourcing_reviewed_row_count": 26,
+    "total_sourced_candidate_rows": 24,
+    "total_structure_row_count": 63,
+    "unique_sourced_candidate_count": 24
+  },
+  "rows": [
+    {
+      "active_state_mapping_ready_structure_count": 5,
+      "countable_label_candidate": false,
+      "direct_position_mapping_ready_structure_count": 9,
+      "ligand_sourcing_reviewed_row_count": 4,
+      "ligand_sourcing_status_counts": {
+        "gamma_without_metal_needs_alternate_review_only": 1,
+        "inactive_analog_metal_only_needs_policy_or_alternate_review_only": 1,
+        "metal_without_gamma_needs_alternate_review_only": 1,
+        "no_ligand_context_needs_alternate_review_only": 1
+      },
+      "mapping_review_status_counts": {
+        "active_state_mapping_ready_needs_acceptor_source_review_only": 5,
+        "blocked_direct_position_mapping_ambiguous_or_missing_review_only": 7,
+        "direct_position_mapping_ready_ligand_context_incomplete_review_only": 4
+      },
+      "measurement_ready_candidate_count": 0,
+      "ready_to_run_epk_scorer": false,
+      "review_only": true,
+      "source_pass_id": "external_epk_source_pass_1",
+      "sourced_candidate_accessions": [
+        "O15021",
+        "O75716",
+        "Q5TCX8",
+        "Q8IVT5",
+        "Q8IVW4",
+        "Q96NX5",
+        "Q96Q04",
+        "Q9UEE5"
+      ],
+      "sourced_candidate_count": 8,
+      "structure_row_count": 16,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "active_state_mapping_ready_structure_count": 0,
+      "countable_label_candidate": false,
+      "direct_position_mapping_ready_structure_count": 9,
+      "ligand_sourcing_reviewed_row_count": 9,
+      "ligand_sourcing_status_counts": {
+        "gamma_without_metal_needs_alternate_review_only": 1,
+        "metal_without_gamma_needs_alternate_review_only": 1,
+        "non_atp_or_remote_ligand_context_needs_alternate_review_only": 7
+      },
+      "mapping_review_status_counts": {
+        "blocked_direct_position_mapping_ambiguous_or_missing_review_only": 11,
+        "direct_position_mapping_ready_ligand_context_incomplete_review_only": 9
+      },
+      "measurement_ready_candidate_count": 0,
+      "ready_to_run_epk_scorer": false,
+      "review_only": true,
+      "source_pass_id": "external_epk_source_pass_2",
+      "sourced_candidate_accessions": [
+        "O00506",
+        "O60307",
+        "O94768",
+        "Q15772",
+        "Q59H18",
+        "Q8IXL6",
+        "Q8N2I9",
+        "Q8WU08"
+      ],
+      "sourced_candidate_count": 8,
+      "structure_row_count": 20,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "active_state_mapping_ready_structure_count": 0,
+      "countable_label_candidate": false,
+      "direct_position_mapping_ready_structure_count": 13,
+      "ligand_sourcing_reviewed_row_count": 13,
+      "ligand_sourcing_status_counts": {
+        "metal_without_gamma_needs_alternate_review_only": 1,
+        "non_atp_or_remote_ligand_context_needs_alternate_review_only": 12
+      },
+      "mapping_review_status_counts": {
+        "blocked_direct_position_mapping_ambiguous_or_missing_review_only": 14,
+        "direct_position_mapping_ready_ligand_context_incomplete_review_only": 13
+      },
+      "measurement_ready_candidate_count": 0,
+      "ready_to_run_epk_scorer": false,
+      "review_only": true,
+      "source_pass_id": "external_epk_source_pass_3",
+      "sourced_candidate_accessions": [
+        "Q00532",
+        "Q5TCY1",
+        "Q8IU85",
+        "Q92772",
+        "Q9H2K8",
+        "Q9UQB9",
+        "Q9Y2K2",
+        "Q9Y3S1"
+      ],
+      "sourced_candidate_count": 8,
+      "structure_row_count": 27,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "The current external ePK source surface is exhausted only for these bounded review-only passes."
+  ]
+}

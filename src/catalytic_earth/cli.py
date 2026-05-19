@@ -83,8 +83,11 @@ from .labels import (
     build_epk_external_hard_negative_counteraxis_review,
     build_epk_external_hard_negative_reaudit_plan,
     build_epk_external_protein_substrate_source_scout,
+    build_epk_external_source_alternate_cocomplex_review,
     build_epk_external_source_acceptor_gap_audit,
+    build_epk_external_source_lower_priority_ligand_sourcing_review,
     build_epk_external_source_next_experiment_queue,
+    build_epk_external_source_scout_pass_terminal_decision,
     build_epk_external_source_structure_mapping_review,
     build_epk_family_specific_homolog_gamma_distance_sample,
     build_epk_family_specific_homolog_mapping_review,
@@ -6619,6 +6622,127 @@ def cmd_build_epk_external_source_next_experiment_queue(
         "Wrote ePK external source next experiment queue to "
         f"{args.out} (top="
         f"{queue['metadata']['top_priority_next_experiment']})"
+    )
+    return 0
+
+
+def cmd_build_epk_external_source_alternate_cocomplex_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_external_protein_substrate_source_scout).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_external_protein_substrate_source_scout = json.load(handle)
+    epk_external_source_acceptor_source_mapping_review: dict[str, Any] = {}
+    source_mapping_path = Path(args.epk_external_source_acceptor_source_mapping_review)
+    if source_mapping_path.exists():
+        with source_mapping_path.open("r", encoding="utf-8") as handle:
+            epk_external_source_acceptor_source_mapping_review = json.load(handle)
+
+    acceptor_accessions = args.acceptor_accession or ["P29678", "Q02750"]
+    entry_records_by_accession: dict[str, dict[str, Any]] = {}
+    entry_fetch_failures: list[dict[str, str]] = []
+    for accession in sorted({str(accession).upper() for accession in acceptor_accessions}):
+        try:
+            payload = fetch_uniprot_entry(accession)
+            record = payload.get("record", payload)
+            if not isinstance(record, dict):
+                raise ValueError("UniProt entry payload did not contain a record")
+            entry_records_by_accession[accession] = record
+        except Exception as exc:  # pragma: no cover - live fetch safety
+            entry_fetch_failures.append(
+                {
+                    "accession": accession,
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+            )
+
+    review = build_epk_external_source_alternate_cocomplex_review(
+        epk_external_protein_substrate_source_scout=(
+            epk_external_protein_substrate_source_scout
+        ),
+        epk_external_source_acceptor_source_mapping_review=(
+            epk_external_source_acceptor_source_mapping_review
+        ),
+        target_accession=args.target_accession,
+        acceptor_entry_records_by_accession=entry_records_by_accession,
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    review["metadata"]["acceptor_entry_fetch_failure_count"] = len(
+        entry_fetch_failures
+    )
+    review["fetch_failures"] = entry_fetch_failures
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK external source alternate co-complex review to "
+        f"{args.out} (measurement_ready="
+        f"{review['metadata']['measurement_ready_candidate_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_external_source_structure_mapping_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_external_source_structure_mapping_review = json.load(handle)
+    scout_path = Path(args.epk_external_protein_substrate_source_scout)
+    epk_external_protein_substrate_source_scout: dict[str, Any] = {}
+    if scout_path.exists():
+        with scout_path.open("r", encoding="utf-8") as handle:
+            epk_external_protein_substrate_source_scout = json.load(handle)
+    review = build_epk_external_source_lower_priority_ligand_sourcing_review(
+        epk_external_source_structure_mapping_review=(
+            epk_external_source_structure_mapping_review
+        ),
+        epk_external_protein_substrate_source_scout=(
+            epk_external_protein_substrate_source_scout
+        ),
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK external source lower-priority ligand sourcing review to "
+        f"{args.out} (measurement_ready="
+        f"{review['metadata']['measurement_ready_candidate_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_external_source_scout_pass_terminal_decision(
+    args: argparse.Namespace,
+) -> int:
+    scouts: list[dict[str, Any]] = []
+    for path in args.epk_external_protein_substrate_source_scout:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            scouts.append(json.load(handle))
+    mappings: list[dict[str, Any]] = []
+    for path in args.epk_external_source_structure_mapping_review:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            mappings.append(json.load(handle))
+    ligand_reviews: list[dict[str, Any]] = []
+    for path in args.epk_external_source_ligand_sourcing_review or []:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            ligand_reviews.append(json.load(handle))
+    alternate_review: dict[str, Any] = {}
+    if args.epk_external_source_alternate_cocomplex_review:
+        with Path(args.epk_external_source_alternate_cocomplex_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            alternate_review = json.load(handle)
+    decision = build_epk_external_source_scout_pass_terminal_decision(
+        epk_external_protein_substrate_source_scouts=scouts,
+        epk_external_source_structure_mapping_reviews=mappings,
+        epk_external_source_ligand_sourcing_reviews=ligand_reviews,
+        epk_external_source_alternate_cocomplex_review=alternate_review,
+    )
+    write_json(Path(args.out), decision)
+    print(
+        "Wrote ePK external source terminal decision to "
+        f"{args.out} (decision={decision['metadata']['terminal_decision']})"
     )
     return 0
 
@@ -14800,6 +14924,117 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_external_next_queue.set_defaults(
         func=cmd_build_epk_external_source_next_experiment_queue
+    )
+
+    epk_external_alt_cocomplex = subparsers.add_parser(
+        "build-epk-external-source-alternate-cocomplex-review",
+        help="review alternate ePK co-complexes for exact source phosphoacceptors",
+    )
+    epk_external_alt_cocomplex.add_argument(
+        "--epk-external-protein-substrate-source-scout",
+        default=(
+            "artifacts/"
+            "v3_epk_external_protein_substrate_source_scout_1025.json"
+        ),
+    )
+    epk_external_alt_cocomplex.add_argument(
+        "--epk-external-source-acceptor-source-mapping-review",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_acceptor_source_mapping_review_1025.json"
+        ),
+    )
+    epk_external_alt_cocomplex.add_argument(
+        "--target-accession",
+        default="Q8IVT5",
+    )
+    epk_external_alt_cocomplex.add_argument(
+        "--acceptor-accession",
+        action="append",
+        default=None,
+        help=(
+            "UniProt accession for candidate substrate acceptor chains; "
+            "defaults to P29678 and Q02750"
+        ),
+    )
+    epk_external_alt_cocomplex.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_external_alt_cocomplex.add_argument("--cif-dir", default=None)
+    epk_external_alt_cocomplex.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_q8ivt5_alternate_cocomplex_review_1025.json"
+        ),
+    )
+    epk_external_alt_cocomplex.set_defaults(
+        func=cmd_build_epk_external_source_alternate_cocomplex_review
+    )
+
+    epk_external_lower_priority_ligand = subparsers.add_parser(
+        "build-epk-external-source-lower-priority-ligand-sourcing-review",
+        help="review ligand sourcing blockers for lower-priority mapped ePK rows",
+    )
+    epk_external_lower_priority_ligand.add_argument(
+        "--epk-external-source-structure-mapping-review",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_structure_mapping_review_1025.json"
+        ),
+    )
+    epk_external_lower_priority_ligand.add_argument(
+        "--epk-external-protein-substrate-source-scout",
+        default=(
+            "artifacts/"
+            "v3_epk_external_protein_substrate_source_scout_1025.json"
+        ),
+    )
+    epk_external_lower_priority_ligand.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_lower_priority_ligand_sourcing_review_1025.json"
+        ),
+    )
+    epk_external_lower_priority_ligand.set_defaults(
+        func=cmd_build_epk_external_source_lower_priority_ligand_sourcing_review
+    )
+
+    epk_external_source_terminal = subparsers.add_parser(
+        "build-epk-external-source-scout-pass-terminal-decision",
+        help="adjudicate bounded review-only ePK external source scout passes",
+    )
+    epk_external_source_terminal.add_argument(
+        "--epk-external-protein-substrate-source-scout",
+        action="append",
+        required=True,
+    )
+    epk_external_source_terminal.add_argument(
+        "--epk-external-source-structure-mapping-review",
+        action="append",
+        required=True,
+    )
+    epk_external_source_terminal.add_argument(
+        "--epk-external-source-ligand-sourcing-review",
+        action="append",
+        default=None,
+    )
+    epk_external_source_terminal.add_argument(
+        "--epk-external-source-alternate-cocomplex-review",
+        default=None,
+    )
+    epk_external_source_terminal.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_three_pass_terminal_decision_1025.json"
+        ),
+    )
+    epk_external_source_terminal.set_defaults(
+        func=cmd_build_epk_external_source_scout_pass_terminal_decision
     )
 
     epk_analog_policy_prereg = subparsers.add_parser(

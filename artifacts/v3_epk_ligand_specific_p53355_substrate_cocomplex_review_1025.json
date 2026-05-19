@@ -1,0 +1,2624 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "accession": "P53355",
+    "active_state_gamma_metal_structure_count": 5,
+    "blocker_not_removed": [
+      "protein_substrate_acceptor_not_source_mapped",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "p53355_alternate_cocomplex_review_executed",
+    "cocomplex_review_status_counts": {
+      "active_state_without_source_phosphoacceptor_mapping_review_only": 5,
+      "gamma_without_metal_no_acceptor_mapping_review_only": 4,
+      "no_active_state_or_source_acceptor_context_review_only": 56,
+      "source_phosphoacceptor_mapping_without_gamma_review_only": 13
+    },
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_ligand_specific_p53355_substrate_cocomplex_review",
+    "next_actions": [
+      "treat P53355 as not measurement-ready under the current source-mapped acceptor rule",
+      "if ligand-specific sourcing continues, require active-state gamma/metal and source-mapped acceptor in the same structure",
+      "keep external hard-negative scored re-audit closed until a calibrated scorer exists"
+    ],
+    "pdb_crossref_count": 78,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact scans P53355 alternate PDB co-complexes after ligand-specific active-state sourcing. Same-accession phosphosites and active ATP/ANP-metal states are review context only and do not create a scorer or label.",
+    "reviewed_pdb_count": 78,
+    "source_epk_ligand_specific_active_state_next_experiment_queue_method": "epk_external_source_next_experiment_queue",
+    "source_phosphoacceptor_mapped_structure_count": 13,
+    "source_phosphoacceptor_positions": [
+      289,
+      308,
+      319,
+      333,
+      734,
+      1115
+    ],
+    "source_phosphoacceptor_within_threshold_count": 0,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "active_state_without_source_phosphoacceptor_mapping_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "1IG1",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.80 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "active_state_without_source_phosphoacceptor_mapping_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "1JKK",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.40 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "gamma_without_metal_no_acceptor_mapping_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "1JKL",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.62 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "ANP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "1JKS",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.50 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A/B=2-285",
+      "pdb_id": "1JKT",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "3.50 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "1P4F",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.90 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "86Q"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-278",
+      "pdb_id": "1WVW",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.40 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-278",
+      "pdb_id": "1WVX",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.60 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BD4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-278",
+      "pdb_id": "1WVY",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.80 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "STU"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "B=302-320",
+      "pdb_id": "1YR5",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.70 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_uniprot_position": 308,
+          "candidate_auth_seq_id": "308",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by autocatalysis",
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_uniprot_position": 308,
+          "candidate_auth_seq_id": "308",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by autocatalysis",
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_uniprot_position": 319,
+          "candidate_auth_seq_id": "319",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine",
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_mapped_count": 2,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "CA"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-277",
+      "pdb_id": "2W4J",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.30 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ACT",
+        "ADP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-302",
+      "pdb_id": "2W4K",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.90 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_uniprot_position": 289,
+          "candidate_auth_seq_id": "289",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by RPS6KA1 and RPS6KA3",
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_mapped_count": 1,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-334",
+      "pdb_id": "2X0G",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.20 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_uniprot_position": 289,
+          "candidate_auth_seq_id": "289",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by RPS6KA1 and RPS6KA3",
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_uniprot_position": 308,
+          "candidate_auth_seq_id": "308",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by autocatalysis",
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_uniprot_position": 319,
+          "candidate_auth_seq_id": "319",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine",
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_mapped_count": 3,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "CA",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-334",
+      "pdb_id": "2XUU",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.80 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_uniprot_position": 289,
+          "candidate_auth_seq_id": "289",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by RPS6KA1 and RPS6KA3",
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_mapped_count": 1,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ADP",
+        "MG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A/B=2-312",
+      "pdb_id": "2XZS",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.00 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_uniprot_position": 289,
+          "candidate_auth_seq_id": "289",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by RPS6KA1 and RPS6KA3",
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_uniprot_position": 289,
+          "candidate_auth_seq_id": "289",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by RPS6KA1 and RPS6KA3",
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_mapped_count": 3,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-304",
+      "pdb_id": "2Y0A",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.60 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_uniprot_position": 289,
+          "candidate_auth_seq_id": "289",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by RPS6KA1 and RPS6KA3",
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_mapped_count": 1,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "MES"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A/B/C/D=1-285",
+      "pdb_id": "2Y4P",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.65 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "B=302-320",
+      "pdb_id": "2Y4V",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.80 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_uniprot_position": 308,
+          "candidate_auth_seq_id": "308",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by autocatalysis",
+          "within_candidate_threshold": false
+        },
+        {
+          "acceptor_uniprot_position": 319,
+          "candidate_auth_seq_id": "319",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine",
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_mapped_count": 2,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "CA"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "2YAK",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.20 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "OSV"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "gamma_without_metal_no_acceptor_mapping_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "B=1-285",
+      "pdb_id": "3DFC",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.90 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "ANP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "3DGK",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.70 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "3EH9",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.70 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "ADP",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "gamma_without_metal_no_acceptor_mapping_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "3EHA",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.60 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "ANP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "3F5G",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.85 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "active_state_without_source_phosphoacceptor_mapping_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "3F5U",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.00 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "gamma_without_metal_no_acceptor_mapping_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "3GU4",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.35 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "ANP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "active_state_without_source_phosphoacceptor_mapping_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "3GU5",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.65 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 1
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "3GU6",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.49 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "ADP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "3GU7",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.90 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "3GU8",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.60 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "3GU"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "3GUB",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.71 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "GUB",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "active_state_without_source_phosphoacceptor_mapping_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": true,
+      "measurement_ready": false,
+      "pdb_chains": "A/B/C/D=1-285",
+      "pdb_id": "3ZXT",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.65 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ACP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 4
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-334",
+      "pdb_id": "4B4L",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.75 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [
+        {
+          "acceptor_uniprot_position": 289,
+          "candidate_auth_seq_id": "289",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": null,
+          "source_description": "Phosphoserine; by RPS6KA1 and RPS6KA3",
+          "within_candidate_threshold": false
+        }
+      ],
+      "source_phosphoacceptor_mapped_count": 1,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "1PE",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-277",
+      "pdb_id": "4PF4",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.13 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "GOL",
+        "MG",
+        "NA",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-334",
+      "pdb_id": "4TL0",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.70 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 1,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "GOL",
+        "MG",
+        "NH4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "4TXC",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.95 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "38G",
+        "EDO"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-321",
+      "pdb_id": "4UV0",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.49 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 1,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "PGE"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "4YO4",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.60 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "4FT",
+        "ACT",
+        "CL",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "4YPD",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.40 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "CL",
+        "DKG",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AUT",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.70 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "2AN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AUU",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.70 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "LU2"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AUV",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.50 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "AGI",
+        "CL"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AUW",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.50 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "QUE"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AUX",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.50 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "CL",
+        "KMP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AUY",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.00 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "MRI"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AUZ",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.60 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "GEN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AV0",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.85 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "47X"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AV1",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.50 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BR"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AV2",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.50 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BR",
+        "KMP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AV3",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.90 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "IOD",
+        "KMP"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "5AV4",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.40 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BR",
+        "GEN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "6AAR",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.95 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "9TF"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-334",
+      "pdb_id": "6FHA",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.30 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 1,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-334",
+      "pdb_id": "6FHB",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.75 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 1,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ACT",
+        "CL",
+        "GOL",
+        "MG",
+        "PEG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "U=1334-1344",
+      "pdb_id": "6GY5",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.09 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "CL",
+        "EDO",
+        "NA"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "6IN4",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.80 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "source_phosphoacceptor_mapping_without_gamma_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-310",
+      "pdb_id": "6QMO",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.87 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 1,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "CL",
+        "GOL",
+        "PGE"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-310",
+      "pdb_id": "6QN4",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "2.50 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "ACT",
+        "GOL",
+        "NA"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "7CCU",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.65 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "SO4",
+        "STL"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "7CCV",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.75 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "PIT",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "7CCW",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.40 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "MES",
+        "SO4",
+        "STL"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "8IE5",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.80 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EZE",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "8IE6",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.70 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "8KZ",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "8IE7",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.85 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "3RL",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "8IE8",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.75 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "P5O",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "C=301-319",
+      "pdb_id": "8ODZ",
+      "pdb_method": "EM",
+      "pdb_resolution": "3.60 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BMA",
+        "MAN",
+        "NAG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "C=300-319",
+      "pdb_id": "8OE0",
+      "pdb_method": "EM",
+      "pdb_resolution": "4.60 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BMA",
+        "NAG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "D=301-319",
+      "pdb_id": "8OE4",
+      "pdb_method": "EM",
+      "pdb_resolution": "3.60 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BMA",
+        "MAN",
+        "NAG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "C=300-319",
+      "pdb_id": "8PB1",
+      "pdb_method": "EM",
+      "pdb_resolution": "3.50 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BMA",
+        "MAN",
+        "NAG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "9DUB",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.50 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "A1BB7",
+        "CL",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "9DUE",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.65 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "A1BB6",
+        "BO3",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "9INV",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.61 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "HCC",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "9INW",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.52 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "A1L2V",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=1-285",
+      "pdb_id": "9INX",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.72 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "A1L2W",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "9MIU",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.90 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "A1BLJ",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "9N1T",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.43 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "A1BU8",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "9N2M",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.35 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "A1BVM",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    },
+    {
+      "accession": "P53355",
+      "cocomplex_review_status": "no_active_state_or_source_acceptor_context_review_only",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_active_state_gamma_metal": false,
+      "measurement_ready": false,
+      "pdb_chains": "A=2-285",
+      "pdb_id": "9N2O",
+      "pdb_method": "X-ray",
+      "pdb_resolution": "1.49 A",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_phosphoacceptor_distance_candidates": [],
+      "source_phosphoacceptor_mapped_count": 0,
+      "source_phosphoacceptor_within_threshold_count": 0,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "A1BVL",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 0
+    }
+  ],
+  "warnings": [
+    "P53355 alternate structures do not remove the protein-substrate acceptor blocker."
+  ]
+}

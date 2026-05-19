@@ -1,0 +1,874 @@
+{
+  "fetch_failures": [
+    {
+      "accession": "4JDI",
+      "error": "HTTP Error 400: Bad Request",
+      "error_type": "HTTPError",
+      "pdb_id": "4JDI"
+    }
+  ],
+  "metadata": {
+    "blocker_not_removed": [
+      "source_position_mapping_required",
+      "protein_substrate_acceptor_not_source_mapped",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "ligand_specific_active_state_source_scout_started",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_failure_count": 1,
+    "fingerprint_registry_edited": false,
+    "method": "epk_ligand_specific_active_state_source_scout",
+    "next_actions": [
+      "map source residues onto the ligand-specific PDB rows",
+      "audit protein-substrate acceptor geometry only after mapping succeeds",
+      "keep external hard-negative scored re-audit closed until a calibrated scorer exists"
+    ],
+    "query_pdb_count": 30,
+    "query_pdb_ids": [
+      "1DAW",
+      "1JKK",
+      "1LP4",
+      "1PYX",
+      "1XR1",
+      "1ZY5",
+      "2A19",
+      "2R5T",
+      "2V55",
+      "2VWI",
+      "3A99",
+      "3AKL",
+      "3DAK",
+      "3F5U",
+      "3GU5",
+      "3HKO",
+      "3LIJ",
+      "3NSZ",
+      "3Q4Z",
+      "3Q5I",
+      "3U87",
+      "3WOW",
+      "4E01",
+      "4E02",
+      "4FIG",
+      "4I94",
+      "4IIR",
+      "4JDI",
+      "4JRN",
+      "4LGD"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This ligand-specific RCSB scout uses ANP/MG active-state structure context only to source review candidates. It does not score, import labels, edit registries, or claim held-out performance.",
+    "source_evidence_strength_status_counts": {
+      "direct_experimental_source_context_present": 7,
+      "homology_or_rule_based_source_context_review_only": 2,
+      "source_evidence_codes_missing": 2
+    },
+    "source_query": "RCSB entries with ANP, MG, and EC lineage 2.7.11.1; first 30 entries",
+    "source_scout_status_counts": {
+      "sourced_pending_structure_mapping_review": 11
+    },
+    "sourced_candidate_accessions": [
+      "P28523",
+      "P53355",
+      "P49841",
+      "P11309",
+      "P15442",
+      "P19525",
+      "O00141",
+      "Q13464",
+      "O95747",
+      "P68400",
+      "Q13153"
+    ],
+    "sourced_candidate_count": 11,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "accession": "P28523",
+      "active_site_evidence_codes": [],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        151
+      ],
+      "alphafold_ids": [
+        "P28523"
+      ],
+      "atp_binding_evidence_codes": [],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        40,
+        63
+      ],
+      "candidate_priority_rank": 1,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:P28523",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "1DAW"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "CSK2A_MAIZE",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "source_evidence_codes_missing",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "CSK2A_MAIZE",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P53355",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        139
+      ],
+      "alphafold_ids": [
+        "P53355"
+      ],
+      "atp_binding_evidence_codes": [],
+      "atp_binding_feature_count": 5,
+      "atp_binding_positions": [
+        19,
+        42,
+        94,
+        100,
+        161
+      ],
+      "candidate_priority_rank": 2,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:P53355",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "1JKK"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "DAPK1_HUMAN",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "homology_or_rule_based_source_context_review_only",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "DAPK1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P49841",
+      "active_site_evidence_codes": [],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        181
+      ],
+      "alphafold_ids": [
+        "P49841"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255",
+        "ECO:0000305"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        62,
+        85
+      ],
+      "candidate_priority_rank": 3,
+      "catalytic_activity_count": 4,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:P49841",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "1PYX"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "GSK3B_HUMAN",
+      "protein_phosphotransfer_catalytic_activity_count": 4,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "GSK3B_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P11309",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        167
+      ],
+      "alphafold_ids": [
+        "P11309"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255",
+        "ECO:0000305"
+      ],
+      "atp_binding_feature_count": 4,
+      "atp_binding_positions": [
+        44,
+        67,
+        121,
+        128
+      ],
+      "candidate_priority_rank": 4,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:P11309",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "1XR1"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "PIM1_HUMAN",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "PIM1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P15442",
+      "active_site_evidence_codes": [
+        "ECO:0000250"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        835
+      ],
+      "alphafold_ids": [
+        "P15442"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        605,
+        628
+      ],
+      "candidate_priority_rank": 5,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:P15442",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "1ZY5"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "GCN2_YEAST",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "GCN2_YEAST",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P19525",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        414
+      ],
+      "alphafold_ids": [
+        "P19525"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        273,
+        296
+      ],
+      "candidate_priority_rank": 6,
+      "catalytic_activity_count": 3,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:P19525",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "2A19"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein",
+        "tyrosyl_protein"
+      ],
+      "protein_name": "E2AK2_HUMAN",
+      "protein_phosphotransfer_catalytic_activity_count": 3,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "homology_or_rule_based_source_context_review_only",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "MG",
+        "PO4",
+        "TPO"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "E2AK2_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "O00141",
+      "active_site_evidence_codes": [],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        222
+      ],
+      "alphafold_ids": [
+        "O00141"
+      ],
+      "atp_binding_evidence_codes": [],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        104,
+        127
+      ],
+      "candidate_priority_rank": 7,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:O00141",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "2R5T"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "SGK1_HUMAN",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "source_evidence_codes_missing",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "MG",
+        "SO4"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "SGK1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q13464",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        198
+      ],
+      "alphafold_ids": [
+        "Q13464"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        82,
+        105
+      ],
+      "candidate_priority_rank": 8,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:Q13464",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "2V55"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "ROCK1_HUMAN",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "GTP",
+        "MG",
+        "SO4"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "ROCK1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "O95747",
+      "active_site_evidence_codes": [
+        "ECO:0000250",
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        146
+      ],
+      "alphafold_ids": [
+        "O95747"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000250",
+        "ECO:0000255",
+        "ECO:0000269"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        23,
+        46
+      ],
+      "candidate_priority_rank": 9,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:O95747",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "2VWI"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "OXSR1_HUMAN",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "AU",
+        "MG"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "OXSR1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P68400",
+      "active_site_evidence_codes": [],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        156
+      ],
+      "alphafold_ids": [
+        "P68400"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        45,
+        68
+      ],
+      "candidate_priority_rank": 10,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:P68400",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "3NSZ"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "CSK21_HUMAN",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "GOL",
+        "MG",
+        "SO4"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "CSK21_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q13153",
+      "active_site_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        389
+      ],
+      "alphafold_ids": [
+        "Q13153"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "atp_binding_feature_count": 3,
+      "atp_binding_positions": [
+        276,
+        299,
+        345
+      ],
+      "candidate_priority_rank": 11,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:Q13153",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "rcsb_anp_mg_ec_2_7_11_1_active_state",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map source active-site and ATP-binding positions onto the ligand-specific active-state PDB before acceptor review",
+      "pdb_ids": [
+        "3Q4Z"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "PAK1_HUMAN",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "source_pdb_cofactor_families": [
+        "metal_ion"
+      ],
+      "source_pdb_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "PAK1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    }
+  ],
+  "warnings": [
+    "Ligand-specific source rows remain non-countable review candidates."
+  ]
+}

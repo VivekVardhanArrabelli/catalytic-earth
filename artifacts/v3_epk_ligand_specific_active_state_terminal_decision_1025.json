@@ -1,0 +1,107 @@
+{
+  "metadata": {
+    "active_state_mapping_ready_structure_count": 1,
+    "blocker_not_removed": [
+      "source_mapped_protein_substrate_acceptor_missing",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "ligand_specific_active_state_surface_adjudicated",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "lower_priority_ligand_reviewed_row_count": 4,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_ligand_specific_active_state_terminal_decision",
+    "next_actions": [
+      "do not promote P53355 or ligand-specific active-state rows without a source-mapped protein-substrate acceptor",
+      "if continuing ligand-specific sourcing, add an explicit substrate/co-complex query axis rather than another broad ANP/MG/EC pass",
+      "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists"
+    ],
+    "p53355_active_state_gamma_metal_structure_count": 5,
+    "p53355_source_phosphoacceptor_mapped_structure_count": 13,
+    "p53355_source_phosphoacceptor_within_threshold_count": 0,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This terminal decision adjudicates the first ligand-specific RCSB active-state ePK source pass. It is a negative review-only source decision, not a scorer, label import, or registry change.",
+    "source_acceptor_gap_method": "epk_external_source_acceptor_gap_audit",
+    "source_lower_priority_ligand_review_method": "epk_external_source_lower_priority_ligand_sourcing_review",
+    "source_mapping_method": "epk_external_source_structure_mapping_review",
+    "source_p53355_cocomplex_review_method": "epk_ligand_specific_p53355_substrate_cocomplex_review",
+    "source_scout_method": "epk_ligand_specific_active_state_source_scout",
+    "sourced_candidate_count": 11,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "terminal_decision": "ligand_specific_active_state_surface_blocked_no_source_mapped_acceptor_review_only"
+  },
+  "rows": [
+    {
+      "accession": "P53355",
+      "active_state_mapping_ready": true,
+      "alternate_cocomplex_status_counts": {
+        "active_state_without_source_phosphoacceptor_mapping_review_only": 5,
+        "gamma_without_metal_no_acceptor_mapping_review_only": 4,
+        "no_active_state_or_source_acceptor_context_review_only": 56,
+        "source_phosphoacceptor_mapping_without_gamma_review_only": 13
+      },
+      "countable_label_candidate": false,
+      "decision_row_id": "p53355_active_state_lead",
+      "measurement_ready": false,
+      "pdb_id": "1JKK",
+      "review_only": true,
+      "source_acceptor_gap_status_counts": {
+        "no_acceptor_like_hydroxyl_within_threshold_review_only": 1
+      },
+      "status": "blocked_active_state_without_source_mapped_acceptor"
+    },
+    {
+      "accession": "O00141",
+      "active_state_mapping_ready": false,
+      "countable_label_candidate": false,
+      "decision_row_id": "lower_priority_O00141_2R5T",
+      "measurement_ready": false,
+      "pdb_id": "2R5T",
+      "review_only": true,
+      "status": "non_atp_or_remote_ligand_context_needs_alternate_review_only"
+    },
+    {
+      "accession": "P11309",
+      "active_state_mapping_ready": false,
+      "countable_label_candidate": false,
+      "decision_row_id": "lower_priority_P11309_1XR1",
+      "measurement_ready": false,
+      "pdb_id": "1XR1",
+      "review_only": true,
+      "status": "non_atp_or_remote_ligand_context_needs_alternate_review_only"
+    },
+    {
+      "accession": "P28523",
+      "active_state_mapping_ready": false,
+      "countable_label_candidate": false,
+      "decision_row_id": "lower_priority_P28523_1DAW",
+      "measurement_ready": false,
+      "pdb_id": "1DAW",
+      "review_only": true,
+      "status": "non_atp_or_remote_ligand_context_needs_alternate_review_only"
+    },
+    {
+      "accession": "P68400",
+      "active_state_mapping_ready": false,
+      "countable_label_candidate": false,
+      "decision_row_id": "lower_priority_P68400_3NSZ",
+      "measurement_ready": false,
+      "pdb_id": "3NSZ",
+      "review_only": true,
+      "status": "non_atp_or_remote_ligand_context_needs_alternate_review_only"
+    }
+  ],
+  "warnings": [
+    "Ligand-specific active-state sourcing found active kinase geometry but no source-mapped acceptor."
+  ]
+}

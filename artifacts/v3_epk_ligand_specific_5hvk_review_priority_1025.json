@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "manual_source_review_required",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "cross_accession_5hvk_lead_prioritized",
+    "countable_label_candidate_count": 0,
+    "cross_accession_acceptor_hit_count": 1,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_ligand_specific_5hvk_review_priority",
+    "next_actions": [
+      "verify whether P53667 is source-valid kinase evidence for the P23528 Ser3 acceptor in 5HVK",
+      "if source-valid, rerun acceptor geometry and sibling/external hard-negative controls before any score",
+      "if not source-valid, mark 5HVK terminally not-ready and continue ligand-specific substrate/co-complex sourcing"
+    ],
+    "priority_pdb_id": "5HVK",
+    "priority_status": "manual_source_review_required_before_measurement_ready",
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact prioritizes the single 5HVK cross-accession acceptor hit from the ligand-specific substrate/co-complex probe. It does not treat the hit as measurement-ready until source validity is manually reviewed.",
+    "source_probe_method": "epk_ligand_specific_substrate_cocomplex_query_probe",
+    "source_ready_accessions": [
+      "P53667"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "accession": "P53667",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P53667",
+      "measurement_ready": false,
+      "pdb_id": "5HVK",
+      "review_only": true,
+      "role": "source_ready_kinase_candidate",
+      "row_id": "5hvk_source_ready_kinase",
+      "source_ready_accessions": [
+        "P53667"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MG",
+        "SEP",
+        "TPO"
+      ]
+    },
+    {
+      "acceptor_hits": [
+        {
+          "acceptor_accession": "P23528",
+          "acceptor_uniprot_position": 3,
+          "candidate_auth_seq_id": "3",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 4.236,
+          "same_as_source_accession": false,
+          "source_description": "Phosphoserine; by NRK",
+          "within_candidate_threshold": true
+        }
+      ],
+      "accession": "P23528",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P23528",
+      "measurement_ready": false,
+      "pdb_id": "5HVK",
+      "remaining_blockers": [
+        "manual_source_review_required",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "role": "cross_accession_phosphoacceptor_hit",
+      "row_id": "5hvk_cross_accession_acceptor_hit"
+    }
+  ],
+  "warnings": [
+    "5HVK is a review priority, not a positive label or scored ePK hit."
+  ]
+}

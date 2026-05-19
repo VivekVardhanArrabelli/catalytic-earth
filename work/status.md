@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 190
-- Measured elapsed time: 5758.8 minutes (95.98 hours)
+- Entries: 191
+- Measured elapsed time: 5806.9 minutes (96.78 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 529.7 measured minutes (8.83 hours)
+- post-infra-science: 577.8 measured minutes (9.63 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2143
-- Evidence references logged: 1693
+- Artifact references logged: 2169
+- Evidence references logged: 1702
 
 ## Recent Entries
-
-### 2026-05-19T00:13:47.867615+00:00 - post-infra-science
-
-- Task: ePK homolog controls and fail-closed prototype
-- Time mode: measured
-- Measured minutes: 19.583
-- Started: 2026-05-18T23:53:56Z
-- Ended: 2026-05-19T00:13:31Z
-- Artifacts: artifacts/v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json, artifacts/v3_epk_sibling_control_homolog_source_plan_pfkb_1025.json, artifacts/v3_epk_sibling_control_homolog_source_plan_pfka_1025.json, artifacts/v3_epk_sibling_control_homolog_source_plan_atp_grasp_1025.json, artifacts/v3_epk_review_only_scoring_prototype_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: startup 490-test unit discovery passed, final 495-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, NDK homolog sample measured 4 mapped phosphohistidine-axis controls at 2.899-3.339 Angstrom, PfkB source plan found 9 gamma-metal candidates mapping-pending, PfkA source plan found 5 gamma-metal candidates mapping-pending, ATP-grasp source plan found 2 gamma-metal candidates mapping-pending, review-only ePK prototype failed closed with 2 positive-like rows 1 positive abstention 4 NDK counter-axis blocks and 3 external hard-negative abstentions, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative import or history rewrite.
 
 ### 2026-05-19T00:38:30.189051+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_external_protein_substrate_source_scout_1025.json, artifacts/v3_epk_external_source_structure_mapping_review_1025.json, artifacts/v3_epk_external_source_acceptor_gap_audit_1025.json, artifacts/v3_epk_external_source_next_experiment_queue_1025.json, artifacts/v3_epk_external_source_acceptor_source_mapping_review_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: startup 537-test unit discovery passed, final 544-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, external ePK scout found 8 sourced rows, struct-ref-seq mapping resolved 9 structures with 5 active-state Q8IVT5 rows, acceptor gap audit kept measurement_ready=0, source mapping showed all five Q8IVT5 acceptor-like hits map to MEK1 P29678 Ser194 not source phospho Ser218/Ser222, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
+
+### 2026-05-19T15:19:23.015183+00:00 - post-infra-science
+
+- Task: ePK ligand-specific active-state source probes
+- Time mode: measured
+- Measured minutes: 48.117
+- Started: 2026-05-19T14:30:37Z
+- Ended: 2026-05-19T15:18:44Z
+- Artifacts: README.md, docs/label_factory.md, src/catalytic_earth/adapters.py, src/catalytic_earth/cli.py, src/catalytic_earth/labels.py, tests/test_leakage_closure.py, work/handoff.md, work/scope.md, artifacts/v3_epk_external_source_q8ivt5_alternate_cocomplex_review_1025.json, artifacts/v3_epk_external_source_lower_priority_ligand_sourcing_review_1025.json, artifacts/v3_epk_external_protein_substrate_source_scout_second_pass_1025.json, artifacts/v3_epk_external_source_structure_mapping_review_second_pass_1025.json, artifacts/v3_epk_external_source_lower_priority_ligand_sourcing_review_second_pass_1025.json, artifacts/v3_epk_external_protein_substrate_source_scout_third_pass_1025.json, artifacts/v3_epk_external_source_structure_mapping_review_third_pass_1025.json, artifacts/v3_epk_external_source_lower_priority_ligand_sourcing_review_third_pass_1025.json, artifacts/v3_epk_external_source_three_pass_terminal_decision_1025.json, artifacts/v3_epk_ligand_specific_active_state_source_scout_1025.json, artifacts/v3_epk_ligand_specific_active_state_structure_mapping_review_1025.json, artifacts/v3_epk_ligand_specific_active_state_acceptor_gap_audit_1025.json, artifacts/v3_epk_ligand_specific_active_state_next_experiment_queue_1025.json, artifacts/v3_epk_ligand_specific_active_state_lower_priority_ligand_review_1025.json, artifacts/v3_epk_ligand_specific_p53355_substrate_cocomplex_review_1025.json, artifacts/v3_epk_ligand_specific_active_state_terminal_decision_1025.json, artifacts/v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json, artifacts/v3_epk_ligand_specific_5hvk_review_priority_1025.json
+- Evidence: startup unit discovery 544 tests passed, final unit discovery 560 tests passed, validate preserved 682 labels and 8 fingerprints, migration dry-run guard 108 rows removal_allowed=0, external invariants preserved 682/212/470 and three hard negatives, Q8IVT5 exact source best distance 9.061 Angstrom, broad three-pass 24 candidates 63 reviewed rows 0 ready, ligand-specific query found P53355/1JKK blocked, 5HVK cross-accession P53667-P23528 Ser3 review lead at 4.236 Angstrom
+- Notes: Direct locked automation run. Phase 1 migration remained guard-only and closed; no unsafe artifact migration, registry edit, label import, scoring, or external hard-negative scored re-audit.
 
 ## Expectation Updates
 
@@ -267,6 +267,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-19T12:03:38.595849+00:00: Current bounded ePK source-repair candidates are exhausted as review-only negatives; next useful work needs new mapped protein-substrate evidence or an inactive policy draft promoted only after sibling and external hard-negative re-audits.
 - 2026-05-19T13:17:33.402946+00:00: ePK analog/product-state and 5LI1 evidence are now explicit fail-closed review-only blockers; source triage still has no new protein-substrate candidate, so production expansion needs genuinely new source evidence or a pre-frozen calibrated policy path.
 - 2026-05-19T14:18:17.427495+00:00: External reviewed kinase source evidence can produce mapped active-state Q8IVT5 structures, but current acceptor-like geometry is not source-mapped; production ePK expansion remains blocked until an exact source-mapped protein-substrate acceptor and calibrated scorer controls exist.
+- 2026-05-19T15:19:23.015183+00:00: Ligand-specific substrate/co-complex querying can produce concrete review leads; next work should manually validate 5HVK source evidence before any measurement or scoring.
 
 ## Scope Adjustments
 

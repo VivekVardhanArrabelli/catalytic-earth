@@ -50,6 +50,72 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T14:30:37Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/dry-run push
+hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
+preserved.
+
+The run closed the pending `Q8IVT5` alternate-co-complex branch as a negative
+result. `artifacts/v3_epk_external_source_q8ivt5_alternate_cocomplex_review_1025.json`
+maps exact P29678/Q02750 source phospho-acceptor residues where present, but
+Ser218/Ser222 stay outside the 6 Angstrom review threshold (best exact-source
+distance 9.061 Angstrom), while active-state structures without source-mapped
+acceptors remain blocked. `artifacts/v3_epk_external_source_lower_priority_ligand_sourcing_review_1025.json`
+also keeps the first-pass mapped-but-ligand-incomplete rows not-ready.
+
+The run then tried two more broad reviewed-UniProt/PDB-backed source passes
+instead of repeating audits. `artifacts/v3_epk_external_protein_substrate_source_scout_second_pass_1025.json`
+and `artifacts/v3_epk_external_protein_substrate_source_scout_third_pass_1025.json`
+source 16 additional non-countable candidates. Their structure-mapping and
+ligand-sourcing reviews add 47 reviewed structures, but 0 active-state
+measurement-ready positives. `artifacts/v3_epk_external_source_three_pass_terminal_decision_1025.json`
+adjudicates the combined broad scout surface: 24 sourced candidates, 63
+reviewed structure rows, 5 active-state mapped rows from the original Q8IVT5
+surface, 0 source-mapped acceptors, and 0 measurement-ready positives. Do not
+repeat the same broad UniProt/PDB-backed ePK source scout without a new query
+axis.
+
+The productive new route is ligand-specific active-state sourcing.
+`artifacts/v3_epk_ligand_specific_active_state_source_scout_1025.json` queries
+RCSB for ANP/Mg EC 2.7.11.1 structures and finds 11 review-only source rows.
+`artifacts/v3_epk_ligand_specific_active_state_structure_mapping_review_1025.json`
+finds one active-state mapped lead, `P53355`/`1JKK`, but the acceptor audit
+finds no acceptor-like hydroxyl within threshold. `artifacts/v3_epk_ligand_specific_p53355_substrate_cocomplex_review_1025.json`
+scans 78 P53355 PDB crossrefs and shows active-state kinase structures and
+mapped source phospho-acceptor structures are split, so P53355 is not
+measurement-ready. `artifacts/v3_epk_ligand_specific_active_state_terminal_decision_1025.json`
+keeps that surface blocked.
+
+The most useful next science item is now the bounded substrate/co-complex probe,
+not another broad source scout. `artifacts/v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json`
+screens the first 60 RCSB ANP/Mg EC 2.7.11.1 entries. It finds 42
+source-ready structures, 4 within-threshold phosphoacceptor-hit structures,
+and one cross-accession review lead: `5HVK`, with source-ready `P53667`
+(`LIMK1_HUMAN`) and `P23528` (`COF1_HUMAN`) Ser3 near gamma at 4.236
+Angstrom. This is not measurement-ready yet: manual source review must confirm
+that the acceptor is valid protein-substrate evidence for the source kinase
+and not merely an annotation/co-complex coincidence.
+`artifacts/v3_epk_ligand_specific_5hvk_review_priority_1025.json` packages
+that single lead for the next source-validity check. Keep scoring, thresholds,
+registry edits, label import, and external hard-negative scored re-audit closed
+until that review passes and controls are rerun.
+
+Evidence-based confidence call: confidence is higher that a ligand-specific
+active-state/substrate co-complex query can produce falsifiable ePK positive
+leads. Confidence remains low that the current evidence can support production
+scoring, because every reviewed source lane still lacks a validated
+source-mapped protein-substrate acceptor under a calibrated scorer.
+
+Verification in this run: startup full unit discovery reported 544 tests
+passing; final full unit discovery reported 560 tests passing; `validate`
+preserved 682 labels and 8 fingerprints; artifact migration dry-run/local-file
+guard passed with 108 rows and `removal_allowed=0`; external label invariants
+remained 682 total, 212 seed, 470 out-of-scope, and the three imported
+external hard negatives stayed out-of-scope with null fingerprints.
+
 As of the 2026-05-19T13:29:09Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

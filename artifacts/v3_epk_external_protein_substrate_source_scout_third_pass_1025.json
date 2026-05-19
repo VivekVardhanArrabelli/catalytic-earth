@@ -1,0 +1,1028 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "blocker_not_removed": [
+      "external_positive_structure_mapping_required",
+      "gamma_to_acceptor_distance_measurement_required",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented",
+      "no_countable_external_positive_labels"
+    ],
+    "blocker_removed": "external_epk_positive_source_scout_started",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_source_candidates_exhausted": true,
+    "emitted_row_count": 15,
+    "entry_feature_fetch_failure_count": 0,
+    "entry_feature_record_available_count": 32,
+    "epk_score_computed": false,
+    "existing_external_label_entry_ids_checked": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "existing_label_entry_count_checked": 682,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_candidate_record_count": 32,
+    "fingerprint_registry_edited": false,
+    "max_candidates": 8,
+    "method": "epk_external_protein_substrate_source_scout",
+    "next_actions": [
+      "map source active-site and ATP-binding positions onto selected structures for top sourced rows",
+      "measure gamma-to-protein-acceptor distances only after mapping succeeds",
+      "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists"
+    ],
+    "query_fetch_failure_count": 0,
+    "query_lane_count": 2,
+    "query_metadata": [
+      {
+        "lane_id": "ser_thr_protein_kinase_third_pass",
+        "query": "(reviewed:true) AND (ec:2.7.11.*) AND (database:pdb) NOT (accession:O15021 OR accession:Q5TCX8 OR accession:Q8IVT5 OR accession:Q8IVW4 OR accession:Q96NX5 OR accession:Q96Q04 OR accession:Q9UEE5 OR accession:O75716 OR accession:O00506 OR accession:O60307 OR accession:O94768 OR accession:Q15772 OR accession:Q59H18 OR accession:Q8IXL6 OR accession:Q8N2I9 OR accession:Q8WU08)",
+        "record_count": 16
+      },
+      {
+        "lane_id": "tyrosine_protein_kinase_third_pass",
+        "query": "(reviewed:true) AND (ec:2.7.10.*) AND (database:pdb) NOT (accession:O15021 OR accession:Q5TCX8 OR accession:Q8IVT5 OR accession:Q8IVW4 OR accession:Q96NX5 OR accession:Q96Q04 OR accession:Q9UEE5 OR accession:O75716 OR accession:O00506 OR accession:O60307 OR accession:O94768 OR accession:Q15772 OR accession:Q59H18 OR accession:Q8IXL6 OR accession:Q8N2I9 OR accession:Q8WU08)",
+        "record_count": 16
+      }
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This scout starts a new external ePK positive-source surface after current M-CSA source repair failed closed. UniProt names, EC labels, and reaction prose are source triage context only; no score, threshold, registry edit, label import, or held-out claim is produced.",
+    "source_epk_protein_substrate_source_repair_terminal_decision_method": "epk_protein_substrate_source_repair_terminal_decision",
+    "source_evidence_blocker_counts": {
+      "atp_binding_feature_missing": 4,
+      "protein_acceptor_scope_missing": 1,
+      "protein_phosphotransfer_catalytic_activity_missing": 2,
+      "uniprot_active_site_feature_missing": 4
+    },
+    "source_evidence_strength_status_counts": {
+      "direct_experimental_source_context_present": 6,
+      "homology_or_rule_based_source_context_review_only": 8,
+      "source_evidence_codes_missing": 1
+    },
+    "source_scout_status_counts": {
+      "blocked_active_site_source_missing": 4,
+      "blocked_protein_phosphotransfer_source_missing": 2,
+      "blocked_source_scout_criteria": 1,
+      "sourced_pending_structure_mapping_review": 8
+    },
+    "sourced_candidate_accessions": [
+      "Q00532",
+      "Q5TCY1",
+      "Q8IU85",
+      "Q92772",
+      "Q9H2K8",
+      "Q9UQB9",
+      "Q9Y2K2",
+      "Q9Y3S1"
+    ],
+    "sourced_candidate_count": 8,
+    "sourced_candidate_lane_counts": {
+      "ser_thr_protein_kinase_third_pass": 8
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "accession": "Q00532",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        126
+      ],
+      "alphafold_ids": [
+        "Q00532"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        10,
+        33
+      ],
+      "candidate_priority_rank": 1,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.22"
+      ],
+      "entry_id": "uniprot:Q00532",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map UniProt active-site and ATP-binding residue positions onto a selected structure before any distance measurement",
+      "pdb_ids": [
+        "4AGU"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "Cyclin-dependent kinase-like 1 (EC 2.7.11.22) (Protein kinase p42 KKIALRE) (Serine/threonine-protein kinase KKIALRE)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "homology_or_rule_based_source_context_review_only",
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "CDKL1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q5TCY1",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        154
+      ],
+      "alphafold_ids": [
+        "Q5TCY1"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        40,
+        63
+      ],
+      "candidate_priority_rank": 2,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:Q5TCY1",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map UniProt active-site and ATP-binding residue positions onto a selected structure before any distance measurement",
+      "pdb_ids": [
+        "4BTJ",
+        "4BTK",
+        "4BTM",
+        "4NFM",
+        "4NFN",
+        "7JXX",
+        "7JXY",
+        "7Q8V",
+        "7Q8W",
+        "7QHW",
+        "7ZHN",
+        "7ZHO",
+        "7ZHP",
+        "7ZHQ",
+        "8XPZ",
+        "9HHW"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "Tau-tubulin kinase 1 (EC 2.7.11.1) (Brain-derived tau kinase)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "TTBK1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q8IU85",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        144
+      ],
+      "alphafold_ids": [
+        "Q8IU85"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        29,
+        52
+      ],
+      "candidate_priority_rank": 3,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.17"
+      ],
+      "entry_id": "uniprot:Q8IU85",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map UniProt active-site and ATP-binding residue positions onto a selected structure before any distance measurement",
+      "pdb_ids": [
+        "2JC6",
+        "6QP5",
+        "6T28",
+        "6T29",
+        "6T6F",
+        "8BFM",
+        "8BFS"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "Calcium/calmodulin-dependent protein kinase type 1D (EC 2.7.11.17) (CaM kinase I delta) (CaM kinase ID) (CaM-KI delta) (CaMKI delta) (CaMKID) (CaMKI-like protein kinase) (CKLiK)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "KCC1D_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q92772",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        126
+      ],
+      "alphafold_ids": [
+        "Q92772"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        10,
+        33
+      ],
+      "candidate_priority_rank": 4,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.22"
+      ],
+      "entry_id": "uniprot:Q92772",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map UniProt active-site and ATP-binding residue positions onto a selected structure before any distance measurement",
+      "pdb_ids": [
+        "4AAA",
+        "4BBM",
+        "8S6I"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "Cyclin-dependent kinase-like 2 (EC 2.7.11.22) (Protein kinase p56 KKIAMRE) (Serine/threonine-protein kinase KKIAMRE)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "homology_or_rule_based_source_context_review_only",
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "CDKL2_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q9H2K8",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        147
+      ],
+      "alphafold_ids": [
+        "Q9H2K8"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        30,
+        53
+      ],
+      "candidate_priority_rank": 5,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:Q9H2K8",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map UniProt active-site and ATP-binding residue positions onto a selected structure before any distance measurement",
+      "pdb_ids": [
+        "6BDN"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "Serine/threonine-protein kinase TAO3 (EC 2.7.11.1) (Cutaneous T-cell lymphoma-associated antigen HD-CL-09) (CTCL-associated antigen HD-CL-09) (Dendritic cell-derived protein kinase) (JNK/SAPK-inhibitory kinase) (Jun kinase-inhibitory kinase) (Kinase from chicken homolog A) (hKFC-A) (Thousand and one amino acid protein 3)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "homology_or_rule_based_source_context_review_only",
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "TAOK3_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q9UQB9",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        166
+      ],
+      "alphafold_ids": [
+        "Q9UQB9"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        49,
+        72
+      ],
+      "candidate_priority_rank": 6,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:Q9UQB9",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map UniProt active-site and ATP-binding residue positions onto a selected structure before any distance measurement",
+      "pdb_ids": [
+        "6GR8",
+        "6GR9",
+        "9ESA"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "Aurora kinase C (EC 2.7.11.1) (Aurora 3) (Aurora/IPL1-related kinase 3) (ARK-3) (Aurora-related kinase 3) (Aurora/IPL1/Eg2 protein 2) (Serine/threonine-protein kinase 13) (Serine/threonine-protein kinase aurora-C)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "homology_or_rule_based_source_context_review_only",
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "AURKC_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q9Y2K2",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        188
+      ],
+      "alphafold_ids": [
+        "Q9Y2K2"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        72,
+        95
+      ],
+      "candidate_priority_rank": 7,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:Q9Y2K2",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map UniProt active-site and ATP-binding residue positions onto a selected structure before any distance measurement",
+      "pdb_ids": [
+        "8OKU",
+        "8R4O",
+        "8R4Q",
+        "8R4U",
+        "8R4V"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "Serine/threonine-protein kinase SIK3 (EC 2.7.11.1) (Salt-inducible kinase 3) (SIK-3) (Serine/threonine-protein kinase QSK)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "SIK3_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q9Y3S1",
+      "active_site_evidence_codes": [
+        "ECO:0000250"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        342
+      ],
+      "alphafold_ids": [
+        "Q9Y3S1"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000250"
+      ],
+      "atp_binding_feature_count": 3,
+      "atp_binding_positions": [
+        205,
+        275,
+        325
+      ],
+      "candidate_priority_rank": 8,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:Q9Y3S1",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "map UniProt active-site and ATP-binding residue positions onto a selected structure before any distance measurement",
+      "pdb_ids": [
+        "6ELM",
+        "6FBK"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "Serine/threonine-protein kinase WNK2 (EC 2.7.11.1) (Antigen NY-CO-43) (Protein kinase lysine-deficient 2) (Protein kinase with no lysine 2) (Serologically defined colon cancer antigen 43)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000250"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [],
+      "source_evidence_strength_status": "homology_or_rule_based_source_context_review_only",
+      "sourcing_status": "sourced_pending_structure_mapping_review",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "WNK2_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P32298",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        312
+      ],
+      "alphafold_ids": [
+        "P32298"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        193,
+        216
+      ],
+      "candidate_priority_rank": null,
+      "catalytic_activity_count": 1,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.16"
+      ],
+      "entry_id": "uniprot:P32298",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "do not advance without protein phosphotransfer reaction evidence",
+      "pdb_ids": [
+        "4YHJ"
+      ],
+      "protein_acceptor_terms": [],
+      "protein_name": "G protein-coupled receptor kinase 4 (EC 2.7.11.16) (G protein-coupled receptor kinase GRK4) (ITI1)",
+      "protein_phosphotransfer_catalytic_activity_count": 0,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [
+        "protein_phosphotransfer_catalytic_activity_missing"
+      ],
+      "source_evidence_strength_status": "homology_or_rule_based_source_context_review_only",
+      "sourcing_status": "blocked_protein_phosphotransfer_source_missing",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "GRK4_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q15835",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        317
+      ],
+      "alphafold_ids": [
+        "Q15835"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        196,
+        219
+      ],
+      "candidate_priority_rank": null,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.14"
+      ],
+      "entry_id": "uniprot:Q15835",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "do not advance without protein phosphotransfer reaction evidence",
+      "pdb_ids": [
+        "5AFP"
+      ],
+      "protein_acceptor_terms": [],
+      "protein_name": "Rhodopsin kinase GRK1 (RK) (EC 2.7.11.14) (G protein-coupled receptor kinase 1)",
+      "protein_phosphotransfer_catalytic_activity_count": 0,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [
+        "protein_phosphotransfer_catalytic_activity_missing"
+      ],
+      "source_evidence_strength_status": "homology_or_rule_based_source_context_review_only",
+      "sourcing_status": "blocked_protein_phosphotransfer_source_missing",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "GRK1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q16671",
+      "active_site_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "active_site_feature_count": 1,
+      "active_site_positions": [
+        333
+      ],
+      "alphafold_ids": [
+        "Q16671"
+      ],
+      "atp_binding_evidence_codes": [
+        "ECO:0000255"
+      ],
+      "atp_binding_feature_count": 2,
+      "atp_binding_positions": [
+        209,
+        230
+      ],
+      "candidate_priority_rank": null,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 1,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.30"
+      ],
+      "entry_id": "uniprot:Q16671",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "clear source-level blockers before mapping",
+      "pdb_ids": [
+        "7L0J"
+      ],
+      "protein_acceptor_terms": [],
+      "protein_name": "Anti-Muellerian hormone type-2 receptor (EC 2.7.11.30) (Anti-Muellerian hormone type II receptor) (AMH type II receptor) (MIS type II receptor) (MISRII) (MRII)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [
+        "protein_acceptor_scope_missing"
+      ],
+      "source_evidence_strength_status": "homology_or_rule_based_source_context_review_only",
+      "sourcing_status": "blocked_source_scout_criteria",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "AMHR2_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q8IV63",
+      "active_site_evidence_codes": [],
+      "active_site_feature_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids": [
+        "Q8IV63"
+      ],
+      "atp_binding_evidence_codes": [],
+      "atp_binding_feature_count": 0,
+      "atp_binding_positions": [],
+      "candidate_priority_rank": null,
+      "catalytic_activity_count": 1,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.22"
+      ],
+      "entry_id": "uniprot:Q8IV63",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "do not advance without explicit active-site residue evidence",
+      "pdb_ids": [
+        "2JII"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein"
+      ],
+      "protein_name": "Serine/threonine-protein kinase VRK3 (EC 2.7.11.22) (Vaccinia-related kinase 3)",
+      "protein_phosphotransfer_catalytic_activity_count": 1,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [
+        "atp_binding_feature_missing",
+        "uniprot_active_site_feature_missing"
+      ],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "sourcing_status": "blocked_active_site_source_missing",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "VRK3_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q96C45",
+      "active_site_evidence_codes": [],
+      "active_site_feature_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids": [
+        "Q96C45"
+      ],
+      "atp_binding_evidence_codes": [],
+      "atp_binding_feature_count": 0,
+      "atp_binding_positions": [],
+      "candidate_priority_rank": null,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:Q96C45",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "do not advance without explicit active-site residue evidence",
+      "pdb_ids": [
+        "6TSZ",
+        "6U5L"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "Serine/threonine-protein kinase ULK4 (EC 2.7.11.1) (Unc-51-like kinase 4)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [
+        "atp_binding_feature_missing",
+        "uniprot_active_site_feature_missing"
+      ],
+      "source_evidence_strength_status": "source_evidence_codes_missing",
+      "sourcing_status": "blocked_active_site_source_missing",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "ULK4_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q96QP1",
+      "active_site_evidence_codes": [],
+      "active_site_feature_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids": [
+        "Q96QP1"
+      ],
+      "atp_binding_evidence_codes": [],
+      "atp_binding_feature_count": 0,
+      "atp_binding_positions": [],
+      "candidate_priority_rank": null,
+      "catalytic_activity_count": 2,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1"
+      ],
+      "entry_id": "uniprot:Q96QP1",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "do not advance without explicit active-site residue evidence",
+      "pdb_ids": [
+        "5Z2C",
+        "8ZD3"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein",
+        "threonyl_protein"
+      ],
+      "protein_name": "Alpha-protein kinase 1 (EC 2.7.11.1) (Chromosome 4 kinase) (Lymphocyte alpha-protein kinase)",
+      "protein_phosphotransfer_catalytic_activity_count": 2,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [
+        "atp_binding_feature_missing",
+        "uniprot_active_site_feature_missing"
+      ],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "sourcing_status": "blocked_active_site_source_missing",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "ALPK1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q9Y5B8",
+      "active_site_evidence_codes": [],
+      "active_site_feature_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids": [
+        "Q9Y5B8"
+      ],
+      "atp_binding_evidence_codes": [],
+      "atp_binding_feature_count": 0,
+      "atp_binding_positions": [],
+      "candidate_priority_rank": null,
+      "catalytic_activity_count": 1,
+      "cofactor_comment_count": 0,
+      "countable_label_candidate": false,
+      "direct_experimental_source_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ec_numbers": [
+        "2.7.11.1",
+        "3.1.11.-"
+      ],
+      "entry_id": "uniprot:Q9Y5B8",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "lane_id": "ser_thr_protein_kinase_third_pass",
+      "measurement_ready": false,
+      "metal_binding_feature_count": 0,
+      "metal_binding_positions": [],
+      "next_action": "do not advance without explicit active-site residue evidence",
+      "pdb_ids": [
+        "7UNG",
+        "8J07"
+      ],
+      "protein_acceptor_terms": [
+        "seryl_protein"
+      ],
+      "protein_name": "Nucleoside diphosphate kinase 7 (NDK7) (NDP kinase 7) (Putative 3'-5'-DNA exonuclease NDK7) (EC 3.1.11.-) (Serine protein kinase NME7) (EC 2.7.11.1) (nm23-H7)",
+      "protein_phosphotransfer_catalytic_activity_count": 1,
+      "protein_phosphotransfer_evidence_codes": [
+        "ECO:0000269"
+      ],
+      "ready_for_label_import": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "reviewed": "reviewed",
+      "source_evidence_blockers": [
+        "atp_binding_feature_missing",
+        "uniprot_active_site_feature_missing"
+      ],
+      "source_evidence_strength_status": "direct_experimental_source_context_present",
+      "sourcing_status": "blocked_active_site_source_missing",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "target_label_type_if_future_gated": "seed_fingerprint",
+      "uniprot_entry_name": "NDK7_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    }
+  ],
+  "warnings": [
+    "External ePK source scouting is review-only and cannot make countable positive labels without mapping, thresholds, gates, and external hard-negative re-audit."
+  ]
+}
