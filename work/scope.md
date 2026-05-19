@@ -49,7 +49,18 @@ residue authority, terminal gamma atom measurement, and mapped protein-substrate
 acceptor evidence. The 1025 preview/expanded source triage does not expose a
 new ePK protein-substrate source beyond the already exhausted
 `m_csa:760`/`m_csa:757`/`m_csa:756` candidates, and the expanded terminal
-decision remains closed with 0 measurement-ready rows. Thresholds are not
+decision remains closed with 0 measurement-ready rows. The first external ePK
+source scout now finds eight reviewed PDB-backed UniProt protein-kinase rows
+with active-site, ATP-binding, and protein-phosphotransfer evidence.
+Struct-ref-seq/source-position mapping resolves nine structures and finds five
+active-state ANP/Mg `Q8IVT5` structures, but they still lack source-mapped
+protein-substrate acceptor evidence. The follow-on acceptor audit finds nearby
+non-catalytic-chain Ser hydroxyls in three structures but not source authority
+for them as substrate acceptors, so measurement readiness stays 0. The
+next-experiment queue ranks those three source-mapping checks first and the
+two outside-threshold active-state rows second. The source-mapping check then
+fails closed: all five `Q8IVT5` candidates are MEK1 `P29678` Ser194, while
+source phospho-acceptor evidence is at Ser218/Ser222. Thresholds are not
 calibrated, and registry or label-factory extension remains out of scope until
 those gates pass.
 

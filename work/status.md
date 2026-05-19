@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 189
-- Measured elapsed time: 5710.0 minutes (95.17 hours)
+- Entries: 190
+- Measured elapsed time: 5758.8 minutes (95.98 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 480.8 measured minutes (8.01 hours)
+- post-infra-science: 529.7 measured minutes (8.83 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2131
-- Evidence references logged: 1681
+- Artifact references logged: 2143
+- Evidence references logged: 1693
 
 ## Recent Entries
-
-### 2026-05-18T23:06:35.869912+00:00 - post-infra-science
-
-- Task: ePK NDK homolog mapping review
-- Time mode: measured
-- Measured minutes: 13.0
-- Started: 2026-05-18T22:53:24Z
-- Ended: 2026-05-18T23:06:24Z
-- Artifacts: artifacts/v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: startup 488-test unit discovery passed, startup validate passed with 682 labels, migration guard passed with 108 rows and 0 blockers, NDK homolog mapping review mapped 4 gamma-metal candidates and 4 measurement-ready review-only structures, pre-count gate remains blocked_review_only, final 490-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ### 2026-05-19T00:13:47.867615+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-19T13:17:17Z
 - Artifacts: artifacts/v3_epk_analog_product_state_policy_activation_audit_1025.json, artifacts/v3_epk_analog_product_state_policy_control_reaudit_1025.json, artifacts/v3_epk_review_only_external_hard_negative_score_probe_1025.json, artifacts/v3_epk_m_csa756_5li1_residue_evidence_audit_1025.json, artifacts/v3_epk_protein_substrate_positive_source_triage_1025_preview.json, artifacts/v3_epk_protein_substrate_positive_source_triage_expanded_1025.json, artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_expanded_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: full 537-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, policy activation audit failed closed with 7 blockers, external hard-negative score probe had 3 of 3 review-only scores at 0.0 and 0 non-abstentions, 5LI1 audit recorded PB noncanonical hint but no PG terminal gamma and 0 measurement-ready candidates, expanded source triage and terminal decision found no new ePK source beyond m_csa760 m_csa757 m_csa756, compileall passed, jq empty passed on new ePK JSON artifacts, git diff --check passed
+- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
+
+### 2026-05-19T14:18:17.427495+00:00 - post-infra-science
+
+- Task: ePK external source mapping and acceptor source check
+- Time mode: measured
+- Measured minutes: 48.817
+- Started: 2026-05-19T13:29:09Z
+- Ended: 2026-05-19T14:17:58Z
+- Artifacts: artifacts/v3_epk_external_protein_substrate_source_scout_1025.json, artifacts/v3_epk_external_source_structure_mapping_review_1025.json, artifacts/v3_epk_external_source_acceptor_gap_audit_1025.json, artifacts/v3_epk_external_source_next_experiment_queue_1025.json, artifacts/v3_epk_external_source_acceptor_source_mapping_review_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
+- Evidence: startup 537-test unit discovery passed, final 544-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, external ePK scout found 8 sourced rows, struct-ref-seq mapping resolved 9 structures with 5 active-state Q8IVT5 rows, acceptor gap audit kept measurement_ready=0, source mapping showed all five Q8IVT5 acceptor-like hits map to MEK1 P29678 Ser194 not source phospho Ser218/Ser222, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
 
 ## Expectation Updates
@@ -266,6 +266,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-19T03:46:56.310139+00:00: ePK chain/ligand context is promising review-only disambiguation, but production scoring remains blocked by calibration, text-free feature admissibility, negative-control distribution readiness, and scored external hard-negative re-audit.
 - 2026-05-19T12:03:38.595849+00:00: Current bounded ePK source-repair candidates are exhausted as review-only negatives; next useful work needs new mapped protein-substrate evidence or an inactive policy draft promoted only after sibling and external hard-negative re-audits.
 - 2026-05-19T13:17:33.402946+00:00: ePK analog/product-state and 5LI1 evidence are now explicit fail-closed review-only blockers; source triage still has no new protein-substrate candidate, so production expansion needs genuinely new source evidence or a pre-frozen calibrated policy path.
+- 2026-05-19T14:18:17.427495+00:00: External reviewed kinase source evidence can produce mapped active-state Q8IVT5 structures, but current acceptor-like geometry is not source-mapped; production ePK expansion remains blocked until an exact source-mapped protein-substrate acceptor and calibrated scorer controls exist.
 
 ## Scope Adjustments
 

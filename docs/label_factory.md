@@ -527,6 +527,34 @@ negatives score 0.0 and have no policy-feature hits in review-only mode, but
 `external_hard_negative_reaudit_scored` remains false because thresholds are
 uncalibrated and the probe is not a real scored re-audit or clean held-out
 performance claim.
+`artifacts/v3_epk_external_protein_substrate_source_scout_1025.json` starts the
+new-source branch after current M-CSA source repair failed closed. The scout
+uses reviewed PDB-backed UniProt protein-kinase lanes only as source-triage
+context and finds eight non-countable rows with active-site, ATP-binding, and
+protein-phosphotransfer evidence. They remain blocked on structure mapping,
+protein-substrate acceptor mapping, thresholds, external hard-negative re-audit,
+and label-factory extension.
+`artifacts/v3_epk_external_source_structure_mapping_review_1025.json` maps the
+top sourced rows by direct UniProt residue positions plus struct-ref-seq
+alignment. It now resolves nine structures, including five active-state ANP/Mg
+mapped structures for `Q8IVT5` (`7JUW`, `7JUX`, `7JUY`, `7JV0`, and `7JV1`),
+but no row has source-mapped protein-substrate acceptor evidence. The result
+is therefore a review-only lead rather than measurement-ready or countable
+evidence.
+`artifacts/v3_epk_external_source_acceptor_gap_audit_1025.json` follows that
+lead and keeps it fail-closed: three structures have a non-catalytic-chain Ser
+hydroxyl within 6 Angstrom of ANP PG and two do not, but none has a
+source-mapped protein-substrate acceptor. Measurement readiness remains 0.
+`artifacts/v3_epk_external_source_next_experiment_queue_1025.json` converts the
+mapping/audit result into a review-only queue: first source-map the three
+within-threshold Ser acceptor-like residues, then look for alternate
+active-state substrate co-complex evidence for the two outside-threshold rows,
+while the remaining mapped or unmapped rows stay blocked and non-countable.
+`artifacts/v3_epk_external_source_acceptor_source_mapping_review_1025.json`
+executes that first source-mapping item and fails closed. All five active-state
+`Q8IVT5` candidates map to MEK1 `P29678` Ser194, while source phosphoserine
+evidence is at Ser218/Ser222; therefore the nearby geometry hits are not
+source-mapped protein-substrate acceptors.
 The 1025 preview/expanded source-triage artifacts repeat the same exhausted
 source candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) and do not open
 a new protein-substrate ePK source lane; the expanded terminal decision stays

@@ -1,0 +1,344 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "protein_substrate_acceptor_not_source_mapped",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "top_acceptor_candidate_source_mapping_executed",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_external_source_acceptor_source_mapping_review",
+    "next_actions": [
+      "treat Q8IVT5 Ser194 geometry hits as terminally not source-mapped for this lane",
+      "source alternate active-state substrate co-complex evidence for Q8IVT5 or continue lower-priority mapped accessions",
+      "do not measure or score until an exact source-mapped acceptor exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact source-maps Q8IVT5 acceptor-like residue candidates and fails closed unless the exact UniProt residue has source phospho-acceptor evidence and threshold geometry.",
+    "reviewed_acceptor_candidate_count": 5,
+    "source_epk_external_source_acceptor_gap_audit_method": "epk_external_source_acceptor_gap_audit",
+    "source_mapped_acceptor_count": 0,
+    "source_mapping_status_counts": {
+      "terminal_acceptor_candidate_not_source_mapped_review_only": 5
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "acceptor_chain_accession": "P29678",
+      "acceptor_uniprot_position": 194,
+      "accession": "Q8IVT5",
+      "candidate_auth_seq_id": "194",
+      "candidate_chain_name": "C",
+      "candidate_label_seq_id": "185",
+      "candidate_residue_code": "SER",
+      "candidate_threshold_angstrom": 6.0,
+      "candidate_within_measurement_threshold": true,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "exact_source_phospho_features": [],
+      "external_hard_negative_reaudit_scored": false,
+      "mapping_basis": "struct_ref_seq_alignment",
+      "measurement_ready": false,
+      "nearest_gamma_distance_angstrom": 5.117,
+      "nearest_source_phospho_features": [
+        {
+          "begin": 218,
+          "description": "Phosphoserine; by RAF",
+          "end": 218,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "feature_type": "Modified residue"
+        },
+        {
+          "begin": 222,
+          "description": "Phosphoserine; by RAF",
+          "end": 222,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "feature_type": "Modified residue"
+        },
+        {
+          "begin": 286,
+          "description": "Phosphothreonine",
+          "end": 286,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_type": "Modified residue"
+        }
+      ],
+      "pdb_id": "7JUW",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "candidate_residue_not_annotated_as_phospho_acceptor",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_mapping_status": "terminal_acceptor_candidate_not_source_mapped_review_only",
+      "source_phospho_feature_exact_match_count": 0,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_chain_accession": "P29678",
+      "acceptor_uniprot_position": 194,
+      "accession": "Q8IVT5",
+      "candidate_auth_seq_id": "194",
+      "candidate_chain_name": "C",
+      "candidate_label_seq_id": "185",
+      "candidate_residue_code": "SER",
+      "candidate_threshold_angstrom": 6.0,
+      "candidate_within_measurement_threshold": false,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "exact_source_phospho_features": [],
+      "external_hard_negative_reaudit_scored": false,
+      "mapping_basis": "struct_ref_seq_alignment",
+      "measurement_ready": false,
+      "nearest_gamma_distance_angstrom": 7.122,
+      "nearest_source_phospho_features": [
+        {
+          "begin": 218,
+          "description": "Phosphoserine; by RAF",
+          "end": 218,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "feature_type": "Modified residue"
+        },
+        {
+          "begin": 222,
+          "description": "Phosphoserine; by RAF",
+          "end": 222,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "feature_type": "Modified residue"
+        },
+        {
+          "begin": 286,
+          "description": "Phosphothreonine",
+          "end": 286,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_type": "Modified residue"
+        }
+      ],
+      "pdb_id": "7JUX",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "candidate_residue_not_annotated_as_phospho_acceptor",
+        "candidate_acceptor_geometry_outside_threshold",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_mapping_status": "terminal_acceptor_candidate_not_source_mapped_review_only",
+      "source_phospho_feature_exact_match_count": 0,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_chain_accession": "P29678",
+      "acceptor_uniprot_position": 194,
+      "accession": "Q8IVT5",
+      "candidate_auth_seq_id": "194",
+      "candidate_chain_name": "C",
+      "candidate_label_seq_id": "185",
+      "candidate_residue_code": "SER",
+      "candidate_threshold_angstrom": 6.0,
+      "candidate_within_measurement_threshold": true,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "exact_source_phospho_features": [],
+      "external_hard_negative_reaudit_scored": false,
+      "mapping_basis": "struct_ref_seq_alignment",
+      "measurement_ready": false,
+      "nearest_gamma_distance_angstrom": 4.393,
+      "nearest_source_phospho_features": [
+        {
+          "begin": 218,
+          "description": "Phosphoserine; by RAF",
+          "end": 218,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "feature_type": "Modified residue"
+        },
+        {
+          "begin": 222,
+          "description": "Phosphoserine; by RAF",
+          "end": 222,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "feature_type": "Modified residue"
+        },
+        {
+          "begin": 286,
+          "description": "Phosphothreonine",
+          "end": 286,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_type": "Modified residue"
+        }
+      ],
+      "pdb_id": "7JUY",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "candidate_residue_not_annotated_as_phospho_acceptor",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_mapping_status": "terminal_acceptor_candidate_not_source_mapped_review_only",
+      "source_phospho_feature_exact_match_count": 0,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_chain_accession": "P29678",
+      "acceptor_uniprot_position": 194,
+      "accession": "Q8IVT5",
+      "candidate_auth_seq_id": "194",
+      "candidate_chain_name": "C",
+      "candidate_label_seq_id": "185",
+      "candidate_residue_code": "SER",
+      "candidate_threshold_angstrom": 6.0,
+      "candidate_within_measurement_threshold": true,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "exact_source_phospho_features": [],
+      "external_hard_negative_reaudit_scored": false,
+      "mapping_basis": "struct_ref_seq_alignment",
+      "measurement_ready": false,
+      "nearest_gamma_distance_angstrom": 4.901,
+      "nearest_source_phospho_features": [
+        {
+          "begin": 218,
+          "description": "Phosphoserine; by RAF",
+          "end": 218,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "feature_type": "Modified residue"
+        },
+        {
+          "begin": 222,
+          "description": "Phosphoserine; by RAF",
+          "end": 222,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "feature_type": "Modified residue"
+        },
+        {
+          "begin": 286,
+          "description": "Phosphothreonine",
+          "end": 286,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_type": "Modified residue"
+        }
+      ],
+      "pdb_id": "7JV0",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "candidate_residue_not_annotated_as_phospho_acceptor",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_mapping_status": "terminal_acceptor_candidate_not_source_mapped_review_only",
+      "source_phospho_feature_exact_match_count": 0,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_chain_accession": "P29678",
+      "acceptor_uniprot_position": 194,
+      "accession": "Q8IVT5",
+      "candidate_auth_seq_id": "194",
+      "candidate_chain_name": "C",
+      "candidate_label_seq_id": "185",
+      "candidate_residue_code": "SER",
+      "candidate_threshold_angstrom": 6.0,
+      "candidate_within_measurement_threshold": false,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "exact_source_phospho_features": [],
+      "external_hard_negative_reaudit_scored": false,
+      "mapping_basis": "struct_ref_seq_alignment",
+      "measurement_ready": false,
+      "nearest_gamma_distance_angstrom": 6.697,
+      "nearest_source_phospho_features": [
+        {
+          "begin": 218,
+          "description": "Phosphoserine; by RAF",
+          "end": 218,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "feature_type": "Modified residue"
+        },
+        {
+          "begin": 222,
+          "description": "Phosphoserine; by RAF",
+          "end": 222,
+          "evidence_codes": [
+            "ECO:0000269"
+          ],
+          "feature_type": "Modified residue"
+        },
+        {
+          "begin": 286,
+          "description": "Phosphothreonine",
+          "end": 286,
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_type": "Modified residue"
+        }
+      ],
+      "pdb_id": "7JV1",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "candidate_residue_not_annotated_as_phospho_acceptor",
+        "candidate_acceptor_geometry_outside_threshold",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_mapping_status": "terminal_acceptor_candidate_not_source_mapped_review_only",
+      "source_phospho_feature_exact_match_count": 0,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "The active-state Q8IVT5 geometry candidates are not source-mapped protein-substrate acceptors."
+  ]
+}

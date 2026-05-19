@@ -1,0 +1,282 @@
+{
+  "metadata": {
+    "acceptor_gap_status_counts": {
+      "acceptor_like_geometry_not_source_mapped_review_only": 3,
+      "no_acceptor_like_hydroxyl_within_threshold_review_only": 2
+    },
+    "active_state_mapping_ready_input_count": 5,
+    "audited_structure_count": 5,
+    "blocker_not_removed": [
+      "protein_substrate_acceptor_not_source_mapped",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "external_epk_source_acceptor_gap_audited",
+    "candidate_threshold_angstrom": 6.0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_external_source_acceptor_gap_audit",
+    "next_actions": [
+      "source protein-substrate acceptor evidence for Q8IVT5 before any distance claim",
+      "if no source-mapped acceptor exists, continue external source mapping to the next scout accession",
+      "keep the ePK scorer and external hard-negative re-audit closed"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact tests whether active-state mapped external ePK source leads have source-usable acceptor geometry. Nearby same-chain hydroxyls or unsourced non-catalytic hydroxyls are not production acceptor evidence.",
+    "source_epk_external_source_structure_mapping_review_method": "epk_external_source_structure_mapping_review",
+    "source_mapped_acceptor_count": 0,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "acceptor_gap_status": "acceptor_like_geometry_not_source_mapped_review_only",
+      "accession": "Q8IVT5",
+      "candidate_threshold_angstrom": 6.0,
+      "catalytic_chains": [
+        "B"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "hydroxyl_candidate_count_within_8_angstrom": 2,
+      "hydroxyl_candidates": [
+        {
+          "atom_name": "OG",
+          "auth_seq_id": "194",
+          "chain_name": "C",
+          "label_seq_id": "185",
+          "nearest_gamma_distance_angstrom": 5.117,
+          "non_catalytic_chain": true,
+          "residue_code": "SER"
+        },
+        {
+          "atom_name": "OG",
+          "auth_seq_id": "772",
+          "chain_name": "B",
+          "label_seq_id": "207",
+          "nearest_gamma_distance_angstrom": 7.855,
+          "non_catalytic_chain": false,
+          "residue_code": "SER"
+        }
+      ],
+      "measurement_ready": false,
+      "nearest_non_catalytic_chain_hydroxyl_distance_angstrom": 5.117,
+      "nearest_same_chain_hydroxyl_distance_angstrom": 7.855,
+      "non_catalytic_chain_hydroxyl_candidate_count_within_threshold": 1,
+      "pdb_id": "7JUW",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "acceptor_identity_not_source_authoritative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_count_within_threshold": 0,
+      "source_mapped_acceptor_count": 0,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2
+    },
+    {
+      "acceptor_gap_status": "no_acceptor_like_hydroxyl_within_threshold_review_only",
+      "accession": "Q8IVT5",
+      "candidate_threshold_angstrom": 6.0,
+      "catalytic_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "hydroxyl_candidate_count_within_8_angstrom": 1,
+      "hydroxyl_candidates": [
+        {
+          "atom_name": "OG",
+          "auth_seq_id": "194",
+          "chain_name": "C",
+          "label_seq_id": "185",
+          "nearest_gamma_distance_angstrom": 7.122,
+          "non_catalytic_chain": true,
+          "residue_code": "SER"
+        }
+      ],
+      "measurement_ready": false,
+      "nearest_non_catalytic_chain_hydroxyl_distance_angstrom": 7.122,
+      "nearest_same_chain_hydroxyl_distance_angstrom": null,
+      "non_catalytic_chain_hydroxyl_candidate_count_within_threshold": 0,
+      "pdb_id": "7JUX",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "gamma_to_acceptor_distance_not_measurable",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_count_within_threshold": 0,
+      "source_mapped_acceptor_count": 0,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2
+    },
+    {
+      "acceptor_gap_status": "acceptor_like_geometry_not_source_mapped_review_only",
+      "accession": "Q8IVT5",
+      "candidate_threshold_angstrom": 6.0,
+      "catalytic_chains": [
+        "B"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "hydroxyl_candidate_count_within_8_angstrom": 2,
+      "hydroxyl_candidates": [
+        {
+          "atom_name": "OG",
+          "auth_seq_id": "194",
+          "chain_name": "C",
+          "label_seq_id": "185",
+          "nearest_gamma_distance_angstrom": 4.393,
+          "non_catalytic_chain": true,
+          "residue_code": "SER"
+        },
+        {
+          "atom_name": "OG",
+          "auth_seq_id": "772",
+          "chain_name": "B",
+          "label_seq_id": "207",
+          "nearest_gamma_distance_angstrom": 7.61,
+          "non_catalytic_chain": false,
+          "residue_code": "SER"
+        }
+      ],
+      "measurement_ready": false,
+      "nearest_non_catalytic_chain_hydroxyl_distance_angstrom": 4.393,
+      "nearest_same_chain_hydroxyl_distance_angstrom": 7.61,
+      "non_catalytic_chain_hydroxyl_candidate_count_within_threshold": 1,
+      "pdb_id": "7JUY",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "acceptor_identity_not_source_authoritative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_count_within_threshold": 0,
+      "source_mapped_acceptor_count": 0,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2
+    },
+    {
+      "acceptor_gap_status": "acceptor_like_geometry_not_source_mapped_review_only",
+      "accession": "Q8IVT5",
+      "candidate_threshold_angstrom": 6.0,
+      "catalytic_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "hydroxyl_candidate_count_within_8_angstrom": 1,
+      "hydroxyl_candidates": [
+        {
+          "atom_name": "OG",
+          "auth_seq_id": "194",
+          "chain_name": "C",
+          "label_seq_id": "185",
+          "nearest_gamma_distance_angstrom": 4.901,
+          "non_catalytic_chain": true,
+          "residue_code": "SER"
+        }
+      ],
+      "measurement_ready": false,
+      "nearest_non_catalytic_chain_hydroxyl_distance_angstrom": 4.901,
+      "nearest_same_chain_hydroxyl_distance_angstrom": null,
+      "non_catalytic_chain_hydroxyl_candidate_count_within_threshold": 1,
+      "pdb_id": "7JV0",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "acceptor_identity_not_source_authoritative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_count_within_threshold": 0,
+      "source_mapped_acceptor_count": 0,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2
+    },
+    {
+      "acceptor_gap_status": "no_acceptor_like_hydroxyl_within_threshold_review_only",
+      "accession": "Q8IVT5",
+      "candidate_threshold_angstrom": 6.0,
+      "catalytic_chains": [
+        "D"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8IVT5",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "hydroxyl_candidate_count_within_8_angstrom": 2,
+      "hydroxyl_candidates": [
+        {
+          "atom_name": "OG",
+          "auth_seq_id": "194",
+          "chain_name": "C",
+          "label_seq_id": "185",
+          "nearest_gamma_distance_angstrom": 6.697,
+          "non_catalytic_chain": true,
+          "residue_code": "SER"
+        },
+        {
+          "atom_name": "OG",
+          "auth_seq_id": "772",
+          "chain_name": "D",
+          "label_seq_id": "207",
+          "nearest_gamma_distance_angstrom": 7.279,
+          "non_catalytic_chain": false,
+          "residue_code": "SER"
+        }
+      ],
+      "measurement_ready": false,
+      "nearest_non_catalytic_chain_hydroxyl_distance_angstrom": 6.697,
+      "nearest_same_chain_hydroxyl_distance_angstrom": 7.279,
+      "non_catalytic_chain_hydroxyl_candidate_count_within_threshold": 0,
+      "pdb_id": "7JV1",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_not_source_mapped",
+        "gamma_to_acceptor_distance_not_measurable",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_count_within_threshold": 0,
+      "source_mapped_acceptor_count": 0,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_gamma_atom_count": 2
+    }
+  ],
+  "warnings": [
+    "External active-state mapping does not become measurement-ready until the protein-substrate acceptor is source-mapped."
+  ]
+}

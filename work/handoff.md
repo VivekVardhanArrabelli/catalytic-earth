@@ -50,6 +50,75 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T13:29:09Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/dry-run push
+hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
+preserved.
+
+The run opened the first external ePK positive-source branch after current
+M-CSA source repair failed closed. `artifacts/v3_epk_external_protein_substrate_source_scout_1025.json`
+uses reviewed PDB-backed UniProt protein-kinase lanes as source-triage context
+only. It finds eight non-countable source rows with explicit active-site,
+ATP-binding, and protein-phosphotransfer evidence; one additional row is
+blocked by missing active-site/ATP-binding source features. The artifact
+preserves the three imported external hard negatives as existing labels,
+keeps all rows non-countable, and leaves mapping, acceptor evidence,
+threshold calibration, external hard-negative re-audit, registry extension,
+and label-factory extension blocked.
+
+`artifacts/v3_epk_external_source_structure_mapping_review_1025.json` then
+tries direct UniProt-position plus struct-ref-seq mapping for the top sourced
+rows. Nine structures now map source positions conservatively. Five `Q8IVT5`
+structures, `7JUW`, `7JUX`, `7JUY`, `7JV0`, and `7JV1`, map the source
+active-site/ATP-binding positions on a single chain with local ANP/Mg context;
+four additional mapped structures lack usable local gamma/metal context. Seven
+reviewed structure rows still fail closed because direct position mapping is
+missing or ambiguous. The active-state mapped rows are useful source-repair
+leads, but none has source-mapped protein-substrate acceptor evidence, so
+measurement readiness remains 0 and no score, external held-out claim, registry
+edit, or label import is open.
+
+`artifacts/v3_epk_external_source_acceptor_gap_audit_1025.json` checks the
+remaining acceptor blocker for those active-state mapped structures. `7JUW`,
+`7JUY`, and `7JV0` have a non-catalytic-chain Ser hydroxyl within 6 Angstrom of
+ANP PG, while `7JUX` and `7JV1` have no within-threshold non-catalytic-chain
+hydroxyl. None of those hydroxyls is source-mapped as the protein-substrate
+acceptor, so the lead remains not measurement-ready and fail-closed.
+
+`artifacts/v3_epk_external_source_next_experiment_queue_1025.json` ranks that
+negative result into the next bounded experiments. The highest-value follow-up
+is source-mapping the three within-threshold unsourced Ser acceptor-like
+residues. If that fails, the lane should source an alternate active-state
+substrate co-complex for the outside-threshold rows, then only after that
+continue the mapped-but-ligand-incomplete accessions. All 16 rows stay
+review-only, unscored, non-countable, and blocked from import.
+
+`artifacts/v3_epk_external_source_acceptor_source_mapping_review_1025.json`
+executes the top source-mapping experiment and fails closed. All five
+active-state `Q8IVT5` candidates map to MEK1 `P29678` Ser194, but the source
+phosphoserine evidence is Ser218/Ser222, not Ser194. Those nearby geometry hits
+are terminally not source-mapped protein-substrate acceptors, so measurement
+readiness remains 0.
+
+Evidence-based confidence call: confidence is higher that external reviewed
+kinase source evidence can produce concrete ePK structure-mapping leads.
+Confidence remains low that the current lane can support production scoring
+because the new active-state `Q8IVT5` leads still lack mapped
+protein-substrate acceptors, and the existing threshold/external re-audit
+blockers remain unchanged. The next bounded experiment should source alternate
+active-state substrate co-complex evidence for `Q8IVT5`, then continue
+lower-priority mapped accessions only if that fails.
+
+Verification in this run: startup full unit discovery reported 537 tests
+passing; final full unit discovery reported 544 tests passing; `validate`
+preserved 682 labels and 8 fingerprints; artifact migration dry-run/local-file
+guard passed with 108 rows and `removal_allowed=0`; external label invariants
+remained 682 total, 212 seed, 470 out-of-scope, and the three imported
+external hard negatives stayed out-of-scope with null fingerprints.
+
 As of the 2026-05-19T12:28:13Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

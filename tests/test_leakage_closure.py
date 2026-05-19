@@ -4,7 +4,11 @@ import json
 import unittest
 from pathlib import Path
 
-from catalytic_earth.labels import load_labels
+from catalytic_earth.labels import (
+    build_epk_external_protein_substrate_source_scout,
+    build_epk_external_source_structure_mapping_review,
+    load_labels,
+)
 from catalytic_earth.transfer_scope import (
     EXTERNAL_HARD_NEGATIVE_ABSTAIN_THRESHOLD,
     EXTERNAL_HARD_NEGATIVE_NEXT_TRANCHE_PREREGISTRATION_VERSION,
@@ -960,6 +964,396 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(len(residue_rows), 3)
         self.assertTrue(all(row["review_only"] for row in residue_rows))
         self.assertTrue(all(row["residue_resolved"] for row in residue_rows))
+
+    def test_epk_external_protein_substrate_source_scout_stays_review_only(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_protein_substrate_source_scout_1025.json"
+        )
+        metadata = scout["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_external_protein_substrate_source_scout"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["current_source_candidates_exhausted"])
+        self.assertEqual(metadata["sourced_candidate_count"], 8)
+        self.assertEqual(metadata["entry_feature_record_available_count"], 16)
+        self.assertEqual(metadata["query_fetch_failure_count"], 0)
+        self.assertEqual(metadata["entry_feature_fetch_failure_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(
+            metadata["existing_external_label_entry_ids_checked"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(
+            metadata["source_scout_status_counts"],
+            {
+                "blocked_active_site_source_missing": 1,
+                "sourced_pending_structure_mapping_review": 8,
+            },
+        )
+        self.assertIn(
+            "external_positive_structure_mapping_required",
+            metadata["blocker_not_removed"],
+        )
+        sourced = [
+            row
+            for row in scout["rows"]
+            if row["sourcing_status"]
+            == "sourced_pending_structure_mapping_review"
+        ]
+        self.assertEqual(len(sourced), 8)
+        self.assertTrue(all(not row["countable_label_candidate"] for row in sourced))
+        self.assertTrue(
+            all(
+                row["protein_phosphotransfer_catalytic_activity_count"] > 0
+                for row in sourced
+            )
+        )
+
+    def test_epk_external_source_structure_mapping_review_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_structure_mapping_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_external_source_structure_mapping_review"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_candidate_count"], 8)
+        self.assertEqual(metadata["structure_row_count"], 16)
+        self.assertEqual(metadata["direct_position_mapping_ready_structure_count"], 9)
+        self.assertEqual(metadata["active_state_mapping_ready_structure_count"], 5)
+        self.assertEqual(metadata["active_state_mapping_ready_accessions"], ["Q8IVT5"])
+        self.assertEqual(
+            metadata["active_state_mapping_ready_pdb_ids"],
+            ["7JUW", "7JUX", "7JUY", "7JV0", "7JV1"],
+        )
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["mapping_review_status_counts"],
+            {
+                "active_state_mapping_ready_needs_acceptor_source_review_only": 5,
+                "blocked_direct_position_mapping_ambiguous_or_missing_review_only": 7,
+                "direct_position_mapping_ready_ligand_context_incomplete_review_only": 4,
+            },
+        )
+        ready_rows = [
+            row
+            for row in review["rows"]
+            if row["mapping_review_status"]
+            == "active_state_mapping_ready_needs_acceptor_source_review_only"
+        ]
+        self.assertEqual(
+            {row["pdb_id"] for row in ready_rows},
+            {"7JUW", "7JUX", "7JUY", "7JV0", "7JV1"},
+        )
+        self.assertTrue(
+            all(row["local_ligand_codes"] == ["ANP", "MG"] for row in ready_rows)
+        )
+        self.assertTrue(
+            all("metal_ion" in row["local_cofactor_families"] for row in ready_rows)
+        )
+        self.assertTrue(
+            all(
+                "protein_substrate_acceptor_not_source_mapped"
+                in row["remaining_blockers"]
+                for row in ready_rows
+            )
+        )
+
+    def test_epk_external_source_acceptor_gap_audit_stays_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_acceptor_gap_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_external_source_acceptor_gap_audit"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["active_state_mapping_ready_input_count"], 5)
+        self.assertEqual(metadata["audited_structure_count"], 5)
+        self.assertEqual(metadata["source_mapped_acceptor_count"], 0)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["acceptor_gap_status_counts"],
+            {
+                "acceptor_like_geometry_not_source_mapped_review_only": 3,
+                "no_acceptor_like_hydroxyl_within_threshold_review_only": 2,
+            },
+        )
+        rows = {row["pdb_id"]: row for row in audit["rows"]}
+        self.assertEqual(set(rows), {"7JUW", "7JUX", "7JUY", "7JV0", "7JV1"})
+        self.assertEqual(
+            {
+                pdb_id
+                for pdb_id, row in rows.items()
+                if row["acceptor_gap_status"]
+                == "acceptor_like_geometry_not_source_mapped_review_only"
+            },
+            {"7JUW", "7JUY", "7JV0"},
+        )
+        self.assertEqual(
+            {
+                pdb_id
+                for pdb_id, row in rows.items()
+                if row["acceptor_gap_status"]
+                == "no_acceptor_like_hydroxyl_within_threshold_review_only"
+            },
+            {"7JUX", "7JV1"},
+        )
+        self.assertTrue(
+            all(
+                "protein_substrate_acceptor_not_source_mapped"
+                in row["remaining_blockers"]
+                for row in rows.values()
+            )
+        )
+
+    def test_epk_external_source_next_experiment_queue_stays_review_only(
+        self,
+    ) -> None:
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_next_experiment_queue_1025.json"
+        )
+        metadata = queue["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_external_source_next_experiment_queue"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["queued_structure_count"], 16)
+        self.assertEqual(
+            metadata["top_priority_next_experiment"],
+            "source_map_nearby_candidate_acceptor",
+        )
+        self.assertEqual(metadata["top_priority_accession"], "Q8IVT5")
+        self.assertEqual(metadata["top_priority_pdb_id"], "7JUW")
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["queue_status_counts"],
+            {
+                "active_state_no_acceptor_candidate_review_only": 2,
+                "highest_value_acceptor_source_mapping_review_only": 3,
+                "mapped_structure_ligand_context_incomplete_review_only": 4,
+                "structure_mapping_unresolved_review_only": 7,
+            },
+        )
+        self.assertEqual(queue["rows"][0]["pdb_id"], "7JUW")
+        self.assertEqual(
+            queue["rows"][0]["queue_status"],
+            "highest_value_acceptor_source_mapping_review_only",
+        )
+        self.assertTrue(all(row["review_only"] for row in queue["rows"]))
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in queue["rows"])
+        )
+
+    def test_epk_external_source_acceptor_source_mapping_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_acceptor_source_mapping_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_external_source_acceptor_source_mapping_review",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_acceptor_candidate_count"], 5)
+        self.assertEqual(metadata["source_mapped_acceptor_count"], 0)
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["source_mapping_status_counts"],
+            {"terminal_acceptor_candidate_not_source_mapped_review_only": 5},
+        )
+        rows = {row["pdb_id"]: row for row in review["rows"]}
+        self.assertEqual(set(rows), {"7JUW", "7JUX", "7JUY", "7JV0", "7JV1"})
+        self.assertEqual(
+            {
+                pdb_id
+                for pdb_id, row in rows.items()
+                if row["candidate_within_measurement_threshold"]
+            },
+            {"7JUW", "7JUY", "7JV0"},
+        )
+        for row in rows.values():
+            self.assertEqual(row["candidate_residue_code"], "SER")
+            self.assertEqual(row["candidate_auth_seq_id"], "194")
+            self.assertEqual(row["acceptor_chain_accession"], "P29678")
+            self.assertEqual(row["acceptor_uniprot_position"], 194)
+            self.assertEqual(row["source_phospho_feature_exact_match_count"], 0)
+            self.assertFalse(row["measurement_ready"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_external_source_scout_builder_keeps_rows_non_countable(
+        self,
+    ) -> None:
+        scout = build_epk_external_protein_substrate_source_scout(
+            epk_protein_substrate_source_repair_terminal_decision={
+                "metadata": {
+                    "method": "terminal",
+                    "current_source_candidates_exhausted": True,
+                }
+            },
+            query_payloads_by_lane={
+                "fixture_lane": {
+                    "metadata": {"query": "fixture", "record_count": 1},
+                    "records": [
+                        {
+                            "accession": "PTEST",
+                            "reviewed": "reviewed",
+                            "ec_numbers": ["2.7.11.1"],
+                            "pdb_ids": ["1ABC"],
+                            "alphafold_ids": [],
+                        }
+                    ],
+                }
+            },
+            entry_records_by_accession={
+                "PTEST": {
+                    "active_site_features": [{"begin": 10}],
+                    "binding_site_features": [
+                        {"begin": 1, "ligand_name": "ATP"},
+                    ],
+                    "catalytic_activity_comments": [
+                        {
+                            "reaction": (
+                                "L-seryl-[protein] + ATP = "
+                                "O-phospho-L-seryl-[protein] + ADP + H(+)"
+                            )
+                        }
+                    ],
+                    "cofactor_comments": [],
+                }
+            },
+            existing_label_records=[],
+        )
+        self.assertEqual(scout["metadata"]["sourced_candidate_count"], 1)
+        self.assertEqual(scout["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(scout["metadata"]["ready_for_label_import"])
+        self.assertFalse(scout["rows"][0]["countable_label_candidate"])
+
+    def test_epk_external_source_mapping_uses_struct_ref_seq_auth_residues(
+        self,
+    ) -> None:
+        cif_text = """data_1ABC
+loop_
+_struct_ref_seq.align_id
+_struct_ref_seq.ref_id
+_struct_ref_seq.pdbx_PDB_id_code
+_struct_ref_seq.pdbx_strand_id
+_struct_ref_seq.seq_align_beg
+_struct_ref_seq.pdbx_auth_seq_align_beg
+_struct_ref_seq.seq_align_end
+_struct_ref_seq.pdbx_auth_seq_align_end
+_struct_ref_seq.pdbx_db_accession
+_struct_ref_seq.db_align_beg
+_struct_ref_seq.db_align_end
+1 1 1ABC A 1 100 30 129 QTEST 1 30
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.auth_atom_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+ATOM 1 C CA ALA A 100 0.0 0.0 0.0 CA ALA A 109
+ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
+#
+"""
+        review = build_epk_external_source_structure_mapping_review(
+            epk_external_protein_substrate_source_scout={
+                "metadata": {"method": "fixture"},
+                "rows": [
+                    {
+                        "sourcing_status": (
+                            "sourced_pending_structure_mapping_review"
+                        ),
+                        "candidate_priority_rank": 1,
+                        "accession": "QTEST",
+                        "entry_id": "uniprot:QTEST",
+                        "lane_id": "fixture_lane",
+                        "active_site_positions": [10],
+                        "atp_binding_positions": [],
+                        "pdb_ids": ["1ABC"],
+                    }
+                ],
+            },
+            max_candidates=1,
+            max_pdbs_per_candidate=1,
+            cif_text_by_pdb={"1ABC": cif_text},
+        )
+        row = review["rows"][0]
+        self.assertTrue(row["direct_position_mapping_ready"])
+        self.assertEqual(
+            row["direct_position_mapping_basis"],
+            "struct_ref_seq_uniprot_position_mapping",
+        )
+        self.assertEqual(row["mapped_residue_positions"][0]["resid"], "109")
+        self.assertEqual(row["mapped_residue_positions"][0]["code"], "ALA")
+        self.assertEqual(
+            row["mapping_review_status"],
+            "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+        )
 
     def test_epk_family_specific_template_validation_stays_review_only(
         self,

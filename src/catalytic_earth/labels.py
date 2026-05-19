@@ -19320,6 +19320,1410 @@ def build_epk_protein_substrate_source_repair_terminal_decision(
     }
 
 
+def _epk_uniprot_protein_phosphotransfer_comment(
+    comment: dict[str, Any],
+) -> bool:
+    reaction = str(comment.get("reaction") or "").lower()
+    return (
+        "protein" in reaction
+        and "atp" in reaction
+        and ("phospho" in reaction or "phosphoryl" in reaction)
+    )
+
+
+def _epk_uniprot_acceptor_terms(comments: list[dict[str, Any]]) -> list[str]:
+    terms: set[str] = set()
+    for comment in comments:
+        reaction = str(comment.get("reaction") or "").lower()
+        if "l-seryl-[protein]" in reaction:
+            terms.add("seryl_protein")
+        if "l-threonyl-[protein]" in reaction:
+            terms.add("threonyl_protein")
+        if "l-tyrosyl-[protein]" in reaction:
+            terms.add("tyrosyl_protein")
+        if "[protein]" in reaction and not terms:
+            terms.add("protein_acceptor_unspecified")
+    return sorted(terms)
+
+
+def _epk_uniprot_evidence_codes(items: list[dict[str, Any]]) -> list[str]:
+    codes: set[str] = set()
+    for item in items:
+        for evidence in item.get("evidence", []) or []:
+            if isinstance(evidence, dict) and evidence.get("evidence_code"):
+                codes.add(str(evidence["evidence_code"]))
+    return sorted(codes)
+
+
+def build_epk_external_protein_substrate_source_scout(
+    *,
+    epk_protein_substrate_source_repair_terminal_decision: dict[str, Any],
+    query_payloads_by_lane: dict[str, dict[str, Any]],
+    entry_records_by_accession: dict[str, dict[str, Any]],
+    existing_label_records: list[dict[str, Any]] | None = None,
+    max_candidates: int = 8,
+) -> dict[str, Any]:
+    """Scout external ePK positive source rows without opening count growth."""
+
+    if max_candidates < 1:
+        raise ValueError("max_candidates must be positive")
+
+    terminal_meta = epk_protein_substrate_source_repair_terminal_decision.get(
+        "metadata", {}
+    )
+    if not isinstance(terminal_meta, dict):
+        terminal_meta = {}
+    target_fingerprint_id = str(
+        terminal_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    existing_label_entry_ids = {
+        str(record.get("entry_id"))
+        for record in existing_label_records or []
+        if isinstance(record, dict) and record.get("entry_id")
+    }
+    normalized_entry_records = {
+        str(accession).upper(): record
+        for accession, record in entry_records_by_accession.items()
+        if accession and isinstance(record, dict)
+    }
+
+    rows: list[dict[str, Any]] = []
+    seen_accessions: set[str] = set()
+    blocker_counts: Counter[str] = Counter()
+    status_counts: Counter[str] = Counter()
+    fetched_record_count = 0
+    entry_fetch_available_count = 0
+    query_metadata: list[dict[str, Any]] = []
+
+    for lane_id in sorted(query_payloads_by_lane):
+        payload = query_payloads_by_lane[lane_id] or {}
+        metadata = payload.get("metadata", {})
+        if not isinstance(metadata, dict):
+            metadata = {}
+        query_metadata.append(
+            {
+                "lane_id": lane_id,
+                "query": metadata.get("query"),
+                "record_count": metadata.get("record_count")
+                or len(payload.get("records", []) or []),
+            }
+        )
+        for sample_row in payload.get("records", []) or []:
+            if not isinstance(sample_row, dict):
+                continue
+            accession = str(sample_row.get("accession") or "").upper()
+            if not accession or accession in seen_accessions:
+                continue
+            seen_accessions.add(accession)
+            fetched_record_count += 1
+            entry_id = f"uniprot:{accession}"
+            record = normalized_entry_records.get(accession)
+            if record:
+                entry_fetch_available_count += 1
+
+            active_features = [
+                feature
+                for feature in (record or {}).get("active_site_features", []) or []
+                if isinstance(feature, dict)
+            ]
+            binding_features = [
+                feature
+                for feature in (record or {}).get("binding_site_features", []) or []
+                if isinstance(feature, dict)
+            ]
+            catalytic_comments = [
+                comment
+                for comment in (record or {}).get("catalytic_activity_comments", [])
+                or []
+                if isinstance(comment, dict)
+            ]
+            cofactor_comments = [
+                comment
+                for comment in (record or {}).get("cofactor_comments", []) or []
+                if isinstance(comment, dict)
+            ]
+            atp_binding_features = [
+                feature
+                for feature in binding_features
+                if "atp"
+                in " ".join(
+                    str(feature.get(key) or "")
+                    for key in ("description", "ligand_name", "ligand_note")
+                ).lower()
+            ]
+            metal_binding_features = [
+                feature
+                for feature in binding_features
+                if any(
+                    token
+                    in " ".join(
+                        str(feature.get(key) or "")
+                        for key in ("description", "ligand_name", "ligand_note")
+                    ).lower()
+                    for token in ("mg", "mn", "metal", "magnesium", "manganese")
+                )
+            ]
+            protein_phosphotransfer_comments = [
+                comment
+                for comment in catalytic_comments
+                if _epk_uniprot_protein_phosphotransfer_comment(comment)
+            ]
+            acceptor_terms = _epk_uniprot_acceptor_terms(
+                protein_phosphotransfer_comments
+            )
+            active_site_evidence_codes = _epk_uniprot_evidence_codes(
+                active_features
+            )
+            atp_binding_evidence_codes = _epk_uniprot_evidence_codes(
+                atp_binding_features
+            )
+            phosphotransfer_evidence_codes = _epk_uniprot_evidence_codes(
+                protein_phosphotransfer_comments
+            )
+            all_source_evidence_codes = sorted(
+                set(active_site_evidence_codes)
+                | set(atp_binding_evidence_codes)
+                | set(phosphotransfer_evidence_codes)
+            )
+            direct_experimental_evidence_codes = sorted(
+                code for code in all_source_evidence_codes if code == "ECO:0000269"
+            )
+            source_evidence_strength_status = (
+                "direct_experimental_source_context_present"
+                if direct_experimental_evidence_codes
+                else "homology_or_rule_based_source_context_review_only"
+                if all_source_evidence_codes
+                else "source_evidence_codes_missing"
+            )
+            has_structure_reference = bool(
+                sample_row.get("pdb_ids") or sample_row.get("alphafold_ids")
+            )
+            reviewed = str(sample_row.get("reviewed") or "").lower() == "reviewed"
+
+            blockers: list[str] = []
+            if entry_id in existing_label_entry_ids:
+                blockers.append("existing_curated_label_entry")
+            if not reviewed:
+                blockers.append("reviewed_swissprot_record_required")
+            if not has_structure_reference:
+                blockers.append("structure_reference_missing")
+            if not record:
+                blockers.append("uniprot_entry_feature_not_fetched")
+            if record and not active_features:
+                blockers.append("uniprot_active_site_feature_missing")
+            if record and not atp_binding_features:
+                blockers.append("atp_binding_feature_missing")
+            if record and not protein_phosphotransfer_comments:
+                blockers.append("protein_phosphotransfer_catalytic_activity_missing")
+            if record and protein_phosphotransfer_comments and not acceptor_terms:
+                blockers.append("protein_acceptor_scope_missing")
+
+            if not blockers:
+                sourcing_status = "sourced_pending_structure_mapping_review"
+                next_action = (
+                    "map UniProt active-site and ATP-binding residue positions "
+                    "onto a selected structure before any distance measurement"
+                )
+            elif "existing_curated_label_entry" in blockers:
+                sourcing_status = "excluded_existing_curated_label"
+                next_action = "do not use an existing countable/external label as a new source"
+            elif "uniprot_entry_feature_not_fetched" in blockers:
+                sourcing_status = "blocked_uniprot_feature_fetch"
+                next_action = "fetch normalized UniProt feature JSON before source review"
+            elif "uniprot_active_site_feature_missing" in blockers:
+                sourcing_status = "blocked_active_site_source_missing"
+                next_action = "do not advance without explicit active-site residue evidence"
+            elif "protein_phosphotransfer_catalytic_activity_missing" in blockers:
+                sourcing_status = "blocked_protein_phosphotransfer_source_missing"
+                next_action = "do not advance without protein phosphotransfer reaction evidence"
+            elif "structure_reference_missing" in blockers:
+                sourcing_status = "blocked_structure_reference_missing"
+                next_action = "source a row with PDB or AlphaFold structure context"
+            else:
+                sourcing_status = "blocked_source_scout_criteria"
+                next_action = "clear source-level blockers before mapping"
+
+            blocker_counts.update(blockers)
+            status_counts[sourcing_status] += 1
+            rows.append(
+                {
+                    "accession": accession,
+                    "entry_id": entry_id,
+                    "lane_id": lane_id,
+                    "protein_name": sample_row.get("protein_name"),
+                    "uniprot_entry_name": (record or {}).get("entry_name")
+                    or sample_row.get("entry_name"),
+                    "uniprot_review_status": (record or {}).get("entry_type"),
+                    "reviewed": sample_row.get("reviewed"),
+                    "ec_numbers": sample_row.get("ec_numbers", []),
+                    "pdb_ids": sample_row.get("pdb_ids", []),
+                    "alphafold_ids": sample_row.get("alphafold_ids", []),
+                    "active_site_feature_count": len(active_features),
+                    "active_site_positions": [
+                        feature.get("begin") for feature in active_features
+                    ],
+                    "active_site_evidence_codes": active_site_evidence_codes,
+                    "atp_binding_feature_count": len(atp_binding_features),
+                    "atp_binding_positions": [
+                        feature.get("begin") for feature in atp_binding_features
+                    ],
+                    "atp_binding_evidence_codes": atp_binding_evidence_codes,
+                    "metal_binding_feature_count": len(metal_binding_features),
+                    "metal_binding_positions": [
+                        feature.get("begin") for feature in metal_binding_features
+                    ],
+                    "catalytic_activity_count": len(catalytic_comments),
+                    "protein_phosphotransfer_catalytic_activity_count": len(
+                        protein_phosphotransfer_comments
+                    ),
+                    "protein_phosphotransfer_evidence_codes": (
+                        phosphotransfer_evidence_codes
+                    ),
+                    "protein_acceptor_terms": acceptor_terms,
+                    "cofactor_comment_count": len(cofactor_comments),
+                    "source_evidence_strength_status": (
+                        source_evidence_strength_status
+                    ),
+                    "direct_experimental_source_evidence_codes": (
+                        direct_experimental_evidence_codes
+                    ),
+                    "target_family_id": "epk",
+                    "target_fingerprint_id_if_future_gated": target_fingerprint_id,
+                    "target_label_type_if_future_gated": "seed_fingerprint",
+                    "sourcing_status": sourcing_status,
+                    "source_evidence_blockers": sorted(set(blockers)),
+                    "candidate_priority_rank": None,
+                    "measurement_ready": False,
+                    "ready_to_measure_gamma_acceptor_distance": False,
+                    "ready_to_run_epk_scorer": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                    "ready_to_expand_positive_fingerprint_universe": False,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate": False,
+                    "next_action": next_action,
+                }
+            )
+
+    rows.sort(
+        key=lambda row: (
+            0
+            if row["sourcing_status"] == "sourced_pending_structure_mapping_review"
+            else 1,
+            str(row.get("lane_id") or ""),
+            str(row.get("accession") or ""),
+        )
+    )
+    sourced_seen = 0
+    filtered_rows: list[dict[str, Any]] = []
+    for row in rows:
+        if row["sourcing_status"] == "sourced_pending_structure_mapping_review":
+            sourced_seen += 1
+            if sourced_seen > max_candidates:
+                continue
+            row["candidate_priority_rank"] = sourced_seen
+        filtered_rows.append(row)
+    rows = filtered_rows
+    status_counts = Counter(row["sourcing_status"] for row in rows)
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["source_evidence_blockers"]
+    )
+    evidence_strength_counts = Counter(
+        str(row.get("source_evidence_strength_status") or "not_applicable")
+        for row in rows
+    )
+    sourced_rows = [
+        row
+        for row in rows
+        if row["sourcing_status"] == "sourced_pending_structure_mapping_review"
+    ]
+    sourced_lane_counts = Counter(str(row.get("lane_id") or "") for row in sourced_rows)
+    blocker_not_removed = [
+        "external_positive_structure_mapping_required",
+        "gamma_to_acceptor_distance_measurement_required",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "no_countable_external_positive_labels",
+    ]
+    if not sourced_rows:
+        blocker_not_removed.append("no_external_positive_source_candidates")
+
+    return {
+        "metadata": {
+            "method": "epk_external_protein_substrate_source_scout",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_protein_substrate_source_repair_terminal_decision_method": (
+                terminal_meta.get("method")
+            ),
+            "current_source_candidates_exhausted": bool(
+                terminal_meta.get("current_source_candidates_exhausted")
+            ),
+            "blocker_removed": "external_epk_positive_source_scout_started",
+            "blocker_not_removed": blocker_not_removed,
+            "query_lane_count": len(query_payloads_by_lane),
+            "query_metadata": query_metadata,
+            "fetched_candidate_record_count": fetched_record_count,
+            "entry_feature_record_available_count": entry_fetch_available_count,
+            "emitted_row_count": len(rows),
+            "max_candidates": max_candidates,
+            "sourced_candidate_count": len(sourced_rows),
+            "sourced_candidate_accessions": [
+                row["accession"] for row in sourced_rows
+            ],
+            "sourced_candidate_lane_counts": dict(sorted(sourced_lane_counts.items())),
+            "source_scout_status_counts": dict(sorted(status_counts.items())),
+            "source_evidence_strength_status_counts": dict(
+                sorted(evidence_strength_counts.items())
+            ),
+            "source_evidence_blocker_counts": dict(sorted(blocker_counts.items())),
+            "existing_label_entry_count_checked": len(existing_label_entry_ids),
+            "existing_external_label_entry_ids_checked": sorted(
+                entry_id
+                for entry_id in existing_label_entry_ids
+                if entry_id.startswith("uniprot:")
+            ),
+            "ready_to_measure_gamma_acceptor_distance": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This scout starts a new external ePK positive-source surface "
+                "after current M-CSA source repair failed closed. UniProt names, "
+                "EC labels, and reaction prose are source triage context only; "
+                "no score, threshold, registry edit, label import, or held-out "
+                "claim is produced."
+            ),
+            "next_actions": [
+                "map source active-site and ATP-binding positions onto selected structures for top sourced rows",
+                "measure gamma-to-protein-acceptor distances only after mapping succeeds",
+                "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "External ePK source scouting is review-only and cannot make "
+                "countable positive labels without mapping, thresholds, gates, "
+                "and external hard-negative re-audit."
+            )
+        ],
+    }
+
+
+def _epk_uniprot_direct_position_matches(
+    atoms: list[dict[str, Any]],
+    positions: list[dict[str, Any]],
+) -> dict[str, list[dict[str, Any]]]:
+    matches_by_position: dict[str, dict[tuple[str, str, str, str], dict[str, Any]]] = {
+        str(position["position"]): {} for position in positions
+    }
+    wanted = set(matches_by_position)
+    for atom in atoms:
+        if atom.get("group_PDB") != "ATOM":
+            continue
+        auth_seq = str(atom.get("auth_seq_id") or "")
+        label_seq = str(atom.get("label_seq_id") or "")
+        hit_positions = sorted({auth_seq, label_seq} & wanted)
+        if not hit_positions:
+            continue
+        chain = str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
+        code = str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        if not chain or not code:
+            continue
+        key = (chain, code, auth_seq, label_seq)
+        for position in hit_positions:
+            basis = []
+            if auth_seq == position:
+                basis.append("auth_seq_id")
+            if label_seq == position:
+                basis.append("label_seq_id")
+            matches_by_position[position].setdefault(
+                key,
+                {
+                    "position": position,
+                    "chain_name": chain,
+                    "code": code,
+                    "auth_seq_id": auth_seq,
+                    "label_seq_id": label_seq,
+                    "match_basis": sorted(basis),
+                    "roles": [],
+                },
+            )
+    role_by_position = {
+        str(position["position"]): list(position.get("roles", []))
+        for position in positions
+    }
+    return {
+        position: [
+            {
+                **match,
+                "roles": role_by_position.get(position, []),
+            }
+            for match in sorted(matches.values(), key=lambda item: (
+                item["chain_name"],
+                item["code"],
+                item["auth_seq_id"],
+                item["label_seq_id"],
+            ))
+        ]
+        for position, matches in matches_by_position.items()
+    }
+
+
+def _epk_resolve_single_chain_direct_positions(
+    matches_by_position: dict[str, list[dict[str, Any]]],
+) -> tuple[list[dict[str, Any]], str, list[str]]:
+    if not matches_by_position:
+        return [], "no_positions_requested", ["no_uniprot_positions_to_map"]
+    missing_positions = [
+        position for position, matches in matches_by_position.items() if not matches
+    ]
+    if missing_positions:
+        return [], "missing_direct_position_matches", [
+            "missing_uniprot_direct_position_matches"
+        ]
+
+    candidate_chains = sorted(
+        {
+            str(match.get("chain_name"))
+            for matches in matches_by_position.values()
+            for match in matches
+            if match.get("chain_name")
+        }
+    )
+    resolved_by_chain: list[tuple[str, list[dict[str, Any]]]] = []
+    for chain in candidate_chains:
+        positions: list[dict[str, Any]] = []
+        for position, matches in matches_by_position.items():
+            chain_matches = [
+                match for match in matches if str(match.get("chain_name")) == chain
+            ]
+            if len(chain_matches) != 1:
+                positions = []
+                break
+            match = chain_matches[0]
+            positions.append(
+                {
+                    "chain_name": chain,
+                    "code": match.get("code"),
+                    "resid": match.get("auth_seq_id") or match.get("label_seq_id"),
+                    "roles": match.get("roles", []),
+                    "uniprot_position": position,
+                    "mapping_basis": "+".join(match.get("match_basis", [])),
+                }
+            )
+        if positions:
+            resolved_by_chain.append((chain, positions))
+    if len(resolved_by_chain) == 1:
+        return (
+            _review_debt_normalized_residue_positions(resolved_by_chain[0][1]),
+            "single_chain_direct_uniprot_position_mapping",
+            [],
+        )
+    if len(resolved_by_chain) > 1:
+        return [], "ambiguous_multi_chain_direct_position_mapping", [
+            "multiple_chains_match_uniprot_positions"
+        ]
+    return [], "ambiguous_or_conflicting_direct_position_mapping", [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+    ]
+
+
+def _epk_mmcif_loop_rows(cif_text: str, prefix: str) -> list[dict[str, Any]]:
+    import shlex
+
+    rows: list[dict[str, Any]] = []
+    lines = cif_text.splitlines()
+    index = 0
+    while index < len(lines):
+        if lines[index].strip() != "loop_":
+            index += 1
+            continue
+        index += 1
+        headers: list[str] = []
+        while index < len(lines) and lines[index].strip().startswith("_"):
+            headers.append(lines[index].strip())
+            index += 1
+        if not headers or not all(header.startswith(prefix) for header in headers):
+            continue
+        while index < len(lines):
+            line = lines[index].strip()
+            if not line or line == "#":
+                break
+            if line == "loop_" or line.startswith("_") or line.startswith("data_"):
+                break
+            values = shlex.split(line)
+            if len(values) >= len(headers):
+                rows.append(
+                    {
+                        header.replace(prefix, ""): (
+                            None if value in {".", "?"} else value
+                        )
+                        for header, value in zip(headers, values)
+                    }
+                )
+            index += 1
+    return rows
+
+
+def _epk_mmcif_single_category_rows(cif_text: str, prefix: str) -> list[dict[str, Any]]:
+    import shlex
+
+    rows: list[dict[str, Any]] = []
+    current: dict[str, Any] = {}
+    in_category = False
+    for raw_line in cif_text.splitlines():
+        line = raw_line.strip()
+        if line == "#":
+            if current:
+                rows.append(current)
+                current = {}
+            in_category = False
+            continue
+        if not line.startswith(prefix):
+            if in_category and line.startswith("_") and current:
+                rows.append(current)
+                current = {}
+                in_category = False
+            continue
+        in_category = True
+        parts = shlex.split(line)
+        if len(parts) >= 2:
+            key = parts[0].replace(prefix, "")
+            value = parts[1]
+            current[key] = None if value in {".", "?"} else value
+    if current:
+        rows.append(current)
+    return rows
+
+
+def _epk_struct_ref_seq_rows(cif_text: str) -> list[dict[str, Any]]:
+    prefix = "_struct_ref_seq."
+    loop_rows = _epk_mmcif_loop_rows(cif_text, prefix)
+    if loop_rows:
+        return loop_rows
+    return _epk_mmcif_single_category_rows(cif_text, prefix)
+
+
+def _epk_struct_ref_seq_mapped_positions(
+    atoms: list[dict[str, Any]],
+    cif_text: str,
+    accession: str,
+    positions: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    accession_upper = accession.upper()
+    mapped: list[dict[str, Any]] = []
+    rows = [
+        row
+        for row in _epk_struct_ref_seq_rows(cif_text)
+        if str(row.get("pdbx_db_accession") or "").upper() == accession_upper
+    ]
+    for position in positions:
+        position_value = str(position.get("position") or "")
+        try:
+            uniprot_position = int(position_value)
+        except ValueError:
+            continue
+        position_matches: list[dict[str, Any]] = []
+        for row in rows:
+            try:
+                db_begin = int(str(row.get("db_align_beg")))
+                db_end = int(str(row.get("db_align_end")))
+                auth_begin = int(str(row.get("pdbx_auth_seq_align_beg")))
+            except (TypeError, ValueError):
+                continue
+            if not db_begin <= uniprot_position <= db_end:
+                continue
+            auth_resid = str(auth_begin + (uniprot_position - db_begin))
+            chain = str(row.get("pdbx_strand_id") or "")
+            residue_atoms = [
+                atom
+                for atom in atoms
+                if atom.get("group_PDB") == "ATOM"
+                and chain in _label_atom_chain_ids(atom)
+                and str(atom.get("auth_seq_id") or "") == auth_resid
+            ]
+            codes = _sorted_strings(
+                atom.get("auth_comp_id") or atom.get("label_comp_id")
+                for atom in residue_atoms
+            )
+            if len(codes) != 1:
+                continue
+            position_matches.append(
+                {
+                    "chain_name": chain,
+                    "code": codes[0],
+                    "resid": auth_resid,
+                    "roles": position.get("roles", []),
+                    "uniprot_position": position_value,
+                    "mapping_basis": "struct_ref_seq_alignment",
+                }
+            )
+        if len(position_matches) != 1:
+            return []
+        mapped.append(position_matches[0])
+    return _review_debt_normalized_residue_positions(mapped)
+
+
+def build_epk_external_source_structure_mapping_review(
+    *,
+    epk_external_protein_substrate_source_scout: dict[str, Any],
+    max_candidates: int = 4,
+    max_pdbs_per_candidate: int = 3,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Attempt direct UniProt-position mapping for sourced external ePK rows."""
+
+    if max_candidates < 1:
+        raise ValueError("max_candidates must be positive")
+    if max_pdbs_per_candidate < 1:
+        raise ValueError("max_pdbs_per_candidate must be positive")
+
+    scout_meta = epk_external_protein_substrate_source_scout.get("metadata", {})
+    if not isinstance(scout_meta, dict):
+        scout_meta = {}
+    target_fingerprint_id = str(
+        scout_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    gamma_capable_codes = {"ACP", "ANP", "ATP", "DTP"}
+    inactive_analog_codes = {"AGS"}
+
+    sourced_rows = [
+        row
+        for row in epk_external_protein_substrate_source_scout.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("sourcing_status")
+        == "sourced_pending_structure_mapping_review"
+    ]
+    sourced_rows.sort(
+        key=lambda row: (
+            row.get("candidate_priority_rank") or 9999,
+            str(row.get("accession") or ""),
+        )
+    )
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    for source_row in sourced_rows[:max_candidates]:
+        accession = str(source_row.get("accession") or "")
+        active_positions = [
+            {
+                "position": str(position),
+                "roles": ["uniprot_active_site_feature"],
+            }
+            for position in source_row.get("active_site_positions", []) or []
+            if position not in {None, "", ".", "?"}
+        ]
+        atp_positions = [
+            {
+                "position": str(position),
+                "roles": ["uniprot_atp_binding_feature"],
+            }
+            for position in source_row.get("atp_binding_positions", []) or []
+            if position not in {None, "", ".", "?"}
+        ]
+        requested_positions = active_positions + atp_positions
+        for pdb_id in [
+            str(pdb_id).upper()
+            for pdb_id in (source_row.get("pdb_ids", []) or [])[
+                :max_pdbs_per_candidate
+            ]
+            if pdb_id
+        ]:
+            row_base = {
+                "accession": accession,
+                "entry_id": source_row.get("entry_id"),
+                "pdb_id": pdb_id,
+                "lane_id": source_row.get("lane_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id_if_future_gated": target_fingerprint_id,
+                "review_only": True,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+            }
+            try:
+                cif_text = cif_text_by_pdb.get(pdb_id)
+                fetch_status = (
+                    "provided_cif_text" if cif_text is not None else "fetched_rcsb_cif"
+                )
+                if cif_text is None:
+                    cif_text = cif_fetcher(pdb_id)
+                atoms = parse_atom_site_loop(cif_text)
+            except Exception as exc:
+                status = "structure_fetch_failed_review_only"
+                status_counts[status] += 1
+                rows.append(
+                    {
+                        **row_base,
+                        "fetch_status": "failed",
+                        "fetch_error": str(exc),
+                        "requested_uniprot_position_count": len(requested_positions),
+                        "direct_position_mapping_basis": None,
+                        "direct_position_mapping_warnings": ["structure_fetch_failed"],
+                        "direct_position_mapping_ready": False,
+                        "local_ligand_codes": [],
+                        "local_cofactor_families": [],
+                        "structure_ligand_codes": [],
+                        "structure_cofactor_families": [],
+                        "has_local_gamma_capable_nucleotide": False,
+                        "has_inactive_analog_ligand": False,
+                        "has_local_metal": False,
+                        "mapping_review_status": status,
+                        "remaining_blockers": ["structure_fetch_failed"],
+                    }
+                )
+                continue
+
+            inventory = structure_ligand_inventory_from_atoms(atoms)
+            struct_ref_positions = _epk_struct_ref_seq_mapped_positions(
+                atoms,
+                cif_text,
+                accession,
+                requested_positions,
+            )
+            matches_by_position = _epk_uniprot_direct_position_matches(
+                atoms, requested_positions
+            )
+            if struct_ref_positions:
+                resolved_positions = struct_ref_positions
+                mapping_basis = "struct_ref_seq_uniprot_position_mapping"
+                mapping_warnings: list[str] = []
+            else:
+                resolved_positions, mapping_basis, mapping_warnings = (
+                    _epk_resolve_single_chain_direct_positions(matches_by_position)
+                )
+            local_context = (
+                _review_debt_local_ligand_context(
+                    atoms,
+                    pdb_id,
+                    {pdb_id: resolved_positions},
+                )
+                if resolved_positions
+                else {
+                    "ligand_codes": [],
+                    "cofactor_families": [],
+                    "resolved_residue_count": 0,
+                }
+            )
+            local_ligand_codes = _sorted_strings(local_context.get("ligand_codes", []))
+            local_cofactor_families = _sorted_strings(
+                local_context.get("cofactor_families", [])
+            )
+            structure_ligand_codes = _sorted_strings(inventory.get("ligand_codes", []))
+            structure_cofactor_families = _sorted_strings(
+                inventory.get("cofactor_families", [])
+            )
+            has_gamma = bool(set(local_ligand_codes) & gamma_capable_codes)
+            has_inactive_analog = bool(
+                set(local_ligand_codes) & inactive_analog_codes
+            )
+            has_metal = "metal_ion" in set(local_cofactor_families)
+            direct_mapping_ready = bool(resolved_positions)
+            if direct_mapping_ready and has_gamma and has_metal:
+                status = "active_state_mapping_ready_needs_acceptor_source_review_only"
+                blockers = [
+                    "protein_substrate_acceptor_not_source_mapped",
+                    "gamma_to_acceptor_distance_not_measured",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ]
+            elif direct_mapping_ready and has_inactive_analog and has_metal:
+                status = "analog_state_mapping_policy_blocked_review_only"
+                blockers = [
+                    "analog_ligand_policy_not_active",
+                    "protein_substrate_acceptor_not_source_mapped",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ]
+            elif direct_mapping_ready:
+                status = "direct_position_mapping_ready_ligand_context_incomplete_review_only"
+                blockers = [
+                    "local_gamma_metal_context_missing",
+                    "protein_substrate_acceptor_not_source_mapped",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ]
+            else:
+                status = "blocked_direct_position_mapping_ambiguous_or_missing_review_only"
+                blockers = [
+                    *mapping_warnings,
+                    "source_structure_mapping_not_conservative",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ]
+            status_counts[status] += 1
+            rows.append(
+                {
+                    **row_base,
+                    "fetch_status": fetch_status,
+                    "requested_uniprot_position_count": len(requested_positions),
+                    "requested_active_site_position_count": len(active_positions),
+                    "requested_atp_binding_position_count": len(atp_positions),
+                    "direct_position_match_counts": {
+                        position: len(matches)
+                        for position, matches in matches_by_position.items()
+                    },
+                    "direct_position_mapping_basis": mapping_basis,
+                    "direct_position_mapping_warnings": mapping_warnings,
+                    "direct_position_mapping_ready": direct_mapping_ready,
+                    "mapped_residue_positions": resolved_positions,
+                    "local_ligand_codes": local_ligand_codes,
+                    "local_cofactor_families": local_cofactor_families,
+                    "local_resolved_residue_count": local_context.get(
+                        "resolved_residue_count", 0
+                    ),
+                    "structure_ligand_codes": structure_ligand_codes,
+                    "structure_cofactor_families": structure_cofactor_families,
+                    "has_local_gamma_capable_nucleotide": has_gamma,
+                    "has_inactive_analog_ligand": has_inactive_analog,
+                    "has_local_metal": has_metal,
+                    "mapping_review_status": status,
+                    "remaining_blockers": blockers,
+                }
+            )
+
+    active_state_ready_rows = [
+        row
+        for row in rows
+        if row.get("mapping_review_status")
+        == "active_state_mapping_ready_needs_acceptor_source_review_only"
+    ]
+    direct_ready_rows = [row for row in rows if row.get("direct_position_mapping_ready")]
+    analog_blocked_rows = [
+        row
+        for row in rows
+        if row.get("mapping_review_status")
+        == "analog_state_mapping_policy_blocked_review_only"
+    ]
+    return {
+        "metadata": {
+            "method": "epk_external_source_structure_mapping_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_external_protein_substrate_source_scout_method": (
+                scout_meta.get("method")
+            ),
+            "scouted_candidate_count": len(sourced_rows),
+            "reviewed_candidate_count": min(len(sourced_rows), max_candidates),
+            "max_candidates": max_candidates,
+            "max_pdbs_per_candidate": max_pdbs_per_candidate,
+            "structure_row_count": len(rows),
+            "direct_position_mapping_ready_structure_count": len(direct_ready_rows),
+            "active_state_mapping_ready_structure_count": len(active_state_ready_rows),
+            "active_state_mapping_ready_accessions": _sorted_strings(
+                row.get("accession") for row in active_state_ready_rows
+            ),
+            "active_state_mapping_ready_pdb_ids": _sorted_strings(
+                row.get("pdb_id") for row in active_state_ready_rows
+            ),
+            "analog_policy_blocked_structure_count": len(analog_blocked_rows),
+            "mapping_review_status_counts": dict(sorted(status_counts.items())),
+            "measurement_ready_candidate_count": 0,
+            "ready_to_measure_gamma_acceptor_distance": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "external_epk_source_structure_mapping_started",
+            "blocker_not_removed": [
+                "protein_substrate_acceptor_not_source_mapped",
+                "gamma_to_acceptor_distance_not_measured",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This artifact attempts direct UniProt-position-to-PDB mapping "
+                "for external ePK source candidates. Direct active-state mapping "
+                "is only a source-repair lead; it is not protein-substrate "
+                "acceptor evidence, a calibrated score, or a countable label."
+            ),
+            "next_actions": [
+                "for active-state mapped rows, source protein-substrate acceptor evidence before distance measurement",
+                "treat analog-only mapped rows as blocked until an analog policy is frozen and passes controls",
+                "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "External ePK structure mapping remains review-only and cannot "
+                "support countable fingerprint expansion without acceptor "
+                "mapping, thresholds, gates, and external re-audit."
+            )
+        ],
+    }
+
+
+def build_epk_external_source_acceptor_gap_audit(
+    *,
+    epk_external_source_structure_mapping_review: dict[str, Any],
+    candidate_threshold_angstrom: float = 6.0,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Audit mapped external ePK leads for source-usable acceptor geometry."""
+
+    mapping_meta = epk_external_source_structure_mapping_review.get("metadata", {})
+    if not isinstance(mapping_meta, dict):
+        mapping_meta = {}
+    target_fingerprint_id = str(
+        mapping_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    gamma_capable_codes = {"ACP", "ANP", "ATP", "DTP"}
+    acceptor_atoms = {("SER", "OG"), ("THR", "OG1"), ("TYR", "OH")}
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    active_ready_rows = [
+        row
+        for row in epk_external_source_structure_mapping_review.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("mapping_review_status")
+        == "active_state_mapping_ready_needs_acceptor_source_review_only"
+    ]
+    for mapping_row in active_ready_rows:
+        pdb_id = str(mapping_row.get("pdb_id") or "").upper()
+        accession = str(mapping_row.get("accession") or "")
+        row_base = {
+            "accession": accession,
+            "entry_id": mapping_row.get("entry_id"),
+            "pdb_id": pdb_id,
+            "target_family_id": "epk",
+            "target_fingerprint_id_if_future_gated": target_fingerprint_id,
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+        }
+        try:
+            cif_text = cif_text_by_pdb.get(pdb_id)
+            fetch_status = (
+                "provided_cif_text" if cif_text is not None else "fetched_rcsb_cif"
+            )
+            if cif_text is None:
+                cif_text = cif_fetcher(pdb_id)
+            atoms = parse_atom_site_loop(cif_text)
+        except Exception as exc:
+            status = "structure_fetch_failed_review_only"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    **row_base,
+                    "fetch_status": "failed",
+                    "fetch_error": str(exc),
+                    "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                    "terminal_gamma_atom_count": 0,
+                    "nearest_same_chain_hydroxyl_distance_angstrom": None,
+                    "nearest_non_catalytic_chain_hydroxyl_distance_angstrom": None,
+                    "source_mapped_acceptor_count": 0,
+                    "measurement_ready": False,
+                    "acceptor_gap_status": status,
+                    "remaining_blockers": ["structure_fetch_failed"],
+                }
+            )
+            continue
+
+        mapped_positions = [
+            position
+            for position in mapping_row.get("mapped_residue_positions", []) or []
+            if isinstance(position, dict)
+        ]
+        catalytic_chains = {
+            str(position.get("chain_name"))
+            for position in mapped_positions
+            if position.get("chain_name")
+        }
+        gamma_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "HETATM"
+            and str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+            in gamma_capable_codes
+            and str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+            == "PG"
+        ]
+        hydroxyl_hits: list[dict[str, Any]] = []
+        for atom in atoms:
+            if atom.get("group_PDB") != "ATOM":
+                continue
+            code = str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+            atom_name = str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+            if (code, atom_name) not in acceptor_atoms:
+                continue
+            chain = str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
+            if not gamma_atoms:
+                continue
+            nearest = min(
+                round(_point_distance(_atom_point(gamma_atom), _atom_point(atom)), 3)
+                for gamma_atom in gamma_atoms
+            )
+            if nearest <= max(candidate_threshold_angstrom, 8.0):
+                hydroxyl_hits.append(
+                    {
+                        "chain_name": chain,
+                        "residue_code": code,
+                        "auth_seq_id": atom.get("auth_seq_id"),
+                        "label_seq_id": atom.get("label_seq_id"),
+                        "atom_name": atom_name,
+                        "nearest_gamma_distance_angstrom": nearest,
+                        "non_catalytic_chain": chain not in catalytic_chains,
+                    }
+                )
+        same_chain_hits = [
+            hit for hit in hydroxyl_hits if not hit.get("non_catalytic_chain")
+        ]
+        non_catalytic_hits = [
+            hit for hit in hydroxyl_hits if hit.get("non_catalytic_chain")
+        ]
+        threshold_same_chain_hits = [
+            hit
+            for hit in same_chain_hits
+            if float(hit["nearest_gamma_distance_angstrom"])
+            <= candidate_threshold_angstrom
+        ]
+        threshold_non_catalytic_hits = [
+            hit
+            for hit in non_catalytic_hits
+            if float(hit["nearest_gamma_distance_angstrom"])
+            <= candidate_threshold_angstrom
+        ]
+        source_mapped_acceptor_count = 0
+        measurement_ready = False
+        if not gamma_atoms:
+            status = "blocked_no_terminal_gamma_atom_review_only"
+            blockers = [
+                "active_state_terminal_gamma_atom_not_materialized",
+                "protein_substrate_acceptor_not_source_mapped",
+            ]
+        elif threshold_non_catalytic_hits:
+            status = "acceptor_like_geometry_not_source_mapped_review_only"
+            blockers = [
+                "protein_substrate_acceptor_not_source_mapped",
+                "acceptor_identity_not_source_authoritative",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        elif threshold_same_chain_hits:
+            status = "same_chain_hydroxyl_not_substrate_source_mapped_review_only"
+            blockers = [
+                "same_chain_hydroxyl_not_protein_substrate_mapping",
+                "protein_substrate_acceptor_not_source_mapped",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        else:
+            status = "no_acceptor_like_hydroxyl_within_threshold_review_only"
+            blockers = [
+                "protein_substrate_acceptor_not_source_mapped",
+                "gamma_to_acceptor_distance_not_measurable",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        status_counts[status] += 1
+        rows.append(
+            {
+                **row_base,
+                "fetch_status": fetch_status,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "catalytic_chains": sorted(catalytic_chains),
+                "terminal_gamma_atom_count": len(gamma_atoms),
+                "hydroxyl_candidate_count_within_8_angstrom": len(hydroxyl_hits),
+                "same_chain_hydroxyl_candidate_count_within_threshold": len(
+                    threshold_same_chain_hits
+                ),
+                "non_catalytic_chain_hydroxyl_candidate_count_within_threshold": (
+                    len(threshold_non_catalytic_hits)
+                ),
+                "nearest_same_chain_hydroxyl_distance_angstrom": (
+                    min(
+                        hit["nearest_gamma_distance_angstrom"]
+                        for hit in same_chain_hits
+                    )
+                    if same_chain_hits
+                    else None
+                ),
+                "nearest_non_catalytic_chain_hydroxyl_distance_angstrom": (
+                    min(
+                        hit["nearest_gamma_distance_angstrom"]
+                        for hit in non_catalytic_hits
+                    )
+                    if non_catalytic_hits
+                    else None
+                ),
+                "hydroxyl_candidates": sorted(
+                    hydroxyl_hits,
+                    key=lambda hit: (
+                        float(hit["nearest_gamma_distance_angstrom"]),
+                        str(hit.get("chain_name") or ""),
+                        str(hit.get("auth_seq_id") or ""),
+                    ),
+                )[:25],
+                "source_mapped_acceptor_count": source_mapped_acceptor_count,
+                "measurement_ready": measurement_ready,
+                "acceptor_gap_status": status,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    measurement_ready_count = sum(1 for row in rows if row.get("measurement_ready"))
+    return {
+        "metadata": {
+            "method": "epk_external_source_acceptor_gap_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_external_source_structure_mapping_review_method": (
+                mapping_meta.get("method")
+            ),
+            "candidate_threshold_angstrom": candidate_threshold_angstrom,
+            "active_state_mapping_ready_input_count": len(active_ready_rows),
+            "audited_structure_count": len(rows),
+            "source_mapped_acceptor_count": sum(
+                int(row.get("source_mapped_acceptor_count") or 0) for row in rows
+            ),
+            "measurement_ready_candidate_count": measurement_ready_count,
+            "acceptor_gap_status_counts": dict(sorted(status_counts.items())),
+            "ready_to_measure_gamma_acceptor_distance": measurement_ready_count > 0,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "external_epk_source_acceptor_gap_audited",
+            "blocker_not_removed": [
+                "protein_substrate_acceptor_not_source_mapped",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This artifact tests whether active-state mapped external ePK "
+                "source leads have source-usable acceptor geometry. Nearby "
+                "same-chain hydroxyls or unsourced non-catalytic hydroxyls are "
+                "not production acceptor evidence."
+            ),
+            "next_actions": [
+                "source protein-substrate acceptor evidence for Q8IVT5 before any distance claim",
+                "if no source-mapped acceptor exists, continue external source mapping to the next scout accession",
+                "keep the ePK scorer and external hard-negative re-audit closed",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "External active-state mapping does not become measurement-ready "
+                "until the protein-substrate acceptor is source-mapped."
+            )
+        ],
+    }
+
+
+def build_epk_external_source_next_experiment_queue(
+    *,
+    epk_external_source_structure_mapping_review: dict[str, Any],
+    epk_external_source_acceptor_gap_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Rank the next review-only experiment for each external ePK source row."""
+
+    mapping_meta = epk_external_source_structure_mapping_review.get("metadata", {})
+    if not isinstance(mapping_meta, dict):
+        mapping_meta = {}
+    acceptor_meta = epk_external_source_acceptor_gap_audit.get("metadata", {})
+    if not isinstance(acceptor_meta, dict):
+        acceptor_meta = {}
+    target_fingerprint_id = str(
+        mapping_meta.get("target_fingerprint_id")
+        or acceptor_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    acceptor_rows_by_key = {
+        (str(row.get("accession") or ""), str(row.get("pdb_id") or "").upper()): row
+        for row in epk_external_source_acceptor_gap_audit.get("rows", []) or []
+        if isinstance(row, dict)
+    }
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    for mapping_row in epk_external_source_structure_mapping_review.get("rows", []) or []:
+        if not isinstance(mapping_row, dict):
+            continue
+        accession = str(mapping_row.get("accession") or "")
+        pdb_id = str(mapping_row.get("pdb_id") or "").upper()
+        mapping_status = str(mapping_row.get("mapping_review_status") or "")
+        acceptor_row = acceptor_rows_by_key.get((accession, pdb_id), {})
+        acceptor_status = str(acceptor_row.get("acceptor_gap_status") or "")
+        if mapping_status == "active_state_mapping_ready_needs_acceptor_source_review_only":
+            if acceptor_status == "acceptor_like_geometry_not_source_mapped_review_only":
+                priority_rank = 1
+                next_experiment = "source_map_nearby_candidate_acceptor"
+                queue_status = "highest_value_acceptor_source_mapping_review_only"
+                blockers = [
+                    "acceptor_like_geometry_without_source_authority",
+                    "protein_substrate_acceptor_not_source_mapped",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ]
+            elif acceptor_status == "no_acceptor_like_hydroxyl_within_threshold_review_only":
+                priority_rank = 2
+                next_experiment = "source_alternate_active_state_substrate_cocomplex"
+                queue_status = "active_state_no_acceptor_candidate_review_only"
+                blockers = [
+                    "protein_substrate_acceptor_not_source_mapped",
+                    "active_state_acceptor_geometry_missing",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ]
+            else:
+                priority_rank = 3
+                next_experiment = "rerun_acceptor_gap_audit"
+                queue_status = "active_state_acceptor_audit_missing_review_only"
+                blockers = [
+                    "acceptor_gap_audit_missing",
+                    "protein_substrate_acceptor_not_source_mapped",
+                ]
+        elif mapping_status == "direct_position_mapping_ready_ligand_context_incomplete_review_only":
+            priority_rank = 4
+            next_experiment = "source_active_gamma_metal_structure_for_mapped_accession"
+            queue_status = "mapped_structure_ligand_context_incomplete_review_only"
+            blockers = [
+                "local_gamma_metal_context_missing",
+                "protein_substrate_acceptor_not_source_mapped",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        else:
+            priority_rank = 5
+            next_experiment = "source_alternate_structure_or_resolve_residue_mapping"
+            queue_status = "structure_mapping_unresolved_review_only"
+            blockers = [
+                "source_structure_mapping_not_conservative",
+                "protein_substrate_acceptor_not_source_mapped",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        status_counts[queue_status] += 1
+        rows.append(
+            {
+                "accession": accession,
+                "entry_id": mapping_row.get("entry_id"),
+                "pdb_id": pdb_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id_if_future_gated": target_fingerprint_id,
+                "review_only": True,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "priority_rank": priority_rank,
+                "queue_status": queue_status,
+                "next_experiment": next_experiment,
+                "mapping_review_status": mapping_status,
+                "acceptor_gap_status": acceptor_status or None,
+                "direct_position_mapping_ready": bool(
+                    mapping_row.get("direct_position_mapping_ready")
+                ),
+                "local_ligand_codes": mapping_row.get("local_ligand_codes", []),
+                "local_cofactor_families": mapping_row.get(
+                    "local_cofactor_families", []
+                ),
+                "mapped_residue_count": len(
+                    mapping_row.get("mapped_residue_positions", []) or []
+                ),
+                "nearest_non_catalytic_chain_hydroxyl_distance_angstrom": (
+                    acceptor_row.get(
+                        "nearest_non_catalytic_chain_hydroxyl_distance_angstrom"
+                    )
+                ),
+                "source_mapped_acceptor_count": int(
+                    acceptor_row.get("source_mapped_acceptor_count") or 0
+                ),
+                "measurement_ready": False,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    rows.sort(
+        key=lambda row: (
+            int(row.get("priority_rank") or 999),
+            str(row.get("accession") or ""),
+            str(row.get("pdb_id") or ""),
+        )
+    )
+    return {
+        "metadata": {
+            "method": "epk_external_source_next_experiment_queue",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_external_source_structure_mapping_review_method": (
+                mapping_meta.get("method")
+            ),
+            "source_epk_external_source_acceptor_gap_audit_method": (
+                acceptor_meta.get("method")
+            ),
+            "queued_structure_count": len(rows),
+            "queue_status_counts": dict(sorted(status_counts.items())),
+            "top_priority_next_experiment": (
+                rows[0]["next_experiment"] if rows else None
+            ),
+            "top_priority_accession": rows[0]["accession"] if rows else None,
+            "top_priority_pdb_id": rows[0]["pdb_id"] if rows else None,
+            "measurement_ready_candidate_count": 0,
+            "ready_to_measure_gamma_acceptor_distance": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "external_epk_next_experiment_ranked",
+            "blocker_not_removed": [
+                "protein_substrate_acceptor_not_source_mapped",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This artifact ranks next experiments for external ePK source "
+                "leads. It does not promote scores, labels, registry rows, or "
+                "held-out performance evidence."
+            ),
+            "next_actions": [
+                "source-map the 7JUW nearby Ser acceptor candidate before any distance claim",
+                "if acceptor source authority fails, source alternate active-state substrate co-complexes",
+                "only after measurement-ready positives exist, rerun calibrated scorer controls and hard negatives",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Every queued experiment remains fail-closed because no "
+                "source-mapped protein-substrate acceptor exists."
+            )
+        ],
+    }
+
+
 def build_epk_analog_product_state_policy_preregistration(
     *,
     epk_protein_substrate_source_repair_terminal_decision: dict[str, Any],

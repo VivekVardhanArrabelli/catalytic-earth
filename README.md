@@ -1125,6 +1125,40 @@ external hard negatives. All three have review-only prototype score 0.0 and
 `external_hard_negative_reaudit_scored=false`: this is a diagnostic probe, not
 the calibrated scored re-audit required for policy activation or held-out
 performance claims.
+`artifacts/v3_epk_external_protein_substrate_source_scout_1025.json` then opens
+the first external ePK positive-source scout after the current M-CSA source
+loop failed closed. It uses reviewed PDB-backed UniProt protein-kinase lanes as
+source-triage context only and finds eight rows with explicit active-site,
+ATP-binding, and protein-phosphotransfer evidence. All remain non-countable,
+unscored, and blocked on source-to-structure mapping, acceptor mapping,
+threshold calibration, external hard-negative re-audit, and label-factory
+extension.
+`artifacts/v3_epk_external_source_structure_mapping_review_1025.json` takes the
+next fail-fast step for the top sourced rows. Struct-ref-seq/source-position
+mapping now resolves nine structures, including five active-state ANP/Mg
+structures for `Q8IVT5` (`7JUW`, `7JUX`, `7JUY`, `7JV0`, and `7JV1`); the
+other mapped structures still lack usable local gamma/metal context. The
+`Q8IVT5` rows also lack
+source-mapped protein-substrate acceptor evidence, so the lane is not
+measurement-ready and no ePK score, registry edit, label import, or held-out
+claim is opened.
+`artifacts/v3_epk_external_source_acceptor_gap_audit_1025.json` tests that
+remaining acceptor blocker directly. `7JUW`, `7JUY`, and `7JV0` have a
+non-catalytic-chain Ser hydroxyl within the 6 Angstrom review threshold, while
+`7JUX` and `7JV1` do not; none of those residues is source-mapped as the
+protein substrate acceptor. The external `Q8IVT5` lead therefore remains useful
+but not measurement-ready.
+`artifacts/v3_epk_external_source_next_experiment_queue_1025.json` ranks the
+follow-up experiment queue without opening scoring or import gates. It marks
+the three within-threshold `Q8IVT5` rows as highest-value source-mapping
+targets, sends the two outside-threshold active-state rows to alternate
+active-state substrate co-complex sourcing, and keeps all 16 reviewed structure
+rows non-countable.
+`artifacts/v3_epk_external_source_acceptor_source_mapping_review_1025.json`
+then executes the `Q8IVT5` source-mapping experiment. All five candidate
+hydroxyls map to MEK1 `P29678` Ser194, but UniProt phospho-acceptor evidence
+is at Ser218 and Ser222 rather than Ser194, so the geometry hits are
+terminally not source-mapped and measurement readiness remains 0.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,

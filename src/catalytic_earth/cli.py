@@ -9,7 +9,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from .adapters import fetch_mcsa_sample, fetch_rhea_sample
+from .adapters import (
+    fetch_mcsa_sample,
+    fetch_rhea_sample,
+    fetch_uniprot_entry,
+    fetch_uniprot_query,
+)
 from .artifact_storage import (
     DEFAULT_LARGE_FILE_THRESHOLD_BYTES,
     build_artifact_migration_execution_manifest,
@@ -77,6 +82,10 @@ from .labels import (
     build_epk_draft_fingerprint_spec,
     build_epk_external_hard_negative_counteraxis_review,
     build_epk_external_hard_negative_reaudit_plan,
+    build_epk_external_protein_substrate_source_scout,
+    build_epk_external_source_acceptor_gap_audit,
+    build_epk_external_source_next_experiment_queue,
+    build_epk_external_source_structure_mapping_review,
     build_epk_family_specific_homolog_gamma_distance_sample,
     build_epk_family_specific_homolog_mapping_review,
     build_epk_family_specific_mapping_template_review,
@@ -6437,6 +6446,179 @@ def cmd_build_epk_protein_substrate_source_repair_terminal_decision(
     print(
         "Wrote ePK protein-substrate source-repair terminal decision to "
         f"{args.out} (decision={decision['metadata']['terminal_decision']})"
+    )
+    return 0
+
+
+def _parse_epk_external_source_queries(
+    query_items: list[str] | None,
+) -> dict[str, str]:
+    defaults = {
+        "ser_thr_protein_kinase": (
+            "(reviewed:true) AND (ec:2.7.11.*) AND (database:pdb)"
+        ),
+        "tyrosine_protein_kinase": (
+            "(reviewed:true) AND (ec:2.7.10.*) AND (database:pdb)"
+        ),
+    }
+    if not query_items:
+        return defaults
+    parsed: dict[str, str] = {}
+    for item in query_items:
+        if "=" not in item:
+            raise ValueError("--query values must use lane_id=query syntax")
+        lane_id, query = item.split("=", 1)
+        lane_id = lane_id.strip()
+        query = query.strip()
+        if not lane_id or not query:
+            raise ValueError("--query lane id and query must be non-empty")
+        parsed[lane_id] = query
+    return parsed
+
+
+def cmd_build_epk_external_protein_substrate_source_scout(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_protein_substrate_source_repair_terminal_decision).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_source_repair_terminal_decision = json.load(handle)
+    with Path(args.labels).open("r", encoding="utf-8") as handle:
+        labels = json.load(handle)
+
+    lane_queries = _parse_epk_external_source_queries(args.query)
+    query_payloads_by_lane: dict[str, dict[str, Any]] = {}
+    accessions: list[str] = []
+    query_fetch_failures: list[dict[str, str]] = []
+    for lane_id, query in lane_queries.items():
+        try:
+            payload = fetch_uniprot_query(query, size=args.max_records_per_query)
+        except Exception as exc:  # pragma: no cover - live fetch safety
+            payload = {"metadata": {"query": query, "record_count": 0}, "records": []}
+            query_fetch_failures.append(
+                {
+                    "lane_id": lane_id,
+                    "query": query,
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+            )
+        query_payloads_by_lane[lane_id] = payload
+        for row in payload.get("records", []) or []:
+            if isinstance(row, dict) and row.get("accession"):
+                accessions.append(str(row["accession"]).upper())
+
+    entry_records_by_accession: dict[str, dict[str, Any]] = {}
+    entry_fetch_failures: list[dict[str, str]] = []
+    for accession in sorted(dict.fromkeys(accessions)):
+        if len(entry_records_by_accession) >= args.max_entry_fetches:
+            break
+        try:
+            payload = fetch_uniprot_entry(accession)
+            record = payload.get("record", payload)
+            if not isinstance(record, dict):
+                raise ValueError("UniProt entry payload did not contain a record")
+            entry_records_by_accession[accession] = record
+        except Exception as exc:  # pragma: no cover - live fetch safety
+            entry_fetch_failures.append(
+                {
+                    "accession": accession,
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+            )
+
+    scout = build_epk_external_protein_substrate_source_scout(
+        epk_protein_substrate_source_repair_terminal_decision=(
+            epk_protein_substrate_source_repair_terminal_decision
+        ),
+        query_payloads_by_lane=query_payloads_by_lane,
+        entry_records_by_accession=entry_records_by_accession,
+        existing_label_records=labels,
+        max_candidates=args.max_candidates,
+    )
+    scout["metadata"]["query_fetch_failure_count"] = len(query_fetch_failures)
+    scout["metadata"]["entry_feature_fetch_failure_count"] = len(entry_fetch_failures)
+    scout["fetch_failures"] = query_fetch_failures + entry_fetch_failures
+    write_json(Path(args.out), scout)
+    print(
+        "Wrote ePK external protein-substrate source scout to "
+        f"{args.out} (sourced={scout['metadata']['sourced_candidate_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_external_source_structure_mapping_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_external_protein_substrate_source_scout).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_external_protein_substrate_source_scout = json.load(handle)
+    review = build_epk_external_source_structure_mapping_review(
+        epk_external_protein_substrate_source_scout=(
+            epk_external_protein_substrate_source_scout
+        ),
+        max_candidates=args.max_candidates,
+        max_pdbs_per_candidate=args.max_pdbs_per_candidate,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK external source structure mapping review to "
+        f"{args.out} (active_state_ready="
+        f"{review['metadata']['active_state_mapping_ready_structure_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_external_source_acceptor_gap_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_external_source_structure_mapping_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_external_source_structure_mapping_review = json.load(handle)
+    audit = build_epk_external_source_acceptor_gap_audit(
+        epk_external_source_structure_mapping_review=(
+            epk_external_source_structure_mapping_review
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK external source acceptor gap audit to "
+        f"{args.out} (measurement_ready="
+        f"{audit['metadata']['measurement_ready_candidate_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_external_source_next_experiment_queue(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_external_source_structure_mapping_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_external_source_structure_mapping_review = json.load(handle)
+    with Path(args.epk_external_source_acceptor_gap_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_external_source_acceptor_gap_audit = json.load(handle)
+    queue = build_epk_external_source_next_experiment_queue(
+        epk_external_source_structure_mapping_review=(
+            epk_external_source_structure_mapping_review
+        ),
+        epk_external_source_acceptor_gap_audit=(
+            epk_external_source_acceptor_gap_audit
+        ),
+    )
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote ePK external source next experiment queue to "
+        f"{args.out} (top="
+        f"{queue['metadata']['top_priority_next_experiment']})"
     )
     return 0
 
@@ -14478,6 +14660,146 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_source_repair_terminal.set_defaults(
         func=cmd_build_epk_protein_substrate_source_repair_terminal_decision
+    )
+
+    epk_external_positive_source_scout = subparsers.add_parser(
+        "build-epk-external-protein-substrate-source-scout",
+        help="scout review-only external ePK protein-substrate positive sources",
+    )
+    epk_external_positive_source_scout.add_argument(
+        "--epk-protein-substrate-source-repair-terminal-decision",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_source_repair_terminal_decision.json"
+        ),
+    )
+    epk_external_positive_source_scout.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    epk_external_positive_source_scout.add_argument(
+        "--query",
+        action="append",
+        default=None,
+        help=(
+            "lane_id=UniProt query; defaults to reviewed protein kinase EC "
+            "2.7.11.* and 2.7.10.* PDB-backed lanes"
+        ),
+    )
+    epk_external_positive_source_scout.add_argument(
+        "--max-records-per-query",
+        type=int,
+        default=8,
+    )
+    epk_external_positive_source_scout.add_argument(
+        "--max-entry-fetches",
+        type=int,
+        default=16,
+    )
+    epk_external_positive_source_scout.add_argument(
+        "--max-candidates",
+        type=int,
+        default=8,
+    )
+    epk_external_positive_source_scout.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_external_protein_substrate_source_scout_1025.json"
+        ),
+    )
+    epk_external_positive_source_scout.set_defaults(
+        func=cmd_build_epk_external_protein_substrate_source_scout
+    )
+
+    epk_external_source_mapping = subparsers.add_parser(
+        "build-epk-external-source-structure-mapping-review",
+        help="review direct source-to-structure mapping for external ePK candidates",
+    )
+    epk_external_source_mapping.add_argument(
+        "--epk-external-protein-substrate-source-scout",
+        default=(
+            "artifacts/"
+            "v3_epk_external_protein_substrate_source_scout_1025.json"
+        ),
+    )
+    epk_external_source_mapping.add_argument(
+        "--max-candidates",
+        type=int,
+        default=4,
+    )
+    epk_external_source_mapping.add_argument(
+        "--max-pdbs-per-candidate",
+        type=int,
+        default=3,
+    )
+    epk_external_source_mapping.add_argument("--cif-dir", default=None)
+    epk_external_source_mapping.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_structure_mapping_review_1025.json"
+        ),
+    )
+    epk_external_source_mapping.set_defaults(
+        func=cmd_build_epk_external_source_structure_mapping_review
+    )
+
+    epk_external_acceptor_gap = subparsers.add_parser(
+        "build-epk-external-source-acceptor-gap-audit",
+        help="audit active-state external ePK mapping leads for acceptor blockers",
+    )
+    epk_external_acceptor_gap.add_argument(
+        "--epk-external-source-structure-mapping-review",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_structure_mapping_review_1025.json"
+        ),
+    )
+    epk_external_acceptor_gap.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_external_acceptor_gap.add_argument("--cif-dir", default=None)
+    epk_external_acceptor_gap.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_acceptor_gap_audit_1025.json"
+        ),
+    )
+    epk_external_acceptor_gap.set_defaults(
+        func=cmd_build_epk_external_source_acceptor_gap_audit
+    )
+
+    epk_external_next_queue = subparsers.add_parser(
+        "build-epk-external-source-next-experiment-queue",
+        help="rank next review-only experiments for external ePK source leads",
+    )
+    epk_external_next_queue.add_argument(
+        "--epk-external-source-structure-mapping-review",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_structure_mapping_review_1025.json"
+        ),
+    )
+    epk_external_next_queue.add_argument(
+        "--epk-external-source-acceptor-gap-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_acceptor_gap_audit_1025.json"
+        ),
+    )
+    epk_external_next_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_external_source_next_experiment_queue_1025.json"
+        ),
+    )
+    epk_external_next_queue.set_defaults(
+        func=cmd_build_epk_external_source_next_experiment_queue
     )
 
     epk_analog_policy_prereg = subparsers.add_parser(
