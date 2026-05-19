@@ -5,7 +5,7 @@ Generated from `work/progress_log.jsonl`.
 ## Time
 
 - Entries: 189
-- Measured elapsed time: 5709.1 minutes (95.15 hours)
+- Measured elapsed time: 5710.0 minutes (95.17 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 480.0 measured minutes (8.00 hours)
+- post-infra-science: 480.8 measured minutes (8.01 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -28,7 +28,7 @@ Generated from `work/progress_log.jsonl`.
 ## Progress Counters
 
 - Artifact references logged: 2131
-- Evidence references logged: 1687
+- Evidence references logged: 1681
 
 ## Recent Entries
 
@@ -109,16 +109,16 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: recovered previous dirty ePK source-repair audits as commit 59c7634, m_csa757 scan found active-state leads 1CDK and 1Q24 but 0 mapped acceptors, m_csa756 scan found 5LI1 structure-level ANP/Mg but no conservative remap, terminal source-repair decision closed m_csa760 m_csa757 and m_csa756 with 0 measurement-ready candidates, analog/product-state policy preregistration remains inactive and review-only, final 529-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
-### 2026-05-19T13:16:57.787320+00:00 - post-infra-science
+### 2026-05-19T13:17:33.402946+00:00 - post-infra-science
 
-- Task: ePK analog policy and source exhaustion probes
+- Task: ePK policy probes and 5LI1 clue closure
 - Time mode: measured
-- Measured minutes: 48.2
+- Measured minutes: 49.067
 - Started: 2026-05-19T12:28:13Z
-- Ended: 2026-05-19T13:16:25Z
+- Ended: 2026-05-19T13:17:17Z
 - Artifacts: artifacts/v3_epk_analog_product_state_policy_activation_audit_1025.json, artifacts/v3_epk_analog_product_state_policy_control_reaudit_1025.json, artifacts/v3_epk_review_only_external_hard_negative_score_probe_1025.json, artifacts/v3_epk_m_csa756_5li1_residue_evidence_audit_1025.json, artifacts/v3_epk_protein_substrate_positive_source_triage_1025_preview.json, artifacts/v3_epk_protein_substrate_positive_source_triage_expanded_1025.json, artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_expanded_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: startup 529-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote and dry-run push passed, analog policy activation audit failed closed with seven blockers, inactive control re-audit covered 3/3 current positives with 0 sibling false hits and 0 external feature non-abstentions, review-only external hard-negative score probe scored 3 imported negatives at 0.0 with no real scored re-audit claim, 5LI1 audit preserved Lys380 Asp382 Asn383 near ANP/Mg but blocked canonical PG source-authority and mapped-acceptor requirements, preview and expanded source triage found only m_csa760 m_csa756 m_csa757 with 0 measurement-ready rows, expanded terminal decision stayed current_source_candidates_exhausted_review_only, pre-count remains blocked_review_only with 25 gates and real scored external re-audit still failing, final 537-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored claim or history rewrite.
+- Evidence: full 537-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, policy activation audit failed closed with 7 blockers, external hard-negative score probe had 3 of 3 review-only scores at 0.0 and 0 non-abstentions, 5LI1 audit recorded PB noncanonical hint but no PG terminal gamma and 0 measurement-ready candidates, expanded source triage and terminal decision found no new ePK source beyond m_csa760 m_csa757 m_csa756, compileall passed, jq empty passed on new ePK JSON artifacts, git diff --check passed
+- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
 
 ## Expectation Updates
 
@@ -265,6 +265,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-19T02:44:02.632801+00:00: ePK has a sharper fail-closed review-only counteraxis, but the simplest text-free acceptor feature is blocked by sibling-control false hits; next work should add chain/substrate or ligand-class disambiguation before any score or external scored re-audit.
 - 2026-05-19T03:46:56.310139+00:00: ePK chain/ligand context is promising review-only disambiguation, but production scoring remains blocked by calibration, text-free feature admissibility, negative-control distribution readiness, and scored external hard-negative re-audit.
 - 2026-05-19T12:03:38.595849+00:00: Current bounded ePK source-repair candidates are exhausted as review-only negatives; next useful work needs new mapped protein-substrate evidence or an inactive policy draft promoted only after sibling and external hard-negative re-audits.
+- 2026-05-19T13:17:33.402946+00:00: ePK analog/product-state and 5LI1 evidence are now explicit fail-closed review-only blockers; source triage still has no new protein-substrate candidate, so production expansion needs genuinely new source evidence or a pre-frozen calibrated policy path.
 
 ## Scope Adjustments
 
