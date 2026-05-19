@@ -50,6 +50,70 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T18:34:27Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/dry-run push
+hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
+preserved.
+
+The NDK homolog queue item named in the automation prompt was already complete
+in the latest pushed repo state: `1WKL`, `3Q86`, `9OAN`, and `9PFY` are mapped
+in `artifacts/v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json`
+and measured in
+`artifacts/v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json`.
+This run therefore moved to the next documented ePK blocker: broadening the
+source-free heteromeric positive-coverage surface beyond the single 5HVK case.
+
+`artifacts/v3_epk_heteromeric_positive_coverage_candidate_scout_1025.json`
+adds a bounded follow-on scan over the next 50 RCSB ANP/Mg EC 2.7.11.1 entries
+after the prior first-60 ligand-specific co-complex probe. It finds six local
+heteromeric topology candidates (`6Z3R`, `7M0T`, `7M0W`, `8OXM`, `8OXO`, and
+`8ZN6`) and marks them as source-validation leads.
+
+`artifacts/v3_epk_heteromeric_candidate_source_validation_review_1025.json`
+now source-reviews those six leads. It accepts `6Z3R` as an SMG1/UPF1
+positive-like review structure and accepts `8OXM` plus `8OXO` as ATM/p53
+positive-like review structures. That gives three accepted review-only
+structures across two unique pairs (`smg1_upf1`, `atm_p53`) and satisfies the
+broader minimum-positive-coverage check only in review mode. It blocks `7M0T`
+and `7M0W` as BRAF/MEK role-direction ambiguous and rejects `8ZN6` as a
+non-ePK/designed clock-protein context. All rows remain non-countable with
+`epk_score_computed=false`; no protein-substrate acceptor source mapping,
+threshold calibration, real external scored re-audit, registry edit, or label
+import has been opened.
+
+`artifacts/v3_epk_heteromeric_source_valid_candidate_gamma_distance_sample_1025.json`
+then carries forward the topology-hit measurements for the accepted leads. All
+three source-valid review structures are measured, with nearest ANP gamma to
+candidate acceptor distances from 3.482 to 5.607 Angstrom across the two unique
+pairs. This removes only the immediate review-control measurement blocker; it
+does not compute an ePK score or calibrate a threshold.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the new
+candidate scout and source-validation review. Overall status remains
+`blocked_review_only`. The new `heteromeric_positive_coverage_candidate_scout`
+gate passes as a source-validation queue, and
+`heteromeric_candidate_source_validation_review` passes with three accepted
+review-only structures. The new source-valid candidate distance-sample gate
+also passes with all three accepted leads measured; none of these gates
+satisfies production scoring or label import. The failing gate set still
+includes acceptor threshold calibration,
+external scored hard-negative re-audit, registry/label-factory extension,
+text-free acceptor feature gap, protein-substrate acceptor candidate audit,
+source-free topology role audit, `m_csa:760`, `m_csa:757`, `m_csa:756`, and
+gamma negative-control distance distribution.
+
+Evidence-based confidence call: confidence is higher that the 5HVK
+heteromeric topology signal is not an isolated local geometry pattern, because
+six additional candidate structures now show the same source-free entity
+separation and three of them have source context consistent with ePK
+kinase/substrate pairs. Confidence remains low that the axis can support
+production scoring: source-free role direction is not generalized, accepted
+leads still need control reruns, and
+threshold/external-hard-negative/registry gates are still absent.
+
 As of the 2026-05-19T17:33:55Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

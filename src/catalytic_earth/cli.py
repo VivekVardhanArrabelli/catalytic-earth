@@ -98,7 +98,10 @@ from .labels import (
     build_epk_gamma_geometry_feasibility_plan,
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
+    build_epk_heteromeric_candidate_source_validation_review,
     build_epk_heteromeric_chain_topology_signal_audit,
+    build_epk_heteromeric_positive_coverage_candidate_scout,
+    build_epk_heteromeric_source_valid_candidate_gamma_distance_sample,
     build_epk_ligand_specific_5hvk_control_rerun_queue,
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
@@ -7035,6 +7038,73 @@ def cmd_build_epk_heteromeric_chain_topology_signal_audit(
     return 0
 
 
+def cmd_build_epk_heteromeric_positive_coverage_candidate_scout(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_chain_topology_signal_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_chain_topology_signal_audit = json.load(handle)
+    scout = build_epk_heteromeric_positive_coverage_candidate_scout(
+        epk_heteromeric_chain_topology_signal_audit=(
+            epk_heteromeric_chain_topology_signal_audit
+        ),
+        candidate_pdb_ids=_split_csv(args.candidate_pdb_ids),
+        source_query=args.source_query,
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), scout)
+    print(
+        "Wrote ePK heteromeric positive-coverage candidate scout to "
+        f"{args.out} (candidates="
+        f"{scout['metadata']['heteromeric_candidate_structure_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_heteromeric_candidate_source_validation_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_positive_coverage_candidate_scout).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_positive_coverage_candidate_scout = json.load(handle)
+    review = build_epk_heteromeric_candidate_source_validation_review(
+        epk_heteromeric_positive_coverage_candidate_scout=(
+            epk_heteromeric_positive_coverage_candidate_scout
+        ),
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK heteromeric candidate source-validation review to "
+        f"{args.out} (accepted="
+        f"{review['metadata']['source_validated_new_candidate_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_candidate_source_validation_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_candidate_source_validation_review = json.load(handle)
+    sample = build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
+        epk_heteromeric_candidate_source_validation_review=(
+            epk_heteromeric_candidate_source_validation_review
+        )
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote ePK heteromeric source-valid gamma-distance sample to "
+        f"{args.out} (measured={sample['metadata']['measured_candidate_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
     args: argparse.Namespace,
 ) -> int:
@@ -7563,6 +7633,26 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_heteromeric_chain_topology_signal_audit = json.load(handle)
+    epk_heteromeric_positive_coverage_candidate_scout = None
+    if args.epk_heteromeric_positive_coverage_candidate_scout:
+        with Path(args.epk_heteromeric_positive_coverage_candidate_scout).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_positive_coverage_candidate_scout = json.load(handle)
+    epk_heteromeric_candidate_source_validation_review = None
+    if args.epk_heteromeric_candidate_source_validation_review:
+        with Path(args.epk_heteromeric_candidate_source_validation_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_candidate_source_validation_review = json.load(handle)
+    epk_heteromeric_source_valid_candidate_gamma_distance_sample = None
+    if args.epk_heteromeric_source_valid_candidate_gamma_distance_sample:
+        with Path(
+            args.epk_heteromeric_source_valid_candidate_gamma_distance_sample
+        ).open("r", encoding="utf-8") as handle:
+            epk_heteromeric_source_valid_candidate_gamma_distance_sample = json.load(
+                handle
+            )
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -7688,6 +7778,15 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_heteromeric_chain_topology_signal_audit=(
             epk_heteromeric_chain_topology_signal_audit
+        ),
+        epk_heteromeric_positive_coverage_candidate_scout=(
+            epk_heteromeric_positive_coverage_candidate_scout
+        ),
+        epk_heteromeric_candidate_source_validation_review=(
+            epk_heteromeric_candidate_source_validation_review
+        ),
+        epk_heteromeric_source_valid_candidate_gamma_distance_sample=(
+            epk_heteromeric_source_valid_candidate_gamma_distance_sample
         ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
@@ -15721,6 +15820,105 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_heteromeric_chain_topology_signal_audit
     )
 
+    epk_heteromeric_candidate_scout = subparsers.add_parser(
+        "build-epk-heteromeric-positive-coverage-candidate-scout",
+        help="scan a bounded follow-on PDB set for heteromeric ePK topology leads",
+    )
+    epk_heteromeric_candidate_scout.add_argument(
+        "--epk-heteromeric-chain-topology-signal-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_chain_topology_signal_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_candidate_scout.add_argument(
+        "--candidate-pdb-ids",
+        default=(
+            "6Z2X,6Z3R,7CTV,7CTX,7JUR,7JUS,7JUU,7JUV,7JUW,7JUX,"
+            "7JUY,7JV0,7JV1,7M0T,7M0U,7M0V,7M0W,7M0X,7M0Y,7M0Z,"
+            "7PW8,7PW9,7SIC,7SID,7XZR,8BW9,8OXM,8OXO,8OXP,8OXQ,"
+            "8QCG,8RCH,8RCK,8RCN,8UYH,8VH4,8VH5,8XN6,8ZN6,9AXH,"
+            "9AXM,9AXX,9AXY,9AY7,9AYA,9ECU,9ED4,9ED7,9ED8,9V79"
+        ),
+        help="comma-separated bounded follow-on candidate PDB ids",
+    )
+    epk_heteromeric_candidate_scout.add_argument(
+        "--source-query",
+        default=(
+            "RCSB ANP AND MG AND EC lineage 2.7.11.1; next 50 entries "
+            "after the prior first-60 ligand-specific co-complex probe"
+        ),
+    )
+    epk_heteromeric_candidate_scout.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_heteromeric_candidate_scout.add_argument(
+        "--cif-dir",
+        default=None,
+        help="optional directory of cached CIF/mmCIF files keyed by PDB id",
+    )
+    epk_heteromeric_candidate_scout.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_positive_coverage_candidate_scout_1025.json"
+        ),
+    )
+    epk_heteromeric_candidate_scout.set_defaults(
+        func=cmd_build_epk_heteromeric_positive_coverage_candidate_scout
+    )
+
+    epk_heteromeric_source_validation = subparsers.add_parser(
+        "build-epk-heteromeric-candidate-source-validation-review",
+        help="source-review heteromeric topology leads before positive use",
+    )
+    epk_heteromeric_source_validation.add_argument(
+        "--epk-heteromeric-positive-coverage-candidate-scout",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_positive_coverage_candidate_scout_1025.json"
+        ),
+    )
+    epk_heteromeric_source_validation.add_argument(
+        "--cif-dir",
+        default=None,
+        help="optional directory of cached CIF/mmCIF files keyed by PDB id",
+    )
+    epk_heteromeric_source_validation.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_candidate_source_validation_review_1025.json"
+        ),
+    )
+    epk_heteromeric_source_validation.set_defaults(
+        func=cmd_build_epk_heteromeric_candidate_source_validation_review
+    )
+
+    epk_heteromeric_distance_sample = subparsers.add_parser(
+        "build-epk-heteromeric-source-valid-candidate-gamma-distance-sample",
+        help="measure source-valid heteromeric review-lead gamma distances",
+    )
+    epk_heteromeric_distance_sample.add_argument(
+        "--epk-heteromeric-candidate-source-validation-review",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_candidate_source_validation_review_1025.json"
+        ),
+    )
+    epk_heteromeric_distance_sample.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_source_valid_candidate_gamma_distance_sample_1025.json"
+        ),
+    )
+    epk_heteromeric_distance_sample.set_defaults(
+        func=cmd_build_epk_heteromeric_source_valid_candidate_gamma_distance_sample
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -16145,6 +16343,18 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-heteromeric-chain-topology-signal-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-positive-coverage-candidate-scout",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-candidate-source-validation-review",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-source-valid-candidate-gamma-distance-sample",
         default=None,
     )
     epk_precount_gate_status.add_argument(

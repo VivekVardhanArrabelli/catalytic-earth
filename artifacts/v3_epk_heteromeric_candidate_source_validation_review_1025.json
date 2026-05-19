@@ -1,0 +1,563 @@
+{
+  "metadata": {
+    "ambiguous_candidate_count": 2,
+    "blocker_not_removed": [
+      "source_free_role_direction_not_generalized_to_scoring",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "heteromeric_candidate_source_validation_review_executed",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "method": "epk_heteromeric_candidate_source_validation_review",
+    "minimum_positive_coverage_met_review_only": true,
+    "next_actions": [
+      "rerun the heteromeric topology audit with source-validated candidates separated from ambiguous and rejected rows",
+      "treat BRAF/MEK kinase-kinase hits as ambiguous until role direction is source-reviewed",
+      "keep threshold selection and external hard-negative scoring closed"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "rejected_candidate_count": 1,
+    "review_only": true,
+    "review_only_rule": "This artifact source-reviews heteromeric topology leads. Accepted rows are positive-like review controls only; they are not countable labels, ePK scores, or held-out performance evidence.",
+    "reviewed_candidate_count": 6,
+    "source_epk_heteromeric_positive_coverage_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "source_validated_new_candidate_count": 3,
+    "source_validated_new_candidate_pdb_ids": [
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
+    "source_validated_unique_pair_count": 2,
+    "source_validated_unique_pair_ids": [
+      "atm_p53",
+      "smg1_upf1"
+    ],
+    "source_validation_status_counts": {
+      "accepted_source_valid_heteromeric_kinase_substrate_review_only": 3,
+      "blocked_ambiguous_kinase_kinase_role_direction_review_only": 2,
+      "rejected_non_epk_substrate_cocomplex_or_designed_clock_protein_review_only": 1
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "4",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "21",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 5.607
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "6Z3R",
+          "Q96Q15"
+        ],
+        "B": [
+          "Q8ND04"
+        ],
+        "C": [
+          "Q9H0W8"
+        ],
+        "E": [
+          "Q92900"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "INOSITOL HEXAKISPHOSPHATE",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Protein SMG8",
+        "Protein SMG9",
+        "Regulator of nonsense transcripts 1",
+        "kinase"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "TRANSFERASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 5.607,
+      "pdb_id": "6Z3R",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "threshold_not_calibrated_against_negative_controls"
+      ],
+      "review_only": true,
+      "source_pair_id": "smg1_upf1",
+      "source_validated_positive_like": true,
+      "source_validation_evidence": [
+        "structure_title_links_smg1_kinase_complex_to_upf1_substrate"
+      ],
+      "source_validation_status": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "structure_title": "Structure of SMG1-8-9 kinase complex bound to UPF1-LSQ",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "15",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.482
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "Q13315"
+        ],
+        "B": [
+          "Q13315"
+        ],
+        "E": [
+          "P04637"
+        ],
+        "F": [
+          "P04637"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "Cellular tumor antigen p53",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Serine-protein kinase ATM",
+        "ZINC ION"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "Ataxia-Telangiectasia Mutated, ATM, kinase, oxidative stress, SIGNALING PROTEIN",
+        "SIGNALING PROTEIN"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.482,
+      "pdb_id": "8OXM",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "threshold_not_calibrated_against_negative_controls"
+      ],
+      "review_only": true,
+      "source_pair_id": "atm_p53",
+      "source_validated_positive_like": true,
+      "source_validation_evidence": [
+        "source_context_links_atm_kinase_to_p53_candidate_substrate"
+      ],
+      "source_validation_status": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "structure_title": "ATM(Q2971A) activated by oxidative stress in complex with Mg AMP-PNP and p53 peptide",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "15",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.747
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "Q13315"
+        ],
+        "B": [
+          "Q13315"
+        ],
+        "E": [
+          "P04637"
+        ],
+        "F": [
+          "P04637"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "Cellular tumor antigen p53",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Serine-protein kinase ATM",
+        "ZINC ION"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "Kinase, Ataxia-Telangiectasia Mutated, ATM, p53, SIGNALING PROTEIN",
+        "SIGNALING PROTEIN"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.747,
+      "pdb_id": "8OXO",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "threshold_not_calibrated_against_negative_controls"
+      ],
+      "review_only": true,
+      "source_pair_id": "atm_p53",
+      "source_validated_positive_like": true,
+      "source_validation_evidence": [
+        "source_context_links_atm_kinase_to_p53_candidate_substrate"
+      ],
+      "source_validation_status": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "structure_title": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "467",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.81
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P15056"
+        ],
+        "B": [
+          "Q02750"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "BRAF, MEK1, TRANSFERASE",
+        "TRANSFERASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.81,
+      "pdb_id": "7M0T",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "kinase_kinase_role_direction_needs_manual_source_review",
+        "protein_substrate_acceptor_source_mapping_not_reviewed"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "structure_title_supports_braf_mek1_complex_but_role_direction_is_ambiguous"
+      ],
+      "source_validation_status": "blocked_ambiguous_kinase_kinase_role_direction_review_only",
+      "structure_title": "Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP and Selumetinib",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "467",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.993
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P15056"
+        ],
+        "B": [
+          "Q02750"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "MAGNESIUM ION",
+        "N-[(2S)-2,3-dihydroxypropyl]-3-[(2-fluoro-4-iodophenyl)amino]pyridine-4-carboxamide",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Serine/threonine-protein kinase B-raf"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "BRAF, MEK1, TRANSFERASE",
+        "TRANSFERASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.993,
+      "pdb_id": "7M0W",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "kinase_kinase_role_direction_needs_manual_source_review",
+        "protein_substrate_acceptor_source_mapping_not_reviewed"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "structure_title_supports_braf_mek1_complex_but_role_direction_is_ambiguous"
+      ],
+      "source_validation_status": "blocked_ambiguous_kinase_kinase_role_direction_review_only",
+      "structure_title": "Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP and Pimasertib",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "288",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.473
+        },
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "288",
+          "candidate_chain_name": "J",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "J",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.56
+        },
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "288",
+          "candidate_chain_name": "I",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "I",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.568
+        },
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "46",
+          "candidate_chain_name": "I",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "I",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.952
+        },
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "46",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 4.109
+        },
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "51",
+          "candidate_chain_name": "J",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "J",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 4.13
+        },
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "46",
+          "candidate_chain_name": "J",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "J",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 4.319
+        },
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "413",
+          "candidate_chain_name": "I",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "I",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 4.877
+        },
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "413",
+          "candidate_chain_name": "J",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "J",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 4.925
+        },
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "51",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 4.934
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "8ZN6"
+        ],
+        "B": [
+          "8ZN6"
+        ],
+        "C": [
+          "8ZN6"
+        ],
+        "D": [
+          "8ZN6"
+        ],
+        "E": [
+          "8ZN6"
+        ],
+        "F": [
+          "8ZN6"
+        ],
+        "G": [
+          "8ZN6"
+        ],
+        "H": [
+          "8ZN6"
+        ],
+        "I": [
+          "8ZN6"
+        ],
+        "J": [
+          "8ZN6"
+        ],
+        "K": [
+          "8ZN6"
+        ],
+        "L": [
+          "8ZN6"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "KaiC",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "water"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 15,
+      "keywords": [
+        "TRANSFERASE",
+        "clock protein, TRANSFERASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.473,
+      "pdb_id": "8ZN6",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "not_a_source_valid_epk_kinase_substrate_pair",
+        "positive_coverage_not_expanded_by_this_row"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "structure_title_indicates_designed_clock_protein_not_epk_substrate_cocomplex"
+      ],
+      "source_validation_status": "rejected_non_epk_substrate_cocomplex_or_designed_clock_protein_review_only",
+      "structure_title": "Crystal Structure of Designed Clock Protein KaiC",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Source-validated heteromeric candidates remain review-only controls until scorer, threshold, external re-audit, and registry gates exist."
+  ]
+}

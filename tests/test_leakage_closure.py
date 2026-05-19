@@ -18,7 +18,10 @@ from catalytic_earth.labels import (
     build_epk_local_chain_topology_acceptor_replacement_rule,
     build_epk_protein_substrate_calibration_diagnostic,
     build_epk_protein_substrate_scorer_design_freeze,
+    build_epk_heteromeric_candidate_source_validation_review,
     build_epk_heteromeric_chain_topology_signal_audit,
+    build_epk_heteromeric_positive_coverage_candidate_scout,
+    build_epk_heteromeric_source_valid_candidate_gamma_distance_sample,
     build_epk_source_authority_axis_replacement_gap_audit,
     build_epk_source_free_chain_topology_role_audit,
     load_labels,
@@ -2231,6 +2234,140 @@ class LeakageClosureTests(unittest.TestCase):
         }
         self.assertEqual(mapping_bases, {"atom_site_author_chain_polymer_entity"})
 
+    def test_epk_heteromeric_positive_coverage_candidate_scout_is_review_only(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_positive_coverage_candidate_scout_1025.json"
+        )
+        metadata = scout["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_positive_coverage_candidate_scout",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["input_candidate_count"], 50)
+        self.assertEqual(metadata["reviewed_candidate_count"], 50)
+        self.assertEqual(metadata["fetch_failure_count"], 0)
+        self.assertEqual(metadata["heteromeric_candidate_structure_count"], 6)
+        self.assertEqual(
+            metadata["heteromeric_candidate_pdb_ids"],
+            ["6Z3R", "7M0T", "7M0W", "8OXM", "8OXO", "8ZN6"],
+        )
+        self.assertTrue(metadata["source_validation_queue_ready"])
+        self.assertEqual(
+            metadata["positive_coverage_status"],
+            "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+        )
+        self.assertFalse(metadata["minimum_positive_coverage_met"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        hit_rows = [
+            row
+            for row in scout["rows"]
+            if row["candidate_status"]
+            == "heteromeric_candidate_source_validation_pending_review_only"
+        ]
+        self.assertEqual(len(hit_rows), 6)
+        for row in hit_rows:
+            self.assertFalse(row["measurement_ready"])
+            self.assertIn(
+                "source_validation_pending_for_heteromeric_candidate",
+                row["remaining_blockers"],
+            )
+
+    def test_epk_heteromeric_candidate_source_validation_review_is_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_candidate_source_validation_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_candidate_source_validation_review",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_candidate_count"], 6)
+        self.assertEqual(metadata["fetch_failure_count"], 0)
+        self.assertEqual(metadata["source_validated_new_candidate_count"], 3)
+        self.assertEqual(
+            metadata["source_validated_new_candidate_pdb_ids"],
+            ["6Z3R", "8OXM", "8OXO"],
+        )
+        self.assertEqual(
+            metadata["source_validated_unique_pair_ids"],
+            ["atm_p53", "smg1_upf1"],
+        )
+        self.assertEqual(metadata["ambiguous_candidate_count"], 2)
+        self.assertEqual(metadata["rejected_candidate_count"], 1)
+        self.assertTrue(metadata["minimum_positive_coverage_met_review_only"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        accepted_rows = [
+            row for row in review["rows"] if row["source_validated_positive_like"]
+        ]
+        self.assertEqual({row["pdb_id"] for row in accepted_rows}, {"6Z3R", "8OXM", "8OXO"})
+        for row in accepted_rows:
+            self.assertFalse(row["measurement_ready"])
+            self.assertIn(
+                "external_hard_negative_reaudit_not_real_scorer",
+                row["remaining_blockers"],
+            )
+
+    def test_epk_heteromeric_source_valid_candidate_distance_sample_is_review_only(
+        self,
+    ) -> None:
+        sample = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_valid_candidate_gamma_distance_sample_1025.json"
+        )
+        metadata = sample["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_source_valid_candidate_gamma_distance_sample",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["source_validated_candidate_count"], 3)
+        self.assertEqual(metadata["measured_candidate_count"], 3)
+        self.assertEqual(
+            metadata["measured_candidate_pdb_ids"],
+            ["6Z3R", "8OXM", "8OXO"],
+        )
+        self.assertEqual(
+            metadata["measured_unique_pair_ids"],
+            ["atm_p53", "smg1_upf1"],
+        )
+        self.assertTrue(metadata["all_source_valid_candidates_measured"])
+        self.assertTrue(metadata["minimum_positive_coverage_measured_review_only"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(len(sample["rows"]), 3)
+        for row in sample["rows"]:
+            self.assertEqual(
+                row["measurement_status"],
+                "source_valid_heteromeric_gamma_distance_measured_review_only",
+            )
+            self.assertTrue(row["measurement_ready_for_review_controls"])
+            self.assertFalse(row["ready_to_run_epk_scorer"])
+            self.assertIn(
+                "threshold_not_calibrated_against_negative_controls",
+                row["remaining_blockers"],
+            )
+
     def test_epk_external_source_scout_builder_keeps_rows_non_countable(
         self,
     ) -> None:
@@ -3064,6 +3201,238 @@ HETATM PG PG ANP ANP A A 1 1 0.0 0.0 4.0
         self.assertTrue(metadata["source_free_5hvk_role_direction_supported"])
         self.assertFalse(metadata["source_authority_eliminated"])
         self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_epk_heteromeric_positive_coverage_candidate_scout_builder(
+        self,
+    ) -> None:
+        heteromeric_cif = """
+data_1NEW
+loop_
+_struct_asym.id
+_struct_asym.entity_id
+A 1
+B 2
+#
+loop_
+_atom_site.group_PDB
+_atom_site.label_atom_id
+_atom_site.auth_atom_id
+_atom_site.label_comp_id
+_atom_site.auth_comp_id
+_atom_site.label_asym_id
+_atom_site.auth_asym_id
+_atom_site.label_seq_id
+_atom_site.auth_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+ATOM OG OG SER SER B B 12 12 0.0 0.0 0.0
+HETATM PG PG ANP ANP A A 1 1 0.0 0.0 4.0
+#
+"""
+        same_entity_cif = """
+data_1SAME
+loop_
+_struct_asym.id
+_struct_asym.entity_id
+A 1
+B 1
+#
+loop_
+_atom_site.group_PDB
+_atom_site.label_atom_id
+_atom_site.auth_atom_id
+_atom_site.label_comp_id
+_atom_site.auth_comp_id
+_atom_site.label_asym_id
+_atom_site.auth_asym_id
+_atom_site.label_seq_id
+_atom_site.auth_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+ATOM OG OG SER SER B B 12 12 0.0 0.0 0.0
+HETATM PG PG ANP ANP A A 1 1 0.0 0.0 4.0
+#
+"""
+        scout = build_epk_heteromeric_positive_coverage_candidate_scout(
+            epk_heteromeric_chain_topology_signal_audit={
+                "metadata": {
+                    "method": "epk_heteromeric_chain_topology_signal_audit",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                    "heteromeric_signal_positive_like_count": 1,
+                    "full_probe_heteromeric_candidate_pdb_ids": ["5HVK"],
+                }
+            },
+            candidate_pdb_ids=["1NEW", "1SAME"],
+            source_query="fixture next candidates",
+            cif_text_by_pdb={
+                "1NEW": heteromeric_cif,
+                "1SAME": same_entity_cif,
+            },
+        )
+        metadata = scout["metadata"]
+        self.assertEqual(
+            metadata["positive_coverage_status"],
+            "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+        )
+        self.assertEqual(metadata["input_candidate_count"], 2)
+        self.assertEqual(metadata["heteromeric_candidate_structure_count"], 1)
+        self.assertEqual(metadata["heteromeric_candidate_pdb_ids"], ["1NEW"])
+        self.assertTrue(metadata["source_validation_queue_ready"])
+        self.assertFalse(metadata["minimum_positive_coverage_met"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["pdb_id"]: row for row in scout["rows"]}
+        self.assertEqual(
+            rows["1NEW"]["candidate_status"],
+            "heteromeric_candidate_source_validation_pending_review_only",
+        )
+        self.assertEqual(
+            rows["1SAME"]["candidate_status"],
+            "no_heteromeric_candidate_hit_review_only",
+        )
+        self.assertIn(
+            "source_validation_pending_for_heteromeric_candidate",
+            rows["1NEW"]["remaining_blockers"],
+        )
+
+    def test_epk_heteromeric_candidate_source_validation_review_builder(
+        self,
+    ) -> None:
+        source_valid_cif = """
+data_1ATM
+_struct.title 'ATM(Q2971A) activated by oxidative stress in complex with Mg AMP-PNP and p53 peptide'
+#
+"""
+        source_valid_keyword_cif = """
+data_1ATK
+_struct.title
+#
+_struct_keywords.entry_id 1ATK
+_struct_keywords.text 'Kinase, Ataxia-Telangiectasia Mutated, ATM, p53, SIGNALING PROTEIN'
+_struct_keywords.pdbx_keywords 'SIGNALING PROTEIN'
+#
+loop_
+_entity.id
+_entity.type
+_entity.src_method
+_entity.pdbx_description
+1 polymer man 'Cellular tumor antigen p53'
+2 polymer man 'Serine-protein kinase ATM'
+#
+"""
+        ambiguous_cif = """
+data_1BME
+_struct.title 'Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP'
+#
+"""
+        review = build_epk_heteromeric_candidate_source_validation_review(
+            epk_heteromeric_positive_coverage_candidate_scout={
+                "metadata": {
+                    "method": "epk_heteromeric_positive_coverage_candidate_scout",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "pdb_id": "1ATM",
+                        "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+                        "heteromeric_candidate_hit_count": 1,
+                        "heteromeric_candidate_hits": [
+                            {"nearest_gamma_distance_angstrom": 3.5}
+                        ],
+                    },
+                    {
+                        "pdb_id": "1BME",
+                        "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+                        "heteromeric_candidate_hit_count": 1,
+                        "heteromeric_candidate_hits": [
+                            {"nearest_gamma_distance_angstrom": 4.0}
+                        ],
+                    },
+                    {
+                        "pdb_id": "1ATK",
+                        "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+                        "heteromeric_candidate_hit_count": 1,
+                        "heteromeric_candidate_hits": [
+                            {"nearest_gamma_distance_angstrom": 3.7}
+                        ],
+                    },
+                ],
+            },
+            cif_text_by_pdb={
+                "1ATM": source_valid_cif,
+                "1ATK": source_valid_keyword_cif,
+                "1BME": ambiguous_cif,
+            },
+        )
+        metadata = review["metadata"]
+        self.assertEqual(metadata["source_validated_new_candidate_count"], 2)
+        self.assertEqual(metadata["source_validated_unique_pair_ids"], ["atm_p53"])
+        self.assertEqual(metadata["ambiguous_candidate_count"], 1)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        rows = {row["pdb_id"]: row for row in review["rows"]}
+        self.assertEqual(
+            rows["1ATM"]["source_validation_status"],
+            "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+        )
+        self.assertEqual(
+            rows["1ATK"]["source_validation_status"],
+            "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+        )
+        self.assertEqual(
+            rows["1BME"]["source_validation_status"],
+            "blocked_ambiguous_kinase_kinase_role_direction_review_only",
+        )
+
+    def test_epk_heteromeric_source_valid_candidate_distance_sample_builder(
+        self,
+    ) -> None:
+        sample = build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
+            epk_heteromeric_candidate_source_validation_review={
+                "metadata": {
+                    "method": "epk_heteromeric_candidate_source_validation_review",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "pdb_id": "1ATM",
+                        "source_pair_id": "atm_p53",
+                        "source_validated_positive_like": True,
+                        "candidate_hits": [
+                            {
+                                "candidate_chain_name": "F",
+                                "candidate_auth_seq_id": "15",
+                                "candidate_residue_code": "SER",
+                                "candidate_atom_name": "OG",
+                                "acceptor_entity_id": "1",
+                                "gamma_associated_polymer_entity_id": "2",
+                                "gamma_ligand_code": "ANP",
+                                "gamma_atom_name": "PG",
+                                "nearest_gamma_distance_angstrom": 3.5,
+                            }
+                        ],
+                    },
+                    {
+                        "pdb_id": "1BME",
+                        "source_pair_id": None,
+                        "source_validated_positive_like": False,
+                        "candidate_hits": [
+                            {"nearest_gamma_distance_angstrom": 4.0}
+                        ],
+                    },
+                ],
+            }
+        )
+        metadata = sample["metadata"]
+        self.assertEqual(metadata["source_validated_candidate_count"], 1)
+        self.assertEqual(metadata["measured_candidate_count"], 1)
+        self.assertEqual(metadata["measured_candidate_pdb_ids"], ["1ATM"])
+        self.assertEqual(metadata["measured_unique_pair_ids"], ["atm_p53"])
+        self.assertTrue(metadata["all_source_valid_candidates_measured"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(sample["rows"][0]["nearest_gamma_acceptor_distance_angstrom"], 3.5)
 
     def test_epk_external_source_lower_priority_ligand_builder_blocks_analog(
         self,
@@ -4423,6 +4792,99 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         self.assertFalse(
             metadata["heteromeric_chain_topology_source_authority_eliminated"]
         )
+        self.assertEqual(
+            metadata[
+                "source_epk_heteromeric_positive_coverage_candidate_scout_method"
+            ],
+            "epk_heteromeric_positive_coverage_candidate_scout",
+        )
+        self.assertEqual(
+            metadata["heteromeric_positive_coverage_status"],
+            "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+        )
+        self.assertEqual(
+            metadata["heteromeric_positive_coverage_input_candidate_count"],
+            50,
+        )
+        self.assertEqual(
+            metadata["heteromeric_positive_coverage_candidate_structure_count"],
+            6,
+        )
+        self.assertEqual(
+            metadata["heteromeric_positive_coverage_candidate_pdb_ids"],
+            ["6Z3R", "7M0T", "7M0W", "8OXM", "8OXO", "8ZN6"],
+        )
+        self.assertTrue(
+            metadata["heteromeric_positive_coverage_source_validation_queue_ready"]
+        )
+        self.assertFalse(
+            metadata["heteromeric_positive_coverage_minimum_positive_coverage_met"]
+        )
+        self.assertEqual(
+            metadata[
+                "source_epk_heteromeric_candidate_source_validation_review_method"
+            ],
+            "epk_heteromeric_candidate_source_validation_review",
+        )
+        self.assertEqual(
+            metadata["heteromeric_source_validation_reviewed_candidate_count"],
+            6,
+        )
+        self.assertEqual(
+            metadata["heteromeric_source_validation_accepted_candidate_count"],
+            3,
+        )
+        self.assertEqual(
+            metadata["heteromeric_source_validation_accepted_candidate_pdb_ids"],
+            ["6Z3R", "8OXM", "8OXO"],
+        )
+        self.assertEqual(
+            metadata["heteromeric_source_validation_unique_pair_ids"],
+            ["atm_p53", "smg1_upf1"],
+        )
+        self.assertEqual(
+            metadata["heteromeric_source_validation_ambiguous_candidate_count"],
+            2,
+        )
+        self.assertEqual(
+            metadata["heteromeric_source_validation_rejected_candidate_count"],
+            1,
+        )
+        self.assertTrue(
+            metadata[
+                "heteromeric_source_validation_minimum_positive_coverage_met_review_only"
+            ]
+        )
+        self.assertEqual(
+            metadata[
+                "source_epk_heteromeric_source_valid_candidate_gamma_distance_sample_method"
+            ],
+            "epk_heteromeric_source_valid_candidate_gamma_distance_sample",
+        )
+        self.assertEqual(
+            metadata["heteromeric_distance_sample_status"],
+            "source_valid_heteromeric_candidates_measured_review_only",
+        )
+        self.assertEqual(
+            metadata["heteromeric_distance_source_validated_candidate_count"],
+            3,
+        )
+        self.assertEqual(metadata["heteromeric_distance_measured_candidate_count"], 3)
+        self.assertEqual(
+            metadata["heteromeric_distance_measured_candidate_pdb_ids"],
+            ["6Z3R", "8OXM", "8OXO"],
+        )
+        self.assertEqual(
+            metadata["heteromeric_distance_measured_unique_pair_ids"],
+            ["atm_p53", "smg1_upf1"],
+        )
+        self.assertEqual(metadata["heteromeric_distance_min_angstrom"], 3.482)
+        self.assertEqual(metadata["heteromeric_distance_max_angstrom"], 5.607)
+        self.assertTrue(
+            metadata[
+                "heteromeric_distance_minimum_positive_coverage_measured_review_only"
+            ]
+        )
         self.assertEqual(metadata["measured_acceptor_identity_source_supported_count"], 2)
         self.assertEqual(
             metadata["source_epk_acceptor_identity_review_method"],
@@ -4862,6 +5324,56 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
                 "full_probe_heteromeric_candidate_structure_count"
             ],
             1,
+        )
+        self.assertTrue(
+            checks["heteromeric_positive_coverage_candidate_scout"]["passed"]
+        )
+        self.assertEqual(
+            checks["heteromeric_positive_coverage_candidate_scout"]["evidence"][
+                "heteromeric_candidate_structure_count"
+            ],
+            6,
+        )
+        self.assertFalse(
+            checks["heteromeric_positive_coverage_candidate_scout"]["evidence"][
+                "minimum_positive_coverage_met"
+            ]
+        )
+        self.assertTrue(
+            checks["heteromeric_candidate_source_validation_review"]["passed"]
+        )
+        self.assertEqual(
+            checks["heteromeric_candidate_source_validation_review"]["evidence"][
+                "source_validated_new_candidate_count"
+            ],
+            3,
+        )
+        self.assertEqual(
+            checks["heteromeric_candidate_source_validation_review"]["evidence"][
+                "source_validated_new_candidate_pdb_ids"
+            ],
+            ["6Z3R", "8OXM", "8OXO"],
+        )
+        self.assertTrue(
+            checks["heteromeric_candidate_source_validation_review"]["evidence"][
+                "minimum_positive_coverage_met_review_only"
+            ]
+        )
+        self.assertTrue(
+            checks[
+                "heteromeric_source_valid_candidate_gamma_distance_sample"
+            ]["passed"]
+        )
+        self.assertEqual(
+            checks[
+                "heteromeric_source_valid_candidate_gamma_distance_sample"
+            ]["evidence"]["measured_candidate_count"],
+            3,
+        )
+        self.assertTrue(
+            checks[
+                "heteromeric_source_valid_candidate_gamma_distance_sample"
+            ]["evidence"]["minimum_positive_coverage_measured_review_only"]
         )
         self.assertFalse(
             checks[

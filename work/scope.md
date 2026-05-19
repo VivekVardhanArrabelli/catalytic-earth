@@ -96,9 +96,17 @@ hits by comparing the acceptor polymer entity with the adenylate-associated
 author-chain polymer entity: it keeps 5HVK and abstains on the three
 same-accession controls with zero false hits. Its full source-free scan across
 the current 60-structure probe finds only 5HVK as a heteromeric candidate. The
-next ePK work needs broader positive-like heteromeric coverage beyond that
-probe plus threshold/external-hard-negative calibration before any production
-scoring.
+follow-on 50-structure RCSB ANP/Mg EC 2.7.11.1 candidate scout now finds six
+additional source-free heteromeric topology leads (`6Z3R`, `7M0T`, `7M0W`,
+`8OXM`, `8OXO`, and `8ZN6`). The source-validation review accepts three
+review-only positive-like structures across two kinase/substrate pairs:
+`6Z3R` as SMG1/UPF1 and `8OXM`/`8OXO` as ATM/p53. It blocks `7M0T` and `7M0W`
+as BRAF/MEK role-direction ambiguous and rejects `8ZN6` as a non-ePK/designed
+clock-protein context. The carried gamma-distance sample measures all three
+accepted leads at 3.482-5.607 Angstrom, so the next ePK work should rerun
+review-only controls with those source-valid measured leads separated from the
+ambiguous/rejected candidates. Threshold/external-hard-negative calibration
+remains closed before any production scoring.
 
 ## Time Calibration Rule
 

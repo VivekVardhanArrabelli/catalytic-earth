@@ -346,6 +346,69 @@
     },
     {
       "evidence": {
+        "heteromeric_candidate_pdb_ids": [
+          "6Z3R",
+          "7M0T",
+          "7M0W",
+          "8OXM",
+          "8OXO",
+          "8ZN6"
+        ],
+        "heteromeric_candidate_structure_count": 6,
+        "input_candidate_count": 50,
+        "minimum_positive_coverage_met": false,
+        "positive_coverage_status": "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+        "reviewed_candidate_count": 50,
+        "source_method": "epk_heteromeric_positive_coverage_candidate_scout",
+        "source_validation_queue_ready": true
+      },
+      "gate_id": "heteromeric_positive_coverage_candidate_scout",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "ambiguous_candidate_count": 2,
+        "minimum_positive_coverage_met_review_only": true,
+        "rejected_candidate_count": 1,
+        "reviewed_candidate_count": 6,
+        "source_method": "epk_heteromeric_candidate_source_validation_review",
+        "source_validated_new_candidate_count": 3,
+        "source_validated_new_candidate_pdb_ids": [
+          "6Z3R",
+          "8OXM",
+          "8OXO"
+        ],
+        "source_validated_unique_pair_ids": [
+          "atm_p53",
+          "smg1_upf1"
+        ]
+      },
+      "gate_id": "heteromeric_candidate_source_validation_review",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "distance_max_angstrom": 5.607,
+        "distance_min_angstrom": 3.482,
+        "measured_candidate_count": 3,
+        "measured_candidate_pdb_ids": [
+          "6Z3R",
+          "8OXM",
+          "8OXO"
+        ],
+        "measured_unique_pair_ids": [
+          "atm_p53",
+          "smg1_upf1"
+        ],
+        "minimum_positive_coverage_measured_review_only": true,
+        "source_method": "epk_heteromeric_source_valid_candidate_gamma_distance_sample",
+        "source_validated_candidate_count": 3
+      },
+      "gate_id": "heteromeric_source_valid_candidate_gamma_distance_sample",
+      "passed": true
+    },
+    {
+      "evidence": {
         "atp_metal_state_candidate_count": 2,
         "atp_metal_state_candidate_pdb_ids": [
           "1TID",
@@ -633,6 +696,49 @@
     ],
     "heteromeric_chain_topology_same_accession_false_hit_count": 0,
     "heteromeric_chain_topology_source_authority_eliminated": false,
+    "heteromeric_distance_max_angstrom": 5.607,
+    "heteromeric_distance_measured_candidate_count": 3,
+    "heteromeric_distance_measured_candidate_pdb_ids": [
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
+    "heteromeric_distance_measured_unique_pair_ids": [
+      "atm_p53",
+      "smg1_upf1"
+    ],
+    "heteromeric_distance_min_angstrom": 3.482,
+    "heteromeric_distance_minimum_positive_coverage_measured_review_only": true,
+    "heteromeric_distance_sample_status": "source_valid_heteromeric_candidates_measured_review_only",
+    "heteromeric_distance_source_validated_candidate_count": 3,
+    "heteromeric_positive_coverage_candidate_pdb_ids": [
+      "6Z3R",
+      "7M0T",
+      "7M0W",
+      "8OXM",
+      "8OXO",
+      "8ZN6"
+    ],
+    "heteromeric_positive_coverage_candidate_structure_count": 6,
+    "heteromeric_positive_coverage_input_candidate_count": 50,
+    "heteromeric_positive_coverage_minimum_positive_coverage_met": false,
+    "heteromeric_positive_coverage_reviewed_candidate_count": 50,
+    "heteromeric_positive_coverage_source_validation_queue_ready": true,
+    "heteromeric_positive_coverage_status": "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+    "heteromeric_source_validation_accepted_candidate_count": 3,
+    "heteromeric_source_validation_accepted_candidate_pdb_ids": [
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
+    "heteromeric_source_validation_ambiguous_candidate_count": 2,
+    "heteromeric_source_validation_minimum_positive_coverage_met_review_only": true,
+    "heteromeric_source_validation_rejected_candidate_count": 1,
+    "heteromeric_source_validation_reviewed_candidate_count": 6,
+    "heteromeric_source_validation_unique_pair_ids": [
+      "atm_p53",
+      "smg1_upf1"
+    ],
     "ligand_analog_dependency_count": 1,
     "ligand_analog_dependency_entry_ids": [
       "m_csa:640"
@@ -817,6 +923,7 @@
       "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
       "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
+      "rerun review-only controls with measured source-valid SMG1/UPF1 and ATM/p53 leads separated from ambiguous heteromeric rows",
       "add a source-free catalytic-chain assignment signal before using local chain-topology hits for scoring",
       "freeze a real protein-substrate acceptor scorer design before any 5HVK-informed threshold calibration",
       "use the 5HVK rerun result to design calibrated protein-substrate acceptor scoring while keeping production gates closed",
@@ -873,7 +980,10 @@
     ],
     "source_epk_family_specific_mapping_template_validation_review_method": "epk_family_specific_mapping_template_validation_review",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
+    "source_epk_heteromeric_candidate_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
     "source_epk_heteromeric_chain_topology_signal_audit_method": "epk_heteromeric_chain_topology_signal_audit",
+    "source_epk_heteromeric_positive_coverage_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "source_epk_heteromeric_source_valid_candidate_gamma_distance_sample_method": "epk_heteromeric_source_valid_candidate_gamma_distance_sample",
     "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
     "source_epk_ligand_specific_5hvk_control_rerun_queue_method": "epk_ligand_specific_5hvk_control_rerun_queue",
     "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": "epk_ligand_specific_5hvk_prototype_control_rerun",

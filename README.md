@@ -1240,6 +1240,24 @@ scored re-audit are still missing, and all score/import/registry gates stay
 closed. A full source-free scan across the same 60-structure probe finds only
 5HVK as a heteromeric candidate, so the next positive-coverage step must look
 beyond this bounded probe rather than rechecking the same set.
+`artifacts/v3_epk_heteromeric_positive_coverage_candidate_scout_1025.json`
+does that bounded follow-on scan against the next 50 RCSB ANP/Mg EC 2.7.11.1
+entries after the prior first-60 probe. It finds six source-free heteromeric
+topology leads (`6Z3R`, `7M0T`, `7M0W`, `8OXM`, `8OXO`, and `8ZN6`) and turns
+them into source-validation queue items.
+`artifacts/v3_epk_heteromeric_candidate_source_validation_review_1025.json`
+source-reviews those six leads and accepts three review-only positive-like
+structures: `6Z3R` (SMG1/UPF1) plus `8OXM` and `8OXO` (ATM/p53). It blocks the
+two BRAF/MEK kinase-kinase complexes as role-direction ambiguous and rejects
+the KaiC designed clock protein. The accepted rows satisfy a broader
+review-only coverage check, but protein-substrate acceptor source mapping,
+threshold calibration, a real external hard-negative scored re-audit, and
+registry/label-factory extension all remain closed.
+`artifacts/v3_epk_heteromeric_source_valid_candidate_gamma_distance_sample_1025.json`
+then measures the three source-valid review leads from the carried topology
+hits: nearest ANP gamma distances span 3.482-5.607 Angstrom across the same two
+unique pairs. This removes the immediate "accepted lead not measured" blocker
+only for review controls; it is still not a calibrated score.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,
@@ -1260,8 +1278,12 @@ probe, 5LI1 residue clue audit, source-valid 5HVK review lead, 5HVK
 control-rerun queue, 5HVK prototype rerun, and 5HVK protein-substrate
 generalization audit pass as safety/diagnostic gates. The heteromeric
 chain-topology signal gate also passes current hit controls as review-only
-counterevidence, but its one-positive coverage is insufficient. Real scorer
-design, the `m_csa:760` split-state repair scan, the
+counterevidence, and the broadened heteromeric candidate scout now passes as
+a source-validation queue. The source-validation review also passes with three
+accepted review-only structures across two unique kinase/substrate pairs, and
+the carried distance sample measures all three leads, but neither is scorer or
+label evidence. Real scorer design, the `m_csa:760`
+split-state repair scan, the
 `m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,
 external scored re-audit, and label-factory extension all remain failing
 gates; the negative-control distribution blocker also stays open.

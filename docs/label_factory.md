@@ -629,6 +629,24 @@ external hard-negative scored re-audit, and registry/label-factory extensions.
 The same artifact also runs a full source-free scan across the 60-structure
 probe and finds only 5HVK as a heteromeric candidate, making the positive
 coverage gap explicit.
+`artifacts/v3_epk_heteromeric_positive_coverage_candidate_scout_1025.json`
+then scans the next 50 RCSB ANP/Mg EC 2.7.11.1 entries after that first-60
+probe. The source-free topology rule finds six heteromeric candidates:
+`6Z3R`, `7M0T`, `7M0W`, `8OXM`, `8OXO`, and `8ZN6`. This removes only the
+"no broader candidates checked" gap.
+`artifacts/v3_epk_heteromeric_candidate_source_validation_review_1025.json`
+then source-reviews those leads and accepts `6Z3R`, `8OXM`, and `8OXO` as
+review-only positive-like structures across two unique pairs (`smg1_upf1` and
+`atm_p53`). It blocks `7M0T`/`7M0W` as BRAF/MEK role-direction ambiguous and
+rejects `8ZN6` as a non-ePK/designed clock-protein context. These accepted
+rows are not countable controls because protein-substrate acceptor mapping,
+threshold calibration, scored external re-audit, and registry/label-factory
+gates remain closed.
+`artifacts/v3_epk_heteromeric_source_valid_candidate_gamma_distance_sample_1025.json`
+then carries forward the local topology hits for the three source-valid review
+leads and records nearest ANP gamma distances from 3.482 to 5.607 Angstrom.
+This gives measured review controls for the accepted leads without turning the
+axis into a calibrated scorer.
 The 1025 preview/expanded source-triage artifacts repeat the same exhausted
 source candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) and do not open
 a new protein-substrate ePK source lane; the expanded terminal decision stays
@@ -651,7 +669,11 @@ re-audit, review-only external hard-negative score probe, 5LI1 clue audit,
 5HVK source-validity/control-rerun queue, 5HVK prototype rerun, and 5HVK
 protein-substrate generalization reviews pass as diagnostic guard gates. The
 heteromeric chain-topology signal gate also passes current hit controls, but
-only as one-positive review-only evidence.
+only as one-positive review-only evidence. The broadened heteromeric candidate
+scout passes as a source-validation queue, and the source-validation review
+passes with three accepted review-only structures across two unique pairs. The
+source-valid distance sample also passes with all three accepted leads
+measured; it still does not make scoring or label import admissible.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state
