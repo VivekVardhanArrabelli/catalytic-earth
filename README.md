@@ -1220,6 +1220,26 @@ closed.
 blocker: local PDB polymer/entity evidence supports a 5HVK co-complex with
 disjoint kinase/acceptor chains plus ANP/Mg context, but it still cannot
 replace source authority for assigning kinase versus substrate roles.
+`artifacts/v3_epk_source_free_chain_topology_role_audit_1025.json` then
+stress-tests the source-free version of that idea against the broader
+ligand-specific co-complex probe. With source fields masked, local
+gamma-to-hydroxyl topology hits 4 structures: the 5HVK cross-accession lead
+plus three same-accession phosphosite/control-risk structures (`3Q4Z`, `4I94`,
+and `5XD6`). The rule therefore fails closed as
+`blocked_review_only_source_free_topology_role_rule_false_hit_risk`; source
+authority is still not eliminated and no ePK score or registry change is
+opened.
+`artifacts/v3_epk_heteromeric_chain_topology_signal_audit_1025.json` adds one
+concrete source-free counter-axis: compare the candidate acceptor polymer
+entity with the nearest adenylate gamma atom's associated author-chain polymer
+entity. That signal keeps the 5HVK positive-like hit, abstains on `3Q4Z`,
+`4I94`, and `5XD6`, and records zero same-accession false hits. It is useful
+review-only evidence, not production evidence: only one positive-like
+heteromeric case exists, threshold calibration and real external hard-negative
+scored re-audit are still missing, and all score/import/registry gates stay
+closed. A full source-free scan across the same 60-structure probe finds only
+5HVK as a heteromeric candidate, so the next positive-coverage step must look
+beyond this bounded probe rather than rechecking the same set.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,
@@ -1238,8 +1258,10 @@ chain/ligand feature, external feature screen, policy activation audit,
 inactive policy control re-audit, review-only external hard-negative score
 probe, 5LI1 residue clue audit, source-valid 5HVK review lead, 5HVK
 control-rerun queue, 5HVK prototype rerun, and 5HVK protein-substrate
-generalization audit pass as safety/diagnostic gates, but real scorer design,
-the `m_csa:760` split-state repair scan, the
+generalization audit pass as safety/diagnostic gates. The heteromeric
+chain-topology signal gate also passes current hit controls as review-only
+counterevidence, but its one-positive coverage is insufficient. Real scorer
+design, the `m_csa:760` split-state repair scan, the
 `m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,
 external scored re-audit, and label-factory extension all remain failing
 gates; the negative-control distribution blocker also stays open.

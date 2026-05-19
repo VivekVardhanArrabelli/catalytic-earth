@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "audit_status": "blocked_review_only_source_free_topology_role_rule_false_hit_risk",
+    "broader_chain_topology_controls_run": true,
+    "broader_chain_topology_query_pdb_count": 60,
+    "broader_chain_topology_reviewed_pdb_count": 60,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "known_same_accession_control_risk_count": 3,
+    "known_same_accession_control_risk_pdb_ids": [
+      "3Q4Z",
+      "4I94",
+      "5XD6"
+    ],
+    "local_chain_sets_disjoint": true,
+    "local_entity_supports_cocomplex": true,
+    "masked_local_candidate_hit_count": 4,
+    "method": "epk_source_free_chain_topology_role_audit",
+    "next_actions": [
+      "add a source-free catalytic-chain assignment signal before accepting local topology hits",
+      "broaden chain-topology controls with more kinase substrate co-complexes before calibration",
+      "keep source-authority axes as review context until the local rule no longer false-hits same-accession controls"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "remaining_blockers": [
+      "source_free_chain_role_direction_not_inferable_from_current_local_evidence",
+      "same_accession_phosphosite_hits_would_false_hit_source_free_rule",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "review_only": true,
+    "source_authority_eliminated": false,
+    "source_epk_5hvk_local_polymer_entity_role_audit_method": "epk_5hvk_local_polymer_entity_role_audit",
+    "source_epk_ligand_specific_substrate_cocomplex_query_probe_method": "epk_ligand_specific_substrate_cocomplex_query_probe",
+    "source_epk_local_chain_topology_acceptor_replacement_rule_method": "epk_local_chain_topology_acceptor_replacement_rule",
+    "source_fields_masked_for_candidate_rule": true,
+    "source_free_role_assignment_safe": false,
+    "source_valid_cross_accession_positive_count": 1,
+    "source_valid_cross_accession_positive_pdb_ids": [
+      "5HVK"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "known_probe_status": "source_ready_cross_accession_acceptor_hit_review_only",
+      "known_review_context_class": "cross_accession_source_valid_positive_like",
+      "masked_local_candidate_hit": true,
+      "masked_predictive_inputs": [
+        "local_gamma_to_hydroxyl_within_threshold",
+        "polymer_chain_count",
+        "adenylate_ligand_context",
+        "metal_ligand_context"
+      ],
+      "nearest_within_threshold_distance_angstrom": 4.236,
+      "pdb_id": "5HVK",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_type": "broader_chain_topology_hit_control",
+      "source_context_used_for_failure_label_only": true,
+      "source_fields_masked_for_candidate_rule": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "within_threshold_acceptor_hit_count": 1,
+      "would_be_false_hit_under_source_free_acceptor_rule": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "known_probe_status": "source_ready_same_accession_acceptor_hit_review_only",
+      "known_review_context_class": "same_accession_phosphosite_control_risk",
+      "masked_local_candidate_hit": true,
+      "masked_predictive_inputs": [
+        "local_gamma_to_hydroxyl_within_threshold",
+        "polymer_chain_count",
+        "adenylate_ligand_context",
+        "metal_ligand_context"
+      ],
+      "nearest_within_threshold_distance_angstrom": 5.802,
+      "pdb_id": "3Q4Z",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_type": "broader_chain_topology_hit_control",
+      "source_context_used_for_failure_label_only": true,
+      "source_fields_masked_for_candidate_rule": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "within_threshold_acceptor_hit_count": 1,
+      "would_be_false_hit_under_source_free_acceptor_rule": true
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "known_probe_status": "source_ready_same_accession_acceptor_hit_review_only",
+      "known_review_context_class": "same_accession_phosphosite_control_risk",
+      "masked_local_candidate_hit": true,
+      "masked_predictive_inputs": [
+        "local_gamma_to_hydroxyl_within_threshold",
+        "polymer_chain_count",
+        "adenylate_ligand_context",
+        "metal_ligand_context"
+      ],
+      "nearest_within_threshold_distance_angstrom": 5.418,
+      "pdb_id": "4I94",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_type": "broader_chain_topology_hit_control",
+      "source_context_used_for_failure_label_only": true,
+      "source_fields_masked_for_candidate_rule": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "within_threshold_acceptor_hit_count": 1,
+      "would_be_false_hit_under_source_free_acceptor_rule": true
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "known_probe_status": "source_ready_same_accession_acceptor_hit_review_only",
+      "known_review_context_class": "same_accession_phosphosite_control_risk",
+      "masked_local_candidate_hit": true,
+      "masked_predictive_inputs": [
+        "local_gamma_to_hydroxyl_within_threshold",
+        "polymer_chain_count",
+        "adenylate_ligand_context",
+        "metal_ligand_context"
+      ],
+      "nearest_within_threshold_distance_angstrom": 3.632,
+      "pdb_id": "5XD6",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_type": "broader_chain_topology_hit_control",
+      "source_context_used_for_failure_label_only": true,
+      "source_fields_masked_for_candidate_rule": true,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "within_threshold_acceptor_hit_count": 4,
+      "would_be_false_hit_under_source_free_acceptor_rule": true
+    },
+    {
+      "candidate_rule_hit": false,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "has_adenylate_ligand_entity": true,
+      "has_magnesium_entity": true,
+      "local_chain_sets_disjoint": true,
+      "local_entity_supports_cocomplex": true,
+      "pdb_id": "5HVK",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_type": "local_5hvk_source_free_role_assignment_probe",
+      "source_authority_eliminated": false,
+      "source_fields_masked_for_candidate_rule": true,
+      "source_free_role_assignment_decision": "abstain_role_direction_not_inferable_without_source",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Source-free chain topology is not yet a production ePK feature: masked local hit logic cannot distinguish 5HVK-like substrate co-complexes from same-accession phosphosite control risks."
+  ]
+}

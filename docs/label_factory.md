@@ -608,6 +608,27 @@ roles, so it remains review-only.
 specific dependency. It confirms local polymer/entity evidence is consistent
 with a 5HVK co-complex and disjoint kinase/acceptor chains in ANP/Mg context,
 but it cannot assign kinase versus substrate roles without source authority.
+`artifacts/v3_epk_source_free_chain_topology_role_audit_1025.json` then makes
+the negative control explicit. The source-free masked topology rule sees four
+local gamma-to-hydroxyl hits in the ligand-specific co-complex probe, but only
+one is the cross-accession 5HVK positive-like lead; the other three are
+same-accession phosphosite/control-risk structures (`3Q4Z`, `4I94`, and
+`5XD6`). The audit is therefore `blocked_review_only`, keeps source authority
+as review context, adds the failing pre-count gate
+`source_free_chain_topology_role_audit`, and opens no score, registry edit, or
+label import.
+`artifacts/v3_epk_heteromeric_chain_topology_signal_audit_1025.json` adds the
+first source-free counter-axis on top of that failure. It compares the
+candidate acceptor polymer entity to the nearest adenylate gamma atom's
+associated author-chain polymer entity. On the current hit controls it keeps
+5HVK as the only positive-like heteromeric signal and abstains on `3Q4Z`,
+`4I94`, and `5XD6`, with zero same-accession false hits. The gate can pass as
+review-only counterevidence, but production remains closed because the signal
+has only one positive-like case and still lacks threshold calibration, a real
+external hard-negative scored re-audit, and registry/label-factory extensions.
+The same artifact also runs a full source-free scan across the 60-structure
+probe and finds only 5HVK as a heteromeric candidate, making the positive
+coverage gap explicit.
 The 1025 preview/expanded source-triage artifacts repeat the same exhausted
 source candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) and do not open
 a new protein-substrate ePK source lane; the expanded terminal decision stays
@@ -628,7 +649,9 @@ gate pass, the family-template gate passes by downstream validation, and the
 chain/ligand feature screen, policy activation audit, inactive policy control
 re-audit, review-only external hard-negative score probe, 5LI1 clue audit,
 5HVK source-validity/control-rerun queue, 5HVK prototype rerun, and 5HVK
-protein-substrate generalization reviews pass as diagnostic guard gates.
+protein-substrate generalization reviews pass as diagnostic guard gates. The
+heteromeric chain-topology signal gate also passes current hit controls, but
+only as one-positive review-only evidence.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

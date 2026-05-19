@@ -313,6 +313,39 @@
     },
     {
       "evidence": {
+        "audit_status": "blocked_review_only_source_free_topology_role_rule_false_hit_risk",
+        "known_same_accession_control_risk_count": 3,
+        "known_same_accession_control_risk_pdb_ids": [
+          "3Q4Z",
+          "4I94",
+          "5XD6"
+        ],
+        "masked_local_candidate_hit_count": 4,
+        "source_authority_eliminated": false,
+        "source_fields_masked_for_candidate_rule": true,
+        "source_free_role_assignment_safe": false,
+        "source_method": "epk_source_free_chain_topology_role_audit",
+        "source_valid_cross_accession_positive_count": 1
+      },
+      "gate_id": "source_free_chain_topology_role_audit",
+      "passed": false
+    },
+    {
+      "evidence": {
+        "audit_status": "passes_current_hit_controls_but_insufficient_positive_coverage_review_only",
+        "full_probe_heteromeric_candidate_structure_count": 1,
+        "heteromeric_signal_positive_like_count": 1,
+        "minimum_positive_coverage_met": false,
+        "same_accession_control_signal_false_hit_count": 0,
+        "source_authority_eliminated": false,
+        "source_free_5hvk_role_direction_supported": true,
+        "source_method": "epk_heteromeric_chain_topology_signal_audit"
+      },
+      "gate_id": "heteromeric_chain_topology_signal_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
         "atp_metal_state_candidate_count": 2,
         "atp_metal_state_candidate_pdb_ids": [
           "1TID",
@@ -571,6 +604,7 @@
       "registry_and_label_factory_extension",
       "text_free_acceptor_feature_gap_audit",
       "protein_substrate_acceptor_candidate_audit",
+      "source_free_chain_topology_role_audit",
       "m_csa760_atp_state_repair_scan",
       "m_csa757_active_state_repair_scan",
       "m_csa756_active_state_repair_scan",
@@ -580,6 +614,25 @@
     "gamma_measured_or_reviewed_row_count": 3,
     "gamma_measured_row_count": 2,
     "gamma_threshold_control_plan_ready": true,
+    "heteromeric_chain_topology_5hvk_role_direction_supported": true,
+    "heteromeric_chain_topology_audit_status": "passes_current_hit_controls_but_insufficient_positive_coverage_review_only",
+    "heteromeric_chain_topology_current_hit_controls_passed": true,
+    "heteromeric_chain_topology_full_probe_candidate_pdb_ids": [
+      "5HVK"
+    ],
+    "heteromeric_chain_topology_full_probe_candidate_structure_count": 1,
+    "heteromeric_chain_topology_minimum_positive_coverage_met": false,
+    "heteromeric_chain_topology_positive_like_count": 1,
+    "heteromeric_chain_topology_positive_like_pdb_ids": [
+      "5HVK"
+    ],
+    "heteromeric_chain_topology_same_accession_abstention_pdb_ids": [
+      "3Q4Z",
+      "4I94",
+      "5XD6"
+    ],
+    "heteromeric_chain_topology_same_accession_false_hit_count": 0,
+    "heteromeric_chain_topology_source_authority_eliminated": false,
     "ligand_analog_dependency_count": 1,
     "ligand_analog_dependency_entry_ids": [
       "m_csa:640"
@@ -764,6 +817,7 @@
       "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
       "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
+      "add a source-free catalytic-chain assignment signal before using local chain-topology hits for scoring",
       "freeze a real protein-substrate acceptor scorer design before any 5HVK-informed threshold calibration",
       "use the 5HVK rerun result to design calibrated protein-substrate acceptor scoring while keeping production gates closed",
       "convert the review-only external hard-negative score probe into a real scored re-audit only after threshold calibration",
@@ -819,6 +873,7 @@
     ],
     "source_epk_family_specific_mapping_template_validation_review_method": "epk_family_specific_mapping_template_validation_review",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
+    "source_epk_heteromeric_chain_topology_signal_audit_method": "epk_heteromeric_chain_topology_signal_audit",
     "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
     "source_epk_ligand_specific_5hvk_control_rerun_queue_method": "epk_ligand_specific_5hvk_control_rerun_queue",
     "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": "epk_ligand_specific_5hvk_prototype_control_rerun",
@@ -842,8 +897,20 @@
     ],
     "source_epk_sibling_negative_control_alternate_gamma_distance_sample_method": "epk_sibling_negative_control_alternate_gamma_distance_sample",
     "source_epk_sibling_negative_control_alternate_structure_plan_method": "epk_sibling_negative_control_alternate_structure_plan",
+    "source_epk_source_free_chain_topology_role_audit_method": "epk_source_free_chain_topology_role_audit",
     "source_epk_substrate_acceptor_counteraxis_prototype_method": "epk_substrate_acceptor_counteraxis_prototype",
     "source_epk_text_free_acceptor_feature_gap_audit_method": "epk_text_free_acceptor_feature_gap_audit",
+    "source_free_chain_topology_audit_status": "blocked_review_only_source_free_topology_role_rule_false_hit_risk",
+    "source_free_chain_topology_cross_accession_positive_count": 1,
+    "source_free_chain_topology_masked_local_candidate_hit_count": 4,
+    "source_free_chain_topology_role_assignment_safe": false,
+    "source_free_chain_topology_same_accession_control_risk_count": 3,
+    "source_free_chain_topology_same_accession_control_risk_pdb_ids": [
+      "3Q4Z",
+      "4I94",
+      "5XD6"
+    ],
+    "source_free_chain_topology_source_authority_eliminated": false,
     "substrate_acceptor_counteraxis_blocked_count": 20,
     "substrate_acceptor_counteraxis_decision_surface_changed": true,
     "substrate_acceptor_counteraxis_positive_like_count": 3,

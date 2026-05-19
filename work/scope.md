@@ -88,9 +88,17 @@ first local chain-topology replacement rule passes current review controls but
 still depends on source-assigned 5HVK chain roles. The local polymer/entity
 role audit narrows that blocker by confirming disjoint 5HVK polymer chains plus
 ANP/Mg co-complex context, but it still cannot assign kinase versus substrate
-roles without source authority, so the next ePK work should target a
-source-free local polymer topology role rule and broader chain-topology
-controls.
+roles without source authority. The source-free chain-topology role audit now
+tests that rule directly and fails closed: masked local topology hits 5HVK plus
+three same-accession phosphosite/control-risk structures (`3Q4Z`, `4I94`, and
+`5XD6`). A heteromeric entity-topology counter-axis now separates those current
+hits by comparing the acceptor polymer entity with the adenylate-associated
+author-chain polymer entity: it keeps 5HVK and abstains on the three
+same-accession controls with zero false hits. Its full source-free scan across
+the current 60-structure probe finds only 5HVK as a heteromeric candidate. The
+next ePK work needs broader positive-like heteromeric coverage beyond that
+probe plus threshold/external-hard-negative calibration before any production
+scoring.
 
 ## Time Calibration Rule
 

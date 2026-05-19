@@ -18,7 +18,9 @@ from catalytic_earth.labels import (
     build_epk_local_chain_topology_acceptor_replacement_rule,
     build_epk_protein_substrate_calibration_diagnostic,
     build_epk_protein_substrate_scorer_design_freeze,
+    build_epk_heteromeric_chain_topology_signal_audit,
     build_epk_source_authority_axis_replacement_gap_audit,
+    build_epk_source_free_chain_topology_role_audit,
     load_labels,
 )
 from catalytic_earth.transfer_scope import (
@@ -2117,6 +2119,118 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertFalse(metadata["epk_score_computed"])
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
 
+    def test_epk_source_free_chain_topology_role_audit_stays_blocked(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_source_free_chain_topology_role_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_source_free_chain_topology_role_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["audit_status"],
+            "blocked_review_only_source_free_topology_role_rule_false_hit_risk",
+        )
+        self.assertTrue(metadata["source_fields_masked_for_candidate_rule"])
+        self.assertEqual(metadata["masked_local_candidate_hit_count"], 4)
+        self.assertEqual(metadata["source_valid_cross_accession_positive_count"], 1)
+        self.assertEqual(metadata["known_same_accession_control_risk_count"], 3)
+        self.assertEqual(
+            metadata["known_same_accession_control_risk_pdb_ids"],
+            ["3Q4Z", "4I94", "5XD6"],
+        )
+        self.assertFalse(metadata["source_free_role_assignment_safe"])
+        self.assertFalse(metadata["source_authority_eliminated"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_epk_heteromeric_chain_topology_signal_audit_stays_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_chain_topology_signal_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_chain_topology_signal_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["audit_status"],
+            "passes_current_hit_controls_but_insufficient_positive_coverage_review_only",
+        )
+        self.assertTrue(metadata["source_fields_masked_for_candidate_rule"])
+        self.assertEqual(metadata["evaluated_hit_control_count"], 4)
+        self.assertEqual(metadata["heteromeric_signal_positive_like_count"], 1)
+        self.assertEqual(
+            metadata["heteromeric_signal_positive_like_pdb_ids"],
+            ["5HVK"],
+        )
+        self.assertEqual(
+            metadata["same_accession_control_signal_false_hit_count"], 0
+        )
+        self.assertEqual(
+            metadata["same_accession_control_abstention_pdb_ids"],
+            ["3Q4Z", "4I94", "5XD6"],
+        )
+        self.assertTrue(metadata["current_hit_controls_passed"])
+        self.assertFalse(metadata["minimum_positive_coverage_met"])
+        self.assertTrue(metadata["full_probe_candidate_scout_run"])
+        self.assertEqual(metadata["full_probe_candidate_scout_query_pdb_count"], 60)
+        self.assertEqual(
+            metadata["full_probe_candidate_scout_fetch_failure_count"], 0
+        )
+        self.assertEqual(
+            metadata["full_probe_heteromeric_candidate_structure_count"],
+            1,
+        )
+        self.assertEqual(
+            metadata["full_probe_heteromeric_candidate_pdb_ids"],
+            ["5HVK"],
+        )
+        self.assertTrue(metadata["source_free_5hvk_role_direction_supported"])
+        self.assertFalse(metadata["source_authority_eliminated"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        scout_rows = [
+            row
+            for row in audit["rows"]
+            if row["row_type"] == "full_probe_heteromeric_candidate_scout"
+        ]
+        self.assertEqual([row["pdb_id"] for row in scout_rows], ["5HVK"])
+        self.assertEqual(scout_rows[0]["heteromeric_candidate_hit_count"], 1)
+        self.assertEqual(
+            scout_rows[0]["heteromeric_candidate_hits"][0][
+                "candidate_chain_name"
+            ],
+            "D",
+        )
+        hit_controls = [
+            row
+            for row in audit["rows"]
+            if row["row_type"] == "heteromeric_chain_topology_hit_control"
+        ]
+        mapping_bases = {
+            evaluation["gamma_associated_polymer_entity_mapping_basis"]
+            for row in hit_controls
+            for evaluation in row["hit_evaluations"]
+            if evaluation.get("mapped_acceptor_atom")
+        }
+        self.assertEqual(mapping_bases, {"atom_site_author_chain_polymer_entity"})
+
     def test_epk_external_source_scout_builder_keeps_rows_non_countable(
         self,
     ) -> None:
@@ -2755,6 +2869,199 @@ ATOM 2 O OG SER D 3 3.0 0.0 0.0 OG SER D 3
             "partial_local_entity_support_source_roles_still_required",
         )
         self.assertTrue(metadata["local_entity_supports_cocomplex"])
+        self.assertFalse(metadata["source_authority_eliminated"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_epk_source_free_chain_topology_role_audit_builder_blocks_risk(
+        self,
+    ) -> None:
+        audit = build_epk_source_free_chain_topology_role_audit(
+            epk_5hvk_local_polymer_entity_role_audit={
+                "metadata": {
+                    "method": "epk_5hvk_local_polymer_entity_role_audit",
+                    "pdb_id": "5HVK",
+                    "local_entity_supports_cocomplex": True,
+                    "chain_sets_disjoint": True,
+                    "has_adenylate_ligand_entity": True,
+                    "has_magnesium_entity": True,
+                    "source_authority_eliminated": False,
+                }
+            },
+            epk_ligand_specific_substrate_cocomplex_query_probe={
+                "metadata": {
+                    "method": "epk_ligand_specific_substrate_cocomplex_query_probe",
+                    "reviewed_pdb_count": 2,
+                    "query_pdb_count": 2,
+                },
+                "rows": [
+                    {
+                        "pdb_id": "5HVK",
+                        "probe_status": (
+                            "source_ready_cross_accession_acceptor_hit_review_only"
+                        ),
+                        "acceptor_hits": [
+                            {
+                                "within_candidate_threshold": True,
+                                "nearest_gamma_distance_angstrom": 4.236,
+                            }
+                        ],
+                    },
+                    {
+                        "pdb_id": "3Q4Z",
+                        "probe_status": (
+                            "source_ready_same_accession_acceptor_hit_review_only"
+                        ),
+                        "acceptor_hits": [
+                            {
+                                "within_candidate_threshold": True,
+                                "nearest_gamma_distance_angstrom": 5.802,
+                            }
+                        ],
+                    },
+                ],
+            },
+            epk_local_chain_topology_acceptor_replacement_rule={
+                "metadata": {
+                    "method": "epk_local_chain_topology_acceptor_replacement_rule",
+                }
+            },
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["audit_status"],
+            "blocked_review_only_source_free_topology_role_rule_false_hit_risk",
+        )
+        self.assertEqual(metadata["masked_local_candidate_hit_count"], 2)
+        self.assertEqual(metadata["source_valid_cross_accession_positive_count"], 1)
+        self.assertEqual(metadata["known_same_accession_control_risk_count"], 1)
+        self.assertFalse(metadata["source_free_role_assignment_safe"])
+        self.assertFalse(metadata["source_authority_eliminated"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_epk_heteromeric_chain_topology_signal_audit_builder_splits_controls(
+        self,
+    ) -> None:
+        heteromeric_cif = """
+data_5HVK
+loop_
+_struct_asym.id
+_struct_asym.entity_id
+C 1
+D 2
+#
+loop_
+_atom_site.group_PDB
+_atom_site.label_atom_id
+_atom_site.auth_atom_id
+_atom_site.label_comp_id
+_atom_site.auth_comp_id
+_atom_site.label_asym_id
+_atom_site.auth_asym_id
+_atom_site.label_seq_id
+_atom_site.auth_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+ATOM OG OG SER SER D D 3 3 0.0 0.0 0.0
+HETATM PG PG ANP ANP C C 1 1 0.0 0.0 4.0
+#
+"""
+        same_entity_cif = """
+data_3Q4Z
+loop_
+_struct_asym.id
+_struct_asym.entity_id
+A 1
+B 1
+#
+loop_
+_atom_site.group_PDB
+_atom_site.label_atom_id
+_atom_site.auth_atom_id
+_atom_site.label_comp_id
+_atom_site.auth_comp_id
+_atom_site.label_asym_id
+_atom_site.auth_asym_id
+_atom_site.label_seq_id
+_atom_site.auth_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+ATOM OG1 OG1 THR THR B B 423 423 0.0 0.0 0.0
+HETATM PG PG ANP ANP A A 1 1 0.0 0.0 4.0
+#
+"""
+        audit = build_epk_heteromeric_chain_topology_signal_audit(
+            epk_source_free_chain_topology_role_audit={
+                "metadata": {
+                    "method": "epk_source_free_chain_topology_role_audit",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                    "masked_local_candidate_hit_count": 2,
+                }
+            },
+            epk_ligand_specific_substrate_cocomplex_query_probe={
+                "metadata": {
+                    "method": "epk_ligand_specific_substrate_cocomplex_query_probe",
+                    "reviewed_pdb_count": 2,
+                    "query_pdb_count": 2,
+                },
+                "rows": [
+                    {
+                        "pdb_id": "5HVK",
+                        "probe_status": (
+                            "source_ready_cross_accession_acceptor_hit_review_only"
+                        ),
+                        "acceptor_hits": [
+                            {
+                                "candidate_chain_name": "D",
+                                "candidate_auth_seq_id": "3",
+                                "candidate_residue_code": "SER",
+                                "nearest_gamma_distance_angstrom": 4.0,
+                                "same_as_source_accession": False,
+                                "within_candidate_threshold": True,
+                            }
+                        ],
+                    },
+                    {
+                        "pdb_id": "3Q4Z",
+                        "probe_status": (
+                            "source_ready_same_accession_acceptor_hit_review_only"
+                        ),
+                        "acceptor_hits": [
+                            {
+                                "candidate_chain_name": "B",
+                                "candidate_auth_seq_id": "423",
+                                "candidate_residue_code": "THR",
+                                "nearest_gamma_distance_angstrom": 4.0,
+                                "same_as_source_accession": True,
+                                "within_candidate_threshold": True,
+                            }
+                        ],
+                    },
+                ],
+            },
+            cif_text_by_pdb={
+                "5HVK": heteromeric_cif,
+                "3Q4Z": same_entity_cif,
+            },
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["audit_status"],
+            "passes_current_hit_controls_but_insufficient_positive_coverage_review_only",
+        )
+        self.assertEqual(metadata["evaluated_hit_control_count"], 2)
+        self.assertEqual(metadata["heteromeric_signal_positive_like_count"], 1)
+        self.assertEqual(
+            metadata["same_accession_control_signal_false_hit_count"], 0
+        )
+        self.assertTrue(metadata["current_hit_controls_passed"])
+        self.assertFalse(metadata["minimum_positive_coverage_met"])
+        self.assertEqual(
+            metadata["full_probe_heteromeric_candidate_pdb_ids"],
+            ["5HVK"],
+        )
+        self.assertTrue(metadata["source_free_5hvk_role_direction_supported"])
         self.assertFalse(metadata["source_authority_eliminated"])
         self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
@@ -4047,6 +4354,75 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
                 "ligand_specific_5hvk_ligand_analog_required_for_minimum_review_set"
             ]
         )
+        self.assertEqual(
+            metadata["source_epk_source_free_chain_topology_role_audit_method"],
+            "epk_source_free_chain_topology_role_audit",
+        )
+        self.assertEqual(
+            metadata["source_free_chain_topology_audit_status"],
+            "blocked_review_only_source_free_topology_role_rule_false_hit_risk",
+        )
+        self.assertEqual(
+            metadata["source_free_chain_topology_masked_local_candidate_hit_count"],
+            4,
+        )
+        self.assertEqual(
+            metadata["source_free_chain_topology_same_accession_control_risk_count"],
+            3,
+        )
+        self.assertEqual(
+            metadata[
+                "source_free_chain_topology_same_accession_control_risk_pdb_ids"
+            ],
+            ["3Q4Z", "4I94", "5XD6"],
+        )
+        self.assertFalse(metadata["source_free_chain_topology_role_assignment_safe"])
+        self.assertEqual(
+            metadata["source_epk_heteromeric_chain_topology_signal_audit_method"],
+            "epk_heteromeric_chain_topology_signal_audit",
+        )
+        self.assertEqual(
+            metadata["heteromeric_chain_topology_audit_status"],
+            "passes_current_hit_controls_but_insufficient_positive_coverage_review_only",
+        )
+        self.assertEqual(
+            metadata["heteromeric_chain_topology_positive_like_count"],
+            1,
+        )
+        self.assertEqual(
+            metadata["heteromeric_chain_topology_positive_like_pdb_ids"],
+            ["5HVK"],
+        )
+        self.assertEqual(
+            metadata["heteromeric_chain_topology_same_accession_false_hit_count"],
+            0,
+        )
+        self.assertEqual(
+            metadata["heteromeric_chain_topology_same_accession_abstention_pdb_ids"],
+            ["3Q4Z", "4I94", "5XD6"],
+        )
+        self.assertTrue(
+            metadata["heteromeric_chain_topology_current_hit_controls_passed"]
+        )
+        self.assertFalse(
+            metadata["heteromeric_chain_topology_minimum_positive_coverage_met"]
+        )
+        self.assertEqual(
+            metadata[
+                "heteromeric_chain_topology_full_probe_candidate_structure_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            metadata["heteromeric_chain_topology_full_probe_candidate_pdb_ids"],
+            ["5HVK"],
+        )
+        self.assertTrue(
+            metadata["heteromeric_chain_topology_5hvk_role_direction_supported"]
+        )
+        self.assertFalse(
+            metadata["heteromeric_chain_topology_source_authority_eliminated"]
+        )
         self.assertEqual(metadata["measured_acceptor_identity_source_supported_count"], 2)
         self.assertEqual(
             metadata["source_epk_acceptor_identity_review_method"],
@@ -4325,6 +4701,14 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             metadata["failing_gate_ids"],
         )
         self.assertIn(
+            "source_free_chain_topology_role_audit",
+            metadata["failing_gate_ids"],
+        )
+        self.assertNotIn(
+            "heteromeric_chain_topology_signal_audit",
+            metadata["failing_gate_ids"],
+        )
+        self.assertIn(
             "m_csa760_atp_state_repair_scan",
             metadata["failing_gate_ids"],
         )
@@ -4445,6 +4829,39 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             checks[
                 "ligand_specific_5hvk_protein_substrate_axis_generalization"
             ]["passed"]
+        )
+        self.assertFalse(checks["source_free_chain_topology_role_audit"]["passed"])
+        self.assertEqual(
+            checks["source_free_chain_topology_role_audit"]["evidence"][
+                "known_same_accession_control_risk_count"
+            ],
+            3,
+        )
+        self.assertTrue(
+            checks["heteromeric_chain_topology_signal_audit"]["passed"]
+        )
+        self.assertEqual(
+            checks["heteromeric_chain_topology_signal_audit"]["evidence"][
+                "heteromeric_signal_positive_like_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            checks["heteromeric_chain_topology_signal_audit"]["evidence"][
+                "same_accession_control_signal_false_hit_count"
+            ],
+            0,
+        )
+        self.assertFalse(
+            checks["heteromeric_chain_topology_signal_audit"]["evidence"][
+                "minimum_positive_coverage_met"
+            ]
+        )
+        self.assertEqual(
+            checks["heteromeric_chain_topology_signal_audit"]["evidence"][
+                "full_probe_heteromeric_candidate_structure_count"
+            ],
+            1,
         )
         self.assertFalse(
             checks[

@@ -98,6 +98,7 @@ from .labels import (
     build_epk_gamma_geometry_feasibility_plan,
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
+    build_epk_heteromeric_chain_topology_signal_audit,
     build_epk_ligand_specific_5hvk_control_rerun_queue,
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
@@ -132,6 +133,7 @@ from .labels import (
     build_epk_sibling_negative_control_alternate_gamma_distance_sample,
     build_epk_sibling_negative_control_alternate_structure_plan,
     build_epk_source_authority_axis_replacement_gap_audit,
+    build_epk_source_free_chain_topology_role_audit,
     build_epk_substrate_acceptor_counteraxis_prototype,
     build_epk_text_free_acceptor_feature_gap_audit,
     build_epk_text_free_local_axis_prototype,
@@ -6971,6 +6973,68 @@ def cmd_build_epk_5hvk_local_polymer_entity_role_audit(
     return 0
 
 
+def cmd_build_epk_source_free_chain_topology_role_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_5hvk_local_polymer_entity_role_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_5hvk_local_polymer_entity_role_audit = json.load(handle)
+    with Path(args.epk_ligand_specific_substrate_cocomplex_query_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_substrate_cocomplex_query_probe = json.load(handle)
+    local_rule: dict[str, Any] = {}
+    if args.epk_local_chain_topology_acceptor_replacement_rule:
+        with Path(args.epk_local_chain_topology_acceptor_replacement_rule).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            local_rule = json.load(handle)
+    audit = build_epk_source_free_chain_topology_role_audit(
+        epk_5hvk_local_polymer_entity_role_audit=(
+            epk_5hvk_local_polymer_entity_role_audit
+        ),
+        epk_ligand_specific_substrate_cocomplex_query_probe=(
+            epk_ligand_specific_substrate_cocomplex_query_probe
+        ),
+        epk_local_chain_topology_acceptor_replacement_rule=local_rule,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK source-free chain topology role audit to "
+        f"{args.out} (status={audit['metadata']['audit_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_heteromeric_chain_topology_signal_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_source_free_chain_topology_role_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_source_free_chain_topology_role_audit = json.load(handle)
+    with Path(args.epk_ligand_specific_substrate_cocomplex_query_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_substrate_cocomplex_query_probe = json.load(handle)
+    audit = build_epk_heteromeric_chain_topology_signal_audit(
+        epk_source_free_chain_topology_role_audit=(
+            epk_source_free_chain_topology_role_audit
+        ),
+        epk_ligand_specific_substrate_cocomplex_query_probe=(
+            epk_ligand_specific_substrate_cocomplex_query_probe
+        ),
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK heteromeric chain topology signal audit to "
+        f"{args.out} (status={audit['metadata']['audit_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
     args: argparse.Namespace,
 ) -> int:
@@ -7487,6 +7551,18 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             epk_5hvk_protein_substrate_axis_generalization_audit = json.load(
                 handle
             )
+    epk_source_free_chain_topology_role_audit = None
+    if args.epk_source_free_chain_topology_role_audit:
+        with Path(args.epk_source_free_chain_topology_role_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_source_free_chain_topology_role_audit = json.load(handle)
+    epk_heteromeric_chain_topology_signal_audit = None
+    if args.epk_heteromeric_chain_topology_signal_audit:
+        with Path(args.epk_heteromeric_chain_topology_signal_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_chain_topology_signal_audit = json.load(handle)
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -7606,6 +7682,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_5hvk_protein_substrate_axis_generalization_audit=(
             epk_5hvk_protein_substrate_axis_generalization_audit
+        ),
+        epk_source_free_chain_topology_role_audit=(
+            epk_source_free_chain_topology_role_audit
+        ),
+        epk_heteromeric_chain_topology_signal_audit=(
+            epk_heteromeric_chain_topology_signal_audit
         ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
@@ -15578,6 +15660,67 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_5hvk_local_polymer_entity_role_audit
     )
 
+    epk_source_free_chain_topology = subparsers.add_parser(
+        "build-epk-source-free-chain-topology-role-audit",
+        help="stress-test source-free local chain-topology role assignment",
+    )
+    epk_source_free_chain_topology.add_argument(
+        "--epk-5hvk-local-polymer-entity-role-audit",
+        default="artifacts/v3_epk_5hvk_local_polymer_entity_role_audit_1025.json",
+    )
+    epk_source_free_chain_topology.add_argument(
+        "--epk-ligand-specific-substrate-cocomplex-query-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json"
+        ),
+    )
+    epk_source_free_chain_topology.add_argument(
+        "--epk-local-chain-topology-acceptor-replacement-rule",
+        default=(
+            "artifacts/"
+            "v3_epk_local_chain_topology_acceptor_replacement_rule_1025.json"
+        ),
+    )
+    epk_source_free_chain_topology.add_argument(
+        "--out",
+        default="artifacts/v3_epk_source_free_chain_topology_role_audit_1025.json",
+    )
+    epk_source_free_chain_topology.set_defaults(
+        func=cmd_build_epk_source_free_chain_topology_role_audit
+    )
+
+    epk_heteromeric_chain_topology = subparsers.add_parser(
+        "build-epk-heteromeric-chain-topology-signal-audit",
+        help="test local heteromeric entity topology as an ePK role signal",
+    )
+    epk_heteromeric_chain_topology.add_argument(
+        "--epk-source-free-chain-topology-role-audit",
+        default="artifacts/v3_epk_source_free_chain_topology_role_audit_1025.json",
+    )
+    epk_heteromeric_chain_topology.add_argument(
+        "--epk-ligand-specific-substrate-cocomplex-query-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json"
+        ),
+    )
+    epk_heteromeric_chain_topology.add_argument(
+        "--cif-dir",
+        default=None,
+        help="optional directory of cached CIF/mmCIF files keyed by PDB id",
+    )
+    epk_heteromeric_chain_topology.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_chain_topology_signal_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_chain_topology.set_defaults(
+        func=cmd_build_epk_heteromeric_chain_topology_signal_audit
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -15994,6 +16137,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-5hvk-protein-substrate-axis-generalization-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-source-free-chain-topology-role-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-chain-topology-signal-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(

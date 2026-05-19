@@ -23169,6 +23169,785 @@ def build_epk_5hvk_local_polymer_entity_role_audit(
     }
 
 
+def build_epk_source_free_chain_topology_role_audit(
+    *,
+    epk_5hvk_local_polymer_entity_role_audit: dict[str, Any],
+    epk_ligand_specific_substrate_cocomplex_query_probe: dict[str, Any],
+    epk_local_chain_topology_acceptor_replacement_rule: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Stress-test source-free chain-topology role assignment for ePK."""
+
+    local_meta = epk_5hvk_local_polymer_entity_role_audit.get("metadata", {})
+    if not isinstance(local_meta, dict):
+        local_meta = {}
+    probe_meta = epk_ligand_specific_substrate_cocomplex_query_probe.get(
+        "metadata", {}
+    )
+    if not isinstance(probe_meta, dict):
+        probe_meta = {}
+    rule_meta = (
+        epk_local_chain_topology_acceptor_replacement_rule.get("metadata", {})
+        if isinstance(epk_local_chain_topology_acceptor_replacement_rule, dict)
+        else {}
+    )
+    if not isinstance(rule_meta, dict):
+        rule_meta = {}
+
+    target_fingerprint_id = str(
+        local_meta.get("target_fingerprint_id")
+        or probe_meta.get("target_fingerprint_id")
+        or rule_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+
+    def _within_threshold_hits(row: dict[str, Any]) -> list[dict[str, Any]]:
+        hits: list[dict[str, Any]] = []
+        for hit in row.get("acceptor_hits", []) or []:
+            if not isinstance(hit, dict):
+                continue
+            if bool(hit.get("within_candidate_threshold")):
+                hits.append(hit)
+        return hits
+
+    rows: list[dict[str, Any]] = []
+    local_entity_supports_cocomplex = bool(
+        local_meta.get("local_entity_supports_cocomplex")
+    )
+    local_chain_sets_disjoint = bool(local_meta.get("chain_sets_disjoint"))
+    if local_meta.get("method"):
+        rows.append(
+            {
+                "row_type": "local_5hvk_source_free_role_assignment_probe",
+                "pdb_id": local_meta.get("pdb_id"),
+                "review_only": True,
+                "target_fingerprint_id": target_fingerprint_id,
+                "local_entity_supports_cocomplex": local_entity_supports_cocomplex,
+                "local_chain_sets_disjoint": local_chain_sets_disjoint,
+                "has_adenylate_ligand_entity": bool(
+                    local_meta.get("has_adenylate_ligand_entity")
+                ),
+                "has_magnesium_entity": bool(local_meta.get("has_magnesium_entity")),
+                "source_fields_masked_for_candidate_rule": True,
+                "source_free_role_assignment_decision": (
+                    "abstain_role_direction_not_inferable_without_source"
+                ),
+                "source_authority_eliminated": False,
+                "candidate_rule_hit": False,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+            }
+        )
+
+    masked_local_candidate_hit_count = 0
+    source_valid_cross_accession_positive_count = 0
+    known_same_accession_control_risk_count = 0
+    same_accession_control_risk_pdb_ids: list[str] = []
+    cross_accession_positive_like_pdb_ids: list[str] = []
+    for source_row in epk_ligand_specific_substrate_cocomplex_query_probe.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        hits = _within_threshold_hits(source_row)
+        if not hits:
+            continue
+        pdb_id = str(source_row.get("pdb_id") or "")
+        probe_status = str(source_row.get("probe_status") or "")
+        masked_local_candidate_hit_count += 1
+        source_context_class = "unknown_review_context"
+        if probe_status == "source_ready_cross_accession_acceptor_hit_review_only":
+            source_context_class = "cross_accession_source_valid_positive_like"
+            source_valid_cross_accession_positive_count += 1
+            if pdb_id:
+                cross_accession_positive_like_pdb_ids.append(pdb_id)
+        elif probe_status == "source_ready_same_accession_acceptor_hit_review_only":
+            source_context_class = "same_accession_phosphosite_control_risk"
+            known_same_accession_control_risk_count += 1
+            if pdb_id:
+                same_accession_control_risk_pdb_ids.append(pdb_id)
+
+        rows.append(
+            {
+                "row_type": "broader_chain_topology_hit_control",
+                "pdb_id": pdb_id or None,
+                "review_only": True,
+                "target_fingerprint_id": target_fingerprint_id,
+                "source_fields_masked_for_candidate_rule": True,
+                "masked_predictive_inputs": [
+                    "local_gamma_to_hydroxyl_within_threshold",
+                    "polymer_chain_count",
+                    "adenylate_ligand_context",
+                    "metal_ligand_context",
+                ],
+                "masked_local_candidate_hit": True,
+                "source_context_used_for_failure_label_only": True,
+                "known_review_context_class": source_context_class,
+                "known_probe_status": probe_status,
+                "within_threshold_acceptor_hit_count": len(hits),
+                "nearest_within_threshold_distance_angstrom": min(
+                    float(hit.get("nearest_gamma_distance_angstrom") or 0.0)
+                    for hit in hits
+                ),
+                "would_be_false_hit_under_source_free_acceptor_rule": (
+                    source_context_class == "same_accession_phosphosite_control_risk"
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+            }
+        )
+
+    source_free_role_assignment_safe = (
+        local_entity_supports_cocomplex
+        and local_chain_sets_disjoint
+        and masked_local_candidate_hit_count > 0
+        and known_same_accession_control_risk_count == 0
+        and source_valid_cross_accession_positive_count >= 1
+        and bool(local_meta.get("source_authority_eliminated"))
+    )
+    audit_status = (
+        "passes_source_free_chain_topology_controls_review_only"
+        if source_free_role_assignment_safe
+        else "blocked_review_only_source_free_topology_role_rule_false_hit_risk"
+    )
+    return {
+        "metadata": {
+            "method": "epk_source_free_chain_topology_role_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_5hvk_local_polymer_entity_role_audit_method": (
+                local_meta.get("method")
+            ),
+            "source_epk_ligand_specific_substrate_cocomplex_query_probe_method": (
+                probe_meta.get("method")
+            ),
+            "source_epk_local_chain_topology_acceptor_replacement_rule_method": (
+                rule_meta.get("method")
+            ),
+            "audit_status": audit_status,
+            "local_entity_supports_cocomplex": local_entity_supports_cocomplex,
+            "local_chain_sets_disjoint": local_chain_sets_disjoint,
+            "source_fields_masked_for_candidate_rule": True,
+            "masked_local_candidate_hit_count": masked_local_candidate_hit_count,
+            "source_valid_cross_accession_positive_count": (
+                source_valid_cross_accession_positive_count
+            ),
+            "source_valid_cross_accession_positive_pdb_ids": _sorted_strings(
+                cross_accession_positive_like_pdb_ids
+            ),
+            "known_same_accession_control_risk_count": (
+                known_same_accession_control_risk_count
+            ),
+            "known_same_accession_control_risk_pdb_ids": _sorted_strings(
+                same_accession_control_risk_pdb_ids
+            ),
+            "source_free_role_assignment_safe": source_free_role_assignment_safe,
+            "source_authority_eliminated": False,
+            "broader_chain_topology_controls_run": bool(probe_meta.get("method")),
+            "broader_chain_topology_reviewed_pdb_count": probe_meta.get(
+                "reviewed_pdb_count"
+            ),
+            "broader_chain_topology_query_pdb_count": probe_meta.get(
+                "query_pdb_count"
+            ),
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "remaining_blockers": [
+                "source_free_chain_role_direction_not_inferable_from_current_local_evidence",
+                "same_accession_phosphosite_hits_would_false_hit_source_free_rule",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "next_actions": [
+                "add a source-free catalytic-chain assignment signal before accepting local topology hits",
+                "broaden chain-topology controls with more kinase substrate co-complexes before calibration",
+                "keep source-authority axes as review context until the local rule no longer false-hits same-accession controls",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                str(row.get("known_review_context_class") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Source-free chain topology is not yet a production ePK feature: "
+                "masked local hit logic cannot distinguish 5HVK-like substrate "
+                "co-complexes from same-accession phosphosite control risks."
+            )
+        ],
+    }
+
+
+def build_epk_heteromeric_chain_topology_signal_audit(
+    *,
+    epk_source_free_chain_topology_role_audit: dict[str, Any],
+    epk_ligand_specific_substrate_cocomplex_query_probe: dict[str, Any],
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Test whether local chain entities disambiguate ePK substrate roles."""
+
+    source_free_meta = epk_source_free_chain_topology_role_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(source_free_meta, dict):
+        source_free_meta = {}
+    probe_meta = epk_ligand_specific_substrate_cocomplex_query_probe.get(
+        "metadata", {}
+    )
+    if not isinstance(probe_meta, dict):
+        probe_meta = {}
+    target_fingerprint_id = str(
+        source_free_meta.get("target_fingerprint_id")
+        or probe_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    cif_texts = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    cif_cache: dict[str, tuple[str, str | None, str]] = {}
+    gamma_capable_codes = {"ACP", "ANP", "ATP", "DTP"}
+    acceptor_atom_names = {"SER": "OG", "THR": "OG1", "TYR": "OH"}
+
+    def _within_threshold_hits(row: dict[str, Any]) -> list[dict[str, Any]]:
+        return [
+            hit
+            for hit in row.get("acceptor_hits", []) or []
+            if isinstance(hit, dict) and bool(hit.get("within_candidate_threshold"))
+        ]
+
+    def _entity_by_chain(cif_text: str) -> dict[str, str]:
+        chain_entities: dict[str, str] = {}
+        for entity_row in _epk_mmcif_rows(cif_text, "_struct_asym."):
+            chain_id = entity_row.get("id")
+            entity_id = entity_row.get("entity_id")
+            if chain_id not in {None, "", ".", "?"} and entity_id not in {
+                None,
+                "",
+                ".",
+                "?",
+            }:
+                chain_entities[str(chain_id)] = str(entity_id)
+        return chain_entities
+
+    def _atom_entity(
+        atom: dict[str, Any],
+        chain_entities: dict[str, str],
+        *,
+        auth_first: bool = False,
+    ) -> str | None:
+        chain_ids = (
+            (atom.get("auth_asym_id"), atom.get("label_asym_id"))
+            if auth_first
+            else (atom.get("label_asym_id"), atom.get("auth_asym_id"))
+        )
+        for chain_id in chain_ids:
+            if chain_id in {None, "", ".", "?"}:
+                continue
+            entity_id = chain_entities.get(str(chain_id))
+            if entity_id:
+                return entity_id
+        return None
+
+    def _polymer_entity_by_auth_chain(
+        atoms: list[dict[str, Any]], chain_entities: dict[str, str]
+    ) -> dict[str, str]:
+        polymer_entities: dict[str, str] = {}
+        for atom in atoms:
+            if atom.get("group_PDB") != "ATOM":
+                continue
+            auth_chain_id = atom.get("auth_asym_id")
+            if auth_chain_id in {None, "", ".", "?"}:
+                continue
+            entity_id = _atom_entity(atom, chain_entities)
+            if entity_id:
+                polymer_entities.setdefault(str(auth_chain_id), entity_id)
+        return polymer_entities
+
+    def _load_cif(pdb_id: str) -> tuple[str, str | None, str]:
+        if pdb_id in cif_cache:
+            return cif_cache[pdb_id]
+        fetch_status = "not_attempted"
+        fetch_error = None
+        cif_text = cif_texts.get(pdb_id)
+        try:
+            if cif_text is None and pdb_id:
+                cif_text = cif_fetcher(pdb_id)
+            fetch_status = "fetched" if cif_text else "missing_pdb_id"
+        except Exception as exc:  # pragma: no cover - network failure is data.
+            cif_text = ""
+            fetch_status = "fetch_failed"
+            fetch_error = str(exc)
+        result = (cif_text or "", fetch_error, fetch_status)
+        cif_cache[pdb_id] = result
+        return result
+
+    def _heteromeric_candidate_hits_for_cif(
+        cif_text: str,
+        *,
+        candidate_threshold_angstrom: float = 6.0,
+    ) -> list[dict[str, Any]]:
+        atoms = parse_atom_site_loop(cif_text) if cif_text else []
+        chain_entities = _entity_by_chain(cif_text) if cif_text else {}
+        polymer_entities = _polymer_entity_by_auth_chain(atoms, chain_entities)
+        gamma_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "HETATM"
+            and _epk_atom_code(atom) in gamma_capable_codes
+            and _epk_atom_name(atom) == "PG"
+        ]
+        candidate_hits: dict[tuple[str, str, str, str], dict[str, Any]] = {}
+        for acceptor_atom in atoms:
+            if acceptor_atom.get("group_PDB") != "ATOM":
+                continue
+            residue_code = _epk_atom_code(acceptor_atom)
+            if acceptor_atom_names.get(residue_code) != _epk_atom_name(
+                acceptor_atom
+            ):
+                continue
+            acceptor_entity_id = _atom_entity(acceptor_atom, chain_entities)
+            acceptor_chain_name = str(
+                acceptor_atom.get("auth_asym_id")
+                or acceptor_atom.get("label_asym_id")
+                or ""
+            )
+            acceptor_seq_id = str(
+                acceptor_atom.get("auth_seq_id")
+                or acceptor_atom.get("label_seq_id")
+                or ""
+            )
+            for gamma_atom in gamma_atoms:
+                gamma_chain_name = str(
+                    gamma_atom.get("auth_asym_id")
+                    or gamma_atom.get("label_asym_id")
+                    or ""
+                )
+                gamma_entity_id = polymer_entities.get(gamma_chain_name)
+                if gamma_entity_id is None:
+                    gamma_entity_id = _atom_entity(
+                        gamma_atom, chain_entities, auth_first=True
+                    )
+                if (
+                    acceptor_entity_id is None
+                    or gamma_entity_id is None
+                    or acceptor_entity_id == gamma_entity_id
+                ):
+                    continue
+                distance = _epk_atom_distance(acceptor_atom, gamma_atom)
+                if distance > candidate_threshold_angstrom:
+                    continue
+                key = (
+                    acceptor_chain_name,
+                    acceptor_seq_id,
+                    residue_code,
+                    gamma_chain_name,
+                )
+                existing = candidate_hits.get(key)
+                if existing is None or distance < float(
+                    existing["nearest_gamma_distance_angstrom"]
+                ):
+                    candidate_hits[key] = {
+                        "candidate_chain_name": acceptor_chain_name,
+                        "candidate_auth_seq_id": acceptor_seq_id,
+                        "candidate_residue_code": residue_code,
+                        "acceptor_entity_id": acceptor_entity_id,
+                        "gamma_associated_polymer_chain_name": gamma_chain_name,
+                        "gamma_associated_polymer_entity_id": gamma_entity_id,
+                        "gamma_ligand_code": _epk_atom_code(gamma_atom),
+                        "gamma_atom_name": _epk_atom_name(gamma_atom),
+                        "nearest_gamma_distance_angstrom": round(distance, 3),
+                    }
+        return sorted(
+            candidate_hits.values(),
+            key=lambda hit: (
+                float(hit["nearest_gamma_distance_angstrom"]),
+                str(hit["candidate_chain_name"]),
+                str(hit["candidate_auth_seq_id"]),
+            ),
+        )
+
+    def _context_class(probe_status: str) -> str:
+        if probe_status == "source_ready_cross_accession_acceptor_hit_review_only":
+            return "cross_accession_source_valid_positive_like"
+        if probe_status == "source_ready_same_accession_acceptor_hit_review_only":
+            return "same_accession_phosphosite_control_risk"
+        return "unknown_review_context"
+
+    rows: list[dict[str, Any]] = []
+    evaluated_hit_control_count = 0
+    fetch_failure_count = 0
+    unmapped_hit_count = 0
+    heteromeric_signal_positive_like_count = 0
+    same_accession_control_count = 0
+    same_accession_control_signal_false_hit_count = 0
+    same_accession_control_abstention_count = 0
+    heteromeric_signal_pdb_ids: list[str] = []
+    same_accession_control_pdb_ids: list[str] = []
+    same_accession_signal_false_hit_pdb_ids: list[str] = []
+    same_accession_abstention_pdb_ids: list[str] = []
+
+    for source_row in (
+        epk_ligand_specific_substrate_cocomplex_query_probe.get("rows", []) or []
+    ):
+        if not isinstance(source_row, dict):
+            continue
+        hits = _within_threshold_hits(source_row)
+        if not hits:
+            continue
+
+        evaluated_hit_control_count += 1
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        probe_status = str(source_row.get("probe_status") or "")
+        review_context_class = _context_class(probe_status)
+        if review_context_class == "same_accession_phosphosite_control_risk":
+            same_accession_control_count += 1
+            if pdb_id:
+                same_accession_control_pdb_ids.append(pdb_id)
+
+        cif_text, fetch_error, fetch_status = _load_cif(pdb_id)
+        if fetch_status == "fetch_failed":
+            fetch_failure_count += 1
+
+        atoms = parse_atom_site_loop(cif_text) if cif_text else []
+        chain_entities = _entity_by_chain(cif_text) if cif_text else {}
+        polymer_entity_by_auth_chain = _polymer_entity_by_auth_chain(
+            atoms, chain_entities
+        )
+        gamma_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "HETATM"
+            and _epk_atom_code(atom) in gamma_capable_codes
+            and _epk_atom_name(atom) == "PG"
+        ]
+
+        hit_evaluations: list[dict[str, Any]] = []
+        row_has_heteromeric_signal = False
+        row_has_mapped_hit = False
+        for hit in hits:
+            residue_code = str(hit.get("candidate_residue_code") or "").upper()
+            acceptor_atom_name = acceptor_atom_names.get(residue_code)
+            candidate_chain_name = str(hit.get("candidate_chain_name") or "")
+            candidate_seq_id = str(hit.get("candidate_auth_seq_id") or "")
+            evaluation: dict[str, Any] = {
+                "candidate_chain_name": candidate_chain_name or None,
+                "candidate_auth_seq_id": candidate_seq_id or None,
+                "candidate_residue_code": residue_code or None,
+                "expected_acceptor_atom_name": acceptor_atom_name,
+                "source_recorded_nearest_gamma_distance_angstrom": hit.get(
+                    "nearest_gamma_distance_angstrom"
+                ),
+                "source_recorded_same_as_source_accession": bool(
+                    hit.get("same_as_source_accession")
+                ),
+                "source_recorded_within_candidate_threshold": bool(
+                    hit.get("within_candidate_threshold")
+                ),
+                "heteromeric_chain_entity_signal_hit": False,
+                "mapped_acceptor_atom": False,
+            }
+            if not acceptor_atom_name:
+                hit_evaluations.append(evaluation)
+                continue
+
+            acceptor_atoms = [
+                atom
+                for atom in atoms
+                if atom.get("group_PDB") == "ATOM"
+                and candidate_chain_name in _label_atom_chain_ids(atom)
+                and candidate_seq_id in _label_atom_residue_ids(atom)
+                and _epk_atom_code(atom) == residue_code
+                and _epk_atom_name(atom) == acceptor_atom_name
+            ]
+            nearest_gamma = None
+            nearest_distance = None
+            nearest_acceptor_atom = None
+            for acceptor_atom in acceptor_atoms:
+                for gamma_atom in gamma_atoms:
+                    distance = _epk_atom_distance(acceptor_atom, gamma_atom)
+                    if nearest_distance is None or distance < nearest_distance:
+                        nearest_distance = distance
+                        nearest_gamma = gamma_atom
+                        nearest_acceptor_atom = acceptor_atom
+            if (
+                nearest_gamma is not None
+                and nearest_acceptor_atom is not None
+                and nearest_distance is not None
+            ):
+                row_has_mapped_hit = True
+                acceptor_entity_id = _atom_entity(nearest_acceptor_atom, chain_entities)
+                gamma_associated_chain_name = str(
+                    nearest_gamma.get("auth_asym_id")
+                    or nearest_gamma.get("label_asym_id")
+                    or ""
+                )
+                gamma_entity_id = polymer_entity_by_auth_chain.get(
+                    gamma_associated_chain_name
+                )
+                gamma_entity_mapping_basis = "atom_site_author_chain_polymer_entity"
+                if gamma_entity_id is None:
+                    gamma_entity_id = _atom_entity(
+                        nearest_gamma, chain_entities, auth_first=True
+                    )
+                    gamma_entity_mapping_basis = "struct_asym_author_chain_fallback"
+                heteromeric_hit = (
+                    acceptor_entity_id is not None
+                    and gamma_entity_id is not None
+                    and acceptor_entity_id != gamma_entity_id
+                )
+                row_has_heteromeric_signal = (
+                    row_has_heteromeric_signal or heteromeric_hit
+                )
+                evaluation.update(
+                    {
+                        "mapped_acceptor_atom": True,
+                        "acceptor_entity_id": acceptor_entity_id,
+                        "gamma_associated_polymer_entity_id": gamma_entity_id,
+                        "gamma_associated_polymer_chain_name": (
+                            gamma_associated_chain_name
+                        ),
+                        "gamma_associated_polymer_entity_mapping_basis": (
+                            gamma_entity_mapping_basis
+                        ),
+                        "gamma_ligand_code": _epk_atom_code(nearest_gamma),
+                        "gamma_atom_name": _epk_atom_name(nearest_gamma),
+                        "nearest_gamma_distance_angstrom": round(
+                            nearest_distance, 3
+                        ),
+                        "heteromeric_chain_entity_signal_hit": heteromeric_hit,
+                    }
+                )
+            hit_evaluations.append(evaluation)
+
+        if not row_has_mapped_hit:
+            unmapped_hit_count += 1
+        if row_has_heteromeric_signal:
+            if review_context_class == "cross_accession_source_valid_positive_like":
+                heteromeric_signal_positive_like_count += 1
+                if pdb_id:
+                    heteromeric_signal_pdb_ids.append(pdb_id)
+            elif review_context_class == "same_accession_phosphosite_control_risk":
+                same_accession_control_signal_false_hit_count += 1
+                if pdb_id:
+                    same_accession_signal_false_hit_pdb_ids.append(pdb_id)
+        elif review_context_class == "same_accession_phosphosite_control_risk":
+            same_accession_control_abstention_count += 1
+            if pdb_id:
+                same_accession_abstention_pdb_ids.append(pdb_id)
+
+        rows.append(
+            {
+                "row_type": "heteromeric_chain_topology_hit_control",
+                "pdb_id": pdb_id or None,
+                "review_only": True,
+                "target_fingerprint_id": target_fingerprint_id,
+                "source_fields_masked_for_candidate_rule": True,
+                "source_context_used_for_failure_label_only": True,
+                "known_probe_status": probe_status,
+                "known_review_context_class": review_context_class,
+                "fetch_status": fetch_status,
+                "fetch_error": fetch_error,
+                "within_threshold_acceptor_hit_count": len(hits),
+                "mapped_hit_count": sum(
+                    1
+                    for evaluation in hit_evaluations
+                    if evaluation.get("mapped_acceptor_atom")
+                ),
+                "heteromeric_chain_entity_signal_hit": row_has_heteromeric_signal,
+                "would_be_false_hit_under_heteromeric_entity_rule": (
+                    row_has_heteromeric_signal
+                    and review_context_class == "same_accession_phosphosite_control_risk"
+                ),
+                "hit_evaluations": hit_evaluations,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+            }
+        )
+
+    full_probe_candidate_fetch_failure_count = 0
+    full_probe_candidate_rows: list[dict[str, Any]] = []
+    full_probe_candidate_pdb_ids: list[str] = []
+    for source_row in (
+        epk_ligand_specific_substrate_cocomplex_query_probe.get("rows", []) or []
+    ):
+        if not isinstance(source_row, dict):
+            continue
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        if not pdb_id:
+            continue
+        cif_text, fetch_error, fetch_status = _load_cif(pdb_id)
+        if fetch_status == "fetch_failed":
+            full_probe_candidate_fetch_failure_count += 1
+            continue
+        candidate_hits = _heteromeric_candidate_hits_for_cif(cif_text)
+        if not candidate_hits:
+            continue
+        full_probe_candidate_pdb_ids.append(pdb_id)
+        full_probe_candidate_rows.append(
+            {
+                "row_type": "full_probe_heteromeric_candidate_scout",
+                "pdb_id": pdb_id,
+                "review_only": True,
+                "target_fingerprint_id": target_fingerprint_id,
+                "source_fields_masked_for_candidate_rule": True,
+                "known_probe_status": str(source_row.get("probe_status") or ""),
+                "source_context_used_for_failure_label_only": True,
+                "heteromeric_candidate_hit_count": len(candidate_hits),
+                "heteromeric_candidate_hits": candidate_hits[:10],
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+            }
+        )
+    rows.extend(full_probe_candidate_rows)
+
+    current_hit_controls_passed = (
+        evaluated_hit_control_count > 0
+        and fetch_failure_count == 0
+        and unmapped_hit_count == 0
+        and heteromeric_signal_positive_like_count >= 1
+        and same_accession_control_count > 0
+        and same_accession_control_signal_false_hit_count == 0
+    )
+    minimum_positive_coverage_met = heteromeric_signal_positive_like_count >= 2
+    audit_status = (
+        "passes_current_hit_controls_but_insufficient_positive_coverage_review_only"
+        if current_hit_controls_passed
+        else "blocked_review_only_heteromeric_chain_topology_signal_false_hit_or_gap"
+    )
+    source_free_5hvk_role_direction_supported = (
+        "5HVK" in _sorted_strings(heteromeric_signal_pdb_ids)
+    )
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_chain_topology_signal_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_source_free_chain_topology_role_audit_method": (
+                source_free_meta.get("method")
+            ),
+            "source_epk_ligand_specific_substrate_cocomplex_query_probe_method": (
+                probe_meta.get("method")
+            ),
+            "audit_status": audit_status,
+            "source_fields_masked_for_candidate_rule": True,
+            "heteromeric_entity_signal_definition": (
+                "acceptor hydroxyl atom and the nearest adenylate gamma atom's "
+                "associated author-chain polymer map to different local "
+                "_struct_asym.entity_id values"
+            ),
+            "masked_local_candidate_hit_count": source_free_meta.get(
+                "masked_local_candidate_hit_count"
+            ),
+            "evaluated_hit_control_count": evaluated_hit_control_count,
+            "fetch_failure_count": fetch_failure_count,
+            "unmapped_hit_count": unmapped_hit_count,
+            "heteromeric_signal_positive_like_count": (
+                heteromeric_signal_positive_like_count
+            ),
+            "heteromeric_signal_positive_like_pdb_ids": _sorted_strings(
+                heteromeric_signal_pdb_ids
+            ),
+            "same_accession_control_count": same_accession_control_count,
+            "same_accession_control_pdb_ids": _sorted_strings(
+                same_accession_control_pdb_ids
+            ),
+            "same_accession_control_signal_false_hit_count": (
+                same_accession_control_signal_false_hit_count
+            ),
+            "same_accession_control_signal_false_hit_pdb_ids": _sorted_strings(
+                same_accession_signal_false_hit_pdb_ids
+            ),
+            "same_accession_control_abstention_count": (
+                same_accession_control_abstention_count
+            ),
+            "same_accession_control_abstention_pdb_ids": _sorted_strings(
+                same_accession_abstention_pdb_ids
+            ),
+            "current_hit_controls_passed": current_hit_controls_passed,
+            "minimum_positive_coverage_met": minimum_positive_coverage_met,
+            "full_probe_candidate_scout_run": True,
+            "full_probe_candidate_scout_query_pdb_count": probe_meta.get(
+                "query_pdb_count"
+            ),
+            "full_probe_candidate_scout_fetch_failure_count": (
+                full_probe_candidate_fetch_failure_count
+            ),
+            "full_probe_heteromeric_candidate_structure_count": len(
+                _sorted_strings(full_probe_candidate_pdb_ids)
+            ),
+            "full_probe_heteromeric_candidate_pdb_ids": _sorted_strings(
+                full_probe_candidate_pdb_ids
+            ),
+            "source_free_5hvk_role_direction_supported": (
+                source_free_5hvk_role_direction_supported
+            ),
+            "source_authority_eliminated": False,
+            "broader_chain_topology_controls_run": bool(probe_meta.get("method")),
+            "broader_chain_topology_reviewed_pdb_count": probe_meta.get(
+                "reviewed_pdb_count"
+            ),
+            "broader_chain_topology_query_pdb_count": probe_meta.get(
+                "query_pdb_count"
+            ),
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "remaining_blockers": [
+                "only_one_source_free_heteromeric_positive_like_control",
+                "full_probe_heteromeric_candidate_scout_found_only_5hvk",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "next_actions": [
+                "broaden heteromeric entity-topology positives beyond the current 60-structure probe before calibration",
+                "score imported external hard negatives only after a real review-only scorer exists",
+                "keep source context as failure labels until source-free controls are broader",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("known_review_context_class") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The heteromeric entity-topology signal separates the current "
+                "5HVK-like hit from same-accession controls, but one positive-like "
+                "structure is not enough for production scoring or label import."
+            )
+        ],
+    }
+
+
 def build_epk_external_source_lower_priority_ligand_sourcing_review(
     *,
     epk_external_source_structure_mapping_review: dict[str, Any],
@@ -24857,6 +25636,8 @@ def build_epk_precount_gate_status(
     | None = None,
     epk_5hvk_protein_substrate_axis_generalization_audit: dict[str, Any]
     | None = None,
+    epk_source_free_chain_topology_role_audit: dict[str, Any] | None = None,
+    epk_heteromeric_chain_topology_signal_audit: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
@@ -25230,6 +26011,20 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(ligand_specific_5hvk_axis_meta, dict):
         ligand_specific_5hvk_axis_meta = {}
+    source_free_chain_topology_meta = (
+        epk_source_free_chain_topology_role_audit.get("metadata", {})
+        if isinstance(epk_source_free_chain_topology_role_audit, dict)
+        else {}
+    )
+    if not isinstance(source_free_chain_topology_meta, dict):
+        source_free_chain_topology_meta = {}
+    heteromeric_chain_topology_meta = (
+        epk_heteromeric_chain_topology_signal_audit.get("metadata", {})
+        if isinstance(epk_heteromeric_chain_topology_signal_audit, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_chain_topology_meta, dict):
+        heteromeric_chain_topology_meta = {}
     m_csa760_repair_meta = (
         epk_m_csa760_atp_state_repair_scan.get("metadata", {})
         if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
@@ -26192,6 +26987,128 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if source_free_chain_topology_meta:
+        gate_checks.append(
+            {
+                "gate_id": "source_free_chain_topology_role_audit",
+                "passed": bool(
+                    source_free_chain_topology_meta.get(
+                        "source_free_role_assignment_safe"
+                    )
+                )
+                and not bool(
+                    source_free_chain_topology_meta.get("epk_score_computed")
+                )
+                and int(
+                    source_free_chain_topology_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": source_free_chain_topology_meta.get("method"),
+                    "audit_status": source_free_chain_topology_meta.get(
+                        "audit_status"
+                    ),
+                    "source_fields_masked_for_candidate_rule": bool(
+                        source_free_chain_topology_meta.get(
+                            "source_fields_masked_for_candidate_rule"
+                        )
+                    ),
+                    "masked_local_candidate_hit_count": (
+                        source_free_chain_topology_meta.get(
+                            "masked_local_candidate_hit_count"
+                        )
+                    ),
+                    "source_valid_cross_accession_positive_count": (
+                        source_free_chain_topology_meta.get(
+                            "source_valid_cross_accession_positive_count"
+                        )
+                    ),
+                    "known_same_accession_control_risk_count": (
+                        source_free_chain_topology_meta.get(
+                            "known_same_accession_control_risk_count"
+                        )
+                    ),
+                    "known_same_accession_control_risk_pdb_ids": (
+                        source_free_chain_topology_meta.get(
+                            "known_same_accession_control_risk_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "source_free_role_assignment_safe": bool(
+                        source_free_chain_topology_meta.get(
+                            "source_free_role_assignment_safe"
+                        )
+                    ),
+                    "source_authority_eliminated": bool(
+                        source_free_chain_topology_meta.get(
+                            "source_authority_eliminated"
+                        )
+                    ),
+                },
+            }
+        )
+    if heteromeric_chain_topology_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_chain_topology_signal_audit",
+                "passed": bool(
+                    heteromeric_chain_topology_meta.get(
+                        "current_hit_controls_passed"
+                    )
+                )
+                and not bool(
+                    heteromeric_chain_topology_meta.get("epk_score_computed")
+                )
+                and int(
+                    heteromeric_chain_topology_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": heteromeric_chain_topology_meta.get(
+                        "method"
+                    ),
+                    "audit_status": heteromeric_chain_topology_meta.get(
+                        "audit_status"
+                    ),
+                    "heteromeric_signal_positive_like_count": (
+                        heteromeric_chain_topology_meta.get(
+                            "heteromeric_signal_positive_like_count"
+                        )
+                    ),
+                    "same_accession_control_signal_false_hit_count": (
+                        heteromeric_chain_topology_meta.get(
+                            "same_accession_control_signal_false_hit_count"
+                        )
+                    ),
+                    "source_free_5hvk_role_direction_supported": bool(
+                        heteromeric_chain_topology_meta.get(
+                            "source_free_5hvk_role_direction_supported"
+                        )
+                    ),
+                    "minimum_positive_coverage_met": bool(
+                        heteromeric_chain_topology_meta.get(
+                            "minimum_positive_coverage_met"
+                        )
+                    ),
+                    "full_probe_heteromeric_candidate_structure_count": (
+                        heteromeric_chain_topology_meta.get(
+                            "full_probe_heteromeric_candidate_structure_count"
+                        )
+                    ),
+                    "source_authority_eliminated": bool(
+                        heteromeric_chain_topology_meta.get(
+                            "source_authority_eliminated"
+                        )
+                    ),
+                },
+            }
+        )
     if m_csa760_repair_meta:
         gate_checks.append(
             {
@@ -26801,6 +27718,19 @@ def build_epk_precount_gate_status(
             next_actions.insert(
                 0,
                 "repair the 5HVK protein-substrate axis generalization audit before scorer design",
+            )
+    if source_free_chain_topology_meta.get("method"):
+        if not bool(
+            source_free_chain_topology_meta.get("source_free_role_assignment_safe")
+        ):
+            next_actions.insert(
+                0,
+                "add a source-free catalytic-chain assignment signal before using local chain-topology hits for scoring",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "rerun source-free chain-topology controls under the exact scorer design before calibration",
             )
     if m_csa760_repair_meta.get("method"):
         if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
@@ -27672,6 +28602,96 @@ def build_epk_precount_gate_status(
                 ligand_specific_5hvk_axis_meta.get(
                     "imported_external_hard_negative_non_abstention_count"
                 )
+            ),
+            "source_epk_source_free_chain_topology_role_audit_method": (
+                source_free_chain_topology_meta.get("method")
+            ),
+            "source_free_chain_topology_audit_status": (
+                source_free_chain_topology_meta.get("audit_status")
+            ),
+            "source_free_chain_topology_masked_local_candidate_hit_count": (
+                source_free_chain_topology_meta.get(
+                    "masked_local_candidate_hit_count"
+                )
+            ),
+            "source_free_chain_topology_cross_accession_positive_count": (
+                source_free_chain_topology_meta.get(
+                    "source_valid_cross_accession_positive_count"
+                )
+            ),
+            "source_free_chain_topology_same_accession_control_risk_count": (
+                source_free_chain_topology_meta.get(
+                    "known_same_accession_control_risk_count"
+                )
+            ),
+            "source_free_chain_topology_same_accession_control_risk_pdb_ids": (
+                source_free_chain_topology_meta.get(
+                    "known_same_accession_control_risk_pdb_ids",
+                    [],
+                )
+            ),
+            "source_free_chain_topology_role_assignment_safe": bool(
+                source_free_chain_topology_meta.get(
+                    "source_free_role_assignment_safe"
+                )
+            ),
+            "source_free_chain_topology_source_authority_eliminated": bool(
+                source_free_chain_topology_meta.get("source_authority_eliminated")
+            ),
+            "source_epk_heteromeric_chain_topology_signal_audit_method": (
+                heteromeric_chain_topology_meta.get("method")
+            ),
+            "heteromeric_chain_topology_audit_status": (
+                heteromeric_chain_topology_meta.get("audit_status")
+            ),
+            "heteromeric_chain_topology_positive_like_count": (
+                heteromeric_chain_topology_meta.get(
+                    "heteromeric_signal_positive_like_count"
+                )
+            ),
+            "heteromeric_chain_topology_positive_like_pdb_ids": (
+                heteromeric_chain_topology_meta.get(
+                    "heteromeric_signal_positive_like_pdb_ids",
+                    [],
+                )
+            ),
+            "heteromeric_chain_topology_same_accession_false_hit_count": (
+                heteromeric_chain_topology_meta.get(
+                    "same_accession_control_signal_false_hit_count"
+                )
+            ),
+            "heteromeric_chain_topology_same_accession_abstention_pdb_ids": (
+                heteromeric_chain_topology_meta.get(
+                    "same_accession_control_abstention_pdb_ids",
+                    [],
+                )
+            ),
+            "heteromeric_chain_topology_current_hit_controls_passed": bool(
+                heteromeric_chain_topology_meta.get("current_hit_controls_passed")
+            ),
+            "heteromeric_chain_topology_minimum_positive_coverage_met": bool(
+                heteromeric_chain_topology_meta.get(
+                    "minimum_positive_coverage_met"
+                )
+            ),
+            "heteromeric_chain_topology_full_probe_candidate_structure_count": (
+                heteromeric_chain_topology_meta.get(
+                    "full_probe_heteromeric_candidate_structure_count"
+                )
+            ),
+            "heteromeric_chain_topology_full_probe_candidate_pdb_ids": (
+                heteromeric_chain_topology_meta.get(
+                    "full_probe_heteromeric_candidate_pdb_ids",
+                    [],
+                )
+            ),
+            "heteromeric_chain_topology_5hvk_role_direction_supported": bool(
+                heteromeric_chain_topology_meta.get(
+                    "source_free_5hvk_role_direction_supported"
+                )
+            ),
+            "heteromeric_chain_topology_source_authority_eliminated": bool(
+                heteromeric_chain_topology_meta.get("source_authority_eliminated")
             ),
             "source_epk_m_csa760_atp_state_repair_scan_method": (
                 m_csa760_repair_meta.get("method")

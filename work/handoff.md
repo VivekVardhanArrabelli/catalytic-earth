@@ -50,6 +50,52 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T17:33:55Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/dry-run push
+hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
+preserved.
+
+`artifacts/v3_epk_source_free_chain_topology_role_audit_1025.json` now
+stress-tests the local chain-topology replacement with source fields masked.
+The rule hits four ligand-specific co-complex probe structures: source-valid
+5HVK plus same-accession phosphosite/control-risk structures `3Q4Z`, `4I94`,
+and `5XD6`. This deliberately fails closed as
+`blocked_review_only_source_free_topology_role_rule_false_hit_risk`; the
+`source_free_chain_topology_role_audit` pre-count gate remains failing and no
+score, registry edit, label import, or held-out claim is opened.
+
+`artifacts/v3_epk_heteromeric_chain_topology_signal_audit_1025.json` adds the
+next counter-axis. It compares each candidate acceptor polymer entity with the
+nearest adenylate gamma atom's associated author-chain polymer entity. On the
+current hit controls it keeps 5HVK as the sole positive-like heteromeric
+signal, abstains on `3Q4Z`, `4I94`, and `5XD6`, and records zero same-accession
+false hits. Its full source-free scan across the 60-structure ligand-specific
+probe finds only 5HVK as a heteromeric candidate, so the positive-coverage gap
+is now explicit rather than an untested assumption. This makes the new
+`heteromeric_chain_topology_signal_audit` gate pass as review-only
+counterevidence, but the signal is still not production admissible because it
+has only one positive-like case and still lacks threshold calibration, a real
+external hard-negative scored re-audit, and registry/label factory extensions.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with both
+topology audits. Overall status remains `blocked_review_only`; the failing
+gate set still includes acceptor threshold calibration, external scored
+hard-negative re-audit, registry/label-factory extension, text-free acceptor
+feature gap, protein-substrate acceptor candidate audit, source-free topology
+role audit, `m_csa:760`, `m_csa:757`, `m_csa:756`, and gamma negative-control
+distance distribution.
+
+Evidence-based confidence call: confidence is higher that a purely local
+entity-topology counter-axis can remove the specific 5HVK chain-role source
+dependency without false-hitting the three current same-accession controls.
+Confidence remains low that this can support production scoring: one
+positive-like heteromeric case from a 60-structure scan is not enough for
+calibration, and the real external hard-negative scored re-audit plus
+registry/factory extensions remain absent.
+
 As of the 2026-05-19T16:32:17Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
