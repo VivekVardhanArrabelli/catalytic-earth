@@ -18,6 +18,9 @@
     },
     {
       "evidence": {
+        "alternate_review_method": "epk_m_csa640_alternate_gamma_geometry_review",
+        "alternate_reviewed_row_count": 1,
+        "measured_or_reviewed_row_count": 3,
         "measured_row_count": 2,
         "measurement_status_counts": {
           "gamma_to_hydroxyl_distance_measured_review_only": 2,
@@ -26,7 +29,7 @@
         "prototype_ready_row_count": 3
       },
       "gate_id": "gamma_geometry_measured_for_all_prototype_rows",
-      "passed": false
+      "passed": true
     },
     {
       "evidence": {
@@ -76,6 +79,18 @@
     },
     {
       "evidence": {
+        "alternate_gamma_geometry_supports_positive_axis_count": 1,
+        "observed_alternate_gamma_distance_min_angstrom": 3.558,
+        "production_scoring_admissible": false,
+        "reviewed_entry_id": "m_csa:640",
+        "reviewed_pdb_id": "3TM0",
+        "source_method": "epk_m_csa640_alternate_gamma_geometry_review"
+      },
+      "gate_id": "m_csa640_alternate_gamma_geometry_reviewed",
+      "passed": true
+    },
+    {
+      "evidence": {
         "negative_control_distance_distribution_ready": false,
         "selected_threshold_angstrom": null,
         "source_method": "epk_gamma_threshold_control_plan",
@@ -83,6 +98,42 @@
       },
       "gate_id": "gamma_threshold_control_plan",
       "passed": true
+    },
+    {
+      "evidence": {
+        "blocked_counteraxis_row_count": 20,
+        "decision_surface_changed": true,
+        "external_hard_negative_abstention_row_count": 3,
+        "positive_like_acceptor_axis_row_count": 3,
+        "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+        "source_method": "epk_substrate_acceptor_counteraxis_prototype",
+        "weak_axes": [
+          "source_supported_acceptor_axis_is_review_context_not_predictive",
+          "external_epk_specific_axes_not_materialized",
+          "threshold_not_calibrated_against_negative_controls",
+          "label_factory_gate_not_extended_for_epk"
+        ]
+      },
+      "gate_id": "substrate_acceptor_counteraxis_prototype",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "candidate_feature_id": "nearest_gamma_to_oxygen_within_candidate_cutoff_v0",
+        "candidate_feature_status": "blocked_review_only",
+        "current_positive_feature_hit_count": 3,
+        "negative_control_false_hit_count": 11,
+        "negative_control_false_hit_family_ids": [
+          "atp_grasp",
+          "ndk",
+          "pfka",
+          "pfkb"
+        ],
+        "primary_blocker": "nearest_oxygen_feature_false_hits_sibling_controls",
+        "source_method": "epk_text_free_acceptor_feature_gap_audit"
+      },
+      "gate_id": "text_free_acceptor_feature_gap_audit",
+      "passed": false
     },
     {
       "evidence": {
@@ -209,21 +260,26 @@
     }
   ],
   "metadata": {
+    "alternate_gamma_geometry_reviewed_row_count": 1,
     "countable_label_candidate_count": 0,
     "curated_label_registry_edited": false,
     "epk_score_computed": false,
     "external_hard_negative_reaudit_scored": false,
     "failing_gate_ids": [
       "acceptor_threshold_calibrated",
-      "gamma_geometry_measured_for_all_prototype_rows",
       "external_hard_negative_scored_reaudit",
       "registry_and_label_factory_extension",
+      "text_free_acceptor_feature_gap_audit",
       "gamma_negative_control_distance_distribution",
       "family_specific_homolog_mapping_template"
     ],
     "fingerprint_registry_edited": false,
+    "gamma_measured_or_reviewed_row_count": 3,
     "gamma_measured_row_count": 2,
     "gamma_threshold_control_plan_ready": true,
+    "m_csa640_alternate_gamma_distance_min_angstrom": 3.558,
+    "m_csa640_alternate_gamma_geometry_review_complete": true,
+    "m_csa640_alternate_gamma_geometry_support_count": 1,
     "measured_acceptor_identity_source_supported_count": 2,
     "method": "epk_precount_gate_status",
     "negative_control_alternate_lowest_candidate_hit_count": 1,
@@ -336,7 +392,10 @@
       "use measured family-specific sibling counterevidence for atp_grasp, pfka, pfkb while keeping threshold selection closed",
       "use measured ndk homolog histidine-axis counterevidence alongside family-specific sibling controls",
       "expand sibling negative-control coverage beyond measured alternate structures before selecting a threshold",
+      "use reviewed m_csa:640 alternate gamma geometry only in review-only prototype diagnostics",
       "keep explicitly excluded non-ready ligand rows out of threshold calibration",
+      "add a text-free acceptor disambiguation signal beyond nearest oxygen distance",
+      "replace review-context acceptor support with a text-free predictive acceptor feature before production scoring",
       "run external hard-negative re-audit only after a real ePK score exists"
     ],
     "nonready_ligand_excluded_count": 2,
@@ -365,6 +424,7 @@
       "epk_family_specific_mapping_template_review"
     ],
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
+    "source_epk_m_csa640_alternate_gamma_geometry_review_method": "epk_m_csa640_alternate_gamma_geometry_review",
     "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
     "source_epk_negative_control_calibration_sufficiency_decision_method": "epk_negative_control_calibration_sufficiency_decision",
     "source_epk_negative_control_gamma_distance_distribution_method": "epk_negative_control_gamma_distance_distribution",
@@ -377,8 +437,31 @@
     ],
     "source_epk_sibling_negative_control_alternate_gamma_distance_sample_method": "epk_sibling_negative_control_alternate_gamma_distance_sample",
     "source_epk_sibling_negative_control_alternate_structure_plan_method": "epk_sibling_negative_control_alternate_structure_plan",
+    "source_epk_substrate_acceptor_counteraxis_prototype_method": "epk_substrate_acceptor_counteraxis_prototype",
+    "source_epk_text_free_acceptor_feature_gap_audit_method": "epk_text_free_acceptor_feature_gap_audit",
+    "substrate_acceptor_counteraxis_blocked_count": 20,
+    "substrate_acceptor_counteraxis_decision_surface_changed": true,
+    "substrate_acceptor_counteraxis_positive_like_count": 3,
+    "substrate_acceptor_counteraxis_rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+    "substrate_acceptor_counteraxis_weak_axes": [
+      "source_supported_acceptor_axis_is_review_context_not_predictive",
+      "external_epk_specific_axes_not_materialized",
+      "threshold_not_calibrated_against_negative_controls",
+      "label_factory_gate_not_extended_for_epk"
+    ],
     "target_family_id": "epk",
     "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "text_free_acceptor_candidate_feature_id": "nearest_gamma_to_oxygen_within_candidate_cutoff_v0",
+    "text_free_acceptor_candidate_feature_status": "blocked_review_only",
+    "text_free_acceptor_false_hit_family_ids": [
+      "atp_grasp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "text_free_acceptor_feature_admissible_for_scoring": false,
+    "text_free_acceptor_negative_control_false_hit_count": 11,
+    "text_free_acceptor_positive_hit_count": 3,
     "threshold_calibrated": false
   },
   "warnings": [

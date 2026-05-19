@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "clean_heldout_performance_claim_permitted": false,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "expected_external_hard_negative_entry_ids": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_hard_negative_counteraxis_status_counts": {
+      "review_only_external_hard_negative_abstention": 3
+    },
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_external_hard_negative_counteraxis_review",
+    "missing_expected_external_hard_negative_entry_ids": [],
+    "next_actions": [
+      "run a real external hard-negative scored re-audit only after a calibrated ePK scorer exists",
+      "preserve these rows as imported out-of-scope hard negatives",
+      "keep clean held-out performance claims closed for repaired/development lanes"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_external_hard_negative_abstention_count": 3,
+    "review_only_external_hard_negative_check_complete": true,
+    "review_only_external_hard_negative_non_abstention_count": 0,
+    "review_only_rule": "This artifact checks imported external hard negatives against the review-only ePK substrate-acceptor counteraxis. It records abstentions for diagnostic safety only and does not claim clean held-out performance, compute a calibrated ePK score, edit registries, or import labels.",
+    "row_count": 3,
+    "source_epk_substrate_acceptor_counteraxis_prototype_method": "epk_substrate_acceptor_counteraxis_prototype",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "external_epk_specific_axes_not_materialized",
+      "entry_id": "uniprot:P06744",
+      "epk_score_computed": false,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "not_a_real_scored_external_reaudit",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_counteraxis_non_abstention": false,
+      "review_status": "review_only_external_hard_negative_abstention",
+      "source_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_counteraxis_rule_decision": "external_hard_negative_abstain_missing_epk_acceptor_axes",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "external_epk_specific_axes_not_materialized",
+      "entry_id": "uniprot:P78549",
+      "epk_score_computed": false,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "not_a_real_scored_external_reaudit",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_counteraxis_non_abstention": false,
+      "review_status": "review_only_external_hard_negative_abstention",
+      "source_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_counteraxis_rule_decision": "external_hard_negative_abstain_missing_epk_acceptor_axes",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "external_epk_specific_axes_not_materialized",
+      "entry_id": "uniprot:Q3LXA3",
+      "epk_score_computed": false,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "not_a_real_scored_external_reaudit",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_counteraxis_non_abstention": false,
+      "review_status": "review_only_external_hard_negative_abstention",
+      "source_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_counteraxis_rule_decision": "external_hard_negative_abstain_missing_epk_acceptor_axes",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    }
+  ],
+  "warnings": [
+    "Review-only external hard-negative abstentions are not clean held-out performance evidence."
+  ]
+}

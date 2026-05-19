@@ -990,14 +990,20 @@ distances span 3.611-5.596 Angstrom, so the 6-Angstrom candidate scenario hits
 all measured PfkB, PfkA, and ATP-grasp sibling controls. This is concrete
 counterevidence against a distance-only ePK threshold, not a selected threshold
 or production score.
+`artifacts/v3_epk_m_csa640_alternate_gamma_geometry_review_1025.json` reviews
+the `m_csa:640` `3TM0` ANP/B31 alternate-state geometry. It confirms all four
+catalytic residues map, B31 is admissible only as a review-only substrate-OH
+analog, and nearest ANP PG-to-B31 O14 distance is 3.558 Angstrom. This closes
+the current prototype gamma-geometry gap for `m_csa:640` without authorizing a
+production score.
 `artifacts/v3_epk_review_only_scoring_prototype_1025.json` then evaluates a
-deliberately fail-closed ePK prototype surface. Two current ePK rows have all
-provisional axes under the uncalibrated 6-Angstrom candidate cutoff, `m_csa:640`
-still abstains, all four NDK homolog rows are blocked by the phosphohistidine
-counter-axis, all 16 measured PfkB/PfkA/ATP-grasp homolog rows are blocked by
-the family-specific sibling counter-axis, and the three imported external hard
-negatives (`uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`) abstain
-with score 0 because ePK-specific axes are not materialized for them. This is not a
+deliberately fail-closed ePK prototype surface. All three current ePK rows now
+have provisional axes under the uncalibrated 6-Angstrom candidate cutoff, all
+four NDK homolog rows are blocked by the phosphohistidine counter-axis, all 16
+measured PfkB/PfkA/ATP-grasp homolog rows are blocked by the family-specific
+sibling counter-axis, and the three imported external hard negatives
+(`uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`) abstain with score
+0 because ePK-specific axes are not materialized for them. This is not a
 production ePK score or clean held-out performance evidence.
 `artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` converts that
 negative result into a machine-readable review-only decision: the current
@@ -1005,14 +1011,31 @@ counteraxis surface is sufficient to block distance-only threshold selection
 (16 family-specific sibling hits at the 6-Angstrom candidate cutoff plus four
 NDK phosphohistidine blocks), but it does not select a threshold, score ePK,
 re-audit external hard negatives, edit registries, or import labels.
+`artifacts/v3_epk_substrate_acceptor_counteraxis_prototype_1025.json` adds the
+first concrete rule-level counteraxis. It marks the three current ePK rows as
+positive-like review-only acceptor-axis hits, blocks all 20 NDK/family-specific
+ATP-family controls, and keeps the three imported external hard negatives as
+abstentions. The weak axis is now explicit: source-supported acceptor identity
+is still review context, not a text-free production scoring feature.
+`artifacts/v3_epk_external_hard_negative_counteraxis_review_1025.json`
+separately records that the three imported external hard negatives abstain
+under this review-only counteraxis, while explicitly forbidding clean held-out
+performance claims or a scored ePK re-audit.
+`artifacts/v3_epk_text_free_acceptor_feature_gap_audit_1025.json` then tests
+the next weak axis directly: a text-free nearest-gamma-to-oxygen feature at the
+same 6-Angstrom candidate cutoff. It hits all three current ePK positives, but
+also false-hits 11 of 20 NDK/PfkB/PfkA/ATP-grasp sibling controls, so the
+candidate feature remains `blocked_review_only`. The next scorer experiment
+must add a text-free disambiguation signal such as chain/substrate context or
+ligand-class constraints before any ePK score or external scored re-audit.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
 `blocked_review_only`: local axes, measured-row acceptor identity review, and
 threshold/control planning pass, non-ready-row exclusion is explicit, and a
 sibling alternate-control measurement surface plus NDK homolog counter-axis
 measurement and PfkB/PfkA/ATP-grasp family-specific counterevidence exist, but
 negative-control distribution readiness, acceptor threshold calibration,
-complete gamma geometry, external hard-negative scored re-audit, and
-label-factory/registry extension all remain failing gates.
+text-free acceptor feature admissibility, external hard-negative scored
+re-audit, and label-factory/registry extension all remain failing gates.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

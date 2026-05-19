@@ -9664,6 +9664,260 @@ def build_epk_gamma_threshold_control_plan(
     }
 
 
+def build_epk_m_csa640_alternate_gamma_geometry_review(
+    *,
+    epk_atp_state_evidence_plan: dict[str, Any],
+    epk_gamma_threshold_control_plan: dict[str, Any] | None = None,
+    entry_id: str = "m_csa:640",
+    pdb_id: str = "3TM0",
+    candidate_threshold_angstrom: float = 6.0,
+) -> dict[str, Any]:
+    """Review the m_csa:640 alternate ATP-state gamma/acceptor analog geometry."""
+
+    atp_meta = epk_atp_state_evidence_plan.get("metadata", {})
+    if not isinstance(atp_meta, dict):
+        atp_meta = {}
+    threshold_plan = epk_gamma_threshold_control_plan or {}
+    threshold_meta = threshold_plan.get("metadata", {})
+    if not isinstance(threshold_meta, dict):
+        threshold_meta = {}
+    target_fingerprint_id = str(
+        atp_meta.get("target_fingerprint_id")
+        or threshold_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        threshold = float(candidate_threshold_angstrom)
+    except (TypeError, ValueError):
+        threshold = 6.0
+
+    threshold_rows_by_key = {
+        (str(row.get("entry_id") or ""), str(row.get("pdb_id") or "").upper()): row
+        for row in threshold_plan.get("rows", []) or []
+        if isinstance(row, dict)
+    }
+    rows: list[dict[str, Any]] = []
+    reviewed_distances: list[float] = []
+    support_count = 0
+    status_counts: Counter[str] = Counter()
+    target_pdb = pdb_id.upper()
+
+    for atp_row in epk_atp_state_evidence_plan.get("rows", []) or []:
+        if not isinstance(atp_row, dict):
+            continue
+        if str(atp_row.get("entry_id") or "") != entry_id:
+            continue
+        for structure in atp_row.get("candidate_structures", []) or []:
+            if not isinstance(structure, dict):
+                continue
+            structure_pdb = str(structure.get("pdb_id") or "").upper()
+            if target_pdb and structure_pdb != target_pdb:
+                continue
+            pair = structure.get("nearest_gamma_acceptor_atom_pair", {})
+            if not isinstance(pair, dict):
+                pair = {}
+            threshold_row = threshold_rows_by_key.get((entry_id, structure_pdb), {})
+            if not isinstance(threshold_row, dict):
+                threshold_row = {}
+            distance = structure.get(
+                "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom"
+            )
+            try:
+                distance_value = float(distance)
+            except (TypeError, ValueError):
+                distance_value = None
+            has_gamma = bool(structure.get("has_gamma_capable_nucleotide"))
+            has_acceptor_like_ligand = bool(structure.get("has_acceptor_like_ligand"))
+            all_residues_mapped = bool(structure.get("all_catalytic_residues_mapped"))
+            acceptor_code = str(
+                pair.get("acceptor_ligand_code")
+                or threshold_row.get("acceptor_ligand_or_residue_code")
+                or ""
+            ).upper()
+            analog_admissible = bool(
+                acceptor_code
+                and has_acceptor_like_ligand
+                and threshold_row.get("source_support_status")
+                == "source_supported_alternate_analog_context_review_only"
+            )
+            within_candidate_cutoff = (
+                distance_value is not None and distance_value <= threshold
+            )
+            supports_positive_axis = bool(
+                has_gamma
+                and has_acceptor_like_ligand
+                and all_residues_mapped
+                and analog_admissible
+                and within_candidate_cutoff
+            )
+            if supports_positive_axis:
+                status = (
+                    "alternate_gamma_to_acceptor_analog_distance_reviewed_review_only"
+                )
+                support_count += 1
+                reviewed_distances.append(float(distance_value))
+            elif distance_value is not None:
+                status = "alternate_gamma_geometry_reviewed_not_axis_admissible"
+                reviewed_distances.append(float(distance_value))
+            else:
+                status = "alternate_gamma_geometry_unmeasured_after_review"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "entry_name": atp_row.get("entry_name"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "pdb_id": structure_pdb,
+                    "geometry_scope": "alternate_graph_linked_structure",
+                    "current_selected_structure": bool(
+                        structure.get("current_selected_structure")
+                    ),
+                    "review_status": status,
+                    "alternate_gamma_geometry_reviewed": distance_value is not None,
+                    "alternate_gamma_geometry_supports_positive_axis_review_only": (
+                        supports_positive_axis
+                    ),
+                    "production_scoring_admissible": False,
+                    "gamma_capable_nucleotide": has_gamma,
+                    "acceptor_like_ligand_present": has_acceptor_like_ligand,
+                    "all_catalytic_residues_mapped": all_residues_mapped,
+                    "mapped_catalytic_residue_count": structure.get(
+                        "mapped_catalytic_residue_count"
+                    ),
+                    "expected_catalytic_residue_count": structure.get(
+                        "expected_catalytic_residue_count"
+                    ),
+                    "mapped_catalytic_residues": structure.get(
+                        "mapped_catalytic_residues", []
+                    ),
+                    "gamma_ligand_code": pair.get("gamma_ligand_code")
+                    or threshold_row.get("gamma_ligand_code"),
+                    "gamma_atom_name": pair.get("gamma_atom_name"),
+                    "acceptor_context_type": "acceptor_like_ligand_analog",
+                    "acceptor_ligand_code": acceptor_code or None,
+                    "acceptor_atom_name": pair.get("acceptor_atom_name")
+                    or threshold_row.get("acceptor_atom_name"),
+                    "acceptor_chain_name": pair.get("acceptor_chain_name")
+                    or threshold_row.get("acceptor_chain_name"),
+                    "acceptor_resid": pair.get("acceptor_resid")
+                    or threshold_row.get("acceptor_resid"),
+                    "gamma_to_acceptor_distance_angstrom": distance_value,
+                    "candidate_threshold_angstrom": threshold,
+                    "within_candidate_threshold": within_candidate_cutoff,
+                    "ligand_analog_admissibility_status": (
+                        "review_only_admissible_substrate_oh_analog"
+                        if analog_admissible
+                        else "not_admissible_or_unreviewed"
+                    ),
+                    "source_support_status": threshold_row.get(
+                        "source_support_status"
+                    ),
+                    "predictive_use_status": (
+                        "review_only_axis_input_not_production_score"
+                    ),
+                    "epk_score_computed": False,
+                    "remaining_blockers": [
+                        "threshold_not_calibrated_against_negative_controls",
+                        "external_hard_negative_reaudit_not_real_scorer",
+                        "registry_and_label_factory_extension_not_implemented",
+                        "alternate_structure_policy_not_production_scorer",
+                    ],
+                }
+            )
+
+    if not rows:
+        status_counts["alternate_gamma_candidate_not_found"] += 1
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "pdb_id": target_pdb or None,
+                "geometry_scope": "alternate_graph_linked_structure",
+                "review_status": "alternate_gamma_candidate_not_found",
+                "alternate_gamma_geometry_reviewed": False,
+                "alternate_gamma_geometry_supports_positive_axis_review_only": False,
+                "production_scoring_admissible": False,
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "target_alternate_structure_not_found_in_atp_state_plan"
+                ],
+            }
+        )
+
+    return {
+        "metadata": {
+            "method": "epk_m_csa640_alternate_gamma_geometry_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_atp_state_evidence_plan_method": atp_meta.get("method"),
+            "source_epk_gamma_threshold_control_plan_method": threshold_meta.get(
+                "method"
+            ),
+            "reviewed_entry_id": entry_id,
+            "reviewed_pdb_id": target_pdb or None,
+            "candidate_threshold_angstrom": threshold,
+            "row_count": len(rows),
+            "alternate_gamma_geometry_review_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "alternate_gamma_geometry_reviewed_count": sum(
+                1 for row in rows if row.get("alternate_gamma_geometry_reviewed")
+            ),
+            "alternate_gamma_geometry_supports_positive_axis_count": support_count,
+            "prototype_full_axis_gap_closed_count": support_count,
+            "alternate_gamma_geometry_review_complete": support_count > 0,
+            "observed_alternate_gamma_distance_min_angstrom": (
+                min(reviewed_distances) if reviewed_distances else None
+            ),
+            "observed_alternate_gamma_distance_max_angstrom": (
+                max(reviewed_distances) if reviewed_distances else None
+            ),
+            "epk_score_computed": False,
+            "threshold_calibrated": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact reviews the m_csa:640 3TM0 ANP/B31 alternate "
+                "gamma-to-acceptor analog geometry. It can close the review-only "
+                "prototype geometry gap, but it is not a calibrated score, "
+                "production fingerprint, registry edit, external hard-negative "
+                "re-audit, or label import."
+            ),
+            "next_actions": [
+                "use m_csa:640 alternate geometry only inside review-only prototype diagnostics",
+                "keep threshold selection closed because sibling controls overlap candidate geometry",
+                "run external hard-negative re-audit only after a calibrated ePK score exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "m_csa:640 alternate-state geometry is a review-only gap "
+                "closure signal and must not be treated as production scoring "
+                "or countable fingerprint evidence."
+            )
+        ],
+    }
+
+
 def build_epk_negative_control_gamma_distance_distribution(
     *,
     epk_gamma_threshold_control_plan: dict[str, Any],
@@ -14675,6 +14929,7 @@ def build_epk_review_only_scoring_prototype(
     epk_gamma_geometry_measurement_sample: dict[str, Any],
     epk_acceptor_identity_review: dict[str, Any],
     epk_sibling_control_homolog_gamma_distance_sample: dict[str, Any],
+    epk_m_csa640_alternate_gamma_geometry_review: dict[str, Any] | None = None,
     epk_family_specific_homolog_gamma_distance_sample: dict[str, Any]
     | list[dict[str, Any]]
     | None = None,
@@ -14693,6 +14948,10 @@ def build_epk_review_only_scoring_prototype(
     identity_meta = epk_acceptor_identity_review.get("metadata", {})
     if not isinstance(identity_meta, dict):
         identity_meta = {}
+    alternate_gamma_review = epk_m_csa640_alternate_gamma_geometry_review or {}
+    alternate_gamma_meta = alternate_gamma_review.get("metadata", {})
+    if not isinstance(alternate_gamma_meta, dict):
+        alternate_gamma_meta = {}
     homolog_meta = epk_sibling_control_homolog_gamma_distance_sample.get(
         "metadata", {}
     )
@@ -14734,6 +14993,13 @@ def build_epk_review_only_scoring_prototype(
         for row in epk_acceptor_identity_review.get("rows", []) or []
         if isinstance(row, dict) and row.get("entry_id")
     }
+    alternate_gamma_by_entry = {
+        str(row.get("entry_id")): row
+        for row in alternate_gamma_review.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("alternate_gamma_geometry_supports_positive_axis_review_only")
+    }
 
     rows: list[dict[str, Any]] = []
     decision_counts: Counter[str] = Counter()
@@ -14747,7 +15013,23 @@ def build_epk_review_only_scoring_prototype(
             vector = {}
         gamma_row = gamma_by_entry.get(entry_id, {})
         identity_row = identity_by_entry.get(entry_id, {})
+        alternate_gamma_row = alternate_gamma_by_entry.get(entry_id, {})
         gamma_distance = gamma_row.get("nearest_gamma_to_hydroxyl_distance_angstrom")
+        gamma_geometry_scope = "current_selected_structure"
+        gamma_acceptor_context_type = "source_supported_hydroxyl_residue"
+        if gamma_distance is None and alternate_gamma_row:
+            gamma_distance = alternate_gamma_row.get(
+                "gamma_to_acceptor_distance_angstrom"
+            )
+            gamma_row = alternate_gamma_row
+            gamma_geometry_scope = str(
+                alternate_gamma_row.get("geometry_scope")
+                or "alternate_graph_linked_structure"
+            )
+            gamma_acceptor_context_type = str(
+                alternate_gamma_row.get("acceptor_context_type")
+                or "acceptor_like_ligand_analog"
+            )
         gamma_axis_present = False
         try:
             gamma_axis_present = (
@@ -14758,6 +15040,9 @@ def build_epk_review_only_scoring_prototype(
             gamma_axis_present = False
         acceptor_axis_present = bool(
             identity_row.get("acceptor_identity_source_supported")
+            or alternate_gamma_row.get(
+                "alternate_gamma_geometry_supports_positive_axis_review_only"
+            )
         )
         axis_values = {
             "local_adenine_nucleotide_ligand": int(
@@ -14800,7 +15085,7 @@ def build_epk_review_only_scoring_prototype(
                 "row_type": "current_epk_positive_prototype",
                 "entry_id": entry_id,
                 "entry_name": axis_row.get("entry_name"),
-                "pdb_id": axis_row.get("pdb_id") or gamma_row.get("pdb_id"),
+                "pdb_id": gamma_row.get("pdb_id") or axis_row.get("pdb_id"),
                 "target_fingerprint_id": target_fingerprint_id,
                 "review_only": True,
                 "countable_label_candidate": False,
@@ -14811,6 +15096,11 @@ def build_epk_review_only_scoring_prototype(
                 "review_only_prototype_score": score,
                 "prototype_decision": decision,
                 "nearest_gamma_to_hydroxyl_distance_angstrom": gamma_distance,
+                "gamma_geometry_scope": gamma_geometry_scope,
+                "acceptor_context_type": gamma_acceptor_context_type,
+                "alternate_gamma_geometry_review_status": alternate_gamma_row.get(
+                    "review_status"
+                ),
                 "acceptor_identity_review_status": identity_row.get(
                     "acceptor_identity_review_status"
                 ),
@@ -14984,6 +15274,24 @@ def build_epk_review_only_scoring_prototype(
         and row.get("review_only_prototype_score") == 0.0
     )
     prototype_failed_closed = True
+    alternate_gamma_support_count = int(
+        alternate_gamma_meta.get("alternate_gamma_geometry_supports_positive_axis_count")
+        or 0
+    )
+    prototype_failure_axes = [
+        "negative_control_distribution_not_calibrated",
+        "family_specific_sibling_controls_overlap_candidate_geometry",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+    ]
+    if alternate_gamma_support_count:
+        prototype_failure_axes.append(
+            "alternate_structure_policy_not_production_scorer"
+        )
+    else:
+        prototype_failure_axes.insert(
+            1, "complete_gamma_geometry_missing_for_m_csa_640"
+        )
     return {
         "metadata": {
             "method": "epk_review_only_scoring_prototype",
@@ -14998,6 +15306,9 @@ def build_epk_review_only_scoring_prototype(
             ),
             "source_epk_acceptor_identity_review_method": identity_meta.get(
                 "method"
+            ),
+            "source_epk_m_csa640_alternate_gamma_geometry_review_method": (
+                alternate_gamma_meta.get("method")
             ),
             "source_epk_sibling_control_homolog_gamma_distance_sample_method": (
                 homolog_meta.get("method")
@@ -15017,6 +15328,9 @@ def build_epk_review_only_scoring_prototype(
                 if row.get("row_type") == "current_epk_positive_prototype"
             ),
             "current_positive_full_axis_count": positive_full_axis_count,
+            "m_csa640_alternate_gamma_geometry_support_count": (
+                alternate_gamma_support_count
+            ),
             "sibling_homolog_counteraxis_row_count": sum(
                 1
                 for row in rows
@@ -15034,13 +15348,7 @@ def build_epk_review_only_scoring_prototype(
             "prototype_decision_counts": dict(sorted(decision_counts.items())),
             "prototype_gate_status": "fail_closed_review_only",
             "prototype_failed_closed": prototype_failed_closed,
-            "prototype_failure_axes": [
-                "negative_control_distribution_not_calibrated",
-                "complete_gamma_geometry_missing_for_m_csa_640",
-                "family_specific_sibling_controls_overlap_candidate_geometry",
-                "external_hard_negative_reaudit_not_real_scorer",
-                "registry_and_label_factory_extension_not_implemented",
-            ],
+            "prototype_failure_axes": prototype_failure_axes,
             "negative_control_distance_distribution_ready": False,
             "threshold_calibrated": False,
             "selected_threshold_angstrom": None,
@@ -15253,6 +15561,658 @@ def build_epk_counteraxis_sufficiency_decision(
     }
 
 
+def build_epk_substrate_acceptor_counteraxis_prototype(
+    *,
+    epk_review_only_scoring_prototype: dict[str, Any],
+    epk_counteraxis_sufficiency_decision: dict[str, Any],
+) -> dict[str, Any]:
+    """Apply a review-only substrate-acceptor counteraxis rule to ePK rows."""
+
+    prototype_meta = epk_review_only_scoring_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    decision_meta = epk_counteraxis_sufficiency_decision.get("metadata", {})
+    if not isinstance(decision_meta, dict):
+        decision_meta = {}
+    target_fingerprint_id = str(
+        prototype_meta.get("target_fingerprint_id")
+        or decision_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    rule_id = "epk_substrate_acceptor_counteraxis_rule_v0_review_only"
+    rows: list[dict[str, Any]] = []
+    rule_decision_counts: Counter[str] = Counter()
+    blocked_counteraxis_rows = 0
+    positive_like_rows = 0
+    external_abstention_rows = 0
+
+    for source_row in epk_review_only_scoring_prototype.get("rows", []) or []:
+        if not isinstance(source_row, dict):
+            continue
+        row_type = str(source_row.get("row_type") or "")
+        axis_values = source_row.get("prototype_axis_values", {})
+        if not isinstance(axis_values, dict):
+            axis_values = {}
+        axis_values_copy = dict(axis_values)
+        required_positive_axes = [
+            "local_adenine_nucleotide_ligand",
+            "local_metal_ligand",
+            "catalytic_acid_base_residue",
+            "gamma_to_acceptor_distance_within_candidate_cutoff",
+            "source_supported_hydroxyl_acceptor_identity",
+        ]
+        missing_required_axes = [
+            axis_id
+            for axis_id in required_positive_axes
+            if int(axis_values.get(axis_id) or 0) != 1
+        ]
+        if row_type == "current_epk_positive_prototype" and not missing_required_axes:
+            rule_decision = "positive_like_acceptor_axis_review_only"
+            positive_like_rows += 1
+            blocker = None
+            rule_hit = "epk_substrate_acceptor_axis_present"
+        elif row_type == "current_epk_positive_prototype":
+            rule_decision = "abstain_missing_substrate_acceptor_axis_review_only"
+            blocker = "current_epk_positive_missing_required_acceptor_axis"
+            rule_hit = "missing_required_positive_axis"
+        elif row_type == "sibling_homolog_negative_control":
+            rule_decision = "blocked_by_non_hydroxyl_phosphohistidine_counteraxis"
+            blocker = "ndk_phosphohistidine_axis_not_substrate_hydroxyl_acceptor"
+            rule_hit = "phosphohistidine_counteraxis"
+            blocked_counteraxis_rows += 1
+        elif row_type == "sibling_family_specific_negative_control":
+            rule_decision = "blocked_by_sibling_family_acceptor_counteraxis"
+            blocker = "sibling_family_control_lacks_source_supported_epk_acceptor_identity"
+            rule_hit = "sibling_family_specific_counteraxis"
+            blocked_counteraxis_rows += 1
+        elif row_type == "imported_external_hard_negative":
+            rule_decision = "external_hard_negative_abstain_missing_epk_acceptor_axes"
+            blocker = "external_epk_specific_axes_not_materialized"
+            rule_hit = "external_abstain_no_epk_axes"
+            external_abstention_rows += 1
+        else:
+            rule_decision = "abstain_unknown_row_type_review_only"
+            blocker = "unknown_review_only_row_type"
+            rule_hit = "unknown_row_type"
+        rule_decision_counts[rule_decision] += 1
+        rows.append(
+            {
+                "row_type": row_type,
+                "entry_id": source_row.get("entry_id"),
+                "pdb_id": source_row.get("pdb_id"),
+                "family_id": source_row.get("family_id"),
+                "family_name": source_row.get("family_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only")
+                ),
+                "rule_id": rule_id,
+                "source_prototype_decision": source_row.get("prototype_decision"),
+                "source_review_only_prototype_score": source_row.get(
+                    "review_only_prototype_score"
+                ),
+                "source_axis_values": axis_values_copy,
+                "missing_required_positive_axes": missing_required_axes,
+                "counteraxis_rule_hit": rule_hit,
+                "counteraxis_rule_decision": rule_decision,
+                "counteraxis_blocker": blocker,
+                "gamma_geometry_scope": source_row.get("gamma_geometry_scope"),
+                "acceptor_context_type": source_row.get("acceptor_context_type"),
+                "nearest_gamma_to_acceptor_distance_angstrom": source_row.get(
+                    "nearest_gamma_to_hydroxyl_distance_angstrom"
+                )
+                or source_row.get("nearest_gamma_to_family_acid_base_distance_angstrom")
+                or source_row.get("nearest_gamma_to_mapped_histidine_distance_angstrom"),
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "rule_is_review_only_not_calibrated_scorer",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    weak_axes = [
+        "source_supported_acceptor_axis_is_review_context_not_predictive",
+        "external_epk_specific_axes_not_materialized",
+        "threshold_not_calibrated_against_negative_controls",
+        "label_factory_gate_not_extended_for_epk",
+    ]
+    return {
+        "metadata": {
+            "method": "epk_substrate_acceptor_counteraxis_prototype",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_review_only_scoring_prototype_method": (
+                prototype_meta.get("method")
+            ),
+            "source_epk_counteraxis_sufficiency_decision_method": (
+                decision_meta.get("method")
+            ),
+            "rule_id": rule_id,
+            "row_count": len(rows),
+            "positive_like_acceptor_axis_row_count": positive_like_rows,
+            "blocked_counteraxis_row_count": blocked_counteraxis_rows,
+            "external_hard_negative_abstention_row_count": external_abstention_rows,
+            "counteraxis_rule_decision_counts": dict(
+                sorted(rule_decision_counts.items())
+            ),
+            "decision_surface_changed": True,
+            "prototype_gate_status": "fail_closed_review_only",
+            "prototype_failed_closed": True,
+            "weak_axes": weak_axes,
+            "threshold_selection_decision": "do_not_select_threshold",
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact applies a concrete fail-closed substrate-acceptor "
+                "counteraxis to the review-only ePK prototype. It changes the "
+                "diagnostic decision surface by blocking phosphohistidine and "
+                "sibling-family ATP controls, but it is not a calibrated ePK "
+                "score, production fingerprint, registry edit, external "
+                "hard-negative re-audit, or label import."
+            ),
+            "next_actions": [
+                "replace review-context acceptor support with a text-free predictive acceptor feature before production scoring",
+                "run external hard-negative re-audit only after a calibrated ePK score exists",
+                "keep registry and label-factory extension closed until gates pass",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("family_id") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The substrate-acceptor counteraxis is a review-only prototype "
+                "and must not be treated as held-out performance or countable "
+                "fingerprint evidence."
+            )
+        ],
+    }
+
+
+def build_epk_external_hard_negative_counteraxis_review(
+    *,
+    epk_substrate_acceptor_counteraxis_prototype: dict[str, Any],
+    imported_external_entry_ids: list[str] | None = None,
+) -> dict[str, Any]:
+    """Summarize imported external hard negatives against the review-only ePK rule."""
+
+    prototype_meta = epk_substrate_acceptor_counteraxis_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    target_fingerprint_id = str(
+        prototype_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    expected_external_ids = set(
+        imported_external_entry_ids
+        or ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"]
+    )
+    source_external_rows = [
+        row
+        for row in epk_substrate_acceptor_counteraxis_prototype.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("row_type") == "imported_external_hard_negative"
+        and str(row.get("entry_id") or "") in expected_external_ids
+    ]
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    for source_row in source_external_rows:
+        entry_id = str(source_row.get("entry_id") or "")
+        decision = str(source_row.get("counteraxis_rule_decision") or "")
+        if decision == "external_hard_negative_abstain_missing_epk_acceptor_axes":
+            status = "review_only_external_hard_negative_abstention"
+        else:
+            status = "review_only_external_hard_negative_non_abstention"
+        status_counts[status] += 1
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only")
+                ),
+                "source_counteraxis_rule_decision": decision,
+                "review_status": status,
+                "review_only_counteraxis_non_abstention": (
+                    status
+                    == "review_only_external_hard_negative_non_abstention"
+                ),
+                "source_axis_values": source_row.get("source_axis_values", {}),
+                "missing_required_positive_axes": source_row.get(
+                    "missing_required_positive_axes", []
+                ),
+                "counteraxis_blocker": source_row.get("counteraxis_blocker"),
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "not_a_real_scored_external_reaudit",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    missing_expected_ids = sorted(
+        expected_external_ids - {str(row.get("entry_id") or "") for row in rows}
+    )
+    false_non_abstention_count = status_counts.get(
+        "review_only_external_hard_negative_non_abstention", 0
+    )
+    return {
+        "metadata": {
+            "method": "epk_external_hard_negative_counteraxis_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_substrate_acceptor_counteraxis_prototype_method": (
+                prototype_meta.get("method")
+            ),
+            "expected_external_hard_negative_entry_ids": sorted(
+                expected_external_ids
+            ),
+            "missing_expected_external_hard_negative_entry_ids": missing_expected_ids,
+            "row_count": len(rows),
+            "external_hard_negative_counteraxis_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "review_only_external_hard_negative_abstention_count": status_counts.get(
+                "review_only_external_hard_negative_abstention", 0
+            ),
+            "review_only_external_hard_negative_non_abstention_count": (
+                false_non_abstention_count
+            ),
+            "review_only_external_hard_negative_check_complete": (
+                not missing_expected_ids and len(rows) == len(expected_external_ids)
+            ),
+            "clean_heldout_performance_claim_permitted": False,
+            "external_hard_negative_reaudit_scored": False,
+            "threshold_calibrated": False,
+            "epk_score_computed": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact checks imported external hard negatives against "
+                "the review-only ePK substrate-acceptor counteraxis. It records "
+                "abstentions for diagnostic safety only and does not claim clean "
+                "held-out performance, compute a calibrated ePK score, edit "
+                "registries, or import labels."
+            ),
+            "next_actions": [
+                "run a real external hard-negative scored re-audit only after a calibrated ePK scorer exists",
+                "preserve these rows as imported out-of-scope hard negatives",
+                "keep clean held-out performance claims closed for repaired/development lanes",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "warnings": [
+            (
+                "Review-only external hard-negative abstentions are not clean "
+                "held-out performance evidence."
+            )
+        ],
+    }
+
+
+def build_epk_text_free_acceptor_feature_gap_audit(
+    *,
+    epk_review_only_scoring_prototype: dict[str, Any],
+    epk_sibling_control_homolog_gamma_distance_sample: dict[str, Any],
+    epk_family_specific_homolog_gamma_distance_sample: dict[str, Any]
+    | list[dict[str, Any]]
+    | None = None,
+    candidate_threshold_angstrom: float = 6.0,
+) -> dict[str, Any]:
+    """Audit a structural-only ePK acceptor feature against sibling controls."""
+
+    prototype_meta = epk_review_only_scoring_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    homolog_meta = epk_sibling_control_homolog_gamma_distance_sample.get(
+        "metadata", {}
+    )
+    if not isinstance(homolog_meta, dict):
+        homolog_meta = {}
+    family_distance_samples = (
+        epk_family_specific_homolog_gamma_distance_sample
+        if isinstance(epk_family_specific_homolog_gamma_distance_sample, list)
+        else (
+            [epk_family_specific_homolog_gamma_distance_sample]
+            if isinstance(epk_family_specific_homolog_gamma_distance_sample, dict)
+            else []
+        )
+    )
+    family_distance_metas: list[dict[str, Any]] = []
+    for sample in family_distance_samples:
+        if not isinstance(sample, dict):
+            continue
+        meta = sample.get("metadata", {})
+        if isinstance(meta, dict):
+            family_distance_metas.append(meta)
+
+    target_fingerprint_id = str(
+        prototype_meta.get("target_fingerprint_id")
+        or homolog_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        threshold = float(candidate_threshold_angstrom)
+    except (TypeError, ValueError):
+        threshold = 6.0
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    positive_hit_count = 0
+    positive_row_count = 0
+    control_false_hit_count = 0
+    control_row_count = 0
+
+    def _float_or_none(value: Any) -> float | None:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return None
+
+    for source_row in epk_review_only_scoring_prototype.get("rows", []) or []:
+        if not isinstance(source_row, dict):
+            continue
+        if source_row.get("row_type") != "current_epk_positive_prototype":
+            continue
+        positive_row_count += 1
+        distance = _float_or_none(
+            source_row.get("nearest_gamma_to_hydroxyl_distance_angstrom")
+        )
+        feature_hit = distance is not None and distance <= threshold
+        if feature_hit:
+            decision = "positive_text_free_nearest_oxygen_hit_review_only"
+            positive_hit_count += 1
+        else:
+            decision = "positive_text_free_nearest_oxygen_miss_review_only"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "current_epk_positive_prototype",
+                "entry_id": source_row.get("entry_id"),
+                "pdb_id": source_row.get("pdb_id"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "candidate_feature_id": (
+                    "nearest_gamma_to_oxygen_within_candidate_cutoff_v0"
+                ),
+                "candidate_threshold_angstrom": threshold,
+                "nearest_gamma_to_candidate_oxygen_distance_angstrom": distance,
+                "candidate_feature_hit": feature_hit,
+                "feature_audit_decision": decision,
+                "acceptor_context_type": source_row.get("acceptor_context_type"),
+                "gamma_geometry_scope": source_row.get("gamma_geometry_scope"),
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "feature_not_disambiguated_against_sibling_controls",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "source_supported_acceptor_axis_not_replaced",
+                ],
+            }
+        )
+
+    homolog_rows = [
+        row
+        for row in epk_sibling_control_homolog_gamma_distance_sample.get("rows", [])
+        or []
+        if isinstance(row, dict)
+        and row.get("measurement_status")
+        == "homolog_gamma_to_mapped_histidine_distance_measured_review_only"
+    ]
+    for source_row in homolog_rows:
+        control_row_count += 1
+        distance = _float_or_none(
+            source_row.get("nearest_gamma_to_same_chain_hydroxyl_distance_angstrom")
+        )
+        feature_hit = distance is not None and distance <= threshold
+        if feature_hit:
+            decision = "control_false_hit_blocks_text_free_feature"
+            control_false_hit_count += 1
+        else:
+            decision = "control_nonhit_review_only"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "sibling_homolog_negative_control",
+                "entry_id": None,
+                "pdb_id": source_row.get("pdb_id"),
+                "family_id": source_row.get("family_id"),
+                "family_name": source_row.get("family_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "candidate_feature_id": (
+                    "nearest_gamma_to_oxygen_within_candidate_cutoff_v0"
+                ),
+                "candidate_threshold_angstrom": threshold,
+                "nearest_gamma_to_candidate_oxygen_distance_angstrom": distance,
+                "candidate_feature_hit": feature_hit,
+                "feature_audit_decision": decision,
+                "homolog_control_axis": (
+                    "mapped_phosphohistidine_site_not_hydroxyl_acceptor"
+                ),
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "sibling_control_nearest_hydroxyl_false_hit",
+                    "feature_not_disambiguated_against_sibling_controls",
+                    "threshold_not_calibrated_against_negative_controls",
+                ],
+            }
+        )
+
+    for sample in family_distance_samples:
+        if not isinstance(sample, dict):
+            continue
+        for source_row in sample.get("rows", []) or []:
+            if not isinstance(source_row, dict):
+                continue
+            if (
+                source_row.get("measurement_status")
+                != "family_specific_gamma_to_acid_base_distance_measured_review_only"
+            ):
+                continue
+            control_row_count += 1
+            distance = _float_or_none(
+                source_row.get(
+                    "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom"
+                )
+            )
+            feature_hit = distance is not None and distance <= threshold
+            if feature_hit:
+                decision = "control_false_hit_blocks_text_free_feature"
+                control_false_hit_count += 1
+            else:
+                decision = "control_nonhit_review_only"
+            decision_counts[decision] += 1
+            rows.append(
+                {
+                    "row_type": "sibling_family_specific_negative_control",
+                    "entry_id": None,
+                    "pdb_id": source_row.get("pdb_id"),
+                    "family_id": source_row.get("family_id"),
+                    "family_name": source_row.get("family_name"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "text_free_inputs_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "candidate_feature_id": (
+                        "nearest_gamma_to_oxygen_within_candidate_cutoff_v0"
+                    ),
+                    "candidate_threshold_angstrom": threshold,
+                    "nearest_gamma_to_candidate_oxygen_distance_angstrom": distance,
+                    "candidate_feature_hit": feature_hit,
+                    "feature_audit_decision": decision,
+                    "homolog_control_axis": (
+                        "family_specific_sibling_acid_base_counteraxis_not_epk_label"
+                    ),
+                    "epk_score_computed": False,
+                    "remaining_blockers": [
+                        "sibling_control_nearest_hydroxyl_false_hit",
+                        "feature_not_disambiguated_against_sibling_controls",
+                        "threshold_not_calibrated_against_negative_controls",
+                    ],
+                }
+            )
+
+    feature_false_hit_rate = (
+        round(control_false_hit_count / control_row_count, 4)
+        if control_row_count
+        else None
+    )
+    feature_positive_hit_rate = (
+        round(positive_hit_count / positive_row_count, 4)
+        if positive_row_count
+        else None
+    )
+    feature_admissible = (
+        positive_row_count > 0
+        and positive_hit_count == positive_row_count
+        and control_false_hit_count == 0
+    )
+    false_hit_rows = [
+        row
+        for row in rows
+        if row.get("feature_audit_decision")
+        == "control_false_hit_blocks_text_free_feature"
+    ]
+    false_hit_family_counts = Counter(
+        str(row.get("family_id"))
+        for row in false_hit_rows
+        if row.get("family_id")
+    )
+    return {
+        "metadata": {
+            "method": "epk_text_free_acceptor_feature_gap_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_review_only_scoring_prototype_method": (
+                prototype_meta.get("method")
+            ),
+            "source_epk_sibling_control_homolog_gamma_distance_sample_method": (
+                homolog_meta.get("method")
+            ),
+            "source_epk_family_specific_homolog_gamma_distance_sample_methods": (
+                _sorted_strings(
+                    meta.get("method")
+                    for meta in family_distance_metas
+                    if meta.get("method")
+                )
+            ),
+            "candidate_feature_id": (
+                "nearest_gamma_to_oxygen_within_candidate_cutoff_v0"
+            ),
+            "candidate_threshold_angstrom": threshold,
+            "row_count": len(rows),
+            "current_positive_row_count": positive_row_count,
+            "current_positive_feature_hit_count": positive_hit_count,
+            "current_positive_feature_hit_rate": feature_positive_hit_rate,
+            "negative_control_row_count": control_row_count,
+            "negative_control_false_hit_count": control_false_hit_count,
+            "negative_control_false_hit_rate": feature_false_hit_rate,
+            "negative_control_false_hit_family_ids": _sorted_strings(
+                row.get("family_id") for row in false_hit_rows
+            ),
+            "negative_control_false_hit_family_counts": dict(
+                sorted(false_hit_family_counts.items())
+            ),
+            "negative_control_false_hit_pdb_ids": _sorted_strings(
+                row.get("pdb_id") for row in false_hit_rows
+            ),
+            "feature_audit_decision_counts": dict(sorted(decision_counts.items())),
+            "candidate_feature_status": (
+                "admissible_review_only"
+                if feature_admissible
+                else "blocked_review_only"
+            ),
+            "feature_admissible_for_scoring": feature_admissible,
+            "feature_gap_identified": not feature_admissible,
+            "primary_blocker": (
+                "nearest_oxygen_feature_false_hits_sibling_controls"
+                if control_false_hit_count
+                else None
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact audits a text-free nearest-gamma-to-oxygen "
+                "acceptor feature against current ePK positives and sibling "
+                "ATP-family controls. False hits are negative evidence and do "
+                "not authorize threshold selection, scoring, registry edits, "
+                "external hard-negative claims, or label import."
+            ),
+            "next_actions": [
+                "add a text-free disambiguation feature beyond nearest oxygen distance",
+                "test chain/substrate context or ligand-class constraints against the same sibling controls",
+                "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("family_id") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The nearest-oxygen acceptor feature is a failed review-only "
+                "candidate feature and must not be treated as ePK scoring "
+                "evidence."
+            )
+        ],
+    }
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -15286,6 +16246,9 @@ def build_epk_precount_gate_status(
     epk_family_specific_homolog_gamma_distance_sample: dict[str, Any]
     | list[dict[str, Any]]
     | None = None,
+    epk_m_csa640_alternate_gamma_geometry_review: dict[str, Any] | None = None,
+    epk_substrate_acceptor_counteraxis_prototype: dict[str, Any] | None = None,
+    epk_text_free_acceptor_feature_gap_audit: dict[str, Any] | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -15543,6 +16506,27 @@ def build_epk_precount_gate_status(
         int(meta.get("measured_homolog_structure_count") or 0)
         for meta in family_distance_metas
     )
+    alternate_gamma_meta = (
+        epk_m_csa640_alternate_gamma_geometry_review.get("metadata", {})
+        if isinstance(epk_m_csa640_alternate_gamma_geometry_review, dict)
+        else {}
+    )
+    if not isinstance(alternate_gamma_meta, dict):
+        alternate_gamma_meta = {}
+    substrate_counteraxis_meta = (
+        epk_substrate_acceptor_counteraxis_prototype.get("metadata", {})
+        if isinstance(epk_substrate_acceptor_counteraxis_prototype, dict)
+        else {}
+    )
+    if not isinstance(substrate_counteraxis_meta, dict):
+        substrate_counteraxis_meta = {}
+    text_free_acceptor_meta = (
+        epk_text_free_acceptor_feature_gap_audit.get("metadata", {})
+        if isinstance(epk_text_free_acceptor_feature_gap_audit, dict)
+        else {}
+    )
+    if not isinstance(text_free_acceptor_meta, dict):
+        text_free_acceptor_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -15558,6 +16542,11 @@ def build_epk_precount_gate_status(
     )
     prototype_ready_count = int(axis_meta.get("prototype_ready_row_count") or 0)
     gamma_measured_count = int(gamma_meta.get("measured_row_count") or 0)
+    alternate_gamma_support_count = int(
+        alternate_gamma_meta.get("alternate_gamma_geometry_supports_positive_axis_count")
+        or 0
+    )
+    gamma_measured_or_reviewed_count = gamma_measured_count + alternate_gamma_support_count
     measured_acceptor_identity_count = int(
         identity_meta.get("measured_acceptor_identity_source_supported_count") or 0
     )
@@ -15592,10 +16581,13 @@ def build_epk_precount_gate_status(
         {
             "gate_id": "gamma_geometry_measured_for_all_prototype_rows",
             "passed": prototype_ready_count > 0
-            and gamma_measured_count == prototype_ready_count,
+            and gamma_measured_or_reviewed_count == prototype_ready_count,
             "evidence": {
                 "prototype_ready_row_count": prototype_ready_count,
                 "measured_row_count": gamma_measured_count,
+                "alternate_reviewed_row_count": alternate_gamma_support_count,
+                "measured_or_reviewed_row_count": gamma_measured_or_reviewed_count,
+                "alternate_review_method": alternate_gamma_meta.get("method"),
                 "measurement_status_counts": gamma_meta.get(
                     "measurement_status_counts",
                     {},
@@ -15661,6 +16653,32 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if alternate_gamma_meta:
+        gate_checks.append(
+            {
+                "gate_id": "m_csa640_alternate_gamma_geometry_reviewed",
+                "passed": bool(
+                    alternate_gamma_meta.get("alternate_gamma_geometry_review_complete")
+                )
+                and alternate_gamma_support_count > 0,
+                "evidence": {
+                    "source_method": alternate_gamma_meta.get("method"),
+                    "reviewed_entry_id": alternate_gamma_meta.get(
+                        "reviewed_entry_id"
+                    ),
+                    "reviewed_pdb_id": alternate_gamma_meta.get("reviewed_pdb_id"),
+                    "alternate_gamma_geometry_supports_positive_axis_count": (
+                        alternate_gamma_support_count
+                    ),
+                    "observed_alternate_gamma_distance_min_angstrom": (
+                        alternate_gamma_meta.get(
+                            "observed_alternate_gamma_distance_min_angstrom"
+                        )
+                    ),
+                    "production_scoring_admissible": False,
+                },
+            }
+        )
     if threshold_control_meta:
         gate_checks.append(
             {
@@ -15679,6 +16697,78 @@ def build_epk_precount_gate_status(
                     ),
                     "selected_threshold_angstrom": threshold_control_meta.get(
                         "selected_threshold_angstrom"
+                    ),
+                },
+            }
+        )
+    if substrate_counteraxis_meta:
+        gate_checks.append(
+            {
+                "gate_id": "substrate_acceptor_counteraxis_prototype",
+                "passed": bool(
+                    substrate_counteraxis_meta.get("decision_surface_changed")
+                )
+                and int(
+                    substrate_counteraxis_meta.get("blocked_counteraxis_row_count")
+                    or 0
+                )
+                > 0,
+                "evidence": {
+                    "source_method": substrate_counteraxis_meta.get("method"),
+                    "rule_id": substrate_counteraxis_meta.get("rule_id"),
+                    "decision_surface_changed": bool(
+                        substrate_counteraxis_meta.get("decision_surface_changed")
+                    ),
+                    "positive_like_acceptor_axis_row_count": (
+                        substrate_counteraxis_meta.get(
+                            "positive_like_acceptor_axis_row_count"
+                        )
+                    ),
+                    "blocked_counteraxis_row_count": (
+                        substrate_counteraxis_meta.get("blocked_counteraxis_row_count")
+                    ),
+                    "external_hard_negative_abstention_row_count": (
+                        substrate_counteraxis_meta.get(
+                            "external_hard_negative_abstention_row_count"
+                        )
+                    ),
+                    "weak_axes": substrate_counteraxis_meta.get("weak_axes", []),
+                },
+            }
+        )
+    if text_free_acceptor_meta:
+        gate_checks.append(
+            {
+                "gate_id": "text_free_acceptor_feature_gap_audit",
+                "passed": bool(
+                    text_free_acceptor_meta.get("feature_admissible_for_scoring")
+                ),
+                "evidence": {
+                    "source_method": text_free_acceptor_meta.get("method"),
+                    "candidate_feature_id": text_free_acceptor_meta.get(
+                        "candidate_feature_id"
+                    ),
+                    "candidate_feature_status": text_free_acceptor_meta.get(
+                        "candidate_feature_status"
+                    ),
+                    "current_positive_feature_hit_count": (
+                        text_free_acceptor_meta.get(
+                            "current_positive_feature_hit_count"
+                        )
+                    ),
+                    "negative_control_false_hit_count": (
+                        text_free_acceptor_meta.get(
+                            "negative_control_false_hit_count"
+                        )
+                    ),
+                    "negative_control_false_hit_family_ids": (
+                        text_free_acceptor_meta.get(
+                            "negative_control_false_hit_family_ids",
+                            [],
+                        )
+                    ),
+                    "primary_blocker": text_free_acceptor_meta.get(
+                        "primary_blocker"
                     ),
                 },
             }
@@ -15936,6 +17026,16 @@ def build_epk_precount_gate_status(
     next_actions = [
         "run external hard-negative re-audit only after a real ePK score exists",
     ]
+    if substrate_counteraxis_meta.get("method"):
+        next_actions.insert(
+            0,
+            "replace review-context acceptor support with a text-free predictive acceptor feature before production scoring",
+        )
+    if text_free_acceptor_meta.get("method"):
+        next_actions.insert(
+            0,
+            "add a text-free acceptor disambiguation signal beyond nearest oxygen distance",
+        )
     if nonready_rows_repaired_or_excluded:
         next_actions.insert(
             0,
@@ -15950,7 +17050,17 @@ def build_epk_precount_gate_status(
     atp_status_counts = atp_state_meta.get("atp_state_evidence_status_counts", {})
     if not isinstance(atp_status_counts, dict):
         atp_status_counts = {}
-    if int(atp_state_meta.get("alternate_gamma_acceptor_geometry_measured_count") or 0):
+    if alternate_gamma_support_count:
+        next_actions.insert(
+            0,
+            "use reviewed m_csa:640 alternate gamma geometry only in review-only prototype diagnostics",
+        )
+        if negative_control_meta.get("method"):
+            next_actions.insert(
+                0,
+                "expand sibling negative-control coverage beyond measured alternate structures before selecting a threshold",
+            )
+    elif int(atp_state_meta.get("alternate_gamma_acceptor_geometry_measured_count") or 0):
         if negative_control_meta.get("method"):
             if sibling_alternate_distance_meta.get("method"):
                 next_actions.insert(
@@ -16099,6 +17209,10 @@ def build_epk_precount_gate_status(
             "failing_gate_ids": failing_gate_ids,
             "prototype_ready_row_count": prototype_ready_count,
             "gamma_measured_row_count": gamma_measured_count,
+            "alternate_gamma_geometry_reviewed_row_count": alternate_gamma_support_count,
+            "gamma_measured_or_reviewed_row_count": (
+                gamma_measured_or_reviewed_count
+            ),
             "measured_acceptor_identity_source_supported_count": (
                 measured_acceptor_identity_count
             ),
@@ -16364,6 +17478,62 @@ def build_epk_precount_gate_status(
                 family_distance_meta.get(
                     "observed_family_acid_base_distance_max_angstrom"
                 )
+            ),
+            "source_epk_m_csa640_alternate_gamma_geometry_review_method": (
+                alternate_gamma_meta.get("method")
+            ),
+            "m_csa640_alternate_gamma_geometry_review_complete": bool(
+                alternate_gamma_meta.get("alternate_gamma_geometry_review_complete")
+            ),
+            "m_csa640_alternate_gamma_geometry_support_count": (
+                alternate_gamma_support_count
+            ),
+            "m_csa640_alternate_gamma_distance_min_angstrom": (
+                alternate_gamma_meta.get(
+                    "observed_alternate_gamma_distance_min_angstrom"
+                )
+            ),
+            "source_epk_substrate_acceptor_counteraxis_prototype_method": (
+                substrate_counteraxis_meta.get("method")
+            ),
+            "substrate_acceptor_counteraxis_rule_id": (
+                substrate_counteraxis_meta.get("rule_id")
+            ),
+            "substrate_acceptor_counteraxis_decision_surface_changed": bool(
+                substrate_counteraxis_meta.get("decision_surface_changed")
+            ),
+            "substrate_acceptor_counteraxis_positive_like_count": (
+                substrate_counteraxis_meta.get("positive_like_acceptor_axis_row_count")
+            ),
+            "substrate_acceptor_counteraxis_blocked_count": (
+                substrate_counteraxis_meta.get("blocked_counteraxis_row_count")
+            ),
+            "substrate_acceptor_counteraxis_weak_axes": (
+                substrate_counteraxis_meta.get("weak_axes", [])
+            ),
+            "source_epk_text_free_acceptor_feature_gap_audit_method": (
+                text_free_acceptor_meta.get("method")
+            ),
+            "text_free_acceptor_candidate_feature_id": (
+                text_free_acceptor_meta.get("candidate_feature_id")
+            ),
+            "text_free_acceptor_candidate_feature_status": (
+                text_free_acceptor_meta.get("candidate_feature_status")
+            ),
+            "text_free_acceptor_positive_hit_count": (
+                text_free_acceptor_meta.get("current_positive_feature_hit_count")
+            ),
+            "text_free_acceptor_negative_control_false_hit_count": (
+                text_free_acceptor_meta.get("negative_control_false_hit_count")
+            ),
+            "text_free_acceptor_false_hit_family_ids": (
+                text_free_acceptor_meta.get(
+                    "negative_control_false_hit_family_ids",
+                    [],
+                )
+            ),
+            "text_free_acceptor_feature_admissible_for_scoring": bool(
+                text_free_acceptor_meta.get("feature_admissible_for_scoring")
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

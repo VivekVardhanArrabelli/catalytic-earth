@@ -4305,6 +4305,111 @@ class CliTests(unittest.TestCase):
             )
             self.assertFalse(rows["m_csa:640"]["epk_score_computed"])
 
+    def test_build_epk_m_csa640_alternate_gamma_geometry_review_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            atp_state = root / "atp_state.json"
+            threshold = root / "threshold.json"
+            out = root / "m_csa640_review.json"
+            atp_state.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_atp_state_evidence_plan",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:640",
+                                "entry_name": "kanamycin kinase",
+                                "candidate_structures": [
+                                    {
+                                        "pdb_id": "3TM0",
+                                        "has_gamma_capable_nucleotide": True,
+                                        "has_acceptor_like_ligand": True,
+                                        "all_catalytic_residues_mapped": True,
+                                        "mapped_catalytic_residue_count": 4,
+                                        "expected_catalytic_residue_count": 4,
+                                        "nearest_gamma_to_acceptor_like_oxygen_distance_angstrom": 3.5,
+                                        "nearest_gamma_acceptor_atom_pair": {
+                                            "gamma_ligand_code": "ANP",
+                                            "gamma_atom_name": "PG",
+                                            "acceptor_ligand_code": "B31",
+                                            "acceptor_atom_name": "O14",
+                                            "acceptor_chain_name": "A",
+                                            "acceptor_resid": "305",
+                                        },
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_gamma_threshold_control_plan"
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:640",
+                                "pdb_id": "3TM0",
+                                "source_support_status": (
+                                    "source_supported_alternate_analog_context_review_only"
+                                ),
+                                "acceptor_ligand_or_residue_code": "B31",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-m-csa640-alternate-gamma-geometry-review",
+                    "--epk-atp-state-evidence-plan",
+                    str(atp_state),
+                    "--epk-gamma-threshold-control-plan",
+                    str(threshold),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            review = json.loads(out.read_text(encoding="utf-8"))
+            metadata = review["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_m_csa640_alternate_gamma_geometry_review",
+            )
+            self.assertEqual(
+                metadata["alternate_gamma_geometry_supports_positive_axis_count"],
+                1,
+            )
+            self.assertFalse(metadata["epk_score_computed"])
+            row = review["rows"][0]
+            self.assertEqual(row["pdb_id"], "3TM0")
+            self.assertEqual(row["acceptor_ligand_code"], "B31")
+            self.assertTrue(
+                row["alternate_gamma_geometry_supports_positive_axis_review_only"]
+            )
+            self.assertFalse(row["production_scoring_admissible"])
+
     def test_build_epk_negative_control_gamma_distance_distribution_command(
         self,
     ) -> None:
@@ -6169,6 +6274,321 @@ class CliTests(unittest.TestCase):
                 axes["family_specific_sibling_counteraxis"]["decision"],
                 "blocks_distance_only_threshold_selection",
             )
+
+    def test_build_epk_substrate_acceptor_counteraxis_prototype_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            prototype = root / "prototype.json"
+            counteraxis = root / "counteraxis.json"
+            out = root / "substrate_acceptor.json"
+            prototype.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_review_only_scoring_prototype",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:35",
+                                "pdb_id": "2PHK",
+                                "text_free_inputs_only": True,
+                                "prototype_decision": (
+                                    "candidate_positive_signal_review_only_not_calibrated"
+                                ),
+                                "review_only_prototype_score": 1.0,
+                                "prototype_axis_values": {
+                                    "local_adenine_nucleotide_ligand": 1,
+                                    "local_metal_ligand": 1,
+                                    "catalytic_acid_base_residue": 1,
+                                    "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
+                                    "source_supported_hydroxyl_acceptor_identity": 1,
+                                },
+                            },
+                            {
+                                "row_type": "sibling_homolog_negative_control",
+                                "family_id": "ndk",
+                                "pdb_id": "9PFY",
+                                "text_free_inputs_only": True,
+                                "prototype_decision": (
+                                    "blocked_by_phosphohistidine_counteraxis_review_only"
+                                ),
+                                "prototype_axis_values": {
+                                    "gamma_to_mapped_histidine_counteraxis": 1,
+                                    "source_supported_hydroxyl_acceptor_identity": 0,
+                                },
+                            },
+                            {
+                                "row_type": "imported_external_hard_negative",
+                                "entry_id": "uniprot:P78549",
+                                "text_free_inputs_only": True,
+                                "prototype_axis_values": {
+                                    "local_adenine_nucleotide_ligand": 0,
+                                    "local_metal_ligand": 0,
+                                    "catalytic_acid_base_residue": 0,
+                                    "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+                                    "source_supported_hydroxyl_acceptor_identity": 0,
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            counteraxis.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_counteraxis_sufficiency_decision"
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-substrate-acceptor-counteraxis-prototype",
+                    "--epk-review-only-scoring-prototype",
+                    str(prototype),
+                    "--epk-counteraxis-sufficiency-decision",
+                    str(counteraxis),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            surface = json.loads(out.read_text(encoding="utf-8"))
+            metadata = surface["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_substrate_acceptor_counteraxis_prototype",
+            )
+            self.assertEqual(metadata["positive_like_acceptor_axis_row_count"], 1)
+            self.assertEqual(metadata["blocked_counteraxis_row_count"], 1)
+            self.assertEqual(metadata["external_hard_negative_abstention_row_count"], 1)
+            self.assertTrue(metadata["decision_surface_changed"])
+            self.assertFalse(metadata["epk_score_computed"])
+            decisions = {
+                row["counteraxis_rule_decision"] for row in surface["rows"]
+            }
+            self.assertIn("positive_like_acceptor_axis_review_only", decisions)
+            self.assertIn(
+                "blocked_by_non_hydroxyl_phosphohistidine_counteraxis",
+                decisions,
+            )
+            self.assertIn(
+                "external_hard_negative_abstain_missing_epk_acceptor_axes",
+                decisions,
+            )
+
+    def test_build_epk_external_hard_negative_counteraxis_review_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            substrate = root / "substrate.json"
+            out = root / "external_review.json"
+            substrate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_substrate_acceptor_counteraxis_prototype"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": "imported_external_hard_negative",
+                                "entry_id": "uniprot:P78549",
+                                "text_free_inputs_only": True,
+                                "counteraxis_rule_decision": (
+                                    "external_hard_negative_abstain_missing_epk_acceptor_axes"
+                                ),
+                                "source_axis_values": {
+                                    "local_adenine_nucleotide_ligand": 0
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-external-hard-negative-counteraxis-review",
+                    "--epk-substrate-acceptor-counteraxis-prototype",
+                    str(substrate),
+                    "--imported-external-entry-ids",
+                    "uniprot:P78549",
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            review = json.loads(out.read_text(encoding="utf-8"))
+            metadata = review["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_external_hard_negative_counteraxis_review",
+            )
+            self.assertEqual(
+                metadata["review_only_external_hard_negative_abstention_count"],
+                1,
+            )
+            self.assertEqual(
+                metadata["review_only_external_hard_negative_non_abstention_count"],
+                0,
+            )
+            self.assertFalse(metadata["clean_heldout_performance_claim_permitted"])
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertEqual(
+                review["rows"][0]["review_status"],
+                "review_only_external_hard_negative_abstention",
+            )
+
+    def test_build_epk_text_free_acceptor_feature_gap_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            prototype = root / "prototype.json"
+            homolog = root / "homolog.json"
+            family = root / "family.json"
+            out = root / "acceptor_gap.json"
+            prototype.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_review_only_scoring_prototype",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:35",
+                                "pdb_id": "2PHK",
+                                "nearest_gamma_to_hydroxyl_distance_angstrom": 5.0,
+                                "acceptor_context_type": (
+                                    "source_supported_hydroxyl_residue"
+                                ),
+                                "gamma_geometry_scope": "current_selected_structure",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            homolog.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_sibling_control_homolog_gamma_distance_sample"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "measurement_status": (
+                                    "homolog_gamma_to_mapped_histidine_distance_measured_review_only"
+                                ),
+                                "family_id": "ndk",
+                                "family_name": "Nucleoside diphosphate kinases",
+                                "pdb_id": "9PFY",
+                                "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 4.8,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            family.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_family_specific_homolog_gamma_distance_sample"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "measurement_status": (
+                                    "family_specific_gamma_to_acid_base_distance_measured_review_only"
+                                ),
+                                "family_id": "pfkb",
+                                "family_name": "PfkB/ribokinase-family kinases",
+                                "pdb_id": "1ESQ",
+                                "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 7.1,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-text-free-acceptor-feature-gap-audit",
+                    "--epk-review-only-scoring-prototype",
+                    str(prototype),
+                    "--epk-sibling-control-homolog-gamma-distance-sample",
+                    str(homolog),
+                    "--epk-family-specific-homolog-gamma-distance-sample",
+                    str(family),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_text_free_acceptor_feature_gap_audit",
+            )
+            self.assertEqual(metadata["current_positive_feature_hit_count"], 1)
+            self.assertEqual(metadata["negative_control_row_count"], 2)
+            self.assertEqual(metadata["negative_control_false_hit_count"], 1)
+            self.assertEqual(metadata["candidate_feature_status"], "blocked_review_only")
+            self.assertFalse(metadata["feature_admissible_for_scoring"])
+            self.assertFalse(metadata["epk_score_computed"])
+            decisions = {row["feature_audit_decision"] for row in audit["rows"]}
+            self.assertIn(
+                "control_false_hit_blocks_text_free_feature", decisions
+            )
+            self.assertIn("control_nonhit_review_only", decisions)
 
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

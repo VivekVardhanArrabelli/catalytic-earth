@@ -1,0 +1,1067 @@
+{
+  "metadata": {
+    "blocked_counteraxis_row_count": 20,
+    "countable_label_candidate_count": 0,
+    "counteraxis_rule_decision_counts": {
+      "blocked_by_non_hydroxyl_phosphohistidine_counteraxis": 4,
+      "blocked_by_sibling_family_acceptor_counteraxis": 16,
+      "external_hard_negative_abstain_missing_epk_acceptor_axes": 3,
+      "positive_like_acceptor_axis_review_only": 3
+    },
+    "curated_label_registry_edited": false,
+    "decision_surface_changed": true,
+    "epk_score_computed": false,
+    "external_hard_negative_abstention_row_count": 3,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_substrate_acceptor_counteraxis_prototype",
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "replace review-context acceptor support with a text-free predictive acceptor feature before production scoring",
+      "run external hard-negative re-audit only after a calibrated ePK score exists",
+      "keep registry and label-factory extension closed until gates pass"
+    ],
+    "positive_like_acceptor_axis_row_count": 3,
+    "prototype_failed_closed": true,
+    "prototype_gate_status": "fail_closed_review_only",
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact applies a concrete fail-closed substrate-acceptor counteraxis to the review-only ePK prototype. It changes the diagnostic decision surface by blocking phosphohistidine and sibling-family ATP controls, but it is not a calibrated ePK score, production fingerprint, registry edit, external hard-negative re-audit, or label import.",
+    "row_count": 26,
+    "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+    "selected_threshold_angstrom": null,
+    "source_epk_counteraxis_sufficiency_decision_method": "epk_counteraxis_sufficiency_decision",
+    "source_epk_review_only_scoring_prototype_method": "epk_review_only_scoring_prototype",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "threshold_selection_decision": "do_not_select_threshold",
+    "weak_axes": [
+      "source_supported_acceptor_axis_is_review_context_not_predictive",
+      "external_epk_specific_axes_not_materialized",
+      "threshold_not_calibrated_against_negative_controls",
+      "label_factory_gate_not_extended_for_epk"
+    ]
+  },
+  "rows": [
+    {
+      "acceptor_context_type": "source_supported_hydroxyl_residue",
+      "countable_label_candidate": false,
+      "counteraxis_blocker": null,
+      "counteraxis_rule_decision": "positive_like_acceptor_axis_review_only",
+      "counteraxis_rule_hit": "epk_substrate_acceptor_axis_present",
+      "entry_id": "m_csa:35",
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "gamma_geometry_scope": "current_selected_structure",
+      "missing_required_positive_axes": [],
+      "nearest_gamma_to_acceptor_distance_angstrom": 3.61,
+      "pdb_id": "2PHK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "current_epk_positive_prototype",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "catalytic_acid_base_residue": 1,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 1,
+        "source_supported_hydroxyl_acceptor_identity": 1
+      },
+      "source_prototype_decision": "candidate_positive_signal_review_only_not_calibrated",
+      "source_review_only_prototype_score": 1.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": "source_supported_hydroxyl_residue",
+      "countable_label_candidate": false,
+      "counteraxis_blocker": null,
+      "counteraxis_rule_decision": "positive_like_acceptor_axis_review_only",
+      "counteraxis_rule_hit": "epk_substrate_acceptor_axis_present",
+      "entry_id": "m_csa:246",
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "gamma_geometry_scope": "current_selected_structure",
+      "missing_required_positive_axes": [],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.082,
+      "pdb_id": "1IR3",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "current_epk_positive_prototype",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "catalytic_acid_base_residue": 1,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 1,
+        "source_supported_hydroxyl_acceptor_identity": 1
+      },
+      "source_prototype_decision": "candidate_positive_signal_review_only_not_calibrated",
+      "source_review_only_prototype_score": 1.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": "acceptor_like_ligand_analog",
+      "countable_label_candidate": false,
+      "counteraxis_blocker": null,
+      "counteraxis_rule_decision": "positive_like_acceptor_axis_review_only",
+      "counteraxis_rule_hit": "epk_substrate_acceptor_axis_present",
+      "entry_id": "m_csa:640",
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "gamma_geometry_scope": "alternate_graph_linked_structure",
+      "missing_required_positive_axes": [],
+      "nearest_gamma_to_acceptor_distance_angstrom": 3.558,
+      "pdb_id": "3TM0",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "current_epk_positive_prototype",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "catalytic_acid_base_residue": 1,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 1,
+        "source_supported_hydroxyl_acceptor_identity": 1
+      },
+      "source_prototype_decision": "candidate_positive_signal_review_only_not_calibrated",
+      "source_review_only_prototype_score": 1.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "external_epk_specific_axes_not_materialized",
+      "counteraxis_rule_decision": "external_hard_negative_abstain_missing_epk_acceptor_axes",
+      "counteraxis_rule_hit": "external_abstain_no_epk_axes",
+      "entry_id": "uniprot:P06744",
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": null,
+      "pdb_id": null,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "imported_external_hard_negative",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "external_hard_negative_abstain_missing_epk_axes_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "external_epk_specific_axes_not_materialized",
+      "counteraxis_rule_decision": "external_hard_negative_abstain_missing_epk_acceptor_axes",
+      "counteraxis_rule_hit": "external_abstain_no_epk_axes",
+      "entry_id": "uniprot:P78549",
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": null,
+      "pdb_id": null,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "imported_external_hard_negative",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "external_hard_negative_abstain_missing_epk_axes_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "external_epk_specific_axes_not_materialized",
+      "counteraxis_rule_decision": "external_hard_negative_abstain_missing_epk_acceptor_axes",
+      "counteraxis_rule_hit": "external_abstain_no_epk_axes",
+      "entry_id": "uniprot:Q3LXA3",
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": null,
+      "pdb_id": null,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "imported_external_hard_negative",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "external_hard_negative_abstain_missing_epk_axes_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.006,
+      "pdb_id": "3R5F",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 3.691,
+      "pdb_id": "5C1O",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.534,
+      "pdb_id": "3F5M",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 4.098,
+      "pdb_id": "4XYJ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.401,
+      "pdb_id": "5XZ8",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 4.018,
+      "pdb_id": "8W2H",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 3.611,
+      "pdb_id": "8W2J",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.596,
+      "pdb_id": "1ESQ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 3.872,
+      "pdb_id": "1TZ6",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.092,
+      "pdb_id": "3CQD",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.022,
+      "pdb_id": "3IQ0",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.224,
+      "pdb_id": "3UMO",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.264,
+      "pdb_id": "3UMP",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.293,
+      "pdb_id": "3UQD",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.255,
+      "pdb_id": "3UQE",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "sibling_family_control_lacks_source_supported_epk_acceptor_identity",
+      "counteraxis_rule_decision": "blocked_by_sibling_family_acceptor_counteraxis",
+      "counteraxis_rule_hit": "sibling_family_specific_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 5.248,
+      "pdb_id": "6ILT",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_family_specific_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "ndk_phosphohistidine_axis_not_substrate_hydroxyl_acceptor",
+      "counteraxis_rule_decision": "blocked_by_non_hydroxyl_phosphohistidine_counteraxis",
+      "counteraxis_rule_hit": "phosphohistidine_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 3.251,
+      "pdb_id": "1WKL",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_homolog_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "gamma_to_mapped_histidine_counteraxis": 1,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_phosphohistidine_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "ndk_phosphohistidine_axis_not_substrate_hydroxyl_acceptor",
+      "counteraxis_rule_decision": "blocked_by_non_hydroxyl_phosphohistidine_counteraxis",
+      "counteraxis_rule_hit": "phosphohistidine_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 2.899,
+      "pdb_id": "3Q86",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_homolog_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "gamma_to_mapped_histidine_counteraxis": 1,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_phosphohistidine_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "ndk_phosphohistidine_axis_not_substrate_hydroxyl_acceptor",
+      "counteraxis_rule_decision": "blocked_by_non_hydroxyl_phosphohistidine_counteraxis",
+      "counteraxis_rule_hit": "phosphohistidine_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 3.339,
+      "pdb_id": "9OAN",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_homolog_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "gamma_to_mapped_histidine_counteraxis": 1,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_phosphohistidine_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_context_type": null,
+      "countable_label_candidate": false,
+      "counteraxis_blocker": "ndk_phosphohistidine_axis_not_substrate_hydroxyl_acceptor",
+      "counteraxis_rule_decision": "blocked_by_non_hydroxyl_phosphohistidine_counteraxis",
+      "counteraxis_rule_hit": "phosphohistidine_counteraxis",
+      "entry_id": null,
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_geometry_scope": null,
+      "missing_required_positive_axes": [
+        "local_adenine_nucleotide_ligand",
+        "local_metal_ligand",
+        "catalytic_acid_base_residue",
+        "gamma_to_acceptor_distance_within_candidate_cutoff",
+        "source_supported_hydroxyl_acceptor_identity"
+      ],
+      "nearest_gamma_to_acceptor_distance_angstrom": 3.005,
+      "pdb_id": "9PFY",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "rule_is_review_only_not_calibrated_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "sibling_homolog_negative_control",
+      "rule_id": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "source_axis_values": {
+        "gamma_to_mapped_histidine_counteraxis": 1,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "blocked_by_phosphohistidine_counteraxis_review_only",
+      "source_review_only_prototype_score": 0.0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    }
+  ],
+  "warnings": [
+    "The substrate-acceptor counteraxis is a review-only prototype and must not be treated as held-out performance or countable fingerprint evidence."
+  ]
+}

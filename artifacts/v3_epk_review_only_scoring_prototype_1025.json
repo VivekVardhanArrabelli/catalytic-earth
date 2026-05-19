@@ -3,13 +3,14 @@
     "candidate_threshold_angstrom": 6.0,
     "countable_label_candidate_count": 0,
     "curated_label_registry_edited": false,
-    "current_positive_full_axis_count": 2,
+    "current_positive_full_axis_count": 3,
     "current_positive_prototype_row_count": 3,
     "epk_score_computed": false,
     "external_hard_negative_reaudit_scored": false,
     "fingerprint_registry_edited": false,
     "imported_external_hard_negative_nonhit_count": 3,
     "imported_external_hard_negative_row_count": 3,
+    "m_csa640_alternate_gamma_geometry_support_count": 1,
     "method": "epk_review_only_scoring_prototype",
     "negative_control_distance_distribution_ready": false,
     "next_actions": [
@@ -18,19 +19,18 @@
       "run a real ePK external hard-negative re-audit only after the scorer is calibrated"
     ],
     "prototype_decision_counts": {
-      "abstain_missing_required_axis_review_only": 1,
       "blocked_by_family_specific_sibling_counteraxis_review_only": 16,
       "blocked_by_phosphohistidine_counteraxis_review_only": 4,
-      "candidate_positive_signal_review_only_not_calibrated": 2,
+      "candidate_positive_signal_review_only_not_calibrated": 3,
       "external_hard_negative_abstain_missing_epk_axes_review_only": 3
     },
     "prototype_failed_closed": true,
     "prototype_failure_axes": [
       "negative_control_distribution_not_calibrated",
-      "complete_gamma_geometry_missing_for_m_csa_640",
       "family_specific_sibling_controls_overlap_candidate_geometry",
       "external_hard_negative_reaudit_not_real_scorer",
-      "registry_and_label_factory_extension_not_implemented"
+      "registry_and_label_factory_extension_not_implemented",
+      "alternate_structure_policy_not_production_scorer"
     ],
     "prototype_gate_status": "fail_closed_review_only",
     "ready_for_label_import": false,
@@ -47,6 +47,7 @@
       "epk_family_specific_homolog_gamma_distance_sample"
     ],
     "source_epk_gamma_geometry_measurement_sample_method": "epk_gamma_geometry_measurement_sample",
+    "source_epk_m_csa640_alternate_gamma_geometry_review_method": "epk_m_csa640_alternate_gamma_geometry_review",
     "source_epk_sibling_control_homolog_gamma_distance_sample_method": "epk_sibling_control_homolog_gamma_distance_sample",
     "source_epk_text_free_local_axis_prototype_method": "epk_text_free_local_axis_prototype",
     "target_family_id": "epk",
@@ -55,12 +56,15 @@
   },
   "rows": [
     {
+      "acceptor_context_type": "source_supported_hydroxyl_residue",
       "acceptor_identity_review_status": "measured_acceptor_identity_source_supported_review_only",
+      "alternate_gamma_geometry_review_status": null,
       "candidate_threshold_angstrom": 6.0,
       "countable_label_candidate": false,
       "entry_id": "m_csa:35",
       "entry_name": "phosphorylase kinase",
       "epk_score_computed": false,
+      "gamma_geometry_scope": "current_selected_structure",
       "nearest_gamma_to_hydroxyl_distance_angstrom": 3.61,
       "pdb_id": "2PHK",
       "prototype_axis_values": {
@@ -84,12 +88,15 @@
       "text_free_inputs_only": true
     },
     {
+      "acceptor_context_type": "source_supported_hydroxyl_residue",
       "acceptor_identity_review_status": "measured_acceptor_identity_source_supported_review_only",
+      "alternate_gamma_geometry_review_status": null,
       "candidate_threshold_angstrom": 6.0,
       "countable_label_candidate": false,
       "entry_id": "m_csa:246",
       "entry_name": "receptor protein-tyrosine kinase",
       "epk_score_computed": false,
+      "gamma_geometry_scope": "current_selected_structure",
       "nearest_gamma_to_hydroxyl_distance_angstrom": 5.082,
       "pdb_id": "1IR3",
       "prototype_axis_values": {
@@ -113,31 +120,33 @@
       "text_free_inputs_only": true
     },
     {
+      "acceptor_context_type": "acceptor_like_ligand_analog",
       "acceptor_identity_review_status": "source_acceptor_supported_gamma_geometry_missing",
+      "alternate_gamma_geometry_review_status": "alternate_gamma_to_acceptor_analog_distance_reviewed_review_only",
       "candidate_threshold_angstrom": 6.0,
       "countable_label_candidate": false,
       "entry_id": "m_csa:640",
       "entry_name": "kanamycin kinase",
       "epk_score_computed": false,
-      "nearest_gamma_to_hydroxyl_distance_angstrom": null,
-      "pdb_id": "1L8T",
+      "gamma_geometry_scope": "alternate_graph_linked_structure",
+      "nearest_gamma_to_hydroxyl_distance_angstrom": 3.558,
+      "pdb_id": "3TM0",
       "prototype_axis_values": {
         "catalytic_acid_base_residue": 1,
-        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
         "local_adenine_nucleotide_ligand": 1,
         "local_metal_ligand": 1,
-        "source_supported_hydroxyl_acceptor_identity": 0
+        "source_supported_hydroxyl_acceptor_identity": 1
       },
-      "prototype_decision": "abstain_missing_required_axis_review_only",
+      "prototype_decision": "candidate_positive_signal_review_only_not_calibrated",
       "ready_for_label_import": false,
       "remaining_blockers": [
-        "gamma_to_acceptor_distance_within_candidate_cutoff",
-        "source_supported_hydroxyl_acceptor_identity",
         "threshold_not_calibrated_against_negative_controls",
-        "external_hard_negative_reaudit_not_real_scorer"
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
       ],
       "review_only": true,
-      "review_only_prototype_score": 0.6,
+      "review_only_prototype_score": 1.0,
       "row_type": "current_epk_positive_prototype",
       "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
       "text_free_inputs_only": true

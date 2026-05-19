@@ -133,6 +133,11 @@ Post-V2 quality work has started:
   ontology, promotion/demotion audit, active-learning queue, adversarial
   negative controls, family-propagation guardrails, expert-review
   export/import, and a gate check before counting new label batches
+- review-only ePK scorer-development artifacts, including `m_csa:640`
+  alternate ANP/B31 gamma-geometry review and a substrate-acceptor counteraxis
+  prototype that blocks NDK plus PfkB/PfkA/ATP-grasp sibling controls without
+  editing registries or selecting a threshold; the first text-free nearest
+  oxygen acceptor feature remains blocked by sibling-control false hits
 - local artifact performance suite
 
 ## V1 Target

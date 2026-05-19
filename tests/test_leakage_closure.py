@@ -759,6 +759,53 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertFalse(row["epk_score_computed"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_m_csa640_alternate_gamma_review_stays_review_only(self) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_m_csa640_alternate_gamma_geometry_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_m_csa640_alternate_gamma_geometry_review",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_entry_id"], "m_csa:640")
+        self.assertEqual(metadata["reviewed_pdb_id"], "3TM0")
+        self.assertTrue(metadata["alternate_gamma_geometry_review_complete"])
+        self.assertEqual(metadata["alternate_gamma_geometry_reviewed_count"], 1)
+        self.assertEqual(
+            metadata["alternate_gamma_geometry_supports_positive_axis_count"],
+            1,
+        )
+        self.assertEqual(
+            metadata["observed_alternate_gamma_distance_min_angstrom"],
+            3.558,
+        )
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        row = review["rows"][0]
+        self.assertEqual(
+            row["review_status"],
+            "alternate_gamma_to_acceptor_analog_distance_reviewed_review_only",
+        )
+        self.assertEqual(row["pdb_id"], "3TM0")
+        self.assertEqual(row["acceptor_ligand_code"], "B31")
+        self.assertEqual(row["gamma_to_acceptor_distance_angstrom"], 3.558)
+        self.assertTrue(
+            row["alternate_gamma_geometry_supports_positive_axis_review_only"]
+        )
+        self.assertFalse(row["production_scoring_admissible"])
+        self.assertFalse(row["epk_score_computed"])
+        self.assertFalse(row["countable_label_candidate"])
+
     def test_epk_negative_control_distribution_stays_review_only(self) -> None:
         distribution = _load_json(
             ROOT
@@ -1145,6 +1192,47 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(metadata["precount_gate_status"], "blocked_review_only")
         self.assertEqual(metadata["prototype_ready_row_count"], 3)
         self.assertEqual(metadata["gamma_measured_row_count"], 2)
+        self.assertEqual(metadata["alternate_gamma_geometry_reviewed_row_count"], 1)
+        self.assertEqual(metadata["gamma_measured_or_reviewed_row_count"], 3)
+        self.assertEqual(
+            metadata["source_epk_m_csa640_alternate_gamma_geometry_review_method"],
+            "epk_m_csa640_alternate_gamma_geometry_review",
+        )
+        self.assertTrue(metadata["m_csa640_alternate_gamma_geometry_review_complete"])
+        self.assertEqual(metadata["m_csa640_alternate_gamma_geometry_support_count"], 1)
+        self.assertEqual(metadata["m_csa640_alternate_gamma_distance_min_angstrom"], 3.558)
+        self.assertEqual(
+            metadata["source_epk_substrate_acceptor_counteraxis_prototype_method"],
+            "epk_substrate_acceptor_counteraxis_prototype",
+        )
+        self.assertTrue(
+            metadata["substrate_acceptor_counteraxis_decision_surface_changed"]
+        )
+        self.assertEqual(metadata["substrate_acceptor_counteraxis_positive_like_count"], 3)
+        self.assertEqual(metadata["substrate_acceptor_counteraxis_blocked_count"], 20)
+        self.assertIn(
+            "source_supported_acceptor_axis_is_review_context_not_predictive",
+            metadata["substrate_acceptor_counteraxis_weak_axes"],
+        )
+        self.assertEqual(
+            metadata["source_epk_text_free_acceptor_feature_gap_audit_method"],
+            "epk_text_free_acceptor_feature_gap_audit",
+        )
+        self.assertEqual(
+            metadata["text_free_acceptor_candidate_feature_status"],
+            "blocked_review_only",
+        )
+        self.assertEqual(
+            metadata["text_free_acceptor_negative_control_false_hit_count"],
+            11,
+        )
+        self.assertEqual(
+            metadata["text_free_acceptor_false_hit_family_ids"],
+            ["atp_grasp", "ndk", "pfka", "pfkb"],
+        )
+        self.assertFalse(
+            metadata["text_free_acceptor_feature_admissible_for_scoring"]
+        )
         self.assertEqual(metadata["measured_acceptor_identity_source_supported_count"], 2)
         self.assertEqual(
             metadata["source_epk_acceptor_identity_review_method"],
@@ -1386,7 +1474,7 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertFalse(metadata["fingerprint_registry_edited"])
         self.assertFalse(metadata["curated_label_registry_edited"])
         self.assertIn("acceptor_threshold_calibrated", metadata["failing_gate_ids"])
-        self.assertIn(
+        self.assertNotIn(
             "gamma_geometry_measured_for_all_prototype_rows",
             metadata["failing_gate_ids"],
         )
@@ -1404,6 +1492,10 @@ class LeakageClosureTests(unittest.TestCase):
             metadata["failing_gate_ids"],
         )
         self.assertIn(
+            "text_free_acceptor_feature_gap_audit",
+            metadata["failing_gate_ids"],
+        )
+        self.assertIn(
             "family_specific_homolog_mapping_template",
             metadata["failing_gate_ids"],
         )
@@ -1413,6 +1505,24 @@ class LeakageClosureTests(unittest.TestCase):
         )
         checks = {check["gate_id"]: check for check in status["gate_checks"]}
         self.assertTrue(checks["local_axis_prototype"]["passed"])
+        self.assertTrue(
+            checks["gamma_geometry_measured_for_all_prototype_rows"]["passed"]
+        )
+        self.assertTrue(checks["m_csa640_alternate_gamma_geometry_reviewed"]["passed"])
+        self.assertTrue(checks["substrate_acceptor_counteraxis_prototype"]["passed"])
+        self.assertFalse(checks["text_free_acceptor_feature_gap_audit"]["passed"])
+        self.assertEqual(
+            checks["text_free_acceptor_feature_gap_audit"]["evidence"][
+                "negative_control_false_hit_count"
+            ],
+            11,
+        )
+        self.assertEqual(
+            checks["text_free_acceptor_feature_gap_audit"]["evidence"][
+                "negative_control_false_hit_family_ids"
+            ],
+            ["atp_grasp", "ndk", "pfka", "pfkb"],
+        )
         self.assertTrue(checks["measured_acceptor_identity_reviewed"]["passed"])
         self.assertTrue(checks["nonready_rows_repaired_or_excluded"]["passed"])
         self.assertTrue(checks["gamma_threshold_control_plan"]["passed"])
@@ -2060,7 +2170,8 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(metadata["prototype_gate_status"], "fail_closed_review_only")
         self.assertTrue(metadata["prototype_failed_closed"])
         self.assertEqual(metadata["current_positive_prototype_row_count"], 3)
-        self.assertEqual(metadata["current_positive_full_axis_count"], 2)
+        self.assertEqual(metadata["current_positive_full_axis_count"], 3)
+        self.assertEqual(metadata["m_csa640_alternate_gamma_geometry_support_count"], 1)
         self.assertEqual(metadata["sibling_homolog_counteraxis_row_count"], 4)
         self.assertEqual(metadata["sibling_family_specific_counteraxis_row_count"], 16)
         self.assertEqual(metadata["imported_external_hard_negative_row_count"], 3)
@@ -2068,13 +2179,25 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(
             metadata["prototype_decision_counts"],
             {
-                "abstain_missing_required_axis_review_only": 1,
                 "blocked_by_family_specific_sibling_counteraxis_review_only": 16,
                 "blocked_by_phosphohistidine_counteraxis_review_only": 4,
-                "candidate_positive_signal_review_only_not_calibrated": 2,
+                "candidate_positive_signal_review_only_not_calibrated": 3,
                 "external_hard_negative_abstain_missing_epk_axes_review_only": 3,
             },
         )
+        m_csa640 = [
+            row for row in prototype["rows"] if row.get("entry_id") == "m_csa:640"
+        ][0]
+        self.assertEqual(m_csa640["pdb_id"], "3TM0")
+        self.assertEqual(
+            m_csa640["gamma_geometry_scope"],
+            "alternate_graph_linked_structure",
+        )
+        self.assertEqual(
+            m_csa640["alternate_gamma_geometry_review_status"],
+            "alternate_gamma_to_acceptor_analog_distance_reviewed_review_only",
+        )
+        self.assertEqual(m_csa640["review_only_prototype_score"], 1.0)
         self.assertFalse(metadata["negative_control_distance_distribution_ready"])
         self.assertFalse(metadata["threshold_calibrated"])
         self.assertFalse(metadata["epk_score_computed"])
@@ -2137,6 +2260,160 @@ class LeakageClosureTests(unittest.TestCase):
             axes["imported_external_hard_negatives"]["decision"],
             "abstain_until_real_epk_axes_exist",
         )
+
+    def test_epk_substrate_acceptor_counteraxis_prototype_fails_closed(self) -> None:
+        prototype = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_substrate_acceptor_counteraxis_prototype_1025.json"
+        )
+        metadata = prototype["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_substrate_acceptor_counteraxis_prototype",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["decision_surface_changed"])
+        self.assertEqual(metadata["positive_like_acceptor_axis_row_count"], 3)
+        self.assertEqual(metadata["blocked_counteraxis_row_count"], 20)
+        self.assertEqual(metadata["external_hard_negative_abstention_row_count"], 3)
+        self.assertEqual(
+            metadata["counteraxis_rule_decision_counts"],
+            {
+                "blocked_by_non_hydroxyl_phosphohistidine_counteraxis": 4,
+                "blocked_by_sibling_family_acceptor_counteraxis": 16,
+                "external_hard_negative_abstain_missing_epk_acceptor_axes": 3,
+                "positive_like_acceptor_axis_review_only": 3,
+            },
+        )
+        self.assertIn(
+            "source_supported_acceptor_axis_is_review_context_not_predictive",
+            metadata["weak_axes"],
+        )
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = prototype["rows"]
+        m_csa640 = [row for row in rows if row.get("entry_id") == "m_csa:640"][0]
+        self.assertEqual(
+            m_csa640["counteraxis_rule_decision"],
+            "positive_like_acceptor_axis_review_only",
+        )
+        self.assertEqual(m_csa640["pdb_id"], "3TM0")
+        self.assertEqual(
+            m_csa640["acceptor_context_type"],
+            "acceptor_like_ligand_analog",
+        )
+        blocked_families = {
+            row["family_id"]
+            for row in rows
+            if row["counteraxis_rule_decision"]
+            == "blocked_by_sibling_family_acceptor_counteraxis"
+        }
+        self.assertEqual(blocked_families, {"atp_grasp", "pfka", "pfkb"})
+        for row in rows:
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_external_hard_negative_counteraxis_review_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_hard_negative_counteraxis_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_external_hard_negative_counteraxis_review",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["row_count"], 3)
+        self.assertEqual(
+            metadata["review_only_external_hard_negative_abstention_count"],
+            3,
+        )
+        self.assertEqual(
+            metadata["review_only_external_hard_negative_non_abstention_count"],
+            0,
+        )
+        self.assertTrue(metadata["review_only_external_hard_negative_check_complete"])
+        self.assertFalse(metadata["clean_heldout_performance_claim_permitted"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            sorted(row["entry_id"] for row in review["rows"]),
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        for row in review["rows"]:
+            self.assertEqual(
+                row["review_status"],
+                "review_only_external_hard_negative_abstention",
+            )
+            self.assertFalse(row["review_only_counteraxis_non_abstention"])
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_text_free_acceptor_feature_gap_audit_fails_closed(self) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_text_free_acceptor_feature_gap_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_text_free_acceptor_feature_gap_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["row_count"], 23)
+        self.assertEqual(metadata["current_positive_feature_hit_count"], 3)
+        self.assertEqual(metadata["negative_control_row_count"], 20)
+        self.assertEqual(metadata["negative_control_false_hit_count"], 11)
+        self.assertEqual(metadata["candidate_feature_status"], "blocked_review_only")
+        self.assertEqual(
+            metadata["primary_blocker"],
+            "nearest_oxygen_feature_false_hits_sibling_controls",
+        )
+        self.assertEqual(
+            metadata["negative_control_false_hit_family_ids"],
+            ["atp_grasp", "ndk", "pfka", "pfkb"],
+        )
+        self.assertEqual(
+            metadata["negative_control_false_hit_family_counts"],
+            {"atp_grasp": 2, "ndk": 4, "pfka": 4, "pfkb": 1},
+        )
+        self.assertFalse(metadata["feature_admissible_for_scoring"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        decisions = metadata["feature_audit_decision_counts"]
+        self.assertEqual(
+            decisions["control_false_hit_blocks_text_free_feature"],
+            11,
+        )
+        self.assertEqual(decisions["positive_text_free_nearest_oxygen_hit_review_only"], 3)
+        for row in audit["rows"]:
+            self.assertTrue(row["review_only"])
+            self.assertTrue(row["text_free_inputs_only"])
+            self.assertFalse(row["epk_score_computed"])
+            self.assertFalse(row["countable_label_candidate"])
 
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:
         adjudication = _load_json(

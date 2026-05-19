@@ -50,6 +50,78 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T01:55:31Z automation run, the normal direct automation
+protocol passed: the lock was acquired, `git fetch` and
+`git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed
+through `git ls-remote` and `git push --dry-run`, startup unit discovery passed,
+and `validate` passed. Phase 1 artifact migration stayed guard-only and closed;
+no Phase 2/3 upload, removal, Git LFS change, history rewrite, registry edit,
+or label import was performed.
+
+The ePK lane now has `m_csa:640` alternate-state geometry reviewed without
+turning it into production evidence. The new CLI builder
+`build-epk-m-csa640-alternate-gamma-geometry-review` produced
+`artifacts/v3_epk_m_csa640_alternate_gamma_geometry_review_1025.json` from the
+existing ATP-state evidence and gamma-threshold control plan. It confirms
+`3TM0` maps all four catalytic residues, treats B31 as a review-only
+substrate-OH analog, measures ANP PG-to-B31 O14 at 3.558 Angstrom, and keeps
+`production_scoring_admissible=false`, `epk_score_computed=false`, and all
+registry/import flags false.
+
+`artifacts/v3_epk_review_only_scoring_prototype_1025.json` was regenerated with
+that alternate review attached. It still fails closed, but the decision surface
+changed: all three current ePK rows are now positive-like review-only axis
+hits under the uncalibrated 6-Angstrom candidate cutoff, while the four NDK
+phosphohistidine controls, 16 PfkB/PfkA/ATP-grasp family-specific controls,
+and three imported external hard negatives remain blocked or abstained.
+`artifacts/v3_epk_precount_gate_status_1025.json` now passes the
+`gamma_geometry_measured_for_all_prototype_rows` and
+`m_csa640_alternate_gamma_geometry_reviewed` review-only gates, but the lane
+remains `blocked_review_only` because acceptor-threshold calibration,
+negative-control distribution readiness, text-free acceptor feature
+admissibility, external hard-negative scored re-audit, and
+registry/label-factory extension still fail.
+
+The run then added the first explicit substrate-acceptor counteraxis prototype.
+`build-epk-substrate-acceptor-counteraxis-prototype` generated
+`artifacts/v3_epk_substrate_acceptor_counteraxis_prototype_1025.json`, marking
+the three current ePK rows as positive-like review-only acceptor-axis hits,
+blocking all 20 NDK/family-specific ATP-family controls, and abstaining on all
+three imported external hard negatives. It records the weak axis directly:
+source-supported acceptor identity is still review context, not a text-free
+production scoring feature.
+`artifacts/v3_epk_external_hard_negative_counteraxis_review_1025.json`
+separately confirms the three imported external hard negatives remain
+review-only abstentions under that counteraxis and explicitly forbids clean
+held-out performance claims.
+
+The run also tested the next weak axis as a negative result.
+`build-epk-text-free-acceptor-feature-gap-audit` generated
+`artifacts/v3_epk_text_free_acceptor_feature_gap_audit_1025.json`, which audits
+the text-free nearest-gamma-to-oxygen feature at the same 6-Angstrom candidate
+cutoff. It hits all three current ePK positives, but false-hits 11 of 20
+NDK/PfkB/PfkA/ATP-grasp sibling controls, leaving the feature
+`blocked_review_only`. This is the next concrete blocker: a production scorer
+needs a text-free disambiguation signal beyond nearest oxygen distance, such
+as chain/substrate context or ligand-class constraints.
+
+Evidence-based confidence call: ePK is now a sharper review-only prototype,
+not a countable positive fingerprint. The immediate geometry gap for
+`m_csa:640` is closed for diagnostics, and the concrete counteraxis blocks
+current sibling-family controls, but the simplest text-free acceptor feature
+now fails with 11 sibling-control false hits. Production readiness is still
+blocked by acceptor disambiguation, uncalibrated thresholds, and no real
+external hard-negative scored re-audit. The next bounded science step should
+add a stronger text-free acceptor disambiguation signal, then rerun the same
+review-only counteraxis surface. Do not edit `mechanism_fingerprints.json`,
+import ePK labels, treat external rows as clean held-out performance, or reopen
+artifact migration Phase 2.
+
+Verification passed with the final 510-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, `jq empty` on the updated ePK artifacts,
+and targeted CLI/leakage tests for the new builders.
+
 As of the 2026-05-19T00:55:27Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and
 `git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed

@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "alternate_gamma_geometry_review_complete": true,
+    "alternate_gamma_geometry_review_status_counts": {
+      "alternate_gamma_to_acceptor_analog_distance_reviewed_review_only": 1
+    },
+    "alternate_gamma_geometry_reviewed_count": 1,
+    "alternate_gamma_geometry_supports_positive_axis_count": 1,
+    "candidate_threshold_angstrom": 6.0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_m_csa640_alternate_gamma_geometry_review",
+    "next_actions": [
+      "use m_csa:640 alternate geometry only inside review-only prototype diagnostics",
+      "keep threshold selection closed because sibling controls overlap candidate geometry",
+      "run external hard-negative re-audit only after a calibrated ePK score exists"
+    ],
+    "observed_alternate_gamma_distance_max_angstrom": 3.558,
+    "observed_alternate_gamma_distance_min_angstrom": 3.558,
+    "prototype_full_axis_gap_closed_count": 1,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact reviews the m_csa:640 3TM0 ANP/B31 alternate gamma-to-acceptor analog geometry. It can close the review-only prototype geometry gap, but it is not a calibrated score, production fingerprint, registry edit, external hard-negative re-audit, or label import.",
+    "reviewed_entry_id": "m_csa:640",
+    "reviewed_pdb_id": "3TM0",
+    "row_count": 1,
+    "source_epk_atp_state_evidence_plan_method": "epk_atp_state_evidence_plan",
+    "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "acceptor_atom_name": "O14",
+      "acceptor_chain_name": "A",
+      "acceptor_context_type": "acceptor_like_ligand_analog",
+      "acceptor_ligand_code": "B31",
+      "acceptor_like_ligand_present": true,
+      "acceptor_resid": "305",
+      "all_catalytic_residues_mapped": true,
+      "alternate_gamma_geometry_reviewed": true,
+      "alternate_gamma_geometry_supports_positive_axis_review_only": true,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "current_selected_structure": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "epk_score_computed": false,
+      "expected_catalytic_residue_count": 4,
+      "gamma_atom_name": "PG",
+      "gamma_capable_nucleotide": true,
+      "gamma_ligand_code": "ANP",
+      "gamma_to_acceptor_distance_angstrom": 3.558,
+      "geometry_scope": "alternate_graph_linked_structure",
+      "ligand_analog_admissibility_status": "review_only_admissible_substrate_oh_analog",
+      "mapped_catalytic_residue_count": 4,
+      "mapped_catalytic_residues": [
+        {
+          "expected_code": "ASP",
+          "mapped": true,
+          "mapped_chain_names": [
+            "A"
+          ],
+          "residue_node_id": "m_csa:640:residue:1",
+          "uniprot_resid": 208
+        },
+        {
+          "expected_code": "ASN",
+          "mapped": true,
+          "mapped_chain_names": [
+            "A"
+          ],
+          "residue_node_id": "m_csa:640:residue:2",
+          "uniprot_resid": 195
+        },
+        {
+          "expected_code": "LYS",
+          "mapped": true,
+          "mapped_chain_names": [
+            "A"
+          ],
+          "residue_node_id": "m_csa:640:residue:3",
+          "uniprot_resid": 44
+        },
+        {
+          "expected_code": "ASP",
+          "mapped": true,
+          "mapped_chain_names": [
+            "A"
+          ],
+          "residue_node_id": "m_csa:640:residue:4",
+          "uniprot_resid": 190
+        }
+      ],
+      "pdb_id": "3TM0",
+      "predictive_use_status": "review_only_axis_input_not_production_score",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "alternate_structure_policy_not_production_scorer"
+      ],
+      "review_only": true,
+      "review_status": "alternate_gamma_to_acceptor_analog_distance_reviewed_review_only",
+      "source_support_status": "source_supported_alternate_analog_context_review_only",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "within_candidate_threshold": true
+    }
+  ],
+  "warnings": [
+    "m_csa:640 alternate-state geometry is a review-only gap closure signal and must not be treated as production scoring or countable fingerprint evidence."
+  ]
+}

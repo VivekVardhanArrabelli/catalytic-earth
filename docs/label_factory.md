@@ -264,6 +264,12 @@ four catalytic sequence-position residues; `3TM0` also has the acceptor-like
 aminoglycoside ligand code `B31`, with nearest ANP PG-to-B31 oxygen distance
 3.558 Angstrom. It remains review-only because no threshold, score, or external
 re-audit is run.
+`artifacts/v3_epk_m_csa640_alternate_gamma_geometry_review_1025.json` closes
+the review-only geometry review gap for that row. It marks `3TM0` as
+alternate-structure review evidence with all catalytic residues mapped,
+review-only B31 substrate-OH analog admissibility, and 3.558 Angstrom ANP
+PG-to-B31 O14 geometry; it also records that the evidence is not production
+scoring-admissible.
 `artifacts/v3_epk_gamma_threshold_control_plan_1025.json` then turns the
 observed review geometry into threshold/control requirements. It records that
 4 Angstrom covers `m_csa:35` plus the alternate `m_csa:640` geometry but misses
@@ -394,10 +400,11 @@ countable ePK score.
 `artifacts/v3_epk_review_only_scoring_prototype_1025.json` evaluates a
 fail-closed prototype decision surface against current ePK rows, the NDK
 homolog counter-axis, the family-specific sibling counter-axis, and the three
-imported external hard negatives. It records two uncalibrated positive-like
-rows, one positive abstention, four NDK phosphohistidine counter-axis blocks,
-16 family-specific sibling-control blocks, and three imported external
-hard-negative abstentions. It deliberately keeps `epk_score_computed=false`,
+imported external hard negatives. After the `m_csa:640` alternate review, it
+records three uncalibrated positive-like rows, four NDK phosphohistidine
+counter-axis blocks, 16 family-specific sibling-control blocks, and three
+imported external hard-negative abstentions. It deliberately keeps
+`epk_score_computed=false`,
 `threshold_calibrated=false`, and `ready_to_expand_positive_fingerprint_universe=false`.
 `artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` makes the
 negative result explicit: the current counteraxis evidence is enough to block
@@ -406,6 +413,24 @@ controls hit the 6-Angstrom candidate cutoff and the four NDK homolog controls
 remain phosphohistidine-axis blockers. It does not select a threshold, compute
 an ePK score, re-audit external hard negatives, edit registries, or import
 labels.
+`artifacts/v3_epk_substrate_acceptor_counteraxis_prototype_1025.json` adds one
+concrete fail-closed rule surface on top of that prototype. The rule marks the
+three current ePK rows as positive-like review-only acceptor-axis hits, blocks
+all 20 NDK/family-specific ATP-family controls, abstains on the three imported
+external hard negatives, and records the weak axis as source-supported
+acceptor identity remaining review context rather than text-free production
+evidence.
+`artifacts/v3_epk_external_hard_negative_counteraxis_review_1025.json` then
+pulls those three imported external hard-negative rows into a separate
+review-only check: all three abstain under the counteraxis, 0 are
+non-abstentions, and clean held-out performance claims remain explicitly
+closed until a real calibrated ePK scorer exists.
+`artifacts/v3_epk_text_free_acceptor_feature_gap_audit_1025.json` tests the
+obvious text-free replacement for the review-context acceptor axis: nearest
+gamma-to-oxygen distance within the 6-Angstrom candidate cutoff. It hits all
+three current ePK positives but also false-hits 11 of 20 NDK, PfkB, PfkA, and
+ATP-grasp sibling controls, so the feature is `blocked_review_only` and cannot
+be used for scoring without an additional text-free disambiguation signal.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
 identity review, gamma-threshold control planning, explicit non-ready-row
@@ -413,9 +438,11 @@ exclusion, sibling alternate-control screening, sibling alternate-control
 distance measurement, calibration-sufficiency review, NDK homolog sourcing,
 NDK homolog mapping, NDK homolog histidine-axis measurement, and
 family-specific homolog measurement are now explicit review-only preparation;
-negative-control distribution readiness, acceptor-threshold calibration,
-complete gamma geometry, external hard-negative scored re-audit, and
-registry/label-factory extension all remain failed gates.
+the `m_csa:640` alternate geometry review also lets the prototype
+gamma-geometry gate pass. Negative-control distribution readiness,
+acceptor-threshold calibration, text-free acceptor feature admissibility,
+external hard-negative scored re-audit, and registry/label-factory extension
+all remain failed gates.
 
 ## Active Learning Queue
 

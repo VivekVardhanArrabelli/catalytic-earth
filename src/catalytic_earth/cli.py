@@ -70,6 +70,7 @@ from .labels import (
     build_epk_atp_state_evidence_plan,
     build_epk_counteraxis_sufficiency_decision,
     build_epk_draft_fingerprint_spec,
+    build_epk_external_hard_negative_counteraxis_review,
     build_epk_external_hard_negative_reaudit_plan,
     build_epk_family_specific_homolog_gamma_distance_sample,
     build_epk_family_specific_homolog_mapping_review,
@@ -78,6 +79,7 @@ from .labels import (
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
     build_epk_local_evidence_audit,
+    build_epk_m_csa640_alternate_gamma_geometry_review,
     build_epk_missing_sibling_control_post_repair_source_decision,
     build_epk_missing_sibling_control_source_request,
     build_epk_negative_control_calibration_sufficiency_decision,
@@ -94,6 +96,8 @@ from .labels import (
     build_epk_sibling_control_repair_review,
     build_epk_sibling_negative_control_alternate_gamma_distance_sample,
     build_epk_sibling_negative_control_alternate_structure_plan,
+    build_epk_substrate_acceptor_counteraxis_prototype,
+    build_epk_text_free_acceptor_feature_gap_audit,
     build_epk_text_free_local_axis_prototype,
     build_expert_label_decision_local_evidence_review_export,
     build_expert_label_decision_review_export,
@@ -5446,6 +5450,35 @@ def cmd_build_epk_gamma_threshold_control_plan(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_epk_m_csa640_alternate_gamma_geometry_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_atp_state_evidence_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_atp_state_evidence_plan = json.load(handle)
+    epk_gamma_threshold_control_plan = None
+    if args.epk_gamma_threshold_control_plan:
+        with Path(args.epk_gamma_threshold_control_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_gamma_threshold_control_plan = json.load(handle)
+    review = build_epk_m_csa640_alternate_gamma_geometry_review(
+        epk_atp_state_evidence_plan=epk_atp_state_evidence_plan,
+        epk_gamma_threshold_control_plan=epk_gamma_threshold_control_plan,
+        entry_id=args.entry_id,
+        pdb_id=args.pdb_id,
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK m_csa:640 alternate gamma-geometry review to "
+        f"{args.out} (reviewed="
+        f"{review['metadata']['alternate_gamma_geometry_reviewed_count']})"
+    )
+    return 0
+
+
 def _load_cif_texts_from_dir(cif_dir_arg: str | None) -> dict[str, str]:
     cif_text_by_pdb: dict[str, str] = {}
     if not cif_dir_arg:
@@ -5844,6 +5877,12 @@ def cmd_build_epk_review_only_scoring_prototype(args: argparse.Namespace) -> int
         "r", encoding="utf-8"
     ) as handle:
         epk_acceptor_identity_review = json.load(handle)
+    epk_m_csa640_alternate_gamma_geometry_review = None
+    if args.epk_m_csa640_alternate_gamma_geometry_review:
+        with Path(args.epk_m_csa640_alternate_gamma_geometry_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_m_csa640_alternate_gamma_geometry_review = json.load(handle)
     with Path(args.epk_sibling_control_homolog_gamma_distance_sample).open(
         "r", encoding="utf-8"
     ) as handle:
@@ -5874,6 +5913,9 @@ def cmd_build_epk_review_only_scoring_prototype(args: argparse.Namespace) -> int
         epk_acceptor_identity_review=epk_acceptor_identity_review,
         epk_sibling_control_homolog_gamma_distance_sample=(
             epk_sibling_control_homolog_gamma_distance_sample
+        ),
+        epk_m_csa640_alternate_gamma_geometry_review=(
+            epk_m_csa640_alternate_gamma_geometry_review
         ),
         epk_family_specific_homolog_gamma_distance_sample=(
             epk_family_specific_homolog_gamma_distance_sample
@@ -5908,6 +5950,100 @@ def cmd_build_epk_counteraxis_sufficiency_decision(
         "Wrote ePK counteraxis sufficiency decision to "
         f"{args.out} (decision="
         f"{decision['metadata']['threshold_selection_decision']})"
+    )
+    return 0
+
+
+def cmd_build_epk_substrate_acceptor_counteraxis_prototype(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_review_only_scoring_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_review_only_scoring_prototype = json.load(handle)
+    with Path(args.epk_counteraxis_sufficiency_decision).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_counteraxis_sufficiency_decision = json.load(handle)
+    prototype = build_epk_substrate_acceptor_counteraxis_prototype(
+        epk_review_only_scoring_prototype=epk_review_only_scoring_prototype,
+        epk_counteraxis_sufficiency_decision=(
+            epk_counteraxis_sufficiency_decision
+        ),
+    )
+    write_json(Path(args.out), prototype)
+    print(
+        "Wrote ePK substrate-acceptor counteraxis prototype to "
+        f"{args.out} (blocked="
+        f"{prototype['metadata']['blocked_counteraxis_row_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_external_hard_negative_counteraxis_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_substrate_acceptor_counteraxis_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_substrate_acceptor_counteraxis_prototype = json.load(handle)
+    review = build_epk_external_hard_negative_counteraxis_review(
+        epk_substrate_acceptor_counteraxis_prototype=(
+            epk_substrate_acceptor_counteraxis_prototype
+        ),
+        imported_external_entry_ids=_split_csv(args.imported_external_entry_ids),
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK external hard-negative counteraxis review to "
+        f"{args.out} (abstentions="
+        f"{review['metadata']['review_only_external_hard_negative_abstention_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_text_free_acceptor_feature_gap_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_review_only_scoring_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_review_only_scoring_prototype = json.load(handle)
+    with Path(args.epk_sibling_control_homolog_gamma_distance_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_control_homolog_gamma_distance_sample = json.load(handle)
+    epk_family_specific_homolog_gamma_distance_sample = None
+    if args.epk_family_specific_homolog_gamma_distance_sample:
+        family_distance_samples = []
+        distance_sample_paths = (
+            args.epk_family_specific_homolog_gamma_distance_sample
+            if isinstance(args.epk_family_specific_homolog_gamma_distance_sample, list)
+            else [args.epk_family_specific_homolog_gamma_distance_sample]
+        )
+        for distance_sample_path in distance_sample_paths:
+            with Path(distance_sample_path).open("r", encoding="utf-8") as handle:
+                family_distance_samples.append(json.load(handle))
+        epk_family_specific_homolog_gamma_distance_sample = (
+            family_distance_samples[0]
+            if len(family_distance_samples) == 1
+            else family_distance_samples
+        )
+    audit = build_epk_text_free_acceptor_feature_gap_audit(
+        epk_review_only_scoring_prototype=epk_review_only_scoring_prototype,
+        epk_sibling_control_homolog_gamma_distance_sample=(
+            epk_sibling_control_homolog_gamma_distance_sample
+        ),
+        epk_family_specific_homolog_gamma_distance_sample=(
+            epk_family_specific_homolog_gamma_distance_sample
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK text-free acceptor feature gap audit to "
+        f"{args.out} (false_hits="
+        f"{audit['metadata']['negative_control_false_hit_count']})"
     )
     return 0
 
@@ -6115,6 +6251,24 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             if len(family_distance_samples) == 1
             else family_distance_samples
         )
+    epk_m_csa640_alternate_gamma_geometry_review = None
+    if args.epk_m_csa640_alternate_gamma_geometry_review:
+        with Path(args.epk_m_csa640_alternate_gamma_geometry_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_m_csa640_alternate_gamma_geometry_review = json.load(handle)
+    epk_substrate_acceptor_counteraxis_prototype = None
+    if args.epk_substrate_acceptor_counteraxis_prototype:
+        with Path(args.epk_substrate_acceptor_counteraxis_prototype).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_substrate_acceptor_counteraxis_prototype = json.load(handle)
+    epk_text_free_acceptor_feature_gap_audit = None
+    if args.epk_text_free_acceptor_feature_gap_audit:
+        with Path(args.epk_text_free_acceptor_feature_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_text_free_acceptor_feature_gap_audit = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -6165,6 +6319,15 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_family_specific_homolog_gamma_distance_sample=(
             epk_family_specific_homolog_gamma_distance_sample
+        ),
+        epk_m_csa640_alternate_gamma_geometry_review=(
+            epk_m_csa640_alternate_gamma_geometry_review
+        ),
+        epk_substrate_acceptor_counteraxis_prototype=(
+            epk_substrate_acceptor_counteraxis_prototype
+        ),
+        epk_text_free_acceptor_feature_gap_audit=(
+            epk_text_free_acceptor_feature_gap_audit
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -12707,6 +12870,39 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_gamma_threshold_control_plan
     )
 
+    epk_m_csa640_alternate_gamma_review = subparsers.add_parser(
+        "build-epk-m-csa640-alternate-gamma-geometry-review",
+        help="review m_csa:640 alternate ANP/acceptor analog gamma geometry",
+    )
+    epk_m_csa640_alternate_gamma_review.add_argument(
+        "--epk-atp-state-evidence-plan",
+        default="artifacts/v3_epk_atp_state_evidence_plan.json",
+    )
+    epk_m_csa640_alternate_gamma_review.add_argument(
+        "--epk-gamma-threshold-control-plan",
+        default="artifacts/v3_epk_gamma_threshold_control_plan.json",
+    )
+    epk_m_csa640_alternate_gamma_review.add_argument(
+        "--entry-id",
+        default="m_csa:640",
+    )
+    epk_m_csa640_alternate_gamma_review.add_argument(
+        "--pdb-id",
+        default="3TM0",
+    )
+    epk_m_csa640_alternate_gamma_review.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_m_csa640_alternate_gamma_review.add_argument(
+        "--out",
+        default="artifacts/v3_epk_m_csa640_alternate_gamma_geometry_review.json",
+    )
+    epk_m_csa640_alternate_gamma_review.set_defaults(
+        func=cmd_build_epk_m_csa640_alternate_gamma_geometry_review
+    )
+
     epk_negative_control_distribution = subparsers.add_parser(
         "build-epk-negative-control-gamma-distance-distribution",
         help="measure review-only ePK sibling-family gamma-distance controls",
@@ -13136,6 +13332,10 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_epk_acceptor_identity_review.json",
     )
     epk_scoring_prototype.add_argument(
+        "--epk-m-csa640-alternate-gamma-geometry-review",
+        default=None,
+    )
+    epk_scoring_prototype.add_argument(
         "--epk-sibling-control-homolog-gamma-distance-sample",
         default=(
             "artifacts/"
@@ -13187,6 +13387,79 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_counteraxis_decision.set_defaults(
         func=cmd_build_epk_counteraxis_sufficiency_decision
+    )
+
+    epk_substrate_acceptor_counteraxis = subparsers.add_parser(
+        "build-epk-substrate-acceptor-counteraxis-prototype",
+        help="apply a fail-closed review-only ePK substrate-acceptor counteraxis",
+    )
+    epk_substrate_acceptor_counteraxis.add_argument(
+        "--epk-review-only-scoring-prototype",
+        default="artifacts/v3_epk_review_only_scoring_prototype.json",
+    )
+    epk_substrate_acceptor_counteraxis.add_argument(
+        "--epk-counteraxis-sufficiency-decision",
+        default="artifacts/v3_epk_counteraxis_sufficiency_decision.json",
+    )
+    epk_substrate_acceptor_counteraxis.add_argument(
+        "--out",
+        default="artifacts/v3_epk_substrate_acceptor_counteraxis_prototype.json",
+    )
+    epk_substrate_acceptor_counteraxis.set_defaults(
+        func=cmd_build_epk_substrate_acceptor_counteraxis_prototype
+    )
+
+    epk_external_hard_negative_counteraxis = subparsers.add_parser(
+        "build-epk-external-hard-negative-counteraxis-review",
+        help="check imported external hard negatives against the review-only ePK counteraxis",
+    )
+    epk_external_hard_negative_counteraxis.add_argument(
+        "--epk-substrate-acceptor-counteraxis-prototype",
+        default="artifacts/v3_epk_substrate_acceptor_counteraxis_prototype.json",
+    )
+    epk_external_hard_negative_counteraxis.add_argument(
+        "--imported-external-entry-ids",
+        default="uniprot:P06744,uniprot:P78549,uniprot:Q3LXA3",
+    )
+    epk_external_hard_negative_counteraxis.add_argument(
+        "--out",
+        default="artifacts/v3_epk_external_hard_negative_counteraxis_review.json",
+    )
+    epk_external_hard_negative_counteraxis.set_defaults(
+        func=cmd_build_epk_external_hard_negative_counteraxis_review
+    )
+
+    epk_text_free_acceptor_gap = subparsers.add_parser(
+        "build-epk-text-free-acceptor-feature-gap-audit",
+        help="audit a text-free nearest-oxygen ePK acceptor feature against controls",
+    )
+    epk_text_free_acceptor_gap.add_argument(
+        "--epk-review-only-scoring-prototype",
+        default="artifacts/v3_epk_review_only_scoring_prototype.json",
+    )
+    epk_text_free_acceptor_gap.add_argument(
+        "--epk-sibling-control-homolog-gamma-distance-sample",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_control_homolog_gamma_distance_sample.json"
+        ),
+    )
+    epk_text_free_acceptor_gap.add_argument(
+        "--epk-family-specific-homolog-gamma-distance-sample",
+        action="append",
+        default=None,
+    )
+    epk_text_free_acceptor_gap.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_text_free_acceptor_gap.add_argument(
+        "--out",
+        default="artifacts/v3_epk_text_free_acceptor_feature_gap_audit.json",
+    )
+    epk_text_free_acceptor_gap.set_defaults(
+        func=cmd_build_epk_text_free_acceptor_feature_gap_audit
     )
 
     epk_nonready_alternate_plan = subparsers.add_parser(
@@ -13321,6 +13594,18 @@ def build_parser() -> argparse.ArgumentParser:
     epk_precount_gate_status.add_argument(
         "--epk-family-specific-homolog-gamma-distance-sample",
         action="append",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-m-csa640-alternate-gamma-geometry-review",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-substrate-acceptor-counteraxis-prototype",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-text-free-acceptor-feature-gap-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(
