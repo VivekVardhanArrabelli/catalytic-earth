@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 186
-- Measured elapsed time: 5575.1 minutes (92.92 hours)
+- Entries: 187
+- Measured elapsed time: 5624.3 minutes (93.74 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 345.9 measured minutes (5.77 hours)
+- post-infra-science: 395.2 measured minutes (6.59 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2088
-- Evidence references logged: 1644
+- Artifact references logged: 2102
+- Evidence references logged: 1658
 
 ## Recent Entries
-
-### 2026-05-18T20:03:10.553576+00:00 - post-infra-science
-
-- Task: ePK PfkB sibling-control repair review
-- Time mode: measured
-- Measured minutes: 12.267
-- Started: 2026-05-18T19:50:41Z
-- Ended: 2026-05-18T20:02:57Z
-- Artifacts: artifacts/v3_epk_sibling_control_repair_review_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: startup 480-test unit discovery passed, startup validate passed with 682 labels, migration guard passed with 108 rows and 0 blockers, PfkB repair review found m_csa:663 mapped gamma-capable 1GQT ACP but no metal context, PfkB repair review found 0 measurement-ready repaired structures, pre-count gate remains blocked_review_only with PfkB repair review attached, final 482-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ### 2026-05-18T21:12:49.756080+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_m_csa640_alternate_gamma_geometry_review_1025.json, artifacts/v3_epk_review_only_scoring_prototype_1025.json, artifacts/v3_epk_substrate_acceptor_counteraxis_prototype_1025.json, artifacts/v3_epk_external_hard_negative_counteraxis_review_1025.json, artifacts/v3_epk_text_free_acceptor_feature_gap_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: startup 502-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote and dry-run push passed, m_csa640 alternate 3TM0 ANP/B31 geometry reviewed at 3.558 Angstrom, review-only prototype now has 3 positive-like rows 20 sibling-control blocks and 3 external hard-negative abstentions, substrate-acceptor counteraxis blocks 20 NDK/PfkB/PfkA/ATP-grasp controls, text-free nearest-oxygen acceptor feature false-hits 11 of 20 sibling controls, pre-count gate remains blocked_review_only with text_free_acceptor_feature_gap_audit failing, final 510-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, jq empty passed on updated ePK JSON artifacts, git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
+
+### 2026-05-19T03:46:56.310139+00:00 - post-infra-science
+
+- Task: ePK chain-ligand acceptor disambiguation
+- Time mode: measured
+- Measured minutes: 49.233
+- Started: 2026-05-19T02:57:27Z
+- Ended: 2026-05-19T03:46:41Z
+- Artifacts: artifacts/v3_epk_chain_ligand_acceptor_disambiguation_audit_1025.json, artifacts/v3_epk_chain_ligand_external_hard_negative_feature_screen_1025.json, artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: startup 510-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote and dry-run push passed, chain-ligand feature kept 3 current positives and blocked 25 controls with 0 false hits, external hard-negative chain-ligand feature screen had 3 abstentions and 0 non-abstentions, family template validation covered atp_grasp pfka pfkb, pre-count gate remains blocked_review_only with five failing gates, final 516-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, jq empty passed on updated ePK JSON artifacts, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ## Expectation Updates
 
@@ -263,6 +263,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-19T00:38:30.189051+00:00: ePK remaining sibling controls now need family-specific homolog mappers from seeded source templates before any distance measurement or threshold claim.
 - 2026-05-19T01:44:03.576487+00:00: ePK distance-only thresholding is now explicitly falsified by 16 family-specific sibling controls plus NDK phosphohistidine controls; next useful work needs a substrate-acceptor or family-disambiguation rule or the 3TM0 ANP/B31 m_csa:640 gamma-geometry review before any score.
 - 2026-05-19T02:44:02.632801+00:00: ePK has a sharper fail-closed review-only counteraxis, but the simplest text-free acceptor feature is blocked by sibling-control false hits; next work should add chain/substrate or ligand-class disambiguation before any score or external scored re-audit.
+- 2026-05-19T03:46:56.310139+00:00: ePK chain/ligand context is promising review-only disambiguation, but production scoring remains blocked by calibration, text-free feature admissibility, negative-control distribution readiness, and scored external hard-negative re-audit.
 
 ## Scope Adjustments
 

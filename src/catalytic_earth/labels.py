@@ -14923,6 +14923,188 @@ def build_epk_sibling_control_homolog_gamma_distance_sample(
     }
 
 
+def build_epk_family_specific_mapping_template_validation_review(
+    *,
+    epk_family_specific_mapping_template_review: dict[str, Any]
+    | list[dict[str, Any]],
+    epk_family_specific_homolog_mapping_review: dict[str, Any]
+    | list[dict[str, Any]],
+    epk_family_specific_homolog_gamma_distance_sample: dict[str, Any]
+    | list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Validate family-specific template use from downstream review evidence."""
+
+    template_reviews = (
+        epk_family_specific_mapping_template_review
+        if isinstance(epk_family_specific_mapping_template_review, list)
+        else [epk_family_specific_mapping_template_review]
+    )
+    mapping_reviews = (
+        epk_family_specific_homolog_mapping_review
+        if isinstance(epk_family_specific_homolog_mapping_review, list)
+        else [epk_family_specific_homolog_mapping_review]
+    )
+    distance_samples = (
+        epk_family_specific_homolog_gamma_distance_sample
+        if isinstance(epk_family_specific_homolog_gamma_distance_sample, list)
+        else [epk_family_specific_homolog_gamma_distance_sample]
+    )
+
+    template_metas: dict[str, dict[str, Any]] = {}
+    mapping_metas: dict[str, dict[str, Any]] = {}
+    distance_metas: dict[str, dict[str, Any]] = {}
+    for review in template_reviews:
+        if not isinstance(review, dict):
+            continue
+        meta = review.get("metadata", {})
+        if not isinstance(meta, dict):
+            continue
+        family_id = str(meta.get("reviewed_sibling_family_id") or "")
+        if family_id:
+            template_metas[family_id] = meta
+    for review in mapping_reviews:
+        if not isinstance(review, dict):
+            continue
+        meta = review.get("metadata", {})
+        if not isinstance(meta, dict):
+            continue
+        family_id = str(meta.get("reviewed_sibling_family_id") or "")
+        if family_id:
+            mapping_metas[family_id] = meta
+    for sample in distance_samples:
+        if not isinstance(sample, dict):
+            continue
+        meta = sample.get("metadata", {})
+        if not isinstance(meta, dict):
+            continue
+        family_id = str(meta.get("reviewed_sibling_family_id") or "")
+        if family_id:
+            distance_metas[family_id] = meta
+
+    target_fingerprint_id = "epk_atp_gamma_phosphoryl_transfer"
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    for family_id in sorted(template_metas):
+        template_meta = template_metas[family_id]
+        mapping_meta = mapping_metas.get(family_id, {})
+        distance_meta = distance_metas.get(family_id, {})
+        mapping_ready_count = int(
+            mapping_meta.get("measurement_ready_homolog_structure_count") or 0
+        )
+        measured_count = int(
+            distance_meta.get("measured_homolog_structure_count") or 0
+        )
+        template_seed_count = int(template_meta.get("seeded_template_entry_count") or 0)
+        template_residue_count = int(template_meta.get("template_residue_count") or 0)
+        validated = (
+            template_seed_count > 0
+            and template_residue_count > 0
+            and mapping_ready_count > 0
+            and measured_count > 0
+        )
+        status = (
+            "template_validated_by_downstream_mapping_review_only"
+            if validated
+            else "template_validation_blocked_review_only"
+        )
+        status_counts[status] += 1
+        rows.append(
+            {
+                "family_id": family_id,
+                "family_name": template_meta.get("reviewed_sibling_family_name")
+                or mapping_meta.get("reviewed_sibling_family_name")
+                or distance_meta.get("reviewed_sibling_family_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "template_review_status": template_meta.get(
+                    "template_review_status"
+                ),
+                "template_original_family_specific_mapping_ready": bool(
+                    template_meta.get("family_specific_mapping_ready")
+                ),
+                "seeded_template_entry_count": template_seed_count,
+                "template_residue_count": template_residue_count,
+                "measurement_ready_homolog_structure_count": mapping_ready_count,
+                "measured_homolog_structure_count": measured_count,
+                "validation_status": status,
+                "validated_by_downstream_mapping": validated,
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "review_only_template_validation_not_registry_evidence",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ],
+            }
+        )
+
+    validated_family_ids = _sorted_strings(
+        row.get("family_id")
+        for row in rows
+        if row.get("validated_by_downstream_mapping")
+    )
+    all_template_family_ids = _sorted_strings(template_metas)
+    all_validated = bool(all_template_family_ids) and set(validated_family_ids) == set(
+        all_template_family_ids
+    )
+    return {
+        "metadata": {
+            "method": "epk_family_specific_mapping_template_validation_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "template_family_ids": all_template_family_ids,
+            "validated_template_family_ids": validated_family_ids,
+            "template_family_count": len(all_template_family_ids),
+            "validated_template_family_count": len(validated_family_ids),
+            "template_validation_status_counts": dict(sorted(status_counts.items())),
+            "all_template_families_validated_review_only": all_validated,
+            "template_validation_ready": all_validated,
+            "source_epk_family_specific_mapping_template_review_methods": (
+                _sorted_strings(
+                    meta.get("method") for meta in template_metas.values()
+                )
+            ),
+            "source_epk_family_specific_homolog_mapping_review_methods": (
+                _sorted_strings(meta.get("method") for meta in mapping_metas.values())
+            ),
+            "source_epk_family_specific_homolog_gamma_distance_sample_methods": (
+                _sorted_strings(meta.get("method") for meta in distance_metas.values())
+            ),
+            "row_count": len(rows),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact closes the family-specific template algorithm "
+                "review gap only by downstream review evidence. It does not "
+                "edit the original template artifacts, calibrate an ePK score, "
+                "edit registries, re-audit external hard negatives, or import "
+                "labels."
+            ),
+            "next_actions": [
+                "use validated family templates only as review-only sibling-control evidence",
+                "keep production ePK thresholding closed until broader controls and external re-audit pass",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Template validation is downstream review evidence, not a "
+                "countable label or production fingerprint change."
+            )
+        ],
+    }
+
+
 def build_epk_review_only_scoring_prototype(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -15435,6 +15617,27 @@ def build_epk_counteraxis_sufficiency_decision(
         if isinstance(row, dict)
         and row.get("row_type") == "imported_external_hard_negative"
     ]
+    chain_ligand_feature_passes = bool(
+        precount_meta.get("chain_ligand_acceptor_feature_passes_current_review_controls")
+    )
+    chain_ligand_feature_admissible = bool(
+        precount_meta.get(
+            "chain_ligand_acceptor_feature_admissible_for_production_scoring"
+        )
+    )
+    chain_ligand_false_hit_count = int(
+        precount_meta.get("chain_ligand_acceptor_negative_control_false_hit_count")
+        or 0
+    )
+    chain_ligand_external_non_abstention_count = int(
+        precount_meta.get("chain_ligand_external_feature_non_abstention_count") or 0
+    )
+    template_validated_family_ids = _sorted_strings(
+        precount_meta.get("negative_control_family_template_validated_family_ids", [])
+    )
+    precount_failing_gate_ids = _sorted_strings(
+        precount_meta.get("failing_gate_ids", [])
+    )
     family_threshold_hit_rows = []
     for row in family_rows:
         distance = row.get("nearest_gamma_to_family_acid_base_distance_angstrom")
@@ -15490,6 +15693,23 @@ def build_epk_counteraxis_sufficiency_decision(
             "decision": "abstain_until_real_epk_axes_exist",
             "blocker": "external_epk_specific_axes_not_materialized",
         },
+        {
+            "decision_axis": "chain_ligand_acceptor_disambiguation_feature",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "feature_passes_current_review_controls": chain_ligand_feature_passes,
+            "negative_control_false_hit_count": chain_ligand_false_hit_count,
+            "external_hard_negative_feature_non_abstention_count": (
+                chain_ligand_external_non_abstention_count
+            ),
+            "feature_admissible_for_production_scoring": chain_ligand_feature_admissible,
+            "decision": (
+                "passes_current_controls_but_not_production_admissible"
+                if chain_ligand_feature_passes
+                else "missing_or_failing_chain_ligand_feature_review"
+            ),
+            "blocker": "chain_ligand_context_generalization_not_calibrated",
+        },
     ]
     threshold_selection_decision = "do_not_select_threshold"
     counteraxis_sufficient_to_block_threshold = bool(family_threshold_hit_rows) and bool(
@@ -15518,6 +15738,22 @@ def build_epk_counteraxis_sufficiency_decision(
             "external_hard_negative_nonhit_count": decision_rows[2][
                 "external_hard_negative_nonhit_count"
             ],
+            "chain_ligand_acceptor_feature_passes_current_review_controls": (
+                chain_ligand_feature_passes
+            ),
+            "chain_ligand_acceptor_feature_admissible_for_production_scoring": (
+                chain_ligand_feature_admissible
+            ),
+            "chain_ligand_acceptor_negative_control_false_hit_count": (
+                chain_ligand_false_hit_count
+            ),
+            "chain_ligand_external_feature_non_abstention_count": (
+                chain_ligand_external_non_abstention_count
+            ),
+            "family_specific_template_validated_family_ids": (
+                template_validated_family_ids
+            ),
+            "precount_remaining_failing_gate_ids": precount_failing_gate_ids,
             "counteraxis_sufficient_to_block_distance_only_threshold": (
                 counteraxis_sufficient_to_block_threshold
             ),
@@ -16213,6 +16449,730 @@ def build_epk_text_free_acceptor_feature_gap_audit(
     }
 
 
+def build_epk_chain_ligand_acceptor_disambiguation_audit(
+    *,
+    epk_review_only_scoring_prototype: dict[str, Any],
+    epk_acceptor_identity_review: dict[str, Any],
+    epk_m_csa640_alternate_gamma_geometry_review: dict[str, Any],
+    epk_sibling_control_homolog_gamma_distance_sample: dict[str, Any],
+    epk_family_specific_homolog_gamma_distance_sample: dict[str, Any]
+    | list[dict[str, Any]]
+    | None = None,
+    epk_negative_control_gamma_distance_distribution: dict[str, Any] | None = None,
+    epk_sibling_negative_control_alternate_gamma_distance_sample: dict[str, Any]
+    | None = None,
+    imported_external_entry_ids: list[str] | None = None,
+    candidate_threshold_angstrom: float = 6.0,
+) -> dict[str, Any]:
+    """Audit a stricter chain/ligand-context ePK acceptor feature."""
+
+    prototype_meta = epk_review_only_scoring_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    identity_meta = epk_acceptor_identity_review.get("metadata", {})
+    if not isinstance(identity_meta, dict):
+        identity_meta = {}
+    alternate_meta = epk_m_csa640_alternate_gamma_geometry_review.get(
+        "metadata", {}
+    )
+    if not isinstance(alternate_meta, dict):
+        alternate_meta = {}
+    homolog_meta = epk_sibling_control_homolog_gamma_distance_sample.get(
+        "metadata", {}
+    )
+    if not isinstance(homolog_meta, dict):
+        homolog_meta = {}
+    selected_negative_meta = (
+        epk_negative_control_gamma_distance_distribution.get("metadata", {})
+        if isinstance(epk_negative_control_gamma_distance_distribution, dict)
+        else {}
+    )
+    if not isinstance(selected_negative_meta, dict):
+        selected_negative_meta = {}
+    alternate_negative_meta = (
+        epk_sibling_negative_control_alternate_gamma_distance_sample.get(
+            "metadata", {}
+        )
+        if isinstance(
+            epk_sibling_negative_control_alternate_gamma_distance_sample, dict
+        )
+        else {}
+    )
+    if not isinstance(alternate_negative_meta, dict):
+        alternate_negative_meta = {}
+    family_distance_samples = (
+        epk_family_specific_homolog_gamma_distance_sample
+        if isinstance(epk_family_specific_homolog_gamma_distance_sample, list)
+        else (
+            [epk_family_specific_homolog_gamma_distance_sample]
+            if isinstance(epk_family_specific_homolog_gamma_distance_sample, dict)
+            else []
+        )
+    )
+    family_distance_metas: list[dict[str, Any]] = []
+    for sample in family_distance_samples:
+        if not isinstance(sample, dict):
+            continue
+        meta = sample.get("metadata", {})
+        if isinstance(meta, dict):
+            family_distance_metas.append(meta)
+
+    target_fingerprint_id = str(
+        prototype_meta.get("target_fingerprint_id")
+        or identity_meta.get("target_fingerprint_id")
+        or alternate_meta.get("target_fingerprint_id")
+        or homolog_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        threshold = float(candidate_threshold_angstrom)
+    except (TypeError, ValueError):
+        threshold = 6.0
+
+    def _float_or_none(value: Any) -> float | None:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return None
+
+    identity_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_acceptor_identity_review.get("rows", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    alternate_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_m_csa640_alternate_gamma_geometry_review.get("rows", [])
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    imported_external_ids = set(
+        imported_external_entry_ids
+        or ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"]
+    )
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    positive_row_count = 0
+    positive_hit_count = 0
+    control_row_count = 0
+    control_same_chain_block_count = 0
+    control_broader_chain_context_block_count = 0
+    control_false_hit_count = 0
+    external_abstention_count = 0
+    feature_id = "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0"
+
+    for source_row in epk_review_only_scoring_prototype.get("rows", []) or []:
+        if not isinstance(source_row, dict):
+            continue
+        row_type = str(source_row.get("row_type") or "")
+        entry_id = str(source_row.get("entry_id") or "")
+        if row_type == "current_epk_positive_prototype":
+            positive_row_count += 1
+            identity_row = identity_by_entry.get(entry_id, {})
+            alternate_row = alternate_by_entry.get(entry_id, {})
+            nearest_hydroxyl = identity_row.get("nearest_measured_hydroxyl")
+            if not isinstance(nearest_hydroxyl, dict):
+                nearest_hydroxyl = {}
+            distance = _float_or_none(
+                source_row.get("nearest_gamma_to_hydroxyl_distance_angstrom")
+                or nearest_hydroxyl.get("distance_angstrom")
+                or alternate_row.get("gamma_to_acceptor_distance_angstrom")
+            )
+            non_catalytic_chain_acceptor = bool(
+                nearest_hydroxyl.get("on_non_catalytic_chain")
+            )
+            ligand_analog_acceptor = bool(
+                alternate_row.get("acceptor_like_ligand_present")
+                and alternate_row.get("within_candidate_threshold")
+            )
+            feature_hit = bool(
+                distance is not None
+                and distance <= threshold
+                and (non_catalytic_chain_acceptor or ligand_analog_acceptor)
+            )
+            if feature_hit:
+                decision = (
+                    "positive_chain_ligand_acceptor_context_hit_review_only"
+                )
+                positive_hit_count += 1
+            else:
+                decision = (
+                    "positive_chain_ligand_acceptor_context_missing_review_only"
+                )
+            decision_counts[decision] += 1
+            rows.append(
+                {
+                    "row_type": "current_epk_positive_prototype",
+                    "entry_id": entry_id,
+                    "pdb_id": source_row.get("pdb_id"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "text_free_inputs_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "candidate_feature_id": feature_id,
+                    "candidate_threshold_angstrom": threshold,
+                    "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                        distance
+                    ),
+                    "candidate_feature_hit": feature_hit,
+                    "feature_audit_decision": decision,
+                    "non_catalytic_chain_acceptor": non_catalytic_chain_acceptor,
+                    "ligand_analog_acceptor": ligand_analog_acceptor,
+                    "acceptor_context_type": source_row.get(
+                        "acceptor_context_type"
+                    ),
+                    "gamma_geometry_scope": source_row.get("gamma_geometry_scope"),
+                    "predictive_use_status": (
+                        "review_only_candidate_axis_not_production_score"
+                    ),
+                    "epk_score_computed": False,
+                    "remaining_blockers": [
+                        "feature_not_calibrated_or_generalized",
+                        "threshold_not_calibrated_against_negative_controls",
+                        "external_hard_negative_reaudit_not_real_scorer",
+                        "registry_and_label_factory_extension_not_implemented",
+                    ],
+                }
+            )
+        elif (
+            row_type == "imported_external_hard_negative"
+            and entry_id in imported_external_ids
+        ):
+            decision = (
+                "external_hard_negative_abstain_missing_chain_ligand_axes"
+            )
+            decision_counts[decision] += 1
+            external_abstention_count += 1
+            rows.append(
+                {
+                    "row_type": "imported_external_hard_negative",
+                    "entry_id": entry_id,
+                    "pdb_id": source_row.get("pdb_id"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "text_free_inputs_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "candidate_feature_id": feature_id,
+                    "candidate_threshold_angstrom": threshold,
+                    "nearest_gamma_to_candidate_acceptor_distance_angstrom": None,
+                    "candidate_feature_hit": False,
+                    "feature_audit_decision": decision,
+                    "non_catalytic_chain_acceptor": False,
+                    "ligand_analog_acceptor": False,
+                    "predictive_use_status": (
+                        "review_only_abstention_not_external_reaudit"
+                    ),
+                    "epk_score_computed": False,
+                    "remaining_blockers": [
+                        "external_epk_specific_axes_not_materialized",
+                        "external_hard_negative_reaudit_not_real_scorer",
+                        "threshold_not_calibrated_against_negative_controls",
+                    ],
+                }
+            )
+
+    def _append_control_row(source_row: dict[str, Any], row_type: str) -> None:
+        nonlocal control_row_count, control_same_chain_block_count
+        nonlocal control_false_hit_count
+        control_row_count += 1
+        distance = _float_or_none(
+            source_row.get("nearest_gamma_to_same_chain_hydroxyl_distance_angstrom")
+        )
+        same_chain_nearest_hydroxyl_hit = bool(
+            distance is not None and distance <= threshold
+        )
+        if same_chain_nearest_hydroxyl_hit:
+            decision = "control_blocked_same_chain_hydroxyl_context"
+            control_same_chain_block_count += 1
+        else:
+            decision = "control_nonhit_review_only"
+        feature_hit = False
+        if feature_hit:
+            control_false_hit_count += 1
+            decision = "control_false_hit_blocks_chain_ligand_feature"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": row_type,
+                "entry_id": None,
+                "pdb_id": source_row.get("pdb_id"),
+                "family_id": source_row.get("family_id"),
+                "family_name": source_row.get("family_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "candidate_feature_id": feature_id,
+                "candidate_threshold_angstrom": threshold,
+                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                    distance
+                ),
+                "candidate_feature_hit": feature_hit,
+                "same_chain_nearest_hydroxyl_hit": (
+                    same_chain_nearest_hydroxyl_hit
+                ),
+                "feature_audit_decision": decision,
+                "non_catalytic_chain_acceptor": False,
+                "ligand_analog_acceptor": False,
+                "homolog_control_axis": source_row.get("homolog_control_axis")
+                or source_row.get("control_use_status"),
+                "predictive_use_status": (
+                    "review_only_control_context_not_production_score"
+                ),
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "review_only_counteraxis_not_calibrated_scorer",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    def _append_broader_control_row(
+        source_row: dict[str, Any],
+        row_type: str,
+        measurement_source: str,
+    ) -> None:
+        nonlocal control_row_count, control_broader_chain_context_block_count
+        nonlocal control_false_hit_count
+        control_row_count += 1
+        distance = _float_or_none(
+            source_row.get("nearest_gamma_to_hydroxyl_distance_angstrom")
+        )
+        unresolved_chain_context_hit = bool(
+            distance is not None and distance <= threshold
+        )
+        if unresolved_chain_context_hit:
+            decision = (
+                "broader_control_blocked_missing_non_catalytic_or_ligand_context"
+            )
+            control_broader_chain_context_block_count += 1
+        else:
+            decision = "control_nonhit_review_only"
+        feature_hit = False
+        if feature_hit:
+            control_false_hit_count += 1
+            decision = "control_false_hit_blocks_chain_ligand_feature"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": row_type,
+                "entry_id": source_row.get("entry_id"),
+                "pdb_id": source_row.get("pdb_id"),
+                "family_id": source_row.get("family_id"),
+                "family_name": source_row.get("family_name"),
+                "measurement_source": measurement_source,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "candidate_feature_id": feature_id,
+                "candidate_threshold_angstrom": threshold,
+                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                    distance
+                ),
+                "candidate_feature_hit": feature_hit,
+                "same_or_unresolved_chain_nearest_hydroxyl_hit": (
+                    unresolved_chain_context_hit
+                ),
+                "feature_audit_decision": decision,
+                "non_catalytic_chain_acceptor": False,
+                "ligand_analog_acceptor": False,
+                "homolog_control_axis": source_row.get("control_use_status"),
+                "predictive_use_status": (
+                    "review_only_broader_control_context_not_production_score"
+                ),
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "broader_control_chain_context_unresolved",
+                    "review_only_counteraxis_not_calibrated_scorer",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    for source_row in epk_sibling_control_homolog_gamma_distance_sample.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        if (
+            source_row.get("measurement_status")
+            != "homolog_gamma_to_mapped_histidine_distance_measured_review_only"
+        ):
+            continue
+        _append_control_row(source_row, "sibling_homolog_negative_control")
+
+    for sample in family_distance_samples:
+        if not isinstance(sample, dict):
+            continue
+        for source_row in sample.get("rows", []) or []:
+            if not isinstance(source_row, dict):
+                continue
+            if (
+                source_row.get("measurement_status")
+                != "family_specific_gamma_to_acid_base_distance_measured_review_only"
+            ):
+                continue
+            _append_control_row(
+                source_row, "sibling_family_specific_negative_control"
+            )
+
+    if isinstance(epk_negative_control_gamma_distance_distribution, dict):
+        for source_row in (
+            epk_negative_control_gamma_distance_distribution.get("rows", []) or []
+        ):
+            if not isinstance(source_row, dict):
+                continue
+            if (
+                source_row.get("measurement_status")
+                != "selected_structure_gamma_to_hydroxyl_distance_measured_review_only"
+            ):
+                continue
+            _append_broader_control_row(
+                source_row,
+                "sibling_selected_structure_negative_control",
+                "selected_structure",
+            )
+
+    if isinstance(epk_sibling_negative_control_alternate_gamma_distance_sample, dict):
+        for source_row in (
+            epk_sibling_negative_control_alternate_gamma_distance_sample.get(
+                "rows", []
+            )
+            or []
+        ):
+            if not isinstance(source_row, dict):
+                continue
+            if (
+                source_row.get("measurement_status")
+                != "alternate_gamma_to_hydroxyl_distance_measured_review_only"
+            ):
+                continue
+            _append_broader_control_row(
+                source_row,
+                "sibling_alternate_structure_negative_control",
+                "alternate_structure",
+            )
+
+    positive_hit_rate = (
+        round(positive_hit_count / positive_row_count, 4)
+        if positive_row_count
+        else None
+    )
+    false_hit_rate = (
+        round(control_false_hit_count / control_row_count, 4)
+        if control_row_count
+        else None
+    )
+    passes_current_review_controls = (
+        positive_row_count > 0
+        and positive_hit_count == positive_row_count
+        and control_false_hit_count == 0
+    )
+    false_hit_rows = [
+        row
+        for row in rows
+        if row.get("feature_audit_decision")
+        == "control_false_hit_blocks_chain_ligand_feature"
+    ]
+    same_chain_block_rows = [
+        row
+        for row in rows
+        if row.get("feature_audit_decision")
+        == "control_blocked_same_chain_hydroxyl_context"
+    ]
+    same_chain_family_counts = Counter(
+        str(row.get("family_id"))
+        for row in same_chain_block_rows
+        if row.get("family_id")
+    )
+    return {
+        "metadata": {
+            "method": "epk_chain_ligand_acceptor_disambiguation_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_review_only_scoring_prototype_method": (
+                prototype_meta.get("method")
+            ),
+            "source_epk_acceptor_identity_review_method": (
+                identity_meta.get("method")
+            ),
+            "source_epk_m_csa640_alternate_gamma_geometry_review_method": (
+                alternate_meta.get("method")
+            ),
+            "source_epk_sibling_control_homolog_gamma_distance_sample_method": (
+                homolog_meta.get("method")
+            ),
+            "source_epk_negative_control_gamma_distance_distribution_method": (
+                selected_negative_meta.get("method")
+            ),
+            "source_epk_sibling_negative_control_alternate_gamma_distance_sample_method": (
+                alternate_negative_meta.get("method")
+            ),
+            "source_epk_family_specific_homolog_gamma_distance_sample_methods": (
+                _sorted_strings(
+                    meta.get("method")
+                    for meta in family_distance_metas
+                    if meta.get("method")
+                )
+            ),
+            "candidate_feature_id": feature_id,
+            "candidate_threshold_angstrom": threshold,
+            "row_count": len(rows),
+            "current_positive_row_count": positive_row_count,
+            "current_positive_feature_hit_count": positive_hit_count,
+            "current_positive_feature_hit_rate": positive_hit_rate,
+            "negative_control_row_count": control_row_count,
+            "negative_control_same_chain_block_count": (
+                control_same_chain_block_count
+            ),
+            "negative_control_broader_chain_context_block_count": (
+                control_broader_chain_context_block_count
+            ),
+            "negative_control_chain_context_block_count": (
+                control_same_chain_block_count
+                + control_broader_chain_context_block_count
+            ),
+            "negative_control_same_chain_block_family_counts": dict(
+                sorted(same_chain_family_counts.items())
+            ),
+            "negative_control_false_hit_count": control_false_hit_count,
+            "negative_control_false_hit_rate": false_hit_rate,
+            "negative_control_false_hit_family_ids": _sorted_strings(
+                row.get("family_id") for row in false_hit_rows
+            ),
+            "external_hard_negative_abstention_row_count": (
+                external_abstention_count
+            ),
+            "feature_audit_decision_counts": dict(sorted(decision_counts.items())),
+            "candidate_feature_status": (
+                "passes_current_review_controls_review_only"
+                if passes_current_review_controls
+                else "blocked_review_only"
+            ),
+            "feature_passes_current_review_controls": (
+                passes_current_review_controls
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "feature_gap_identified": not passes_current_review_controls,
+            "decision_surface_changed": True,
+            "primary_blocker": (
+                None
+                if passes_current_review_controls
+                else "chain_ligand_acceptor_context_false_hits_or_misses"
+            ),
+            "production_blockers": [
+                "chain_ligand_context_generalization_not_calibrated",
+                "ligand_analog_policy_review_only",
+                "external_hard_negative_reaudit_not_scored",
+                "threshold_not_calibrated_against_negative_controls",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact tests a stricter text-free ePK acceptor "
+                "disambiguation feature: nearest gamma oxygen plus "
+                "non-catalytic-chain acceptor or acceptor-like ligand analog "
+                "context. It is a review-only counteraxis experiment and does "
+                "not authorize production scoring, registry edits, external "
+                "hard-negative claims, or label import."
+            ),
+            "next_actions": [
+                "calibrate and generalize the chain/ligand acceptor feature against broader controls",
+                "resolve ligand-analog production admissibility before using m_csa:640 as scoring evidence",
+                "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("family_id") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The chain/ligand acceptor feature is review-only; passing the "
+                "current sibling controls is not a calibrated ePK score or a "
+                "clean held-out performance claim."
+            )
+        ],
+    }
+
+
+def build_epk_chain_ligand_external_hard_negative_feature_screen(
+    *,
+    epk_chain_ligand_acceptor_disambiguation_audit: dict[str, Any],
+    imported_external_entry_ids: list[str] | None = None,
+) -> dict[str, Any]:
+    """Screen imported external hard negatives with the review-only feature."""
+
+    audit_meta = epk_chain_ligand_acceptor_disambiguation_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(audit_meta, dict):
+        audit_meta = {}
+    target_fingerprint_id = str(
+        audit_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    expected_external_ids = set(
+        imported_external_entry_ids
+        or ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"]
+    )
+    source_rows = {
+        str(row.get("entry_id") or ""): row
+        for row in epk_chain_ligand_acceptor_disambiguation_audit.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+        and row.get("row_type") == "imported_external_hard_negative"
+    }
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    for entry_id in sorted(expected_external_ids, key=_entry_id_sort_key):
+        source_row = source_rows.get(entry_id, {})
+        feature_hit = bool(source_row.get("candidate_feature_hit"))
+        feature_score = 1.0 if feature_hit else 0.0
+        if not source_row:
+            status = "review_only_external_hard_negative_missing_from_feature_audit"
+            blockers = [
+                "external_row_missing_from_chain_ligand_feature_audit",
+                "not_a_real_scored_external_reaudit",
+            ]
+        elif feature_hit:
+            status = "review_only_external_hard_negative_feature_non_abstention"
+            blockers = [
+                "review_only_feature_non_abstention_requires_scorer_redesign",
+                "not_a_real_scored_external_reaudit",
+                "threshold_not_calibrated_against_negative_controls",
+            ]
+        else:
+            status = "review_only_external_hard_negative_feature_abstention"
+            blockers = [
+                "not_a_real_scored_external_reaudit",
+                "threshold_not_calibrated_against_negative_controls",
+                "registry_and_label_factory_extension_not_implemented",
+            ]
+        status_counts[status] += 1
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only", True)
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "candidate_feature_id": audit_meta.get("candidate_feature_id"),
+                "candidate_feature_hit": feature_hit,
+                "review_only_feature_score": feature_score,
+                "feature_screen_status": status,
+                "review_only_feature_non_abstention": feature_hit,
+                "source_feature_audit_decision": source_row.get(
+                    "feature_audit_decision"
+                ),
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "clean_heldout_performance_claim_permitted": False,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    missing_count = status_counts.get(
+        "review_only_external_hard_negative_missing_from_feature_audit", 0
+    )
+    non_abstention_count = status_counts.get(
+        "review_only_external_hard_negative_feature_non_abstention", 0
+    )
+    return {
+        "metadata": {
+            "method": "epk_chain_ligand_external_hard_negative_feature_screen",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_chain_ligand_acceptor_disambiguation_audit_method": (
+                audit_meta.get("method")
+            ),
+            "candidate_feature_id": audit_meta.get("candidate_feature_id"),
+            "expected_external_hard_negative_entry_ids": sorted(
+                expected_external_ids,
+                key=_entry_id_sort_key,
+            ),
+            "row_count": len(rows),
+            "external_hard_negative_feature_screen_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "review_only_external_hard_negative_feature_abstention_count": (
+                status_counts.get(
+                    "review_only_external_hard_negative_feature_abstention", 0
+                )
+            ),
+            "review_only_external_hard_negative_feature_non_abstention_count": (
+                non_abstention_count
+            ),
+            "missing_expected_external_hard_negative_count": missing_count,
+            "review_only_feature_screen_complete": (
+                missing_count == 0 and len(rows) == len(expected_external_ids)
+            ),
+            "review_only_feature_screen_passed": (
+                missing_count == 0 and non_abstention_count == 0
+            ),
+            "clean_heldout_performance_claim_permitted": False,
+            "external_hard_negative_reaudit_scored": False,
+            "threshold_calibrated": False,
+            "epk_score_computed": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact screens imported external hard negatives with "
+                "the review-only chain/ligand acceptor feature. It records a "
+                "diagnostic feature score only and is not a calibrated ePK "
+                "score, clean held-out performance claim, registry edit, or "
+                "label import."
+            ),
+            "next_actions": [
+                "run a real external hard-negative scored re-audit only after a calibrated ePK scorer exists",
+                "keep imported external rows under the existing out-of-scope label contract",
+                "treat this feature screen as development evidence only",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Review-only feature abstentions are not a clean held-out "
+                "performance claim or production ePK re-audit."
+            )
+        ],
+    }
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -16240,6 +17200,8 @@ def build_epk_precount_gate_status(
     epk_family_specific_mapping_template_review: dict[str, Any]
     | list[dict[str, Any]]
     | None = None,
+    epk_family_specific_mapping_template_validation_review: dict[str, Any]
+    | None = None,
     epk_family_specific_homolog_mapping_review: dict[str, Any]
     | list[dict[str, Any]]
     | None = None,
@@ -16249,6 +17211,9 @@ def build_epk_precount_gate_status(
     epk_m_csa640_alternate_gamma_geometry_review: dict[str, Any] | None = None,
     epk_substrate_acceptor_counteraxis_prototype: dict[str, Any] | None = None,
     epk_text_free_acceptor_feature_gap_audit: dict[str, Any] | None = None,
+    epk_chain_ligand_acceptor_disambiguation_audit: dict[str, Any] | None = None,
+    epk_chain_ligand_external_hard_negative_feature_screen: dict[str, Any]
+    | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -16436,6 +17401,18 @@ def build_epk_precount_gate_status(
         if meta.get("reviewed_sibling_family_id")
         and bool(meta.get("family_specific_mapping_ready"))
     )
+    family_template_validation_meta = (
+        epk_family_specific_mapping_template_validation_review.get(
+            "metadata", {}
+        )
+        if isinstance(epk_family_specific_mapping_template_validation_review, dict)
+        else {}
+    )
+    if not isinstance(family_template_validation_meta, dict):
+        family_template_validation_meta = {}
+    family_template_validation_ready_family_ids = _sorted_strings(
+        family_template_validation_meta.get("validated_template_family_ids", [])
+    )
     family_mapping_reviews = (
         epk_family_specific_homolog_mapping_review
         if isinstance(epk_family_specific_homolog_mapping_review, list)
@@ -16527,6 +17504,22 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(text_free_acceptor_meta, dict):
         text_free_acceptor_meta = {}
+    chain_ligand_acceptor_meta = (
+        epk_chain_ligand_acceptor_disambiguation_audit.get("metadata", {})
+        if isinstance(epk_chain_ligand_acceptor_disambiguation_audit, dict)
+        else {}
+    )
+    if not isinstance(chain_ligand_acceptor_meta, dict):
+        chain_ligand_acceptor_meta = {}
+    chain_ligand_external_meta = (
+        epk_chain_ligand_external_hard_negative_feature_screen.get(
+            "metadata", {}
+        )
+        if isinstance(epk_chain_ligand_external_hard_negative_feature_screen, dict)
+        else {}
+    )
+    if not isinstance(chain_ligand_external_meta, dict):
+        chain_ligand_external_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -16773,6 +17766,122 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if chain_ligand_acceptor_meta:
+        gate_checks.append(
+            {
+                "gate_id": "chain_ligand_acceptor_disambiguation_audit",
+                "passed": bool(
+                    chain_ligand_acceptor_meta.get(
+                        "feature_passes_current_review_controls"
+                    )
+                )
+                and int(
+                    chain_ligand_acceptor_meta.get(
+                        "negative_control_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": chain_ligand_acceptor_meta.get("method"),
+                    "candidate_feature_id": chain_ligand_acceptor_meta.get(
+                        "candidate_feature_id"
+                    ),
+                    "candidate_feature_status": (
+                        chain_ligand_acceptor_meta.get(
+                            "candidate_feature_status"
+                        )
+                    ),
+                    "current_positive_feature_hit_count": (
+                        chain_ligand_acceptor_meta.get(
+                            "current_positive_feature_hit_count"
+                        )
+                    ),
+                    "negative_control_same_chain_block_count": (
+                        chain_ligand_acceptor_meta.get(
+                            "negative_control_same_chain_block_count"
+                        )
+                    ),
+                    "negative_control_broader_chain_context_block_count": (
+                        chain_ligand_acceptor_meta.get(
+                            "negative_control_broader_chain_context_block_count"
+                        )
+                    ),
+                    "negative_control_false_hit_count": (
+                        chain_ligand_acceptor_meta.get(
+                            "negative_control_false_hit_count"
+                        )
+                    ),
+                    "external_hard_negative_abstention_row_count": (
+                        chain_ligand_acceptor_meta.get(
+                            "external_hard_negative_abstention_row_count"
+                        )
+                    ),
+                    "feature_admissible_for_production_scoring": bool(
+                        chain_ligand_acceptor_meta.get(
+                            "feature_admissible_for_production_scoring"
+                        )
+                    ),
+                    "production_blockers": chain_ligand_acceptor_meta.get(
+                        "production_blockers", []
+                    ),
+                },
+            }
+        )
+    if chain_ligand_external_meta:
+        gate_checks.append(
+            {
+                "gate_id": "chain_ligand_external_hard_negative_feature_screen",
+                "passed": bool(
+                    chain_ligand_external_meta.get(
+                        "review_only_feature_screen_passed"
+                    )
+                )
+                and int(
+                    chain_ligand_external_meta.get(
+                        "review_only_external_hard_negative_feature_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": chain_ligand_external_meta.get("method"),
+                    "candidate_feature_id": chain_ligand_external_meta.get(
+                        "candidate_feature_id"
+                    ),
+                    "review_only_feature_screen_complete": bool(
+                        chain_ligand_external_meta.get(
+                            "review_only_feature_screen_complete"
+                        )
+                    ),
+                    "review_only_feature_screen_passed": bool(
+                        chain_ligand_external_meta.get(
+                            "review_only_feature_screen_passed"
+                        )
+                    ),
+                    "review_only_external_hard_negative_feature_abstention_count": (
+                        chain_ligand_external_meta.get(
+                            "review_only_external_hard_negative_feature_abstention_count"
+                        )
+                    ),
+                    "review_only_external_hard_negative_feature_non_abstention_count": (
+                        chain_ligand_external_meta.get(
+                            "review_only_external_hard_negative_feature_non_abstention_count"
+                        )
+                    ),
+                    "clean_heldout_performance_claim_permitted": bool(
+                        chain_ligand_external_meta.get(
+                            "clean_heldout_performance_claim_permitted"
+                        )
+                    ),
+                    "external_hard_negative_reaudit_scored": bool(
+                        chain_ligand_external_meta.get(
+                            "external_hard_negative_reaudit_scored"
+                        )
+                    ),
+                },
+            }
+        )
     if negative_control_meta:
         gate_checks.append(
             {
@@ -16946,11 +18055,22 @@ def build_epk_precount_gate_status(
             }
         )
     if family_template_metas:
+        family_template_validation_covers_expected = bool(
+            family_template_validation_meta.get(
+                "all_template_families_validated_review_only"
+            )
+        ) and set(family_template_validation_ready_family_ids) >= set(
+            family_template_family_ids
+        )
         gate_checks.append(
             {
                 "gate_id": "family_specific_homolog_mapping_template",
-                "passed": len(family_template_ready_family_ids)
-                == len(family_template_family_ids),
+                "passed": len(family_template_family_ids) > 0
+                and (
+                    len(family_template_ready_family_ids)
+                    == len(family_template_family_ids)
+                    or family_template_validation_covers_expected
+                ),
                 "evidence": {
                     "source_methods": _sorted_strings(
                         meta.get("method")
@@ -16959,6 +18079,17 @@ def build_epk_precount_gate_status(
                     ),
                     "reviewed_sibling_family_ids": family_template_family_ids,
                     "ready_family_ids": family_template_ready_family_ids,
+                    "validation_source_method": (
+                        family_template_validation_meta.get("method")
+                    ),
+                    "validated_template_family_ids": (
+                        family_template_validation_ready_family_ids
+                    ),
+                    "all_template_families_validated_review_only": bool(
+                        family_template_validation_meta.get(
+                            "all_template_families_validated_review_only"
+                        )
+                    ),
                     "seeded_template_entry_count_total": (
                         family_template_seeded_entry_count_total
                     ),
@@ -17031,7 +18162,12 @@ def build_epk_precount_gate_status(
             0,
             "replace review-context acceptor support with a text-free predictive acceptor feature before production scoring",
         )
-    if text_free_acceptor_meta.get("method"):
+    if chain_ligand_acceptor_meta.get("method"):
+        next_actions.insert(
+            0,
+            "calibrate and generalize chain/ligand acceptor disambiguation before production scoring",
+        )
+    elif text_free_acceptor_meta.get("method"):
         next_actions.insert(
             0,
             "add a text-free acceptor disambiguation signal beyond nearest oxygen distance",
@@ -17383,6 +18519,9 @@ def build_epk_precount_gate_status(
                     if meta.get("method")
                 )
             ),
+            "source_epk_family_specific_mapping_template_validation_review_method": (
+                family_template_validation_meta.get("method")
+            ),
             "negative_control_family_template_family_id": (
                 family_template_meta.get("reviewed_sibling_family_id")
             ),
@@ -17412,6 +18551,12 @@ def build_epk_precount_gate_status(
             ),
             "negative_control_family_template_ready_family_ids": (
                 family_template_ready_family_ids
+            ),
+            "negative_control_family_template_validated_family_ids": (
+                family_template_validation_ready_family_ids
+            ),
+            "negative_control_family_template_validation_ready": bool(
+                family_template_validation_meta.get("template_validation_ready")
             ),
             "source_epk_family_specific_homolog_mapping_review_method": (
                 family_mapping_meta.get("method")
@@ -17534,6 +18679,74 @@ def build_epk_precount_gate_status(
             ),
             "text_free_acceptor_feature_admissible_for_scoring": bool(
                 text_free_acceptor_meta.get("feature_admissible_for_scoring")
+            ),
+            "source_epk_chain_ligand_acceptor_disambiguation_audit_method": (
+                chain_ligand_acceptor_meta.get("method")
+            ),
+            "chain_ligand_acceptor_candidate_feature_id": (
+                chain_ligand_acceptor_meta.get("candidate_feature_id")
+            ),
+            "chain_ligand_acceptor_candidate_feature_status": (
+                chain_ligand_acceptor_meta.get("candidate_feature_status")
+            ),
+            "chain_ligand_acceptor_positive_hit_count": (
+                chain_ligand_acceptor_meta.get("current_positive_feature_hit_count")
+            ),
+            "chain_ligand_acceptor_negative_control_same_chain_block_count": (
+                chain_ligand_acceptor_meta.get(
+                    "negative_control_same_chain_block_count"
+                )
+            ),
+            "chain_ligand_acceptor_negative_control_broader_chain_context_block_count": (
+                chain_ligand_acceptor_meta.get(
+                    "negative_control_broader_chain_context_block_count"
+                )
+            ),
+            "chain_ligand_acceptor_negative_control_chain_context_block_count": (
+                chain_ligand_acceptor_meta.get(
+                    "negative_control_chain_context_block_count"
+                )
+            ),
+            "chain_ligand_acceptor_negative_control_false_hit_count": (
+                chain_ligand_acceptor_meta.get("negative_control_false_hit_count")
+            ),
+            "chain_ligand_acceptor_external_hard_negative_abstention_count": (
+                chain_ligand_acceptor_meta.get(
+                    "external_hard_negative_abstention_row_count"
+                )
+            ),
+            "chain_ligand_acceptor_feature_passes_current_review_controls": bool(
+                chain_ligand_acceptor_meta.get(
+                    "feature_passes_current_review_controls"
+                )
+            ),
+            "chain_ligand_acceptor_feature_admissible_for_production_scoring": bool(
+                chain_ligand_acceptor_meta.get(
+                    "feature_admissible_for_production_scoring"
+                )
+            ),
+            "source_epk_chain_ligand_external_hard_negative_feature_screen_method": (
+                chain_ligand_external_meta.get("method")
+            ),
+            "chain_ligand_external_feature_screen_complete": bool(
+                chain_ligand_external_meta.get(
+                    "review_only_feature_screen_complete"
+                )
+            ),
+            "chain_ligand_external_feature_screen_passed": bool(
+                chain_ligand_external_meta.get(
+                    "review_only_feature_screen_passed"
+                )
+            ),
+            "chain_ligand_external_feature_abstention_count": (
+                chain_ligand_external_meta.get(
+                    "review_only_external_hard_negative_feature_abstention_count"
+                )
+            ),
+            "chain_ligand_external_feature_non_abstention_count": (
+                chain_ligand_external_meta.get(
+                    "review_only_external_hard_negative_feature_non_abstention_count"
+                )
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

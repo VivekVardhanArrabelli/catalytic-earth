@@ -431,18 +431,32 @@ gamma-to-oxygen distance within the 6-Angstrom candidate cutoff. It hits all
 three current ePK positives but also false-hits 11 of 20 NDK, PfkB, PfkA, and
 ATP-grasp sibling controls, so the feature is `blocked_review_only` and cannot
 be used for scoring without an additional text-free disambiguation signal.
+`artifacts/v3_epk_chain_ligand_acceptor_disambiguation_audit_1025.json` adds
+that next review-only disambiguation surface. The chain/ligand feature keeps
+3/3 current positives, produces 0 false hits across the 20 current sibling
+controls by requiring non-catalytic-chain acceptor context or an acceptor-like
+ligand analog, and leaves the three imported external hard negatives as
+abstentions. The paired
+`artifacts/v3_epk_chain_ligand_external_hard_negative_feature_screen_1025.json`
+keeps external hard-negative non-abstentions at 0 while explicitly remaining
+not a scored re-audit or held-out performance claim.
+`artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json`
+validates the PfkB, PfkA, and ATP-grasp family templates by downstream mapping
+and distance evidence only. It closes the template-review gap for pre-count
+bookkeeping but does not make those templates countable label evidence.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
 identity review, gamma-threshold control planning, explicit non-ready-row
 exclusion, sibling alternate-control screening, sibling alternate-control
 distance measurement, calibration-sufficiency review, NDK homolog sourcing,
 NDK homolog mapping, NDK homolog histidine-axis measurement, and
-family-specific homolog measurement are now explicit review-only preparation;
-the `m_csa:640` alternate geometry review also lets the prototype
-gamma-geometry gate pass. Negative-control distribution readiness,
-acceptor-threshold calibration, text-free acceptor feature admissibility,
-external hard-negative scored re-audit, and registry/label-factory extension
-all remain failed gates.
+family-specific homolog measurement are now explicit review-only preparation.
+The `m_csa:640` alternate geometry review lets the prototype gamma-geometry
+gate pass, the family-template gate passes by downstream validation, and the
+chain/ligand feature screen passes current review controls. Negative-control
+distribution readiness, acceptor-threshold calibration, text-free acceptor
+feature production admissibility, external hard-negative scored re-audit, and
+registry/label-factory extension all remain failed gates.
 
 ## Active Learning Queue
 

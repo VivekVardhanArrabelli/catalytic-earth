@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "all_template_families_validated_review_only": true,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_family_specific_mapping_template_validation_review",
+    "next_actions": [
+      "use validated family templates only as review-only sibling-control evidence",
+      "keep production ePK thresholding closed until broader controls and external re-audit pass"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact closes the family-specific template algorithm review gap only by downstream review evidence. It does not edit the original template artifacts, calibrate an ePK score, edit registries, re-audit external hard negatives, or import labels.",
+    "row_count": 3,
+    "selected_threshold_angstrom": null,
+    "source_epk_family_specific_homolog_gamma_distance_sample_methods": [
+      "epk_family_specific_homolog_gamma_distance_sample"
+    ],
+    "source_epk_family_specific_homolog_mapping_review_methods": [
+      "epk_family_specific_homolog_mapping_review"
+    ],
+    "source_epk_family_specific_mapping_template_review_methods": [
+      "epk_family_specific_mapping_template_review"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "template_family_count": 3,
+    "template_family_ids": [
+      "atp_grasp",
+      "pfka",
+      "pfkb"
+    ],
+    "template_validation_ready": true,
+    "template_validation_status_counts": {
+      "template_validated_by_downstream_mapping_review_only": 3
+    },
+    "threshold_calibrated": false,
+    "validated_template_family_count": 3,
+    "validated_template_family_ids": [
+      "atp_grasp",
+      "pfka",
+      "pfkb"
+    ]
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "measured_homolog_structure_count": 2,
+      "measurement_ready_homolog_structure_count": 2,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "review_only_template_validation_not_registry_evidence",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "seeded_template_entry_count": 2,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "template_original_family_specific_mapping_ready": false,
+      "template_residue_count": 17,
+      "template_review_status": "template_seeded_mapping_algorithm_pending_review_only",
+      "validated_by_downstream_mapping": true,
+      "validation_status": "template_validated_by_downstream_mapping_review_only"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "measured_homolog_structure_count": 5,
+      "measurement_ready_homolog_structure_count": 5,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "review_only_template_validation_not_registry_evidence",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "seeded_template_entry_count": 1,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "template_original_family_specific_mapping_ready": false,
+      "template_residue_count": 7,
+      "template_review_status": "template_seeded_mapping_algorithm_pending_review_only",
+      "validated_by_downstream_mapping": true,
+      "validation_status": "template_validated_by_downstream_mapping_review_only"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "measured_homolog_structure_count": 9,
+      "measurement_ready_homolog_structure_count": 9,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "review_only_template_validation_not_registry_evidence",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "seeded_template_entry_count": 2,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "template_original_family_specific_mapping_ready": false,
+      "template_residue_count": 11,
+      "template_review_status": "template_seeded_mapping_algorithm_pending_review_only",
+      "validated_by_downstream_mapping": true,
+      "validation_status": "template_validated_by_downstream_mapping_review_only"
+    }
+  ],
+  "warnings": [
+    "Template validation is downstream review evidence, not a countable label or production fingerprint change."
+  ]
+}

@@ -137,6 +137,42 @@
     },
     {
       "evidence": {
+        "candidate_feature_id": "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0",
+        "candidate_feature_status": "passes_current_review_controls_review_only",
+        "current_positive_feature_hit_count": 3,
+        "external_hard_negative_abstention_row_count": 3,
+        "feature_admissible_for_production_scoring": false,
+        "negative_control_broader_chain_context_block_count": 2,
+        "negative_control_false_hit_count": 0,
+        "negative_control_same_chain_block_count": 11,
+        "production_blockers": [
+          "chain_ligand_context_generalization_not_calibrated",
+          "ligand_analog_policy_review_only",
+          "external_hard_negative_reaudit_not_scored",
+          "threshold_not_calibrated_against_negative_controls",
+          "registry_and_label_factory_extension_not_implemented"
+        ],
+        "source_method": "epk_chain_ligand_acceptor_disambiguation_audit"
+      },
+      "gate_id": "chain_ligand_acceptor_disambiguation_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "candidate_feature_id": "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0",
+        "clean_heldout_performance_claim_permitted": false,
+        "external_hard_negative_reaudit_scored": false,
+        "review_only_external_hard_negative_feature_abstention_count": 3,
+        "review_only_external_hard_negative_feature_non_abstention_count": 0,
+        "review_only_feature_screen_complete": true,
+        "review_only_feature_screen_passed": true,
+        "source_method": "epk_chain_ligand_external_hard_negative_feature_screen"
+      },
+      "gate_id": "chain_ligand_external_hard_negative_feature_screen",
+      "passed": true
+    },
+    {
+      "evidence": {
         "alternate_structure_distance_sample_method": "epk_sibling_negative_control_alternate_gamma_distance_sample",
         "alternate_structure_lowest_candidate_hit_count": 1,
         "alternate_structure_measured_candidate_structure_count": 3,
@@ -195,6 +231,7 @@
     },
     {
       "evidence": {
+        "all_template_families_validated_review_only": true,
         "family_specific_mapping_ready": false,
         "measurement_ready_homolog_structure_count_total": 0,
         "ready_family_ids": [],
@@ -210,10 +247,16 @@
         "template_residue_count_total": 35,
         "template_review_status_counts": {
           "template_seeded_mapping_algorithm_pending_review_only": 3
-        }
+        },
+        "validated_template_family_ids": [
+          "atp_grasp",
+          "pfka",
+          "pfkb"
+        ],
+        "validation_source_method": "epk_family_specific_mapping_template_validation_review"
       },
       "gate_id": "family_specific_homolog_mapping_template",
-      "passed": false
+      "passed": true
     },
     {
       "evidence": {
@@ -261,6 +304,20 @@
   ],
   "metadata": {
     "alternate_gamma_geometry_reviewed_row_count": 1,
+    "chain_ligand_acceptor_candidate_feature_id": "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0",
+    "chain_ligand_acceptor_candidate_feature_status": "passes_current_review_controls_review_only",
+    "chain_ligand_acceptor_external_hard_negative_abstention_count": 3,
+    "chain_ligand_acceptor_feature_admissible_for_production_scoring": false,
+    "chain_ligand_acceptor_feature_passes_current_review_controls": true,
+    "chain_ligand_acceptor_negative_control_broader_chain_context_block_count": 2,
+    "chain_ligand_acceptor_negative_control_chain_context_block_count": 13,
+    "chain_ligand_acceptor_negative_control_false_hit_count": 0,
+    "chain_ligand_acceptor_negative_control_same_chain_block_count": 11,
+    "chain_ligand_acceptor_positive_hit_count": 3,
+    "chain_ligand_external_feature_abstention_count": 3,
+    "chain_ligand_external_feature_non_abstention_count": 0,
+    "chain_ligand_external_feature_screen_complete": true,
+    "chain_ligand_external_feature_screen_passed": true,
     "countable_label_candidate_count": 0,
     "curated_label_registry_edited": false,
     "epk_score_computed": false,
@@ -270,8 +327,7 @@
       "external_hard_negative_scored_reaudit",
       "registry_and_label_factory_extension",
       "text_free_acceptor_feature_gap_audit",
-      "gamma_negative_control_distance_distribution",
-      "family_specific_homolog_mapping_template"
+      "gamma_negative_control_distance_distribution"
     ],
     "fingerprint_registry_edited": false,
     "gamma_measured_or_reviewed_row_count": 3,
@@ -339,6 +395,12 @@
     },
     "negative_control_family_template_seeded_entry_count": 2,
     "negative_control_family_template_seeded_entry_count_total": 5,
+    "negative_control_family_template_validated_family_ids": [
+      "atp_grasp",
+      "pfka",
+      "pfkb"
+    ],
+    "negative_control_family_template_validation_ready": true,
     "negative_control_homolog_distance_max_angstrom": 3.339,
     "negative_control_homolog_distance_min_angstrom": 2.899,
     "negative_control_homolog_distance_sample_axis": "mapped_phosphohistidine_site_not_hydroxyl_acceptor",
@@ -394,7 +456,7 @@
       "expand sibling negative-control coverage beyond measured alternate structures before selecting a threshold",
       "use reviewed m_csa:640 alternate gamma geometry only in review-only prototype diagnostics",
       "keep explicitly excluded non-ready ligand rows out of threshold calibration",
-      "add a text-free acceptor disambiguation signal beyond nearest oxygen distance",
+      "calibrate and generalize chain/ligand acceptor disambiguation before production scoring",
       "replace review-context acceptor support with a text-free predictive acceptor feature before production scoring",
       "run external hard-negative re-audit only after a real ePK score exists"
     ],
@@ -411,6 +473,8 @@
     "selected_acceptor_threshold_angstrom": null,
     "source_epk_acceptor_identity_review_method": "epk_acceptor_identity_review",
     "source_epk_atp_state_evidence_plan_method": "epk_atp_state_evidence_plan",
+    "source_epk_chain_ligand_acceptor_disambiguation_audit_method": "epk_chain_ligand_acceptor_disambiguation_audit",
+    "source_epk_chain_ligand_external_hard_negative_feature_screen_method": "epk_chain_ligand_external_hard_negative_feature_screen",
     "source_epk_family_specific_homolog_gamma_distance_sample_method": "epk_family_specific_homolog_gamma_distance_sample",
     "source_epk_family_specific_homolog_gamma_distance_sample_methods": [
       "epk_family_specific_homolog_gamma_distance_sample"
@@ -423,6 +487,7 @@
     "source_epk_family_specific_mapping_template_review_methods": [
       "epk_family_specific_mapping_template_review"
     ],
+    "source_epk_family_specific_mapping_template_validation_review_method": "epk_family_specific_mapping_template_validation_review",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
     "source_epk_m_csa640_alternate_gamma_geometry_review_method": "epk_m_csa640_alternate_gamma_geometry_review",
     "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",

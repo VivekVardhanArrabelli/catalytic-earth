@@ -260,11 +260,114 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
         self.assertEqual(metadata["external_label_reaudit_row_count"], 3)
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
-        self.assertEqual(set(row["entry_id"] for row in plan["rows"]), EXTERNAL_HARD_NEGATIVES)
+        self.assertEqual(
+            set(row["entry_id"] for row in plan["rows"]),
+            EXTERNAL_HARD_NEGATIVES,
+        )
         for row in plan["rows"]:
             self.assertEqual(row["reaudit_status"], "planned_not_scored")
             self.assertTrue(row["current_label_contract_valid"])
             self.assertTrue(row["evidence_separation_valid"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_chain_ligand_acceptor_disambiguation_stays_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_chain_ligand_acceptor_disambiguation_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_chain_ligand_acceptor_disambiguation_audit",
+        )
+        self.assertTrue(metadata["feature_passes_current_review_controls"])
+        self.assertEqual(metadata["current_positive_feature_hit_count"], 3)
+        self.assertEqual(metadata["negative_control_row_count"], 25)
+        self.assertEqual(metadata["negative_control_same_chain_block_count"], 11)
+        self.assertEqual(
+            metadata["negative_control_broader_chain_context_block_count"],
+            2,
+        )
+        self.assertEqual(metadata["negative_control_chain_context_block_count"], 13)
+        self.assertEqual(metadata["negative_control_false_hit_count"], 0)
+        self.assertEqual(metadata["external_hard_negative_abstention_row_count"], 3)
+        self.assertFalse(metadata["feature_admissible_for_production_scoring"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        external_rows = {
+            row["entry_id"]
+            for row in audit["rows"]
+            if row["row_type"] == "imported_external_hard_negative"
+        }
+        self.assertEqual(external_rows, EXTERNAL_HARD_NEGATIVES)
+
+    def test_epk_chain_ligand_external_feature_screen_is_not_reaudit(
+        self,
+    ) -> None:
+        screen = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_chain_ligand_external_hard_negative_feature_screen_1025.json"
+        )
+        metadata = screen["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_chain_ligand_external_hard_negative_feature_screen",
+        )
+        self.assertTrue(metadata["review_only_feature_screen_complete"])
+        self.assertTrue(metadata["review_only_feature_screen_passed"])
+        self.assertEqual(
+            metadata[
+                "review_only_external_hard_negative_feature_non_abstention_count"
+            ],
+            0,
+        )
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["clean_heldout_performance_claim_permitted"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(
+            {row["entry_id"] for row in screen["rows"]},
+            EXTERNAL_HARD_NEGATIVES,
+        )
+        for row in screen["rows"]:
+            self.assertEqual(row["review_only_feature_score"], 0.0)
+            self.assertFalse(row["external_hard_negative_reaudit_scored"])
+
+    def test_epk_family_specific_template_validation_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_family_specific_mapping_template_validation_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_family_specific_mapping_template_validation_review",
+        )
+        self.assertTrue(metadata["template_validation_ready"])
+        self.assertEqual(
+            metadata["validated_template_family_ids"],
+            ["atp_grasp", "pfka", "pfkb"],
+        )
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        for row in review["rows"]:
+            self.assertTrue(row["validated_by_downstream_mapping"])
             self.assertFalse(row["countable_label_candidate"])
 
     def test_epk_draft_fingerprint_spec_stays_review_only(self) -> None:
@@ -1416,6 +1519,17 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertFalse(metadata["negative_control_family_template_mapping_ready"])
         self.assertEqual(metadata["negative_control_family_template_ready_family_ids"], [])
         self.assertEqual(
+            metadata[
+                "source_epk_family_specific_mapping_template_validation_review_method"
+            ],
+            "epk_family_specific_mapping_template_validation_review",
+        )
+        self.assertEqual(
+            metadata["negative_control_family_template_validated_family_ids"],
+            ["atp_grasp", "pfka", "pfkb"],
+        )
+        self.assertTrue(metadata["negative_control_family_template_validation_ready"])
+        self.assertEqual(
             metadata["source_epk_family_specific_homolog_mapping_review_method"],
             "epk_family_specific_homolog_mapping_review",
         )
@@ -1495,7 +1609,7 @@ class LeakageClosureTests(unittest.TestCase):
             "text_free_acceptor_feature_gap_audit",
             metadata["failing_gate_ids"],
         )
-        self.assertIn(
+        self.assertNotIn(
             "family_specific_homolog_mapping_template",
             metadata["failing_gate_ids"],
         )
@@ -1529,7 +1643,13 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertFalse(
             checks["gamma_negative_control_distance_distribution"]["passed"]
         )
-        self.assertFalse(checks["family_specific_homolog_mapping_template"]["passed"])
+        self.assertTrue(checks["family_specific_homolog_mapping_template"]["passed"])
+        self.assertEqual(
+            checks["family_specific_homolog_mapping_template"]["evidence"][
+                "validated_template_family_ids"
+            ],
+            ["atp_grasp", "pfka", "pfkb"],
+        )
         self.assertTrue(
             checks["family_specific_homolog_mapping_from_template"]["passed"]
         )
@@ -2237,6 +2357,28 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(metadata["external_hard_negative_row_count"], 3)
         self.assertEqual(metadata["external_hard_negative_nonhit_count"], 3)
         self.assertTrue(
+            metadata[
+                "chain_ligand_acceptor_feature_passes_current_review_controls"
+            ]
+        )
+        self.assertFalse(
+            metadata[
+                "chain_ligand_acceptor_feature_admissible_for_production_scoring"
+            ]
+        )
+        self.assertEqual(
+            metadata["chain_ligand_acceptor_negative_control_false_hit_count"],
+            0,
+        )
+        self.assertEqual(
+            metadata["chain_ligand_external_feature_non_abstention_count"],
+            0,
+        )
+        self.assertEqual(
+            metadata["family_specific_template_validated_family_ids"],
+            ["atp_grasp", "pfka", "pfkb"],
+        )
+        self.assertTrue(
             metadata["counteraxis_sufficient_to_block_distance_only_threshold"]
         )
         self.assertFalse(metadata["threshold_calibrated"])
@@ -2259,6 +2401,10 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(
             axes["imported_external_hard_negatives"]["decision"],
             "abstain_until_real_epk_axes_exist",
+        )
+        self.assertEqual(
+            axes["chain_ligand_acceptor_disambiguation_feature"]["decision"],
+            "passes_current_controls_but_not_production_admissible",
         )
 
     def test_epk_substrate_acceptor_counteraxis_prototype_fails_closed(self) -> None:

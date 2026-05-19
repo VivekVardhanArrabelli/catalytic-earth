@@ -50,6 +50,73 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T02:57:27Z automation run, the direct automation protocol
+passed: the lock was acquired, `git fetch` and
+`git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed
+through `git ls-remote` and `git push --dry-run`, startup unit discovery
+passed, and `validate` passed. Phase 1 artifact migration stayed guard-only
+and closed; no Phase 2/3 upload, removal, Git LFS change, history rewrite,
+registry edit, or label import was performed.
+
+The ePK lane now has a stronger review-only acceptor disambiguation
+experiment. The new CLI builder
+`build-epk-chain-ligand-acceptor-disambiguation-audit` generated
+`artifacts/v3_epk_chain_ligand_acceptor_disambiguation_audit_1025.json`. It
+keeps all three current ePK positives as feature hits, adds same-chain and
+acceptor-like ligand-analog context, and produces 0 false hits across 25
+negative-control rows: the current 20 NDK/PfkB/PfkA/ATP-grasp sibling controls
+plus 5 older measured control rows. The three imported external hard negatives
+remain abstentions. The feature passes current review controls but remains
+`feature_admissible_for_production_scoring=false`.
+
+`build-epk-chain-ligand-external-hard-negative-feature-screen` generated
+`artifacts/v3_epk_chain_ligand_external_hard_negative_feature_screen_1025.json`.
+It records 3/3 imported external hard negatives as abstentions and 0
+non-abstentions under the chain/ligand feature, while keeping
+`external_hard_negative_reaudit_scored=false` and clean held-out performance
+claims closed.
+
+The run also closed an older pre-count bookkeeping gap without changing the
+underlying template artifacts. `build-epk-family-specific-mapping-template-validation-review`
+generated
+`artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json`,
+which validates the PfkB, PfkA, and ATP-grasp family-specific templates by
+downstream mapping and distance evidence only. This lets
+`artifacts/v3_epk_precount_gate_status_1025.json` pass the
+`family_specific_homolog_mapping_template`,
+`chain_ligand_acceptor_disambiguation_audit`, and
+`chain_ligand_external_hard_negative_feature_screen` gates. The pre-count lane
+still remains `blocked_review_only` with five failing gates:
+`acceptor_threshold_calibrated`, `external_hard_negative_scored_reaudit`,
+`registry_and_label_factory_extension`,
+`text_free_acceptor_feature_gap_audit`, and
+`gamma_negative_control_distance_distribution`.
+
+`artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` was regenerated
+against the updated pre-count status. It now records the chain/ligand feature
+as passing current review controls with 0 sibling-control false hits and 0
+external hard-negative feature non-abstentions, plus the three validated
+family-template IDs. The threshold decision remains `do_not_select_threshold`;
+no ePK score, external hard-negative scored re-audit, registry edit, or label
+import exists.
+
+Evidence-based confidence call: this run improved the ePK scorer-design
+surface but did not create countable ePK evidence. Chain/ligand context is a
+promising review-only counteraxis because it removes the 11 false hits from the
+nearest-oxygen feature on current controls, but it still needs calibration and
+generalization before production scoring. The next bounded science step should
+turn that feature into a stricter text-free production candidate or add a
+second counterevidence axis for the remaining negative-control distribution
+blocker. Do not edit `mechanism_fingerprints.json`, import ePK labels, score
+external hard negatives as clean held-out performance, or reopen artifact
+migration Phase 2.
+
+Verification passed with the 516-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, `jq empty` over updated ePK JSON,
+targeted CLI/leakage tests for the new builders and updated artifacts, and
+`git diff --check`.
+
 As of the 2026-05-19T01:55:31Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and
 `git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed

@@ -1558,3 +1558,12 @@ homolog mapping and distance artifacts add review-only sibling counterevidence,
 and `artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` blocks
 distance-only ePK threshold selection, but they still do not authorize external
 hard-negative rescoring, ePK scoring, or label import.
+The chain/ligand acceptor disambiguation pass now adds a review-only external
+feature screen:
+`artifacts/v3_epk_chain_ligand_external_hard_negative_feature_screen_1025.json`.
+It records 3/3 imported external hard negatives as abstentions and 0
+non-abstentions under the current chain/ligand feature, while keeping
+`external_hard_negative_reaudit_scored=false` and
+`clean_heldout_performance_claim_permitted=false`. This is useful fail-closed
+counterevidence for ePK scorer design, not external-source performance evidence
+or an import gate.

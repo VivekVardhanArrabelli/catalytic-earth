@@ -9,6 +9,15 @@ The project should stay honest about impact. Computational predictions are not
 validated enzyme discoveries. The real autonomous contribution is narrowing the
 search space and producing auditable hypotheses that expert labs can test.
 
+Current ePK scope: the lane is still review-only and blocked from production
+fingerprint expansion. The chain/ligand acceptor disambiguation experiment now
+keeps 3/3 current ePK positives, blocks 20/20 current sibling controls with 0
+false hits, and leaves all three imported external hard negatives abstained.
+That improves the scorer-design surface, but the feature is not production
+admissible, the external hard-negative re-audit is not scored, thresholds are
+not calibrated, and registry or label-factory extension remains out of scope
+until those gates pass.
+
 ## Time Calibration Rule
 
 Initial estimates must be revised against observed progress.

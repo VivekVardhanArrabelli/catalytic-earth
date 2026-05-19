@@ -68,6 +68,8 @@ from .labels import (
     build_epk_acceptor_geometry_axis_gap_plan,
     build_epk_acceptor_identity_review,
     build_epk_atp_state_evidence_plan,
+    build_epk_chain_ligand_acceptor_disambiguation_audit,
+    build_epk_chain_ligand_external_hard_negative_feature_screen,
     build_epk_counteraxis_sufficiency_decision,
     build_epk_draft_fingerprint_spec,
     build_epk_external_hard_negative_counteraxis_review,
@@ -75,6 +77,7 @@ from .labels import (
     build_epk_family_specific_homolog_gamma_distance_sample,
     build_epk_family_specific_homolog_mapping_review,
     build_epk_family_specific_mapping_template_review,
+    build_epk_family_specific_mapping_template_validation_review,
     build_epk_gamma_geometry_feasibility_plan,
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
@@ -5837,6 +5840,35 @@ def cmd_build_epk_family_specific_homolog_gamma_distance_sample(
     return 0
 
 
+def cmd_build_epk_family_specific_mapping_template_validation_review(
+    args: argparse.Namespace,
+) -> int:
+    template_reviews = []
+    for path in args.epk_family_specific_mapping_template_review:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            template_reviews.append(json.load(handle))
+    mapping_reviews = []
+    for path in args.epk_family_specific_homolog_mapping_review:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            mapping_reviews.append(json.load(handle))
+    distance_samples = []
+    for path in args.epk_family_specific_homolog_gamma_distance_sample:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            distance_samples.append(json.load(handle))
+    review = build_epk_family_specific_mapping_template_validation_review(
+        epk_family_specific_mapping_template_review=template_reviews,
+        epk_family_specific_homolog_mapping_review=mapping_reviews,
+        epk_family_specific_homolog_gamma_distance_sample=distance_samples,
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK family-specific mapping template validation review to "
+        f"{args.out} (validated="
+        f"{review['metadata']['validated_template_family_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_sibling_control_homolog_gamma_distance_sample(
     args: argparse.Namespace,
 ) -> int:
@@ -6048,6 +6080,107 @@ def cmd_build_epk_text_free_acceptor_feature_gap_audit(
     return 0
 
 
+def cmd_build_epk_chain_ligand_acceptor_disambiguation_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_review_only_scoring_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_review_only_scoring_prototype = json.load(handle)
+    with Path(args.epk_acceptor_identity_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_acceptor_identity_review = json.load(handle)
+    with Path(args.epk_m_csa640_alternate_gamma_geometry_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_m_csa640_alternate_gamma_geometry_review = json.load(handle)
+    with Path(args.epk_sibling_control_homolog_gamma_distance_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_control_homolog_gamma_distance_sample = json.load(handle)
+    epk_negative_control_gamma_distance_distribution = None
+    if args.epk_negative_control_gamma_distance_distribution:
+        with Path(args.epk_negative_control_gamma_distance_distribution).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_negative_control_gamma_distance_distribution = json.load(handle)
+    epk_sibling_negative_control_alternate_gamma_distance_sample = None
+    if args.epk_sibling_negative_control_alternate_gamma_distance_sample:
+        with Path(
+            args.epk_sibling_negative_control_alternate_gamma_distance_sample
+        ).open("r", encoding="utf-8") as handle:
+            epk_sibling_negative_control_alternate_gamma_distance_sample = json.load(
+                handle
+            )
+    epk_family_specific_homolog_gamma_distance_sample = None
+    if args.epk_family_specific_homolog_gamma_distance_sample:
+        family_distance_samples = []
+        distance_sample_paths = (
+            args.epk_family_specific_homolog_gamma_distance_sample
+            if isinstance(args.epk_family_specific_homolog_gamma_distance_sample, list)
+            else [args.epk_family_specific_homolog_gamma_distance_sample]
+        )
+        for distance_sample_path in distance_sample_paths:
+            with Path(distance_sample_path).open("r", encoding="utf-8") as handle:
+                family_distance_samples.append(json.load(handle))
+        epk_family_specific_homolog_gamma_distance_sample = (
+            family_distance_samples[0]
+            if len(family_distance_samples) == 1
+            else family_distance_samples
+        )
+    audit = build_epk_chain_ligand_acceptor_disambiguation_audit(
+        epk_review_only_scoring_prototype=epk_review_only_scoring_prototype,
+        epk_acceptor_identity_review=epk_acceptor_identity_review,
+        epk_m_csa640_alternate_gamma_geometry_review=(
+            epk_m_csa640_alternate_gamma_geometry_review
+        ),
+        epk_sibling_control_homolog_gamma_distance_sample=(
+            epk_sibling_control_homolog_gamma_distance_sample
+        ),
+        epk_family_specific_homolog_gamma_distance_sample=(
+            epk_family_specific_homolog_gamma_distance_sample
+        ),
+        epk_negative_control_gamma_distance_distribution=(
+            epk_negative_control_gamma_distance_distribution
+        ),
+        epk_sibling_negative_control_alternate_gamma_distance_sample=(
+            epk_sibling_negative_control_alternate_gamma_distance_sample
+        ),
+        imported_external_entry_ids=_split_csv(args.imported_external_entry_ids),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK chain/ligand acceptor disambiguation audit to "
+        f"{args.out} (false_hits="
+        f"{audit['metadata']['negative_control_false_hit_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_chain_ligand_external_hard_negative_feature_screen(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_chain_ligand_acceptor_disambiguation_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_chain_ligand_acceptor_disambiguation_audit = json.load(handle)
+    screen = build_epk_chain_ligand_external_hard_negative_feature_screen(
+        epk_chain_ligand_acceptor_disambiguation_audit=(
+            epk_chain_ligand_acceptor_disambiguation_audit
+        ),
+        imported_external_entry_ids=_split_csv(args.imported_external_entry_ids),
+    )
+    write_json(Path(args.out), screen)
+    print(
+        "Wrote ePK chain/ligand external hard-negative feature screen to "
+        f"{args.out} (non_abstentions="
+        f"{screen['metadata']['review_only_external_hard_negative_feature_non_abstention_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_nonready_ligand_alternate_structure_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -6251,6 +6384,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             if len(family_distance_samples) == 1
             else family_distance_samples
         )
+    epk_family_specific_mapping_template_validation_review = None
+    if args.epk_family_specific_mapping_template_validation_review:
+        with Path(args.epk_family_specific_mapping_template_validation_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_family_specific_mapping_template_validation_review = json.load(handle)
     epk_m_csa640_alternate_gamma_geometry_review = None
     if args.epk_m_csa640_alternate_gamma_geometry_review:
         with Path(args.epk_m_csa640_alternate_gamma_geometry_review).open(
@@ -6269,6 +6408,18 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_text_free_acceptor_feature_gap_audit = json.load(handle)
+    epk_chain_ligand_acceptor_disambiguation_audit = None
+    if args.epk_chain_ligand_acceptor_disambiguation_audit:
+        with Path(args.epk_chain_ligand_acceptor_disambiguation_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_chain_ligand_acceptor_disambiguation_audit = json.load(handle)
+    epk_chain_ligand_external_hard_negative_feature_screen = None
+    if args.epk_chain_ligand_external_hard_negative_feature_screen:
+        with Path(args.epk_chain_ligand_external_hard_negative_feature_screen).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_chain_ligand_external_hard_negative_feature_screen = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -6314,6 +6465,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         epk_family_specific_mapping_template_review=(
             epk_family_specific_mapping_template_review
         ),
+        epk_family_specific_mapping_template_validation_review=(
+            epk_family_specific_mapping_template_validation_review
+        ),
         epk_family_specific_homolog_mapping_review=(
             epk_family_specific_homolog_mapping_review
         ),
@@ -6328,6 +6482,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_text_free_acceptor_feature_gap_audit=(
             epk_text_free_acceptor_feature_gap_audit
+        ),
+        epk_chain_ligand_acceptor_disambiguation_audit=(
+            epk_chain_ligand_acceptor_disambiguation_audit
+        ),
+        epk_chain_ligand_external_hard_negative_feature_screen=(
+            epk_chain_ligand_external_hard_negative_feature_screen
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -13287,6 +13447,36 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_family_specific_homolog_gamma_distance_sample
     )
 
+    epk_family_template_validation = subparsers.add_parser(
+        "build-epk-family-specific-mapping-template-validation-review",
+        help="validate review-only family-specific templates with downstream mapping evidence",
+    )
+    epk_family_template_validation.add_argument(
+        "--epk-family-specific-mapping-template-review",
+        action="append",
+        required=True,
+    )
+    epk_family_template_validation.add_argument(
+        "--epk-family-specific-homolog-mapping-review",
+        action="append",
+        required=True,
+    )
+    epk_family_template_validation.add_argument(
+        "--epk-family-specific-homolog-gamma-distance-sample",
+        action="append",
+        required=True,
+    )
+    epk_family_template_validation.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_family_specific_mapping_template_validation_review.json"
+        ),
+    )
+    epk_family_template_validation.set_defaults(
+        func=cmd_build_epk_family_specific_mapping_template_validation_review
+    )
+
     epk_homolog_distance_sample = subparsers.add_parser(
         "build-epk-sibling-control-homolog-gamma-distance-sample",
         help="measure review-only homolog sibling-control gamma-to-mapped-site distances",
@@ -13462,6 +13652,91 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_text_free_acceptor_feature_gap_audit
     )
 
+    epk_chain_ligand_acceptor = subparsers.add_parser(
+        "build-epk-chain-ligand-acceptor-disambiguation-audit",
+        help="audit a review-only chain/ligand ePK acceptor disambiguation feature",
+    )
+    epk_chain_ligand_acceptor.add_argument(
+        "--epk-review-only-scoring-prototype",
+        default="artifacts/v3_epk_review_only_scoring_prototype.json",
+    )
+    epk_chain_ligand_acceptor.add_argument(
+        "--epk-acceptor-identity-review",
+        default="artifacts/v3_epk_acceptor_identity_review.json",
+    )
+    epk_chain_ligand_acceptor.add_argument(
+        "--epk-m-csa640-alternate-gamma-geometry-review",
+        default=(
+            "artifacts/"
+            "v3_epk_m_csa640_alternate_gamma_geometry_review.json"
+        ),
+    )
+    epk_chain_ligand_acceptor.add_argument(
+        "--epk-sibling-control-homolog-gamma-distance-sample",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_control_homolog_gamma_distance_sample.json"
+        ),
+    )
+    epk_chain_ligand_acceptor.add_argument(
+        "--epk-family-specific-homolog-gamma-distance-sample",
+        action="append",
+        default=None,
+    )
+    epk_chain_ligand_acceptor.add_argument(
+        "--epk-negative-control-gamma-distance-distribution",
+        default=None,
+    )
+    epk_chain_ligand_acceptor.add_argument(
+        "--epk-sibling-negative-control-alternate-gamma-distance-sample",
+        default=None,
+    )
+    epk_chain_ligand_acceptor.add_argument(
+        "--imported-external-entry-ids",
+        default="uniprot:P06744,uniprot:P78549,uniprot:Q3LXA3",
+    )
+    epk_chain_ligand_acceptor.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_chain_ligand_acceptor.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_chain_ligand_acceptor_disambiguation_audit.json"
+        ),
+    )
+    epk_chain_ligand_acceptor.set_defaults(
+        func=cmd_build_epk_chain_ligand_acceptor_disambiguation_audit
+    )
+
+    epk_chain_ligand_external = subparsers.add_parser(
+        "build-epk-chain-ligand-external-hard-negative-feature-screen",
+        help="screen external hard negatives with the review-only ePK chain/ligand feature",
+    )
+    epk_chain_ligand_external.add_argument(
+        "--epk-chain-ligand-acceptor-disambiguation-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_chain_ligand_acceptor_disambiguation_audit.json"
+        ),
+    )
+    epk_chain_ligand_external.add_argument(
+        "--imported-external-entry-ids",
+        default="uniprot:P06744,uniprot:P78549,uniprot:Q3LXA3",
+    )
+    epk_chain_ligand_external.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_chain_ligand_external_hard_negative_feature_screen.json"
+        ),
+    )
+    epk_chain_ligand_external.set_defaults(
+        func=cmd_build_epk_chain_ligand_external_hard_negative_feature_screen
+    )
+
     epk_nonready_alternate_plan = subparsers.add_parser(
         "build-epk-nonready-ligand-alternate-structure-plan",
         help="screen review-only alternate structures for non-ready ePK ligand rows",
@@ -13597,6 +13872,10 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     epk_precount_gate_status.add_argument(
+        "--epk-family-specific-mapping-template-validation-review",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
         "--epk-m-csa640-alternate-gamma-geometry-review",
         default=None,
     )
@@ -13606,6 +13885,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-text-free-acceptor-feature-gap-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-chain-ligand-acceptor-disambiguation-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-chain-ligand-external-hard-negative-feature-screen",
         default=None,
     )
     epk_precount_gate_status.add_argument(

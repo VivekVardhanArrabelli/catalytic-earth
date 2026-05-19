@@ -3667,6 +3667,9 @@ class CliTests(unittest.TestCase):
             negative = root / "negative_controls.json"
             reaudit = root / "reaudit.json"
             template = root / "template.json"
+            template_validation = root / "template_validation.json"
+            chain_ligand = root / "chain_ligand.json"
+            chain_external = root / "chain_external.json"
             out = root / "gate_status.json"
             axis.write_text(
                 json.dumps(
@@ -3771,6 +3774,66 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            template_validation.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_family_specific_mapping_template_validation_review"
+                            ),
+                            "template_validation_ready": True,
+                            "all_template_families_validated_review_only": True,
+                            "validated_template_family_ids": ["pfkb"],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            chain_ligand.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_chain_ligand_acceptor_disambiguation_audit"
+                            ),
+                            "candidate_feature_id": (
+                                "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0"
+                            ),
+                            "candidate_feature_status": (
+                                "passes_current_review_controls_review_only"
+                            ),
+                            "current_positive_feature_hit_count": 3,
+                            "negative_control_same_chain_block_count": 11,
+                            "negative_control_false_hit_count": 0,
+                            "external_hard_negative_abstention_row_count": 3,
+                            "feature_passes_current_review_controls": True,
+                            "feature_admissible_for_production_scoring": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            chain_external.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_chain_ligand_external_hard_negative_feature_screen"
+                            ),
+                            "candidate_feature_id": (
+                                "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0"
+                            ),
+                            "review_only_feature_screen_complete": True,
+                            "review_only_feature_screen_passed": True,
+                            "review_only_external_hard_negative_feature_abstention_count": 3,
+                            "review_only_external_hard_negative_feature_non_abstention_count": 0,
+                            "clean_heldout_performance_claim_permitted": False,
+                            "external_hard_negative_reaudit_scored": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -3790,6 +3853,12 @@ class CliTests(unittest.TestCase):
                     str(negative),
                     "--epk-family-specific-mapping-template-review",
                     str(template),
+                    "--epk-family-specific-mapping-template-validation-review",
+                    str(template_validation),
+                    "--epk-chain-ligand-acceptor-disambiguation-audit",
+                    str(chain_ligand),
+                    "--epk-chain-ligand-external-hard-negative-feature-screen",
+                    str(chain_external),
                     "--epk-external-hard-negative-reaudit-plan",
                     str(reaudit),
                     "--out",
@@ -3810,7 +3879,7 @@ class CliTests(unittest.TestCase):
                 "gamma_geometry_measured_for_all_prototype_rows",
                 metadata["failing_gate_ids"],
             )
-            self.assertIn(
+            self.assertNotIn(
                 "family_specific_homolog_mapping_template",
                 metadata["failing_gate_ids"],
             )
@@ -3818,7 +3887,30 @@ class CliTests(unittest.TestCase):
                 metadata["source_epk_family_specific_mapping_template_review_method"],
                 "epk_family_specific_mapping_template_review",
             )
+            self.assertEqual(
+                metadata[
+                    "source_epk_family_specific_mapping_template_validation_review_method"
+                ],
+                "epk_family_specific_mapping_template_validation_review",
+            )
             self.assertEqual(metadata["negative_control_family_template_family_id"], "pfkb")
+            self.assertEqual(
+                metadata["negative_control_family_template_validated_family_ids"],
+                ["pfkb"],
+            )
+            self.assertTrue(metadata["negative_control_family_template_validation_ready"])
+            self.assertEqual(
+                metadata[
+                    "source_epk_chain_ligand_acceptor_disambiguation_audit_method"
+                ],
+                "epk_chain_ligand_acceptor_disambiguation_audit",
+            )
+            self.assertTrue(
+                metadata[
+                    "chain_ligand_acceptor_feature_passes_current_review_controls"
+                ]
+            )
+            self.assertTrue(metadata["chain_ligand_external_feature_screen_passed"])
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
             checks = {check["gate_id"]: check for check in status["gate_checks"]}
             self.assertTrue(checks["local_axis_prototype"]["passed"])
@@ -3826,7 +3918,15 @@ class CliTests(unittest.TestCase):
             self.assertFalse(
                 checks["gamma_negative_control_distance_distribution"]["passed"]
             )
-            self.assertFalse(checks["family_specific_homolog_mapping_template"]["passed"])
+            self.assertTrue(checks["family_specific_homolog_mapping_template"]["passed"])
+            self.assertTrue(
+                checks["chain_ligand_acceptor_disambiguation_audit"]["passed"]
+            )
+            self.assertTrue(
+                checks[
+                    "chain_ligand_external_hard_negative_feature_screen"
+                ]["passed"]
+            )
 
     def test_build_epk_acceptor_identity_review_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -5895,6 +5995,147 @@ class CliTests(unittest.TestCase):
                 5.0,
             )
 
+    def test_build_epk_family_specific_mapping_template_validation_review_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            template = root / "template.json"
+            mapping = root / "mapping.json"
+            distance = root / "distance.json"
+            blocked_distance = root / "blocked_distance.json"
+            out = root / "validation.json"
+            blocked_out = root / "blocked_validation.json"
+            template.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_family_specific_mapping_template_review",
+                            "reviewed_sibling_family_id": "pfkb",
+                            "reviewed_sibling_family_name": "PfkB family kinases",
+                            "template_review_status": (
+                                "template_seeded_mapping_algorithm_pending_review_only"
+                            ),
+                            "family_specific_mapping_ready": False,
+                            "seeded_template_entry_count": 1,
+                            "template_residue_count": 4,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            mapping.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_family_specific_homolog_mapping_review"
+                            ),
+                            "reviewed_sibling_family_id": "pfkb",
+                            "reviewed_sibling_family_name": "PfkB family kinases",
+                            "measurement_ready_homolog_structure_count": 1,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            distance.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_family_specific_homolog_gamma_distance_sample"
+                            ),
+                            "reviewed_sibling_family_id": "pfkb",
+                            "reviewed_sibling_family_name": "PfkB family kinases",
+                            "measured_homolog_structure_count": 1,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            blocked_distance.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_family_specific_homolog_gamma_distance_sample"
+                            ),
+                            "reviewed_sibling_family_id": "pfkb",
+                            "reviewed_sibling_family_name": "PfkB family kinases",
+                            "measured_homolog_structure_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-family-specific-mapping-template-validation-review",
+                    "--epk-family-specific-mapping-template-review",
+                    str(template),
+                    "--epk-family-specific-homolog-mapping-review",
+                    str(mapping),
+                    "--epk-family-specific-homolog-gamma-distance-sample",
+                    str(distance),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            review = json.loads(out.read_text(encoding="utf-8"))
+            metadata = review["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_family_specific_mapping_template_validation_review",
+            )
+            self.assertTrue(metadata["template_validation_ready"])
+            self.assertEqual(metadata["validated_template_family_ids"], ["pfkb"])
+            self.assertEqual(metadata["validated_template_family_count"], 1)
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            self.assertEqual(metadata["countable_label_candidate_count"], 0)
+            row = review["rows"][0]
+            self.assertTrue(row["validated_by_downstream_mapping"])
+            self.assertFalse(row["countable_label_candidate"])
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-family-specific-mapping-template-validation-review",
+                    "--epk-family-specific-mapping-template-review",
+                    str(template),
+                    "--epk-family-specific-homolog-mapping-review",
+                    str(mapping),
+                    "--epk-family-specific-homolog-gamma-distance-sample",
+                    str(blocked_distance),
+                    "--out",
+                    str(blocked_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            blocked = json.loads(blocked_out.read_text(encoding="utf-8"))
+            blocked_metadata = blocked["metadata"]
+            self.assertFalse(blocked_metadata["template_validation_ready"])
+            self.assertEqual(blocked_metadata["validated_template_family_ids"], [])
+            self.assertEqual(
+                blocked["rows"][0]["validation_status"],
+                "template_validation_blocked_review_only",
+            )
+
     def test_build_epk_sibling_control_homolog_gamma_distance_sample_command(
         self,
     ) -> None:
@@ -6231,6 +6472,17 @@ class CliTests(unittest.TestCase):
                         "metadata": {
                             "method": "epk_precount_gate_status",
                             "precount_gate_status": "blocked_review_only",
+                            "failing_gate_ids": [
+                                "acceptor_threshold_calibrated",
+                                "external_hard_negative_scored_reaudit",
+                            ],
+                            "chain_ligand_acceptor_feature_passes_current_review_controls": True,
+                            "chain_ligand_acceptor_feature_admissible_for_production_scoring": False,
+                            "chain_ligand_acceptor_negative_control_false_hit_count": 0,
+                            "chain_ligand_external_feature_non_abstention_count": 0,
+                            "negative_control_family_template_validated_family_ids": [
+                                "pfkb"
+                            ],
                         }
                     }
                 ),
@@ -6263,6 +6515,14 @@ class CliTests(unittest.TestCase):
             self.assertEqual(metadata["family_specific_counteraxis_threshold_hit_count"], 1)
             self.assertEqual(metadata["phosphohistidine_counteraxis_row_count"], 1)
             self.assertTrue(
+                metadata[
+                    "chain_ligand_acceptor_feature_passes_current_review_controls"
+                ]
+            )
+            self.assertEqual(
+                metadata["family_specific_template_validated_family_ids"], ["pfkb"]
+            )
+            self.assertTrue(
                 metadata["counteraxis_sufficient_to_block_distance_only_threshold"]
             )
             self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
@@ -6273,6 +6533,10 @@ class CliTests(unittest.TestCase):
             self.assertEqual(
                 axes["family_specific_sibling_counteraxis"]["decision"],
                 "blocks_distance_only_threshold_selection",
+            )
+            self.assertEqual(
+                axes["chain_ligand_acceptor_disambiguation_feature"]["decision"],
+                "passes_current_controls_but_not_production_admissible",
             )
 
     def test_build_epk_substrate_acceptor_counteraxis_prototype_command(
@@ -6589,6 +6853,268 @@ class CliTests(unittest.TestCase):
                 "control_false_hit_blocks_text_free_feature", decisions
             )
             self.assertIn("control_nonhit_review_only", decisions)
+
+    def test_build_epk_chain_ligand_acceptor_disambiguation_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            prototype = root / "prototype.json"
+            identity = root / "identity.json"
+            alternate = root / "alternate.json"
+            homolog = root / "homolog.json"
+            family = root / "family.json"
+            out = root / "chain_ligand.json"
+            prototype.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_review_only_scoring_prototype",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:35",
+                                "pdb_id": "2PHK",
+                                "nearest_gamma_to_hydroxyl_distance_angstrom": 5.0,
+                                "acceptor_context_type": (
+                                    "source_supported_hydroxyl_residue"
+                                ),
+                            },
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:640",
+                                "pdb_id": "3TM0",
+                                "acceptor_context_type": (
+                                    "acceptor_like_ligand_analog"
+                                ),
+                            },
+                            {
+                                "row_type": "imported_external_hard_negative",
+                                "entry_id": "uniprot:P78549",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            identity.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "epk_acceptor_identity_review"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "nearest_measured_hydroxyl": {
+                                    "distance_angstrom": 5.0,
+                                    "on_non_catalytic_chain": True,
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            alternate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_m_csa640_alternate_gamma_geometry_review"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:640",
+                                "pdb_id": "3TM0",
+                                "gamma_to_acceptor_distance_angstrom": 3.5,
+                                "acceptor_like_ligand_present": True,
+                                "within_candidate_threshold": True,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            homolog.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_sibling_control_homolog_gamma_distance_sample"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "measurement_status": (
+                                    "homolog_gamma_to_mapped_histidine_distance_measured_review_only"
+                                ),
+                                "family_id": "ndk",
+                                "family_name": "Nucleoside diphosphate kinases",
+                                "pdb_id": "9PFY",
+                                "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 4.8,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            family.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_family_specific_homolog_gamma_distance_sample"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "measurement_status": (
+                                    "family_specific_gamma_to_acid_base_distance_measured_review_only"
+                                ),
+                                "family_id": "pfkb",
+                                "family_name": "PfkB/ribokinase-family kinases",
+                                "pdb_id": "1TZ6",
+                                "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 7.1,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-chain-ligand-acceptor-disambiguation-audit",
+                    "--epk-review-only-scoring-prototype",
+                    str(prototype),
+                    "--epk-acceptor-identity-review",
+                    str(identity),
+                    "--epk-m-csa640-alternate-gamma-geometry-review",
+                    str(alternate),
+                    "--epk-sibling-control-homolog-gamma-distance-sample",
+                    str(homolog),
+                    "--epk-family-specific-homolog-gamma-distance-sample",
+                    str(family),
+                    "--imported-external-entry-ids",
+                    "uniprot:P78549",
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_chain_ligand_acceptor_disambiguation_audit",
+            )
+            self.assertEqual(metadata["current_positive_feature_hit_count"], 2)
+            self.assertEqual(metadata["negative_control_row_count"], 2)
+            self.assertEqual(metadata["negative_control_false_hit_count"], 0)
+            self.assertEqual(
+                metadata["negative_control_same_chain_block_count"], 1
+            )
+            self.assertEqual(
+                metadata["external_hard_negative_abstention_row_count"], 1
+            )
+            self.assertTrue(metadata["feature_passes_current_review_controls"])
+            self.assertFalse(metadata["feature_admissible_for_production_scoring"])
+            self.assertFalse(metadata["epk_score_computed"])
+            decisions = {row["feature_audit_decision"] for row in audit["rows"]}
+            self.assertIn(
+                "positive_chain_ligand_acceptor_context_hit_review_only",
+                decisions,
+            )
+            self.assertIn("control_blocked_same_chain_hydroxyl_context", decisions)
+            self.assertIn(
+                "external_hard_negative_abstain_missing_chain_ligand_axes",
+                decisions,
+            )
+
+    def test_build_epk_chain_ligand_external_hard_negative_feature_screen_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            audit_path = root / "chain_ligand.json"
+            out = root / "external_screen.json"
+            audit_path.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_chain_ligand_acceptor_disambiguation_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "candidate_feature_id": (
+                                "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": "imported_external_hard_negative",
+                                "entry_id": "uniprot:P78549",
+                                "text_free_inputs_only": True,
+                                "candidate_feature_hit": False,
+                                "feature_audit_decision": (
+                                    "external_hard_negative_abstain_missing_chain_ligand_axes"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-chain-ligand-external-hard-negative-feature-screen",
+                    "--epk-chain-ligand-acceptor-disambiguation-audit",
+                    str(audit_path),
+                    "--imported-external-entry-ids",
+                    "uniprot:P78549",
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            screen = json.loads(out.read_text(encoding="utf-8"))
+            metadata = screen["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_chain_ligand_external_hard_negative_feature_screen",
+            )
+            self.assertTrue(metadata["review_only_feature_screen_complete"])
+            self.assertTrue(metadata["review_only_feature_screen_passed"])
+            self.assertEqual(
+                metadata[
+                    "review_only_external_hard_negative_feature_non_abstention_count"
+                ],
+                0,
+            )
+            self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+            self.assertFalse(metadata["clean_heldout_performance_claim_permitted"])
+            self.assertEqual(screen["rows"][0]["review_only_feature_score"], 0.0)
 
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

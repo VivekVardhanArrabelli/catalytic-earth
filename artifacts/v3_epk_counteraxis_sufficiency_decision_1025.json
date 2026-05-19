@@ -50,10 +50,25 @@
       "external_hard_negative_nonhit_count": 3,
       "external_hard_negative_row_count": 3,
       "review_only": true
+    },
+    {
+      "blocker": "chain_ligand_context_generalization_not_calibrated",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "passes_current_controls_but_not_production_admissible",
+      "decision_axis": "chain_ligand_acceptor_disambiguation_feature",
+      "external_hard_negative_feature_non_abstention_count": 0,
+      "feature_admissible_for_production_scoring": false,
+      "feature_passes_current_review_controls": true,
+      "negative_control_false_hit_count": 0,
+      "review_only": true
     }
   ],
   "metadata": {
     "candidate_threshold_angstrom": 6.0,
+    "chain_ligand_acceptor_feature_admissible_for_production_scoring": false,
+    "chain_ligand_acceptor_feature_passes_current_review_controls": true,
+    "chain_ligand_acceptor_negative_control_false_hit_count": 0,
+    "chain_ligand_external_feature_non_abstention_count": 0,
     "countable_label_candidate_count": 0,
     "counteraxis_sufficient_to_block_distance_only_threshold": true,
     "curated_label_registry_edited": false,
@@ -68,6 +83,11 @@
     ],
     "family_specific_counteraxis_row_count": 16,
     "family_specific_counteraxis_threshold_hit_count": 16,
+    "family_specific_template_validated_family_ids": [
+      "atp_grasp",
+      "pfka",
+      "pfkb"
+    ],
     "fingerprint_registry_edited": false,
     "method": "epk_counteraxis_sufficiency_decision",
     "negative_control_distance_distribution_ready": false,
@@ -78,6 +98,13 @@
     ],
     "phosphohistidine_counteraxis_row_count": 4,
     "precount_gate_status": "blocked_review_only",
+    "precount_remaining_failing_gate_ids": [
+      "acceptor_threshold_calibrated",
+      "external_hard_negative_scored_reaudit",
+      "gamma_negative_control_distance_distribution",
+      "registry_and_label_factory_extension",
+      "text_free_acceptor_feature_gap_audit"
+    ],
     "primary_blockers": [
       "family_specific_sibling_controls_overlap_candidate_geometry",
       "ndk_phosphohistidine_axis_overlaps_gamma_distance_logic",

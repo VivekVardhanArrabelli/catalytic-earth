@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "candidate_feature_id": "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0",
+    "clean_heldout_performance_claim_permitted": false,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "expected_external_hard_negative_entry_ids": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_hard_negative_feature_screen_status_counts": {
+      "review_only_external_hard_negative_feature_abstention": 3
+    },
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_chain_ligand_external_hard_negative_feature_screen",
+    "missing_expected_external_hard_negative_count": 0,
+    "next_actions": [
+      "run a real external hard-negative scored re-audit only after a calibrated ePK scorer exists",
+      "keep imported external rows under the existing out-of-scope label contract",
+      "treat this feature screen as development evidence only"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_external_hard_negative_feature_abstention_count": 3,
+    "review_only_external_hard_negative_feature_non_abstention_count": 0,
+    "review_only_feature_screen_complete": true,
+    "review_only_feature_screen_passed": true,
+    "review_only_rule": "This artifact screens imported external hard negatives with the review-only chain/ligand acceptor feature. It records a diagnostic feature score only and is not a calibrated ePK score, clean held-out performance claim, registry edit, or label import.",
+    "row_count": 3,
+    "source_epk_chain_ligand_acceptor_disambiguation_audit_method": "epk_chain_ligand_acceptor_disambiguation_audit",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "candidate_feature_hit": false,
+      "candidate_feature_id": "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0",
+      "clean_heldout_performance_claim_permitted": false,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06744",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "feature_screen_status": "review_only_external_hard_negative_feature_abstention",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "not_a_real_scored_external_reaudit",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_feature_non_abstention": false,
+      "review_only_feature_score": 0.0,
+      "source_feature_audit_decision": "external_hard_negative_abstain_missing_chain_ligand_axes",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_feature_id": "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0",
+      "clean_heldout_performance_claim_permitted": false,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P78549",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "feature_screen_status": "review_only_external_hard_negative_feature_abstention",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "not_a_real_scored_external_reaudit",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_feature_non_abstention": false,
+      "review_only_feature_score": 0.0,
+      "source_feature_audit_decision": "external_hard_negative_abstain_missing_chain_ligand_axes",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_feature_id": "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0",
+      "clean_heldout_performance_claim_permitted": false,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "feature_screen_status": "review_only_external_hard_negative_feature_abstention",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "not_a_real_scored_external_reaudit",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_feature_non_abstention": false,
+      "review_only_feature_score": 0.0,
+      "source_feature_audit_decision": "external_hard_negative_abstain_missing_chain_ligand_axes",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    }
+  ],
+  "warnings": [
+    "Review-only feature abstentions are not a clean held-out performance claim or production ePK re-audit."
+  ]
+}

@@ -1028,14 +1028,28 @@ also false-hits 11 of 20 NDK/PfkB/PfkA/ATP-grasp sibling controls, so the
 candidate feature remains `blocked_review_only`. The next scorer experiment
 must add a text-free disambiguation signal such as chain/substrate context or
 ligand-class constraints before any ePK score or external scored re-audit.
+`artifacts/v3_epk_chain_ligand_acceptor_disambiguation_audit_1025.json` is
+that first stronger disambiguation experiment. The review-only chain/ligand
+feature keeps 3/3 current positives, blocks 25 negative-control rows with 0
+false hits after adding same-chain and ligand-analog context, and keeps all
+three imported external hard negatives abstained. The paired
+`artifacts/v3_epk_chain_ligand_external_hard_negative_feature_screen_1025.json`
+records 0 external hard-negative non-abstentions while still forbidding clean
+held-out claims, real ePK scoring, registry edits, or label import.
+`artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json`
+closes the older family-template review gap by downstream evidence only:
+PfkB, PfkA, and ATP-grasp templates all now have mapped and measured homolog
+controls, but this remains review-only counterevidence.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
 `blocked_review_only`: local axes, measured-row acceptor identity review, and
 threshold/control planning pass, non-ready-row exclusion is explicit, and a
 sibling alternate-control measurement surface plus NDK homolog counter-axis
-measurement and PfkB/PfkA/ATP-grasp family-specific counterevidence exist, but
-negative-control distribution readiness, acceptor threshold calibration,
-text-free acceptor feature admissibility, external hard-negative scored
-re-audit, and label-factory/registry extension all remain failing gates.
+measurement and PfkB/PfkA/ATP-grasp family-specific counterevidence exist. The
+family-specific template gate now passes by downstream validation, and the
+chain/ligand feature and external feature screen pass current review controls,
+but negative-control distribution readiness, acceptor threshold calibration,
+text-free acceptor feature production admissibility, external hard-negative
+scored re-audit, and label-factory/registry extension all remain failing gates.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest
