@@ -12796,6 +12796,858 @@ def build_epk_sibling_control_homolog_mapping_review(
     }
 
 
+def build_epk_sibling_control_homolog_gamma_distance_sample(
+    *,
+    epk_sibling_control_homolog_mapping_review: dict[str, Any],
+    candidate_thresholds_angstrom: list[float] | None = None,
+    max_reported_distance_rows: int = 12,
+    cif_text_by_pdb: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    """Measure review-only gamma-to-mapped-site distances for homolog controls."""
+
+    mapping_meta = epk_sibling_control_homolog_mapping_review.get("metadata", {})
+    if not isinstance(mapping_meta, dict):
+        mapping_meta = {}
+    target_family_id = str(
+        mapping_meta.get("reviewed_sibling_family_id") or "ndk"
+    )
+    family_name = ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(target_family_id)
+    target_fingerprint_id = str(
+        mapping_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    thresholds = []
+    for value in candidate_thresholds_angstrom or [4.0, 6.0, 8.0]:
+        try:
+            thresholds.append(float(value))
+        except (TypeError, ValueError):
+            continue
+    thresholds = sorted(set(thresholds))
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    histidine_atom_names = {"ND1", "NE2"}
+    hydroxyl_atom_names = {
+        "SER": {"OG"},
+        "THR": {"OG1"},
+        "TYR": {"OH"},
+    }
+
+    def _atom_code(atom: dict[str, Any]) -> str:
+        return str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+
+    def _atom_name(atom: dict[str, Any]) -> str:
+        return str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+
+    def _atom_matches_site(
+        atom: dict[str, Any],
+        *,
+        chain_id: str,
+        auth_seq_id: str,
+        label_seq_id: str,
+        residue_code: str | None = None,
+    ) -> bool:
+        if chain_id and chain_id not in _label_atom_chain_ids(atom):
+            return False
+        if auth_seq_id or label_seq_id:
+            residue_ids = _label_atom_residue_ids(atom)
+            expected_ids = {value for value in [auth_seq_id, label_seq_id] if value}
+            if expected_ids and not residue_ids.intersection(expected_ids):
+                return False
+        if residue_code and _atom_code(atom) != residue_code:
+            return False
+        return True
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    fetched_pdb_ids: set[str] = set()
+    ready_input_count = 0
+    for mapping_row in epk_sibling_control_homolog_mapping_review.get("rows", []) or []:
+        if not isinstance(mapping_row, dict):
+            continue
+        if str(mapping_row.get("family_id") or "") != target_family_id:
+            continue
+        pdb_id = str(mapping_row.get("pdb_id") or "").upper()
+        ready_for_measurement = bool(
+            mapping_row.get("measurement_ready_for_negative_control")
+        )
+        if ready_for_measurement:
+            ready_input_count += 1
+        if not ready_for_measurement:
+            status = "homolog_mapping_not_measurement_ready"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "pdb_id": pdb_id or None,
+                    "family_id": target_family_id,
+                    "family_name": family_name,
+                    "source_entry_ids": mapping_row.get("source_entry_ids", []),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "measurement_status": status,
+                    "gamma_to_mapped_histidine_distance_measured": False,
+                    "epk_score_computed": False,
+                    "measurement_blockers": [
+                        "homolog_mapping_not_measurement_ready"
+                    ],
+                }
+            )
+            continue
+        if not pdb_id:
+            status = "homolog_pdb_id_missing"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "pdb_id": None,
+                    "family_id": target_family_id,
+                    "family_name": family_name,
+                    "source_entry_ids": mapping_row.get("source_entry_ids", []),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "measurement_status": status,
+                    "gamma_to_mapped_histidine_distance_measured": False,
+                    "epk_score_computed": False,
+                    "measurement_blockers": ["homolog_pdb_id_missing"],
+                }
+            )
+            continue
+
+        cif_text = cif_text_by_pdb.get(pdb_id)
+        fetch_status = "ok"
+        if cif_text is None:
+            try:
+                cif_text = fetch_pdb_cif(pdb_id)
+                fetched_pdb_ids.add(pdb_id)
+            except Exception as exc:  # pragma: no cover - network fallback path
+                fetch_status = f"fetch_failed:{type(exc).__name__}"
+                cif_text = None
+        if not cif_text:
+            status = "homolog_cif_unavailable"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "pdb_id": pdb_id,
+                    "family_id": target_family_id,
+                    "family_name": family_name,
+                    "source_entry_ids": mapping_row.get("source_entry_ids", []),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "fetch_status": fetch_status,
+                    "measurement_status": status,
+                    "gamma_to_mapped_histidine_distance_measured": False,
+                    "epk_score_computed": False,
+                    "measurement_blockers": ["homolog_cif_unavailable"],
+                }
+            )
+            continue
+
+        atoms = parse_atom_site_loop(cif_text)
+        histidine_distance_rows: list[dict[str, Any]] = []
+        hydroxyl_distance_rows: list[dict[str, Any]] = []
+        for chain_mapping in mapping_row.get("chain_mappings", []) or []:
+            if not isinstance(chain_mapping, dict):
+                continue
+            if (
+                chain_mapping.get("mapping_status")
+                != "mapped_catalytic_histidine_and_nucleotide_site_review_only"
+            ):
+                continue
+            chain_id = str(chain_mapping.get("chain_id") or "")
+            gamma_code = str(chain_mapping.get("gamma_ligand_code") or "").upper()
+            gamma_atom_name = str(chain_mapping.get("gamma_atom_name") or "PG").upper()
+            gamma_auth_seq_id = str(
+                chain_mapping.get("gamma_ligand_auth_seq_id") or ""
+            )
+            gamma_label_seq_id = str(
+                chain_mapping.get("gamma_ligand_label_seq_id") or ""
+            )
+            gamma_atoms = [
+                atom
+                for atom in atoms
+                if atom.get("group_PDB") == "HETATM"
+                and _atom_code(atom) == gamma_code
+                and _atom_name(atom) == gamma_atom_name
+                and _atom_matches_site(
+                    atom,
+                    chain_id=chain_id,
+                    auth_seq_id=gamma_auth_seq_id,
+                    label_seq_id=gamma_label_seq_id,
+                )
+            ]
+            if not gamma_atoms:
+                gamma_atoms = [
+                    atom
+                    for atom in atoms
+                    if atom.get("group_PDB") == "HETATM"
+                    and _atom_code(atom) == gamma_code
+                    and _atom_name(atom) == gamma_atom_name
+                    and (not chain_id or chain_id in _label_atom_chain_ids(atom))
+                ]
+            histidine_atoms = []
+            for residue in chain_mapping.get("catalytic_histidine_residues", []) or []:
+                if not isinstance(residue, dict):
+                    continue
+                residue_chain = str(
+                    residue.get("auth_asym_id") or residue.get("label_asym_id") or chain_id
+                )
+                auth_seq_id = str(residue.get("auth_seq_id") or "")
+                label_seq_id = str(residue.get("label_seq_id") or "")
+                residue_code = str(residue.get("residue_code") or "HIS").upper()
+                for atom in atoms:
+                    if atom.get("group_PDB") not in {"ATOM", "HETATM"}:
+                        continue
+                    if _atom_name(atom) not in histidine_atom_names:
+                        continue
+                    if not _atom_matches_site(
+                        atom,
+                        chain_id=residue_chain,
+                        auth_seq_id=auth_seq_id,
+                        label_seq_id=label_seq_id,
+                        residue_code=residue_code,
+                    ):
+                        continue
+                    histidine_atoms.append(atom)
+            hydroxyl_atoms = [
+                atom
+                for atom in atoms
+                if atom.get("group_PDB") == "ATOM"
+                and _atom_code(atom) in hydroxyl_atom_names
+                and _atom_name(atom) in hydroxyl_atom_names.get(_atom_code(atom), set())
+                and (not chain_id or chain_id in _label_atom_chain_ids(atom))
+            ]
+            for gamma_atom in gamma_atoms:
+                gamma_point = _atom_point(gamma_atom)
+                for histidine_atom in histidine_atoms:
+                    histidine_point = _atom_point(histidine_atom)
+                    histidine_distance_rows.append(
+                        {
+                            "chain_id": chain_id,
+                            "gamma_ligand_code": _atom_code(gamma_atom),
+                            "gamma_atom_name": _atom_name(gamma_atom),
+                            "gamma_ligand_auth_seq_id": str(
+                                gamma_atom.get("auth_seq_id")
+                                or gamma_atom.get("label_seq_id")
+                            ),
+                            "histidine_residue_code": _atom_code(histidine_atom),
+                            "histidine_atom_name": _atom_name(histidine_atom),
+                            "histidine_chain_name": str(
+                                histidine_atom.get("auth_asym_id")
+                                or histidine_atom.get("label_asym_id")
+                            ),
+                            "histidine_resid": str(
+                                histidine_atom.get("auth_seq_id")
+                                or histidine_atom.get("label_seq_id")
+                            ),
+                            "distance_angstrom": round(
+                                _point_distance(gamma_point, histidine_point), 3
+                            ),
+                        }
+                    )
+                for hydroxyl_atom in hydroxyl_atoms:
+                    hydroxyl_point = _atom_point(hydroxyl_atom)
+                    hydroxyl_distance_rows.append(
+                        {
+                            "chain_id": chain_id,
+                            "gamma_ligand_code": _atom_code(gamma_atom),
+                            "gamma_atom_name": _atom_name(gamma_atom),
+                            "hydroxyl_residue_code": _atom_code(hydroxyl_atom),
+                            "hydroxyl_atom_name": _atom_name(hydroxyl_atom),
+                            "hydroxyl_chain_name": str(
+                                hydroxyl_atom.get("auth_asym_id")
+                                or hydroxyl_atom.get("label_asym_id")
+                            ),
+                            "hydroxyl_resid": str(
+                                hydroxyl_atom.get("auth_seq_id")
+                                or hydroxyl_atom.get("label_seq_id")
+                            ),
+                            "distance_angstrom": round(
+                                _point_distance(gamma_point, hydroxyl_point), 3
+                            ),
+                        }
+                    )
+        histidine_distance_rows.sort(
+            key=lambda row: (
+                float(row["distance_angstrom"]),
+                str(row["chain_id"]),
+                str(row["histidine_resid"]),
+                str(row["histidine_atom_name"]),
+            )
+        )
+        hydroxyl_distance_rows.sort(
+            key=lambda row: (
+                float(row["distance_angstrom"]),
+                str(row["chain_id"]),
+                str(row["hydroxyl_residue_code"]),
+                str(row["hydroxyl_resid"]),
+            )
+        )
+        if histidine_distance_rows:
+            status = "homolog_gamma_to_mapped_histidine_distance_measured_review_only"
+            blockers = [
+                "homolog_control_not_hydroxyl_acceptor_axis",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+            measured = True
+        else:
+            status = "homolog_mapped_histidine_atom_missing"
+            blockers = ["homolog_mapped_histidine_atom_missing"]
+            measured = False
+        nearest_histidine_distance = (
+            histidine_distance_rows[0]["distance_angstrom"]
+            if histidine_distance_rows
+            else None
+        )
+        nearest_hydroxyl_distance = (
+            hydroxyl_distance_rows[0]["distance_angstrom"]
+            if hydroxyl_distance_rows
+            else None
+        )
+        threshold_hits = [
+            threshold
+            for threshold in thresholds
+            if nearest_histidine_distance is not None
+            and float(nearest_histidine_distance) <= threshold
+        ]
+        hydroxyl_threshold_hits = [
+            threshold
+            for threshold in thresholds
+            if nearest_hydroxyl_distance is not None
+            and float(nearest_hydroxyl_distance) <= threshold
+        ]
+        status_counts[status] += 1
+        rows.append(
+            {
+                "pdb_id": pdb_id,
+                "family_id": target_family_id,
+                "family_name": family_name,
+                "source_entry_ids": mapping_row.get("source_entry_ids", []),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "structure_title": mapping_row.get("structure_title"),
+                "fetch_status": fetch_status,
+                "gamma_capable_nucleotide_codes": mapping_row.get(
+                    "gamma_capable_nucleotide_codes", []
+                ),
+                "metal_ligand_codes": mapping_row.get("metal_ligand_codes", []),
+                "mapped_chain_count": mapping_row.get("mapped_chain_count"),
+                "gamma_atom_count": len(
+                    {
+                        (
+                            row.get("chain_id"),
+                            row.get("gamma_ligand_code"),
+                            row.get("gamma_ligand_auth_seq_id"),
+                        )
+                        for row in histidine_distance_rows
+                    }
+                ),
+                "mapped_histidine_atom_distance_count": len(histidine_distance_rows),
+                "nearest_gamma_to_mapped_histidine_distance_angstrom": (
+                    nearest_histidine_distance
+                ),
+                "candidate_threshold_hits_angstrom": threshold_hits,
+                "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": (
+                    nearest_hydroxyl_distance
+                ),
+                "same_chain_hydroxyl_candidate_threshold_hits_angstrom": (
+                    hydroxyl_threshold_hits
+                ),
+                "histidine_distance_rows": histidine_distance_rows[
+                    : max(0, max_reported_distance_rows)
+                ],
+                "same_chain_hydroxyl_distance_rows": hydroxyl_distance_rows[
+                    : max(0, max_reported_distance_rows)
+                ],
+                "measurement_status": status,
+                "gamma_to_mapped_histidine_distance_measured": measured,
+                "negative_control_distance_distribution_ready": False,
+                "threshold_calibrated": False,
+                "selected_threshold_angstrom": None,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "measurement_blockers": blockers,
+                "control_use_status": (
+                    "homolog_histidine_axis_counterevidence_review_only_not_calibration"
+                ),
+            }
+        )
+
+    measured_rows = [
+        row
+        for row in rows
+        if row.get("nearest_gamma_to_mapped_histidine_distance_angstrom") is not None
+    ]
+    measured_histidine_distances = [
+        float(row["nearest_gamma_to_mapped_histidine_distance_angstrom"])
+        for row in measured_rows
+    ]
+    measured_hydroxyl_distances = [
+        float(row["nearest_gamma_to_same_chain_hydroxyl_distance_angstrom"])
+        for row in rows
+        if row.get("nearest_gamma_to_same_chain_hydroxyl_distance_angstrom") is not None
+    ]
+    threshold_collision_rows = []
+    for threshold in thresholds:
+        histidine_hit_pdb_ids = [
+            str(row.get("pdb_id"))
+            for row in measured_rows
+            if float(
+                row.get("nearest_gamma_to_mapped_histidine_distance_angstrom") or 0.0
+            )
+            <= threshold
+        ]
+        hydroxyl_hit_pdb_ids = [
+            str(row.get("pdb_id"))
+            for row in rows
+            if row.get("nearest_gamma_to_same_chain_hydroxyl_distance_angstrom")
+            is not None
+            and float(row["nearest_gamma_to_same_chain_hydroxyl_distance_angstrom"])
+            <= threshold
+        ]
+        threshold_collision_rows.append(
+            {
+                "threshold_angstrom": threshold,
+                "mapped_histidine_hit_count": len(set(histidine_hit_pdb_ids)),
+                "mapped_histidine_hit_pdb_ids": sorted(set(histidine_hit_pdb_ids)),
+                "same_chain_hydroxyl_hit_count": len(set(hydroxyl_hit_pdb_ids)),
+                "same_chain_hydroxyl_hit_pdb_ids": sorted(set(hydroxyl_hit_pdb_ids)),
+                "selection_status": (
+                    "not_a_hydroxyl_acceptor_calibration_threshold"
+                ),
+            }
+        )
+
+    lowest_candidate_collision_count = 0
+    if 6.0 in thresholds:
+        lowest_candidate_collision_count = sum(
+            1 for distance in measured_histidine_distances if distance <= 6.0
+        )
+    return {
+        "metadata": {
+            "method": "epk_sibling_control_homolog_gamma_distance_sample",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "reviewed_sibling_family_id": target_family_id,
+            "reviewed_sibling_family_name": family_name,
+            "source_epk_sibling_control_homolog_mapping_review_method": (
+                mapping_meta.get("method")
+            ),
+            "source_ready_for_future_distance_measurement_count": (
+                mapping_meta.get("ready_for_future_distance_measurement_count")
+            ),
+            "ready_input_homolog_structure_count": ready_input_count,
+            "row_count": len(rows),
+            "measured_homolog_structure_count": len(measured_rows),
+            "measurement_status_counts": dict(sorted(status_counts.items())),
+            "fetched_pdb_ids": sorted(fetched_pdb_ids),
+            "candidate_thresholds_angstrom": thresholds,
+            "threshold_collision_rows": threshold_collision_rows,
+            "lowest_covering_candidate_homolog_histidine_hit_count": (
+                lowest_candidate_collision_count
+            ),
+            "observed_homolog_histidine_distance_min_angstrom": (
+                min(measured_histidine_distances)
+                if measured_histidine_distances
+                else None
+            ),
+            "observed_homolog_histidine_distance_max_angstrom": (
+                max(measured_histidine_distances)
+                if measured_histidine_distances
+                else None
+            ),
+            "observed_homolog_same_chain_hydroxyl_distance_min_angstrom": (
+                min(measured_hydroxyl_distances) if measured_hydroxyl_distances else None
+            ),
+            "observed_homolog_same_chain_hydroxyl_distance_max_angstrom": (
+                max(measured_hydroxyl_distances) if measured_hydroxyl_distances else None
+            ),
+            "homolog_gamma_distance_sample_started": bool(measured_rows),
+            "homolog_control_axis": "mapped_phosphohistidine_site_not_hydroxyl_acceptor",
+            "negative_control_distance_distribution_ready": False,
+            "threshold_selection_status": (
+                "blocked_homolog_histidine_axis_requires_counterevidence_rule"
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact measures gamma-to-mapped catalytic histidine "
+                "distances for sourced NDK homolog sibling controls. It is "
+                "counter-axis evidence for future ePK scorer design, not a "
+                "hydroxyl-acceptor threshold, ePK score, registry edit, "
+                "external hard-negative re-audit, or label import."
+            ),
+            "next_actions": [
+                "add a future ePK counter-axis that distinguishes hydroxyl acceptors from phosphohistidine NDK controls",
+                "source metal-supported gamma-capable controls for ATP-grasp, PfkA, and PfkB",
+                "keep external hard-negative re-audit closed until a real ePK score exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("family_id")),
+                str(row.get("pdb_id")),
+            ),
+        ),
+        "warnings": [
+            (
+                "NDK homolog distances are useful negative-control "
+                "counterevidence, but they are not clean held-out performance "
+                "or countable ePK label evidence."
+            )
+        ],
+    }
+
+
+def build_epk_review_only_scoring_prototype(
+    *,
+    epk_text_free_local_axis_prototype: dict[str, Any],
+    epk_gamma_geometry_measurement_sample: dict[str, Any],
+    epk_acceptor_identity_review: dict[str, Any],
+    epk_sibling_control_homolog_gamma_distance_sample: dict[str, Any],
+    external_hard_negative_inverse_gate_scores: list[dict[str, Any]] | None = None,
+    candidate_threshold_angstrom: float = 6.0,
+    imported_external_entry_ids: list[str] | None = None,
+) -> dict[str, Any]:
+    """Build a fail-closed review-only ePK prototype scoring surface."""
+
+    axis_meta = epk_text_free_local_axis_prototype.get("metadata", {})
+    if not isinstance(axis_meta, dict):
+        axis_meta = {}
+    gamma_meta = epk_gamma_geometry_measurement_sample.get("metadata", {})
+    if not isinstance(gamma_meta, dict):
+        gamma_meta = {}
+    identity_meta = epk_acceptor_identity_review.get("metadata", {})
+    if not isinstance(identity_meta, dict):
+        identity_meta = {}
+    homolog_meta = epk_sibling_control_homolog_gamma_distance_sample.get(
+        "metadata", {}
+    )
+    if not isinstance(homolog_meta, dict):
+        homolog_meta = {}
+
+    target_fingerprint_id = str(
+        axis_meta.get("target_fingerprint_id")
+        or gamma_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    imported_external_ids = set(
+        imported_external_entry_ids
+        or ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"]
+    )
+    gamma_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_gamma_geometry_measurement_sample.get("rows", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    identity_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_acceptor_identity_review.get("rows", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    positive_full_axis_count = 0
+    for axis_row in epk_text_free_local_axis_prototype.get("rows", []) or []:
+        if not isinstance(axis_row, dict):
+            continue
+        entry_id = str(axis_row.get("entry_id") or "")
+        vector = axis_row.get("prototype_vector", {})
+        if not isinstance(vector, dict):
+            vector = {}
+        gamma_row = gamma_by_entry.get(entry_id, {})
+        identity_row = identity_by_entry.get(entry_id, {})
+        gamma_distance = gamma_row.get("nearest_gamma_to_hydroxyl_distance_angstrom")
+        gamma_axis_present = False
+        try:
+            gamma_axis_present = (
+                gamma_distance is not None
+                and float(gamma_distance) <= float(candidate_threshold_angstrom)
+            )
+        except (TypeError, ValueError):
+            gamma_axis_present = False
+        acceptor_axis_present = bool(
+            identity_row.get("acceptor_identity_source_supported")
+        )
+        axis_values = {
+            "local_adenine_nucleotide_ligand": int(
+                bool(vector.get("local_adenine_nucleotide_ligand"))
+            ),
+            "local_metal_ligand": int(bool(vector.get("local_metal_ligand"))),
+            "catalytic_acid_base_residue": int(
+                bool(vector.get("catalytic_acid_base_residue"))
+            ),
+            "gamma_to_acceptor_distance_within_candidate_cutoff": int(
+                gamma_axis_present
+            ),
+            "source_supported_hydroxyl_acceptor_identity": int(
+                acceptor_axis_present
+            ),
+        }
+        score = round(sum(axis_values.values()) / len(axis_values), 4)
+        all_axes = all(value == 1 for value in axis_values.values())
+        if all_axes:
+            decision = "candidate_positive_signal_review_only_not_calibrated"
+            positive_full_axis_count += 1
+            blockers = [
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ]
+        else:
+            decision = "abstain_missing_required_axis_review_only"
+            blockers = [
+                axis_id
+                for axis_id, value in axis_values.items()
+                if value == 0
+            ] + [
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "current_epk_positive_prototype",
+                "entry_id": entry_id,
+                "entry_name": axis_row.get("entry_name"),
+                "pdb_id": axis_row.get("pdb_id") or gamma_row.get("pdb_id"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "text_free_inputs_only": True,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "prototype_axis_values": axis_values,
+                "review_only_prototype_score": score,
+                "prototype_decision": decision,
+                "nearest_gamma_to_hydroxyl_distance_angstrom": gamma_distance,
+                "acceptor_identity_review_status": identity_row.get(
+                    "acceptor_identity_review_status"
+                ),
+                "epk_score_computed": False,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    homolog_rows = [
+        row
+        for row in epk_sibling_control_homolog_gamma_distance_sample.get("rows", [])
+        or []
+        if isinstance(row, dict)
+    ]
+    for homolog_row in homolog_rows:
+        if (
+            homolog_row.get("measurement_status")
+            != "homolog_gamma_to_mapped_histidine_distance_measured_review_only"
+        ):
+            continue
+        decision = "blocked_by_phosphohistidine_counteraxis_review_only"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "sibling_homolog_negative_control",
+                "entry_id": None,
+                "pdb_id": homolog_row.get("pdb_id"),
+                "family_id": homolog_row.get("family_id"),
+                "family_name": homolog_row.get("family_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "text_free_inputs_only": True,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "prototype_axis_values": {
+                    "gamma_to_mapped_histidine_counteraxis": 1,
+                    "source_supported_hydroxyl_acceptor_identity": 0,
+                },
+                "review_only_prototype_score": 0.0,
+                "prototype_decision": decision,
+                "nearest_gamma_to_mapped_histidine_distance_angstrom": (
+                    homolog_row.get(
+                        "nearest_gamma_to_mapped_histidine_distance_angstrom"
+                    )
+                ),
+                "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": (
+                    homolog_row.get(
+                        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom"
+                    )
+                ),
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "homolog_control_not_hydroxyl_acceptor_axis",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ],
+            }
+        )
+
+    external_rows_by_id: dict[str, dict[str, Any]] = {}
+    for artifact in external_hard_negative_inverse_gate_scores or []:
+        if not isinstance(artifact, dict):
+            continue
+        for row in artifact.get("rows", []) or []:
+            if not isinstance(row, dict):
+                continue
+            entry_id = str(row.get("entry_id") or "")
+            if entry_id in imported_external_ids:
+                external_rows_by_id[entry_id] = row
+    for entry_id in sorted(imported_external_ids):
+        source_row = external_rows_by_id.get(entry_id, {})
+        inverse_gate = source_row.get("out_of_scope_inverse_gate", {})
+        if not isinstance(inverse_gate, dict):
+            inverse_gate = {}
+        decision = "external_hard_negative_abstain_missing_epk_axes_review_only"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "imported_external_hard_negative",
+                "entry_id": entry_id,
+                "accession": source_row.get("accession")
+                or entry_id.split(":", 1)[-1],
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "text_free_inputs_only": True,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "prototype_axis_values": {
+                    "local_adenine_nucleotide_ligand": 0,
+                    "local_metal_ligand": 0,
+                    "catalytic_acid_base_residue": 0,
+                    "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+                    "source_supported_hydroxyl_acceptor_identity": 0,
+                },
+                "review_only_prototype_score": 0.0,
+                "prototype_decision": decision,
+                "source_inverse_gate_status": inverse_gate.get("inverse_gate_status"),
+                "source_max_current_fingerprint_score": inverse_gate.get(
+                    "max_current_fingerprint_score"
+                ),
+                "active_site_feature_count": source_row.get("active_site_feature_count"),
+                "coordinate_path": source_row.get("coordinate_path"),
+                "epk_score_computed": False,
+                "remaining_blockers": [
+                    "external_epk_specific_axes_not_materialized",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "threshold_not_calibrated_against_negative_controls",
+                ],
+            }
+        )
+
+    external_nonhit_count = sum(
+        1
+        for row in rows
+        if row.get("row_type") == "imported_external_hard_negative"
+        and row.get("review_only_prototype_score") == 0.0
+    )
+    prototype_failed_closed = True
+    return {
+        "metadata": {
+            "method": "epk_review_only_scoring_prototype",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_text_free_local_axis_prototype_method": axis_meta.get(
+                "method"
+            ),
+            "source_epk_gamma_geometry_measurement_sample_method": gamma_meta.get(
+                "method"
+            ),
+            "source_epk_acceptor_identity_review_method": identity_meta.get(
+                "method"
+            ),
+            "source_epk_sibling_control_homolog_gamma_distance_sample_method": (
+                homolog_meta.get("method")
+            ),
+            "candidate_threshold_angstrom": candidate_threshold_angstrom,
+            "row_count": len(rows),
+            "current_positive_prototype_row_count": sum(
+                1
+                for row in rows
+                if row.get("row_type") == "current_epk_positive_prototype"
+            ),
+            "current_positive_full_axis_count": positive_full_axis_count,
+            "sibling_homolog_counteraxis_row_count": sum(
+                1
+                for row in rows
+                if row.get("row_type") == "sibling_homolog_negative_control"
+            ),
+            "imported_external_hard_negative_row_count": sum(
+                1
+                for row in rows
+                if row.get("row_type") == "imported_external_hard_negative"
+            ),
+            "imported_external_hard_negative_nonhit_count": external_nonhit_count,
+            "prototype_decision_counts": dict(sorted(decision_counts.items())),
+            "prototype_gate_status": "fail_closed_review_only",
+            "prototype_failed_closed": prototype_failed_closed,
+            "prototype_failure_axes": [
+                "negative_control_distribution_not_calibrated",
+                "complete_gamma_geometry_missing_for_m_csa_640",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact evaluates a deliberately fail-closed ePK "
+                "prototype surface. It records provisional axis scores, "
+                "NDK phosphohistidine counter-axis blockers, and imported "
+                "external hard-negative abstentions, but it is not a calibrated "
+                "ePK score, production fingerprint, registry edit, or label gate."
+            ),
+            "next_actions": [
+                "materialize family-specific mapping for PfkB, PfkA, and ATP-grasp source queues",
+                "turn the NDK histidine counter-axis into an explicit scorer rule before any threshold claim",
+                "run a real ePK external hard-negative re-audit only after the scorer is calibrated",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type")),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Prototype scores in this artifact are review-only diagnostics "
+                "and must not be treated as held-out performance or countable "
+                "fingerprint evidence."
+            )
+        ],
+    }
+
+
 def build_epk_precount_gate_status(
     *,
     epk_text_free_local_axis_prototype: dict[str, Any],
@@ -12819,6 +13671,7 @@ def build_epk_precount_gate_status(
     | None = None,
     epk_sibling_control_homolog_source_plan: dict[str, Any] | None = None,
     epk_sibling_control_homolog_mapping_review: dict[str, Any] | None = None,
+    epk_sibling_control_homolog_gamma_distance_sample: dict[str, Any] | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -12958,6 +13811,13 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(homolog_mapping_meta, dict):
         homolog_mapping_meta = {}
+    homolog_distance_meta = (
+        epk_sibling_control_homolog_gamma_distance_sample.get("metadata", {})
+        if isinstance(epk_sibling_control_homolog_gamma_distance_sample, dict)
+        else {}
+    )
+    if not isinstance(homolog_distance_meta, dict):
+        homolog_distance_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -13245,6 +14105,28 @@ def build_epk_precount_gate_status(
                             "nucleotide_site_mapped_candidate_count"
                         )
                     ),
+                    "sibling_control_homolog_distance_sample_method": (
+                        homolog_distance_meta.get("method")
+                    ),
+                    "sibling_control_homolog_distance_sample_family_id": (
+                        homolog_distance_meta.get("reviewed_sibling_family_id")
+                    ),
+                    "sibling_control_homolog_distance_sample_measured_count": (
+                        homolog_distance_meta.get("measured_homolog_structure_count")
+                    ),
+                    "sibling_control_homolog_distance_sample_axis": (
+                        homolog_distance_meta.get("homolog_control_axis")
+                    ),
+                    "sibling_control_homolog_distance_min_angstrom": (
+                        homolog_distance_meta.get(
+                            "observed_homolog_histidine_distance_min_angstrom"
+                        )
+                    ),
+                    "sibling_control_homolog_distance_max_angstrom": (
+                        homolog_distance_meta.get(
+                            "observed_homolog_histidine_distance_max_angstrom"
+                        )
+                    ),
                 },
             }
         )
@@ -13331,7 +14213,18 @@ def build_epk_precount_gate_status(
         homolog_mapping_ready_count = int(
             homolog_mapping_meta.get("measurement_ready_homolog_structure_count") or 0
         )
-        if homolog_mapping_ready_count:
+        homolog_distance_measured_count = int(
+            homolog_distance_meta.get("measured_homolog_structure_count") or 0
+        )
+        if homolog_distance_measured_count:
+            next_actions.insert(
+                0,
+                (
+                    f"use measured {homolog_family} homolog histidine-axis "
+                    "counterevidence while sourcing remaining sibling controls"
+                ),
+            )
+        elif homolog_mapping_ready_count:
             next_actions.insert(
                 0,
                 f"measure mapped homolog controls for {homolog_family} in a bounded review-only pass",
@@ -13481,6 +14374,9 @@ def build_epk_precount_gate_status(
             "source_epk_sibling_control_homolog_mapping_review_method": (
                 homolog_mapping_meta.get("method")
             ),
+            "source_epk_sibling_control_homolog_gamma_distance_sample_method": (
+                homolog_distance_meta.get("method")
+            ),
             "negative_control_homolog_mapping_family_id": (
                 homolog_mapping_meta.get("reviewed_sibling_family_id")
             ),
@@ -13495,6 +14391,25 @@ def build_epk_precount_gate_status(
             ),
             "negative_control_homolog_mapping_ready_structure_count": (
                 homolog_mapping_meta.get("measurement_ready_homolog_structure_count")
+            ),
+            "negative_control_homolog_distance_sample_family_id": (
+                homolog_distance_meta.get("reviewed_sibling_family_id")
+            ),
+            "negative_control_homolog_distance_sample_measured_count": (
+                homolog_distance_meta.get("measured_homolog_structure_count")
+            ),
+            "negative_control_homolog_distance_sample_axis": (
+                homolog_distance_meta.get("homolog_control_axis")
+            ),
+            "negative_control_homolog_distance_min_angstrom": (
+                homolog_distance_meta.get(
+                    "observed_homolog_histidine_distance_min_angstrom"
+                )
+            ),
+            "negative_control_homolog_distance_max_angstrom": (
+                homolog_distance_meta.get(
+                    "observed_homolog_histidine_distance_max_angstrom"
+                )
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

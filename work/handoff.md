@@ -50,6 +50,66 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-18T23:53:56Z automation run, the normal direct automation
+protocol passed: the lock was acquired, `git fetch` and
+`git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed,
+startup unit discovery passed, `validate` passed, and
+`validate-artifact-migration --dry-run --check-local-files` again reported 108
+rows, 0 blockers, and `removal_allowed=0`. Phase 1 artifact migration remained
+guard-only and closed.
+
+The scientific work continued the review-only ePK lane without editing
+`mechanism_fingerprints.json`, `curated_mechanism_labels.json`, or any
+external hard-negative label. It added
+`artifacts/v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json`
+plus the CLI builder
+`build-epk-sibling-control-homolog-gamma-distance-sample`. This consumes the
+NDK homolog mapping review and measures all four mapped structures (`1WKL`,
+`3Q86`, `9OAN`, and `9PFY`) as phosphohistidine counter-axis controls. The
+nearest PG-to-mapped-His distances are 2.899-3.339 Angstrom. This is useful
+counterevidence against gamma-distance-only ePK thresholding, but it is not a
+hydroxyl-acceptor calibration threshold, production ePK score, external
+hard-negative re-audit, registry edit, or label import.
+
+The run also opened bounded source-only queues for the remaining missing
+sibling families:
+`artifacts/v3_epk_sibling_control_homolog_source_plan_pfkb_1025.json` finds
+9/10 PfkB candidates with gamma-capable nucleotide plus metal context,
+`artifacts/v3_epk_sibling_control_homolog_source_plan_pfka_1025.json` finds
+5/10 PfkA candidates, and
+`artifacts/v3_epk_sibling_control_homolog_source_plan_atp_grasp_1025.json`
+finds 2/12 ATP-grasp candidates. All of those rows remain mapping-pending,
+measurement-not-ready, non-countable, and review-only.
+
+`artifacts/v3_epk_review_only_scoring_prototype_1025.json` is the first
+fail-closed ePK prototype evaluation surface. It records two uncalibrated
+positive-like rows (`m_csa:35` and `m_csa:246`), one positive abstention
+(`m_csa:640`), four NDK phosphohistidine counter-axis blocks, and three
+imported external hard-negative abstentions for `uniprot:P06744`,
+`uniprot:P78549`, and `uniprot:Q3LXA3`. The artifact deliberately keeps
+`epk_score_computed=false`, `threshold_calibrated=false`, and
+`ready_to_expand_positive_fingerprint_universe=false`.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the
+NDK homolog measurement attached. The lane remains `blocked_review_only`:
+local axes, measured-row acceptor identity review, threshold/control planning,
+non-ready-row exclusion, sibling alternate-control measurement, and NDK
+homolog counter-axis measurement are explicit, but negative-control
+distribution readiness, acceptor-threshold calibration, complete gamma
+geometry, external hard-negative scored re-audit, and registry/label-factory
+extension still fail closed.
+
+Evidence-based confidence call: ePK now has a better falsification surface, not
+a countable fingerprint. The next bounded ePK action should map one remaining
+source queue family-specifically, preferably PfkB first because it has 9
+gamma-plus-metal candidates, then PfkA and ATP-grasp. Do not add the ePK
+registry fingerprint, import ePK labels, score external hard negatives as clean
+held-out performance, or reopen migration Phase 2.
+
+Verification passed with the final 495-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, and `git diff --check`.
+
 As of the 2026-05-18T22:53:24Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and
 `git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed,

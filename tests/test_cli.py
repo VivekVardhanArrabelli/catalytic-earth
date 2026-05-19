@@ -5452,6 +5452,291 @@ class CliTests(unittest.TestCase):
             self.assertFalse(row["negative_control_distance_distribution_ready"])
             self.assertEqual(row["chain_mappings"][0]["chain_id"], "A")
 
+    def test_build_epk_sibling_control_homolog_gamma_distance_sample_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            mapping_review = root / "homolog_mapping_review.json"
+            out = root / "homolog_distance_sample.json"
+            (root / "9PFY.cif").write_text(
+                "\n".join(
+                    [
+                        "data_9PFY",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "HETATM ATP ATP PG PG A A 201 201 0.0 0.0 0.0",
+                        "HETATM MG MG MG MG A A 202 202 1.0 0.0 0.0",
+                        "ATOM HIS HIS ND1 ND1 A A 139 139 3.0 0.0 0.0",
+                        "ATOM HIS HIS NE2 NE2 A A 139 139 3.4 0.0 0.0",
+                        "ATOM SER SER OG OG A A 45 45 6.5 0.0 0.0",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            mapping_review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_sibling_control_homolog_mapping_review",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "reviewed_sibling_family_id": "ndk",
+                            "ready_for_future_distance_measurement_count": 1,
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9PFY",
+                                "family_id": "ndk",
+                                "family_name": "Nucleoside diphosphate kinases",
+                                "source_entry_ids": ["m_csa:637"],
+                                "measurement_ready_for_negative_control": True,
+                                "gamma_capable_nucleotide_codes": ["ATP"],
+                                "metal_ligand_codes": ["MG"],
+                                "mapped_chain_count": 1,
+                                "chain_mappings": [
+                                    {
+                                        "chain_id": "A",
+                                        "gamma_ligand_code": "ATP",
+                                        "gamma_atom_name": "PG",
+                                        "gamma_ligand_auth_seq_id": "201",
+                                        "gamma_ligand_label_seq_id": "201",
+                                        "mapping_status": (
+                                            "mapped_catalytic_histidine_and_nucleotide_site_review_only"
+                                        ),
+                                        "catalytic_histidine_residues": [
+                                            {
+                                                "auth_asym_id": "A",
+                                                "label_asym_id": "A",
+                                                "auth_seq_id": "139",
+                                                "label_seq_id": "139",
+                                                "residue_code": "HIS",
+                                            }
+                                        ],
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-sibling-control-homolog-gamma-distance-sample",
+                    "--epk-sibling-control-homolog-mapping-review",
+                    str(mapping_review),
+                    "--candidate-thresholds",
+                    "4,6,8",
+                    "--cif-dir",
+                    str(root),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            sample = json.loads(out.read_text(encoding="utf-8"))
+            metadata = sample["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_sibling_control_homolog_gamma_distance_sample",
+            )
+            self.assertEqual(metadata["reviewed_sibling_family_id"], "ndk")
+            self.assertEqual(metadata["measured_homolog_structure_count"], 1)
+            self.assertEqual(
+                metadata["homolog_control_axis"],
+                "mapped_phosphohistidine_site_not_hydroxyl_acceptor",
+            )
+            self.assertFalse(metadata["threshold_calibrated"])
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            row = sample["rows"][0]
+            self.assertEqual(
+                row["measurement_status"],
+                "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+            )
+            self.assertEqual(
+                row["nearest_gamma_to_mapped_histidine_distance_angstrom"], 3.0
+            )
+            self.assertEqual(row["candidate_threshold_hits_angstrom"], [4.0, 6.0, 8.0])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_build_epk_review_only_scoring_prototype_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            axis = root / "axis.json"
+            gamma = root / "gamma.json"
+            identity = root / "identity.json"
+            homolog = root / "homolog.json"
+            external = root / "external.json"
+            out = root / "prototype.json"
+            axis.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_text_free_local_axis_prototype",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "entry_name": "phosphorylase kinase",
+                                "pdb_id": "2PHK",
+                                "prototype_vector": {
+                                    "local_adenine_nucleotide_ligand": 1,
+                                    "local_metal_ligand": 1,
+                                    "catalytic_acid_base_residue": 1,
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gamma.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_gamma_geometry_measurement_sample"
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "pdb_id": "2PHK",
+                                "nearest_gamma_to_hydroxyl_distance_angstrom": 3.6,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            identity.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "epk_acceptor_identity_review"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:35",
+                                "acceptor_identity_source_supported": True,
+                                "acceptor_identity_review_status": (
+                                    "measured_acceptor_identity_source_supported_review_only"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            homolog.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_sibling_control_homolog_gamma_distance_sample"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9PFY",
+                                "family_id": "ndk",
+                                "family_name": "Nucleoside diphosphate kinases",
+                                "measurement_status": (
+                                    "homolog_gamma_to_mapped_histidine_distance_measured_review_only"
+                                ),
+                                "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.0,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            external.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "uniprot:P78549",
+                                "accession": "P78549",
+                                "active_site_feature_count": 2,
+                                "out_of_scope_inverse_gate": {
+                                    "inverse_gate_status": "passed",
+                                    "max_current_fingerprint_score": 0.115,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-review-only-scoring-prototype",
+                    "--epk-text-free-local-axis-prototype",
+                    str(axis),
+                    "--epk-gamma-geometry-measurement-sample",
+                    str(gamma),
+                    "--epk-acceptor-identity-review",
+                    str(identity),
+                    "--epk-sibling-control-homolog-gamma-distance-sample",
+                    str(homolog),
+                    "--external-hard-negative-inverse-gate-scores",
+                    str(external),
+                    "--imported-external-entry-ids",
+                    "uniprot:P78549",
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            prototype = json.loads(out.read_text(encoding="utf-8"))
+            metadata = prototype["metadata"]
+            self.assertEqual(metadata["method"], "epk_review_only_scoring_prototype")
+            self.assertEqual(metadata["prototype_gate_status"], "fail_closed_review_only")
+            self.assertEqual(metadata["current_positive_full_axis_count"], 1)
+            self.assertEqual(metadata["sibling_homolog_counteraxis_row_count"], 1)
+            self.assertEqual(metadata["imported_external_hard_negative_row_count"], 1)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            decisions = {row["prototype_decision"] for row in prototype["rows"]}
+            self.assertIn(
+                "blocked_by_phosphohistidine_counteraxis_review_only", decisions
+            )
+            self.assertIn(
+                "external_hard_negative_abstain_missing_epk_axes_review_only",
+                decisions,
+            )
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

@@ -1275,6 +1275,22 @@ class LeakageClosureTests(unittest.TestCase):
             metadata["negative_control_homolog_mapping_ready_structure_count"],
             4,
         )
+        self.assertEqual(
+            metadata[
+                "source_epk_sibling_control_homolog_gamma_distance_sample_method"
+            ],
+            "epk_sibling_control_homolog_gamma_distance_sample",
+        )
+        self.assertEqual(
+            metadata["negative_control_homolog_distance_sample_family_id"], "ndk"
+        )
+        self.assertEqual(
+            metadata["negative_control_homolog_distance_sample_measured_count"], 4
+        )
+        self.assertEqual(
+            metadata["negative_control_homolog_distance_sample_axis"],
+            "mapped_phosphohistidine_site_not_hydroxyl_acceptor",
+        )
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
         self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
         self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
@@ -1505,6 +1521,200 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertTrue(row["chain_mappings"])
             self.assertTrue(row["catalytic_histidine_mapping_verified"])
             self.assertTrue(row["nucleotide_site_mapping_verified"])
+
+    def test_epk_ndk_homolog_gamma_distance_sample_stays_review_only(self) -> None:
+        sample = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json"
+        )
+        metadata = sample["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_sibling_control_homolog_gamma_distance_sample"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_sibling_family_id"], "ndk")
+        self.assertEqual(
+            metadata["source_epk_sibling_control_homolog_mapping_review_method"],
+            "epk_sibling_control_homolog_mapping_review",
+        )
+        self.assertEqual(metadata["ready_input_homolog_structure_count"], 4)
+        self.assertEqual(metadata["measured_homolog_structure_count"], 4)
+        self.assertEqual(
+            metadata["measurement_status_counts"],
+            {"homolog_gamma_to_mapped_histidine_distance_measured_review_only": 4},
+        )
+        self.assertEqual(
+            metadata["homolog_control_axis"],
+            "mapped_phosphohistidine_site_not_hydroxyl_acceptor",
+        )
+        self.assertGreaterEqual(
+            metadata["observed_homolog_histidine_distance_min_angstrom"], 2.8
+        )
+        self.assertLessEqual(
+            metadata["observed_homolog_histidine_distance_max_angstrom"], 3.4
+        )
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        statuses = {row["pdb_id"]: row["measurement_status"] for row in sample["rows"]}
+        self.assertEqual(
+            set(statuses.values()),
+            {"homolog_gamma_to_mapped_histidine_distance_measured_review_only"},
+        )
+        self.assertEqual(set(statuses), {"1WKL", "3Q86", "9OAN", "9PFY"})
+        for row in sample["rows"]:
+            self.assertTrue(row["gamma_to_mapped_histidine_distance_measured"])
+            self.assertFalse(row["negative_control_distance_distribution_ready"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertIn(
+                "homolog_control_not_hydroxyl_acceptor_axis",
+                row["measurement_blockers"],
+            )
+
+    def test_epk_remaining_homolog_source_plans_stay_review_only(self) -> None:
+        expectations = {
+            "pfkb": {
+                "path": "v3_epk_sibling_control_homolog_source_plan_pfkb_1025.json",
+                "source_entry_ids": ["m_csa:663", "m_csa:670"],
+                "candidate_pdb_count": 10,
+                "gamma_capable_candidate_count": 9,
+                "metal_supported_gamma_candidate_count": 9,
+                "status_counts": {
+                    "candidate_gamma_metal_source_review_only": 9,
+                    "candidate_not_gamma_capable_source": 1,
+                },
+            },
+            "pfka": {
+                "path": "v3_epk_sibling_control_homolog_source_plan_pfka_1025.json",
+                "source_entry_ids": ["m_csa:365"],
+                "candidate_pdb_count": 10,
+                "gamma_capable_candidate_count": 5,
+                "metal_supported_gamma_candidate_count": 5,
+                "status_counts": {
+                    "candidate_gamma_metal_source_review_only": 5,
+                    "candidate_not_gamma_capable_source": 2,
+                    "candidate_product_or_partial_source_not_gamma_capable": 3,
+                },
+            },
+            "atp_grasp": {
+                "path": (
+                    "v3_epk_sibling_control_homolog_source_plan_atp_grasp_1025.json"
+                ),
+                "source_entry_ids": ["m_csa:310", "m_csa:498"],
+                "candidate_pdb_count": 12,
+                "gamma_capable_candidate_count": 2,
+                "metal_supported_gamma_candidate_count": 2,
+                "status_counts": {
+                    "candidate_gamma_metal_source_review_only": 2,
+                    "candidate_product_or_partial_source_not_gamma_capable": 10,
+                },
+            },
+        }
+        for family_id, expected in expectations.items():
+            with self.subTest(family_id=family_id):
+                plan = _load_json(ROOT / "artifacts" / expected["path"])
+                metadata = plan["metadata"]
+                self.assertEqual(
+                    metadata["method"], "epk_sibling_control_homolog_source_plan"
+                )
+                self.assertTrue(metadata["review_only"])
+                self.assertEqual(metadata["reviewed_sibling_family_id"], family_id)
+                self.assertEqual(
+                    metadata["source_entry_ids"], expected["source_entry_ids"]
+                )
+                self.assertEqual(
+                    metadata["candidate_pdb_count"],
+                    expected["candidate_pdb_count"],
+                )
+                self.assertEqual(
+                    metadata["gamma_capable_candidate_count"],
+                    expected["gamma_capable_candidate_count"],
+                )
+                self.assertEqual(
+                    metadata["metal_supported_gamma_candidate_count"],
+                    expected["metal_supported_gamma_candidate_count"],
+                )
+                self.assertEqual(metadata["measurement_ready_homolog_structure_count"], 0)
+                self.assertEqual(metadata["catalytic_mapping_verified_count"], 0)
+                self.assertFalse(
+                    metadata["negative_control_distance_distribution_ready"]
+                )
+                self.assertFalse(metadata["threshold_calibrated"])
+                self.assertFalse(metadata["epk_score_computed"])
+                self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+                self.assertFalse(metadata["ready_to_run_epk_scorer"])
+                self.assertFalse(
+                    metadata["ready_to_expand_positive_fingerprint_universe"]
+                )
+                self.assertFalse(metadata["fingerprint_registry_edited"])
+                self.assertFalse(metadata["curated_label_registry_edited"])
+                self.assertEqual(metadata["countable_label_candidate_count"], 0)
+                self.assertEqual(
+                    metadata["source_candidate_status_counts"],
+                    expected["status_counts"],
+                )
+                for row in plan["rows"]:
+                    self.assertFalse(row["measurement_ready_for_negative_control"])
+                    self.assertFalse(row["countable_label_candidate"])
+                    self.assertEqual(
+                        row["catalytic_mapping_status"],
+                        "not_mapped_review_pending",
+                    )
+
+    def test_epk_review_only_scoring_prototype_fails_closed(self) -> None:
+        prototype = _load_json(
+            ROOT / "artifacts" / "v3_epk_review_only_scoring_prototype_1025.json"
+        )
+        metadata = prototype["metadata"]
+        self.assertEqual(metadata["method"], "epk_review_only_scoring_prototype")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["prototype_gate_status"], "fail_closed_review_only")
+        self.assertTrue(metadata["prototype_failed_closed"])
+        self.assertEqual(metadata["current_positive_prototype_row_count"], 3)
+        self.assertEqual(metadata["current_positive_full_axis_count"], 2)
+        self.assertEqual(metadata["sibling_homolog_counteraxis_row_count"], 4)
+        self.assertEqual(metadata["imported_external_hard_negative_row_count"], 3)
+        self.assertEqual(metadata["imported_external_hard_negative_nonhit_count"], 3)
+        self.assertEqual(
+            metadata["prototype_decision_counts"],
+            {
+                "abstain_missing_required_axis_review_only": 1,
+                "blocked_by_phosphohistidine_counteraxis_review_only": 4,
+                "candidate_positive_signal_review_only_not_calibrated": 2,
+                "external_hard_negative_abstain_missing_epk_axes_review_only": 3,
+            },
+        )
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        external_rows = [
+            row
+            for row in prototype["rows"]
+            if row["row_type"] == "imported_external_hard_negative"
+        ]
+        self.assertEqual(
+            sorted(row["entry_id"] for row in external_rows),
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        for row in external_rows:
+            self.assertEqual(row["review_only_prototype_score"], 0.0)
+            self.assertEqual(
+                row["prototype_decision"],
+                "external_hard_negative_abstain_missing_epk_axes_review_only",
+            )
 
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:
         adjudication = _load_json(

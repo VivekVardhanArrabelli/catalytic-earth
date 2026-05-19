@@ -83,6 +83,8 @@ from .labels import (
     build_epk_nonready_ligand_repair_plan,
     build_epk_precount_gate_status,
     build_epk_positive_fingerprint_readiness_packet,
+    build_epk_review_only_scoring_prototype,
+    build_epk_sibling_control_homolog_gamma_distance_sample,
     build_epk_sibling_control_homolog_mapping_review,
     build_epk_sibling_control_homolog_source_plan,
     build_epk_sibling_control_repair_review,
@@ -5713,6 +5715,73 @@ def cmd_build_epk_sibling_control_homolog_mapping_review(
     return 0
 
 
+def cmd_build_epk_sibling_control_homolog_gamma_distance_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_sibling_control_homolog_mapping_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_control_homolog_mapping_review = json.load(handle)
+    sample = build_epk_sibling_control_homolog_gamma_distance_sample(
+        epk_sibling_control_homolog_mapping_review=(
+            epk_sibling_control_homolog_mapping_review
+        ),
+        candidate_thresholds_angstrom=[
+            float(value)
+            for value in _split_csv(args.candidate_thresholds)
+            if value
+        ],
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote ePK sibling-control homolog gamma-distance sample to "
+        f"{args.out} (measured="
+        f"{sample['metadata']['measured_homolog_structure_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_review_only_scoring_prototype(args: argparse.Namespace) -> int:
+    with Path(args.epk_text_free_local_axis_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_text_free_local_axis_prototype = json.load(handle)
+    with Path(args.epk_gamma_geometry_measurement_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_gamma_geometry_measurement_sample = json.load(handle)
+    with Path(args.epk_acceptor_identity_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_acceptor_identity_review = json.load(handle)
+    with Path(args.epk_sibling_control_homolog_gamma_distance_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_control_homolog_gamma_distance_sample = json.load(handle)
+    external_score_artifacts = []
+    for score_path in args.external_hard_negative_inverse_gate_scores or []:
+        with Path(score_path).open("r", encoding="utf-8") as handle:
+            external_score_artifacts.append(json.load(handle))
+    prototype = build_epk_review_only_scoring_prototype(
+        epk_text_free_local_axis_prototype=epk_text_free_local_axis_prototype,
+        epk_gamma_geometry_measurement_sample=epk_gamma_geometry_measurement_sample,
+        epk_acceptor_identity_review=epk_acceptor_identity_review,
+        epk_sibling_control_homolog_gamma_distance_sample=(
+            epk_sibling_control_homolog_gamma_distance_sample
+        ),
+        external_hard_negative_inverse_gate_scores=external_score_artifacts,
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        imported_external_entry_ids=_split_csv(args.imported_external_entry_ids),
+    )
+    write_json(Path(args.out), prototype)
+    print(
+        "Wrote ePK review-only scoring prototype to "
+        f"{args.out} (status={prototype['metadata']['prototype_gate_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_nonready_ligand_alternate_structure_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -5862,6 +5931,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_sibling_control_homolog_mapping_review = json.load(handle)
+    epk_sibling_control_homolog_gamma_distance_sample = None
+    if args.epk_sibling_control_homolog_gamma_distance_sample:
+        with Path(args.epk_sibling_control_homolog_gamma_distance_sample).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_sibling_control_homolog_gamma_distance_sample = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -5900,6 +5975,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_sibling_control_homolog_mapping_review=(
             epk_sibling_control_homolog_mapping_review
+        ),
+        epk_sibling_control_homolog_gamma_distance_sample=(
+            epk_sibling_control_homolog_gamma_distance_sample
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -12727,6 +12805,79 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_sibling_control_homolog_mapping_review
     )
 
+    epk_homolog_distance_sample = subparsers.add_parser(
+        "build-epk-sibling-control-homolog-gamma-distance-sample",
+        help="measure review-only homolog sibling-control gamma-to-mapped-site distances",
+    )
+    epk_homolog_distance_sample.add_argument(
+        "--epk-sibling-control-homolog-mapping-review",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_control_homolog_mapping_review.json"
+        ),
+    )
+    epk_homolog_distance_sample.add_argument(
+        "--candidate-thresholds",
+        default="4,6,8",
+        help="comma-separated Angstrom cutoffs to report as review-only hits",
+    )
+    epk_homolog_distance_sample.add_argument("--cif-dir", default=None)
+    epk_homolog_distance_sample.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_control_homolog_gamma_distance_sample.json"
+        ),
+    )
+    epk_homolog_distance_sample.set_defaults(
+        func=cmd_build_epk_sibling_control_homolog_gamma_distance_sample
+    )
+
+    epk_scoring_prototype = subparsers.add_parser(
+        "build-epk-review-only-scoring-prototype",
+        help="evaluate a fail-closed review-only ePK prototype surface",
+    )
+    epk_scoring_prototype.add_argument(
+        "--epk-text-free-local-axis-prototype",
+        default="artifacts/v3_epk_text_free_local_axis_prototype.json",
+    )
+    epk_scoring_prototype.add_argument(
+        "--epk-gamma-geometry-measurement-sample",
+        default="artifacts/v3_epk_gamma_geometry_measurement_sample.json",
+    )
+    epk_scoring_prototype.add_argument(
+        "--epk-acceptor-identity-review",
+        default="artifacts/v3_epk_acceptor_identity_review.json",
+    )
+    epk_scoring_prototype.add_argument(
+        "--epk-sibling-control-homolog-gamma-distance-sample",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_control_homolog_gamma_distance_sample.json"
+        ),
+    )
+    epk_scoring_prototype.add_argument(
+        "--external-hard-negative-inverse-gate-scores",
+        action="append",
+        default=None,
+    )
+    epk_scoring_prototype.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_scoring_prototype.add_argument(
+        "--imported-external-entry-ids",
+        default="uniprot:P06744,uniprot:P78549,uniprot:Q3LXA3",
+    )
+    epk_scoring_prototype.add_argument(
+        "--out",
+        default="artifacts/v3_epk_review_only_scoring_prototype.json",
+    )
+    epk_scoring_prototype.set_defaults(
+        func=cmd_build_epk_review_only_scoring_prototype
+    )
+
     epk_nonready_alternate_plan = subparsers.add_parser(
         "build-epk-nonready-ligand-alternate-structure-plan",
         help="screen review-only alternate structures for non-ready ePK ligand rows",
@@ -12840,6 +12991,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-sibling-control-homolog-mapping-review",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-sibling-control-homolog-gamma-distance-sample",
         default=None,
     )
     epk_precount_gate_status.add_argument(

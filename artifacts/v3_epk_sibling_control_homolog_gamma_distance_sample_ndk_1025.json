@@ -1,0 +1,923 @@
+{
+  "metadata": {
+    "candidate_thresholds_angstrom": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "1WKL",
+      "3Q86",
+      "9OAN",
+      "9PFY"
+    ],
+    "fingerprint_registry_edited": false,
+    "homolog_control_axis": "mapped_phosphohistidine_site_not_hydroxyl_acceptor",
+    "homolog_gamma_distance_sample_started": true,
+    "lowest_covering_candidate_homolog_histidine_hit_count": 4,
+    "measured_homolog_structure_count": 4,
+    "measurement_status_counts": {
+      "homolog_gamma_to_mapped_histidine_distance_measured_review_only": 4
+    },
+    "method": "epk_sibling_control_homolog_gamma_distance_sample",
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "add a future ePK counter-axis that distinguishes hydroxyl acceptors from phosphohistidine NDK controls",
+      "source metal-supported gamma-capable controls for ATP-grasp, PfkA, and PfkB",
+      "keep external hard-negative re-audit closed until a real ePK score exists"
+    ],
+    "observed_homolog_histidine_distance_max_angstrom": 3.339,
+    "observed_homolog_histidine_distance_min_angstrom": 2.899,
+    "observed_homolog_same_chain_hydroxyl_distance_max_angstrom": 5.24,
+    "observed_homolog_same_chain_hydroxyl_distance_min_angstrom": 3.487,
+    "ready_for_label_import": false,
+    "ready_input_homolog_structure_count": 4,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact measures gamma-to-mapped catalytic histidine distances for sourced NDK homolog sibling controls. It is counter-axis evidence for future ePK scorer design, not a hydroxyl-acceptor threshold, ePK score, registry edit, external hard-negative re-audit, or label import.",
+    "reviewed_sibling_family_id": "ndk",
+    "reviewed_sibling_family_name": "Nucleoside diphosphate kinases",
+    "row_count": 4,
+    "selected_threshold_angstrom": null,
+    "source_epk_sibling_control_homolog_mapping_review_method": "epk_sibling_control_homolog_mapping_review",
+    "source_ready_for_future_distance_measurement_count": 4,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "threshold_collision_rows": [
+      {
+        "mapped_histidine_hit_count": 4,
+        "mapped_histidine_hit_pdb_ids": [
+          "1WKL",
+          "3Q86",
+          "9OAN",
+          "9PFY"
+        ],
+        "same_chain_hydroxyl_hit_count": 1,
+        "same_chain_hydroxyl_hit_pdb_ids": [
+          "3Q86"
+        ],
+        "selection_status": "not_a_hydroxyl_acceptor_calibration_threshold",
+        "threshold_angstrom": 4.0
+      },
+      {
+        "mapped_histidine_hit_count": 4,
+        "mapped_histidine_hit_pdb_ids": [
+          "1WKL",
+          "3Q86",
+          "9OAN",
+          "9PFY"
+        ],
+        "same_chain_hydroxyl_hit_count": 4,
+        "same_chain_hydroxyl_hit_pdb_ids": [
+          "1WKL",
+          "3Q86",
+          "9OAN",
+          "9PFY"
+        ],
+        "selection_status": "not_a_hydroxyl_acceptor_calibration_threshold",
+        "threshold_angstrom": 6.0
+      },
+      {
+        "mapped_histidine_hit_count": 4,
+        "mapped_histidine_hit_pdb_ids": [
+          "1WKL",
+          "3Q86",
+          "9OAN",
+          "9PFY"
+        ],
+        "same_chain_hydroxyl_hit_count": 4,
+        "same_chain_hydroxyl_hit_pdb_ids": [
+          "1WKL",
+          "3Q86",
+          "9OAN",
+          "9PFY"
+        ],
+        "selection_status": "not_a_hydroxyl_acceptor_calibration_threshold",
+        "threshold_angstrom": 8.0
+      }
+    ],
+    "threshold_selection_status": "blocked_homolog_histidine_axis_requires_counterevidence_rule"
+  },
+  "rows": [
+    {
+      "candidate_threshold_hits_angstrom": [
+        4.0,
+        6.0,
+        8.0
+      ],
+      "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "gamma_to_mapped_histidine_distance_measured": true,
+      "histidine_distance_rows": [
+        {
+          "chain_id": "B",
+          "distance_angstrom": 3.251,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "856",
+          "gamma_ligand_code": "ATP",
+          "histidine_atom_name": "ND1",
+          "histidine_chain_name": "B",
+          "histidine_resid": "115",
+          "histidine_residue_code": "HIS"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 5.299,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "856",
+          "gamma_ligand_code": "ATP",
+          "histidine_atom_name": "NE2",
+          "histidine_chain_name": "B",
+          "histidine_resid": "115",
+          "histidine_residue_code": "HIS"
+        }
+      ],
+      "mapped_chain_count": 1,
+      "mapped_histidine_atom_distance_count": 2,
+      "measurement_blockers": [
+        "homolog_control_not_hydroxyl_acceptor_axis",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.251,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 5.24,
+      "negative_control_distance_distribution_ready": false,
+      "pdb_id": "1WKL",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "same_chain_hydroxyl_distance_rows": [
+        {
+          "chain_id": "B",
+          "distance_angstrom": 5.24,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "91",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 6.695,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "49",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 9.332,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "117",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 11.017,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "4",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 11.887,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "119",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 12.846,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "108",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 13.482,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "100",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 14.813,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "67",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 15.564,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "66",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 16.003,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "107",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 18.412,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "41",
+          "hydroxyl_residue_code": "SER"
+        }
+      ],
+      "selected_threshold_angstrom": null,
+      "source_entry_ids": [
+        "m_csa:637"
+      ],
+      "structure_title": "Crystal Structure of Nucleoside Diphosphate Kinase from Thermus thermophilus HB8 in Complex with ATP and ADP",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "candidate_threshold_hits_angstrom": [
+        4.0,
+        6.0,
+        8.0
+      ],
+      "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 2,
+      "gamma_capable_nucleotide_codes": [
+        "GTP"
+      ],
+      "gamma_to_mapped_histidine_distance_measured": true,
+      "histidine_distance_rows": [
+        {
+          "chain_id": "A",
+          "distance_angstrom": 2.899,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "158",
+          "gamma_ligand_code": "GTP",
+          "histidine_atom_name": "ND1",
+          "histidine_chain_name": "A",
+          "histidine_resid": "115",
+          "histidine_residue_code": "HIS"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 3.183,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "158",
+          "gamma_ligand_code": "GTP",
+          "histidine_atom_name": "ND1",
+          "histidine_chain_name": "B",
+          "histidine_resid": "115",
+          "histidine_residue_code": "HIS"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 5.036,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "158",
+          "gamma_ligand_code": "GTP",
+          "histidine_atom_name": "NE2",
+          "histidine_chain_name": "A",
+          "histidine_resid": "115",
+          "histidine_residue_code": "HIS"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 5.259,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "158",
+          "gamma_ligand_code": "GTP",
+          "histidine_atom_name": "NE2",
+          "histidine_chain_name": "B",
+          "histidine_resid": "115",
+          "histidine_residue_code": "HIS"
+        }
+      ],
+      "mapped_chain_count": 2,
+      "mapped_histidine_atom_distance_count": 4,
+      "measurement_blockers": [
+        "homolog_control_not_hydroxyl_acceptor_axis",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_mapped_histidine_distance_angstrom": 2.899,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 3.487,
+      "negative_control_distance_distribution_ready": false,
+      "pdb_id": "3Q86",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+        4.0,
+        6.0,
+        8.0
+      ],
+      "same_chain_hydroxyl_distance_rows": [
+        {
+          "chain_id": "A",
+          "distance_angstrom": 3.487,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "49",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 4.132,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "49",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 6.271,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "91",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 7.127,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "91",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 8.945,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "117",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 9.027,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "117",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 9.256,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "122",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 9.838,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "122",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 10.597,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "4",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 10.897,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "4",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 11.731,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "90",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 11.946,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "GTP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "119",
+          "hydroxyl_residue_code": "SER"
+        }
+      ],
+      "selected_threshold_angstrom": null,
+      "source_entry_ids": [
+        "m_csa:637"
+      ],
+      "structure_title": "Crystal structure of Staphylococcus aureus nucleoside diphosphate kinase complexed with GTP",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "candidate_threshold_hits_angstrom": [
+        4.0,
+        6.0,
+        8.0
+      ],
+      "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "gamma_to_mapped_histidine_distance_measured": true,
+      "histidine_distance_rows": [
+        {
+          "chain_id": "B",
+          "distance_angstrom": 3.339,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "201",
+          "gamma_ligand_code": "ANP",
+          "histidine_atom_name": "ND1",
+          "histidine_chain_name": "B",
+          "histidine_resid": "139",
+          "histidine_residue_code": "HIS"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 5.457,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "201",
+          "gamma_ligand_code": "ANP",
+          "histidine_atom_name": "NE2",
+          "histidine_chain_name": "B",
+          "histidine_resid": "139",
+          "histidine_residue_code": "HIS"
+        }
+      ],
+      "mapped_chain_count": 1,
+      "mapped_histidine_atom_distance_count": 2,
+      "measurement_blockers": [
+        "homolog_control_not_hydroxyl_acceptor_axis",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.339,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 4.12,
+      "negative_control_distance_distribution_ready": false,
+      "pdb_id": "9OAN",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "same_chain_hydroxyl_distance_rows": [
+        {
+          "chain_id": "B",
+          "distance_angstrom": 4.12,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "74",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 6.535,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "115",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 9.656,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "141",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 10.138,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "146",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 10.42,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "146",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 10.439,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "30",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 11.292,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "29",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 12.544,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "143",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 12.562,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "114",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 14.09,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "124",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 14.117,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "91",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 16.532,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "66",
+          "hydroxyl_residue_code": "THR"
+        }
+      ],
+      "selected_threshold_angstrom": null,
+      "source_entry_ids": [
+        "m_csa:637"
+      ],
+      "structure_title": "Crystal structure of nucleoside-diphosphate kinase from Cryptosporidium parvum in complex with with guanosine-5'-diphosphate and AMP-PNP",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "candidate_threshold_hits_angstrom": [
+        4.0,
+        6.0,
+        8.0
+      ],
+      "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 2,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "gamma_to_mapped_histidine_distance_measured": true,
+      "histidine_distance_rows": [
+        {
+          "chain_id": "A",
+          "distance_angstrom": 3.005,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "201",
+          "gamma_ligand_code": "ATP",
+          "histidine_atom_name": "ND1",
+          "histidine_chain_name": "A",
+          "histidine_resid": "139",
+          "histidine_residue_code": "HIP"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 3.107,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "201",
+          "gamma_ligand_code": "ATP",
+          "histidine_atom_name": "ND1",
+          "histidine_chain_name": "C",
+          "histidine_resid": "139",
+          "histidine_residue_code": "HIP"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 4.983,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "201",
+          "gamma_ligand_code": "ATP",
+          "histidine_atom_name": "NE2",
+          "histidine_chain_name": "A",
+          "histidine_resid": "139",
+          "histidine_residue_code": "HIP"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 5.046,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "201",
+          "gamma_ligand_code": "ATP",
+          "histidine_atom_name": "NE2",
+          "histidine_chain_name": "C",
+          "histidine_resid": "139",
+          "histidine_residue_code": "HIP"
+        }
+      ],
+      "mapped_chain_count": 2,
+      "mapped_histidine_atom_distance_count": 4,
+      "measurement_blockers": [
+        "homolog_control_not_hydroxyl_acceptor_axis",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.005,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 4.829,
+      "negative_control_distance_distribution_ready": false,
+      "pdb_id": "9PFY",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "same_chain_hydroxyl_distance_rows": [
+        {
+          "chain_id": "A",
+          "distance_angstrom": 4.829,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "74",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 5.058,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "74",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 6.05,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "115",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 6.252,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "115",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 9.118,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "141",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 9.153,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "141",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 9.653,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "146",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 9.717,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "146",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 10.017,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "146",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 10.036,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "146",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 10.624,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "29",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 10.638,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "29",
+          "hydroxyl_residue_code": "THR"
+        }
+      ],
+      "selected_threshold_angstrom": null,
+      "source_entry_ids": [
+        "m_csa:637"
+      ],
+      "structure_title": "Crystal structure of nucleoside-diphosphate kinase Cryptosporidium parvum in complex with ATP",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    }
+  ],
+  "warnings": [
+    "NDK homolog distances are useful negative-control counterevidence, but they are not clean held-out performance or countable ePK label evidence."
+  ]
+}

@@ -403,15 +403,26 @@ Current expectation:
   bounded homolog-source step now targets NDK: four RCSB structures (`1WKL`,
   `3Q86`, `9OAN`, and `9PFY`) carry gamma-capable nucleotide plus Mg context,
   and the follow-on homolog mapping review now maps catalytic histidine plus
-  local nucleotide-site residue context in all four. Those structures are ready
-  only for a future bounded negative-control measurement pass; no calibration
-  distance, threshold, ePK score, external re-audit, registry edit, or label
-  import has occurred. The
+  local nucleotide-site residue context in all four. The bounded NDK homolog
+  distance sample now measures all four mapped structures as phosphohistidine
+  counter-axis evidence with nearest PG-to-His distances from 2.899 to
+  3.339 Angstrom. This reinforces that gamma-distance-only ePK thresholding is
+  unsafe unless a future scorer distinguishes hydroxyl acceptors from
+  phosphohistidine transfer. PfkB, PfkA, and ATP-grasp now have bounded
+  homolog source queues with 9, 5, and 2 gamma-plus-metal candidates,
+  respectively, but all remain catalytic-mapping-pending and
+  measurement-not-ready. A fail-closed review-only ePK prototype now evaluates
+  the provisional axis surface: two current ePK rows have all provisional axes,
+  `m_csa:640` abstains, all four NDK homolog rows are blocked by the
+  phosphohistidine counter-axis, and all three imported external hard negatives
+  abstain with score 0 because ePK-specific axes are not materialized for them.
+  No calibrated threshold, production ePK score, external re-audit, registry
+  edit, or label import has occurred. The
   consolidated ePK pre-count gate status remains `blocked_review_only`:
   local-axis prototyping, measured-row acceptor identity review, and
   gamma-threshold control planning pass, and non-ready-row exclusion plus
   sibling-control alternate measurements, calibration-sufficiency review, and
-  NDK homolog sourcing/mapping are now explicit, while
+  NDK homolog sourcing/mapping/measurement are now explicit, while
   negative-control readiness, threshold calibration, complete gamma geometry,
   external hard-negative re-audit, and registry/gate extension all fail closed.
 - return to factory-gated label scaling toward 10k while preserving quality

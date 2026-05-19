@@ -347,15 +347,34 @@ nucleotide-site residue context, setting
 pass. It still does not measure calibration distances, select thresholds,
 score ePK, edit registries, re-audit external hard negatives, or import
 labels.
+`artifacts/v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json`
+then measures the mapped NDK homolog controls as a review-only
+phosphohistidine counter-axis. All four structures are measured, with nearest
+PG-to-mapped-His distances from 2.899 to 3.339 Angstrom, and the artifact
+keeps threshold selection blocked because this is not a hydroxyl-acceptor
+axis.
+`artifacts/v3_epk_sibling_control_homolog_source_plan_pfkb_1025.json`,
+`artifacts/v3_epk_sibling_control_homolog_source_plan_pfka_1025.json`, and
+`artifacts/v3_epk_sibling_control_homolog_source_plan_atp_grasp_1025.json`
+open bounded source-only queues for the remaining missing sibling families.
+They find 9 PfkB, 5 PfkA, and 2 ATP-grasp gamma-plus-metal candidates,
+respectively, but all remain mapping-pending and measurement-not-ready.
+`artifacts/v3_epk_review_only_scoring_prototype_1025.json` evaluates a
+fail-closed prototype decision surface against current ePK rows, the NDK
+homolog counter-axis, and the three imported external hard negatives. It
+records two uncalibrated positive-like rows, one positive abstention, four NDK
+phosphohistidine counter-axis blocks, and three imported external
+hard-negative abstentions. It deliberately keeps `epk_score_computed=false`,
+`threshold_calibrated=false`, and `ready_to_expand_positive_fingerprint_universe=false`.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
 identity review, gamma-threshold control planning, explicit non-ready-row
 exclusion, sibling alternate-control screening, sibling alternate-control
-distance measurement, calibration-sufficiency review, NDK homolog sourcing, and
-NDK homolog mapping are now explicit review-only preparation; negative-control
-distribution readiness, acceptor-threshold calibration, complete gamma
-geometry, external hard-negative scored re-audit, and registry/label-factory
-extension all remain failed gates.
+distance measurement, calibration-sufficiency review, NDK homolog sourcing,
+NDK homolog mapping, and NDK homolog histidine-axis measurement are now
+explicit review-only preparation; negative-control distribution readiness,
+acceptor-threshold calibration, complete gamma geometry, external hard-negative
+scored re-audit, and registry/label-factory extension all remain failed gates.
 
 ## Active Learning Queue
 

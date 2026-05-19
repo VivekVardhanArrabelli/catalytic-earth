@@ -941,13 +941,37 @@ histidine plus local nucleotide-site context and are ready for a future
 bounded negative-control measurement pass, but no calibration distance,
 threshold, ePK score, external hard-negative re-audit, registry edit, or label
 import is performed.
+`artifacts/v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json`
+performs that bounded NDK measurement as review-only counter-axis evidence.
+All four mapped homolog controls have close PG-to-catalytic-histidine
+distances (2.899-3.339 Angstrom), while the artifact explicitly treats the
+axis as phosphohistidine-site evidence rather than a hydroxyl-acceptor
+threshold. It does not calibrate a threshold, score ePK, run external
+hard-negative re-audit, edit registries, or import labels.
+The next source pass opens mapping-pending homolog queues for the remaining
+missing sibling families:
+`artifacts/v3_epk_sibling_control_homolog_source_plan_pfkb_1025.json` finds
+9/10 PfkB candidates with gamma-capable nucleotide plus metal context,
+`artifacts/v3_epk_sibling_control_homolog_source_plan_pfka_1025.json` finds
+5/10 PfkA candidates, and
+`artifacts/v3_epk_sibling_control_homolog_source_plan_atp_grasp_1025.json`
+finds 2/12 ATP-grasp candidates. These are source queues only; all rows remain
+mapping-pending, measurement-not-ready, non-countable, and review-only.
+`artifacts/v3_epk_review_only_scoring_prototype_1025.json` then evaluates a
+deliberately fail-closed ePK prototype surface. Two current ePK rows have all
+provisional axes under the uncalibrated 6-Angstrom candidate cutoff, `m_csa:640`
+still abstains, all four NDK homolog rows are blocked by the phosphohistidine
+counter-axis, and the three imported external hard negatives
+(`uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`) abstain with
+score 0 because ePK-specific axes are not materialized for them. This is not a
+production ePK score or clean held-out performance evidence.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates the lane as
 `blocked_review_only`: local axes, measured-row acceptor identity review, and
 threshold/control planning pass, non-ready-row exclusion is explicit, and a
-sibling alternate-control measurement surface plus mapped NDK homolog controls
-exist, but negative-control distribution readiness, acceptor threshold
-calibration, complete gamma geometry, external hard-negative scored re-audit,
-and label-factory/registry extension all remain failing gates.
+sibling alternate-control measurement surface plus NDK homolog counter-axis
+measurement exist, but negative-control distribution readiness, acceptor
+threshold calibration, complete gamma geometry, external hard-negative scored
+re-audit, and label-factory/registry extension all remain failing gates.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

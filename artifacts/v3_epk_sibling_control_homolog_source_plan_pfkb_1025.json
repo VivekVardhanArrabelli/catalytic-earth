@@ -1,0 +1,557 @@
+{
+  "family_summaries": [
+    {
+      "candidate_pdb_count": 10,
+      "candidate_pdb_ids": [
+        "1ESQ",
+        "1TZ6",
+        "2C4E",
+        "3CQD",
+        "3IQ0",
+        "3UMO",
+        "3UMP",
+        "3UQD",
+        "3UQE",
+        "6ILT"
+      ],
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_candidate_count": 9,
+      "measurement_ready_homolog_structure_count": 0,
+      "metal_supported_gamma_candidate_count": 9,
+      "next_review_action": "map sibling-family catalytic residues before any distance measurement",
+      "source_entry_count": 2,
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "source_plan_status": "homolog_gamma_metal_candidates_found_mapping_pending"
+    }
+  ],
+  "metadata": {
+    "candidate_pdb_count": 10,
+    "candidate_pdb_ids": [
+      "1ESQ",
+      "1TZ6",
+      "2C4E",
+      "3CQD",
+      "3IQ0",
+      "3UMO",
+      "3UMP",
+      "3UQD",
+      "3UQE",
+      "6ILT"
+    ],
+    "candidate_source_query": "RCSB full_text bounded review-only query: ribokinase ATP magnesium / PfkB ATP magnesium; first 10 candidate entries intersected with PfkB/ribokinase source need",
+    "catalytic_mapping_verified_count": 0,
+    "cif_fetch_status_counts": {
+      "ok": 10
+    },
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "1ESQ",
+      "1TZ6",
+      "2C4E",
+      "3CQD",
+      "3IQ0",
+      "3UMO",
+      "3UMP",
+      "3UQD",
+      "3UQE",
+      "6ILT"
+    ],
+    "fingerprint_registry_edited": false,
+    "gamma_capable_candidate_count": 9,
+    "measurement_ready_homolog_structure_count": 0,
+    "metal_supported_gamma_candidate_count": 9,
+    "method": "epk_sibling_control_homolog_source_plan",
+    "negative_control_distance_distribution_ready": false,
+    "negative_control_homolog_source_started": true,
+    "next_actions": [
+      "map sibling-family catalytic residues before any distance measurement",
+      "keep ePK threshold selection closed while homolog mapping remains pending",
+      "do not score external hard negatives until a real ePK scorer exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact sources external or homolog sibling-control structures after direct graph-linked repair is exhausted. It does not verify catalytic-residue mapping, measure distances, select thresholds, score ePK, edit registries, run external hard-negative re-audits, or import labels.",
+    "reviewed_sibling_family_id": "pfkb",
+    "reviewed_sibling_family_name": "PfkB/ribokinase-family kinases",
+    "row_count": 10,
+    "selected_threshold_angstrom": null,
+    "source_candidate_status_counts": {
+      "candidate_gamma_metal_source_review_only": 9,
+      "candidate_not_gamma_capable_source": 1
+    },
+    "source_entry_count": 2,
+    "source_entry_ids": [
+      "m_csa:663",
+      "m_csa:670"
+    ],
+    "source_epk_missing_sibling_control_post_repair_source_decision_method": "epk_missing_sibling_control_post_repair_source_decision",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "catalytic_mapping_status": "not_mapped_review_pending",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "has_product_or_partial_nucleotide": false,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "observed_ligand_codes": [
+        "ATP",
+        "HOH",
+        "MG",
+        "SO4",
+        "TZP"
+      ],
+      "pdb_id": "1ESQ",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_residue_mapping_not_verified",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "CRYSTAL STRUCTURE OF THIAZOLE KINASE MUTANT (C198S) WITH ATP AND THIAZOLE PHOSPHATE.",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "catalytic_mapping_status": "not_mapped_review_pending",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ACP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "has_product_or_partial_nucleotide": false,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "observed_ligand_codes": [
+        "ACP",
+        "AIS",
+        "HOH",
+        "K",
+        "MG"
+      ],
+      "pdb_id": "1TZ6",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_residue_mapping_not_verified",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of aminoimidazole riboside kinase from Salmonella enterica complexed with aminoimidazole riboside and ATP analog",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "catalytic_mapping_status": "not_mapped_review_pending",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [],
+      "has_gamma_capable_nucleotide": false,
+      "has_metal_ligand": true,
+      "has_product_or_partial_nucleotide": false,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "observed_ligand_codes": [
+        "HOH",
+        "MG"
+      ],
+      "pdb_id": "2C4E",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "candidate_gamma_capable_nucleotide_missing",
+        "candidate_metal_context_unresolved",
+        "homolog_catalytic_residue_mapping_not_verified",
+        "epk_score_not_computed"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_not_gamma_capable_source",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal Structure of Methanocaldococcus jannaschii Nucleoside Kinase - An Archaeal Member of the Ribokinase Family",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "catalytic_mapping_status": "not_mapped_review_pending",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "has_product_or_partial_nucleotide": false,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "observed_ligand_codes": [
+        "ATP",
+        "HOH",
+        "MG"
+      ],
+      "pdb_id": "3CQD",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_residue_mapping_not_verified",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Structure of the tetrameric inhibited form of phosphofructokinase-2 from Escherichia coli",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "catalytic_mapping_status": "not_mapped_review_pending",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "has_product_or_partial_nucleotide": false,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "observed_ligand_codes": [
+        "ATP",
+        "HOH",
+        "MG",
+        "MSE"
+      ],
+      "pdb_id": "3IQ0",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_residue_mapping_not_verified",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of a putative Ribokinase II in complex with ATP and Mg+2 from E.coli",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "catalytic_mapping_status": "not_mapped_review_pending",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "has_product_or_partial_nucleotide": false,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "observed_ligand_codes": [
+        "ATP",
+        "HOH",
+        "K",
+        "MG"
+      ],
+      "pdb_id": "3UMO",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_residue_mapping_not_verified",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 from Escherichia coli in complex with Potassium",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "catalytic_mapping_status": "not_mapped_review_pending",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "has_product_or_partial_nucleotide": false,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "observed_ligand_codes": [
+        "ATP",
+        "CS",
+        "HOH",
+        "MG"
+      ],
+      "pdb_id": "3UMP",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_residue_mapping_not_verified",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 from Escherichia coli in complex with Cesium and ATP",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "catalytic_mapping_status": "not_mapped_review_pending",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "has_product_or_partial_nucleotide": true,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "observed_ligand_codes": [
+        "ADP",
+        "ATP",
+        "F6P",
+        "FBP",
+        "HOH",
+        "MG"
+      ],
+      "pdb_id": "3UQD",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_residue_mapping_not_verified",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 from Escherichia coli in complex with substrates and products",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "catalytic_mapping_status": "not_mapped_review_pending",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "has_product_or_partial_nucleotide": false,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "observed_ligand_codes": [
+        "ATP",
+        "HOH",
+        "MG",
+        "POP"
+      ],
+      "pdb_id": "3UQE",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_residue_mapping_not_verified",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 mutant Y23D from Escherichia coli",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "catalytic_mapping_status": "not_mapped_review_pending",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "fetch_status": "ok",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "has_gamma_capable_nucleotide": true,
+      "has_metal_ligand": true,
+      "has_product_or_partial_nucleotide": false,
+      "measurement_ready_for_negative_control": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "negative_control_distance_distribution_ready": false,
+      "observed_ligand_codes": [
+        "ATP",
+        "HOH",
+        "MG",
+        "NA"
+      ],
+      "pdb_id": "6ILT",
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_catalytic_residue_mapping_not_verified",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "selected_threshold_angstrom": null,
+      "source_candidate_status": "candidate_gamma_metal_source_review_only",
+      "source_entry_ids": [
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "structure_title": "Structure of Arabidopsis thaliana Ribokinase complexed with ATP and Magnesium ion",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    }
+  ],
+  "warnings": [
+    "Homolog source candidates are a review queue only; none are negative-control calibration rows until catalytic mapping and measurement gates are added."
+  ]
+}
