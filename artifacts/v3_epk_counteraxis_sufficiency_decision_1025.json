@@ -1,0 +1,104 @@
+{
+  "decision_rows": [
+    {
+      "blocker": "family_specific_sibling_controls_overlap_candidate_geometry",
+      "candidate_threshold_angstrom": 6.0,
+      "candidate_threshold_hit_count": 16,
+      "candidate_threshold_hit_pdb_ids": [
+        "1ESQ",
+        "1TZ6",
+        "3CQD",
+        "3F5M",
+        "3IQ0",
+        "3R5F",
+        "3UMO",
+        "3UMP",
+        "3UQD",
+        "3UQE",
+        "4XYJ",
+        "5C1O",
+        "5XZ8",
+        "6ILT",
+        "8W2H",
+        "8W2J"
+      ],
+      "decision": "blocks_distance_only_threshold_selection",
+      "decision_axis": "family_specific_sibling_counteraxis",
+      "measured_family_ids": [
+        "atp_grasp",
+        "pfka",
+        "pfkb"
+      ],
+      "review_only": true
+    },
+    {
+      "blocker": "ndk_phosphohistidine_axis_overlaps_gamma_distance_logic",
+      "candidate_threshold_angstrom": 6.0,
+      "counteraxis_row_count": 4,
+      "decision": "requires_non_hydroxyl_acceptor_counterrule",
+      "decision_axis": "phosphohistidine_counteraxis",
+      "measured_family_ids": [
+        "ndk"
+      ],
+      "review_only": true
+    },
+    {
+      "blocker": "external_epk_specific_axes_not_materialized",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "abstain_until_real_epk_axes_exist",
+      "decision_axis": "imported_external_hard_negatives",
+      "external_hard_negative_nonhit_count": 3,
+      "external_hard_negative_row_count": 3,
+      "review_only": true
+    }
+  ],
+  "metadata": {
+    "candidate_threshold_angstrom": 6.0,
+    "countable_label_candidate_count": 0,
+    "counteraxis_sufficient_to_block_distance_only_threshold": true,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_nonhit_count": 3,
+    "external_hard_negative_reaudit_scored": false,
+    "external_hard_negative_row_count": 3,
+    "family_specific_counteraxis_family_ids": [
+      "atp_grasp",
+      "pfka",
+      "pfkb"
+    ],
+    "family_specific_counteraxis_row_count": 16,
+    "family_specific_counteraxis_threshold_hit_count": 16,
+    "fingerprint_registry_edited": false,
+    "method": "epk_counteraxis_sufficiency_decision",
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
+      "materialize complete gamma geometry for m_csa:640 before any positive score",
+      "run external hard-negative re-audit only after a calibrated ePK score exists"
+    ],
+    "phosphohistidine_counteraxis_row_count": 4,
+    "precount_gate_status": "blocked_review_only",
+    "primary_blockers": [
+      "family_specific_sibling_controls_overlap_candidate_geometry",
+      "ndk_phosphohistidine_axis_overlaps_gamma_distance_logic",
+      "external_epk_specific_axes_not_materialized",
+      "label_factory_gate_not_extended_for_epk"
+    ],
+    "prototype_gate_status": "fail_closed_review_only",
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact converts the fail-closed prototype into a counteraxis sufficiency decision. It does not select a threshold, score ePK, edit registries, re-audit external hard negatives, or import labels.",
+    "selected_threshold_angstrom": null,
+    "source_epk_precount_gate_status_method": "epk_precount_gate_status",
+    "source_epk_review_only_scoring_prototype_method": "epk_review_only_scoring_prototype",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "threshold_selection_decision": "do_not_select_threshold"
+  },
+  "warnings": [
+    "Counteraxis sufficiency is a fail-closed negative result; it must not be treated as production fingerprint evidence."
+  ]
+}

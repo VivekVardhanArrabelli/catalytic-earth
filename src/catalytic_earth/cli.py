@@ -68,8 +68,11 @@ from .labels import (
     build_epk_acceptor_geometry_axis_gap_plan,
     build_epk_acceptor_identity_review,
     build_epk_atp_state_evidence_plan,
+    build_epk_counteraxis_sufficiency_decision,
     build_epk_draft_fingerprint_spec,
     build_epk_external_hard_negative_reaudit_plan,
+    build_epk_family_specific_homolog_gamma_distance_sample,
+    build_epk_family_specific_homolog_mapping_review,
     build_epk_family_specific_mapping_template_review,
     build_epk_gamma_geometry_feasibility_plan,
     build_epk_gamma_geometry_measurement_sample,
@@ -5741,6 +5744,66 @@ def cmd_build_epk_family_specific_mapping_template_review(
     return 0
 
 
+def cmd_build_epk_family_specific_homolog_mapping_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_sibling_control_homolog_source_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_control_homolog_source_plan = json.load(handle)
+    with Path(args.epk_family_specific_mapping_template_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_family_specific_mapping_template_review = json.load(handle)
+    review = build_epk_family_specific_homolog_mapping_review(
+        epk_sibling_control_homolog_source_plan=(
+            epk_sibling_control_homolog_source_plan
+        ),
+        epk_family_specific_mapping_template_review=(
+            epk_family_specific_mapping_template_review
+        ),
+        family_id=args.family_id,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+        acid_base_cutoff_angstrom=args.acid_base_cutoff_angstrom,
+        template_context_cutoff_angstrom=args.template_context_cutoff_angstrom,
+        local_metal_cutoff_angstrom=args.local_metal_cutoff_angstrom,
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK family-specific homolog mapping review to "
+        f"{args.out} (ready="
+        f"{review['metadata']['measurement_ready_homolog_structure_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_family_specific_homolog_gamma_distance_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_family_specific_homolog_mapping_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_family_specific_homolog_mapping_review = json.load(handle)
+    sample = build_epk_family_specific_homolog_gamma_distance_sample(
+        epk_family_specific_homolog_mapping_review=(
+            epk_family_specific_homolog_mapping_review
+        ),
+        candidate_thresholds_angstrom=[
+            float(value)
+            for value in _split_csv(args.candidate_thresholds)
+            if value
+        ],
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote ePK family-specific homolog gamma-distance sample to "
+        f"{args.out} (measured="
+        f"{sample['metadata']['measured_homolog_structure_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_sibling_control_homolog_gamma_distance_sample(
     args: argparse.Namespace,
 ) -> int:
@@ -5785,6 +5848,22 @@ def cmd_build_epk_review_only_scoring_prototype(args: argparse.Namespace) -> int
         "r", encoding="utf-8"
     ) as handle:
         epk_sibling_control_homolog_gamma_distance_sample = json.load(handle)
+    epk_family_specific_homolog_gamma_distance_sample = None
+    if args.epk_family_specific_homolog_gamma_distance_sample:
+        family_distance_samples = []
+        distance_sample_paths = (
+            args.epk_family_specific_homolog_gamma_distance_sample
+            if isinstance(args.epk_family_specific_homolog_gamma_distance_sample, list)
+            else [args.epk_family_specific_homolog_gamma_distance_sample]
+        )
+        for distance_sample_path in distance_sample_paths:
+            with Path(distance_sample_path).open("r", encoding="utf-8") as handle:
+                family_distance_samples.append(json.load(handle))
+        epk_family_specific_homolog_gamma_distance_sample = (
+            family_distance_samples[0]
+            if len(family_distance_samples) == 1
+            else family_distance_samples
+        )
     external_score_artifacts = []
     for score_path in args.external_hard_negative_inverse_gate_scores or []:
         with Path(score_path).open("r", encoding="utf-8") as handle:
@@ -5796,6 +5875,9 @@ def cmd_build_epk_review_only_scoring_prototype(args: argparse.Namespace) -> int
         epk_sibling_control_homolog_gamma_distance_sample=(
             epk_sibling_control_homolog_gamma_distance_sample
         ),
+        epk_family_specific_homolog_gamma_distance_sample=(
+            epk_family_specific_homolog_gamma_distance_sample
+        ),
         external_hard_negative_inverse_gate_scores=external_score_artifacts,
         candidate_threshold_angstrom=args.candidate_threshold_angstrom,
         imported_external_entry_ids=_split_csv(args.imported_external_entry_ids),
@@ -5804,6 +5886,28 @@ def cmd_build_epk_review_only_scoring_prototype(args: argparse.Namespace) -> int
     print(
         "Wrote ePK review-only scoring prototype to "
         f"{args.out} (status={prototype['metadata']['prototype_gate_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_counteraxis_sufficiency_decision(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_review_only_scoring_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_review_only_scoring_prototype = json.load(handle)
+    with Path(args.epk_precount_gate_status).open("r", encoding="utf-8") as handle:
+        epk_precount_gate_status = json.load(handle)
+    decision = build_epk_counteraxis_sufficiency_decision(
+        epk_review_only_scoring_prototype=epk_review_only_scoring_prototype,
+        epk_precount_gate_status=epk_precount_gate_status,
+    )
+    write_json(Path(args.out), decision)
+    print(
+        "Wrote ePK counteraxis sufficiency decision to "
+        f"{args.out} (decision="
+        f"{decision['metadata']['threshold_selection_decision']})"
     )
     return 0
 
@@ -5979,6 +6083,38 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             if len(family_template_reviews) == 1
             else family_template_reviews
         )
+    epk_family_specific_homolog_mapping_review = None
+    if args.epk_family_specific_homolog_mapping_review:
+        family_mapping_reviews = []
+        mapping_review_paths = (
+            args.epk_family_specific_homolog_mapping_review
+            if isinstance(args.epk_family_specific_homolog_mapping_review, list)
+            else [args.epk_family_specific_homolog_mapping_review]
+        )
+        for mapping_review_path in mapping_review_paths:
+            with Path(mapping_review_path).open("r", encoding="utf-8") as handle:
+                family_mapping_reviews.append(json.load(handle))
+        epk_family_specific_homolog_mapping_review = (
+            family_mapping_reviews[0]
+            if len(family_mapping_reviews) == 1
+            else family_mapping_reviews
+        )
+    epk_family_specific_homolog_gamma_distance_sample = None
+    if args.epk_family_specific_homolog_gamma_distance_sample:
+        family_distance_samples = []
+        distance_sample_paths = (
+            args.epk_family_specific_homolog_gamma_distance_sample
+            if isinstance(args.epk_family_specific_homolog_gamma_distance_sample, list)
+            else [args.epk_family_specific_homolog_gamma_distance_sample]
+        )
+        for distance_sample_path in distance_sample_paths:
+            with Path(distance_sample_path).open("r", encoding="utf-8") as handle:
+                family_distance_samples.append(json.load(handle))
+        epk_family_specific_homolog_gamma_distance_sample = (
+            family_distance_samples[0]
+            if len(family_distance_samples) == 1
+            else family_distance_samples
+        )
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -6023,6 +6159,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_family_specific_mapping_template_review=(
             epk_family_specific_mapping_template_review
+        ),
+        epk_family_specific_homolog_mapping_review=(
+            epk_family_specific_homolog_mapping_review
+        ),
+        epk_family_specific_homolog_gamma_distance_sample=(
+            epk_family_specific_homolog_gamma_distance_sample
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -12883,6 +13025,72 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_family_specific_mapping_template_review
     )
 
+    epk_family_homolog_mapping = subparsers.add_parser(
+        "build-epk-family-specific-homolog-mapping-review",
+        help="map review-only homolog controls with family-specific residue-role templates",
+    )
+    epk_family_homolog_mapping.add_argument(
+        "--epk-sibling-control-homolog-source-plan",
+        default="artifacts/v3_epk_sibling_control_homolog_source_plan.json",
+    )
+    epk_family_homolog_mapping.add_argument(
+        "--epk-family-specific-mapping-template-review",
+        default="artifacts/v3_epk_family_specific_mapping_template_review.json",
+    )
+    epk_family_homolog_mapping.add_argument(
+        "--family-id",
+        default="pfkb",
+        help="sibling family id to map with a family-specific template",
+    )
+    epk_family_homolog_mapping.add_argument("--cif-dir", default=None)
+    epk_family_homolog_mapping.add_argument(
+        "--acid-base-cutoff-angstrom",
+        type=float,
+        default=6.5,
+    )
+    epk_family_homolog_mapping.add_argument(
+        "--template-context-cutoff-angstrom",
+        type=float,
+        default=8.0,
+    )
+    epk_family_homolog_mapping.add_argument(
+        "--local-metal-cutoff-angstrom",
+        type=float,
+        default=7.0,
+    )
+    epk_family_homolog_mapping.add_argument(
+        "--out",
+        default="artifacts/v3_epk_family_specific_homolog_mapping_review.json",
+    )
+    epk_family_homolog_mapping.set_defaults(
+        func=cmd_build_epk_family_specific_homolog_mapping_review
+    )
+
+    epk_family_homolog_distance_sample = subparsers.add_parser(
+        "build-epk-family-specific-homolog-gamma-distance-sample",
+        help="measure review-only family-specific homolog gamma-to-role distances",
+    )
+    epk_family_homolog_distance_sample.add_argument(
+        "--epk-family-specific-homolog-mapping-review",
+        default="artifacts/v3_epk_family_specific_homolog_mapping_review.json",
+    )
+    epk_family_homolog_distance_sample.add_argument(
+        "--candidate-thresholds",
+        default="4,6,8",
+        help="comma-separated Angstrom cutoffs to report as review-only hits",
+    )
+    epk_family_homolog_distance_sample.add_argument("--cif-dir", default=None)
+    epk_family_homolog_distance_sample.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_family_specific_homolog_gamma_distance_sample.json"
+        ),
+    )
+    epk_family_homolog_distance_sample.set_defaults(
+        func=cmd_build_epk_family_specific_homolog_gamma_distance_sample
+    )
+
     epk_homolog_distance_sample = subparsers.add_parser(
         "build-epk-sibling-control-homolog-gamma-distance-sample",
         help="measure review-only homolog sibling-control gamma-to-mapped-site distances",
@@ -12935,6 +13143,11 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     epk_scoring_prototype.add_argument(
+        "--epk-family-specific-homolog-gamma-distance-sample",
+        action="append",
+        default=None,
+    )
+    epk_scoring_prototype.add_argument(
         "--external-hard-negative-inverse-gate-scores",
         action="append",
         default=None,
@@ -12954,6 +13167,26 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_scoring_prototype.set_defaults(
         func=cmd_build_epk_review_only_scoring_prototype
+    )
+
+    epk_counteraxis_decision = subparsers.add_parser(
+        "build-epk-counteraxis-sufficiency-decision",
+        help="summarize fail-closed ePK counteraxis sufficiency for thresholding",
+    )
+    epk_counteraxis_decision.add_argument(
+        "--epk-review-only-scoring-prototype",
+        default="artifacts/v3_epk_review_only_scoring_prototype.json",
+    )
+    epk_counteraxis_decision.add_argument(
+        "--epk-precount-gate-status",
+        default="artifacts/v3_epk_precount_gate_status.json",
+    )
+    epk_counteraxis_decision.add_argument(
+        "--out",
+        default="artifacts/v3_epk_counteraxis_sufficiency_decision.json",
+    )
+    epk_counteraxis_decision.set_defaults(
+        func=cmd_build_epk_counteraxis_sufficiency_decision
     )
 
     epk_nonready_alternate_plan = subparsers.add_parser(
@@ -13077,6 +13310,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-family-specific-mapping-template-review",
+        action="append",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-family-specific-homolog-mapping-review",
+        action="append",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-family-specific-homolog-gamma-distance-sample",
         action="append",
         default=None,
     )

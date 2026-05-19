@@ -13022,6 +13022,1132 @@ def build_epk_family_specific_mapping_template_review(
     }
 
 
+def build_epk_family_specific_homolog_mapping_review(
+    *,
+    epk_sibling_control_homolog_source_plan: dict[str, Any],
+    epk_family_specific_mapping_template_review: dict[str, Any],
+    family_id: str = "pfkb",
+    cif_text_by_pdb: dict[str, str] | None = None,
+    acid_base_cutoff_angstrom: float = 6.5,
+    template_context_cutoff_angstrom: float = 8.0,
+    local_metal_cutoff_angstrom: float = 7.0,
+) -> dict[str, Any]:
+    """Map homolog sibling controls with family-specific residue-role templates."""
+
+    source_meta = epk_sibling_control_homolog_source_plan.get("metadata", {})
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    template_meta = epk_family_specific_mapping_template_review.get("metadata", {})
+    if not isinstance(template_meta, dict):
+        template_meta = {}
+    target_family_id = str(
+        family_id
+        or template_meta.get("reviewed_sibling_family_id")
+        or source_meta.get("reviewed_sibling_family_id")
+        or "pfkb"
+    ).strip().lower()
+    family_name = ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(target_family_id)
+    target_fingerprint_id = str(
+        source_meta.get("target_fingerprint_id")
+        or template_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    acid_base_cutoff_sq = acid_base_cutoff_angstrom**2
+    context_cutoff_sq = template_context_cutoff_angstrom**2
+    metal_cutoff_sq = local_metal_cutoff_angstrom**2
+
+    def _atom_code(atom: dict[str, Any]) -> str:
+        return str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+
+    def _atom_name(atom: dict[str, Any]) -> str:
+        return str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+
+    def _residue_key(atom: dict[str, Any]) -> tuple[str, str, str, str, str]:
+        return (
+            str(atom.get("auth_asym_id") or atom.get("label_asym_id") or ""),
+            str(atom.get("label_asym_id") or atom.get("auth_asym_id") or ""),
+            str(atom.get("auth_seq_id") or atom.get("label_seq_id") or ""),
+            str(atom.get("label_seq_id") or atom.get("auth_seq_id") or ""),
+            _atom_code(atom),
+        )
+
+    def _residue_site_key(
+        key: tuple[str, str, str, str, str],
+    ) -> tuple[str, str, str, str]:
+        return key[:4]
+
+    def _residue_record(
+        key: tuple[str, str, str, str, str],
+        *,
+        evidence_role: str,
+        distance_sq: float,
+    ) -> dict[str, Any]:
+        auth_chain, label_chain, auth_seq, label_seq, residue_code = key
+        return {
+            "residue_code": residue_code,
+            "auth_asym_id": auth_chain,
+            "label_asym_id": label_chain,
+            "auth_seq_id": auth_seq,
+            "label_seq_id": label_seq,
+            "evidence_role": evidence_role,
+            "distance_to_gamma_angstrom": round(distance_sq**0.5, 3),
+        }
+
+    def _same_chain(left: dict[str, Any], right: dict[str, Any]) -> bool:
+        return bool(_label_atom_chain_ids(left) & _label_atom_chain_ids(right))
+
+    def _squared_distance(left: dict[str, Any], right: dict[str, Any]) -> float:
+        return (
+            (float(left["Cartn_x"]) - float(right["Cartn_x"])) ** 2
+            + (float(left["Cartn_y"]) - float(right["Cartn_y"])) ** 2
+            + (float(left["Cartn_z"]) - float(right["Cartn_z"])) ** 2
+        )
+
+    def _residue_sort_number(value: str) -> int:
+        match = re.search(r"-?\d+", value)
+        return int(match.group(0)) if match else 0
+
+    def _normalise_residue_code(value: Any) -> str:
+        code = str(value or "").strip().upper()
+        return code[:3] if len(code) > 3 else code
+
+    role_code_sets: dict[str, set[str]] = defaultdict(set)
+    for template_row in epk_family_specific_mapping_template_review.get("rows", []) or []:
+        if not isinstance(template_row, dict):
+            continue
+        if str(template_row.get("family_id") or "") != target_family_id:
+            continue
+        for residue in template_row.get("template_residues", []) or []:
+            if not isinstance(residue, dict):
+                continue
+            residue_code = _normalise_residue_code(residue.get("residue_code"))
+            template_role = str(residue.get("template_role") or "")
+            if residue_code:
+                role_code_sets[template_role].add(residue_code)
+
+    acid_base_codes = set(role_code_sets.get("acid_base_or_acceptor_seed", set()))
+    if acid_base_codes.intersection({"ASP", "GLU"}):
+        acid_base_codes.update({"ASP", "GLU"})
+    elif target_family_id == "pfkb":
+        acid_base_codes.update({"ASP", "GLU"})
+    phosphate_context_codes = set(
+        role_code_sets.get("phosphate_or_transition_state_stabilizer_seed", set())
+    )
+    if phosphate_context_codes:
+        phosphate_context_codes.update({"ARG", "LYS", "ASN", "SER", "THR", "GLY"})
+    elif target_family_id == "pfkb":
+        phosphate_context_codes.update(
+            {"ALA", "ARG", "ASN", "CYS", "GLY", "LYS", "SER", "THR"}
+        )
+    metal_ligand_codes = set(role_code_sets.get("metal_ligand_seed", set()))
+    if metal_ligand_codes:
+        metal_ligand_codes.update({"ASP", "GLU", "SER", "THR"})
+    elif target_family_id == "pfkb":
+        metal_ligand_codes.update({"ASP", "GLU", "SER", "THR"})
+
+    def _select_unique_residues(
+        candidates: list[tuple[float, tuple[str, str, str, str, str]]],
+        *,
+        evidence_role: str,
+        limit: int,
+    ) -> list[dict[str, Any]]:
+        selected = []
+        seen_sites: set[tuple[str, str, str, str]] = set()
+        for distance_sq, key in candidates:
+            site_key = _residue_site_key(key)
+            if site_key in seen_sites:
+                continue
+            seen_sites.add(site_key)
+            selected.append(
+                _residue_record(
+                    key,
+                    evidence_role=evidence_role,
+                    distance_sq=distance_sq,
+                )
+            )
+            if len(selected) >= limit:
+                break
+        return selected
+
+    def _family_mapping_rows_for_atoms(
+        *,
+        atoms: list[dict[str, Any]],
+        gamma_codes: set[str],
+    ) -> list[dict[str, Any]]:
+        gamma_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "HETATM"
+            and _atom_code(atom) in gamma_codes
+            and _atom_name(atom) == "PG"
+        ]
+        metal_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "HETATM" and _atom_code(atom) in METAL_ION_CODES
+        ]
+        residue_atoms_by_key: dict[
+            tuple[str, str, str, str, str], list[dict[str, Any]]
+        ] = defaultdict(list)
+        for atom in atoms:
+            code = _atom_code(atom)
+            if atom.get("group_PDB") == "ATOM" and code in STANDARD_AMINO_ACIDS:
+                residue_atoms_by_key[_residue_key(atom)].append(atom)
+
+        mappings: list[dict[str, Any]] = []
+        for gamma_atom in gamma_atoms:
+            residue_distances: list[
+                tuple[float, tuple[str, str, str, str, str]]
+            ] = []
+            for key, residue_atoms in residue_atoms_by_key.items():
+                same_chain_atoms = [
+                    atom for atom in residue_atoms if _same_chain(atom, gamma_atom)
+                ]
+                if not same_chain_atoms:
+                    continue
+                min_sq = min(_squared_distance(atom, gamma_atom) for atom in same_chain_atoms)
+                if min_sq <= context_cutoff_sq:
+                    residue_distances.append((min_sq, key))
+            residue_distances.sort(
+                key=lambda item: (
+                    item[0],
+                    item[1][0],
+                    _residue_sort_number(item[1][2]),
+                    item[1][4],
+                )
+            )
+            acid_base_candidates = [
+                (distance_sq, key)
+                for distance_sq, key in residue_distances
+                if key[4] in acid_base_codes and distance_sq <= acid_base_cutoff_sq
+            ]
+            phosphate_candidates = [
+                (distance_sq, key)
+                for distance_sq, key in residue_distances
+                if key[4] in phosphate_context_codes
+            ]
+            metal_ligand_candidates = [
+                (distance_sq, key)
+                for distance_sq, key in residue_distances
+                if key[4] in metal_ligand_codes
+            ]
+            local_metals = []
+            for metal_atom in metal_atoms:
+                if not _same_chain(metal_atom, gamma_atom):
+                    continue
+                metal_distance_sq = _squared_distance(metal_atom, gamma_atom)
+                if metal_distance_sq <= metal_cutoff_sq:
+                    local_metals.append(
+                        {
+                            "metal_code": _atom_code(metal_atom),
+                            "auth_asym_id": str(
+                                metal_atom.get("auth_asym_id")
+                                or metal_atom.get("label_asym_id")
+                                or ""
+                            ),
+                            "label_asym_id": str(
+                                metal_atom.get("label_asym_id")
+                                or metal_atom.get("auth_asym_id")
+                                or ""
+                            ),
+                            "auth_seq_id": str(
+                                metal_atom.get("auth_seq_id")
+                                or metal_atom.get("label_seq_id")
+                                or ""
+                            ),
+                            "label_seq_id": str(
+                                metal_atom.get("label_seq_id")
+                                or metal_atom.get("auth_seq_id")
+                                or ""
+                            ),
+                            "distance_to_gamma_angstrom": round(
+                                metal_distance_sq**0.5, 3
+                            ),
+                        }
+                    )
+            local_metals.sort(
+                key=lambda row: (
+                    float(row["distance_to_gamma_angstrom"]),
+                    str(row["metal_code"]),
+                    str(row["auth_seq_id"]),
+                )
+            )
+            acid_base_residues = _select_unique_residues(
+                acid_base_candidates,
+                evidence_role="family_specific_acid_base_or_acceptor_candidate",
+                limit=4,
+            )
+            phosphate_residues = _select_unique_residues(
+                phosphate_candidates,
+                evidence_role="family_specific_phosphate_or_transition_state_candidate",
+                limit=10,
+            )
+            metal_ligand_residues = _select_unique_residues(
+                metal_ligand_candidates,
+                evidence_role="family_specific_metal_ligand_context_candidate",
+                limit=6,
+            )
+            acid_base_mapped = bool(acid_base_residues)
+            phosphate_context_mapped = len(phosphate_residues) >= 4
+            local_metal_mapped = bool(local_metals)
+            if acid_base_mapped and phosphate_context_mapped and local_metal_mapped:
+                mapping_status = (
+                    "mapped_family_specific_roles_and_local_metal_review_only"
+                )
+            elif not acid_base_mapped:
+                mapping_status = "family_specific_acid_base_mapping_unresolved"
+            elif not phosphate_context_mapped:
+                mapping_status = "family_specific_template_context_incomplete"
+            else:
+                mapping_status = "family_specific_local_metal_context_unresolved"
+            mappings.append(
+                {
+                    "chain_id": str(
+                        gamma_atom.get("auth_asym_id")
+                        or gamma_atom.get("label_asym_id")
+                        or ""
+                    ),
+                    "gamma_ligand_code": _atom_code(gamma_atom),
+                    "gamma_atom_name": _atom_name(gamma_atom),
+                    "gamma_ligand_auth_seq_id": str(
+                        gamma_atom.get("auth_seq_id")
+                        or gamma_atom.get("label_seq_id")
+                        or ""
+                    ),
+                    "gamma_ligand_label_seq_id": str(
+                        gamma_atom.get("label_seq_id")
+                        or gamma_atom.get("auth_seq_id")
+                        or ""
+                    ),
+                    "family_specific_mapping_status": mapping_status,
+                    "acid_base_mapping_status": (
+                        "mapped_review_only"
+                        if acid_base_mapped
+                        else "not_mapped_review_pending"
+                    ),
+                    "phosphate_context_mapping_status": (
+                        "mapped_review_only"
+                        if phosphate_context_mapped
+                        else "not_mapped_review_pending"
+                    ),
+                    "local_metal_context_status": (
+                        "mapped_review_only"
+                        if local_metal_mapped
+                        else "not_mapped_review_pending"
+                    ),
+                    "family_specific_acid_base_residues": acid_base_residues,
+                    "family_specific_phosphate_context_residues": (
+                        phosphate_residues
+                    ),
+                    "family_specific_metal_ligand_context_residues": (
+                        metal_ligand_residues
+                    ),
+                    "local_metal_context": local_metals[:4],
+                    "family_specific_acid_base_residue_count": len(
+                        acid_base_residues
+                    ),
+                    "family_specific_phosphate_context_residue_count": len(
+                        phosphate_residues
+                    ),
+                    "family_specific_metal_ligand_context_residue_count": len(
+                        metal_ligand_residues
+                    ),
+                    "exact_residue_position_transfer_used": False,
+                }
+            )
+        return mappings
+
+    rows: list[dict[str, Any]] = []
+    fetch_status_counts: Counter[str] = Counter()
+    mapping_status_counts: Counter[str] = Counter()
+    fetched_pdb_ids: set[str] = set()
+    for source_row in epk_sibling_control_homolog_source_plan.get("rows", []) or []:
+        if not isinstance(source_row, dict):
+            continue
+        if str(source_row.get("family_id") or "") != target_family_id:
+            continue
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        if not pdb_id:
+            continue
+        cif_text = cif_text_by_pdb.get(pdb_id)
+        fetch_status = "ok"
+        if cif_text is None:
+            try:
+                cif_text = fetch_pdb_cif(pdb_id)
+                fetched_pdb_ids.add(pdb_id)
+            except Exception as exc:  # pragma: no cover - network fallback path
+                fetch_status = f"fetch_failed:{type(exc).__name__}"
+                cif_text = None
+        fetch_status_counts[fetch_status] += 1
+        gamma_codes = {
+            str(code).upper()
+            for code in source_row.get("gamma_capable_nucleotide_codes", []) or []
+            if code
+        }
+        atoms = parse_atom_site_loop(cif_text) if cif_text else []
+        chain_mappings = (
+            _family_mapping_rows_for_atoms(atoms=atoms, gamma_codes=gamma_codes)
+            if atoms and gamma_codes
+            else []
+        )
+        ready_chain_mappings = [
+            mapping
+            for mapping in chain_mappings
+            if mapping.get("family_specific_mapping_status")
+            == "mapped_family_specific_roles_and_local_metal_review_only"
+        ]
+        acid_base_mapped = any(
+            mapping.get("acid_base_mapping_status") == "mapped_review_only"
+            for mapping in chain_mappings
+        )
+        phosphate_context_mapped = any(
+            mapping.get("phosphate_context_mapping_status") == "mapped_review_only"
+            for mapping in chain_mappings
+        )
+        local_metal_mapped = any(
+            mapping.get("local_metal_context_status") == "mapped_review_only"
+            for mapping in chain_mappings
+        )
+        if not cif_text:
+            mapping_status = "candidate_cif_unavailable"
+            blockers = ["candidate_cif_unavailable"]
+        elif ready_chain_mappings and source_row.get("has_metal_ligand"):
+            mapping_status = (
+                "family_specific_homolog_mapping_ready_for_distance_measurement_review_only"
+            )
+            blockers = [
+                "family_specific_negative_control_distance_not_measured",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        elif not acid_base_mapped:
+            mapping_status = "family_specific_acid_base_mapping_unresolved"
+            blockers = [
+                "family_specific_acid_base_mapping_unresolved",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        elif not phosphate_context_mapped:
+            mapping_status = "family_specific_template_context_incomplete"
+            blockers = [
+                "family_specific_template_context_incomplete",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        else:
+            mapping_status = "family_specific_local_metal_context_unresolved"
+            blockers = [
+                "family_specific_local_metal_context_unresolved",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+        mapping_status_counts[mapping_status] += 1
+        rows.append(
+            {
+                "pdb_id": pdb_id,
+                "family_id": target_family_id,
+                "family_name": family_name,
+                "source_entry_ids": source_row.get("source_entry_ids", []),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "structure_title": source_row.get("structure_title"),
+                "source_candidate_status": source_row.get("source_candidate_status"),
+                "fetch_status": fetch_status,
+                "has_gamma_capable_nucleotide": bool(
+                    source_row.get("has_gamma_capable_nucleotide")
+                ),
+                "has_metal_ligand": bool(source_row.get("has_metal_ligand")),
+                "gamma_capable_nucleotide_codes": sorted(gamma_codes),
+                "metal_ligand_codes": source_row.get("metal_ligand_codes", []),
+                "family_specific_homolog_mapping_status": mapping_status,
+                "chain_mapping_count": len(chain_mappings),
+                "mapped_chain_count": len(ready_chain_mappings),
+                "family_specific_acid_base_mapping_verified": acid_base_mapped,
+                "family_specific_phosphate_context_mapping_verified": (
+                    phosphate_context_mapped
+                ),
+                "family_specific_local_metal_context_verified": local_metal_mapped,
+                "chain_mappings": chain_mappings,
+                "measurement_ready_for_negative_control": (
+                    mapping_status
+                    == "family_specific_homolog_mapping_ready_for_distance_measurement_review_only"
+                ),
+                "calibration_distance_measured": False,
+                "negative_control_distance_distribution_ready": False,
+                "threshold_calibrated": False,
+                "selected_threshold_angstrom": None,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    ready_rows = [
+        row for row in rows if row.get("measurement_ready_for_negative_control")
+    ]
+    acid_base_mapped_count = sum(
+        1 for row in rows if row.get("family_specific_acid_base_mapping_verified")
+    )
+    phosphate_context_mapped_count = sum(
+        1
+        for row in rows
+        if row.get("family_specific_phosphate_context_mapping_verified")
+    )
+    local_metal_mapped_count = sum(
+        1 for row in rows if row.get("family_specific_local_metal_context_verified")
+    )
+    family_summary = {
+        "family_id": target_family_id,
+        "family_name": family_name,
+        "candidate_pdb_ids": sorted([str(row["pdb_id"]) for row in rows]),
+        "candidate_pdb_count": len(rows),
+        "family_specific_acid_base_mapped_candidate_count": acid_base_mapped_count,
+        "family_specific_phosphate_context_mapped_candidate_count": (
+            phosphate_context_mapped_count
+        ),
+        "family_specific_local_metal_mapped_candidate_count": (
+            local_metal_mapped_count
+        ),
+        "measurement_ready_homolog_structure_count": len(ready_rows),
+        "mapping_review_status": (
+            "family_specific_homolog_mapping_ready_for_distance_measurement_review_only"
+            if ready_rows
+            else "family_specific_homolog_mapping_blocked_review_only"
+        ),
+        "next_review_action": (
+            f"measure mapped {target_family_id} family-specific homolog controls in a bounded review-only pass"
+            if ready_rows
+            else f"repair {target_family_id} family-specific homolog mapping before any distance measurement"
+        ),
+    }
+    return {
+        "metadata": {
+            "method": "epk_family_specific_homolog_mapping_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "reviewed_sibling_family_id": target_family_id,
+            "reviewed_sibling_family_name": family_name,
+            "source_epk_sibling_control_homolog_source_plan_method": (
+                source_meta.get("method")
+            ),
+            "source_epk_family_specific_mapping_template_review_method": (
+                template_meta.get("method")
+            ),
+            "source_template_review_status": (
+                template_meta.get("template_review_status")
+            ),
+            "source_template_entry_count": (
+                template_meta.get("seeded_template_entry_count")
+            ),
+            "source_template_residue_count": template_meta.get(
+                "template_residue_count"
+            ),
+            "template_role_code_sets": {
+                key: sorted(value) for key, value in sorted(role_code_sets.items())
+            },
+            "family_specific_allowed_acid_base_codes": sorted(acid_base_codes),
+            "family_specific_allowed_phosphate_context_codes": sorted(
+                phosphate_context_codes
+            ),
+            "family_specific_allowed_metal_ligand_codes": sorted(metal_ligand_codes),
+            "acid_base_cutoff_angstrom": acid_base_cutoff_angstrom,
+            "template_context_cutoff_angstrom": template_context_cutoff_angstrom,
+            "local_metal_cutoff_angstrom": local_metal_cutoff_angstrom,
+            "row_count": len(rows),
+            "mapping_reviewed_candidate_count": len(rows),
+            "cif_fetch_status_counts": dict(sorted(fetch_status_counts.items())),
+            "fetched_pdb_ids": sorted(fetched_pdb_ids),
+            "family_specific_homolog_mapping_status_counts": dict(
+                sorted(mapping_status_counts.items())
+            ),
+            "family_specific_acid_base_mapped_candidate_count": (
+                acid_base_mapped_count
+            ),
+            "family_specific_phosphate_context_mapped_candidate_count": (
+                phosphate_context_mapped_count
+            ),
+            "family_specific_local_metal_mapped_candidate_count": (
+                local_metal_mapped_count
+            ),
+            "measurement_ready_homolog_structure_count": len(ready_rows),
+            "ready_for_future_distance_measurement_count": len(ready_rows),
+            "calibration_distance_measured": False,
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "exact_residue_position_transfer_used": False,
+            "review_only_rule": (
+                "This artifact maps homolog sibling controls with "
+                "family-specific residue-role templates. It uses local "
+                "role-compatible residue evidence rather than exact residue "
+                "number transfer, and it does not measure distances, select "
+                "thresholds, score ePK, edit registries, re-audit external "
+                "hard negatives, or import labels."
+            ),
+            "next_actions": [
+                family_summary["next_review_action"],
+                "keep ePK threshold selection closed until mapped family-specific controls are measured and audited",
+                "do not score external hard negatives until a real ePK scorer exists",
+            ],
+        },
+        "family_summaries": [family_summary],
+        "rows": sorted(rows, key=lambda row: str(row.get("pdb_id"))),
+        "warnings": [
+            (
+                "Family-specific homolog mappings are review-only measurement "
+                "candidates; they are not calibrated negative-control evidence "
+                "or countable label support."
+            )
+        ],
+    }
+
+
+def build_epk_family_specific_homolog_gamma_distance_sample(
+    *,
+    epk_family_specific_homolog_mapping_review: dict[str, Any],
+    candidate_thresholds_angstrom: list[float] | None = None,
+    max_reported_distance_rows: int = 12,
+    cif_text_by_pdb: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    """Measure review-only gamma-to-family-role distances for homolog controls."""
+
+    mapping_meta = epk_family_specific_homolog_mapping_review.get("metadata", {})
+    if not isinstance(mapping_meta, dict):
+        mapping_meta = {}
+    target_family_id = str(
+        mapping_meta.get("reviewed_sibling_family_id") or "pfkb"
+    )
+    family_name = ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES.get(target_family_id)
+    target_fingerprint_id = str(
+        mapping_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    thresholds = []
+    for value in candidate_thresholds_angstrom or [4.0, 6.0, 8.0]:
+        try:
+            thresholds.append(float(value))
+        except (TypeError, ValueError):
+            continue
+    thresholds = sorted(set(thresholds))
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    hydroxyl_atom_names = {
+        "SER": {"OG"},
+        "THR": {"OG1"},
+        "TYR": {"OH"},
+    }
+
+    def _atom_code(atom: dict[str, Any]) -> str:
+        return str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+
+    def _atom_name(atom: dict[str, Any]) -> str:
+        return str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+
+    def _atom_matches_site(
+        atom: dict[str, Any],
+        *,
+        chain_id: str,
+        auth_seq_id: str,
+        label_seq_id: str,
+        residue_code: str | None = None,
+    ) -> bool:
+        if chain_id and chain_id not in _label_atom_chain_ids(atom):
+            return False
+        if auth_seq_id or label_seq_id:
+            residue_ids = _label_atom_residue_ids(atom)
+            expected_ids = {value for value in [auth_seq_id, label_seq_id] if value}
+            if expected_ids and not residue_ids.intersection(expected_ids):
+                return False
+        if residue_code and _atom_code(atom) != residue_code:
+            return False
+        return True
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    fetched_pdb_ids: set[str] = set()
+    ready_input_count = 0
+    for mapping_row in epk_family_specific_homolog_mapping_review.get("rows", []) or []:
+        if not isinstance(mapping_row, dict):
+            continue
+        if str(mapping_row.get("family_id") or "") != target_family_id:
+            continue
+        pdb_id = str(mapping_row.get("pdb_id") or "").upper()
+        ready_for_measurement = bool(
+            mapping_row.get("measurement_ready_for_negative_control")
+        )
+        if ready_for_measurement:
+            ready_input_count += 1
+        if not ready_for_measurement:
+            status = "family_specific_homolog_mapping_not_measurement_ready"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "pdb_id": pdb_id or None,
+                    "family_id": target_family_id,
+                    "family_name": family_name,
+                    "source_entry_ids": mapping_row.get("source_entry_ids", []),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "measurement_status": status,
+                    "gamma_to_family_acid_base_distance_measured": False,
+                    "epk_score_computed": False,
+                    "measurement_blockers": [
+                        "family_specific_homolog_mapping_not_measurement_ready"
+                    ],
+                }
+            )
+            continue
+        if not pdb_id:
+            status = "homolog_pdb_id_missing"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "pdb_id": None,
+                    "family_id": target_family_id,
+                    "family_name": family_name,
+                    "source_entry_ids": mapping_row.get("source_entry_ids", []),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "measurement_status": status,
+                    "gamma_to_family_acid_base_distance_measured": False,
+                    "epk_score_computed": False,
+                    "measurement_blockers": ["homolog_pdb_id_missing"],
+                }
+            )
+            continue
+
+        cif_text = cif_text_by_pdb.get(pdb_id)
+        fetch_status = "ok"
+        if cif_text is None:
+            try:
+                cif_text = fetch_pdb_cif(pdb_id)
+                fetched_pdb_ids.add(pdb_id)
+            except Exception as exc:  # pragma: no cover - network fallback path
+                fetch_status = f"fetch_failed:{type(exc).__name__}"
+                cif_text = None
+        if not cif_text:
+            status = "homolog_cif_unavailable"
+            status_counts[status] += 1
+            rows.append(
+                {
+                    "pdb_id": pdb_id,
+                    "family_id": target_family_id,
+                    "family_name": family_name,
+                    "source_entry_ids": mapping_row.get("source_entry_ids", []),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "fetch_status": fetch_status,
+                    "measurement_status": status,
+                    "gamma_to_family_acid_base_distance_measured": False,
+                    "epk_score_computed": False,
+                    "measurement_blockers": ["homolog_cif_unavailable"],
+                }
+            )
+            continue
+
+        atoms = parse_atom_site_loop(cif_text)
+        acid_base_distance_rows: list[dict[str, Any]] = []
+        hydroxyl_distance_rows: list[dict[str, Any]] = []
+        for chain_mapping in mapping_row.get("chain_mappings", []) or []:
+            if not isinstance(chain_mapping, dict):
+                continue
+            if (
+                chain_mapping.get("family_specific_mapping_status")
+                != "mapped_family_specific_roles_and_local_metal_review_only"
+            ):
+                continue
+            chain_id = str(chain_mapping.get("chain_id") or "")
+            gamma_code = str(chain_mapping.get("gamma_ligand_code") or "").upper()
+            gamma_atom_name = str(chain_mapping.get("gamma_atom_name") or "PG").upper()
+            gamma_auth_seq_id = str(
+                chain_mapping.get("gamma_ligand_auth_seq_id") or ""
+            )
+            gamma_label_seq_id = str(
+                chain_mapping.get("gamma_ligand_label_seq_id") or ""
+            )
+            gamma_atoms = [
+                atom
+                for atom in atoms
+                if atom.get("group_PDB") == "HETATM"
+                and _atom_code(atom) == gamma_code
+                and _atom_name(atom) == gamma_atom_name
+                and _atom_matches_site(
+                    atom,
+                    chain_id=chain_id,
+                    auth_seq_id=gamma_auth_seq_id,
+                    label_seq_id=gamma_label_seq_id,
+                )
+            ]
+            if not gamma_atoms:
+                gamma_atoms = [
+                    atom
+                    for atom in atoms
+                    if atom.get("group_PDB") == "HETATM"
+                    and _atom_code(atom) == gamma_code
+                    and _atom_name(atom) == gamma_atom_name
+                    and (not chain_id or chain_id in _label_atom_chain_ids(atom))
+                ]
+            acid_base_atoms = []
+            for residue in (
+                chain_mapping.get("family_specific_acid_base_residues", []) or []
+            ):
+                if not isinstance(residue, dict):
+                    continue
+                residue_chain = str(
+                    residue.get("auth_asym_id")
+                    or residue.get("label_asym_id")
+                    or chain_id
+                )
+                auth_seq_id = str(residue.get("auth_seq_id") or "")
+                label_seq_id = str(residue.get("label_seq_id") or "")
+                residue_code = str(residue.get("residue_code") or "").upper()
+                for atom in atoms:
+                    if atom.get("group_PDB") != "ATOM":
+                        continue
+                    if not _atom_matches_site(
+                        atom,
+                        chain_id=residue_chain,
+                        auth_seq_id=auth_seq_id,
+                        label_seq_id=label_seq_id,
+                        residue_code=residue_code,
+                    ):
+                        continue
+                    acid_base_atoms.append(atom)
+            hydroxyl_atoms = [
+                atom
+                for atom in atoms
+                if atom.get("group_PDB") == "ATOM"
+                and _atom_code(atom) in hydroxyl_atom_names
+                and _atom_name(atom) in hydroxyl_atom_names.get(_atom_code(atom), set())
+                and (not chain_id or chain_id in _label_atom_chain_ids(atom))
+            ]
+            for gamma_atom in gamma_atoms:
+                gamma_point = _atom_point(gamma_atom)
+                for acid_atom in acid_base_atoms:
+                    acid_point = _atom_point(acid_atom)
+                    acid_base_distance_rows.append(
+                        {
+                            "chain_id": chain_id,
+                            "gamma_ligand_code": _atom_code(gamma_atom),
+                            "gamma_atom_name": _atom_name(gamma_atom),
+                            "gamma_ligand_auth_seq_id": str(
+                                gamma_atom.get("auth_seq_id")
+                                or gamma_atom.get("label_seq_id")
+                            ),
+                            "acid_base_residue_code": _atom_code(acid_atom),
+                            "acid_base_atom_name": _atom_name(acid_atom),
+                            "acid_base_chain_name": str(
+                                acid_atom.get("auth_asym_id")
+                                or acid_atom.get("label_asym_id")
+                            ),
+                            "acid_base_resid": str(
+                                acid_atom.get("auth_seq_id")
+                                or acid_atom.get("label_seq_id")
+                            ),
+                            "distance_angstrom": round(
+                                _point_distance(gamma_point, acid_point), 3
+                            ),
+                        }
+                    )
+                for hydroxyl_atom in hydroxyl_atoms:
+                    hydroxyl_point = _atom_point(hydroxyl_atom)
+                    hydroxyl_distance_rows.append(
+                        {
+                            "chain_id": chain_id,
+                            "gamma_ligand_code": _atom_code(gamma_atom),
+                            "gamma_atom_name": _atom_name(gamma_atom),
+                            "hydroxyl_residue_code": _atom_code(hydroxyl_atom),
+                            "hydroxyl_atom_name": _atom_name(hydroxyl_atom),
+                            "hydroxyl_chain_name": str(
+                                hydroxyl_atom.get("auth_asym_id")
+                                or hydroxyl_atom.get("label_asym_id")
+                            ),
+                            "hydroxyl_resid": str(
+                                hydroxyl_atom.get("auth_seq_id")
+                                or hydroxyl_atom.get("label_seq_id")
+                            ),
+                            "distance_angstrom": round(
+                                _point_distance(gamma_point, hydroxyl_point), 3
+                            ),
+                        }
+                    )
+        acid_base_distance_rows.sort(
+            key=lambda row: (
+                float(row["distance_angstrom"]),
+                str(row["chain_id"]),
+                str(row["acid_base_resid"]),
+                str(row["acid_base_atom_name"]),
+            )
+        )
+        hydroxyl_distance_rows.sort(
+            key=lambda row: (
+                float(row["distance_angstrom"]),
+                str(row["chain_id"]),
+                str(row["hydroxyl_residue_code"]),
+                str(row["hydroxyl_resid"]),
+            )
+        )
+        if acid_base_distance_rows:
+            status = "family_specific_gamma_to_acid_base_distance_measured_review_only"
+            blockers = [
+                "sibling_family_control_not_epk_positive_label",
+                "negative_control_distribution_not_calibrated",
+                "epk_score_not_computed",
+                "external_hard_negative_reaudit_not_run",
+            ]
+            measured = True
+        else:
+            status = "family_specific_mapped_acid_base_atom_missing"
+            blockers = ["family_specific_mapped_acid_base_atom_missing"]
+            measured = False
+        nearest_acid_base_distance = (
+            acid_base_distance_rows[0]["distance_angstrom"]
+            if acid_base_distance_rows
+            else None
+        )
+        nearest_hydroxyl_distance = (
+            hydroxyl_distance_rows[0]["distance_angstrom"]
+            if hydroxyl_distance_rows
+            else None
+        )
+        acid_base_threshold_hits = [
+            threshold
+            for threshold in thresholds
+            if nearest_acid_base_distance is not None
+            and float(nearest_acid_base_distance) <= threshold
+        ]
+        hydroxyl_threshold_hits = [
+            threshold
+            for threshold in thresholds
+            if nearest_hydroxyl_distance is not None
+            and float(nearest_hydroxyl_distance) <= threshold
+        ]
+        status_counts[status] += 1
+        rows.append(
+            {
+                "pdb_id": pdb_id,
+                "family_id": target_family_id,
+                "family_name": family_name,
+                "source_entry_ids": mapping_row.get("source_entry_ids", []),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "structure_title": mapping_row.get("structure_title"),
+                "fetch_status": fetch_status,
+                "gamma_capable_nucleotide_codes": mapping_row.get(
+                    "gamma_capable_nucleotide_codes", []
+                ),
+                "metal_ligand_codes": mapping_row.get("metal_ligand_codes", []),
+                "mapped_chain_count": mapping_row.get("mapped_chain_count"),
+                "gamma_atom_count": len(
+                    {
+                        (
+                            row.get("chain_id"),
+                            row.get("gamma_ligand_code"),
+                            row.get("gamma_ligand_auth_seq_id"),
+                        )
+                        for row in acid_base_distance_rows
+                    }
+                ),
+                "mapped_acid_base_atom_distance_count": len(
+                    acid_base_distance_rows
+                ),
+                "nearest_gamma_to_family_acid_base_distance_angstrom": (
+                    nearest_acid_base_distance
+                ),
+                "family_acid_base_candidate_threshold_hits_angstrom": (
+                    acid_base_threshold_hits
+                ),
+                "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": (
+                    nearest_hydroxyl_distance
+                ),
+                "same_chain_hydroxyl_candidate_threshold_hits_angstrom": (
+                    hydroxyl_threshold_hits
+                ),
+                "acid_base_distance_rows": acid_base_distance_rows[
+                    : max(0, max_reported_distance_rows)
+                ],
+                "same_chain_hydroxyl_distance_rows": hydroxyl_distance_rows[
+                    : max(0, max_reported_distance_rows)
+                ],
+                "measurement_status": status,
+                "gamma_to_family_acid_base_distance_measured": measured,
+                "negative_control_distance_distribution_ready": False,
+                "threshold_calibrated": False,
+                "selected_threshold_angstrom": None,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "measurement_blockers": blockers,
+                "control_use_status": (
+                    "family_specific_sibling_counteraxis_review_only_not_calibration"
+                ),
+            }
+        )
+
+    measured_rows = [
+        row
+        for row in rows
+        if row.get("nearest_gamma_to_family_acid_base_distance_angstrom") is not None
+    ]
+    measured_acid_base_distances = [
+        float(row["nearest_gamma_to_family_acid_base_distance_angstrom"])
+        for row in measured_rows
+    ]
+    measured_hydroxyl_distances = [
+        float(row["nearest_gamma_to_same_chain_hydroxyl_distance_angstrom"])
+        for row in rows
+        if row.get("nearest_gamma_to_same_chain_hydroxyl_distance_angstrom") is not None
+    ]
+    threshold_collision_rows = []
+    for threshold in thresholds:
+        acid_base_hit_pdb_ids = [
+            str(row.get("pdb_id"))
+            for row in measured_rows
+            if float(
+                row.get("nearest_gamma_to_family_acid_base_distance_angstrom") or 0.0
+            )
+            <= threshold
+        ]
+        hydroxyl_hit_pdb_ids = [
+            str(row.get("pdb_id"))
+            for row in rows
+            if row.get("nearest_gamma_to_same_chain_hydroxyl_distance_angstrom")
+            is not None
+            and float(row["nearest_gamma_to_same_chain_hydroxyl_distance_angstrom"])
+            <= threshold
+        ]
+        threshold_collision_rows.append(
+            {
+                "threshold_angstrom": threshold,
+                "family_acid_base_hit_count": len(set(acid_base_hit_pdb_ids)),
+                "family_acid_base_hit_pdb_ids": sorted(set(acid_base_hit_pdb_ids)),
+                "same_chain_hydroxyl_hit_count": len(set(hydroxyl_hit_pdb_ids)),
+                "same_chain_hydroxyl_hit_pdb_ids": sorted(set(hydroxyl_hit_pdb_ids)),
+                "selection_status": (
+                    "not_a_calibrated_epk_threshold_family_specific_counterevidence"
+                ),
+            }
+        )
+
+    lowest_candidate_collision_count = 0
+    if 6.0 in thresholds:
+        lowest_candidate_collision_count = sum(
+            1 for distance in measured_acid_base_distances if distance <= 6.0
+        )
+    return {
+        "metadata": {
+            "method": "epk_family_specific_homolog_gamma_distance_sample",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "reviewed_sibling_family_id": target_family_id,
+            "reviewed_sibling_family_name": family_name,
+            "source_epk_family_specific_homolog_mapping_review_method": (
+                mapping_meta.get("method")
+            ),
+            "source_ready_for_future_distance_measurement_count": (
+                mapping_meta.get("ready_for_future_distance_measurement_count")
+            ),
+            "ready_input_homolog_structure_count": ready_input_count,
+            "row_count": len(rows),
+            "measured_homolog_structure_count": len(measured_rows),
+            "measurement_status_counts": dict(sorted(status_counts.items())),
+            "fetched_pdb_ids": sorted(fetched_pdb_ids),
+            "candidate_thresholds_angstrom": thresholds,
+            "threshold_collision_rows": threshold_collision_rows,
+            "lowest_covering_candidate_family_acid_base_hit_count": (
+                lowest_candidate_collision_count
+            ),
+            "observed_family_acid_base_distance_min_angstrom": (
+                min(measured_acid_base_distances)
+                if measured_acid_base_distances
+                else None
+            ),
+            "observed_family_acid_base_distance_max_angstrom": (
+                max(measured_acid_base_distances)
+                if measured_acid_base_distances
+                else None
+            ),
+            "observed_family_same_chain_hydroxyl_distance_min_angstrom": (
+                min(measured_hydroxyl_distances) if measured_hydroxyl_distances else None
+            ),
+            "observed_family_same_chain_hydroxyl_distance_max_angstrom": (
+                max(measured_hydroxyl_distances) if measured_hydroxyl_distances else None
+            ),
+            "homolog_gamma_distance_sample_started": bool(measured_rows),
+            "homolog_control_axis": (
+                "family_specific_sibling_acid_base_counteraxis_not_epk_label"
+            ),
+            "negative_control_distance_distribution_ready": False,
+            "threshold_selection_status": (
+                "blocked_family_specific_sibling_controls_overlap_candidate_geometry"
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact measures family-specific homolog sibling-control "
+                "distances after template-based mapping. It is counterevidence "
+                "for ePK scorer design, not a calibrated threshold, production "
+                "fingerprint, registry edit, external hard-negative re-audit, "
+                "or label import."
+            ),
+            "next_actions": [
+                "use family-specific sibling counterevidence when designing any ePK scorer axis",
+                "add a substrate-acceptor or sibling-family disambiguation rule before threshold claims",
+                "keep external hard-negative re-audit closed until a real ePK score exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("family_id")),
+                str(row.get("pdb_id")),
+            ),
+        ),
+        "warnings": [
+            (
+                "Family-specific homolog distances are useful counterevidence, "
+                "but they are not clean held-out performance or countable ePK "
+                "label evidence."
+            )
+        ],
+    }
+
+
 def build_epk_sibling_control_homolog_gamma_distance_sample(
     *,
     epk_sibling_control_homolog_mapping_review: dict[str, Any],
@@ -13522,7 +14648,7 @@ def build_epk_sibling_control_homolog_gamma_distance_sample(
             ),
             "next_actions": [
                 "add a future ePK counter-axis that distinguishes hydroxyl acceptors from phosphohistidine NDK controls",
-                "source metal-supported gamma-capable controls for ATP-grasp, PfkA, and PfkB",
+                "combine NDK phosphohistidine evidence with PfkB/PfkA/ATP-grasp family-specific sibling controls",
                 "keep external hard-negative re-audit closed until a real ePK score exists",
             ],
         },
@@ -13549,6 +14675,9 @@ def build_epk_review_only_scoring_prototype(
     epk_gamma_geometry_measurement_sample: dict[str, Any],
     epk_acceptor_identity_review: dict[str, Any],
     epk_sibling_control_homolog_gamma_distance_sample: dict[str, Any],
+    epk_family_specific_homolog_gamma_distance_sample: dict[str, Any]
+    | list[dict[str, Any]]
+    | None = None,
     external_hard_negative_inverse_gate_scores: list[dict[str, Any]] | None = None,
     candidate_threshold_angstrom: float = 6.0,
     imported_external_entry_ids: list[str] | None = None,
@@ -13569,6 +14698,22 @@ def build_epk_review_only_scoring_prototype(
     )
     if not isinstance(homolog_meta, dict):
         homolog_meta = {}
+    family_distance_samples = (
+        epk_family_specific_homolog_gamma_distance_sample
+        if isinstance(epk_family_specific_homolog_gamma_distance_sample, list)
+        else (
+            [epk_family_specific_homolog_gamma_distance_sample]
+            if isinstance(epk_family_specific_homolog_gamma_distance_sample, dict)
+            else []
+        )
+    )
+    family_distance_metas: list[dict[str, Any]] = []
+    for sample in family_distance_samples:
+        if not isinstance(sample, dict):
+            continue
+        meta = sample.get("metadata", {})
+        if isinstance(meta, dict):
+            family_distance_metas.append(meta)
 
     target_fingerprint_id = str(
         axis_meta.get("target_fingerprint_id")
@@ -13726,6 +14871,59 @@ def build_epk_review_only_scoring_prototype(
             }
         )
 
+    family_specific_counteraxis_count = 0
+    for sample in family_distance_samples:
+        if not isinstance(sample, dict):
+            continue
+        for sample_row in sample.get("rows", []) or []:
+            if not isinstance(sample_row, dict):
+                continue
+            if (
+                sample_row.get("measurement_status")
+                != "family_specific_gamma_to_acid_base_distance_measured_review_only"
+            ):
+                continue
+            decision = "blocked_by_family_specific_sibling_counteraxis_review_only"
+            decision_counts[decision] += 1
+            family_specific_counteraxis_count += 1
+            rows.append(
+                {
+                    "row_type": "sibling_family_specific_negative_control",
+                    "entry_id": None,
+                    "pdb_id": sample_row.get("pdb_id"),
+                    "family_id": sample_row.get("family_id"),
+                    "family_name": sample_row.get("family_name"),
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "text_free_inputs_only": True,
+                    "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                    "prototype_axis_values": {
+                        "family_specific_sibling_counteraxis": 1,
+                        "source_supported_epk_hydroxyl_acceptor_identity": 0,
+                    },
+                    "review_only_prototype_score": 0.0,
+                    "prototype_decision": decision,
+                    "nearest_gamma_to_family_acid_base_distance_angstrom": (
+                        sample_row.get(
+                            "nearest_gamma_to_family_acid_base_distance_angstrom"
+                        )
+                    ),
+                    "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": (
+                        sample_row.get(
+                            "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom"
+                        )
+                    ),
+                    "epk_score_computed": False,
+                    "remaining_blockers": [
+                        "sibling_family_control_not_epk_positive_label",
+                        "threshold_not_calibrated_against_negative_controls",
+                        "external_hard_negative_reaudit_not_real_scorer",
+                    ],
+                }
+            )
+
     external_rows_by_id: dict[str, dict[str, Any]] = {}
     for artifact in external_hard_negative_inverse_gate_scores or []:
         if not isinstance(artifact, dict):
@@ -13804,6 +15002,13 @@ def build_epk_review_only_scoring_prototype(
             "source_epk_sibling_control_homolog_gamma_distance_sample_method": (
                 homolog_meta.get("method")
             ),
+            "source_epk_family_specific_homolog_gamma_distance_sample_methods": (
+                _sorted_strings(
+                    meta.get("method")
+                    for meta in family_distance_metas
+                    if meta.get("method")
+                )
+            ),
             "candidate_threshold_angstrom": candidate_threshold_angstrom,
             "row_count": len(rows),
             "current_positive_prototype_row_count": sum(
@@ -13817,6 +15022,9 @@ def build_epk_review_only_scoring_prototype(
                 for row in rows
                 if row.get("row_type") == "sibling_homolog_negative_control"
             ),
+            "sibling_family_specific_counteraxis_row_count": (
+                family_specific_counteraxis_count
+            ),
             "imported_external_hard_negative_row_count": sum(
                 1
                 for row in rows
@@ -13829,6 +15037,7 @@ def build_epk_review_only_scoring_prototype(
             "prototype_failure_axes": [
                 "negative_control_distribution_not_calibrated",
                 "complete_gamma_geometry_missing_for_m_csa_640",
+                "family_specific_sibling_controls_overlap_candidate_geometry",
                 "external_hard_negative_reaudit_not_real_scorer",
                 "registry_and_label_factory_extension_not_implemented",
             ],
@@ -13846,13 +15055,14 @@ def build_epk_review_only_scoring_prototype(
             "review_only_rule": (
                 "This artifact evaluates a deliberately fail-closed ePK "
                 "prototype surface. It records provisional axis scores, "
-                "NDK phosphohistidine counter-axis blockers, and imported "
-                "external hard-negative abstentions, but it is not a calibrated "
-                "ePK score, production fingerprint, registry edit, or label gate."
+                "NDK phosphohistidine and family-specific sibling counter-axis "
+                "blockers, and imported external hard-negative abstentions, but "
+                "it is not a calibrated ePK score, production fingerprint, "
+                "registry edit, or label gate."
             ),
             "next_actions": [
-                "materialize family-specific mapping for PfkB, PfkA, and ATP-grasp source queues",
-                "turn the NDK histidine counter-axis into an explicit scorer rule before any threshold claim",
+                "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
+                "turn the NDK histidine and family-specific sibling counteraxes into explicit scorer rules before any threshold claim",
                 "run a real ePK external hard-negative re-audit only after the scorer is calibrated",
             ],
         },
@@ -13869,6 +15079,175 @@ def build_epk_review_only_scoring_prototype(
                 "Prototype scores in this artifact are review-only diagnostics "
                 "and must not be treated as held-out performance or countable "
                 "fingerprint evidence."
+            )
+        ],
+    }
+
+
+def build_epk_counteraxis_sufficiency_decision(
+    *,
+    epk_review_only_scoring_prototype: dict[str, Any],
+    epk_precount_gate_status: dict[str, Any],
+) -> dict[str, Any]:
+    """Summarize whether current ePK counteraxes allow threshold selection."""
+
+    prototype_meta = epk_review_only_scoring_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    precount_meta = epk_precount_gate_status.get("metadata", {})
+    if not isinstance(precount_meta, dict):
+        precount_meta = {}
+    target_fingerprint_id = str(
+        prototype_meta.get("target_fingerprint_id")
+        or precount_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        candidate_threshold = float(
+            prototype_meta.get("candidate_threshold_angstrom") or 6.0
+        )
+    except (TypeError, ValueError):
+        candidate_threshold = 6.0
+
+    family_rows = [
+        row
+        for row in epk_review_only_scoring_prototype.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("row_type") == "sibling_family_specific_negative_control"
+    ]
+    histidine_rows = [
+        row
+        for row in epk_review_only_scoring_prototype.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("row_type") == "sibling_homolog_negative_control"
+    ]
+    external_rows = [
+        row
+        for row in epk_review_only_scoring_prototype.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("row_type") == "imported_external_hard_negative"
+    ]
+    family_threshold_hit_rows = []
+    for row in family_rows:
+        distance = row.get("nearest_gamma_to_family_acid_base_distance_angstrom")
+        try:
+            distance_value = float(distance)
+        except (TypeError, ValueError):
+            continue
+        if distance_value <= candidate_threshold:
+            family_threshold_hit_rows.append(row)
+
+    family_ids = _sorted_strings(row.get("family_id") for row in family_rows)
+    measured_family_ids = _sorted_strings(
+        row.get("family_id") for row in family_threshold_hit_rows
+    )
+    decision_rows = [
+        {
+            "decision_axis": "family_specific_sibling_counteraxis",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "measured_family_ids": measured_family_ids,
+            "candidate_threshold_hit_count": len(family_threshold_hit_rows),
+            "candidate_threshold_hit_pdb_ids": sorted(
+                {
+                    str(row.get("pdb_id"))
+                    for row in family_threshold_hit_rows
+                    if row.get("pdb_id")
+                }
+            ),
+            "decision": "blocks_distance_only_threshold_selection",
+            "blocker": "family_specific_sibling_controls_overlap_candidate_geometry",
+        },
+        {
+            "decision_axis": "phosphohistidine_counteraxis",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "measured_family_ids": _sorted_strings(
+                row.get("family_id") for row in histidine_rows
+            ),
+            "counteraxis_row_count": len(histidine_rows),
+            "decision": "requires_non_hydroxyl_acceptor_counterrule",
+            "blocker": "ndk_phosphohistidine_axis_overlaps_gamma_distance_logic",
+        },
+        {
+            "decision_axis": "imported_external_hard_negatives",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "external_hard_negative_row_count": len(external_rows),
+            "external_hard_negative_nonhit_count": sum(
+                1
+                for row in external_rows
+                if float(row.get("review_only_prototype_score") or 0.0) == 0.0
+            ),
+            "decision": "abstain_until_real_epk_axes_exist",
+            "blocker": "external_epk_specific_axes_not_materialized",
+        },
+    ]
+    threshold_selection_decision = "do_not_select_threshold"
+    counteraxis_sufficient_to_block_threshold = bool(family_threshold_hit_rows) and bool(
+        histidine_rows
+    )
+    return {
+        "metadata": {
+            "method": "epk_counteraxis_sufficiency_decision",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_review_only_scoring_prototype_method": (
+                prototype_meta.get("method")
+            ),
+            "source_epk_precount_gate_status_method": precount_meta.get("method"),
+            "candidate_threshold_angstrom": candidate_threshold,
+            "prototype_gate_status": prototype_meta.get("prototype_gate_status"),
+            "precount_gate_status": precount_meta.get("precount_gate_status"),
+            "family_specific_counteraxis_family_ids": family_ids,
+            "family_specific_counteraxis_row_count": len(family_rows),
+            "family_specific_counteraxis_threshold_hit_count": len(
+                family_threshold_hit_rows
+            ),
+            "phosphohistidine_counteraxis_row_count": len(histidine_rows),
+            "external_hard_negative_row_count": len(external_rows),
+            "external_hard_negative_nonhit_count": decision_rows[2][
+                "external_hard_negative_nonhit_count"
+            ],
+            "counteraxis_sufficient_to_block_distance_only_threshold": (
+                counteraxis_sufficient_to_block_threshold
+            ),
+            "threshold_selection_decision": threshold_selection_decision,
+            "primary_blockers": [
+                "family_specific_sibling_controls_overlap_candidate_geometry",
+                "ndk_phosphohistidine_axis_overlaps_gamma_distance_logic",
+                "external_epk_specific_axes_not_materialized",
+                "label_factory_gate_not_extended_for_epk",
+            ],
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact converts the fail-closed prototype into a "
+                "counteraxis sufficiency decision. It does not select a "
+                "threshold, score ePK, edit registries, re-audit external hard "
+                "negatives, or import labels."
+            ),
+            "next_actions": [
+                "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
+                "materialize complete gamma geometry for m_csa:640 before any positive score",
+                "run external hard-negative re-audit only after a calibrated ePK score exists",
+            ],
+        },
+        "decision_rows": decision_rows,
+        "warnings": [
+            (
+                "Counteraxis sufficiency is a fail-closed negative result; it "
+                "must not be treated as production fingerprint evidence."
             )
         ],
     }
@@ -13899,6 +15278,12 @@ def build_epk_precount_gate_status(
     epk_sibling_control_homolog_mapping_review: dict[str, Any] | None = None,
     epk_sibling_control_homolog_gamma_distance_sample: dict[str, Any] | None = None,
     epk_family_specific_mapping_template_review: dict[str, Any]
+    | list[dict[str, Any]]
+    | None = None,
+    epk_family_specific_homolog_mapping_review: dict[str, Any]
+    | list[dict[str, Any]]
+    | None = None,
+    epk_family_specific_homolog_gamma_distance_sample: dict[str, Any]
     | list[dict[str, Any]]
     | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
@@ -14087,6 +15472,76 @@ def build_epk_precount_gate_status(
         for meta in family_template_metas
         if meta.get("reviewed_sibling_family_id")
         and bool(meta.get("family_specific_mapping_ready"))
+    )
+    family_mapping_reviews = (
+        epk_family_specific_homolog_mapping_review
+        if isinstance(epk_family_specific_homolog_mapping_review, list)
+        else (
+            [epk_family_specific_homolog_mapping_review]
+            if isinstance(epk_family_specific_homolog_mapping_review, dict)
+            else []
+        )
+    )
+    family_mapping_metas: list[dict[str, Any]] = []
+    for review in family_mapping_reviews:
+        if not isinstance(review, dict):
+            continue
+        meta = review.get("metadata", {})
+        if isinstance(meta, dict):
+            family_mapping_metas.append(meta)
+    family_mapping_meta = family_mapping_metas[0] if family_mapping_metas else {}
+    family_mapping_family_ids = _sorted_strings(
+        meta.get("reviewed_sibling_family_id")
+        for meta in family_mapping_metas
+        if meta.get("reviewed_sibling_family_id")
+    )
+    family_mapping_ready_family_ids = _sorted_strings(
+        meta.get("reviewed_sibling_family_id")
+        for meta in family_mapping_metas
+        if meta.get("reviewed_sibling_family_id")
+        and int(meta.get("measurement_ready_homolog_structure_count") or 0) > 0
+    )
+    family_mapping_status_counts: Counter[str] = Counter()
+    for meta in family_mapping_metas:
+        for status, count in (
+            meta.get("family_specific_homolog_mapping_status_counts", {}) or {}
+        ).items():
+            family_mapping_status_counts[str(status)] += int(count or 0)
+    family_mapping_ready_structure_count_total = sum(
+        int(meta.get("measurement_ready_homolog_structure_count") or 0)
+        for meta in family_mapping_metas
+    )
+    family_distance_samples = (
+        epk_family_specific_homolog_gamma_distance_sample
+        if isinstance(epk_family_specific_homolog_gamma_distance_sample, list)
+        else (
+            [epk_family_specific_homolog_gamma_distance_sample]
+            if isinstance(epk_family_specific_homolog_gamma_distance_sample, dict)
+            else []
+        )
+    )
+    family_distance_metas: list[dict[str, Any]] = []
+    for sample in family_distance_samples:
+        if not isinstance(sample, dict):
+            continue
+        meta = sample.get("metadata", {})
+        if isinstance(meta, dict):
+            family_distance_metas.append(meta)
+    family_distance_meta = family_distance_metas[0] if family_distance_metas else {}
+    family_distance_family_ids = _sorted_strings(
+        meta.get("reviewed_sibling_family_id")
+        for meta in family_distance_metas
+        if meta.get("reviewed_sibling_family_id")
+    )
+    family_distance_measured_family_ids = _sorted_strings(
+        meta.get("reviewed_sibling_family_id")
+        for meta in family_distance_metas
+        if meta.get("reviewed_sibling_family_id")
+        and int(meta.get("measured_homolog_structure_count") or 0) > 0
+    )
+    family_distance_measured_count_total = sum(
+        int(meta.get("measured_homolog_structure_count") or 0)
+        for meta in family_distance_metas
     )
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
@@ -14437,6 +15892,44 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if family_template_metas or family_mapping_metas:
+        expected_mapping_family_ids = family_template_family_ids or family_mapping_family_ids
+        gate_checks.append(
+            {
+                "gate_id": "family_specific_homolog_mapping_from_template",
+                "passed": bool(expected_mapping_family_ids)
+                and set(family_mapping_ready_family_ids)
+                >= set(expected_mapping_family_ids),
+                "evidence": {
+                    "source_methods": _sorted_strings(
+                        meta.get("method")
+                        for meta in family_mapping_metas
+                        if meta.get("method")
+                    ),
+                    "expected_sibling_family_ids": expected_mapping_family_ids,
+                    "mapped_family_ids": family_mapping_family_ids,
+                    "ready_family_ids": family_mapping_ready_family_ids,
+                    "mapping_status_counts": dict(
+                        sorted(family_mapping_status_counts.items())
+                    ),
+                    "measurement_ready_homolog_structure_count_total": (
+                        family_mapping_ready_structure_count_total
+                    ),
+                    "distance_sample_methods": _sorted_strings(
+                        meta.get("method")
+                        for meta in family_distance_metas
+                        if meta.get("method")
+                    ),
+                    "distance_sample_family_ids": family_distance_family_ids,
+                    "distance_measured_family_ids": (
+                        family_distance_measured_family_ids
+                    ),
+                    "distance_measured_homolog_structure_count_total": (
+                        family_distance_measured_count_total
+                    ),
+                },
+            }
+        )
     failing_gate_ids = [
         str(check["gate_id"]) for check in gate_checks if not bool(check["passed"])
     ]
@@ -14501,10 +15994,19 @@ def build_epk_precount_gate_status(
             )
             else ""
         )
+        mapped_or_measured_family_ids = {
+            family_id
+            for family_id in [
+                mapped_homolog_family_id,
+                *family_mapping_ready_family_ids,
+                *family_distance_measured_family_ids,
+            ]
+            if family_id
+        }
         source_still_needed_family_ids = [
             family_id
             for family_id in sibling_control_repair_family_ids
-            if family_id != mapped_homolog_family_id
+            if family_id not in mapped_or_measured_family_ids
         ]
         if source_still_needed_family_ids:
             repair_family = ", ".join(source_still_needed_family_ids)
@@ -14528,7 +16030,7 @@ def build_epk_precount_gate_status(
                 0,
                 (
                     f"use measured {homolog_family} homolog histidine-axis "
-                    "counterevidence while sourcing remaining sibling controls"
+                    "counterevidence alongside family-specific sibling controls"
                 ),
             )
         elif homolog_mapping_ready_count:
@@ -14550,16 +16052,41 @@ def build_epk_precount_gate_status(
         template_not_ready_family_ids = [
             family_id
             for family_id in family_template_family_ids
-            if family_id not in family_template_ready_family_ids
+            if family_id not in family_mapping_ready_family_ids
         ]
-        template_family_text = ", ".join(template_not_ready_family_ids)
-        next_actions.insert(
-            0,
-            (
-                f"implement family-specific homolog mapping for {template_family_text} "
-                "from the seeded templates before distance measurement"
-            ),
-        )
+        measured_family_ids = set(family_distance_measured_family_ids)
+        ready_not_measured_family_ids = [
+            family_id
+            for family_id in family_mapping_ready_family_ids
+            if family_id not in measured_family_ids
+        ]
+        if template_not_ready_family_ids:
+            template_family_text = ", ".join(template_not_ready_family_ids)
+            next_actions.insert(
+                0,
+                (
+                    f"implement family-specific homolog mapping for {template_family_text} "
+                    "from the seeded templates before distance measurement"
+                ),
+            )
+        if ready_not_measured_family_ids:
+            next_actions.insert(
+                0,
+                (
+                    "measure mapped family-specific homolog controls for "
+                    f"{', '.join(ready_not_measured_family_ids)} in a bounded "
+                    "review-only pass"
+                ),
+            )
+        if family_distance_measured_family_ids:
+            next_actions.insert(
+                0,
+                (
+                    "use measured family-specific sibling counterevidence for "
+                    f"{', '.join(family_distance_measured_family_ids)} while "
+                    "keeping threshold selection closed"
+                ),
+            )
     return {
         "metadata": {
             "method": "epk_precount_gate_status",
@@ -14771,6 +16298,72 @@ def build_epk_precount_gate_status(
             ),
             "negative_control_family_template_ready_family_ids": (
                 family_template_ready_family_ids
+            ),
+            "source_epk_family_specific_homolog_mapping_review_method": (
+                family_mapping_meta.get("method")
+            ),
+            "source_epk_family_specific_homolog_mapping_review_methods": (
+                _sorted_strings(
+                    meta.get("method")
+                    for meta in family_mapping_metas
+                    if meta.get("method")
+                )
+            ),
+            "negative_control_family_specific_mapping_family_id": (
+                family_mapping_meta.get("reviewed_sibling_family_id")
+            ),
+            "negative_control_family_specific_mapping_family_ids": (
+                family_mapping_family_ids
+            ),
+            "negative_control_family_specific_mapping_ready_family_ids": (
+                family_mapping_ready_family_ids
+            ),
+            "negative_control_family_specific_mapping_status_counts": dict(
+                sorted(family_mapping_status_counts.items())
+            ),
+            "negative_control_family_specific_mapping_ready_structure_count": (
+                family_mapping_meta.get("measurement_ready_homolog_structure_count")
+            ),
+            "negative_control_family_specific_mapping_ready_structure_count_total": (
+                family_mapping_ready_structure_count_total
+            ),
+            "source_epk_family_specific_homolog_gamma_distance_sample_method": (
+                family_distance_meta.get("method")
+            ),
+            "source_epk_family_specific_homolog_gamma_distance_sample_methods": (
+                _sorted_strings(
+                    meta.get("method")
+                    for meta in family_distance_metas
+                    if meta.get("method")
+                )
+            ),
+            "negative_control_family_specific_distance_sample_family_id": (
+                family_distance_meta.get("reviewed_sibling_family_id")
+            ),
+            "negative_control_family_specific_distance_sample_family_ids": (
+                family_distance_family_ids
+            ),
+            "negative_control_family_specific_distance_sample_measured_family_ids": (
+                family_distance_measured_family_ids
+            ),
+            "negative_control_family_specific_distance_sample_measured_count": (
+                family_distance_meta.get("measured_homolog_structure_count")
+            ),
+            "negative_control_family_specific_distance_sample_measured_count_total": (
+                family_distance_measured_count_total
+            ),
+            "negative_control_family_specific_distance_sample_axis": (
+                family_distance_meta.get("homolog_control_axis")
+            ),
+            "negative_control_family_specific_distance_min_angstrom": (
+                family_distance_meta.get(
+                    "observed_family_acid_base_distance_min_angstrom"
+                )
+            ),
+            "negative_control_family_specific_distance_max_angstrom": (
+                family_distance_meta.get(
+                    "observed_family_acid_base_distance_max_angstrom"
+                )
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

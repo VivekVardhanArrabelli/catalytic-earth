@@ -374,22 +374,47 @@ then seed source-family mapping templates for those blockers. They record
 35 non-countable residue-role seeds across five M-CSA source entries while
 keeping `family_specific_mapping_ready=false` and forbidding exact
 residue-position transfer to homolog candidates.
+`artifacts/v3_epk_family_specific_homolog_mapping_review_pfkb_1025.json`,
+`artifacts/v3_epk_family_specific_homolog_mapping_review_pfka_1025.json`, and
+`artifacts/v3_epk_family_specific_homolog_mapping_review_atp_grasp_1025.json`
+turn those templates into a first review-only mapper. They map 16/32 homolog
+candidates with role-compatible acid/base, phosphate-context, and local-metal
+evidence while keeping exact residue-position transfer disabled: 9 PfkB, 5
+PfkA, and 2 ATP-grasp candidates are measurement-ready; the rest remain blocked
+by unresolved acid/base mapping.
+`artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_pfkb_1025.json`,
+`artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_pfka_1025.json`,
+and
+`artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_atp_grasp_1025.json`
+then measure those 16 mapped candidates. The nearest PG-to-family-acid/base
+distances span 3.611-5.596 Angstrom, so every measured PfkB, PfkA, and
+ATP-grasp homolog collides with the 6-Angstrom candidate scenario. This is
+review-only sibling-family counterevidence, not a calibrated threshold or
+countable ePK score.
 `artifacts/v3_epk_review_only_scoring_prototype_1025.json` evaluates a
 fail-closed prototype decision surface against current ePK rows, the NDK
-homolog counter-axis, and the three imported external hard negatives. It
-records two uncalibrated positive-like rows, one positive abstention, four NDK
-phosphohistidine counter-axis blocks, and three imported external
+homolog counter-axis, the family-specific sibling counter-axis, and the three
+imported external hard negatives. It records two uncalibrated positive-like
+rows, one positive abstention, four NDK phosphohistidine counter-axis blocks,
+16 family-specific sibling-control blocks, and three imported external
 hard-negative abstentions. It deliberately keeps `epk_score_computed=false`,
 `threshold_calibrated=false`, and `ready_to_expand_positive_fingerprint_universe=false`.
+`artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` makes the
+negative result explicit: the current counteraxis evidence is enough to block
+distance-only threshold selection because all 16 family-specific sibling
+controls hit the 6-Angstrom candidate cutoff and the four NDK homolog controls
+remain phosphohistidine-axis blockers. It does not select a threshold, compute
+an ePK score, re-audit external hard negatives, edit registries, or import
+labels.
 `artifacts/v3_epk_precount_gate_status_1025.json` consolidates these artifacts
 into a blocked pre-count status. Local-axis prototyping, measured-row acceptor
 identity review, gamma-threshold control planning, explicit non-ready-row
 exclusion, sibling alternate-control screening, sibling alternate-control
 distance measurement, calibration-sufficiency review, NDK homolog sourcing,
-NDK homolog mapping, and NDK homolog histidine-axis measurement are now
-explicit review-only preparation; negative-control distribution readiness,
-acceptor-threshold calibration, complete gamma geometry, external hard-negative
-scored re-audit, family-specific homolog mapping from the PfkB template, and
+NDK homolog mapping, NDK homolog histidine-axis measurement, and
+family-specific homolog measurement are now explicit review-only preparation;
+negative-control distribution readiness, acceptor-threshold calibration,
+complete gamma geometry, external hard-negative scored re-audit, and
 registry/label-factory extension all remain failed gates.
 
 ## Active Learning Queue

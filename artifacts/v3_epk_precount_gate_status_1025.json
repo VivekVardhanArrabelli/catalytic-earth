@@ -163,6 +163,49 @@
       },
       "gate_id": "family_specific_homolog_mapping_template",
       "passed": false
+    },
+    {
+      "evidence": {
+        "distance_measured_family_ids": [
+          "atp_grasp",
+          "pfka",
+          "pfkb"
+        ],
+        "distance_measured_homolog_structure_count_total": 16,
+        "distance_sample_family_ids": [
+          "atp_grasp",
+          "pfka",
+          "pfkb"
+        ],
+        "distance_sample_methods": [
+          "epk_family_specific_homolog_gamma_distance_sample"
+        ],
+        "expected_sibling_family_ids": [
+          "atp_grasp",
+          "pfka",
+          "pfkb"
+        ],
+        "mapped_family_ids": [
+          "atp_grasp",
+          "pfka",
+          "pfkb"
+        ],
+        "mapping_status_counts": {
+          "family_specific_acid_base_mapping_unresolved": 16,
+          "family_specific_homolog_mapping_ready_for_distance_measurement_review_only": 16
+        },
+        "measurement_ready_homolog_structure_count_total": 16,
+        "ready_family_ids": [
+          "atp_grasp",
+          "pfka",
+          "pfkb"
+        ],
+        "source_methods": [
+          "epk_family_specific_homolog_mapping_review"
+        ]
+      },
+      "gate_id": "family_specific_homolog_mapping_from_template",
+      "passed": true
     }
   ],
   "metadata": {
@@ -191,6 +234,39 @@
     "negative_control_combined_measured_control_count": 5,
     "negative_control_combined_measured_family_count": 4,
     "negative_control_distance_distribution_ready": false,
+    "negative_control_family_specific_distance_max_angstrom": 5.596,
+    "negative_control_family_specific_distance_min_angstrom": 3.872,
+    "negative_control_family_specific_distance_sample_axis": "family_specific_sibling_acid_base_counteraxis_not_epk_label",
+    "negative_control_family_specific_distance_sample_family_id": "pfkb",
+    "negative_control_family_specific_distance_sample_family_ids": [
+      "atp_grasp",
+      "pfka",
+      "pfkb"
+    ],
+    "negative_control_family_specific_distance_sample_measured_count": 9,
+    "negative_control_family_specific_distance_sample_measured_count_total": 16,
+    "negative_control_family_specific_distance_sample_measured_family_ids": [
+      "atp_grasp",
+      "pfka",
+      "pfkb"
+    ],
+    "negative_control_family_specific_mapping_family_id": "pfkb",
+    "negative_control_family_specific_mapping_family_ids": [
+      "atp_grasp",
+      "pfka",
+      "pfkb"
+    ],
+    "negative_control_family_specific_mapping_ready_family_ids": [
+      "atp_grasp",
+      "pfka",
+      "pfkb"
+    ],
+    "negative_control_family_specific_mapping_ready_structure_count": 9,
+    "negative_control_family_specific_mapping_ready_structure_count_total": 16,
+    "negative_control_family_specific_mapping_status_counts": {
+      "family_specific_acid_base_mapping_unresolved": 16,
+      "family_specific_homolog_mapping_ready_for_distance_measurement_review_only": 16
+    },
     "negative_control_family_template_family_id": "pfkb",
     "negative_control_family_template_family_ids": [
       "atp_grasp",
@@ -257,9 +333,8 @@
     ],
     "negative_control_source_request_open": true,
     "next_actions": [
-      "implement family-specific homolog mapping for atp_grasp, pfka, pfkb from the seeded templates before distance measurement",
-      "use measured ndk homolog histidine-axis counterevidence while sourcing remaining sibling controls",
-      "source metal-supported gamma-capable controls for atp_grasp, pfka, pfkb before measuring those sibling families",
+      "use measured family-specific sibling counterevidence for atp_grasp, pfka, pfkb while keeping threshold selection closed",
+      "use measured ndk homolog histidine-axis counterevidence alongside family-specific sibling controls",
       "expand sibling negative-control coverage beyond measured alternate structures before selecting a threshold",
       "keep explicitly excluded non-ready ligand rows out of threshold calibration",
       "run external hard-negative re-audit only after a real ePK score exists"
@@ -277,6 +352,14 @@
     "selected_acceptor_threshold_angstrom": null,
     "source_epk_acceptor_identity_review_method": "epk_acceptor_identity_review",
     "source_epk_atp_state_evidence_plan_method": "epk_atp_state_evidence_plan",
+    "source_epk_family_specific_homolog_gamma_distance_sample_method": "epk_family_specific_homolog_gamma_distance_sample",
+    "source_epk_family_specific_homolog_gamma_distance_sample_methods": [
+      "epk_family_specific_homolog_gamma_distance_sample"
+    ],
+    "source_epk_family_specific_homolog_mapping_review_method": "epk_family_specific_homolog_mapping_review",
+    "source_epk_family_specific_homolog_mapping_review_methods": [
+      "epk_family_specific_homolog_mapping_review"
+    ],
     "source_epk_family_specific_mapping_template_review_method": "epk_family_specific_mapping_template_review",
     "source_epk_family_specific_mapping_template_review_methods": [
       "epk_family_specific_mapping_template_review"

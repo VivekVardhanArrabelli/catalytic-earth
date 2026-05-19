@@ -1553,4 +1553,8 @@ been rescored, the sibling negative-control distribution is not calibration
 ready, and their `label_factory_v1_8fp` out-of-scope labels are unchanged. The
 non-ready-row exclusion decision, sibling alternate-control screen, and
 sibling alternate-control distance and sufficiency artifacts are local
-calibration hygiene only.
+calibration hygiene only. The later PfkB, PfkA, and ATP-grasp family-specific
+homolog mapping and distance artifacts add review-only sibling counterevidence,
+and `artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` blocks
+distance-only ePK threshold selection, but they still do not authorize external
+hard-negative rescoring, ePK scoring, or label import.

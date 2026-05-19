@@ -5586,6 +5586,210 @@ class CliTests(unittest.TestCase):
                 "acid_base_or_acceptor_seed",
             )
 
+    def test_build_epk_family_specific_homolog_mapping_and_distance_commands(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_plan = root / "source_plan.json"
+            template_review = root / "template_review.json"
+            mapping_out = root / "family_mapping_review.json"
+            distance_out = root / "family_distance_sample.json"
+            (root / "PFB1.cif").write_text(
+                "\n".join(
+                    [
+                        "data_PFB1",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "HETATM ATP ATP PG PG A A 300 300 0.0 0.0 0.0",
+                        "HETATM MG MG MG MG A A 301 301 3.0 0.0 0.0",
+                        "ATOM ASP ASP OD1 OD1 A A 126 126 5.0 0.0 0.0",
+                        "ATOM GLY GLY CA CA A A 122 122 6.0 0.0 0.0",
+                        "ATOM LYS LYS NZ NZ A A 121 121 5.6 0.0 0.0",
+                        "ATOM THR THR OG1 OG1 A A 191 191 6.1 0.0 0.0",
+                        "ATOM ALA ALA CA CA A A 124 124 7.0 0.0 0.0",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            source_plan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_sibling_control_homolog_source_plan",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "reviewed_sibling_family_id": "pfkb",
+                            "candidate_pdb_count": 1,
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "PFB1",
+                                "family_id": "pfkb",
+                                "family_name": "PfkB family kinases",
+                                "source_entry_ids": ["m_csa:663"],
+                                "source_candidate_status": (
+                                    "candidate_gamma_metal_source_review_only"
+                                ),
+                                "has_gamma_capable_nucleotide": True,
+                                "has_metal_ligand": True,
+                                "gamma_capable_nucleotide_codes": ["ATP"],
+                                "metal_ligand_codes": ["MG"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            template_review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_family_specific_mapping_template_review",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "reviewed_sibling_family_id": "pfkb",
+                            "template_review_status": (
+                                "template_seeded_mapping_algorithm_pending_review_only"
+                            ),
+                            "seeded_template_entry_count": 1,
+                            "template_residue_count": 4,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:663",
+                                "family_id": "pfkb",
+                                "template_residues": [
+                                    {
+                                        "residue_code": "Asp",
+                                        "template_role": "acid_base_or_acceptor_seed",
+                                    },
+                                    {
+                                        "residue_code": "Gly",
+                                        "template_role": (
+                                            "phosphate_or_transition_state_stabilizer_seed"
+                                        ),
+                                    },
+                                    {
+                                        "residue_code": "Lys",
+                                        "template_role": (
+                                            "phosphate_or_transition_state_stabilizer_seed"
+                                        ),
+                                    },
+                                    {
+                                        "residue_code": "Ala",
+                                        "template_role": (
+                                            "phosphate_or_transition_state_stabilizer_seed"
+                                        ),
+                                    },
+                                    {
+                                        "residue_code": "Thr",
+                                        "template_role": "metal_ligand_seed",
+                                    },
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-family-specific-homolog-mapping-review",
+                    "--epk-sibling-control-homolog-source-plan",
+                    str(source_plan),
+                    "--epk-family-specific-mapping-template-review",
+                    str(template_review),
+                    "--family-id",
+                    "pfkb",
+                    "--cif-dir",
+                    str(root),
+                    "--out",
+                    str(mapping_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            mapping_review = json.loads(mapping_out.read_text(encoding="utf-8"))
+            metadata = mapping_review["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_family_specific_homolog_mapping_review"
+            )
+            self.assertEqual(metadata["reviewed_sibling_family_id"], "pfkb")
+            self.assertEqual(metadata["measurement_ready_homolog_structure_count"], 1)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            row = mapping_review["rows"][0]
+            self.assertEqual(
+                row["family_specific_homolog_mapping_status"],
+                "family_specific_homolog_mapping_ready_for_distance_measurement_review_only",
+            )
+            self.assertTrue(row["measurement_ready_for_negative_control"])
+            self.assertFalse(
+                row["chain_mappings"][0]["exact_residue_position_transfer_used"]
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-family-specific-homolog-gamma-distance-sample",
+                    "--epk-family-specific-homolog-mapping-review",
+                    str(mapping_out),
+                    "--candidate-thresholds",
+                    "4,6,8",
+                    "--cif-dir",
+                    str(root),
+                    "--out",
+                    str(distance_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            sample = json.loads(distance_out.read_text(encoding="utf-8"))
+            sample_meta = sample["metadata"]
+            self.assertEqual(
+                sample_meta["method"],
+                "epk_family_specific_homolog_gamma_distance_sample",
+            )
+            self.assertEqual(sample_meta["measured_homolog_structure_count"], 1)
+            self.assertFalse(sample_meta["negative_control_distance_distribution_ready"])
+            self.assertFalse(sample_meta["epk_score_computed"])
+            sample_row = sample["rows"][0]
+            self.assertEqual(
+                sample_row["measurement_status"],
+                "family_specific_gamma_to_acid_base_distance_measured_review_only",
+            )
+            self.assertEqual(
+                sample_row["nearest_gamma_to_family_acid_base_distance_angstrom"],
+                5.0,
+            )
+
     def test_build_epk_sibling_control_homolog_gamma_distance_sample_command(
         self,
     ) -> None:
@@ -5869,6 +6073,101 @@ class CliTests(unittest.TestCase):
             self.assertIn(
                 "external_hard_negative_abstain_missing_epk_axes_review_only",
                 decisions,
+            )
+
+    def test_build_epk_counteraxis_sufficiency_decision_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            prototype = root / "prototype.json"
+            precount = root / "precount.json"
+            out = root / "counteraxis.json"
+            prototype.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_review_only_scoring_prototype",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "candidate_threshold_angstrom": 6.0,
+                            "prototype_gate_status": "fail_closed_review_only",
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "sibling_family_specific_negative_control"
+                                ),
+                                "pdb_id": "1ABC",
+                                "family_id": "pfkb",
+                                "nearest_gamma_to_family_acid_base_distance_angstrom": (
+                                    4.2
+                                ),
+                                "review_only_prototype_score": 0.0,
+                            },
+                            {
+                                "row_type": "sibling_homolog_negative_control",
+                                "pdb_id": "9PFY",
+                                "family_id": "ndk",
+                                "review_only_prototype_score": 0.0,
+                            },
+                            {
+                                "row_type": "imported_external_hard_negative",
+                                "entry_id": "uniprot:P78549",
+                                "review_only_prototype_score": 0.0,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            precount.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_precount_gate_status",
+                            "precount_gate_status": "blocked_review_only",
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-counteraxis-sufficiency-decision",
+                    "--epk-review-only-scoring-prototype",
+                    str(prototype),
+                    "--epk-precount-gate-status",
+                    str(precount),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            decision = json.loads(out.read_text(encoding="utf-8"))
+            metadata = decision["metadata"]
+            self.assertEqual(metadata["method"], "epk_counteraxis_sufficiency_decision")
+            self.assertEqual(metadata["threshold_selection_decision"], "do_not_select_threshold")
+            self.assertEqual(metadata["family_specific_counteraxis_threshold_hit_count"], 1)
+            self.assertEqual(metadata["phosphohistidine_counteraxis_row_count"], 1)
+            self.assertTrue(
+                metadata["counteraxis_sufficient_to_block_distance_only_threshold"]
+            )
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            self.assertFalse(metadata["fingerprint_registry_edited"])
+            self.assertFalse(metadata["curated_label_registry_edited"])
+            self.assertEqual(metadata["countable_label_candidate_count"], 0)
+            axes = {row["decision_axis"]: row for row in decision["decision_rows"]}
+            self.assertEqual(
+                axes["family_specific_sibling_counteraxis"]["decision"],
+                "blocks_distance_only_threshold_selection",
             )
 
     def test_build_learned_retrieval_manifest_command(self) -> None:

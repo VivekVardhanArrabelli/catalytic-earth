@@ -1327,6 +1327,52 @@ class LeakageClosureTests(unittest.TestCase):
         )
         self.assertFalse(metadata["negative_control_family_template_mapping_ready"])
         self.assertEqual(metadata["negative_control_family_template_ready_family_ids"], [])
+        self.assertEqual(
+            metadata["source_epk_family_specific_homolog_mapping_review_method"],
+            "epk_family_specific_homolog_mapping_review",
+        )
+        self.assertEqual(
+            metadata["negative_control_family_specific_mapping_family_id"], "pfkb"
+        )
+        self.assertEqual(
+            metadata["negative_control_family_specific_mapping_ready_family_ids"],
+            ["atp_grasp", "pfka", "pfkb"],
+        )
+        self.assertEqual(
+            metadata["negative_control_family_specific_mapping_status_counts"],
+            {
+                "family_specific_acid_base_mapping_unresolved": 16,
+                "family_specific_homolog_mapping_ready_for_distance_measurement_review_only": 16,
+            },
+        )
+        self.assertEqual(
+            metadata[
+                "negative_control_family_specific_mapping_ready_structure_count_total"
+            ],
+            16,
+        )
+        self.assertEqual(
+            metadata[
+                "source_epk_family_specific_homolog_gamma_distance_sample_method"
+            ],
+            "epk_family_specific_homolog_gamma_distance_sample",
+        )
+        self.assertEqual(
+            metadata[
+                "negative_control_family_specific_distance_sample_measured_family_ids"
+            ],
+            ["atp_grasp", "pfka", "pfkb"],
+        )
+        self.assertEqual(
+            metadata[
+                "negative_control_family_specific_distance_sample_measured_count_total"
+            ],
+            16,
+        )
+        self.assertEqual(
+            metadata["negative_control_family_specific_distance_sample_axis"],
+            "family_specific_sibling_acid_base_counteraxis_not_epk_label",
+        )
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
         self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
         self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
@@ -1361,6 +1407,10 @@ class LeakageClosureTests(unittest.TestCase):
             "family_specific_homolog_mapping_template",
             metadata["failing_gate_ids"],
         )
+        self.assertNotIn(
+            "family_specific_homolog_mapping_from_template",
+            metadata["failing_gate_ids"],
+        )
         checks = {check["gate_id"]: check for check in status["gate_checks"]}
         self.assertTrue(checks["local_axis_prototype"]["passed"])
         self.assertTrue(checks["measured_acceptor_identity_reviewed"]["passed"])
@@ -1370,6 +1420,21 @@ class LeakageClosureTests(unittest.TestCase):
             checks["gamma_negative_control_distance_distribution"]["passed"]
         )
         self.assertFalse(checks["family_specific_homolog_mapping_template"]["passed"])
+        self.assertTrue(
+            checks["family_specific_homolog_mapping_from_template"]["passed"]
+        )
+        self.assertEqual(
+            checks["family_specific_homolog_mapping_from_template"]["evidence"][
+                "ready_family_ids"
+            ],
+            ["atp_grasp", "pfka", "pfkb"],
+        )
+        self.assertEqual(
+            checks["family_specific_homolog_mapping_from_template"]["evidence"][
+                "distance_measured_homolog_structure_count_total"
+            ],
+            16,
+        )
         self.assertEqual(
             checks["gamma_negative_control_distance_distribution"]["evidence"][
                 "alternate_structure_ready_for_measurement_count"
@@ -1883,6 +1948,108 @@ class LeakageClosureTests(unittest.TestCase):
                     self.assertFalse(row["exact_residue_position_transfer_allowed"])
                     self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_family_specific_homolog_mapping_and_distance_stay_review_only(
+        self,
+    ) -> None:
+        expectations = {
+            "pfkb": {"candidate_count": 10, "ready_count": 9, "blocked_count": 1},
+            "pfka": {"candidate_count": 10, "ready_count": 5, "blocked_count": 5},
+            "atp_grasp": {"candidate_count": 12, "ready_count": 2, "blocked_count": 10},
+        }
+        for family_id, expected in expectations.items():
+            with self.subTest(family_id=family_id):
+                mapping = _load_json(
+                    ROOT
+                    / "artifacts"
+                    / f"v3_epk_family_specific_homolog_mapping_review_{family_id}_1025.json"
+                )
+                metadata = mapping["metadata"]
+                self.assertEqual(
+                    metadata["method"], "epk_family_specific_homolog_mapping_review"
+                )
+                self.assertTrue(metadata["review_only"])
+                self.assertEqual(metadata["reviewed_sibling_family_id"], family_id)
+                self.assertEqual(
+                    metadata["mapping_reviewed_candidate_count"],
+                    expected["candidate_count"],
+                )
+                self.assertEqual(
+                    metadata["family_specific_homolog_mapping_status_counts"],
+                    {
+                        "family_specific_acid_base_mapping_unresolved": (
+                            expected["blocked_count"]
+                        ),
+                        "family_specific_homolog_mapping_ready_for_distance_measurement_review_only": (
+                            expected["ready_count"]
+                        ),
+                    },
+                )
+                self.assertEqual(
+                    metadata["measurement_ready_homolog_structure_count"],
+                    expected["ready_count"],
+                )
+                self.assertFalse(metadata["calibration_distance_measured"])
+                self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+                self.assertFalse(metadata["threshold_calibrated"])
+                self.assertFalse(metadata["epk_score_computed"])
+                self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+                self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+                self.assertFalse(metadata["fingerprint_registry_edited"])
+                self.assertFalse(metadata["curated_label_registry_edited"])
+                ready_rows = [
+                    row
+                    for row in mapping["rows"]
+                    if row["measurement_ready_for_negative_control"]
+                ]
+                self.assertEqual(len(ready_rows), expected["ready_count"])
+                for row in mapping["rows"]:
+                    self.assertTrue(row["review_only"])
+                    self.assertFalse(row["countable_label_candidate"])
+                    for chain_mapping in row["chain_mappings"]:
+                        self.assertFalse(
+                            chain_mapping["exact_residue_position_transfer_used"]
+                        )
+
+                sample = _load_json(
+                    ROOT
+                    / "artifacts"
+                    / f"v3_epk_family_specific_homolog_gamma_distance_sample_{family_id}_1025.json"
+                )
+                sample_meta = sample["metadata"]
+                self.assertEqual(
+                    sample_meta["method"],
+                    "epk_family_specific_homolog_gamma_distance_sample",
+                )
+                self.assertTrue(sample_meta["review_only"])
+                self.assertEqual(sample_meta["reviewed_sibling_family_id"], family_id)
+                self.assertEqual(
+                    sample_meta["measured_homolog_structure_count"],
+                    expected["ready_count"],
+                )
+                self.assertEqual(
+                    sample_meta[
+                        "lowest_covering_candidate_family_acid_base_hit_count"
+                    ],
+                    expected["ready_count"],
+                )
+                self.assertEqual(
+                    sample_meta["homolog_control_axis"],
+                    "family_specific_sibling_acid_base_counteraxis_not_epk_label",
+                )
+                self.assertFalse(
+                    sample_meta["negative_control_distance_distribution_ready"]
+                )
+                self.assertFalse(sample_meta["threshold_calibrated"])
+                self.assertFalse(sample_meta["epk_score_computed"])
+                self.assertFalse(
+                    sample_meta["ready_to_expand_positive_fingerprint_universe"]
+                )
+                self.assertFalse(sample_meta["fingerprint_registry_edited"])
+                self.assertFalse(sample_meta["curated_label_registry_edited"])
+                for row in sample["rows"]:
+                    self.assertTrue(row["review_only"])
+                    self.assertFalse(row["countable_label_candidate"])
+
     def test_epk_review_only_scoring_prototype_fails_closed(self) -> None:
         prototype = _load_json(
             ROOT / "artifacts" / "v3_epk_review_only_scoring_prototype_1025.json"
@@ -1895,12 +2062,14 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(metadata["current_positive_prototype_row_count"], 3)
         self.assertEqual(metadata["current_positive_full_axis_count"], 2)
         self.assertEqual(metadata["sibling_homolog_counteraxis_row_count"], 4)
+        self.assertEqual(metadata["sibling_family_specific_counteraxis_row_count"], 16)
         self.assertEqual(metadata["imported_external_hard_negative_row_count"], 3)
         self.assertEqual(metadata["imported_external_hard_negative_nonhit_count"], 3)
         self.assertEqual(
             metadata["prototype_decision_counts"],
             {
                 "abstain_missing_required_axis_review_only": 1,
+                "blocked_by_family_specific_sibling_counteraxis_review_only": 16,
                 "blocked_by_phosphohistidine_counteraxis_review_only": 4,
                 "candidate_positive_signal_review_only_not_calibrated": 2,
                 "external_hard_negative_abstain_missing_epk_axes_review_only": 3,
@@ -1930,6 +2099,44 @@ class LeakageClosureTests(unittest.TestCase):
                 row["prototype_decision"],
                 "external_hard_negative_abstain_missing_epk_axes_review_only",
             )
+
+    def test_epk_counteraxis_sufficiency_decision_blocks_threshold(self) -> None:
+        decision = _load_json(
+            ROOT / "artifacts" / "v3_epk_counteraxis_sufficiency_decision_1025.json"
+        )
+        metadata = decision["metadata"]
+        self.assertEqual(metadata["method"], "epk_counteraxis_sufficiency_decision")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["threshold_selection_decision"], "do_not_select_threshold")
+        self.assertEqual(metadata["family_specific_counteraxis_row_count"], 16)
+        self.assertEqual(metadata["family_specific_counteraxis_threshold_hit_count"], 16)
+        self.assertEqual(metadata["phosphohistidine_counteraxis_row_count"], 4)
+        self.assertEqual(metadata["external_hard_negative_row_count"], 3)
+        self.assertEqual(metadata["external_hard_negative_nonhit_count"], 3)
+        self.assertTrue(
+            metadata["counteraxis_sufficient_to_block_distance_only_threshold"]
+        )
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        axes = {row["decision_axis"]: row for row in decision["decision_rows"]}
+        self.assertEqual(
+            axes["family_specific_sibling_counteraxis"]["candidate_threshold_hit_count"],
+            16,
+        )
+        self.assertEqual(
+            axes["family_specific_sibling_counteraxis"]["decision"],
+            "blocks_distance_only_threshold_selection",
+        )
+        self.assertEqual(
+            axes["imported_external_hard_negatives"]["decision"],
+            "abstain_until_real_epk_axes_exist",
+        )
 
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:
         adjudication = _load_json(

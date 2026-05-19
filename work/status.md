@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 184
-- Measured elapsed time: 5478.6 minutes (91.31 hours)
+- Entries: 185
+- Measured elapsed time: 5526.9 minutes (92.11 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 249.5 measured minutes (4.16 hours)
+- post-infra-science: 297.7 measured minutes (4.96 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2056
-- Evidence references logged: 1614
+- Artifact references logged: 2074
+- Evidence references logged: 1629
 
 ## Recent Entries
-
-### 2026-05-18T18:01:10.526233+00:00 - post-infra-science
-
-- Task: ePK alternate sibling-control calibration decision
-- Time mode: measured
-- Measured minutes: 14.5
-- Started: 2026-05-18T17:46:25Z
-- Ended: 2026-05-18T18:00:55Z
-- Artifacts: artifacts/v3_epk_sibling_negative_control_alternate_gamma_distance_sample_1025.json, artifacts/v3_epk_negative_control_calibration_sufficiency_decision_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: startup 475-test unit discovery passed, startup validate passed with 682 labels, migration guard passed with 108 rows and 0 blockers, alternate sibling controls measured m_csa:592 4.175A m_csa:603 7.910A m_csa:696 9.920A, calibration sufficiency blocked with 5 measured controls across 4 of 8 sibling families, final 479-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ### 2026-05-18T19:01:23.160128+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_sibling_control_homolog_mapping_review_pfkb_1025.json, artifacts/v3_epk_sibling_control_homolog_mapping_review_pfka_1025.json, artifacts/v3_epk_sibling_control_homolog_mapping_review_atp_grasp_1025.json, artifacts/v3_epk_family_specific_mapping_template_review_pfkb_1025.json, artifacts/v3_epk_family_specific_mapping_template_review_pfka_1025.json, artifacts/v3_epk_family_specific_mapping_template_review_atp_grasp_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: PfkB homolog mapping reviewed 10 candidates with 4 nucleotide-site mapped and 0 catalytic-histidine mapped; ready=0, PfkA homolog mapping reviewed 10 candidates with 5 nucleotide-site mapped and 0 catalytic-histidine mapped; ready=0, ATP-grasp homolog mapping reviewed 12 candidates with 0 nucleotide-site mapped and 0 catalytic-histidine mapped; ready=0, family-specific template reviews seeded 35 source-family residue roles across PfkB PfkA and ATP-grasp but kept mapping_ready=false, pre-count gate remains blocked_review_only with family_specific_homolog_mapping_template failing, final 498-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, jq empty passed on new ePK JSON artifacts, git diff --check passed
 - Notes: Continuation of the same locked direct automation run after the NDK measurement/prototype commit. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative import or history rewrite.
+
+### 2026-05-19T01:44:03.576487+00:00 - post-infra-science
+
+- Task: ePK family-specific counteraxis controls
+- Time mode: measured
+- Measured minutes: 48.267
+- Started: 2026-05-19T00:55:27Z
+- Ended: 2026-05-19T01:43:43Z
+- Artifacts: artifacts/v3_epk_family_specific_homolog_mapping_review_pfkb_1025.json, artifacts/v3_epk_family_specific_homolog_mapping_review_pfka_1025.json, artifacts/v3_epk_family_specific_homolog_mapping_review_atp_grasp_1025.json, artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_pfkb_1025.json, artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_pfka_1025.json, artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_atp_grasp_1025.json, artifacts/v3_epk_review_only_scoring_prototype_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: startup 498-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote and dry-run push passed, family-specific homolog mappings made 16 of 32 PfkB PfkA ATP-grasp candidates measurement-ready, distance samples measured 16 sibling controls with PG-to-family-acid/base distances 3.611-5.596 Angstrom, review-only prototype failed closed with 16 family-specific sibling blocks 4 NDK phosphohistidine blocks and 3 imported external hard-negative abstentions, counteraxis sufficiency decision kept threshold_selection_decision do_not_select_threshold, pre-count gate remains blocked_review_only with family_specific_homolog_mapping_from_template passing and six other gates failing, final 502-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, jq empty passed on updated ePK JSON artifacts, git diff --check passed
+- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative import or history rewrite.
 
 ## Expectation Updates
 
@@ -261,6 +261,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-18T23:06:35.869912+00:00: ePK NDK mapping is no longer the active blocker; next work should measure mapped NDK homolog controls review-only before threshold selection.
 - 2026-05-19T00:13:47.867615+00:00: ePK gamma distance alone remains unsafe; NDK histidine counter-axis evidence and fail-closed external-negative abstentions make family-specific mapping for PfkB PfkA and ATP-grasp the next bounded step before any scorer or threshold claim.
 - 2026-05-19T00:38:30.189051+00:00: ePK remaining sibling controls now need family-specific homolog mappers from seeded source templates before any distance measurement or threshold claim.
+- 2026-05-19T01:44:03.576487+00:00: ePK distance-only thresholding is now explicitly falsified by 16 family-specific sibling controls plus NDK phosphohistidine controls; next useful work needs a substrate-acceptor or family-disambiguation rule or the 3TM0 ANP/B31 m_csa:640 gamma-geometry review before any score.
 
 ## Scope Adjustments
 

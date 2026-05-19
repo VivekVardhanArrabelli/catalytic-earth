@@ -1,0 +1,1721 @@
+{
+  "metadata": {
+    "candidate_thresholds_angstrom": [
+      4.0,
+      6.0,
+      8.0
+    ],
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "3F5M",
+      "4XYJ",
+      "5XZ8",
+      "8W2H",
+      "8W2J"
+    ],
+    "fingerprint_registry_edited": false,
+    "homolog_control_axis": "family_specific_sibling_acid_base_counteraxis_not_epk_label",
+    "homolog_gamma_distance_sample_started": true,
+    "lowest_covering_candidate_family_acid_base_hit_count": 5,
+    "measured_homolog_structure_count": 5,
+    "measurement_status_counts": {
+      "family_specific_gamma_to_acid_base_distance_measured_review_only": 5,
+      "family_specific_homolog_mapping_not_measurement_ready": 5
+    },
+    "method": "epk_family_specific_homolog_gamma_distance_sample",
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "use family-specific sibling counterevidence when designing any ePK scorer axis",
+      "add a substrate-acceptor or sibling-family disambiguation rule before threshold claims",
+      "keep external hard-negative re-audit closed until a real ePK score exists"
+    ],
+    "observed_family_acid_base_distance_max_angstrom": 5.534,
+    "observed_family_acid_base_distance_min_angstrom": 3.611,
+    "observed_family_same_chain_hydroxyl_distance_max_angstrom": 6.152,
+    "observed_family_same_chain_hydroxyl_distance_min_angstrom": 3.221,
+    "ready_for_label_import": false,
+    "ready_input_homolog_structure_count": 5,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact measures family-specific homolog sibling-control distances after template-based mapping. It is counterevidence for ePK scorer design, not a calibrated threshold, production fingerprint, registry edit, external hard-negative re-audit, or label import.",
+    "reviewed_sibling_family_id": "pfka",
+    "reviewed_sibling_family_name": "PfkA-fold phosphofructokinases",
+    "row_count": 10,
+    "selected_threshold_angstrom": null,
+    "source_epk_family_specific_homolog_mapping_review_method": "epk_family_specific_homolog_mapping_review",
+    "source_ready_for_future_distance_measurement_count": 5,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "threshold_collision_rows": [
+      {
+        "family_acid_base_hit_count": 1,
+        "family_acid_base_hit_pdb_ids": [
+          "8W2J"
+        ],
+        "same_chain_hydroxyl_hit_count": 1,
+        "same_chain_hydroxyl_hit_pdb_ids": [
+          "4XYJ"
+        ],
+        "selection_status": "not_a_calibrated_epk_threshold_family_specific_counterevidence",
+        "threshold_angstrom": 4.0
+      },
+      {
+        "family_acid_base_hit_count": 5,
+        "family_acid_base_hit_pdb_ids": [
+          "3F5M",
+          "4XYJ",
+          "5XZ8",
+          "8W2H",
+          "8W2J"
+        ],
+        "same_chain_hydroxyl_hit_count": 4,
+        "same_chain_hydroxyl_hit_pdb_ids": [
+          "4XYJ",
+          "5XZ8",
+          "8W2H",
+          "8W2J"
+        ],
+        "selection_status": "not_a_calibrated_epk_threshold_family_specific_counterevidence",
+        "threshold_angstrom": 6.0
+      },
+      {
+        "family_acid_base_hit_count": 5,
+        "family_acid_base_hit_pdb_ids": [
+          "3F5M",
+          "4XYJ",
+          "5XZ8",
+          "8W2H",
+          "8W2J"
+        ],
+        "same_chain_hydroxyl_hit_count": 5,
+        "same_chain_hydroxyl_hit_pdb_ids": [
+          "3F5M",
+          "4XYJ",
+          "5XZ8",
+          "8W2H",
+          "8W2J"
+        ],
+        "selection_status": "not_a_calibrated_epk_threshold_family_specific_counterevidence",
+        "threshold_angstrom": 8.0
+      }
+    ],
+    "threshold_selection_status": "blocked_family_specific_sibling_controls_overlap_candidate_geometry"
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_to_family_acid_base_distance_measured": false,
+      "measurement_blockers": [
+        "family_specific_homolog_mapping_not_measurement_ready"
+      ],
+      "measurement_status": "family_specific_homolog_mapping_not_measurement_ready",
+      "pdb_id": "1PFK",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_entry_ids": [
+        "m_csa:365"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acid_base_distance_rows": [
+        {
+          "acid_base_atom_name": "N",
+          "acid_base_chain_name": "D",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "D",
+          "distance_angstrom": 5.534,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "N",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 5.541,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "N",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 5.802,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CB",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 6.526,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CB",
+          "acid_base_chain_name": "D",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "D",
+          "distance_angstrom": 6.549,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CA",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 6.576,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CA",
+          "acid_base_chain_name": "D",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "D",
+          "distance_angstrom": 6.593,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "C",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 6.791,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "C",
+          "acid_base_chain_name": "D",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "D",
+          "distance_angstrom": 6.832,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CB",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 6.855,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CA",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 6.867,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "C",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "199",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 7.087,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "1001",
+          "gamma_ligand_code": "ATP"
+        }
+      ],
+      "control_use_status": "family_specific_sibling_counteraxis_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_acid_base_candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 3,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "gamma_to_family_acid_base_distance_measured": true,
+      "mapped_acid_base_atom_distance_count": 24,
+      "mapped_chain_count": 3,
+      "measurement_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "family_specific_gamma_to_acid_base_distance_measured_review_only",
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_family_acid_base_distance_angstrom": 5.534,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 6.152,
+      "negative_control_distance_distribution_ready": false,
+      "pdb_id": "3F5M",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+        8.0
+      ],
+      "same_chain_hydroxyl_distance_rows": [
+        {
+          "chain_id": "B",
+          "distance_angstrom": 6.152,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "201",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "D",
+          "distance_angstrom": 6.177,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "201",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 6.356,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "201",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "D",
+          "distance_angstrom": 7.306,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "227",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 7.316,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "227",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 7.418,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "227",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 7.6,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "341",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 7.722,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "341",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "D",
+          "distance_angstrom": 7.779,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "341",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 8.135,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "171",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "D",
+          "distance_angstrom": 8.291,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "171",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 8.305,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "171",
+          "hydroxyl_residue_code": "SER"
+        }
+      ],
+      "selected_threshold_angstrom": null,
+      "source_entry_ids": [
+        "m_csa:365"
+      ],
+      "structure_title": "Crystal Structure of ATP-Bound Phosphofructokinase from Trypanosoma brucei",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_to_family_acid_base_distance_measured": false,
+      "measurement_blockers": [
+        "family_specific_homolog_mapping_not_measurement_ready"
+      ],
+      "measurement_status": "family_specific_homolog_mapping_not_measurement_ready",
+      "pdb_id": "4I36",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_entry_ids": [
+        "m_csa:365"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_to_family_acid_base_distance_measured": false,
+      "measurement_blockers": [
+        "family_specific_homolog_mapping_not_measurement_ready"
+      ],
+      "measurement_status": "family_specific_homolog_mapping_not_measurement_ready",
+      "pdb_id": "4PFK",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_entry_ids": [
+        "m_csa:365"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acid_base_distance_rows": [
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "E",
+          "acid_base_resid": "175",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "E",
+          "distance_angstrom": 4.098,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "G",
+          "acid_base_resid": "175",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "G",
+          "distance_angstrom": 4.257,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "175",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 4.279,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "F",
+          "acid_base_resid": "175",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "F",
+          "distance_angstrom": 4.335,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "C",
+          "acid_base_resid": "175",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "C",
+          "distance_angstrom": 4.389,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "H",
+          "acid_base_resid": "175",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "H",
+          "distance_angstrom": 4.407,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "D",
+          "acid_base_resid": "175",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "D",
+          "distance_angstrom": 4.522,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "G",
+          "acid_base_resid": "128",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "G",
+          "distance_angstrom": 4.531,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "128",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 4.61,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "175",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 4.617,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "E",
+          "acid_base_resid": "128",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "E",
+          "distance_angstrom": 4.713,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "C",
+          "acid_base_resid": "128",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "C",
+          "distance_angstrom": 4.717,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "801",
+          "gamma_ligand_code": "ATP"
+        }
+      ],
+      "control_use_status": "family_specific_sibling_counteraxis_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_acid_base_candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 8,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "gamma_to_family_acid_base_distance_measured": true,
+      "mapped_acid_base_atom_distance_count": 256,
+      "mapped_chain_count": 8,
+      "measurement_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "family_specific_gamma_to_acid_base_distance_measured_review_only",
+      "metal_ligand_codes": [
+        "CO",
+        "MG"
+      ],
+      "nearest_gamma_to_family_acid_base_distance_angstrom": 4.098,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 3.221,
+      "negative_control_distance_distribution_ready": false,
+      "pdb_id": "4XYJ",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+        4.0,
+        6.0,
+        8.0
+      ],
+      "same_chain_hydroxyl_distance_rows": [
+        {
+          "chain_id": "H",
+          "distance_angstrom": 3.221,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "H",
+          "hydroxyl_resid": "173",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "G",
+          "distance_angstrom": 3.278,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "G",
+          "hydroxyl_resid": "173",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 3.351,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "173",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 3.373,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "173",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "F",
+          "distance_angstrom": 3.408,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "F",
+          "hydroxyl_resid": "173",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "D",
+          "distance_angstrom": 3.413,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "173",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 3.428,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "173",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "E",
+          "distance_angstrom": 3.471,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "E",
+          "hydroxyl_resid": "173",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "D",
+          "distance_angstrom": 5.954,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "130",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "H",
+          "distance_angstrom": 6.006,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "H",
+          "hydroxyl_resid": "130",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 6.096,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "130",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 6.141,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "130",
+          "hydroxyl_residue_code": "SER"
+        }
+      ],
+      "selected_threshold_angstrom": null,
+      "source_entry_ids": [
+        "m_csa:365"
+      ],
+      "structure_title": "Crystal structure of human phosphofructokinase-1 in complex with ATP and Mg, Northeast Structural Genomics Consortium Target HR9275",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "acid_base_distance_rows": [
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "129",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 5.401,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "OD2",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "131",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 5.752,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "N",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "103",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 5.792,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "131",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 5.923,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "CG",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "131",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 6.352,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "CG",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "129",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 6.448,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "CB",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "103",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 6.73,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "CA",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "103",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 6.747,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "CB",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "129",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 6.896,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "C",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "103",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 7.001,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "129",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 7.322,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        },
+        {
+          "acid_base_atom_name": "N",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "129",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 7.746,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "406",
+          "gamma_ligand_code": "ANP"
+        }
+      ],
+      "control_use_status": "family_specific_sibling_counteraxis_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_acid_base_candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "gamma_to_family_acid_base_distance_measured": true,
+      "mapped_acid_base_atom_distance_count": 24,
+      "mapped_chain_count": 1,
+      "measurement_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "family_specific_gamma_to_acid_base_distance_measured_review_only",
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_family_acid_base_distance_angstrom": 5.401,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 5.013,
+      "negative_control_distance_distribution_ready": false,
+      "pdb_id": "5XZ8",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "same_chain_hydroxyl_distance_rows": [
+        {
+          "chain_id": "A",
+          "distance_angstrom": 5.013,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "127",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 6.469,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "105",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 7.903,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "9",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 8.271,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "70",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 9.412,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "13",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 9.774,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "138",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 11.156,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "106",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 11.838,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OH",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "41",
+          "hydroxyl_residue_code": "TYR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 11.895,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "8",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 13.342,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "66",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 15.02,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "135",
+          "hydroxyl_residue_code": "THR"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 16.183,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "hydroxyl_atom_name": "OG1",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "143",
+          "hydroxyl_residue_code": "THR"
+        }
+      ],
+      "selected_threshold_angstrom": null,
+      "source_entry_ids": [
+        "m_csa:365"
+      ],
+      "structure_title": "Crystal Structure of Phosphofructokinase from Staphylococcus aureus in complex with adenylylimidodiphosphate (the ATP analog) and fructose-6-phosphate",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "acid_base_distance_rows": [
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 4.018,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "C",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "C",
+          "distance_angstrom": 4.073,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 4.079,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "D",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "D",
+          "distance_angstrom": 4.113,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CG",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 4.752,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CG",
+          "acid_base_chain_name": "C",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "C",
+          "distance_angstrom": 4.772,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CG",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 4.829,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CG",
+          "acid_base_chain_name": "D",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "D",
+          "distance_angstrom": 4.886,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "H",
+          "acid_base_chain_name": "C",
+          "acid_base_resid": "119",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "C",
+          "distance_angstrom": 5.018,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "H",
+          "acid_base_chain_name": "D",
+          "acid_base_resid": "119",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "D",
+          "distance_angstrom": 5.019,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "H",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "119",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 5.022,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "H",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "119",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 5.024,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        }
+      ],
+      "control_use_status": "family_specific_sibling_counteraxis_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_acid_base_candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 4,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "gamma_to_family_acid_base_distance_measured": true,
+      "mapped_acid_base_atom_distance_count": 120,
+      "mapped_chain_count": 4,
+      "measurement_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "family_specific_gamma_to_acid_base_distance_measured_review_only",
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_family_acid_base_distance_angstrom": 4.018,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 5.52,
+      "negative_control_distance_distribution_ready": false,
+      "pdb_id": "8W2H",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "same_chain_hydroxyl_distance_rows": [
+        {
+          "chain_id": "D",
+          "distance_angstrom": 5.52,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 5.527,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 5.527,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 5.53,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 6.369,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "121",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 6.371,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "121",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "D",
+          "distance_angstrom": 6.371,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "121",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 6.372,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "121",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 7.958,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "86",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "D",
+          "distance_angstrom": 7.958,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "86",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 7.964,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "86",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 7.967,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "86",
+          "hydroxyl_residue_code": "SER"
+        }
+      ],
+      "selected_threshold_angstrom": null,
+      "source_entry_ids": [
+        "m_csa:365"
+      ],
+      "structure_title": "Human liver phosphofructokinase-1 in the T-state conformation",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "acid_base_distance_rows": [
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 3.611,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "G",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "G",
+          "distance_angstrom": 3.618,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "H",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "H",
+          "distance_angstrom": 4.243,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 4.255,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "F",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "F",
+          "distance_angstrom": 4.326,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "C",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "C",
+          "distance_angstrom": 4.372,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CG",
+          "acid_base_chain_name": "B",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "B",
+          "distance_angstrom": 4.386,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "CG",
+          "acid_base_chain_name": "G",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "G",
+          "distance_angstrom": 4.392,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "E",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "E",
+          "distance_angstrom": 4.45,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "OD1",
+          "acid_base_chain_name": "D",
+          "acid_base_resid": "166",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "D",
+          "distance_angstrom": 4.468,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "H",
+          "acid_base_chain_name": "H",
+          "acid_base_resid": "119",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "H",
+          "distance_angstrom": 4.576,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        },
+        {
+          "acid_base_atom_name": "H",
+          "acid_base_chain_name": "A",
+          "acid_base_resid": "119",
+          "acid_base_residue_code": "ASP",
+          "chain_id": "A",
+          "distance_angstrom": 4.597,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_auth_seq_id": "803",
+          "gamma_ligand_code": "ATP"
+        }
+      ],
+      "control_use_status": "family_specific_sibling_counteraxis_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_acid_base_candidate_threshold_hits_angstrom": [
+        4.0,
+        6.0,
+        8.0
+      ],
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 8,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "gamma_to_family_acid_base_distance_measured": true,
+      "mapped_acid_base_atom_distance_count": 384,
+      "mapped_chain_count": 8,
+      "measurement_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "measurement_status": "family_specific_gamma_to_acid_base_distance_measured_review_only",
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_family_acid_base_distance_angstrom": 3.611,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 5.404,
+      "negative_control_distance_distribution_ready": false,
+      "pdb_id": "8W2J",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+        6.0,
+        8.0
+      ],
+      "same_chain_hydroxyl_distance_rows": [
+        {
+          "chain_id": "H",
+          "distance_angstrom": 5.404,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "H",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 5.429,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "B",
+          "distance_angstrom": 5.446,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "B",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "G",
+          "distance_angstrom": 5.448,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "G",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "E",
+          "distance_angstrom": 5.722,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "E",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "D",
+          "distance_angstrom": 5.726,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "F",
+          "distance_angstrom": 5.927,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "F",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "C",
+          "distance_angstrom": 5.963,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "C",
+          "hydroxyl_resid": "164",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "A",
+          "distance_angstrom": 6.009,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "A",
+          "hydroxyl_resid": "121",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "H",
+          "distance_angstrom": 6.026,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "H",
+          "hydroxyl_resid": "121",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "E",
+          "distance_angstrom": 6.147,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "E",
+          "hydroxyl_resid": "121",
+          "hydroxyl_residue_code": "SER"
+        },
+        {
+          "chain_id": "D",
+          "distance_angstrom": 6.17,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "hydroxyl_atom_name": "OG",
+          "hydroxyl_chain_name": "D",
+          "hydroxyl_resid": "121",
+          "hydroxyl_residue_code": "SER"
+        }
+      ],
+      "selected_threshold_angstrom": null,
+      "source_entry_ids": [
+        "m_csa:365"
+      ],
+      "structure_title": "Human liver phosphofructokinase-1 filament in the T-state conformation",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_to_family_acid_base_distance_measured": false,
+      "measurement_blockers": [
+        "family_specific_homolog_mapping_not_measurement_ready"
+      ],
+      "measurement_status": "family_specific_homolog_mapping_not_measurement_ready",
+      "pdb_id": "9CIT",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_entry_ids": [
+        "m_csa:365"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_to_family_acid_base_distance_measured": false,
+      "measurement_blockers": [
+        "family_specific_homolog_mapping_not_measurement_ready"
+      ],
+      "measurement_status": "family_specific_homolog_mapping_not_measurement_ready",
+      "pdb_id": "9QV2",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "source_entry_ids": [
+        "m_csa:365"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Family-specific homolog distances are useful counterevidence, but they are not clean held-out performance or countable ePK label evidence."
+  ]
+}

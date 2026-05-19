@@ -50,6 +50,73 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T00:55:27Z automation run, the normal direct automation
+protocol passed: the lock was acquired, `git fetch` and
+`git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed
+through `git ls-remote` and `git push --dry-run`, startup unit discovery passed,
+and `validate` passed. Phase 1 artifact migration stayed guard-only and closed;
+no Phase 2/3 upload, removal, Git LFS change, history rewrite, registry edit,
+or label import was performed.
+
+The ePK lane now has family-specific homolog counterevidence for all three
+previously missing sibling families. The new review-only mapper
+`build-epk-family-specific-homolog-mapping-review` consumes the seeded
+family templates and uses role-compatible local residue evidence rather than
+exact residue-position transfer. It produced
+`artifacts/v3_epk_family_specific_homolog_mapping_review_pfkb_1025.json`,
+`artifacts/v3_epk_family_specific_homolog_mapping_review_pfka_1025.json`, and
+`artifacts/v3_epk_family_specific_homolog_mapping_review_atp_grasp_1025.json`.
+Together they mark 16/32 homolog controls measurement-ready: 9/10 PfkB,
+5/10 PfkA, and 2/12 ATP-grasp. The remaining 16 rows are terminally blocked
+for this pass by unresolved acid/base mapping.
+
+The paired distance sampler
+`build-epk-family-specific-homolog-gamma-distance-sample` generated
+`artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_pfkb_1025.json`,
+`artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_pfka_1025.json`,
+and
+`artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_atp_grasp_1025.json`.
+The nearest PG-to-family-acid/base distances span 3.611-5.596 Angstrom, so all
+16 measured PfkB/PfkA/ATP-grasp sibling controls hit the 6-Angstrom candidate
+scenario. This is explicit negative evidence against distance-only ePK
+thresholding, not a calibrated threshold or score.
+
+`artifacts/v3_epk_review_only_scoring_prototype_1025.json` was regenerated
+with those family-specific controls attached. It now contains 26 rows:
+two uncalibrated positive-like ePK rows, one positive abstention, four NDK
+phosphohistidine counter-axis blocks, 16 family-specific sibling-control
+blocks, and three imported external hard-negative abstentions for
+`uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`. The new
+`artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` makes the
+fail-closed result machine-readable: threshold selection remains
+`do_not_select_threshold`, `epk_score_computed=false`,
+`external_hard_negative_reaudit_scored=false`, and all registry/import flags
+remain false.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` remains
+`blocked_review_only`. The new `family_specific_homolog_mapping_from_template`
+gate passes because all three template families now have measured
+family-specific homolog controls, but the template-readiness gate itself still
+fails, and so do acceptor-threshold calibration, full gamma geometry,
+negative-control distribution readiness, external hard-negative scored
+re-audit, and registry/label-factory extension.
+
+Evidence-based confidence call: the ePK lane now has a stronger falsification
+surface and a concrete scorer-design constraint, not a countable positive
+fingerprint. A 6-Angstrom distance-only rule would collide with 16
+non-ePK sibling controls and four NDK phosphohistidine controls. The next
+bounded science step should add a substrate-acceptor/family-disambiguation
+counteraxis or complete the missing `m_csa:640` gamma geometry by reviewing
+the `3TM0` ANP/B31 alternate-state residue mapping and ligand-analog
+admissibility before any real ePK score. Do not edit
+`mechanism_fingerprints.json`, import ePK labels, score external hard negatives
+as clean held-out performance, or reopen artifact migration Phase 2.
+
+Verification passed with the final 502-test unit suite, `validate`,
+`validate-artifact-migration --dry-run --check-local-files`, `compileall`,
+external label invariant inspection, `jq empty` on the updated ePK artifacts,
+and `git diff --check`.
+
 As of the 2026-05-18T23:53:56Z automation run, the normal direct automation
 protocol passed: the lock was acquired, `git fetch` and
 `git pull --ff-only origin main` were clean, SSH deploy-key push hygiene passed,
