@@ -1,0 +1,873 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "source_validity_axes_not_production_scoring_inputs",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "source_valid_heteromeric_review_controls_rerun",
+    "candidate_threshold_angstrom": 6.0,
+    "control_rerun_status": "blocked_review_only_control_rerun",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_positive_prototype_row_count": 3,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "heteromeric_ambiguous_and_rejected_separated": true,
+    "heteromeric_ambiguous_candidate_count": 0,
+    "heteromeric_rejected_candidate_count": 0,
+    "heteromeric_source_valid_axis_complete_count": 0,
+    "heteromeric_source_valid_candidate_row_count": 2,
+    "heteromeric_source_valid_pdb_ids": [],
+    "heteromeric_source_valid_unique_pair_count": 0,
+    "heteromeric_source_valid_unique_pair_ids": [],
+    "imported_external_hard_negative_non_abstention_count": 0,
+    "imported_external_hard_negative_row_count": 3,
+    "method": "epk_heteromeric_source_valid_control_rerun",
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "replace source-valid heteromeric positive axes with local text-free role and acceptor evidence before scoring",
+      "calibrate thresholds only after negative-control distributions remain clean under the expanded positive-like surface",
+      "run a real external hard-negative scored re-audit only after a frozen ePK scorer exists"
+    ],
+    "not_a_real_scored_reaudit": true,
+    "positive_like_review_row_count": 4,
+    "prototype_decision_counts": {
+      "blocked_by_family_specific_sibling_counteraxis_review_only": 16,
+      "blocked_by_phosphohistidine_counteraxis_review_only": 4,
+      "candidate_positive_signal_review_only_not_calibrated": 3,
+      "external_hard_negative_abstain_missing_epk_axes_review_only": 3,
+      "source_valid_5hvk_positive_signal_review_only_not_calibrated": 1,
+      "source_valid_heteromeric_abstain_missing_required_axis_review_only": 2
+    },
+    "prototype_failed_closed": true,
+    "prototype_gate_status": "fail_closed_review_only",
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact reruns the fail-closed ePK review surface after adding measured source-valid heteromeric leads. Ambiguous and rejected non-ePK rows are explicitly separated from positive-like controls. It is not a calibrated ePK score, external hard-negative scored re-audit, registry edit, or label gate.",
+    "row_count": 29,
+    "selected_threshold_angstrom": null,
+    "sibling_control_false_hit_count": 0,
+    "sibling_control_row_count": 20,
+    "source_authority_dependent_positive_like_count": 1,
+    "source_epk_heteromeric_candidate_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
+    "source_epk_heteromeric_source_valid_candidate_gamma_distance_sample_method": "epk_heteromeric_source_valid_candidate_gamma_distance_sample",
+    "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": "epk_ligand_specific_5hvk_prototype_control_rerun",
+    "source_valid_5hvk_candidate_row_count": 1,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "epk_score_computed": false,
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "2PHK",
+      "prototype_axis_values": {
+        "catalytic_acid_base_residue": 1,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 1,
+        "source_supported_hydroxyl_acceptor_identity": 1
+      },
+      "prototype_decision": "candidate_positive_signal_review_only_not_calibrated",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "rerun_surface_role": "carried_current_positive",
+      "review_only": true,
+      "review_only_prototype_score": 1.0,
+      "row_type": "carried_current_epk_positive_prototype",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "epk_score_computed": false,
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "1IR3",
+      "prototype_axis_values": {
+        "catalytic_acid_base_residue": 1,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 1,
+        "source_supported_hydroxyl_acceptor_identity": 1
+      },
+      "prototype_decision": "candidate_positive_signal_review_only_not_calibrated",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "rerun_surface_role": "carried_current_positive",
+      "review_only": true,
+      "review_only_prototype_score": 1.0,
+      "row_type": "carried_current_epk_positive_prototype",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "epk_score_computed": false,
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "3TM0",
+      "prototype_axis_values": {
+        "catalytic_acid_base_residue": 1,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 1,
+        "source_supported_hydroxyl_acceptor_identity": 1
+      },
+      "prototype_decision": "candidate_positive_signal_review_only_not_calibrated",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "rerun_surface_role": "carried_current_positive",
+      "review_only": true,
+      "review_only_prototype_score": 1.0,
+      "row_type": "carried_current_epk_positive_prototype",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P06744",
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06744",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "not_a_real_scored_reaudit": true,
+      "prototype_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "external_hard_negative_abstain_missing_epk_axes_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_epk_specific_axes_not_materialized",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "threshold_not_calibrated_against_negative_controls"
+      ],
+      "rerun_surface_role": "carried_imported_external_hard_negative",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "imported_external_hard_negative",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P78549",
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P78549",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "not_a_real_scored_reaudit": true,
+      "prototype_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "external_hard_negative_abstain_missing_epk_axes_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_epk_specific_axes_not_materialized",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "threshold_not_calibrated_against_negative_controls"
+      ],
+      "rerun_surface_role": "carried_imported_external_hard_negative",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "imported_external_hard_negative",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "Q3LXA3",
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "not_a_real_scored_reaudit": true,
+      "prototype_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "external_hard_negative_abstain_missing_epk_axes_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_epk_specific_axes_not_materialized",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "threshold_not_calibrated_against_negative_controls"
+      ],
+      "rerun_surface_role": "carried_imported_external_hard_negative",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "imported_external_hard_negative",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_accession": "P23528",
+      "acceptor_context_type": "source_validated_protein_substrate_serine",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "entry_id": null,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "kinase_accession": "P53667",
+      "nearest_gamma_to_source_phosphoacceptor_distance_angstrom": 4.236,
+      "pdb_id": "5HVK",
+      "predictive_use_status": "review_only_source_validity_not_production_scoring_input",
+      "prototype_axis_values": {
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 1,
+        "source_kinase_active_site_feature": 1,
+        "source_validated_protein_substrate_acceptor_identity": 1
+      },
+      "prototype_decision": "source_valid_5hvk_positive_signal_review_only_not_calibrated",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "rerun_surface_role": "new_source_valid_positive_lead",
+      "review_only": true,
+      "review_only_prototype_score": 1.0,
+      "row_type": "ligand_specific_5hvk_source_valid_positive_candidate",
+      "source_validity_status": "accepted_source_valid_kinase_substrate_cocomplex_review_only",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": false
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "1ESQ",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "1TZ6",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "3CQD",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "3F5M",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "3IQ0",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "3R5F",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "3UMO",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "3UMP",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "3UQD",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "3UQE",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "4XYJ",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "5C1O",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "5XZ8",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "6ILT",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "8W2H",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "8W2J",
+      "prototype_axis_values": {
+        "family_specific_sibling_counteraxis": 1,
+        "source_supported_epk_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sibling_family_control_not_epk_positive_label",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_family_specific_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "1WKL",
+      "prototype_axis_values": {
+        "gamma_to_mapped_histidine_counteraxis": 1,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_phosphohistidine_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_control_not_hydroxyl_acceptor_axis",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_homolog_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "3Q86",
+      "prototype_axis_values": {
+        "gamma_to_mapped_histidine_counteraxis": 1,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_phosphohistidine_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_control_not_hydroxyl_acceptor_axis",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_homolog_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "9OAN",
+      "prototype_axis_values": {
+        "gamma_to_mapped_histidine_counteraxis": 1,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_phosphohistidine_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_control_not_hydroxyl_acceptor_axis",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_homolog_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_feature_hit": false,
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "heteromeric_control_surface_role": "carried_5hvk_control_surface_row",
+      "pdb_id": "9PFY",
+      "prototype_axis_values": {
+        "gamma_to_mapped_histidine_counteraxis": 1,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "prototype_decision": "blocked_by_phosphohistidine_counteraxis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homolog_control_not_hydroxyl_acceptor_axis",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "rerun_surface_role": "carried_sibling_control",
+      "review_only": true,
+      "review_only_prototype_score": 0.0,
+      "row_type": "sibling_homolog_negative_control",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "acceptor_context_type": "source_validated_heteromeric_protein_substrate_hydroxyl",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "heteromeric_control_surface_role": "new_source_valid_heteromeric_positive_lead",
+      "nearest_gamma_to_acceptor_distance_angstrom": 3.566,
+      "pdb_id": "1O6K",
+      "predictive_use_status": "review_only_source_validity_not_production_scoring_input",
+      "prototype_axis_values": {
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
+        "heteromeric_entity_topology": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 0,
+        "source_validated_kinase_substrate_pair": 1
+      },
+      "prototype_decision": "source_valid_heteromeric_abstain_missing_required_axis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_prototype_score": 0.8,
+      "row_type": "heteromeric_source_valid_positive_candidate",
+      "source_pair_id": "pkb_gsk3",
+      "source_validation_evidence": [
+        "source_context_links_pkb_kinase_complex_to_gsk3_peptide_substrate"
+      ],
+      "source_validation_status": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": false
+    },
+    {
+      "acceptor_context_type": "source_validated_heteromeric_protein_substrate_hydroxyl",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "heteromeric_control_surface_role": "new_source_valid_heteromeric_positive_lead",
+      "nearest_gamma_to_acceptor_distance_angstrom": 3.542,
+      "pdb_id": "1O6L",
+      "predictive_use_status": "review_only_source_validity_not_production_scoring_input",
+      "prototype_axis_values": {
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 1,
+        "heteromeric_entity_topology": 1,
+        "local_adenine_nucleotide_ligand": 1,
+        "local_metal_ligand": 0,
+        "source_validated_kinase_substrate_pair": 1
+      },
+      "prototype_decision": "source_valid_heteromeric_abstain_missing_required_axis_review_only",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_prototype_score": 0.8,
+      "row_type": "heteromeric_source_valid_positive_candidate",
+      "source_pair_id": "pkb_gsk3",
+      "source_validation_evidence": [
+        "source_context_links_pkb_kinase_complex_to_gsk3_peptide_substrate"
+      ],
+      "source_validation_status": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": false
+    }
+  ],
+  "warnings": [
+    "Expanded heteromeric positive-like controls remain review-only and source-authority dependent."
+  ]
+}

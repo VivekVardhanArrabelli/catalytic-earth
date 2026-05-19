@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "all_source_valid_candidates_measured": true,
+    "blocker_not_removed": [
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "source_valid_heteromeric_candidate_distances_sampled",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "distance_max_angstrom": 3.566,
+    "distance_min_angstrom": 3.542,
+    "distance_sample_status": "source_valid_heteromeric_candidates_measured_review_only",
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "measured_candidate_count": 2,
+    "measured_candidate_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "measured_unique_pair_count": 1,
+    "measured_unique_pair_ids": [
+      "pkb_gsk3"
+    ],
+    "method": "epk_heteromeric_source_valid_candidate_gamma_distance_sample",
+    "minimum_positive_coverage_measured_review_only": false,
+    "next_actions": [
+      "rerun review-only controls with these source-valid measured leads separated from ambiguous candidates",
+      "calibrate thresholds only after negative-control distributions are sufficient",
+      "keep production scoring and label import closed"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This sample measures local gamma-acceptor distances for source-valid heteromeric review leads. It is not a calibrated score, label import, or held-out performance claim.",
+    "source_epk_heteromeric_candidate_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
+    "source_validated_candidate_count": 2,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "distance_candidates": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "9",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.566
+        }
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready_for_review_controls": true,
+      "measurement_status": "source_valid_heteromeric_gamma_distance_measured_review_only",
+      "nearest_gamma_acceptor_distance_angstrom": 3.566,
+      "pdb_id": "1O6K",
+      "ready_for_label_import": false,
+      "ready_to_run_epk_scorer": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "source_pair_id": "pkb_gsk3",
+      "source_validated_positive_like": true,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "distance_candidates": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "9",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.542
+        }
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "measurement_ready_for_review_controls": true,
+      "measurement_status": "source_valid_heteromeric_gamma_distance_measured_review_only",
+      "nearest_gamma_acceptor_distance_angstrom": 3.542,
+      "pdb_id": "1O6L",
+      "ready_for_label_import": false,
+      "ready_to_run_epk_scorer": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "source_pair_id": "pkb_gsk3",
+      "source_validated_positive_like": true,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Measured source-valid heteromeric leads remain review-only until thresholds, external hard-negative re-audit, and registry gates pass."
+  ]
+}

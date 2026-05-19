@@ -1567,3 +1567,16 @@ non-abstentions under the current chain/ligand feature, while keeping
 `clean_heldout_performance_claim_permitted=false`. This is useful fail-closed
 counterevidence for ePK scorer design, not external-source performance evidence
 or an import gate.
+The later peptide-identity and outside-query source-expansion artifacts remain
+inside the same boundary. The peptide hard-negative probe keeps
+`uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3` abstained with 0
+non-abstentions, while the same-query stress audit only proves the ANP/Mg EC
+2.7.11.1 snapshot is exhausted. ATP/Mg, ADP/Mg, and AGS/Mg first-25 novel
+scouts find 0 heteromeric topology leads; the AMP-PNP/Mg source expansion
+accepts `1O6K`/`1O6L` as PKB/GSK3 review evidence and measures them at
+3.542-3.566 Angstrom, but the control rerun stays fail-closed because the
+evidence is source-authority dependent and no calibrated ePK scorer or scored
+external re-audit exists. A broader ATP/Mg peptide-text scout surfaces
+`9L3M`/`9L3U` topology hits, but source validation blocks both as outer
+mitochondrial transmembrane helix translocase contexts, reinforcing that broad
+source search hits are not external performance evidence.

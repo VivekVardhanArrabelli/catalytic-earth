@@ -50,6 +50,46 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T22:40:20Z automation run, the ePK lane remains
+review-only but gained one new outside-query source lead. Artifact migration
+Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and startup checks passed: 606 unit tests and
+`catalytic_earth.cli validate` with 682 labels and 8 production fingerprints.
+
+`artifacts/v3_epk_heteromeric_peptide_broader_stress_audit_1025.json`
+confirms the exact RCSB ANP/Mg EC 2.7.11.1 same-query stress surface is
+exhausted: 110 entries, 0 unreviewed rows, 3/3 peptide-like positive hits,
+0 non-peptide substrate-chain positive hits, and 0 nonaccepted or sibling
+peptide-rule false hits. This closes the previous "stress-test current
+source" item as a negative result; it does not unblock scoring because the
+axis is still a narrow peptide-chain rule.
+
+The same run pivoted outside the exhausted source snapshot. ATP/Mg, ADP/Mg,
+and AGS/Mg first-25 novel scouts produced 0 heteromeric topology leads. The
+all-11 novel AMP-PNP/Mg scout found `1O6K` and `1O6L`; source validation
+accepts both as explicit PKB/GSK3 peptide evidence, and the distance sample
+measures nearest gamma-acceptor distances at 3.542-3.566 Angstrom. The AMP-PNP
+control rerun remains fail-closed: the new positive-like pair is
+source-authority dependent, source-free axis complete count is 0, thresholds
+are uncalibrated, and no external scored re-audit exists.
+
+The broad "kinase substrate peptide ATP/Mg" first-25 source expansion scout
+found two topology hits (`9L3M` and `9L3U`), but source validation blocked both
+as outer mitochondrial transmembrane helix translocase contexts. This is a
+useful negative: broad text-query lanes can surface local ATP/gamma geometry
+that is not ePK substrate evidence, so every outside-query tranche needs a
+source-validation screen before any role-axis or scorer work.
+
+Confidence call: high confidence that safety invariants and migration rails
+remain intact; high confidence the exact ANP/Mg same-query source is exhausted
+for the current reviewed snapshot; moderate confidence `1O6K`/`1O6L` are useful
+review-only PKB/GSK3 source leads because the title/raw CIF context is
+explicit. Next best experiment: use these leads to design a source-free
+peptide/protein-substrate role axis that can fail against the current sibling
+and external hard-negative controls.
+
 As of the 2026-05-19T21:38:11Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

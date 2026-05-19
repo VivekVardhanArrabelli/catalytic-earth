@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 198
-- Measured elapsed time: 6111.7 minutes (101.86 hours)
+- Entries: 199
+- Measured elapsed time: 6160.0 minutes (102.67 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 882.6 measured minutes (14.71 hours)
+- post-infra-science: 930.9 measured minutes (15.51 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2258
-- Evidence references logged: 1784
+- Artifact references logged: 2269
+- Evidence references logged: 1801
 
 ## Recent Entries
-
-### 2026-05-19T15:19:23.015183+00:00 - post-infra-science
-
-- Task: ePK ligand-specific active-state source probes
-- Time mode: measured
-- Measured minutes: 48.117
-- Started: 2026-05-19T14:30:37Z
-- Ended: 2026-05-19T15:18:44Z
-- Artifacts: README.md, docs/label_factory.md, src/catalytic_earth/adapters.py, src/catalytic_earth/cli.py, src/catalytic_earth/labels.py, tests/test_leakage_closure.py, work/handoff.md, work/scope.md, artifacts/v3_epk_external_source_q8ivt5_alternate_cocomplex_review_1025.json, artifacts/v3_epk_external_source_lower_priority_ligand_sourcing_review_1025.json, artifacts/v3_epk_external_protein_substrate_source_scout_second_pass_1025.json, artifacts/v3_epk_external_source_structure_mapping_review_second_pass_1025.json, artifacts/v3_epk_external_source_lower_priority_ligand_sourcing_review_second_pass_1025.json, artifacts/v3_epk_external_protein_substrate_source_scout_third_pass_1025.json, artifacts/v3_epk_external_source_structure_mapping_review_third_pass_1025.json, artifacts/v3_epk_external_source_lower_priority_ligand_sourcing_review_third_pass_1025.json, artifacts/v3_epk_external_source_three_pass_terminal_decision_1025.json, artifacts/v3_epk_ligand_specific_active_state_source_scout_1025.json, artifacts/v3_epk_ligand_specific_active_state_structure_mapping_review_1025.json, artifacts/v3_epk_ligand_specific_active_state_acceptor_gap_audit_1025.json, artifacts/v3_epk_ligand_specific_active_state_next_experiment_queue_1025.json, artifacts/v3_epk_ligand_specific_active_state_lower_priority_ligand_review_1025.json, artifacts/v3_epk_ligand_specific_p53355_substrate_cocomplex_review_1025.json, artifacts/v3_epk_ligand_specific_active_state_terminal_decision_1025.json, artifacts/v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json, artifacts/v3_epk_ligand_specific_5hvk_review_priority_1025.json
-- Evidence: startup unit discovery 544 tests passed, final unit discovery 560 tests passed, validate preserved 682 labels and 8 fingerprints, migration dry-run guard 108 rows removal_allowed=0, external invariants preserved 682/212/470 and three hard negatives, Q8IVT5 exact source best distance 9.061 Angstrom, broad three-pass 24 candidates 63 reviewed rows 0 ready, ligand-specific query found P53355/1JKK blocked, 5HVK cross-accession P53667-P23528 Ser3 review lead at 4.236 Angstrom
-- Notes: Direct locked automation run. Phase 1 migration remained guard-only and closed; no unsafe artifact migration, registry edit, label import, scoring, or external hard-negative scored re-audit.
 
 ### 2026-05-19T16:05:05.942310+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-19T22:26:23Z
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_leakage_closure.py, tests/test_cli.py, artifacts/v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json, artifacts/v3_epk_heteromeric_peptide_external_hard_negative_probe_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: startup 601-test unit discovery passed, final 606-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 215 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed 0, label invariants preserved 682 total 212 seed 470 out_of_scope, peptide identity probe hit 3 retained heteromeric candidates with 0 nonaccepted and 0 sibling false hits, external hard-negative peptide probe kept P06744 P78549 Q3LXA3 abstained with 0 non-abstentions, pre-count remains blocked_review_only, counteraxis sufficiency keeps threshold_selection_decision do_not_select_threshold, git diff --check passed
+- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
+
+### 2026-05-19T23:28:59.207385+00:00 - post-infra-science
+
+- Task: ePK peptide stress and source expansion scouts
+- Time mode: measured
+- Measured minutes: 48.333
+- Started: 2026-05-19T22:40:20Z
+- Ended: 2026-05-19T23:28:40Z
+- Artifacts: artifacts/v3_epk_heteromeric_peptide_broader_stress_audit_1025.json, artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_atp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_adp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_ags_1025.json, artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_amp_pnp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_broad_peptide_atp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_source_validation_review_amp_pnp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_source_validation_review_broad_peptide_atp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_gamma_distance_sample_amp_pnp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_control_rerun_amp_pnp_1025.json, artifacts/v3_epk_precount_gate_status_1025.json
+- Evidence: startup 606-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote and dry-run push passed, exact ANP/Mg EC 2.7.11.1 source query exhausted at 110 reviewed rows and 0 unreviewed, ATP ADP and AGS first-25 novel scouts found 0 heteromeric topology leads, AMP-PNP all-11 novel scout found 1O6K and 1O6L PKB/GSK3 review leads, PKB/GSK3 distances measured at 3.542-3.566 Angstrom, broad peptide ATP first-25 scout found 9L3M and 9L3U but source validation blocked both as translocase false positives, AMP-PNP control rerun stayed fail-closed with source-free axis complete count 0, pre-count gate remains blocked_review_only with peptide stress audit passing as diagnostic, final 610-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
 
 ## Expectation Updates
@@ -275,6 +275,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-19T20:23:20.534717+00:00: ePK heteromeric topology now has a review-only local counteraxis that clears the current six-row review surface, but production scoring still needs broader controls thresholds and a real external scored re-audit.
 - 2026-05-19T21:26:22.348537+00:00: ePK heteromeric role direction is stronger after broader counteraxis and ligand-asymmetry controls, but generic hydroxyl residue identity is too weak for production; next work needs a non-generic local acceptor-identity signal before thresholding or external scored re-audit.
 - 2026-05-19T22:26:42.259225+00:00: A short peptide-like acceptor-chain rule is useful current-control evidence for heteromeric ePK review, but it is narrow; production scoring still needs general substrate identity, threshold calibration, real external scored re-audit, and registry/factory extension.
+- 2026-05-19T23:28:59.207385+00:00: The exact ANP/Mg source is exhausted and outside-query sourcing can find PKB/GSK3 peptide review leads but the decision surface still needs a source-free substrate-role or general acceptor-identity axis before any scorer or label gate.
 
 ## Scope Adjustments
 

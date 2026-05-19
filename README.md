@@ -1310,6 +1310,22 @@ keeps all three abstained with 0 non-abstentions, 0 missing rows, and 0
 coordinate-unavailable rows. Both artifacts are review-only diagnostics; the
 peptide identity axis is narrow and is not a calibrated ePK score or label
 gate.
+`artifacts/v3_epk_heteromeric_peptide_broader_stress_audit_1025.json` now
+closes the same-query stress test: the exact RCSB ANP/Mg EC 2.7.11.1 snapshot
+has 110 entries, the first-60 and follow-on-50 reviews cover all of them, and
+0 same-query structures remain unreviewed. The peptide axis still stays
+narrow because all retained positive hits are short peptide contexts and
+there are 0 non-peptide substrate-chain positives. The first outside-query
+source-expansion scouts are also review-only: the first 25 novel ATP/Mg,
+ADP/Mg, and AGS/Mg hits produce 0 heteromeric topology leads, while the
+11 novel AMP-PNP/Mg hits produce `1O6K` and `1O6L`. Source validation accepts
+both rows as explicit PKB/GSK3 peptide evidence, measures nearest gamma
+distances at 3.542-3.566 Angstrom, and the control rerun fails closed because
+the new pair is still source-authority dependent rather than a source-free
+scorer axis. A broader "kinase substrate peptide ATP/Mg" first-25 scout finds
+two topology hits (`9L3M`/`9L3U`), but source validation blocks both as outer
+mitochondrial transmembrane helix translocase contexts, so broad text queries
+need source-validation filters before they are useful.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,

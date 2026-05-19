@@ -111,6 +111,7 @@ from .labels import (
     build_epk_heteromeric_acceptor_identity_gap_audit,
     build_epk_heteromeric_acceptor_identity_rule_probe,
     build_epk_heteromeric_peptide_acceptor_identity_probe,
+    build_epk_heteromeric_peptide_broader_stress_audit,
     build_epk_heteromeric_peptide_external_hard_negative_probe,
     build_epk_ligand_specific_5hvk_control_rerun_queue,
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
@@ -7401,6 +7402,42 @@ def cmd_build_epk_heteromeric_peptide_external_hard_negative_probe(
     return 0
 
 
+def cmd_build_epk_heteromeric_peptide_broader_stress_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_ligand_specific_substrate_cocomplex_query_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_substrate_cocomplex_query_probe = json.load(handle)
+    with Path(args.epk_heteromeric_positive_coverage_candidate_scout).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_positive_coverage_candidate_scout = json.load(handle)
+    with Path(args.epk_heteromeric_peptide_acceptor_identity_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_peptide_acceptor_identity_probe = json.load(handle)
+    audit = build_epk_heteromeric_peptide_broader_stress_audit(
+        epk_ligand_specific_substrate_cocomplex_query_probe=(
+            epk_ligand_specific_substrate_cocomplex_query_probe
+        ),
+        epk_heteromeric_positive_coverage_candidate_scout=(
+            epk_heteromeric_positive_coverage_candidate_scout
+        ),
+        epk_heteromeric_peptide_acceptor_identity_probe=(
+            epk_heteromeric_peptide_acceptor_identity_probe
+        ),
+        exact_source_query_pdb_ids=_split_csv(args.exact_source_query_pdb_ids),
+        source_query=args.source_query,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK heteromeric peptide broader stress audit to "
+        f"{args.out} (status={audit['metadata']['stress_audit_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
     args: argparse.Namespace,
 ) -> int:
@@ -8009,6 +8046,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             args.epk_heteromeric_peptide_external_hard_negative_probe
         ).open("r", encoding="utf-8") as handle:
             epk_heteromeric_peptide_external_hard_negative_probe = json.load(handle)
+    epk_heteromeric_peptide_broader_stress_audit = None
+    if args.epk_heteromeric_peptide_broader_stress_audit:
+        with Path(args.epk_heteromeric_peptide_broader_stress_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_peptide_broader_stress_audit = json.load(handle)
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -8173,6 +8216,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_heteromeric_peptide_external_hard_negative_probe=(
             epk_heteromeric_peptide_external_hard_negative_probe
+        ),
+        epk_heteromeric_peptide_broader_stress_audit=(
+            epk_heteromeric_peptide_broader_stress_audit
         ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
@@ -16651,6 +16697,68 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_heteromeric_peptide_external_hard_negative_probe
     )
 
+    epk_heteromeric_peptide_stress = subparsers.add_parser(
+        "build-epk-heteromeric-peptide-broader-stress-audit",
+        help=(
+            "audit whether the peptide-like acceptor identity axis has any "
+            "remaining exact-query heteromeric structures to stress-test"
+        ),
+    )
+    epk_heteromeric_peptide_stress.add_argument(
+        "--epk-ligand-specific-substrate-cocomplex-query-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json"
+        ),
+    )
+    epk_heteromeric_peptide_stress.add_argument(
+        "--epk-heteromeric-positive-coverage-candidate-scout",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_positive_coverage_candidate_scout_1025.json"
+        ),
+    )
+    epk_heteromeric_peptide_stress.add_argument(
+        "--epk-heteromeric-peptide-acceptor-identity-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json"
+        ),
+    )
+    epk_heteromeric_peptide_stress.add_argument(
+        "--exact-source-query-pdb-ids",
+        default=(
+            "1DAW,1JKK,1LP4,1PYX,1XR1,1ZY5,2A19,2R5T,2V55,2VWI,"
+            "3A99,3AKL,3DAK,3F5U,3GU5,3HKO,3LIJ,3NSZ,3Q4Z,3Q5I,"
+            "3U87,3WOW,4E01,4E02,4FIG,4I94,4IIR,4JDI,4JRN,4LGD,"
+            "4LRJ,4M69,4PU5,4QML,4TL6,4TLA,4U40,5CKW,5DBX,5HVK,"
+            "5O26,5UPK,5XD6,5YJ9,5YZ8,6AC9,6AO5,6BXI,6CQD,6EGF,"
+            "6KO6,6PP9,6S8F,6V2W,6VPG,6VPI,6VPL,6WQX,6XX7,6Z2W,"
+            "6Z2X,6Z3R,7CTV,7CTX,7JUR,7JUS,7JUU,7JUV,7JUW,7JUX,"
+            "7JUY,7JV0,7JV1,7M0T,7M0U,7M0V,7M0W,7M0X,7M0Y,7M0Z,"
+            "7PW8,7PW9,7SIC,7SID,7XZR,8BW9,8OXM,8OXO,8OXP,8OXQ,"
+            "8QCG,8RCH,8RCK,8RCN,8UYH,8VH4,8VH5,8XN6,8ZN6,9AXH,"
+            "9AXM,9AXX,9AXY,9AY7,9AYA,9ECU,9ED4,9ED7,9ED8,9V79"
+        ),
+    )
+    epk_heteromeric_peptide_stress.add_argument(
+        "--source-query",
+        default=(
+            "RCSB ANP AND MG AND EC lineage 2.7.11.1; exact 110-entry "
+            "snapshot covered by first-60 plus follow-on-50 reviews"
+        ),
+    )
+    epk_heteromeric_peptide_stress.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_broader_stress_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_peptide_stress.set_defaults(
+        func=cmd_build_epk_heteromeric_peptide_broader_stress_audit
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -17127,6 +17235,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-heteromeric-peptide-external-hard-negative-probe",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-peptide-broader-stress-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(

@@ -565,6 +565,20 @@
     },
     {
       "evidence": {
+        "combined_reviewed_pdb_count": 110,
+        "exact_source_query_pdb_count": 110,
+        "general_substrate_identity_ready_count": 0,
+        "positive_non_peptide_substrate_chain_hit_count": 0,
+        "positive_peptide_identity_hit_count": 3,
+        "source_method": "epk_heteromeric_peptide_broader_stress_audit",
+        "stress_audit_status": "passes_exact_source_query_stress_but_axis_remains_narrow_review_only",
+        "unreviewed_exact_query_pdb_count": 0
+      },
+      "gate_id": "heteromeric_peptide_broader_stress_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
         "atp_metal_state_candidate_count": 2,
         "atp_metal_state_candidate_pdb_ids": [
           "1TID",
@@ -938,6 +952,13 @@
     "heteromeric_peptide_acceptor_identity_sibling_false_hit_count": 0,
     "heteromeric_peptide_acceptor_identity_source_free_ready_count": 3,
     "heteromeric_peptide_acceptor_identity_status": "passes_current_controls_peptide_like_acceptor_identity_review_only",
+    "heteromeric_peptide_broader_stress_audit_status": "passes_exact_source_query_stress_but_axis_remains_narrow_review_only",
+    "heteromeric_peptide_broader_stress_combined_reviewed_pdb_count": 110,
+    "heteromeric_peptide_broader_stress_exact_query_exhausted": true,
+    "heteromeric_peptide_broader_stress_exact_query_pdb_count": 110,
+    "heteromeric_peptide_broader_stress_general_substrate_ready_count": 0,
+    "heteromeric_peptide_broader_stress_positive_non_peptide_hit_count": 0,
+    "heteromeric_peptide_broader_stress_unreviewed_pdb_count": 0,
     "heteromeric_peptide_external_feature_coordinate_unavailable_count": 0,
     "heteromeric_peptide_external_feature_missing_count": 0,
     "heteromeric_peptide_external_feature_non_abstention_count": 0,
@@ -1172,8 +1193,8 @@
       "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
       "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
+      "source heteromeric kinase-substrate co-complexes outside the exhausted ANP/Mg EC 2.7.11.1 snapshot or add a general substrate-chain identity axis",
       "keep the peptide-like external hard-negative probe as diagnostic only until a calibrated scorer exists",
-      "stress-test peptide-like acceptor identity on broader heteromeric kinase-substrate co-complexes before scorer design",
       "run the acceptor-chain nucleotide counteraxis on broader heteromeric and sibling controls before scorer design",
       "add a source-free catalytic-chain assignment signal before using local chain-topology hits for scoring",
       "freeze a real protein-substrate acceptor scorer design before any 5HVK-informed threshold calibration",
@@ -1239,6 +1260,7 @@
     "source_epk_heteromeric_chain_topology_signal_audit_method": "epk_heteromeric_chain_topology_signal_audit",
     "source_epk_heteromeric_ligand_asymmetry_role_audit_method": "epk_heteromeric_ligand_asymmetry_role_audit",
     "source_epk_heteromeric_peptide_acceptor_identity_probe_method": "epk_heteromeric_peptide_acceptor_identity_probe",
+    "source_epk_heteromeric_peptide_broader_stress_audit_method": "epk_heteromeric_peptide_broader_stress_audit",
     "source_epk_heteromeric_peptide_external_hard_negative_probe_method": "epk_heteromeric_peptide_external_hard_negative_probe",
     "source_epk_heteromeric_positive_coverage_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
     "source_epk_heteromeric_source_free_role_rule_probe_method": "epk_heteromeric_source_free_role_rule_probe",

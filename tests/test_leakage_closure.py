@@ -32,6 +32,7 @@ from catalytic_earth.labels import (
     build_epk_heteromeric_acceptor_identity_gap_audit,
     build_epk_heteromeric_acceptor_identity_rule_probe,
     build_epk_heteromeric_peptide_acceptor_identity_probe,
+    build_epk_heteromeric_peptide_broader_stress_audit,
     build_epk_heteromeric_peptide_external_hard_negative_probe,
     build_epk_source_authority_axis_replacement_gap_audit,
     build_epk_source_free_chain_topology_role_audit,
@@ -2443,6 +2444,137 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(len(separated_rows), 3)
         self.assertFalse(any(row["candidate_feature_hit"] for row in separated_rows))
 
+    def test_epk_heteromeric_source_expansion_artifacts_are_review_only(
+        self,
+    ) -> None:
+        atp_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_expansion_candidate_scout_atp_1025.json"
+        )
+        adp_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_expansion_candidate_scout_adp_1025.json"
+        )
+        amp_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_expansion_candidate_scout_amp_pnp_1025.json"
+        )
+        ags_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_expansion_candidate_scout_ags_1025.json"
+        )
+        broad_peptide_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_expansion_candidate_scout_broad_peptide_atp_1025.json"
+        )
+        validation = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_expansion_source_validation_review_amp_pnp_1025.json"
+        )
+        broad_peptide_validation = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_expansion_source_validation_review_broad_peptide_atp_1025.json"
+        )
+        distance_sample = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_expansion_gamma_distance_sample_amp_pnp_1025.json"
+        )
+        rerun = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_source_expansion_control_rerun_amp_pnp_1025.json"
+        )
+
+        self.assertEqual(atp_scout["metadata"]["input_candidate_count"], 25)
+        self.assertEqual(atp_scout["metadata"]["heteromeric_candidate_structure_count"], 0)
+        self.assertFalse(atp_scout["metadata"]["source_validation_queue_ready"])
+
+        self.assertEqual(adp_scout["metadata"]["input_candidate_count"], 25)
+        self.assertEqual(adp_scout["metadata"]["heteromeric_candidate_structure_count"], 0)
+        self.assertFalse(adp_scout["metadata"]["source_validation_queue_ready"])
+
+        self.assertEqual(ags_scout["metadata"]["input_candidate_count"], 25)
+        self.assertEqual(ags_scout["metadata"]["heteromeric_candidate_structure_count"], 0)
+        self.assertFalse(ags_scout["metadata"]["source_validation_queue_ready"])
+
+        self.assertEqual(amp_scout["metadata"]["input_candidate_count"], 11)
+        self.assertEqual(amp_scout["metadata"]["heteromeric_candidate_pdb_ids"], ["1O6K", "1O6L"])
+        self.assertTrue(amp_scout["metadata"]["source_validation_queue_ready"])
+
+        self.assertEqual(broad_peptide_scout["metadata"]["input_candidate_count"], 25)
+        self.assertEqual(
+            broad_peptide_scout["metadata"]["heteromeric_candidate_pdb_ids"],
+            ["9L3M", "9L3U"],
+        )
+        self.assertTrue(broad_peptide_scout["metadata"]["source_validation_queue_ready"])
+
+        self.assertEqual(validation["metadata"]["source_validated_new_candidate_count"], 2)
+        self.assertEqual(
+            validation["metadata"]["source_validated_new_candidate_pdb_ids"],
+            ["1O6K", "1O6L"],
+        )
+        self.assertEqual(validation["metadata"]["source_validated_unique_pair_ids"], ["pkb_gsk3"])
+        self.assertEqual(
+            validation["metadata"]["source_validation_status_counts"],
+            {
+                "accepted_source_valid_heteromeric_kinase_substrate_review_only": 2,
+            },
+        )
+        self.assertEqual(
+            broad_peptide_validation["metadata"]["source_validated_new_candidate_count"],
+            0,
+        )
+        self.assertEqual(
+            broad_peptide_validation["metadata"]["source_validation_status_counts"],
+            {"blocked_source_context_insufficient_review_only": 2},
+        )
+
+        self.assertEqual(
+            distance_sample["metadata"]["measured_candidate_pdb_ids"],
+            ["1O6K", "1O6L"],
+        )
+        self.assertEqual(distance_sample["metadata"]["measured_unique_pair_ids"], ["pkb_gsk3"])
+        self.assertEqual(distance_sample["metadata"]["distance_min_angstrom"], 3.542)
+        self.assertEqual(distance_sample["metadata"]["distance_max_angstrom"], 3.566)
+
+        self.assertEqual(
+            rerun["metadata"]["control_rerun_status"],
+            "blocked_review_only_control_rerun",
+        )
+        self.assertEqual(rerun["metadata"]["heteromeric_source_valid_candidate_row_count"], 2)
+        self.assertEqual(rerun["metadata"]["source_authority_dependent_positive_like_count"], 1)
+        self.assertEqual(rerun["metadata"]["heteromeric_source_valid_axis_complete_count"], 0)
+        self.assertEqual(rerun["metadata"]["countable_label_candidate_count"], 0)
+
+        for artifact in [
+            atp_scout,
+            adp_scout,
+            ags_scout,
+            amp_scout,
+            broad_peptide_scout,
+            validation,
+            broad_peptide_validation,
+            distance_sample,
+            rerun,
+        ]:
+            metadata = artifact["metadata"]
+            self.assertTrue(metadata["review_only"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+            self.assertFalse(metadata["ready_for_production_scoring"])
+            self.assertFalse(metadata["ready_for_label_import"])
+            self.assertFalse(metadata["fingerprint_registry_edited"])
+            self.assertFalse(metadata["curated_label_registry_edited"])
+
     def test_epk_heteromeric_text_free_axis_gap_audit_is_review_only(
         self,
     ) -> None:
@@ -2809,6 +2941,37 @@ class LeakageClosureTests(unittest.TestCase):
         for row in probe["rows"]:
             self.assertFalse(row["review_only_feature_non_abstention"])
             self.assertEqual(row["review_only_feature_score"], 0.0)
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_heteromeric_peptide_broader_stress_audit_is_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_peptide_broader_stress_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_peptide_broader_stress_audit",
+        )
+        self.assertEqual(
+            metadata["stress_audit_status"],
+            "passes_exact_source_query_stress_but_axis_remains_narrow_review_only",
+        )
+        self.assertTrue(metadata["exact_source_query_exhausted"])
+        self.assertEqual(metadata["exact_source_query_pdb_count"], 110)
+        self.assertEqual(metadata["unreviewed_exact_query_pdb_count"], 0)
+        self.assertEqual(metadata["positive_peptide_identity_hit_count"], 3)
+        self.assertEqual(metadata["positive_non_peptide_substrate_chain_hit_count"], 0)
+        self.assertEqual(metadata["general_substrate_identity_ready_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        for row in audit["rows"]:
+            self.assertTrue(row["review_only"])
             self.assertFalse(row["countable_label_candidate"])
 
     def test_epk_external_source_scout_builder_keeps_rows_non_countable(
@@ -3770,6 +3933,16 @@ data_1BME
 _struct.title 'Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP'
 #
 """
+        pkb_gsk3_cif = """
+data_1PKG
+_struct.title 'Structure of activated form of PKB kinase domain S474D with GSK3 peptide and AMP-PNP'
+#
+"""
+        pkb_gsk3_raw_cif = """
+data_1PGR
+_citation.title 'Crystal Structure of an Activated Akt/Protein Kinase B Ternary Complex with Gsk-3 Peptide and AMP-Pnp'
+#
+"""
         review = build_epk_heteromeric_candidate_source_validation_review(
             epk_heteromeric_positive_coverage_candidate_scout={
                 "metadata": {
@@ -3801,17 +3974,38 @@ _struct.title 'Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP
                             {"nearest_gamma_distance_angstrom": 3.7}
                         ],
                     },
+                    {
+                        "pdb_id": "1PKG",
+                        "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+                        "heteromeric_candidate_hit_count": 1,
+                        "heteromeric_candidate_hits": [
+                            {"nearest_gamma_distance_angstrom": 3.6}
+                        ],
+                    },
+                    {
+                        "pdb_id": "1PGR",
+                        "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+                        "heteromeric_candidate_hit_count": 1,
+                        "heteromeric_candidate_hits": [
+                            {"nearest_gamma_distance_angstrom": 3.4}
+                        ],
+                    },
                 ],
             },
             cif_text_by_pdb={
                 "1ATM": source_valid_cif,
                 "1ATK": source_valid_keyword_cif,
                 "1BME": ambiguous_cif,
+                "1PKG": pkb_gsk3_cif,
+                "1PGR": pkb_gsk3_raw_cif,
             },
         )
         metadata = review["metadata"]
-        self.assertEqual(metadata["source_validated_new_candidate_count"], 2)
-        self.assertEqual(metadata["source_validated_unique_pair_ids"], ["atm_p53"])
+        self.assertEqual(metadata["source_validated_new_candidate_count"], 4)
+        self.assertEqual(
+            metadata["source_validated_unique_pair_ids"],
+            ["atm_p53", "pkb_gsk3"],
+        )
         self.assertEqual(metadata["ambiguous_candidate_count"], 1)
         self.assertFalse(metadata["ready_to_run_epk_scorer"])
         rows = {row["pdb_id"]: row for row in review["rows"]}
@@ -3827,6 +4021,8 @@ _struct.title 'Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP
             rows["1BME"]["source_validation_status"],
             "blocked_ambiguous_kinase_kinase_role_direction_review_only",
         )
+        self.assertEqual(rows["1PKG"]["source_pair_id"], "pkb_gsk3")
+        self.assertEqual(rows["1PGR"]["source_pair_id"], "pkb_gsk3")
 
     def test_epk_heteromeric_source_valid_candidate_distance_sample_builder(
         self,
@@ -4328,6 +4524,73 @@ _struct.title 'Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP
             rows["uniprot:ABSTAIN"]["review_only_feature_non_abstention"]
         )
         self.assertTrue(rows["uniprot:HIT"]["review_only_feature_non_abstention"])
+
+    def test_epk_heteromeric_peptide_broader_stress_audit_builder(
+        self,
+    ) -> None:
+        audit = build_epk_heteromeric_peptide_broader_stress_audit(
+            epk_ligand_specific_substrate_cocomplex_query_probe={
+                "metadata": {
+                    "method": "epk_ligand_specific_substrate_cocomplex_query_probe",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [{"pdb_id": "1AAA"}, {"pdb_id": "1AAB"}],
+            },
+            epk_heteromeric_positive_coverage_candidate_scout={
+                "metadata": {
+                    "method": "epk_heteromeric_positive_coverage_candidate_scout",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                    "heteromeric_candidate_structure_count": 1,
+                },
+                "rows": [{"pdb_id": "2AAA"}],
+            },
+            epk_heteromeric_peptide_acceptor_identity_probe={
+                "metadata": {
+                    "method": "epk_heteromeric_peptide_acceptor_identity_probe",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                    "max_peptide_chain_residue_count": 40,
+                },
+                "rows": [
+                    {
+                        "row_type": (
+                            "heteromeric_peptide_acceptor_identity_candidate"
+                        ),
+                        "pdb_id": "2AAA",
+                        "source_pair_id": "kinase_substrate",
+                        "acceptor_chain_residue_count": 7,
+                        "peptide_like_acceptor_identity_rule_hit": True,
+                    },
+                    {
+                        "row_type": (
+                            "heteromeric_nonaccepted_peptide_identity_control"
+                        ),
+                        "pdb_id": "2AAB",
+                        "peptide_like_acceptor_identity_rule_hit": False,
+                        "peptide_acceptor_identity_rule_status": (
+                            "nonaccepted_control_blocked_by_peptide_identity_rule"
+                        ),
+                    },
+                    {
+                        "row_type": "sibling_peptide_identity_control",
+                        "pdb_id": "3AAA",
+                        "peptide_like_acceptor_identity_rule_hit": False,
+                    },
+                ],
+            },
+            exact_source_query_pdb_ids=["1AAA", "1AAB", "2AAA"],
+            source_query="fixture exact query",
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["stress_audit_status"],
+            "passes_exact_source_query_stress_but_axis_remains_narrow_review_only",
+        )
+        self.assertTrue(metadata["exact_source_query_exhausted"])
+        self.assertEqual(metadata["unreviewed_exact_query_pdb_count"], 0)
+        self.assertEqual(metadata["positive_peptide_identity_hit_count"], 1)
+        self.assertEqual(metadata["positive_non_peptide_substrate_chain_hit_count"], 0)
+        self.assertEqual(metadata["general_substrate_identity_ready_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
     def test_epk_external_source_lower_priority_ligand_builder_blocks_analog(
         self,

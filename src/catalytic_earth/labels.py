@@ -24398,6 +24398,18 @@ def build_epk_heteromeric_candidate_source_validation_review(
             for row in entity_rows
             if row.get("pdbx_description") not in {None, "", ".", "?"}
         )
+        raw_source_contexts: list[str] = []
+        raw_text = cif_text.lower()
+        if (
+            ("gsk3 peptide" in raw_text or "gsk-3 peptide" in raw_text)
+            and (
+                "pkb" in raw_text
+                or "akt" in raw_text
+                or "protein kinase b" in raw_text
+            )
+        ):
+            raw_source_contexts.append("raw_cif_mentions_pkb_gsk3_peptide")
+            raw_source_contexts.append("pkb gsk3 peptide")
         chain_accessions: dict[str, list[str]] = defaultdict(list)
         for row in _epk_struct_ref_seq_rows(cif_text):
             accession = str(row.get("pdbx_db_accession") or "")
@@ -24407,7 +24419,9 @@ def build_epk_heteromeric_candidate_source_validation_review(
             for chain_id in chain_ids:
                 if accession not in chain_accessions[chain_id]:
                     chain_accessions[chain_id].append(accession)
-        source_text = " ".join([title or "", *keywords, *entity_descriptions]).lower()
+        source_text = " ".join(
+            [title or "", *keywords, *entity_descriptions, *raw_source_contexts]
+        ).lower()
         return {
             "structure_title": title,
             "keywords": keywords,
@@ -24436,6 +24450,21 @@ def build_epk_heteromeric_candidate_source_validation_review(
                 "accepted_source_valid_heteromeric_kinase_substrate_review_only",
                 "atm_p53",
                 ["source_context_links_atm_kinase_to_p53_candidate_substrate"],
+                [
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            )
+        if ("gsk3 peptide" in source_text or "gsk-3 peptide" in source_text) and (
+            "pkb" in source_text
+            or "akt" in source_text
+            or "protein kinase b" in source_text
+        ):
+            return (
+                "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+                "pkb_gsk3",
+                ["source_context_links_pkb_kinase_complex_to_gsk3_peptide_substrate"],
                 [
                     "threshold_not_calibrated_against_negative_controls",
                     "external_hard_negative_reaudit_not_real_scorer",
@@ -25176,11 +25205,11 @@ def build_epk_heteromeric_source_valid_control_rerun(
             ],
             "review_only_rule": (
                 "This artifact reruns the fail-closed ePK review surface after "
-                "adding measured source-valid heteromeric SMG1/UPF1 and "
-                "ATM/p53 leads. Ambiguous BRAF/MEK and rejected non-ePK rows "
-                "are explicitly separated from positive-like controls. It is "
-                "not a calibrated ePK score, external hard-negative scored "
-                "re-audit, registry edit, or label gate."
+                "adding measured source-valid heteromeric leads. Ambiguous "
+                "and rejected non-ePK rows are explicitly separated from "
+                "positive-like controls. It is not a calibrated ePK score, "
+                "external hard-negative scored re-audit, registry edit, or "
+                "label gate."
             ),
             "next_actions": [
                 "replace source-valid heteromeric positive axes with local text-free role and acceptor evidence before scoring",
@@ -27731,6 +27760,327 @@ def build_epk_heteromeric_peptide_external_hard_negative_probe(
     }
 
 
+def build_epk_heteromeric_peptide_broader_stress_audit(
+    *,
+    epk_ligand_specific_substrate_cocomplex_query_probe: dict[str, Any],
+    epk_heteromeric_positive_coverage_candidate_scout: dict[str, Any],
+    epk_heteromeric_peptide_acceptor_identity_probe: dict[str, Any],
+    exact_source_query_pdb_ids: list[str],
+    source_query: str,
+) -> dict[str, Any]:
+    """Stress-test peptide acceptor identity against the exhausted source query."""
+
+    ligand_meta = epk_ligand_specific_substrate_cocomplex_query_probe.get(
+        "metadata", {}
+    )
+    if not isinstance(ligand_meta, dict):
+        ligand_meta = {}
+    scout_meta = epk_heteromeric_positive_coverage_candidate_scout.get(
+        "metadata", {}
+    )
+    if not isinstance(scout_meta, dict):
+        scout_meta = {}
+    peptide_meta = epk_heteromeric_peptide_acceptor_identity_probe.get(
+        "metadata", {}
+    )
+    if not isinstance(peptide_meta, dict):
+        peptide_meta = {}
+
+    target_fingerprint_id = str(
+        peptide_meta.get("target_fingerprint_id")
+        or scout_meta.get("target_fingerprint_id")
+        or ligand_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    query_ids = _sorted_strings(exact_source_query_pdb_ids)
+    first_pass_ids = _sorted_strings(
+        row.get("pdb_id")
+        for row in epk_ligand_specific_substrate_cocomplex_query_probe.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+    )
+    followon_ids = _sorted_strings(
+        row.get("pdb_id")
+        for row in epk_heteromeric_positive_coverage_candidate_scout.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+    )
+    reviewed_ids = _sorted_strings([*first_pass_ids, *followon_ids])
+    unreviewed_query_ids = [
+        pdb_id for pdb_id in query_ids if pdb_id not in set(reviewed_ids)
+    ]
+    extra_reviewed_ids = [
+        pdb_id for pdb_id in reviewed_ids if query_ids and pdb_id not in set(query_ids)
+    ]
+
+    peptide_rows = [
+        row
+        for row in epk_heteromeric_peptide_acceptor_identity_probe.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+    ]
+    positive_rows = [
+        row
+        for row in peptide_rows
+        if row.get("row_type") == "heteromeric_peptide_acceptor_identity_candidate"
+    ]
+    nonaccepted_rows = [
+        row
+        for row in peptide_rows
+        if row.get("row_type") == "heteromeric_nonaccepted_peptide_identity_control"
+    ]
+    sibling_rows = [
+        row
+        for row in peptide_rows
+        if row.get("row_type") == "sibling_peptide_identity_control"
+    ]
+
+    def _optional_int(value: Any) -> int | None:
+        try:
+            if value in {None, "", ".", "?"}:
+                return None
+            return int(value)
+        except (TypeError, ValueError):
+            return None
+
+    positive_hits = [
+        row
+        for row in positive_rows
+        if bool(row.get("peptide_like_acceptor_identity_rule_hit"))
+    ]
+    positive_misses = [
+        row
+        for row in positive_rows
+        if not bool(row.get("peptide_like_acceptor_identity_rule_hit"))
+    ]
+    nonaccepted_false_hits = [
+        row
+        for row in nonaccepted_rows
+        if bool(row.get("peptide_like_acceptor_identity_rule_hit"))
+    ]
+    sibling_false_hits = [
+        row
+        for row in sibling_rows
+        if bool(row.get("peptide_like_acceptor_identity_rule_hit"))
+    ]
+    peptide_limit = _optional_int(
+        peptide_meta.get("max_peptide_chain_residue_count")
+    ) or 40
+    positive_non_peptide_hits = [
+        row
+        for row in positive_hits
+        if (_optional_int(row.get("acceptor_chain_residue_count")) or 0)
+        > peptide_limit
+    ]
+    exact_query_exhausted = bool(query_ids) and not unreviewed_query_ids
+    peptide_controls_clean = (
+        bool(positive_hits)
+        and not positive_misses
+        and not nonaccepted_false_hits
+        and not sibling_false_hits
+    )
+    if not exact_query_exhausted:
+        status = "blocked_review_only_unreviewed_exact_query_structures_remain"
+    elif not peptide_controls_clean:
+        status = "blocked_review_only_peptide_axis_false_hit_or_positive_gap"
+    else:
+        status = "passes_exact_source_query_stress_but_axis_remains_narrow_review_only"
+
+    rows: list[dict[str, Any]] = [
+        {
+            "row_type": "exact_source_query_coverage_summary",
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "review_only": True,
+            "source_query": source_query,
+            "exact_source_query_pdb_count": len(query_ids),
+            "first_pass_reviewed_pdb_count": len(first_pass_ids),
+            "followon_reviewed_pdb_count": len(followon_ids),
+            "combined_reviewed_pdb_count": len(reviewed_ids),
+            "unreviewed_exact_query_pdb_count": len(unreviewed_query_ids),
+            "unreviewed_exact_query_pdb_ids": unreviewed_query_ids,
+            "extra_reviewed_pdb_ids_outside_exact_query": extra_reviewed_ids,
+            "exact_query_exhausted": exact_query_exhausted,
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+        }
+    ]
+    for source_row in positive_rows:
+        chain_length = _optional_int(source_row.get("acceptor_chain_residue_count"))
+        peptide_hit = bool(source_row.get("peptide_like_acceptor_identity_rule_hit"))
+        rows.append(
+            {
+                "row_type": "positive_peptide_axis_stress_row",
+                "pdb_id": source_row.get("pdb_id"),
+                "source_pair_id": source_row.get("source_pair_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "peptide_like_acceptor_identity_rule_hit": peptide_hit,
+                "acceptor_chain_residue_count": chain_length,
+                "max_peptide_chain_residue_count": peptide_limit,
+                "non_peptide_substrate_chain_supported": bool(
+                    chain_length is not None and chain_length > peptide_limit
+                ),
+                "stress_decision": (
+                    "positive_hit_is_short_peptide_context_review_only"
+                    if peptide_hit
+                    else "positive_missed_by_peptide_axis_review_only"
+                ),
+                "production_scoring_admissible": False,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "peptide_chain_identity_axis_narrow_not_general_epk_acceptor_identity",
+                    "no_non_peptide_substrate_positive_coverage_in_exact_query",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ],
+            }
+        )
+    for source_row in nonaccepted_rows:
+        rows.append(
+            {
+                "row_type": "nonaccepted_peptide_axis_stress_row",
+                "pdb_id": source_row.get("pdb_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "peptide_like_acceptor_identity_rule_hit": bool(
+                    source_row.get("peptide_like_acceptor_identity_rule_hit")
+                ),
+                "stress_decision": source_row.get(
+                    "peptide_acceptor_identity_rule_status"
+                ),
+                "production_scoring_admissible": False,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+            }
+        )
+    rows.append(
+        {
+            "row_type": "sibling_peptide_axis_stress_summary",
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "review_only": True,
+            "sibling_control_candidate_count": len(sibling_rows),
+            "sibling_peptide_identity_false_hit_count": len(sibling_false_hits),
+            "sibling_peptide_identity_false_hit_pdb_ids": _sorted_strings(
+                row.get("pdb_id") for row in sibling_false_hits
+            ),
+            "production_scoring_admissible": False,
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+        }
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_peptide_broader_stress_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_ligand_specific_substrate_cocomplex_query_probe_method": (
+                ligand_meta.get("method")
+            ),
+            "source_epk_heteromeric_positive_coverage_candidate_scout_method": (
+                scout_meta.get("method")
+            ),
+            "source_epk_heteromeric_peptide_acceptor_identity_probe_method": (
+                peptide_meta.get("method")
+            ),
+            "source_query": source_query,
+            "exact_source_query_pdb_count": len(query_ids),
+            "first_pass_reviewed_pdb_count": len(first_pass_ids),
+            "followon_reviewed_pdb_count": len(followon_ids),
+            "combined_reviewed_pdb_count": len(reviewed_ids),
+            "unreviewed_exact_query_pdb_count": len(unreviewed_query_ids),
+            "unreviewed_exact_query_pdb_ids": unreviewed_query_ids,
+            "extra_reviewed_pdb_ids_outside_exact_query": extra_reviewed_ids,
+            "exact_source_query_exhausted": exact_query_exhausted,
+            "stress_audit_status": status,
+            "broader_stress_test_passed_review_only": (
+                exact_query_exhausted and peptide_controls_clean
+            ),
+            "heteromeric_topology_hit_count": scout_meta.get(
+                "heteromeric_candidate_structure_count"
+            ),
+            "positive_peptide_identity_hit_count": len(positive_hits),
+            "positive_peptide_identity_miss_count": len(positive_misses),
+            "positive_non_peptide_substrate_chain_hit_count": len(
+                positive_non_peptide_hits
+            ),
+            "general_substrate_identity_ready_count": 0,
+            "nonaccepted_peptide_identity_false_hit_count": len(
+                nonaccepted_false_hits
+            ),
+            "nonaccepted_peptide_identity_false_hit_pdb_ids": _sorted_strings(
+                row.get("pdb_id") for row in nonaccepted_false_hits
+            ),
+            "sibling_peptide_identity_false_hit_count": len(sibling_false_hits),
+            "sibling_peptide_identity_false_hit_pdb_ids": _sorted_strings(
+                row.get("pdb_id") for row in sibling_false_hits
+            ),
+            "peptide_identity_axis_narrow": True,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "exact_source_query_broader_stress_audit_executed",
+            "blocker_not_removed": [
+                "peptide_chain_identity_axis_narrow_not_general_epk_acceptor_identity",
+                "no_non_peptide_substrate_positive_coverage_in_exact_query",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This audit treats the RCSB ANP/Mg EC 2.7.11.1 source query as "
+                "an exact 110-entry stress snapshot. The existing first-60 and "
+                "follow-on-50 reviews exhaust that snapshot, so the peptide "
+                "acceptor axis has no remaining same-query structures to test. "
+                "It still cannot support production scoring because all retained "
+                "positive hits are short peptide-chain contexts."
+            ),
+            "next_actions": [
+                "source new heteromeric kinase-substrate co-complexes outside the exhausted ANP/Mg EC 2.7.11.1 snapshot",
+                "add a general substrate-chain identity axis beyond short peptide chains before scorer design",
+                "keep external hard-negative scored re-audit closed until a calibrated scorer exists",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "The exact-query stress audit is a negative review-only result; "
+                "it does not score ePK, select a threshold, edit registries, or "
+                "authorize label import."
+            )
+        ],
+    }
+
+
 def build_epk_external_source_lower_priority_ligand_sourcing_review(
     *,
     epk_external_source_structure_mapping_review: dict[str, Any],
@@ -29440,6 +29790,7 @@ def build_epk_precount_gate_status(
     epk_heteromeric_peptide_acceptor_identity_probe: dict[str, Any] | None = None,
     epk_heteromeric_peptide_external_hard_negative_probe: dict[str, Any]
     | None = None,
+    epk_heteromeric_peptide_broader_stress_audit: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
@@ -29922,6 +30273,13 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(heteromeric_peptide_external_meta, dict):
         heteromeric_peptide_external_meta = {}
+    heteromeric_peptide_stress_meta = (
+        epk_heteromeric_peptide_broader_stress_audit.get("metadata", {})
+        if isinstance(epk_heteromeric_peptide_broader_stress_audit, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_peptide_stress_meta, dict):
+        heteromeric_peptide_stress_meta = {}
     m_csa760_repair_meta = (
         epk_m_csa760_atp_state_repair_scan.get("metadata", {})
         if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
@@ -31948,6 +32306,81 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if heteromeric_peptide_stress_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_peptide_broader_stress_audit",
+                "passed": heteromeric_peptide_stress_meta.get(
+                    "stress_audit_status"
+                )
+                == "passes_exact_source_query_stress_but_axis_remains_narrow_review_only"
+                and bool(
+                    heteromeric_peptide_stress_meta.get(
+                        "exact_source_query_exhausted"
+                    )
+                )
+                and int(
+                    heteromeric_peptide_stress_meta.get(
+                        "unreviewed_exact_query_pdb_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_peptide_stress_meta.get(
+                        "positive_non_peptide_substrate_chain_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_peptide_stress_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_peptide_stress_meta.get("epk_score_computed")
+                ),
+                "evidence": {
+                    "source_method": heteromeric_peptide_stress_meta.get("method"),
+                    "stress_audit_status": heteromeric_peptide_stress_meta.get(
+                        "stress_audit_status"
+                    ),
+                    "exact_source_query_pdb_count": (
+                        heteromeric_peptide_stress_meta.get(
+                            "exact_source_query_pdb_count"
+                        )
+                    ),
+                    "combined_reviewed_pdb_count": (
+                        heteromeric_peptide_stress_meta.get(
+                            "combined_reviewed_pdb_count"
+                        )
+                    ),
+                    "unreviewed_exact_query_pdb_count": (
+                        heteromeric_peptide_stress_meta.get(
+                            "unreviewed_exact_query_pdb_count"
+                        )
+                    ),
+                    "positive_peptide_identity_hit_count": (
+                        heteromeric_peptide_stress_meta.get(
+                            "positive_peptide_identity_hit_count"
+                        )
+                    ),
+                    "positive_non_peptide_substrate_chain_hit_count": (
+                        heteromeric_peptide_stress_meta.get(
+                            "positive_non_peptide_substrate_chain_hit_count"
+                        )
+                    ),
+                    "general_substrate_identity_ready_count": (
+                        heteromeric_peptide_stress_meta.get(
+                            "general_substrate_identity_ready_count"
+                        )
+                    ),
+                },
+            }
+        )
     if m_csa760_repair_meta:
         gate_checks.append(
             {
@@ -32648,10 +33081,11 @@ def build_epk_precount_gate_status(
             )
             == "passes_current_controls_peptide_like_acceptor_identity_review_only"
         ):
-            next_actions.insert(
-                0,
-                "stress-test peptide-like acceptor identity on broader heteromeric kinase-substrate co-complexes before scorer design",
-            )
+            if not heteromeric_peptide_stress_meta.get("method"):
+                next_actions.insert(
+                    0,
+                    "stress-test peptide-like acceptor identity on broader heteromeric kinase-substrate co-complexes before scorer design",
+                )
         else:
             next_actions.insert(
                 0,
@@ -32677,6 +33111,17 @@ def build_epk_precount_gate_status(
             next_actions.insert(
                 0,
                 "keep the peptide-like external hard-negative probe as diagnostic only until a calibrated scorer exists",
+            )
+    if heteromeric_peptide_stress_meta.get("method"):
+        if bool(heteromeric_peptide_stress_meta.get("exact_source_query_exhausted")):
+            next_actions.insert(
+                0,
+                "source heteromeric kinase-substrate co-complexes outside the exhausted ANP/Mg EC 2.7.11.1 snapshot or add a general substrate-chain identity axis",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "review remaining exact-query heteromeric structures before treating peptide identity stress as complete",
             )
     if m_csa760_repair_meta.get("method"):
         if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
@@ -34112,6 +34557,34 @@ def build_epk_precount_gate_status(
             "heteromeric_peptide_external_feature_coordinate_unavailable_count": (
                 heteromeric_peptide_external_meta.get(
                     "coordinate_unavailable_external_hard_negative_count"
+                )
+            ),
+            "source_epk_heteromeric_peptide_broader_stress_audit_method": (
+                heteromeric_peptide_stress_meta.get("method")
+            ),
+            "heteromeric_peptide_broader_stress_audit_status": (
+                heteromeric_peptide_stress_meta.get("stress_audit_status")
+            ),
+            "heteromeric_peptide_broader_stress_exact_query_exhausted": bool(
+                heteromeric_peptide_stress_meta.get("exact_source_query_exhausted")
+            ),
+            "heteromeric_peptide_broader_stress_exact_query_pdb_count": (
+                heteromeric_peptide_stress_meta.get("exact_source_query_pdb_count")
+            ),
+            "heteromeric_peptide_broader_stress_combined_reviewed_pdb_count": (
+                heteromeric_peptide_stress_meta.get("combined_reviewed_pdb_count")
+            ),
+            "heteromeric_peptide_broader_stress_unreviewed_pdb_count": (
+                heteromeric_peptide_stress_meta.get("unreviewed_exact_query_pdb_count")
+            ),
+            "heteromeric_peptide_broader_stress_positive_non_peptide_hit_count": (
+                heteromeric_peptide_stress_meta.get(
+                    "positive_non_peptide_substrate_chain_hit_count"
+                )
+            ),
+            "heteromeric_peptide_broader_stress_general_substrate_ready_count": (
+                heteromeric_peptide_stress_meta.get(
+                    "general_substrate_identity_ready_count"
                 )
             ),
             "source_epk_m_csa760_atp_state_repair_scan_method": (

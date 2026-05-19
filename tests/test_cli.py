@@ -3686,6 +3686,7 @@ class CliTests(unittest.TestCase):
             heteromeric_identity = root / "heteromeric_identity.json"
             heteromeric_identity_rule = root / "heteromeric_identity_rule.json"
             heteromeric_peptide_external = root / "heteromeric_peptide_external.json"
+            heteromeric_peptide_stress = root / "heteromeric_peptide_stress.json"
             out = root / "gate_status.json"
             axis.write_text(
                 json.dumps(
@@ -4254,6 +4255,30 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            heteromeric_peptide_stress.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_broader_stress_audit"
+                            ),
+                            "stress_audit_status": (
+                                "passes_exact_source_query_stress_but_axis_remains_narrow_review_only"
+                            ),
+                            "exact_source_query_exhausted": True,
+                            "exact_source_query_pdb_count": 110,
+                            "combined_reviewed_pdb_count": 110,
+                            "unreviewed_exact_query_pdb_count": 0,
+                            "positive_peptide_identity_hit_count": 3,
+                            "positive_non_peptide_substrate_chain_hit_count": 0,
+                            "general_substrate_identity_ready_count": 0,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -4313,6 +4338,8 @@ class CliTests(unittest.TestCase):
                     str(heteromeric_peptide_identity),
                     "--epk-heteromeric-peptide-external-hard-negative-probe",
                     str(heteromeric_peptide_external),
+                    "--epk-heteromeric-peptide-broader-stress-audit",
+                    str(heteromeric_peptide_stress),
                     "--epk-external-hard-negative-reaudit-plan",
                     str(reaudit),
                     "--out",
@@ -4565,6 +4592,27 @@ class CliTests(unittest.TestCase):
                 ],
                 0,
             )
+            self.assertEqual(
+                metadata["heteromeric_peptide_broader_stress_audit_status"],
+                "passes_exact_source_query_stress_but_axis_remains_narrow_review_only",
+            )
+            self.assertTrue(
+                metadata[
+                    "heteromeric_peptide_broader_stress_exact_query_exhausted"
+                ]
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_peptide_broader_stress_unreviewed_pdb_count"
+                ],
+                0,
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_peptide_broader_stress_general_substrate_ready_count"
+                ],
+                0,
+            )
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
             checks = {check["gate_id"]: check for check in status["gate_checks"]}
             self.assertTrue(checks["local_axis_prototype"]["passed"])
@@ -4631,6 +4679,9 @@ class CliTests(unittest.TestCase):
                 checks[
                     "heteromeric_peptide_external_hard_negative_probe"
                 ]["passed"]
+            )
+            self.assertTrue(
+                checks["heteromeric_peptide_broader_stress_audit"]["passed"]
             )
 
     def test_build_epk_heteromeric_peptide_external_hard_negative_probe_command(
@@ -4749,6 +4800,114 @@ class CliTests(unittest.TestCase):
                 probe["rows"][0]["feature_probe_status"],
                 "review_only_external_hard_negative_abstain_no_gamma_context",
             )
+
+    def test_build_epk_heteromeric_peptide_broader_stress_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            ligand = root / "ligand.json"
+            scout = root / "scout.json"
+            peptide = root / "peptide.json"
+            out = root / "stress.json"
+            ligand.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_ligand_specific_substrate_cocomplex_query_probe"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [{"pdb_id": "1AAA"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            scout.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_positive_coverage_candidate_scout"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "heteromeric_candidate_structure_count": 1,
+                        },
+                        "rows": [{"pdb_id": "2AAA"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            peptide.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_acceptor_identity_probe"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "max_peptide_chain_residue_count": 40,
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "heteromeric_peptide_acceptor_identity_candidate"
+                                ),
+                                "pdb_id": "2AAA",
+                                "acceptor_chain_residue_count": 7,
+                                "peptide_like_acceptor_identity_rule_hit": True,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-peptide-broader-stress-audit",
+                    "--epk-ligand-specific-substrate-cocomplex-query-probe",
+                    str(ligand),
+                    "--epk-heteromeric-positive-coverage-candidate-scout",
+                    str(scout),
+                    "--epk-heteromeric-peptide-acceptor-identity-probe",
+                    str(peptide),
+                    "--exact-source-query-pdb-ids",
+                    "1AAA,2AAA",
+                    "--source-query",
+                    "fixture exact query",
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_heteromeric_peptide_broader_stress_audit",
+            )
+            self.assertEqual(
+                metadata["stress_audit_status"],
+                "passes_exact_source_query_stress_but_axis_remains_narrow_review_only",
+            )
+            self.assertTrue(metadata["exact_source_query_exhausted"])
+            self.assertEqual(metadata["unreviewed_exact_query_pdb_count"], 0)
+            self.assertEqual(metadata["general_substrate_identity_ready_count"], 0)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
     def test_build_epk_acceptor_identity_review_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

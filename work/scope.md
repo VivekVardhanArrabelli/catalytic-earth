@@ -136,6 +136,18 @@ review-only feature probe. Threshold/external-hard-negative calibration remains
 closed before any production scoring because this peptide axis is narrow, not
 a general substrate identity rule, and the real scored external re-audit plus
 registry/label-factory extension still do not exist.
+The same-query peptide stress audit now confirms that the exact RCSB ANP/Mg EC
+2.7.11.1 snapshot is exhausted: 110 entries reviewed, 0 unreviewed, and 0
+non-peptide substrate-chain positives. First outside-query scouts are mixed
+negative/positive review evidence: ATP/Mg, ADP/Mg, and AGS/Mg first-25 novel
+sets produce 0 heteromeric topology leads, while all 11 novel AMP-PNP/Mg hits
+produce `1O6K`/`1O6L`. Source validation accepts both as PKB/GSK3 peptide
+evidence, measures gamma-acceptor distances at 3.542-3.566 Angstrom, and keeps
+the rerun fail-closed because the pair is still source-authority dependent.
+A broader "kinase substrate peptide ATP/Mg" first-25 scout finds two topology
+hits (`9L3M`/`9L3U`) that source validation blocks as outer mitochondrial
+transmembrane helix translocase contexts, making broad text-query false
+positive risk explicit.
 The counteraxis sufficiency decision now records the same peptide feature as a
 passing diagnostic row while preserving `do_not_select_threshold`.
 
