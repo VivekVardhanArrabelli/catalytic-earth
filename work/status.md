@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 187
-- Measured elapsed time: 5624.3 minutes (93.74 hours)
+- Entries: 188
+- Measured elapsed time: 5660.9 minutes (94.35 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 395.2 measured minutes (6.59 hours)
+- post-infra-science: 431.8 measured minutes (7.20 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2102
-- Evidence references logged: 1658
+- Artifact references logged: 2115
+- Evidence references logged: 1670
 
 ## Recent Entries
-
-### 2026-05-18T21:12:49.756080+00:00 - post-infra-science
-
-- Task: ePK missing sibling-control source routing
-- Time mode: measured
-- Measured minutes: 21.667
-- Started: 2026-05-18T20:50:54Z
-- Ended: 2026-05-18T21:12:34Z
-- Artifacts: artifacts/v3_epk_sibling_control_repair_review_atp_grasp_1025.json, artifacts/v3_epk_sibling_control_repair_review_ndk_1025.json, artifacts/v3_epk_sibling_control_repair_review_pfka_1025.json, artifacts/v3_epk_missing_sibling_control_post_repair_source_decision_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: startup 482-test unit discovery passed, startup validate passed with 682 labels, migration guard passed with 108 rows and 0 blockers, ATP-grasp NDK and PfkA direct repair reviews found 0 gamma-capable and 0 measurement-ready repaired structures, post-repair source decision routed all six missing sibling-control rows to external or homolog gamma-capable sourcing, pre-count gate remains blocked_review_only with four repair-review families attached, final 486-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ### 2026-05-18T22:05:23.696999+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_chain_ligand_acceptor_disambiguation_audit_1025.json, artifacts/v3_epk_chain_ligand_external_hard_negative_feature_screen_1025.json, artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
 - Evidence: startup 510-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote and dry-run push passed, chain-ligand feature kept 3 current positives and blocked 25 controls with 0 false hits, external hard-negative chain-ligand feature screen had 3 abstentions and 0 non-abstentions, family template validation covered atp_grasp pfka pfkb, pre-count gate remains blocked_review_only with five failing gates, final 516-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, jq empty passed on updated ePK JSON artifacts, git diff --check passed
 - Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
+
+### 2026-05-19T12:03:38.595849+00:00 - post-infra-science
+
+- Task: ePK source-repair terminal decision
+- Time mode: measured
+- Measured minutes: 36.6
+- Started: 2026-05-19T11:26:44Z
+- Ended: 2026-05-19T12:03:20Z
+- Artifacts: artifacts/v3_epk_m_csa757_active_state_repair_scan_1025.json, artifacts/v3_epk_m_csa756_active_state_repair_scan_1025.json, artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json, artifacts/v3_epk_analog_product_state_policy_preregistration_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
+- Evidence: recovered previous dirty ePK source-repair audits as commit 59c7634, m_csa757 scan found active-state leads 1CDK and 1Q24 but 0 mapped acceptors, m_csa756 scan found 5LI1 structure-level ANP/Mg but no conservative remap, terminal source-repair decision closed m_csa760 m_csa757 and m_csa756 with 0 measurement-ready candidates, analog/product-state policy preregistration remains inactive and review-only, final 529-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ## Expectation Updates
 
@@ -264,6 +264,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-19T01:44:03.576487+00:00: ePK distance-only thresholding is now explicitly falsified by 16 family-specific sibling controls plus NDK phosphohistidine controls; next useful work needs a substrate-acceptor or family-disambiguation rule or the 3TM0 ANP/B31 m_csa:640 gamma-geometry review before any score.
 - 2026-05-19T02:44:02.632801+00:00: ePK has a sharper fail-closed review-only counteraxis, but the simplest text-free acceptor feature is blocked by sibling-control false hits; next work should add chain/substrate or ligand-class disambiguation before any score or external scored re-audit.
 - 2026-05-19T03:46:56.310139+00:00: ePK chain/ligand context is promising review-only disambiguation, but production scoring remains blocked by calibration, text-free feature admissibility, negative-control distribution readiness, and scored external hard-negative re-audit.
+- 2026-05-19T12:03:38.595849+00:00: Current bounded ePK source-repair candidates are exhausted as review-only negatives; next useful work needs new mapped protein-substrate evidence or an inactive policy draft promoted only after sibling and external hard-negative re-audits.
 
 ## Scope Adjustments
 

@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "active_state_or_atp_metal_candidate_count": 4,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_source_candidates_exhausted": true,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "ligand_analog_policy_decision": "do_not_use_ligand_analog_as_production_acceptor_evidence",
+    "ligand_analog_production_admissible_count": 0,
+    "mapped_or_context_acceptor_candidate_count": 2,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_protein_substrate_source_repair_terminal_decision",
+    "next_actions": [
+      "do not repeat m_csa:760, m_csa:757, or m_csa:756 scans without new evidence",
+      "pre-register any ligand-analog or product-state admissibility policy before using it in scorer calibration",
+      "source a new ePK protein-substrate positive only if it adds clear scientific value"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "recommended_next_experiment": "pre_register_ligand_analog_or_product_state_policy_or_source_new_epk_positive",
+    "review_only": true,
+    "review_only_rule": "This artifact closes the current bounded ePK protein-substrate source-repair loop as a negative result only. It does not make clean held-out claims, select a threshold, score external hard negatives, edit registries, or import labels.",
+    "source_candidate_count": 3,
+    "source_candidate_entry_ids": [
+      "m_csa:760",
+      "m_csa:757",
+      "m_csa:756"
+    ],
+    "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
+    "source_epk_protein_substrate_positive_source_triage_method": "epk_protein_substrate_positive_source_triage",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "terminal_decision": "current_source_candidates_exhausted_review_only"
+  },
+  "rows": [
+    {
+      "active_state_or_atp_metal_candidate_count": 0,
+      "countable_label_candidate": false,
+      "decision": "terminal_no_conservative_active_state_context_review_only",
+      "entry_id": "m_csa:756",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "mapped_or_context_acceptor_candidate_count": 0,
+      "measurement_ready_candidate_count": 0,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_geometry_not_measurement_ready",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "repair_status": "blocked_review_only_no_active_state_atp_metal_context",
+      "review_only": true,
+      "source_method": "epk_m_csa756_active_state_repair_scan"
+    },
+    {
+      "active_state_or_atp_metal_candidate_count": 2,
+      "countable_label_candidate": false,
+      "decision": "terminal_active_state_without_mapped_acceptor_review_only",
+      "entry_id": "m_csa:757",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "mapped_or_context_acceptor_candidate_count": 0,
+      "measurement_ready_candidate_count": 0,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_geometry_not_measurement_ready",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "repair_status": "blocked_review_only_active_state_without_mapped_substrate_acceptor",
+      "review_only": true,
+      "source_method": "epk_m_csa757_active_state_repair_scan"
+    },
+    {
+      "active_state_or_atp_metal_candidate_count": 2,
+      "countable_label_candidate": false,
+      "decision": "terminal_split_state_blocked_review_only",
+      "entry_id": "m_csa:760",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "mapped_or_context_acceptor_candidate_count": 2,
+      "measurement_ready_candidate_count": 0,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_geometry_not_measurement_ready",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "repair_status": "blocked_review_only_split_atp_and_substrate_context",
+      "review_only": true,
+      "source_method": "epk_m_csa760_atp_state_repair_scan"
+    }
+  ],
+  "warnings": [
+    "The current source-repair loop is negative review evidence, not production ePK scoring evidence."
+  ]
+}

@@ -467,6 +467,30 @@ contexts in `1TID` and `1TIL`, and protein-substrate/product-state contexts in
 `1TH8` and `1THN`, but no single structure with both ATP/Mg and the
 protein-substrate acceptor. The row is split-state blocked, has 0
 measurement-ready candidates, and stays non-countable.
+`artifacts/v3_epk_m_csa757_active_state_repair_scan_1025.json` follows the
+source-repair ladder. It scans the first 25 `m_csa:757` alternates and finds
+two active-state leads: `1CDK` has ANP/Mn but requires an ambiguous homomeric
+chain choice, and `1Q24` has conservative ATP/Mg plus structure-level SEP/TPO
+context. Neither maps a protein-substrate acceptor chain, so the artifact has
+0 measurement-ready candidates and remains non-countable.
+`artifacts/v3_epk_m_csa756_active_state_repair_scan_1025.json` then scans all
+15 `m_csa:756` alternates. `5LI1` has structure-level ANP/Mg/SEP/TPO context,
+but active-site residue remapping is not conservative; ADP/Mg product-state
+leads (`5LIH`, `9EJM`) also lack active-state gamma geometry. The artifact
+therefore fails closed with 0 active-state ATP/Mg candidates and 0
+measurement-ready candidates.
+`artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json`
+then closes the current bounded source-repair loop. The three current source
+candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) have 0
+measurement-ready candidates in aggregate, so the next useful experiment is
+new source acquisition or a pre-registered ligand-analog/product-state policy,
+not another repeat scan of the same rows.
+`artifacts/v3_epk_analog_product_state_policy_preregistration_1025.json`
+creates that policy surface without activating it. The draft blocks
+mechanism-text predictive use, homomeric chain-choice substrate mapping, and
+product-state ADP-without-gamma evidence, and requires a frozen policy,
+sibling-family re-audit, and scored external hard-negative re-audit before any
+future scorer use.
 `artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json`
 validates the PfkB, PfkA, and ATP-grasp family templates by downstream mapping
 and distance evidence only. It closes the template-review gap for pre-count
@@ -483,8 +507,9 @@ gate pass, the family-template gate passes by downstream validation, and the
 chain/ligand feature screen passes current review controls. Negative-control
 distribution readiness, acceptor-threshold calibration, text-free acceptor
 feature production admissibility, protein-substrate acceptor coverage,
-`m_csa:760` split-state repair, external hard-negative scored re-audit, and
-registry/label-factory extension all remain failed gates.
+`m_csa:760` split-state repair, `m_csa:757`/`m_csa:756` active-state source
+repair, external hard-negative scored re-audit, and registry/label-factory
+extension all remain failed gates.
 
 ## Active Learning Queue
 

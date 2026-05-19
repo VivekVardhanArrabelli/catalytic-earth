@@ -23,8 +23,18 @@ product-state context. That repair target is now split-state blocked: `1TID`
 and `1TIL` provide ATP/Mg catalytic context, while `1TH8` and `1THN` provide
 protein-substrate/product-state context, with 0 combined measurement-ready
 structures. The external hard-negative re-audit is not scored, thresholds are
-not calibrated, and registry or label-factory extension remains out of scope
-until those gates pass.
+structures. The follow-on source-repair pivots are also blocked:
+`m_csa:757` has active-state leads in `1CDK` and `1Q24` but no mapped
+protein-substrate acceptor, and `m_csa:756` has only structure-level ANP/Mg or
+ADP/Mg/product-state leads without conservative active-site remapping and
+active-state acceptor geometry. The current source-repair loop is now closed
+as a negative review-only result until new source evidence or a pre-registered
+analog/product-state policy exists. A policy preregistration draft now exists
+but is inactive; it blocks homomeric chain choices and product-state
+ADP-without-gamma evidence as predictive support until sibling-family and
+external hard-negative scored re-audits pass. The external hard-negative
+re-audit is not scored, thresholds are not calibrated, and registry or
+label-factory extension remains out of scope until those gates pass.
 
 ## Time Calibration Rule
 
@@ -467,8 +477,13 @@ Current expectation:
   alternate ATP-state repair because its selected structure has ADP/Mg
   product-state context. The follow-on `m_csa:760` scan finds ATP/Mg structures
   and protein-substrate product-state structures in different PDBs but 0
-  combined measurement-ready contexts, so source repair must pivot unless a
-  combined structure or pre-registered analog policy appears. Negative-control
+  combined measurement-ready contexts. The `m_csa:757` pivot finds active-state
+  leads in `1CDK` and `1Q24` but no mapped protein-substrate acceptor, and the
+  `m_csa:756` pivot finds structure-level ANP/Mg or ADP/Mg/product-state leads
+  without conservative active-site remapping. The current source-repair loop is
+  therefore exhausted as negative review-only evidence. The inactive
+  analog/product-state policy preregistration only records future activation
+  requirements; it authorizes no production scoring evidence. Negative-control
   readiness, threshold calibration, protein-substrate acceptor coverage,
   external hard-negative re-audit, and registry/gate extension all fail closed.
 - return to factory-gated label scaling toward 10k while preserving quality

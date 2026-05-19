@@ -1062,6 +1062,29 @@ two substrate-acceptor/product-state structures (`1TH8` and `1THN`), but 0
 combined ATP/Mg plus protein-substrate acceptor contexts. `m_csa:760` is
 therefore split-state blocked, not measurement-ready, and still cannot support
 an ePK scorer or label import.
+`artifacts/v3_epk_m_csa757_active_state_repair_scan_1025.json` then pivots to
+the next protein-substrate source candidate. In the first 25 `m_csa:757`
+alternate structures, `1CDK` has review-only ANP/Mn active-state context but
+only via an ambiguous homomeric chain choice, while `1Q24` has conservative
+ATP/Mg active-state context plus structure-level SEP/TPO context. Neither maps
+a protein-substrate acceptor chain, so both stay non-countable and
+measurement-not-ready. `artifacts/v3_epk_m_csa756_active_state_repair_scan_1025.json`
+then scans all 15 `m_csa:756` alternates; `5LI1` has structure-level ANP/Mg
+but no conservative active-site residue remap, and the remaining ADP/Mg or
+phosphoacceptor-like rows are not active-state measurement candidates. `m_csa:756`
+is therefore also blocked with 0 measurement-ready candidates.
+`artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json`
+closes the current bounded source-repair loop as a negative result:
+`m_csa:760`, `m_csa:757`, and `m_csa:756` have 0 measurement-ready candidates
+in total. The next experiment must either source a genuinely new
+protein-substrate ePK positive or pre-register a ligand-analog/product-state
+admissibility policy before any scorer calibration.
+`artifacts/v3_epk_analog_product_state_policy_preregistration_1025.json` drafts
+that future policy as inactive review-only scaffolding. It explicitly rejects
+homomeric chain choices and product-state ADP-without-gamma evidence as
+predictive support, and requires frozen policy text, sibling-family controls,
+and a scored re-audit of the three imported external hard negatives before any
+activation.
 `artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json`
 closes the older family-template review gap by downstream evidence only:
 PfkB, PfkA, and ATP-grasp templates all now have mapped and measured homolog
@@ -1074,9 +1097,9 @@ measurement and PfkB/PfkA/ATP-grasp family-specific counterevidence exist. The
 family-specific template gate now passes by downstream validation, and the
 chain/ligand feature and external feature screen pass current review controls,
 but the stricter protein-substrate feature, the `m_csa:760` split-state repair
-scan, acceptor thresholding, external scored re-audit, and label-factory
-extension all remain failing gates; the negative-control distribution blocker
-also stays open.
+scan, the `m_csa:757`/`m_csa:756` active-state source scans, acceptor
+thresholding, external scored re-audit, and label-factory extension all remain
+failing gates; the negative-control distribution blocker also stays open.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

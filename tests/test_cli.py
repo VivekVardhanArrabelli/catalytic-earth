@@ -7734,6 +7734,229 @@ class CliTests(unittest.TestCase):
                 self.assertTrue(row["review_only"])
                 self.assertFalse(row["countable_label_candidate"])
 
+    def test_build_epk_m_csa757_active_state_repair_scan_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            triage = root / "source_triage.json"
+            remediation = root / "remediation.json"
+            cif_dir = root / "cifs"
+            cif_dir.mkdir()
+            out = root / "repair_scan.json"
+
+            def write_cif(path: Path, rows: list[str]) -> None:
+                path.write_text(
+                    "\n".join(
+                        [
+                            f"data_{path.stem}",
+                            "loop_",
+                            "_atom_site.group_PDB",
+                            "_atom_site.auth_comp_id",
+                            "_atom_site.label_comp_id",
+                            "_atom_site.auth_asym_id",
+                            "_atom_site.label_asym_id",
+                            "_atom_site.auth_seq_id",
+                            "_atom_site.label_seq_id",
+                            "_atom_site.auth_atom_id",
+                            "_atom_site.label_atom_id",
+                            "_atom_site.Cartn_x",
+                            "_atom_site.Cartn_y",
+                            "_atom_site.Cartn_z",
+                            *rows,
+                            "#",
+                        ]
+                    ),
+                    encoding="utf-8",
+                )
+
+            selected_rows = [
+                "ATOM ASN ASN E E 171 171 CA CA 0.0 0.0 0.0",
+                "ATOM ASP ASP E E 184 184 CA CA 1.0 0.0 0.0",
+                "ATOM ASP ASP E E 166 166 CA CA 0.0 1.0 0.0",
+                "ATOM LYS LYS E E 168 168 CA CA 1.0 1.0 0.0",
+                "ATOM THR THR E E 201 201 CA CA 2.0 1.0 0.0",
+            ]
+            write_cif(
+                cif_dir / "pdb_1STC.cif",
+                [
+                    *selected_rows,
+                    "HETATM STU STU E E 300 300 C1 C1 2.0 2.0 0.0",
+                    "HETATM TPO TPO E E 197 197 OG1 OG1 9.0 9.0 0.0",
+                ],
+            )
+            homomer_rows = []
+            for chain, offset in [("A", 0.0), ("B", 8.0)]:
+                homomer_rows.extend(
+                    [
+                        f"ATOM ASN ASN {chain} {chain} 171 171 CA CA {offset + 0.0} 0.0 0.0",
+                        f"ATOM ASP ASP {chain} {chain} 184 184 CA CA {offset + 1.0} 0.0 0.0",
+                        f"ATOM ASP ASP {chain} {chain} 166 166 CA CA {offset + 0.0} 1.0 0.0",
+                        f"ATOM LYS LYS {chain} {chain} 168 168 CA CA {offset + 1.0} 1.0 0.0",
+                        f"ATOM THR THR {chain} {chain} 201 201 CA CA {offset + 2.0} 1.0 0.0",
+                    ]
+                )
+            write_cif(
+                cif_dir / "pdb_1CDK.cif",
+                [
+                    *homomer_rows,
+                    "HETATM ANP ANP A A 400 400 PG PG 1.0 1.0 0.0",
+                    "HETATM MN MN A A 401 401 MN MN 2.0 1.0 0.0",
+                    "HETATM TPO TPO A A 197 197 OG1 OG1 8.0 8.0 0.0",
+                ],
+            )
+            write_cif(
+                cif_dir / "pdb_1Q24.cif",
+                [
+                    "ATOM ASN ASN A A 171 171 CA CA 0.0 0.0 0.0",
+                    "ATOM ASP ASP A A 184 184 CA CA 1.0 0.0 0.0",
+                    "ATOM ASP ASP A A 166 166 CA CA 0.0 1.0 0.0",
+                    "ATOM LYS LYS A A 168 168 CA CA 1.0 1.0 0.0",
+                    "ATOM THR THR A A 201 201 CA CA 2.0 1.0 0.0",
+                    "HETATM ATP ATP A A 400 400 PG PG 1.0 1.0 0.0",
+                    "HETATM MG MG A A 401 401 MG MG 2.0 1.0 0.0",
+                    "HETATM TPO TPO A A 197 197 OG1 OG1 8.0 8.0 0.0",
+                ],
+            )
+            triage.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_protein_substrate_positive_source_triage"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:757",
+                                "entry_name": "cAMP-dependent protein kinase",
+                                "pdb_id": "1STC",
+                                "mechanism_text_snippets": [
+                                    "Asp 166 activates the phosphoacceptor serine."
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            remediation.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "review_debt_remediation_plan"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:757",
+                                "entry_name": "cAMP-dependent protein kinase",
+                                "selected_pdb_id": "1STC",
+                                "candidate_pdb_structure_ids": [
+                                    "1STC",
+                                    "1CDK",
+                                    "1Q24",
+                                ],
+                                "candidate_pdb_residue_positions": {
+                                    "1STC": [
+                                        {
+                                            "chain_name": "E",
+                                            "code": "ASN",
+                                            "resid": 171,
+                                        },
+                                        {
+                                            "chain_name": "E",
+                                            "code": "ASP",
+                                            "resid": 184,
+                                        },
+                                        {
+                                            "chain_name": "E",
+                                            "code": "ASP",
+                                            "resid": 166,
+                                        },
+                                        {
+                                            "chain_name": "E",
+                                            "code": "LYS",
+                                            "resid": 168,
+                                        },
+                                        {
+                                            "chain_name": "E",
+                                            "code": "THR",
+                                            "resid": 201,
+                                        },
+                                    ]
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-m-csa757-active-state-repair-scan",
+                    "--epk-protein-substrate-positive-source-triage",
+                    str(triage),
+                    "--review-debt-remediation",
+                    str(remediation),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            scan = json.loads(out.read_text(encoding="utf-8"))
+            metadata = scan["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_m_csa757_active_state_repair_scan",
+            )
+            self.assertEqual(metadata["candidate_pdb_count"], 3)
+            self.assertEqual(metadata["scanned_candidate_pdb_count"], 3)
+            self.assertEqual(metadata["active_state_atp_metal_candidate_count"], 2)
+            self.assertEqual(
+                metadata["active_state_atp_metal_candidate_pdb_ids"],
+                ["1CDK", "1Q24"],
+            )
+            self.assertEqual(
+                metadata["conservative_active_state_atp_metal_candidate_pdb_ids"],
+                ["1Q24"],
+            )
+            self.assertEqual(
+                metadata[
+                    "homomeric_mapping_ambiguous_active_state_candidate_pdb_ids"
+                ],
+                ["1CDK"],
+            )
+            self.assertEqual(
+                metadata["mapped_protein_substrate_acceptor_candidate_count"],
+                0,
+            )
+            self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+            self.assertEqual(
+                metadata["repair_status"],
+                "blocked_review_only_active_state_without_mapped_substrate_acceptor",
+            )
+            rows = {row["pdb_id"]: row for row in scan["rows"]}
+            self.assertEqual(
+                rows["1CDK"]["repair_scan_decision"],
+                "homomeric_active_state_mapping_ambiguous_no_substrate_acceptor_review_only",
+            )
+            self.assertEqual(
+                rows["1Q24"]["repair_scan_decision"],
+                "active_state_atp_metal_with_structure_phosphoacceptor_not_substrate_mapped_review_only",
+            )
+            for row in rows.values():
+                self.assertTrue(row["review_only"])
+                self.assertFalse(row["countable_label_candidate"])
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

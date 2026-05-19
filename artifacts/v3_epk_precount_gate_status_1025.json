@@ -229,6 +229,40 @@
     },
     {
       "evidence": {
+        "active_state_atp_metal_candidate_count": 2,
+        "active_state_atp_metal_candidate_pdb_ids": [
+          "1CDK",
+          "1Q24"
+        ],
+        "conservative_active_state_atp_metal_candidate_count": 1,
+        "entry_id": "m_csa:757",
+        "homomeric_mapping_ambiguous_active_state_candidate_count": 1,
+        "mapped_protein_substrate_acceptor_candidate_count": 0,
+        "measurement_ready_candidate_count": 0,
+        "repair_status": "blocked_review_only_active_state_without_mapped_substrate_acceptor",
+        "source_method": "epk_m_csa757_active_state_repair_scan",
+        "structure_phosphoacceptor_context_candidate_count": 25
+      },
+      "gate_id": "m_csa757_active_state_repair_scan",
+      "passed": false
+    },
+    {
+      "evidence": {
+        "active_state_atp_metal_candidate_count": 0,
+        "conservative_active_state_atp_metal_candidate_count": 0,
+        "entry_id": "m_csa:756",
+        "homomeric_mapping_ambiguous_active_state_candidate_count": 0,
+        "mapped_protein_substrate_acceptor_candidate_count": 0,
+        "measurement_ready_candidate_count": 0,
+        "repair_status": "blocked_review_only_no_active_state_atp_metal_context",
+        "source_method": "epk_m_csa756_active_state_repair_scan",
+        "structure_phosphoacceptor_context_candidate_count": 13
+      },
+      "gate_id": "m_csa756_active_state_repair_scan",
+      "passed": false
+    },
+    {
+      "evidence": {
         "alternate_structure_distance_sample_method": "epk_sibling_negative_control_alternate_gamma_distance_sample",
         "alternate_structure_lowest_candidate_hit_count": 1,
         "alternate_structure_measured_candidate_structure_count": 3,
@@ -385,6 +419,8 @@
       "text_free_acceptor_feature_gap_audit",
       "protein_substrate_acceptor_candidate_audit",
       "m_csa760_atp_state_repair_scan",
+      "m_csa757_active_state_repair_scan",
+      "m_csa756_active_state_repair_scan",
       "gamma_negative_control_distance_distribution"
     ],
     "fingerprint_registry_edited": false,
@@ -400,6 +436,20 @@
     "m_csa640_alternate_gamma_distance_min_angstrom": 3.558,
     "m_csa640_alternate_gamma_geometry_review_complete": true,
     "m_csa640_alternate_gamma_geometry_support_count": 1,
+    "m_csa756_active_state_atp_metal_candidate_count": 0,
+    "m_csa756_conservative_active_state_atp_metal_candidate_count": 0,
+    "m_csa756_homomeric_mapping_ambiguous_active_state_candidate_count": 0,
+    "m_csa756_mapped_protein_substrate_acceptor_candidate_count": 0,
+    "m_csa756_measurement_ready_candidate_count": 0,
+    "m_csa756_repair_status": "blocked_review_only_no_active_state_atp_metal_context",
+    "m_csa756_structure_phosphoacceptor_context_candidate_count": 13,
+    "m_csa757_active_state_atp_metal_candidate_count": 2,
+    "m_csa757_conservative_active_state_atp_metal_candidate_count": 1,
+    "m_csa757_homomeric_mapping_ambiguous_active_state_candidate_count": 1,
+    "m_csa757_mapped_protein_substrate_acceptor_candidate_count": 0,
+    "m_csa757_measurement_ready_candidate_count": 0,
+    "m_csa757_repair_status": "blocked_review_only_active_state_without_mapped_substrate_acceptor",
+    "m_csa757_structure_phosphoacceptor_context_candidate_count": 25,
     "m_csa760_atp_metal_state_candidate_count": 2,
     "m_csa760_combined_atp_metal_substrate_context_candidate_count": 0,
     "m_csa760_measurement_ready_candidate_count": 0,
@@ -526,6 +576,8 @@
       "expand sibling negative-control coverage beyond measured alternate structures before selecting a threshold",
       "use reviewed m_csa:640 alternate gamma geometry only in review-only prototype diagnostics",
       "keep explicitly excluded non-ready ligand rows out of threshold calibration",
+      "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
+      "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
       "source another ePK protein-substrate positive or pre-register a ligand-analog admissibility policy",
       "resolve ligand-analog-only ePK positive coverage before production scorer calibration",
@@ -576,6 +628,8 @@
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
     "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
     "source_epk_m_csa640_alternate_gamma_geometry_review_method": "epk_m_csa640_alternate_gamma_geometry_review",
+    "source_epk_m_csa756_active_state_repair_scan_method": "epk_m_csa756_active_state_repair_scan",
+    "source_epk_m_csa757_active_state_repair_scan_method": "epk_m_csa757_active_state_repair_scan",
     "source_epk_m_csa760_atp_state_repair_scan_method": "epk_m_csa760_atp_state_repair_scan",
     "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
     "source_epk_negative_control_calibration_sufficiency_decision_method": "epk_negative_control_calibration_sufficiency_decision",

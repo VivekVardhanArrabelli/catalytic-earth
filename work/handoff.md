@@ -50,6 +50,65 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T11:53:08Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Startup found a
+stale automation lock and coherent dirty work from the previous run; that work
+was tested, committed, and pushed first as
+`59c7634 Add ePK protein-substrate source repair audits`. SSH deploy-key
+fetch/push hygiene passed, full unit discovery passed before recovery commit
+with 524 tests, and `validate` preserved the 682-label / 8-fingerprint
+baseline. Artifact migration Phase 1 stayed guard-only; no Phase 2/3 upload,
+removal, Git LFS change, history rewrite, registry edit, label import, or
+`removal_allowed=true` occurred.
+
+The new science work consumed the current protein-substrate source-repair
+ladder and failed it closed. `artifacts/v3_epk_m_csa757_active_state_repair_scan_1025.json`
+scans the first 25 `m_csa:757` alternates. It finds two active-state leads:
+`1CDK` has ANP/Mn context but only through an ambiguous homomeric chain choice,
+and `1Q24` has conservative ATP/Mg context plus structure-level SEP/TPO. Neither
+maps a protein-substrate acceptor chain, so the scan has 0 measurement-ready
+candidates and remains non-countable. `artifacts/v3_epk_m_csa756_active_state_repair_scan_1025.json`
+then scans all 15 `m_csa:756` alternates. `5LI1` has structure-level
+ANP/Mg/SEP/TPO, while `5LIH` and `9EJM` are ADP/Mg or product-state leads, but
+none has conservative active-site remapping plus active-state acceptor geometry.
+
+`artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json`
+closes the current bounded source-repair loop as negative review-only evidence:
+`m_csa:760`, `m_csa:757`, and `m_csa:756` have 0 measurement-ready candidates
+in aggregate. `artifacts/v3_epk_precount_gate_status_1025.json` now includes
+failing `m_csa757_active_state_repair_scan` and
+`m_csa756_active_state_repair_scan` gates in addition to the `m_csa:760`
+split-state blocker. The next experiment should not repeat those scans without
+new evidence; use either a genuinely new protein-substrate ePK source or a
+pre-registered ligand-analog/product-state admissibility policy before scorer
+calibration.
+`artifacts/v3_epk_analog_product_state_policy_preregistration_1025.json` drafts
+that policy as inactive review-only scaffolding: homomeric chain choices and
+product-state ADP-without-gamma evidence are excluded as predictive support,
+and activation requires a frozen rule, sibling-family controls, and a scored
+external hard-negative re-audit.
+
+One small follow-on clue is worth preserving but is not yet an artifact:
+`5LI1` has ANP/Mg on chain A and local kinase residues near the ligand
+(including Asp 382, Asn 383, and Lys 380), while the committed remap remains
+non-conservative from selected `1ZRZ` residue positions. If source repair is
+reopened, the next bounded experiment should be explicit residue-position
+evidence for `5LI1`, not another broad scan of `m_csa:756`.
+
+Evidence-based confidence call: confidence is now higher that the current ePK
+source candidates are exhausted rather than merely under-audited. Confidence
+remains low that a production ePK scorer can be calibrated from the current
+positive set because the only clean protein-substrate acceptor feature still
+misses `m_csa:640`, and every current source-repair pivot lacks a measurable
+combined ATP/Mg plus mapped protein-substrate acceptor geometry.
+
+Final verification in this run: targeted CLI/leakage tests for the
+`m_csa:757`, `m_csa:756`, terminal-decision, analog-policy, and pre-count
+status paths passed; full unit discovery reports 529 tests passing; `validate`
+preserved 682 labels and 8 fingerprints; the artifact migration local-file
+guard passed with 108 rows and `removal_allowed=0`; compileall, JSON
+validation, external-label invariant inspection, and `git diff --check` passed.
+
 As of the 2026-05-19T03:58:32Z automation run, the ePK lane remains
 review-only and scientifically blocked from production fingerprint expansion.
 Startup protocol passed: the repo lock was acquired, `git fetch` and

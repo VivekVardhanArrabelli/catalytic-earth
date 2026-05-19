@@ -1,0 +1,1450 @@
+{
+  "metadata": {
+    "active_state_atp_metal_candidate_count": 2,
+    "active_state_atp_metal_candidate_pdb_ids": [
+      "1CDK",
+      "1Q24"
+    ],
+    "candidate_pdb_count": 105,
+    "conservative_active_state_atp_metal_candidate_count": 1,
+    "conservative_active_state_atp_metal_candidate_pdb_ids": [
+      "1Q24"
+    ],
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "entry_id": "m_csa:757",
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "homomeric_mapping_ambiguous_active_state_candidate_count": 1,
+    "homomeric_mapping_ambiguous_active_state_candidate_pdb_ids": [
+      "1CDK"
+    ],
+    "mapped_protein_substrate_acceptor_candidate_count": 0,
+    "mapped_protein_substrate_acceptor_candidate_pdb_ids": [],
+    "measurement_ready_candidate_count": 0,
+    "measurement_ready_candidate_pdb_ids": [],
+    "method": "epk_m_csa757_active_state_repair_scan",
+    "next_actions": [
+      "do not count m_csa:757 until a mapped protein-substrate acceptor and gamma distance exist",
+      "if no m_csa:757 combined structure is sourced, pivot protein-substrate coverage repair to m_csa:756",
+      "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "repair_scan_decision_counts": {
+      "active_state_atp_metal_with_structure_phosphoacceptor_not_substrate_mapped_review_only": 1,
+      "homomeric_active_state_mapping_ambiguous_no_substrate_acceptor_review_only": 1,
+      "phosphoacceptor_context_without_active_atp_metal_review_only": 23
+    },
+    "repair_status": "blocked_review_only_active_state_without_mapped_substrate_acceptor",
+    "review_only": true,
+    "review_only_rule": "This artifact scans a bounded m_csa:757 alternate-structure surface for active-state ATP/Mg evidence after m_csa:760 failed closed. Homomeric chain choices, structure-level phosphoacceptor-like residues, and mechanism text remain review-only and cannot support ePK scoring, registry edits, label import, or held-out claims.",
+    "scan_limit": 25,
+    "scanned_candidate_pdb_count": 25,
+    "scanned_candidate_pdb_ids": [
+      "1CDK",
+      "1CTP",
+      "1FMO",
+      "1JBP",
+      "1Q24",
+      "1Q61",
+      "1Q62",
+      "1Q8T",
+      "1Q8U",
+      "1Q8W",
+      "1SMH",
+      "1STC",
+      "1SVE",
+      "1SVG",
+      "1SVH",
+      "1SZM",
+      "1VEB",
+      "1XH4",
+      "1XH5",
+      "1XH6",
+      "1XH7",
+      "1XH8",
+      "1XH9",
+      "1XHA",
+      "1YDR"
+    ],
+    "selected_pdb_id": "1STC",
+    "source_epk_protein_substrate_positive_source_triage_method": "epk_protein_substrate_positive_source_triage",
+    "source_review_debt_remediation_method": "review_debt_remediation_plan",
+    "structure_phosphoacceptor_context_candidate_count": 25,
+    "structure_phosphoacceptor_context_candidate_pdb_ids": [
+      "1CDK",
+      "1CTP",
+      "1FMO",
+      "1JBP",
+      "1Q24",
+      "1Q61",
+      "1Q62",
+      "1Q8T",
+      "1Q8U",
+      "1Q8W",
+      "1SMH",
+      "1STC",
+      "1SVE",
+      "1SVG",
+      "1SVH",
+      "1SZM",
+      "1VEB",
+      "1XH4",
+      "1XH5",
+      "1XH6",
+      "1XH7",
+      "1XH8",
+      "1XH9",
+      "1XHA",
+      "1YDR"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "catalytic_residue_chains": [
+        "E"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": true,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "STU"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1STC",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": null,
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "mcsa_explicit",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "SEP",
+        "STU",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": true,
+      "has_local_metal": true,
+      "has_local_nucleotide": true,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": true,
+      "has_structure_metal": true,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 2,
+      "homomeric_mapping_ambiguous": true,
+      "is_selected_structure": false,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "ANP",
+        "MN"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1CDK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "homomeric_chain_mapping_not_production_admissible",
+        "protein_substrate_acceptor_not_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "homomeric_active_state_mapping_ambiguous_no_substrate_acceptor_review_only",
+      "residue_position_remap_basis": "homomeric_same_residue_id_ligand_context",
+      "residue_position_remap_warnings": [
+        "homomeric_chain_choice_review_only_not_production_mapping"
+      ],
+      "residue_position_source": "homomeric_same_residue_id_ligand_context",
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ANP",
+        "MN",
+        "MYR",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "E"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1CTP",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "MYR",
+        "TPO",
+        "TYI"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "E"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "ADN"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1FMO",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "ADN",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "E"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": true,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "ADP"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1JBP",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "ADP",
+        "OCT",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": true,
+      "has_local_metal": true,
+      "has_local_nucleotide": true,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": true,
+      "has_structure_metal": true,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1Q24",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "structure_phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "gamma_to_protein_substrate_acceptor_distance_not_measurable",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "active_state_atp_metal_with_structure_phosphoacceptor_not_substrate_mapped_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ATP",
+        "MG",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1Q61",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "MG8",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1Q62",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "Y27"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1Q8T",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "SEP",
+        "TPO",
+        "Y27"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "H52"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1Q8U",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "H52",
+        "MG8",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "M77"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1Q8W",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "M77",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1SMH",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BU3",
+        "MG8",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "I01"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1SVE",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "I01",
+        "MG8",
+        "NA",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "I04"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1SVG",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "I04",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "I08"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1SVH",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "I08",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 2,
+      "homomeric_mapping_ambiguous": true,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "BI4"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1SZM",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "homomeric_same_residue_id_ligand_context",
+      "residue_position_remap_warnings": [
+        "homomeric_chain_choice_review_only_not_production_mapping"
+      ],
+      "residue_position_source": "homomeric_same_residue_id_ligand_context",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BI4",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "I05"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1VEB",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "I05",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "R69"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1XH4",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "R69",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "R68"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1XH5",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BU3",
+        "R68",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "R94"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1XH6",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "R94",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "R96"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1XH7",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "R96",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "R55"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1XH8",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "R55",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "R69"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1XH9",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "BU3",
+        "R69",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "A"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "R68"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1XHA",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_residue_id_chain_remap",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "R68",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "catalytic_residue_chains": [
+        "E"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "has_local_nucleotide": false,
+      "has_mapped_protein_substrate_acceptor": false,
+      "has_structure_gamma_capable_nucleotide": false,
+      "has_structure_metal": false,
+      "has_structure_phosphoacceptor_like_context": true,
+      "homomeric_candidate_chain_count": 0,
+      "homomeric_mapping_ambiguous": false,
+      "is_selected_structure": false,
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "IQP"
+      ],
+      "local_resolved_residue_count": 5,
+      "mapped_protein_substrate_acceptor_chains": [],
+      "measurement_ready": false,
+      "mechanism_text_used_for_review_context_only": false,
+      "pdb_id": "1YDR",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_atp_metal_context_missing",
+        "phosphoacceptor_context_not_mapped_to_substrate_chain",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "repair_scan_decision": "phosphoacceptor_context_without_active_atp_metal_review_only",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "IQP",
+        "SEP",
+        "TPO"
+      ],
+      "structure_phosphoacceptor_like_codes": [
+        "SEP",
+        "TPO"
+      ],
+      "substrate_acceptor_hint": null,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "m_csa:757 active-state repair evidence is review-only and cannot be used as production ePK scoring evidence."
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "activation_requirement_count": 3,
+    "countable_label_candidate_count": 0,
+    "criterion_count": 6,
+    "curated_label_registry_edited": false,
+    "current_source_candidates_exhausted": true,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "failed_activation_requirement_count": 3,
+    "fingerprint_registry_edited": false,
+    "ligand_analog_policy_decision": "do_not_use_ligand_analog_as_production_acceptor_evidence",
+    "ligand_analog_production_admissible_count": 0,
+    "method": "epk_analog_product_state_policy_preregistration",
+    "next_actions": [
+      "keep this policy inactive until activation requirements are implemented and tested",
+      "run sibling-family and imported external hard-negative re-audits before any policy use",
+      "prefer new mapped protein-substrate source evidence over analog rescue when available"
+    ],
+    "policy_activation_allowed": false,
+    "policy_status": "draft_preregistered_review_only_not_activated",
+    "predictive_input_exclusion_count": 3,
+    "production_scoring_admissible": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This is only a preregistration draft for future policy review. It cannot activate analog/product-state evidence, score ePK, edit registries, import labels, or claim clean held-out performance.",
+    "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
+    "source_epk_protein_substrate_source_repair_terminal_decision_method": "epk_protein_substrate_source_repair_terminal_decision",
+    "source_repair_measurement_ready_candidate_count": 0,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "criterion_id": "freeze_policy_before_candidate_selection",
+      "criterion_type": "activation_requirement",
+      "passed": false,
+      "production_use_allowed": false,
+      "requirement": "Any analog/product-state rule must be frozen before selecting or rescuing ePK source candidates.",
+      "review_only": true
+    },
+    {
+      "criterion_id": "exclude_mechanism_text_as_predictive_support",
+      "criterion_type": "predictive_input_exclusion",
+      "passed": true,
+      "production_use_allowed": false,
+      "requirement": "Mechanism prose, entry names, EC/Rhea identifiers, and expert rationale remain review context only.",
+      "review_only": true
+    },
+    {
+      "criterion_id": "reject_homomeric_chain_choice_as_substrate_mapping",
+      "criterion_type": "predictive_input_exclusion",
+      "passed": true,
+      "production_use_allowed": false,
+      "requirement": "A homomeric catalytic-chain alternative cannot stand in for a mapped protein-substrate acceptor chain.",
+      "review_only": true
+    },
+    {
+      "criterion_id": "reject_product_state_without_gamma_geometry",
+      "criterion_type": "predictive_input_exclusion",
+      "passed": true,
+      "production_use_allowed": false,
+      "requirement": "ADP/product-state context without active-state gamma geometry cannot be used to measure or calibrate an ePK acceptor axis.",
+      "review_only": true
+    },
+    {
+      "criterion_id": "require_external_hard_negative_scored_reaudit",
+      "criterion_type": "activation_requirement",
+      "passed": false,
+      "production_use_allowed": false,
+      "requirement": "The three imported external hard negatives must be rerun under a real calibrated ePK scorer before any policy activation.",
+      "review_only": true
+    },
+    {
+      "criterion_id": "require_sibling_family_control_reaudit",
+      "criterion_type": "activation_requirement",
+      "passed": false,
+      "production_use_allowed": false,
+      "requirement": "NDK, PfkB, PfkA, and ATP-grasp controls must remain blocked under the exact frozen analog/product-state policy.",
+      "review_only": true
+    }
+  ],
+  "warnings": [
+    "The analog/product-state policy is not active and authorizes no production ePK scoring evidence."
+  ]
+}

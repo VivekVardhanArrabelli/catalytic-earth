@@ -18240,6 +18240,850 @@ def build_epk_m_csa760_atp_state_repair_scan(
     }
 
 
+def _epk_homomeric_same_residue_position_candidates(
+    atoms: list[dict[str, Any]],
+    source_positions: list[dict[str, Any]],
+) -> list[list[dict[str, Any]]]:
+    if not source_positions:
+        return []
+    chain_residue_keys: set[tuple[str, str, str]] = set()
+    for atom in atoms:
+        if atom.get("group_PDB") != "ATOM":
+            continue
+        chain = atom.get("auth_asym_id") or atom.get("label_asym_id")
+        if chain in {None, "", ".", "?"}:
+            continue
+        code = str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        if not code:
+            continue
+        for seq_id in [atom.get("auth_seq_id"), atom.get("label_seq_id")]:
+            if seq_id in {None, "", ".", "?"}:
+                continue
+            chain_residue_keys.add((str(chain), code, str(seq_id)))
+
+    candidates: list[list[dict[str, Any]]] = []
+    for chain in sorted({key[0] for key in chain_residue_keys}):
+        positions: list[dict[str, Any]] = []
+        for source_position in source_positions:
+            code = str(source_position.get("code") or "").upper()
+            resid = str(source_position.get("resid") or "")
+            if not code or not resid:
+                positions = []
+                break
+            if (chain, code, resid) not in chain_residue_keys:
+                positions = []
+                break
+            positions.append({**source_position, "chain_name": chain})
+        if positions:
+            candidates.append(positions)
+    return candidates
+
+
+def _epk_select_positions_by_ligand_context(
+    atoms: list[dict[str, Any]],
+    pdb_id: str,
+    candidate_positions: list[list[dict[str, Any]]],
+    gamma_capable_codes: set[str],
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    best_positions: list[dict[str, Any]] = []
+    best_context: dict[str, Any] = {}
+    best_score: tuple[int, int, int, int] | None = None
+    for positions in candidate_positions:
+        context = _review_debt_local_ligand_context(
+            atoms,
+            pdb_id,
+            {pdb_id: positions},
+        )
+        ligand_codes = set(context.get("ligand_codes", []))
+        cofactor_families = set(context.get("cofactor_families", []))
+        score = (
+            int(bool(ligand_codes & gamma_capable_codes)),
+            int("metal_ion" in cofactor_families),
+            len(ligand_codes),
+            int(context.get("resolved_residue_count", 0) or 0),
+        )
+        if best_score is None or score > best_score:
+            best_score = score
+            best_positions = positions
+            best_context = context
+    return best_positions, best_context
+
+
+def build_epk_m_csa757_active_state_repair_scan(
+    *,
+    epk_protein_substrate_positive_source_triage: dict[str, Any],
+    review_debt_remediation: dict[str, Any],
+    entry_id: str = "m_csa:757",
+    max_pdbs: int | None = 25,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Scan m_csa:757 alternates for active-state ePK source-repair evidence."""
+
+    triage_meta = epk_protein_substrate_positive_source_triage.get("metadata", {})
+    if not isinstance(triage_meta, dict):
+        triage_meta = {}
+    remediation_meta = review_debt_remediation.get("metadata", {})
+    if not isinstance(remediation_meta, dict):
+        remediation_meta = {}
+    target_fingerprint_id = str(
+        triage_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    triage_by_entry = {
+        str(row.get("entry_id")): row
+        for row in epk_protein_substrate_positive_source_triage.get("rows", [])
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    remediation_by_entry = {
+        str(row.get("entry_id")): row
+        for row in review_debt_remediation.get("rows", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    triage_row = triage_by_entry.get(entry_id, {})
+    remediation_row = remediation_by_entry.get(entry_id, {})
+    selected_pdb_id = str(
+        remediation_row.get("selected_pdb_id")
+        or triage_row.get("pdb_id")
+        or ""
+    ).upper()
+    all_candidate_pdb_ids = _sorted_strings(
+        remediation_row.get("candidate_pdb_structure_ids", [])
+    )
+    if selected_pdb_id and selected_pdb_id not in all_candidate_pdb_ids:
+        all_candidate_pdb_ids = [selected_pdb_id, *all_candidate_pdb_ids]
+    if not all_candidate_pdb_ids and triage_row.get("pdb_id"):
+        all_candidate_pdb_ids = [str(triage_row.get("pdb_id")).upper()]
+    candidate_pdb_ids = (
+        all_candidate_pdb_ids[:max_pdbs]
+        if max_pdbs is not None and max_pdbs >= 0
+        else all_candidate_pdb_ids
+    )
+    residue_positions_by_pdb = {
+        str(pdb_id).upper(): _review_debt_normalized_residue_positions(positions)
+        for pdb_id, positions in (
+            remediation_row.get("candidate_pdb_residue_positions", {}) or {}
+        ).items()
+        if isinstance(positions, list)
+    }
+    source_positions = _review_debt_reference_residue_positions(
+        residue_positions_by_pdb,
+        selected_pdb_id,
+    )
+    substrate_acceptor_hint = _epk_substrate_acceptor_hint_from_text(
+        triage_row.get("mechanism_text_snippets", [])
+    )
+    gamma_capable_codes = {"ACP", "ANP", "ATP", "DTP"}
+    nucleotide_codes = gamma_capable_codes | {"ADP", "AMP", "DGP"}
+    phosphoacceptor_like_codes = {"SEP", "TPO", "PTR"}
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    for pdb_id in candidate_pdb_ids:
+        pdb_id_upper = str(pdb_id).upper()
+        row_base: dict[str, Any] = {
+            "entry_id": entry_id,
+            "entry_name": triage_row.get("entry_name")
+            or remediation_row.get("entry_name"),
+            "pdb_id": pdb_id_upper,
+            "is_selected_structure": pdb_id_upper == selected_pdb_id,
+            "target_fingerprint_id": target_fingerprint_id,
+            "review_only": True,
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "substrate_acceptor_hint": substrate_acceptor_hint,
+            "mechanism_text_used_for_review_context_only": bool(
+                substrate_acceptor_hint
+            ),
+        }
+        cif_text = cif_text_by_pdb.get(pdb_id_upper)
+        fetch_status = "provided_cif_text" if cif_text is not None else "fetched_rcsb_cif"
+        try:
+            if cif_text is None:
+                cif_text = cif_fetcher(pdb_id_upper)
+            atoms = parse_atom_site_loop(cif_text)
+        except Exception as exc:
+            decision = "structure_fetch_failed_review_only"
+            decision_counts[decision] += 1
+            rows.append(
+                {
+                    **row_base,
+                    "fetch_status": "failed",
+                    "fetch_error": str(exc),
+                    "structure_ligand_codes": [],
+                    "local_ligand_codes": [],
+                    "local_cofactor_families": [],
+                    "local_resolved_residue_count": 0,
+                    "residue_position_source": "none",
+                    "residue_position_remap_basis": None,
+                    "residue_position_remap_warnings": [],
+                    "homomeric_mapping_ambiguous": False,
+                    "has_local_gamma_capable_nucleotide": False,
+                    "has_local_metal": False,
+                    "has_structure_phosphoacceptor_like_context": False,
+                    "has_mapped_protein_substrate_acceptor": False,
+                    "measurement_ready": False,
+                    "repair_scan_decision": decision,
+                    "remaining_blockers": ["structure_fetch_failed"],
+                }
+            )
+            continue
+
+        inventory = structure_ligand_inventory_from_atoms(atoms)
+        explicit_positions = residue_positions_by_pdb.get(pdb_id_upper, [])
+        remap_result = {"positions": [], "basis": None, "warnings": []}
+        residue_position_source = "none"
+        active_positions = explicit_positions
+        homomeric_mapping_ambiguous = False
+        homomeric_candidate_count = 0
+        precomputed_local_context: dict[str, Any] | None = None
+        if explicit_positions:
+            residue_position_source = "mcsa_explicit"
+        elif source_positions:
+            remap_result = _review_debt_infer_residue_positions(
+                atoms,
+                residue_positions_by_pdb,
+                selected_pdb_id=selected_pdb_id,
+            )
+            active_positions = _review_debt_normalized_residue_positions(
+                remap_result.get("positions", []) or []
+            )
+            if active_positions:
+                residue_position_source = "selected_position_remap"
+        if not active_positions and source_positions:
+            homomeric_candidates = _epk_homomeric_same_residue_position_candidates(
+                atoms,
+                source_positions,
+            )
+            homomeric_candidate_count = len(homomeric_candidates)
+            if homomeric_candidates:
+                active_positions, precomputed_local_context = (
+                    _epk_select_positions_by_ligand_context(
+                        atoms,
+                        pdb_id_upper,
+                        homomeric_candidates,
+                        gamma_capable_codes,
+                    )
+                )
+                residue_position_source = (
+                    "homomeric_same_residue_id_ligand_context"
+                )
+                homomeric_mapping_ambiguous = len(homomeric_candidates) > 1
+                remap_result = {
+                    "positions": active_positions,
+                    "basis": "homomeric_same_residue_id_ligand_context",
+                    "warnings": [
+                        "homomeric_chain_choice_review_only_not_production_mapping"
+                    ],
+                }
+
+        local_positions_by_pdb = dict(residue_positions_by_pdb)
+        if active_positions:
+            local_positions_by_pdb[pdb_id_upper] = active_positions
+        local_context = precomputed_local_context or _review_debt_local_ligand_context(
+            atoms,
+            pdb_id_upper,
+            local_positions_by_pdb,
+        )
+        local_ligand_codes = _sorted_strings(local_context.get("ligand_codes", []))
+        local_cofactor_families = _sorted_strings(
+            local_context.get("cofactor_families", [])
+        )
+        structure_ligand_codes = _sorted_strings(inventory.get("ligand_codes", []))
+        structure_cofactor_families = _sorted_strings(
+            inventory.get("cofactor_families", [])
+        )
+        catalytic_chains = _sorted_strings(
+            position.get("chain_name") for position in active_positions
+        )
+        acceptor_chains = _epk_substrate_acceptor_hint_chains(
+            atoms,
+            substrate_acceptor_hint,
+            catalytic_chains=set(catalytic_chains),
+        )
+        has_local_gamma = bool(set(local_ligand_codes) & gamma_capable_codes)
+        has_local_nucleotide = bool(set(local_ligand_codes) & nucleotide_codes)
+        has_local_metal = "metal_ion" in set(local_cofactor_families)
+        has_structure_gamma = bool(set(structure_ligand_codes) & gamma_capable_codes)
+        has_structure_metal = "metal_ion" in set(structure_cofactor_families)
+        structure_phosphoacceptor_codes = _sorted_strings(
+            set(structure_ligand_codes) & phosphoacceptor_like_codes
+        )
+        has_structure_phosphoacceptor = bool(structure_phosphoacceptor_codes)
+        has_mapped_acceptor = bool(acceptor_chains)
+        measurement_ready = bool(
+            has_local_gamma
+            and has_local_metal
+            and has_mapped_acceptor
+            and not homomeric_mapping_ambiguous
+            and int(local_context.get("resolved_residue_count", 0) or 0) >= 2
+        )
+        if measurement_ready:
+            decision = "measurement_ready_review_only"
+            blockers = [
+                "distance_measurement_not_yet_materialized",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        elif homomeric_mapping_ambiguous and has_local_gamma and has_local_metal:
+            decision = (
+                "homomeric_active_state_mapping_ambiguous_no_substrate_acceptor_review_only"
+            )
+            blockers = [
+                "homomeric_chain_mapping_not_production_admissible",
+                "protein_substrate_acceptor_not_mapped",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        elif has_local_gamma and has_local_metal and has_structure_phosphoacceptor:
+            decision = (
+                "active_state_atp_metal_with_structure_phosphoacceptor_not_substrate_mapped_review_only"
+            )
+            blockers = [
+                "structure_phosphoacceptor_context_not_mapped_to_substrate_chain",
+                "gamma_to_protein_substrate_acceptor_distance_not_measurable",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        elif has_local_gamma and has_local_metal:
+            decision = "active_state_atp_metal_without_protein_substrate_acceptor_review_only"
+            blockers = [
+                "protein_substrate_acceptor_not_mapped",
+                "gamma_to_protein_substrate_acceptor_distance_not_measurable",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        elif has_structure_gamma and has_structure_metal:
+            decision = "structure_active_state_ligand_mapping_unresolved_review_only"
+            blockers = [
+                "active_site_residue_mapping_not_conservative",
+                "protein_substrate_acceptor_not_mapped",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        elif has_structure_phosphoacceptor:
+            decision = "phosphoacceptor_context_without_active_atp_metal_review_only"
+            blockers = [
+                "local_atp_metal_context_missing",
+                "phosphoacceptor_context_not_mapped_to_substrate_chain",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        else:
+            decision = "no_active_state_repair_signal_review_only"
+            blockers = [
+                "local_atp_metal_context_missing",
+                "protein_substrate_acceptor_not_mapped",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        decision_counts[decision] += 1
+
+        rows.append(
+            {
+                **row_base,
+                "fetch_status": fetch_status,
+                "structure_ligand_codes": structure_ligand_codes,
+                "structure_cofactor_families": structure_cofactor_families,
+                "local_ligand_codes": local_ligand_codes,
+                "local_cofactor_families": local_cofactor_families,
+                "local_resolved_residue_count": local_context.get(
+                    "resolved_residue_count", 0
+                ),
+                "residue_position_source": residue_position_source,
+                "residue_position_remap_basis": remap_result.get("basis"),
+                "residue_position_remap_warnings": remap_result.get("warnings", []),
+                "homomeric_candidate_chain_count": homomeric_candidate_count,
+                "homomeric_mapping_ambiguous": homomeric_mapping_ambiguous,
+                "catalytic_residue_chains": catalytic_chains,
+                "has_local_nucleotide": has_local_nucleotide,
+                "has_local_gamma_capable_nucleotide": has_local_gamma,
+                "has_local_metal": has_local_metal,
+                "has_structure_gamma_capable_nucleotide": has_structure_gamma,
+                "has_structure_metal": has_structure_metal,
+                "has_structure_phosphoacceptor_like_context": (
+                    has_structure_phosphoacceptor
+                ),
+                "structure_phosphoacceptor_like_codes": (
+                    structure_phosphoacceptor_codes
+                ),
+                "has_mapped_protein_substrate_acceptor": has_mapped_acceptor,
+                "mapped_protein_substrate_acceptor_chains": acceptor_chains,
+                "measurement_ready": measurement_ready,
+                "repair_scan_decision": decision,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    active_state_rows = [
+        row
+        for row in rows
+        if row.get("has_local_gamma_capable_nucleotide") and row.get("has_local_metal")
+    ]
+    conservative_active_state_rows = [
+        row
+        for row in active_state_rows
+        if not row.get("homomeric_mapping_ambiguous")
+    ]
+    homomeric_active_state_rows = [
+        row for row in active_state_rows if row.get("homomeric_mapping_ambiguous")
+    ]
+    phosphoacceptor_rows = [
+        row for row in rows if row.get("has_structure_phosphoacceptor_like_context")
+    ]
+    mapped_acceptor_rows = [
+        row for row in rows if row.get("has_mapped_protein_substrate_acceptor")
+    ]
+    measurement_ready_rows = [row for row in rows if row.get("measurement_ready")]
+    repair_status = (
+        "measurement_ready_review_only"
+        if measurement_ready_rows
+        else "blocked_review_only_active_state_without_mapped_substrate_acceptor"
+        if active_state_rows
+        else "blocked_review_only_no_active_state_atp_metal_context"
+    )
+    return {
+        "metadata": {
+            "method": "epk_m_csa757_active_state_repair_scan",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_protein_substrate_positive_source_triage_method": (
+                triage_meta.get("method")
+            ),
+            "source_review_debt_remediation_method": remediation_meta.get("method"),
+            "entry_id": entry_id,
+            "selected_pdb_id": selected_pdb_id or None,
+            "candidate_pdb_count": len(all_candidate_pdb_ids),
+            "scanned_candidate_pdb_count": len(rows),
+            "scan_limit": max_pdbs,
+            "scanned_candidate_pdb_ids": [row.get("pdb_id") for row in rows],
+            "active_state_atp_metal_candidate_count": len(active_state_rows),
+            "active_state_atp_metal_candidate_pdb_ids": [
+                row.get("pdb_id") for row in active_state_rows
+            ],
+            "conservative_active_state_atp_metal_candidate_count": len(
+                conservative_active_state_rows
+            ),
+            "conservative_active_state_atp_metal_candidate_pdb_ids": [
+                row.get("pdb_id") for row in conservative_active_state_rows
+            ],
+            "homomeric_mapping_ambiguous_active_state_candidate_count": len(
+                homomeric_active_state_rows
+            ),
+            "homomeric_mapping_ambiguous_active_state_candidate_pdb_ids": [
+                row.get("pdb_id") for row in homomeric_active_state_rows
+            ],
+            "structure_phosphoacceptor_context_candidate_count": len(
+                phosphoacceptor_rows
+            ),
+            "structure_phosphoacceptor_context_candidate_pdb_ids": [
+                row.get("pdb_id") for row in phosphoacceptor_rows
+            ],
+            "mapped_protein_substrate_acceptor_candidate_count": len(
+                mapped_acceptor_rows
+            ),
+            "mapped_protein_substrate_acceptor_candidate_pdb_ids": [
+                row.get("pdb_id") for row in mapped_acceptor_rows
+            ],
+            "measurement_ready_candidate_count": len(measurement_ready_rows),
+            "measurement_ready_candidate_pdb_ids": [
+                row.get("pdb_id") for row in measurement_ready_rows
+            ],
+            "repair_status": repair_status,
+            "ready_to_measure_gamma_acceptor_distance": bool(measurement_ready_rows),
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "repair_scan_decision_counts": dict(sorted(decision_counts.items())),
+            "review_only_rule": (
+                "This artifact scans a bounded m_csa:757 alternate-structure "
+                "surface for active-state ATP/Mg evidence after m_csa:760 "
+                "failed closed. Homomeric chain choices, structure-level "
+                "phosphoacceptor-like residues, and mechanism text remain "
+                "review-only and cannot support ePK scoring, registry edits, "
+                "label import, or held-out claims."
+            ),
+            "next_actions": [
+                "do not count m_csa:757 until a mapped protein-substrate acceptor and gamma distance exist",
+                "if no m_csa:757 combined structure is sourced, pivot protein-substrate coverage repair to m_csa:756",
+                "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                0 if row.get("is_selected_structure") else 1,
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "m_csa:757 active-state repair evidence is review-only and "
+                "cannot be used as production ePK scoring evidence."
+            )
+        ],
+    }
+
+
+def build_epk_m_csa756_active_state_repair_scan(
+    *,
+    epk_protein_substrate_positive_source_triage: dict[str, Any],
+    review_debt_remediation: dict[str, Any],
+    entry_id: str = "m_csa:756",
+    max_pdbs: int | None = 15,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Scan m_csa:756 alternates with the same fail-closed active-state policy."""
+
+    scan = build_epk_m_csa757_active_state_repair_scan(
+        epk_protein_substrate_positive_source_triage=(
+            epk_protein_substrate_positive_source_triage
+        ),
+        review_debt_remediation=review_debt_remediation,
+        entry_id=entry_id,
+        max_pdbs=max_pdbs,
+        cif_text_by_pdb=cif_text_by_pdb,
+        cif_fetcher=cif_fetcher,
+    )
+    metadata = scan["metadata"]
+    metadata["method"] = "epk_m_csa756_active_state_repair_scan"
+    metadata["review_only_rule"] = (
+        "This artifact scans the bounded m_csa:756 alternate-structure surface "
+        "after m_csa:757 remained blocked. It can identify active-state ATP/Mg "
+        "or product-state leads, but homomeric chain choices, structure-level "
+        "phosphoacceptor-like residues, and mechanism text remain review-only "
+        "and cannot support ePK scoring, registry edits, label import, or "
+        "held-out claims."
+    )
+    metadata["next_actions"] = [
+        "do not count m_csa:756 until a mapped protein-substrate acceptor and gamma distance exist",
+        "if no m_csa:756 combined structure is sourced, pause protein-substrate source repair and pre-register an analog/product-state policy before more scorer work",
+        "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+    ]
+    scan["warnings"] = [
+        (
+            "m_csa:756 active-state repair evidence is review-only and cannot "
+            "be used as production ePK scoring evidence."
+        )
+    ]
+    return scan
+
+
+def build_epk_protein_substrate_source_repair_terminal_decision(
+    *,
+    epk_protein_substrate_positive_source_triage: dict[str, Any],
+    epk_m_csa760_atp_state_repair_scan: dict[str, Any],
+    epk_m_csa757_active_state_repair_scan: dict[str, Any],
+    epk_m_csa756_active_state_repair_scan: dict[str, Any],
+    epk_ligand_analog_policy_blocker_decision: dict[str, Any],
+) -> dict[str, Any]:
+    """Consolidate exhausted ePK protein-substrate source repairs."""
+
+    triage_meta = epk_protein_substrate_positive_source_triage.get("metadata", {})
+    if not isinstance(triage_meta, dict):
+        triage_meta = {}
+    analog_meta = epk_ligand_analog_policy_blocker_decision.get("metadata", {})
+    if not isinstance(analog_meta, dict):
+        analog_meta = {}
+    target_fingerprint_id = str(
+        triage_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    source_scans = [
+        epk_m_csa760_atp_state_repair_scan,
+        epk_m_csa757_active_state_repair_scan,
+        epk_m_csa756_active_state_repair_scan,
+    ]
+    rows: list[dict[str, Any]] = []
+    measurement_ready_total = 0
+    active_state_lead_total = 0
+    mapped_acceptor_total = 0
+    for scan in source_scans:
+        meta = scan.get("metadata", {}) if isinstance(scan, dict) else {}
+        if not isinstance(meta, dict) or not meta.get("method"):
+            continue
+        measurement_ready_count = int(
+            meta.get("measurement_ready_candidate_count") or 0
+        )
+        active_state_count = int(
+            meta.get("active_state_atp_metal_candidate_count")
+            or meta.get("atp_metal_state_candidate_count")
+            or 0
+        )
+        mapped_acceptor_count = int(
+            meta.get("mapped_protein_substrate_acceptor_candidate_count")
+            or meta.get("protein_substrate_acceptor_context_candidate_count")
+            or 0
+        )
+        measurement_ready_total += measurement_ready_count
+        active_state_lead_total += active_state_count
+        mapped_acceptor_total += mapped_acceptor_count
+        entry_id = str(meta.get("entry_id") or "")
+        if measurement_ready_count:
+            decision = "measurement_ready_follow_up_required_review_only"
+        elif entry_id == "m_csa:760" and meta.get("split_state_blocker_detected"):
+            decision = "terminal_split_state_blocked_review_only"
+        elif active_state_count and not mapped_acceptor_count:
+            decision = "terminal_active_state_without_mapped_acceptor_review_only"
+        elif active_state_count:
+            decision = "terminal_active_state_not_measurement_ready_review_only"
+        else:
+            decision = "terminal_no_conservative_active_state_context_review_only"
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "source_method": meta.get("method"),
+                "repair_status": meta.get("repair_status"),
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "active_state_or_atp_metal_candidate_count": active_state_count,
+                "mapped_or_context_acceptor_candidate_count": mapped_acceptor_count,
+                "measurement_ready_candidate_count": measurement_ready_count,
+                "decision": decision,
+                "remaining_blockers": [
+                    "protein_substrate_acceptor_geometry_not_measurement_ready",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    current_source_candidates_exhausted = bool(rows) and measurement_ready_total == 0
+    terminal_decision = (
+        "current_source_candidates_exhausted_review_only"
+        if current_source_candidates_exhausted
+        else "measurement_ready_source_repair_requires_distance_review"
+    )
+    return {
+        "metadata": {
+            "method": "epk_protein_substrate_source_repair_terminal_decision",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_protein_substrate_positive_source_triage_method": (
+                triage_meta.get("method")
+            ),
+            "source_epk_ligand_analog_policy_blocker_decision_method": (
+                analog_meta.get("method")
+            ),
+            "source_candidate_entry_ids": [row["entry_id"] for row in rows],
+            "source_candidate_count": len(rows),
+            "active_state_or_atp_metal_candidate_count": active_state_lead_total,
+            "mapped_or_context_acceptor_candidate_count": mapped_acceptor_total,
+            "measurement_ready_candidate_count": measurement_ready_total,
+            "current_source_candidates_exhausted": current_source_candidates_exhausted,
+            "terminal_decision": terminal_decision,
+            "recommended_next_experiment": (
+                "pre_register_ligand_analog_or_product_state_policy_or_source_new_epk_positive"
+                if current_source_candidates_exhausted
+                else "measure_ready_source_repair_distances"
+            ),
+            "ligand_analog_policy_decision": analog_meta.get(
+                "ligand_analog_policy_decision"
+            ),
+            "ligand_analog_production_admissible_count": analog_meta.get(
+                "ligand_analog_production_admissible_count"
+            ),
+            "ready_to_measure_gamma_acceptor_distance": measurement_ready_total > 0,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact closes the current bounded ePK protein-substrate "
+                "source-repair loop as a negative result only. It does not make "
+                "clean held-out claims, select a threshold, score external hard "
+                "negatives, edit registries, or import labels."
+            ),
+            "next_actions": [
+                "do not repeat m_csa:760, m_csa:757, or m_csa:756 scans without new evidence",
+                "pre-register any ligand-analog or product-state admissibility policy before using it in scorer calibration",
+                "source a new ePK protein-substrate positive only if it adds clear scientific value",
+            ],
+        },
+        "rows": sorted(rows, key=lambda row: _entry_id_sort_key(row["entry_id"])),
+        "warnings": [
+            (
+                "The current source-repair loop is negative review evidence, not "
+                "production ePK scoring evidence."
+            )
+        ],
+    }
+
+
+def build_epk_analog_product_state_policy_preregistration(
+    *,
+    epk_protein_substrate_source_repair_terminal_decision: dict[str, Any],
+    epk_ligand_analog_policy_blocker_decision: dict[str, Any],
+) -> dict[str, Any]:
+    """Draft a fail-closed preregistration for future ePK analog evidence."""
+
+    terminal_meta = epk_protein_substrate_source_repair_terminal_decision.get(
+        "metadata", {}
+    )
+    if not isinstance(terminal_meta, dict):
+        terminal_meta = {}
+    analog_meta = epk_ligand_analog_policy_blocker_decision.get("metadata", {})
+    if not isinstance(analog_meta, dict):
+        analog_meta = {}
+    target_fingerprint_id = str(
+        terminal_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    rows = [
+        {
+            "criterion_id": "freeze_policy_before_candidate_selection",
+            "criterion_type": "activation_requirement",
+            "review_only": True,
+            "passed": False,
+            "production_use_allowed": False,
+            "requirement": (
+                "Any analog/product-state rule must be frozen before selecting "
+                "or rescuing ePK source candidates."
+            ),
+        },
+        {
+            "criterion_id": "exclude_mechanism_text_as_predictive_support",
+            "criterion_type": "predictive_input_exclusion",
+            "review_only": True,
+            "passed": True,
+            "production_use_allowed": False,
+            "requirement": (
+                "Mechanism prose, entry names, EC/Rhea identifiers, and expert "
+                "rationale remain review context only."
+            ),
+        },
+        {
+            "criterion_id": "reject_homomeric_chain_choice_as_substrate_mapping",
+            "criterion_type": "predictive_input_exclusion",
+            "review_only": True,
+            "passed": True,
+            "production_use_allowed": False,
+            "requirement": (
+                "A homomeric catalytic-chain alternative cannot stand in for a "
+                "mapped protein-substrate acceptor chain."
+            ),
+        },
+        {
+            "criterion_id": "reject_product_state_without_gamma_geometry",
+            "criterion_type": "predictive_input_exclusion",
+            "review_only": True,
+            "passed": True,
+            "production_use_allowed": False,
+            "requirement": (
+                "ADP/product-state context without active-state gamma geometry "
+                "cannot be used to measure or calibrate an ePK acceptor axis."
+            ),
+        },
+        {
+            "criterion_id": "require_external_hard_negative_scored_reaudit",
+            "criterion_type": "activation_requirement",
+            "review_only": True,
+            "passed": False,
+            "production_use_allowed": False,
+            "requirement": (
+                "The three imported external hard negatives must be rerun under "
+                "a real calibrated ePK scorer before any policy activation."
+            ),
+        },
+        {
+            "criterion_id": "require_sibling_family_control_reaudit",
+            "criterion_type": "activation_requirement",
+            "review_only": True,
+            "passed": False,
+            "production_use_allowed": False,
+            "requirement": (
+                "NDK, PfkB, PfkA, and ATP-grasp controls must remain blocked "
+                "under the exact frozen analog/product-state policy."
+            ),
+        },
+    ]
+    return {
+        "metadata": {
+            "method": "epk_analog_product_state_policy_preregistration",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_protein_substrate_source_repair_terminal_decision_method": (
+                terminal_meta.get("method")
+            ),
+            "source_epk_ligand_analog_policy_blocker_decision_method": (
+                analog_meta.get("method")
+            ),
+            "policy_status": "draft_preregistered_review_only_not_activated",
+            "policy_activation_allowed": False,
+            "production_scoring_admissible": False,
+            "current_source_candidates_exhausted": bool(
+                terminal_meta.get("current_source_candidates_exhausted")
+            ),
+            "source_repair_measurement_ready_candidate_count": (
+                terminal_meta.get("measurement_ready_candidate_count")
+            ),
+            "ligand_analog_policy_decision": analog_meta.get(
+                "ligand_analog_policy_decision"
+            ),
+            "ligand_analog_production_admissible_count": analog_meta.get(
+                "ligand_analog_production_admissible_count"
+            ),
+            "criterion_count": len(rows),
+            "activation_requirement_count": sum(
+                1 for row in rows if row["criterion_type"] == "activation_requirement"
+            ),
+            "failed_activation_requirement_count": sum(
+                1
+                for row in rows
+                if row["criterion_type"] == "activation_requirement"
+                and not row["passed"]
+            ),
+            "predictive_input_exclusion_count": sum(
+                1
+                for row in rows
+                if row["criterion_type"] == "predictive_input_exclusion"
+            ),
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This is only a preregistration draft for future policy review. "
+                "It cannot activate analog/product-state evidence, score ePK, "
+                "edit registries, import labels, or claim clean held-out "
+                "performance."
+            ),
+            "next_actions": [
+                "keep this policy inactive until activation requirements are implemented and tested",
+                "run sibling-family and imported external hard-negative re-audits before any policy use",
+                "prefer new mapped protein-substrate source evidence over analog rescue when available",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "The analog/product-state policy is not active and authorizes no "
+                "production ePK scoring evidence."
+            )
+        ],
+    }
+
+
 def _epk_substrate_acceptor_hint_from_text(snippets: Any) -> dict[str, Any] | None:
     try:
         text = " ".join(str(snippet) for snippet in snippets)
@@ -18351,6 +19195,8 @@ def build_epk_precount_gate_status(
     epk_protein_substrate_acceptor_candidate_audit: dict[str, Any] | None = None,
     epk_ligand_analog_policy_blocker_decision: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
+    epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
+    epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -18678,6 +19524,20 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(m_csa760_repair_meta, dict):
         m_csa760_repair_meta = {}
+    m_csa757_repair_meta = (
+        epk_m_csa757_active_state_repair_scan.get("metadata", {})
+        if isinstance(epk_m_csa757_active_state_repair_scan, dict)
+        else {}
+    )
+    if not isinstance(m_csa757_repair_meta, dict):
+        m_csa757_repair_meta = {}
+    m_csa756_repair_meta = (
+        epk_m_csa756_active_state_repair_scan.get("metadata", {})
+        if isinstance(epk_m_csa756_active_state_repair_scan, dict)
+        else {}
+    )
+    if not isinstance(m_csa756_repair_meta, dict):
+        m_csa756_repair_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -19224,6 +20084,114 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if m_csa757_repair_meta:
+        gate_checks.append(
+            {
+                "gate_id": "m_csa757_active_state_repair_scan",
+                "passed": bool(
+                    m_csa757_repair_meta.get(
+                        "ready_to_measure_gamma_acceptor_distance"
+                    )
+                )
+                and int(
+                    m_csa757_repair_meta.get("measurement_ready_candidate_count")
+                    or 0
+                )
+                > 0,
+                "evidence": {
+                    "source_method": m_csa757_repair_meta.get("method"),
+                    "entry_id": m_csa757_repair_meta.get("entry_id"),
+                    "repair_status": m_csa757_repair_meta.get("repair_status"),
+                    "active_state_atp_metal_candidate_count": (
+                        m_csa757_repair_meta.get(
+                            "active_state_atp_metal_candidate_count"
+                        )
+                    ),
+                    "active_state_atp_metal_candidate_pdb_ids": (
+                        m_csa757_repair_meta.get(
+                            "active_state_atp_metal_candidate_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "conservative_active_state_atp_metal_candidate_count": (
+                        m_csa757_repair_meta.get(
+                            "conservative_active_state_atp_metal_candidate_count"
+                        )
+                    ),
+                    "homomeric_mapping_ambiguous_active_state_candidate_count": (
+                        m_csa757_repair_meta.get(
+                            "homomeric_mapping_ambiguous_active_state_candidate_count"
+                        )
+                    ),
+                    "structure_phosphoacceptor_context_candidate_count": (
+                        m_csa757_repair_meta.get(
+                            "structure_phosphoacceptor_context_candidate_count"
+                        )
+                    ),
+                    "mapped_protein_substrate_acceptor_candidate_count": (
+                        m_csa757_repair_meta.get(
+                            "mapped_protein_substrate_acceptor_candidate_count"
+                        )
+                    ),
+                    "measurement_ready_candidate_count": (
+                        m_csa757_repair_meta.get(
+                            "measurement_ready_candidate_count"
+                        )
+                    ),
+                },
+            }
+        )
+    if m_csa756_repair_meta:
+        gate_checks.append(
+            {
+                "gate_id": "m_csa756_active_state_repair_scan",
+                "passed": bool(
+                    m_csa756_repair_meta.get(
+                        "ready_to_measure_gamma_acceptor_distance"
+                    )
+                )
+                and int(
+                    m_csa756_repair_meta.get("measurement_ready_candidate_count")
+                    or 0
+                )
+                > 0,
+                "evidence": {
+                    "source_method": m_csa756_repair_meta.get("method"),
+                    "entry_id": m_csa756_repair_meta.get("entry_id"),
+                    "repair_status": m_csa756_repair_meta.get("repair_status"),
+                    "active_state_atp_metal_candidate_count": (
+                        m_csa756_repair_meta.get(
+                            "active_state_atp_metal_candidate_count"
+                        )
+                    ),
+                    "conservative_active_state_atp_metal_candidate_count": (
+                        m_csa756_repair_meta.get(
+                            "conservative_active_state_atp_metal_candidate_count"
+                        )
+                    ),
+                    "homomeric_mapping_ambiguous_active_state_candidate_count": (
+                        m_csa756_repair_meta.get(
+                            "homomeric_mapping_ambiguous_active_state_candidate_count"
+                        )
+                    ),
+                    "structure_phosphoacceptor_context_candidate_count": (
+                        m_csa756_repair_meta.get(
+                            "structure_phosphoacceptor_context_candidate_count"
+                        )
+                    ),
+                    "mapped_protein_substrate_acceptor_candidate_count": (
+                        m_csa756_repair_meta.get(
+                            "mapped_protein_substrate_acceptor_candidate_count"
+                        )
+                    ),
+                    "measurement_ready_candidate_count": (
+                        m_csa756_repair_meta.get(
+                            "measurement_ready_candidate_count"
+                        )
+                    ),
+                },
+            }
+        )
     if negative_control_meta:
         gate_checks.append(
             {
@@ -19541,7 +20509,31 @@ def build_epk_precount_gate_status(
                 0,
                 "measure m_csa:760 gamma-to-protein-substrate acceptor distances before any ePK scoring claim",
             )
-    elif text_free_acceptor_meta.get("method"):
+    if m_csa757_repair_meta.get("method"):
+        if int(m_csa757_repair_meta.get("measurement_ready_candidate_count") or 0):
+            next_actions.insert(
+                0,
+                "measure m_csa:757 gamma-to-protein-substrate acceptor distances before any ePK scoring claim",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
+            )
+    if m_csa756_repair_meta.get("method"):
+        if int(m_csa756_repair_meta.get("measurement_ready_candidate_count") or 0):
+            next_actions.insert(
+                0,
+                "measure m_csa:756 gamma-to-protein-substrate acceptor distances before any ePK scoring claim",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
+            )
+    elif not m_csa760_repair_meta.get("method") and text_free_acceptor_meta.get(
+        "method"
+    ):
         next_actions.insert(
             0,
             "add a text-free acceptor disambiguation signal beyond nearest oxygen distance",
@@ -20216,6 +21208,70 @@ def build_epk_precount_gate_status(
             ),
             "m_csa760_split_state_blocker_detected": bool(
                 m_csa760_repair_meta.get("split_state_blocker_detected")
+            ),
+            "source_epk_m_csa757_active_state_repair_scan_method": (
+                m_csa757_repair_meta.get("method")
+            ),
+            "m_csa757_repair_status": (
+                m_csa757_repair_meta.get("repair_status")
+            ),
+            "m_csa757_active_state_atp_metal_candidate_count": (
+                m_csa757_repair_meta.get("active_state_atp_metal_candidate_count")
+            ),
+            "m_csa757_conservative_active_state_atp_metal_candidate_count": (
+                m_csa757_repair_meta.get(
+                    "conservative_active_state_atp_metal_candidate_count"
+                )
+            ),
+            "m_csa757_homomeric_mapping_ambiguous_active_state_candidate_count": (
+                m_csa757_repair_meta.get(
+                    "homomeric_mapping_ambiguous_active_state_candidate_count"
+                )
+            ),
+            "m_csa757_structure_phosphoacceptor_context_candidate_count": (
+                m_csa757_repair_meta.get(
+                    "structure_phosphoacceptor_context_candidate_count"
+                )
+            ),
+            "m_csa757_mapped_protein_substrate_acceptor_candidate_count": (
+                m_csa757_repair_meta.get(
+                    "mapped_protein_substrate_acceptor_candidate_count"
+                )
+            ),
+            "m_csa757_measurement_ready_candidate_count": (
+                m_csa757_repair_meta.get("measurement_ready_candidate_count")
+            ),
+            "source_epk_m_csa756_active_state_repair_scan_method": (
+                m_csa756_repair_meta.get("method")
+            ),
+            "m_csa756_repair_status": (
+                m_csa756_repair_meta.get("repair_status")
+            ),
+            "m_csa756_active_state_atp_metal_candidate_count": (
+                m_csa756_repair_meta.get("active_state_atp_metal_candidate_count")
+            ),
+            "m_csa756_conservative_active_state_atp_metal_candidate_count": (
+                m_csa756_repair_meta.get(
+                    "conservative_active_state_atp_metal_candidate_count"
+                )
+            ),
+            "m_csa756_homomeric_mapping_ambiguous_active_state_candidate_count": (
+                m_csa756_repair_meta.get(
+                    "homomeric_mapping_ambiguous_active_state_candidate_count"
+                )
+            ),
+            "m_csa756_structure_phosphoacceptor_context_candidate_count": (
+                m_csa756_repair_meta.get(
+                    "structure_phosphoacceptor_context_candidate_count"
+                )
+            ),
+            "m_csa756_mapped_protein_substrate_acceptor_candidate_count": (
+                m_csa756_repair_meta.get(
+                    "mapped_protein_substrate_acceptor_candidate_count"
+                )
+            ),
+            "m_csa756_measurement_ready_candidate_count": (
+                m_csa756_repair_meta.get("measurement_ready_candidate_count")
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,
