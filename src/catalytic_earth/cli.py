@@ -110,6 +110,8 @@ from .labels import (
     build_epk_heteromeric_ligand_asymmetry_role_audit,
     build_epk_heteromeric_acceptor_identity_gap_audit,
     build_epk_heteromeric_acceptor_identity_rule_probe,
+    build_epk_heteromeric_peptide_acceptor_identity_probe,
+    build_epk_heteromeric_peptide_external_hard_negative_probe,
     build_epk_ligand_specific_5hvk_control_rerun_queue,
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
@@ -7327,6 +7329,78 @@ def cmd_build_epk_heteromeric_acceptor_identity_rule_probe(
     return 0
 
 
+def cmd_build_epk_heteromeric_peptide_acceptor_identity_probe(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_acceptor_identity_gap_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_acceptor_identity_gap_audit = json.load(handle)
+    with Path(args.epk_heteromeric_candidate_source_validation_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_candidate_source_validation_review = json.load(handle)
+    with Path(args.epk_heteromeric_broader_counteraxis_control_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_broader_counteraxis_control_audit = json.load(handle)
+    sibling_control_artifacts = []
+    for path in args.epk_sibling_control_artifact or []:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            sibling_control_artifacts.append(json.load(handle))
+    probe = build_epk_heteromeric_peptide_acceptor_identity_probe(
+        epk_heteromeric_acceptor_identity_gap_audit=(
+            epk_heteromeric_acceptor_identity_gap_audit
+        ),
+        epk_heteromeric_candidate_source_validation_review=(
+            epk_heteromeric_candidate_source_validation_review
+        ),
+        epk_heteromeric_broader_counteraxis_control_audit=(
+            epk_heteromeric_broader_counteraxis_control_audit
+        ),
+        epk_sibling_control_artifacts=sibling_control_artifacts,
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        max_peptide_chain_residue_count=args.max_peptide_chain_residue_count,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), probe)
+    print(
+        "Wrote ePK heteromeric peptide acceptor-identity probe to "
+        f"{args.out} (status={probe['metadata']['peptide_identity_axis_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_heteromeric_peptide_external_hard_negative_probe(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_peptide_acceptor_identity_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_peptide_acceptor_identity_probe = json.load(handle)
+    external_hard_negative_inverse_gate_scores = []
+    for path in args.external_hard_negative_inverse_gate_scores or []:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            external_hard_negative_inverse_gate_scores.append(json.load(handle))
+    probe = build_epk_heteromeric_peptide_external_hard_negative_probe(
+        epk_heteromeric_peptide_acceptor_identity_probe=(
+            epk_heteromeric_peptide_acceptor_identity_probe
+        ),
+        external_hard_negative_inverse_gate_scores=(
+            external_hard_negative_inverse_gate_scores
+        ),
+        imported_external_entry_ids=_split_csv(args.imported_external_entry_ids),
+        max_peptide_chain_residue_count=args.max_peptide_chain_residue_count,
+    )
+    write_json(Path(args.out), probe)
+    print(
+        "Wrote ePK heteromeric peptide external hard-negative probe to "
+        f"{args.out} (non_abstentions="
+        f"{probe['metadata']['review_only_external_hard_negative_feature_non_abstention_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
     args: argparse.Namespace,
 ) -> int:
@@ -7923,6 +7997,18 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_heteromeric_acceptor_identity_rule_probe = json.load(handle)
+    epk_heteromeric_peptide_acceptor_identity_probe = None
+    if args.epk_heteromeric_peptide_acceptor_identity_probe:
+        with Path(args.epk_heteromeric_peptide_acceptor_identity_probe).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_peptide_acceptor_identity_probe = json.load(handle)
+    epk_heteromeric_peptide_external_hard_negative_probe = None
+    if args.epk_heteromeric_peptide_external_hard_negative_probe:
+        with Path(
+            args.epk_heteromeric_peptide_external_hard_negative_probe
+        ).open("r", encoding="utf-8") as handle:
+            epk_heteromeric_peptide_external_hard_negative_probe = json.load(handle)
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -8081,6 +8167,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_heteromeric_acceptor_identity_rule_probe=(
             epk_heteromeric_acceptor_identity_rule_probe
+        ),
+        epk_heteromeric_peptide_acceptor_identity_probe=(
+            epk_heteromeric_peptide_acceptor_identity_probe
+        ),
+        epk_heteromeric_peptide_external_hard_negative_probe=(
+            epk_heteromeric_peptide_external_hard_negative_probe
         ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
@@ -16462,6 +16554,103 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_heteromeric_acceptor_identity_rule_probe
     )
 
+    epk_heteromeric_peptide_identity_probe = subparsers.add_parser(
+        "build-epk-heteromeric-peptide-acceptor-identity-probe",
+        help="probe peptide-like acceptor-chain identity on heteromeric ePK leads",
+    )
+    epk_heteromeric_peptide_identity_probe.add_argument(
+        "--epk-heteromeric-acceptor-identity-gap-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_acceptor_identity_gap_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_peptide_identity_probe.add_argument(
+        "--epk-heteromeric-candidate-source-validation-review",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_candidate_source_validation_review_1025.json"
+        ),
+    )
+    epk_heteromeric_peptide_identity_probe.add_argument(
+        "--epk-heteromeric-broader-counteraxis-control-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_broader_counteraxis_control_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_peptide_identity_probe.add_argument(
+        "--epk-sibling-control-artifact",
+        action="append",
+        default=None,
+        help="repeatable measured sibling-control artifact path",
+    )
+    epk_heteromeric_peptide_identity_probe.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_heteromeric_peptide_identity_probe.add_argument(
+        "--max-peptide-chain-residue-count",
+        type=int,
+        default=40,
+    )
+    epk_heteromeric_peptide_identity_probe.add_argument(
+        "--cif-dir",
+        default=None,
+        help="optional directory of cached CIF/mmCIF files keyed by PDB id",
+    )
+    epk_heteromeric_peptide_identity_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json"
+        ),
+    )
+    epk_heteromeric_peptide_identity_probe.set_defaults(
+        func=cmd_build_epk_heteromeric_peptide_acceptor_identity_probe
+    )
+
+    epk_heteromeric_peptide_external_probe = subparsers.add_parser(
+        "build-epk-heteromeric-peptide-external-hard-negative-probe",
+        help=(
+            "screen imported external hard negatives against the peptide-like "
+            "heteromeric acceptor identity axis"
+        ),
+    )
+    epk_heteromeric_peptide_external_probe.add_argument(
+        "--epk-heteromeric-peptide-acceptor-identity-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json"
+        ),
+    )
+    epk_heteromeric_peptide_external_probe.add_argument(
+        "--external-hard-negative-inverse-gate-scores",
+        action="append",
+        default=None,
+        help="repeatable external hard-negative inverse-gate score artifact",
+    )
+    epk_heteromeric_peptide_external_probe.add_argument(
+        "--imported-external-entry-ids",
+        default="uniprot:P06744,uniprot:P78549,uniprot:Q3LXA3",
+    )
+    epk_heteromeric_peptide_external_probe.add_argument(
+        "--max-peptide-chain-residue-count",
+        type=int,
+        default=None,
+    )
+    epk_heteromeric_peptide_external_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_external_hard_negative_probe_1025.json"
+        ),
+    )
+    epk_heteromeric_peptide_external_probe.set_defaults(
+        func=cmd_build_epk_heteromeric_peptide_external_hard_negative_probe
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -16930,6 +17119,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-heteromeric-acceptor-identity-rule-probe",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-peptide-acceptor-identity-probe",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-peptide-external-hard-negative-probe",
         default=None,
     )
     epk_precount_gate_status.add_argument(

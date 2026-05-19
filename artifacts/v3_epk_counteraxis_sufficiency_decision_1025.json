@@ -61,6 +61,21 @@
       "feature_passes_current_review_controls": true,
       "negative_control_false_hit_count": 0,
       "review_only": true
+    },
+    {
+      "blocker": "peptide_acceptor_identity_axis_narrow_not_general_epk_acceptor_identity",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "passes_current_controls_and_external_feature_probe_but_narrow_not_production_admissible",
+      "decision_axis": "heteromeric_peptide_acceptor_identity_feature",
+      "external_hard_negative_feature_non_abstention_count": 0,
+      "external_hard_negative_feature_probe_passed": true,
+      "feature_admissible_for_production_scoring": false,
+      "feature_passes_current_review_controls": true,
+      "nonaccepted_control_false_hit_count": 0,
+      "positive_hit_count": 3,
+      "review_only": true,
+      "sibling_control_false_hit_count": 0,
+      "source_free_ready_count": 3
     }
   ],
   "metadata": {
@@ -89,11 +104,19 @@
       "pfkb"
     ],
     "fingerprint_registry_edited": false,
+    "heteromeric_peptide_acceptor_identity_axis_narrow": true,
+    "heteromeric_peptide_acceptor_identity_nonaccepted_false_hit_count": 0,
+    "heteromeric_peptide_acceptor_identity_passes_current_review_controls": true,
+    "heteromeric_peptide_acceptor_identity_positive_hit_count": 3,
+    "heteromeric_peptide_acceptor_identity_sibling_false_hit_count": 0,
+    "heteromeric_peptide_acceptor_identity_source_free_ready_count": 3,
+    "heteromeric_peptide_external_feature_non_abstention_count": 0,
+    "heteromeric_peptide_external_feature_probe_passed": true,
     "method": "epk_counteraxis_sufficiency_decision",
     "negative_control_distance_distribution_ready": false,
     "next_actions": [
       "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
-      "materialize complete gamma geometry for m_csa:640 before any positive score",
+      "stress-test peptide-like acceptor identity on broader heteromeric kinase-substrate co-complexes",
       "run external hard-negative re-audit only after a calibrated ePK score exists"
     ],
     "phosphohistidine_counteraxis_row_count": 4,
@@ -102,13 +125,19 @@
       "acceptor_threshold_calibrated",
       "external_hard_negative_scored_reaudit",
       "gamma_negative_control_distance_distribution",
+      "m_csa756_active_state_repair_scan",
+      "m_csa757_active_state_repair_scan",
+      "m_csa760_atp_state_repair_scan",
+      "protein_substrate_acceptor_candidate_audit",
       "registry_and_label_factory_extension",
+      "source_free_chain_topology_role_audit",
       "text_free_acceptor_feature_gap_audit"
     ],
     "primary_blockers": [
       "family_specific_sibling_controls_overlap_candidate_geometry",
       "ndk_phosphohistidine_axis_overlaps_gamma_distance_logic",
       "external_epk_specific_axes_not_materialized",
+      "peptide_acceptor_identity_axis_narrow_not_general_epk_acceptor_identity",
       "label_factory_gate_not_extended_for_epk"
     ],
     "prototype_gate_status": "fail_closed_review_only",

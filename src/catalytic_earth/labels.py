@@ -15632,6 +15632,52 @@ def build_epk_counteraxis_sufficiency_decision(
     chain_ligand_external_non_abstention_count = int(
         precount_meta.get("chain_ligand_external_feature_non_abstention_count") or 0
     )
+    peptide_identity_status = str(
+        precount_meta.get("heteromeric_peptide_acceptor_identity_status") or ""
+    )
+    peptide_identity_positive_hit_count = int(
+        precount_meta.get("heteromeric_peptide_acceptor_identity_positive_hit_count")
+        or 0
+    )
+    peptide_identity_source_free_ready_count = int(
+        precount_meta.get(
+            "heteromeric_peptide_acceptor_identity_source_free_ready_count"
+        )
+        or 0
+    )
+    peptide_identity_nonaccepted_false_hit_count = int(
+        precount_meta.get(
+            "heteromeric_peptide_acceptor_identity_nonaccepted_false_hit_count"
+        )
+        or 0
+    )
+    peptide_identity_sibling_false_hit_count = int(
+        precount_meta.get(
+            "heteromeric_peptide_acceptor_identity_sibling_false_hit_count"
+        )
+        or 0
+    )
+    peptide_identity_axis_narrow = bool(
+        precount_meta.get("heteromeric_peptide_acceptor_identity_axis_narrow")
+    )
+    peptide_external_feature_passed = bool(
+        precount_meta.get("heteromeric_peptide_external_feature_probe_passed")
+    )
+    peptide_external_feature_non_abstention_count = int(
+        precount_meta.get(
+            "heteromeric_peptide_external_feature_non_abstention_count"
+        )
+        or 0
+    )
+    peptide_identity_passes_current_controls = (
+        peptide_identity_status
+        == "passes_current_controls_peptide_like_acceptor_identity_review_only"
+        and peptide_identity_positive_hit_count > 0
+        and peptide_identity_source_free_ready_count
+        == peptide_identity_positive_hit_count
+        and peptide_identity_nonaccepted_false_hit_count == 0
+        and peptide_identity_sibling_false_hit_count == 0
+    )
     template_validated_family_ids = _sorted_strings(
         precount_meta.get("negative_control_family_template_validated_family_ids", [])
     )
@@ -15710,6 +15756,39 @@ def build_epk_counteraxis_sufficiency_decision(
             ),
             "blocker": "chain_ligand_context_generalization_not_calibrated",
         },
+        {
+            "decision_axis": "heteromeric_peptide_acceptor_identity_feature",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "feature_passes_current_review_controls": (
+                peptide_identity_passes_current_controls
+            ),
+            "positive_hit_count": peptide_identity_positive_hit_count,
+            "source_free_ready_count": peptide_identity_source_free_ready_count,
+            "nonaccepted_control_false_hit_count": (
+                peptide_identity_nonaccepted_false_hit_count
+            ),
+            "sibling_control_false_hit_count": (
+                peptide_identity_sibling_false_hit_count
+            ),
+            "external_hard_negative_feature_probe_passed": (
+                peptide_external_feature_passed
+            ),
+            "external_hard_negative_feature_non_abstention_count": (
+                peptide_external_feature_non_abstention_count
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "passes_current_controls_and_external_feature_probe_but_narrow_not_production_admissible"
+                if peptide_identity_passes_current_controls
+                and peptide_external_feature_passed
+                and peptide_external_feature_non_abstention_count == 0
+                else "missing_or_failing_peptide_acceptor_identity_probe"
+            ),
+            "blocker": (
+                "peptide_acceptor_identity_axis_narrow_not_general_epk_acceptor_identity"
+            ),
+        },
     ]
     threshold_selection_decision = "do_not_select_threshold"
     counteraxis_sufficient_to_block_threshold = bool(family_threshold_hit_rows) and bool(
@@ -15750,6 +15829,30 @@ def build_epk_counteraxis_sufficiency_decision(
             "chain_ligand_external_feature_non_abstention_count": (
                 chain_ligand_external_non_abstention_count
             ),
+            "heteromeric_peptide_acceptor_identity_passes_current_review_controls": (
+                peptide_identity_passes_current_controls
+            ),
+            "heteromeric_peptide_acceptor_identity_axis_narrow": (
+                peptide_identity_axis_narrow
+            ),
+            "heteromeric_peptide_acceptor_identity_positive_hit_count": (
+                peptide_identity_positive_hit_count
+            ),
+            "heteromeric_peptide_acceptor_identity_source_free_ready_count": (
+                peptide_identity_source_free_ready_count
+            ),
+            "heteromeric_peptide_acceptor_identity_nonaccepted_false_hit_count": (
+                peptide_identity_nonaccepted_false_hit_count
+            ),
+            "heteromeric_peptide_acceptor_identity_sibling_false_hit_count": (
+                peptide_identity_sibling_false_hit_count
+            ),
+            "heteromeric_peptide_external_feature_probe_passed": (
+                peptide_external_feature_passed
+            ),
+            "heteromeric_peptide_external_feature_non_abstention_count": (
+                peptide_external_feature_non_abstention_count
+            ),
             "family_specific_template_validated_family_ids": (
                 template_validated_family_ids
             ),
@@ -15762,6 +15865,7 @@ def build_epk_counteraxis_sufficiency_decision(
                 "family_specific_sibling_controls_overlap_candidate_geometry",
                 "ndk_phosphohistidine_axis_overlaps_gamma_distance_logic",
                 "external_epk_specific_axes_not_materialized",
+                "peptide_acceptor_identity_axis_narrow_not_general_epk_acceptor_identity",
                 "label_factory_gate_not_extended_for_epk",
             ],
             "negative_control_distance_distribution_ready": False,
@@ -15783,7 +15887,7 @@ def build_epk_counteraxis_sufficiency_decision(
             ),
             "next_actions": [
                 "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
-                "materialize complete gamma geometry for m_csa:640 before any positive score",
+                "stress-test peptide-like acceptor identity on broader heteromeric kinase-substrate co-complexes",
                 "run external hard-negative re-audit only after a calibrated ePK score exists",
             ],
         },
@@ -26684,6 +26788,949 @@ def build_epk_heteromeric_acceptor_identity_rule_probe(
     }
 
 
+def build_epk_heteromeric_peptide_acceptor_identity_probe(
+    *,
+    epk_heteromeric_acceptor_identity_gap_audit: dict[str, Any],
+    epk_heteromeric_candidate_source_validation_review: dict[str, Any],
+    epk_heteromeric_broader_counteraxis_control_audit: dict[str, Any],
+    epk_sibling_control_artifacts: list[dict[str, Any]] | None = None,
+    candidate_threshold_angstrom: float = 6.0,
+    max_peptide_chain_residue_count: int = 40,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Probe peptide-like acceptor-chain context as a non-generic local axis."""
+
+    gap_meta = epk_heteromeric_acceptor_identity_gap_audit.get("metadata", {})
+    if not isinstance(gap_meta, dict):
+        gap_meta = {}
+    validation_meta = epk_heteromeric_candidate_source_validation_review.get(
+        "metadata", {}
+    )
+    if not isinstance(validation_meta, dict):
+        validation_meta = {}
+    broader_meta = epk_heteromeric_broader_counteraxis_control_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(broader_meta, dict):
+        broader_meta = {}
+    sibling_artifacts = epk_sibling_control_artifacts or []
+    sibling_metas: list[dict[str, Any]] = []
+    for artifact in sibling_artifacts:
+        if not isinstance(artifact, dict):
+            continue
+        meta = artifact.get("metadata", {})
+        if isinstance(meta, dict):
+            sibling_metas.append(meta)
+
+    target_fingerprint_id = str(
+        gap_meta.get("target_fingerprint_id")
+        or validation_meta.get("target_fingerprint_id")
+        or broader_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        threshold = float(candidate_threshold_angstrom)
+    except (TypeError, ValueError):
+        threshold = 6.0
+    try:
+        peptide_limit = int(max_peptide_chain_residue_count)
+    except (TypeError, ValueError):
+        peptide_limit = 40
+    peptide_limit = max(1, peptide_limit)
+
+    cif_texts = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    cif_cache: dict[str, tuple[str, str, str | None]] = {}
+    hydroxyl_residue_codes = {"SER", "THR", "TYR"}
+    nucleotide_or_metal_codes = {
+        "ACP",
+        "ADP",
+        "AGS",
+        "AMP",
+        "ANP",
+        "APC",
+        "ATP",
+        "DTP",
+        "GTP",
+        *METAL_ION_CODES,
+    }
+
+    def _load_cif(pdb_id: str) -> tuple[str, str, str | None]:
+        if pdb_id in cif_cache:
+            return cif_cache[pdb_id]
+        cif_text = cif_texts.get(pdb_id)
+        fetch_status = "provided_cif_text" if cif_text is not None else "fetched"
+        fetch_error = None
+        try:
+            if cif_text is None and pdb_id:
+                cif_text = cif_fetcher(pdb_id)
+        except Exception as exc:  # pragma: no cover - network failure is data.
+            cif_text = ""
+            fetch_status = "fetch_failed"
+            fetch_error = str(exc)
+        result = (cif_text or "", fetch_status, fetch_error)
+        cif_cache[pdb_id] = result
+        return result
+
+    def _chain_profiles(cif_text: str) -> tuple[dict[str, int], dict[str, list[str]]]:
+        chain_residues: dict[str, set[tuple[str, str]]] = defaultdict(set)
+        chain_ligands: dict[str, set[str]] = defaultdict(set)
+        for atom in parse_atom_site_loop(cif_text):
+            chain_id = str(
+                atom.get("auth_asym_id") or atom.get("label_asym_id") or ""
+            )
+            if not chain_id:
+                continue
+            code = _epk_atom_code(atom)
+            if atom.get("group_PDB") == "ATOM":
+                seq_id = str(
+                    atom.get("auth_seq_id") or atom.get("label_seq_id") or ""
+                )
+                if seq_id:
+                    chain_residues[chain_id].add((seq_id, code))
+            elif atom.get("group_PDB") == "HETATM" and code:
+                chain_ligands[chain_id].add(code)
+        return (
+            {
+                chain_id: len(residue_keys)
+                for chain_id, residue_keys in chain_residues.items()
+            },
+            {
+                chain_id: sorted(codes)
+                for chain_id, codes in chain_ligands.items()
+            },
+        )
+
+    def _hit_chain_evidence(
+        pdb_id: str,
+        hit: dict[str, Any],
+    ) -> tuple[dict[str, Any], str]:
+        cif_text, fetch_status, fetch_error = _load_cif(pdb_id)
+        if not cif_text:
+            return (
+                {
+                    "fetch_status": fetch_status,
+                    "fetch_error": fetch_error,
+                    "acceptor_chain_residue_count": None,
+                    "gamma_chain_residue_count": None,
+                    "acceptor_chain_nucleotide_or_metal_ligand_codes": [],
+                    "peptide_like_acceptor_chain": False,
+                    "acceptor_chain_lacks_local_nucleotide_or_metal": False,
+                    "gamma_chain_is_larger_polymer": False,
+                },
+                "peptide_acceptor_identity_unmapped_fetch_failed",
+            )
+        chain_lengths, chain_ligands = _chain_profiles(cif_text)
+        acceptor_chain = str(hit.get("candidate_chain_name") or "")
+        gamma_chain = str(hit.get("gamma_associated_polymer_chain_name") or "")
+        acceptor_length = chain_lengths.get(acceptor_chain)
+        gamma_length = chain_lengths.get(gamma_chain)
+        acceptor_ligands = chain_ligands.get(acceptor_chain, [])
+        acceptor_has_ligand_context = bool(
+            set(acceptor_ligands) & nucleotide_or_metal_codes
+        )
+        peptide_like = (
+            acceptor_length is not None
+            and 1 <= acceptor_length <= peptide_limit
+        )
+        gamma_larger = (
+            gamma_length is not None
+            and acceptor_length is not None
+            and gamma_length > peptide_limit
+            and gamma_length > acceptor_length
+        )
+        local_rule_hit = peptide_like and gamma_larger and not acceptor_has_ligand_context
+        status = (
+            "peptide_like_acceptor_identity_rule_hit_review_only"
+            if local_rule_hit
+            else "peptide_like_acceptor_identity_rule_miss_review_only"
+        )
+        return (
+            {
+                "fetch_status": fetch_status,
+                "fetch_error": fetch_error,
+                "acceptor_chain_residue_count": acceptor_length,
+                "gamma_chain_residue_count": gamma_length,
+                "acceptor_chain_nucleotide_or_metal_ligand_codes": [
+                    code
+                    for code in acceptor_ligands
+                    if code in nucleotide_or_metal_codes
+                ],
+                "peptide_like_acceptor_chain": peptide_like,
+                "acceptor_chain_lacks_local_nucleotide_or_metal": (
+                    not acceptor_has_ligand_context
+                ),
+                "gamma_chain_is_larger_polymer": gamma_larger,
+            },
+            status,
+        )
+
+    validation_by_pdb = {
+        str(row.get("pdb_id") or "").upper(): row
+        for row in epk_heteromeric_candidate_source_validation_review.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+    }
+    broader_by_pdb = {
+        str(row.get("pdb_id") or "").upper(): row
+        for row in epk_heteromeric_broader_counteraxis_control_audit.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+        and row.get("row_type") == "heteromeric_broader_counteraxis_control"
+    }
+
+    rows: list[dict[str, Any]] = []
+    positive_rule_hit_count = 0
+    positive_rule_miss_count = 0
+    nonaccepted_candidate_count = 0
+    nonaccepted_false_hit_pdb_ids: list[str] = []
+    sibling_candidate_count = 0
+    sibling_false_hit_pdb_ids: list[str] = []
+
+    for gap_row in epk_heteromeric_acceptor_identity_gap_audit.get("rows", []) or []:
+        if not isinstance(gap_row, dict):
+            continue
+        pdb_id = str(gap_row.get("pdb_id") or "").upper()
+        validation_row = validation_by_pdb.get(pdb_id, {})
+        hits = [
+            hit
+            for hit in validation_row.get("candidate_hits", []) or []
+            if isinstance(hit, dict)
+            and str(hit.get("candidate_residue_code") or "").upper()
+            in hydroxyl_residue_codes
+            and float(hit.get("nearest_gamma_distance_angstrom") or 9999.0)
+            <= threshold
+        ]
+        best_hit = hits[0] if hits else {}
+        evidence, rule_status = _hit_chain_evidence(pdb_id, best_hit)
+        rule_hit = rule_status == "peptide_like_acceptor_identity_rule_hit_review_only"
+        if rule_hit:
+            positive_rule_hit_count += 1
+            decision = "retained_role_hit_peptide_acceptor_identity_review_only"
+        else:
+            positive_rule_miss_count += 1
+            decision = "retained_role_hit_peptide_acceptor_identity_missing"
+        rows.append(
+            {
+                "row_type": "heteromeric_peptide_acceptor_identity_candidate",
+                "pdb_id": pdb_id,
+                "source_pair_id": gap_row.get("source_pair_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "text_free_inputs_only": True,
+                "candidate_threshold_angstrom": threshold,
+                "max_peptide_chain_residue_count": peptide_limit,
+                "candidate_acceptor_residue_code": best_hit.get(
+                    "candidate_residue_code"
+                ),
+                "candidate_acceptor_chain_name": best_hit.get(
+                    "candidate_chain_name"
+                ),
+                "candidate_acceptor_auth_seq_id": best_hit.get(
+                    "candidate_auth_seq_id"
+                ),
+                "gamma_associated_polymer_chain_name": best_hit.get(
+                    "gamma_associated_polymer_chain_name"
+                ),
+                "nearest_gamma_distance_angstrom": best_hit.get(
+                    "nearest_gamma_distance_angstrom"
+                ),
+                **evidence,
+                "peptide_like_acceptor_identity_rule_hit": rule_hit,
+                "peptide_acceptor_identity_rule_status": rule_status,
+                "peptide_acceptor_identity_decision": decision,
+                "production_scoring_admissible": False,
+                "remaining_blockers": [
+                    "peptide_chain_identity_axis_narrow_not_general_epk_acceptor_identity",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    for pdb_id, broader_row in sorted(broader_by_pdb.items()):
+        if not bool(broader_row.get("initial_topology_gamma_rule_hit")):
+            continue
+        if bool(broader_row.get("source_free_counteraxis_hit")):
+            continue
+        validation_row = validation_by_pdb.get(pdb_id, {})
+        hits = [
+            hit
+            for hit in validation_row.get("candidate_hits", []) or []
+            if isinstance(hit, dict)
+            and str(hit.get("candidate_residue_code") or "").upper()
+            in hydroxyl_residue_codes
+            and float(hit.get("nearest_gamma_distance_angstrom") or 9999.0)
+            <= threshold
+        ]
+        if not hits:
+            continue
+        nonaccepted_candidate_count += 1
+        best_hit = hits[0]
+        evidence, rule_status = _hit_chain_evidence(pdb_id, best_hit)
+        rule_hit = rule_status == "peptide_like_acceptor_identity_rule_hit_review_only"
+        if rule_hit:
+            nonaccepted_false_hit_pdb_ids.append(pdb_id)
+        rows.append(
+            {
+                "row_type": "heteromeric_nonaccepted_peptide_identity_control",
+                "pdb_id": pdb_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "text_free_inputs_only": True,
+                "source_validation_status_review_context": broader_row.get(
+                    "source_validation_status_review_context"
+                ),
+                "candidate_threshold_angstrom": threshold,
+                "max_peptide_chain_residue_count": peptide_limit,
+                "candidate_acceptor_residue_code": best_hit.get(
+                    "candidate_residue_code"
+                ),
+                "candidate_acceptor_chain_name": best_hit.get(
+                    "candidate_chain_name"
+                ),
+                "candidate_acceptor_auth_seq_id": best_hit.get(
+                    "candidate_auth_seq_id"
+                ),
+                "gamma_associated_polymer_chain_name": best_hit.get(
+                    "gamma_associated_polymer_chain_name"
+                ),
+                "nearest_gamma_distance_angstrom": best_hit.get(
+                    "nearest_gamma_distance_angstrom"
+                ),
+                **evidence,
+                "peptide_like_acceptor_identity_rule_hit": rule_hit,
+                "peptide_acceptor_identity_rule_status": (
+                    "nonaccepted_control_false_hit_review_only"
+                    if rule_hit
+                    else "nonaccepted_control_blocked_by_peptide_identity_rule"
+                ),
+                "production_scoring_admissible": False,
+                "remaining_blockers": [
+                    "nonaccepted_or_ambiguous_heteromeric_control",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ],
+            }
+        )
+
+    for artifact in sibling_artifacts:
+        if not isinstance(artifact, dict):
+            continue
+        for sample_row in artifact.get("rows", []) or []:
+            if not isinstance(sample_row, dict):
+                continue
+            pdb_id = str(sample_row.get("pdb_id") or "").upper()
+            sibling_candidates = [
+                hit
+                for hit in sample_row.get("same_chain_hydroxyl_distance_rows", [])
+                or []
+                if isinstance(hit, dict)
+                and float(hit.get("distance_angstrom") or 9999.0) <= threshold
+            ]
+            if not sibling_candidates:
+                continue
+            sibling_candidate_count += 1
+            best_hit = sibling_candidates[0]
+            normalized_hit = {
+                "candidate_chain_name": best_hit.get("hydroxyl_chain_name")
+                or best_hit.get("chain_id"),
+                "candidate_auth_seq_id": best_hit.get("hydroxyl_resid"),
+                "candidate_residue_code": best_hit.get("hydroxyl_residue_code"),
+                "gamma_associated_polymer_chain_name": best_hit.get("chain_id")
+                or best_hit.get("hydroxyl_chain_name"),
+                "nearest_gamma_distance_angstrom": best_hit.get(
+                    "distance_angstrom"
+                ),
+            }
+            evidence, rule_status = _hit_chain_evidence(pdb_id, normalized_hit)
+            rule_hit = rule_status == "peptide_like_acceptor_identity_rule_hit_review_only"
+            if rule_hit:
+                sibling_false_hit_pdb_ids.append(pdb_id)
+            rows.append(
+                {
+                    "row_type": "sibling_peptide_identity_control",
+                    "pdb_id": pdb_id,
+                    "family_id": sample_row.get("family_id"),
+                    "family_name": sample_row.get("family_name"),
+                    "target_family_id": "epk",
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                    "text_free_inputs_only": True,
+                    "candidate_threshold_angstrom": threshold,
+                    "max_peptide_chain_residue_count": peptide_limit,
+                    "candidate_acceptor_residue_code": normalized_hit.get(
+                        "candidate_residue_code"
+                    ),
+                    "candidate_acceptor_chain_name": normalized_hit.get(
+                        "candidate_chain_name"
+                    ),
+                    "candidate_acceptor_auth_seq_id": normalized_hit.get(
+                        "candidate_auth_seq_id"
+                    ),
+                    "gamma_associated_polymer_chain_name": normalized_hit.get(
+                        "gamma_associated_polymer_chain_name"
+                    ),
+                    "nearest_gamma_distance_angstrom": normalized_hit.get(
+                        "nearest_gamma_distance_angstrom"
+                    ),
+                    **evidence,
+                    "peptide_like_acceptor_identity_rule_hit": rule_hit,
+                    "peptide_acceptor_identity_rule_status": (
+                        "sibling_control_false_hit_review_only"
+                        if rule_hit
+                        else "sibling_control_blocked_by_peptide_identity_rule"
+                    ),
+                    "production_scoring_admissible": False,
+                    "remaining_blockers": [
+                        "sibling_family_control_not_epk_positive_label",
+                        "threshold_not_calibrated_against_negative_controls",
+                        "external_hard_negative_reaudit_not_real_scorer",
+                    ],
+                }
+            )
+
+    nonaccepted_false_hit_pdb_ids = _sorted_strings(nonaccepted_false_hit_pdb_ids)
+    sibling_false_hit_pdb_ids = _sorted_strings(sibling_false_hit_pdb_ids)
+    retained_role_hit_count = int(gap_meta.get("retained_role_hit_count") or 0)
+    current_controls_pass = (
+        retained_role_hit_count > 0
+        and positive_rule_hit_count == retained_role_hit_count
+        and positive_rule_miss_count == 0
+        and not nonaccepted_false_hit_pdb_ids
+        and not sibling_false_hit_pdb_ids
+    )
+    status = (
+        "passes_current_controls_peptide_like_acceptor_identity_review_only"
+        if current_controls_pass
+        else "blocked_review_only_peptide_acceptor_identity_false_hit_or_gap"
+    )
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_peptide_acceptor_identity_probe",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_heteromeric_acceptor_identity_gap_audit_method": (
+                gap_meta.get("method")
+            ),
+            "source_epk_heteromeric_candidate_source_validation_review_method": (
+                validation_meta.get("method")
+            ),
+            "source_epk_heteromeric_broader_counteraxis_control_audit_method": (
+                broader_meta.get("method")
+            ),
+            "source_epk_sibling_control_artifact_methods": _sorted_strings(
+                meta.get("method") for meta in sibling_metas if meta.get("method")
+            ),
+            "candidate_threshold_angstrom": threshold,
+            "max_peptide_chain_residue_count": peptide_limit,
+            "peptide_identity_axis_status": status,
+            "retained_role_hit_count": retained_role_hit_count,
+            "positive_peptide_identity_hit_count": positive_rule_hit_count,
+            "positive_peptide_identity_miss_count": positive_rule_miss_count,
+            "nonaccepted_control_candidate_count": nonaccepted_candidate_count,
+            "nonaccepted_peptide_identity_false_hit_count": len(
+                nonaccepted_false_hit_pdb_ids
+            ),
+            "nonaccepted_peptide_identity_false_hit_pdb_ids": (
+                nonaccepted_false_hit_pdb_ids
+            ),
+            "sibling_control_candidate_count": sibling_candidate_count,
+            "sibling_peptide_identity_false_hit_count": len(
+                sibling_false_hit_pdb_ids
+            ),
+            "sibling_peptide_identity_false_hit_pdb_ids": (
+                sibling_false_hit_pdb_ids
+            ),
+            "current_controls_passed_review_only": current_controls_pass,
+            "peptide_identity_axis_narrow": True,
+            "source_free_acceptor_identity_ready_count": (
+                positive_rule_hit_count if current_controls_pass else 0
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "non_generic_peptide_acceptor_identity_probe_executed",
+            "blocker_not_removed": [
+                "peptide_chain_identity_axis_narrow_not_general_epk_acceptor_identity",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This probe tests a non-generic local acceptor-identity signal: "
+                "the candidate hydroxyl must lie on a short peptide-like "
+                "polymer chain without local nucleotide or metal ligand "
+                "context, while the gamma-associated polymer is larger. Source "
+                "labels are used only to label current controls; the rule "
+                "does not score ePK, select thresholds, edit registries, or "
+                "run external hard-negative re-audits."
+            ),
+            "next_actions": [
+                "stress-test peptide-like acceptor identity on broader heteromeric kinase-substrate co-complexes",
+                "add a general substrate-chain identity axis for non-peptide protein substrates before production scoring",
+                "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                str(row.get("family_id") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Peptide-like acceptor identity is a narrow review-only signal; "
+                "it does not make an ePK production scorer or held-out claim."
+            )
+        ],
+    }
+
+
+def build_epk_heteromeric_peptide_external_hard_negative_probe(
+    *,
+    epk_heteromeric_peptide_acceptor_identity_probe: dict[str, Any],
+    external_hard_negative_inverse_gate_scores: list[dict[str, Any]] | None = None,
+    imported_external_entry_ids: list[str] | None = None,
+    max_peptide_chain_residue_count: int | None = None,
+) -> dict[str, Any]:
+    """Screen external hard negatives against the peptide-identity review axis."""
+
+    peptide_meta = epk_heteromeric_peptide_acceptor_identity_probe.get(
+        "metadata", {}
+    )
+    if not isinstance(peptide_meta, dict):
+        peptide_meta = {}
+    target_fingerprint_id = str(
+        peptide_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    expected_external_ids = sorted(
+        set(
+            imported_external_entry_ids
+            or ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"]
+        ),
+        key=_entry_id_sort_key,
+    )
+    try:
+        threshold = float(peptide_meta.get("candidate_threshold_angstrom") or 6.0)
+    except (TypeError, ValueError):
+        threshold = 6.0
+    try:
+        peptide_limit = int(
+            max_peptide_chain_residue_count
+            if max_peptide_chain_residue_count is not None
+            else peptide_meta.get("max_peptide_chain_residue_count") or 40
+        )
+    except (TypeError, ValueError):
+        peptide_limit = 40
+    peptide_limit = max(1, peptide_limit)
+
+    source_artifacts = external_hard_negative_inverse_gate_scores or []
+    source_metas: list[dict[str, Any]] = []
+    external_rows_by_id: dict[str, dict[str, Any]] = {}
+    for artifact in source_artifacts:
+        if not isinstance(artifact, dict):
+            continue
+        meta = artifact.get("metadata", {})
+        if isinstance(meta, dict):
+            source_metas.append(meta)
+        for row in artifact.get("rows", []) or []:
+            if not isinstance(row, dict):
+                continue
+            entry_id = str(row.get("entry_id") or "")
+            if entry_id in expected_external_ids and row.get("coordinate_path"):
+                external_rows_by_id[entry_id] = row
+
+    gamma_capable_codes = {
+        "ACP",
+        "AGS",
+        "ANP",
+        "APC",
+        "ATP",
+        "DTP",
+        "GTP",
+    }
+    nucleotide_or_metal_codes = {
+        "ACP",
+        "ADP",
+        "AGS",
+        "AMP",
+        "ANP",
+        "APC",
+        "ATP",
+        "DTP",
+        "GTP",
+        *METAL_ION_CODES,
+    }
+    hydroxyl_atom_names = {
+        "SER": {"OG"},
+        "THR": {"OG1"},
+        "TYR": {"OH"},
+    }
+
+    def _coordinate_path(path_text: Any) -> Path | None:
+        if not path_text:
+            return None
+        path = Path(str(path_text))
+        if not path.is_absolute():
+            path = PROJECT_ROOT / path
+        return path
+
+    def _chain_profiles(
+        atoms: list[dict[str, Any]],
+    ) -> tuple[dict[str, int], dict[str, list[str]]]:
+        chain_residues: dict[str, set[tuple[str, str]]] = defaultdict(set)
+        chain_ligands: dict[str, set[str]] = defaultdict(set)
+        for atom in atoms:
+            chain_id = str(
+                atom.get("auth_asym_id") or atom.get("label_asym_id") or ""
+            )
+            if not chain_id:
+                continue
+            code = _epk_atom_code(atom)
+            if atom.get("group_PDB") == "ATOM":
+                seq_id = str(
+                    atom.get("auth_seq_id") or atom.get("label_seq_id") or ""
+                )
+                if seq_id:
+                    chain_residues[chain_id].add((seq_id, code))
+            elif atom.get("group_PDB") == "HETATM" and code:
+                chain_ligands[chain_id].add(code)
+        return (
+            {
+                chain_id: len(residue_keys)
+                for chain_id, residue_keys in chain_residues.items()
+            },
+            {
+                chain_id: sorted(codes)
+                for chain_id, codes in chain_ligands.items()
+            },
+        )
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    non_abstention_entry_ids: list[str] = []
+    missing_entry_ids: list[str] = []
+    coordinate_unavailable_entry_ids: list[str] = []
+    for entry_id in expected_external_ids:
+        source_row = external_rows_by_id.get(entry_id, {})
+        coordinate_path = _coordinate_path(source_row.get("coordinate_path"))
+        coordinate_status = "available"
+        atoms: list[dict[str, Any]] = []
+        coordinate_error = None
+        if not source_row:
+            missing_entry_ids.append(entry_id)
+            coordinate_status = "missing_external_inverse_gate_row"
+        elif coordinate_path is None or not coordinate_path.exists():
+            coordinate_unavailable_entry_ids.append(entry_id)
+            coordinate_status = "coordinate_unavailable"
+        else:
+            try:
+                atoms = parse_atom_site_loop(coordinate_path.read_text())
+            except OSError as exc:
+                coordinate_unavailable_entry_ids.append(entry_id)
+                coordinate_status = "coordinate_read_failed"
+                coordinate_error = str(exc)
+
+        chain_lengths, chain_ligands = _chain_profiles(atoms) if atoms else ({}, {})
+        gamma_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "HETATM"
+            and _epk_atom_code(atom) in gamma_capable_codes
+            and str(
+                atom.get("auth_atom_id") or atom.get("label_atom_id") or ""
+            ).upper()
+            == "PG"
+        ]
+        hydroxyl_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "ATOM"
+            and _epk_atom_code(atom) in hydroxyl_atom_names
+            and str(
+                atom.get("auth_atom_id") or atom.get("label_atom_id") or ""
+            ).upper()
+            in hydroxyl_atom_names.get(_epk_atom_code(atom), set())
+        ]
+
+        candidate_rows: list[dict[str, Any]] = []
+        for gamma_atom in gamma_atoms:
+            gamma_point = _atom_point(gamma_atom)
+            gamma_chain = str(
+                gamma_atom.get("auth_asym_id")
+                or gamma_atom.get("label_asym_id")
+                or ""
+            )
+            for hydroxyl_atom in hydroxyl_atoms:
+                hydroxyl_point = _atom_point(hydroxyl_atom)
+                distance = round(_point_distance(gamma_point, hydroxyl_point), 3)
+                if distance > threshold:
+                    continue
+                acceptor_chain = str(
+                    hydroxyl_atom.get("auth_asym_id")
+                    or hydroxyl_atom.get("label_asym_id")
+                    or ""
+                )
+                acceptor_length = chain_lengths.get(acceptor_chain)
+                gamma_length = chain_lengths.get(gamma_chain)
+                acceptor_ligands = chain_ligands.get(acceptor_chain, [])
+                acceptor_has_ligand_context = bool(
+                    set(acceptor_ligands) & nucleotide_or_metal_codes
+                )
+                peptide_like = (
+                    acceptor_length is not None
+                    and 1 <= acceptor_length <= peptide_limit
+                )
+                gamma_larger = (
+                    gamma_length is not None
+                    and acceptor_length is not None
+                    and gamma_length > peptide_limit
+                    and gamma_length > acceptor_length
+                )
+                rule_hit = (
+                    peptide_like and gamma_larger and not acceptor_has_ligand_context
+                )
+                candidate_rows.append(
+                    {
+                        "gamma_ligand_code": _epk_atom_code(gamma_atom),
+                        "gamma_chain_name": gamma_chain,
+                        "gamma_chain_residue_count": gamma_length,
+                        "acceptor_chain_name": acceptor_chain,
+                        "acceptor_chain_residue_count": acceptor_length,
+                        "acceptor_residue_code": _epk_atom_code(hydroxyl_atom),
+                        "acceptor_auth_seq_id": str(
+                            hydroxyl_atom.get("auth_seq_id")
+                            or hydroxyl_atom.get("label_seq_id")
+                            or ""
+                        ),
+                        "distance_angstrom": distance,
+                        "acceptor_chain_nucleotide_or_metal_ligand_codes": [
+                            code
+                            for code in acceptor_ligands
+                            if code in nucleotide_or_metal_codes
+                        ],
+                        "peptide_like_acceptor_chain": peptide_like,
+                        "acceptor_chain_lacks_local_nucleotide_or_metal": (
+                            not acceptor_has_ligand_context
+                        ),
+                        "gamma_chain_is_larger_polymer": gamma_larger,
+                        "peptide_like_acceptor_identity_rule_hit": rule_hit,
+                    }
+                )
+        candidate_rows.sort(
+            key=lambda row: (
+                0 if row.get("peptide_like_acceptor_identity_rule_hit") else 1,
+                float(row.get("distance_angstrom") or 9999.0),
+                str(row.get("acceptor_chain_name") or ""),
+            )
+        )
+        rule_hit = any(
+            row.get("peptide_like_acceptor_identity_rule_hit")
+            for row in candidate_rows
+        )
+        if rule_hit:
+            status = "review_only_external_hard_negative_peptide_identity_non_abstention"
+            non_abstention_entry_ids.append(entry_id)
+            blockers = [
+                "review_only_peptide_identity_non_abstention_requires_rule_repair",
+                "not_a_real_scored_external_reaudit",
+                "threshold_not_calibrated_against_negative_controls",
+            ]
+        elif not source_row:
+            status = "review_only_external_hard_negative_missing_from_inverse_gate"
+            blockers = [
+                "external_inverse_gate_row_missing",
+                "not_a_real_scored_external_reaudit",
+            ]
+        elif coordinate_status != "available":
+            status = "review_only_external_hard_negative_coordinate_unavailable"
+            blockers = [
+                "external_coordinate_unavailable",
+                "not_a_real_scored_external_reaudit",
+            ]
+        elif not gamma_atoms:
+            status = "review_only_external_hard_negative_abstain_no_gamma_context"
+            blockers = [
+                "external_hard_negative_lacks_gamma_nucleotide_context",
+                "not_a_real_scored_external_reaudit",
+                "threshold_not_calibrated_against_negative_controls",
+            ]
+        elif not hydroxyl_atoms:
+            status = "review_only_external_hard_negative_abstain_no_hydroxyl_acceptor"
+            blockers = [
+                "external_hard_negative_lacks_hydroxyl_acceptor_context",
+                "not_a_real_scored_external_reaudit",
+                "threshold_not_calibrated_against_negative_controls",
+            ]
+        else:
+            status = "review_only_external_hard_negative_abstain_no_peptide_identity_hit"
+            blockers = [
+                "external_hard_negative_lacks_peptide_acceptor_identity_axis",
+                "not_a_real_scored_external_reaudit",
+                "threshold_not_calibrated_against_negative_controls",
+            ]
+        status_counts[status] += 1
+        inverse_gate = source_row.get("out_of_scope_inverse_gate", {})
+        if not isinstance(inverse_gate, dict):
+            inverse_gate = {}
+        rows.append(
+            {
+                "row_type": "imported_external_hard_negative_peptide_identity_probe",
+                "entry_id": entry_id,
+                "accession": source_row.get("accession")
+                or entry_id.split(":", 1)[-1],
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "text_free_inputs_only": True,
+                "coordinate_path": source_row.get("coordinate_path"),
+                "coordinate_status": coordinate_status,
+                "coordinate_error": coordinate_error,
+                "active_site_feature_count": source_row.get(
+                    "active_site_feature_count"
+                ),
+                "source_inverse_gate_status": inverse_gate.get(
+                    "inverse_gate_status"
+                ),
+                "source_max_current_fingerprint_score": inverse_gate.get(
+                    "max_current_fingerprint_score"
+                ),
+                "candidate_threshold_angstrom": threshold,
+                "max_peptide_chain_residue_count": peptide_limit,
+                "gamma_atom_count": len(gamma_atoms),
+                "hydroxyl_acceptor_atom_count": len(hydroxyl_atoms),
+                "candidate_gamma_hydroxyl_pair_count": len(candidate_rows),
+                "candidate_rows": candidate_rows[:10],
+                "peptide_like_acceptor_identity_rule_hit": rule_hit,
+                "review_only_feature_score": 1.0 if rule_hit else 0.0,
+                "review_only_feature_non_abstention": rule_hit,
+                "feature_probe_status": status,
+                "clean_heldout_performance_claim_permitted": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    probe_complete = not missing_entry_ids and not coordinate_unavailable_entry_ids
+    probe_passed = probe_complete and not non_abstention_entry_ids
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_peptide_external_hard_negative_probe",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_heteromeric_peptide_acceptor_identity_probe_method": (
+                peptide_meta.get("method")
+            ),
+            "source_external_hard_negative_inverse_gate_score_methods": (
+                _sorted_strings(
+                    meta.get("method") for meta in source_metas if meta.get("method")
+                )
+            ),
+            "expected_external_hard_negative_entry_ids": expected_external_ids,
+            "row_count": len(rows),
+            "candidate_threshold_angstrom": threshold,
+            "max_peptide_chain_residue_count": peptide_limit,
+            "external_hard_negative_feature_probe_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "missing_expected_external_hard_negative_count": len(missing_entry_ids),
+            "missing_expected_external_hard_negative_entry_ids": missing_entry_ids,
+            "coordinate_unavailable_external_hard_negative_count": len(
+                coordinate_unavailable_entry_ids
+            ),
+            "coordinate_unavailable_external_hard_negative_entry_ids": (
+                coordinate_unavailable_entry_ids
+            ),
+            "review_only_external_hard_negative_feature_non_abstention_count": (
+                len(non_abstention_entry_ids)
+            ),
+            "review_only_external_hard_negative_feature_non_abstention_entry_ids": (
+                non_abstention_entry_ids
+            ),
+            "review_only_feature_probe_complete": probe_complete,
+            "review_only_feature_probe_passed": probe_passed,
+            "source_free_acceptor_identity_ready_count": peptide_meta.get(
+                "source_free_acceptor_identity_ready_count"
+            ),
+            "peptide_identity_axis_status": peptide_meta.get(
+                "peptide_identity_axis_status"
+            ),
+            "clean_heldout_performance_claim_permitted": False,
+            "external_hard_negative_reaudit_scored": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "not_a_real_scored_reaudit": True,
+            "review_only_rule": (
+                "This artifact screens the three imported external hard "
+                "negatives against the narrow peptide-like acceptor identity "
+                "axis. It uses available structural sidecars only as a "
+                "development feature probe and is not a calibrated ePK score, "
+                "clean held-out claim, registry edit, or label gate."
+            ),
+            "next_actions": [
+                "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists",
+                "stress-test peptide-like acceptor identity on broader kinase-substrate co-complexes",
+                "repair the peptide identity rule before scorer design if any external non-abstention appears",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "External hard-negative peptide identity probe is diagnostic "
+                "only and does not satisfy the scored re-audit activation gate."
+            )
+        ],
+    }
+
+
 def build_epk_external_source_lower_priority_ligand_sourcing_review(
     *,
     epk_external_source_structure_mapping_review: dict[str, Any],
@@ -28390,6 +29437,9 @@ def build_epk_precount_gate_status(
     epk_heteromeric_ligand_asymmetry_role_audit: dict[str, Any] | None = None,
     epk_heteromeric_acceptor_identity_gap_audit: dict[str, Any] | None = None,
     epk_heteromeric_acceptor_identity_rule_probe: dict[str, Any] | None = None,
+    epk_heteromeric_peptide_acceptor_identity_probe: dict[str, Any] | None = None,
+    epk_heteromeric_peptide_external_hard_negative_probe: dict[str, Any]
+    | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
@@ -28858,6 +29908,20 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(heteromeric_acceptor_identity_rule_probe_meta, dict):
         heteromeric_acceptor_identity_rule_probe_meta = {}
+    heteromeric_peptide_acceptor_identity_meta = (
+        epk_heteromeric_peptide_acceptor_identity_probe.get("metadata", {})
+        if isinstance(epk_heteromeric_peptide_acceptor_identity_probe, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_peptide_acceptor_identity_meta, dict):
+        heteromeric_peptide_acceptor_identity_meta = {}
+    heteromeric_peptide_external_meta = (
+        epk_heteromeric_peptide_external_hard_negative_probe.get("metadata", {})
+        if isinstance(epk_heteromeric_peptide_external_hard_negative_probe, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_peptide_external_meta, dict):
+        heteromeric_peptide_external_meta = {}
     m_csa760_repair_meta = (
         epk_m_csa760_atp_state_repair_scan.get("metadata", {})
         if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
@@ -30719,6 +31783,171 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if heteromeric_peptide_acceptor_identity_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_peptide_acceptor_identity_probe",
+                "passed": heteromeric_peptide_acceptor_identity_meta.get(
+                    "peptide_identity_axis_status"
+                )
+                == "passes_current_controls_peptide_like_acceptor_identity_review_only"
+                and bool(
+                    heteromeric_peptide_acceptor_identity_meta.get(
+                        "peptide_identity_axis_narrow"
+                    )
+                )
+                and int(
+                    heteromeric_peptide_acceptor_identity_meta.get(
+                        "positive_peptide_identity_hit_count"
+                    )
+                    or 0
+                )
+                == int(
+                    heteromeric_peptide_acceptor_identity_meta.get(
+                        "retained_role_hit_count"
+                    )
+                    or 0
+                )
+                and int(
+                    heteromeric_peptide_acceptor_identity_meta.get(
+                        "nonaccepted_peptide_identity_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_peptide_acceptor_identity_meta.get(
+                        "sibling_peptide_identity_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_peptide_acceptor_identity_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_peptide_acceptor_identity_meta.get(
+                        "epk_score_computed"
+                    )
+                ),
+                "evidence": {
+                    "source_method": (
+                        heteromeric_peptide_acceptor_identity_meta.get("method")
+                    ),
+                    "peptide_identity_axis_status": (
+                        heteromeric_peptide_acceptor_identity_meta.get(
+                            "peptide_identity_axis_status"
+                        )
+                    ),
+                    "positive_peptide_identity_hit_count": (
+                        heteromeric_peptide_acceptor_identity_meta.get(
+                            "positive_peptide_identity_hit_count"
+                        )
+                    ),
+                    "nonaccepted_peptide_identity_false_hit_count": (
+                        heteromeric_peptide_acceptor_identity_meta.get(
+                            "nonaccepted_peptide_identity_false_hit_count"
+                        )
+                    ),
+                    "sibling_peptide_identity_false_hit_count": (
+                        heteromeric_peptide_acceptor_identity_meta.get(
+                            "sibling_peptide_identity_false_hit_count"
+                        )
+                    ),
+                    "source_free_acceptor_identity_ready_count": (
+                        heteromeric_peptide_acceptor_identity_meta.get(
+                            "source_free_acceptor_identity_ready_count"
+                        )
+                    ),
+                    "peptide_identity_axis_narrow": (
+                        heteromeric_peptide_acceptor_identity_meta.get(
+                            "peptide_identity_axis_narrow"
+                        )
+                    ),
+                },
+            }
+        )
+    if heteromeric_peptide_external_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_peptide_external_hard_negative_probe",
+                "passed": bool(
+                    heteromeric_peptide_external_meta.get(
+                        "review_only_feature_probe_passed"
+                    )
+                )
+                and int(
+                    heteromeric_peptide_external_meta.get(
+                        "review_only_external_hard_negative_feature_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_peptide_external_meta.get(
+                        "missing_expected_external_hard_negative_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_peptide_external_meta.get(
+                        "coordinate_unavailable_external_hard_negative_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_peptide_external_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_peptide_external_meta.get("epk_score_computed")
+                )
+                and not bool(
+                    heteromeric_peptide_external_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": heteromeric_peptide_external_meta.get(
+                        "method"
+                    ),
+                    "review_only_feature_probe_complete": bool(
+                        heteromeric_peptide_external_meta.get(
+                            "review_only_feature_probe_complete"
+                        )
+                    ),
+                    "review_only_feature_probe_passed": bool(
+                        heteromeric_peptide_external_meta.get(
+                            "review_only_feature_probe_passed"
+                        )
+                    ),
+                    "review_only_external_hard_negative_feature_non_abstention_count": (
+                        heteromeric_peptide_external_meta.get(
+                            "review_only_external_hard_negative_feature_non_abstention_count"
+                        )
+                    ),
+                    "missing_expected_external_hard_negative_count": (
+                        heteromeric_peptide_external_meta.get(
+                            "missing_expected_external_hard_negative_count"
+                        )
+                    ),
+                    "coordinate_unavailable_external_hard_negative_count": (
+                        heteromeric_peptide_external_meta.get(
+                            "coordinate_unavailable_external_hard_negative_count"
+                        )
+                    ),
+                },
+            }
+        )
     if m_csa760_repair_meta:
         gate_checks.append(
             {
@@ -31411,6 +32640,43 @@ def build_epk_precount_gate_status(
             next_actions.insert(
                 0,
                 "source-validate a different heteromeric candidate tranche before claiming broader positive coverage",
+            )
+    if heteromeric_peptide_acceptor_identity_meta.get("method"):
+        if (
+            heteromeric_peptide_acceptor_identity_meta.get(
+                "peptide_identity_axis_status"
+            )
+            == "passes_current_controls_peptide_like_acceptor_identity_review_only"
+        ):
+            next_actions.insert(
+                0,
+                "stress-test peptide-like acceptor identity on broader heteromeric kinase-substrate co-complexes before scorer design",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "repair or replace the peptide-like acceptor identity rule before scorer design",
+            )
+    elif heteromeric_acceptor_identity_rule_probe_meta.get("method"):
+        next_actions.insert(
+            0,
+            "add a non-generic local acceptor-identity signal beyond generic hydroxyl residue class",
+        )
+    if heteromeric_peptide_external_meta.get("method"):
+        if int(
+            heteromeric_peptide_external_meta.get(
+                "review_only_external_hard_negative_feature_non_abstention_count"
+            )
+            or 0
+        ):
+            next_actions.insert(
+                0,
+                "repair the peptide-like acceptor identity rule before scorer design because an external hard negative did not abstain",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "keep the peptide-like external hard-negative probe as diagnostic only until a calibrated scorer exists",
             )
     if m_csa760_repair_meta.get("method"):
         if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
@@ -32785,6 +34051,67 @@ def build_epk_precount_gate_status(
             "heteromeric_acceptor_identity_rule_source_free_ready_count": (
                 heteromeric_acceptor_identity_rule_probe_meta.get(
                     "source_free_acceptor_identity_ready_count"
+                )
+            ),
+            "source_epk_heteromeric_peptide_acceptor_identity_probe_method": (
+                heteromeric_peptide_acceptor_identity_meta.get("method")
+            ),
+            "heteromeric_peptide_acceptor_identity_status": (
+                heteromeric_peptide_acceptor_identity_meta.get(
+                    "peptide_identity_axis_status"
+                )
+            ),
+            "heteromeric_peptide_acceptor_identity_positive_hit_count": (
+                heteromeric_peptide_acceptor_identity_meta.get(
+                    "positive_peptide_identity_hit_count"
+                )
+            ),
+            "heteromeric_peptide_acceptor_identity_nonaccepted_false_hit_count": (
+                heteromeric_peptide_acceptor_identity_meta.get(
+                    "nonaccepted_peptide_identity_false_hit_count"
+                )
+            ),
+            "heteromeric_peptide_acceptor_identity_sibling_false_hit_count": (
+                heteromeric_peptide_acceptor_identity_meta.get(
+                    "sibling_peptide_identity_false_hit_count"
+                )
+            ),
+            "heteromeric_peptide_acceptor_identity_source_free_ready_count": (
+                heteromeric_peptide_acceptor_identity_meta.get(
+                    "source_free_acceptor_identity_ready_count"
+                )
+            ),
+            "heteromeric_peptide_acceptor_identity_axis_narrow": (
+                heteromeric_peptide_acceptor_identity_meta.get(
+                    "peptide_identity_axis_narrow"
+                )
+            ),
+            "source_epk_heteromeric_peptide_external_hard_negative_probe_method": (
+                heteromeric_peptide_external_meta.get("method")
+            ),
+            "heteromeric_peptide_external_feature_probe_complete": bool(
+                heteromeric_peptide_external_meta.get(
+                    "review_only_feature_probe_complete"
+                )
+            ),
+            "heteromeric_peptide_external_feature_probe_passed": bool(
+                heteromeric_peptide_external_meta.get(
+                    "review_only_feature_probe_passed"
+                )
+            ),
+            "heteromeric_peptide_external_feature_non_abstention_count": (
+                heteromeric_peptide_external_meta.get(
+                    "review_only_external_hard_negative_feature_non_abstention_count"
+                )
+            ),
+            "heteromeric_peptide_external_feature_missing_count": (
+                heteromeric_peptide_external_meta.get(
+                    "missing_expected_external_hard_negative_count"
+                )
+            ),
+            "heteromeric_peptide_external_feature_coordinate_unavailable_count": (
+                heteromeric_peptide_external_meta.get(
+                    "coordinate_unavailable_external_hard_negative_count"
                 )
             ),
             "source_epk_m_csa760_atp_state_repair_scan_method": (

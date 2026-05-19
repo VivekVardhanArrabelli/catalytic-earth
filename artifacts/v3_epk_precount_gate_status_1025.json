@@ -540,6 +540,31 @@
     },
     {
       "evidence": {
+        "nonaccepted_peptide_identity_false_hit_count": 0,
+        "peptide_identity_axis_narrow": true,
+        "peptide_identity_axis_status": "passes_current_controls_peptide_like_acceptor_identity_review_only",
+        "positive_peptide_identity_hit_count": 3,
+        "sibling_peptide_identity_false_hit_count": 0,
+        "source_free_acceptor_identity_ready_count": 3,
+        "source_method": "epk_heteromeric_peptide_acceptor_identity_probe"
+      },
+      "gate_id": "heteromeric_peptide_acceptor_identity_probe",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "coordinate_unavailable_external_hard_negative_count": 0,
+        "missing_expected_external_hard_negative_count": 0,
+        "review_only_external_hard_negative_feature_non_abstention_count": 0,
+        "review_only_feature_probe_complete": true,
+        "review_only_feature_probe_passed": true,
+        "source_method": "epk_heteromeric_peptide_external_hard_negative_probe"
+      },
+      "gate_id": "heteromeric_peptide_external_hard_negative_probe",
+      "passed": true
+    },
+    {
+      "evidence": {
         "atp_metal_state_candidate_count": 2,
         "atp_metal_state_candidate_pdb_ids": [
           "1TID",
@@ -907,6 +932,17 @@
     "heteromeric_ligand_asymmetry_sibling_false_hit_count": 0,
     "heteromeric_ligand_asymmetry_source_free_acceptor_identity_ready_count": 0,
     "heteromeric_ligand_asymmetry_source_free_role_ready_count": 3,
+    "heteromeric_peptide_acceptor_identity_axis_narrow": true,
+    "heteromeric_peptide_acceptor_identity_nonaccepted_false_hit_count": 0,
+    "heteromeric_peptide_acceptor_identity_positive_hit_count": 3,
+    "heteromeric_peptide_acceptor_identity_sibling_false_hit_count": 0,
+    "heteromeric_peptide_acceptor_identity_source_free_ready_count": 3,
+    "heteromeric_peptide_acceptor_identity_status": "passes_current_controls_peptide_like_acceptor_identity_review_only",
+    "heteromeric_peptide_external_feature_coordinate_unavailable_count": 0,
+    "heteromeric_peptide_external_feature_missing_count": 0,
+    "heteromeric_peptide_external_feature_non_abstention_count": 0,
+    "heteromeric_peptide_external_feature_probe_complete": true,
+    "heteromeric_peptide_external_feature_probe_passed": true,
     "heteromeric_positive_coverage_candidate_pdb_ids": [
       "6Z3R",
       "7M0T",
@@ -1136,6 +1172,8 @@
       "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
       "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
+      "keep the peptide-like external hard-negative probe as diagnostic only until a calibrated scorer exists",
+      "stress-test peptide-like acceptor identity on broader heteromeric kinase-substrate co-complexes before scorer design",
       "run the acceptor-chain nucleotide counteraxis on broader heteromeric and sibling controls before scorer design",
       "add a source-free catalytic-chain assignment signal before using local chain-topology hits for scoring",
       "freeze a real protein-substrate acceptor scorer design before any 5HVK-informed threshold calibration",
@@ -1200,6 +1238,8 @@
     "source_epk_heteromeric_candidate_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
     "source_epk_heteromeric_chain_topology_signal_audit_method": "epk_heteromeric_chain_topology_signal_audit",
     "source_epk_heteromeric_ligand_asymmetry_role_audit_method": "epk_heteromeric_ligand_asymmetry_role_audit",
+    "source_epk_heteromeric_peptide_acceptor_identity_probe_method": "epk_heteromeric_peptide_acceptor_identity_probe",
+    "source_epk_heteromeric_peptide_external_hard_negative_probe_method": "epk_heteromeric_peptide_external_hard_negative_probe",
     "source_epk_heteromeric_positive_coverage_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
     "source_epk_heteromeric_source_free_role_rule_probe_method": "epk_heteromeric_source_free_role_rule_probe",
     "source_epk_heteromeric_source_valid_candidate_gamma_distance_sample_method": "epk_heteromeric_source_valid_candidate_gamma_distance_sample",

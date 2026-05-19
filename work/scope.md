@@ -127,11 +127,17 @@ the retained role hits still have only source-context Ser acceptor identity and
 identity probe now passes current review controls only after the three
 nonaccepted heteromeric hits and 11 sibling same-chain hydroxyl hits are
 blocked upstream, and it is marked weak because residue class is not substrate
-identity; source-free acceptor-identity ready count remains 0. Threshold/
-external-hard-negative calibration remains closed before any production
-scoring; the next useful ePK work is a non-generic local acceptor-identity
-signal tested against the retained heteromeric role hits, BRAF/MEK nonaccepted
-hits, and sibling controls.
+identity; source-free acceptor-identity ready count remains 0. A narrower
+peptide-like acceptor identity probe now adds that non-generic local signal:
+it keeps all three retained heteromeric role hits, blocks the three
+nonaccepted heteromeric controls and 11 measured sibling same-chain hydroxyl
+controls, and keeps the three imported external hard negatives abstained in a
+review-only feature probe. Threshold/external-hard-negative calibration remains
+closed before any production scoring because this peptide axis is narrow, not
+a general substrate identity rule, and the real scored external re-audit plus
+registry/label-factory extension still do not exist.
+The counteraxis sufficiency decision now records the same peptide feature as a
+passing diagnostic row while preserving `do_not_select_threshold`.
 
 ## Time Calibration Rule
 

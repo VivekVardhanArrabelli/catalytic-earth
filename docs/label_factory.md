@@ -686,6 +686,18 @@ or sibling false hits only after the three nonaccepted heteromeric hits and
 11 sibling same-chain hydroxyl hits are blocked upstream. It is deliberately
 weak and review-only: source-free acceptor-identity ready count remains 0
 because residue class is not substrate identity.
+`artifacts/v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json` adds
+a narrower non-generic local identity axis: candidate hydroxyls must be on
+short peptide-like acceptor polymer chains without local nucleotide/metal
+ligand context, while the gamma-associated polymer chain is larger. It hits
+all three retained heteromeric role candidates, blocks the three nonaccepted
+heteromeric controls, and blocks 11/11 measured sibling same-chain hydroxyl
+controls with 0 false hits. The paired
+`artifacts/v3_epk_heteromeric_peptide_external_hard_negative_probe_1025.json`
+screens the three imported external hard negatives against this feature; all
+three abstain with 0 non-abstentions, 0 missing rows, and 0 coordinate gaps.
+These artifacts are review-only diagnostics and do not satisfy the scored
+external re-audit or label-factory extension gates.
 The 1025 preview/expanded source-triage artifacts repeat the same exhausted
 source candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) and do not open
 a new protein-substrate ePK source lane; the expanded terminal decision stays
@@ -717,9 +729,13 @@ surface, and the text-free gap/probe artifacts make the next blocker explicit:
 topology plus gamma distance is not enough without source-free role-direction
 and acceptor-identity evidence. The acceptor-chain counter-axis passes only the
 current review controls. The broader counter-axis and ligand-asymmetry role
-audit now pass broader heteromeric/sibling review controls, while the
-acceptor-identity gap audit keeps scorer construction blocked. None of these
-artifacts makes scoring or label import admissible.
+audit now pass broader heteromeric/sibling review controls, and the peptide
+acceptor identity plus peptide external hard-negative probes pass as diagnostic
+feature gates. The peptide axis is still narrow, so none of these artifacts
+makes scoring or label import admissible.
+The downstream counteraxis sufficiency decision carries that peptide feature
+as a pass/current-controls decision row but keeps it blocked from production
+scoring because it is not a general substrate-identity rule.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

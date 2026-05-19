@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -30,6 +31,8 @@ from catalytic_earth.labels import (
     build_epk_heteromeric_ligand_asymmetry_role_audit,
     build_epk_heteromeric_acceptor_identity_gap_audit,
     build_epk_heteromeric_acceptor_identity_rule_probe,
+    build_epk_heteromeric_peptide_acceptor_identity_probe,
+    build_epk_heteromeric_peptide_external_hard_negative_probe,
     build_epk_source_authority_axis_replacement_gap_audit,
     build_epk_source_free_chain_topology_role_audit,
     load_labels,
@@ -2736,6 +2739,78 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertFalse(row["production_scoring_admissible"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_heteromeric_peptide_acceptor_identity_probe_is_review_only(
+        self,
+    ) -> None:
+        probe = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json"
+        )
+        metadata = probe["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_peptide_acceptor_identity_probe",
+        )
+        self.assertEqual(
+            metadata["peptide_identity_axis_status"],
+            "passes_current_controls_peptide_like_acceptor_identity_review_only",
+        )
+        self.assertEqual(metadata["retained_role_hit_count"], 3)
+        self.assertEqual(metadata["positive_peptide_identity_hit_count"], 3)
+        self.assertEqual(metadata["nonaccepted_peptide_identity_false_hit_count"], 0)
+        self.assertEqual(metadata["sibling_peptide_identity_false_hit_count"], 0)
+        self.assertEqual(metadata["source_free_acceptor_identity_ready_count"], 3)
+        self.assertTrue(metadata["peptide_identity_axis_narrow"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        for row in probe["rows"]:
+            self.assertTrue(row["text_free_inputs_only"])
+            self.assertFalse(row["production_scoring_admissible"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_heteromeric_peptide_external_hard_negative_probe_is_review_only(
+        self,
+    ) -> None:
+        probe = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_peptide_external_hard_negative_probe_1025.json"
+        )
+        metadata = probe["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_peptide_external_hard_negative_probe",
+        )
+        self.assertTrue(metadata["review_only_feature_probe_complete"])
+        self.assertTrue(metadata["review_only_feature_probe_passed"])
+        self.assertEqual(
+            metadata[
+                "review_only_external_hard_negative_feature_non_abstention_count"
+            ],
+            0,
+        )
+        self.assertEqual(metadata["missing_expected_external_hard_negative_count"], 0)
+        self.assertEqual(
+            metadata["coordinate_unavailable_external_hard_negative_count"],
+            0,
+        )
+        self.assertFalse(metadata["clean_heldout_performance_claim_permitted"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            {row["entry_id"] for row in probe["rows"]},
+            EXTERNAL_HARD_NEGATIVES,
+        )
+        for row in probe["rows"]:
+            self.assertFalse(row["review_only_feature_non_abstention"])
+            self.assertEqual(row["review_only_feature_score"], 0.0)
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_epk_external_source_scout_builder_keeps_rows_non_countable(
         self,
     ) -> None:
@@ -3977,6 +4052,282 @@ _struct.title 'Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP
         self.assertTrue(metadata["generic_identity_axis_weak"])
         self.assertEqual(metadata["source_free_acceptor_identity_ready_count"], 0)
         self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_epk_heteromeric_peptide_acceptor_identity_probe_builder(
+        self,
+    ) -> None:
+        def cif_with_chains(
+            pdb_id: str,
+            *,
+            acceptor_chain: str,
+            acceptor_len: int,
+            gamma_chain: str,
+            gamma_len: int,
+            acceptor_ligands: list[str] | None = None,
+        ) -> str:
+            lines = [
+                f"data_{pdb_id}",
+                "loop_",
+                "_atom_site.group_PDB",
+                "_atom_site.auth_comp_id",
+                "_atom_site.label_comp_id",
+                "_atom_site.auth_atom_id",
+                "_atom_site.label_atom_id",
+                "_atom_site.auth_asym_id",
+                "_atom_site.label_asym_id",
+                "_atom_site.auth_seq_id",
+                "_atom_site.label_seq_id",
+                "_atom_site.Cartn_x",
+                "_atom_site.Cartn_y",
+                "_atom_site.Cartn_z",
+            ]
+            for index in range(1, acceptor_len + 1):
+                lines.append(
+                    f"ATOM SER SER OG OG {acceptor_chain} {acceptor_chain} {index} {index} 0.0 0.0 0.0"
+                )
+            for index in range(1, gamma_len + 1):
+                lines.append(
+                    f"ATOM LYS LYS NZ NZ {gamma_chain} {gamma_chain} {index} {index} 10.0 0.0 0.0"
+                )
+            for ligand in acceptor_ligands or []:
+                lines.append(
+                    f"HETATM {ligand} {ligand} PG PG {acceptor_chain} {acceptor_chain} 900 900 1.0 0.0 0.0"
+                )
+            lines.append("#")
+            return "\n".join(lines)
+
+        probe = build_epk_heteromeric_peptide_acceptor_identity_probe(
+            epk_heteromeric_acceptor_identity_gap_audit={
+                "metadata": {
+                    "method": "epk_heteromeric_acceptor_identity_gap_audit",
+                    "retained_role_hit_count": 1,
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [{"pdb_id": "1POS", "source_pair_id": "kinase_substrate"}],
+            },
+            epk_heteromeric_candidate_source_validation_review={
+                "metadata": {
+                    "method": "epk_heteromeric_candidate_source_validation_review",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "pdb_id": "1POS",
+                        "candidate_hits": [
+                            {
+                                "candidate_chain_name": "B",
+                                "candidate_auth_seq_id": "3",
+                                "candidate_residue_code": "SER",
+                                "gamma_associated_polymer_chain_name": "A",
+                                "nearest_gamma_distance_angstrom": 3.2,
+                            }
+                        ],
+                    },
+                    {
+                        "pdb_id": "1NEG",
+                        "candidate_hits": [
+                            {
+                                "candidate_chain_name": "A",
+                                "candidate_auth_seq_id": "5",
+                                "candidate_residue_code": "SER",
+                                "gamma_associated_polymer_chain_name": "A",
+                                "nearest_gamma_distance_angstrom": 3.1,
+                            }
+                        ],
+                    },
+                ],
+            },
+            epk_heteromeric_broader_counteraxis_control_audit={
+                "metadata": {
+                    "method": "epk_heteromeric_broader_counteraxis_control_audit",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "row_type": "heteromeric_broader_counteraxis_control",
+                        "pdb_id": "1NEG",
+                        "initial_topology_gamma_rule_hit": True,
+                        "source_free_counteraxis_hit": False,
+                    }
+                ],
+            },
+            epk_sibling_control_artifacts=[
+                {
+                    "metadata": {
+                        "method": "epk_sibling_control_homolog_gamma_distance_sample",
+                    },
+                    "rows": [
+                        {
+                            "pdb_id": "2NDK",
+                            "family_id": "ndk",
+                            "same_chain_hydroxyl_distance_rows": [
+                                {
+                                    "hydroxyl_chain_name": "C",
+                                    "chain_id": "C",
+                                    "hydroxyl_resid": "12",
+                                    "hydroxyl_residue_code": "SER",
+                                    "distance_angstrom": 3.8,
+                                }
+                            ],
+                        }
+                    ],
+                }
+            ],
+            cif_text_by_pdb={
+                "1POS": cif_with_chains(
+                    "1POS",
+                    acceptor_chain="B",
+                    acceptor_len=7,
+                    gamma_chain="A",
+                    gamma_len=60,
+                ),
+                "1NEG": cif_with_chains(
+                    "1NEG",
+                    acceptor_chain="A",
+                    acceptor_len=80,
+                    gamma_chain="A",
+                    gamma_len=80,
+                    acceptor_ligands=["ANP", "MG"],
+                ),
+                "2NDK": cif_with_chains(
+                    "2NDK",
+                    acceptor_chain="C",
+                    acceptor_len=80,
+                    gamma_chain="C",
+                    gamma_len=80,
+                ),
+            },
+        )
+        metadata = probe["metadata"]
+        self.assertEqual(
+            metadata["peptide_identity_axis_status"],
+            "passes_current_controls_peptide_like_acceptor_identity_review_only",
+        )
+        self.assertEqual(metadata["positive_peptide_identity_hit_count"], 1)
+        self.assertEqual(metadata["nonaccepted_peptide_identity_false_hit_count"], 0)
+        self.assertEqual(metadata["sibling_peptide_identity_false_hit_count"], 0)
+        self.assertEqual(metadata["source_free_acceptor_identity_ready_count"], 1)
+        self.assertTrue(metadata["peptide_identity_axis_narrow"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_epk_heteromeric_peptide_external_hard_negative_probe_builder(
+        self,
+    ) -> None:
+        def external_cif(
+            *,
+            gamma_chain_len: int = 0,
+            acceptor_chain_len: int = 20,
+            include_gamma: bool = False,
+        ) -> str:
+            lines = [
+                "data_ext",
+                "loop_",
+                "_atom_site.group_PDB",
+                "_atom_site.auth_comp_id",
+                "_atom_site.label_comp_id",
+                "_atom_site.auth_atom_id",
+                "_atom_site.label_atom_id",
+                "_atom_site.auth_asym_id",
+                "_atom_site.label_asym_id",
+                "_atom_site.auth_seq_id",
+                "_atom_site.label_seq_id",
+                "_atom_site.Cartn_x",
+                "_atom_site.Cartn_y",
+                "_atom_site.Cartn_z",
+            ]
+            for index in range(1, gamma_chain_len + 1):
+                lines.append(
+                    f"ATOM LYS LYS NZ NZ A A {index} {index} 10.0 0.0 0.0"
+                )
+            for index in range(1, acceptor_chain_len + 1):
+                lines.append(
+                    f"ATOM SER SER OG OG B B {index} {index} 3.0 0.0 0.0"
+                )
+            if include_gamma:
+                lines.append("HETATM ANP ANP PG PG A A 900 900 0.0 0.0 0.0")
+            lines.append("#")
+            return "\n".join(lines)
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            abstain_path = root / "abstain.cif"
+            hit_path = root / "hit.cif"
+            abstain_path.write_text(external_cif(), encoding="utf-8")
+            hit_path.write_text(
+                external_cif(
+                    gamma_chain_len=60,
+                    acceptor_chain_len=7,
+                    include_gamma=True,
+                ),
+                encoding="utf-8",
+            )
+            probe = build_epk_heteromeric_peptide_external_hard_negative_probe(
+                epk_heteromeric_peptide_acceptor_identity_probe={
+                    "metadata": {
+                        "method": "epk_heteromeric_peptide_acceptor_identity_probe",
+                        "target_fingerprint_id": (
+                            "epk_atp_gamma_phosphoryl_transfer"
+                        ),
+                        "candidate_threshold_angstrom": 6.0,
+                        "max_peptide_chain_residue_count": 40,
+                        "peptide_identity_axis_status": (
+                            "passes_current_controls_peptide_like_acceptor_identity_review_only"
+                        ),
+                        "source_free_acceptor_identity_ready_count": 3,
+                    }
+                },
+                external_hard_negative_inverse_gate_scores=[
+                    {
+                        "metadata": {"method": "external_inverse_fixture"},
+                        "rows": [
+                            {
+                                "entry_id": "uniprot:ABSTAIN",
+                                "accession": "ABSTAIN",
+                                "coordinate_path": str(abstain_path),
+                                "out_of_scope_inverse_gate": {
+                                    "inverse_gate_status": "passed",
+                                    "max_current_fingerprint_score": 0.1,
+                                },
+                            },
+                            {
+                                "entry_id": "uniprot:HIT",
+                                "accession": "HIT",
+                                "coordinate_path": str(hit_path),
+                                "out_of_scope_inverse_gate": {
+                                    "inverse_gate_status": "passed",
+                                    "max_current_fingerprint_score": 0.1,
+                                },
+                            },
+                        ],
+                    }
+                ],
+                imported_external_entry_ids=["uniprot:ABSTAIN", "uniprot:HIT"],
+            )
+        metadata = probe["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_peptide_external_hard_negative_probe",
+        )
+        self.assertFalse(metadata["review_only_feature_probe_passed"])
+        self.assertEqual(
+            metadata[
+                "review_only_external_hard_negative_feature_non_abstention_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            metadata[
+                "review_only_external_hard_negative_feature_non_abstention_entry_ids"
+            ],
+            ["uniprot:HIT"],
+        )
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        rows = {row["entry_id"]: row for row in probe["rows"]}
+        self.assertEqual(rows["uniprot:ABSTAIN"]["gamma_atom_count"], 0)
+        self.assertFalse(
+            rows["uniprot:ABSTAIN"]["review_only_feature_non_abstention"]
+        )
+        self.assertTrue(rows["uniprot:HIT"]["review_only_feature_non_abstention"])
 
     def test_epk_external_source_lower_priority_ligand_builder_blocks_analog(
         self,
@@ -6795,6 +7146,18 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             metadata["chain_ligand_external_feature_non_abstention_count"],
             0,
         )
+        self.assertTrue(
+            metadata[
+                "heteromeric_peptide_acceptor_identity_passes_current_review_controls"
+            ]
+        )
+        self.assertTrue(
+            metadata["heteromeric_peptide_external_feature_probe_passed"]
+        )
+        self.assertEqual(
+            metadata["heteromeric_peptide_external_feature_non_abstention_count"],
+            0,
+        )
         self.assertEqual(
             metadata["family_specific_template_validated_family_ids"],
             ["atp_grasp", "pfka", "pfkb"],
@@ -6826,6 +7189,14 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         self.assertEqual(
             axes["chain_ligand_acceptor_disambiguation_feature"]["decision"],
             "passes_current_controls_but_not_production_admissible",
+        )
+        self.assertEqual(
+            axes["heteromeric_peptide_acceptor_identity_feature"]["decision"],
+            "passes_current_controls_and_external_feature_probe_but_narrow_not_production_admissible",
+        )
+        self.assertEqual(
+            axes["heteromeric_peptide_acceptor_identity_feature"]["blocker"],
+            "peptide_acceptor_identity_axis_narrow_not_general_epk_acceptor_identity",
         )
 
     def test_epk_substrate_acceptor_counteraxis_prototype_fails_closed(self) -> None:

@@ -1296,6 +1296,20 @@ three nonaccepted heteromeric hits and 11 sibling same-chain hydroxyl hits are
 blocked upstream. It remains review-only and explicitly weak: source-free
 acceptor-identity ready count is still 0 because residue class is not
 substrate identity.
+`artifacts/v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json`
+replaces that weak generic proxy with a narrow non-generic local rule:
+candidate hydroxyls must sit on short peptide-like acceptor polymer chains
+without local nucleotide/metal ligand context, while the gamma-associated
+polymer chain is larger. It hits all three retained heteromeric role
+candidates, blocks the three nonaccepted heteromeric controls, and blocks
+11/11 measured sibling same-chain hydroxyl controls with 0 false hits. The
+companion
+`artifacts/v3_epk_heteromeric_peptide_external_hard_negative_probe_1025.json`
+screens the three imported external hard negatives against that feature and
+keeps all three abstained with 0 non-abstentions, 0 missing rows, and 0
+coordinate-unavailable rows. Both artifacts are review-only diagnostics; the
+peptide identity axis is narrow and is not a calibrated ePK score or label
+gate.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,
@@ -1324,13 +1338,19 @@ rerun passes only as a fail-closed diagnostic, while the text-free gap audit
 and source-free role-rule probe show that role-direction and acceptor identity
 still need local replacements. The acceptor-chain counter-axis passes current
 review controls only; the broader counter-axis and ligand-asymmetry role audit
-now pass broader review controls, but the acceptor-identity gap audit keeps
-scorer construction blocked. None of these is scorer or label evidence. Real
+now pass broader review controls, and the peptide acceptor-identity plus
+peptide external hard-negative probes pass as diagnostics, but the axis remains
+narrow and scorer construction stays blocked. None of these is scorer or label
+evidence. Real
 scorer design, the `m_csa:760`
 split-state repair scan, the
 `m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,
 external scored re-audit, and label-factory extension all remain failing
 gates; the negative-control distribution blocker also stays open.
+The downstream counteraxis sufficiency decision now carries the same
+peptide-acceptor decision row: it passes current review controls and the
+external feature probe, but remains not production-admissible because it is a
+narrow peptide-chain rule rather than a general substrate-identity scorer.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

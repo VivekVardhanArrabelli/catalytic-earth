@@ -3685,6 +3685,7 @@ class CliTests(unittest.TestCase):
             heteromeric_asymmetry = root / "heteromeric_asymmetry.json"
             heteromeric_identity = root / "heteromeric_identity.json"
             heteromeric_identity_rule = root / "heteromeric_identity_rule.json"
+            heteromeric_peptide_external = root / "heteromeric_peptide_external.json"
             out = root / "gate_status.json"
             axis.write_text(
                 json.dumps(
@@ -4209,6 +4210,50 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            heteromeric_peptide_identity = root / "heteromeric_peptide_identity.json"
+            heteromeric_peptide_identity.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_acceptor_identity_probe"
+                            ),
+                            "peptide_identity_axis_status": (
+                                "passes_current_controls_peptide_like_acceptor_identity_review_only"
+                            ),
+                            "positive_peptide_identity_hit_count": 3,
+                            "retained_role_hit_count": 3,
+                            "nonaccepted_peptide_identity_false_hit_count": 0,
+                            "sibling_peptide_identity_false_hit_count": 0,
+                            "source_free_acceptor_identity_ready_count": 3,
+                            "peptide_identity_axis_narrow": True,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            heteromeric_peptide_external.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_external_hard_negative_probe"
+                            ),
+                            "review_only_feature_probe_complete": True,
+                            "review_only_feature_probe_passed": True,
+                            "review_only_external_hard_negative_feature_non_abstention_count": 0,
+                            "missing_expected_external_hard_negative_count": 0,
+                            "coordinate_unavailable_external_hard_negative_count": 0,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                            "external_hard_negative_reaudit_scored": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -4264,6 +4309,10 @@ class CliTests(unittest.TestCase):
                     str(heteromeric_identity),
                     "--epk-heteromeric-acceptor-identity-rule-probe",
                     str(heteromeric_identity_rule),
+                    "--epk-heteromeric-peptide-acceptor-identity-probe",
+                    str(heteromeric_peptide_identity),
+                    "--epk-heteromeric-peptide-external-hard-negative-probe",
+                    str(heteromeric_peptide_external),
                     "--epk-external-hard-negative-reaudit-plan",
                     str(reaudit),
                     "--out",
@@ -4473,6 +4522,49 @@ class CliTests(unittest.TestCase):
                 metadata["heteromeric_acceptor_identity_rule_source_free_ready_count"],
                 0,
             )
+            self.assertEqual(
+                metadata["heteromeric_peptide_acceptor_identity_status"],
+                "passes_current_controls_peptide_like_acceptor_identity_review_only",
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_peptide_acceptor_identity_positive_hit_count"
+                ],
+                3,
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_peptide_acceptor_identity_nonaccepted_false_hit_count"
+                ],
+                0,
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_peptide_acceptor_identity_sibling_false_hit_count"
+                ],
+                0,
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_peptide_acceptor_identity_source_free_ready_count"
+                ],
+                3,
+            )
+            self.assertTrue(
+                metadata["heteromeric_peptide_acceptor_identity_axis_narrow"]
+            )
+            self.assertTrue(
+                metadata["heteromeric_peptide_external_feature_probe_complete"]
+            )
+            self.assertTrue(
+                metadata["heteromeric_peptide_external_feature_probe_passed"]
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_peptide_external_feature_non_abstention_count"
+                ],
+                0,
+            )
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
             checks = {check["gate_id"]: check for check in status["gate_checks"]}
             self.assertTrue(checks["local_axis_prototype"]["passed"])
@@ -4531,6 +4623,131 @@ class CliTests(unittest.TestCase):
             )
             self.assertTrue(
                 checks["heteromeric_acceptor_identity_rule_probe"]["passed"]
+            )
+            self.assertTrue(
+                checks["heteromeric_peptide_acceptor_identity_probe"]["passed"]
+            )
+            self.assertTrue(
+                checks[
+                    "heteromeric_peptide_external_hard_negative_probe"
+                ]["passed"]
+            )
+
+    def test_build_epk_heteromeric_peptide_external_hard_negative_probe_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            peptide = root / "peptide.json"
+            external = root / "external.json"
+            coordinate = root / "afdb_P78549.cif"
+            out = root / "external_probe.json"
+            peptide.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_acceptor_identity_probe"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "candidate_threshold_angstrom": 6.0,
+                            "max_peptide_chain_residue_count": 40,
+                            "peptide_identity_axis_status": (
+                                "passes_current_controls_peptide_like_acceptor_identity_review_only"
+                            ),
+                            "source_free_acceptor_identity_ready_count": 3,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            coordinate.write_text(
+                "\n".join(
+                    [
+                        "data_external",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "ATOM SER SER OG OG A A 1 1 0.0 0.0 0.0",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            external.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "external_hard_negative_next_candidate_inverse_gate_scores"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "uniprot:P78549",
+                                "accession": "P78549",
+                                "coordinate_path": str(coordinate),
+                                "out_of_scope_inverse_gate": {
+                                    "inverse_gate_status": "passed",
+                                    "max_current_fingerprint_score": 0.115,
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-peptide-external-hard-negative-probe",
+                    "--epk-heteromeric-peptide-acceptor-identity-probe",
+                    str(peptide),
+                    "--external-hard-negative-inverse-gate-scores",
+                    str(external),
+                    "--imported-external-entry-ids",
+                    "uniprot:P78549",
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            probe = json.loads(out.read_text(encoding="utf-8"))
+            metadata = probe["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_heteromeric_peptide_external_hard_negative_probe",
+            )
+            self.assertTrue(metadata["review_only_feature_probe_complete"])
+            self.assertTrue(metadata["review_only_feature_probe_passed"])
+            self.assertEqual(
+                metadata[
+                    "review_only_external_hard_negative_feature_non_abstention_count"
+                ],
+                0,
+            )
+            self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+            self.assertEqual(
+                probe["rows"][0]["feature_probe_status"],
+                "review_only_external_hard_negative_abstain_no_gamma_context",
             )
 
     def test_build_epk_acceptor_identity_review_command(self) -> None:
@@ -7085,6 +7302,16 @@ class CliTests(unittest.TestCase):
                             "chain_ligand_acceptor_feature_admissible_for_production_scoring": False,
                             "chain_ligand_acceptor_negative_control_false_hit_count": 0,
                             "chain_ligand_external_feature_non_abstention_count": 0,
+                            "heteromeric_peptide_acceptor_identity_status": (
+                                "passes_current_controls_peptide_like_acceptor_identity_review_only"
+                            ),
+                            "heteromeric_peptide_acceptor_identity_positive_hit_count": 3,
+                            "heteromeric_peptide_acceptor_identity_source_free_ready_count": 3,
+                            "heteromeric_peptide_acceptor_identity_nonaccepted_false_hit_count": 0,
+                            "heteromeric_peptide_acceptor_identity_sibling_false_hit_count": 0,
+                            "heteromeric_peptide_acceptor_identity_axis_narrow": True,
+                            "heteromeric_peptide_external_feature_probe_passed": True,
+                            "heteromeric_peptide_external_feature_non_abstention_count": 0,
                             "negative_control_family_template_validated_family_ids": [
                                 "pfkb"
                             ],
@@ -7142,6 +7369,15 @@ class CliTests(unittest.TestCase):
             self.assertEqual(
                 axes["chain_ligand_acceptor_disambiguation_feature"]["decision"],
                 "passes_current_controls_but_not_production_admissible",
+            )
+            self.assertEqual(
+                axes["heteromeric_peptide_acceptor_identity_feature"]["decision"],
+                "passes_current_controls_and_external_feature_probe_but_narrow_not_production_admissible",
+            )
+            self.assertTrue(
+                metadata[
+                    "heteromeric_peptide_acceptor_identity_passes_current_review_controls"
+                ]
             )
 
     def test_build_epk_substrate_acceptor_counteraxis_prototype_command(

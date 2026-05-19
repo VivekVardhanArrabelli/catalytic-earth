@@ -50,6 +50,66 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T21:38:11Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
+preserved. Startup checks passed: 601 unit tests and `catalytic_earth.cli
+validate`.
+
+The NDK homolog mapping queue was already complete at run start:
+`artifacts/v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json` has
+4/4 measurement-ready structures for `1WKL`, `3Q86`, `9OAN`, and `9PFY`, and
+`artifacts/v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json`
+measures all four with nearest histidine distances of 2.899-3.339 Angstrom and
+same-chain hydroxyl distances of 3.487-5.240 Angstrom. No NDK repair or
+reopening was needed.
+
+`artifacts/v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json` adds
+the requested non-generic local acceptor-identity signal. The rule requires the
+candidate hydroxyl to sit on a short peptide-like polymer chain without local
+nucleotide/metal ligand context while the gamma-associated polymer chain is
+larger. It hits all three retained heteromeric source-valid role candidates
+(`6Z3R`, `8OXM`, and `8OXO`), blocks the three nonaccepted heteromeric controls,
+and blocks all 11 measured sibling same-chain hydroxyl controls with 0 false
+hits. It is deliberately narrow and review-only: source-free ready count is 3,
+but it is not a general ePK substrate-identity rule, not a calibrated score,
+and not label evidence.
+
+`artifacts/v3_epk_heteromeric_peptide_external_hard_negative_probe_1025.json`
+then screens the three imported external hard negatives against that narrow
+peptide identity axis using their existing structural sidecars. All three
+(`uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`) abstain because the
+sidecars have no gamma-nucleotide context; non-abstentions are 0, missing
+external rows are 0, and coordinate-unavailable rows are 0. This is still a
+diagnostic feature probe, not the real scored external hard-negative re-audit.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with both
+new peptide-identity artifacts. Overall status remains `blocked_review_only`.
+The new peptide acceptor identity and peptide external-hard-negative gates
+pass as diagnostics, but acceptor-threshold calibration, the real external
+hard-negative scored re-audit, registry/label-factory extension,
+text-free/protein-substrate acceptor production admissibility, source-free
+chain topology, the three active-state repair scans, and the gamma negative
+control distribution remain failing gates.
+
+`artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` was regenerated
+against that pre-count state. It now records a peptide-acceptor decision row:
+the feature passes current controls and the external feature probe, but stays
+not production-admissible because the peptide axis is narrow and does not
+replace a general substrate-identity rule. Threshold selection remains
+`do_not_select_threshold`.
+
+Evidence-based confidence call: confidence is now medium that short
+peptide-like acceptor-chain context is a useful local axis for the current
+heteromeric ePK review surface because it clears retained positives,
+nonaccepted heteromeric controls, sibling controls, and imported external
+hard-negative feature probes. Confidence remains low for production scoring
+because the axis is narrow, thresholding is uncalibrated, and no real external
+hard-negative scored re-audit or label-factory extension exists.
+
 As of the 2026-05-19T20:36:50Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
