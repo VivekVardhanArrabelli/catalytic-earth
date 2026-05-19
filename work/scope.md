@@ -28,13 +28,30 @@ structures. The follow-on source-repair pivots are also blocked:
 protein-substrate acceptor, and `m_csa:756` has only structure-level ANP/Mg or
 ADP/Mg/product-state leads without conservative active-site remapping and
 active-state acceptor geometry. The current source-repair loop is now closed
-as a negative review-only result until new source evidence or a pre-registered
-analog/product-state policy exists. A policy preregistration draft now exists
+as a negative review-only result; expanded source triage still returns only
+the same three exhausted source candidates. New source evidence or a
+pre-registered analog/product-state policy is now required. A policy
+preregistration draft now exists
 but is inactive; it blocks homomeric chain choices and product-state
 ADP-without-gamma evidence as predictive support until sibling-family and
-external hard-negative scored re-audits pass. The external hard-negative
-re-audit is not scored, thresholds are not calibrated, and registry or
-label-factory extension remains out of scope until those gates pass.
+external hard-negative scored re-audits pass. The policy activation audit now
+fails closed with seven activation blockers despite clean review-only sibling
+and external feature screens. A narrower inactive control re-audit shows the
+active-gamma ligand-analog variant would cover 3/3 current positives with 0
+sibling false hits and 0 imported external feature non-abstentions, but it
+still cannot activate because preselection freeze and scored external re-audit
+requirements fail. The review-only external hard-negative score probe records
+0.0 prototype scores and 0 policy-feature hits for all three imported external
+hard negatives, while still keeping the real scored re-audit gate closed. The
+targeted 5LI1 residue audit preserves local ANP/Mg plus
+Lys380/Asp382/Asn383 evidence for `m_csa:756`, but it still lacks source
+residue authority, terminal gamma atom measurement, and mapped protein-substrate
+acceptor evidence. The 1025 preview/expanded source triage does not expose a
+new ePK protein-substrate source beyond the already exhausted
+`m_csa:760`/`m_csa:757`/`m_csa:756` candidates, and the expanded terminal
+decision remains closed with 0 measurement-ready rows. Thresholds are not
+calibrated, and registry or label-factory extension remains out of scope until
+those gates pass.
 
 ## Time Calibration Rule
 

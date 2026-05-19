@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 188
-- Measured elapsed time: 5660.9 minutes (94.35 hours)
+- Entries: 189
+- Measured elapsed time: 5709.1 minutes (95.15 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 431.8 measured minutes (7.20 hours)
+- post-infra-science: 480.0 measured minutes (8.00 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2115
-- Evidence references logged: 1670
+- Artifact references logged: 2131
+- Evidence references logged: 1687
 
 ## Recent Entries
-
-### 2026-05-18T22:05:23.696999+00:00 - post-infra-science
-
-- Task: ePK NDK homolog sibling-control sourcing
-- Time mode: measured
-- Measured minutes: 12.75
-- Started: 2026-05-18T21:52:26Z
-- Ended: 2026-05-18T22:05:11Z
-- Artifacts: artifacts/v3_epk_sibling_control_homolog_source_plan_ndk_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: startup 486-test unit discovery passed, final 488-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed, NDK homolog source plan found 4 gamma-capable Mg-supported candidates and 0 measurement-ready mapped structures, pre-count gate remains blocked_review_only, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, git diff --check passed
-- Notes: Normal locked direct automation run over SSH deploy-key path with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
 
 ### 2026-05-18T23:06:35.869912+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_m_csa757_active_state_repair_scan_1025.json, artifacts/v3_epk_m_csa756_active_state_repair_scan_1025.json, artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json, artifacts/v3_epk_analog_product_state_policy_preregistration_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: recovered previous dirty ePK source-repair audits as commit 59c7634, m_csa757 scan found active-state leads 1CDK and 1Q24 but 0 mapped acceptors, m_csa756 scan found 5LI1 structure-level ANP/Mg but no conservative remap, terminal source-repair decision closed m_csa760 m_csa757 and m_csa756 with 0 measurement-ready candidates, analog/product-state policy preregistration remains inactive and review-only, final 529-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative score or history rewrite.
+
+### 2026-05-19T13:16:57.787320+00:00 - post-infra-science
+
+- Task: ePK analog policy and source exhaustion probes
+- Time mode: measured
+- Measured minutes: 48.2
+- Started: 2026-05-19T12:28:13Z
+- Ended: 2026-05-19T13:16:25Z
+- Artifacts: artifacts/v3_epk_analog_product_state_policy_activation_audit_1025.json, artifacts/v3_epk_analog_product_state_policy_control_reaudit_1025.json, artifacts/v3_epk_review_only_external_hard_negative_score_probe_1025.json, artifacts/v3_epk_m_csa756_5li1_residue_evidence_audit_1025.json, artifacts/v3_epk_protein_substrate_positive_source_triage_1025_preview.json, artifacts/v3_epk_protein_substrate_positive_source_triage_expanded_1025.json, artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_expanded_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
+- Evidence: startup 529-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote and dry-run push passed, analog policy activation audit failed closed with seven blockers, inactive control re-audit covered 3/3 current positives with 0 sibling false hits and 0 external feature non-abstentions, review-only external hard-negative score probe scored 3 imported negatives at 0.0 with no real scored re-audit claim, 5LI1 audit preserved Lys380 Asp382 Asn383 near ANP/Mg but blocked canonical PG source-authority and mapped-acceptor requirements, preview and expanded source triage found only m_csa760 m_csa756 m_csa757 with 0 measurement-ready rows, expanded terminal decision stayed current_source_candidates_exhausted_review_only, pre-count remains blocked_review_only with 25 gates and real scored external re-audit still failing, final 537-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored claim or history rewrite.
 
 ## Expectation Updates
 

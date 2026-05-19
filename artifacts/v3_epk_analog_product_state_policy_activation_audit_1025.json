@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "activation_blockers": [
+      "policy_is_preregistered_but_not_frozen_or_active",
+      "protein_substrate_axis_still_misses_ligand_analog_positive",
+      "ligand_analog_dependency_has_zero_production_admissible_rows",
+      "no_measurement_ready_protein_substrate_source_repair",
+      "calibrated_epk_score_missing",
+      "external_hard_negatives_not_scored_under_real_epk_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "activation_requirement_count": 7,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "diagnostic_control_count": 2,
+    "diagnostic_control_pass_count": 2,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "failed_activation_requirement_count": 7,
+    "fingerprint_registry_edited": false,
+    "imported_external_hard_negative_feature_screen_clear": true,
+    "ligand_analog_dependency_count": 1,
+    "ligand_analog_dependency_entry_ids": [
+      "m_csa:640"
+    ],
+    "ligand_analog_production_admissible_count": 0,
+    "method": "epk_analog_product_state_policy_activation_audit",
+    "next_actions": [
+      "keep the analog/product-state policy inactive",
+      "source a mapped protein-substrate ePK positive before analog rescue",
+      "run external hard-negative scored re-audit only after a calibrated ePK scorer exists"
+    ],
+    "policy_activation_allowed": false,
+    "policy_activation_status": "blocked_review_only",
+    "production_scoring_admissible": false,
+    "protein_substrate_positive_coverage_without_ligand_analog": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "recommended_next_experiment": "source_mapped_protein_substrate_epk_positive_before_policy_activation",
+    "review_only": true,
+    "review_only_rule": "This artifact audits whether the inactive ePK analog/product-state policy can be activated. It must fail closed unless positive coverage, source repair, scoring, external hard-negative re-audit, and registry gates are all satisfied.",
+    "selected_threshold_angstrom": null,
+    "sibling_controls_remain_blocked_under_candidate_feature": true,
+    "source_epk_analog_product_state_policy_preregistration_method": "epk_analog_product_state_policy_preregistration",
+    "source_epk_chain_ligand_acceptor_disambiguation_audit_method": "epk_chain_ligand_acceptor_disambiguation_audit",
+    "source_epk_chain_ligand_external_hard_negative_feature_screen_method": "epk_chain_ligand_external_hard_negative_feature_screen",
+    "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
+    "source_epk_precount_gate_status_method": "epk_precount_gate_status",
+    "source_epk_protein_substrate_acceptor_candidate_audit_method": "epk_protein_substrate_acceptor_candidate_audit",
+    "source_epk_protein_substrate_source_repair_terminal_decision_method": "epk_protein_substrate_source_repair_terminal_decision",
+    "source_repair_measurement_ready_candidate_count": 0,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "blocker": "policy_is_preregistered_but_not_frozen_or_active",
+      "countable_label_candidate": false,
+      "criterion_id": "policy_frozen_before_activation",
+      "criterion_type": "activation_requirement",
+      "epk_score_computed": false,
+      "evidence": {
+        "policy_activation_allowed": false,
+        "policy_status": "draft_preregistered_review_only_not_activated",
+        "production_scoring_admissible": false
+      },
+      "external_hard_negative_reaudit_scored": false,
+      "passed": false,
+      "production_use_allowed": false,
+      "ready_for_label_import": false,
+      "review_only": true
+    },
+    {
+      "blocker": "protein_substrate_axis_still_misses_ligand_analog_positive",
+      "countable_label_candidate": false,
+      "criterion_id": "protein_substrate_positive_coverage_without_ligand_analog",
+      "criterion_type": "activation_requirement",
+      "epk_score_computed": false,
+      "evidence": {
+        "current_positive_feature_hit_count": 2,
+        "current_positive_feature_miss_count": 1,
+        "current_positive_row_count": 3,
+        "ligand_analog_only_positive_miss_entry_ids": [
+          "m_csa:640"
+        ]
+      },
+      "external_hard_negative_reaudit_scored": false,
+      "passed": false,
+      "production_use_allowed": false,
+      "ready_for_label_import": false,
+      "review_only": true
+    },
+    {
+      "blocker": "ligand_analog_dependency_has_zero_production_admissible_rows",
+      "countable_label_candidate": false,
+      "criterion_id": "ligand_analog_dependency_resolved",
+      "criterion_type": "activation_requirement",
+      "epk_score_computed": false,
+      "evidence": {
+        "ligand_analog_dependency_count": 1,
+        "ligand_analog_dependency_entry_ids": [
+          "m_csa:640"
+        ],
+        "ligand_analog_policy_decision": "do_not_use_ligand_analog_as_production_acceptor_evidence",
+        "ligand_analog_production_admissible_count": 0
+      },
+      "external_hard_negative_reaudit_scored": false,
+      "passed": false,
+      "production_use_allowed": false,
+      "ready_for_label_import": false,
+      "review_only": true
+    },
+    {
+      "blocker": "no_measurement_ready_protein_substrate_source_repair",
+      "countable_label_candidate": false,
+      "criterion_id": "source_repair_measurement_ready_or_new_source",
+      "criterion_type": "activation_requirement",
+      "epk_score_computed": false,
+      "evidence": {
+        "current_source_candidates_exhausted": true,
+        "measurement_ready_candidate_count": 0,
+        "recommended_next_experiment": "pre_register_ligand_analog_or_product_state_policy_or_source_new_epk_positive",
+        "terminal_decision": "current_source_candidates_exhausted_review_only"
+      },
+      "external_hard_negative_reaudit_scored": false,
+      "passed": false,
+      "production_use_allowed": false,
+      "ready_for_label_import": false,
+      "review_only": true
+    },
+    {
+      "blocker": null,
+      "countable_label_candidate": false,
+      "criterion_id": "sibling_controls_remain_blocked_under_candidate_feature",
+      "criterion_type": "diagnostic_control",
+      "epk_score_computed": false,
+      "evidence": {
+        "candidate_feature_id": "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0",
+        "feature_passes_current_review_controls": true,
+        "negative_control_false_hit_count": 0,
+        "negative_control_row_count": 25
+      },
+      "external_hard_negative_reaudit_scored": false,
+      "passed": true,
+      "production_use_allowed": false,
+      "ready_for_label_import": false,
+      "review_only": true
+    },
+    {
+      "blocker": null,
+      "countable_label_candidate": false,
+      "criterion_id": "imported_external_hard_negative_feature_screen_clear",
+      "criterion_type": "diagnostic_control",
+      "epk_score_computed": false,
+      "evidence": {
+        "clean_heldout_performance_claim_permitted": false,
+        "review_only_external_hard_negative_feature_non_abstention_count": 0,
+        "review_only_feature_screen_passed": true
+      },
+      "external_hard_negative_reaudit_scored": false,
+      "passed": true,
+      "production_use_allowed": false,
+      "ready_for_label_import": false,
+      "review_only": true
+    },
+    {
+      "blocker": "calibrated_epk_score_missing",
+      "countable_label_candidate": false,
+      "criterion_id": "calibrated_epk_score_exists",
+      "criterion_type": "activation_requirement",
+      "epk_score_computed": false,
+      "evidence": {
+        "epk_score_computed": false,
+        "ready_to_run_epk_scorer": false,
+        "selected_acceptor_threshold_angstrom": null,
+        "threshold_calibrated": false
+      },
+      "external_hard_negative_reaudit_scored": false,
+      "passed": false,
+      "production_use_allowed": false,
+      "ready_for_label_import": false,
+      "review_only": true
+    },
+    {
+      "blocker": "external_hard_negatives_not_scored_under_real_epk_scorer",
+      "countable_label_candidate": false,
+      "criterion_id": "external_hard_negative_scored_reaudit",
+      "criterion_type": "activation_requirement",
+      "epk_score_computed": false,
+      "evidence": {
+        "external_hard_negative_reaudit_scored": false,
+        "feature_screen_is_review_only": true
+      },
+      "external_hard_negative_reaudit_scored": false,
+      "passed": false,
+      "production_use_allowed": false,
+      "ready_for_label_import": false,
+      "review_only": true
+    },
+    {
+      "blocker": "registry_and_label_factory_extension_not_implemented",
+      "countable_label_candidate": false,
+      "criterion_id": "registry_and_label_factory_extension",
+      "criterion_type": "activation_requirement",
+      "epk_score_computed": false,
+      "evidence": {
+        "curated_label_registry_edited": false,
+        "fingerprint_registry_edited": false,
+        "ready_to_expand_positive_fingerprint_universe": false
+      },
+      "external_hard_negative_reaudit_scored": false,
+      "passed": false,
+      "production_use_allowed": false,
+      "ready_for_label_import": false,
+      "review_only": true
+    }
+  ],
+  "warnings": [
+    "The analog/product-state policy activation audit is review-only negative evidence and authorizes no production ePK scoring."
+  ]
+}

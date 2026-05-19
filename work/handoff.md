@@ -50,6 +50,81 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T12:28:13Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/dry-run push
+hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
+preserved.
+
+The run converted the analog/product-state policy question into three
+fail-closed review-only artifacts. `artifacts/v3_epk_analog_product_state_policy_activation_audit_1025.json`
+confirms the preregistered policy cannot activate: seven blockers remain,
+including inactive policy status, ligand-analog dependency on `m_csa:640`, 0
+production-admissible analog rows, 0 measurement-ready source-repair
+candidates, no calibrated ePK score, no real scored external hard-negative
+re-audit, and no registry/label-factory extension. `artifacts/v3_epk_analog_product_state_policy_control_reaudit_1025.json`
+then tests a narrower inactive active-gamma ligand-analog policy variant. It
+covers 3/3 current positives, including ligand-analog-only `m_csa:640`, while
+keeping 25 sibling controls at 0 false hits and the three imported external
+hard negatives at 0 feature non-abstentions. It still cannot activate because
+the policy was not frozen before candidate selection and external hard
+negatives were not scored by a real ePK scorer. `artifacts/v3_epk_review_only_external_hard_negative_score_probe_1025.json`
+makes the prototype probe explicit: all three imported external hard negatives
+have review-only prototype score 0.0 and 0 policy-feature hits, but
+`external_hard_negative_reaudit_scored` remains false, so this is not clean
+held-out evidence.
+
+The run also closes the specific `5LI1` follow-up clue without reopening broad
+`m_csa:756` repair. `artifacts/v3_epk_m_csa756_5li1_residue_evidence_audit_1025.json`
+resolves chain-A Lys380/Asp382/Asn383 near ANP/Mg and preserves
+structure-level SEP/TPO/PTR-like context. It records a noncanonical `PB` atom,
+but no canonical terminal `PG`; the noncanonical atom is policy-inadmissible,
+5LI1 residue positions are not source-authoritative, and no protein-substrate
+acceptor is mapped. The row remains measurement-not-ready, non-countable, and
+review-only.
+
+The 1025 preview/expanded source-triage checks
+(`artifacts/v3_epk_protein_substrate_positive_source_triage_1025_preview.json`
+and `artifacts/v3_epk_protein_substrate_positive_source_triage_expanded_1025.json`)
+did not expose a new protein-substrate ePK source beyond the already-exhausted
+`m_csa:760`, `m_csa:757`, and `m_csa:756` candidates. Treat them as negative
+queue evidence, not a new label-scaling tranche. The matching expanded terminal
+decision (`artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_expanded_1025.json`)
+also remains `current_source_candidates_exhausted_review_only` with 0
+measurement-ready candidates.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` now consolidates the policy
+activation audit, policy control re-audit, score probe, and 5LI1 residue audit
+as passed diagnostic review-only gates while keeping the lane blocked. The
+remaining failing gates are threshold calibration, real external hard-negative
+scored re-audit, registry/label-factory extension, text-free acceptor feature
+gap, protein-substrate-only acceptor coverage, the three source-repair scans
+for `m_csa:760`/`m_csa:757`/`m_csa:756`, and gamma negative-control distance
+distribution. `artifacts/v3_epk_protein_substrate_positive_source_triage_expanded_1025.json`
+checks the new-source path with a larger review-only cap and still finds only
+the same three exhausted source candidates with 0 measurement-ready rows. The
+expanded terminal decision remains closed as a negative result. The
+next useful science step is not another repeat of the same source-repair scans;
+it should either bring in genuinely new ePK source evidence from outside the
+current queue or turn the current review-only probe into a real scored re-audit
+only after threshold calibration and policy-freeze requirements are satisfied.
+
+Evidence-based confidence call: confidence is higher that current analog and
+5LI1 evidence is useful as design feedback but not admissible for a production
+ePK fingerprint. Confidence remains low that the ePK scorer can safely expand
+without a new protein-substrate positive or a calibrated, pre-frozen analog
+policy because the hard blockers are now explicit and tested.
+
+Verification in this run: full unit discovery reports 537 tests passing;
+`validate` preserved 682 labels and 8 fingerprints; artifact migration
+local-file guard passed with 108 rows, 0 blockers, and `removal_allowed=0`;
+external label invariants stayed at 682 total, 212 seed-fingerprint, 470
+out-of-scope, and exactly three imported external out-of-scope labels;
+compileall, JSON loading for the new ePK artifacts, and `git diff --check`
+passed.
+
 As of the 2026-05-19T11:53:08Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Startup found a
 stale automation lock and coherent dirty work from the previous run; that work

@@ -18775,6 +18775,401 @@ def build_epk_m_csa756_active_state_repair_scan(
     return scan
 
 
+def build_epk_m_csa756_5li1_residue_evidence_audit(
+    *,
+    epk_m_csa756_active_state_repair_scan: dict[str, Any],
+    review_debt_remediation: dict[str, Any],
+    entry_id: str = "m_csa:756",
+    pdb_id: str = "5LI1",
+    candidate_residue_positions: list[dict[str, Any]] | None = None,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Audit the specific 5LI1 residue-position clue without reopening broad scans."""
+
+    scan_meta = epk_m_csa756_active_state_repair_scan.get("metadata", {})
+    if not isinstance(scan_meta, dict):
+        scan_meta = {}
+    remediation_meta = review_debt_remediation.get("metadata", {})
+    if not isinstance(remediation_meta, dict):
+        remediation_meta = {}
+    target_fingerprint_id = str(
+        scan_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    pdb_id_upper = str(pdb_id or "5LI1").upper()
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    if candidate_residue_positions is None:
+        candidate_residue_positions = [
+            {
+                "chain_name": "A",
+                "code": "Lys",
+                "resid": 380,
+                "roles": ["phosphate_binding_basic_residue_review_hint"],
+            },
+            {
+                "chain_name": "A",
+                "code": "Asp",
+                "resid": 382,
+                "roles": ["candidate_catalytic_base_review_hint"],
+            },
+            {
+                "chain_name": "A",
+                "code": "Asn",
+                "resid": 383,
+                "roles": ["metal_or_transition_state_context_review_hint"],
+            },
+        ]
+    normalized_positions = _review_debt_normalized_residue_positions(
+        candidate_residue_positions
+    )
+
+    remediation_rows = [
+        row
+        for row in review_debt_remediation.get("rows", []) or []
+        if isinstance(row, dict) and str(row.get("entry_id") or "") == entry_id
+    ]
+    remediation_row = remediation_rows[0] if remediation_rows else {}
+    selected_pdb_id = str(remediation_row.get("selected_pdb_id") or "").upper()
+    selected_position_count = int(
+        (
+            remediation_row.get("candidate_pdb_residue_position_counts", {}) or {}
+        ).get(selected_pdb_id, 0)
+        or 0
+    )
+    target_position_count = int(
+        (
+            remediation_row.get("candidate_pdb_residue_position_counts", {}) or {}
+        ).get(pdb_id_upper, 0)
+        or 0
+    )
+
+    rows: list[dict[str, Any]] = []
+    warnings: list[str] = []
+    try:
+        cif_text = cif_text_by_pdb.get(pdb_id_upper)
+        fetch_status = "provided_cif_text" if cif_text is not None else "fetched_rcsb_cif"
+        if cif_text is None:
+            cif_text = cif_fetcher(pdb_id_upper)
+        atoms = parse_atom_site_loop(cif_text)
+    except Exception as exc:
+        return {
+            "metadata": {
+                "method": "epk_m_csa756_5li1_residue_evidence_audit",
+                "review_only": True,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "source_epk_m_csa756_active_state_repair_scan_method": (
+                    scan_meta.get("method")
+                ),
+                "source_review_debt_remediation_method": remediation_meta.get(
+                    "method"
+                ),
+                "entry_id": entry_id,
+                "pdb_id": pdb_id_upper,
+                "fetch_status": "failed",
+                "fetch_error": str(exc),
+                "candidate_residue_count": len(normalized_positions),
+                "candidate_residue_resolved_count": 0,
+                "active_site_residue_evidence_found": False,
+                "explicit_residue_source_authority_sufficient": False,
+                "mapped_protein_substrate_acceptor_candidate_count": 0,
+                "measurement_ready_candidate_count": 0,
+                "repair_status": "blocked_review_only_structure_fetch_failed",
+                "ready_to_run_epk_scorer": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "ready_to_expand_positive_fingerprint_universe": False,
+                "ready_for_label_import": False,
+                "fingerprint_registry_edited": False,
+                "curated_label_registry_edited": False,
+                "countable_label_candidate_count": 0,
+            },
+            "rows": [],
+            "warnings": ["5LI1 residue-evidence audit could not fetch structure."],
+        }
+
+    inventory = structure_ligand_inventory_from_atoms(atoms)
+    local_context = _review_debt_local_ligand_context(
+        atoms,
+        pdb_id_upper,
+        {pdb_id_upper: normalized_positions},
+    )
+    local_ligand_codes = _sorted_strings(local_context.get("ligand_codes", []))
+    local_cofactor_families = _sorted_strings(
+        local_context.get("cofactor_families", [])
+    )
+    gamma_capable_codes = {"ACP", "ANP", "ATP", "DTP"}
+    has_local_gamma = bool(set(local_ligand_codes) & gamma_capable_codes)
+    has_local_metal = "metal_ion" in set(local_cofactor_families)
+    resolved_count = int(local_context.get("resolved_residue_count") or 0)
+    active_site_evidence_found = (
+        resolved_count == len(normalized_positions)
+        and has_local_gamma
+        and has_local_metal
+    )
+
+    gamma_atoms = [
+        atom
+        for atom in atoms
+        if atom.get("group_PDB") == "HETATM"
+        and str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        in gamma_capable_codes
+        and str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+        == "PG"
+    ]
+    terminal_gamma_atom_detected = bool(gamma_atoms)
+    noncanonical_terminal_atoms = [
+        atom
+        for atom in atoms
+        if atom.get("group_PDB") == "HETATM"
+        and str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        in gamma_capable_codes
+        and str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+        in {"PB", "P3B", "P2B"}
+    ]
+    noncanonical_terminal_atom_names = _sorted_strings(
+        atom.get("auth_atom_id") or atom.get("label_atom_id")
+        for atom in noncanonical_terminal_atoms
+    )
+    metal_atoms = [
+        atom
+        for atom in atoms
+        if atom.get("group_PDB") == "HETATM"
+        and _ligand_code_family(
+            str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        )
+        == "metal_ion"
+    ]
+
+    for position in normalized_positions:
+        residue_atoms = select_residue_atoms(
+            atoms,
+            chain_name=position.get("chain_name"),
+            resid=position.get("resid"),
+            code=position.get("code"),
+        )
+        gamma_distances = []
+        for gamma_atom in gamma_atoms:
+            gamma_point = _atom_point(gamma_atom)
+            for residue_atom in residue_atoms:
+                gamma_distances.append(
+                    round(_point_distance(gamma_point, _atom_point(residue_atom)), 3)
+                )
+        metal_distances = []
+        for metal_atom in metal_atoms:
+            metal_point = _atom_point(metal_atom)
+            for residue_atom in residue_atoms:
+                metal_distances.append(
+                    round(_point_distance(metal_point, _atom_point(residue_atom)), 3)
+                )
+        noncanonical_terminal_distances = []
+        for terminal_atom in noncanonical_terminal_atoms:
+            terminal_point = _atom_point(terminal_atom)
+            for residue_atom in residue_atoms:
+                noncanonical_terminal_distances.append(
+                    round(
+                        _point_distance(terminal_point, _atom_point(residue_atom)),
+                        3,
+                    )
+                )
+        residue_resolved = bool(residue_atoms)
+        if residue_resolved and gamma_distances and metal_distances:
+            residue_status = "resolved_near_terminal_gamma_and_metal_review_hint"
+        elif residue_resolved and noncanonical_terminal_distances and metal_distances:
+            residue_status = (
+                "resolved_near_metal_noncanonical_terminal_atom_review_hint"
+            )
+        elif residue_resolved and metal_distances and not terminal_gamma_atom_detected:
+            residue_status = "resolved_near_metal_no_terminal_gamma_atom_review_hint"
+        elif residue_resolved:
+            residue_status = "resolved_but_active_state_distance_context_incomplete"
+        else:
+            residue_status = "not_resolved"
+        rows.append(
+            {
+                "row_type": "candidate_active_site_residue",
+                "entry_id": entry_id,
+                "pdb_id": pdb_id_upper,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "residue_code": position.get("code"),
+                "chain_name": position.get("chain_name"),
+                "resid": position.get("resid"),
+                "roles": position.get("roles", []),
+                "residue_resolved": residue_resolved,
+                "nearest_gamma_atom_distance_angstrom": (
+                    min(gamma_distances) if gamma_distances else None
+                ),
+                "nearest_noncanonical_terminal_atom_distance_angstrom": (
+                    min(noncanonical_terminal_distances)
+                    if noncanonical_terminal_distances
+                    else None
+                ),
+                "nearest_metal_atom_distance_angstrom": (
+                    min(metal_distances) if metal_distances else None
+                ),
+                "residue_evidence_status": residue_status,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+            }
+        )
+
+    catalytic_chains = {
+        str(position.get("chain_name"))
+        for position in normalized_positions
+        if position.get("chain_name")
+    }
+    phosphoacceptor_codes = {"SEP", "TPO", "PTR"}
+    phosphoacceptor_rows: list[dict[str, Any]] = []
+    for code in sorted(phosphoacceptor_codes):
+        residue_keys: set[tuple[str, str]] = set()
+        for atom in atoms:
+            atom_code = str(
+                atom.get("auth_comp_id") or atom.get("label_comp_id") or ""
+            ).upper()
+            if atom_code != code:
+                continue
+            chain = str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
+            resid = str(atom.get("auth_seq_id") or atom.get("label_seq_id") or "")
+            if not chain or not resid:
+                continue
+            residue_keys.add((chain, resid))
+        for chain, resid in sorted(residue_keys):
+            phosphoacceptor_rows.append(
+                {
+                    "row_type": "structure_phosphoacceptor_like_context",
+                    "entry_id": entry_id,
+                    "pdb_id": pdb_id_upper,
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "residue_code": code,
+                    "chain_name": chain,
+                    "resid": resid,
+                    "non_catalytic_chain": chain not in catalytic_chains,
+                    "mapped_as_protein_substrate_acceptor": False,
+                    "mapping_status": "structure_level_phosphoacceptor_not_source_mapped",
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                }
+            )
+    rows.extend(phosphoacceptor_rows)
+    if phosphoacceptor_rows:
+        warnings.append(
+            "5LI1 has structure-level SEP/TPO context, but it is not source-mapped "
+            "as a protein-substrate acceptor for ePK scoring."
+        )
+    if target_position_count == 0:
+        warnings.append(
+            "5LI1 still lacks committed source residue positions; review-hint "
+            "residues are not production scoring evidence."
+        )
+
+    explicit_source_authority_sufficient = target_position_count > 0
+    mapped_acceptor_count = 0
+    measurement_ready = (
+        active_site_evidence_found
+        and explicit_source_authority_sufficient
+        and mapped_acceptor_count > 0
+    )
+    if measurement_ready:
+        repair_status = "measurement_ready_review_only"
+    elif active_site_evidence_found and not terminal_gamma_atom_detected:
+        repair_status = (
+            "blocked_review_only_residue_evidence_lacks_terminal_gamma_atom_no_mapped_acceptor"
+        )
+    elif active_site_evidence_found:
+        repair_status = (
+            "blocked_review_only_residue_evidence_not_source_authoritative_no_mapped_acceptor"
+        )
+    else:
+        repair_status = "blocked_review_only_active_site_residue_evidence_incomplete"
+
+    return {
+        "metadata": {
+            "method": "epk_m_csa756_5li1_residue_evidence_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_m_csa756_active_state_repair_scan_method": (
+                scan_meta.get("method")
+            ),
+            "source_review_debt_remediation_method": remediation_meta.get("method"),
+            "entry_id": entry_id,
+            "pdb_id": pdb_id_upper,
+            "selected_pdb_id": selected_pdb_id or None,
+            "fetch_status": fetch_status,
+            "structure_ligand_codes": _sorted_strings(
+                inventory.get("ligand_codes", [])
+            ),
+            "structure_cofactor_families": _sorted_strings(
+                inventory.get("cofactor_families", [])
+            ),
+            "local_ligand_codes": local_ligand_codes,
+            "local_cofactor_families": local_cofactor_families,
+            "candidate_residue_count": len(normalized_positions),
+            "candidate_residue_resolved_count": resolved_count,
+            "selected_structure_source_residue_position_count": selected_position_count,
+            "target_structure_source_residue_position_count": target_position_count,
+            "local_gamma_capable_nucleotide_detected": has_local_gamma,
+            "terminal_gamma_atom_detected": terminal_gamma_atom_detected,
+            "noncanonical_terminal_atom_names_detected": (
+                noncanonical_terminal_atom_names
+            ),
+            "noncanonical_terminal_atom_policy_admissible": False,
+            "local_metal_detected": has_local_metal,
+            "active_site_residue_evidence_found": active_site_evidence_found,
+            "explicit_residue_source_authority_sufficient": (
+                explicit_source_authority_sufficient
+            ),
+            "structure_phosphoacceptor_like_context_count": len(phosphoacceptor_rows),
+            "mapped_protein_substrate_acceptor_candidate_count": mapped_acceptor_count,
+            "measurement_ready_candidate_count": 1 if measurement_ready else 0,
+            "repair_status": repair_status,
+            "ready_to_measure_gamma_acceptor_distance": measurement_ready,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "remaining_blockers": [
+                "active_state_terminal_gamma_atom_not_materialized"
+                if not terminal_gamma_atom_detected
+                else "gamma_atom_present_but_acceptor_not_mapped",
+                "5li1_residue_positions_not_source_authoritative"
+                if not explicit_source_authority_sufficient
+                else "source_residue_position_authority_requires_review",
+                "protein_substrate_acceptor_not_source_mapped",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "threshold_not_calibrated_against_negative_controls",
+            ],
+            "review_only_rule": (
+                "This artifact audits the specific 5LI1 residue-position clue "
+                "after the broad m_csa:756 scan failed. It can preserve local "
+                "active-state residue evidence, but review-hint residues and "
+                "structure-level phosphoacceptor context are not production "
+                "ePK scoring evidence."
+            ),
+            "next_actions": [
+                "obtain source-authoritative 5LI1 residue positions before any m_csa:756 rescue",
+                "map a protein-substrate acceptor chain or leave m_csa:756 excluded",
+                "keep analog/product-state policy inactive until scored controls pass",
+            ],
+        },
+        "rows": rows,
+        "warnings": warnings,
+    }
+
+
 def build_epk_protein_substrate_source_repair_terminal_decision(
     *,
     epk_protein_substrate_positive_source_triage: dict[str, Any],
@@ -19084,6 +19479,1009 @@ def build_epk_analog_product_state_policy_preregistration(
     }
 
 
+def build_epk_analog_product_state_policy_activation_audit(
+    *,
+    epk_analog_product_state_policy_preregistration: dict[str, Any],
+    epk_ligand_analog_policy_blocker_decision: dict[str, Any],
+    epk_protein_substrate_acceptor_candidate_audit: dict[str, Any],
+    epk_chain_ligand_acceptor_disambiguation_audit: dict[str, Any],
+    epk_chain_ligand_external_hard_negative_feature_screen: dict[str, Any],
+    epk_protein_substrate_source_repair_terminal_decision: dict[str, Any],
+    epk_precount_gate_status: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Audit whether the inactive ePK analog/product-state policy can activate."""
+
+    prereg_meta = epk_analog_product_state_policy_preregistration.get(
+        "metadata", {}
+    )
+    if not isinstance(prereg_meta, dict):
+        prereg_meta = {}
+    analog_meta = epk_ligand_analog_policy_blocker_decision.get("metadata", {})
+    if not isinstance(analog_meta, dict):
+        analog_meta = {}
+    protein_meta = epk_protein_substrate_acceptor_candidate_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(protein_meta, dict):
+        protein_meta = {}
+    chain_meta = epk_chain_ligand_acceptor_disambiguation_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(chain_meta, dict):
+        chain_meta = {}
+    external_meta = epk_chain_ligand_external_hard_negative_feature_screen.get(
+        "metadata", {}
+    )
+    if not isinstance(external_meta, dict):
+        external_meta = {}
+    terminal_meta = epk_protein_substrate_source_repair_terminal_decision.get(
+        "metadata", {}
+    )
+    if not isinstance(terminal_meta, dict):
+        terminal_meta = {}
+    precount_meta = (
+        epk_precount_gate_status.get("metadata", {})
+        if isinstance(epk_precount_gate_status, dict)
+        else {}
+    )
+    if not isinstance(precount_meta, dict):
+        precount_meta = {}
+
+    target_fingerprint_id = str(
+        prereg_meta.get("target_fingerprint_id")
+        or analog_meta.get("target_fingerprint_id")
+        or protein_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+
+    def _int_meta(meta: dict[str, Any], key: str) -> int:
+        try:
+            return int(meta.get(key) or 0)
+        except (TypeError, ValueError):
+            return 0
+
+    def _criterion(
+        *,
+        criterion_id: str,
+        criterion_type: str,
+        passed: bool,
+        evidence: dict[str, Any],
+        blocker: str | None,
+    ) -> dict[str, Any]:
+        return {
+            "criterion_id": criterion_id,
+            "criterion_type": criterion_type,
+            "review_only": True,
+            "passed": passed,
+            "production_use_allowed": False,
+            "evidence": evidence,
+            "blocker": blocker,
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+        }
+
+    policy_frozen = bool(prereg_meta.get("policy_activation_allowed")) and bool(
+        prereg_meta.get("production_scoring_admissible")
+    )
+    protein_positive_rows = _int_meta(protein_meta, "current_positive_row_count")
+    protein_positive_hits = _int_meta(
+        protein_meta, "current_positive_feature_hit_count"
+    )
+    protein_positive_coverage = (
+        protein_positive_rows > 0 and protein_positive_hits == protein_positive_rows
+    )
+    ligand_dependency_count = _int_meta(analog_meta, "ligand_analog_dependency_count")
+    ligand_admissible_count = _int_meta(
+        analog_meta, "ligand_analog_production_admissible_count"
+    )
+    ligand_dependency_resolved = (
+        ligand_dependency_count == 0
+        or ligand_admissible_count == ligand_dependency_count
+    )
+    source_measurement_ready = (
+        _int_meta(terminal_meta, "measurement_ready_candidate_count") > 0
+    )
+    chain_controls_blocked = (
+        bool(chain_meta.get("feature_passes_current_review_controls"))
+        and _int_meta(chain_meta, "negative_control_false_hit_count") == 0
+    )
+    external_feature_screen_passed = (
+        bool(external_meta.get("review_only_feature_screen_passed"))
+        and _int_meta(
+            external_meta,
+            "review_only_external_hard_negative_feature_non_abstention_count",
+        )
+        == 0
+    )
+    scorer_exists = bool(precount_meta.get("ready_to_run_epk_scorer")) and bool(
+        precount_meta.get("epk_score_computed")
+    )
+    external_scored_reaudit = bool(
+        external_meta.get("external_hard_negative_reaudit_scored")
+        or precount_meta.get("external_hard_negative_reaudit_scored")
+    )
+    registry_extended = bool(precount_meta.get("fingerprint_registry_edited")) and bool(
+        precount_meta.get("curated_label_registry_edited")
+    )
+
+    rows = [
+        _criterion(
+            criterion_id="policy_frozen_before_activation",
+            criterion_type="activation_requirement",
+            passed=policy_frozen,
+            evidence={
+                "policy_status": prereg_meta.get("policy_status"),
+                "policy_activation_allowed": bool(
+                    prereg_meta.get("policy_activation_allowed")
+                ),
+                "production_scoring_admissible": bool(
+                    prereg_meta.get("production_scoring_admissible")
+                ),
+            },
+            blocker=(
+                None
+                if policy_frozen
+                else "policy_is_preregistered_but_not_frozen_or_active"
+            ),
+        ),
+        _criterion(
+            criterion_id="protein_substrate_positive_coverage_without_ligand_analog",
+            criterion_type="activation_requirement",
+            passed=protein_positive_coverage,
+            evidence={
+                "current_positive_row_count": protein_positive_rows,
+                "current_positive_feature_hit_count": protein_positive_hits,
+                "current_positive_feature_miss_count": _int_meta(
+                    protein_meta, "current_positive_feature_miss_count"
+                ),
+                "ligand_analog_only_positive_miss_entry_ids": protein_meta.get(
+                    "ligand_analog_only_positive_miss_entry_ids", []
+                ),
+            },
+            blocker=(
+                None
+                if protein_positive_coverage
+                else "protein_substrate_axis_still_misses_ligand_analog_positive"
+            ),
+        ),
+        _criterion(
+            criterion_id="ligand_analog_dependency_resolved",
+            criterion_type="activation_requirement",
+            passed=ligand_dependency_resolved,
+            evidence={
+                "ligand_analog_dependency_count": ligand_dependency_count,
+                "ligand_analog_dependency_entry_ids": analog_meta.get(
+                    "ligand_analog_dependency_entry_ids", []
+                ),
+                "ligand_analog_production_admissible_count": ligand_admissible_count,
+                "ligand_analog_policy_decision": analog_meta.get(
+                    "ligand_analog_policy_decision"
+                ),
+            },
+            blocker=(
+                None
+                if ligand_dependency_resolved
+                else "ligand_analog_dependency_has_zero_production_admissible_rows"
+            ),
+        ),
+        _criterion(
+            criterion_id="source_repair_measurement_ready_or_new_source",
+            criterion_type="activation_requirement",
+            passed=source_measurement_ready,
+            evidence={
+                "current_source_candidates_exhausted": bool(
+                    terminal_meta.get("current_source_candidates_exhausted")
+                ),
+                "measurement_ready_candidate_count": _int_meta(
+                    terminal_meta, "measurement_ready_candidate_count"
+                ),
+                "terminal_decision": terminal_meta.get("terminal_decision"),
+                "recommended_next_experiment": terminal_meta.get(
+                    "recommended_next_experiment"
+                ),
+            },
+            blocker=(
+                None
+                if source_measurement_ready
+                else "no_measurement_ready_protein_substrate_source_repair"
+            ),
+        ),
+        _criterion(
+            criterion_id="sibling_controls_remain_blocked_under_candidate_feature",
+            criterion_type="diagnostic_control",
+            passed=chain_controls_blocked,
+            evidence={
+                "candidate_feature_id": chain_meta.get("candidate_feature_id"),
+                "feature_passes_current_review_controls": bool(
+                    chain_meta.get("feature_passes_current_review_controls")
+                ),
+                "negative_control_false_hit_count": _int_meta(
+                    chain_meta, "negative_control_false_hit_count"
+                ),
+                "negative_control_row_count": _int_meta(
+                    chain_meta, "negative_control_row_count"
+                ),
+            },
+            blocker=(
+                None
+                if chain_controls_blocked
+                else "sibling_controls_not_clean_under_candidate_feature"
+            ),
+        ),
+        _criterion(
+            criterion_id="imported_external_hard_negative_feature_screen_clear",
+            criterion_type="diagnostic_control",
+            passed=external_feature_screen_passed,
+            evidence={
+                "review_only_feature_screen_passed": bool(
+                    external_meta.get("review_only_feature_screen_passed")
+                ),
+                "review_only_external_hard_negative_feature_non_abstention_count": (
+                    _int_meta(
+                        external_meta,
+                        "review_only_external_hard_negative_feature_non_abstention_count",
+                    )
+                ),
+                "clean_heldout_performance_claim_permitted": bool(
+                    external_meta.get("clean_heldout_performance_claim_permitted")
+                ),
+            },
+            blocker=(
+                None
+                if external_feature_screen_passed
+                else "external_hard_negative_feature_screen_not_clear"
+            ),
+        ),
+        _criterion(
+            criterion_id="calibrated_epk_score_exists",
+            criterion_type="activation_requirement",
+            passed=scorer_exists,
+            evidence={
+                "ready_to_run_epk_scorer": bool(
+                    precount_meta.get("ready_to_run_epk_scorer")
+                ),
+                "epk_score_computed": bool(precount_meta.get("epk_score_computed")),
+                "selected_acceptor_threshold_angstrom": precount_meta.get(
+                    "selected_acceptor_threshold_angstrom"
+                ),
+                "threshold_calibrated": bool(
+                    precount_meta.get("threshold_calibrated")
+                ),
+            },
+            blocker=None if scorer_exists else "calibrated_epk_score_missing",
+        ),
+        _criterion(
+            criterion_id="external_hard_negative_scored_reaudit",
+            criterion_type="activation_requirement",
+            passed=external_scored_reaudit,
+            evidence={
+                "external_hard_negative_reaudit_scored": external_scored_reaudit,
+                "feature_screen_is_review_only": True,
+            },
+            blocker=(
+                None
+                if external_scored_reaudit
+                else "external_hard_negatives_not_scored_under_real_epk_scorer"
+            ),
+        ),
+        _criterion(
+            criterion_id="registry_and_label_factory_extension",
+            criterion_type="activation_requirement",
+            passed=registry_extended,
+            evidence={
+                "fingerprint_registry_edited": bool(
+                    precount_meta.get("fingerprint_registry_edited")
+                ),
+                "curated_label_registry_edited": bool(
+                    precount_meta.get("curated_label_registry_edited")
+                ),
+                "ready_to_expand_positive_fingerprint_universe": bool(
+                    precount_meta.get("ready_to_expand_positive_fingerprint_universe")
+                ),
+            },
+            blocker=(
+                None
+                if registry_extended
+                else "registry_and_label_factory_extension_not_implemented"
+            ),
+        ),
+    ]
+    activation_rows = [
+        row for row in rows if row.get("criterion_type") == "activation_requirement"
+    ]
+    diagnostic_rows = [
+        row for row in rows if row.get("criterion_type") == "diagnostic_control"
+    ]
+    activation_blockers = [
+        row["blocker"] for row in activation_rows if not row["passed"] and row["blocker"]
+    ]
+    policy_activation_allowed = bool(activation_rows) and all(
+        row["passed"] for row in activation_rows
+    )
+    if ligand_dependency_count and not ligand_dependency_resolved:
+        recommended_next_experiment = (
+            "source_mapped_protein_substrate_epk_positive_before_policy_activation"
+        )
+    elif not source_measurement_ready:
+        recommended_next_experiment = (
+            "source_new_epk_positive_or_keep_analog_policy_inactive"
+        )
+    else:
+        recommended_next_experiment = (
+            "calibrate_scorer_then_run_external_hard_negative_reaudit"
+        )
+
+    return {
+        "metadata": {
+            "method": "epk_analog_product_state_policy_activation_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_analog_product_state_policy_preregistration_method": (
+                prereg_meta.get("method")
+            ),
+            "source_epk_ligand_analog_policy_blocker_decision_method": (
+                analog_meta.get("method")
+            ),
+            "source_epk_protein_substrate_acceptor_candidate_audit_method": (
+                protein_meta.get("method")
+            ),
+            "source_epk_chain_ligand_acceptor_disambiguation_audit_method": (
+                chain_meta.get("method")
+            ),
+            "source_epk_chain_ligand_external_hard_negative_feature_screen_method": (
+                external_meta.get("method")
+            ),
+            "source_epk_protein_substrate_source_repair_terminal_decision_method": (
+                terminal_meta.get("method")
+            ),
+            "source_epk_precount_gate_status_method": precount_meta.get("method"),
+            "policy_activation_status": (
+                "activation_allowed_review_only_unexpected"
+                if policy_activation_allowed
+                else "blocked_review_only"
+            ),
+            "policy_activation_allowed": policy_activation_allowed,
+            "production_scoring_admissible": False,
+            "activation_requirement_count": len(activation_rows),
+            "failed_activation_requirement_count": sum(
+                1 for row in activation_rows if not row["passed"]
+            ),
+            "diagnostic_control_count": len(diagnostic_rows),
+            "diagnostic_control_pass_count": sum(
+                1 for row in diagnostic_rows if row["passed"]
+            ),
+            "activation_blockers": activation_blockers,
+            "protein_substrate_positive_coverage_without_ligand_analog": (
+                protein_positive_coverage
+            ),
+            "ligand_analog_dependency_count": ligand_dependency_count,
+            "ligand_analog_dependency_entry_ids": analog_meta.get(
+                "ligand_analog_dependency_entry_ids", []
+            ),
+            "ligand_analog_production_admissible_count": ligand_admissible_count,
+            "source_repair_measurement_ready_candidate_count": _int_meta(
+                terminal_meta, "measurement_ready_candidate_count"
+            ),
+            "sibling_controls_remain_blocked_under_candidate_feature": (
+                chain_controls_blocked
+            ),
+            "imported_external_hard_negative_feature_screen_clear": (
+                external_feature_screen_passed
+            ),
+            "external_hard_negative_reaudit_scored": external_scored_reaudit,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "recommended_next_experiment": recommended_next_experiment,
+            "review_only_rule": (
+                "This artifact audits whether the inactive ePK analog/product-state "
+                "policy can be activated. It must fail closed unless positive "
+                "coverage, source repair, scoring, external hard-negative re-audit, "
+                "and registry gates are all satisfied."
+            ),
+            "next_actions": [
+                "keep the analog/product-state policy inactive",
+                "source a mapped protein-substrate ePK positive before analog rescue",
+                "run external hard-negative scored re-audit only after a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "The analog/product-state policy activation audit is review-only "
+                "negative evidence and authorizes no production ePK scoring."
+            )
+        ],
+    }
+
+
+def build_epk_analog_product_state_policy_control_reaudit(
+    *,
+    epk_analog_product_state_policy_preregistration: dict[str, Any],
+    epk_chain_ligand_acceptor_disambiguation_audit: dict[str, Any],
+    epk_chain_ligand_external_hard_negative_feature_screen: dict[str, Any],
+    epk_protein_substrate_source_repair_terminal_decision: dict[str, Any],
+    imported_external_entry_ids: list[str] | None = None,
+) -> dict[str, Any]:
+    """Re-audit a frozen review-only analog/product-state policy surface."""
+
+    prereg_meta = epk_analog_product_state_policy_preregistration.get(
+        "metadata", {}
+    )
+    if not isinstance(prereg_meta, dict):
+        prereg_meta = {}
+    chain_meta = epk_chain_ligand_acceptor_disambiguation_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(chain_meta, dict):
+        chain_meta = {}
+    external_meta = epk_chain_ligand_external_hard_negative_feature_screen.get(
+        "metadata", {}
+    )
+    if not isinstance(external_meta, dict):
+        external_meta = {}
+    terminal_meta = epk_protein_substrate_source_repair_terminal_decision.get(
+        "metadata", {}
+    )
+    if not isinstance(terminal_meta, dict):
+        terminal_meta = {}
+
+    target_fingerprint_id = str(
+        prereg_meta.get("target_fingerprint_id")
+        or chain_meta.get("target_fingerprint_id")
+        or terminal_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    expected_external_ids = set(
+        imported_external_entry_ids
+        or ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"]
+    )
+    feature_id = "active_gamma_ligand_analog_or_protein_substrate_acceptor_policy_v0"
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    positive_count = 0
+    positive_hit_count = 0
+    protein_substrate_positive_hit_count = 0
+    ligand_analog_positive_hit_count = 0
+    control_count = 0
+    control_false_hit_count = 0
+
+    for source_row in epk_chain_ligand_acceptor_disambiguation_audit.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        row_type = str(source_row.get("row_type") or "")
+        source_hit = bool(source_row.get("candidate_feature_hit"))
+        non_catalytic_chain_acceptor = bool(
+            source_row.get("non_catalytic_chain_acceptor")
+        )
+        ligand_analog_acceptor = bool(source_row.get("ligand_analog_acceptor"))
+        active_gamma_geometry = bool(
+            source_row.get("nearest_gamma_to_candidate_acceptor_distance_angstrom")
+            is not None
+        )
+        product_state_blocked = (
+            str(source_row.get("gamma_geometry_scope") or "").lower()
+            == "product_state"
+        )
+        homomeric_chain_choice_blocked = bool(
+            source_row.get("homomeric_mapping_ambiguous")
+        )
+        policy_hit = bool(
+            source_hit
+            and active_gamma_geometry
+            and not product_state_blocked
+            and not homomeric_chain_choice_blocked
+            and (non_catalytic_chain_acceptor or ligand_analog_acceptor)
+        )
+        if row_type == "current_epk_positive_prototype":
+            positive_count += 1
+            if policy_hit:
+                positive_hit_count += 1
+                if ligand_analog_acceptor:
+                    ligand_analog_positive_hit_count += 1
+                    decision = "policy_positive_ligand_analog_hit_review_only"
+                else:
+                    protein_substrate_positive_hit_count += 1
+                    decision = "policy_positive_protein_substrate_hit_review_only"
+            elif product_state_blocked:
+                decision = "policy_positive_blocked_product_state_review_only"
+            elif homomeric_chain_choice_blocked:
+                decision = "policy_positive_blocked_homomeric_chain_choice_review_only"
+            else:
+                decision = "policy_positive_miss_review_only"
+        elif row_type.endswith("negative_control"):
+            control_count += 1
+            if policy_hit:
+                control_false_hit_count += 1
+                decision = "policy_control_false_hit_blocks_activation"
+            elif source_hit and not policy_hit:
+                decision = "policy_control_blocked_by_exclusion_rule_review_only"
+            else:
+                decision = "policy_control_nonhit_review_only"
+        else:
+            continue
+
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": row_type,
+                "entry_id": source_row.get("entry_id"),
+                "pdb_id": source_row.get("pdb_id"),
+                "family_id": source_row.get("family_id"),
+                "family_name": source_row.get("family_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only", True)
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "policy_variant_id": feature_id,
+                "source_candidate_feature_id": source_row.get("candidate_feature_id"),
+                "source_candidate_feature_hit": source_hit,
+                "policy_feature_hit": policy_hit,
+                "policy_reaudit_decision": decision,
+                "non_catalytic_chain_acceptor": non_catalytic_chain_acceptor,
+                "ligand_analog_acceptor": ligand_analog_acceptor,
+                "active_gamma_geometry": active_gamma_geometry,
+                "product_state_blocked": product_state_blocked,
+                "homomeric_chain_choice_blocked": homomeric_chain_choice_blocked,
+                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                    source_row.get(
+                        "nearest_gamma_to_candidate_acceptor_distance_angstrom"
+                    )
+                ),
+                "source_feature_audit_decision": source_row.get(
+                    "feature_audit_decision"
+                ),
+                "predictive_use_status": (
+                    "review_only_policy_reaudit_not_production_score"
+                ),
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "policy_not_frozen_before_candidate_selection",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    external_rows_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in epk_chain_ligand_external_hard_negative_feature_screen.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    external_abstention_count = 0
+    external_non_abstention_count = 0
+    external_missing_count = 0
+    for entry_id in sorted(expected_external_ids, key=_entry_id_sort_key):
+        source_row = external_rows_by_entry.get(entry_id, {})
+        feature_hit = bool(source_row.get("review_only_feature_non_abstention"))
+        if not source_row:
+            external_missing_count += 1
+            decision = "policy_external_hard_negative_missing_review_only"
+        elif feature_hit:
+            external_non_abstention_count += 1
+            decision = "policy_external_hard_negative_feature_non_abstention"
+        else:
+            external_abstention_count += 1
+            decision = "policy_external_hard_negative_feature_abstention"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "imported_external_hard_negative",
+                "entry_id": entry_id,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only", True)
+                ),
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "policy_variant_id": feature_id,
+                "source_candidate_feature_id": source_row.get(
+                    "candidate_feature_id"
+                ),
+                "source_candidate_feature_hit": bool(
+                    source_row.get("candidate_feature_hit")
+                ),
+                "policy_feature_hit": feature_hit,
+                "policy_reaudit_decision": decision,
+                "review_only_feature_score": source_row.get(
+                    "review_only_feature_score"
+                ),
+                "source_feature_screen_status": source_row.get(
+                    "feature_screen_status"
+                ),
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "clean_heldout_performance_claim_permitted": False,
+                "remaining_blockers": [
+                    "not_a_real_scored_external_reaudit",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "policy_not_active",
+                ],
+            }
+        )
+
+    source_repair_blocked_count = 0
+    source_repair_measurement_ready_count = 0
+    for source_row in epk_protein_substrate_source_repair_terminal_decision.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        measurement_ready = bool(
+            int(source_row.get("measurement_ready_candidate_count") or 0) > 0
+        )
+        if measurement_ready:
+            source_repair_measurement_ready_count += 1
+            decision = "policy_source_repair_measurement_ready_review_only"
+        else:
+            source_repair_blocked_count += 1
+            decision = "policy_source_repair_blocked_by_exclusion_or_missing_geometry"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "protein_substrate_source_repair_candidate",
+                "entry_id": source_row.get("entry_id"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "policy_variant_id": feature_id,
+                "policy_feature_hit": False,
+                "policy_reaudit_decision": decision,
+                "source_repair_decision": source_row.get("decision"),
+                "active_state_or_atp_metal_candidate_count": source_row.get(
+                    "active_state_or_atp_metal_candidate_count"
+                ),
+                "mapped_or_context_acceptor_candidate_count": source_row.get(
+                    "mapped_or_context_acceptor_candidate_count"
+                ),
+                "measurement_ready_candidate_count": source_row.get(
+                    "measurement_ready_candidate_count"
+                ),
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "source_repair_not_measurement_ready",
+                    "policy_not_active",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ],
+            }
+        )
+
+    positive_coverage_passed = positive_count > 0 and positive_hit_count == positive_count
+    sibling_control_reaudit_passed = control_count > 0 and control_false_hit_count == 0
+    external_feature_screen_passed = (
+        external_missing_count == 0 and external_non_abstention_count == 0
+    )
+    external_scored_reaudit_passed = False
+    freeze_policy_before_candidate_selection_passed = False
+    activation_requirements = {
+        "freeze_policy_before_candidate_selection": (
+            freeze_policy_before_candidate_selection_passed
+        ),
+        "sibling_family_control_reaudit": sibling_control_reaudit_passed,
+        "external_hard_negative_scored_reaudit": external_scored_reaudit_passed,
+    }
+    failed_activation_requirement_ids = [
+        criterion_id
+        for criterion_id, passed in activation_requirements.items()
+        if not passed
+    ]
+    policy_activation_allowed = (
+        positive_coverage_passed
+        and sibling_control_reaudit_passed
+        and external_scored_reaudit_passed
+        and freeze_policy_before_candidate_selection_passed
+    )
+
+    rows.extend(
+        {
+            "row_type": "policy_activation_requirement",
+            "criterion_id": criterion_id,
+            "target_fingerprint_id": target_fingerprint_id,
+            "review_only": True,
+            "passed": passed,
+            "production_use_allowed": False,
+            "policy_variant_id": feature_id,
+        }
+        for criterion_id, passed in sorted(activation_requirements.items())
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_analog_product_state_policy_control_reaudit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_analog_product_state_policy_preregistration_method": (
+                prereg_meta.get("method")
+            ),
+            "source_epk_chain_ligand_acceptor_disambiguation_audit_method": (
+                chain_meta.get("method")
+            ),
+            "source_epk_chain_ligand_external_hard_negative_feature_screen_method": (
+                external_meta.get("method")
+            ),
+            "source_epk_protein_substrate_source_repair_terminal_decision_method": (
+                terminal_meta.get("method")
+            ),
+            "policy_variant_id": feature_id,
+            "policy_status": "review_only_reaudit_not_activated",
+            "policy_activation_allowed": policy_activation_allowed,
+            "production_scoring_admissible": False,
+            "current_positive_row_count": positive_count,
+            "current_positive_policy_hit_count": positive_hit_count,
+            "protein_substrate_positive_policy_hit_count": (
+                protein_substrate_positive_hit_count
+            ),
+            "ligand_analog_positive_policy_hit_count": (
+                ligand_analog_positive_hit_count
+            ),
+            "positive_coverage_passed_review_only": positive_coverage_passed,
+            "sibling_control_row_count": control_count,
+            "sibling_control_policy_false_hit_count": control_false_hit_count,
+            "sibling_family_control_reaudit_passed": sibling_control_reaudit_passed,
+            "external_hard_negative_feature_abstention_count": (
+                external_abstention_count
+            ),
+            "external_hard_negative_feature_non_abstention_count": (
+                external_non_abstention_count
+            ),
+            "missing_expected_external_hard_negative_count": external_missing_count,
+            "external_hard_negative_feature_screen_passed": (
+                external_feature_screen_passed
+            ),
+            "external_hard_negative_scored_reaudit_passed": (
+                external_scored_reaudit_passed
+            ),
+            "external_hard_negative_reaudit_scored": False,
+            "freeze_policy_before_candidate_selection_passed": (
+                freeze_policy_before_candidate_selection_passed
+            ),
+            "activation_requirement_count": len(activation_requirements),
+            "failed_activation_requirement_count": len(
+                failed_activation_requirement_ids
+            ),
+            "failed_activation_requirement_ids": failed_activation_requirement_ids,
+            "source_repair_blocked_candidate_count": source_repair_blocked_count,
+            "source_repair_measurement_ready_candidate_count": (
+                source_repair_measurement_ready_count
+            ),
+            "feature_audit_decision_counts": dict(sorted(decision_counts.items())),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact re-audits a frozen review-only ePK analog/"
+                "product-state policy variant. It may diagnose whether current "
+                "controls survive the stricter rule surface, but it cannot "
+                "activate ligand-analog evidence, score ePK, edit registries, "
+                "import labels, or claim clean held-out performance."
+            ),
+            "next_actions": [
+                "keep the analog/product-state policy inactive until it is frozen before candidate selection",
+                "run a real scored external hard-negative re-audit before any policy activation",
+                "treat current source-repair candidates as terminally blocked unless new evidence appears",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("criterion_id") or ""),
+                str(row.get("family_id") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The analog/product-state policy re-audit is diagnostic only; "
+                "it is not an active production policy or ePK scorer."
+            )
+        ],
+    }
+
+
+def build_epk_review_only_external_hard_negative_score_probe(
+    *,
+    epk_review_only_scoring_prototype: dict[str, Any],
+    epk_analog_product_state_policy_control_reaudit: dict[str, Any],
+    imported_external_entry_ids: list[str] | None = None,
+) -> dict[str, Any]:
+    """Expose external hard-negative prototype scores without opening the gate."""
+
+    prototype_meta = epk_review_only_scoring_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    policy_meta = epk_analog_product_state_policy_control_reaudit.get(
+        "metadata", {}
+    )
+    if not isinstance(policy_meta, dict):
+        policy_meta = {}
+    target_fingerprint_id = str(
+        prototype_meta.get("target_fingerprint_id")
+        or policy_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    expected_ids = imported_external_entry_ids or [
+        "uniprot:P06744",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3",
+    ]
+
+    prototype_by_entry: dict[str, dict[str, Any]] = {}
+    for row in epk_review_only_scoring_prototype.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        if row.get("row_type") != "imported_external_hard_negative":
+            continue
+        entry_id = str(row.get("entry_id") or "")
+        if entry_id:
+            prototype_by_entry[entry_id] = row
+
+    policy_by_entry: dict[str, dict[str, Any]] = {}
+    for row in epk_analog_product_state_policy_control_reaudit.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        if row.get("row_type") != "imported_external_hard_negative":
+            continue
+        entry_id = str(row.get("entry_id") or "")
+        if entry_id:
+            policy_by_entry[entry_id] = row
+
+    rows: list[dict[str, Any]] = []
+    missing_entry_ids: list[str] = []
+    non_abstention_entry_ids: list[str] = []
+    score_positive_entry_ids: list[str] = []
+    policy_feature_hit_entry_ids: list[str] = []
+    for entry_id in expected_ids:
+        prototype_row = prototype_by_entry.get(entry_id)
+        policy_row = policy_by_entry.get(entry_id)
+        if prototype_row is None or policy_row is None:
+            missing_entry_ids.append(entry_id)
+        score = float(
+            (prototype_row or {}).get("review_only_prototype_score") or 0.0
+        )
+        policy_feature_hit = bool((policy_row or {}).get("policy_feature_hit"))
+        non_abstention = score > 0.0 or policy_feature_hit
+        if non_abstention:
+            non_abstention_entry_ids.append(entry_id)
+        if score > 0.0:
+            score_positive_entry_ids.append(entry_id)
+        if policy_feature_hit:
+            policy_feature_hit_entry_ids.append(entry_id)
+        source_axis_values = (prototype_row or {}).get("prototype_axis_values", {})
+        if not isinstance(source_axis_values, dict):
+            source_axis_values = {}
+        rows.append(
+            {
+                "row_type": "imported_external_hard_negative_score_probe",
+                "entry_id": entry_id,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "review_only_probe_score": score,
+                "review_only_score_probe_non_abstention": non_abstention,
+                "source_prototype_decision": (prototype_row or {}).get(
+                    "prototype_decision"
+                ),
+                "source_prototype_axis_values": dict(sorted(source_axis_values.items())),
+                "source_policy_reaudit_decision": (policy_row or {}).get(
+                    "policy_reaudit_decision"
+                ),
+                "source_policy_feature_hit": policy_feature_hit,
+                "clean_heldout_performance_claim_permitted": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "review_only_probe_not_real_scored_reaudit",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "policy_not_active",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+                "text_free_inputs_only": bool(
+                    (prototype_row or {}).get("text_free_inputs_only", True)
+                    and (policy_row or {}).get("text_free_inputs_only", True)
+                ),
+            }
+        )
+
+    probe_complete = len(missing_entry_ids) == 0
+    probe_passed_review_only = probe_complete and not non_abstention_entry_ids
+    return {
+        "metadata": {
+            "method": "epk_review_only_external_hard_negative_score_probe",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_review_only_scoring_prototype_method": (
+                prototype_meta.get("method")
+            ),
+            "source_epk_analog_product_state_policy_control_reaudit_method": (
+                policy_meta.get("method")
+            ),
+            "expected_external_hard_negative_entry_ids": list(expected_ids),
+            "external_hard_negative_score_probe_row_count": len(rows),
+            "missing_expected_external_hard_negative_count": len(missing_entry_ids),
+            "missing_expected_external_hard_negative_entry_ids": missing_entry_ids,
+            "review_only_score_probe_complete": probe_complete,
+            "review_only_score_probe_passed": probe_passed_review_only,
+            "review_only_score_probe_non_abstention_count": (
+                len(non_abstention_entry_ids)
+            ),
+            "review_only_score_probe_non_abstention_entry_ids": (
+                non_abstention_entry_ids
+            ),
+            "review_only_score_positive_entry_ids": score_positive_entry_ids,
+            "review_only_policy_feature_hit_entry_ids": (
+                policy_feature_hit_entry_ids
+            ),
+            "external_hard_negative_reaudit_scored": False,
+            "clean_heldout_performance_claim_permitted": False,
+            "not_a_real_scored_reaudit": True,
+            "policy_activation_allowed": False,
+            "production_scoring_admissible": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact exposes the current ePK prototype scores for "
+                "imported external hard negatives as a diagnostic probe only. "
+                "It is not a calibrated ePK score, not a clean held-out "
+                "performance claim, and not the scored re-audit required for "
+                "policy activation."
+            ),
+            "next_actions": [
+                "turn the review-only probe into a real scored re-audit only after ePK thresholds are calibrated",
+                "keep the analog/product-state policy inactive until preselection freeze and scored controls pass",
+                "preserve imported external hard negatives under their current out-of-scope label contract",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "External hard-negative score probe is diagnostic only and "
+                "does not satisfy the scored re-audit activation gate."
+            )
+        ],
+    }
+
+
 def _epk_substrate_acceptor_hint_from_text(snippets: Any) -> dict[str, Any] | None:
     try:
         text = " ".join(str(snippet) for snippet in snippets)
@@ -19194,9 +20592,14 @@ def build_epk_precount_gate_status(
     | None = None,
     epk_protein_substrate_acceptor_candidate_audit: dict[str, Any] | None = None,
     epk_ligand_analog_policy_blocker_decision: dict[str, Any] | None = None,
+    epk_analog_product_state_policy_activation_audit: dict[str, Any] | None = None,
+    epk_analog_product_state_policy_control_reaudit: dict[str, Any] | None = None,
+    epk_review_only_external_hard_negative_score_probe: dict[str, Any]
+    | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
+    epk_m_csa756_5li1_residue_evidence_audit: dict[str, Any] | None = None,
     epk_external_hard_negative_reaudit_plan: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Consolidate review-only ePK artifacts into a pre-count gate status."""
@@ -19517,6 +20920,27 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(ligand_analog_policy_meta, dict):
         ligand_analog_policy_meta = {}
+    analog_policy_activation_meta = (
+        epk_analog_product_state_policy_activation_audit.get("metadata", {})
+        if isinstance(epk_analog_product_state_policy_activation_audit, dict)
+        else {}
+    )
+    if not isinstance(analog_policy_activation_meta, dict):
+        analog_policy_activation_meta = {}
+    analog_policy_reaudit_meta = (
+        epk_analog_product_state_policy_control_reaudit.get("metadata", {})
+        if isinstance(epk_analog_product_state_policy_control_reaudit, dict)
+        else {}
+    )
+    if not isinstance(analog_policy_reaudit_meta, dict):
+        analog_policy_reaudit_meta = {}
+    external_score_probe_meta = (
+        epk_review_only_external_hard_negative_score_probe.get("metadata", {})
+        if isinstance(epk_review_only_external_hard_negative_score_probe, dict)
+        else {}
+    )
+    if not isinstance(external_score_probe_meta, dict):
+        external_score_probe_meta = {}
     m_csa760_repair_meta = (
         epk_m_csa760_atp_state_repair_scan.get("metadata", {})
         if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
@@ -19538,6 +20962,13 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(m_csa756_repair_meta, dict):
         m_csa756_repair_meta = {}
+    m_csa756_5li1_meta = (
+        epk_m_csa756_5li1_residue_evidence_audit.get("metadata", {})
+        if isinstance(epk_m_csa756_5li1_residue_evidence_audit, dict)
+        else {}
+    )
+    if not isinstance(m_csa756_5li1_meta, dict):
+        m_csa756_5li1_meta = {}
     reaudit_meta = (
         epk_external_hard_negative_reaudit_plan.get("metadata", {})
         if isinstance(epk_external_hard_negative_reaudit_plan, dict)
@@ -20028,6 +21459,184 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if analog_policy_activation_meta:
+        gate_checks.append(
+            {
+                "gate_id": "analog_product_state_policy_activation_audit",
+                "passed": bool(
+                    analog_policy_activation_meta.get("method")
+                )
+                and not bool(
+                    analog_policy_activation_meta.get("policy_activation_allowed")
+                )
+                and not bool(
+                    analog_policy_activation_meta.get(
+                        "production_scoring_admissible"
+                    )
+                )
+                and int(
+                    analog_policy_activation_meta.get(
+                        "failed_activation_requirement_count"
+                    )
+                    or 0
+                )
+                > 0,
+                "evidence": {
+                    "source_method": analog_policy_activation_meta.get("method"),
+                    "policy_activation_status": (
+                        analog_policy_activation_meta.get(
+                            "policy_activation_status"
+                        )
+                    ),
+                    "failed_activation_requirement_count": (
+                        analog_policy_activation_meta.get(
+                            "failed_activation_requirement_count"
+                        )
+                    ),
+                    "diagnostic_control_pass_count": (
+                        analog_policy_activation_meta.get(
+                            "diagnostic_control_pass_count"
+                        )
+                    ),
+                    "policy_activation_allowed": bool(
+                        analog_policy_activation_meta.get(
+                            "policy_activation_allowed"
+                        )
+                    ),
+                    "production_scoring_admissible": bool(
+                        analog_policy_activation_meta.get(
+                            "production_scoring_admissible"
+                        )
+                    ),
+                    "failed_activation_requirement_ids": (
+                        analog_policy_activation_meta.get(
+                            "failed_activation_requirement_ids"
+                        )
+                        or analog_policy_activation_meta.get(
+                            "activation_blockers",
+                            [],
+                        )
+                    ),
+                },
+            }
+        )
+    if analog_policy_reaudit_meta:
+        gate_checks.append(
+            {
+                "gate_id": "analog_product_state_policy_control_reaudit",
+                "passed": bool(
+                    analog_policy_reaudit_meta.get(
+                        "sibling_family_control_reaudit_passed"
+                    )
+                )
+                and bool(
+                    analog_policy_reaudit_meta.get(
+                        "external_hard_negative_feature_screen_passed"
+                    )
+                )
+                and not bool(
+                    analog_policy_reaudit_meta.get("policy_activation_allowed")
+                )
+                and not bool(
+                    analog_policy_reaudit_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": analog_policy_reaudit_meta.get("method"),
+                    "policy_variant_id": analog_policy_reaudit_meta.get(
+                        "policy_variant_id"
+                    ),
+                    "policy_status": analog_policy_reaudit_meta.get(
+                        "policy_status"
+                    ),
+                    "current_positive_policy_hit_count": (
+                        analog_policy_reaudit_meta.get(
+                            "current_positive_policy_hit_count"
+                        )
+                    ),
+                    "ligand_analog_positive_policy_hit_count": (
+                        analog_policy_reaudit_meta.get(
+                            "ligand_analog_positive_policy_hit_count"
+                        )
+                    ),
+                    "sibling_control_policy_false_hit_count": (
+                        analog_policy_reaudit_meta.get(
+                            "sibling_control_policy_false_hit_count"
+                        )
+                    ),
+                    "external_hard_negative_feature_non_abstention_count": (
+                        analog_policy_reaudit_meta.get(
+                            "external_hard_negative_feature_non_abstention_count"
+                        )
+                    ),
+                    "failed_activation_requirement_ids": (
+                        analog_policy_reaudit_meta.get(
+                            "failed_activation_requirement_ids",
+                            [],
+                        )
+                    ),
+                    "policy_activation_allowed": bool(
+                        analog_policy_reaudit_meta.get("policy_activation_allowed")
+                    ),
+                },
+            }
+        )
+    if external_score_probe_meta:
+        gate_checks.append(
+            {
+                "gate_id": "review_only_external_hard_negative_score_probe",
+                "passed": bool(
+                    external_score_probe_meta.get("review_only_score_probe_complete")
+                )
+                and bool(
+                    external_score_probe_meta.get("review_only_score_probe_passed")
+                )
+                and int(
+                    external_score_probe_meta.get(
+                        "review_only_score_probe_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    external_score_probe_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": external_score_probe_meta.get("method"),
+                    "external_hard_negative_score_probe_row_count": (
+                        external_score_probe_meta.get(
+                            "external_hard_negative_score_probe_row_count"
+                        )
+                    ),
+                    "review_only_score_probe_complete": bool(
+                        external_score_probe_meta.get(
+                            "review_only_score_probe_complete"
+                        )
+                    ),
+                    "review_only_score_probe_passed": bool(
+                        external_score_probe_meta.get(
+                            "review_only_score_probe_passed"
+                        )
+                    ),
+                    "review_only_score_probe_non_abstention_count": (
+                        external_score_probe_meta.get(
+                            "review_only_score_probe_non_abstention_count"
+                        )
+                    ),
+                    "not_a_real_scored_reaudit": bool(
+                        external_score_probe_meta.get("not_a_real_scored_reaudit")
+                    ),
+                    "clean_heldout_performance_claim_permitted": bool(
+                        external_score_probe_meta.get(
+                            "clean_heldout_performance_claim_permitted"
+                        )
+                    ),
+                },
+            }
+        )
     if m_csa760_repair_meta:
         gate_checks.append(
             {
@@ -20186,6 +21795,71 @@ def build_epk_precount_gate_status(
                     ),
                     "measurement_ready_candidate_count": (
                         m_csa756_repair_meta.get(
+                            "measurement_ready_candidate_count"
+                        )
+                    ),
+                },
+            }
+        )
+    if m_csa756_5li1_meta:
+        gate_checks.append(
+            {
+                "gate_id": "m_csa756_5li1_residue_evidence_audit",
+                "passed": bool(m_csa756_5li1_meta.get("method"))
+                and not bool(
+                    m_csa756_5li1_meta.get(
+                        "ready_to_measure_gamma_acceptor_distance"
+                    )
+                )
+                and int(
+                    m_csa756_5li1_meta.get("measurement_ready_candidate_count")
+                    or 0
+                )
+                == 0
+                and int(
+                    m_csa756_5li1_meta.get("countable_label_candidate_count")
+                    or 0
+                )
+                == 0
+                and not bool(
+                    m_csa756_5li1_meta.get(
+                        "noncanonical_terminal_atom_policy_admissible"
+                    )
+                ),
+                "evidence": {
+                    "source_method": m_csa756_5li1_meta.get("method"),
+                    "entry_id": m_csa756_5li1_meta.get("entry_id"),
+                    "pdb_id": m_csa756_5li1_meta.get("pdb_id"),
+                    "repair_status": m_csa756_5li1_meta.get("repair_status"),
+                    "active_site_residue_evidence_found": bool(
+                        m_csa756_5li1_meta.get("active_site_residue_evidence_found")
+                    ),
+                    "terminal_gamma_atom_detected": bool(
+                        m_csa756_5li1_meta.get("terminal_gamma_atom_detected")
+                    ),
+                    "noncanonical_terminal_atom_names_detected": (
+                        m_csa756_5li1_meta.get(
+                            "noncanonical_terminal_atom_names_detected",
+                            [],
+                        )
+                    ),
+                    "noncanonical_terminal_atom_policy_admissible": bool(
+                        m_csa756_5li1_meta.get(
+                            "noncanonical_terminal_atom_policy_admissible"
+                        )
+                    ),
+                    "explicit_residue_source_authority_sufficient": bool(
+                        m_csa756_5li1_meta.get(
+                            "explicit_residue_source_authority_sufficient"
+                        )
+                    ),
+                    "mapped_protein_substrate_acceptor_candidate_count": (
+                        m_csa756_5li1_meta.get(
+                            "mapped_protein_substrate_acceptor_candidate_count"
+                        )
+                    ),
+                    "measurement_ready_candidate_count": (
+                        m_csa756_5li1_meta.get(
                             "measurement_ready_candidate_count"
                         )
                     ),
@@ -20498,6 +22172,21 @@ def build_epk_precount_gate_status(
             0,
             "source another ePK protein-substrate positive or pre-register a ligand-analog admissibility policy",
         )
+    if analog_policy_activation_meta.get("method"):
+        next_actions.insert(
+            0,
+            "keep analog/product-state policy activation blocked until every failed activation requirement is resolved",
+        )
+    if analog_policy_reaudit_meta.get("method"):
+        next_actions.insert(
+            0,
+            "keep analog/product-state policy inactive until preselection freeze and scored external re-audit gates pass",
+        )
+    if external_score_probe_meta.get("method"):
+        next_actions.insert(
+            0,
+            "convert the review-only external hard-negative score probe into a real scored re-audit only after threshold calibration",
+        )
     if m_csa760_repair_meta.get("method"):
         if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
             next_actions.insert(
@@ -20531,6 +22220,13 @@ def build_epk_precount_gate_status(
                 0,
                 "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
             )
+    if m_csa756_5li1_meta.get("method") and not int(
+        m_csa756_5li1_meta.get("measurement_ready_candidate_count") or 0
+    ):
+        next_actions.insert(
+            0,
+            "leave the 5LI1 m_csa:756 clue review-only unless source-authoritative residue and substrate-acceptor mapping evidence appears",
+        )
     elif not m_csa760_repair_meta.get("method") and text_free_acceptor_meta.get(
         "method"
     ):
@@ -21184,6 +22880,85 @@ def build_epk_precount_gate_status(
                     "ligand_analog_production_admissible_count"
                 )
             ),
+            "source_epk_analog_product_state_policy_activation_audit_method": (
+                analog_policy_activation_meta.get("method")
+            ),
+            "analog_product_state_policy_activation_status": (
+                analog_policy_activation_meta.get("policy_activation_status")
+            ),
+            "analog_product_state_policy_failed_activation_requirement_count": (
+                analog_policy_activation_meta.get(
+                    "failed_activation_requirement_count"
+                )
+            ),
+            "analog_product_state_policy_activation_blockers": (
+                analog_policy_activation_meta.get("activation_blockers")
+                or analog_policy_activation_meta.get(
+                    "failed_activation_requirement_ids",
+                    [],
+                )
+            ),
+            "analog_product_state_policy_activation_audit_allowed": bool(
+                analog_policy_activation_meta.get("policy_activation_allowed")
+            ),
+            "analog_product_state_policy_activation_audit_production_admissible": bool(
+                analog_policy_activation_meta.get("production_scoring_admissible")
+            ),
+            "source_epk_analog_product_state_policy_control_reaudit_method": (
+                analog_policy_reaudit_meta.get("method")
+            ),
+            "analog_product_state_policy_variant_id": (
+                analog_policy_reaudit_meta.get("policy_variant_id")
+            ),
+            "analog_product_state_policy_status": (
+                analog_policy_reaudit_meta.get("policy_status")
+            ),
+            "analog_product_state_policy_positive_hit_count": (
+                analog_policy_reaudit_meta.get("current_positive_policy_hit_count")
+            ),
+            "analog_product_state_policy_ligand_analog_positive_hit_count": (
+                analog_policy_reaudit_meta.get(
+                    "ligand_analog_positive_policy_hit_count"
+                )
+            ),
+            "analog_product_state_policy_sibling_control_false_hit_count": (
+                analog_policy_reaudit_meta.get(
+                    "sibling_control_policy_false_hit_count"
+                )
+            ),
+            "analog_product_state_policy_external_non_abstention_count": (
+                analog_policy_reaudit_meta.get(
+                    "external_hard_negative_feature_non_abstention_count"
+                )
+            ),
+            "analog_product_state_policy_failed_activation_requirement_ids": (
+                analog_policy_reaudit_meta.get(
+                    "failed_activation_requirement_ids",
+                    [],
+                )
+            ),
+            "analog_product_state_policy_activation_allowed": bool(
+                analog_policy_reaudit_meta.get("policy_activation_allowed")
+            ),
+            "source_epk_review_only_external_hard_negative_score_probe_method": (
+                external_score_probe_meta.get("method")
+            ),
+            "external_hard_negative_score_probe_row_count": (
+                external_score_probe_meta.get(
+                    "external_hard_negative_score_probe_row_count"
+                )
+            ),
+            "external_hard_negative_score_probe_passed": bool(
+                external_score_probe_meta.get("review_only_score_probe_passed")
+            ),
+            "external_hard_negative_score_probe_non_abstention_count": (
+                external_score_probe_meta.get(
+                    "review_only_score_probe_non_abstention_count"
+                )
+            ),
+            "external_hard_negative_score_probe_not_real_reaudit": bool(
+                external_score_probe_meta.get("not_a_real_scored_reaudit")
+            ),
             "source_epk_m_csa760_atp_state_repair_scan_method": (
                 m_csa760_repair_meta.get("method")
             ),
@@ -21272,6 +23047,42 @@ def build_epk_precount_gate_status(
             ),
             "m_csa756_measurement_ready_candidate_count": (
                 m_csa756_repair_meta.get("measurement_ready_candidate_count")
+            ),
+            "source_epk_m_csa756_5li1_residue_evidence_audit_method": (
+                m_csa756_5li1_meta.get("method")
+            ),
+            "m_csa756_5li1_repair_status": (
+                m_csa756_5li1_meta.get("repair_status")
+            ),
+            "m_csa756_5li1_active_site_residue_evidence_found": bool(
+                m_csa756_5li1_meta.get("active_site_residue_evidence_found")
+            ),
+            "m_csa756_5li1_terminal_gamma_atom_detected": bool(
+                m_csa756_5li1_meta.get("terminal_gamma_atom_detected")
+            ),
+            "m_csa756_5li1_noncanonical_terminal_atom_names_detected": (
+                m_csa756_5li1_meta.get(
+                    "noncanonical_terminal_atom_names_detected",
+                    [],
+                )
+            ),
+            "m_csa756_5li1_noncanonical_terminal_atom_policy_admissible": bool(
+                m_csa756_5li1_meta.get(
+                    "noncanonical_terminal_atom_policy_admissible"
+                )
+            ),
+            "m_csa756_5li1_explicit_residue_source_authority_sufficient": bool(
+                m_csa756_5li1_meta.get(
+                    "explicit_residue_source_authority_sufficient"
+                )
+            ),
+            "m_csa756_5li1_mapped_protein_substrate_acceptor_candidate_count": (
+                m_csa756_5li1_meta.get(
+                    "mapped_protein_substrate_acceptor_candidate_count"
+                )
+            ),
+            "m_csa756_5li1_measurement_ready_candidate_count": (
+                m_csa756_5li1_meta.get("measurement_ready_candidate_count")
             ),
             "nonready_ligand_repair_row_count": nonready_count,
             "nonready_ligand_excluded_count": nonready_excluded_count,

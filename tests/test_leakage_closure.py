@@ -463,6 +463,39 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertFalse(row["measurement_ready"])
             self.assertFalse(row["countable_label_candidate"])
             self.assertTrue(row["review_context_only_used_for_sourcing"])
+        expanded = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_protein_substrate_positive_source_triage_expanded_1025.json"
+        )
+        preview = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_protein_substrate_positive_source_triage_1025_preview.json"
+        )
+        expanded_metadata = expanded["metadata"]
+        self.assertEqual(
+            expanded_metadata["method"],
+            "epk_protein_substrate_positive_source_triage",
+        )
+        self.assertEqual(expanded_metadata["candidate_row_count"], 3)
+        self.assertEqual(expanded_metadata["measurement_ready_candidate_count"], 0)
+        self.assertFalse(
+            expanded_metadata["ready_to_expand_positive_fingerprint_universe"]
+        )
+        expanded_rows = {row["entry_id"]: row for row in expanded["rows"]}
+        self.assertEqual(set(expanded_rows), set(rows))
+        preview_rows = {row["entry_id"]: row for row in preview["rows"]}
+        self.assertEqual(set(preview_rows), set(rows))
+        self.assertTrue(
+            all(row["review_only"] for row in expanded_rows.values())
+        )
+        self.assertTrue(
+            all(
+                not row["countable_label_candidate"]
+                for row in expanded_rows.values()
+            )
+        )
 
     def test_epk_m_csa760_atp_state_repair_scan_stays_review_only(self) -> None:
         scan = _load_json(
@@ -672,6 +705,36 @@ class LeakageClosureTests(unittest.TestCase):
         for row in rows.values():
             self.assertTrue(row["review_only"])
             self.assertFalse(row["countable_label_candidate"])
+        expanded = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_protein_substrate_source_repair_terminal_decision_expanded_1025.json"
+        )
+        expanded_metadata = expanded["metadata"]
+        self.assertEqual(
+            expanded_metadata["method"],
+            "epk_protein_substrate_source_repair_terminal_decision",
+        )
+        self.assertEqual(
+            expanded_metadata["terminal_decision"],
+            "current_source_candidates_exhausted_review_only",
+        )
+        self.assertEqual(expanded_metadata["measurement_ready_candidate_count"], 0)
+        self.assertTrue(expanded_metadata["current_source_candidates_exhausted"])
+        self.assertFalse(
+            expanded_metadata["ready_to_expand_positive_fingerprint_universe"]
+        )
+        expanded_rows = {row["entry_id"]: row for row in expanded["rows"]}
+        self.assertEqual(set(expanded_rows), set(rows))
+        self.assertTrue(
+            all(row["review_only"] for row in expanded_rows.values())
+        )
+        self.assertTrue(
+            all(
+                not row["countable_label_candidate"]
+                for row in expanded_rows.values()
+            )
+        )
 
     def test_epk_analog_product_state_policy_preregistration_stays_inactive(
         self,
@@ -712,6 +775,191 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertTrue(
             rows["reject_product_state_without_gamma_geometry"]["passed"]
         )
+
+    def test_epk_analog_product_state_policy_activation_audit_fails_closed(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_analog_product_state_policy_activation_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_analog_product_state_policy_activation_audit",
+        )
+        self.assertEqual(metadata["policy_activation_status"], "blocked_review_only")
+        self.assertFalse(metadata["policy_activation_allowed"])
+        self.assertFalse(metadata["production_scoring_admissible"])
+        self.assertEqual(metadata["failed_activation_requirement_count"], 7)
+        self.assertEqual(metadata["diagnostic_control_pass_count"], 2)
+        self.assertFalse(
+            metadata["protein_substrate_positive_coverage_without_ligand_analog"]
+        )
+        self.assertEqual(metadata["ligand_analog_dependency_entry_ids"], ["m_csa:640"])
+        self.assertEqual(metadata["ligand_analog_production_admissible_count"], 0)
+        self.assertEqual(
+            metadata["source_repair_measurement_ready_candidate_count"], 0
+        )
+        self.assertTrue(
+            metadata["sibling_controls_remain_blocked_under_candidate_feature"]
+        )
+        self.assertTrue(
+            metadata["imported_external_hard_negative_feature_screen_clear"]
+        )
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["criterion_id"]: row for row in audit["rows"]}
+        self.assertFalse(rows["policy_frozen_before_activation"]["passed"])
+        self.assertFalse(rows["ligand_analog_dependency_resolved"]["passed"])
+        self.assertFalse(rows["calibrated_epk_score_exists"]["passed"])
+        self.assertTrue(
+            rows["imported_external_hard_negative_feature_screen_clear"]["passed"]
+        )
+
+    def test_epk_analog_product_state_policy_control_reaudit_stays_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_analog_product_state_policy_control_reaudit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_analog_product_state_policy_control_reaudit",
+        )
+        self.assertEqual(
+            metadata["policy_status"], "review_only_reaudit_not_activated"
+        )
+        self.assertFalse(metadata["policy_activation_allowed"])
+        self.assertFalse(metadata["production_scoring_admissible"])
+        self.assertEqual(metadata["current_positive_policy_hit_count"], 3)
+        self.assertEqual(metadata["ligand_analog_positive_policy_hit_count"], 1)
+        self.assertEqual(metadata["sibling_control_policy_false_hit_count"], 0)
+        self.assertTrue(metadata["sibling_family_control_reaudit_passed"])
+        self.assertEqual(
+            metadata["external_hard_negative_feature_non_abstention_count"], 0
+        )
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertIn(
+            "external_hard_negative_scored_reaudit",
+            metadata["failed_activation_requirement_ids"],
+        )
+        decisions = {row.get("policy_reaudit_decision") for row in audit["rows"]}
+        self.assertIn("policy_positive_ligand_analog_hit_review_only", decisions)
+        self.assertIn(
+            "policy_source_repair_blocked_by_exclusion_or_missing_geometry",
+            decisions,
+        )
+
+    def test_epk_review_only_external_hard_negative_score_probe_stays_review_only(
+        self,
+    ) -> None:
+        probe = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_review_only_external_hard_negative_score_probe_1025.json"
+        )
+        metadata = probe["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_review_only_external_hard_negative_score_probe",
+        )
+        self.assertEqual(metadata["external_hard_negative_score_probe_row_count"], 3)
+        self.assertTrue(metadata["review_only_score_probe_complete"])
+        self.assertTrue(metadata["review_only_score_probe_passed"])
+        self.assertEqual(metadata["review_only_score_probe_non_abstention_count"], 0)
+        self.assertEqual(metadata["missing_expected_external_hard_negative_count"], 0)
+        self.assertTrue(metadata["not_a_real_scored_reaudit"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["clean_heldout_performance_claim_permitted"])
+        self.assertFalse(metadata["policy_activation_allowed"])
+        self.assertFalse(metadata["production_scoring_admissible"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["entry_id"]: row for row in probe["rows"]}
+        self.assertEqual(
+            set(rows),
+            {"uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"},
+        )
+        self.assertTrue(
+            all(
+                not row["review_only_score_probe_non_abstention"]
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(all(row["review_only"] for row in rows.values()))
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in rows.values())
+        )
+
+    def test_epk_m_csa756_5li1_residue_evidence_audit_stays_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_m_csa756_5li1_residue_evidence_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_m_csa756_5li1_residue_evidence_audit",
+        )
+        self.assertEqual(metadata["entry_id"], "m_csa:756")
+        self.assertEqual(metadata["pdb_id"], "5LI1")
+        self.assertTrue(metadata["active_site_residue_evidence_found"])
+        self.assertEqual(metadata["candidate_residue_resolved_count"], 3)
+        self.assertEqual(metadata["local_ligand_codes"], ["ANP", "MG"])
+        self.assertFalse(metadata["terminal_gamma_atom_detected"])
+        self.assertEqual(
+            metadata["noncanonical_terminal_atom_names_detected"], ["PB"]
+        )
+        self.assertFalse(
+            metadata["noncanonical_terminal_atom_policy_admissible"]
+        )
+        self.assertFalse(metadata["explicit_residue_source_authority_sufficient"])
+        self.assertEqual(
+            metadata["structure_phosphoacceptor_like_context_count"], 3
+        )
+        self.assertEqual(
+            metadata["mapped_protein_substrate_acceptor_candidate_count"], 0
+        )
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["repair_status"],
+            "blocked_review_only_residue_evidence_lacks_terminal_gamma_atom_no_mapped_acceptor",
+        )
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        residue_rows = [
+            row
+            for row in audit["rows"]
+            if row["row_type"] == "candidate_active_site_residue"
+        ]
+        self.assertEqual(len(residue_rows), 3)
+        self.assertTrue(all(row["review_only"] for row in residue_rows))
+        self.assertTrue(all(row["residue_resolved"] for row in residue_rows))
 
     def test_epk_family_specific_template_validation_stays_review_only(
         self,

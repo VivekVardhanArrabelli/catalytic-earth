@@ -479,18 +479,58 @@ but active-site residue remapping is not conservative; ADP/Mg product-state
 leads (`5LIH`, `9EJM`) also lack active-state gamma geometry. The artifact
 therefore fails closed with 0 active-state ATP/Mg candidates and 0
 measurement-ready candidates.
+`artifacts/v3_epk_m_csa756_5li1_residue_evidence_audit_1025.json` then narrows
+that clue to `5LI1` only. Chain-A Lys380, Asp382, and Asn383 resolve near
+ANP/Mg, and the structure contains phosphoacceptor-like SEP/TPO/PTR context,
+but no canonical terminal `PG` atom is available for measurement; a
+noncanonical `PB` atom is recorded and explicitly policy-inadmissible. The 5LI1
+residue positions are not source-authoritative, and no protein-substrate
+acceptor is mapped. The artifact remains review-only and contributes 0
+countable label candidates.
 `artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json`
 then closes the current bounded source-repair loop. The three current source
 candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) have 0
 measurement-ready candidates in aggregate, so the next useful experiment is
 new source acquisition or a pre-registered ligand-analog/product-state policy,
 not another repeat scan of the same rows.
+`artifacts/v3_epk_protein_substrate_positive_source_triage_expanded_1025.json`
+tests the new-source path with a larger review-only triage cap. It still finds
+only those same three exhausted source candidates and 0 measurement-ready rows.
+The matching expanded terminal decision keeps the branch at
+`current_source_candidates_exhausted_review_only`.
 `artifacts/v3_epk_analog_product_state_policy_preregistration_1025.json`
 creates that policy surface without activating it. The draft blocks
 mechanism-text predictive use, homomeric chain-choice substrate mapping, and
 product-state ADP-without-gamma evidence, and requires a frozen policy,
 sibling-family re-audit, and scored external hard-negative re-audit before any
 future scorer use.
+`artifacts/v3_epk_analog_product_state_policy_activation_audit_1025.json`
+then checks whether that inactive policy can activate against the current
+evidence. It remains `blocked_review_only`: the review-only chain/ligand
+feature still blocks sibling controls and the imported external hard negatives
+have 0 feature non-abstentions, but seven activation requirements fail,
+including the ligand-analog dependency on `m_csa:640`, 0 production-admissible
+analog rows, 0 measurement-ready source-repair candidates, no calibrated ePK
+score, no scored external hard-negative re-audit, and no registry or
+label-factory extension.
+`artifacts/v3_epk_analog_product_state_policy_control_reaudit_1025.json`
+separates the control question from activation. Under an inactive
+active-gamma ligand-analog policy variant, 3/3 current positives are feature
+hits, 25 sibling controls have 0 false hits, and the three imported external
+hard negatives have 0 feature non-abstentions. The artifact remains
+`review_only_reaudit_not_activated` because the policy was not frozen before
+candidate selection and the external hard negatives were not scored by a real
+ePK scorer.
+`artifacts/v3_epk_review_only_external_hard_negative_score_probe_1025.json`
+records that explicit prototype probe. The three imported external hard
+negatives score 0.0 and have no policy-feature hits in review-only mode, but
+`external_hard_negative_reaudit_scored` remains false because thresholds are
+uncalibrated and the probe is not a real scored re-audit or clean held-out
+performance claim.
+The 1025 preview/expanded source-triage artifacts repeat the same exhausted
+source candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) and do not open
+a new protein-substrate ePK source lane; the expanded terminal decision stays
+closed.
 `artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json`
 validates the PfkB, PfkA, and ATP-grasp family templates by downstream mapping
 and distance evidence only. It closes the template-review gap for pre-count
@@ -504,8 +544,10 @@ NDK homolog mapping, NDK homolog histidine-axis measurement, and
 family-specific homolog measurement are now explicit review-only preparation.
 The `m_csa:640` alternate geometry review lets the prototype gamma-geometry
 gate pass, the family-template gate passes by downstream validation, and the
-chain/ligand feature screen passes current review controls. Negative-control
-distribution readiness, acceptor-threshold calibration, text-free acceptor
+chain/ligand feature screen, policy activation audit, inactive policy control
+re-audit, review-only external hard-negative score probe, and 5LI1 clue audit
+pass as diagnostic guard gates. Negative-control distribution readiness,
+acceptor-threshold calibration, text-free acceptor
 feature production admissibility, protein-substrate acceptor coverage,
 `m_csa:760` split-state repair, `m_csa:757`/`m_csa:756` active-state source
 repair, external hard-negative scored re-audit, and registry/label-factory

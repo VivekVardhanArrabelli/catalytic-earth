@@ -68,6 +68,8 @@ from .labels import (
     build_epk_acceptor_geometry_axis_gap_plan,
     build_epk_acceptor_identity_review,
     build_epk_atp_state_evidence_plan,
+    build_epk_analog_product_state_policy_activation_audit,
+    build_epk_analog_product_state_policy_control_reaudit,
     build_epk_analog_product_state_policy_preregistration,
     build_epk_chain_ligand_acceptor_disambiguation_audit,
     build_epk_chain_ligand_external_hard_negative_feature_screen,
@@ -85,6 +87,7 @@ from .labels import (
     build_epk_local_evidence_audit,
     build_epk_ligand_analog_policy_blocker_decision,
     build_epk_m_csa756_active_state_repair_scan,
+    build_epk_m_csa756_5li1_residue_evidence_audit,
     build_epk_m_csa757_active_state_repair_scan,
     build_epk_m_csa760_atp_state_repair_scan,
     build_epk_m_csa640_alternate_gamma_geometry_review,
@@ -100,6 +103,7 @@ from .labels import (
     build_epk_protein_substrate_positive_source_triage,
     build_epk_protein_substrate_acceptor_candidate_audit,
     build_epk_protein_substrate_source_repair_terminal_decision,
+    build_epk_review_only_external_hard_negative_score_probe,
     build_epk_review_only_scoring_prototype,
     build_epk_sibling_control_homolog_gamma_distance_sample,
     build_epk_sibling_control_homolog_mapping_review,
@@ -6363,6 +6367,32 @@ def cmd_build_epk_m_csa756_active_state_repair_scan(
     return 0
 
 
+def cmd_build_epk_m_csa756_5li1_residue_evidence_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_m_csa756_active_state_repair_scan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_m_csa756_active_state_repair_scan = json.load(handle)
+    with Path(args.review_debt_remediation).open("r", encoding="utf-8") as handle:
+        review_debt_remediation = json.load(handle)
+    audit = build_epk_m_csa756_5li1_residue_evidence_audit(
+        epk_m_csa756_active_state_repair_scan=(
+            epk_m_csa756_active_state_repair_scan
+        ),
+        review_debt_remediation=review_debt_remediation,
+        entry_id=args.entry_id,
+        pdb_id=args.pdb_id,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK m_csa:756 5LI1 residue-evidence audit to "
+        f"{args.out} (status={audit['metadata']['repair_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_protein_substrate_source_repair_terminal_decision(
     args: argparse.Namespace,
 ) -> int:
@@ -6434,6 +6464,136 @@ def cmd_build_epk_analog_product_state_policy_preregistration(
     print(
         "Wrote ePK analog/product-state policy preregistration to "
         f"{args.out} (status={preregistration['metadata']['policy_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_analog_product_state_policy_activation_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_analog_product_state_policy_preregistration).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_analog_product_state_policy_preregistration = json.load(handle)
+    with Path(args.epk_ligand_analog_policy_blocker_decision).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_analog_policy_blocker_decision = json.load(handle)
+    with Path(args.epk_protein_substrate_acceptor_candidate_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_acceptor_candidate_audit = json.load(handle)
+    with Path(args.epk_chain_ligand_acceptor_disambiguation_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_chain_ligand_acceptor_disambiguation_audit = json.load(handle)
+    with Path(args.epk_chain_ligand_external_hard_negative_feature_screen).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_chain_ligand_external_hard_negative_feature_screen = json.load(handle)
+    with Path(args.epk_protein_substrate_source_repair_terminal_decision).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_source_repair_terminal_decision = json.load(handle)
+    epk_precount_gate_status = None
+    if args.epk_precount_gate_status:
+        with Path(args.epk_precount_gate_status).open("r", encoding="utf-8") as handle:
+            epk_precount_gate_status = json.load(handle)
+    audit = build_epk_analog_product_state_policy_activation_audit(
+        epk_analog_product_state_policy_preregistration=(
+            epk_analog_product_state_policy_preregistration
+        ),
+        epk_ligand_analog_policy_blocker_decision=(
+            epk_ligand_analog_policy_blocker_decision
+        ),
+        epk_protein_substrate_acceptor_candidate_audit=(
+            epk_protein_substrate_acceptor_candidate_audit
+        ),
+        epk_chain_ligand_acceptor_disambiguation_audit=(
+            epk_chain_ligand_acceptor_disambiguation_audit
+        ),
+        epk_chain_ligand_external_hard_negative_feature_screen=(
+            epk_chain_ligand_external_hard_negative_feature_screen
+        ),
+        epk_protein_substrate_source_repair_terminal_decision=(
+            epk_protein_substrate_source_repair_terminal_decision
+        ),
+        epk_precount_gate_status=epk_precount_gate_status,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK analog/product-state policy activation audit to "
+        f"{args.out} (status={audit['metadata']['policy_activation_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_analog_product_state_policy_control_reaudit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_analog_product_state_policy_preregistration).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_analog_product_state_policy_preregistration = json.load(handle)
+    with Path(args.epk_chain_ligand_acceptor_disambiguation_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_chain_ligand_acceptor_disambiguation_audit = json.load(handle)
+    with Path(args.epk_chain_ligand_external_hard_negative_feature_screen).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_chain_ligand_external_hard_negative_feature_screen = json.load(handle)
+    with Path(args.epk_protein_substrate_source_repair_terminal_decision).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_source_repair_terminal_decision = json.load(handle)
+    reaudit = build_epk_analog_product_state_policy_control_reaudit(
+        epk_analog_product_state_policy_preregistration=(
+            epk_analog_product_state_policy_preregistration
+        ),
+        epk_chain_ligand_acceptor_disambiguation_audit=(
+            epk_chain_ligand_acceptor_disambiguation_audit
+        ),
+        epk_chain_ligand_external_hard_negative_feature_screen=(
+            epk_chain_ligand_external_hard_negative_feature_screen
+        ),
+        epk_protein_substrate_source_repair_terminal_decision=(
+            epk_protein_substrate_source_repair_terminal_decision
+        ),
+        imported_external_entry_ids=_split_csv(args.imported_external_entry_ids),
+    )
+    write_json(Path(args.out), reaudit)
+    print(
+        "Wrote ePK analog/product-state policy control re-audit to "
+        f"{args.out} (policy_activation_allowed="
+        f"{reaudit['metadata']['policy_activation_allowed']})"
+    )
+    return 0
+
+
+def cmd_build_epk_review_only_external_hard_negative_score_probe(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_review_only_scoring_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_review_only_scoring_prototype = json.load(handle)
+    with Path(args.epk_analog_product_state_policy_control_reaudit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_analog_product_state_policy_control_reaudit = json.load(handle)
+    probe = build_epk_review_only_external_hard_negative_score_probe(
+        epk_review_only_scoring_prototype=epk_review_only_scoring_prototype,
+        epk_analog_product_state_policy_control_reaudit=(
+            epk_analog_product_state_policy_control_reaudit
+        ),
+        imported_external_entry_ids=_split_csv(args.imported_external_entry_ids),
+    )
+    write_json(Path(args.out), probe)
+    print(
+        "Wrote ePK review-only external hard-negative score probe to "
+        f"{args.out} (non_abstentions="
+        f"{probe['metadata']['review_only_score_probe_non_abstention_count']})"
     )
     return 0
 
@@ -6689,6 +6849,24 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_ligand_analog_policy_blocker_decision = json.load(handle)
+    epk_analog_product_state_policy_activation_audit = None
+    if args.epk_analog_product_state_policy_activation_audit:
+        with Path(args.epk_analog_product_state_policy_activation_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_analog_product_state_policy_activation_audit = json.load(handle)
+    epk_analog_product_state_policy_control_reaudit = None
+    if args.epk_analog_product_state_policy_control_reaudit:
+        with Path(args.epk_analog_product_state_policy_control_reaudit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_analog_product_state_policy_control_reaudit = json.load(handle)
+    epk_review_only_external_hard_negative_score_probe = None
+    if args.epk_review_only_external_hard_negative_score_probe:
+        with Path(args.epk_review_only_external_hard_negative_score_probe).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_review_only_external_hard_negative_score_probe = json.load(handle)
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -6707,6 +6885,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_m_csa756_active_state_repair_scan = json.load(handle)
+    epk_m_csa756_5li1_residue_evidence_audit = None
+    if args.epk_m_csa756_5li1_residue_evidence_audit:
+        with Path(args.epk_m_csa756_5li1_residue_evidence_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_m_csa756_5li1_residue_evidence_audit = json.load(handle)
     epk_external_hard_negative_reaudit_plan = None
     if args.epk_external_hard_negative_reaudit_plan:
         with Path(args.epk_external_hard_negative_reaudit_plan).open(
@@ -6782,6 +6966,15 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         epk_ligand_analog_policy_blocker_decision=(
             epk_ligand_analog_policy_blocker_decision
         ),
+        epk_analog_product_state_policy_activation_audit=(
+            epk_analog_product_state_policy_activation_audit
+        ),
+        epk_analog_product_state_policy_control_reaudit=(
+            epk_analog_product_state_policy_control_reaudit
+        ),
+        epk_review_only_external_hard_negative_score_probe=(
+            epk_review_only_external_hard_negative_score_probe
+        ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
         ),
@@ -6790,6 +6983,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_m_csa756_active_state_repair_scan=(
             epk_m_csa756_active_state_repair_scan
+        ),
+        epk_m_csa756_5li1_residue_evidence_audit=(
+            epk_m_csa756_5li1_residue_evidence_audit
         ),
         epk_external_hard_negative_reaudit_plan=(
             epk_external_hard_negative_reaudit_plan
@@ -14220,6 +14416,32 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_m_csa756_active_state_repair_scan
     )
 
+    epk_m_csa756_5li1_audit = subparsers.add_parser(
+        "build-epk-m-csa756-5li1-residue-evidence-audit",
+        help="audit the bounded review-only m_csa:756 5LI1 residue-position clue",
+    )
+    epk_m_csa756_5li1_audit.add_argument(
+        "--epk-m-csa756-active-state-repair-scan",
+        default="artifacts/v3_epk_m_csa756_active_state_repair_scan.json",
+    )
+    epk_m_csa756_5li1_audit.add_argument(
+        "--review-debt-remediation",
+        default="artifacts/v3_review_debt_remediation_1025_preview_all.json",
+    )
+    epk_m_csa756_5li1_audit.add_argument("--entry-id", default="m_csa:756")
+    epk_m_csa756_5li1_audit.add_argument("--pdb-id", default="5LI1")
+    epk_m_csa756_5li1_audit.add_argument("--cif-dir", default=None)
+    epk_m_csa756_5li1_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_m_csa756_5li1_residue_evidence_audit.json"
+        ),
+    )
+    epk_m_csa756_5li1_audit.set_defaults(
+        func=cmd_build_epk_m_csa756_5li1_residue_evidence_audit
+    )
+
     epk_source_repair_terminal = subparsers.add_parser(
         "build-epk-protein-substrate-source-repair-terminal-decision",
         help="close the current review-only ePK protein-substrate source-repair loop",
@@ -14282,6 +14504,141 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_analog_policy_prereg.set_defaults(
         func=cmd_build_epk_analog_product_state_policy_preregistration
+    )
+
+    epk_analog_policy_activation = subparsers.add_parser(
+        "build-epk-analog-product-state-policy-activation-audit",
+        help="audit fail-closed activation readiness for the ePK analog/product-state policy",
+    )
+    epk_analog_policy_activation.add_argument(
+        "--epk-analog-product-state-policy-preregistration",
+        default=(
+            "artifacts/"
+            "v3_epk_analog_product_state_policy_preregistration.json"
+        ),
+    )
+    epk_analog_policy_activation.add_argument(
+        "--epk-ligand-analog-policy-blocker-decision",
+        default="artifacts/v3_epk_ligand_analog_policy_blocker_decision.json",
+    )
+    epk_analog_policy_activation.add_argument(
+        "--epk-protein-substrate-acceptor-candidate-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_acceptor_candidate_audit.json"
+        ),
+    )
+    epk_analog_policy_activation.add_argument(
+        "--epk-chain-ligand-acceptor-disambiguation-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_chain_ligand_acceptor_disambiguation_audit.json"
+        ),
+    )
+    epk_analog_policy_activation.add_argument(
+        "--epk-chain-ligand-external-hard-negative-feature-screen",
+        default=(
+            "artifacts/"
+            "v3_epk_chain_ligand_external_hard_negative_feature_screen.json"
+        ),
+    )
+    epk_analog_policy_activation.add_argument(
+        "--epk-protein-substrate-source-repair-terminal-decision",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_source_repair_terminal_decision.json"
+        ),
+    )
+    epk_analog_policy_activation.add_argument(
+        "--epk-precount-gate-status",
+        default="artifacts/v3_epk_precount_gate_status.json",
+    )
+    epk_analog_policy_activation.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_analog_product_state_policy_activation_audit.json"
+        ),
+    )
+    epk_analog_policy_activation.set_defaults(
+        func=cmd_build_epk_analog_product_state_policy_activation_audit
+    )
+
+    epk_analog_policy_control_reaudit = subparsers.add_parser(
+        "build-epk-analog-product-state-policy-control-reaudit",
+        help="re-audit review-only analog/product-state policy controls without activating scoring",
+    )
+    epk_analog_policy_control_reaudit.add_argument(
+        "--epk-analog-product-state-policy-preregistration",
+        default=(
+            "artifacts/"
+            "v3_epk_analog_product_state_policy_preregistration.json"
+        ),
+    )
+    epk_analog_policy_control_reaudit.add_argument(
+        "--epk-chain-ligand-acceptor-disambiguation-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_chain_ligand_acceptor_disambiguation_audit.json"
+        ),
+    )
+    epk_analog_policy_control_reaudit.add_argument(
+        "--epk-chain-ligand-external-hard-negative-feature-screen",
+        default=(
+            "artifacts/"
+            "v3_epk_chain_ligand_external_hard_negative_feature_screen.json"
+        ),
+    )
+    epk_analog_policy_control_reaudit.add_argument(
+        "--epk-protein-substrate-source-repair-terminal-decision",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_source_repair_terminal_decision.json"
+        ),
+    )
+    epk_analog_policy_control_reaudit.add_argument(
+        "--imported-external-entry-ids",
+        default="uniprot:P06744,uniprot:P78549,uniprot:Q3LXA3",
+    )
+    epk_analog_policy_control_reaudit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_analog_product_state_policy_control_reaudit.json"
+        ),
+    )
+    epk_analog_policy_control_reaudit.set_defaults(
+        func=cmd_build_epk_analog_product_state_policy_control_reaudit
+    )
+
+    epk_external_score_probe = subparsers.add_parser(
+        "build-epk-review-only-external-hard-negative-score-probe",
+        help="probe imported external hard negatives against the review-only ePK prototype",
+    )
+    epk_external_score_probe.add_argument(
+        "--epk-review-only-scoring-prototype",
+        default="artifacts/v3_epk_review_only_scoring_prototype.json",
+    )
+    epk_external_score_probe.add_argument(
+        "--epk-analog-product-state-policy-control-reaudit",
+        default=(
+            "artifacts/"
+            "v3_epk_analog_product_state_policy_control_reaudit.json"
+        ),
+    )
+    epk_external_score_probe.add_argument(
+        "--imported-external-entry-ids",
+        default="uniprot:P06744,uniprot:P78549,uniprot:Q3LXA3",
+    )
+    epk_external_score_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_review_only_external_hard_negative_score_probe.json"
+        ),
+    )
+    epk_external_score_probe.set_defaults(
+        func=cmd_build_epk_review_only_external_hard_negative_score_probe
     )
 
     epk_nonready_alternate_plan = subparsers.add_parser(
@@ -14451,6 +14808,18 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     epk_precount_gate_status.add_argument(
+        "--epk-analog-product-state-policy-activation-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-analog-product-state-policy-control-reaudit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-review-only-external-hard-negative-score-probe",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
         "--epk-m-csa760-atp-state-repair-scan",
         default=None,
     )
@@ -14460,6 +14829,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-m-csa756-active-state-repair-scan",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-m-csa756-5li1-residue-evidence-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(

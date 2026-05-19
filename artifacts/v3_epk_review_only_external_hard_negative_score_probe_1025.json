@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "clean_heldout_performance_claim_permitted": false,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "expected_external_hard_negative_entry_ids": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_hard_negative_reaudit_scored": false,
+    "external_hard_negative_score_probe_row_count": 3,
+    "fingerprint_registry_edited": false,
+    "method": "epk_review_only_external_hard_negative_score_probe",
+    "missing_expected_external_hard_negative_count": 0,
+    "missing_expected_external_hard_negative_entry_ids": [],
+    "next_actions": [
+      "turn the review-only probe into a real scored re-audit only after ePK thresholds are calibrated",
+      "keep the analog/product-state policy inactive until preselection freeze and scored controls pass",
+      "preserve imported external hard negatives under their current out-of-scope label contract"
+    ],
+    "not_a_real_scored_reaudit": true,
+    "policy_activation_allowed": false,
+    "production_scoring_admissible": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_policy_feature_hit_entry_ids": [],
+    "review_only_rule": "This artifact exposes the current ePK prototype scores for imported external hard negatives as a diagnostic probe only. It is not a calibrated ePK score, not a clean held-out performance claim, and not the scored re-audit required for policy activation.",
+    "review_only_score_positive_entry_ids": [],
+    "review_only_score_probe_complete": true,
+    "review_only_score_probe_non_abstention_count": 0,
+    "review_only_score_probe_non_abstention_entry_ids": [],
+    "review_only_score_probe_passed": true,
+    "selected_threshold_angstrom": null,
+    "source_epk_analog_product_state_policy_control_reaudit_method": "epk_analog_product_state_policy_control_reaudit",
+    "source_epk_review_only_scoring_prototype_method": "epk_review_only_scoring_prototype",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "clean_heldout_performance_claim_permitted": false,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06744",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "review_only_probe_not_real_scored_reaudit",
+        "threshold_not_calibrated_against_negative_controls",
+        "policy_not_active",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_probe_score": 0.0,
+      "review_only_score_probe_non_abstention": false,
+      "row_type": "imported_external_hard_negative_score_probe",
+      "source_policy_feature_hit": false,
+      "source_policy_reaudit_decision": "policy_external_hard_negative_feature_abstention",
+      "source_prototype_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "external_hard_negative_abstain_missing_epk_axes_review_only",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "clean_heldout_performance_claim_permitted": false,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P78549",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "review_only_probe_not_real_scored_reaudit",
+        "threshold_not_calibrated_against_negative_controls",
+        "policy_not_active",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_probe_score": 0.0,
+      "review_only_score_probe_non_abstention": false,
+      "row_type": "imported_external_hard_negative_score_probe",
+      "source_policy_feature_hit": false,
+      "source_policy_reaudit_decision": "policy_external_hard_negative_feature_abstention",
+      "source_prototype_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "external_hard_negative_abstain_missing_epk_axes_review_only",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "clean_heldout_performance_claim_permitted": false,
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "review_only_probe_not_real_scored_reaudit",
+        "threshold_not_calibrated_against_negative_controls",
+        "policy_not_active",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "review_only_probe_score": 0.0,
+      "review_only_score_probe_non_abstention": false,
+      "row_type": "imported_external_hard_negative_score_probe",
+      "source_policy_feature_hit": false,
+      "source_policy_reaudit_decision": "policy_external_hard_negative_feature_abstention",
+      "source_prototype_axis_values": {
+        "catalytic_acid_base_residue": 0,
+        "gamma_to_acceptor_distance_within_candidate_cutoff": 0,
+        "local_adenine_nucleotide_ligand": 0,
+        "local_metal_ligand": 0,
+        "source_supported_hydroxyl_acceptor_identity": 0
+      },
+      "source_prototype_decision": "external_hard_negative_abstain_missing_epk_axes_review_only",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    }
+  ],
+  "warnings": [
+    "External hard-negative score probe is diagnostic only and does not satisfy the scored re-audit activation gate."
+  ]
+}

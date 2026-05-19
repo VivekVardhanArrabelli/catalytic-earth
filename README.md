@@ -1073,18 +1073,62 @@ then scans all 15 `m_csa:756` alternates; `5LI1` has structure-level ANP/Mg
 but no conservative active-site residue remap, and the remaining ADP/Mg or
 phosphoacceptor-like rows are not active-state measurement candidates. `m_csa:756`
 is therefore also blocked with 0 measurement-ready candidates.
+`artifacts/v3_epk_m_csa756_5li1_residue_evidence_audit_1025.json` preserves
+the bounded `5LI1` residue clue without reopening the broad scan. It resolves
+local chain-A Lys380/Asp382/Asn383 near ANP/Mg and finds structure-level
+SEP/TPO/PTR-like context, but there is no canonical terminal `PG` atom in the
+artifact measurement surface; a noncanonical `PB` atom is recorded but remains
+policy-inadmissible. The residue positions are not source-authoritative for
+`5LI1`, and no protein-substrate acceptor is mapped, so the artifact stays
+review-only, non-countable, and measurement-not-ready.
 `artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json`
 closes the current bounded source-repair loop as a negative result:
 `m_csa:760`, `m_csa:757`, and `m_csa:756` have 0 measurement-ready candidates
 in total. The next experiment must either source a genuinely new
 protein-substrate ePK positive or pre-register a ligand-analog/product-state
 admissibility policy before any scorer calibration.
+`artifacts/v3_epk_protein_substrate_positive_source_triage_expanded_1025.json`
+rechecks that source-acquisition branch with a larger review-only cap and still
+returns only the same three exhausted source candidates (`m_csa:760`,
+`m_csa:756`, and `m_csa:757`), with 0 measurement-ready rows.
+`artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_expanded_1025.json`
+therefore keeps the expanded branch terminally closed as
+`current_source_candidates_exhausted_review_only`.
 `artifacts/v3_epk_analog_product_state_policy_preregistration_1025.json` drafts
 that future policy as inactive review-only scaffolding. It explicitly rejects
 homomeric chain choices and product-state ADP-without-gamma evidence as
 predictive support, and requires frozen policy text, sibling-family controls,
 and a scored re-audit of the three imported external hard negatives before any
 activation.
+`artifacts/v3_epk_analog_product_state_policy_activation_audit_1025.json`
+tests that inactive policy against the current ePK evidence surface and fails
+closed. The audit records seven activation blockers: the policy is not active,
+the protein-substrate-only axis still misses ligand-analog-only `m_csa:640`,
+0 ligand-analog rows are production-admissible, the current source-repair loop
+has 0 measurement-ready candidates, no calibrated ePK score exists, the
+external hard negatives have not been scored under an ePK scorer, and no
+registry or label-factory extension exists. Current sibling controls and the
+imported external hard negatives remain clear under review-only feature
+screens, but those diagnostic controls do not authorize scoring or import.
+`artifacts/v3_epk_analog_product_state_policy_control_reaudit_1025.json`
+then tests a narrower inactive policy variant that would allow active-state
+ligand-analog acceptor evidence only in review mode. It covers 3/3 current
+ePK positives including ligand-analog-only `m_csa:640`, keeps 25 sibling
+controls at 0 false hits and the three imported external hard negatives at 0
+feature non-abstentions, but still cannot activate because the policy was not
+frozen before candidate selection and no scored ePK external-hard-negative
+re-audit exists.
+`artifacts/v3_epk_review_only_external_hard_negative_score_probe_1025.json`
+then makes the existing prototype check explicit for the three imported
+external hard negatives. All three have review-only prototype score 0.0 and
+0 policy-feature hits, but the artifact deliberately keeps
+`external_hard_negative_reaudit_scored=false`: this is a diagnostic probe, not
+the calibrated scored re-audit required for policy activation or held-out
+performance claims.
+The 1025 preview/expanded source-triage artifacts do not surface a new
+protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
+`m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,
+not a new scaling tranche; the expanded terminal decision also remains closed.
 `artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json`
 closes the older family-template review gap by downstream evidence only:
 PfkB, PfkA, and ATP-grasp templates all now have mapped and measured homolog
@@ -1095,8 +1139,10 @@ threshold/control planning pass, non-ready-row exclusion is explicit, and a
 sibling alternate-control measurement surface plus NDK homolog counter-axis
 measurement and PfkB/PfkA/ATP-grasp family-specific counterevidence exist. The
 family-specific template gate now passes by downstream validation, and the
-chain/ligand feature and external feature screen pass current review controls,
-but the stricter protein-substrate feature, the `m_csa:760` split-state repair
+chain/ligand feature, external feature screen, policy activation audit,
+inactive policy control re-audit, review-only external hard-negative score
+probe, and 5LI1 residue clue audit pass as safety/diagnostic gates, but the
+stricter protein-substrate feature, the `m_csa:760` split-state repair
 scan, the `m_csa:757`/`m_csa:756` active-state source scans, acceptor
 thresholding, external scored re-audit, and label-factory extension all remain
 failing gates; the negative-control distribution blocker also stays open.

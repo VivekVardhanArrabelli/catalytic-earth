@@ -1,0 +1,194 @@
+{
+  "metadata": {
+    "active_site_residue_evidence_found": true,
+    "candidate_residue_count": 3,
+    "candidate_residue_resolved_count": 3,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "entry_id": "m_csa:756",
+    "epk_score_computed": false,
+    "explicit_residue_source_authority_sufficient": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_status": "fetched_rcsb_cif",
+    "fingerprint_registry_edited": false,
+    "local_cofactor_families": [
+      "metal_ion"
+    ],
+    "local_gamma_capable_nucleotide_detected": true,
+    "local_ligand_codes": [
+      "ANP",
+      "MG"
+    ],
+    "local_metal_detected": true,
+    "mapped_protein_substrate_acceptor_candidate_count": 0,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_m_csa756_5li1_residue_evidence_audit",
+    "next_actions": [
+      "obtain source-authoritative 5LI1 residue positions before any m_csa:756 rescue",
+      "map a protein-substrate acceptor chain or leave m_csa:756 excluded",
+      "keep analog/product-state policy inactive until scored controls pass"
+    ],
+    "noncanonical_terminal_atom_names_detected": [
+      "PB"
+    ],
+    "noncanonical_terminal_atom_policy_admissible": false,
+    "pdb_id": "5LI1",
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "remaining_blockers": [
+      "active_state_terminal_gamma_atom_not_materialized",
+      "5li1_residue_positions_not_source_authoritative",
+      "protein_substrate_acceptor_not_source_mapped",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "threshold_not_calibrated_against_negative_controls"
+    ],
+    "repair_status": "blocked_review_only_residue_evidence_lacks_terminal_gamma_atom_no_mapped_acceptor",
+    "review_only": true,
+    "review_only_rule": "This artifact audits the specific 5LI1 residue-position clue after the broad m_csa:756 scan failed. It can preserve local active-state residue evidence, but review-hint residues and structure-level phosphoacceptor context are not production ePK scoring evidence.",
+    "selected_pdb_id": "1ZRZ",
+    "selected_structure_source_residue_position_count": 3,
+    "source_epk_m_csa756_active_state_repair_scan_method": "epk_m_csa756_active_state_repair_scan",
+    "source_review_debt_remediation_method": "review_debt_remediation_plan",
+    "structure_cofactor_families": [
+      "metal_ion"
+    ],
+    "structure_ligand_codes": [
+      "ANP",
+      "GOL",
+      "K",
+      "MG",
+      "SEP",
+      "TPO"
+    ],
+    "structure_phosphoacceptor_like_context_count": 3,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "target_structure_source_residue_position_count": 0,
+    "terminal_gamma_atom_detected": false
+  },
+  "rows": [
+    {
+      "chain_name": "A",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:756",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "nearest_gamma_atom_distance_angstrom": null,
+      "nearest_metal_atom_distance_angstrom": 4.903,
+      "nearest_noncanonical_terminal_atom_distance_angstrom": 7.732,
+      "pdb_id": "5LI1",
+      "ready_for_label_import": false,
+      "resid": "380",
+      "residue_code": "LYS",
+      "residue_evidence_status": "resolved_near_metal_noncanonical_terminal_atom_review_hint",
+      "residue_resolved": true,
+      "review_only": true,
+      "roles": [
+        "phosphate_binding_basic_residue_review_hint"
+      ],
+      "row_type": "candidate_active_site_residue",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "chain_name": "A",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:756",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "nearest_gamma_atom_distance_angstrom": null,
+      "nearest_metal_atom_distance_angstrom": 5.237,
+      "nearest_noncanonical_terminal_atom_distance_angstrom": 8.103,
+      "pdb_id": "5LI1",
+      "ready_for_label_import": false,
+      "resid": "382",
+      "residue_code": "ASP",
+      "residue_evidence_status": "resolved_near_metal_noncanonical_terminal_atom_review_hint",
+      "residue_resolved": true,
+      "review_only": true,
+      "roles": [
+        "candidate_catalytic_base_review_hint"
+      ],
+      "row_type": "candidate_active_site_residue",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "chain_name": "A",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:756",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "nearest_gamma_atom_distance_angstrom": null,
+      "nearest_metal_atom_distance_angstrom": 2.428,
+      "nearest_noncanonical_terminal_atom_distance_angstrom": 5.742,
+      "pdb_id": "5LI1",
+      "ready_for_label_import": false,
+      "resid": "383",
+      "residue_code": "ASN",
+      "residue_evidence_status": "resolved_near_metal_noncanonical_terminal_atom_review_hint",
+      "residue_resolved": true,
+      "review_only": true,
+      "roles": [
+        "metal_or_transition_state_context_review_hint"
+      ],
+      "row_type": "candidate_active_site_residue",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "chain_name": "A",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:756",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "mapped_as_protein_substrate_acceptor": false,
+      "mapping_status": "structure_level_phosphoacceptor_not_source_mapped",
+      "non_catalytic_chain": false,
+      "pdb_id": "5LI1",
+      "ready_for_label_import": false,
+      "resid": "484",
+      "residue_code": "SEP",
+      "review_only": true,
+      "row_type": "structure_phosphoacceptor_like_context",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "chain_name": "A",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:756",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "mapped_as_protein_substrate_acceptor": false,
+      "mapping_status": "structure_level_phosphoacceptor_not_source_mapped",
+      "non_catalytic_chain": false,
+      "pdb_id": "5LI1",
+      "ready_for_label_import": false,
+      "resid": "412",
+      "residue_code": "TPO",
+      "review_only": true,
+      "row_type": "structure_phosphoacceptor_like_context",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "chain_name": "A",
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:756",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "mapped_as_protein_substrate_acceptor": false,
+      "mapping_status": "structure_level_phosphoacceptor_not_source_mapped",
+      "non_catalytic_chain": false,
+      "pdb_id": "5LI1",
+      "ready_for_label_import": false,
+      "resid": "564",
+      "residue_code": "TPO",
+      "review_only": true,
+      "row_type": "structure_phosphoacceptor_like_context",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "5LI1 has structure-level SEP/TPO context, but it is not source-mapped as a protein-substrate acceptor for ePK scoring.",
+    "5LI1 still lacks committed source residue positions; review-hint residues are not production scoring evidence."
+  ]
+}
