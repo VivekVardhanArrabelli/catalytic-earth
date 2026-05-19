@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "acceptor_identity_gap_status": "blocked_review_only_source_free_acceptor_identity_missing",
+    "blocker_not_removed": [
+      "source_free_acceptor_identity_missing",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "heteromeric_acceptor_identity_gap_made_explicit",
+    "candidate_acceptor_residue_codes_review_context": [
+      "SER"
+    ],
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_heteromeric_acceptor_identity_gap_audit",
+    "next_actions": [
+      "test a source-free acceptor-identity rule on retained heteromeric role hits",
+      "include nonaccepted BRAF/MEK and sibling-family controls when that identity rule is probed",
+      "keep ePK scoring and external hard-negative re-audit closed"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "retained_role_hit_count": 3,
+    "retained_role_hit_pdb_ids": [
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
+    "review_only": true,
+    "review_only_rule": "This audit deliberately treats source-supported substrate identity as review context only. Retained heteromeric role hits remain blocked until a local source-free acceptor identity feature exists.",
+    "selected_threshold_angstrom": null,
+    "source_context_only_acceptor_identity_count": 3,
+    "source_epk_heteromeric_candidate_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
+    "source_epk_heteromeric_ligand_asymmetry_role_audit_method": "epk_heteromeric_ligand_asymmetry_role_audit",
+    "source_free_acceptor_identity_ready_count": 0,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "acceptor_identity_gap_status": "blocked_source_free_acceptor_identity_missing_review_only",
+      "candidate_acceptor_residues_review_context": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "21",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 5.607
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "pdb_id": "6Z3R",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_free_acceptor_identity_missing",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_acceptor_identity_gap",
+      "source_context_acceptor_identity_present": true,
+      "source_free_acceptor_identity_present": false,
+      "source_free_role_assignment_present": true,
+      "source_pair_id": "smg1_upf1",
+      "source_validation_status_review_context": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_identity_gap_status": "blocked_source_free_acceptor_identity_missing_review_only",
+      "candidate_acceptor_residues_review_context": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "15",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 3.482
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "pdb_id": "8OXM",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_free_acceptor_identity_missing",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_acceptor_identity_gap",
+      "source_context_acceptor_identity_present": true,
+      "source_free_acceptor_identity_present": false,
+      "source_free_role_assignment_present": true,
+      "source_pair_id": "atm_p53",
+      "source_validation_status_review_context": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "acceptor_identity_gap_status": "blocked_source_free_acceptor_identity_missing_review_only",
+      "candidate_acceptor_residues_review_context": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "15",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "SER",
+          "nearest_gamma_distance_angstrom": 3.747
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "pdb_id": "8OXO",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_free_acceptor_identity_missing",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "heteromeric_acceptor_identity_gap",
+      "source_context_acceptor_identity_present": true,
+      "source_free_acceptor_identity_present": false,
+      "source_free_role_assignment_present": true,
+      "source_pair_id": "atm_p53",
+      "source_validation_status_review_context": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    }
+  ],
+  "warnings": [
+    "Heteromeric acceptor identity is still review-context only; this artifact is a blocker audit, not a scoring input."
+  ]
+}

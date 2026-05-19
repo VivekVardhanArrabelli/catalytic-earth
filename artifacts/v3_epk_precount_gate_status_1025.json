@@ -486,6 +486,60 @@
     },
     {
       "evidence": {
+        "blocked_nonaccepted_rule_hit_count": 3,
+        "broader_counteraxis_status": "passes_broader_review_controls_not_scoring_admissible",
+        "broader_heteromeric_initial_hit_count": 6,
+        "broader_heteromeric_reviewed_structure_count": 50,
+        "retained_source_valid_hit_count": 3,
+        "sibling_control_row_count": 36,
+        "sibling_counteraxis_blocked_hit_count": 11,
+        "sibling_residual_false_hit_count": 0,
+        "sibling_same_chain_hydroxyl_hit_count": 11,
+        "source_method": "epk_heteromeric_broader_counteraxis_control_audit"
+      },
+      "gate_id": "heteromeric_broader_counteraxis_control_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "nonaccepted_role_hit_count": 0,
+        "retained_source_valid_role_hit_count": 3,
+        "role_axis_status": "passes_current_ligand_asymmetry_role_controls_not_scoring_admissible",
+        "sibling_role_asymmetry_false_hit_count": 0,
+        "source_free_acceptor_identity_ready_count": 0,
+        "source_method": "epk_heteromeric_ligand_asymmetry_role_audit"
+      },
+      "gate_id": "heteromeric_ligand_asymmetry_role_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "acceptor_identity_gap_status": "blocked_review_only_source_free_acceptor_identity_missing",
+        "retained_role_hit_count": 3,
+        "source_context_only_acceptor_identity_count": 3,
+        "source_free_acceptor_identity_ready_count": 0,
+        "source_method": "epk_heteromeric_acceptor_identity_gap_audit"
+      },
+      "gate_id": "heteromeric_acceptor_identity_gap_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "generic_identity_axis_weak": true,
+        "identity_rule_status": "passes_current_controls_but_generic_identity_axis_weak_review_only",
+        "nonaccepted_blocked_before_identity_rule_count": 3,
+        "nonaccepted_identity_rule_hit_count": 0,
+        "positive_identity_rule_hit_count": 3,
+        "sibling_identity_rule_false_hit_count": 0,
+        "sibling_same_chain_blocked_before_identity_rule_count": 11,
+        "source_free_acceptor_identity_ready_count": 0,
+        "source_method": "epk_heteromeric_acceptor_identity_rule_probe"
+      },
+      "gate_id": "heteromeric_acceptor_identity_rule_probe",
+      "passed": true
+    },
+    {
+      "evidence": {
         "atp_metal_state_candidate_count": 2,
         "atp_metal_state_candidate_pdb_ids": [
           "1TID",
@@ -765,6 +819,36 @@
     "heteromeric_acceptor_counteraxis_residual_nonaccepted_hit_count": 0,
     "heteromeric_acceptor_counteraxis_retained_source_valid_hit_count": 3,
     "heteromeric_acceptor_counteraxis_status": "passes_current_review_controls_not_scoring_admissible",
+    "heteromeric_acceptor_identity_gap_residue_codes_review_context": [
+      "SER"
+    ],
+    "heteromeric_acceptor_identity_gap_retained_role_hit_count": 3,
+    "heteromeric_acceptor_identity_gap_source_context_only_count": 3,
+    "heteromeric_acceptor_identity_gap_source_free_ready_count": 0,
+    "heteromeric_acceptor_identity_gap_status": "blocked_review_only_source_free_acceptor_identity_missing",
+    "heteromeric_acceptor_identity_rule_generic_axis_weak": true,
+    "heteromeric_acceptor_identity_rule_nonaccepted_blocked_before_count": 3,
+    "heteromeric_acceptor_identity_rule_nonaccepted_hit_count": 0,
+    "heteromeric_acceptor_identity_rule_positive_hit_count": 3,
+    "heteromeric_acceptor_identity_rule_sibling_blocked_before_count": 11,
+    "heteromeric_acceptor_identity_rule_sibling_false_hit_count": 0,
+    "heteromeric_acceptor_identity_rule_source_free_ready_count": 0,
+    "heteromeric_acceptor_identity_rule_status": "passes_current_controls_but_generic_identity_axis_weak_review_only",
+    "heteromeric_broader_counteraxis_blocked_nonaccepted_hit_count": 3,
+    "heteromeric_broader_counteraxis_initial_hit_count": 6,
+    "heteromeric_broader_counteraxis_residual_nonaccepted_hit_count": 0,
+    "heteromeric_broader_counteraxis_retained_source_valid_hit_count": 3,
+    "heteromeric_broader_counteraxis_reviewed_structure_count": 50,
+    "heteromeric_broader_counteraxis_sibling_blocked_hit_count": 11,
+    "heteromeric_broader_counteraxis_sibling_control_family_ids": [
+      "atp_grasp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "heteromeric_broader_counteraxis_sibling_residual_false_hit_count": 0,
+    "heteromeric_broader_counteraxis_sibling_same_chain_hit_count": 11,
+    "heteromeric_broader_counteraxis_status": "passes_broader_review_controls_not_scoring_admissible",
     "heteromeric_chain_topology_5hvk_role_direction_supported": true,
     "heteromeric_chain_topology_audit_status": "passes_current_hit_controls_but_insufficient_positive_coverage_review_only",
     "heteromeric_chain_topology_current_hit_controls_passed": true,
@@ -816,6 +900,13 @@
     "heteromeric_distance_minimum_positive_coverage_measured_review_only": true,
     "heteromeric_distance_sample_status": "source_valid_heteromeric_candidates_measured_review_only",
     "heteromeric_distance_source_validated_candidate_count": 3,
+    "heteromeric_ligand_asymmetry_nonaccepted_role_hit_count": 0,
+    "heteromeric_ligand_asymmetry_retained_source_valid_role_hit_count": 3,
+    "heteromeric_ligand_asymmetry_role_axis_status": "passes_current_ligand_asymmetry_role_controls_not_scoring_admissible",
+    "heteromeric_ligand_asymmetry_role_hit_count": 3,
+    "heteromeric_ligand_asymmetry_sibling_false_hit_count": 0,
+    "heteromeric_ligand_asymmetry_source_free_acceptor_identity_ready_count": 0,
+    "heteromeric_ligand_asymmetry_source_free_role_ready_count": 3,
     "heteromeric_positive_coverage_candidate_pdb_ids": [
       "6Z3R",
       "7M0T",
@@ -1103,8 +1194,12 @@
     "source_epk_family_specific_mapping_template_validation_review_method": "epk_family_specific_mapping_template_validation_review",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
     "source_epk_heteromeric_acceptor_chain_counteraxis_audit_method": "epk_heteromeric_acceptor_chain_counteraxis_audit",
+    "source_epk_heteromeric_acceptor_identity_gap_audit_method": "epk_heteromeric_acceptor_identity_gap_audit",
+    "source_epk_heteromeric_acceptor_identity_rule_probe_method": "epk_heteromeric_acceptor_identity_rule_probe",
+    "source_epk_heteromeric_broader_counteraxis_control_audit_method": "epk_heteromeric_broader_counteraxis_control_audit",
     "source_epk_heteromeric_candidate_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
     "source_epk_heteromeric_chain_topology_signal_audit_method": "epk_heteromeric_chain_topology_signal_audit",
+    "source_epk_heteromeric_ligand_asymmetry_role_audit_method": "epk_heteromeric_ligand_asymmetry_role_audit",
     "source_epk_heteromeric_positive_coverage_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
     "source_epk_heteromeric_source_free_role_rule_probe_method": "epk_heteromeric_source_free_role_rule_probe",
     "source_epk_heteromeric_source_valid_candidate_gamma_distance_sample_method": "epk_heteromeric_source_valid_candidate_gamma_distance_sample",

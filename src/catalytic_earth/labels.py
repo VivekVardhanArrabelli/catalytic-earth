@@ -25689,6 +25689,1001 @@ def build_epk_heteromeric_acceptor_chain_counteraxis_audit(
     }
 
 
+def build_epk_heteromeric_broader_counteraxis_control_audit(
+    *,
+    epk_heteromeric_positive_coverage_candidate_scout: dict[str, Any],
+    epk_heteromeric_candidate_source_validation_review: dict[str, Any],
+    epk_heteromeric_acceptor_chain_counteraxis_audit: dict[str, Any],
+    epk_sibling_control_artifacts: list[dict[str, Any]] | None = None,
+    candidate_threshold_angstrom: float = 6.0,
+) -> dict[str, Any]:
+    """Broaden the heteromeric acceptor-chain counter-axis control surface."""
+
+    scout_meta = epk_heteromeric_positive_coverage_candidate_scout.get(
+        "metadata", {}
+    )
+    if not isinstance(scout_meta, dict):
+        scout_meta = {}
+    validation_meta = epk_heteromeric_candidate_source_validation_review.get(
+        "metadata", {}
+    )
+    if not isinstance(validation_meta, dict):
+        validation_meta = {}
+    counteraxis_meta = epk_heteromeric_acceptor_chain_counteraxis_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(counteraxis_meta, dict):
+        counteraxis_meta = {}
+    target_fingerprint_id = str(
+        scout_meta.get("target_fingerprint_id")
+        or validation_meta.get("target_fingerprint_id")
+        or counteraxis_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+
+    validation_by_pdb = {
+        str(row.get("pdb_id") or "").upper(): row
+        for row in epk_heteromeric_candidate_source_validation_review.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+    }
+    counteraxis_by_pdb = {
+        str(row.get("pdb_id") or "").upper(): row
+        for row in epk_heteromeric_acceptor_chain_counteraxis_audit.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+    }
+
+    rows: list[dict[str, Any]] = []
+    broader_reviewed_count = 0
+    broader_initial_hit_count = 0
+    broader_no_hit_count = 0
+    broader_missing_counteraxis_count = 0
+    retained_source_valid_hit_count = 0
+    blocked_nonaccepted_hit_count = 0
+    residual_nonaccepted_hit_pdb_ids: list[str] = []
+    accepted_lost_pdb_ids: list[str] = []
+
+    for scout_row in epk_heteromeric_positive_coverage_candidate_scout.get(
+        "rows", []
+    ) or []:
+        if not isinstance(scout_row, dict):
+            continue
+        broader_reviewed_count += 1
+        pdb_id = str(scout_row.get("pdb_id") or "").upper()
+        candidate_hits = [
+            hit
+            for hit in scout_row.get("heteromeric_candidate_hits", []) or []
+            if isinstance(hit, dict)
+        ]
+        initial_hit = bool(candidate_hits)
+        if initial_hit:
+            broader_initial_hit_count += 1
+        else:
+            broader_no_hit_count += 1
+        validation_row = validation_by_pdb.get(pdb_id, {})
+        counteraxis_row = counteraxis_by_pdb.get(pdb_id, {})
+        source_validated = bool(validation_row.get("source_validated_positive_like"))
+        source_status = str(
+            validation_row.get("source_validation_status")
+            or scout_row.get("source_validation_status")
+            or ""
+        )
+        if not initial_hit:
+            decision = "broader_heteromeric_no_topology_gamma_hit_abstain_review_only"
+            counteraxis_hit = False
+        elif not counteraxis_row:
+            broader_missing_counteraxis_count += 1
+            decision = "broader_heteromeric_hit_missing_counteraxis_review_only"
+            counteraxis_hit = False
+            if source_validated:
+                accepted_lost_pdb_ids.append(pdb_id)
+            else:
+                residual_nonaccepted_hit_pdb_ids.append(pdb_id)
+        else:
+            base_decision = str(counteraxis_row.get("counteraxis_decision") or "")
+            counteraxis_hit = bool(counteraxis_row.get("source_free_counteraxis_hit"))
+            if base_decision == "source_free_counteraxis_retains_source_valid_review_positive":
+                retained_source_valid_hit_count += 1
+            elif base_decision == "source_free_counteraxis_blocks_nonaccepted_rule_hit":
+                blocked_nonaccepted_hit_count += 1
+            elif base_decision == "blocked_counteraxis_loses_source_valid_review_positive":
+                accepted_lost_pdb_ids.append(pdb_id)
+            elif base_decision == "source_free_counteraxis_residual_false_hit_risk":
+                residual_nonaccepted_hit_pdb_ids.append(pdb_id)
+            elif initial_hit and not source_validated and counteraxis_hit:
+                residual_nonaccepted_hit_pdb_ids.append(pdb_id)
+            decision = f"broader_{base_decision or 'counteraxis_unclassified'}"
+        rows.append(
+            {
+                "row_type": "heteromeric_broader_counteraxis_control",
+                "control_surface": "broader_heteromeric_candidate_scout",
+                "pdb_id": pdb_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "initial_topology_gamma_rule_hit": initial_hit,
+                "heteromeric_candidate_hit_count": len(candidate_hits),
+                "source_free_counteraxis_hit": counteraxis_hit,
+                "source_validated_positive_like_review_context": source_validated,
+                "source_validation_status_review_context": source_status,
+                "counteraxis_decision": decision,
+                "production_scoring_admissible": False,
+                "text_free_inputs_only": True,
+                "remaining_blockers": [
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                    (
+                        "source_free_kinase_substrate_role_assignment_missing"
+                        if counteraxis_hit
+                        else "not_a_positive_counteraxis_hit"
+                    ),
+                ],
+            }
+        )
+
+    sibling_artifacts = [
+        artifact for artifact in (epk_sibling_control_artifacts or []) if artifact
+    ]
+    sibling_family_ids: set[str] = set()
+    sibling_control_row_count = 0
+    sibling_same_chain_hit_count = 0
+    sibling_blocked_hit_count = 0
+    sibling_residual_hit_pdb_ids: list[str] = []
+    sibling_not_ready_count = 0
+
+    def _threshold_hits(row: dict[str, Any]) -> list[float]:
+        hits: list[float] = []
+        for value in row.get("same_chain_hydroxyl_candidate_threshold_hits_angstrom", []) or []:
+            try:
+                hits.append(float(value))
+            except (TypeError, ValueError):
+                continue
+        return hits
+
+    for artifact in sibling_artifacts:
+        artifact_meta = artifact.get("metadata", {})
+        if not isinstance(artifact_meta, dict):
+            artifact_meta = {}
+        family_id = str(artifact_meta.get("reviewed_sibling_family_id") or "")
+        family_name = str(artifact_meta.get("reviewed_sibling_family_name") or "")
+        if family_id:
+            sibling_family_ids.add(family_id)
+        for sibling_row in artifact.get("rows", []) or []:
+            if not isinstance(sibling_row, dict):
+                continue
+            sibling_control_row_count += 1
+            row_family_id = str(sibling_row.get("family_id") or family_id)
+            if row_family_id:
+                sibling_family_ids.add(row_family_id)
+            pdb_id = str(sibling_row.get("pdb_id") or "").upper()
+            threshold_hits = _threshold_hits(sibling_row)
+            same_chain_hit = any(
+                abs(hit - float(candidate_threshold_angstrom)) < 1e-6
+                or hit <= float(candidate_threshold_angstrom)
+                for hit in threshold_hits
+            )
+            if same_chain_hit:
+                sibling_same_chain_hit_count += 1
+            measured = bool(
+                sibling_row.get("gamma_to_mapped_histidine_distance_measured")
+                or sibling_row.get("gamma_to_family_acid_base_distance_measured")
+            )
+            if not measured:
+                sibling_not_ready_count += 1
+                decision = "sibling_control_not_measurement_ready_review_only"
+                blocked_by_counteraxis = False
+            elif same_chain_hit and (
+                sibling_row.get("gamma_capable_nucleotide_codes")
+                or sibling_row.get("gamma_atom_count")
+            ):
+                sibling_blocked_hit_count += 1
+                decision = "source_free_counteraxis_blocks_sibling_same_chain_ligand_hit"
+                blocked_by_counteraxis = True
+            elif same_chain_hit:
+                sibling_residual_hit_pdb_ids.append(pdb_id)
+                decision = "source_free_counteraxis_residual_sibling_false_hit_risk"
+                blocked_by_counteraxis = False
+            else:
+                decision = "sibling_control_no_same_chain_hydroxyl_hit_abstain_review_only"
+                blocked_by_counteraxis = False
+            rows.append(
+                {
+                    "row_type": "sibling_broader_counteraxis_control",
+                    "control_surface": "measured_sibling_family_controls",
+                    "pdb_id": pdb_id,
+                    "entry_id": sibling_row.get("entry_id"),
+                    "family_id": row_family_id,
+                    "family_name": sibling_row.get("family_name") or family_name,
+                    "target_family_id": "epk",
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                    "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                    "same_chain_hydroxyl_threshold_hit": same_chain_hit,
+                    "same_chain_hydroxyl_candidate_threshold_hits_angstrom": (
+                        threshold_hits
+                    ),
+                    "source_free_counteraxis_blocks_hit": blocked_by_counteraxis,
+                    "counteraxis_decision": decision,
+                    "production_scoring_admissible": False,
+                    "text_free_inputs_only": True,
+                    "remaining_blockers": [
+                        "threshold_not_calibrated_against_negative_controls",
+                        "external_hard_negative_reaudit_not_real_scorer",
+                        "registry_and_label_factory_extension_not_implemented",
+                        "sibling_family_control_not_epk_positive_label",
+                    ],
+                }
+            )
+
+    residual_nonaccepted_hit_pdb_ids = _sorted_strings(
+        residual_nonaccepted_hit_pdb_ids
+    )
+    accepted_lost_pdb_ids = _sorted_strings(accepted_lost_pdb_ids)
+    sibling_residual_hit_pdb_ids = _sorted_strings(sibling_residual_hit_pdb_ids)
+    sibling_family_ids_sorted = _sorted_strings(sibling_family_ids)
+    broader_control_passed = (
+        broader_reviewed_count > 0
+        and broader_missing_counteraxis_count == 0
+        and not residual_nonaccepted_hit_pdb_ids
+        and not accepted_lost_pdb_ids
+        and not sibling_residual_hit_pdb_ids
+    )
+    status = (
+        "passes_broader_review_controls_not_scoring_admissible"
+        if broader_control_passed
+        else "blocked_review_only_broader_counteraxis_control_failures"
+    )
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_broader_counteraxis_control_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_heteromeric_positive_coverage_candidate_scout_method": (
+                scout_meta.get("method")
+            ),
+            "source_epk_heteromeric_candidate_source_validation_review_method": (
+                validation_meta.get("method")
+            ),
+            "source_epk_heteromeric_acceptor_chain_counteraxis_audit_method": (
+                counteraxis_meta.get("method")
+            ),
+            "candidate_threshold_angstrom": candidate_threshold_angstrom,
+            "broader_counteraxis_status": status,
+            "broader_control_passed": broader_control_passed,
+            "broader_heteromeric_reviewed_structure_count": (
+                broader_reviewed_count
+            ),
+            "broader_heteromeric_initial_hit_count": broader_initial_hit_count,
+            "broader_heteromeric_no_hit_count": broader_no_hit_count,
+            "broader_heteromeric_missing_counteraxis_count": (
+                broader_missing_counteraxis_count
+            ),
+            "retained_source_valid_hit_count": retained_source_valid_hit_count,
+            "blocked_nonaccepted_rule_hit_count": blocked_nonaccepted_hit_count,
+            "residual_nonaccepted_rule_hit_count": len(
+                residual_nonaccepted_hit_pdb_ids
+            ),
+            "residual_nonaccepted_rule_hit_pdb_ids": (
+                residual_nonaccepted_hit_pdb_ids
+            ),
+            "accepted_lost_count": len(accepted_lost_pdb_ids),
+            "accepted_lost_pdb_ids": accepted_lost_pdb_ids,
+            "sibling_control_artifact_count": len(sibling_artifacts),
+            "sibling_control_row_count": sibling_control_row_count,
+            "sibling_control_family_ids": sibling_family_ids_sorted,
+            "sibling_not_ready_count": sibling_not_ready_count,
+            "sibling_same_chain_hydroxyl_hit_count": sibling_same_chain_hit_count,
+            "sibling_counteraxis_blocked_hit_count": sibling_blocked_hit_count,
+            "sibling_residual_false_hit_count": len(sibling_residual_hit_pdb_ids),
+            "sibling_residual_false_hit_pdb_ids": sibling_residual_hit_pdb_ids,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "acceptor_chain_counteraxis_broadened_to_current_heteromeric_and_sibling_controls",
+            "blocker_not_removed": [
+                "source_free_kinase_substrate_role_assignment_missing",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This audit broadens the current acceptor-chain ligand-context "
+                "counter-axis over the bounded 50-structure heteromeric scout "
+                "and measured sibling-family controls. It uses source labels "
+                "only to score the review probe outcome and remains invalid "
+                "for production scoring."
+            ),
+            "next_actions": [
+                "add a source-free kinase/substrate role-assignment signal before scorer design",
+                "keep threshold calibration closed until the role axis and external scored re-audit exist",
+                "do not convert this broader counteraxis into a countable fingerprint gate",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Broadened counteraxis controls are review-only and do not "
+                "authorize ePK scoring, registry edits, or label imports."
+            )
+        ],
+    }
+
+
+def build_epk_heteromeric_ligand_asymmetry_role_audit(
+    *,
+    epk_heteromeric_broader_counteraxis_control_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Evaluate ligand-context asymmetry as a source-free heteromeric role axis."""
+
+    broader_meta = epk_heteromeric_broader_counteraxis_control_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(broader_meta, dict):
+        broader_meta = {}
+    target_fingerprint_id = str(
+        broader_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+
+    rows: list[dict[str, Any]] = []
+    heteromeric_initial_hit_count = 0
+    heteromeric_role_asymmetry_hit_count = 0
+    retained_source_valid_role_hit_count = 0
+    nonaccepted_role_hit_pdb_ids: list[str] = []
+    blocked_nonaccepted_pdb_ids: list[str] = []
+    sibling_control_row_count = 0
+    sibling_blocked_hit_count = 0
+    sibling_role_asymmetry_false_hit_pdb_ids: list[str] = []
+
+    for row in epk_heteromeric_broader_counteraxis_control_audit.get(
+        "rows", []
+    ) or []:
+        if not isinstance(row, dict):
+            continue
+        row_type = str(row.get("row_type") or "")
+        pdb_id = str(row.get("pdb_id") or "").upper()
+        if row_type == "heteromeric_broader_counteraxis_control":
+            initial_hit = bool(row.get("initial_topology_gamma_rule_hit"))
+            if initial_hit:
+                heteromeric_initial_hit_count += 1
+            source_validated = bool(
+                row.get("source_validated_positive_like_review_context")
+            )
+            role_asymmetry_hit = bool(row.get("source_free_counteraxis_hit"))
+            if role_asymmetry_hit:
+                heteromeric_role_asymmetry_hit_count += 1
+            if role_asymmetry_hit and source_validated:
+                retained_source_valid_role_hit_count += 1
+                decision = (
+                    "ligand_asymmetry_supports_heteromeric_role_assignment_review_only"
+                )
+            elif role_asymmetry_hit:
+                nonaccepted_role_hit_pdb_ids.append(pdb_id)
+                decision = "ligand_asymmetry_residual_nonaccepted_role_hit_review_only"
+            elif initial_hit:
+                blocked_nonaccepted_pdb_ids.append(pdb_id)
+                decision = "ligand_asymmetry_blocks_nonaccepted_or_ambiguous_hit"
+            else:
+                decision = "ligand_asymmetry_not_applicable_no_topology_gamma_hit"
+            rows.append(
+                {
+                    "row_type": "heteromeric_ligand_asymmetry_role_audit",
+                    "pdb_id": pdb_id,
+                    "target_family_id": "epk",
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                    "initial_topology_gamma_rule_hit": initial_hit,
+                    "source_free_ligand_asymmetry_role_hit": role_asymmetry_hit,
+                    "source_validated_positive_like_review_context": (
+                        source_validated
+                    ),
+                    "source_validation_status_review_context": row.get(
+                        "source_validation_status_review_context"
+                    ),
+                    "role_axis_decision": decision,
+                    "production_scoring_admissible": False,
+                    "text_free_inputs_only": True,
+                    "remaining_blockers": [
+                        "source_free_acceptor_identity_missing",
+                        "threshold_not_calibrated_against_negative_controls",
+                        "external_hard_negative_reaudit_not_real_scorer",
+                        "registry_and_label_factory_extension_not_implemented",
+                    ],
+                }
+            )
+        elif row_type == "sibling_broader_counteraxis_control":
+            sibling_control_row_count += 1
+            blocked = bool(row.get("source_free_counteraxis_blocks_hit"))
+            if blocked:
+                sibling_blocked_hit_count += 1
+            role_asymmetry_false_hit = bool(
+                row.get("same_chain_hydroxyl_threshold_hit")
+            ) and not blocked
+            if role_asymmetry_false_hit:
+                sibling_role_asymmetry_false_hit_pdb_ids.append(pdb_id)
+            rows.append(
+                {
+                    "row_type": "sibling_ligand_asymmetry_role_audit",
+                    "pdb_id": pdb_id,
+                    "family_id": row.get("family_id"),
+                    "family_name": row.get("family_name"),
+                    "target_family_id": "epk",
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                    "same_chain_hydroxyl_threshold_hit": bool(
+                        row.get("same_chain_hydroxyl_threshold_hit")
+                    ),
+                    "source_free_ligand_asymmetry_role_hit": (
+                        role_asymmetry_false_hit
+                    ),
+                    "role_axis_decision": (
+                        "ligand_asymmetry_blocks_same_chain_sibling_control"
+                        if blocked
+                        else "ligand_asymmetry_abstain_or_unmeasured_sibling_control"
+                    ),
+                    "production_scoring_admissible": False,
+                    "text_free_inputs_only": True,
+                    "remaining_blockers": [
+                        "sibling_family_control_not_epk_positive_label",
+                        "threshold_not_calibrated_against_negative_controls",
+                        "external_hard_negative_reaudit_not_real_scorer",
+                    ],
+                }
+            )
+
+    nonaccepted_role_hit_pdb_ids = _sorted_strings(nonaccepted_role_hit_pdb_ids)
+    blocked_nonaccepted_pdb_ids = _sorted_strings(blocked_nonaccepted_pdb_ids)
+    sibling_role_asymmetry_false_hit_pdb_ids = _sorted_strings(
+        sibling_role_asymmetry_false_hit_pdb_ids
+    )
+    role_axis_passed = (
+        heteromeric_initial_hit_count > 0
+        and not nonaccepted_role_hit_pdb_ids
+        and not sibling_role_asymmetry_false_hit_pdb_ids
+    )
+    role_axis_status = (
+        "passes_current_ligand_asymmetry_role_controls_not_scoring_admissible"
+        if role_axis_passed
+        else "blocked_review_only_ligand_asymmetry_role_false_hit_risk"
+    )
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_ligand_asymmetry_role_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_heteromeric_broader_counteraxis_control_audit_method": (
+                broader_meta.get("method")
+            ),
+            "role_axis_status": role_axis_status,
+            "role_axis_passed_review_only": role_axis_passed,
+            "heteromeric_initial_hit_count": heteromeric_initial_hit_count,
+            "heteromeric_ligand_asymmetry_role_hit_count": (
+                heteromeric_role_asymmetry_hit_count
+            ),
+            "retained_source_valid_role_hit_count": (
+                retained_source_valid_role_hit_count
+            ),
+            "nonaccepted_role_hit_count": len(nonaccepted_role_hit_pdb_ids),
+            "nonaccepted_role_hit_pdb_ids": nonaccepted_role_hit_pdb_ids,
+            "blocked_nonaccepted_or_ambiguous_hit_count": len(
+                blocked_nonaccepted_pdb_ids
+            ),
+            "blocked_nonaccepted_or_ambiguous_hit_pdb_ids": (
+                blocked_nonaccepted_pdb_ids
+            ),
+            "sibling_control_row_count": sibling_control_row_count,
+            "sibling_same_chain_blocked_hit_count": sibling_blocked_hit_count,
+            "sibling_role_asymmetry_false_hit_count": len(
+                sibling_role_asymmetry_false_hit_pdb_ids
+            ),
+            "sibling_role_asymmetry_false_hit_pdb_ids": (
+                sibling_role_asymmetry_false_hit_pdb_ids
+            ),
+            "source_free_role_assignment_ready_count": (
+                retained_source_valid_role_hit_count
+            ),
+            "source_free_acceptor_identity_ready_count": 0,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "source_free_heteromeric_ligand_asymmetry_role_axis_reviewed",
+            "blocker_not_removed": [
+                "source_free_acceptor_identity_missing",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This audit treats ligand-context asymmetry as a source-free "
+                "role-direction signal only when the gamma-associated chain "
+                "has the local nucleotide/metal site and the candidate "
+                "acceptor chain lacks ligand-site context. It remains "
+                "review-only and does not establish acceptor identity."
+            ),
+            "next_actions": [
+                "add a source-free acceptor-identity axis for retained heteromeric role hits",
+                "keep scorer design fail-closed until role and acceptor axes are both local",
+                "rerun external hard negatives only after a calibrated ePK scorer exists",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Ligand-asymmetry role assignment is review-only and cannot "
+                "replace acceptor identity, threshold calibration, or scored "
+                "external hard-negative re-audit."
+            )
+        ],
+    }
+
+
+def build_epk_heteromeric_acceptor_identity_gap_audit(
+    *,
+    epk_heteromeric_ligand_asymmetry_role_audit: dict[str, Any],
+    epk_heteromeric_candidate_source_validation_review: dict[str, Any],
+) -> dict[str, Any]:
+    """Record source-free acceptor-identity blockers for heteromeric role hits."""
+
+    role_meta = epk_heteromeric_ligand_asymmetry_role_audit.get("metadata", {})
+    if not isinstance(role_meta, dict):
+        role_meta = {}
+    validation_meta = epk_heteromeric_candidate_source_validation_review.get(
+        "metadata", {}
+    )
+    if not isinstance(validation_meta, dict):
+        validation_meta = {}
+    target_fingerprint_id = str(
+        role_meta.get("target_fingerprint_id")
+        or validation_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    validation_by_pdb = {
+        str(row.get("pdb_id") or "").upper(): row
+        for row in epk_heteromeric_candidate_source_validation_review.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+    }
+
+    rows: list[dict[str, Any]] = []
+    retained_role_hit_count = 0
+    source_context_only_identity_count = 0
+    source_free_acceptor_identity_ready_count = 0
+    candidate_residue_codes: set[str] = set()
+    role_hit_pdb_ids: list[str] = []
+
+    for role_row in epk_heteromeric_ligand_asymmetry_role_audit.get(
+        "rows", []
+    ) or []:
+        if not isinstance(role_row, dict):
+            continue
+        if (
+            role_row.get("role_axis_decision")
+            != "ligand_asymmetry_supports_heteromeric_role_assignment_review_only"
+        ):
+            continue
+        retained_role_hit_count += 1
+        pdb_id = str(role_row.get("pdb_id") or "").upper()
+        role_hit_pdb_ids.append(pdb_id)
+        validation_row = validation_by_pdb.get(pdb_id, {})
+        candidate_hits = [
+            hit
+            for hit in validation_row.get("candidate_hits", []) or []
+            if isinstance(hit, dict)
+        ]
+        candidate_acceptor_residues: list[dict[str, Any]] = []
+        for hit in candidate_hits:
+            residue_code = str(hit.get("candidate_residue_code") or "").upper()
+            if residue_code:
+                candidate_residue_codes.add(residue_code)
+            candidate_acceptor_residues.append(
+                {
+                    "candidate_chain_name": hit.get("candidate_chain_name"),
+                    "candidate_auth_seq_id": hit.get("candidate_auth_seq_id"),
+                    "candidate_residue_code": residue_code or None,
+                    "candidate_atom_name": hit.get("candidate_atom_name"),
+                    "nearest_gamma_distance_angstrom": hit.get(
+                        "nearest_gamma_distance_angstrom"
+                    ),
+                }
+            )
+        source_context_only_identity_count += 1
+        rows.append(
+            {
+                "row_type": "heteromeric_acceptor_identity_gap",
+                "pdb_id": pdb_id,
+                "source_pair_id": validation_row.get("source_pair_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "source_free_role_assignment_present": True,
+                "source_free_acceptor_identity_present": False,
+                "source_context_acceptor_identity_present": True,
+                "candidate_acceptor_residues_review_context": (
+                    candidate_acceptor_residues
+                ),
+                "source_validation_status_review_context": validation_row.get(
+                    "source_validation_status"
+                ),
+                "acceptor_identity_gap_status": (
+                    "blocked_source_free_acceptor_identity_missing_review_only"
+                ),
+                "production_scoring_admissible": False,
+                "text_free_inputs_only": True,
+                "remaining_blockers": [
+                    "source_free_acceptor_identity_missing",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    role_hit_pdb_ids = _sorted_strings(role_hit_pdb_ids)
+    status = (
+        "blocked_review_only_source_free_acceptor_identity_missing"
+        if retained_role_hit_count
+        and source_free_acceptor_identity_ready_count == 0
+        else "source_free_acceptor_identity_gap_not_assessed"
+    )
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_acceptor_identity_gap_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_heteromeric_ligand_asymmetry_role_audit_method": (
+                role_meta.get("method")
+            ),
+            "source_epk_heteromeric_candidate_source_validation_review_method": (
+                validation_meta.get("method")
+            ),
+            "acceptor_identity_gap_status": status,
+            "retained_role_hit_count": retained_role_hit_count,
+            "retained_role_hit_pdb_ids": role_hit_pdb_ids,
+            "source_context_only_acceptor_identity_count": (
+                source_context_only_identity_count
+            ),
+            "source_free_acceptor_identity_ready_count": (
+                source_free_acceptor_identity_ready_count
+            ),
+            "candidate_acceptor_residue_codes_review_context": _sorted_strings(
+                candidate_residue_codes
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "heteromeric_acceptor_identity_gap_made_explicit",
+            "blocker_not_removed": [
+                "source_free_acceptor_identity_missing",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This audit deliberately treats source-supported substrate "
+                "identity as review context only. Retained heteromeric role "
+                "hits remain blocked until a local source-free acceptor "
+                "identity feature exists."
+            ),
+            "next_actions": [
+                "test a source-free acceptor-identity rule on retained heteromeric role hits",
+                "include nonaccepted BRAF/MEK and sibling-family controls when that identity rule is probed",
+                "keep ePK scoring and external hard-negative re-audit closed",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Heteromeric acceptor identity is still review-context only; "
+                "this artifact is a blocker audit, not a scoring input."
+            )
+        ],
+    }
+
+
+def build_epk_heteromeric_acceptor_identity_rule_probe(
+    *,
+    epk_heteromeric_acceptor_identity_gap_audit: dict[str, Any],
+    epk_heteromeric_broader_counteraxis_control_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Probe a generic source-free hydroxyl acceptor-identity rule."""
+
+    gap_meta = epk_heteromeric_acceptor_identity_gap_audit.get("metadata", {})
+    if not isinstance(gap_meta, dict):
+        gap_meta = {}
+    broader_meta = epk_heteromeric_broader_counteraxis_control_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(broader_meta, dict):
+        broader_meta = {}
+    target_fingerprint_id = str(
+        gap_meta.get("target_fingerprint_id")
+        or broader_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    hydroxyl_residue_codes = {"SER", "THR", "TYR"}
+
+    rows: list[dict[str, Any]] = []
+    positive_rule_hit_count = 0
+    nonaccepted_blocked_before_identity_count = 0
+    nonaccepted_rule_hit_pdb_ids: list[str] = []
+    sibling_same_chain_blocked_before_identity_count = 0
+    sibling_rule_false_hit_pdb_ids: list[str] = []
+
+    for row in epk_heteromeric_acceptor_identity_gap_audit.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        candidate_residues = [
+            residue
+            for residue in row.get("candidate_acceptor_residues_review_context", [])
+            or []
+            if isinstance(residue, dict)
+        ]
+        residue_codes = _sorted_strings(
+            str(residue.get("candidate_residue_code") or "").upper()
+            for residue in candidate_residues
+            if residue.get("candidate_residue_code")
+        )
+        rule_hit = bool(set(residue_codes) & hydroxyl_residue_codes)
+        if rule_hit:
+            positive_rule_hit_count += 1
+        rows.append(
+            {
+                "row_type": "heteromeric_acceptor_identity_rule_probe",
+                "pdb_id": row.get("pdb_id"),
+                "source_pair_id": row.get("source_pair_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "candidate_acceptor_residue_codes": residue_codes,
+                "generic_hydroxyl_acceptor_rule_hit": rule_hit,
+                "source_free_acceptor_identity_rule_status": (
+                    "generic_hydroxyl_rule_hits_retained_role_candidate_review_only"
+                    if rule_hit
+                    else "generic_hydroxyl_rule_miss_review_only"
+                ),
+                "production_scoring_admissible": False,
+                "text_free_inputs_only": True,
+                "remaining_blockers": [
+                    "generic_hydroxyl_identity_rule_not_specific_enough",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    for row in epk_heteromeric_broader_counteraxis_control_audit.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        pdb_id = str(row.get("pdb_id") or "").upper()
+        row_type = str(row.get("row_type") or "")
+        if row_type == "heteromeric_broader_counteraxis_control":
+            if not row.get("initial_topology_gamma_rule_hit"):
+                continue
+            if row.get("source_free_counteraxis_hit"):
+                continue
+            nonaccepted_blocked_before_identity_count += 1
+            rows.append(
+                {
+                    "row_type": "heteromeric_nonaccepted_identity_rule_control",
+                    "pdb_id": pdb_id,
+                    "target_family_id": "epk",
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                    "generic_hydroxyl_acceptor_rule_hit": False,
+                    "source_free_acceptor_identity_rule_status": (
+                        "blocked_before_identity_rule_by_ligand_asymmetry"
+                    ),
+                    "source_validation_status_review_context": row.get(
+                        "source_validation_status_review_context"
+                    ),
+                    "production_scoring_admissible": False,
+                    "text_free_inputs_only": True,
+                    "remaining_blockers": [
+                        "nonaccepted_or_ambiguous_heteromeric_control",
+                        "threshold_not_calibrated_against_negative_controls",
+                        "external_hard_negative_reaudit_not_real_scorer",
+                    ],
+                }
+            )
+        elif row_type == "sibling_broader_counteraxis_control":
+            rule_false_hit = bool(row.get("same_chain_hydroxyl_threshold_hit")) and not bool(
+                row.get("source_free_counteraxis_blocks_hit")
+            )
+            if (
+                bool(row.get("same_chain_hydroxyl_threshold_hit"))
+                and bool(row.get("source_free_counteraxis_blocks_hit"))
+            ):
+                sibling_same_chain_blocked_before_identity_count += 1
+            if rule_false_hit:
+                sibling_rule_false_hit_pdb_ids.append(pdb_id)
+            rows.append(
+                {
+                    "row_type": "sibling_identity_rule_control",
+                    "pdb_id": pdb_id,
+                    "family_id": row.get("family_id"),
+                    "family_name": row.get("family_name"),
+                    "target_family_id": "epk",
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                    "generic_hydroxyl_acceptor_rule_hit": rule_false_hit,
+                    "source_free_acceptor_identity_rule_status": (
+                        "sibling_same_chain_control_blocked_before_identity_rule"
+                        if not rule_false_hit
+                        else "sibling_identity_rule_false_hit_risk"
+                    ),
+                    "production_scoring_admissible": False,
+                    "text_free_inputs_only": True,
+                    "remaining_blockers": [
+                        "sibling_family_control_not_epk_positive_label",
+                        "threshold_not_calibrated_against_negative_controls",
+                        "external_hard_negative_reaudit_not_real_scorer",
+                    ],
+                }
+            )
+
+    sibling_rule_false_hit_pdb_ids = _sorted_strings(sibling_rule_false_hit_pdb_ids)
+    nonaccepted_rule_hit_pdb_ids = _sorted_strings(nonaccepted_rule_hit_pdb_ids)
+    current_controls_pass = (
+        positive_rule_hit_count == int(gap_meta.get("retained_role_hit_count") or 0)
+        and not nonaccepted_rule_hit_pdb_ids
+        and not sibling_rule_false_hit_pdb_ids
+    )
+    status = (
+        "passes_current_controls_but_generic_identity_axis_weak_review_only"
+        if current_controls_pass
+        else "blocked_review_only_acceptor_identity_rule_false_hit_risk"
+    )
+    return {
+        "metadata": {
+            "method": "epk_heteromeric_acceptor_identity_rule_probe",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_heteromeric_acceptor_identity_gap_audit_method": (
+                gap_meta.get("method")
+            ),
+            "source_epk_heteromeric_broader_counteraxis_control_audit_method": (
+                broader_meta.get("method")
+            ),
+            "identity_rule_status": status,
+            "generic_hydroxyl_residue_rule": sorted(hydroxyl_residue_codes),
+            "retained_role_hit_count": gap_meta.get("retained_role_hit_count"),
+            "positive_identity_rule_hit_count": positive_rule_hit_count,
+            "nonaccepted_blocked_before_identity_rule_count": (
+                nonaccepted_blocked_before_identity_count
+            ),
+            "nonaccepted_identity_rule_hit_count": len(nonaccepted_rule_hit_pdb_ids),
+            "nonaccepted_identity_rule_hit_pdb_ids": nonaccepted_rule_hit_pdb_ids,
+            "sibling_same_chain_blocked_before_identity_rule_count": (
+                sibling_same_chain_blocked_before_identity_count
+            ),
+            "sibling_identity_rule_false_hit_count": len(
+                sibling_rule_false_hit_pdb_ids
+            ),
+            "sibling_identity_rule_false_hit_pdb_ids": (
+                sibling_rule_false_hit_pdb_ids
+            ),
+            "generic_identity_axis_weak": True,
+            "weak_axes": [
+                "generic_hydroxyl_residue_class_not_substrate_identity",
+                "no_independent_phosphoacceptor_or_substrate_chain_evidence",
+                "not_tested_as_calibrated_score",
+            ],
+            "source_free_acceptor_identity_ready_count": 0,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "generic_hydroxyl_identity_rule_probe_executed",
+            "blocker_not_removed": [
+                "generic_hydroxyl_identity_rule_not_specific_enough",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This probe tests the weakest plausible source-free acceptor "
+                "identity axis: Ser/Thr/Tyr hydroxyl residue class on retained "
+                "role-asymmetric heteromeric hits. Passing current controls "
+                "does not make it production admissible because residue class "
+                "is not substrate identity."
+            ),
+            "next_actions": [
+                "add a non-generic acceptor identity signal beyond Ser/Thr/Tyr class",
+                "probe retained heteromeric role hits against BRAF/MEK and sibling controls after that signal changes",
+                "keep external hard-negative scored re-audit closed until a calibrated scorer exists",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Generic hydroxyl residue identity is a weak review-only axis "
+                "and is not production scorer evidence."
+            )
+        ],
+    }
+
+
 def build_epk_external_source_lower_priority_ligand_sourcing_review(
     *,
     epk_external_source_structure_mapping_review: dict[str, Any],
@@ -27390,6 +28385,11 @@ def build_epk_precount_gate_status(
     epk_heteromeric_source_free_role_rule_probe: dict[str, Any] | None = None,
     epk_heteromeric_acceptor_chain_counteraxis_audit: dict[str, Any]
     | None = None,
+    epk_heteromeric_broader_counteraxis_control_audit: dict[str, Any]
+    | None = None,
+    epk_heteromeric_ligand_asymmetry_role_audit: dict[str, Any] | None = None,
+    epk_heteromeric_acceptor_identity_gap_audit: dict[str, Any] | None = None,
+    epk_heteromeric_acceptor_identity_rule_probe: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
@@ -27494,7 +28494,7 @@ def build_epk_precount_gate_status(
         if isinstance(meta, dict):
             sibling_control_repair_metas.append(meta)
     sibling_control_repair_meta = (
-        sibling_control_repair_metas[0] if sibling_control_repair_metas else {}
+        sibling_control_repair_metas[-1] if sibling_control_repair_metas else {}
     )
     sibling_control_repair_family_ids = _sorted_strings(
         meta.get("reviewed_family_id")
@@ -27556,7 +28556,7 @@ def build_epk_precount_gate_status(
         meta = review.get("metadata", {})
         if isinstance(meta, dict):
             family_template_metas.append(meta)
-    family_template_meta = family_template_metas[0] if family_template_metas else {}
+    family_template_meta = family_template_metas[-1] if family_template_metas else {}
     family_template_family_ids = _sorted_strings(
         meta.get("reviewed_sibling_family_id")
         for meta in family_template_metas
@@ -27609,7 +28609,7 @@ def build_epk_precount_gate_status(
         meta = review.get("metadata", {})
         if isinstance(meta, dict):
             family_mapping_metas.append(meta)
-    family_mapping_meta = family_mapping_metas[0] if family_mapping_metas else {}
+    family_mapping_meta = family_mapping_metas[-1] if family_mapping_metas else {}
     family_mapping_family_ids = _sorted_strings(
         meta.get("reviewed_sibling_family_id")
         for meta in family_mapping_metas
@@ -27647,7 +28647,7 @@ def build_epk_precount_gate_status(
         meta = sample.get("metadata", {})
         if isinstance(meta, dict):
             family_distance_metas.append(meta)
-    family_distance_meta = family_distance_metas[0] if family_distance_metas else {}
+    family_distance_meta = family_distance_metas[-1] if family_distance_metas else {}
     family_distance_family_ids = _sorted_strings(
         meta.get("reviewed_sibling_family_id")
         for meta in family_distance_metas
@@ -27830,6 +28830,34 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(heteromeric_acceptor_counteraxis_meta, dict):
         heteromeric_acceptor_counteraxis_meta = {}
+    heteromeric_broader_counteraxis_meta = (
+        epk_heteromeric_broader_counteraxis_control_audit.get("metadata", {})
+        if isinstance(epk_heteromeric_broader_counteraxis_control_audit, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_broader_counteraxis_meta, dict):
+        heteromeric_broader_counteraxis_meta = {}
+    heteromeric_ligand_asymmetry_meta = (
+        epk_heteromeric_ligand_asymmetry_role_audit.get("metadata", {})
+        if isinstance(epk_heteromeric_ligand_asymmetry_role_audit, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_ligand_asymmetry_meta, dict):
+        heteromeric_ligand_asymmetry_meta = {}
+    heteromeric_acceptor_identity_gap_meta = (
+        epk_heteromeric_acceptor_identity_gap_audit.get("metadata", {})
+        if isinstance(epk_heteromeric_acceptor_identity_gap_audit, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_acceptor_identity_gap_meta, dict):
+        heteromeric_acceptor_identity_gap_meta = {}
+    heteromeric_acceptor_identity_rule_probe_meta = (
+        epk_heteromeric_acceptor_identity_rule_probe.get("metadata", {})
+        if isinstance(epk_heteromeric_acceptor_identity_rule_probe, dict)
+        else {}
+    )
+    if not isinstance(heteromeric_acceptor_identity_rule_probe_meta, dict):
+        heteromeric_acceptor_identity_rule_probe_meta = {}
     m_csa760_repair_meta = (
         epk_m_csa760_atp_state_repair_scan.get("metadata", {})
         if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
@@ -29401,6 +30429,291 @@ def build_epk_precount_gate_status(
                     "accepted_lost_count": (
                         heteromeric_acceptor_counteraxis_meta.get(
                             "accepted_lost_count"
+                        )
+                    ),
+                },
+            }
+        )
+    if heteromeric_broader_counteraxis_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_broader_counteraxis_control_audit",
+                "passed": heteromeric_broader_counteraxis_meta.get(
+                    "broader_counteraxis_status"
+                )
+                == "passes_broader_review_controls_not_scoring_admissible"
+                and int(
+                    heteromeric_broader_counteraxis_meta.get(
+                        "residual_nonaccepted_rule_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_broader_counteraxis_meta.get(
+                        "sibling_residual_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_broader_counteraxis_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_broader_counteraxis_meta.get(
+                        "epk_score_computed"
+                    )
+                ),
+                "evidence": {
+                    "source_method": heteromeric_broader_counteraxis_meta.get(
+                        "method"
+                    ),
+                    "broader_counteraxis_status": (
+                        heteromeric_broader_counteraxis_meta.get(
+                            "broader_counteraxis_status"
+                        )
+                    ),
+                    "broader_heteromeric_reviewed_structure_count": (
+                        heteromeric_broader_counteraxis_meta.get(
+                            "broader_heteromeric_reviewed_structure_count"
+                        )
+                    ),
+                    "broader_heteromeric_initial_hit_count": (
+                        heteromeric_broader_counteraxis_meta.get(
+                            "broader_heteromeric_initial_hit_count"
+                        )
+                    ),
+                    "retained_source_valid_hit_count": (
+                        heteromeric_broader_counteraxis_meta.get(
+                            "retained_source_valid_hit_count"
+                        )
+                    ),
+                    "blocked_nonaccepted_rule_hit_count": (
+                        heteromeric_broader_counteraxis_meta.get(
+                            "blocked_nonaccepted_rule_hit_count"
+                        )
+                    ),
+                    "sibling_control_row_count": (
+                        heteromeric_broader_counteraxis_meta.get(
+                            "sibling_control_row_count"
+                        )
+                    ),
+                    "sibling_same_chain_hydroxyl_hit_count": (
+                        heteromeric_broader_counteraxis_meta.get(
+                            "sibling_same_chain_hydroxyl_hit_count"
+                        )
+                    ),
+                    "sibling_counteraxis_blocked_hit_count": (
+                        heteromeric_broader_counteraxis_meta.get(
+                            "sibling_counteraxis_blocked_hit_count"
+                        )
+                    ),
+                    "sibling_residual_false_hit_count": (
+                        heteromeric_broader_counteraxis_meta.get(
+                            "sibling_residual_false_hit_count"
+                        )
+                    ),
+                },
+            }
+        )
+    if heteromeric_ligand_asymmetry_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_ligand_asymmetry_role_audit",
+                "passed": heteromeric_ligand_asymmetry_meta.get(
+                    "role_axis_status"
+                )
+                == "passes_current_ligand_asymmetry_role_controls_not_scoring_admissible"
+                and int(
+                    heteromeric_ligand_asymmetry_meta.get(
+                        "nonaccepted_role_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_ligand_asymmetry_meta.get(
+                        "sibling_role_asymmetry_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_ligand_asymmetry_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_ligand_asymmetry_meta.get("epk_score_computed")
+                ),
+                "evidence": {
+                    "source_method": heteromeric_ligand_asymmetry_meta.get(
+                        "method"
+                    ),
+                    "role_axis_status": (
+                        heteromeric_ligand_asymmetry_meta.get(
+                            "role_axis_status"
+                        )
+                    ),
+                    "retained_source_valid_role_hit_count": (
+                        heteromeric_ligand_asymmetry_meta.get(
+                            "retained_source_valid_role_hit_count"
+                        )
+                    ),
+                    "nonaccepted_role_hit_count": (
+                        heteromeric_ligand_asymmetry_meta.get(
+                            "nonaccepted_role_hit_count"
+                        )
+                    ),
+                    "sibling_role_asymmetry_false_hit_count": (
+                        heteromeric_ligand_asymmetry_meta.get(
+                            "sibling_role_asymmetry_false_hit_count"
+                        )
+                    ),
+                    "source_free_acceptor_identity_ready_count": (
+                        heteromeric_ligand_asymmetry_meta.get(
+                            "source_free_acceptor_identity_ready_count"
+                        )
+                    ),
+                },
+            }
+        )
+    if heteromeric_acceptor_identity_gap_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_acceptor_identity_gap_audit",
+                "passed": heteromeric_acceptor_identity_gap_meta.get(
+                    "acceptor_identity_gap_status"
+                )
+                == "blocked_review_only_source_free_acceptor_identity_missing"
+                and int(
+                    heteromeric_acceptor_identity_gap_meta.get(
+                        "source_free_acceptor_identity_ready_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_acceptor_identity_gap_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_acceptor_identity_gap_meta.get(
+                        "epk_score_computed"
+                    )
+                ),
+                "evidence": {
+                    "source_method": heteromeric_acceptor_identity_gap_meta.get(
+                        "method"
+                    ),
+                    "acceptor_identity_gap_status": (
+                        heteromeric_acceptor_identity_gap_meta.get(
+                            "acceptor_identity_gap_status"
+                        )
+                    ),
+                    "retained_role_hit_count": (
+                        heteromeric_acceptor_identity_gap_meta.get(
+                            "retained_role_hit_count"
+                        )
+                    ),
+                    "source_context_only_acceptor_identity_count": (
+                        heteromeric_acceptor_identity_gap_meta.get(
+                            "source_context_only_acceptor_identity_count"
+                        )
+                    ),
+                    "source_free_acceptor_identity_ready_count": (
+                        heteromeric_acceptor_identity_gap_meta.get(
+                            "source_free_acceptor_identity_ready_count"
+                        )
+                    ),
+                },
+            }
+        )
+    if heteromeric_acceptor_identity_rule_probe_meta:
+        gate_checks.append(
+            {
+                "gate_id": "heteromeric_acceptor_identity_rule_probe",
+                "passed": heteromeric_acceptor_identity_rule_probe_meta.get(
+                    "identity_rule_status"
+                )
+                == "passes_current_controls_but_generic_identity_axis_weak_review_only"
+                and bool(
+                    heteromeric_acceptor_identity_rule_probe_meta.get(
+                        "generic_identity_axis_weak"
+                    )
+                )
+                and int(
+                    heteromeric_acceptor_identity_rule_probe_meta.get(
+                        "source_free_acceptor_identity_ready_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    heteromeric_acceptor_identity_rule_probe_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    heteromeric_acceptor_identity_rule_probe_meta.get(
+                        "epk_score_computed"
+                    )
+                ),
+                "evidence": {
+                    "source_method": (
+                        heteromeric_acceptor_identity_rule_probe_meta.get(
+                            "method"
+                        )
+                    ),
+                    "identity_rule_status": (
+                        heteromeric_acceptor_identity_rule_probe_meta.get(
+                            "identity_rule_status"
+                        )
+                    ),
+                    "positive_identity_rule_hit_count": (
+                        heteromeric_acceptor_identity_rule_probe_meta.get(
+                            "positive_identity_rule_hit_count"
+                        )
+                    ),
+                    "nonaccepted_identity_rule_hit_count": (
+                        heteromeric_acceptor_identity_rule_probe_meta.get(
+                            "nonaccepted_identity_rule_hit_count"
+                        )
+                    ),
+                    "nonaccepted_blocked_before_identity_rule_count": (
+                        heteromeric_acceptor_identity_rule_probe_meta.get(
+                            "nonaccepted_blocked_before_identity_rule_count"
+                        )
+                    ),
+                    "sibling_identity_rule_false_hit_count": (
+                        heteromeric_acceptor_identity_rule_probe_meta.get(
+                            "sibling_identity_rule_false_hit_count"
+                        )
+                    ),
+                    "sibling_same_chain_blocked_before_identity_rule_count": (
+                        heteromeric_acceptor_identity_rule_probe_meta.get(
+                            "sibling_same_chain_blocked_before_identity_rule_count"
+                        )
+                    ),
+                    "generic_identity_axis_weak": (
+                        heteromeric_acceptor_identity_rule_probe_meta.get(
+                            "generic_identity_axis_weak"
+                        )
+                    ),
+                    "source_free_acceptor_identity_ready_count": (
+                        heteromeric_acceptor_identity_rule_probe_meta.get(
+                            "source_free_acceptor_identity_ready_count"
                         )
                     ),
                 },
@@ -31311,6 +32624,168 @@ def build_epk_precount_gate_status(
             ),
             "heteromeric_acceptor_counteraxis_accepted_lost_count": (
                 heteromeric_acceptor_counteraxis_meta.get("accepted_lost_count")
+            ),
+            "source_epk_heteromeric_broader_counteraxis_control_audit_method": (
+                heteromeric_broader_counteraxis_meta.get("method")
+            ),
+            "heteromeric_broader_counteraxis_status": (
+                heteromeric_broader_counteraxis_meta.get(
+                    "broader_counteraxis_status"
+                )
+            ),
+            "heteromeric_broader_counteraxis_reviewed_structure_count": (
+                heteromeric_broader_counteraxis_meta.get(
+                    "broader_heteromeric_reviewed_structure_count"
+                )
+            ),
+            "heteromeric_broader_counteraxis_initial_hit_count": (
+                heteromeric_broader_counteraxis_meta.get(
+                    "broader_heteromeric_initial_hit_count"
+                )
+            ),
+            "heteromeric_broader_counteraxis_retained_source_valid_hit_count": (
+                heteromeric_broader_counteraxis_meta.get(
+                    "retained_source_valid_hit_count"
+                )
+            ),
+            "heteromeric_broader_counteraxis_blocked_nonaccepted_hit_count": (
+                heteromeric_broader_counteraxis_meta.get(
+                    "blocked_nonaccepted_rule_hit_count"
+                )
+            ),
+            "heteromeric_broader_counteraxis_residual_nonaccepted_hit_count": (
+                heteromeric_broader_counteraxis_meta.get(
+                    "residual_nonaccepted_rule_hit_count"
+                )
+            ),
+            "heteromeric_broader_counteraxis_sibling_control_family_ids": (
+                heteromeric_broader_counteraxis_meta.get(
+                    "sibling_control_family_ids",
+                    [],
+                )
+            ),
+            "heteromeric_broader_counteraxis_sibling_same_chain_hit_count": (
+                heteromeric_broader_counteraxis_meta.get(
+                    "sibling_same_chain_hydroxyl_hit_count"
+                )
+            ),
+            "heteromeric_broader_counteraxis_sibling_blocked_hit_count": (
+                heteromeric_broader_counteraxis_meta.get(
+                    "sibling_counteraxis_blocked_hit_count"
+                )
+            ),
+            "heteromeric_broader_counteraxis_sibling_residual_false_hit_count": (
+                heteromeric_broader_counteraxis_meta.get(
+                    "sibling_residual_false_hit_count"
+                )
+            ),
+            "source_epk_heteromeric_ligand_asymmetry_role_audit_method": (
+                heteromeric_ligand_asymmetry_meta.get("method")
+            ),
+            "heteromeric_ligand_asymmetry_role_axis_status": (
+                heteromeric_ligand_asymmetry_meta.get("role_axis_status")
+            ),
+            "heteromeric_ligand_asymmetry_role_hit_count": (
+                heteromeric_ligand_asymmetry_meta.get(
+                    "heteromeric_ligand_asymmetry_role_hit_count"
+                )
+            ),
+            "heteromeric_ligand_asymmetry_retained_source_valid_role_hit_count": (
+                heteromeric_ligand_asymmetry_meta.get(
+                    "retained_source_valid_role_hit_count"
+                )
+            ),
+            "heteromeric_ligand_asymmetry_nonaccepted_role_hit_count": (
+                heteromeric_ligand_asymmetry_meta.get(
+                    "nonaccepted_role_hit_count"
+                )
+            ),
+            "heteromeric_ligand_asymmetry_sibling_false_hit_count": (
+                heteromeric_ligand_asymmetry_meta.get(
+                    "sibling_role_asymmetry_false_hit_count"
+                )
+            ),
+            "heteromeric_ligand_asymmetry_source_free_role_ready_count": (
+                heteromeric_ligand_asymmetry_meta.get(
+                    "source_free_role_assignment_ready_count"
+                )
+            ),
+            "heteromeric_ligand_asymmetry_source_free_acceptor_identity_ready_count": (
+                heteromeric_ligand_asymmetry_meta.get(
+                    "source_free_acceptor_identity_ready_count"
+                )
+            ),
+            "source_epk_heteromeric_acceptor_identity_gap_audit_method": (
+                heteromeric_acceptor_identity_gap_meta.get("method")
+            ),
+            "heteromeric_acceptor_identity_gap_status": (
+                heteromeric_acceptor_identity_gap_meta.get(
+                    "acceptor_identity_gap_status"
+                )
+            ),
+            "heteromeric_acceptor_identity_gap_retained_role_hit_count": (
+                heteromeric_acceptor_identity_gap_meta.get(
+                    "retained_role_hit_count"
+                )
+            ),
+            "heteromeric_acceptor_identity_gap_source_context_only_count": (
+                heteromeric_acceptor_identity_gap_meta.get(
+                    "source_context_only_acceptor_identity_count"
+                )
+            ),
+            "heteromeric_acceptor_identity_gap_source_free_ready_count": (
+                heteromeric_acceptor_identity_gap_meta.get(
+                    "source_free_acceptor_identity_ready_count"
+                )
+            ),
+            "heteromeric_acceptor_identity_gap_residue_codes_review_context": (
+                heteromeric_acceptor_identity_gap_meta.get(
+                    "candidate_acceptor_residue_codes_review_context",
+                    [],
+                )
+            ),
+            "source_epk_heteromeric_acceptor_identity_rule_probe_method": (
+                heteromeric_acceptor_identity_rule_probe_meta.get("method")
+            ),
+            "heteromeric_acceptor_identity_rule_status": (
+                heteromeric_acceptor_identity_rule_probe_meta.get(
+                    "identity_rule_status"
+                )
+            ),
+            "heteromeric_acceptor_identity_rule_positive_hit_count": (
+                heteromeric_acceptor_identity_rule_probe_meta.get(
+                    "positive_identity_rule_hit_count"
+                )
+            ),
+            "heteromeric_acceptor_identity_rule_nonaccepted_hit_count": (
+                heteromeric_acceptor_identity_rule_probe_meta.get(
+                    "nonaccepted_identity_rule_hit_count"
+                )
+            ),
+            "heteromeric_acceptor_identity_rule_nonaccepted_blocked_before_count": (
+                heteromeric_acceptor_identity_rule_probe_meta.get(
+                    "nonaccepted_blocked_before_identity_rule_count"
+                )
+            ),
+            "heteromeric_acceptor_identity_rule_sibling_false_hit_count": (
+                heteromeric_acceptor_identity_rule_probe_meta.get(
+                    "sibling_identity_rule_false_hit_count"
+                )
+            ),
+            "heteromeric_acceptor_identity_rule_sibling_blocked_before_count": (
+                heteromeric_acceptor_identity_rule_probe_meta.get(
+                    "sibling_same_chain_blocked_before_identity_rule_count"
+                )
+            ),
+            "heteromeric_acceptor_identity_rule_generic_axis_weak": (
+                heteromeric_acceptor_identity_rule_probe_meta.get(
+                    "generic_identity_axis_weak"
+                )
+            ),
+            "heteromeric_acceptor_identity_rule_source_free_ready_count": (
+                heteromeric_acceptor_identity_rule_probe_meta.get(
+                    "source_free_acceptor_identity_ready_count"
+                )
             ),
             "source_epk_m_csa760_atp_state_repair_scan_method": (
                 m_csa760_repair_meta.get("method")

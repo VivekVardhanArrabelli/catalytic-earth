@@ -3681,6 +3681,10 @@ class CliTests(unittest.TestCase):
             heteromeric_gap = root / "heteromeric_gap.json"
             heteromeric_probe = root / "heteromeric_probe.json"
             heteromeric_counteraxis = root / "heteromeric_counteraxis.json"
+            heteromeric_broader = root / "heteromeric_broader.json"
+            heteromeric_asymmetry = root / "heteromeric_asymmetry.json"
+            heteromeric_identity = root / "heteromeric_identity.json"
+            heteromeric_identity_rule = root / "heteromeric_identity_rule.json"
             out = root / "gate_status.json"
             axis.write_text(
                 json.dumps(
@@ -4109,6 +4113,102 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            heteromeric_broader.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_broader_counteraxis_control_audit"
+                            ),
+                            "broader_counteraxis_status": (
+                                "passes_broader_review_controls_not_scoring_admissible"
+                            ),
+                            "broader_heteromeric_reviewed_structure_count": 50,
+                            "broader_heteromeric_initial_hit_count": 6,
+                            "retained_source_valid_hit_count": 3,
+                            "blocked_nonaccepted_rule_hit_count": 3,
+                            "residual_nonaccepted_rule_hit_count": 0,
+                            "accepted_lost_count": 0,
+                            "sibling_control_row_count": 36,
+                            "sibling_same_chain_hydroxyl_hit_count": 11,
+                            "sibling_counteraxis_blocked_hit_count": 11,
+                            "sibling_residual_false_hit_count": 0,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            heteromeric_asymmetry.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_ligand_asymmetry_role_audit"
+                            ),
+                            "role_axis_status": (
+                                "passes_current_ligand_asymmetry_role_controls_not_scoring_admissible"
+                            ),
+                            "retained_source_valid_role_hit_count": 3,
+                            "nonaccepted_role_hit_count": 0,
+                            "sibling_role_asymmetry_false_hit_count": 0,
+                            "source_free_role_assignment_ready_count": 3,
+                            "source_free_acceptor_identity_ready_count": 0,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            heteromeric_identity.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_acceptor_identity_gap_audit"
+                            ),
+                            "acceptor_identity_gap_status": (
+                                "blocked_review_only_source_free_acceptor_identity_missing"
+                            ),
+                            "retained_role_hit_count": 3,
+                            "source_context_only_acceptor_identity_count": 3,
+                            "source_free_acceptor_identity_ready_count": 0,
+                            "candidate_acceptor_residue_codes_review_context": [
+                                "SER"
+                            ],
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            heteromeric_identity_rule.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_acceptor_identity_rule_probe"
+                            ),
+                            "identity_rule_status": (
+                                "passes_current_controls_but_generic_identity_axis_weak_review_only"
+                            ),
+                            "positive_identity_rule_hit_count": 3,
+                            "nonaccepted_blocked_before_identity_rule_count": 3,
+                            "nonaccepted_identity_rule_hit_count": 0,
+                            "sibling_same_chain_blocked_before_identity_rule_count": 11,
+                            "sibling_identity_rule_false_hit_count": 0,
+                            "generic_identity_axis_weak": True,
+                            "source_free_acceptor_identity_ready_count": 0,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -4156,6 +4256,14 @@ class CliTests(unittest.TestCase):
                     str(heteromeric_probe),
                     "--epk-heteromeric-acceptor-chain-counteraxis-audit",
                     str(heteromeric_counteraxis),
+                    "--epk-heteromeric-broader-counteraxis-control-audit",
+                    str(heteromeric_broader),
+                    "--epk-heteromeric-ligand-asymmetry-role-audit",
+                    str(heteromeric_asymmetry),
+                    "--epk-heteromeric-acceptor-identity-gap-audit",
+                    str(heteromeric_identity),
+                    "--epk-heteromeric-acceptor-identity-rule-probe",
+                    str(heteromeric_identity_rule),
                     "--epk-external-hard-negative-reaudit-plan",
                     str(reaudit),
                     "--out",
@@ -4298,6 +4406,73 @@ class CliTests(unittest.TestCase):
                 ],
                 0,
             )
+            self.assertEqual(
+                metadata["heteromeric_broader_counteraxis_status"],
+                "passes_broader_review_controls_not_scoring_admissible",
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_broader_counteraxis_sibling_blocked_hit_count"
+                ],
+                11,
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_broader_counteraxis_sibling_residual_false_hit_count"
+                ],
+                0,
+            )
+            self.assertEqual(
+                metadata["heteromeric_ligand_asymmetry_role_axis_status"],
+                "passes_current_ligand_asymmetry_role_controls_not_scoring_admissible",
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_ligand_asymmetry_source_free_role_ready_count"
+                ],
+                3,
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_ligand_asymmetry_source_free_acceptor_identity_ready_count"
+                ],
+                0,
+            )
+            self.assertEqual(
+                metadata["heteromeric_acceptor_identity_gap_status"],
+                "blocked_review_only_source_free_acceptor_identity_missing",
+            )
+            self.assertEqual(
+                metadata["heteromeric_acceptor_identity_gap_source_free_ready_count"],
+                0,
+            )
+            self.assertEqual(
+                metadata["heteromeric_acceptor_identity_rule_status"],
+                "passes_current_controls_but_generic_identity_axis_weak_review_only",
+            )
+            self.assertEqual(
+                metadata["heteromeric_acceptor_identity_rule_positive_hit_count"],
+                3,
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_acceptor_identity_rule_nonaccepted_blocked_before_count"
+                ],
+                3,
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_acceptor_identity_rule_sibling_blocked_before_count"
+                ],
+                11,
+            )
+            self.assertTrue(
+                metadata["heteromeric_acceptor_identity_rule_generic_axis_weak"]
+            )
+            self.assertEqual(
+                metadata["heteromeric_acceptor_identity_rule_source_free_ready_count"],
+                0,
+            )
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
             checks = {check["gate_id"]: check for check in status["gate_checks"]}
             self.assertTrue(checks["local_axis_prototype"]["passed"])
@@ -4344,6 +4519,18 @@ class CliTests(unittest.TestCase):
             )
             self.assertTrue(
                 checks["heteromeric_acceptor_chain_counteraxis_audit"]["passed"]
+            )
+            self.assertTrue(
+                checks["heteromeric_broader_counteraxis_control_audit"]["passed"]
+            )
+            self.assertTrue(
+                checks["heteromeric_ligand_asymmetry_role_audit"]["passed"]
+            )
+            self.assertTrue(
+                checks["heteromeric_acceptor_identity_gap_audit"]["passed"]
+            )
+            self.assertTrue(
+                checks["heteromeric_acceptor_identity_rule_probe"]["passed"]
             )
 
     def test_build_epk_acceptor_identity_review_command(self) -> None:
@@ -8231,12 +8418,18 @@ class CliTests(unittest.TestCase):
             cif_dir = root / "cif"
             cif_dir.mkdir()
             base = root / "base.json"
+            scout = root / "scout.json"
             validation = root / "validation.json"
             distances = root / "distances.json"
+            sibling = root / "sibling.json"
             rerun_out = root / "rerun.json"
             gap_out = root / "gap.json"
             probe_out = root / "probe.json"
             counteraxis_out = root / "counteraxis.json"
+            broader_out = root / "broader.json"
+            asymmetry_out = root / "asymmetry.json"
+            identity_out = root / "identity.json"
+            identity_rule_out = root / "identity_rule.json"
 
             base.write_text(
                 json.dumps(
@@ -8300,6 +8493,42 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            scout.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_positive_coverage_candidate_scout"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "6Z3R",
+                                "heteromeric_candidate_hits": [
+                                    {"nearest_gamma_distance_angstrom": 4.2}
+                                ],
+                            },
+                            {
+                                "pdb_id": "7M0T",
+                                "heteromeric_candidate_hits": [
+                                    {"nearest_gamma_distance_angstrom": 4.5}
+                                ],
+                            },
+                            {
+                                "pdb_id": "8ZN6",
+                                "heteromeric_candidate_hits": [
+                                    {"nearest_gamma_distance_angstrom": 4.8}
+                                ],
+                            },
+                            {"pdb_id": "9NOH", "heteromeric_candidate_hits": []},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
             validation.write_text(
                 json.dumps(
                     {
@@ -8323,6 +8552,7 @@ class CliTests(unittest.TestCase):
                                 "candidate_hits": [
                                     {
                                         "candidate_chain_name": "E",
+                                        "candidate_residue_code": "SER",
                                         "gamma_associated_polymer_chain_name": "A",
                                         "nearest_gamma_distance_angstrom": 4.2,
                                     }
@@ -8386,6 +8616,33 @@ class CliTests(unittest.TestCase):
                                 "nearest_gamma_acceptor_distance_angstrom": 4.2,
                                 "distance_candidates": [
                                     {"gamma_ligand_code": "ANP"}
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sibling.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_sibling_control_homolog_gamma_distance_sample"
+                            ),
+                            "reviewed_sibling_family_id": "ndk",
+                            "reviewed_sibling_family_name": (
+                                "Nucleoside diphosphate kinases"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "1WKL",
+                                "family_id": "ndk",
+                                "gamma_to_mapped_histidine_distance_measured": True,
+                                "gamma_capable_nucleotide_codes": ["ATP"],
+                                "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+                                    6.0
                                 ],
                             }
                         ],
@@ -8542,6 +8799,148 @@ class CliTests(unittest.TestCase):
             )
             self.assertEqual(
                 counteraxis["metadata"]["residual_nonaccepted_rule_hit_count"], 0
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-broader-counteraxis-control-audit",
+                    "--epk-heteromeric-positive-coverage-candidate-scout",
+                    str(scout),
+                    "--epk-heteromeric-candidate-source-validation-review",
+                    str(validation),
+                    "--epk-heteromeric-acceptor-chain-counteraxis-audit",
+                    str(counteraxis_out),
+                    "--epk-sibling-control-artifact",
+                    str(sibling),
+                    "--out",
+                    str(broader_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            broader = json.loads(broader_out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                broader["metadata"]["broader_counteraxis_status"],
+                "passes_broader_review_controls_not_scoring_admissible",
+            )
+            self.assertEqual(
+                broader["metadata"]["broader_heteromeric_reviewed_structure_count"],
+                4,
+            )
+            self.assertEqual(
+                broader["metadata"]["sibling_counteraxis_blocked_hit_count"], 1
+            )
+            self.assertEqual(
+                broader["metadata"]["sibling_residual_false_hit_count"], 0
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-ligand-asymmetry-role-audit",
+                    "--epk-heteromeric-broader-counteraxis-control-audit",
+                    str(broader_out),
+                    "--out",
+                    str(asymmetry_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            asymmetry = json.loads(asymmetry_out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                asymmetry["metadata"]["role_axis_status"],
+                "passes_current_ligand_asymmetry_role_controls_not_scoring_admissible",
+            )
+            self.assertEqual(
+                asymmetry["metadata"]["retained_source_valid_role_hit_count"],
+                1,
+            )
+            self.assertEqual(asymmetry["metadata"]["nonaccepted_role_hit_count"], 0)
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-acceptor-identity-gap-audit",
+                    "--epk-heteromeric-ligand-asymmetry-role-audit",
+                    str(asymmetry_out),
+                    "--epk-heteromeric-candidate-source-validation-review",
+                    str(validation),
+                    "--out",
+                    str(identity_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            identity = json.loads(identity_out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                identity["metadata"]["acceptor_identity_gap_status"],
+                "blocked_review_only_source_free_acceptor_identity_missing",
+            )
+            self.assertEqual(identity["metadata"]["retained_role_hit_count"], 1)
+            self.assertEqual(
+                identity["metadata"]["source_free_acceptor_identity_ready_count"],
+                0,
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-acceptor-identity-rule-probe",
+                    "--epk-heteromeric-acceptor-identity-gap-audit",
+                    str(identity_out),
+                    "--epk-heteromeric-broader-counteraxis-control-audit",
+                    str(broader_out),
+                    "--out",
+                    str(identity_rule_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            identity_rule = json.loads(identity_rule_out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                identity_rule["metadata"]["identity_rule_status"],
+                "passes_current_controls_but_generic_identity_axis_weak_review_only",
+            )
+            self.assertEqual(
+                identity_rule["metadata"]["positive_identity_rule_hit_count"], 1
+            )
+            self.assertEqual(
+                identity_rule["metadata"][
+                    "nonaccepted_blocked_before_identity_rule_count"
+                ],
+                2,
+            )
+            self.assertEqual(
+                identity_rule["metadata"][
+                    "sibling_same_chain_blocked_before_identity_rule_count"
+                ],
+                1,
+            )
+            self.assertTrue(identity_rule["metadata"]["generic_identity_axis_weak"])
+            self.assertEqual(
+                identity_rule["metadata"]["source_free_acceptor_identity_ready_count"],
+                0,
             )
 
     def test_build_epk_ligand_specific_5hvk_source_validity_command(

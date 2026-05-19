@@ -115,9 +115,23 @@ hitting all six heteromeric candidates, including the three nonaccepted rows.
 An acceptor-chain nucleotide/metal counter-axis now blocks those three
 nonaccepted hits while retaining the three source-valid positives, with 0
 accepted losses and 0 residual nonaccepted hits on the current review surface.
-Threshold/external-hard-negative calibration remains closed before any
-production scoring; the next useful ePK work is to run this counter-axis on
-broader heteromeric and sibling controls before any scorer design.
+The broader counter-axis audit now covers all 50 heteromeric scout structures
+and measured NDK, ATP-grasp, PfkA, and PfkB sibling controls: it retains the
+three source-valid heteromeric leads, blocks all three nonaccepted heteromeric
+hits, and blocks 11/11 measured sibling same-chain hydroxyl hits with 0
+residual sibling false hits. A ligand-asymmetry role audit turns that into a
+source-free role-direction probe with 3 retained role hits, 0 nonaccepted role
+hits, and 0 sibling role false hits. The remaining blocker is now explicit:
+the retained role hits still have only source-context Ser acceptor identity and
+0 source-free acceptor-identity features. A generic Ser/Thr/Tyr hydroxyl-class
+identity probe now passes current review controls only after the three
+nonaccepted heteromeric hits and 11 sibling same-chain hydroxyl hits are
+blocked upstream, and it is marked weak because residue class is not substrate
+identity; source-free acceptor-identity ready count remains 0. Threshold/
+external-hard-negative calibration remains closed before any production
+scoring; the next useful ePK work is a non-generic local acceptor-identity
+signal tested against the retained heteromeric role hits, BRAF/MEK nonaccepted
+hits, and sibling controls.
 
 ## Time Calibration Rule
 

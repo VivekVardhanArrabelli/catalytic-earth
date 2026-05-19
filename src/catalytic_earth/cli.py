@@ -106,6 +106,10 @@ from .labels import (
     build_epk_heteromeric_source_free_role_rule_probe,
     build_epk_heteromeric_text_free_axis_gap_audit,
     build_epk_heteromeric_acceptor_chain_counteraxis_audit,
+    build_epk_heteromeric_broader_counteraxis_control_audit,
+    build_epk_heteromeric_ligand_asymmetry_role_audit,
+    build_epk_heteromeric_acceptor_identity_gap_audit,
+    build_epk_heteromeric_acceptor_identity_rule_probe,
     build_epk_ligand_specific_5hvk_control_rerun_queue,
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
@@ -7209,6 +7213,120 @@ def cmd_build_epk_heteromeric_acceptor_chain_counteraxis_audit(
     return 0
 
 
+def cmd_build_epk_heteromeric_broader_counteraxis_control_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_positive_coverage_candidate_scout).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_positive_coverage_candidate_scout = json.load(handle)
+    with Path(args.epk_heteromeric_candidate_source_validation_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_candidate_source_validation_review = json.load(handle)
+    with Path(args.epk_heteromeric_acceptor_chain_counteraxis_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_acceptor_chain_counteraxis_audit = json.load(handle)
+    sibling_control_artifacts = []
+    for path in args.epk_sibling_control_artifact or []:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            sibling_control_artifacts.append(json.load(handle))
+    audit = build_epk_heteromeric_broader_counteraxis_control_audit(
+        epk_heteromeric_positive_coverage_candidate_scout=(
+            epk_heteromeric_positive_coverage_candidate_scout
+        ),
+        epk_heteromeric_candidate_source_validation_review=(
+            epk_heteromeric_candidate_source_validation_review
+        ),
+        epk_heteromeric_acceptor_chain_counteraxis_audit=(
+            epk_heteromeric_acceptor_chain_counteraxis_audit
+        ),
+        epk_sibling_control_artifacts=sibling_control_artifacts,
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK heteromeric broader counteraxis control audit to "
+        f"{args.out} (status={audit['metadata']['broader_counteraxis_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_heteromeric_ligand_asymmetry_role_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_broader_counteraxis_control_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_broader_counteraxis_control_audit = json.load(handle)
+    audit = build_epk_heteromeric_ligand_asymmetry_role_audit(
+        epk_heteromeric_broader_counteraxis_control_audit=(
+            epk_heteromeric_broader_counteraxis_control_audit
+        )
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK heteromeric ligand-asymmetry role audit to "
+        f"{args.out} (status={audit['metadata']['role_axis_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_heteromeric_acceptor_identity_gap_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_ligand_asymmetry_role_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_ligand_asymmetry_role_audit = json.load(handle)
+    with Path(args.epk_heteromeric_candidate_source_validation_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_candidate_source_validation_review = json.load(handle)
+    audit = build_epk_heteromeric_acceptor_identity_gap_audit(
+        epk_heteromeric_ligand_asymmetry_role_audit=(
+            epk_heteromeric_ligand_asymmetry_role_audit
+        ),
+        epk_heteromeric_candidate_source_validation_review=(
+            epk_heteromeric_candidate_source_validation_review
+        ),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK heteromeric acceptor-identity gap audit to "
+        f"{args.out} (status={audit['metadata']['acceptor_identity_gap_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_heteromeric_acceptor_identity_rule_probe(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_acceptor_identity_gap_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_acceptor_identity_gap_audit = json.load(handle)
+    with Path(args.epk_heteromeric_broader_counteraxis_control_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_broader_counteraxis_control_audit = json.load(handle)
+    probe = build_epk_heteromeric_acceptor_identity_rule_probe(
+        epk_heteromeric_acceptor_identity_gap_audit=(
+            epk_heteromeric_acceptor_identity_gap_audit
+        ),
+        epk_heteromeric_broader_counteraxis_control_audit=(
+            epk_heteromeric_broader_counteraxis_control_audit
+        ),
+    )
+    write_json(Path(args.out), probe)
+    print(
+        "Wrote ePK heteromeric acceptor-identity rule probe to "
+        f"{args.out} (status={probe['metadata']['identity_rule_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
     args: argparse.Namespace,
 ) -> int:
@@ -7781,6 +7899,30 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_heteromeric_acceptor_chain_counteraxis_audit = json.load(handle)
+    epk_heteromeric_broader_counteraxis_control_audit = None
+    if args.epk_heteromeric_broader_counteraxis_control_audit:
+        with Path(args.epk_heteromeric_broader_counteraxis_control_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_broader_counteraxis_control_audit = json.load(handle)
+    epk_heteromeric_ligand_asymmetry_role_audit = None
+    if args.epk_heteromeric_ligand_asymmetry_role_audit:
+        with Path(args.epk_heteromeric_ligand_asymmetry_role_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_ligand_asymmetry_role_audit = json.load(handle)
+    epk_heteromeric_acceptor_identity_gap_audit = None
+    if args.epk_heteromeric_acceptor_identity_gap_audit:
+        with Path(args.epk_heteromeric_acceptor_identity_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_acceptor_identity_gap_audit = json.load(handle)
+    epk_heteromeric_acceptor_identity_rule_probe = None
+    if args.epk_heteromeric_acceptor_identity_rule_probe:
+        with Path(args.epk_heteromeric_acceptor_identity_rule_probe).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_heteromeric_acceptor_identity_rule_probe = json.load(handle)
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -7927,6 +8069,18 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_heteromeric_acceptor_chain_counteraxis_audit=(
             epk_heteromeric_acceptor_chain_counteraxis_audit
+        ),
+        epk_heteromeric_broader_counteraxis_control_audit=(
+            epk_heteromeric_broader_counteraxis_control_audit
+        ),
+        epk_heteromeric_ligand_asymmetry_role_audit=(
+            epk_heteromeric_ligand_asymmetry_role_audit
+        ),
+        epk_heteromeric_acceptor_identity_gap_audit=(
+            epk_heteromeric_acceptor_identity_gap_audit
+        ),
+        epk_heteromeric_acceptor_identity_rule_probe=(
+            epk_heteromeric_acceptor_identity_rule_probe
         ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
@@ -16181,6 +16335,133 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_heteromeric_acceptor_chain_counteraxis_audit
     )
 
+    epk_heteromeric_broader_counteraxis = subparsers.add_parser(
+        "build-epk-heteromeric-broader-counteraxis-control-audit",
+        help="broaden heteromeric acceptor-chain counteraxis controls",
+    )
+    epk_heteromeric_broader_counteraxis.add_argument(
+        "--epk-heteromeric-positive-coverage-candidate-scout",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_positive_coverage_candidate_scout_1025.json"
+        ),
+    )
+    epk_heteromeric_broader_counteraxis.add_argument(
+        "--epk-heteromeric-candidate-source-validation-review",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_candidate_source_validation_review_1025.json"
+        ),
+    )
+    epk_heteromeric_broader_counteraxis.add_argument(
+        "--epk-heteromeric-acceptor-chain-counteraxis-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_acceptor_chain_counteraxis_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_broader_counteraxis.add_argument(
+        "--epk-sibling-control-artifact",
+        action="append",
+        default=None,
+        help="repeatable measured sibling-control artifact path",
+    )
+    epk_heteromeric_broader_counteraxis.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_heteromeric_broader_counteraxis.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_broader_counteraxis_control_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_broader_counteraxis.set_defaults(
+        func=cmd_build_epk_heteromeric_broader_counteraxis_control_audit
+    )
+
+    epk_heteromeric_ligand_asymmetry = subparsers.add_parser(
+        "build-epk-heteromeric-ligand-asymmetry-role-audit",
+        help="audit ligand-context asymmetry as source-free heteromeric role axis",
+    )
+    epk_heteromeric_ligand_asymmetry.add_argument(
+        "--epk-heteromeric-broader-counteraxis-control-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_broader_counteraxis_control_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_ligand_asymmetry.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_ligand_asymmetry_role_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_ligand_asymmetry.set_defaults(
+        func=cmd_build_epk_heteromeric_ligand_asymmetry_role_audit
+    )
+
+    epk_heteromeric_identity_gap = subparsers.add_parser(
+        "build-epk-heteromeric-acceptor-identity-gap-audit",
+        help="audit source-free acceptor identity gaps on heteromeric role hits",
+    )
+    epk_heteromeric_identity_gap.add_argument(
+        "--epk-heteromeric-ligand-asymmetry-role-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_ligand_asymmetry_role_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_identity_gap.add_argument(
+        "--epk-heteromeric-candidate-source-validation-review",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_candidate_source_validation_review_1025.json"
+        ),
+    )
+    epk_heteromeric_identity_gap.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_acceptor_identity_gap_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_identity_gap.set_defaults(
+        func=cmd_build_epk_heteromeric_acceptor_identity_gap_audit
+    )
+
+    epk_heteromeric_identity_rule_probe = subparsers.add_parser(
+        "build-epk-heteromeric-acceptor-identity-rule-probe",
+        help="probe a source-free hydroxyl identity rule on heteromeric ePK leads",
+    )
+    epk_heteromeric_identity_rule_probe.add_argument(
+        "--epk-heteromeric-acceptor-identity-gap-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_acceptor_identity_gap_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_identity_rule_probe.add_argument(
+        "--epk-heteromeric-broader-counteraxis-control-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_broader_counteraxis_control_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_identity_rule_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_acceptor_identity_rule_probe_1025.json"
+        ),
+    )
+    epk_heteromeric_identity_rule_probe.set_defaults(
+        func=cmd_build_epk_heteromeric_acceptor_identity_rule_probe
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -16633,6 +16914,22 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-heteromeric-acceptor-chain-counteraxis-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-broader-counteraxis-control-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-ligand-asymmetry-role-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-acceptor-identity-gap-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-acceptor-identity-rule-probe",
         default=None,
     )
     epk_precount_gate_status.add_argument(

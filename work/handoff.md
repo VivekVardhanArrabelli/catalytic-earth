@@ -50,6 +50,67 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T20:36:50Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
+preserved.
+
+`artifacts/v3_epk_heteromeric_broader_counteraxis_control_audit_1025.json`
+extends the acceptor-chain nucleotide/metal counter-axis from the six reviewed
+heteromeric hits to the full bounded 50-structure heteromeric scout plus
+measured sibling controls from NDK, ATP-grasp, PfkA, and PfkB. It keeps the
+three source-valid heteromeric leads (`6Z3R`, `8OXM`, and `8OXO`), blocks the
+three nonaccepted heteromeric hits (`7M0T`, `7M0W`, and `8ZN6`), and blocks
+11/11 measured sibling same-chain hydroxyl hits with 0 sibling residual false
+hits. It remains `passes_broader_review_controls_not_scoring_admissible`.
+
+`artifacts/v3_epk_heteromeric_ligand_asymmetry_role_audit_1025.json` then
+promotes the counter-axis into an explicit source-free role-direction probe:
+gamma-associated ligand-bearing chains can be separated from candidate
+acceptor chains on the current retained heteromeric review positives. It
+retains 3 source-valid role hits, has 0 nonaccepted role hits and 0 sibling
+role-asymmetry false hits, but still marks production scoring blocked because
+source-free acceptor identity is absent.
+
+`artifacts/v3_epk_heteromeric_acceptor_identity_gap_audit_1025.json` records
+that next blocker as a negative result. The three retained heteromeric role
+hits have source-context Ser acceptor candidates, but 0 have a source-free
+acceptor-identity feature. The next useful ePK experiment is therefore a
+source-free acceptor-identity rule on those retained heteromeric role hits,
+with BRAF/MEK nonaccepted hits and sibling-family controls included from the
+start. Do not move to threshold calibration, real external hard-negative scored
+re-audit, registry extension, or label import until that local identity axis
+exists and passes.
+
+`artifacts/v3_epk_heteromeric_acceptor_identity_rule_probe_1025.json` executes
+that weakest plausible source-free identity rule by checking generic
+Ser/Thr/Tyr hydroxyl residue class after the role-asymmetry and counter-axis
+filters. It hits all three retained role candidates; the three nonaccepted
+heteromeric hits and 11 sibling same-chain hydroxyl hits are blocked before the
+identity rule, leaving 0 residual nonaccepted or sibling identity-rule false
+hits on the current controls. It stays review-only and explicitly weak:
+generic hydroxyl class is not substrate identity,
+`source_free_acceptor_identity_ready_count` remains 0, and no ePK score,
+external scored re-audit, registry edit, or label import is allowed.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the
+broader counter-axis, ligand-asymmetry role audit, acceptor-identity gap audit,
+and generic acceptor-identity rule probe. Overall status remains
+`blocked_review_only`; these artifacts remove a bounded role-direction
+ambiguity and show the generic identity rule is insufficient, but they do not
+satisfy source-free acceptor identity, threshold calibration, external scored
+re-audit, registry extension, or label import gates.
+
+Evidence-based confidence call: confidence is higher that local ligand-context
+asymmetry is a useful heteromeric ePK role-direction signal, because it clears
+the current broader heteromeric/sibling review controls. Confidence remains low
+for production scoring because the retained role hits still rely on
+source-context acceptor identity plus only a generic hydroxyl-class proxy, and
+no calibrated ePK score or real external hard-negative scored re-audit exists.
+
 As of the 2026-05-19T19:34:43Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

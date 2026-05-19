@@ -1277,6 +1277,25 @@ acceptor chain itself carries nucleotide or metal ligand context. On the
 current six-row review surface, it retains the three source-valid positives,
 blocks the three nonaccepted hits, and leaves 0 residual nonaccepted hits; it
 is still review-only and needs broader controls before scorer use.
+`artifacts/v3_epk_heteromeric_broader_counteraxis_control_audit_1025.json`
+extends that check to the full 50-structure heteromeric scout and measured NDK,
+ATP-grasp, PfkA, and PfkB sibling controls. It retains the same three
+source-valid heteromeric leads, blocks the three nonaccepted heteromeric hits,
+and blocks 11/11 measured sibling same-chain hydroxyl hits with 0 residual
+false hits. `artifacts/v3_epk_heteromeric_ligand_asymmetry_role_audit_1025.json`
+then records 3 retained source-free role-direction hits with 0 nonaccepted or
+sibling role false hits, while
+`artifacts/v3_epk_heteromeric_acceptor_identity_gap_audit_1025.json` keeps the
+next blocker explicit: those role hits still have only source-context Ser
+acceptor identity and 0 source-free acceptor-identity features.
+`artifacts/v3_epk_heteromeric_acceptor_identity_rule_probe_1025.json` now
+tests the weakest plausible source-free identity proxy, generic Ser/Thr/Tyr
+hydroxyl residue class. It hits all three retained role candidates with 0
+residual nonaccepted or sibling false hits on current controls only after the
+three nonaccepted heteromeric hits and 11 sibling same-chain hydroxyl hits are
+blocked upstream. It remains review-only and explicitly weak: source-free
+acceptor-identity ready count is still 0 because residue class is not
+substrate identity.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,
@@ -1304,7 +1323,9 @@ the carried distance sample measures all three leads. The heteromeric control
 rerun passes only as a fail-closed diagnostic, while the text-free gap audit
 and source-free role-rule probe show that role-direction and acceptor identity
 still need local replacements. The acceptor-chain counter-axis passes current
-review controls only. None of these is scorer or label evidence. Real
+review controls only; the broader counter-axis and ligand-asymmetry role audit
+now pass broader review controls, but the acceptor-identity gap audit keeps
+scorer construction blocked. None of these is scorer or label evidence. Real
 scorer design, the `m_csa:760`
 split-state repair scan, the
 `m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,

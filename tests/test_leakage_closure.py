@@ -26,6 +26,10 @@ from catalytic_earth.labels import (
     build_epk_heteromeric_source_valid_control_rerun,
     build_epk_heteromeric_text_free_axis_gap_audit,
     build_epk_heteromeric_acceptor_chain_counteraxis_audit,
+    build_epk_heteromeric_broader_counteraxis_control_audit,
+    build_epk_heteromeric_ligand_asymmetry_role_audit,
+    build_epk_heteromeric_acceptor_identity_gap_audit,
+    build_epk_heteromeric_acceptor_identity_rule_probe,
     build_epk_source_authority_axis_replacement_gap_audit,
     build_epk_source_free_chain_topology_role_audit,
     load_labels,
@@ -2569,6 +2573,169 @@ class LeakageClosureTests(unittest.TestCase):
             self.assertTrue(row["text_free_inputs_only"])
             self.assertFalse(row["production_scoring_admissible"])
 
+    def test_epk_heteromeric_broader_counteraxis_control_audit_is_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_broader_counteraxis_control_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_broader_counteraxis_control_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["broader_counteraxis_status"],
+            "passes_broader_review_controls_not_scoring_admissible",
+        )
+        self.assertEqual(metadata["broader_heteromeric_reviewed_structure_count"], 50)
+        self.assertEqual(metadata["broader_heteromeric_initial_hit_count"], 6)
+        self.assertEqual(metadata["broader_heteromeric_no_hit_count"], 44)
+        self.assertEqual(metadata["retained_source_valid_hit_count"], 3)
+        self.assertEqual(metadata["blocked_nonaccepted_rule_hit_count"], 3)
+        self.assertEqual(metadata["residual_nonaccepted_rule_hit_count"], 0)
+        self.assertEqual(metadata["accepted_lost_count"], 0)
+        self.assertEqual(
+            metadata["sibling_control_family_ids"],
+            ["atp_grasp", "ndk", "pfka", "pfkb"],
+        )
+        self.assertEqual(metadata["sibling_same_chain_hydroxyl_hit_count"], 11)
+        self.assertEqual(metadata["sibling_counteraxis_blocked_hit_count"], 11)
+        self.assertEqual(metadata["sibling_residual_false_hit_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        sibling_blocked = [
+            row
+            for row in audit["rows"]
+            if row["counteraxis_decision"]
+            == "source_free_counteraxis_blocks_sibling_same_chain_ligand_hit"
+        ]
+        self.assertEqual(len(sibling_blocked), 11)
+        for row in audit["rows"]:
+            self.assertTrue(row["text_free_inputs_only"])
+            self.assertFalse(row["production_scoring_admissible"])
+
+    def test_epk_heteromeric_ligand_asymmetry_role_audit_is_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_ligand_asymmetry_role_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_ligand_asymmetry_role_audit",
+        )
+        self.assertEqual(
+            metadata["role_axis_status"],
+            "passes_current_ligand_asymmetry_role_controls_not_scoring_admissible",
+        )
+        self.assertEqual(metadata["retained_source_valid_role_hit_count"], 3)
+        self.assertEqual(metadata["nonaccepted_role_hit_count"], 0)
+        self.assertEqual(metadata["sibling_role_asymmetry_false_hit_count"], 0)
+        self.assertEqual(metadata["source_free_role_assignment_ready_count"], 3)
+        self.assertEqual(metadata["source_free_acceptor_identity_ready_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        role_hits = [
+            row
+            for row in audit["rows"]
+            if row["role_axis_decision"]
+            == "ligand_asymmetry_supports_heteromeric_role_assignment_review_only"
+        ]
+        self.assertEqual({row["pdb_id"] for row in role_hits}, {"6Z3R", "8OXM", "8OXO"})
+        for row in audit["rows"]:
+            self.assertTrue(row["text_free_inputs_only"])
+            self.assertFalse(row["production_scoring_admissible"])
+
+    def test_epk_heteromeric_acceptor_identity_gap_audit_is_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_acceptor_identity_gap_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_acceptor_identity_gap_audit",
+        )
+        self.assertEqual(
+            metadata["acceptor_identity_gap_status"],
+            "blocked_review_only_source_free_acceptor_identity_missing",
+        )
+        self.assertEqual(metadata["retained_role_hit_count"], 3)
+        self.assertEqual(metadata["source_context_only_acceptor_identity_count"], 3)
+        self.assertEqual(metadata["source_free_acceptor_identity_ready_count"], 0)
+        self.assertEqual(
+            metadata["candidate_acceptor_residue_codes_review_context"],
+            ["SER"],
+        )
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(len(audit["rows"]), 3)
+        for row in audit["rows"]:
+            self.assertTrue(row["source_free_role_assignment_present"])
+            self.assertFalse(row["source_free_acceptor_identity_present"])
+            self.assertTrue(row["source_context_acceptor_identity_present"])
+            self.assertTrue(row["text_free_inputs_only"])
+            self.assertFalse(row["production_scoring_admissible"])
+
+    def test_epk_heteromeric_acceptor_identity_rule_probe_is_review_only(
+        self,
+    ) -> None:
+        probe = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_heteromeric_acceptor_identity_rule_probe_1025.json"
+        )
+        metadata = probe["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_heteromeric_acceptor_identity_rule_probe",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["identity_rule_status"],
+            "passes_current_controls_but_generic_identity_axis_weak_review_only",
+        )
+        self.assertEqual(metadata["retained_role_hit_count"], 3)
+        self.assertEqual(metadata["positive_identity_rule_hit_count"], 3)
+        self.assertEqual(metadata["nonaccepted_blocked_before_identity_rule_count"], 3)
+        self.assertEqual(metadata["nonaccepted_identity_rule_hit_count"], 0)
+        self.assertEqual(
+            metadata["sibling_same_chain_blocked_before_identity_rule_count"], 11
+        )
+        self.assertEqual(metadata["sibling_identity_rule_false_hit_count"], 0)
+        self.assertTrue(metadata["generic_identity_axis_weak"])
+        self.assertEqual(metadata["source_free_acceptor_identity_ready_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        positive_rows = [
+            row
+            for row in probe["rows"]
+            if row["row_type"] == "heteromeric_acceptor_identity_rule_probe"
+        ]
+        self.assertEqual({row["pdb_id"] for row in positive_rows}, {"6Z3R", "8OXM", "8OXO"})
+        for row in probe["rows"]:
+            self.assertTrue(row["text_free_inputs_only"])
+            self.assertFalse(row["production_scoring_admissible"])
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_epk_external_source_scout_builder_keeps_rows_non_countable(
         self,
     ) -> None:
@@ -3634,6 +3801,182 @@ _struct.title 'Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP
         self.assertFalse(metadata["ready_to_run_epk_scorer"])
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
         self.assertEqual(sample["rows"][0]["nearest_gamma_acceptor_distance_angstrom"], 3.5)
+
+    def test_epk_heteromeric_broader_counteraxis_control_builder(
+        self,
+    ) -> None:
+        audit = build_epk_heteromeric_broader_counteraxis_control_audit(
+            epk_heteromeric_positive_coverage_candidate_scout={
+                "metadata": {
+                    "method": "epk_heteromeric_positive_coverage_candidate_scout",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "pdb_id": "1POS",
+                        "heteromeric_candidate_hits": [
+                            {"nearest_gamma_distance_angstrom": 4.0}
+                        ],
+                    },
+                    {
+                        "pdb_id": "1NEG",
+                        "heteromeric_candidate_hits": [
+                            {"nearest_gamma_distance_angstrom": 4.5}
+                        ],
+                    },
+                    {
+                        "pdb_id": "1ABS",
+                        "heteromeric_candidate_hits": [],
+                    },
+                ],
+            },
+            epk_heteromeric_candidate_source_validation_review={
+                "metadata": {
+                    "method": "epk_heteromeric_candidate_source_validation_review",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "pdb_id": "1POS",
+                        "source_validated_positive_like": True,
+                        "source_validation_status": (
+                            "accepted_source_valid_heteromeric_kinase_substrate_review_only"
+                        ),
+                    },
+                    {
+                        "pdb_id": "1NEG",
+                        "source_validated_positive_like": False,
+                        "source_validation_status": (
+                            "blocked_ambiguous_kinase_kinase_role_direction_review_only"
+                        ),
+                    },
+                ],
+            },
+            epk_heteromeric_acceptor_chain_counteraxis_audit={
+                "metadata": {
+                    "method": "epk_heteromeric_acceptor_chain_counteraxis_audit",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "pdb_id": "1POS",
+                        "counteraxis_decision": (
+                            "source_free_counteraxis_retains_source_valid_review_positive"
+                        ),
+                        "source_free_counteraxis_hit": True,
+                    },
+                    {
+                        "pdb_id": "1NEG",
+                        "counteraxis_decision": (
+                            "source_free_counteraxis_blocks_nonaccepted_rule_hit"
+                        ),
+                        "source_free_counteraxis_hit": False,
+                    },
+                ],
+            },
+            epk_sibling_control_artifacts=[
+                {
+                    "metadata": {
+                        "reviewed_sibling_family_id": "ndk",
+                        "reviewed_sibling_family_name": (
+                            "Nucleoside diphosphate kinases"
+                        ),
+                    },
+                    "rows": [
+                        {
+                            "pdb_id": "2NDK",
+                            "family_id": "ndk",
+                            "gamma_to_mapped_histidine_distance_measured": True,
+                            "gamma_capable_nucleotide_codes": ["ATP"],
+                            "same_chain_hydroxyl_candidate_threshold_hits_angstrom": [
+                                6.0
+                            ],
+                        },
+                        {
+                            "pdb_id": "2WAIT",
+                            "family_id": "ndk",
+                            "measurement_status": (
+                                "family_specific_homolog_mapping_not_measurement_ready"
+                            ),
+                        },
+                    ],
+                }
+            ],
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["broader_counteraxis_status"],
+            "passes_broader_review_controls_not_scoring_admissible",
+        )
+        self.assertEqual(metadata["broader_heteromeric_reviewed_structure_count"], 3)
+        self.assertEqual(metadata["broader_heteromeric_initial_hit_count"], 2)
+        self.assertEqual(metadata["blocked_nonaccepted_rule_hit_count"], 1)
+        self.assertEqual(metadata["retained_source_valid_hit_count"], 1)
+        self.assertEqual(metadata["sibling_control_row_count"], 2)
+        self.assertEqual(metadata["sibling_same_chain_hydroxyl_hit_count"], 1)
+        self.assertEqual(metadata["sibling_counteraxis_blocked_hit_count"], 1)
+        self.assertEqual(metadata["sibling_residual_false_hit_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_epk_heteromeric_acceptor_identity_rule_probe_builder(
+        self,
+    ) -> None:
+        probe = build_epk_heteromeric_acceptor_identity_rule_probe(
+            epk_heteromeric_acceptor_identity_gap_audit={
+                "metadata": {
+                    "method": "epk_heteromeric_acceptor_identity_gap_audit",
+                    "retained_role_hit_count": 1,
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "pdb_id": "1POS",
+                        "source_pair_id": "kinase_substrate",
+                        "candidate_acceptor_residues_review_context": [
+                            {"candidate_residue_code": "SER"}
+                        ],
+                    }
+                ],
+            },
+            epk_heteromeric_broader_counteraxis_control_audit={
+                "metadata": {
+                    "method": (
+                        "epk_heteromeric_broader_counteraxis_control_audit"
+                    ),
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "row_type": "heteromeric_broader_counteraxis_control",
+                        "pdb_id": "1NEG",
+                        "initial_topology_gamma_rule_hit": True,
+                        "source_free_counteraxis_hit": False,
+                    },
+                    {
+                        "row_type": "sibling_broader_counteraxis_control",
+                        "pdb_id": "2NDK",
+                        "family_id": "ndk",
+                        "same_chain_hydroxyl_threshold_hit": True,
+                        "source_free_counteraxis_blocks_hit": True,
+                    },
+                ],
+            },
+        )
+        metadata = probe["metadata"]
+        self.assertEqual(
+            metadata["identity_rule_status"],
+            "passes_current_controls_but_generic_identity_axis_weak_review_only",
+        )
+        self.assertEqual(metadata["positive_identity_rule_hit_count"], 1)
+        self.assertEqual(metadata["nonaccepted_blocked_before_identity_rule_count"], 1)
+        self.assertEqual(metadata["nonaccepted_identity_rule_hit_count"], 0)
+        self.assertEqual(
+            metadata["sibling_same_chain_blocked_before_identity_rule_count"], 1
+        )
+        self.assertEqual(metadata["sibling_identity_rule_false_hit_count"], 0)
+        self.assertTrue(metadata["generic_identity_axis_weak"])
+        self.assertEqual(metadata["source_free_acceptor_identity_ready_count"], 0)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
     def test_epk_external_source_lower_priority_ligand_builder_blocks_analog(
         self,

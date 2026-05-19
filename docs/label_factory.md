@@ -668,6 +668,24 @@ current six-row review surface it retains all three source-valid positives,
 blocks the three nonaccepted hits, and leaves 0 residual nonaccepted hits, but
 remains review-only until broader heteromeric/sibling controls, thresholds, and
 external scored re-audits exist.
+`artifacts/v3_epk_heteromeric_broader_counteraxis_control_audit_1025.json`
+then runs that counter-axis against the full bounded 50-structure heteromeric
+scout plus measured NDK, ATP-grasp, PfkA, and PfkB sibling controls. It
+retains `6Z3R`, `8OXM`, and `8OXO`, blocks `7M0T`, `7M0W`, and `8ZN6`, and
+blocks 11/11 measured sibling same-chain hydroxyl hits with 0 residual sibling
+false hits. `artifacts/v3_epk_heteromeric_ligand_asymmetry_role_audit_1025.json`
+turns the same evidence into an explicit source-free role-direction probe with
+3 retained role hits, 0 nonaccepted role hits, and 0 sibling role false hits.
+`artifacts/v3_epk_heteromeric_acceptor_identity_gap_audit_1025.json` records
+the remaining blocker: those retained role hits still have only source-context
+Ser acceptor identity and 0 source-free acceptor-identity features.
+`artifacts/v3_epk_heteromeric_acceptor_identity_rule_probe_1025.json` probes
+generic Ser/Thr/Tyr hydroxyl residue class as the weakest source-free identity
+axis. It currently hits all three retained role candidates with 0 nonaccepted
+or sibling false hits only after the three nonaccepted heteromeric hits and
+11 sibling same-chain hydroxyl hits are blocked upstream. It is deliberately
+weak and review-only: source-free acceptor-identity ready count remains 0
+because residue class is not substrate identity.
 The 1025 preview/expanded source-triage artifacts repeat the same exhausted
 source candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) and do not open
 a new protein-substrate ePK source lane; the expanded terminal decision stays
@@ -698,8 +716,10 @@ measured, the heteromeric control rerun passes as a fail-closed diagnostic
 surface, and the text-free gap/probe artifacts make the next blocker explicit:
 topology plus gamma distance is not enough without source-free role-direction
 and acceptor-identity evidence. The acceptor-chain counter-axis passes only the
-current review controls. None of these artifacts makes scoring or label import
-admissible.
+current review controls. The broader counter-axis and ligand-asymmetry role
+audit now pass broader heteromeric/sibling review controls, while the
+acceptor-identity gap audit keeps scorer construction blocked. None of these
+artifacts makes scoring or label import admissible.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state
