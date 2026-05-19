@@ -3674,6 +3674,8 @@ class CliTests(unittest.TestCase):
             activation = root / "activation.json"
             control_reaudit = root / "control_reaudit.json"
             score_probe = root / "score_probe.json"
+            fivehvk = root / "fivehvk.json"
+            fivehvk_queue = root / "fivehvk_queue.json"
             five_li1 = root / "5li1.json"
             out = root / "gate_status.json"
             axis.write_text(
@@ -3925,6 +3927,51 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            fivehvk.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_ligand_specific_5hvk_source_validity_review"
+                            ),
+                            "pdb_id": "5HVK",
+                            "kinase_accession": "P53667",
+                            "acceptor_accession": "P23528",
+                            "source_validity_status": (
+                                "accepted_source_valid_kinase_substrate_cocomplex_review_only"
+                            ),
+                            "source_validated_kinase_substrate_pair": True,
+                            "nearest_source_phosphoacceptor_distance_angstrom": 4.236,
+                            "measurement_ready_candidate_count": 1,
+                            "ready_to_rerun_controls": True,
+                            "ready_to_run_epk_scorer": False,
+                            "countable_label_candidate_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fivehvk_queue.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_ligand_specific_5hvk_control_rerun_queue",
+                            "control_rerun_queue_status": (
+                                "ready_for_review_only_control_rerun"
+                            ),
+                            "ready_for_review_only_control_rerun": True,
+                            "sibling_control_row_count": 20,
+                            "imported_external_hard_negative_row_count": 3,
+                            "not_a_real_scored_reaudit": True,
+                            "ready_to_run_epk_scorer": False,
+                            "epk_score_computed": False,
+                            "external_hard_negative_reaudit_scored": False,
+                            "countable_label_candidate_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
             five_li1.write_text(
                 json.dumps(
                     {
@@ -3984,6 +4031,10 @@ class CliTests(unittest.TestCase):
                     str(control_reaudit),
                     "--epk-review-only-external-hard-negative-score-probe",
                     str(score_probe),
+                    "--epk-ligand-specific-5hvk-source-validity-review",
+                    str(fivehvk),
+                    "--epk-ligand-specific-5hvk-control-rerun-queue",
+                    str(fivehvk_queue),
                     "--epk-m-csa756-5li1-residue-evidence-audit",
                     str(five_li1),
                     "--epk-external-hard-negative-reaudit-plan",
@@ -4071,6 +4122,26 @@ class CliTests(unittest.TestCase):
                 0,
             )
             self.assertEqual(
+                metadata[
+                    "source_epk_ligand_specific_5hvk_source_validity_review_method"
+                ],
+                "epk_ligand_specific_5hvk_source_validity_review",
+            )
+            self.assertTrue(
+                metadata["ligand_specific_5hvk_source_validated_kinase_substrate_pair"]
+            )
+            self.assertEqual(
+                metadata[
+                    "ligand_specific_5hvk_measurement_ready_candidate_count"
+                ],
+                1,
+            )
+            self.assertEqual(
+                metadata["ligand_specific_5hvk_control_rerun_queue_status"],
+                "ready_for_review_only_control_rerun",
+            )
+            self.assertTrue(metadata["ligand_specific_5hvk_control_rerun_ready"])
+            self.assertEqual(
                 metadata["source_epk_m_csa756_5li1_residue_evidence_audit_method"],
                 "epk_m_csa756_5li1_residue_evidence_audit",
             )
@@ -4103,6 +4174,12 @@ class CliTests(unittest.TestCase):
             )
             self.assertTrue(
                 checks["review_only_external_hard_negative_score_probe"]["passed"]
+            )
+            self.assertTrue(
+                checks["ligand_specific_5hvk_source_validity_review"]["passed"]
+            )
+            self.assertTrue(
+                checks["ligand_specific_5hvk_control_rerun_queue"]["passed"]
             )
             self.assertTrue(
                 checks["m_csa756_5li1_residue_evidence_audit"]["passed"]
@@ -7986,6 +8063,286 @@ class CliTests(unittest.TestCase):
             self.assertEqual(row["entry_id"], "uniprot:P06744")
             self.assertEqual(row["review_only_probe_score"], 0.0)
             self.assertFalse(row["review_only_score_probe_non_abstention"])
+
+    def test_build_epk_ligand_specific_5hvk_source_validity_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            cif_dir = root / "cif"
+            cif_dir.mkdir()
+            priority = root / "priority.json"
+            kinase = root / "kinase.json"
+            acceptor = root / "acceptor.json"
+            out = root / "source_validity.json"
+            (cif_dir / "5hvk.cif").write_text(
+                """data_5HVK
+_struct.entry_id 5HVK
+_struct.title 'Crystal structure of LIMK1 mutant D460N in complex with full-length cofilin-1'
+#
+loop_
+_struct_keywords.entry_id
+_struct_keywords.pdbx_keywords
+_struct_keywords.text
+5HVK TRANSFERASE 'kinase substrate'
+#
+loop_
+_entity.id
+_entity.type
+_entity.src_method
+_entity.pdbx_description
+_entity.formula_weight
+_entity.pdbx_number_of_molecules
+_entity.pdbx_ec
+_entity.pdbx_mutation
+_entity.pdbx_fragment
+_entity.details
+1 polymer man 'LIM domain kinase 1' 1.0 1 2.7.11.1 ? ? ?
+2 polymer man Cofilin-1 1.0 1 ? ? ? ?
+#
+loop_
+_struct_ref_seq.align_id
+_struct_ref_seq.ref_id
+_struct_ref_seq.pdbx_PDB_id_code
+_struct_ref_seq.pdbx_strand_id
+_struct_ref_seq.seq_align_beg
+_struct_ref_seq.pdbx_auth_seq_align_beg
+_struct_ref_seq.seq_align_end
+_struct_ref_seq.pdbx_auth_seq_align_end
+_struct_ref_seq.pdbx_db_accession
+_struct_ref_seq.db_align_beg
+_struct_ref_seq.db_align_end
+1 1 5HVK C 1 1 10 10 P53667 1 10
+2 2 5HVK D 1 1 10 10 P23528 1 10
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.auth_atom_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+HETATM 1 P PG ANP C 701 0.0 0.0 0.0 PG ANP C 701
+ATOM 2 O OG SER D 3 3.0 0.0 0.0 OG SER D 3
+#
+""",
+                encoding="utf-8",
+            )
+            priority.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_ligand_specific_5hvk_review_priority",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {"pdb_id": "5HVK", "accession": "P53667"},
+                            {"pdb_id": "5HVK", "accession": "P23528"},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            kinase.write_text(
+                json.dumps(
+                    {
+                        "record": {
+                            "active_site_features": [{"begin": 460}],
+                            "binding_site_features": [
+                                {"begin": 345, "ligand_name": "ATP"}
+                            ],
+                            "catalytic_activity_comments": [
+                                {
+                                    "reaction": (
+                                        "L-seryl-[protein] + ATP = "
+                                        "O-phospho-L-seryl-[protein] + ADP + H(+)"
+                                    )
+                                }
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            acceptor.write_text(
+                json.dumps(
+                    {
+                        "record": {
+                            "modified_residue_features": [
+                                {
+                                    "begin": 3,
+                                    "description": "Phosphoserine; by NRK",
+                                    "evidence": [{"evidence_code": "ECO:0000269"}],
+                                }
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-ligand-specific-5hvk-source-validity-review",
+                    "--epk-ligand-specific-5hvk-review-priority",
+                    str(priority),
+                    "--kinase-uniprot-entry",
+                    str(kinase),
+                    "--acceptor-uniprot-entry",
+                    str(acceptor),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            review = json.loads(out.read_text(encoding="utf-8"))
+            metadata = review["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_ligand_specific_5hvk_source_validity_review",
+            )
+            self.assertEqual(
+                metadata["source_validity_status"],
+                "accepted_source_valid_kinase_substrate_cocomplex_review_only",
+            )
+            self.assertEqual(metadata["measurement_ready_candidate_count"], 1)
+            self.assertEqual(
+                metadata["nearest_source_phosphoacceptor_distance_angstrom"],
+                3.0,
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertFalse(metadata["curated_label_registry_edited"])
+            self.assertFalse(metadata["fingerprint_registry_edited"])
+
+    def test_build_epk_ligand_specific_5hvk_control_rerun_queue_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source = root / "source.json"
+            prototype = root / "prototype.json"
+            probe = root / "probe.json"
+            out = root / "queue.json"
+            source.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_ligand_specific_5hvk_source_validity_review"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "pdb_id": "5HVK",
+                            "kinase_accession": "P53667",
+                            "acceptor_accession": "P23528",
+                            "source_validated_kinase_substrate_pair": True,
+                            "measurement_ready_candidate_count": 1,
+                            "nearest_source_phosphoacceptor_distance_angstrom": 4.236,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            prototype.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_review_only_scoring_prototype"
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "prototype_decision": (
+                                    "candidate_positive_signal_review_only_not_calibrated"
+                                ),
+                            },
+                            {
+                                "row_type": "sibling_homolog_negative_control",
+                                "prototype_decision": (
+                                    "blocked_by_phosphohistidine_counteraxis_review_only"
+                                ),
+                            },
+                            {
+                                "row_type": "imported_external_hard_negative",
+                                "prototype_decision": (
+                                    "external_hard_negative_abstain_missing_epk_axes_review_only"
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            probe.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_review_only_external_hard_negative_score_probe"
+                            ),
+                            "review_only_score_probe_non_abstention_count": 0,
+                            "not_a_real_scored_reaudit": True,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-ligand-specific-5hvk-control-rerun-queue",
+                    "--epk-ligand-specific-5hvk-source-validity-review",
+                    str(source),
+                    "--epk-review-only-scoring-prototype",
+                    str(prototype),
+                    "--epk-review-only-external-hard-negative-score-probe",
+                    str(probe),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            queue = json.loads(out.read_text(encoding="utf-8"))
+            metadata = queue["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_ligand_specific_5hvk_control_rerun_queue",
+            )
+            self.assertEqual(
+                metadata["control_rerun_queue_status"],
+                "ready_for_review_only_control_rerun",
+            )
+            self.assertEqual(metadata["sibling_control_row_count"], 1)
+            self.assertEqual(metadata["imported_external_hard_negative_row_count"], 1)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertTrue(metadata["not_a_real_scored_reaudit"])
 
     def test_build_epk_protein_substrate_positive_source_triage_command(
         self,

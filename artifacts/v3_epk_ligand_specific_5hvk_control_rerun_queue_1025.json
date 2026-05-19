@@ -1,0 +1,85 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "control_rerun_queue_status": "ready_for_review_only_control_rerun",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_positive_prototype_row_count": 3,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "imported_external_hard_negative_row_count": 3,
+    "method": "epk_ligand_specific_5hvk_control_rerun_queue",
+    "nearest_source_phosphoacceptor_distance_angstrom": 4.236,
+    "next_actions": [
+      "add the source-valid 5HVK lead to the review-only ePK prototype surface",
+      "rerun sibling-family controls under the same candidate decision surface",
+      "rerun imported external hard negatives only as review-only diagnostics until a real calibrated scorer exists"
+    ],
+    "not_a_real_scored_reaudit": true,
+    "prototype_row_count": 26,
+    "ready_for_label_import": false,
+    "ready_for_review_only_control_rerun": true,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_score_probe_non_abstention_count": 0,
+    "sibling_control_row_count": 20,
+    "source_epk_ligand_specific_5hvk_source_validity_review_method": "epk_ligand_specific_5hvk_source_validity_review",
+    "source_epk_review_only_external_hard_negative_score_probe_method": "epk_review_only_external_hard_negative_score_probe",
+    "source_epk_review_only_scoring_prototype_method": "epk_review_only_scoring_prototype",
+    "source_measurement_ready_candidate_count": 1,
+    "source_validated_kinase_substrate_pair": true,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "acceptor_accession": "P23528",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "kinase_accession": "P53667",
+      "measurement_ready": true,
+      "nearest_source_phosphoacceptor_distance_angstrom": 4.236,
+      "pdb_id": "5HVK",
+      "queue_status": "ready_review_only",
+      "review_only": true,
+      "source_validated_kinase_substrate_pair": true,
+      "task_id": "add_5hvk_source_valid_candidate_to_review_only_prototype",
+      "task_type": "candidate_positive_rerun"
+    },
+    {
+      "carried_control_decision_counts": {
+        "blocked_by_family_specific_sibling_counteraxis_review_only": 16,
+        "blocked_by_phosphohistidine_counteraxis_review_only": 4
+      },
+      "carried_control_row_count": 20,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "queue_status": "ready_review_only",
+      "review_only": true,
+      "task_id": "rerun_current_sibling_control_surface",
+      "task_type": "sibling_control_rerun"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "imported_external_hard_negative_row_count": 3,
+      "not_a_real_scored_reaudit": true,
+      "queue_status": "ready_review_only_not_real_scored_reaudit",
+      "review_only": true,
+      "review_only_external_score_probe_method": "epk_review_only_external_hard_negative_score_probe",
+      "review_only_score_probe_non_abstention_count": 0,
+      "task_id": "rerun_imported_external_hard_negative_controls",
+      "task_type": "imported_external_hard_negative_control_rerun"
+    }
+  ],
+  "warnings": [
+    "This queue is a review-only control-rerun plan. It does not compute a calibrated ePK score or a real external hard-negative scored re-audit."
+  ]
+}

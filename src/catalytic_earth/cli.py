@@ -96,6 +96,8 @@ from .labels import (
     build_epk_gamma_geometry_feasibility_plan,
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
+    build_epk_ligand_specific_5hvk_control_rerun_queue,
+    build_epk_ligand_specific_5hvk_source_validity_review,
     build_epk_local_evidence_audit,
     build_epk_ligand_analog_policy_blocker_decision,
     build_epk_m_csa756_active_state_repair_scan,
@@ -6626,6 +6628,13 @@ def cmd_build_epk_external_source_next_experiment_queue(
     return 0
 
 
+def _load_optional_uniprot_entry(path_value: str | None) -> dict[str, Any] | None:
+    if not path_value:
+        return None
+    with Path(path_value).open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
 def cmd_build_epk_external_source_alternate_cocomplex_review(
     args: argparse.Namespace,
 ) -> int:
@@ -6679,6 +6688,74 @@ def cmd_build_epk_external_source_alternate_cocomplex_review(
         "Wrote ePK external source alternate co-complex review to "
         f"{args.out} (measurement_ready="
         f"{review['metadata']['measurement_ready_candidate_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_ligand_specific_5hvk_source_validity_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_ligand_specific_5hvk_review_priority).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_5hvk_review_priority = json.load(handle)
+    kinase_uniprot_entry = _load_optional_uniprot_entry(
+        args.kinase_uniprot_entry
+    ) or fetch_uniprot_entry(args.kinase_accession)
+    acceptor_uniprot_entry = _load_optional_uniprot_entry(
+        args.acceptor_uniprot_entry
+    ) or fetch_uniprot_entry(args.acceptor_accession)
+    review = build_epk_ligand_specific_5hvk_source_validity_review(
+        epk_ligand_specific_5hvk_review_priority=(
+            epk_ligand_specific_5hvk_review_priority
+        ),
+        kinase_uniprot_entry=kinase_uniprot_entry,
+        acceptor_uniprot_entry=acceptor_uniprot_entry,
+        pdb_id=args.pdb_id,
+        kinase_accession=args.kinase_accession,
+        acceptor_accession=args.acceptor_accession,
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK ligand-specific 5HVK source-validity review to "
+        f"{args.out} (status="
+        f"{review['metadata']['source_validity_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_ligand_specific_5hvk_control_rerun_queue(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_ligand_specific_5hvk_source_validity_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_5hvk_source_validity_review = json.load(handle)
+    with Path(args.epk_review_only_scoring_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_review_only_scoring_prototype = json.load(handle)
+    epk_review_only_external_hard_negative_score_probe = None
+    if args.epk_review_only_external_hard_negative_score_probe:
+        with Path(args.epk_review_only_external_hard_negative_score_probe).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_review_only_external_hard_negative_score_probe = json.load(handle)
+    queue = build_epk_ligand_specific_5hvk_control_rerun_queue(
+        epk_ligand_specific_5hvk_source_validity_review=(
+            epk_ligand_specific_5hvk_source_validity_review
+        ),
+        epk_review_only_scoring_prototype=epk_review_only_scoring_prototype,
+        epk_review_only_external_hard_negative_score_probe=(
+            epk_review_only_external_hard_negative_score_probe
+        ),
+    )
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote ePK ligand-specific 5HVK control-rerun queue to "
+        f"{args.out} (status={queue['metadata']['control_rerun_queue_status']})"
     )
     return 0
 
@@ -7173,6 +7250,18 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_review_only_external_hard_negative_score_probe = json.load(handle)
+    epk_ligand_specific_5hvk_source_validity_review = None
+    if args.epk_ligand_specific_5hvk_source_validity_review:
+        with Path(args.epk_ligand_specific_5hvk_source_validity_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_ligand_specific_5hvk_source_validity_review = json.load(handle)
+    epk_ligand_specific_5hvk_control_rerun_queue = None
+    if args.epk_ligand_specific_5hvk_control_rerun_queue:
+        with Path(args.epk_ligand_specific_5hvk_control_rerun_queue).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_ligand_specific_5hvk_control_rerun_queue = json.load(handle)
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -7280,6 +7369,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_review_only_external_hard_negative_score_probe=(
             epk_review_only_external_hard_negative_score_probe
+        ),
+        epk_ligand_specific_5hvk_source_validity_review=(
+            epk_ligand_specific_5hvk_source_validity_review
+        ),
+        epk_ligand_specific_5hvk_control_rerun_queue=(
+            epk_ligand_specific_5hvk_control_rerun_queue
         ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
@@ -14974,6 +15069,83 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_external_source_alternate_cocomplex_review
     )
 
+    epk_ligand_specific_5hvk_source_validity = subparsers.add_parser(
+        "build-epk-ligand-specific-5hvk-source-validity-review",
+        help="validate the review-only 5HVK LIMK1/cofilin source lead",
+    )
+    epk_ligand_specific_5hvk_source_validity.add_argument(
+        "--epk-ligand-specific-5hvk-review-priority",
+        default="artifacts/v3_epk_ligand_specific_5hvk_review_priority_1025.json",
+    )
+    epk_ligand_specific_5hvk_source_validity.add_argument(
+        "--pdb-id",
+        default="5HVK",
+    )
+    epk_ligand_specific_5hvk_source_validity.add_argument(
+        "--kinase-accession",
+        default="P53667",
+    )
+    epk_ligand_specific_5hvk_source_validity.add_argument(
+        "--acceptor-accession",
+        default="P23528",
+    )
+    epk_ligand_specific_5hvk_source_validity.add_argument(
+        "--kinase-uniprot-entry",
+        default=None,
+        help="optional normalized or fetch_uniprot_entry JSON for the kinase",
+    )
+    epk_ligand_specific_5hvk_source_validity.add_argument(
+        "--acceptor-uniprot-entry",
+        default=None,
+        help="optional normalized or fetch_uniprot_entry JSON for the acceptor",
+    )
+    epk_ligand_specific_5hvk_source_validity.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_ligand_specific_5hvk_source_validity.add_argument("--cif-dir", default=None)
+    epk_ligand_specific_5hvk_source_validity.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_source_validity_review_1025.json"
+        ),
+    )
+    epk_ligand_specific_5hvk_source_validity.set_defaults(
+        func=cmd_build_epk_ligand_specific_5hvk_source_validity_review
+    )
+
+    epk_ligand_specific_5hvk_control_rerun = subparsers.add_parser(
+        "build-epk-ligand-specific-5hvk-control-rerun-queue",
+        help="queue review-only controls after 5HVK source validation",
+    )
+    epk_ligand_specific_5hvk_control_rerun.add_argument(
+        "--epk-ligand-specific-5hvk-source-validity-review",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_source_validity_review_1025.json"
+        ),
+    )
+    epk_ligand_specific_5hvk_control_rerun.add_argument(
+        "--epk-review-only-scoring-prototype",
+        default="artifacts/v3_epk_review_only_scoring_prototype_1025.json",
+    )
+    epk_ligand_specific_5hvk_control_rerun.add_argument(
+        "--epk-review-only-external-hard-negative-score-probe",
+        default="artifacts/v3_epk_review_only_external_hard_negative_score_probe_1025.json",
+    )
+    epk_ligand_specific_5hvk_control_rerun.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_control_rerun_queue_1025.json"
+        ),
+    )
+    epk_ligand_specific_5hvk_control_rerun.set_defaults(
+        func=cmd_build_epk_ligand_specific_5hvk_control_rerun_queue
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -15374,6 +15546,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-review-only-external-hard-negative-score-probe",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-ligand-specific-5hvk-source-validity-review",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-ligand-specific-5hvk-control-rerun-queue",
         default=None,
     )
     epk_precount_gate_status.add_argument(

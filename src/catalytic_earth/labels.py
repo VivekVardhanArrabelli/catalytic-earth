@@ -19906,12 +19906,49 @@ def _epk_mmcif_single_category_rows(cif_text: str, prefix: str) -> list[dict[str
     return rows
 
 
-def _epk_struct_ref_seq_rows(cif_text: str) -> list[dict[str, Any]]:
-    prefix = "_struct_ref_seq."
+def _epk_mmcif_rows(cif_text: str, prefix: str) -> list[dict[str, Any]]:
     loop_rows = _epk_mmcif_loop_rows(cif_text, prefix)
     if loop_rows:
         return loop_rows
     return _epk_mmcif_single_category_rows(cif_text, prefix)
+
+
+def _first_present_value(rows: list[dict[str, Any]], key: str) -> str | None:
+    for row in rows:
+        value = row.get(key)
+        if value not in {None, "", ".", "?"}:
+            return str(value)
+    return None
+
+
+def _unwrap_uniprot_entry_record(entry: dict[str, Any] | None) -> dict[str, Any]:
+    if not isinstance(entry, dict):
+        return {}
+    record = entry.get("record")
+    if isinstance(record, dict):
+        return record
+    return entry
+
+
+def _epk_atom_code(atom: dict[str, Any]) -> str:
+    return str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+
+
+def _epk_atom_name(atom: dict[str, Any]) -> str:
+    return str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+
+
+def _epk_atom_distance(left: dict[str, Any], right: dict[str, Any]) -> float:
+    return (
+        (float(left["Cartn_x"]) - float(right["Cartn_x"])) ** 2
+        + (float(left["Cartn_y"]) - float(right["Cartn_y"])) ** 2
+        + (float(left["Cartn_z"]) - float(right["Cartn_z"])) ** 2
+    ) ** 0.5
+
+
+def _epk_struct_ref_seq_rows(cif_text: str) -> list[dict[str, Any]]:
+    prefix = "_struct_ref_seq."
+    return _epk_mmcif_rows(cif_text, prefix)
 
 
 def _epk_struct_ref_seq_mapped_positions(
@@ -21234,6 +21271,616 @@ def build_epk_external_source_alternate_cocomplex_review(
             (
                 "Alternate co-complex source evidence remains review-only and "
                 "cannot promote an ePK fingerprint without calibrated controls."
+            )
+        ],
+    }
+
+
+def build_epk_ligand_specific_5hvk_source_validity_review(
+    *,
+    epk_ligand_specific_5hvk_review_priority: dict[str, Any],
+    kinase_uniprot_entry: dict[str, Any] | None = None,
+    acceptor_uniprot_entry: dict[str, Any] | None = None,
+    pdb_id: str = "5HVK",
+    kinase_accession: str = "P53667",
+    acceptor_accession: str = "P23528",
+    candidate_threshold_angstrom: float = 6.0,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Review the ligand-specific 5HVK kinase/substrate source lead."""
+
+    if candidate_threshold_angstrom <= 0:
+        raise ValueError("candidate_threshold_angstrom must be positive")
+
+    priority_meta = epk_ligand_specific_5hvk_review_priority.get("metadata", {})
+    if not isinstance(priority_meta, dict):
+        priority_meta = {}
+    target_fingerprint_id = str(
+        priority_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    pdb_id = str(pdb_id or "").upper()
+    kinase_accession = str(kinase_accession or "").upper()
+    acceptor_accession = str(acceptor_accession or "").upper()
+    cif_text_by_pdb = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    kinase_record = _unwrap_uniprot_entry_record(kinase_uniprot_entry)
+    acceptor_record = _unwrap_uniprot_entry_record(acceptor_uniprot_entry)
+
+    priority_rows = [
+        row
+        for row in epk_ligand_specific_5hvk_review_priority.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    priority_source_rows = [
+        row
+        for row in priority_rows
+        if str(row.get("pdb_id") or "").upper() == pdb_id
+        and str(row.get("accession") or "").upper() == kinase_accession
+    ]
+    priority_acceptor_rows = [
+        row
+        for row in priority_rows
+        if str(row.get("pdb_id") or "").upper() == pdb_id
+        and str(row.get("accession") or "").upper() == acceptor_accession
+    ]
+
+    fetch_status = "not_attempted"
+    fetch_error = None
+    cif_text = cif_text_by_pdb.get(pdb_id)
+    try:
+        if cif_text is None:
+            cif_text = cif_fetcher(pdb_id)
+        fetch_status = "fetched"
+    except Exception as exc:  # pragma: no cover - network failure is data.
+        cif_text = ""
+        fetch_status = "fetch_failed"
+        fetch_error = str(exc)
+
+    atoms = parse_atom_site_loop(cif_text) if cif_text else []
+    entity_rows = _epk_mmcif_rows(cif_text, "_entity.") if cif_text else []
+    struct_rows = _epk_mmcif_rows(cif_text, "_struct.") if cif_text else []
+    keyword_rows = _epk_mmcif_rows(cif_text, "_struct_keywords.") if cif_text else []
+    citation_rows = _epk_mmcif_rows(cif_text, "_citation.") if cif_text else []
+    struct_ref_rows = _epk_struct_ref_seq_rows(cif_text) if cif_text else []
+
+    structure_title = _first_present_value(struct_rows, "title")
+    citation_titles = _sorted_strings(
+        row.get("title")
+        for row in citation_rows
+        if row.get("title") not in {None, "", ".", "?"}
+    )
+    keyword_text = " ".join(
+        _sorted_strings(
+            value
+            for row in keyword_rows
+            for value in (row.get("pdbx_keywords"), row.get("text"))
+            if value not in {None, "", ".", "?"}
+        )
+    )
+    entity_descriptions = _sorted_strings(
+        row.get("pdbx_description")
+        for row in entity_rows
+        if row.get("pdbx_description") not in {None, "", ".", "?"}
+    )
+    source_text = " ".join(
+        [structure_title or "", keyword_text]
+        + citation_titles
+        + entity_descriptions
+    ).lower()
+    structure_pair_evidence_present = (
+        "limk1" in source_text
+        and "cofilin" in source_text
+        and ("kinase substrate" in source_text or "lim kinases" in source_text)
+    )
+
+    refs_by_accession: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in struct_ref_rows:
+        accession = str(row.get("pdbx_db_accession") or "").upper()
+        if accession:
+            refs_by_accession[accession].append(row)
+    kinase_chain_ids = _sorted_strings(
+        row.get("pdbx_strand_id") for row in refs_by_accession.get(kinase_accession, [])
+    )
+    acceptor_chain_ids = _sorted_strings(
+        row.get("pdbx_strand_id")
+        for row in refs_by_accession.get(acceptor_accession, [])
+    )
+    structure_has_both_accessions = bool(kinase_chain_ids and acceptor_chain_ids)
+
+    kinase_catalytic_reactions = _sorted_strings(
+        row.get("reaction") for row in kinase_record.get("catalytic_activity_comments", [])
+    )
+    kinase_has_protein_ser_thr_activity = any(
+        ("l-seryl-[protein]" in reaction.lower() or "l-threonyl-[protein]" in reaction.lower())
+        and "atp" in reaction.lower()
+        for reaction in kinase_catalytic_reactions
+    )
+    kinase_has_atp_binding_feature = any(
+        "atp" in str(feature.get("ligand_name") or "").lower()
+        or "chebi:30616" in str(feature.get("ligand_id") or "").lower()
+        for feature in kinase_record.get("binding_site_features", []) or []
+        if isinstance(feature, dict)
+    )
+    kinase_has_active_site_feature = bool(
+        kinase_record.get("active_site_features", []) or []
+    )
+
+    phosphoacceptor_features = _epk_uniprot_phosphoacceptor_features(acceptor_record)
+    acceptor_ser3_features = [
+        feature
+        for feature in phosphoacceptor_features
+        if str(feature.get("position") or "") == "3"
+        and "phosphoserine" in str(feature.get("description") or "").lower()
+    ]
+    acceptor_ser3_source_present = bool(acceptor_ser3_features)
+    acceptor_position_requests = acceptor_ser3_features or [
+        {
+            "position": "3",
+            "roles": ["candidate_source_phosphoacceptor"],
+            "description": "Ser3 phosphoacceptor candidate from 5HVK priority artifact",
+            "evidence_codes": [],
+        }
+    ]
+    acceptor_mapped_candidates = (
+        _epk_struct_ref_seq_mapped_position_candidates(
+            atoms, cif_text, acceptor_accession, acceptor_position_requests
+        )
+        if atoms and cif_text
+        else []
+    )
+
+    gamma_capable_codes = {"ACP", "ANP", "ATP", "DTP"}
+    gamma_atoms = [
+        atom
+        for atom in atoms
+        if atom.get("group_PDB") == "HETATM"
+        and _epk_atom_code(atom) in gamma_capable_codes
+        and _epk_atom_name(atom) == "PG"
+    ]
+    acceptor_distance_hits: list[dict[str, Any]] = []
+    for candidate in acceptor_mapped_candidates:
+        residue_atoms = [
+            atom
+            for atom in atoms
+            if atom.get("group_PDB") == "ATOM"
+            and candidate.get("chain_name") in _label_atom_chain_ids(atom)
+            and str(atom.get("auth_seq_id") or "") == str(candidate.get("resid") or "")
+            and _epk_atom_code(atom) == "SER"
+            and _epk_atom_name(atom) == "OG"
+        ]
+        for acceptor_atom in residue_atoms:
+            nearest_gamma = None
+            nearest_distance = None
+            for gamma_atom in gamma_atoms:
+                distance = _epk_atom_distance(acceptor_atom, gamma_atom)
+                if nearest_distance is None or distance < nearest_distance:
+                    nearest_distance = distance
+                    nearest_gamma = gamma_atom
+            if nearest_gamma is not None and nearest_distance is not None:
+                acceptor_distance_hits.append(
+                    {
+                        "acceptor_accession": acceptor_accession,
+                        "acceptor_uniprot_position": 3,
+                        "candidate_chain_name": candidate.get("chain_name"),
+                        "candidate_auth_seq_id": candidate.get("resid"),
+                        "candidate_residue_code": candidate.get("code"),
+                        "acceptor_atom_name": _epk_atom_name(acceptor_atom),
+                        "gamma_ligand_code": _epk_atom_code(nearest_gamma),
+                        "gamma_atom_name": _epk_atom_name(nearest_gamma),
+                        "gamma_chain_name": str(
+                            nearest_gamma.get("auth_asym_id")
+                            or nearest_gamma.get("label_asym_id")
+                            or ""
+                        ),
+                        "gamma_auth_seq_id": str(
+                            nearest_gamma.get("auth_seq_id")
+                            or nearest_gamma.get("label_seq_id")
+                            or ""
+                        ),
+                        "nearest_gamma_distance_angstrom": round(nearest_distance, 3),
+                        "within_candidate_threshold": (
+                            nearest_distance <= candidate_threshold_angstrom
+                        ),
+                        "mapping_basis": candidate.get("mapping_basis"),
+                        "source_description": candidate.get("source_description"),
+                        "source_evidence_codes": candidate.get(
+                            "source_evidence_codes", []
+                        ),
+                    }
+                )
+
+    within_threshold_hits = [
+        hit for hit in acceptor_distance_hits if hit.get("within_candidate_threshold")
+    ]
+    source_valid = all(
+        [
+            bool(priority_source_rows),
+            bool(priority_acceptor_rows),
+            fetch_status == "fetched",
+            structure_has_both_accessions,
+            structure_pair_evidence_present,
+            kinase_has_protein_ser_thr_activity,
+            kinase_has_atp_binding_feature,
+            kinase_has_active_site_feature,
+            acceptor_ser3_source_present,
+            bool(within_threshold_hits),
+        ]
+    )
+    if source_valid:
+        source_validity_status = "accepted_source_valid_kinase_substrate_cocomplex_review_only"
+        measurement_ready = True
+        blockers = [
+            "threshold_not_calibrated_against_negative_controls",
+            "external_hard_negative_reaudit_not_real_scorer",
+            "registry_and_label_factory_extension_not_implemented",
+        ]
+    elif fetch_status != "fetched":
+        source_validity_status = "source_validity_unresolved_fetch_failed_review_only"
+        measurement_ready = False
+        blockers = [
+            "5hvk_cif_fetch_failed",
+            "manual_source_review_required",
+            "external_hard_negative_reaudit_not_real_scorer",
+        ]
+    elif not bool(within_threshold_hits):
+        source_validity_status = "terminal_not_ready_no_source_mapped_acceptor_geometry_review_only"
+        measurement_ready = False
+        blockers = [
+            "source_mapped_acceptor_not_within_candidate_threshold",
+            "external_hard_negative_reaudit_not_real_scorer",
+        ]
+    else:
+        source_validity_status = "source_validity_unresolved_missing_source_axis_review_only"
+        measurement_ready = False
+        blockers = [
+            "manual_source_review_required",
+            "source_axis_incomplete",
+            "external_hard_negative_reaudit_not_real_scorer",
+        ]
+
+    measurement_ready_count = 1 if measurement_ready else 0
+    return {
+        "metadata": {
+            "method": "epk_ligand_specific_5hvk_source_validity_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_ligand_specific_5hvk_review_priority_method": (
+                priority_meta.get("method")
+            ),
+            "pdb_id": pdb_id,
+            "kinase_accession": kinase_accession,
+            "acceptor_accession": acceptor_accession,
+            "candidate_threshold_angstrom": candidate_threshold_angstrom,
+            "fetch_status": fetch_status,
+            "fetch_error": fetch_error,
+            "structure_title": structure_title,
+            "citation_titles": citation_titles,
+            "entity_descriptions": entity_descriptions,
+            "keyword_text": keyword_text,
+            "structure_pair_evidence_present": structure_pair_evidence_present,
+            "structure_has_both_accessions": structure_has_both_accessions,
+            "kinase_chain_ids": kinase_chain_ids,
+            "acceptor_chain_ids": acceptor_chain_ids,
+            "kinase_has_protein_ser_thr_activity": (
+                kinase_has_protein_ser_thr_activity
+            ),
+            "kinase_has_atp_binding_feature": kinase_has_atp_binding_feature,
+            "kinase_has_active_site_feature": kinase_has_active_site_feature,
+            "kinase_catalytic_reactions": kinase_catalytic_reactions,
+            "acceptor_ser3_source_present": acceptor_ser3_source_present,
+            "acceptor_ser3_source_descriptions": _sorted_strings(
+                feature.get("description") for feature in acceptor_ser3_features
+            ),
+            "acceptor_ser3_source_evidence_codes": _sorted_strings(
+                code
+                for feature in acceptor_ser3_features
+                for code in feature.get("evidence_codes", [])
+            ),
+            "terminal_gamma_atom_count": len(gamma_atoms),
+            "source_mapped_acceptor_candidate_count": len(acceptor_mapped_candidates),
+            "source_phosphoacceptor_within_threshold_count": len(
+                within_threshold_hits
+            ),
+            "nearest_source_phosphoacceptor_distance_angstrom": (
+                min(
+                    float(hit["nearest_gamma_distance_angstrom"])
+                    for hit in acceptor_distance_hits
+                )
+                if acceptor_distance_hits
+                else None
+            ),
+            "source_validity_status": source_validity_status,
+            "source_validated_kinase_substrate_pair": source_valid,
+            "measurement_ready_candidate_count": measurement_ready_count,
+            "ready_to_measure_gamma_acceptor_distance": measurement_ready,
+            "ready_to_rerun_controls": measurement_ready,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": (
+                "5hvk_source_validity_review_executed"
+                if fetch_status == "fetched"
+                else None
+            ),
+            "blocker_not_removed": blockers,
+            "review_only_rule": (
+                "This artifact validates the 5HVK LIMK1/cofilin source lead "
+                "as review-only evidence. Even when the source pair is accepted, "
+                "it only authorizes rerunning measurement and controls; it does "
+                "not score ePK, import labels, edit registries, or claim held-out "
+                "performance."
+            ),
+            "next_actions": (
+                [
+                    "rerun the ligand-specific acceptor geometry/control surface with 5HVK included as source-valid review evidence",
+                    "rerun sibling-family and imported external hard-negative controls before any score or threshold decision",
+                    "keep registry and label-factory extension closed until calibrated gates pass",
+                ]
+                if measurement_ready
+                else [
+                    "do not use 5HVK as measurement-ready evidence unless the missing source axis is repaired",
+                    "continue ligand-specific substrate/co-complex sourcing with a new query axis",
+                    "keep ePK scorer and external hard-negative scored re-audit closed",
+                ]
+            ),
+        },
+        "rows": [
+            {
+                "row_id": "5hvk_ligand_specific_source_validity_review",
+                "pdb_id": pdb_id,
+                "kinase_accession": kinase_accession,
+                "acceptor_accession": acceptor_accession,
+                "target_family_id": "epk",
+                "target_fingerprint_id_if_future_gated": target_fingerprint_id,
+                "review_only": True,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "source_validity_status": source_validity_status,
+                "source_validated_kinase_substrate_pair": source_valid,
+                "measurement_ready": measurement_ready,
+                "structure_pair_evidence_present": structure_pair_evidence_present,
+                "kinase_has_protein_ser_thr_activity": (
+                    kinase_has_protein_ser_thr_activity
+                ),
+                "acceptor_ser3_source_present": acceptor_ser3_source_present,
+                "acceptor_distance_hits": sorted(
+                    acceptor_distance_hits,
+                    key=lambda hit: (
+                        float(hit.get("nearest_gamma_distance_angstrom") or 9999),
+                        str(hit.get("candidate_chain_name") or ""),
+                    ),
+                ),
+                "remaining_blockers": blockers,
+            }
+        ],
+        "warnings": [
+            (
+                "5HVK source validity is review-only and cannot activate an "
+                "ePK scorer or label import without calibrated controls."
+            )
+        ],
+    }
+
+
+def build_epk_ligand_specific_5hvk_control_rerun_queue(
+    *,
+    epk_ligand_specific_5hvk_source_validity_review: dict[str, Any],
+    epk_review_only_scoring_prototype: dict[str, Any],
+    epk_review_only_external_hard_negative_score_probe: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Queue the next review-only control rerun after 5HVK source validation."""
+
+    source_meta = epk_ligand_specific_5hvk_source_validity_review.get(
+        "metadata", {}
+    )
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    prototype_meta = epk_review_only_scoring_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    external_probe_meta = (
+        epk_review_only_external_hard_negative_score_probe.get("metadata", {})
+        if isinstance(epk_review_only_external_hard_negative_score_probe, dict)
+        else {}
+    )
+    if not isinstance(external_probe_meta, dict):
+        external_probe_meta = {}
+
+    prototype_rows = [
+        row
+        for row in epk_review_only_scoring_prototype.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    current_positive_rows = [
+        row
+        for row in prototype_rows
+        if row.get("row_type") == "current_epk_positive_prototype"
+    ]
+    sibling_control_rows = [
+        row
+        for row in prototype_rows
+        if row.get("row_type")
+        in {
+            "sibling_homolog_negative_control",
+            "sibling_family_specific_negative_control",
+        }
+    ]
+    imported_external_rows = [
+        row
+        for row in prototype_rows
+        if row.get("row_type") == "imported_external_hard_negative"
+    ]
+
+    source_ready = bool(
+        source_meta.get("source_validated_kinase_substrate_pair")
+    ) and int(source_meta.get("measurement_ready_candidate_count") or 0) > 0
+    prototype_ready = (
+        prototype_meta.get("method") == "epk_review_only_scoring_prototype"
+        and bool(prototype_rows)
+    )
+    control_surface_available = bool(
+        sibling_control_rows and imported_external_rows
+    )
+    queue_ready = source_ready and prototype_ready and control_surface_available
+    queue_status = (
+        "ready_for_review_only_control_rerun"
+        if queue_ready
+        else "blocked_review_only_control_rerun_inputs_incomplete"
+    )
+
+    blocker_not_removed = [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+    ]
+    if not source_ready:
+        blocker_not_removed.insert(0, "5hvk_source_validity_not_measurement_ready")
+    if not prototype_ready:
+        blocker_not_removed.insert(0, "review_only_prototype_surface_missing")
+    if not control_surface_available:
+        blocker_not_removed.insert(0, "review_only_control_surface_missing")
+
+    rows = [
+        {
+            "task_id": "add_5hvk_source_valid_candidate_to_review_only_prototype",
+            "task_type": "candidate_positive_rerun",
+            "pdb_id": source_meta.get("pdb_id"),
+            "kinase_accession": source_meta.get("kinase_accession"),
+            "acceptor_accession": source_meta.get("acceptor_accession"),
+            "nearest_source_phosphoacceptor_distance_angstrom": source_meta.get(
+                "nearest_source_phosphoacceptor_distance_angstrom"
+            ),
+            "source_validated_kinase_substrate_pair": bool(
+                source_meta.get("source_validated_kinase_substrate_pair")
+            ),
+            "measurement_ready": source_ready,
+            "review_only": True,
+            "countable_label_candidate": False,
+            "epk_score_computed": False,
+            "queue_status": (
+                "ready_review_only"
+                if source_ready
+                else "blocked_source_not_measurement_ready"
+            ),
+        },
+        {
+            "task_id": "rerun_current_sibling_control_surface",
+            "task_type": "sibling_control_rerun",
+            "carried_control_row_count": len(sibling_control_rows),
+            "carried_control_decision_counts": dict(
+                sorted(
+                    Counter(
+                        str(row.get("prototype_decision") or "")
+                        for row in sibling_control_rows
+                    ).items()
+                )
+            ),
+            "review_only": True,
+            "countable_label_candidate": False,
+            "epk_score_computed": False,
+            "queue_status": (
+                "ready_review_only"
+                if sibling_control_rows
+                else "blocked_no_sibling_control_rows"
+            ),
+        },
+        {
+            "task_id": "rerun_imported_external_hard_negative_controls",
+            "task_type": "imported_external_hard_negative_control_rerun",
+            "imported_external_hard_negative_row_count": len(imported_external_rows),
+            "review_only_external_score_probe_method": external_probe_meta.get(
+                "method"
+            ),
+            "review_only_score_probe_non_abstention_count": external_probe_meta.get(
+                "review_only_score_probe_non_abstention_count"
+            ),
+            "not_a_real_scored_reaudit": bool(
+                external_probe_meta.get("not_a_real_scored_reaudit")
+            ),
+            "review_only": True,
+            "countable_label_candidate": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "queue_status": (
+                "ready_review_only_not_real_scored_reaudit"
+                if imported_external_rows
+                else "blocked_no_imported_external_rows"
+            ),
+        },
+    ]
+
+    return {
+        "metadata": {
+            "method": "epk_ligand_specific_5hvk_control_rerun_queue",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": (
+                source_meta.get("target_fingerprint_id")
+                or prototype_meta.get("target_fingerprint_id")
+                or "epk_atp_gamma_phosphoryl_transfer"
+            ),
+            "source_epk_ligand_specific_5hvk_source_validity_review_method": (
+                source_meta.get("method")
+            ),
+            "source_epk_review_only_scoring_prototype_method": (
+                prototype_meta.get("method")
+            ),
+            "source_epk_review_only_external_hard_negative_score_probe_method": (
+                external_probe_meta.get("method")
+            ),
+            "control_rerun_queue_status": queue_status,
+            "source_validated_kinase_substrate_pair": bool(
+                source_meta.get("source_validated_kinase_substrate_pair")
+            ),
+            "source_measurement_ready_candidate_count": source_meta.get(
+                "measurement_ready_candidate_count"
+            ),
+            "nearest_source_phosphoacceptor_distance_angstrom": source_meta.get(
+                "nearest_source_phosphoacceptor_distance_angstrom"
+            ),
+            "prototype_row_count": len(prototype_rows),
+            "current_positive_prototype_row_count": len(current_positive_rows),
+            "sibling_control_row_count": len(sibling_control_rows),
+            "imported_external_hard_negative_row_count": len(imported_external_rows),
+            "review_only_score_probe_non_abstention_count": external_probe_meta.get(
+                "review_only_score_probe_non_abstention_count"
+            ),
+            "not_a_real_scored_reaudit": bool(
+                external_probe_meta.get("not_a_real_scored_reaudit")
+            ),
+            "ready_for_review_only_control_rerun": queue_ready,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_not_removed": blocker_not_removed,
+            "next_actions": [
+                "add the source-valid 5HVK lead to the review-only ePK prototype surface",
+                "rerun sibling-family controls under the same candidate decision surface",
+                "rerun imported external hard negatives only as review-only diagnostics until a real calibrated scorer exists",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "This queue is a review-only control-rerun plan. It does not "
+                "compute a calibrated ePK score or a real external hard-negative "
+                "scored re-audit."
             )
         ],
     }
@@ -22921,6 +23568,8 @@ def build_epk_precount_gate_status(
     epk_analog_product_state_policy_control_reaudit: dict[str, Any] | None = None,
     epk_review_only_external_hard_negative_score_probe: dict[str, Any]
     | None = None,
+    epk_ligand_specific_5hvk_source_validity_review: dict[str, Any] | None = None,
+    epk_ligand_specific_5hvk_control_rerun_queue: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
@@ -23266,6 +23915,20 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(external_score_probe_meta, dict):
         external_score_probe_meta = {}
+    ligand_specific_5hvk_meta = (
+        epk_ligand_specific_5hvk_source_validity_review.get("metadata", {})
+        if isinstance(epk_ligand_specific_5hvk_source_validity_review, dict)
+        else {}
+    )
+    if not isinstance(ligand_specific_5hvk_meta, dict):
+        ligand_specific_5hvk_meta = {}
+    ligand_specific_5hvk_queue_meta = (
+        epk_ligand_specific_5hvk_control_rerun_queue.get("metadata", {})
+        if isinstance(epk_ligand_specific_5hvk_control_rerun_queue, dict)
+        else {}
+    )
+    if not isinstance(ligand_specific_5hvk_queue_meta, dict):
+        ligand_specific_5hvk_queue_meta = {}
     m_csa760_repair_meta = (
         epk_m_csa760_atp_state_repair_scan.get("metadata", {})
         if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
@@ -23962,6 +24625,118 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if ligand_specific_5hvk_meta:
+        gate_checks.append(
+            {
+                "gate_id": "ligand_specific_5hvk_source_validity_review",
+                "passed": bool(
+                    ligand_specific_5hvk_meta.get(
+                        "source_validated_kinase_substrate_pair"
+                    )
+                )
+                and int(
+                    ligand_specific_5hvk_meta.get(
+                        "measurement_ready_candidate_count"
+                    )
+                    or 0
+                )
+                > 0
+                and not bool(
+                    ligand_specific_5hvk_meta.get("ready_to_run_epk_scorer")
+                )
+                and int(
+                    ligand_specific_5hvk_meta.get("countable_label_candidate_count")
+                    or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": ligand_specific_5hvk_meta.get("method"),
+                    "pdb_id": ligand_specific_5hvk_meta.get("pdb_id"),
+                    "kinase_accession": ligand_specific_5hvk_meta.get(
+                        "kinase_accession"
+                    ),
+                    "acceptor_accession": ligand_specific_5hvk_meta.get(
+                        "acceptor_accession"
+                    ),
+                    "source_validity_status": ligand_specific_5hvk_meta.get(
+                        "source_validity_status"
+                    ),
+                    "source_validated_kinase_substrate_pair": bool(
+                        ligand_specific_5hvk_meta.get(
+                            "source_validated_kinase_substrate_pair"
+                        )
+                    ),
+                    "nearest_source_phosphoacceptor_distance_angstrom": (
+                        ligand_specific_5hvk_meta.get(
+                            "nearest_source_phosphoacceptor_distance_angstrom"
+                        )
+                    ),
+                    "measurement_ready_candidate_count": (
+                        ligand_specific_5hvk_meta.get(
+                            "measurement_ready_candidate_count"
+                        )
+                    ),
+                    "ready_to_rerun_controls": bool(
+                        ligand_specific_5hvk_meta.get("ready_to_rerun_controls")
+                    ),
+                    "ready_to_run_epk_scorer": bool(
+                        ligand_specific_5hvk_meta.get("ready_to_run_epk_scorer")
+                    ),
+                },
+            }
+        )
+    if ligand_specific_5hvk_queue_meta:
+        gate_checks.append(
+            {
+                "gate_id": "ligand_specific_5hvk_control_rerun_queue",
+                "passed": bool(
+                    ligand_specific_5hvk_queue_meta.get(
+                        "ready_for_review_only_control_rerun"
+                    )
+                )
+                and not bool(ligand_specific_5hvk_queue_meta.get("epk_score_computed"))
+                and not bool(
+                    ligand_specific_5hvk_queue_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                )
+                and int(
+                    ligand_specific_5hvk_queue_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": ligand_specific_5hvk_queue_meta.get("method"),
+                    "control_rerun_queue_status": (
+                        ligand_specific_5hvk_queue_meta.get(
+                            "control_rerun_queue_status"
+                        )
+                    ),
+                    "sibling_control_row_count": (
+                        ligand_specific_5hvk_queue_meta.get(
+                            "sibling_control_row_count"
+                        )
+                    ),
+                    "imported_external_hard_negative_row_count": (
+                        ligand_specific_5hvk_queue_meta.get(
+                            "imported_external_hard_negative_row_count"
+                        )
+                    ),
+                    "not_a_real_scored_reaudit": bool(
+                        ligand_specific_5hvk_queue_meta.get(
+                            "not_a_real_scored_reaudit"
+                        )
+                    ),
+                    "ready_to_run_epk_scorer": bool(
+                        ligand_specific_5hvk_queue_meta.get(
+                            "ready_to_run_epk_scorer"
+                        )
+                    ),
+                },
+            }
+        )
     if m_csa760_repair_meta:
         gate_checks.append(
             {
@@ -24512,6 +25287,36 @@ def build_epk_precount_gate_status(
             0,
             "convert the review-only external hard-negative score probe into a real scored re-audit only after threshold calibration",
         )
+    if ligand_specific_5hvk_meta.get(
+        "method"
+    ) and not ligand_specific_5hvk_queue_meta.get("method"):
+        if int(
+            ligand_specific_5hvk_meta.get("measurement_ready_candidate_count") or 0
+        ):
+            next_actions.insert(
+                0,
+                "rerun ePK sibling controls and imported external hard-negative controls with the source-valid 5HVK lead before any scoring claim",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "continue ligand-specific substrate/co-complex sourcing because 5HVK did not become measurement-ready",
+            )
+    if ligand_specific_5hvk_queue_meta.get("method"):
+        if bool(
+            ligand_specific_5hvk_queue_meta.get(
+                "ready_for_review_only_control_rerun"
+            )
+        ):
+            next_actions.insert(
+                0,
+                "execute the queued review-only 5HVK prototype/control rerun before any score or threshold claim",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "repair the 5HVK control-rerun queue inputs before prototype rerun",
+            )
     if m_csa760_repair_meta.get("method"):
         if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
             next_actions.insert(
@@ -25283,6 +26088,50 @@ def build_epk_precount_gate_status(
             ),
             "external_hard_negative_score_probe_not_real_reaudit": bool(
                 external_score_probe_meta.get("not_a_real_scored_reaudit")
+            ),
+            "source_epk_ligand_specific_5hvk_source_validity_review_method": (
+                ligand_specific_5hvk_meta.get("method")
+            ),
+            "ligand_specific_5hvk_source_validity_status": (
+                ligand_specific_5hvk_meta.get("source_validity_status")
+            ),
+            "ligand_specific_5hvk_source_validated_kinase_substrate_pair": bool(
+                ligand_specific_5hvk_meta.get(
+                    "source_validated_kinase_substrate_pair"
+                )
+            ),
+            "ligand_specific_5hvk_measurement_ready_candidate_count": (
+                ligand_specific_5hvk_meta.get("measurement_ready_candidate_count")
+            ),
+            "ligand_specific_5hvk_nearest_source_phosphoacceptor_distance_angstrom": (
+                ligand_specific_5hvk_meta.get(
+                    "nearest_source_phosphoacceptor_distance_angstrom"
+                )
+            ),
+            "ligand_specific_5hvk_ready_to_rerun_controls": bool(
+                ligand_specific_5hvk_meta.get("ready_to_rerun_controls")
+            ),
+            "source_epk_ligand_specific_5hvk_control_rerun_queue_method": (
+                ligand_specific_5hvk_queue_meta.get("method")
+            ),
+            "ligand_specific_5hvk_control_rerun_queue_status": (
+                ligand_specific_5hvk_queue_meta.get("control_rerun_queue_status")
+            ),
+            "ligand_specific_5hvk_control_rerun_ready": bool(
+                ligand_specific_5hvk_queue_meta.get(
+                    "ready_for_review_only_control_rerun"
+                )
+            ),
+            "ligand_specific_5hvk_control_rerun_sibling_control_row_count": (
+                ligand_specific_5hvk_queue_meta.get("sibling_control_row_count")
+            ),
+            "ligand_specific_5hvk_control_rerun_imported_external_row_count": (
+                ligand_specific_5hvk_queue_meta.get(
+                    "imported_external_hard_negative_row_count"
+                )
+            ),
+            "ligand_specific_5hvk_control_rerun_not_real_scored_reaudit": bool(
+                ligand_specific_5hvk_queue_meta.get("not_a_real_scored_reaudit")
             ),
             "source_epk_m_csa760_atp_state_repair_scan_method": (
                 m_csa760_repair_meta.get("method")

@@ -259,6 +259,34 @@
     },
     {
       "evidence": {
+        "acceptor_accession": "P23528",
+        "kinase_accession": "P53667",
+        "measurement_ready_candidate_count": 1,
+        "nearest_source_phosphoacceptor_distance_angstrom": 4.236,
+        "pdb_id": "5HVK",
+        "ready_to_rerun_controls": true,
+        "ready_to_run_epk_scorer": false,
+        "source_method": "epk_ligand_specific_5hvk_source_validity_review",
+        "source_validated_kinase_substrate_pair": true,
+        "source_validity_status": "accepted_source_valid_kinase_substrate_cocomplex_review_only"
+      },
+      "gate_id": "ligand_specific_5hvk_source_validity_review",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "control_rerun_queue_status": "ready_for_review_only_control_rerun",
+        "imported_external_hard_negative_row_count": 3,
+        "not_a_real_scored_reaudit": true,
+        "ready_to_run_epk_scorer": false,
+        "sibling_control_row_count": 20,
+        "source_method": "epk_ligand_specific_5hvk_control_rerun_queue"
+      },
+      "gate_id": "ligand_specific_5hvk_control_rerun_queue",
+      "passed": true
+    },
+    {
+      "evidence": {
         "atp_metal_state_candidate_count": 2,
         "atp_metal_state_candidate_pdb_ids": [
           "1TID",
@@ -532,6 +560,16 @@
     ],
     "ligand_analog_policy_decision": "do_not_use_ligand_analog_as_production_acceptor_evidence",
     "ligand_analog_production_admissible_count": 0,
+    "ligand_specific_5hvk_control_rerun_imported_external_row_count": 3,
+    "ligand_specific_5hvk_control_rerun_not_real_scored_reaudit": true,
+    "ligand_specific_5hvk_control_rerun_queue_status": "ready_for_review_only_control_rerun",
+    "ligand_specific_5hvk_control_rerun_ready": true,
+    "ligand_specific_5hvk_control_rerun_sibling_control_row_count": 20,
+    "ligand_specific_5hvk_measurement_ready_candidate_count": 1,
+    "ligand_specific_5hvk_nearest_source_phosphoacceptor_distance_angstrom": 4.236,
+    "ligand_specific_5hvk_ready_to_rerun_controls": true,
+    "ligand_specific_5hvk_source_validated_kinase_substrate_pair": true,
+    "ligand_specific_5hvk_source_validity_status": "accepted_source_valid_kinase_substrate_cocomplex_review_only",
     "m_csa640_alternate_gamma_distance_min_angstrom": 3.558,
     "m_csa640_alternate_gamma_geometry_review_complete": true,
     "m_csa640_alternate_gamma_geometry_support_count": 1,
@@ -689,6 +727,7 @@
       "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
       "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
+      "execute the queued review-only 5HVK prototype/control rerun before any score or threshold claim",
       "convert the review-only external hard-negative score probe into a real scored re-audit only after threshold calibration",
       "keep analog/product-state policy inactive until preselection freeze and scored external re-audit gates pass",
       "keep analog/product-state policy activation blocked until every failed activation requirement is resolved",
@@ -742,6 +781,8 @@
     "source_epk_family_specific_mapping_template_validation_review_method": "epk_family_specific_mapping_template_validation_review",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
     "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
+    "source_epk_ligand_specific_5hvk_control_rerun_queue_method": "epk_ligand_specific_5hvk_control_rerun_queue",
+    "source_epk_ligand_specific_5hvk_source_validity_review_method": "epk_ligand_specific_5hvk_source_validity_review",
     "source_epk_m_csa640_alternate_gamma_geometry_review_method": "epk_m_csa640_alternate_gamma_geometry_review",
     "source_epk_m_csa756_5li1_residue_evidence_audit_method": "epk_m_csa756_5li1_residue_evidence_audit",
     "source_epk_m_csa756_active_state_repair_scan_method": "epk_m_csa756_active_state_repair_scan",

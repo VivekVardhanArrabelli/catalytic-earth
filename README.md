@@ -1178,10 +1178,21 @@ shows P53355 alternate structures split active-state kinase context from
 source phospho-acceptor context. A broader substrate/co-complex probe,
 `artifacts/v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json`,
 finds one cross-accession acceptor-hit row (`5HVK`, source-ready `P53667` with
-`P23528` Ser3 near gamma) but keeps it review-only pending manual source
-validation. `artifacts/v3_epk_ligand_specific_5hvk_review_priority_1025.json`
-packages that single lead for the next review step; no scorer, threshold,
-registry edit, label import, or held-out claim is opened.
+`P23528` Ser3 near gamma) and keeps it review-only for source validation.
+`artifacts/v3_epk_ligand_specific_5hvk_review_priority_1025.json` packages
+that single lead, and
+`artifacts/v3_epk_ligand_specific_5hvk_source_validity_review_1025.json`
+accepts the 5HVK LIMK1/cofilin co-complex as source-valid review evidence:
+P53667 and P23528 both map through `struct_ref_seq`, the structure title and
+keywords support the kinase-substrate complex, UniProt kinase evidence has
+ATP/protein Ser/Thr activity, and P23528 Ser3 OG is 4.236 Angstrom from ANP
+PG. The artifact makes one measurement-ready review lead and authorizes
+rerunning controls, but no scorer, threshold, registry edit, label import, or
+held-out claim is opened.
+`artifacts/v3_epk_ligand_specific_5hvk_control_rerun_queue_1025.json` then
+turns that into a review-only queue: add 5HVK to the prototype surface, rerun
+the 20 sibling-control rows, and rerun the three imported external hard
+negatives as diagnostics only.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,
@@ -1198,11 +1209,12 @@ measurement and PfkB/PfkA/ATP-grasp family-specific counterevidence exist. The
 family-specific template gate now passes by downstream validation, and the
 chain/ligand feature, external feature screen, policy activation audit,
 inactive policy control re-audit, review-only external hard-negative score
-probe, and 5LI1 residue clue audit pass as safety/diagnostic gates, but the
-stricter protein-substrate feature, the `m_csa:760` split-state repair
-scan, the `m_csa:757`/`m_csa:756` active-state source scans, acceptor
-thresholding, external scored re-audit, and label-factory extension all remain
-failing gates; the negative-control distribution blocker also stays open.
+probe, 5LI1 residue clue audit, source-valid 5HVK review lead, and 5HVK
+control-rerun queue pass as safety/diagnostic gates, but the stricter
+protein-substrate feature, the `m_csa:760` split-state repair scan, the
+`m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,
+external scored re-audit, and label-factory extension all remain failing
+gates; the negative-control distribution blocker also stays open.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

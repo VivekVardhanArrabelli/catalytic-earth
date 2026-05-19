@@ -570,10 +570,17 @@ keeps that lead blocked because active-state kinase structures and mapped
 source phospho-acceptor structures are split. The broader
 `artifacts/v3_epk_ligand_specific_substrate_cocomplex_query_probe_1025.json`
 finds one cross-accession review lead (`5HVK`: source-ready `P53667` with
-`P23528` Ser3 near gamma), but it is not measurement-ready until manual source
-review confirms the acceptor is valid protein-substrate evidence.
-`artifacts/v3_epk_ligand_specific_5hvk_review_priority_1025.json` packages
-that lead for the next source-validity check without opening scoring or import.
+`P23528` Ser3 near gamma). The follow-on
+`artifacts/v3_epk_ligand_specific_5hvk_source_validity_review_1025.json`
+accepts the LIMK1/cofilin co-complex as source-valid review evidence and maps
+P23528 Ser3 OG 4.236 Angstrom from ANP PG. This makes one review lead
+measurement-ready for control reruns only; scoring, import, threshold
+selection, registry edits, and held-out claims remain closed.
+`artifacts/v3_epk_ligand_specific_5hvk_control_rerun_queue_1025.json`
+materializes the exact next review-only queue: add 5HVK to the prototype
+surface, rerun the 20 sibling-control rows, and rerun the three imported
+external hard negatives as diagnostics, while keeping the real scored re-audit
+closed.
 The 1025 preview/expanded source-triage artifacts repeat the same exhausted
 source candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) and do not open
 a new protein-substrate ePK source lane; the expanded terminal decision stays
@@ -592,8 +599,10 @@ family-specific homolog measurement are now explicit review-only preparation.
 The `m_csa:640` alternate geometry review lets the prototype gamma-geometry
 gate pass, the family-template gate passes by downstream validation, and the
 chain/ligand feature screen, policy activation audit, inactive policy control
-re-audit, review-only external hard-negative score probe, and 5LI1 clue audit
-pass as diagnostic guard gates. Negative-control distribution readiness,
+re-audit, review-only external hard-negative score probe, 5LI1 clue audit, and
+5HVK source-validity/control-rerun queue reviews pass as diagnostic guard
+gates.
+Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, protein-substrate acceptor coverage,
 `m_csa:760` split-state repair, `m_csa:757`/`m_csa:756` active-state source

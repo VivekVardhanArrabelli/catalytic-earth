@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "acceptor_accession": "P23528",
+    "acceptor_chain_ids": [
+      "B",
+      "D"
+    ],
+    "acceptor_ser3_source_descriptions": [
+      "Phosphoserine; by NRK"
+    ],
+    "acceptor_ser3_source_evidence_codes": [
+      "ECO:0000269",
+      "ECO:0007744"
+    ],
+    "acceptor_ser3_source_present": true,
+    "blocker_not_removed": [
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "5hvk_source_validity_review_executed",
+    "candidate_threshold_angstrom": 6.0,
+    "citation_titles": [],
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "entity_descriptions": [
+      "Cofilin-1",
+      "LIM domain kinase 1",
+      "MAGNESIUM ION",
+      "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER"
+    ],
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_error": null,
+    "fetch_status": "fetched",
+    "fingerprint_registry_edited": false,
+    "keyword_text": "TRANSFERASE kinase substrate actin-remodeling, TRANSFERASE",
+    "kinase_accession": "P53667",
+    "kinase_catalytic_reactions": [
+      "L-seryl-[protein] + ATP = O-phospho-L-seryl-[protein] + ADP + H(+)",
+      "L-threonyl-[protein] + ATP = O-phospho-L-threonyl-[protein] + ADP + H(+)"
+    ],
+    "kinase_chain_ids": [
+      "A",
+      "C"
+    ],
+    "kinase_has_active_site_feature": true,
+    "kinase_has_atp_binding_feature": true,
+    "kinase_has_protein_ser_thr_activity": true,
+    "measurement_ready_candidate_count": 1,
+    "method": "epk_ligand_specific_5hvk_source_validity_review",
+    "nearest_source_phosphoacceptor_distance_angstrom": 4.236,
+    "next_actions": [
+      "rerun the ligand-specific acceptor geometry/control surface with 5HVK included as source-valid review evidence",
+      "rerun sibling-family and imported external hard-negative controls before any score or threshold decision",
+      "keep registry and label-factory extension closed until calibrated gates pass"
+    ],
+    "pdb_id": "5HVK",
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": true,
+    "ready_to_rerun_controls": true,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact validates the 5HVK LIMK1/cofilin source lead as review-only evidence. Even when the source pair is accepted, it only authorizes rerunning measurement and controls; it does not score ePK, import labels, edit registries, or claim held-out performance.",
+    "source_epk_ligand_specific_5hvk_review_priority_method": "epk_ligand_specific_5hvk_review_priority",
+    "source_mapped_acceptor_candidate_count": 1,
+    "source_phosphoacceptor_within_threshold_count": 1,
+    "source_validated_kinase_substrate_pair": true,
+    "source_validity_status": "accepted_source_valid_kinase_substrate_cocomplex_review_only",
+    "structure_has_both_accessions": true,
+    "structure_pair_evidence_present": true,
+    "structure_title": "Crystal structure of LIMK1 mutant D460N in complex with full-length cofilin-1",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "terminal_gamma_atom_count": 1
+  },
+  "rows": [
+    {
+      "acceptor_accession": "P23528",
+      "acceptor_distance_hits": [
+        {
+          "acceptor_accession": "P23528",
+          "acceptor_atom_name": "OG",
+          "acceptor_uniprot_position": 3,
+          "candidate_auth_seq_id": "3",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "SER",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "701",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ANP",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "nearest_gamma_distance_angstrom": 4.236,
+          "source_description": "Phosphoserine; by NRK",
+          "source_evidence_codes": [
+            "ECO:0000269",
+            "ECO:0007744"
+          ],
+          "within_candidate_threshold": true
+        }
+      ],
+      "acceptor_ser3_source_present": true,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_accession": "P53667",
+      "kinase_has_protein_ser_thr_activity": true,
+      "measurement_ready": true,
+      "pdb_id": "5HVK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_id": "5hvk_ligand_specific_source_validity_review",
+      "source_validated_kinase_substrate_pair": true,
+      "source_validity_status": "accepted_source_valid_kinase_substrate_cocomplex_review_only",
+      "structure_pair_evidence_present": true,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "5HVK source validity is review-only and cannot activate an ePK scorer or label import without calibrated controls."
+  ]
+}

@@ -10,6 +10,8 @@ from catalytic_earth.labels import (
     build_epk_external_source_lower_priority_ligand_sourcing_review,
     build_epk_external_source_scout_pass_terminal_decision,
     build_epk_external_source_structure_mapping_review,
+    build_epk_ligand_specific_5hvk_control_rerun_queue,
+    build_epk_ligand_specific_5hvk_source_validity_review,
     load_labels,
 )
 from catalytic_earth.transfer_scope import (
@@ -1769,6 +1771,98 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertEqual(len(priority["rows"]), 2)
         self.assertTrue(all(row["review_only"] for row in priority["rows"]))
 
+    def test_epk_ligand_specific_5hvk_source_validity_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_5hvk_source_validity_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_ligand_specific_5hvk_source_validity_review",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["pdb_id"], "5HVK")
+        self.assertEqual(metadata["kinase_accession"], "P53667")
+        self.assertEqual(metadata["acceptor_accession"], "P23528")
+        self.assertTrue(metadata["source_validated_kinase_substrate_pair"])
+        self.assertEqual(
+            metadata["source_validity_status"],
+            "accepted_source_valid_kinase_substrate_cocomplex_review_only",
+        )
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 1)
+        self.assertTrue(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertTrue(metadata["ready_to_rerun_controls"])
+        self.assertEqual(
+            metadata["nearest_source_phosphoacceptor_distance_angstrom"], 4.236
+        )
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        row = review["rows"][0]
+        self.assertTrue(row["review_only"])
+        self.assertTrue(row["measurement_ready"])
+        self.assertFalse(row["countable_label_candidate"])
+
+    def test_epk_ligand_specific_5hvk_control_rerun_queue_stays_review_only(
+        self,
+    ) -> None:
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_ligand_specific_5hvk_control_rerun_queue_1025.json"
+        )
+        metadata = queue["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_ligand_specific_5hvk_control_rerun_queue",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["control_rerun_queue_status"],
+            "ready_for_review_only_control_rerun",
+        )
+        self.assertTrue(metadata["source_validated_kinase_substrate_pair"])
+        self.assertEqual(metadata["source_measurement_ready_candidate_count"], 1)
+        self.assertEqual(metadata["sibling_control_row_count"], 20)
+        self.assertEqual(metadata["imported_external_hard_negative_row_count"], 3)
+        self.assertEqual(metadata["review_only_score_probe_non_abstention_count"], 0)
+        self.assertTrue(metadata["not_a_real_scored_reaudit"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["task_id"]: row for row in queue["rows"]}
+        self.assertEqual(
+            rows["add_5hvk_source_valid_candidate_to_review_only_prototype"][
+                "queue_status"
+            ],
+            "ready_review_only",
+        )
+        self.assertEqual(
+            rows["rerun_current_sibling_control_surface"][
+                "carried_control_decision_counts"
+            ],
+            {
+                "blocked_by_family_specific_sibling_counteraxis_review_only": 16,
+                "blocked_by_phosphohistidine_counteraxis_review_only": 4,
+            },
+        )
+        self.assertTrue(
+            rows["rerun_imported_external_hard_negative_controls"][
+                "not_a_real_scored_reaudit"
+            ]
+        )
+
     def test_epk_external_source_scout_builder_keeps_rows_non_countable(
         self,
     ) -> None:
@@ -1905,6 +1999,187 @@ HETATM 5 M MG MG A 902 0.0 0.0 1.0 MG MG A 902
             ],
             3.0,
         )
+
+    def test_epk_ligand_specific_5hvk_source_validity_builder_accepts_pair(
+        self,
+    ) -> None:
+        cif_text = """data_5HVK
+_struct.entry_id 5HVK
+_struct.title 'Crystal structure of LIMK1 mutant D460N in complex with full-length cofilin-1'
+#
+loop_
+_struct_keywords.entry_id
+_struct_keywords.pdbx_keywords
+_struct_keywords.text
+5HVK TRANSFERASE 'kinase substrate'
+#
+loop_
+_entity.id
+_entity.type
+_entity.src_method
+_entity.pdbx_description
+_entity.formula_weight
+_entity.pdbx_number_of_molecules
+_entity.pdbx_ec
+_entity.pdbx_mutation
+_entity.pdbx_fragment
+_entity.details
+1 polymer man 'LIM domain kinase 1' 1.0 1 2.7.11.1 ? ? ?
+2 polymer man Cofilin-1 1.0 1 ? ? ? ?
+#
+loop_
+_struct_ref_seq.align_id
+_struct_ref_seq.ref_id
+_struct_ref_seq.pdbx_PDB_id_code
+_struct_ref_seq.pdbx_strand_id
+_struct_ref_seq.seq_align_beg
+_struct_ref_seq.pdbx_auth_seq_align_beg
+_struct_ref_seq.seq_align_end
+_struct_ref_seq.pdbx_auth_seq_align_end
+_struct_ref_seq.pdbx_db_accession
+_struct_ref_seq.db_align_beg
+_struct_ref_seq.db_align_end
+1 1 5HVK C 1 1 10 10 P53667 1 10
+2 2 5HVK D 1 1 10 10 P23528 1 10
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.auth_atom_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+HETATM 1 P PG ANP C 701 0.0 0.0 0.0 PG ANP C 701
+ATOM 2 O OG SER D 3 3.0 0.0 0.0 OG SER D 3
+#
+"""
+        review = build_epk_ligand_specific_5hvk_source_validity_review(
+            epk_ligand_specific_5hvk_review_priority={
+                "metadata": {
+                    "method": "epk_ligand_specific_5hvk_review_priority",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "pdb_id": "5HVK",
+                        "accession": "P53667",
+                        "role": "source_ready_kinase_candidate",
+                    },
+                    {
+                        "pdb_id": "5HVK",
+                        "accession": "P23528",
+                        "role": "cross_accession_phosphoacceptor_hit",
+                    },
+                ],
+            },
+            kinase_uniprot_entry={
+                "record": {
+                    "active_site_features": [{"begin": 460}],
+                    "binding_site_features": [
+                        {"begin": 345, "ligand_name": "ATP"}
+                    ],
+                    "catalytic_activity_comments": [
+                        {
+                            "reaction": (
+                                "L-seryl-[protein] + ATP = "
+                                "O-phospho-L-seryl-[protein] + ADP + H(+)"
+                            )
+                        }
+                    ],
+                }
+            },
+            acceptor_uniprot_entry={
+                "record": {
+                    "modified_residue_features": [
+                        {
+                            "begin": 3,
+                            "description": "Phosphoserine; by NRK",
+                            "evidence": [{"evidence_code": "ECO:0000269"}],
+                        }
+                    ]
+                }
+            },
+            cif_text_by_pdb={"5HVK": cif_text},
+        )
+        metadata = review["metadata"]
+        self.assertTrue(metadata["source_validated_kinase_substrate_pair"])
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 1)
+        self.assertTrue(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["countable_label_candidate_count"])
+        row = review["rows"][0]
+        self.assertTrue(row["measurement_ready"])
+        self.assertEqual(
+            row["acceptor_distance_hits"][0]["nearest_gamma_distance_angstrom"],
+            3.0,
+        )
+
+    def test_epk_ligand_specific_5hvk_control_rerun_queue_builder(
+        self,
+    ) -> None:
+        queue = build_epk_ligand_specific_5hvk_control_rerun_queue(
+            epk_ligand_specific_5hvk_source_validity_review={
+                "metadata": {
+                    "method": "epk_ligand_specific_5hvk_source_validity_review",
+                    "target_fingerprint_id": (
+                        "epk_atp_gamma_phosphoryl_transfer"
+                    ),
+                    "pdb_id": "5HVK",
+                    "kinase_accession": "P53667",
+                    "acceptor_accession": "P23528",
+                    "source_validated_kinase_substrate_pair": True,
+                    "measurement_ready_candidate_count": 1,
+                    "nearest_source_phosphoacceptor_distance_angstrom": 4.236,
+                }
+            },
+            epk_review_only_scoring_prototype={
+                "metadata": {"method": "epk_review_only_scoring_prototype"},
+                "rows": [
+                    {
+                        "row_type": "current_epk_positive_prototype",
+                        "prototype_decision": (
+                            "candidate_positive_signal_review_only_not_calibrated"
+                        ),
+                    },
+                    {
+                        "row_type": "sibling_homolog_negative_control",
+                        "prototype_decision": (
+                            "blocked_by_phosphohistidine_counteraxis_review_only"
+                        ),
+                    },
+                    {
+                        "row_type": "imported_external_hard_negative",
+                        "prototype_decision": (
+                            "external_hard_negative_abstain_missing_epk_axes_review_only"
+                        ),
+                    },
+                ],
+            },
+            epk_review_only_external_hard_negative_score_probe={
+                "metadata": {
+                    "method": "epk_review_only_external_hard_negative_score_probe",
+                    "review_only_score_probe_non_abstention_count": 0,
+                    "not_a_real_scored_reaudit": True,
+                }
+            },
+        )
+        metadata = queue["metadata"]
+        self.assertEqual(
+            metadata["control_rerun_queue_status"],
+            "ready_for_review_only_control_rerun",
+        )
+        self.assertTrue(metadata["ready_for_review_only_control_rerun"])
+        self.assertEqual(metadata["sibling_control_row_count"], 1)
+        self.assertEqual(metadata["imported_external_hard_negative_row_count"], 1)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
     def test_epk_external_source_lower_priority_ligand_builder_blocks_analog(
         self,
@@ -3103,6 +3378,48 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         self.assertEqual(metadata["ligand_analog_dependency_count"], 1)
         self.assertEqual(metadata["ligand_analog_dependency_entry_ids"], ["m_csa:640"])
         self.assertEqual(metadata["ligand_analog_production_admissible_count"], 0)
+        self.assertEqual(
+            metadata["source_epk_ligand_specific_5hvk_source_validity_review_method"],
+            "epk_ligand_specific_5hvk_source_validity_review",
+        )
+        self.assertEqual(
+            metadata["ligand_specific_5hvk_source_validity_status"],
+            "accepted_source_valid_kinase_substrate_cocomplex_review_only",
+        )
+        self.assertTrue(
+            metadata["ligand_specific_5hvk_source_validated_kinase_substrate_pair"]
+        )
+        self.assertEqual(
+            metadata["ligand_specific_5hvk_measurement_ready_candidate_count"],
+            1,
+        )
+        self.assertEqual(
+            metadata[
+                "ligand_specific_5hvk_nearest_source_phosphoacceptor_distance_angstrom"
+            ],
+            4.236,
+        )
+        self.assertTrue(metadata["ligand_specific_5hvk_ready_to_rerun_controls"])
+        self.assertEqual(
+            metadata["source_epk_ligand_specific_5hvk_control_rerun_queue_method"],
+            "epk_ligand_specific_5hvk_control_rerun_queue",
+        )
+        self.assertEqual(
+            metadata["ligand_specific_5hvk_control_rerun_queue_status"],
+            "ready_for_review_only_control_rerun",
+        )
+        self.assertTrue(metadata["ligand_specific_5hvk_control_rerun_ready"])
+        self.assertEqual(
+            metadata["ligand_specific_5hvk_control_rerun_sibling_control_row_count"],
+            20,
+        )
+        self.assertEqual(
+            metadata["ligand_specific_5hvk_control_rerun_imported_external_row_count"],
+            3,
+        )
+        self.assertTrue(
+            metadata["ligand_specific_5hvk_control_rerun_not_real_scored_reaudit"]
+        )
         self.assertEqual(metadata["measured_acceptor_identity_source_supported_count"], 2)
         self.assertEqual(
             metadata["source_epk_acceptor_identity_review_method"],
@@ -3476,6 +3793,23 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         self.assertFalse(checks["m_csa760_atp_state_repair_scan"]["passed"])
         self.assertFalse(checks["m_csa757_active_state_repair_scan"]["passed"])
         self.assertFalse(checks["m_csa756_active_state_repair_scan"]["passed"])
+        self.assertTrue(
+            checks["ligand_specific_5hvk_source_validity_review"]["passed"]
+        )
+        self.assertTrue(
+            checks["ligand_specific_5hvk_control_rerun_queue"]["passed"]
+        )
+        self.assertEqual(
+            checks["ligand_specific_5hvk_source_validity_review"]["evidence"][
+                "nearest_source_phosphoacceptor_distance_angstrom"
+            ],
+            4.236,
+        )
+        self.assertFalse(
+            checks["ligand_specific_5hvk_source_validity_review"]["evidence"][
+                "ready_to_run_epk_scorer"
+            ]
+        )
         self.assertEqual(
             checks["text_free_acceptor_feature_gap_audit"]["evidence"][
                 "negative_control_false_hit_count"

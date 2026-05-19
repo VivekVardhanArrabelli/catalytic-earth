@@ -50,6 +50,56 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T15:31:41Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/dry-run push
+hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
+preserved.
+
+The bounded 5HVK source-validity check is now complete.
+`artifacts/v3_epk_ligand_specific_5hvk_source_validity_review_1025.json`
+accepts 5HVK as source-valid LIMK1/cofilin review evidence: P53667 and P23528
+both map through `struct_ref_seq`, the 5HVK title/keywords support the
+kinase-substrate co-complex, UniProt P53667 carries ATP-dependent protein
+Ser/Thr kinase evidence, UniProt P23528 carries Ser3 phosphoserine evidence,
+and P23528 Ser3 OG is 4.236 Angstrom from ANP PG. This produces exactly one
+measurement-ready review lead and authorizes rerunning ePK sibling controls and
+the imported external hard-negative controls with 5HVK included. It does not
+score ePK, select a threshold, import labels, edit registries, or make a
+held-out performance claim.
+
+`artifacts/v3_epk_ligand_specific_5hvk_control_rerun_queue_1025.json` turns
+that accepted lead into a concrete review-only next-experiment queue. It
+records the existing prototype/control surface as 3 current positives, 20
+sibling controls, and 3 imported external hard negatives; it marks the 5HVK
+candidate-addition, sibling-control rerun, and imported external diagnostic
+rerun tasks as ready in review-only mode. It also keeps
+`not_a_real_scored_reaudit=true`, `ready_to_run_epk_scorer=false`,
+`epk_score_computed=false`, and `countable_label_candidate_count=0`.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with the
+5HVK source-validity artifact and control-rerun queue. The new
+`ligand_specific_5hvk_source_validity_review` and
+`ligand_specific_5hvk_control_rerun_queue` gates pass as diagnostic gates, but
+the overall pre-count status remains `blocked_review_only`; the failing gates
+still include acceptor threshold calibration, external scored re-audit,
+registry/label-factory extension, text-free acceptor admissibility,
+protein-substrate acceptor coverage, the exhausted `m_csa:760`/`m_csa:757`/
+`m_csa:756` source-repair gates, and the negative-control distribution blocker.
+The next useful experiment is not another broad source scout: rerun the
+review-only prototype/control surface with source-valid 5HVK as a candidate
+positive lead using the new queue, while keeping the real scorer and registry
+changes closed.
+
+Evidence-based confidence call: confidence is higher that ligand-specific
+substrate/co-complex querying can produce source-valid ePK positive leads.
+Confidence remains low that the current evidence can support production
+scoring, because the scorer has not been rerun with 5HVK, thresholds are still
+uncalibrated against controls, and the imported external hard negatives have
+not received a real scored re-audit.
+
 As of the 2026-05-19T14:30:37Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

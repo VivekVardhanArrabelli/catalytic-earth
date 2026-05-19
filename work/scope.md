@@ -71,8 +71,13 @@ RCSB ANP/Mg EC 2.7.11.1 route found one active-state mapped lead
 (`P53355`/`1JKK`) and then blocked it because P53355 active-state structures do
 not co-materialize mapped source phospho-acceptors. The broader ligand-specific
 substrate/co-complex probe found one cross-accession review lead (`5HVK`,
-source-ready `P53667` with `P23528` Ser3 near gamma), but this remains manual
-source-review work only, not measurement-ready evidence.
+source-ready `P53667` with `P23528` Ser3 near gamma). The follow-on
+source-validity review now accepts 5HVK as a LIMK1/cofilin kinase-substrate
+co-complex and measures P23528 Ser3 OG 4.236 Angstrom from ANP PG, making one
+review-only lead measurement-ready for control reruns. The companion
+control-rerun queue now names the next prototype/control pass, but it still
+does not authorize scoring, threshold selection, registry edits, label import,
+or held-out claims.
 
 ## Time Calibration Rule
 
