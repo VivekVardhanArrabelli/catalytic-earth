@@ -1193,6 +1193,33 @@ held-out claim is opened.
 turns that into a review-only queue: add 5HVK to the prototype surface, rerun
 the 20 sibling-control rows, and rerun the three imported external hard
 negatives as diagnostics only.
+`artifacts/v3_epk_ligand_specific_5hvk_prototype_control_rerun_1025.json`
+executes that queued diagnostic without opening a real scorer: the surface now
+has four positive-like review rows (the three current ePK rows plus
+source-valid 5HVK), keeps 20 sibling controls blocked, and leaves all three
+imported external hard negatives abstained. The companion
+`artifacts/v3_epk_5hvk_protein_substrate_axis_generalization_audit_1025.json`
+shows that the protein-substrate-only axis now has three review-only
+positive-like rows without relying on ligand-analog-only `m_csa:640`, but it
+remains not scoring-admissible until a real scorer design, threshold calibration,
+external scored re-audit, and label-factory extension exist.
+`artifacts/v3_epk_protein_substrate_scorer_design_freeze_1025.json` freezes
+that next diagnostic design while keeping source-authority acceptor evidence
+out of orphan-discovery claims. The review-only calibration diagnostic in
+`artifacts/v3_epk_protein_substrate_calibration_diagnostic_1025.json` passes
+the narrow current surface with three protein-substrate positives, zero
+sibling-control nonzero scores, and zero imported external hard-negative
+nonzero scores, but it deliberately leaves `epk_score_computed=false`.
+`artifacts/v3_epk_source_authority_axis_replacement_gap_audit_1025.json` and
+`artifacts/v3_epk_local_chain_topology_acceptor_replacement_rule_1025.json`
+then turn that limitation into the next falsifiable rule: a local
+chain-topology acceptor replacement passes current review controls, but 5HVK
+chain roles still depend on source authority, so production scoring remains
+closed.
+`artifacts/v3_epk_5hvk_local_polymer_entity_role_audit_1025.json` narrows that
+blocker: local PDB polymer/entity evidence supports a 5HVK co-complex with
+disjoint kinase/acceptor chains plus ANP/Mg context, but it still cannot
+replace source authority for assigning kinase versus substrate roles.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,
@@ -1209,9 +1236,10 @@ measurement and PfkB/PfkA/ATP-grasp family-specific counterevidence exist. The
 family-specific template gate now passes by downstream validation, and the
 chain/ligand feature, external feature screen, policy activation audit,
 inactive policy control re-audit, review-only external hard-negative score
-probe, 5LI1 residue clue audit, source-valid 5HVK review lead, and 5HVK
-control-rerun queue pass as safety/diagnostic gates, but the stricter
-protein-substrate feature, the `m_csa:760` split-state repair scan, the
+probe, 5LI1 residue clue audit, source-valid 5HVK review lead, 5HVK
+control-rerun queue, 5HVK prototype rerun, and 5HVK protein-substrate
+generalization audit pass as safety/diagnostic gates, but real scorer design,
+the `m_csa:760` split-state repair scan, the
 `m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,
 external scored re-audit, and label-factory extension all remain failing
 gates; the negative-control distribution blocker also stays open.

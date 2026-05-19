@@ -50,6 +50,69 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T16:32:17Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/dry-run push
+hygiene passed at startup, and the 682-label / 8-fingerprint baseline was
+preserved.
+
+The queued 5HVK prototype/control rerun is now complete.
+`artifacts/v3_epk_ligand_specific_5hvk_prototype_control_rerun_1025.json`
+adds source-valid 5HVK to the review-only prototype surface while preserving
+the fail-closed controls: four positive-like review rows, 20 sibling controls
+still blocked, three imported external hard negatives still abstained, and
+`epk_score_computed=false`. This is not a real scored ePK re-audit and makes
+no held-out performance claim.
+
+`artifacts/v3_epk_5hvk_protein_substrate_axis_generalization_audit_1025.json`
+then records the useful consequence: the protein-substrate-only axis now has
+three review-only positive-like rows (`m_csa:35`, `m_csa:246`, and
+source-valid 5HVK) without relying on ligand-analog-only `m_csa:640`. That
+reduces the ligand-analog dependency for scorer development, but the axis remains
+not production-admissible because threshold calibration, a frozen real scorer,
+external scored re-audit, registry extension, and label-factory extension are
+still missing.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` was regenerated with both
+new 5HVK artifacts. The new `ligand_specific_5hvk_prototype_control_rerun`
+and `ligand_specific_5hvk_protein_substrate_axis_generalization` gates pass as
+diagnostic gates, while the overall status remains `blocked_review_only`.
+
+The run continued into that next diagnostic step.
+`artifacts/v3_epk_protein_substrate_scorer_design_freeze_1025.json` freezes a
+review-only protein-substrate scorer design and explicitly marks
+source-authority axes as invalid for orphan-discovery claims. The matching
+`artifacts/v3_epk_protein_substrate_calibration_diagnostic_1025.json` gives a
+useful narrow result: three protein-substrate positive-like rows score as
+full-axis diagnostics, ligand-analog `m_csa:640` is excluded from calibration
+positives, and sibling/external controls stay at zero. It still sets
+`epk_score_computed=false`.
+
+`artifacts/v3_epk_source_authority_axis_replacement_gap_audit_1025.json`
+captures the remaining production blocker: source-authority acceptor identity
+and catalytic context still need local replacements. The first replacement
+attempt,
+`artifacts/v3_epk_local_chain_topology_acceptor_replacement_rule_1025.json`,
+passes current review controls with three positive hits, zero control false
+hits, and zero imported external non-abstentions, but it still relies on
+source-assigned 5HVK kinase/substrate chain roles.
+`artifacts/v3_epk_5hvk_local_polymer_entity_role_audit_1025.json` tests that
+blocker directly: local PDB polymer/entity evidence supports a 5HVK co-complex
+with disjoint kinase/acceptor chains plus ANP/Mg context, but still cannot
+assign kinase versus substrate roles without source authority. The next useful
+experiment is a source-free local polymer topology role rule plus broader
+chain-topology controls, not registry editing.
+
+Evidence-based confidence call: confidence is higher that a protein-substrate
+acceptor axis can be developed without using ligand-analog `m_csa:640` as the
+third positive. Confidence remains low that the current evidence can support
+production scoring, because the best local replacement rule still uses
+source-assigned 5HVK chain roles; the local polymer/entity audit only narrows,
+not removes, that dependency. No selected threshold or real external
+hard-negative scored re-audit exists.
+
 As of the 2026-05-19T15:31:41Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

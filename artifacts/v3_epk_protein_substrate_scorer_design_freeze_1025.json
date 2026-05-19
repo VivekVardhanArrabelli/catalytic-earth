@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "combined_protein_substrate_positive_like_count": 3,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "design_status": "frozen_review_only_ready_for_diagnostic_calibration",
+    "design_version": "epk_protein_substrate_scorer_design_v0_2026_05_19",
+    "ec_rhea_identifier_predictive_use_allowed": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "imported_external_hard_negative_non_abstention_count": 0,
+    "mechanism_text_predictive_use_allowed": false,
+    "method": "epk_protein_substrate_scorer_design_freeze",
+    "next_actions": [
+      "implement a review-only calibration diagnostic from this frozen design",
+      "replace source-authority acceptor context with production-admissible evidence before orphan claims",
+      "keep registry edits and label import closed"
+    ],
+    "production_scoring_admissible": false,
+    "ready_for_label_import": false,
+    "ready_for_review_only_calibration_diagnostic": true,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "remaining_blockers": [
+      "diagnostic_design_not_implemented_as_real_scorer",
+      "source_authority_axes_not_valid_for_orphan_discovery_claims",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "review_only": true,
+    "selected_threshold_angstrom": null,
+    "sibling_control_false_hit_count": 0,
+    "source_authority_axes_present": true,
+    "source_authority_axes_valid_for_orphan_discovery_claims": false,
+    "source_epk_5hvk_protein_substrate_axis_generalization_audit_method": "epk_5hvk_protein_substrate_axis_generalization_audit",
+    "success_criteria_for_next_diagnostic": [
+      "retain at least three review-only protein-substrate positive-like rows",
+      "keep sibling-control false hits at zero",
+      "keep imported external hard-negative non-abstentions at zero",
+      "preserve epk_score_computed=false until a production scorer is deliberately implemented"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "uniprot_prose_predictive_use_allowed": false
+  },
+  "rows": [
+    {
+      "axis_id": "local_gamma_capable_adenine_nucleotide",
+      "axis_type": "local_geometry",
+      "predictive_use_status": "diagnostic_candidate_axis_only",
+      "required_for_full_axis": true,
+      "review_only": true
+    },
+    {
+      "axis_id": "local_metal_context",
+      "axis_type": "local_ligand_context",
+      "predictive_use_status": "diagnostic_candidate_axis_only",
+      "required_for_full_axis": true,
+      "review_only": true
+    },
+    {
+      "axis_id": "catalytic_acid_base_context",
+      "axis_type": "local_or_source_authority_context",
+      "predictive_use_status": "diagnostic_not_orphan_discovery_evidence",
+      "required_for_full_axis": true,
+      "review_only": true
+    },
+    {
+      "axis_id": "source_validated_protein_substrate_hydroxyl_acceptor",
+      "axis_type": "source_authority_context",
+      "predictive_use_status": "calibration_context_not_production_scoring",
+      "required_for_full_axis": true,
+      "review_only": true
+    },
+    {
+      "axis_id": "gamma_to_source_acceptor_distance_candidate_cutoff",
+      "axis_type": "local_geometry",
+      "candidate_cutoff_angstrom": 6.0,
+      "predictive_use_status": "diagnostic_cutoff_not_selected_threshold",
+      "required_for_full_axis": true,
+      "review_only": true
+    },
+    {
+      "axis_id": "sibling_family_counteraxis",
+      "axis_type": "counterevidence",
+      "predictive_use_status": "diagnostic_fail_closed_counteraxis",
+      "required_for_full_axis": false,
+      "review_only": true
+    },
+    {
+      "axis_id": "imported_external_hard_negative_abstention",
+      "axis_type": "counterevidence",
+      "predictive_use_status": "diagnostic_not_real_scored_reaudit",
+      "required_for_full_axis": false,
+      "review_only": true
+    }
+  ],
+  "warnings": [
+    "This design freeze is a review-only diagnostic contract. It freezes axes for the next experiment but does not compute a production ePK score."
+  ]
+}

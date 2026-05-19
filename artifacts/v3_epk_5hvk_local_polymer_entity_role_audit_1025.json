@@ -1,0 +1,76 @@
+{
+  "metadata": {
+    "acceptor_chain_count": 2,
+    "audit_status": "partial_local_entity_support_source_roles_still_required",
+    "chain_sets_disjoint": true,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "has_adenylate_ligand_entity": true,
+    "has_magnesium_entity": true,
+    "kinase_chain_count": 2,
+    "local_entity_supports_cocomplex": true,
+    "method": "epk_5hvk_local_polymer_entity_role_audit",
+    "next_actions": [
+      "test whether local polymer topology alone can infer kinase/substrate roles without source labels",
+      "add broader chain-topology controls before using this rule in calibration",
+      "keep all registry and import gates closed"
+    ],
+    "pdb_id": "5HVK",
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "remaining_blockers": [
+      "local_entity_descriptions_do_not_replace_source_role_assignment",
+      "5hvk_acceptor_role_still_source_authority_dependent",
+      "broader_chain_topology_controls_not_run",
+      "external_hard_negative_reaudit_not_real_scorer"
+    ],
+    "review_only": true,
+    "source_authority_eliminated": false,
+    "source_epk_ligand_specific_5hvk_source_validity_review_method": "epk_ligand_specific_5hvk_source_validity_review",
+    "source_epk_local_chain_topology_acceptor_replacement_rule_method": "epk_local_chain_topology_acceptor_replacement_rule",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "acceptor_chain_ids": [
+        "B",
+        "D"
+      ],
+      "chain_sets_disjoint": true,
+      "entity_descriptions": [
+        "Cofilin-1",
+        "LIM domain kinase 1",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER"
+      ],
+      "evidence_id": "5hvk_polymer_entity_context",
+      "kinase_chain_ids": [
+        "A",
+        "C"
+      ],
+      "local_entity_supports_cocomplex": true,
+      "pdb_id": "5HVK",
+      "review_only": true,
+      "source_authority_eliminated": false
+    },
+    {
+      "evidence_id": "5hvk_ligand_metal_context",
+      "has_adenylate_ligand_entity": true,
+      "has_magnesium_entity": true,
+      "nearest_source_phosphoacceptor_distance_angstrom": 4.236,
+      "pdb_id": "5HVK",
+      "review_only": true,
+      "source_authority_eliminated": false
+    }
+  ],
+  "warnings": [
+    "5HVK local polymer/entity evidence supports a co-complex, but does not eliminate source-authority dependence for assigning kinase and substrate roles."
+  ]
+}

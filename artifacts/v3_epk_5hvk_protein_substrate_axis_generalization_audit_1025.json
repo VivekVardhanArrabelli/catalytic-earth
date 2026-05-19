@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "combined_protein_substrate_positive_like_count": 3,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_m_csa_protein_substrate_positive_hit_count": 2,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "feature_admissible_for_production_scoring": false,
+    "fingerprint_registry_edited": false,
+    "generalization_status": "passes_review_only_generalization_but_not_scoring_admissible",
+    "imported_external_hard_negative_non_abstention_count": 0,
+    "ligand_analog_only_positive_miss_count": 1,
+    "ligand_analog_required_for_minimum_review_set": false,
+    "method": "epk_5hvk_protein_substrate_axis_generalization_audit",
+    "next_actions": [
+      "calibrate the protein-substrate acceptor axis only after a real scorer design is frozen",
+      "keep m_csa:640 ligand-analog evidence review-only unless a future policy is pre-registered",
+      "rerun imported external hard negatives as real scored controls only after threshold selection"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "remaining_blockers": [
+      "protein_substrate_axis_not_calibrated_as_real_scorer",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "review_only": true,
+    "selected_threshold_angstrom": null,
+    "sibling_control_false_hit_count": 0,
+    "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": "epk_ligand_specific_5hvk_prototype_control_rerun",
+    "source_epk_protein_substrate_acceptor_candidate_audit_method": "epk_protein_substrate_acceptor_candidate_audit",
+    "source_valid_5hvk_protein_substrate_positive_count": 1,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "current_positive_feature_hit_count": 2,
+      "current_positive_feature_miss_count": 1,
+      "epk_score_computed": false,
+      "ligand_analog_only_positive_miss_count": 1,
+      "ligand_analog_only_positive_miss_entry_ids": [
+        "m_csa:640"
+      ],
+      "review_only": true,
+      "row_type": "current_m_csa_protein_substrate_positive_summary",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_type": "source_valid_5hvk_protein_substrate_positive_lead",
+      "source_valid_5hvk_candidate_added": true,
+      "source_valid_5hvk_candidate_axis_complete": true,
+      "source_valid_5hvk_distance_angstrom": 4.236,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "combined_protein_substrate_positive_like_count": 3,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "feature_admissible_for_production_scoring": false,
+      "imported_external_hard_negative_non_abstention_count": 0,
+      "review_only": true,
+      "row_type": "combined_review_control_summary",
+      "sibling_control_false_hit_count": 0,
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "threshold_calibrated": false
+    }
+  ],
+  "warnings": [
+    "This audit shows review-only protein-substrate coverage with 5HVK; it is not production scoring evidence or a clean held-out performance claim."
+  ]
+}

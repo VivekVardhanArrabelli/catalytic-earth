@@ -21886,6 +21886,1289 @@ def build_epk_ligand_specific_5hvk_control_rerun_queue(
     }
 
 
+def build_epk_ligand_specific_5hvk_prototype_control_rerun(
+    *,
+    epk_ligand_specific_5hvk_source_validity_review: dict[str, Any],
+    epk_ligand_specific_5hvk_control_rerun_queue: dict[str, Any],
+    epk_review_only_scoring_prototype: dict[str, Any],
+    epk_review_only_external_hard_negative_score_probe: dict[str, Any] | None = None,
+    candidate_threshold_angstrom: float = 6.0,
+) -> dict[str, Any]:
+    """Run the queued 5HVK review-only prototype/control diagnostic."""
+
+    source_meta = epk_ligand_specific_5hvk_source_validity_review.get(
+        "metadata", {}
+    )
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    queue_meta = epk_ligand_specific_5hvk_control_rerun_queue.get("metadata", {})
+    if not isinstance(queue_meta, dict):
+        queue_meta = {}
+    prototype_meta = epk_review_only_scoring_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    external_probe_meta = (
+        epk_review_only_external_hard_negative_score_probe.get("metadata", {})
+        if isinstance(epk_review_only_external_hard_negative_score_probe, dict)
+        else {}
+    )
+    if not isinstance(external_probe_meta, dict):
+        external_probe_meta = {}
+
+    target_fingerprint_id = str(
+        source_meta.get("target_fingerprint_id")
+        or queue_meta.get("target_fingerprint_id")
+        or prototype_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    source_ready = bool(
+        source_meta.get("source_validated_kinase_substrate_pair")
+    ) and int(source_meta.get("measurement_ready_candidate_count") or 0) > 0
+    queue_ready = bool(queue_meta.get("ready_for_review_only_control_rerun"))
+
+    prototype_rows = [
+        row
+        for row in epk_review_only_scoring_prototype.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    current_positive_rows = [
+        row
+        for row in prototype_rows
+        if row.get("row_type") == "current_epk_positive_prototype"
+    ]
+    sibling_control_rows = [
+        row
+        for row in prototype_rows
+        if row.get("row_type")
+        in {
+            "sibling_homolog_negative_control",
+            "sibling_family_specific_negative_control",
+        }
+    ]
+    imported_external_rows = [
+        row
+        for row in prototype_rows
+        if row.get("row_type") == "imported_external_hard_negative"
+    ]
+
+    decision_counts: Counter[str] = Counter()
+    rows: list[dict[str, Any]] = []
+    for row in current_positive_rows:
+        decision = str(
+            row.get("prototype_decision")
+            or "candidate_positive_signal_review_only_not_calibrated"
+        )
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "carried_current_epk_positive_prototype",
+                "entry_id": row.get("entry_id"),
+                "entry_name": row.get("entry_name"),
+                "pdb_id": row.get("pdb_id"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "prototype_axis_values": row.get("prototype_axis_values", {}),
+                "review_only_prototype_score": row.get(
+                    "review_only_prototype_score"
+                ),
+                "prototype_decision": decision,
+                "rerun_surface_role": "carried_current_positive",
+                "remaining_blockers": row.get("remaining_blockers", []),
+            }
+        )
+
+    source_distance = source_meta.get(
+        "nearest_source_phosphoacceptor_distance_angstrom"
+    )
+    try:
+        source_gamma_axis_present = (
+            source_distance is not None
+            and float(source_distance) <= float(candidate_threshold_angstrom)
+        )
+    except (TypeError, ValueError):
+        source_gamma_axis_present = False
+    try:
+        terminal_gamma_atom_count = int(source_meta.get("terminal_gamma_atom_count") or 0)
+    except (TypeError, ValueError):
+        terminal_gamma_atom_count = 0
+    source_entity_descriptions = source_meta.get("entity_descriptions", [])
+    if not isinstance(source_entity_descriptions, list):
+        source_entity_descriptions = []
+    source_axis_values = {
+        "local_adenine_nucleotide_ligand": int(terminal_gamma_atom_count > 0),
+        "local_metal_ligand": int("MAGNESIUM ION" in source_entity_descriptions),
+        "source_kinase_active_site_feature": int(
+            bool(source_meta.get("kinase_has_active_site_feature"))
+        ),
+        "gamma_to_acceptor_distance_within_candidate_cutoff": int(
+            source_gamma_axis_present
+        ),
+        "source_validated_protein_substrate_acceptor_identity": int(source_ready),
+    }
+    source_all_axes = all(value == 1 for value in source_axis_values.values())
+    source_decision = (
+        "source_valid_5hvk_positive_signal_review_only_not_calibrated"
+        if source_all_axes
+        else "source_valid_5hvk_abstain_missing_required_axis_review_only"
+    )
+    decision_counts[source_decision] += 1
+    rows.append(
+        {
+            "row_type": "ligand_specific_5hvk_source_valid_positive_candidate",
+            "entry_id": None,
+            "pdb_id": source_meta.get("pdb_id"),
+            "kinase_accession": source_meta.get("kinase_accession"),
+            "acceptor_accession": source_meta.get("acceptor_accession"),
+            "target_fingerprint_id": target_fingerprint_id,
+            "review_only": True,
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "candidate_threshold_angstrom": candidate_threshold_angstrom,
+            "prototype_axis_values": source_axis_values,
+            "review_only_prototype_score": round(
+                sum(source_axis_values.values()) / len(source_axis_values), 4
+            ),
+            "prototype_decision": source_decision,
+            "nearest_gamma_to_source_phosphoacceptor_distance_angstrom": (
+                source_distance
+            ),
+            "acceptor_context_type": "source_validated_protein_substrate_serine",
+            "source_validity_status": source_meta.get("source_validity_status"),
+            "predictive_use_status": (
+                "review_only_source_validity_not_production_scoring_input"
+            ),
+            "text_free_inputs_only": False,
+            "rerun_surface_role": "new_source_valid_positive_lead",
+            "remaining_blockers": [
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+        }
+    )
+
+    for row in sibling_control_rows:
+        decision = str(
+            row.get("prototype_decision") or "sibling_control_blocked_review_only"
+        )
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": row.get("row_type"),
+                "pdb_id": row.get("pdb_id"),
+                "family_id": row.get("family_id"),
+                "family_name": row.get("family_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "prototype_axis_values": row.get("prototype_axis_values", {}),
+                "review_only_prototype_score": row.get(
+                    "review_only_prototype_score", 0.0
+                ),
+                "prototype_decision": decision,
+                "candidate_feature_hit": False,
+                "rerun_surface_role": "carried_sibling_control",
+                "remaining_blockers": row.get("remaining_blockers", []),
+            }
+        )
+
+    for row in imported_external_rows:
+        decision = str(
+            row.get("prototype_decision")
+            or "external_hard_negative_abstain_missing_epk_axes_review_only"
+        )
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "imported_external_hard_negative",
+                "entry_id": row.get("entry_id"),
+                "accession": row.get("accession"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "prototype_axis_values": row.get("prototype_axis_values", {}),
+                "review_only_prototype_score": row.get(
+                    "review_only_prototype_score", 0.0
+                ),
+                "prototype_decision": decision,
+                "candidate_feature_hit": False,
+                "rerun_surface_role": "carried_imported_external_hard_negative",
+                "not_a_real_scored_reaudit": True,
+                "remaining_blockers": row.get("remaining_blockers", []),
+            }
+        )
+
+    sibling_false_hit_count = sum(
+        1
+        for row in rows
+        if row.get("rerun_surface_role") == "carried_sibling_control"
+        and bool(row.get("candidate_feature_hit"))
+    )
+    external_non_abstention_count = sum(
+        1
+        for row in rows
+        if row.get("rerun_surface_role")
+        == "carried_imported_external_hard_negative"
+        and row.get("prototype_decision")
+        != "external_hard_negative_abstain_missing_epk_axes_review_only"
+    )
+    positive_like_row_count = sum(
+        1
+        for row in rows
+        if row.get("prototype_decision")
+        in {
+            "candidate_positive_signal_review_only_not_calibrated",
+            "source_valid_5hvk_positive_signal_review_only_not_calibrated",
+        }
+    )
+    control_rerun_status = (
+        "passes_review_only_controls_but_scorer_blocked"
+        if source_ready
+        and queue_ready
+        and sibling_control_rows
+        and imported_external_rows
+        and sibling_false_hit_count == 0
+        and external_non_abstention_count == 0
+        else "blocked_review_only_control_rerun"
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_ligand_specific_5hvk_prototype_control_rerun",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_ligand_specific_5hvk_source_validity_review_method": (
+                source_meta.get("method")
+            ),
+            "source_epk_ligand_specific_5hvk_control_rerun_queue_method": (
+                queue_meta.get("method")
+            ),
+            "source_epk_review_only_scoring_prototype_method": (
+                prototype_meta.get("method")
+            ),
+            "source_epk_review_only_external_hard_negative_score_probe_method": (
+                external_probe_meta.get("method")
+            ),
+            "candidate_threshold_angstrom": candidate_threshold_angstrom,
+            "control_rerun_status": control_rerun_status,
+            "source_valid_5hvk_candidate_added": source_ready,
+            "source_valid_5hvk_candidate_axis_complete": source_all_axes,
+            "source_valid_5hvk_distance_angstrom": source_distance,
+            "current_positive_prototype_row_count": len(current_positive_rows),
+            "source_valid_5hvk_candidate_row_count": 1 if source_ready else 0,
+            "positive_like_review_row_count": positive_like_row_count,
+            "sibling_control_row_count": len(sibling_control_rows),
+            "sibling_control_false_hit_count": sibling_false_hit_count,
+            "imported_external_hard_negative_row_count": len(imported_external_rows),
+            "imported_external_hard_negative_non_abstention_count": (
+                external_non_abstention_count
+            ),
+            "review_only_score_probe_non_abstention_count": external_probe_meta.get(
+                "review_only_score_probe_non_abstention_count"
+            ),
+            "not_a_real_scored_reaudit": True,
+            "row_count": len(rows),
+            "prototype_decision_counts": dict(sorted(decision_counts.items())),
+            "prototype_gate_status": "fail_closed_review_only",
+            "prototype_failed_closed": True,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "negative_control_distance_distribution_ready": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "remaining_blockers": [
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "next_actions": [
+                "use the 5HVK source-valid positive lead to design a calibrated protein-substrate acceptor axis",
+                "keep imported external hard negatives in diagnostic mode until a real ePK scorer exists",
+                "do not edit fingerprint or label registries until threshold and factory gates pass",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type")),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("pdb_id") or ""),
+                str(row.get("accession") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "This 5HVK rerun is a review-only diagnostic. It does not "
+                "compute a calibrated ePK score or a real external "
+                "hard-negative scored re-audit."
+            )
+        ],
+    }
+
+
+def build_epk_5hvk_protein_substrate_axis_generalization_audit(
+    *,
+    epk_protein_substrate_acceptor_candidate_audit: dict[str, Any],
+    epk_ligand_specific_5hvk_prototype_control_rerun: dict[str, Any],
+) -> dict[str, Any]:
+    """Audit whether 5HVK strengthens the protein-substrate acceptor axis."""
+
+    protein_meta = epk_protein_substrate_acceptor_candidate_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(protein_meta, dict):
+        protein_meta = {}
+    rerun_meta = epk_ligand_specific_5hvk_prototype_control_rerun.get(
+        "metadata", {}
+    )
+    if not isinstance(rerun_meta, dict):
+        rerun_meta = {}
+
+    target_fingerprint_id = str(
+        protein_meta.get("target_fingerprint_id")
+        or rerun_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    current_hit_count = int(protein_meta.get("current_positive_feature_hit_count") or 0)
+    ligand_analog_miss_count = int(
+        protein_meta.get("ligand_analog_only_positive_miss_count") or 0
+    )
+    source_valid_5hvk_count = (
+        1 if bool(rerun_meta.get("source_valid_5hvk_candidate_added")) else 0
+    )
+    combined_positive_like_count = current_hit_count + source_valid_5hvk_count
+    sibling_false_hit_count = int(
+        rerun_meta.get("sibling_control_false_hit_count")
+        or protein_meta.get("negative_control_false_hit_count")
+        or 0
+    )
+    external_non_abstention_count = int(
+        rerun_meta.get("imported_external_hard_negative_non_abstention_count")
+        or 0
+    )
+    generalization_status = (
+        "passes_review_only_generalization_but_not_scoring_admissible"
+        if combined_positive_like_count >= 3
+        and sibling_false_hit_count == 0
+        and external_non_abstention_count == 0
+        else "blocked_review_only_generalization"
+    )
+    ligand_analog_required_for_minimum_review_set = combined_positive_like_count < 3
+
+    rows = [
+        {
+            "row_type": "current_m_csa_protein_substrate_positive_summary",
+            "review_only": True,
+            "target_fingerprint_id": target_fingerprint_id,
+            "current_positive_feature_hit_count": current_hit_count,
+            "current_positive_feature_miss_count": protein_meta.get(
+                "current_positive_feature_miss_count"
+            ),
+            "ligand_analog_only_positive_miss_count": ligand_analog_miss_count,
+            "ligand_analog_only_positive_miss_entry_ids": protein_meta.get(
+                "ligand_analog_only_positive_miss_entry_ids",
+                [],
+            ),
+            "countable_label_candidate": False,
+            "epk_score_computed": False,
+        },
+        {
+            "row_type": "source_valid_5hvk_protein_substrate_positive_lead",
+            "review_only": True,
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_valid_5hvk_candidate_added": bool(
+                rerun_meta.get("source_valid_5hvk_candidate_added")
+            ),
+            "source_valid_5hvk_candidate_axis_complete": bool(
+                rerun_meta.get("source_valid_5hvk_candidate_axis_complete")
+            ),
+            "source_valid_5hvk_distance_angstrom": rerun_meta.get(
+                "source_valid_5hvk_distance_angstrom"
+            ),
+            "countable_label_candidate": False,
+            "epk_score_computed": False,
+            "ready_for_label_import": False,
+        },
+        {
+            "row_type": "combined_review_control_summary",
+            "review_only": True,
+            "target_fingerprint_id": target_fingerprint_id,
+            "combined_protein_substrate_positive_like_count": (
+                combined_positive_like_count
+            ),
+            "sibling_control_false_hit_count": sibling_false_hit_count,
+            "imported_external_hard_negative_non_abstention_count": (
+                external_non_abstention_count
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "external_hard_negative_reaudit_scored": False,
+            "threshold_calibrated": False,
+            "epk_score_computed": False,
+        },
+    ]
+
+    return {
+        "metadata": {
+            "method": "epk_5hvk_protein_substrate_axis_generalization_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_protein_substrate_acceptor_candidate_audit_method": (
+                protein_meta.get("method")
+            ),
+            "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": (
+                rerun_meta.get("method")
+            ),
+            "generalization_status": generalization_status,
+            "current_m_csa_protein_substrate_positive_hit_count": current_hit_count,
+            "source_valid_5hvk_protein_substrate_positive_count": (
+                source_valid_5hvk_count
+            ),
+            "combined_protein_substrate_positive_like_count": (
+                combined_positive_like_count
+            ),
+            "ligand_analog_only_positive_miss_count": ligand_analog_miss_count,
+            "ligand_analog_required_for_minimum_review_set": (
+                ligand_analog_required_for_minimum_review_set
+            ),
+            "sibling_control_false_hit_count": sibling_false_hit_count,
+            "imported_external_hard_negative_non_abstention_count": (
+                external_non_abstention_count
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "remaining_blockers": [
+                "protein_substrate_axis_not_calibrated_as_real_scorer",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "next_actions": [
+                "calibrate the protein-substrate acceptor axis only after a real scorer design is frozen",
+                "keep m_csa:640 ligand-analog evidence review-only unless a future policy is pre-registered",
+                "rerun imported external hard negatives as real scored controls only after threshold selection",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "This audit shows review-only protein-substrate coverage with "
+                "5HVK; it is not production scoring evidence or a clean held-out "
+                "performance claim."
+            )
+        ],
+    }
+
+
+def build_epk_protein_substrate_scorer_design_freeze(
+    *,
+    epk_5hvk_protein_substrate_axis_generalization_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Freeze a review-only ePK protein-substrate diagnostic scorer design."""
+
+    axis_meta = epk_5hvk_protein_substrate_axis_generalization_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(axis_meta, dict):
+        axis_meta = {}
+    target_fingerprint_id = str(
+        axis_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    combined_positive_count = int(
+        axis_meta.get("combined_protein_substrate_positive_like_count") or 0
+    )
+    sibling_false_hit_count = int(axis_meta.get("sibling_control_false_hit_count") or 0)
+    external_non_abstention_count = int(
+        axis_meta.get("imported_external_hard_negative_non_abstention_count") or 0
+    )
+    diagnostic_ready = (
+        combined_positive_count >= 3
+        and sibling_false_hit_count == 0
+        and external_non_abstention_count == 0
+    )
+    design_status = (
+        "frozen_review_only_ready_for_diagnostic_calibration"
+        if diagnostic_ready
+        else "blocked_review_only_design_inputs_incomplete"
+    )
+    design_version = "epk_protein_substrate_scorer_design_v0_2026_05_19"
+    rows = [
+        {
+            "axis_id": "local_gamma_capable_adenine_nucleotide",
+            "axis_type": "local_geometry",
+            "predictive_use_status": "diagnostic_candidate_axis_only",
+            "required_for_full_axis": True,
+            "review_only": True,
+        },
+        {
+            "axis_id": "local_metal_context",
+            "axis_type": "local_ligand_context",
+            "predictive_use_status": "diagnostic_candidate_axis_only",
+            "required_for_full_axis": True,
+            "review_only": True,
+        },
+        {
+            "axis_id": "catalytic_acid_base_context",
+            "axis_type": "local_or_source_authority_context",
+            "predictive_use_status": "diagnostic_not_orphan_discovery_evidence",
+            "required_for_full_axis": True,
+            "review_only": True,
+        },
+        {
+            "axis_id": "source_validated_protein_substrate_hydroxyl_acceptor",
+            "axis_type": "source_authority_context",
+            "predictive_use_status": "calibration_context_not_production_scoring",
+            "required_for_full_axis": True,
+            "review_only": True,
+        },
+        {
+            "axis_id": "gamma_to_source_acceptor_distance_candidate_cutoff",
+            "axis_type": "local_geometry",
+            "candidate_cutoff_angstrom": 6.0,
+            "predictive_use_status": "diagnostic_cutoff_not_selected_threshold",
+            "required_for_full_axis": True,
+            "review_only": True,
+        },
+        {
+            "axis_id": "sibling_family_counteraxis",
+            "axis_type": "counterevidence",
+            "predictive_use_status": "diagnostic_fail_closed_counteraxis",
+            "required_for_full_axis": False,
+            "review_only": True,
+        },
+        {
+            "axis_id": "imported_external_hard_negative_abstention",
+            "axis_type": "counterevidence",
+            "predictive_use_status": "diagnostic_not_real_scored_reaudit",
+            "required_for_full_axis": False,
+            "review_only": True,
+        },
+    ]
+    return {
+        "metadata": {
+            "method": "epk_protein_substrate_scorer_design_freeze",
+            "review_only": True,
+            "design_version": design_version,
+            "design_status": design_status,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_5hvk_protein_substrate_axis_generalization_audit_method": (
+                axis_meta.get("method")
+            ),
+            "combined_protein_substrate_positive_like_count": (
+                combined_positive_count
+            ),
+            "sibling_control_false_hit_count": sibling_false_hit_count,
+            "imported_external_hard_negative_non_abstention_count": (
+                external_non_abstention_count
+            ),
+            "ready_for_review_only_calibration_diagnostic": diagnostic_ready,
+            "production_scoring_admissible": False,
+            "source_authority_axes_present": True,
+            "source_authority_axes_valid_for_orphan_discovery_claims": False,
+            "mechanism_text_predictive_use_allowed": False,
+            "ec_rhea_identifier_predictive_use_allowed": False,
+            "uniprot_prose_predictive_use_allowed": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "remaining_blockers": [
+                "diagnostic_design_not_implemented_as_real_scorer",
+                "source_authority_axes_not_valid_for_orphan_discovery_claims",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "success_criteria_for_next_diagnostic": [
+                "retain at least three review-only protein-substrate positive-like rows",
+                "keep sibling-control false hits at zero",
+                "keep imported external hard-negative non-abstentions at zero",
+                "preserve epk_score_computed=false until a production scorer is deliberately implemented",
+            ],
+            "next_actions": [
+                "implement a review-only calibration diagnostic from this frozen design",
+                "replace source-authority acceptor context with production-admissible evidence before orphan claims",
+                "keep registry edits and label import closed",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "This design freeze is a review-only diagnostic contract. It "
+                "freezes axes for the next experiment but does not compute a "
+                "production ePK score."
+            )
+        ],
+    }
+
+
+def build_epk_protein_substrate_calibration_diagnostic(
+    *,
+    epk_protein_substrate_scorer_design_freeze: dict[str, Any],
+    epk_ligand_specific_5hvk_prototype_control_rerun: dict[str, Any],
+) -> dict[str, Any]:
+    """Run a review-only diagnostic calibration for the frozen ePK design."""
+
+    design_meta = epk_protein_substrate_scorer_design_freeze.get("metadata", {})
+    if not isinstance(design_meta, dict):
+        design_meta = {}
+    rerun_meta = epk_ligand_specific_5hvk_prototype_control_rerun.get(
+        "metadata", {}
+    )
+    if not isinstance(rerun_meta, dict):
+        rerun_meta = {}
+
+    target_fingerprint_id = str(
+        design_meta.get("target_fingerprint_id")
+        or rerun_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    design_ready = bool(design_meta.get("ready_for_review_only_calibration_diagnostic"))
+    source_authority_orphan_blocked = not bool(
+        design_meta.get("source_authority_axes_valid_for_orphan_discovery_claims")
+    )
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    ligand_analog_excluded_count = 0
+
+    for source_row in epk_ligand_specific_5hvk_prototype_control_rerun.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        row_type = source_row.get("row_type")
+        entry_id = source_row.get("entry_id")
+        if row_type == "carried_current_epk_positive_prototype":
+            if entry_id == "m_csa:640":
+                ligand_analog_excluded_count += 1
+                decision = "excluded_ligand_analog_positive_review_only"
+                score = 0.0
+            else:
+                decision = "diagnostic_positive_full_axis_review_only"
+                score = 1.0
+        elif row_type == "ligand_specific_5hvk_source_valid_positive_candidate":
+            decision = "diagnostic_positive_full_axis_review_only"
+            score = 1.0
+        elif row_type in {
+            "sibling_homolog_negative_control",
+            "sibling_family_specific_negative_control",
+        }:
+            decision = "diagnostic_sibling_control_blocked_review_only"
+            score = 0.0
+        elif row_type == "imported_external_hard_negative":
+            decision = "diagnostic_external_hard_negative_abstain_review_only"
+            score = 0.0
+        else:
+            continue
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": row_type,
+                "entry_id": entry_id,
+                "pdb_id": source_row.get("pdb_id"),
+                "accession": source_row.get("accession"),
+                "family_id": source_row.get("family_id"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "diagnostic_score": score,
+                "diagnostic_decision": decision,
+                "epk_score_computed": False,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "source_authority_axes_used": row_type
+                == "ligand_specific_5hvk_source_valid_positive_candidate",
+                "valid_for_orphan_discovery_claims": False,
+            }
+        )
+
+    positive_rows = [
+        row
+        for row in rows
+        if row.get("diagnostic_decision")
+        == "diagnostic_positive_full_axis_review_only"
+    ]
+    sibling_nonzero_count = sum(
+        1
+        for row in rows
+        if row.get("diagnostic_decision")
+        == "diagnostic_sibling_control_blocked_review_only"
+        and float(row.get("diagnostic_score") or 0.0) > 0.0
+    )
+    external_nonzero_count = sum(
+        1
+        for row in rows
+        if row.get("diagnostic_decision")
+        == "diagnostic_external_hard_negative_abstain_review_only"
+        and float(row.get("diagnostic_score") or 0.0) > 0.0
+    )
+    diagnostic_status = (
+        "passes_review_only_calibration_controls_not_real_scorer"
+        if design_ready
+        and len(positive_rows) >= 3
+        and sibling_nonzero_count == 0
+        and external_nonzero_count == 0
+        and source_authority_orphan_blocked
+        else "blocked_review_only_calibration_diagnostic"
+    )
+    return {
+        "metadata": {
+            "method": "epk_protein_substrate_calibration_diagnostic",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_protein_substrate_scorer_design_freeze_method": (
+                design_meta.get("method")
+            ),
+            "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": (
+                rerun_meta.get("method")
+            ),
+            "design_version": design_meta.get("design_version"),
+            "diagnostic_status": diagnostic_status,
+            "diagnostic_positive_full_axis_count": len(positive_rows),
+            "ligand_analog_excluded_positive_count": ligand_analog_excluded_count,
+            "sibling_control_nonzero_score_count": sibling_nonzero_count,
+            "imported_external_hard_negative_nonzero_score_count": (
+                external_nonzero_count
+            ),
+            "review_only_diagnostic_score_computed": True,
+            "epk_score_computed": False,
+            "production_scoring_admissible": False,
+            "source_authority_axes_used": True,
+            "source_authority_axes_valid_for_orphan_discovery_claims": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "diagnostic_decision_counts": dict(sorted(decision_counts.items())),
+            "remaining_blockers": [
+                "diagnostic_scores_are_not_production_epk_scores",
+                "source_authority_axes_not_valid_for_orphan_discovery_claims",
+                "threshold_not_calibrated_against_broader_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "next_actions": [
+                "replace source-authority acceptor evidence with production-admissible local evidence before orphan claims",
+                "broaden negative controls before selecting any threshold",
+                "keep positive fingerprint and label registries unchanged",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("diagnostic_decision")),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("pdb_id") or ""),
+                str(row.get("accession") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Diagnostic scores are review-only calibration signals and are "
+                "not production ePK scores or external hard-negative scored "
+                "re-audit evidence."
+            )
+        ],
+    }
+
+
+def build_epk_source_authority_axis_replacement_gap_audit(
+    *,
+    epk_protein_substrate_scorer_design_freeze: dict[str, Any],
+    epk_protein_substrate_calibration_diagnostic: dict[str, Any],
+) -> dict[str, Any]:
+    """Audit source-authority axes that block production ePK scoring."""
+
+    design_meta = epk_protein_substrate_scorer_design_freeze.get("metadata", {})
+    if not isinstance(design_meta, dict):
+        design_meta = {}
+    diagnostic_meta = epk_protein_substrate_calibration_diagnostic.get(
+        "metadata", {}
+    )
+    if not isinstance(diagnostic_meta, dict):
+        diagnostic_meta = {}
+    target_fingerprint_id = str(
+        design_meta.get("target_fingerprint_id")
+        or diagnostic_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    design_rows = [
+        row
+        for row in epk_protein_substrate_scorer_design_freeze.get("rows", [])
+        or []
+        if isinstance(row, dict)
+    ]
+    source_authority_axis_ids = [
+        str(row.get("axis_id"))
+        for row in design_rows
+        if "source_authority" in str(row.get("axis_type") or "")
+        or "source_authority" in str(row.get("predictive_use_status") or "")
+    ]
+    diagnostic_passed = (
+        diagnostic_meta.get("diagnostic_status")
+        == "passes_review_only_calibration_controls_not_real_scorer"
+    )
+    replacement_gap_count = len(source_authority_axis_ids)
+    replacement_status = (
+        "blocked_review_only_source_authority_axes_require_local_replacements"
+        if replacement_gap_count
+        else "no_source_authority_replacement_gap_detected"
+    )
+    rows = [
+        {
+            "gap_id": "source_validated_protein_substrate_acceptor_identity",
+            "source_axis_id": "source_validated_protein_substrate_hydroxyl_acceptor",
+            "review_only": True,
+            "blocks_production_scoring": True,
+            "current_support": (
+                "source-mapped phosphoacceptor identity and co-complex context"
+            ),
+            "required_replacement": (
+                "local structural evidence that distinguishes protein-substrate "
+                "acceptor geometry without UniProt prose or curated source labels"
+            ),
+            "next_experiment": (
+                "derive a local chain-topology/co-complex acceptor rule and "
+                "retest 5HVK, m_csa:35, m_csa:246, sibling controls, and "
+                "imported external hard negatives"
+            ),
+        },
+        {
+            "gap_id": "source_authority_catalytic_context",
+            "source_axis_id": "catalytic_acid_base_context",
+            "review_only": True,
+            "blocks_production_scoring": True,
+            "current_support": "mixed local/source-authority catalytic context",
+            "required_replacement": (
+                "local residue-role evidence or a fail-closed abstention rule "
+                "when catalytic role cannot be inferred without source labels"
+            ),
+            "next_experiment": (
+                "separate local active-site residue evidence from source-authored "
+                "role labels in the diagnostic scorer inputs"
+            ),
+        },
+    ]
+    if not replacement_gap_count:
+        rows = []
+    else:
+        rows = [
+            row
+            for row in rows
+            if row.get("source_axis_id") in set(source_authority_axis_ids)
+        ]
+    return {
+        "metadata": {
+            "method": "epk_source_authority_axis_replacement_gap_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_protein_substrate_scorer_design_freeze_method": (
+                design_meta.get("method")
+            ),
+            "source_epk_protein_substrate_calibration_diagnostic_method": (
+                diagnostic_meta.get("method")
+            ),
+            "diagnostic_passed_review_only_controls": diagnostic_passed,
+            "source_authority_axis_ids": source_authority_axis_ids,
+            "source_authority_axis_count": len(source_authority_axis_ids),
+            "replacement_gap_count": replacement_gap_count,
+            "replacement_status": replacement_status,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "remaining_blockers": [
+                "source_authority_acceptor_identity_requires_local_replacement",
+                "source_authority_catalytic_context_requires_local_replacement",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "next_actions": [
+                "build a local chain-topology acceptor replacement rule",
+                "separate local residue evidence from source-authored catalytic role labels",
+                "rerun sibling and imported external controls only after the replacement rule changes the decision surface",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Passing the review-only calibration diagnostic is not enough "
+                "for production scoring while source-authority axes remain."
+            )
+        ],
+    }
+
+
+def build_epk_local_chain_topology_acceptor_replacement_rule(
+    *,
+    epk_chain_ligand_acceptor_disambiguation_audit: dict[str, Any],
+    epk_ligand_specific_5hvk_source_validity_review: dict[str, Any],
+    epk_source_authority_axis_replacement_gap_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Prototype a local chain-topology replacement for ePK acceptor identity."""
+
+    chain_meta = epk_chain_ligand_acceptor_disambiguation_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(chain_meta, dict):
+        chain_meta = {}
+    source_meta = epk_ligand_specific_5hvk_source_validity_review.get(
+        "metadata", {}
+    )
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    gap_meta = epk_source_authority_axis_replacement_gap_audit.get("metadata", {})
+    if not isinstance(gap_meta, dict):
+        gap_meta = {}
+
+    target_fingerprint_id = str(
+        chain_meta.get("target_fingerprint_id")
+        or source_meta.get("target_fingerprint_id")
+        or gap_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    rows: list[dict[str, Any]] = []
+    for row in epk_chain_ligand_acceptor_disambiguation_audit.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        row_type = row.get("row_type")
+        entry_id = row.get("entry_id")
+        ligand_analog = bool(row.get("ligand_analog_acceptor"))
+        non_catalytic_chain = bool(row.get("non_catalytic_chain_acceptor"))
+        if row_type == "current_epk_positive_prototype" and ligand_analog:
+            decision = "excluded_ligand_analog_not_local_protein_substrate_rule"
+            rule_hit = False
+        elif row_type == "current_epk_positive_prototype" and non_catalytic_chain:
+            decision = "local_chain_topology_positive_hit_review_only"
+            rule_hit = True
+        elif row_type in {
+            "sibling_homolog_negative_control",
+            "sibling_family_specific_negative_control",
+            "broader_sibling_negative_control",
+        }:
+            decision = "local_chain_topology_control_blocked_review_only"
+            rule_hit = False
+        elif row_type == "imported_external_hard_negative":
+            decision = "local_chain_topology_external_abstain_review_only"
+            rule_hit = False
+        else:
+            continue
+        rows.append(
+            {
+                "row_type": row_type,
+                "entry_id": entry_id,
+                "pdb_id": row.get("pdb_id"),
+                "family_id": row.get("family_id"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "candidate_rule_id": "epk_local_chain_topology_acceptor_rule_v0_review_only",
+                "candidate_rule_hit": rule_hit,
+                "candidate_rule_decision": decision,
+                "nearest_gamma_to_candidate_acceptor_distance_angstrom": row.get(
+                    "nearest_gamma_to_candidate_acceptor_distance_angstrom"
+                ),
+                "non_catalytic_chain_acceptor": non_catalytic_chain,
+                "ligand_analog_acceptor": ligand_analog,
+                "epk_score_computed": False,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    source_ready = bool(
+        source_meta.get("source_validated_kinase_substrate_pair")
+    ) and int(source_meta.get("measurement_ready_candidate_count") or 0) > 0
+    if source_ready:
+        rows.append(
+            {
+                "row_type": "ligand_specific_5hvk_source_valid_positive_candidate",
+                "entry_id": None,
+                "pdb_id": source_meta.get("pdb_id"),
+                "kinase_accession": source_meta.get("kinase_accession"),
+                "acceptor_accession": source_meta.get("acceptor_accession"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "candidate_rule_id": "epk_local_chain_topology_acceptor_rule_v0_review_only",
+                "candidate_rule_hit": True,
+                "candidate_rule_decision": (
+                    "local_chain_topology_source_valid_5hvk_hit_review_only"
+                ),
+                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                    source_meta.get("nearest_source_phosphoacceptor_distance_angstrom")
+                ),
+                "non_catalytic_chain_acceptor": True,
+                "ligand_analog_acceptor": False,
+                "source_authority_still_required_for_chain_roles": True,
+                "epk_score_computed": False,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+            }
+        )
+
+    positive_hit_count = sum(
+        1
+        for row in rows
+        if str(row.get("candidate_rule_decision")).endswith("_hit_review_only")
+    )
+    ligand_analog_excluded_count = sum(
+        1
+        for row in rows
+        if row.get("candidate_rule_decision")
+        == "excluded_ligand_analog_not_local_protein_substrate_rule"
+    )
+    control_false_hit_count = sum(
+        1
+        for row in rows
+        if "control" in str(row.get("candidate_rule_decision"))
+        and bool(row.get("candidate_rule_hit"))
+    )
+    external_non_abstention_count = sum(
+        1
+        for row in rows
+        if row.get("candidate_rule_decision")
+        == "local_chain_topology_external_abstain_review_only"
+        and bool(row.get("candidate_rule_hit"))
+    )
+    rule_status = (
+        "passes_current_review_controls_source_roles_not_replaced"
+        if positive_hit_count >= 3
+        and control_false_hit_count == 0
+        and external_non_abstention_count == 0
+        else "blocked_review_only_local_chain_topology_rule"
+    )
+    return {
+        "metadata": {
+            "method": "epk_local_chain_topology_acceptor_replacement_rule",
+            "review_only": True,
+            "candidate_rule_id": "epk_local_chain_topology_acceptor_rule_v0_review_only",
+            "candidate_rule_status": rule_status,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_chain_ligand_acceptor_disambiguation_audit_method": (
+                chain_meta.get("method")
+            ),
+            "source_epk_ligand_specific_5hvk_source_validity_review_method": (
+                source_meta.get("method")
+            ),
+            "source_epk_source_authority_axis_replacement_gap_audit_method": (
+                gap_meta.get("method")
+            ),
+            "positive_rule_hit_count": positive_hit_count,
+            "ligand_analog_excluded_positive_count": ligand_analog_excluded_count,
+            "control_false_hit_count": control_false_hit_count,
+            "imported_external_hard_negative_non_abstention_count": (
+                external_non_abstention_count
+            ),
+            "source_authority_reduced_not_eliminated": True,
+            "source_authority_axes_valid_for_orphan_discovery_claims": False,
+            "ready_for_production_scoring": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "remaining_blockers": [
+                "5hvk_chain_roles_still_depend_on_source_authority",
+                "local_chain_topology_rule_not_calibrated_beyond_current_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "next_actions": [
+                "replace 5HVK source-assigned chain roles with local polymer/entity evidence",
+                "broaden controls for local chain-topology false-hit risk",
+                "rerun diagnostic calibration only after the rule changes",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("candidate_rule_decision")),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The local chain-topology rule is review-only and still relies "
+                "on source authority for the 5HVK kinase/substrate chain roles."
+            )
+        ],
+    }
+
+
+def build_epk_5hvk_local_polymer_entity_role_audit(
+    *,
+    epk_ligand_specific_5hvk_source_validity_review: dict[str, Any],
+    epk_local_chain_topology_acceptor_replacement_rule: dict[str, Any],
+) -> dict[str, Any]:
+    """Audit local 5HVK polymer/entity evidence for kinase/substrate roles."""
+
+    source_meta = epk_ligand_specific_5hvk_source_validity_review.get(
+        "metadata", {}
+    )
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    rule_meta = epk_local_chain_topology_acceptor_replacement_rule.get(
+        "metadata", {}
+    )
+    if not isinstance(rule_meta, dict):
+        rule_meta = {}
+    target_fingerprint_id = str(
+        source_meta.get("target_fingerprint_id")
+        or rule_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    entity_descriptions = source_meta.get("entity_descriptions", [])
+    if not isinstance(entity_descriptions, list):
+        entity_descriptions = []
+    kinase_chain_ids = source_meta.get("kinase_chain_ids", [])
+    if not isinstance(kinase_chain_ids, list):
+        kinase_chain_ids = []
+    acceptor_chain_ids = source_meta.get("acceptor_chain_ids", [])
+    if not isinstance(acceptor_chain_ids, list):
+        acceptor_chain_ids = []
+    has_ligand = any("ADENYLATE" in str(value).upper() for value in entity_descriptions)
+    has_metal = any("MAGNESIUM" in str(value).upper() for value in entity_descriptions)
+    has_two_polymer_roles = bool(kinase_chain_ids and acceptor_chain_ids)
+    chain_sets_disjoint = not (set(kinase_chain_ids) & set(acceptor_chain_ids))
+    local_entity_supports_cocomplex = (
+        has_two_polymer_roles and chain_sets_disjoint and has_ligand and has_metal
+    )
+    source_authority_eliminated = False
+    audit_status = (
+        "partial_local_entity_support_source_roles_still_required"
+        if local_entity_supports_cocomplex
+        else "blocked_local_entity_support_incomplete"
+    )
+    rows = [
+        {
+            "evidence_id": "5hvk_polymer_entity_context",
+            "review_only": True,
+            "pdb_id": source_meta.get("pdb_id"),
+            "entity_descriptions": entity_descriptions,
+            "kinase_chain_ids": kinase_chain_ids,
+            "acceptor_chain_ids": acceptor_chain_ids,
+            "chain_sets_disjoint": chain_sets_disjoint,
+            "local_entity_supports_cocomplex": local_entity_supports_cocomplex,
+            "source_authority_eliminated": source_authority_eliminated,
+        },
+        {
+            "evidence_id": "5hvk_ligand_metal_context",
+            "review_only": True,
+            "pdb_id": source_meta.get("pdb_id"),
+            "has_adenylate_ligand_entity": has_ligand,
+            "has_magnesium_entity": has_metal,
+            "nearest_source_phosphoacceptor_distance_angstrom": source_meta.get(
+                "nearest_source_phosphoacceptor_distance_angstrom"
+            ),
+            "source_authority_eliminated": source_authority_eliminated,
+        },
+    ]
+    return {
+        "metadata": {
+            "method": "epk_5hvk_local_polymer_entity_role_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_ligand_specific_5hvk_source_validity_review_method": (
+                source_meta.get("method")
+            ),
+            "source_epk_local_chain_topology_acceptor_replacement_rule_method": (
+                rule_meta.get("method")
+            ),
+            "audit_status": audit_status,
+            "pdb_id": source_meta.get("pdb_id"),
+            "local_entity_supports_cocomplex": local_entity_supports_cocomplex,
+            "chain_sets_disjoint": chain_sets_disjoint,
+            "kinase_chain_count": len(kinase_chain_ids),
+            "acceptor_chain_count": len(acceptor_chain_ids),
+            "has_adenylate_ligand_entity": has_ligand,
+            "has_magnesium_entity": has_metal,
+            "source_authority_eliminated": source_authority_eliminated,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "remaining_blockers": [
+                "local_entity_descriptions_do_not_replace_source_role_assignment",
+                "5hvk_acceptor_role_still_source_authority_dependent",
+                "broader_chain_topology_controls_not_run",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ],
+            "next_actions": [
+                "test whether local polymer topology alone can infer kinase/substrate roles without source labels",
+                "add broader chain-topology controls before using this rule in calibration",
+                "keep all registry and import gates closed",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "5HVK local polymer/entity evidence supports a co-complex, but "
+                "does not eliminate source-authority dependence for assigning "
+                "kinase and substrate roles."
+            )
+        ],
+    }
+
+
 def build_epk_external_source_lower_priority_ligand_sourcing_review(
     *,
     epk_external_source_structure_mapping_review: dict[str, Any],
@@ -23570,6 +24853,10 @@ def build_epk_precount_gate_status(
     | None = None,
     epk_ligand_specific_5hvk_source_validity_review: dict[str, Any] | None = None,
     epk_ligand_specific_5hvk_control_rerun_queue: dict[str, Any] | None = None,
+    epk_ligand_specific_5hvk_prototype_control_rerun: dict[str, Any]
+    | None = None,
+    epk_5hvk_protein_substrate_axis_generalization_audit: dict[str, Any]
+    | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
@@ -23929,6 +25216,20 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(ligand_specific_5hvk_queue_meta, dict):
         ligand_specific_5hvk_queue_meta = {}
+    ligand_specific_5hvk_rerun_meta = (
+        epk_ligand_specific_5hvk_prototype_control_rerun.get("metadata", {})
+        if isinstance(epk_ligand_specific_5hvk_prototype_control_rerun, dict)
+        else {}
+    )
+    if not isinstance(ligand_specific_5hvk_rerun_meta, dict):
+        ligand_specific_5hvk_rerun_meta = {}
+    ligand_specific_5hvk_axis_meta = (
+        epk_5hvk_protein_substrate_axis_generalization_audit.get("metadata", {})
+        if isinstance(epk_5hvk_protein_substrate_axis_generalization_audit, dict)
+        else {}
+    )
+    if not isinstance(ligand_specific_5hvk_axis_meta, dict):
+        ligand_specific_5hvk_axis_meta = {}
     m_csa760_repair_meta = (
         epk_m_csa760_atp_state_repair_scan.get("metadata", {})
         if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
@@ -24737,6 +26038,160 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if ligand_specific_5hvk_rerun_meta:
+        gate_checks.append(
+            {
+                "gate_id": "ligand_specific_5hvk_prototype_control_rerun",
+                "passed": (
+                    ligand_specific_5hvk_rerun_meta.get("control_rerun_status")
+                    == "passes_review_only_controls_but_scorer_blocked"
+                )
+                and bool(
+                    ligand_specific_5hvk_rerun_meta.get(
+                        "source_valid_5hvk_candidate_added"
+                    )
+                )
+                and int(
+                    ligand_specific_5hvk_rerun_meta.get(
+                        "sibling_control_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    ligand_specific_5hvk_rerun_meta.get(
+                        "imported_external_hard_negative_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(ligand_specific_5hvk_rerun_meta.get("epk_score_computed"))
+                and not bool(
+                    ligand_specific_5hvk_rerun_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                )
+                and int(
+                    ligand_specific_5hvk_rerun_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": ligand_specific_5hvk_rerun_meta.get(
+                        "method"
+                    ),
+                    "control_rerun_status": ligand_specific_5hvk_rerun_meta.get(
+                        "control_rerun_status"
+                    ),
+                    "source_valid_5hvk_candidate_added": bool(
+                        ligand_specific_5hvk_rerun_meta.get(
+                            "source_valid_5hvk_candidate_added"
+                        )
+                    ),
+                    "positive_like_review_row_count": (
+                        ligand_specific_5hvk_rerun_meta.get(
+                            "positive_like_review_row_count"
+                        )
+                    ),
+                    "sibling_control_false_hit_count": (
+                        ligand_specific_5hvk_rerun_meta.get(
+                            "sibling_control_false_hit_count"
+                        )
+                    ),
+                    "imported_external_hard_negative_non_abstention_count": (
+                        ligand_specific_5hvk_rerun_meta.get(
+                            "imported_external_hard_negative_non_abstention_count"
+                        )
+                    ),
+                    "ready_to_run_epk_scorer": bool(
+                        ligand_specific_5hvk_rerun_meta.get(
+                            "ready_to_run_epk_scorer"
+                        )
+                    ),
+                    "not_a_real_scored_reaudit": bool(
+                        ligand_specific_5hvk_rerun_meta.get(
+                            "not_a_real_scored_reaudit"
+                        )
+                    ),
+                },
+            }
+        )
+    if ligand_specific_5hvk_axis_meta:
+        gate_checks.append(
+            {
+                "gate_id": "ligand_specific_5hvk_protein_substrate_axis_generalization",
+                "passed": (
+                    ligand_specific_5hvk_axis_meta.get("generalization_status")
+                    == "passes_review_only_generalization_but_not_scoring_admissible"
+                )
+                and int(
+                    ligand_specific_5hvk_axis_meta.get(
+                        "combined_protein_substrate_positive_like_count"
+                    )
+                    or 0
+                )
+                >= 3
+                and int(
+                    ligand_specific_5hvk_axis_meta.get(
+                        "sibling_control_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    ligand_specific_5hvk_axis_meta.get(
+                        "imported_external_hard_negative_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    ligand_specific_5hvk_axis_meta.get("epk_score_computed")
+                )
+                and not bool(
+                    ligand_specific_5hvk_axis_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                )
+                and int(
+                    ligand_specific_5hvk_axis_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": ligand_specific_5hvk_axis_meta.get(
+                        "method"
+                    ),
+                    "generalization_status": ligand_specific_5hvk_axis_meta.get(
+                        "generalization_status"
+                    ),
+                    "combined_protein_substrate_positive_like_count": (
+                        ligand_specific_5hvk_axis_meta.get(
+                            "combined_protein_substrate_positive_like_count"
+                        )
+                    ),
+                    "ligand_analog_required_for_minimum_review_set": bool(
+                        ligand_specific_5hvk_axis_meta.get(
+                            "ligand_analog_required_for_minimum_review_set"
+                        )
+                    ),
+                    "sibling_control_false_hit_count": (
+                        ligand_specific_5hvk_axis_meta.get(
+                            "sibling_control_false_hit_count"
+                        )
+                    ),
+                    "imported_external_hard_negative_non_abstention_count": (
+                        ligand_specific_5hvk_axis_meta.get(
+                            "imported_external_hard_negative_non_abstention_count"
+                        )
+                    ),
+                },
+            }
+        )
     if m_csa760_repair_meta:
         gate_checks.append(
             {
@@ -25302,7 +26757,9 @@ def build_epk_precount_gate_status(
                 0,
                 "continue ligand-specific substrate/co-complex sourcing because 5HVK did not become measurement-ready",
             )
-    if ligand_specific_5hvk_queue_meta.get("method"):
+    if ligand_specific_5hvk_queue_meta.get(
+        "method"
+    ) and not ligand_specific_5hvk_rerun_meta.get("method"):
         if bool(
             ligand_specific_5hvk_queue_meta.get(
                 "ready_for_review_only_control_rerun"
@@ -25316,6 +26773,34 @@ def build_epk_precount_gate_status(
             next_actions.insert(
                 0,
                 "repair the 5HVK control-rerun queue inputs before prototype rerun",
+            )
+    if ligand_specific_5hvk_rerun_meta.get("method"):
+        if (
+            ligand_specific_5hvk_rerun_meta.get("control_rerun_status")
+            == "passes_review_only_controls_but_scorer_blocked"
+        ):
+            next_actions.insert(
+                0,
+                "use the 5HVK rerun result to design calibrated protein-substrate acceptor scoring while keeping production gates closed",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "repair the 5HVK prototype/control rerun before any scorer design",
+            )
+    if ligand_specific_5hvk_axis_meta.get("method"):
+        if (
+            ligand_specific_5hvk_axis_meta.get("generalization_status")
+            == "passes_review_only_generalization_but_not_scoring_admissible"
+        ):
+            next_actions.insert(
+                0,
+                "freeze a real protein-substrate acceptor scorer design before any 5HVK-informed threshold calibration",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "repair the 5HVK protein-substrate axis generalization audit before scorer design",
             )
     if m_csa760_repair_meta.get("method"):
         if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
@@ -26132,6 +27617,61 @@ def build_epk_precount_gate_status(
             ),
             "ligand_specific_5hvk_control_rerun_not_real_scored_reaudit": bool(
                 ligand_specific_5hvk_queue_meta.get("not_a_real_scored_reaudit")
+            ),
+            "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": (
+                ligand_specific_5hvk_rerun_meta.get("method")
+            ),
+            "ligand_specific_5hvk_prototype_control_rerun_status": (
+                ligand_specific_5hvk_rerun_meta.get("control_rerun_status")
+            ),
+            "ligand_specific_5hvk_candidate_added_to_prototype": bool(
+                ligand_specific_5hvk_rerun_meta.get(
+                    "source_valid_5hvk_candidate_added"
+                )
+            ),
+            "ligand_specific_5hvk_prototype_positive_like_review_row_count": (
+                ligand_specific_5hvk_rerun_meta.get(
+                    "positive_like_review_row_count"
+                )
+            ),
+            "ligand_specific_5hvk_prototype_sibling_control_false_hit_count": (
+                ligand_specific_5hvk_rerun_meta.get(
+                    "sibling_control_false_hit_count"
+                )
+            ),
+            "ligand_specific_5hvk_prototype_external_non_abstention_count": (
+                ligand_specific_5hvk_rerun_meta.get(
+                    "imported_external_hard_negative_non_abstention_count"
+                )
+            ),
+            "ligand_specific_5hvk_prototype_not_real_scored_reaudit": bool(
+                ligand_specific_5hvk_rerun_meta.get("not_a_real_scored_reaudit")
+            ),
+            "source_epk_5hvk_protein_substrate_axis_generalization_audit_method": (
+                ligand_specific_5hvk_axis_meta.get("method")
+            ),
+            "ligand_specific_5hvk_protein_substrate_axis_generalization_status": (
+                ligand_specific_5hvk_axis_meta.get("generalization_status")
+            ),
+            "ligand_specific_5hvk_combined_protein_substrate_positive_like_count": (
+                ligand_specific_5hvk_axis_meta.get(
+                    "combined_protein_substrate_positive_like_count"
+                )
+            ),
+            "ligand_specific_5hvk_ligand_analog_required_for_minimum_review_set": bool(
+                ligand_specific_5hvk_axis_meta.get(
+                    "ligand_analog_required_for_minimum_review_set"
+                )
+            ),
+            "ligand_specific_5hvk_axis_sibling_control_false_hit_count": (
+                ligand_specific_5hvk_axis_meta.get(
+                    "sibling_control_false_hit_count"
+                )
+            ),
+            "ligand_specific_5hvk_axis_external_non_abstention_count": (
+                ligand_specific_5hvk_axis_meta.get(
+                    "imported_external_hard_negative_non_abstention_count"
+                )
             ),
             "source_epk_m_csa760_atp_state_repair_scan_method": (
                 m_csa760_repair_meta.get("method")

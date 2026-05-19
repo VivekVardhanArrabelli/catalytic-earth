@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "diagnostic_passed_review_only_controls": true,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_source_authority_axis_replacement_gap_audit",
+    "next_actions": [
+      "build a local chain-topology acceptor replacement rule",
+      "separate local residue evidence from source-authored catalytic role labels",
+      "rerun sibling and imported external controls only after the replacement rule changes the decision surface"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "remaining_blockers": [
+      "source_authority_acceptor_identity_requires_local_replacement",
+      "source_authority_catalytic_context_requires_local_replacement",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "replacement_gap_count": 2,
+    "replacement_status": "blocked_review_only_source_authority_axes_require_local_replacements",
+    "review_only": true,
+    "source_authority_axis_count": 2,
+    "source_authority_axis_ids": [
+      "catalytic_acid_base_context",
+      "source_validated_protein_substrate_hydroxyl_acceptor"
+    ],
+    "source_epk_protein_substrate_calibration_diagnostic_method": "epk_protein_substrate_calibration_diagnostic",
+    "source_epk_protein_substrate_scorer_design_freeze_method": "epk_protein_substrate_scorer_design_freeze",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "blocks_production_scoring": true,
+      "current_support": "source-mapped phosphoacceptor identity and co-complex context",
+      "gap_id": "source_validated_protein_substrate_acceptor_identity",
+      "next_experiment": "derive a local chain-topology/co-complex acceptor rule and retest 5HVK, m_csa:35, m_csa:246, sibling controls, and imported external hard negatives",
+      "required_replacement": "local structural evidence that distinguishes protein-substrate acceptor geometry without UniProt prose or curated source labels",
+      "review_only": true,
+      "source_axis_id": "source_validated_protein_substrate_hydroxyl_acceptor"
+    },
+    {
+      "blocks_production_scoring": true,
+      "current_support": "mixed local/source-authority catalytic context",
+      "gap_id": "source_authority_catalytic_context",
+      "next_experiment": "separate local active-site residue evidence from source-authored role labels in the diagnostic scorer inputs",
+      "required_replacement": "local residue-role evidence or a fail-closed abstention rule when catalytic role cannot be inferred without source labels",
+      "review_only": true,
+      "source_axis_id": "catalytic_acid_base_context"
+    }
+  ],
+  "warnings": [
+    "Passing the review-only calibration diagnostic is not enough for production scoring while source-authority axes remain."
+  ]
+}

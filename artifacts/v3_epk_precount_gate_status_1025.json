@@ -287,6 +287,32 @@
     },
     {
       "evidence": {
+        "control_rerun_status": "passes_review_only_controls_but_scorer_blocked",
+        "imported_external_hard_negative_non_abstention_count": 0,
+        "not_a_real_scored_reaudit": true,
+        "positive_like_review_row_count": 4,
+        "ready_to_run_epk_scorer": false,
+        "sibling_control_false_hit_count": 0,
+        "source_method": "epk_ligand_specific_5hvk_prototype_control_rerun",
+        "source_valid_5hvk_candidate_added": true
+      },
+      "gate_id": "ligand_specific_5hvk_prototype_control_rerun",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "combined_protein_substrate_positive_like_count": 3,
+        "generalization_status": "passes_review_only_generalization_but_not_scoring_admissible",
+        "imported_external_hard_negative_non_abstention_count": 0,
+        "ligand_analog_required_for_minimum_review_set": false,
+        "sibling_control_false_hit_count": 0,
+        "source_method": "epk_5hvk_protein_substrate_axis_generalization_audit"
+      },
+      "gate_id": "ligand_specific_5hvk_protein_substrate_axis_generalization",
+      "passed": true
+    },
+    {
+      "evidence": {
         "atp_metal_state_candidate_count": 2,
         "atp_metal_state_candidate_pdb_ids": [
           "1TID",
@@ -560,13 +586,24 @@
     ],
     "ligand_analog_policy_decision": "do_not_use_ligand_analog_as_production_acceptor_evidence",
     "ligand_analog_production_admissible_count": 0,
+    "ligand_specific_5hvk_axis_external_non_abstention_count": 0,
+    "ligand_specific_5hvk_axis_sibling_control_false_hit_count": 0,
+    "ligand_specific_5hvk_candidate_added_to_prototype": true,
+    "ligand_specific_5hvk_combined_protein_substrate_positive_like_count": 3,
     "ligand_specific_5hvk_control_rerun_imported_external_row_count": 3,
     "ligand_specific_5hvk_control_rerun_not_real_scored_reaudit": true,
     "ligand_specific_5hvk_control_rerun_queue_status": "ready_for_review_only_control_rerun",
     "ligand_specific_5hvk_control_rerun_ready": true,
     "ligand_specific_5hvk_control_rerun_sibling_control_row_count": 20,
+    "ligand_specific_5hvk_ligand_analog_required_for_minimum_review_set": false,
     "ligand_specific_5hvk_measurement_ready_candidate_count": 1,
     "ligand_specific_5hvk_nearest_source_phosphoacceptor_distance_angstrom": 4.236,
+    "ligand_specific_5hvk_protein_substrate_axis_generalization_status": "passes_review_only_generalization_but_not_scoring_admissible",
+    "ligand_specific_5hvk_prototype_control_rerun_status": "passes_review_only_controls_but_scorer_blocked",
+    "ligand_specific_5hvk_prototype_external_non_abstention_count": 0,
+    "ligand_specific_5hvk_prototype_not_real_scored_reaudit": true,
+    "ligand_specific_5hvk_prototype_positive_like_review_row_count": 4,
+    "ligand_specific_5hvk_prototype_sibling_control_false_hit_count": 0,
     "ligand_specific_5hvk_ready_to_rerun_controls": true,
     "ligand_specific_5hvk_source_validated_kinase_substrate_pair": true,
     "ligand_specific_5hvk_source_validity_status": "accepted_source_valid_kinase_substrate_cocomplex_review_only",
@@ -727,7 +764,8 @@
       "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
       "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
-      "execute the queued review-only 5HVK prototype/control rerun before any score or threshold claim",
+      "freeze a real protein-substrate acceptor scorer design before any 5HVK-informed threshold calibration",
+      "use the 5HVK rerun result to design calibrated protein-substrate acceptor scoring while keeping production gates closed",
       "convert the review-only external hard-negative score probe into a real scored re-audit only after threshold calibration",
       "keep analog/product-state policy inactive until preselection freeze and scored external re-audit gates pass",
       "keep analog/product-state policy activation blocked until every failed activation requirement is resolved",
@@ -760,6 +798,7 @@
     "review_only": true,
     "review_only_rule": "This status artifact summarizes why ePK remains blocked before any countable fingerprint, score, external re-audit, or label import work.",
     "selected_acceptor_threshold_angstrom": null,
+    "source_epk_5hvk_protein_substrate_axis_generalization_audit_method": "epk_5hvk_protein_substrate_axis_generalization_audit",
     "source_epk_acceptor_identity_review_method": "epk_acceptor_identity_review",
     "source_epk_analog_product_state_policy_activation_audit_method": "epk_analog_product_state_policy_activation_audit",
     "source_epk_analog_product_state_policy_control_reaudit_method": "epk_analog_product_state_policy_control_reaudit",
@@ -782,6 +821,7 @@
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
     "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
     "source_epk_ligand_specific_5hvk_control_rerun_queue_method": "epk_ligand_specific_5hvk_control_rerun_queue",
+    "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": "epk_ligand_specific_5hvk_prototype_control_rerun",
     "source_epk_ligand_specific_5hvk_source_validity_review_method": "epk_ligand_specific_5hvk_source_validity_review",
     "source_epk_m_csa640_alternate_gamma_geometry_review_method": "epk_m_csa640_alternate_gamma_geometry_review",
     "source_epk_m_csa756_5li1_residue_evidence_audit_method": "epk_m_csa756_5li1_residue_evidence_audit",

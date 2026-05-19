@@ -75,9 +75,22 @@ source-ready `P53667` with `P23528` Ser3 near gamma). The follow-on
 source-validity review now accepts 5HVK as a LIMK1/cofilin kinase-substrate
 co-complex and measures P23528 Ser3 OG 4.236 Angstrom from ANP PG, making one
 review-only lead measurement-ready for control reruns. The companion
-control-rerun queue now names the next prototype/control pass, but it still
-does not authorize scoring, threshold selection, registry edits, label import,
-or held-out claims.
+control-rerun queue has now been executed in review-only mode: the 5HVK
+prototype/control rerun keeps 20 sibling controls blocked and three imported
+external hard negatives abstained while adding one source-valid positive-like
+lead. The follow-on protein-substrate axis audit now has three review-only
+positive-like rows without relying on ligand-analog-only `m_csa:640`, but it
+still does not authorize production scoring, threshold selection, registry
+edits, label import, or held-out claims. A frozen review-only scorer design and
+calibration diagnostic now make the next blocker precise: source-authority
+acceptor identity and catalytic-context axes need local replacements. The
+first local chain-topology replacement rule passes current review controls but
+still depends on source-assigned 5HVK chain roles. The local polymer/entity
+role audit narrows that blocker by confirming disjoint 5HVK polymer chains plus
+ANP/Mg co-complex context, but it still cannot assign kinase versus substrate
+roles without source authority, so the next ePK work should target a
+source-free local polymer topology role rule and broader chain-topology
+controls.
 
 ## Time Calibration Rule
 

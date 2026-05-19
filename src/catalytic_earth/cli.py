@@ -69,6 +69,8 @@ from .labels import (
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
     build_atp_phosphoryl_transfer_family_expansion,
+    build_epk_5hvk_local_polymer_entity_role_audit,
+    build_epk_5hvk_protein_substrate_axis_generalization_audit,
     build_epk_acceptor_axis_threshold_design,
     build_epk_acceptor_geometry_axis_gap_plan,
     build_epk_acceptor_identity_review,
@@ -97,8 +99,10 @@ from .labels import (
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
     build_epk_ligand_specific_5hvk_control_rerun_queue,
+    build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
     build_epk_local_evidence_audit,
+    build_epk_local_chain_topology_acceptor_replacement_rule,
     build_epk_ligand_analog_policy_blocker_decision,
     build_epk_m_csa756_active_state_repair_scan,
     build_epk_m_csa756_5li1_residue_evidence_audit,
@@ -114,6 +118,8 @@ from .labels import (
     build_epk_nonready_ligand_repair_plan,
     build_epk_precount_gate_status,
     build_epk_positive_fingerprint_readiness_packet,
+    build_epk_protein_substrate_calibration_diagnostic,
+    build_epk_protein_substrate_scorer_design_freeze,
     build_epk_protein_substrate_positive_source_triage,
     build_epk_protein_substrate_acceptor_candidate_audit,
     build_epk_protein_substrate_source_repair_terminal_decision,
@@ -125,6 +131,7 @@ from .labels import (
     build_epk_sibling_control_repair_review,
     build_epk_sibling_negative_control_alternate_gamma_distance_sample,
     build_epk_sibling_negative_control_alternate_structure_plan,
+    build_epk_source_authority_axis_replacement_gap_audit,
     build_epk_substrate_acceptor_counteraxis_prototype,
     build_epk_text_free_acceptor_feature_gap_audit,
     build_epk_text_free_local_axis_prototype,
@@ -6760,6 +6767,210 @@ def cmd_build_epk_ligand_specific_5hvk_control_rerun_queue(
     return 0
 
 
+def cmd_build_epk_ligand_specific_5hvk_prototype_control_rerun(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_ligand_specific_5hvk_source_validity_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_5hvk_source_validity_review = json.load(handle)
+    with Path(args.epk_ligand_specific_5hvk_control_rerun_queue).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_5hvk_control_rerun_queue = json.load(handle)
+    with Path(args.epk_review_only_scoring_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_review_only_scoring_prototype = json.load(handle)
+    epk_review_only_external_hard_negative_score_probe = None
+    if args.epk_review_only_external_hard_negative_score_probe:
+        with Path(args.epk_review_only_external_hard_negative_score_probe).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_review_only_external_hard_negative_score_probe = json.load(handle)
+    rerun = build_epk_ligand_specific_5hvk_prototype_control_rerun(
+        epk_ligand_specific_5hvk_source_validity_review=(
+            epk_ligand_specific_5hvk_source_validity_review
+        ),
+        epk_ligand_specific_5hvk_control_rerun_queue=(
+            epk_ligand_specific_5hvk_control_rerun_queue
+        ),
+        epk_review_only_scoring_prototype=epk_review_only_scoring_prototype,
+        epk_review_only_external_hard_negative_score_probe=(
+            epk_review_only_external_hard_negative_score_probe
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+    )
+    write_json(Path(args.out), rerun)
+    print(
+        "Wrote ePK ligand-specific 5HVK prototype/control rerun to "
+        f"{args.out} (status={rerun['metadata']['control_rerun_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_5hvk_protein_substrate_axis_generalization_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_protein_substrate_acceptor_candidate_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_acceptor_candidate_audit = json.load(handle)
+    with Path(args.epk_ligand_specific_5hvk_prototype_control_rerun).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_5hvk_prototype_control_rerun = json.load(handle)
+    audit = build_epk_5hvk_protein_substrate_axis_generalization_audit(
+        epk_protein_substrate_acceptor_candidate_audit=(
+            epk_protein_substrate_acceptor_candidate_audit
+        ),
+        epk_ligand_specific_5hvk_prototype_control_rerun=(
+            epk_ligand_specific_5hvk_prototype_control_rerun
+        ),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK 5HVK protein-substrate axis generalization audit to "
+        f"{args.out} (status={audit['metadata']['generalization_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_protein_substrate_scorer_design_freeze(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_5hvk_protein_substrate_axis_generalization_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_5hvk_protein_substrate_axis_generalization_audit = json.load(handle)
+    design = build_epk_protein_substrate_scorer_design_freeze(
+        epk_5hvk_protein_substrate_axis_generalization_audit=(
+            epk_5hvk_protein_substrate_axis_generalization_audit
+        ),
+    )
+    write_json(Path(args.out), design)
+    print(
+        "Wrote ePK protein-substrate scorer design freeze to "
+        f"{args.out} (status={design['metadata']['design_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_protein_substrate_calibration_diagnostic(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_protein_substrate_scorer_design_freeze).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_scorer_design_freeze = json.load(handle)
+    with Path(args.epk_ligand_specific_5hvk_prototype_control_rerun).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_5hvk_prototype_control_rerun = json.load(handle)
+    diagnostic = build_epk_protein_substrate_calibration_diagnostic(
+        epk_protein_substrate_scorer_design_freeze=(
+            epk_protein_substrate_scorer_design_freeze
+        ),
+        epk_ligand_specific_5hvk_prototype_control_rerun=(
+            epk_ligand_specific_5hvk_prototype_control_rerun
+        ),
+    )
+    write_json(Path(args.out), diagnostic)
+    print(
+        "Wrote ePK protein-substrate calibration diagnostic to "
+        f"{args.out} (status={diagnostic['metadata']['diagnostic_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_source_authority_axis_replacement_gap_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_protein_substrate_scorer_design_freeze).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_scorer_design_freeze = json.load(handle)
+    with Path(args.epk_protein_substrate_calibration_diagnostic).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_calibration_diagnostic = json.load(handle)
+    audit = build_epk_source_authority_axis_replacement_gap_audit(
+        epk_protein_substrate_scorer_design_freeze=(
+            epk_protein_substrate_scorer_design_freeze
+        ),
+        epk_protein_substrate_calibration_diagnostic=(
+            epk_protein_substrate_calibration_diagnostic
+        ),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK source-authority replacement gap audit to "
+        f"{args.out} (status={audit['metadata']['replacement_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_local_chain_topology_acceptor_replacement_rule(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_chain_ligand_acceptor_disambiguation_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_chain_ligand_acceptor_disambiguation_audit = json.load(handle)
+    with Path(args.epk_ligand_specific_5hvk_source_validity_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_5hvk_source_validity_review = json.load(handle)
+    with Path(args.epk_source_authority_axis_replacement_gap_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_source_authority_axis_replacement_gap_audit = json.load(handle)
+    rule = build_epk_local_chain_topology_acceptor_replacement_rule(
+        epk_chain_ligand_acceptor_disambiguation_audit=(
+            epk_chain_ligand_acceptor_disambiguation_audit
+        ),
+        epk_ligand_specific_5hvk_source_validity_review=(
+            epk_ligand_specific_5hvk_source_validity_review
+        ),
+        epk_source_authority_axis_replacement_gap_audit=(
+            epk_source_authority_axis_replacement_gap_audit
+        ),
+    )
+    write_json(Path(args.out), rule)
+    print(
+        "Wrote ePK local chain-topology acceptor replacement rule to "
+        f"{args.out} (status={rule['metadata']['candidate_rule_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_5hvk_local_polymer_entity_role_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_ligand_specific_5hvk_source_validity_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_ligand_specific_5hvk_source_validity_review = json.load(handle)
+    with Path(args.epk_local_chain_topology_acceptor_replacement_rule).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_local_chain_topology_acceptor_replacement_rule = json.load(handle)
+    audit = build_epk_5hvk_local_polymer_entity_role_audit(
+        epk_ligand_specific_5hvk_source_validity_review=(
+            epk_ligand_specific_5hvk_source_validity_review
+        ),
+        epk_local_chain_topology_acceptor_replacement_rule=(
+            epk_local_chain_topology_acceptor_replacement_rule
+        ),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK 5HVK local polymer/entity role audit to "
+        f"{args.out} (status={audit['metadata']['audit_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
     args: argparse.Namespace,
 ) -> int:
@@ -7262,6 +7473,20 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_ligand_specific_5hvk_control_rerun_queue = json.load(handle)
+    epk_ligand_specific_5hvk_prototype_control_rerun = None
+    if args.epk_ligand_specific_5hvk_prototype_control_rerun:
+        with Path(args.epk_ligand_specific_5hvk_prototype_control_rerun).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_ligand_specific_5hvk_prototype_control_rerun = json.load(handle)
+    epk_5hvk_protein_substrate_axis_generalization_audit = None
+    if args.epk_5hvk_protein_substrate_axis_generalization_audit:
+        with Path(
+            args.epk_5hvk_protein_substrate_axis_generalization_audit
+        ).open("r", encoding="utf-8") as handle:
+            epk_5hvk_protein_substrate_axis_generalization_audit = json.load(
+                handle
+            )
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -7375,6 +7600,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_ligand_specific_5hvk_control_rerun_queue=(
             epk_ligand_specific_5hvk_control_rerun_queue
+        ),
+        epk_ligand_specific_5hvk_prototype_control_rerun=(
+            epk_ligand_specific_5hvk_prototype_control_rerun
+        ),
+        epk_5hvk_protein_substrate_axis_generalization_audit=(
+            epk_5hvk_protein_substrate_axis_generalization_audit
         ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
@@ -15146,6 +15377,207 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_ligand_specific_5hvk_control_rerun_queue
     )
 
+    epk_ligand_specific_5hvk_prototype_rerun = subparsers.add_parser(
+        "build-epk-ligand-specific-5hvk-prototype-control-rerun",
+        help="rerun the review-only ePK prototype/control surface with 5HVK",
+    )
+    epk_ligand_specific_5hvk_prototype_rerun.add_argument(
+        "--epk-ligand-specific-5hvk-source-validity-review",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_source_validity_review_1025.json"
+        ),
+    )
+    epk_ligand_specific_5hvk_prototype_rerun.add_argument(
+        "--epk-ligand-specific-5hvk-control-rerun-queue",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_control_rerun_queue_1025.json"
+        ),
+    )
+    epk_ligand_specific_5hvk_prototype_rerun.add_argument(
+        "--epk-review-only-scoring-prototype",
+        default="artifacts/v3_epk_review_only_scoring_prototype_1025.json",
+    )
+    epk_ligand_specific_5hvk_prototype_rerun.add_argument(
+        "--epk-review-only-external-hard-negative-score-probe",
+        default="artifacts/v3_epk_review_only_external_hard_negative_score_probe_1025.json",
+    )
+    epk_ligand_specific_5hvk_prototype_rerun.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_ligand_specific_5hvk_prototype_rerun.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_prototype_control_rerun_1025.json"
+        ),
+    )
+    epk_ligand_specific_5hvk_prototype_rerun.set_defaults(
+        func=cmd_build_epk_ligand_specific_5hvk_prototype_control_rerun
+    )
+
+    epk_5hvk_axis_generalization = subparsers.add_parser(
+        "build-epk-5hvk-protein-substrate-axis-generalization-audit",
+        help="audit 5HVK protein-substrate axis generalization review-only",
+    )
+    epk_5hvk_axis_generalization.add_argument(
+        "--epk-protein-substrate-acceptor-candidate-audit",
+        default="artifacts/v3_epk_protein_substrate_acceptor_candidate_audit_1025.json",
+    )
+    epk_5hvk_axis_generalization.add_argument(
+        "--epk-ligand-specific-5hvk-prototype-control-rerun",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_prototype_control_rerun_1025.json"
+        ),
+    )
+    epk_5hvk_axis_generalization.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_5hvk_protein_substrate_axis_generalization_audit_1025.json"
+        ),
+    )
+    epk_5hvk_axis_generalization.set_defaults(
+        func=cmd_build_epk_5hvk_protein_substrate_axis_generalization_audit
+    )
+
+    epk_protein_substrate_scorer_design = subparsers.add_parser(
+        "build-epk-protein-substrate-scorer-design-freeze",
+        help="freeze a review-only ePK protein-substrate scorer design",
+    )
+    epk_protein_substrate_scorer_design.add_argument(
+        "--epk-5hvk-protein-substrate-axis-generalization-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_5hvk_protein_substrate_axis_generalization_audit_1025.json"
+        ),
+    )
+    epk_protein_substrate_scorer_design.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_scorer_design_freeze_1025.json"
+        ),
+    )
+    epk_protein_substrate_scorer_design.set_defaults(
+        func=cmd_build_epk_protein_substrate_scorer_design_freeze
+    )
+
+    epk_protein_substrate_calibration = subparsers.add_parser(
+        "build-epk-protein-substrate-calibration-diagnostic",
+        help="run a review-only ePK protein-substrate calibration diagnostic",
+    )
+    epk_protein_substrate_calibration.add_argument(
+        "--epk-protein-substrate-scorer-design-freeze",
+        default="artifacts/v3_epk_protein_substrate_scorer_design_freeze_1025.json",
+    )
+    epk_protein_substrate_calibration.add_argument(
+        "--epk-ligand-specific-5hvk-prototype-control-rerun",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_prototype_control_rerun_1025.json"
+        ),
+    )
+    epk_protein_substrate_calibration.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_calibration_diagnostic_1025.json"
+        ),
+    )
+    epk_protein_substrate_calibration.set_defaults(
+        func=cmd_build_epk_protein_substrate_calibration_diagnostic
+    )
+
+    epk_source_authority_gap = subparsers.add_parser(
+        "build-epk-source-authority-axis-replacement-gap-audit",
+        help="audit source-authority axes blocking production ePK scoring",
+    )
+    epk_source_authority_gap.add_argument(
+        "--epk-protein-substrate-scorer-design-freeze",
+        default="artifacts/v3_epk_protein_substrate_scorer_design_freeze_1025.json",
+    )
+    epk_source_authority_gap.add_argument(
+        "--epk-protein-substrate-calibration-diagnostic",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_calibration_diagnostic_1025.json"
+        ),
+    )
+    epk_source_authority_gap.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_source_authority_axis_replacement_gap_audit_1025.json"
+        ),
+    )
+    epk_source_authority_gap.set_defaults(
+        func=cmd_build_epk_source_authority_axis_replacement_gap_audit
+    )
+
+    epk_local_chain_topology_rule = subparsers.add_parser(
+        "build-epk-local-chain-topology-acceptor-replacement-rule",
+        help="prototype a review-only local chain-topology acceptor rule",
+    )
+    epk_local_chain_topology_rule.add_argument(
+        "--epk-chain-ligand-acceptor-disambiguation-audit",
+        default="artifacts/v3_epk_chain_ligand_acceptor_disambiguation_audit_1025.json",
+    )
+    epk_local_chain_topology_rule.add_argument(
+        "--epk-ligand-specific-5hvk-source-validity-review",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_source_validity_review_1025.json"
+        ),
+    )
+    epk_local_chain_topology_rule.add_argument(
+        "--epk-source-authority-axis-replacement-gap-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_source_authority_axis_replacement_gap_audit_1025.json"
+        ),
+    )
+    epk_local_chain_topology_rule.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_local_chain_topology_acceptor_replacement_rule_1025.json"
+        ),
+    )
+    epk_local_chain_topology_rule.set_defaults(
+        func=cmd_build_epk_local_chain_topology_acceptor_replacement_rule
+    )
+
+    epk_5hvk_local_entity = subparsers.add_parser(
+        "build-epk-5hvk-local-polymer-entity-role-audit",
+        help="audit local 5HVK polymer/entity evidence for chain roles",
+    )
+    epk_5hvk_local_entity.add_argument(
+        "--epk-ligand-specific-5hvk-source-validity-review",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_5hvk_source_validity_review_1025.json"
+        ),
+    )
+    epk_5hvk_local_entity.add_argument(
+        "--epk-local-chain-topology-acceptor-replacement-rule",
+        default=(
+            "artifacts/"
+            "v3_epk_local_chain_topology_acceptor_replacement_rule_1025.json"
+        ),
+    )
+    epk_5hvk_local_entity.add_argument(
+        "--out",
+        default="artifacts/v3_epk_5hvk_local_polymer_entity_role_audit_1025.json",
+    )
+    epk_5hvk_local_entity.set_defaults(
+        func=cmd_build_epk_5hvk_local_polymer_entity_role_audit
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -15554,6 +15986,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-ligand-specific-5hvk-control-rerun-queue",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-ligand-specific-5hvk-prototype-control-rerun",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-5hvk-protein-substrate-axis-generalization-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(
