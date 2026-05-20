@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from datetime import datetime, timezone
@@ -74,6 +75,14 @@ def write_json(path: Path, payload: dict[str, Any], *, pretty: bool) -> None:
             handle.write("\n")
 
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
@@ -109,6 +118,33 @@ def accepted_role_policy(policy: dict[str, Any], row: dict[str, Any]) -> bool:
     return bool(policy_id and policy_id in accepted)
 
 
+def frozen_distance_cutoff_reason(policy: dict[str, Any], row: dict[str, Any]) -> str | None:
+    cutoff = policy["frozen_inputs"].get("candidate_distance_cutoff_angstrom")
+    if cutoff is None or not bool_feature(row, "terminal_gamma_equivalent_geometry"):
+        return None
+
+    distance = row.get("nearest_gamma_acceptor_distance_angstrom")
+    if distance is None:
+        return "nearest_gamma_acceptor_distance_missing"
+
+    try:
+        distance_value = float(distance)
+        cutoff_value = float(cutoff)
+    except (TypeError, ValueError):
+        return "nearest_gamma_acceptor_distance_not_numeric"
+
+    if distance_value > cutoff_value:
+        return "nearest_gamma_acceptor_distance_above_frozen_cutoff"
+    return None
+
+
+def expected_decision_match(row: dict[str, Any], decision: str) -> bool | None:
+    expected = row.get("expected_frozen_policy_decision")
+    if expected is None:
+        return None
+    return str(expected).startswith(decision)
+
+
 def validate_policy(policy: dict[str, Any]) -> None:
     metadata = policy.get("metadata", {})
     if metadata.get("review_only") is not True:
@@ -116,6 +152,21 @@ def validate_policy(policy: dict[str, Any]) -> None:
     for flag in REQUIRED_POLICY_FALSE_FLAGS:
         if metadata.get(flag) is not False:
             raise ValueError(f"policy metadata.{flag} must be false")
+
+    frozen_inputs = policy.get("frozen_inputs", {})
+    cutoff = frozen_inputs.get("candidate_distance_cutoff_angstrom")
+    if cutoff is None:
+        raise ValueError("policy frozen_inputs.candidate_distance_cutoff_angstrom is required")
+    try:
+        cutoff_value = float(cutoff)
+    except (TypeError, ValueError) as error:
+        raise ValueError(
+            "policy frozen_inputs.candidate_distance_cutoff_angstrom must be numeric"
+        ) from error
+    if cutoff_value <= 0:
+        raise ValueError(
+            "policy frozen_inputs.candidate_distance_cutoff_angstrom must be positive"
+        )
 
     allowed = set(policy.get("allowed_predictive_features", []))
     forbidden = set(policy.get("forbidden_features", []))
@@ -176,6 +227,10 @@ def evaluate_row(policy: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
     if normalized_ligand not in active_ligands:
         reasons.append("ligand_not_in_frozen_active_gamma_alias_map")
 
+    distance_reason = frozen_distance_cutoff_reason(policy, row)
+    if distance_reason:
+        reasons.append(distance_reason)
+
     missing_features = [
         feature for feature in required_features if not bool_feature(row, feature)
     ]
@@ -202,12 +257,16 @@ def evaluate_row(policy: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
         "pdb_id": row.get("pdb_id"),
         "row_role": row.get("row_role"),
         "normalized_ligand_state": normalized_ligand,
+        "nearest_gamma_acceptor_distance_angstrom": row.get(
+            "nearest_gamma_acceptor_distance_angstrom"
+        ),
         "decision": decision,
         "abstention_reasons": sorted(set(reasons)),
         "missing_required_same_structure_features": missing_features,
         "forbidden_predictive_context_flags": flags,
         "post_score_review_status": row.get("post_score_review_status"),
         "expected_frozen_policy_decision": row.get("expected_frozen_policy_decision"),
+        "expected_frozen_policy_match": expected_decision_match(row, decision),
         "production_claim_allowed": False,
         "labels_or_fingerprints_changed": False,
     }
@@ -216,6 +275,8 @@ def evaluate_row(policy: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
 def choose_primary_outcome(row_results: list[dict[str, Any]]) -> str:
     if not row_results:
         return "next_query_defined"
+    if any(result.get("expected_frozen_policy_match") is False for result in row_results):
+        return "policy_falsified"
     if any(result["forbidden_predictive_context_flags"] for result in row_results):
         return "policy_falsified"
     nonabstaining = [
@@ -253,6 +314,11 @@ def evaluate_tranche(policy: dict[str, Any], tranche: dict[str, Any]) -> dict[st
         for result in nonabstaining
         if result.get("post_score_review_status") in POST_SCORE_BLOCKED_STATUSES
     ]
+    expected_decision_mismatches = [
+        result["row_id"]
+        for result in row_results
+        if result.get("expected_frozen_policy_match") is False
+    ]
 
     return {
         "metadata": {
@@ -269,6 +335,8 @@ def evaluate_tranche(policy: dict[str, Any], tranche: dict[str, Any]) -> dict[st
             "decision_counts": decision_counts,
             "abstention_reason_counts": abstention_reason_counts,
             "counterexamples_found": counterexamples,
+            "expected_decision_mismatch_count": len(expected_decision_mismatches),
+            "expected_decision_mismatches": expected_decision_mismatches,
             "primary_outcome": choose_primary_outcome(row_results),
         },
         "frozen_inputs": policy["frozen_inputs"],
@@ -294,6 +362,7 @@ def self_test() -> None:
         },
         "frozen_inputs": {
             "ligand_code_alias_map": {"ATP": ["ATP"], "ANP": ["ANP"]},
+            "candidate_distance_cutoff_angstrom": 6.0,
             "required_same_structure_features": [
                 "terminal_gamma_equivalent_geometry",
                 "local_metal_context",
@@ -317,25 +386,69 @@ def self_test() -> None:
         "source_free_acceptor_role_features": True,
         "source_free_acceptor_role_policy_id": "role_policy_v0",
         "same_structure_co_materialization": True,
+        "nearest_gamma_acceptor_distance_angstrom": 3.0,
+        "expected_frozen_policy_decision": "review_only_nonabstaining_candidate",
     }
-    blocked_adp = dict(passing_row, row_id="adp", ligand_code_from_structure="ADP")
+    blocked_adp = dict(
+        passing_row,
+        row_id="adp",
+        ligand_code_from_structure="ADP",
+        expected_frozen_policy_decision="review_only_abstain_adp_context",
+    )
+    far_distance = dict(
+        passing_row,
+        row_id="far",
+        nearest_gamma_acceptor_distance_angstrom=6.001,
+        expected_frozen_policy_decision="review_only_abstain_distance_cutoff",
+    )
     forbidden = dict(
         passing_row,
         row_id="forbidden",
         source_review_used_for_predictive_feature=True,
+        expected_frozen_policy_decision="review_only_abstain_forbidden_context",
     )
-    assert evaluate_row(policy, passing_row)["decision"] == "review_only_nonabstaining_candidate"
+    passing_result = evaluate_row(policy, passing_row)
+    assert passing_result["decision"] == "review_only_nonabstaining_candidate"
+    assert passing_result["expected_frozen_policy_match"] is True
     assert evaluate_row(policy, blocked_adp)["decision"] == "review_only_abstain"
+    far_result = evaluate_row(policy, far_distance)
+    assert far_result["decision"] == "review_only_abstain"
+    assert "nearest_gamma_acceptor_distance_above_frozen_cutoff" in far_result[
+        "abstention_reasons"
+    ]
+    assert far_result["expected_frozen_policy_match"] is True
     forbidden_result = evaluate_row(policy, forbidden)
     assert forbidden_result["decision"] == "review_only_abstain"
     assert "source_review_used_for_predictive_feature" in forbidden_result[
         "forbidden_predictive_context_flags"
     ]
-    evaluate_tranche(policy, {"metadata": {"review_only": True, "row_count": 3}, "rows": [
+    result = evaluate_tranche(
+        policy,
+        {
+            "metadata": {"review_only": True, "row_count": 4},
+            "rows": [
+                passing_row,
+                blocked_adp,
+                far_distance,
+                forbidden,
+            ],
+        },
+    )
+    assert result["metadata"]["expected_decision_mismatch_count"] == 0
+    mismatch = dict(
         passing_row,
-        blocked_adp,
-        forbidden,
-    ]})
+        row_id="mismatch",
+        expected_frozen_policy_decision="review_only_abstain_expected_mismatch",
+    )
+    mismatch_result = evaluate_tranche(
+        policy,
+        {
+            "metadata": {"review_only": True, "row_count": 1},
+            "rows": [mismatch],
+        },
+    )
+    assert mismatch_result["metadata"]["expected_decision_mismatch_count"] == 1
+    assert mismatch_result["metadata"]["primary_outcome"] == "policy_falsified"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -359,6 +472,8 @@ def main(argv: list[str] | None = None) -> int:
     policy = load_json(args.policy)
     tranche = load_json(args.tranche)
     result = evaluate_tranche(policy, tranche)
+    result["metadata"]["policy_sha256"] = sha256_file(args.policy)
+    result["metadata"]["tranche_sha256"] = sha256_file(args.tranche)
     write_json(args.output, result, pretty=args.pretty)
     return 0
 

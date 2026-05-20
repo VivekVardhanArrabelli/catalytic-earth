@@ -1,0 +1,216 @@
+{
+  "allowed_predictive_features": [
+    "ligand_code_from_structure",
+    "terminal_gamma_equivalent_geometry",
+    "terminal_gamma_atom_name",
+    "nearest_gamma_acceptor_distance_angstrom",
+    "local_metal_context",
+    "catalytic_site_locality",
+    "source_free_acceptor_role_features",
+    "source_free_acceptor_role_policy_id",
+    "same_structure_co_materialization"
+  ],
+  "forbidden_features": [
+    "production_label",
+    "curated_mechanism_label",
+    "mechanism_fingerprint_registry_status",
+    "source_review_used_for_predictive_feature",
+    "candidate_specific_source_repair_used_for_predictive_feature",
+    "mechanism_text",
+    "pdb_title_as_predictive_feature",
+    "uniprot_prose_as_predictive_feature",
+    "ec_or_rhea_as_predictive_feature",
+    "source_id_as_predictive_feature",
+    "post_hoc_ligand_alias_expansion",
+    "post_hoc_threshold_selection",
+    "cross_pdb_split_state_fusion",
+    "homomeric_chain_choice_as_substrate_mapping"
+  ],
+  "frozen_inputs": {
+    "accepted_source_free_acceptor_role_policy_ids": [],
+    "accepted_source_free_acceptor_role_policy_status": "none_currently_accepted_for_v0; this policy intentionally fails closed until a future frozen source-free role extractor is preregistered before tranche selection",
+    "candidate_distance_cutoff_angstrom": 6.0,
+    "development_row_performance_rule": "Rows observed in prior ePK development artifacts may be used only for regression diagnostics, not clean held-out performance evidence.",
+    "ligand_code_alias_map": {
+      "AMP_PNP": [
+        "AMP-PNP",
+        "AMPPNP"
+      ],
+      "ANP": [
+        "ANP"
+      ],
+      "ATP": [
+        "ATP"
+      ]
+    },
+    "required_same_structure_features": [
+      "terminal_gamma_equivalent_geometry",
+      "local_metal_context",
+      "catalytic_site_locality",
+      "source_free_acceptor_role_features",
+      "same_structure_co_materialization"
+    ]
+  },
+  "metadata": {
+    "abstention_reason_counts": {
+      "adp_review_only": 1,
+      "ligand_not_in_frozen_active_gamma_alias_map": 1,
+      "missing_required_same_structure_features": 2,
+      "nearest_gamma_acceptor_distance_above_frozen_cutoff": 1,
+      "nearest_gamma_acceptor_distance_missing": 1,
+      "not_clean_held_out_performance_evidence": 5,
+      "product_state_context_review_only": 1,
+      "source_free_acceptor_role_policy_not_preaccepted": 4,
+      "substrate_acceptor_analog_review_only": 1
+    },
+    "counterexamples_found": [],
+    "created_at": "2026-05-20T16:06:48+00:00",
+    "decision_counts": {
+      "review_only_abstain": 5
+    },
+    "epk_score_computed": false,
+    "expected_decision_mismatch_count": 0,
+    "expected_decision_mismatches": [],
+    "labels_or_fingerprints_changed": false,
+    "policy_id": "epk_ligand_state_substrate_role_review_only_v0_20260520",
+    "policy_sha256": "298b2a636fe3a50b3872bb513a9d37e0151b02b71d25fe1b651da5d3854b4345",
+    "policy_version": "epk_review_only_policy_harness_v0_20260520",
+    "primary_outcome": "policy_frozen_review_only",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "row_count": 5,
+    "threshold_calibrated": false,
+    "tranche_id": "epk_policy_cutoff_expectation_tranche_20260520T151816Z",
+    "tranche_sha256": "11e763896a9b7133040151a283c7d6744f6e5fcb0f8d337587568dce926192be"
+  },
+  "review_only_features": [
+    "pdb_id",
+    "row_role",
+    "clean_held_out_performance_evidence",
+    "development_or_regression_context",
+    "product_state_context",
+    "substrate_acceptor_analog_context",
+    "split_state_context",
+    "candidate_specific_source_repair",
+    "sibling_counterfamily_context",
+    "post_score_review_status",
+    "source_validation_status",
+    "source_review_status",
+    "source_query",
+    "structure_title",
+    "entity_descriptions",
+    "chain_accessions",
+    "source_pair_id",
+    "known_counterexample_status",
+    "expert_notes"
+  ],
+  "rows": [
+    {
+      "abstention_reasons": [
+        "nearest_gamma_acceptor_distance_above_frozen_cutoff",
+        "not_clean_held_out_performance_evidence",
+        "source_free_acceptor_role_policy_not_preaccepted"
+      ],
+      "decision": "review_only_abstain",
+      "expected_frozen_policy_decision": "review_only_abstain_distance_above_frozen_cutoff",
+      "expected_frozen_policy_match": true,
+      "forbidden_predictive_context_flags": [],
+      "labels_or_fingerprints_changed": false,
+      "missing_required_same_structure_features": [],
+      "nearest_gamma_acceptor_distance_angstrom": 6.001,
+      "normalized_ligand_state": "ATP",
+      "pdb_id": null,
+      "post_score_review_status": "synthetic_policy_qa_distance_above_cutoff",
+      "production_claim_allowed": false,
+      "row_id": "synthetic:cutoff_far_atp_complete_local_context",
+      "row_role": "policy_invariant_cutoff_tripwire"
+    },
+    {
+      "abstention_reasons": [
+        "nearest_gamma_acceptor_distance_missing",
+        "not_clean_held_out_performance_evidence",
+        "source_free_acceptor_role_policy_not_preaccepted"
+      ],
+      "decision": "review_only_abstain",
+      "expected_frozen_policy_decision": "review_only_abstain_distance_missing",
+      "expected_frozen_policy_match": true,
+      "forbidden_predictive_context_flags": [],
+      "labels_or_fingerprints_changed": false,
+      "missing_required_same_structure_features": [],
+      "nearest_gamma_acceptor_distance_angstrom": null,
+      "normalized_ligand_state": "ANP",
+      "pdb_id": null,
+      "post_score_review_status": "synthetic_policy_qa_distance_missing",
+      "production_claim_allowed": false,
+      "row_id": "synthetic:missing_distance_anp_complete_local_context",
+      "row_role": "policy_invariant_missing_distance_tripwire"
+    },
+    {
+      "abstention_reasons": [
+        "missing_required_same_structure_features",
+        "not_clean_held_out_performance_evidence"
+      ],
+      "decision": "review_only_abstain",
+      "expected_frozen_policy_decision": "review_only_abstain_missing_source_free_acceptor_role",
+      "expected_frozen_policy_match": true,
+      "forbidden_predictive_context_flags": [],
+      "labels_or_fingerprints_changed": false,
+      "missing_required_same_structure_features": [
+        "source_free_acceptor_role_features",
+        "same_structure_co_materialization"
+      ],
+      "nearest_gamma_acceptor_distance_angstrom": 5.999,
+      "normalized_ligand_state": "AMP_PNP",
+      "pdb_id": null,
+      "post_score_review_status": "synthetic_policy_qa_alias_normalized_but_missing_role",
+      "production_claim_allowed": false,
+      "row_id": "synthetic:amp_pnp_alias_under_cutoff_missing_role",
+      "row_role": "policy_invariant_alias_and_role_tripwire"
+    },
+    {
+      "abstention_reasons": [
+        "adp_review_only",
+        "ligand_not_in_frozen_active_gamma_alias_map",
+        "missing_required_same_structure_features",
+        "not_clean_held_out_performance_evidence",
+        "product_state_context_review_only",
+        "source_free_acceptor_role_policy_not_preaccepted"
+      ],
+      "decision": "review_only_abstain",
+      "expected_frozen_policy_decision": "review_only_abstain_product_state",
+      "expected_frozen_policy_match": true,
+      "forbidden_predictive_context_flags": [],
+      "labels_or_fingerprints_changed": false,
+      "missing_required_same_structure_features": [
+        "terminal_gamma_equivalent_geometry"
+      ],
+      "nearest_gamma_acceptor_distance_angstrom": null,
+      "normalized_ligand_state": null,
+      "pdb_id": null,
+      "post_score_review_status": "synthetic_policy_qa_adp_product_state_blocked",
+      "production_claim_allowed": false,
+      "row_id": "synthetic:adp_product_state_with_role_attempt",
+      "row_role": "policy_invariant_adp_product_tripwire"
+    },
+    {
+      "abstention_reasons": [
+        "not_clean_held_out_performance_evidence",
+        "source_free_acceptor_role_policy_not_preaccepted",
+        "substrate_acceptor_analog_review_only"
+      ],
+      "decision": "review_only_abstain",
+      "expected_frozen_policy_decision": "review_only_abstain_substrate_acceptor_analog",
+      "expected_frozen_policy_match": true,
+      "forbidden_predictive_context_flags": [],
+      "labels_or_fingerprints_changed": false,
+      "missing_required_same_structure_features": [],
+      "nearest_gamma_acceptor_distance_angstrom": 3.2,
+      "normalized_ligand_state": "ANP",
+      "pdb_id": null,
+      "post_score_review_status": "synthetic_policy_qa_substrate_analog_blocked",
+      "production_claim_allowed": false,
+      "row_id": "synthetic:anp_substrate_analog_with_role_attempt",
+      "row_role": "policy_invariant_substrate_analog_tripwire"
+    }
+  ]
+}
