@@ -2,9 +2,9 @@
 
 Last updated: 2026-05-20T19:07:33Z
 
-Pushed commit: pending first commit for this run. A follow-up self-reference
-commit should replace this line with the pushed artifact commit and final
-branch HEAD.
+Pushed commit: `3d187cb6f647f5a5a2a5d74e432b4b555fdd07c3` (primary run
+artifact commit). Final branch HEAD after this handoff self-reference update is
+reported in the automation summary.
 
 ## Current Outcome
 
