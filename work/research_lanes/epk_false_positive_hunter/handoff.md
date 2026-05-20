@@ -1,48 +1,54 @@
 # ePK false-positive hunter handoff
 
-- Started: 2026-05-20T14:16:23Z
-- Ended: 2026-05-20T15:05:26Z
-- Measured minutes: 49.05
-- Primary outcome: evidence_against
-- Rule under attack: `epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0` with `epk_mek_erk_source_free_topology_ambiguity_counteraxis_v0`.
+- Started: 2026-05-20T15:16:47Z
+- Ended: 2026-05-20T16:06:49Z
+- Measured minutes: 50.03
+- Primary outcome: search_surface_exhausted
+- Rule under attack: `epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0` plus `epk_mek_erk_source_free_topology_ambiguity_counteraxis_v0`.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
 
-## Search surface
-- atpase_transport: 110 rows, 0 exact counterexamples, 2 substrate-mode hits, 0 topology-clear hits.
-- walker_a_confirmation: 75 rows, 0 exact counterexamples, 7 substrate-mode hits, 0 topology-clear hits.
-- non_epk_atp_mg_enzymes: 110 rows, 0 exact counterexamples, 7 substrate-mode hits, 0 topology-clear hits.
+## Search Surface
 
-Total reviewed: 295 rows, 281 unique PDB IDs. Seed attack IDs included: 7CAG, 8BMS, 9L3M, 9L3U, 7ZE5. No raw coordinate files were written; mmCIFs were fetched in memory and reduced to compact distance/context evidence.
+Four bounded cross-chain non-ePK ATP-like/Mg stress surfaces were executed:
+
+- general complex text surface: 148 reviewed rows, 78 local ATP/Mg-hydroxyl rows, 0 cross-chain substrate-mode rows.
+- interface/oligomer text surface: 150 reviewed rows, 95 local ATP/Mg-hydroxyl rows, 0 cross-chain substrate-mode rows.
+- component ATP-like+Mg offset surface: 220 reviewed rows, 165 local ATP/Mg-hydroxyl rows, 0 cross-chain substrate-mode rows.
+- acceptor-targeted text surface: 150 reviewed rows, 99 local ATP/Mg-hydroxyl rows, 0 cross-chain substrate-mode rows.
+
+Total reviewed: 668 rows, 574 unique PDB IDs. Seed attack IDs included: 7CAG, 8BMS, 9L3M, 9L3U, 7ZE5, 4KFT, 5TT6, 6NOO, 9NBW. No raw coordinate files were written; mmCIFs were fetched in memory and reduced to compact chain/distance evidence.
 
 ## Result
-No exact counterexample survived the current topology counteraxis. The bounded surface is exhausted for this run, so the outcome is `evidence_against`, not production safety evidence.
 
-## Pressure cases
-These non-ePK ATP/Mg rows satisfy the substrate-mode shape locally but are blocked by same-chain topology ambiguity:
+No counterexample was found. The bounded cross-chain surface is exhausted for this run: 0 topology-clear cross-chain substrate-mode hits and 0 counterexample candidates. This is evidence against the tested cross-chain false-positive hypothesis, not production safety evidence.
 
-- 4BJR: Crystal structure of the complex between Prokaryotic Ubiquitin-like Protein Pup and its Ligase PafA; ATP PG to TYR62 OH = 4.182 A; Mg = 3.512 A; topology_blocked=True (same-chain)
-- 4G5Y: Crystal Structure of Mycobacterium tuberculosis Pantothenate synthetase in a ternary complex with ATP and N,N-DIMETHYLTHIOPHENE-3-SULFONAMIDE; ATP PG to TYR82 OH = 3.697 A; Mg = 3.41 A; topology_blocked=True (same-chain)
-- 4KFT: Structure of the genome packaging NTPase B204 from Sulfolobus turreted icosahedral virus 2 in complex with ATP-gammaS; AGS PB to SER18 OG = 4.423 A; Mg = 3.281 A; topology_blocked=True (same-chain)
-- 5J1J: Structure of FleN-AMPPNP complex; ANP PG to THR25 OG1 = 5.258 A; Mg = 3.213 A; topology_blocked=True (same-chain)
-- 5TT6: T4 RNA Ligase 1 (K99M); ATP PG to TYR37 OH = 3.297 A; Mg = 3.13 A; topology_blocked=True (same-chain)
-- 6NOO: Structure of Cyanothece McdA-AMPPNP complex; ATP PG to THR16 OG1 = 5.401 A; Mg = 3.244 A; topology_blocked=True (same-chain)
-- 6NOP: Structure of Cyanothece McdA(D38A)-ATP complex; ATP PG to THR16 OG1 = 5.327 A; Mg = 3.254 A; topology_blocked=True (same-chain)
-- 6U1D: Thermus thermophilus D-alanine-D-alanine ligase in complex with ATP, D-alanine-D-alanine, Mg2+ and Rb+; ATP PG to TYR229 OH = 5.5 A; Mg = 3.023 A; topology_blocked=True (same-chain)
-- 6U1E: Thermus thermophilus D-alanine-D-alanine ligase in complex with ATP, D-alanine-D-alanine, Mg2+ and Rb+; ATP PG to TYR229 OH = 5.833 A; Mg = 3.085 A; topology_blocked=True (same-chain)
-- 8P53: Cryo-EM structure of the c-di-GMP-free FleQ-FleN master regulator complex of P. aeruginosa; ACP PG to THR25 OG1 = 5.017 A; Mg = 3.45 A; topology_blocked=True (same-chain)
-- 9M1F: Crystal structure of E. coli tryptophanyl-tRNA synthetase complexed with chuangxinmycin and ATP in closed-closed state; ATP PG to SER13 OG = 3.82 A; Mg = 3.278 A; topology_blocked=True (same-chain)
-- 9M1G: Crystal structure of E. coli tryptophanyl-tRNA synthetase complexed with chuangxinmycin and ATP in open-closed state; ATP PG to SER13 OG = 4.091 A; Mg = 3.315 A; topology_blocked=True (same-chain)
-- 9NBO: Closed conformation of ArsA from L. ferriphilum in complex with MgATP and arsenite; ATP PG to THR23 OG1 = 5.14 A; Mg = 3.584 A; topology_blocked=True (same-chain)
-- 9NBW: Closed conformation of ArsA from L. ferriphilum in complex with MgATP and arsenite at 1.5 minute time point; ATP PG to THR23 OG1 = 5.517 A; Mg = 3.899 A; topology_blocked=True (same-chain)
+## Pressure Cases
+
+The search found 105 same-chain substrate-mode pressure cases. The closest examples remain topology-confounded rather than cross-chain topology-clear:
+
+- 3M6G: ATP PG to SER14 OG on chain A = 2.928 A; ligand chain A; same_chain_topology_detected=true; title=Crystal structure of actin in complex with lobophorolide
+- 3EA0: ATP PG to SER16 OG on chain B = 2.946 A; ligand chain B; same_chain_topology_detected=true; title=Crystal Structure of ParA Family ATPase from Chlorobium tepidum TLS
+- 3EA0: ATP PG to SER16 OG on chain A = 2.96 A; ligand chain A; same_chain_topology_detected=true; title=Crystal Structure of ParA Family ATPase from Chlorobium tepidum TLS
+- 1RFQ: ATP PG to SER14 OG on chain B = 3.007 A; ligand chain B; same_chain_topology_detected=true; title=Actin Crystal Dynamics: Structural Implications for F-actin Nucleation, Polymerization and Branching Mediated by the Anti-parallel Dimer
+- 1RFQ: ATP PG to SER14 OG on chain A = 3.248 A; ligand chain A; same_chain_topology_detected=true; title=Actin Crystal Dynamics: Structural Implications for F-actin Nucleation, Polymerization and Branching Mediated by the Anti-parallel Dimer
+- 5TT6: ATP PG to TYR37 OH on chain A = 3.297 A; ligand chain A; same_chain_topology_detected=true; title=T4 RNA Ligase 1 (K99M)
+- 1MA9: ATP PG to SER14 OG on chain B = 3.31 A; ligand chain B; same_chain_topology_detected=true; title=Crystal structure of the complex of human vitamin D binding protein and rabbit muscle actin
+- 4B9Q: ATP PG to THR11 OG1 on chain B = 3.356 A; ligand chain B; same_chain_topology_detected=true; title=Open conformation of ATP-bound Hsp70 homolog DnaK
+- 1B38: ATP PG to THR14 OG1 on chain A = 3.37 A; ligand chain A; same_chain_topology_detected=true; title=HUMAN CYCLIN-DEPENDENT KINASE 2
+- 4B9Q: ATP PG to THR11 OG1 on chain A = 3.387 A; ligand chain A; same_chain_topology_detected=true; title=Open conformation of ATP-bound Hsp70 homolog DnaK
 
 ## Interpretation
-The corrected rule read matters: current topology ambiguity blocks candidate-chain equals ATP-associated-chain hits. The apparent counterexamples `5TT6`, `6NOO`, and `9NBW` were therefore demoted to pressure cases after matching the exact same-chain topology behavior in `src/catalytic_earth/labels.py`.
 
-## Next query
-Target cross-chain non-ePK ATP/Mg complexes where the hydroxyl acceptor is on a different polymer chain from the ATP-associated chain, with Tyr or auth_seq_id <= 25 Ser/Thr/Tyr geometry and no reciprocal cross-chain pair.
+The cross-chain adversarial search did not break the current topology counteraxis. The material signal remains same-chain: 361 unique local ATP/Mg-hydroxyl hit PDB IDs were seen and all 361 of those topology-hit IDs carried same-chain topology. The ATPase/transporter seeds with reciprocal cross-chain-like contacts still did not satisfy the Tyr-or-N-terminal-STY substrate-mode filter cross-chain.
+
+## Next Query
+
+Target ligand-chain assignment artifacts and gamma-like non-ATP analogs: cases where auth_asym_id may attach ATP-like ligand to the putative acceptor chain, and GTP/transition-state analog Mg structures with Tyr or N-terminal STY geometry.
 
 ## Files
-- `artifacts/research_lanes/epk_false_positive_hunter/stress_summary_20260520.json`
+
+- `artifacts/research_lanes/epk_false_positive_hunter/cross_chain_search_summary_20260520.json`
 - `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`
-- `tools/research_lanes/epk_false_positive_hunter/atpase_substrate_mode_stress.py`
+- `tools/research_lanes/epk_false_positive_hunter/cross_chain_substrate_mode_stress.py`
+- `tools/research_lanes/epk_false_positive_hunter/component_cross_chain_substrate_mode_stress.py`
