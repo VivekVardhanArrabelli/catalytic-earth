@@ -1,47 +1,37 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-20T17:28:08-0500
+Last updated: 2026-05-20T18:28:19-0500
 
-Primary outcome: `counterexample_found`
+Primary outcome: `blocker_not_cleared_biology_ambiguity`
 
 `production_claim_allowed=false`
 
 `labels_or_fingerprints_changed=false`
 
-Run note: normal `git fetch origin` / `git pull --ff-only` were attempted at
-run start, but the sandbox could not write linked-worktree `FETCH_HEAD`.
-Live remote state was checked with `git ls-remote`; local `HEAD` and the live
-remote ref both matched `261c6c38038f6a32555ee8358b3925737d7107c0` during
-this run.
+Run note: normal `git fetch origin` was attempted at run start, but the
+sandbox could not write the linked-worktree `FETCH_HEAD`. The live remote ref
+was checked with `git ls-remote`: `origin/research/epk-substrate-role-identity`
+was at `c77e6a81431002acc9039a95924585ab009d78b7`. Local `HEAD` remained one
+commit behind because the linked worktree ref could not be advanced, but the
+working tree already contained the pushed lane content from that commit.
 
 ## What Was Tested
 
-This run executed the requested source-free active-site
-orientation/asymmetry probe:
+This run executed the requested false-negative decision probe:
 
-`epk_active_site_orientation_asymmetry_probe_v1_review_only`
+`epk_false_negative_state_topology_decision_probe_v1_review_only`
 
 Artifact:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_active_site_orientation_asymmetry_probe_v1_20260520.json`
+`artifacts/research_lanes/epk_substrate_role_identity/epk_false_negative_state_topology_decision_probe_v1_20260520.json`
 
 Helper:
 
-`tools/research_lanes/epk_substrate_role_identity/active_site_orientation_asymmetry_probe.py`
+`tools/research_lanes/epk_substrate_role_identity/false_negative_state_topology_decision_probe.py`
 
-The helper:
-
-- reused the prior 54-row local-exposure diagnostic set;
-- fetched structures in memory only, with no raw coordinate files written;
-- matched compact gamma/hydroxyl candidates already present in the local
-  exposure artifact;
-- added source-free orientation/asymmetry proxies around selected candidates:
-  hydroxyl-anchor-to-gamma angle, hydroxyl gamma-facing versus backside
-  half-space protein density, ligand-chain and acceptor-chain density near
-  nucleotide gamma, gamma-axis forward/back density, and nearest other
-  nucleotide/metal or active-gamma distances;
-- compared existing strict, auth-terminal guarded strict, permissive, and
-  reciprocal folded-Tyr rescue rules to orientation-gated variants.
+The helper reused the 54-row active-site orientation artifact and added compact
+source-free state/topology classes only. It did not fetch or write raw
+coordinates.
 
 Forbidden predictive inputs remained excluded: PDB title, UniProt prose,
 EC/Rhea, paper/source text, mechanism labels, curated substrate names,
@@ -50,91 +40,79 @@ imports, and production threshold calibration.
 
 ## Evidence
 
-Combined 54-row diagnostic set:
+Frozen 54-row diagnostic set:
 
-- Baseline strict rule: TP=14, FP=1, TN=33, FN=6.
-- `strict_auth_terminal_guard_v1`: TP=14, FP=0, TN=34, FN=6.
-- Permissive nearest-hydroxyl rule: TP=17, FP=27, TN=7, FN=3.
-- Prior `reciprocal_folded_tyr_rescue_v1`: TP=16, FP=1, TN=33, FN=4.
-- `orientation_supported_folded_tyr_rescue_v1`: TP=16, FP=1, TN=33, FN=4.
-- `orientation_guarded_auth_strict_v1`: TP=14, FP=0, TN=34, FN=6.
+- `strict_auth_terminal_guard_v1_reused`: TP=14, FP=0, TN=34, FN=6.
+- `reciprocal_folded_tyr_admitted_v1_reused`: TP=16, FP=1, TN=33, FN=4.
+- `orientation_supported_folded_tyr_v1_reused`: TP=16, FP=1, TN=33, FN=4.
+- `auth_or_same_chain_candidate_5a_probe`: TP=17, FP=15, TN=19, FN=3.
+- `auth_or_same_chain_candidate_6a_probe`: TP=17, FP=26, TN=8, FN=3.
 
-The orientation-supported folded-Tyr rescue recovered `9UUR` and `9UUX`, but
-also admitted `9UW4`.
+Availability summary by evaluation label:
 
-Hard folded-Tyr trio under the accepted frozen orientation class:
+- Positives: 14 claimable by auth-guard strict context, 2 ambiguous reciprocal
+  folded-Tyr, 1 ambiguous same-chain/autophosphorylation-like, and 3
+  product/ADP rows with no terminal gamma-equivalent geometry.
+- Counterexamples: 25 same-chain/autophosphorylation-like ambiguous rows, 1
+  reciprocal folded-Tyr counterexample (`9UW4`), 1 internal-fragment mimic
+  (`7B56`), and several no-claim or gamma-unavailable rows.
 
-- `9UUR`: `gamma_facing_active_site_like`; Tyr204, 4.181 A, angle 147.266
-  degrees, 15 gamma-facing other-chain heavy atoms within 6 A, 25 ligand-chain
-  heavy atoms within 6 A of gamma.
-- `9UUX`: `gamma_facing_active_site_like`; Tyr204, 3.968 A, angle 148.035
-  degrees, 12 gamma-facing other-chain heavy atoms within 6 A, 27 ligand-chain
-  heavy atoms within 6 A of gamma.
-- `9UW4`: `gamma_facing_active_site_like`; Tyr204, 4.194 A, angle 146.026
-  degrees, 11 gamma-facing other-chain heavy atoms within 6 A, 22 ligand-chain
-  heavy atoms within 6 A of gamma.
+Strict/auth false-negative classes:
 
-`7B56` remains a useful blocker probe. Its strict false-positive candidate is
-Ser822 and the auth-terminal internal-fragment guard still rejects it. The new
-orientation features do not separate it: its strict candidate is also
-`gamma_facing_active_site_like` by the frozen descriptor. Thus `7B56` is still
-handled by terminal-index/topology counterevidence, not by active-site
-orientation.
+- `9UUR`, `9UUX`: reciprocal folded-chain topology ambiguity. They can be
+  recovered by folded-Tyr reciprocal/context orientation rules, but that same
+  class admits `9UW4`.
+- `3QHR`, `3QHW`, `1L0O`: product/ADP state with no resolved terminal
+  gamma-equivalent atom and zero candidate hydroxyls within 8 A.
+- `3TM0`: active-gamma-capable ANP state, but the only near candidate is
+  same-chain, folded-chain, same-sequence-entity, and
+  autophosphorylation-like.
 
-The helper includes a post-hoc trio separability scan. A few scalar
-orientation/density thresholds can reject `9UW4` while retaining `9UUR`/`9UUX`,
-such as ligand-chain gamma-site density thresholds between 22 and 25 atoms.
-Projected on the 54-row set these can score TP=16, FP=0, TN=34, FN=4, but they
-are narrow thresholds learned from the hard trio and are not accepted as
-source-free identity rules.
+Remaining false negatives under the orientation-supported folded-Tyr rule:
 
-The remaining false negatives under the orientation-supported folded-Tyr rule
-are `3QHR`, `3QHW`, `1L0O`, and `3TM0`. The artifact now includes a compact
-`remaining_false_negative_probe`: `3QHR`, `3QHW`, and `1L0O` are ADP/product
-state rows with no terminal gamma-equivalent candidate and zero candidates
-within 8 A; `3TM0` has an ANP gamma and one 4.483 A Ser candidate, but it is
-same-chain, folded-chain, `same_chain_gamma_hydroxyl`, and
-`orientation_unsupported`.
+- `3QHR`, `3QHW`, `1L0O`: missing terminal gamma-equivalent/product-state
+  geometry.
+- `3TM0`: same-chain/autophosphorylation-like topology.
+
+Same-chain stress result:
+
+- A 5 A same-chain rescue recovers `3TM0` at row level but admits 15
+  counterexamples, including `9UW4`.
+- A 6 A same-chain rescue admits 26 counterexamples and collapses toward
+  permissive nearest-hydroxyl behavior.
 
 ## Interpretation
 
-Active-site orientation/asymmetry adds useful review-only descriptors, but it
-does not identify kinase substrate role on the frozen diagnostic set. The same
-feature family that recovers the source-reviewed folded-Tyr positives also
-recovers the `9UW4` topology-confounded counterexample.
+The blocker is no longer just a missing scalar feature. The remaining cases
+split into three source-free ambiguity classes:
 
-The decisive issue is not only distance or simple catalytic-site orientation:
-the hard trio has nearly identical hydroxyl-to-gamma angles, gamma-facing
-protein density, and reciprocal active-site context. Source-free scalar
-thresholds can be found after seeing the trio, but those are candidate-specific
-tuning and remain excluded by the lane contract.
+1. Product/ADP rows where the structure lacks terminal gamma transfer geometry.
+2. Reciprocal folded-chain Tyr context where true positives and `9UW4` share
+   the same accepted source-free class.
+3. Same-chain/autophosphorylation-like topology where admitting near hydroxyls
+   floods the set with false positives.
 
-Comparable ePK substrate-role blockers in this lane still have not cleared
-with structure-only nearest-atom, topology, residue-class, terminal-index,
-reciprocal-context, local-exposure, or active-site-orientation proxies. Usable
-progress remains hybrid: source-reviewed evidence can label and audit rows,
-while source text remains excluded from predictive features.
+Within this lane, comparable ePK substrate-role blockers have not cleared with
+structure-only nearest-atom, terminal-index, reciprocal-context, local-exposure,
+active-site-orientation, or state/topology proxies. Source-free features are
+useful for compact review triage, but they do not establish production
+substrate-role identity.
 
 ## Current Decision
 
 Do not claim ePK production readiness. Do not import labels, edit production
-fingerprints, calibrate thresholds, or treat active-site orientation as a
-substrate-role identity rule.
+fingerprints, calibrate thresholds, or turn these review-only classes into a
+production rule.
 
-Use active-site orientation only as review-only ambiguity evidence:
-
-- broad orientation classes do not separate the hard folded-Tyr counterexample;
-- narrow scalar thresholds can be diagnostic but are post-hoc and
-  candidate-specific;
-- product/analog rows without terminal gamma remain unavailable to
-  gamma-to-hydroxyl rules;
-- `7B56` remains blocked by the auth-terminal internal-fragment guard, not by
-  orientation.
+Stop broad scalar feature probing unless a new source-free evidence modality is
+introduced. Preserve a source-reviewed adjudication requirement for ePK
+substrate-role identity, especially for product/ADP, reciprocal folded-chain,
+and same-chain/autophosphorylation-like cases.
 
 ## Exact Next Experiment
 
-Classify the remaining strict-rule false negatives by unavailable ligand state
-versus same-chain/autophosphorylation-like topology, then decide whether this
-lane should stop feature probing and preserve a source-reviewed adjudication
-requirement for ePK substrate-role identity. Treat this as a blocker decision
-probe, not a production patch.
+Convert the lane result into a source-reviewed adjudication requirement:
+product/ADP rows, reciprocal folded-chain contexts, and
+same-chain/autophosphorylation-like contexts should remain review-only blockers
+unless a new source-free modality is introduced. Do not tune production
+thresholds from this lane.
