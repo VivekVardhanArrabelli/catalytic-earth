@@ -1,0 +1,2884 @@
+{
+  "control_rows": [
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 4.021,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 2.681,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.175,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O6",
+          "auth_asym_id": "A",
+          "auth_seq_id": "501",
+          "comp": "BGC",
+          "distance_angstrom": 2.681,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "A",
+          "auth_seq_id": "501",
+          "comp": "BGC",
+          "distance_angstrom": 4.671,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O4",
+          "auth_asym_id": "A",
+          "auth_seq_id": "501",
+          "comp": "BGC",
+          "distance_angstrom": 6.251,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "501",
+          "comp": "BGC",
+          "distance_angstrom": 6.447,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O3",
+          "auth_asym_id": "A",
+          "auth_seq_id": "501",
+          "comp": "BGC",
+          "distance_angstrom": 7.664,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "228",
+          "comp": "THR",
+          "distance_angstrom": 4.175,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "233"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "151",
+          "comp": "SER",
+          "distance_angstrom": 5.869,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "156"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "411",
+          "comp": "SER",
+          "distance_angstrom": 7.599,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "416"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "168",
+          "comp": "THR",
+          "distance_angstrom": 8.204,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "173"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "209",
+          "comp": "THR",
+          "distance_angstrom": 9.214,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "214"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "BGC",
+        "K",
+        "MG"
+      ],
+      "pdb_id": "3FGU",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "hexokinase ATP magnesium",
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_gamma_metal_control_candidate_review_only",
+      "structure_title": "Catalytic complex of Human Glucokinase",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 2,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 6,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 4.259,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 24.139,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 9.92,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O3P",
+          "auth_asym_id": "A",
+          "auth_seq_id": "919",
+          "comp": "G6P",
+          "distance_angstrom": 24.139,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "A",
+          "auth_seq_id": "919",
+          "comp": "G6P",
+          "distance_angstrom": 25.321,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O1P",
+          "auth_asym_id": "A",
+          "auth_seq_id": "919",
+          "comp": "G6P",
+          "distance_angstrom": 26.008,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O2P",
+          "auth_asym_id": "A",
+          "auth_seq_id": "919",
+          "comp": "G6P",
+          "distance_angstrom": 26.441,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O4",
+          "auth_asym_id": "A",
+          "auth_seq_id": "919",
+          "comp": "G6P",
+          "distance_angstrom": 26.553,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "376",
+          "comp": "THR",
+          "distance_angstrom": 9.92,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "376"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "376",
+          "comp": "THR",
+          "distance_angstrom": 10.391,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "376"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "379",
+          "comp": "SER",
+          "distance_angstrom": 12.078,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "379"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "430",
+          "comp": "THR",
+          "distance_angstrom": 12.189,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "430"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "424",
+          "comp": "SER",
+          "distance_angstrom": 12.23,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "424"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "G6P",
+        "GLC",
+        "MG"
+      ],
+      "pdb_id": "1QHA",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase AMP-PNP magnesium",
+        "hexokinase AMP-PNP magnesium",
+        "hexokinase ATP magnesium",
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_gamma_metal_control_candidate_review_only",
+      "structure_title": "HUMAN HEXOKINASE TYPE I COMPLEXED WITH ATP ANALOGUE AMP-PNP",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 4,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 4,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.999,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.348,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.622,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O6",
+          "auth_asym_id": "C",
+          "auth_seq_id": "601",
+          "comp": "GLC",
+          "distance_angstrom": 3.348,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "K",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "B",
+          "auth_seq_id": "601",
+          "comp": "GLC",
+          "distance_angstrom": 3.348,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "H",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "D",
+          "auth_seq_id": "601",
+          "comp": "GLC",
+          "distance_angstrom": 3.348,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "N",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "A",
+          "auth_seq_id": "601",
+          "comp": "GLC",
+          "distance_angstrom": 3.348,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "E",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "C",
+          "auth_seq_id": "601",
+          "comp": "GLC",
+          "distance_angstrom": 5.825,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "K",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "252",
+          "comp": "THR",
+          "distance_angstrom": 3.622,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "252"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "D",
+          "auth_seq_id": "252",
+          "comp": "THR",
+          "distance_angstrom": 3.622,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "D",
+          "label_seq_id": "252"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "252",
+          "comp": "THR",
+          "distance_angstrom": 3.623,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "B",
+          "label_seq_id": "252"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "C",
+          "auth_seq_id": "252",
+          "comp": "THR",
+          "distance_angstrom": 3.623,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "C",
+          "label_seq_id": "252"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "C",
+          "auth_seq_id": "164",
+          "comp": "SER",
+          "distance_angstrom": 4.637,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "C",
+          "label_seq_id": "164"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ATP",
+        "GLC",
+        "MG"
+      ],
+      "pdb_id": "6PDT",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase ATP magnesium",
+        "hexokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_gamma_metal_control_candidate_review_only",
+      "structure_title": "cryoEM structure of yeast glucokinase filament",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 3,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 3,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.902,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.043,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.09,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O6",
+          "auth_asym_id": "A",
+          "auth_seq_id": "603",
+          "comp": "BGC",
+          "distance_angstrom": 3.043,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "F",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "B",
+          "auth_seq_id": "603",
+          "comp": "BGC",
+          "distance_angstrom": 3.084,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "I",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "C",
+          "auth_seq_id": "603",
+          "comp": "BGC",
+          "distance_angstrom": 3.483,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "L",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "B",
+          "auth_seq_id": "603",
+          "comp": "BGC",
+          "distance_angstrom": 5.184,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "I",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "A",
+          "auth_seq_id": "603",
+          "comp": "BGC",
+          "distance_angstrom": 5.202,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "F",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "C",
+          "auth_seq_id": "261",
+          "comp": "THR",
+          "distance_angstrom": 4.09,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "C",
+          "label_seq_id": "228"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "261",
+          "comp": "THR",
+          "distance_angstrom": 4.192,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "228"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "261",
+          "comp": "THR",
+          "distance_angstrom": 4.258,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "228"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "C",
+          "auth_seq_id": "185",
+          "comp": "SER",
+          "distance_angstrom": 4.769,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "C",
+          "label_seq_id": "152"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "B",
+          "auth_seq_id": "185",
+          "comp": "SER",
+          "distance_angstrom": 4.9,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "152"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "BGC",
+        "MG"
+      ],
+      "pdb_id": "5ZQT",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "hexokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_gamma_metal_control_candidate_review_only",
+      "structure_title": "Crystal structure of Oryza sativa hexokinase 6",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    }
+  ],
+  "metadata": {
+    "askha_gamma_metal_control_count": 4,
+    "candidate_pdb_ids": [
+      "3FGU",
+      "1QHA",
+      "1IG8",
+      "1G99",
+      "1V4S",
+      "1V4T",
+      "3A0I",
+      "3F9M",
+      "3FR0",
+      "3GOI",
+      "3H1V",
+      "1TUU",
+      "1TUY",
+      "5OD2",
+      "2QM1",
+      "6PDT",
+      "1L2L",
+      "1GC5",
+      "6EDI",
+      "7S2N",
+      "5O0J",
+      "3ID8",
+      "6JJ8",
+      "2E2Q",
+      "6JJ9",
+      "5ZQT",
+      "308D",
+      "3IH0",
+      "4O4D",
+      "8OMI",
+      "3ATT",
+      "2WE5"
+    ],
+    "candidate_structure_count": 32,
+    "created_at": "2026-05-20T14:25:30Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "labels_or_fingerprints_changed": false,
+    "max_structures": 32,
+    "method": "epk_sibling_controls_askha_bounded_control_screen",
+    "nearest_protein_hydroxyl_max_angstrom": 9.92,
+    "nearest_protein_hydroxyl_min_angstrom": 3.622,
+    "next_query": "Run the same bounded source-free screen for dNK thymidine/deoxyguanosine kinase with gamma-capable nucleotide analogs and local Mg/Mn context.",
+    "primary_outcome": "counterexample_found",
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "query_terms": [
+      "glucokinase ATP magnesium",
+      "glucokinase AMP-PNP magnesium",
+      "hexokinase ATP magnesium",
+      "hexokinase AMP-PNP magnesium",
+      "acetate kinase ATP magnesium",
+      "acetate kinase AMP-PNP"
+    ],
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "review_status_counts": {
+      "askha_gamma_metal_control_candidate_review_only": 4,
+      "askha_no_gamma_context_review_only": 13,
+      "askha_product_state_only_review_only": 5,
+      "outside_askha_title_boundary_review_only": 10
+    },
+    "reviewed_sibling_family_id": "askha",
+    "reviewed_sibling_family_name": "ASKHA sugar and acetate kinases",
+    "rows_per_query": 8,
+    "rows_reviewed": 32,
+    "screen_started_at": "2026-05-20T14:25:10Z",
+    "search_surface": "RCSB full_text bounded askha terms plus prior graph-linked seeds; candidate rows accepted only by in-memory mmCIF gamma-capable nucleotide, local Mg/Mn, and compact source-free local oxygen measurements",
+    "seed_pdb_ids": [
+      "3FGU",
+      "1QHA",
+      "1IG8",
+      "1G99",
+      "1V4S",
+      "1V4T",
+      "3A0I",
+      "3F9M",
+      "3FR0",
+      "3GOI",
+      "3H1V",
+      "1TUU",
+      "1TUY"
+    ],
+    "source_prior_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_epk_negative_control_gamma_distance_distribution_1025.json",
+      "artifacts/v3_epk_sibling_negative_control_alternate_structure_plan_1025.json",
+      "artifacts/v3_epk_sibling_negative_control_alternate_gamma_distance_sample_1025.json",
+      "artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+      "artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json",
+      "artifacts/v3_epk_precount_gate_status_1025.json"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "weak_rule_counterexample_count": 3,
+    "weak_rule_counterexample_pdb_ids": [
+      "3FGU",
+      "6PDT",
+      "5ZQT"
+    ]
+  },
+  "query_records": [
+    {
+      "hits": [
+        "5OD2",
+        "2QM1",
+        "6PDT",
+        "1L2L",
+        "1GC5",
+        "6EDI",
+        "7S2N",
+        "5O0J"
+      ],
+      "status": "ok",
+      "term": "glucokinase ATP magnesium"
+    },
+    {
+      "hits": [
+        "3ID8",
+        "1QHA"
+      ],
+      "status": "ok",
+      "term": "glucokinase AMP-PNP magnesium"
+    },
+    {
+      "hits": [
+        "6JJ8",
+        "2E2Q",
+        "6PDT",
+        "6JJ9",
+        "5ZQT",
+        "1QHA",
+        "308D",
+        "3FGU"
+      ],
+      "status": "ok",
+      "term": "hexokinase ATP magnesium"
+    },
+    {
+      "hits": [
+        "3IH0",
+        "1QHA",
+        "3ID8"
+      ],
+      "status": "ok",
+      "term": "hexokinase AMP-PNP magnesium"
+    },
+    {
+      "hits": [
+        "4O4D",
+        "8OMI",
+        "3ATT",
+        "2WE5",
+        "9DSV",
+        "3NCQ",
+        "5MW8",
+        "2J9C"
+      ],
+      "status": "ok",
+      "term": "acetate kinase ATP magnesium"
+    },
+    {
+      "hits": [
+        "8YKU",
+        "6SUM",
+        "9AV7",
+        "3IH0",
+        "9V79",
+        "5DGH",
+        "9V73",
+        "4EBU"
+      ],
+      "status": "ok",
+      "term": "acetate kinase AMP-PNP"
+    }
+  ],
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 4.021,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 2.681,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.175,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O6",
+          "auth_asym_id": "A",
+          "auth_seq_id": "501",
+          "comp": "BGC",
+          "distance_angstrom": 2.681,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "A",
+          "auth_seq_id": "501",
+          "comp": "BGC",
+          "distance_angstrom": 4.671,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O4",
+          "auth_asym_id": "A",
+          "auth_seq_id": "501",
+          "comp": "BGC",
+          "distance_angstrom": 6.251,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "501",
+          "comp": "BGC",
+          "distance_angstrom": 6.447,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O3",
+          "auth_asym_id": "A",
+          "auth_seq_id": "501",
+          "comp": "BGC",
+          "distance_angstrom": 7.664,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "228",
+          "comp": "THR",
+          "distance_angstrom": 4.175,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "233"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "151",
+          "comp": "SER",
+          "distance_angstrom": 5.869,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "156"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "411",
+          "comp": "SER",
+          "distance_angstrom": 7.599,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "416"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "168",
+          "comp": "THR",
+          "distance_angstrom": 8.204,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "173"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "209",
+          "comp": "THR",
+          "distance_angstrom": 9.214,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "214"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "BGC",
+        "K",
+        "MG"
+      ],
+      "pdb_id": "3FGU",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "hexokinase ATP magnesium",
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_gamma_metal_control_candidate_review_only",
+      "structure_title": "Catalytic complex of Human Glucokinase",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 2,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 6,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 4.259,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 24.139,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 9.92,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O3P",
+          "auth_asym_id": "A",
+          "auth_seq_id": "919",
+          "comp": "G6P",
+          "distance_angstrom": 24.139,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "A",
+          "auth_seq_id": "919",
+          "comp": "G6P",
+          "distance_angstrom": 25.321,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O1P",
+          "auth_asym_id": "A",
+          "auth_seq_id": "919",
+          "comp": "G6P",
+          "distance_angstrom": 26.008,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O2P",
+          "auth_asym_id": "A",
+          "auth_seq_id": "919",
+          "comp": "G6P",
+          "distance_angstrom": 26.441,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O4",
+          "auth_asym_id": "A",
+          "auth_seq_id": "919",
+          "comp": "G6P",
+          "distance_angstrom": 26.553,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "376",
+          "comp": "THR",
+          "distance_angstrom": 9.92,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "376"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "376",
+          "comp": "THR",
+          "distance_angstrom": 10.391,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "376"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "379",
+          "comp": "SER",
+          "distance_angstrom": 12.078,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "379"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "430",
+          "comp": "THR",
+          "distance_angstrom": 12.189,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "430"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "424",
+          "comp": "SER",
+          "distance_angstrom": 12.23,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "424"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "G6P",
+        "GLC",
+        "MG"
+      ],
+      "pdb_id": "1QHA",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase AMP-PNP magnesium",
+        "hexokinase AMP-PNP magnesium",
+        "hexokinase ATP magnesium",
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_gamma_metal_control_candidate_review_only",
+      "structure_title": "HUMAN HEXOKINASE TYPE I COMPLEXED WITH ATP ANALOGUE AMP-PNP",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "SO4"
+      ],
+      "pdb_id": "1IG8",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Crystal Structure of Yeast Hexokinase PII with the correct amino acid sequence",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ADP",
+        "SO4"
+      ],
+      "pdb_id": "1G99",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_product_state_only_review_only",
+      "structure_title": "AN ANCIENT ENZYME: ACETATE KINASE FROM METHANOSARCINA THERMOPHILA",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "GLC",
+        "MRK",
+        "NA"
+      ],
+      "pdb_id": "1V4S",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Crystal structure of human glucokinase",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "NA",
+        "SO4"
+      ],
+      "pdb_id": "1V4T",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Crystal structure of human glucokinase",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "AJI",
+        "GLC",
+        "NA"
+      ],
+      "pdb_id": "3A0I",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Human glucokinase in complex with a synthetic activator",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "GLC",
+        "MRK"
+      ],
+      "pdb_id": "3F9M",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Human pancreatic glucokinase in complex with glucose and activator showing a mobile flap",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "AJB",
+        "GLC",
+        "NA"
+      ],
+      "pdb_id": "3FR0",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Human glucokinase in complex with 2-amino benzamide activator",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "GLC",
+        "LOI"
+      ],
+      "pdb_id": "3GOI",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Human glucokinase in complex with a synthetic activator",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "GLC",
+        "NA",
+        "TK1"
+      ],
+      "pdb_id": "3H1V",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Human glucokinase in complex with a synthetic activator",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ADP",
+        "AMP",
+        "NH4",
+        "PIS",
+        "SO4"
+      ],
+      "pdb_id": "1TUU",
+      "product_or_partial_nucleotide_codes": [
+        "ADP",
+        "AMP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_product_state_only_review_only",
+      "structure_title": "Acetate Kinase crystallized with ATPgS",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ACY",
+        "ADP",
+        "AF3",
+        "SO4"
+      ],
+      "pdb_id": "1TUY",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_askha_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_product_state_only_review_only",
+      "structure_title": "Acetate Kinase complexed with ADP, AlF3 and acetate",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 3,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "5ID",
+        "GLC",
+        "MG",
+        "PO4"
+      ],
+      "pdb_id": "5OD2",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Crystal structure of ADP-dependent glucokinase from Methanocaldococcus jannaschii",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 5,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "GOL",
+        "MG",
+        "MSE",
+        "PEG",
+        "SO4",
+        "ZN"
+      ],
+      "pdb_id": "2QM1",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Crystal structure of glucokinase from Enterococcus faecalis",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 4,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 4,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.999,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.348,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.622,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O6",
+          "auth_asym_id": "C",
+          "auth_seq_id": "601",
+          "comp": "GLC",
+          "distance_angstrom": 3.348,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "K",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "B",
+          "auth_seq_id": "601",
+          "comp": "GLC",
+          "distance_angstrom": 3.348,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "H",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "D",
+          "auth_seq_id": "601",
+          "comp": "GLC",
+          "distance_angstrom": 3.348,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "N",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "A",
+          "auth_seq_id": "601",
+          "comp": "GLC",
+          "distance_angstrom": 3.348,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "E",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "C",
+          "auth_seq_id": "601",
+          "comp": "GLC",
+          "distance_angstrom": 5.825,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "K",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "252",
+          "comp": "THR",
+          "distance_angstrom": 3.622,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "252"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "D",
+          "auth_seq_id": "252",
+          "comp": "THR",
+          "distance_angstrom": 3.622,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "D",
+          "label_seq_id": "252"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "252",
+          "comp": "THR",
+          "distance_angstrom": 3.623,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "B",
+          "label_seq_id": "252"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "C",
+          "auth_seq_id": "252",
+          "comp": "THR",
+          "distance_angstrom": 3.623,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "C",
+          "label_seq_id": "252"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "C",
+          "auth_seq_id": "164",
+          "comp": "SER",
+          "distance_angstrom": 4.637,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "C",
+          "label_seq_id": "164"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ATP",
+        "GLC",
+        "MG"
+      ],
+      "pdb_id": "6PDT",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase ATP magnesium",
+        "hexokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_gamma_metal_control_candidate_review_only",
+      "structure_title": "cryoEM structure of yeast glucokinase filament",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [],
+      "pdb_id": "1L2L",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Crystal structure of ADP-dependent glucokinase from a Pyrococcus Horikoshii",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ADP"
+      ],
+      "pdb_id": "1GC5",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_product_state_only_review_only",
+      "structure_title": "CRYSTAL STRUCTURE OF A NOVEL ADP-DEPENDENT GLUCOKINASE FROM THERMOCOCCUS LITORALIS",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [],
+      "pdb_id": "6EDI",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "Crystal structure of Leishmania braziliensis glucokinase",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [],
+      "pdb_id": "7S2N",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_askha_title_boundary_review_only",
+      "structure_title": null,
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "8BR",
+        "GLC"
+      ],
+      "pdb_id": "5O0J",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_no_gamma_context_review_only",
+      "structure_title": "ADP-dependent glucokinase from Pyrococcus horikoshii",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.692,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 2.809,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.794,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O6",
+          "auth_asym_id": "A",
+          "auth_seq_id": "500",
+          "comp": "GLC",
+          "distance_angstrom": 2.809,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "A",
+          "auth_seq_id": "500",
+          "comp": "GLC",
+          "distance_angstrom": 4.744,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O4",
+          "auth_asym_id": "A",
+          "auth_seq_id": "500",
+          "comp": "GLC",
+          "distance_angstrom": 6.344,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "500",
+          "comp": "GLC",
+          "distance_angstrom": 6.819,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O3",
+          "auth_asym_id": "A",
+          "auth_seq_id": "500",
+          "comp": "GLC",
+          "distance_angstrom": 7.948,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "228",
+          "comp": "THR",
+          "distance_angstrom": 3.794,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "233"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "151",
+          "comp": "SER",
+          "distance_angstrom": 6.123,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "156"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "411",
+          "comp": "SER",
+          "distance_angstrom": 7.17,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "416"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "168",
+          "comp": "THR",
+          "distance_angstrom": 8.333,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "173"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "82",
+          "comp": "THR",
+          "distance_angstrom": 8.921,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "87"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "GLC",
+        "K",
+        "MG",
+        "MRK"
+      ],
+      "pdb_id": "3ID8",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glucokinase AMP-PNP magnesium",
+        "hexokinase AMP-PNP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_askha_title_boundary_review_only",
+      "structure_title": null,
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 3,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ADP",
+        "MG",
+        "PO4"
+      ],
+      "pdb_id": "6JJ8",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "hexokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_askha_title_boundary_review_only",
+      "structure_title": "Crystal structure of OsHXK6-ATP-Mg2+ complex",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ADP",
+        "MG",
+        "XYP"
+      ],
+      "pdb_id": "2E2Q",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "hexokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_product_state_only_review_only",
+      "structure_title": "Crystal structure of Sulfolobus tokodaii hexokinase in complex with xylose, Mg2+, and ADP",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 3,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ADP",
+        "BGC",
+        "MG",
+        "PO4"
+      ],
+      "pdb_id": "6JJ9",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "hexokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_askha_title_boundary_review_only",
+      "structure_title": "Crystal structure of OsHXK6-Glc-ATP-Mg2+ complex",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 3,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 3,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.902,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.043,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.09,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O6",
+          "auth_asym_id": "A",
+          "auth_seq_id": "603",
+          "comp": "BGC",
+          "distance_angstrom": 3.043,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "F",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "B",
+          "auth_seq_id": "603",
+          "comp": "BGC",
+          "distance_angstrom": 3.084,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "I",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "C",
+          "auth_seq_id": "603",
+          "comp": "BGC",
+          "distance_angstrom": 3.483,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "L",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "B",
+          "auth_seq_id": "603",
+          "comp": "BGC",
+          "distance_angstrom": 5.184,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "I",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "A",
+          "auth_seq_id": "603",
+          "comp": "BGC",
+          "distance_angstrom": 5.202,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "F",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "C",
+          "auth_seq_id": "261",
+          "comp": "THR",
+          "distance_angstrom": 4.09,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "C",
+          "label_seq_id": "228"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "261",
+          "comp": "THR",
+          "distance_angstrom": 4.192,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "228"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "261",
+          "comp": "THR",
+          "distance_angstrom": 4.258,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "228"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "C",
+          "auth_seq_id": "185",
+          "comp": "SER",
+          "distance_angstrom": 4.769,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "C",
+          "label_seq_id": "152"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "B",
+          "auth_seq_id": "185",
+          "comp": "SER",
+          "distance_angstrom": 4.9,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "152"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "BGC",
+        "MG"
+      ],
+      "pdb_id": "5ZQT",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "hexokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "askha_gamma_metal_control_candidate_review_only",
+      "structure_title": "Crystal structure of Oryza sativa hexokinase 6",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 3,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "BGC",
+        "DM1",
+        "MG"
+      ],
+      "pdb_id": "308D",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "hexokinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_askha_title_boundary_review_only",
+      "structure_title": null,
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 13.514,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.959,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O",
+          "auth_asym_id": "A",
+          "auth_seq_id": "250",
+          "comp": "MSE",
+          "distance_angstrom": 13.514,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "250"
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "A",
+          "auth_seq_id": "175",
+          "comp": "MSE",
+          "distance_angstrom": 17.308,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "175"
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "A",
+          "auth_seq_id": "210",
+          "comp": "MSE",
+          "distance_angstrom": 21.438,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "210"
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "A",
+          "auth_seq_id": "145",
+          "comp": "MSE",
+          "distance_angstrom": 23.882,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "145"
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "A",
+          "auth_seq_id": "112",
+          "comp": "MSE",
+          "distance_angstrom": 25.144,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "112"
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "192",
+          "comp": "SER",
+          "distance_angstrom": 5.959,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "192"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "215",
+          "comp": "THR",
+          "distance_angstrom": 6.39,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "215"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "242",
+          "comp": "THR",
+          "distance_angstrom": 9.112,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "242"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "243",
+          "comp": "THR",
+          "distance_angstrom": 9.902,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "243"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "132",
+          "comp": "SER",
+          "distance_angstrom": 10.56,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "132"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "GOL",
+        "MSE"
+      ],
+      "pdb_id": "3IH0",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "acetate kinase AMP-PNP",
+        "hexokinase AMP-PNP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_askha_title_boundary_review_only",
+      "structure_title": null,
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 2,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.114,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.802,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 7.457,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O2",
+          "auth_asym_id": "A",
+          "auth_seq_id": "403",
+          "comp": "I3P",
+          "distance_angstrom": 3.802,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O3",
+          "auth_asym_id": "A",
+          "auth_seq_id": "403",
+          "comp": "I3P",
+          "distance_angstrom": 4.787,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "403",
+          "comp": "I3P",
+          "distance_angstrom": 5.099,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O11",
+          "auth_asym_id": "A",
+          "auth_seq_id": "403",
+          "comp": "I3P",
+          "distance_angstrom": 5.278,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O13",
+          "auth_asym_id": "A",
+          "auth_seq_id": "403",
+          "comp": "I3P",
+          "distance_angstrom": 5.511,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "D",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "209",
+          "comp": "SER",
+          "distance_angstrom": 7.457,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "187"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "136",
+          "comp": "SER",
+          "distance_angstrom": 7.941,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "114"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "207",
+          "comp": "SER",
+          "distance_angstrom": 8.02,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "185"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "208",
+          "comp": "SER",
+          "distance_angstrom": 10.583,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "186"
+        },
+        {
+          "atom": "OH",
+          "auth_asym_id": "A",
+          "auth_seq_id": "153",
+          "comp": "TYR",
+          "distance_angstrom": 10.648,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "131"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ACT",
+        "ATP",
+        "I3P",
+        "MG",
+        "PO4"
+      ],
+      "pdb_id": "4O4D",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "acetate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_askha_title_boundary_review_only",
+      "structure_title": null,
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 2,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.394,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 7.489,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "209",
+          "comp": "SER",
+          "distance_angstrom": 7.489,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "187"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "207",
+          "comp": "SER",
+          "distance_angstrom": 7.736,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "185"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "136",
+          "comp": "SER",
+          "distance_angstrom": 7.779,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "114"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "208",
+          "comp": "SER",
+          "distance_angstrom": 9.773,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "186"
+        },
+        {
+          "atom": "OH",
+          "auth_asym_id": "A",
+          "auth_seq_id": "153",
+          "comp": "TYR",
+          "distance_angstrom": 9.938,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "131"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ACT",
+        "ATP",
+        "EDO",
+        "MG"
+      ],
+      "pdb_id": "8OMI",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "acetate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_askha_title_boundary_review_only",
+      "structure_title": null,
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 2,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.655,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.711,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "56",
+          "comp": "SER",
+          "distance_angstrom": 6.711,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "35"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "58",
+          "comp": "THR",
+          "distance_angstrom": 7.098,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "37"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "344",
+          "comp": "THR",
+          "distance_angstrom": 9.74,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "323"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "51",
+          "comp": "SER",
+          "distance_angstrom": 10.614,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "30"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "52",
+          "comp": "THR",
+          "distance_angstrom": 10.735,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "31"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ACT",
+        "ATP",
+        "CA",
+        "GOL",
+        "MG"
+      ],
+      "pdb_id": "3ATT",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "acetate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_askha_title_boundary_review_only",
+      "structure_title": "Crystal structure of Rv3168 with ATP",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 3,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ACT",
+        "ADP",
+        "MG"
+      ],
+      "pdb_id": "2WE5",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "acetate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_askha_title_boundary_review_only",
+      "structure_title": "Carbamate kinase from Enterococcus faecalis bound to MgADP",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    }
+  ],
+  "warnings": [
+    "Review-only sibling-control evidence; not a calibrated ePK score, production threshold, registry edit, label import, or external hard-negative re-audit.",
+    "askha title/query terms route the candidate search, but control acceptance and weak-rule stress use only compact mmCIF-derived local ligand/coordinate evidence."
+  ]
+}

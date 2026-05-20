@@ -1,0 +1,2050 @@
+{
+  "control_rows": [
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.68,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.609,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.491,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "OP3",
+          "auth_asym_id": "A",
+          "auth_seq_id": "400",
+          "comp": "PMV",
+          "distance_angstrom": 3.609,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "OP2",
+          "auth_asym_id": "A",
+          "auth_seq_id": "400",
+          "comp": "PMV",
+          "distance_angstrom": 4.341,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "OP1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "400",
+          "comp": "PMV",
+          "distance_angstrom": 4.408,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "A",
+          "auth_seq_id": "400",
+          "comp": "PMV",
+          "distance_angstrom": 5.864,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "400",
+          "comp": "PMV",
+          "distance_angstrom": 8.547,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "213",
+          "comp": "SER",
+          "distance_angstrom": 3.491,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "213"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "107",
+          "comp": "SER",
+          "distance_angstrom": 5.53,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "107"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "106",
+          "comp": "SER",
+          "distance_angstrom": 7.856,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "106"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "291",
+          "comp": "SER",
+          "distance_angstrom": 9.264,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "291"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "214",
+          "comp": "SER",
+          "distance_angstrom": 9.385,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "214"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "MG",
+        "PMV"
+      ],
+      "pdb_id": "3GON",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "phosphomevalonate kinase ATP magnesium",
+        "seed_from_prior_ghmp_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_gamma_metal_control_candidate_review_only",
+      "structure_title": "Streptococcus pneumoniae Phosphomevalonate Kinase in Complex with Phosphomevalonate and AMPPNP",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 2,
+      "gamma_capable_nucleotide_codes": [
+        "AGS"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.437,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 7.116,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.532,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "OXT",
+          "auth_asym_id": "B",
+          "auth_seq_id": "500",
+          "comp": "ILE",
+          "distance_angstrom": 7.116,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "G",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "D",
+          "auth_seq_id": "500",
+          "comp": "ILE",
+          "distance_angstrom": 7.157,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "L",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "B",
+          "auth_seq_id": "500",
+          "comp": "ILE",
+          "distance_angstrom": 7.361,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "G",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "OXT",
+          "auth_asym_id": "D",
+          "auth_seq_id": "500",
+          "comp": "ILE",
+          "distance_angstrom": 8.048,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "L",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "A",
+          "auth_seq_id": "500",
+          "comp": "ILE",
+          "distance_angstrom": 36.719,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "E",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "D",
+          "auth_seq_id": "183",
+          "comp": "THR",
+          "distance_angstrom": 4.532,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "D",
+          "label_seq_id": "179"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "B",
+          "auth_seq_id": "261",
+          "comp": "SER",
+          "distance_angstrom": 5.102,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "B",
+          "label_seq_id": "257"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "D",
+          "auth_seq_id": "261",
+          "comp": "SER",
+          "distance_angstrom": 5.11,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "D",
+          "label_seq_id": "257"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "183",
+          "comp": "THR",
+          "distance_angstrom": 5.331,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "B",
+          "label_seq_id": "179"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "D",
+          "auth_seq_id": "98",
+          "comp": "SER",
+          "distance_angstrom": 5.525,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "D",
+          "label_seq_id": "94"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ADP",
+        "AGS",
+        "ILE",
+        "MG"
+      ],
+      "pdb_id": "1H74",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "homoserine kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_gamma_metal_control_candidate_review_only",
+      "structure_title": "CRYSTAL STRUCTURE OF HOMOSERINE KINASE COMPLEXED WITH ILE",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    }
+  ],
+  "metadata": {
+    "candidate_pdb_ids": [
+      "1OJ4",
+      "1FWK",
+      "2R42",
+      "2OI2",
+      "3GON",
+      "3LL3",
+      "4HAC",
+      "8TEB",
+      "1KKH",
+      "1KVK",
+      "6MDE",
+      "1VIS",
+      "2DEI",
+      "6E2U",
+      "6E2V",
+      "6MDF",
+      "2PPQ",
+      "1H74",
+      "5WAT",
+      "5WAS",
+      "2J0W",
+      "6SUL",
+      "4OCP"
+    ],
+    "candidate_structure_count": 23,
+    "created_at": "2026-05-20T14:28:17Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "ghmp_gamma_metal_control_count": 2,
+    "labels_or_fingerprints_changed": false,
+    "max_structures": 32,
+    "method": "epk_sibling_controls_ghmp_bounded_control_screen",
+    "nearest_protein_hydroxyl_max_angstrom": 4.532,
+    "nearest_protein_hydroxyl_min_angstrom": 3.491,
+    "next_query": "Expand ATP-grasp beyond the two measured rows or rerun ASKHA/dNK/GHKL/GHMP screens with stricter nonpolymer-acceptor controls.",
+    "primary_outcome": "counterexample_found",
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "query_terms": [
+      "mevalonate kinase ATP magnesium",
+      "mevalonate kinase AMP-PNP magnesium",
+      "phosphomevalonate kinase ATP magnesium",
+      "homoserine kinase ATP magnesium",
+      "CDP-ME kinase ATP magnesium",
+      "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase AMP-PNP"
+    ],
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "review_status_counts": {
+      "ghmp_gamma_candidate_metal_gap_review_only": 1,
+      "ghmp_gamma_metal_control_candidate_review_only": 2,
+      "ghmp_no_gamma_context_review_only": 9,
+      "ghmp_product_state_only_review_only": 1,
+      "outside_ghmp_title_boundary_review_only": 10
+    },
+    "reviewed_sibling_family_id": "ghmp",
+    "reviewed_sibling_family_name": "GHMP-superfamily kinases",
+    "rows_per_query": 8,
+    "rows_reviewed": 23,
+    "screen_started_at": "2026-05-20T14:27:59Z",
+    "search_surface": "RCSB full_text bounded ghmp terms plus prior graph-linked seeds; candidate rows accepted only by in-memory mmCIF gamma-capable nucleotide, local Mg/Mn, and compact source-free local oxygen measurements",
+    "seed_pdb_ids": [
+      "1OJ4",
+      "1FWK",
+      "2R42",
+      "2OI2",
+      "3GON",
+      "3LL3"
+    ],
+    "source_prior_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_epk_negative_control_gamma_distance_distribution_1025.json",
+      "artifacts/v3_epk_sibling_negative_control_alternate_structure_plan_1025.json",
+      "artifacts/v3_epk_sibling_negative_control_alternate_gamma_distance_sample_1025.json",
+      "artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+      "artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json",
+      "artifacts/v3_epk_precount_gate_status_1025.json"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "weak_rule_counterexample_count": 2,
+    "weak_rule_counterexample_pdb_ids": [
+      "3GON",
+      "1H74"
+    ]
+  },
+  "query_records": [
+    {
+      "hits": [
+        "4HAC",
+        "8TEB",
+        "2OI2",
+        "1KKH",
+        "1KVK",
+        "2R42",
+        "6MDE",
+        "1VIS"
+      ],
+      "status": "ok",
+      "term": "mevalonate kinase ATP magnesium"
+    },
+    {
+      "hits": [
+        "2DEI"
+      ],
+      "status": "ok",
+      "term": "mevalonate kinase AMP-PNP magnesium"
+    },
+    {
+      "hits": [
+        "3GON",
+        "6E2U",
+        "6E2V",
+        "6MDF"
+      ],
+      "status": "ok",
+      "term": "phosphomevalonate kinase ATP magnesium"
+    },
+    {
+      "hits": [
+        "2PPQ",
+        "1H74",
+        "1FWK",
+        "5WAT",
+        "5WAS",
+        "2J0W",
+        "6SUL",
+        "4OCP"
+      ],
+      "status": "ok",
+      "term": "homoserine kinase ATP magnesium"
+    },
+    {
+      "hits": [],
+      "status": "query_failed:JSONDecodeError",
+      "term": "CDP-ME kinase ATP magnesium"
+    },
+    {
+      "hits": [],
+      "status": "query_failed:JSONDecodeError",
+      "term": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase AMP-PNP"
+    }
+  ],
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 2,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.686,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.989,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O3M",
+          "auth_asym_id": "B",
+          "auth_seq_id": "1284",
+          "comp": "CDM",
+          "distance_angstrom": 4.686,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "F",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O3M",
+          "auth_asym_id": "A",
+          "auth_seq_id": "1284",
+          "comp": "CDM",
+          "distance_angstrom": 5.199,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "C",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O2B",
+          "auth_asym_id": "B",
+          "auth_seq_id": "1284",
+          "comp": "CDM",
+          "distance_angstrom": 5.588,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "F",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O1B",
+          "auth_asym_id": "B",
+          "auth_seq_id": "1284",
+          "comp": "CDM",
+          "distance_angstrom": 5.596,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "F",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O2B",
+          "auth_asym_id": "A",
+          "auth_seq_id": "1284",
+          "comp": "CDM",
+          "distance_angstrom": 5.923,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "C",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "181",
+          "comp": "THR",
+          "distance_angstrom": 4.989,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "181"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "181",
+          "comp": "THR",
+          "distance_angstrom": 5.318,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "181"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "240",
+          "comp": "THR",
+          "distance_angstrom": 6.082,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "240"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "108",
+          "comp": "SER",
+          "distance_angstrom": 6.184,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "108"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "240",
+          "comp": "THR",
+          "distance_angstrom": 6.348,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "240"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "CDM",
+        "CL",
+        "MSE"
+      ],
+      "pdb_id": "1OJ4",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_ghmp_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_gamma_candidate_metal_gap_review_only",
+      "structure_title": "Ternary complex of 4-diphosphocytidyl-2-C-methyl-D-erythritol kinase",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "pdb_id": "1FWK",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "homoserine kinase ATP magnesium",
+        "seed_from_prior_ghmp_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_product_state_only_review_only",
+      "structure_title": "CRYSTAL STRUCTURE OF HOMOSERINE KINASE COMPLEXED WITH ADP",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "FPS",
+        "MG"
+      ],
+      "pdb_id": "2R42",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "mevalonate kinase ATP magnesium",
+        "seed_from_prior_ghmp_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_ghmp_title_boundary_review_only",
+      "structure_title": null,
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "DP6",
+        "MG"
+      ],
+      "pdb_id": "2OI2",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "mevalonate kinase ATP magnesium",
+        "seed_from_prior_ghmp_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_no_gamma_context_review_only",
+      "structure_title": "Streptococcus pneumoniae Mevalonate Kinase in Complex with Diphosphomevalonate",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.68,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.609,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.491,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "OP3",
+          "auth_asym_id": "A",
+          "auth_seq_id": "400",
+          "comp": "PMV",
+          "distance_angstrom": 3.609,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "OP2",
+          "auth_asym_id": "A",
+          "auth_seq_id": "400",
+          "comp": "PMV",
+          "distance_angstrom": 4.341,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "OP1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "400",
+          "comp": "PMV",
+          "distance_angstrom": 4.408,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "A",
+          "auth_seq_id": "400",
+          "comp": "PMV",
+          "distance_angstrom": 5.864,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "400",
+          "comp": "PMV",
+          "distance_angstrom": 8.547,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "213",
+          "comp": "SER",
+          "distance_angstrom": 3.491,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "213"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "107",
+          "comp": "SER",
+          "distance_angstrom": 5.53,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "107"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "106",
+          "comp": "SER",
+          "distance_angstrom": 7.856,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "106"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "291",
+          "comp": "SER",
+          "distance_angstrom": 9.264,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "291"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "214",
+          "comp": "SER",
+          "distance_angstrom": 9.385,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "214"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "MG",
+        "PMV"
+      ],
+      "pdb_id": "3GON",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "phosphomevalonate kinase ATP magnesium",
+        "seed_from_prior_ghmp_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_gamma_metal_control_candidate_review_only",
+      "structure_title": "Streptococcus pneumoniae Phosphomevalonate Kinase in Complex with Phosphomevalonate and AMPPNP",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 11.482,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.529,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O4",
+          "auth_asym_id": "A",
+          "auth_seq_id": "7778",
+          "comp": "XUL",
+          "distance_angstrom": 11.482,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "E",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "A",
+          "auth_seq_id": "7778",
+          "comp": "XUL",
+          "distance_angstrom": 11.628,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "E",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "A",
+          "auth_seq_id": "7",
+          "comp": "MSE",
+          "distance_angstrom": 12.988,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "9"
+        },
+        {
+          "atom": "O3",
+          "auth_asym_id": "A",
+          "auth_seq_id": "7778",
+          "comp": "XUL",
+          "distance_angstrom": 13.178,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "E",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "A",
+          "auth_seq_id": "422",
+          "comp": "MSE",
+          "distance_angstrom": 13.983,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "424"
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "259",
+          "comp": "THR",
+          "distance_angstrom": 6.529,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "261"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "12",
+          "comp": "THR",
+          "distance_angstrom": 8.028,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "14"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "260",
+          "comp": "SER",
+          "distance_angstrom": 8.725,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "262"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "11",
+          "comp": "THR",
+          "distance_angstrom": 9.221,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "13"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "241",
+          "comp": "SER",
+          "distance_angstrom": 9.577,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "243"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ADP",
+        "ATP",
+        "DXP",
+        "MSE",
+        "XUL"
+      ],
+      "pdb_id": "3LL3",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_ghmp_artifacts_or_graph_linked_alternates"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_ghmp_title_boundary_review_only",
+      "structure_title": "The crystal structure of ligand bound xylulose kinase from Lactobacillus acidophilus",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 2,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "MG",
+        "MSE"
+      ],
+      "pdb_id": "4HAC",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "mevalonate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_no_gamma_context_review_only",
+      "structure_title": "Crystal Structure of the Mevalonate Kinase from an Archaeon Methanosarcina mazei",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "CL",
+        "EDO",
+        "MG"
+      ],
+      "pdb_id": "8TEB",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "mevalonate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_ghmp_title_boundary_review_only",
+      "structure_title": "Structure of MKbur",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "DIO"
+      ],
+      "pdb_id": "1KKH",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "mevalonate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_no_gamma_context_review_only",
+      "structure_title": "Crystal Structure of the Methanococcus jannaschii Mevalonate Kinase",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 4.092,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.868,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "146",
+          "comp": "SER",
+          "distance_angstrom": 5.868,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "146"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "145",
+          "comp": "SER",
+          "distance_angstrom": 6.239,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "145"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "A",
+          "auth_seq_id": "243",
+          "comp": "THR",
+          "distance_angstrom": 7.806,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "243"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "201",
+          "comp": "SER",
+          "distance_angstrom": 9.759,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "201"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "208",
+          "comp": "SER",
+          "distance_angstrom": 10.028,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "label_asym_id": "A",
+          "label_seq_id": "208"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "pdb_id": "1KVK",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "mevalonate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_ghmp_title_boundary_review_only",
+      "structure_title": null,
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "GOL",
+        "K",
+        "MEV"
+      ],
+      "pdb_id": "6MDE",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "mevalonate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_no_gamma_context_review_only",
+      "structure_title": "Mevalonate kinase from Methanosarcina mazei with mevalonate bound",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "DIO"
+      ],
+      "pdb_id": "1VIS",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "mevalonate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_no_gamma_context_review_only",
+      "structure_title": "Crystal structure of mevalonate kinase",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "GLA",
+        "MAP"
+      ],
+      "pdb_id": "2DEI",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "mevalonate kinase AMP-PNP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_ghmp_title_boundary_review_only",
+      "structure_title": "Crystal Structure of galaktokinase from Pyrococcus horikoshii with AMP-PNP and galactose",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 1,
+      "gamma_capable_nucleotide_codes": [
+        "ACP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.458,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.527,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.261,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "O1A",
+          "auth_asym_id": "A",
+          "auth_seq_id": "401",
+          "comp": "DP6",
+          "distance_angstrom": 4.527,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O5",
+          "auth_asym_id": "A",
+          "auth_seq_id": "401",
+          "comp": "DP6",
+          "distance_angstrom": 5.514,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O3A",
+          "auth_asym_id": "A",
+          "auth_seq_id": "401",
+          "comp": "DP6",
+          "distance_angstrom": 6.134,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O6",
+          "auth_asym_id": "A",
+          "auth_seq_id": "401",
+          "comp": "DP6",
+          "distance_angstrom": 6.43,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O2A",
+          "auth_asym_id": "A",
+          "auth_seq_id": "401",
+          "comp": "DP6",
+          "distance_angstrom": 6.904,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "label_asym_id": "B",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "191",
+          "comp": "SER",
+          "distance_angstrom": 3.261,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "label_asym_id": "A",
+          "label_seq_id": "215"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "106",
+          "comp": "SER",
+          "distance_angstrom": 5.697,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "label_asym_id": "A",
+          "label_seq_id": "130"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "190",
+          "comp": "SER",
+          "distance_angstrom": 6.418,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "label_asym_id": "A",
+          "label_seq_id": "214"
+        },
+        {
+          "atom": "OH",
+          "auth_asym_id": "A",
+          "auth_seq_id": "255",
+          "comp": "TYR",
+          "distance_angstrom": 6.792,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "label_asym_id": "A",
+          "label_seq_id": "279"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "A",
+          "auth_seq_id": "140",
+          "comp": "SER",
+          "distance_angstrom": 7.461,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "label_asym_id": "A",
+          "label_seq_id": "164"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ACP",
+        "DP6",
+        "MG"
+      ],
+      "pdb_id": "6E2U",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "phosphomevalonate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_ghmp_title_boundary_review_only",
+      "structure_title": "MDDEF in complex with MVAPP, AMPPCP and Magnesium",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 2,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ADP",
+        "BEF",
+        "DP6",
+        "MG"
+      ],
+      "pdb_id": "6E2V",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "phosphomevalonate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_ghmp_title_boundary_review_only",
+      "structure_title": "MDDEF in complex with MVAPP, ADPBeF3 and magnesium",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "GOL",
+        "PMV"
+      ],
+      "pdb_id": "6MDF",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "phosphomevalonate kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_no_gamma_context_review_only",
+      "structure_title": "Mevalonate kinase from Methanosarcina mazei with 5-phosphomevalonate bound",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "MG",
+        "MSE",
+        "PO4"
+      ],
+      "pdb_id": "2PPQ",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "homoserine kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_no_gamma_context_review_only",
+      "structure_title": "Crystal structure of the homoserine kinase from Agrobacterium tumefaciens",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 2,
+      "gamma_capable_nucleotide_codes": [
+        "AGS"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.437,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 7.116,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.532,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "OXT",
+          "auth_asym_id": "B",
+          "auth_seq_id": "500",
+          "comp": "ILE",
+          "distance_angstrom": 7.116,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "G",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "D",
+          "auth_seq_id": "500",
+          "comp": "ILE",
+          "distance_angstrom": 7.157,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "L",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "B",
+          "auth_seq_id": "500",
+          "comp": "ILE",
+          "distance_angstrom": 7.361,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "G",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "OXT",
+          "auth_asym_id": "D",
+          "auth_seq_id": "500",
+          "comp": "ILE",
+          "distance_angstrom": 8.048,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "L",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "O",
+          "auth_asym_id": "A",
+          "auth_seq_id": "500",
+          "comp": "ILE",
+          "distance_angstrom": 36.719,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "E",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OG1",
+          "auth_asym_id": "D",
+          "auth_seq_id": "183",
+          "comp": "THR",
+          "distance_angstrom": 4.532,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "D",
+          "label_seq_id": "179"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "B",
+          "auth_seq_id": "261",
+          "comp": "SER",
+          "distance_angstrom": 5.102,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "B",
+          "label_seq_id": "257"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "D",
+          "auth_seq_id": "261",
+          "comp": "SER",
+          "distance_angstrom": 5.11,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "D",
+          "label_seq_id": "257"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "183",
+          "comp": "THR",
+          "distance_angstrom": 5.331,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "B",
+          "label_seq_id": "179"
+        },
+        {
+          "atom": "OG",
+          "auth_asym_id": "D",
+          "auth_seq_id": "98",
+          "comp": "SER",
+          "distance_angstrom": 5.525,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "AGS",
+          "label_asym_id": "D",
+          "label_seq_id": "94"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ADP",
+        "AGS",
+        "ILE",
+        "MG"
+      ],
+      "pdb_id": "1H74",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "homoserine kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_gamma_metal_control_candidate_review_only",
+      "structure_title": "CRYSTAL STRUCTURE OF HOMOSERINE KINASE COMPLEXED WITH ILE",
+      "unified_rule_expected_blocker_source_free": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "MG",
+        "P6G",
+        "PO4",
+        "SO4"
+      ],
+      "pdb_id": "5WAT",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "homoserine kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_no_gamma_context_review_only",
+      "structure_title": "Corynebacterium glutamicum Full length Homoserine kinase",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 0,
+      "metal_ligand_codes": [],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "PO4"
+      ],
+      "pdb_id": "5WAS",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "homoserine kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "ghmp_no_gamma_context_review_only",
+      "structure_title": "Corynebacterium glutamicum Hydrolyzed Homoserine kinase",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ADP",
+        "ASP",
+        "CL",
+        "MG"
+      ],
+      "pdb_id": "2J0W",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "homoserine kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_ghmp_title_boundary_review_only",
+      "structure_title": "Crystal structure of E. coli aspartokinase III in complex with aspartate and ADP (R-state)",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 4,
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 8,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.831,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.324,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 8.774,
+      "nearest_nonpolymer_oxygen_rows": [
+        {
+          "atom": "OAI",
+          "auth_asym_id": "B",
+          "auth_seq_id": "405",
+          "comp": "UAM",
+          "distance_angstrom": 3.324,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "P",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "OAI",
+          "auth_asym_id": "A",
+          "auth_seq_id": "406",
+          "comp": "UAM",
+          "distance_angstrom": 3.351,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "J",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "OAI",
+          "auth_asym_id": "D",
+          "auth_seq_id": "406",
+          "comp": "UAM",
+          "distance_angstrom": 3.388,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "CA",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "OAI",
+          "auth_asym_id": "C",
+          "auth_seq_id": "405",
+          "comp": "UAM",
+          "distance_angstrom": 3.4,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "V",
+          "label_seq_id": "."
+        },
+        {
+          "atom": "OAR",
+          "auth_asym_id": "C",
+          "auth_seq_id": "405",
+          "comp": "UAM",
+          "distance_angstrom": 4.714,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "V",
+          "label_seq_id": "."
+        }
+      ],
+      "nearest_protein_hydroxyl_rows": [
+        {
+          "atom": "OH",
+          "auth_asym_id": "B",
+          "auth_seq_id": "242",
+          "comp": "TYR",
+          "distance_angstrom": 8.774,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "242"
+        },
+        {
+          "atom": "OH",
+          "auth_asym_id": "D",
+          "auth_seq_id": "242",
+          "comp": "TYR",
+          "distance_angstrom": 8.833,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "D",
+          "label_seq_id": "242"
+        },
+        {
+          "atom": "OH",
+          "auth_asym_id": "C",
+          "auth_seq_id": "242",
+          "comp": "TYR",
+          "distance_angstrom": 8.833,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "C",
+          "label_seq_id": "242"
+        },
+        {
+          "atom": "OH",
+          "auth_asym_id": "A",
+          "auth_seq_id": "242",
+          "comp": "TYR",
+          "distance_angstrom": 8.889,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "A",
+          "label_seq_id": "242"
+        },
+        {
+          "atom": "OG1",
+          "auth_asym_id": "B",
+          "auth_seq_id": "54",
+          "comp": "THR",
+          "distance_angstrom": 11.251,
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "label_asym_id": "B",
+          "label_seq_id": "54"
+        }
+      ],
+      "observed_ligand_codes": [
+        "ANP",
+        "CL",
+        "MG",
+        "UAM"
+      ],
+      "pdb_id": "6SUL",
+      "product_or_partial_nucleotide_codes": [],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "homoserine kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_ghmp_title_boundary_review_only",
+      "structure_title": "Amicoumacin kinase AmiN in complex with AMP-PNP, Mg2+ and Ami",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "family_id": null,
+      "family_name": null,
+      "fetch_status": "ok",
+      "gamma_atom_count": 0,
+      "gamma_capable_nucleotide_codes": [],
+      "labels_or_fingerprints_changed": false,
+      "metal_atom_count": 1,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": null,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": null,
+      "nearest_nonpolymer_oxygen_rows": [],
+      "nearest_protein_hydroxyl_rows": [],
+      "observed_ligand_codes": [
+        "ADP",
+        "GN1",
+        "MG",
+        "MSE"
+      ],
+      "pdb_id": "4OCP",
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "homoserine kinase ATP magnesium"
+      ],
+      "ready_for_label_import": false,
+      "review_only": true,
+      "review_status": "outside_ghmp_title_boundary_review_only",
+      "structure_title": "N-acetylhexosamine 1-phosphate kinase in complex with GlcNAc-1-phosphate and ADP",
+      "unified_rule_expected_blocker_source_free": null,
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    }
+  ],
+  "warnings": [
+    "Review-only sibling-control evidence; not a calibrated ePK score, production threshold, registry edit, label import, or external hard-negative re-audit.",
+    "ghmp title/query terms route the candidate search, but control acceptance and weak-rule stress use only compact mmCIF-derived local ligand/coordinate evidence."
+  ]
+}
