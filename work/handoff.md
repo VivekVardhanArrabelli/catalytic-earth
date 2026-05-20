@@ -68,6 +68,76 @@ domain/EC-filtered canonical ePK ligand search with explicit ATPase/chaperone
 exclusions. Main-loop work should continue with the frozen ASKHA tranche or a
 new prospective external surface, not ePK scorer activation.
 
+The same run closes the frozen ASKHA control tranche in
+`artifacts/v3_askha_vs_atp_family_control_tranche_axis_decisions_20260520.json`
+and its no-claim baseline companion
+`artifacts/v3_askha_vs_atp_family_control_tranche_baseline_comparison_20260520.json`.
+The exact 14 preregistered rows remain review-only: four current hydrolase
+controls are `mechanism_match`, six ATP-family countercontrols are
+`out_of_scope` for ASKHA, three ASKHA boundary rows are `needs_review`, and
+`m_csa:651` is a `terminal_rejection` because the prior expert decision rejected
+that current label candidate. The source-free ASKHA axis-ready count is 0.
+Current 8-fingerprint retrieval is diagnostic only and still routes 12/14 rows
+to `metal_dependent_hydrolase`; no baseline superiority, scorer, threshold,
+registry edit, or label import is authorized.
+
+`artifacts/v3_atp_grasp_family_readiness_packet_20260520.json` adds the next
+non-ePK family-readiness packet after ASKHA. ATP-grasp has two
+expert-supported boundary rows (`m_csa:310` and `m_csa:498`), both
+non-countable expert-rejected reaction/substrate mismatch lanes with current
+`metal_dependent_hydrolase` top1 collapse. The packet records ATP/Mg,
+carboxylate/amide acceptor, ATP-grasp fold, hydrolase, and neighboring
+ATP-family counteraxis needs, but has 0 countable positive seeds and 0
+source-free-axis-ready rows. The next admissible experiment is a frozen
+ATP-grasp-vs-neighbor-ATP-family control tranche; no production fingerprint,
+threshold, registry edit, or label import is authorized.
+
+`artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_preregistration_20260520.json`
+freezes that exact ATP-grasp next experiment before any new axis scoring. The
+12 rows are two ATP-grasp boundary rows, four current hydrolase controls, two
+ASKHA controls, two GHMP/PfkB small-molecule kinase controls, and two GHKL/NDK
+countercontrols. It is preregistration only: no new geometry, sequence,
+Foldseek, inverse-gate, or production-fingerprint scoring was run to select the
+rows, and no import or production gate is open.
+`artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json`
+then closes the frozen ATP-grasp tranche as review-only terminal evidence:
+four current hydrolase controls are `mechanism_match`, six neighboring
+ATP-family controls are `out_of_scope`, and both ATP-grasp boundary rows are
+`terminal_rejection` because prior expert review rejected those current label
+candidates and the source-free ATP-grasp axis is absent. The matching
+`artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json`
+keeps EC/name, geometry retrieval, sequence, ESM, and Foldseek baselines
+diagnostic only; no superiority claim or production path is opened.
+
+`artifacts/v3_ghkl_family_readiness_packet_20260520.json` adds a second
+ATP-family readiness packet for GHKL/Bergerat kinases. The two
+expert-supported rows (`m_csa:327` CheA and `m_csa:603` pyruvate dehydrogenase
+kinase) both have local nucleotide/Mg context, but both remain non-countable
+expert-rejected mismatch lanes with `metal_dependent_hydrolase` top1 collapse.
+The packet records GHKL fold, histidine/protein-acceptor identity, hydrolase,
+generic ATP/Mg, and neighboring ATP-family counteraxis blockers. GHKL remains
+0 countable positives, 0 source-free-axis-ready rows, and no-go for production
+fingerprint expansion.
+`artifacts/v3_atp_family_readiness_index_20260520.json` rolls up the
+ATP-family queue after ASKHA and ATP-grasp terminal tranches. It keeps all nine
+ATP/phosphoryl-transfer families review-only: ASKHA and ATP-grasp are closed
+as no-go tranches, GHKL has a packet but no frozen tranche yet, ePK stays
+research-lane-only, and NDK/PfkB/GHMP/PfkA/dNK still need packets before any
+scoring. The recommended next main-loop ATP-family item is a frozen
+GHKL-vs-neighbor-ATP-family control tranche.
+
+The run also opens and closes a genuinely new prospective external
+glycosyltransferase mini-campaign. `artifacts/v3_prospective_external_glycosyltransferase_minicampaign_freeze_20260520.json`
+freezes 20 reviewed UniProtKB/Swiss-Prot EC 2.4.1.* rows before scoring, with
+catalytic-activity text, active-site annotation, at least one PDB
+cross-reference, prior-external-pool exclusions, and a two-row cap per primary
+EC number. `artifacts/v3_prospective_external_glycosyltransferase_minicampaign_decision_packet_20260520.json`
+then closes all 20 as review-only terminal rejections by uncovered mechanism
+lane: glycosyltransferase chemistry is outside the current 8 production
+fingerprints and covered import-counterevidence lanes, so 0 rows were scored
+or import-gated. `artifacts/v3_glycosyltransferase_minicampaign_baseline_comparison_20260520.json`
+keeps EC/keyword routing diagnostic only and makes no superiority claim.
+
 As of the 2026-05-20T20:17:20Z automation run,
 `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
 freezes a genuinely new 20-row Swiss-Prot EC 2.1.1.x methyltransferase surface

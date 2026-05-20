@@ -1,0 +1,693 @@
+{
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "artifact_id": "v3_prospective_external_glycosyltransferase_minicampaign_decision_packet_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 20,
+    "candidate_selection_before_outcome_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T21:35:00Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "inverse_gate_scored_candidate_count": 0,
+    "method": "prospective_external_glycosyltransferase_minicampaign_terminal_decisions",
+    "normalized_terminal_decision_counts": {
+      "terminal_rejection": 20
+    },
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "scored_candidate_count": 0,
+    "source_artifacts": {
+      "freeze": "artifacts/v3_prospective_external_glycosyltransferase_minicampaign_freeze_20260520.json"
+    }
+  },
+  "rows": [
+    {
+      "accession": "P16442",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "BGAT_HUMAN",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 1,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.37",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.37",
+          "2.4.1.40"
+        ],
+        "pdb_count": 151
+      },
+      "row_id": "uniprot:P16442",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q9Y2G5",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "OFUT2_HUMAN",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 2,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.221",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.221"
+        ],
+        "pdb_count": 2
+      },
+      "row_id": "uniprot:Q9Y2G5",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q9NPZ5",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "B3GA2_HUMAN",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 3,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.135",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.135"
+        ],
+        "pdb_count": 1
+      },
+      "row_id": "uniprot:Q9NPZ5",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q9Y231",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "FUT9_HUMAN",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 4,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.152",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.152"
+        ],
+        "pdb_count": 8
+      },
+      "row_id": "uniprot:Q9Y231",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "O43909",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "EXTL3_HUMAN",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 5,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.223",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.223"
+        ],
+        "pdb_count": 4
+      },
+      "row_id": "uniprot:O43909",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q8NBL1",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "PGLT1_HUMAN",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 6,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.376",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.376",
+          "2.4.2.63"
+        ],
+        "pdb_count": 6
+      },
+      "row_id": "uniprot:Q8NBL1",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q9P2W7",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "B3GA1_HUMAN",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 7,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.135",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.135"
+        ],
+        "pdb_count": 3
+      },
+      "row_id": "uniprot:Q9P2W7",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q04446",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "GLGB_HUMAN",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 8,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.18",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.18"
+        ],
+        "pdb_count": 3
+      },
+      "row_id": "uniprot:Q04446",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "O15294",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "OGT1_HUMAN",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 9,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.255",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.255"
+        ],
+        "pdb_count": 44
+      },
+      "row_id": "uniprot:O15294",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "P05655",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "LSC_BACSU",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 10,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.10",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.10"
+        ],
+        "pdb_count": 9
+      },
+      "row_id": "uniprot:P05655",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q01401",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "GLGB_ORYSJ",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 11,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.18",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.18"
+        ],
+        "pdb_count": 4
+      },
+      "row_id": "uniprot:Q01401",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q8WR51",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "OFUT2_CAEEL",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 12,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.221",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.221"
+        ],
+        "pdb_count": 2
+      },
+      "row_id": "uniprot:Q8WR51",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q9M156",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "U72B1_ARATH",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 13,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.-",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.-",
+          "2.4.1.218"
+        ],
+        "pdb_count": 3
+      },
+      "row_id": "uniprot:Q9M156",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q9LNE6",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "U89C1_ARATH",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 14,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.-",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.-"
+        ],
+        "pdb_count": 4
+      },
+      "row_id": "uniprot:Q9LNE6",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "P14769",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "GGTA1_BOVIN",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 15,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.87",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.87"
+        ],
+        "pdb_count": 28
+      },
+      "row_id": "uniprot:P14769",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "P37653",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "BCSA_ECOLI",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 16,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.12",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.12"
+        ],
+        "pdb_count": 6
+      },
+      "row_id": "uniprot:P37653",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q09324",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "GCNT1_MOUSE",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 17,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.102",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.102"
+        ],
+        "pdb_count": 3
+      },
+      "row_id": "uniprot:Q09324",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q941L0",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "CESA3_ARATH",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 18,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.12",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.12"
+        ],
+        "pdb_count": 3
+      },
+      "row_id": "uniprot:Q941L0",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "O09008",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "MFNG_MOUSE",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 19,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.222",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.222"
+        ],
+        "pdb_count": 2
+      },
+      "row_id": "uniprot:O09008",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "Q9ES89",
+      "countable_label_candidate": false,
+      "decision_reason": "glycosyltransferase chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "entry_name": "EXTL2_MOUSE",
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "freeze_rank": 20,
+      "normalized_terminal_decision": "terminal_rejection",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "primary_ec": "2.4.1.223",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.4.1.223"
+        ],
+        "pdb_count": 4
+      },
+      "row_id": "uniprot:Q9ES89",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane"
+    }
+  ],
+  "synthesis_conclusion": {
+    "label_import_authorized": false,
+    "overall": "glycosyltransferase_minicampaign_closed_as_uncovered_mechanism_lane_terminal_failure",
+    "production_scoring_remains_closed": true,
+    "superiority_claim_permitted": false
+  },
+  "task_definition": {
+    "allowed_decisions": [
+      "mechanism_match",
+      "out_of_scope",
+      "ambiguous",
+      "needs_review",
+      "terminal_rejection"
+    ],
+    "positive_claim_allowed": false,
+    "task": "Assign terminal review-only decisions to the frozen prospective glycosyltransferase mini-campaign without production scoring."
+  }
+}

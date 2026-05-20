@@ -272,6 +272,68 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(sequence["metadata"]["ready_for_label_import"])
 
+    def test_glycosyltransferase_minicampaign_is_terminal_pre_scoring(self) -> None:
+        freeze = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_glycosyltransferase_minicampaign_freeze_20260520.json"
+        )
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_glycosyltransferase_minicampaign_decision_packet_20260520.json"
+        )
+        baseline = _load_json(
+            ARTIFACTS
+            / "v3_glycosyltransferase_minicampaign_baseline_comparison_20260520.json"
+        )
+
+        self.assertTrue(freeze["metadata"]["review_only"])
+        self.assertTrue(
+            freeze["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(freeze["metadata"]["candidate_count"], 20)
+        self.assertEqual(freeze["metadata"]["primary_ec_cap"], 2)
+        self.assertEqual(freeze["metadata"]["production_fingerprint_count"], 8)
+        self.assertFalse(freeze["metadata"]["ready_for_label_import"])
+        self.assertTrue(
+            all(row["score_status"] == "not_scored_at_freeze" for row in freeze["rows"])
+        )
+
+        metadata = decisions["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["candidate_count"], 20)
+        self.assertEqual(
+            metadata["normalized_terminal_decision_counts"],
+            {"terminal_rejection": 20},
+        )
+        self.assertEqual(metadata["scored_candidate_count"], 0)
+        self.assertEqual(metadata["inverse_gate_scored_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertTrue(
+            all(
+                row["terminal_decision"]
+                == "terminal_rejection_uncovered_mechanism_lane"
+                for row in decisions["rows"]
+            )
+        )
+
+        self.assertFalse(baseline["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(baseline["metadata"]["frozen_row_count"], 20)
+        self.assertEqual(
+            baseline["metrics"]["ec_keyword_lane_router"]["glycosyltransferase_ec_hits"],
+            20,
+        )
+        self.assertEqual(
+            baseline["metrics"]["current_geometry_retrieval_triage"]["scored_row_count"],
+            0,
+        )
+        self.assertFalse(
+            baseline["metrics"]["deterministic_kmer_nearest_neighbor"][
+                "computed_in_this_artifact"
+            ]
+        )
+
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_sdr_family_readiness_packet_20260520.json")
         metadata = packet["metadata"]
@@ -424,6 +486,313 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertIn(
             "No new geometry",
             prereg["frozen_before_scoring_statement"],
+        )
+
+    def test_askha_control_tranche_decisions_stay_review_only(self) -> None:
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_askha_vs_atp_family_control_tranche_axis_decisions_20260520.json"
+        )
+        metadata = decisions["metadata"]
+        conclusion = decisions["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 14)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {
+                "mechanism_match": 4,
+                "needs_review": 3,
+                "out_of_scope": 6,
+                "terminal_rejection": 1,
+            },
+        )
+        self.assertEqual(metadata["source_free_askha_axis_ready_count"], 0)
+        self.assertEqual(metadata["askha_positive_like_axis_ready_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        rows = {row["row_id"]: row for row in decisions["rows"]}
+        self.assertEqual(rows["m_csa:592"]["terminal_decision"], "needs_review")
+        self.assertEqual(rows["m_csa:651"]["terminal_decision"], "terminal_rejection")
+        self.assertEqual(rows["m_csa:310"]["terminal_decision"], "out_of_scope")
+        self.assertEqual(rows["m_csa:15"]["terminal_decision"], "mechanism_match")
+        self.assertTrue(all(row["selection_frozen_before_axis_scoring"] for row in rows.values()))
+        self.assertTrue(
+            all(
+                not row["source_free_askha_axis"]["axis_ready_for_threshold_calibration"]
+                for row in rows.values()
+            )
+        )
+        self.assertEqual(
+            conclusion["overall"],
+            "askha_remains_review_only_and_not_production_ready",
+        )
+
+    def test_askha_baseline_comparison_makes_no_claim(self) -> None:
+        comparison = _load_json(
+            ARTIFACTS
+            / "v3_askha_vs_atp_family_control_tranche_baseline_comparison_20260520.json"
+        )
+        metadata = comparison["metadata"]
+        metrics = comparison["metrics"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["frozen_row_count"], 14)
+        self.assertFalse(comparison["task_definition"]["positive_claim_allowed"])
+        self.assertEqual(
+            metrics["review_only_axis_triage"]["terminal_decision_counts"],
+            {
+                "mechanism_match": 4,
+                "needs_review": 3,
+                "out_of_scope": 6,
+                "terminal_rejection": 1,
+            },
+        )
+        self.assertEqual(
+            metrics["review_only_axis_triage"]["source_free_askha_axis_ready_count"],
+            0,
+        )
+        self.assertEqual(
+            metrics["current_geometry_retrieval_triage"]["top1_fingerprint_counts"],
+            {"metal_dependent_hydrolase": 12, "ser_his_acid_hydrolase": 2},
+        )
+        self.assertEqual(
+            metrics["current_geometry_retrieval_triage"][
+                "askha_boundary_non_abstention_count_at_0_4115"
+            ],
+            2,
+        )
+        self.assertEqual(
+            metrics["ec_keyword_name_proxy"][
+                "false_positive_atp_family_countercontrol_keyword_hits"
+            ],
+            4,
+        )
+        self.assertFalse(
+            metrics["ec_keyword_name_proxy"]["detects_source_free_axis_gap"]
+        )
+
+    def test_atp_grasp_family_readiness_packet_stays_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS / "v3_atp_grasp_family_readiness_packet_20260520.json"
+        )
+        metadata = packet["metadata"]
+        readiness = packet["family_readiness"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            readiness["current_decision"],
+            "do_not_promote_production_fingerprint",
+        )
+        self.assertEqual(readiness["positive_like_boundary_row_count"], 2)
+        self.assertEqual(readiness["countable_positive_seed_count"], 0)
+        self.assertEqual(readiness["source_free_axis_ready_count"], 0)
+        self.assertEqual(
+            {row["entry_id"] for row in readiness["positive_like_boundary_rows"]},
+            {"m_csa:310", "m_csa:498"},
+        )
+        self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
+        self.assertFalse(packet["next_experiment"]["decision_to_start_now"])
+        self.assertTrue(
+            any(mode["id"] == "hydrolase_top1_collapse" for mode in packet["likely_failure_modes"])
+        )
+
+    def test_atp_grasp_control_tranche_preregistration_freezes_rows(self) -> None:
+        prereg = _load_json(
+            ARTIFACTS
+            / "v3_atp_grasp_vs_neighbor_family_control_tranche_preregistration_20260520.json"
+        )
+        metadata = prereg["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 12)
+        self.assertEqual(metadata["atp_grasp_boundary_row_count"], 2)
+        self.assertEqual(metadata["current_hydrolase_control_count"], 4)
+        self.assertEqual(metadata["askha_countercontrol_count"], 2)
+        self.assertEqual(metadata["neighbor_atp_family_countercontrol_count"], 4)
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        roles = {}
+        for row in prereg["rows"]:
+            roles[row["row_role"]] = roles.get(row["row_role"], 0) + 1
+            self.assertEqual(row["score_status"], "not_scored_in_this_preregistration")
+            self.assertFalse(row["ready_for_label_import_at_freeze"])
+        self.assertEqual(
+            roles,
+            {
+                "askha_countercontrol": 2,
+                "atp_grasp_positive_like_boundary": 2,
+                "current_production_hydrolase_control": 4,
+                "phosphohistidine_or_nucleoside_kinase_countercontrol": 2,
+                "small_molecule_kinase_countercontrol": 2,
+            },
+        )
+        self.assertEqual(
+            {row["row_id"] for row in prereg["rows"] if row["row_role"] == "atp_grasp_positive_like_boundary"},
+            {"m_csa:310", "m_csa:498"},
+        )
+        self.assertIn("No new geometry", prereg["frozen_before_scoring_statement"])
+
+    def test_atp_grasp_control_tranche_decisions_stay_review_only(self) -> None:
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_atp_grasp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json"
+        )
+        metadata = decisions["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 12)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"mechanism_match": 4, "out_of_scope": 6, "terminal_rejection": 2},
+        )
+        self.assertEqual(metadata["source_free_atp_grasp_axis_ready_count"], 0)
+        self.assertEqual(metadata["atp_grasp_positive_like_axis_ready_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        rows = {row["row_id"]: row for row in decisions["rows"]}
+        self.assertEqual(rows["m_csa:310"]["terminal_decision"], "terminal_rejection")
+        self.assertEqual(rows["m_csa:498"]["terminal_decision"], "terminal_rejection")
+        self.assertEqual(rows["m_csa:592"]["terminal_decision"], "out_of_scope")
+        self.assertEqual(rows["m_csa:15"]["terminal_decision"], "mechanism_match")
+        self.assertTrue(all(row["selection_frozen_before_axis_scoring"] for row in rows.values()))
+        self.assertTrue(
+            all(
+                not row["source_free_atp_grasp_axis"][
+                    "axis_ready_for_threshold_calibration"
+                ]
+                for row in rows.values()
+            )
+        )
+        self.assertEqual(
+            decisions["synthesis_conclusion"]["overall"],
+            "atp_grasp_remains_review_only_and_not_production_ready",
+        )
+
+    def test_atp_grasp_baseline_comparison_makes_no_claim(self) -> None:
+        comparison = _load_json(
+            ARTIFACTS
+            / "v3_atp_grasp_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json"
+        )
+        metadata = comparison["metadata"]
+        metrics = comparison["metrics"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["frozen_row_count"], 12)
+        self.assertFalse(comparison["task_definition"]["positive_claim_allowed"])
+        self.assertEqual(
+            metrics["review_only_axis_triage"]["terminal_decision_counts"],
+            {"mechanism_match": 4, "out_of_scope": 6, "terminal_rejection": 2},
+        )
+        self.assertEqual(
+            metrics["review_only_axis_triage"][
+                "source_free_atp_grasp_axis_ready_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            metrics["current_geometry_retrieval_triage"]["top1_fingerprint_counts"],
+            {"metal_dependent_hydrolase": 10, "ser_his_acid_hydrolase": 2},
+        )
+        self.assertEqual(
+            metrics["current_geometry_retrieval_triage"][
+                "atp_grasp_boundary_non_abstention_count_at_0_4115"
+            ],
+            0,
+        )
+        self.assertEqual(
+            metrics["ec_keyword_name_proxy"]["target_atp_grasp_rows_hit"],
+            2,
+        )
+        self.assertFalse(
+            metrics["ec_keyword_name_proxy"]["detects_source_free_axis_gap"]
+        )
+
+    def test_ghkl_family_readiness_packet_stays_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS / "v3_ghkl_family_readiness_packet_20260520.json"
+        )
+        metadata = packet["metadata"]
+        readiness = packet["family_readiness"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(readiness["positive_like_boundary_row_count"], 2)
+        self.assertEqual(readiness["countable_positive_seed_count"], 0)
+        self.assertEqual(readiness["source_free_axis_ready_count"], 0)
+        self.assertEqual(
+            {row["entry_id"] for row in readiness["positive_like_boundary_rows"]},
+            {"m_csa:327", "m_csa:603"},
+        )
+        self.assertTrue(
+            all(
+                row["local_metal_context"]
+                for row in readiness["positive_like_boundary_rows"]
+            )
+        )
+        self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
+        self.assertFalse(packet["next_experiment"]["decision_to_start_now"])
+        self.assertTrue(
+            any(mode["id"] == "generic_atp_mg_leakage" for mode in packet["likely_failure_modes"])
+        )
+
+    def test_atp_family_readiness_index_keeps_queue_review_only(self) -> None:
+        index = _load_json(ARTIFACTS / "v3_atp_family_readiness_index_20260520.json")
+        metadata = index["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["family_count"], 9)
+        self.assertEqual(metadata["closed_review_only_no_go_count"], 2)
+        self.assertEqual(metadata["research_lane_only_count"], 1)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        rows = {row["family_id"]: row for row in index["rows"]}
+        self.assertEqual(rows["askha"]["production_readiness_status"], "closed_review_only_no_go")
+        self.assertEqual(rows["atp_grasp"]["production_readiness_status"], "closed_review_only_no_go")
+        self.assertEqual(rows["ghkl"]["production_readiness_status"], "readiness_packet_no_go")
+        self.assertEqual(rows["epk"]["production_readiness_status"], "research_lane_only_no_go")
+        self.assertEqual(index["recommended_main_loop_queue"][0]["family_id"], "ghkl")
+        self.assertEqual(
+            index["synthesis_conclusion"]["overall"],
+            "atp_family_readiness_index_supports_more_review_only_small_wins_but_no_production_promotion",
         )
 
     def test_main_loop_small_win_decision_register_is_review_only(self) -> None:

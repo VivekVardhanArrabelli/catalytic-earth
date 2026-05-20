@@ -1,0 +1,787 @@
+{
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "artifact_id": "v3_askha_vs_atp_family_control_tranche_axis_decisions_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "askha_positive_like_axis_ready_count": 0,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-20T21:24:00Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 14,
+    "import_ready_candidate_count": 0,
+    "method": "askha_vs_atp_family_control_tranche_review_only_axis_decisions",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "askha_readiness_packet": "artifacts/v3_askha_family_readiness_packet_20260520.json",
+      "atp_family_expansion": "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "geometry_retrieval": "artifacts/v3_geometry_retrieval_1025.json",
+      "tranche_freeze": "artifacts/v3_askha_vs_atp_family_control_tranche_preregistration_20260520.json"
+    },
+    "source_free_askha_axis_ready_count": 0,
+    "terminal_decision_counts": {
+      "mechanism_match": 4,
+      "needs_review": 3,
+      "out_of_scope": 6,
+      "terminal_rejection": 1
+    }
+  },
+  "rows": [
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": false,
+        "family_id": "askha",
+        "support_level": "expert_review_supported_family_boundary"
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "GLC"
+        ],
+        "pdb_id": "3IDH",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "GLC",
+          "K"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5769
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "glucokinase",
+      "freeze_rank": 1,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": false,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:592",
+      "row_role": "askha_positive_like_boundary",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": true,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "needs_review",
+      "terminal_decision_reason": "expert-supported ASKHA boundary evidence exists, but the selected local structure lacks a complete source-free ATP/Mg plus acceptor axis."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": false,
+        "family_id": "askha",
+        "support_level": "expert_review_supported_family_boundary"
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1G99",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "SO4",
+          "ADP"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [
+          "role_inferred_metal_missing_water_activation_role"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4227
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "acetate kinase",
+      "freeze_rank": 2,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": false,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:643",
+      "row_role": "askha_positive_like_boundary",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": false,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": false
+      },
+      "terminal_decision": "needs_review",
+      "terminal_decision_reason": "expert-supported ASKHA boundary evidence exists, but the selected local structure lacks a complete source-free ATP/Mg plus acceptor axis."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": false,
+        "family_id": "askha",
+        "support_level": "expert_review_supported_family_boundary"
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1IG8",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "SO4"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3633
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "hexokinase (type II)",
+      "freeze_rank": 3,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": false,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:651",
+      "row_role": "askha_positive_like_boundary",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": false,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": false
+      },
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "expert review rejected this current label candidate and the source-free ASKHA local axis is absent."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": false,
+        "family_id": "askha",
+        "support_level": "expert_review_supported_family_boundary"
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "GLC"
+        ],
+        "pdb_id": "1DGK",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "GLC",
+          "ADP",
+          "PO4"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3559
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "hexokinase (type I)",
+      "freeze_rank": 4,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": false,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:696",
+      "row_role": "askha_positive_like_boundary",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": true,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": false
+      },
+      "terminal_decision": "needs_review",
+      "terminal_decision_reason": "expert-supported ASKHA boundary evidence exists, but the selected local structure lacks a complete source-free ATP/Mg plus acceptor axis."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": false,
+        "family_id": null,
+        "support_level": null
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ZN"
+        ],
+        "pdb_id": "1ZNB",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ZN",
+          "NA"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5777
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "beta-lactamase (Class B1)",
+      "freeze_rank": 5,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": true,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:15",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": true,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": false,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current production hydrolase control retains its existing mechanism context; it is a negative contrast for ASKHA."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": false,
+        "family_id": null,
+        "support_level": null
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ZN"
+        ],
+        "pdb_id": "1BC2",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ZN",
+          "SO4"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5929
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "beta-lactamase (Class B1)",
+      "freeze_rank": 6,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": true,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:16",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": true,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": false,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current production hydrolase control retains its existing mechanism context; it is a negative contrast for ASKHA."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": false,
+        "family_id": null,
+        "support_level": null
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ACY"
+        ],
+        "pdb_id": "1WHS",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ACY",
+          "NAG",
+          "FUC",
+          "GOL"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "not_required",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.8877
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "carboxypeptidase D",
+      "freeze_rank": 7,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": true,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:5",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": false,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": false
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current production hydrolase control retains its existing mechanism context; it is a negative contrast for ASKHA."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": false,
+        "family_id": null,
+        "support_level": null
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ACT"
+        ],
+        "pdb_id": "1WAB",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ACT"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "not_required",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.8774
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "1-alkyl-2-acetylglycerophosphocholine esterase",
+      "freeze_rank": 8,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": true,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:94",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": false,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": false
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current production hydrolase control retains its existing mechanism context; it is a negative contrast for ASKHA."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": true,
+        "family_id": "atp_grasp",
+        "support_level": "expert_review_supported_family_boundary"
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "PHY"
+        ],
+        "pdb_id": "1E4E",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "PHY",
+          "MG",
+          "ADP",
+          "SO4",
+          "GOL"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3649
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "D-alanine-(R)-lactate ligase",
+      "freeze_rank": 9,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": false,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:310",
+      "row_role": "atp_family_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": true,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "predeclared ATP-family countercontrol is outside ASKHA routing for this tranche."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": true,
+        "family_id": "atp_grasp",
+        "support_level": "expert_review_supported_family_boundary"
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "SO4",
+          "ADP",
+          "GSH",
+          "MG"
+        ],
+        "pdb_id": "2HGS",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "SO4",
+          "ADP",
+          "GSH",
+          "MG"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3949
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "glutathione synthase (eukaryotic)",
+      "freeze_rank": 10,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": false,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:498",
+      "row_role": "atp_family_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": true,
+        "local_nucleotide_or_product_state_context": true,
+        "local_sugar_or_carboxylate_acceptor_context": true,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "predeclared ATP-family countercontrol is outside ASKHA routing for this tranche."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": true,
+        "family_id": "ghmp",
+        "support_level": "expert_review_supported_family_boundary"
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "CDM"
+        ],
+        "pdb_id": "1OJ4",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "CDM",
+          "ANP",
+          "MSE",
+          "CL"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3581
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "freeze_rank": 11,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": false,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:654",
+      "row_role": "atp_family_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": true,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "predeclared ATP-family countercontrol is outside ASKHA routing for this tranche."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": true,
+        "family_id": "pfkb",
+        "support_level": "expert_review_supported_family_boundary"
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ADP",
+          "RIB"
+        ],
+        "pdb_id": "1RK2",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ADP",
+          "RIB",
+          "MG",
+          "ALF"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2601
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "ribokinase",
+      "freeze_rank": 12,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": false,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:663",
+      "row_role": "atp_family_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": true,
+        "local_sugar_or_carboxylate_acceptor_context": true,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "predeclared ATP-family countercontrol is outside ASKHA routing for this tranche."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": true,
+        "family_id": "ghkl",
+        "support_level": "expert_review_supported_family_boundary"
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ACP",
+          "MG"
+        ],
+        "pdb_id": "1I58",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ACP",
+          "MG",
+          "ACT",
+          "ADP"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2704
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "protein histidine kinase (CheA)",
+      "freeze_rank": 13,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": false,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:327",
+      "row_role": "atp_family_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": true,
+        "local_metal_context": true,
+        "local_nucleotide_or_product_state_context": true,
+        "local_sugar_or_carboxylate_acceptor_context": false,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "predeclared ATP-family countercontrol is outside ASKHA routing for this tranche."
+    },
+    {
+      "atp_family_counteraxis": {
+        "countercontrol_for_askha": true,
+        "family_id": "ndk",
+        "support_level": "expert_review_supported_family_boundary"
+      },
+      "countable_label_candidate": false,
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1DEK",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "DGP",
+          "OCS",
+          "MG"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [
+          "role_inferred_metal_missing_water_activation_role"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4066
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "freeze_rank": 14,
+      "hydrolase_contrast_axis": {
+        "current_hydrolase_control_row": false,
+        "current_hydrolase_like_top1": true
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:637",
+      "row_role": "atp_family_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_askha_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_atp_or_gamma_capable_nucleotide": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "local_sugar_or_carboxylate_acceptor_context": false,
+        "source_free_position_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "predeclared ATP-family countercontrol is outside ASKHA routing for this tranche."
+    }
+  ],
+  "safety_summary": {
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false,
+    "external_imported_out_of_scope_labels_changed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "registry_or_fingerprint_edit_performed": false
+  },
+  "synthesis_conclusion": {
+    "label_import_authorized": false,
+    "main_result": "frozen_askha_tranche_closed_without_source_free_axis_ready_rows",
+    "next_step": "design a source-free ASKHA fold plus ATP/Mg/sugar-or-acetate acceptor extractor before any future threshold or scorer work",
+    "overall": "askha_remains_review_only_and_not_production_ready",
+    "production_scoring_remains_closed": true
+  },
+  "task_definition": {
+    "allowed_decisions": [
+      "mechanism_match",
+      "out_of_scope",
+      "ambiguous",
+      "needs_review",
+      "terminal_rejection"
+    ],
+    "positive_claim_allowed": false,
+    "task": "Apply only preregistered review-only ASKHA local axes and counterfamily routing to the frozen 14-row ASKHA-vs-ATP-family tranche."
+  }
+}

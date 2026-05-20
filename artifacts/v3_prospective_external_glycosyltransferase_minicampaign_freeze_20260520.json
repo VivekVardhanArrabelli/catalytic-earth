@@ -1,0 +1,612 @@
+{
+  "excluded_rows_sample": [
+    {
+      "accession": "Q9UM21",
+      "entry_name": "MGT4A_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.145"
+    },
+    {
+      "accession": "Q6UW63",
+      "entry_name": "PLGT2_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.-"
+    },
+    {
+      "accession": "Q8N4A0",
+      "entry_name": "GALT4_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.41"
+    },
+    {
+      "accession": "Q9Y2C3",
+      "entry_name": "B3GT5_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.-"
+    },
+    {
+      "accession": "Q09328",
+      "entry_name": "MGT5A_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.155"
+    },
+    {
+      "accession": "Q9NY97",
+      "entry_name": "B3GN2_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.149"
+    },
+    {
+      "accession": "O75795",
+      "entry_name": "UDB17_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.17"
+    },
+    {
+      "accession": "O15488",
+      "entry_name": "GLYG2_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.186"
+    },
+    {
+      "accession": "P54855",
+      "entry_name": "UDB15_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.17"
+    },
+    {
+      "accession": "Q8IXK2",
+      "entry_name": "GLT12_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.41"
+    },
+    {
+      "accession": "Q00973",
+      "entry_name": "B4GN1_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.92"
+    },
+    {
+      "accession": "Q9H488",
+      "entry_name": "OFUT1_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.221"
+    },
+    {
+      "accession": "Q86SF2",
+      "entry_name": "GALT7_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.41"
+    },
+    {
+      "accession": "Q8NAT1",
+      "entry_name": "PMGT2_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.312"
+    },
+    {
+      "accession": "P35573",
+      "entry_name": "GDE_HUMAN",
+      "exclusion_reason": "mixed_non_transferase_ec_context",
+      "primary_ec": "2.4.1.25"
+    },
+    {
+      "accession": "Q86SR1",
+      "entry_name": "GLT10_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.41"
+    },
+    {
+      "accession": "Q93063",
+      "entry_name": "EXT2_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.224"
+    },
+    {
+      "accession": "Q9UBV7",
+      "entry_name": "B4GT7_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.-"
+    },
+    {
+      "accession": "O95461",
+      "entry_name": "LARG1_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.-"
+    },
+    {
+      "accession": "P11216",
+      "entry_name": "PYGB_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.1"
+    },
+    {
+      "accession": "P16662",
+      "entry_name": "UD2B7_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.17"
+    },
+    {
+      "accession": "P46976",
+      "entry_name": "GLYG_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.186"
+    },
+    {
+      "accession": "Q10469",
+      "entry_name": "MGAT2_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.143"
+    },
+    {
+      "accession": "O94766",
+      "entry_name": "B3GA3_HUMAN",
+      "exclusion_reason": "primary_ec_cap_already_reached",
+      "primary_ec": "2.4.1.135"
+    },
+    {
+      "accession": "P13807",
+      "entry_name": "GYS1_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.11"
+    },
+    {
+      "accession": "Q16394",
+      "entry_name": "EXT1_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.225"
+    },
+    {
+      "accession": "Q8WZA1",
+      "entry_name": "PMGT1_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.-"
+    },
+    {
+      "accession": "O60568",
+      "entry_name": "PLOD3_HUMAN",
+      "exclusion_reason": "prior_external_pool_or_imported_hard_negative",
+      "primary_ec": "2.4.1.50"
+    },
+    {
+      "accession": "P11217",
+      "entry_name": "PYGM_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.1"
+    },
+    {
+      "accession": "Q10471",
+      "entry_name": "GALT2_HUMAN",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb",
+      "primary_ec": "2.4.1.41"
+    }
+  ],
+  "frozen_before_scoring_statement": "Candidate selection was completed before outcome scoring. No geometry, sequence-neighbor, Foldseek, ESM, inverse-gate, or production-fingerprint score was used to select these rows.",
+  "metadata": {
+    "abstain_threshold_if_scored_later": 0.4115,
+    "artifact_id": "v3_prospective_external_glycosyltransferase_minicampaign_freeze_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 20,
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-20T21:35:00Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "prospective_external_glycosyltransferase_minicampaign_freeze",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "primary_ec_cap": 2,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "selection_rules": [
+      "reviewed UniProtKB/Swiss-Prot rows from EC 2.4.1.* with PDB cross-reference",
+      "require catalytic-activity annotation, active-site annotation, and at least one PDB xref",
+      "exclude imported hard negatives and previously used external candidate accessions",
+      "exclude mixed non-transferase EC contexts",
+      "cap at two rows per primary EC number",
+      "do not use fingerprint scores, sequence-neighbor outcomes, Foldseek, ESM, or ePK evidence for selection"
+    ],
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A2.4.1.%2A%29+AND+%28database%3Apdb%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Cec%2Ccc_catalytic_activity%2Cft_act_site%2Cxref_pdb&format=tsv&size=150",
+    "source_rows_reviewed_before_freeze_stop": 96,
+    "source_tsv_sha256": "61674fbdba2095db4d2d8ceb35f5fcb3e010eb11fbef1fbbdad07b0e88ba028f"
+  },
+  "production_fingerprint_universe": [
+    "ser_his_acid_hydrolase",
+    "metal_dependent_hydrolase",
+    "plp_dependent_enzyme",
+    "radical_sam_enzyme",
+    "cobalamin_radical_rearrangement",
+    "flavin_monooxygenase",
+    "flavin_dehydrogenase_reductase",
+    "heme_peroxidase_oxidase"
+  ],
+  "rows": [
+    {
+      "accession": "P16442",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.37",
+        "2.4.1.40"
+      ],
+      "entry_name": "BGAT_HUMAN",
+      "freeze_rank": 1,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 151,
+      "primary_ec": "2.4.1.37",
+      "protein_name": "Histo-blood group ABO system transferase (Fucosylglycoprotein 3-alpha-galactosyltransferase) (Fucosylglycoprotein alpha-N-acetylgalactosaminyltransferase) (Glycoprotein-fucosylgalactoside alpha-N-acetylgalactosaminyltransferase) (EC 2.4.1.40) (Glycoprotein-fucosylgalactoside alpha-galactosyltransferase) (EC 2.4.1.37) (Histo-blood group A transferase) (A transferase) (GTA) (Histo-blood group B transferase) (B transferase) (GTB) (NAGAT) [Cleaved into: Fucosylglycoprotein alpha-N-acetylgalactosaminyltransferase soluble form]",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:P16442",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q9Y2G5",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.221"
+      ],
+      "entry_name": "OFUT2_HUMAN",
+      "freeze_rank": 2,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 2,
+      "primary_ec": "2.4.1.221",
+      "protein_name": "GDP-fucose protein O-fucosyltransferase 2 (EC 2.4.1.221) (Peptide-O-fucosyltransferase 2) (O-FucT-2)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q9Y2G5",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q9NPZ5",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.135"
+      ],
+      "entry_name": "B3GA2_HUMAN",
+      "freeze_rank": 3,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 1,
+      "primary_ec": "2.4.1.135",
+      "protein_name": "Galactosylgalactosylxylosylprotein 3-beta-glucuronosyltransferase 2 (EC 2.4.1.135) (Beta-1,3-glucuronyltransferase 2) (GlcAT-D) (UDP-glucuronosyltransferase S) (GlcAT-S) (Glucuronosyltransferase S)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q9NPZ5",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q9Y231",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.152"
+      ],
+      "entry_name": "FUT9_HUMAN",
+      "freeze_rank": 4,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 8,
+      "primary_ec": "2.4.1.152",
+      "protein_name": "4-galactosyl-N-acetylglucosaminide 3-alpha-L-fucosyltransferase 9 (EC 2.4.1.152) (Fucosyltransferase 9) (Fucosyltransferase IX) (Fuc-TIX) (FucT-IX) (Galactoside 3-L-fucosyltransferase)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q9Y231",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "O43909",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.223"
+      ],
+      "entry_name": "EXTL3_HUMAN",
+      "freeze_rank": 5,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 4,
+      "primary_ec": "2.4.1.223",
+      "protein_name": "Exostosin-like 3 (EC 2.4.1.223) (EXT-related protein 1) (Glucuronyl-galactosyl-proteoglycan 4-alpha-N-acetylglucosaminyltransferase) (Hereditary multiple exostoses gene isolog) (Multiple exostosis-like protein 3) (Putative tumor suppressor protein EXTL3)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:O43909",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q8NBL1",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.376",
+        "2.4.2.63"
+      ],
+      "entry_name": "PGLT1_HUMAN",
+      "freeze_rank": 6,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 6,
+      "primary_ec": "2.4.1.376",
+      "protein_name": "Protein O-glucosyltransferase 1 (EC 2.4.1.376) (CAP10-like 46 kDa protein) (hCLP46) (KTEL motif-containing protein 1) (Myelodysplastic syndromes relative protein) (O-glucosyltransferase Rumi homolog) (hRumi) (Protein O-xylosyltransferase POGLUT1) (EC 2.4.2.63)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q8NBL1",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q9P2W7",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.135"
+      ],
+      "entry_name": "B3GA1_HUMAN",
+      "freeze_rank": 7,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 3,
+      "primary_ec": "2.4.1.135",
+      "protein_name": "Galactosylgalactosylxylosylprotein 3-beta-glucuronosyltransferase 1 (EC 2.4.1.135) (Beta-1,3-glucuronyltransferase 1) (Glucuronosyltransferase P) (GlcAT-P) (UDP-GlcUA:glycoprotein beta-1,3-glucuronyltransferase) (GlcUAT-P)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q9P2W7",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q04446",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.18"
+      ],
+      "entry_name": "GLGB_HUMAN",
+      "freeze_rank": 8,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 3,
+      "primary_ec": "2.4.1.18",
+      "protein_name": "1,4-alpha-glucan-branching enzyme (EC 2.4.1.18) (Brancher enzyme) (Glycogen-branching enzyme)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q04446",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "O15294",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.255"
+      ],
+      "entry_name": "OGT1_HUMAN",
+      "freeze_rank": 9,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 44,
+      "primary_ec": "2.4.1.255",
+      "protein_name": "UDP-N-acetylglucosamine--peptide N-acetylglucosaminyltransferase 110 kDa subunit (EC 2.4.1.255) (O-GlcNAc transferase subunit p110) (O-linked N-acetylglucosamine transferase 110 kDa subunit) (OGT)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:O15294",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "P05655",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.10"
+      ],
+      "entry_name": "LSC_BACSU",
+      "freeze_rank": 10,
+      "organism": "Bacillus subtilis (strain 168)",
+      "pdb_count": 9,
+      "primary_ec": "2.4.1.10",
+      "protein_name": "Levansucrase (EC 2.4.1.10) (Beta-D-fructofuranosyl transferase) (Fructosyltransferase) (FTF) (Sucrose 6-fructosyl transferase)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:P05655",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q01401",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.18"
+      ],
+      "entry_name": "GLGB_ORYSJ",
+      "freeze_rank": 11,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "pdb_count": 4,
+      "primary_ec": "2.4.1.18",
+      "protein_name": "1,4-alpha-glucan-branching enzyme, chloroplastic/amyloplastic (EC 2.4.1.18) (Q-enzyme) (Starch-branching enzyme)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q01401",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q8WR51",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.221"
+      ],
+      "entry_name": "OFUT2_CAEEL",
+      "freeze_rank": 12,
+      "organism": "Caenorhabditis elegans",
+      "pdb_count": 2,
+      "primary_ec": "2.4.1.221",
+      "protein_name": "GDP-fucose protein O-fucosyltransferase 2 (EC 2.4.1.221) (Patterning defective protein 2) (Peptide-O-fucosyltransferase 2) (O-FucT-2)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q8WR51",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q9M156",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.-",
+        "2.4.1.218"
+      ],
+      "entry_name": "U72B1_ARATH",
+      "freeze_rank": 13,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 3,
+      "primary_ec": "2.4.1.-",
+      "protein_name": "UDP-glycosyltransferase 72B1 (EC 2.4.1.-) (Arbutin synthase) (Probable hydroquinone glucosyltransferase) (EC 2.4.1.218)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q9M156",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q9LNE6",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.-"
+      ],
+      "entry_name": "U89C1_ARATH",
+      "freeze_rank": 14,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 4,
+      "primary_ec": "2.4.1.-",
+      "protein_name": "Flavonol 7-O-rhamnosyltransferase (EC 2.4.1.-) (UDP-glycosyltransferase 89C1) (UDP-rhamnose: flavonol 7-O-rhamnosyltransferase)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q9LNE6",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "P14769",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.87"
+      ],
+      "entry_name": "GGTA1_BOVIN",
+      "freeze_rank": 15,
+      "organism": "Bos taurus (Bovine)",
+      "pdb_count": 28,
+      "primary_ec": "2.4.1.87",
+      "protein_name": "N-acetyllactosaminide alpha-1,3-galactosyltransferase (EC 2.4.1.87) (UDP-galactose:beta-D-galactosyl-1,4-N-acetyl-D-glucosaminide alpha-1,3-galactosyltransferase) (Galactosyltransferase)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:P14769",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "P37653",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.12"
+      ],
+      "entry_name": "BCSA_ECOLI",
+      "freeze_rank": 16,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 6,
+      "primary_ec": "2.4.1.12",
+      "protein_name": "Cellulose synthase catalytic subunit [UDP-forming] (EC 2.4.1.12)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:P37653",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q09324",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.102"
+      ],
+      "entry_name": "GCNT1_MOUSE",
+      "freeze_rank": 17,
+      "organism": "Mus musculus (Mouse)",
+      "pdb_count": 3,
+      "primary_ec": "2.4.1.102",
+      "protein_name": "Beta-1,3-galactosyl-O-glycosyl-glycoprotein beta-1,6-N-acetylglucosaminyltransferase (EC 2.4.1.102) (Core 2 beta-1,6-N-acetylglucosaminyltransferase) (C2GlcNAcT) (Core 2-branching enzyme) (Core2-GlcNAc-transferase) (C2GNT) (Leukocyte type core 2 beta-1,6-N-acetylglucosaminyltransferase) (C2GnT-L)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q09324",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q941L0",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.12"
+      ],
+      "entry_name": "CESA3_ARATH",
+      "freeze_rank": 18,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 3,
+      "primary_ec": "2.4.1.12",
+      "protein_name": "Cellulose synthase A catalytic subunit 3 [UDP-forming] (AtCesA3) (EC 2.4.1.12) (Constitutive expression of VSP1 protein 1) (Isoxaben-resistant protein 1) (Ath-B) (Protein ECTOPIC LIGNIN 1) (Protein RADIALLY SWOLLEN 5) (AtRSW5)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q941L0",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "O09008",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.222"
+      ],
+      "entry_name": "MFNG_MOUSE",
+      "freeze_rank": 19,
+      "organism": "Mus musculus (Mouse)",
+      "pdb_count": 2,
+      "primary_ec": "2.4.1.222",
+      "protein_name": "Beta-1,3-N-acetylglucosaminyltransferase manic fringe (EC 2.4.1.222) (O-fucosylpeptide 3-beta-N-acetylglucosaminyltransferase)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:O09008",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    },
+    {
+      "accession": "Q9ES89",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.223"
+      ],
+      "entry_name": "EXTL2_MOUSE",
+      "freeze_rank": 20,
+      "organism": "Mus musculus (Mouse)",
+      "pdb_count": 4,
+      "primary_ec": "2.4.1.223",
+      "protein_name": "Exostosin-like 2 (EC 2.4.1.223) (Alpha-1,4-N-acetylhexosaminyltransferase EXTL2) (Alpha-GalNAcT EXTL2) (EXT-related protein 2) (Glucuronyl-galactosyl-proteoglycan 4-alpha-N-acetylglucosaminyltransferase)",
+      "ready_for_label_import_at_freeze": false,
+      "row_id": "uniprot:Q9ES89",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.4.1 glycosyltransferase row with catalytic-activity text, active-site annotation, PDB cross-reference, no prior external-pool/import exclusion, and per-primary-EC cap not exceeded"
+    }
+  ]
+}

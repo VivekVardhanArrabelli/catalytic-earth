@@ -203,6 +203,21 @@ adds a deterministic 5-mer nearest-current-reference check with two crude
 near-neighbor alerts across 20 rows. Geometry, ESM, and Foldseek are not valid
 performance evidence on this pre-scoring terminal surface, and the sequence
 diagnostic does not change any terminal decision.
+Current glycosyltransferase external mini-campaign scope:
+`artifacts/v3_prospective_external_glycosyltransferase_minicampaign_freeze_20260520.json`
+freezes a new 20-row reviewed UniProtKB/Swiss-Prot EC 2.4.1.* surface before
+outcome scoring, requiring catalytic-activity text, active-site annotation, at
+least one PDB cross-reference, prior external-pool exclusions, no mixed
+non-transferase EC context, and a two-row cap per primary EC number.
+`artifacts/v3_prospective_external_glycosyltransferase_minicampaign_decision_packet_20260520.json`
+closes all 20 rows as `terminal_rejection_uncovered_mechanism_lane`: the
+current 8-fingerprint universe and `0.4115` floor are recorded, but 0 rows are
+scored because glycosyltransferase chemistry is outside current production
+fingerprints and covered import-counterevidence lanes. The matching
+`artifacts/v3_glycosyltransferase_minicampaign_baseline_comparison_20260520.json`
+is diagnostic only; EC/keyword routing detects the lane, while geometry,
+sequence, ESM, and Foldseek are not valid performance evidence on this
+pre-scoring terminal surface.
 Current ASKHA readiness scope:
 `artifacts/v3_askha_family_readiness_packet_20260520.json` is review-only and
 not a production fingerprint. It uses four expert-supported ASKHA boundary rows
@@ -219,6 +234,66 @@ countercontrols. It is preregistration only and authorizes no production
 scoring, threshold, label import, registry edit, or fingerprint expansion. The
 next ASKHA work must compute only the frozen local axes and duplicate screens
 before terminal decisions.
+`artifacts/v3_askha_vs_atp_family_control_tranche_axis_decisions_20260520.json`
+now closes that frozen tranche as review-only terminal evidence. The decisions
+are 4 current hydrolase `mechanism_match` rows, 6 ATP-family countercontrol
+`out_of_scope` rows, 3 ASKHA boundary `needs_review` rows, and 1 ASKHA boundary
+`terminal_rejection` for the prior expert-rejected `m_csa:651` row. The
+source-free ASKHA axis-ready count is 0, so ASKHA remains no-go for production
+fingerprint expansion, thresholding, registry edits, or label import.
+`artifacts/v3_askha_vs_atp_family_control_tranche_baseline_comparison_20260520.json`
+is the matching no-superiority baseline diagnostic. Current 8-fingerprint
+geometry retrieval routes 12/14 frozen rows to `metal_dependent_hydrolase`,
+including 2 ASKHA boundary rows above the calibrated abstention floor; keyword
+routing over-admits 4 ATP-family countercontrols and does not detect the
+source-free-axis blocker.
+Current ATP-grasp readiness scope:
+`artifacts/v3_atp_grasp_family_readiness_packet_20260520.json` is review-only
+and not a production fingerprint. It uses two expert-supported ATP-grasp
+boundary rows from the ATP/phosphoryl-transfer expansion (`m_csa:310` and
+`m_csa:498`), both non-countable expert-rejected mismatch lanes with current
+`metal_dependent_hydrolase` top1 collapse. ATP-grasp has 0 countable positive
+seeds, 0 source-free-axis-ready rows, no calibrated threshold, and no external
+hard-negative re-audit under an expanded fingerprint universe. The next
+admissible step is a frozen ATP-grasp-vs-neighbor-ATP-family control tranche
+before any new axis scoring.
+`artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_preregistration_20260520.json`
+now freezes that next step as 12 review-only rows: two ATP-grasp boundary rows,
+four current hydrolase controls, two ASKHA controls, two GHMP/PfkB
+small-molecule kinase controls, and two GHKL/NDK countercontrols. It is
+preregistration only and authorizes no production scoring, threshold, label
+import, registry edit, or fingerprint expansion. The next ATP-grasp work must
+compute only the frozen local axes and duplicate/current-neighbor checks before
+terminal decisions.
+`artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json`
+now closes that frozen tranche as review-only terminal evidence. The decisions
+are 4 current hydrolase `mechanism_match` rows, 6 neighboring ATP-family
+`out_of_scope` rows, and 2 ATP-grasp boundary `terminal_rejection` rows because
+both prior expert decisions rejected those current label candidates. The
+source-free ATP-grasp axis-ready count is 0, so ATP-grasp remains no-go for
+production fingerprint expansion, thresholding, registry edits, or label
+import.
+`artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json`
+is the matching no-superiority baseline diagnostic. Current geometry retrieval
+routes 10/12 rows to `metal_dependent_hydrolase`, and the simple EC/name proxy
+finds the two ATP-grasp names but cannot detect the source-free fold/acceptor
+axis blocker.
+Current GHKL readiness scope:
+`artifacts/v3_ghkl_family_readiness_packet_20260520.json` is review-only and
+not a production fingerprint. It uses two expert-supported GHKL/Bergerat-family
+boundary rows (`m_csa:327` and `m_csa:603`) with local nucleotide/Mg context,
+but both are non-countable expert-rejected mismatch lanes with current
+`metal_dependent_hydrolase` top1 collapse. GHKL has 0 countable positive
+seeds, 0 source-free-axis-ready rows, no calibrated threshold, and no external
+hard-negative re-audit under an expanded fingerprint universe. Any next GHKL
+work must freeze a GHKL-vs-neighbor-ATP-family control tranche before scoring.
+Current ATP-family readiness index scope:
+`artifacts/v3_atp_family_readiness_index_20260520.json` is review-only and
+does not promote any ATP/phosphoryl-transfer family. ASKHA and ATP-grasp are
+closed as terminal no-go tranches, GHKL has a packet but no frozen tranche yet,
+ePK remains research-lane-only, and NDK/PfkB/GHMP/PfkA/dNK still need packets
+before any scoring. The recommended next ATP-family main-loop item is a frozen
+GHKL-vs-neighbor-ATP-family control tranche.
 Current main-loop decision-register scope:
 `artifacts/v3_main_loop_small_win_decision_register_20260520.json` is a
 review-only integration map for the run's small wins: ePK remains no-go, a

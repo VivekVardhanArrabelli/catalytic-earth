@@ -1,0 +1,196 @@
+{
+  "metadata": {
+    "artifact_id": "v3_atp_grasp_vs_neighbor_family_control_tranche_baseline_comparison_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-20T21:30:00Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 12,
+    "method": "atp_grasp_vs_neighbor_family_control_tranche_no_claim_baseline_comparison",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "axis_decisions": "artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "geometry_retrieval": "artifacts/v3_geometry_retrieval_1025.json",
+      "tranche_freeze": "artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_preregistration_20260520.json"
+    },
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "bounded_sequence_nearest_neighbor": {
+      "computed_in_this_artifact": false,
+      "reason": "frozen ATP-grasp tranche consists of current M-CSA review rows and controls; no external import or sequence holdout claim is made here",
+      "superiority_claim_supported": false
+    },
+    "current_geometry_retrieval_triage": {
+      "atp_grasp_boundary_non_abstention_count_at_0_4115": 0,
+      "evaluated_row_count": 12,
+      "interpretation": "current 8-fingerprint geometry retrieval is contrast evidence only and is not an ATP-grasp scorer",
+      "non_abstention_count_at_0_4115": 6,
+      "superiority_claim_supported": false,
+      "text_or_label_fields_used_for_score_count": 0,
+      "top1_fingerprint_counts": {
+        "metal_dependent_hydrolase": 10,
+        "ser_his_acid_hydrolase": 2
+      }
+    },
+    "deterministic_kmer_proxy": {
+      "computed_in_this_artifact": false,
+      "interpretation": "No k-mer proxy is used as a positive ATP-grasp score.",
+      "superiority_claim_supported": false
+    },
+    "ec_keyword_name_proxy": {
+      "detects_source_free_axis_gap": false,
+      "false_positive_neighbor_countercontrol_keyword_hits": 0,
+      "keyword_set": [
+        "atp-grasp",
+        "ligase",
+        "synthase",
+        "glutathione synthase",
+        "d-alanine"
+      ],
+      "keyword_status_counts": {
+        "no_target_keyword_hit": 10,
+        "target_keyword_hit": 2
+      },
+      "rows": [
+        {
+          "keyword_hits": [
+            "ligase",
+            "d-alanine"
+          ],
+          "keyword_proxy_calls_target": true,
+          "row_id": "m_csa:310",
+          "row_role": "atp_grasp_positive_like_boundary",
+          "terminal_decision": "terminal_rejection"
+        },
+        {
+          "keyword_hits": [
+            "synthase",
+            "glutathione synthase"
+          ],
+          "keyword_proxy_calls_target": true,
+          "row_id": "m_csa:498",
+          "row_role": "atp_grasp_positive_like_boundary",
+          "terminal_decision": "terminal_rejection"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:15",
+          "row_role": "current_production_hydrolase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:16",
+          "row_role": "current_production_hydrolase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:5",
+          "row_role": "current_production_hydrolase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:94",
+          "row_role": "current_production_hydrolase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:592",
+          "row_role": "askha_countercontrol",
+          "terminal_decision": "out_of_scope"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:643",
+          "row_role": "askha_countercontrol",
+          "terminal_decision": "out_of_scope"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:654",
+          "row_role": "small_molecule_kinase_countercontrol",
+          "terminal_decision": "out_of_scope"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:663",
+          "row_role": "small_molecule_kinase_countercontrol",
+          "terminal_decision": "out_of_scope"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:327",
+          "row_role": "phosphohistidine_or_nucleoside_kinase_countercontrol",
+          "terminal_decision": "out_of_scope"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:637",
+          "row_role": "phosphohistidine_or_nucleoside_kinase_countercontrol",
+          "terminal_decision": "out_of_scope"
+        }
+      ],
+      "supports_import_decision": false,
+      "target_atp_grasp_rows_hit": 2
+    },
+    "esm_sidecar_representation": {
+      "directly_compared_against_all_frozen_rows": false,
+      "reason": "no ESM comparison is needed to close the source-free ATP-grasp axis blocker",
+      "superiority_claim_supported": false
+    },
+    "foldseek_current_countable_sidecar": {
+      "computed_in_this_artifact": false,
+      "reason": "no coordinate materialization or current-countable Foldseek screen is run for current M-CSA review/control rows in this tranche",
+      "superiority_claim_supported": false
+    },
+    "review_only_axis_triage": {
+      "evaluated_row_count": 12,
+      "import_ready_candidate_count": 0,
+      "source_free_atp_grasp_axis_ready_count": 0,
+      "terminal_decision_counts": {
+        "mechanism_match": 4,
+        "out_of_scope": 6,
+        "terminal_rejection": 2
+      }
+    }
+  },
+  "synthesis_conclusion": {
+    "do_not_claim_baseline_superiority": true,
+    "next_step": "source-free ATP-grasp axis design is required before any scorer or threshold experiment",
+    "overall": "atp_grasp_baselines_are_diagnostic_only_and_do_not_make_atp_grasp_production_ready",
+    "production_scoring_remains_closed": true
+  },
+  "task_definition": {
+    "allowed_decisions": [
+      "mechanism_match",
+      "out_of_scope",
+      "ambiguous",
+      "needs_review",
+      "terminal_rejection"
+    ],
+    "positive_claim_allowed": false,
+    "task": "Compare review-only ATP-grasp axis triage against current geometry retrieval and simple keyword/sequence-sidecar baselines over the frozen 12-row tranche."
+  }
+}

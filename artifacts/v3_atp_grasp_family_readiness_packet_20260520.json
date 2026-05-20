@@ -1,0 +1,215 @@
+{
+  "cofactors_and_active_site_evidence": {
+    "available_review_only_evidence": [
+      "Family expansion maps two expert-supported ATP-grasp boundary rows: D-alanine-(R)-lactate ligase and eukaryotic glutathione synthase.",
+      "Both ATP-grasp rows are non-countable reaction/substrate mismatch lanes with metal-hydrolase top1 collapse.",
+      "The selected glutathione synthase structure has local ADP/GSH/MG context, but this is review-only context and not a calibrated ATP-grasp axis."
+    ],
+    "blocked_or_missing_evidence": [
+      "No accepted source-free ATP-grasp fold or carboxylate/amide acceptor axis exists in production code.",
+      "No ATP-grasp threshold or production score has been calibrated.",
+      "No external hard-negative re-audit has been run for an ATP-grasp positive fingerprint universe.",
+      "No countable ATP-grasp seed labels exist in the current registry."
+    ],
+    "expected_local_evidence_axes": [
+      "ATP or ADP/product-state nucleotide plus Mg/Mn context local to the active site",
+      "carboxylate or amide-forming acceptor/substrate context",
+      "ATP-grasp fold or family context separated from ASKHA, GHMP, GHKL, NDK, PfkA/PfkB, and ePK",
+      "negative hydrolase metal-ligand and ser-his acid-dyad axes"
+    ]
+  },
+  "counterfamilies_and_controls": [
+    {
+      "control_role": "current top1 collapse boundary for ATP-grasp mismatch rows",
+      "family_id": "metal_dependent_hydrolase"
+    },
+    {
+      "control_role": "hydrolase acid/base false-boundary control",
+      "family_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "control_role": "actin-like kinase counterfamily with sugar/acetate acceptors",
+      "family_id": "askha"
+    },
+    {
+      "control_role": "small-molecule ATP-dependent kinase counterfamily",
+      "family_id": "ghmp"
+    },
+    {
+      "control_role": "Bergerat/GHKL histidine-kinase counterfamily",
+      "family_id": "ghkl"
+    },
+    {
+      "control_role": "nucleoside-phosphate kinase counterfamily",
+      "family_id": "ndk"
+    },
+    {
+      "control_role": "PfkA-fold sugar-phosphate kinase counterfamily",
+      "family_id": "pfka"
+    },
+    {
+      "control_role": "PfkB/ribokinase counterfamily",
+      "family_id": "pfkb"
+    },
+    {
+      "control_role": "protein-substrate kinase counterfamily; research-lane only",
+      "family_id": "epk"
+    }
+  ],
+  "family_readiness": {
+    "countable_positive_seed_count": 0,
+    "current_decision": "do_not_promote_production_fingerprint",
+    "expert_supported_boundary_count": 2,
+    "positive_like_boundary_row_count": 2,
+    "positive_like_boundary_rows": [
+      {
+        "countable_label_candidate": false,
+        "decision_action": "reject_label",
+        "decision_label_type": "out_of_scope",
+        "entry_id": "m_csa:310",
+        "entry_name": "D-alanine-(R)-lactate ligase",
+        "local_ligand_codes": [
+          "PHY"
+        ],
+        "local_metal_context": false,
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "expert_rejected_current_label_candidate",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "pdb_id": "1E4E",
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent"
+        ],
+        "structure_ligand_codes": [
+          "PHY",
+          "MG",
+          "ADP",
+          "SO4",
+          "GOL"
+        ],
+        "structure_metal_context": true,
+        "support_level": "expert_review_supported_family_boundary",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3649
+      },
+      {
+        "countable_label_candidate": false,
+        "decision_action": "reject_label",
+        "decision_label_type": "out_of_scope",
+        "entry_id": "m_csa:498",
+        "entry_name": "glutathione synthase (eukaryotic)",
+        "local_ligand_codes": [
+          "SO4",
+          "ADP",
+          "GSH",
+          "MG"
+        ],
+        "local_metal_context": true,
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "expert_rejected_current_label_candidate",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "pdb_id": "2HGS",
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "structure_ligand_codes": [
+          "SO4",
+          "ADP",
+          "GSH",
+          "MG"
+        ],
+        "structure_metal_context": true,
+        "support_level": "expert_review_supported_family_boundary",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3949
+      }
+    ],
+    "readiness_status": "review_only_packet_ready_for_control_tranche_not_scoring",
+    "scope_note": "ATP-grasp ligase family lanes couple ATP hydrolysis/phosphoryl transfer to carboxylate or amide-bond-forming chemistry; this packet only records boundary evidence and does not create a scorer.",
+    "source_free_axis_ready_count": 0
+  },
+  "likely_failure_modes": [
+    {
+      "description": "ATP-grasp boundary rows currently collapse to metal-dependent hydrolase top1 in current retrieval.",
+      "id": "hydrolase_top1_collapse"
+    },
+    {
+      "description": "ATP/Mg or ligase wording alone cannot separate ATP-grasp from neighboring ATP-family chemistries or ATPase false positives.",
+      "id": "generic_atp_mg_ligase_leakage"
+    },
+    {
+      "description": "The two available family-boundary rows are expert-supported routing evidence only and cannot become countable seed labels without gates.",
+      "id": "single_family_boundary_not_countable"
+    },
+    {
+      "description": "Carboxylate/amide acceptor identity and ATP-grasp fold context are not represented by a source-free production axis.",
+      "id": "acceptor_chemistry_gap"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_atp_grasp_family_readiness_packet_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T21:31:00Z",
+    "curated_label_registry_edited": false,
+    "family_id": "atp_grasp",
+    "family_name": "ATP-grasp ligases",
+    "fingerprint_registry_edited": false,
+    "method": "atp_grasp_review_only_family_readiness_packet",
+    "parent_family_id": "atp_phosphoryl_transfer",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_geometry_retrieval_1025.json",
+      "artifacts/v3_askha_vs_atp_family_control_tranche_axis_decisions_20260520.json"
+    ]
+  },
+  "next_experiment": {
+    "decision_to_start_now": false,
+    "experiment_id": "atp_grasp_vs_neighbor_atp_family_control_tranche_v1_review_only",
+    "preregistered_axes_to_freeze": [
+      "local nucleotide plus Mg/Mn state",
+      "carboxylate or amide-forming acceptor context",
+      "ATP-grasp fold/family context",
+      "negative hydrolase top1 and neighboring ATP-family counteraxes",
+      "duplicate/current-countable neighbor checks before any import claim"
+    ],
+    "reason_not_started": "readiness packet first; the row set must be frozen before any axis scoring and no production gates are open",
+    "recommended_row_count": "10-14",
+    "row_plan": [
+      "2 ATP-grasp positive-like boundary rows from the family expansion artifact",
+      "2 current metal/ser-his hydrolase controls that absorb ATP-grasp-like rows",
+      "2 ASKHA controls",
+      "2 GHMP/PfkB small-molecule kinase controls",
+      "2 GHKL/NDK phosphohistidine or nucleoside-phosphate controls",
+      "optional ePK research-lane context only if sourced as review-only counteraxis evidence"
+    ],
+    "selection_freeze_required_before_scoring": true
+  },
+  "safety_summary": {
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "registry_or_fingerprint_edit_performed": false
+  }
+}

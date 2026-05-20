@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "artifact_id": "v3_glycosyltransferase_minicampaign_baseline_comparison_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-20T21:35:00Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 20,
+    "method": "glycosyltransferase_minicampaign_no_claim_baseline_comparison",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "decisions": "artifacts/v3_prospective_external_glycosyltransferase_minicampaign_decision_packet_20260520.json",
+      "freeze": "artifacts/v3_prospective_external_glycosyltransferase_minicampaign_freeze_20260520.json"
+    },
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "current_geometry_retrieval_triage": {
+      "reason": "terminal uncovered glycosyltransferase-lane blocker closes the surface before current 8-fingerprint scoring",
+      "scored_row_count": 0,
+      "superiority_claim_supported": false
+    },
+    "deterministic_kmer_nearest_neighbor": {
+      "computed_in_this_artifact": false,
+      "reason": "sequence proxy cannot make an uncovered production-fingerprint lane import-ready",
+      "superiority_claim_supported": false
+    },
+    "ec_keyword_lane_router": {
+      "detects_source_free_geometry_or_import_gates": false,
+      "detects_uncovered_mechanism_lane": true,
+      "glycosyltransferase_ec_hits": 20,
+      "keyword_status_counts": {
+        "target_keyword_hit": 20
+      },
+      "supports_import_decision": false
+    },
+    "esm_sidecar_representation": {
+      "computed_in_this_artifact": false,
+      "reason": "representation sidecars are not valid evidence on this pre-scoring uncovered-lane terminal surface",
+      "superiority_claim_supported": false
+    },
+    "foldseek_current_countable_sidecar": {
+      "computed_in_this_artifact": false,
+      "reason": "current-countable Foldseek screening is not opened because the mechanism lane is outside current production fingerprints",
+      "superiority_claim_supported": false
+    },
+    "review_only_terminal_triage": {
+      "import_ready_candidate_count": 0,
+      "scored_row_count": 0,
+      "terminal_decision_counts": {
+        "terminal_rejection": 20
+      }
+    }
+  },
+  "synthesis_conclusion": {
+    "do_not_claim_baseline_superiority": true,
+    "overall": "ec_keyword_routing_detects_glycosyltransferase_lane_but_baselines_are_diagnostic_only",
+    "production_scoring_remains_closed": true
+  },
+  "task_definition": {
+    "positive_claim_allowed": false,
+    "task": "Compare the frozen prospective glycosyltransferase terminal surface against simple EC/keyword and unrun geometry/sequence/ESM/Foldseek baselines without claiming superiority."
+  }
+}

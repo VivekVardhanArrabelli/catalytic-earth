@@ -1,0 +1,208 @@
+{
+  "cofactors_and_active_site_evidence": {
+    "available_review_only_evidence": [
+      "Family expansion maps two expert-supported GHKL boundary rows: CheA protein histidine kinase and pyruvate dehydrogenase kinase.",
+      "Both selected structures have local nucleotide plus Mg context, but both remain non-countable expert-rejected reaction/substrate mismatch lanes.",
+      "Current retrieval still assigns metal-dependent hydrolase top1, showing hydrolase-collapse risk despite nucleotide/Mg evidence."
+    ],
+    "blocked_or_missing_evidence": [
+      "No accepted source-free Bergerat/GHKL fold axis exists in production code.",
+      "No GHKL-specific acceptor identity or histidine/protein-substrate counteraxis has been calibrated.",
+      "No external hard-negative re-audit has been run for a GHKL positive fingerprint universe.",
+      "No countable GHKL seed labels exist in the current registry."
+    ],
+    "expected_local_evidence_axes": [
+      "local ATP/ADP or analog plus Mg/Mn context",
+      "Bergerat/GHKL fold or family context",
+      "histidine or protein-family acceptor identity separated from ASKHA, ATP-grasp, NDK, PfkA/PfkB, GHMP, and ePK",
+      "negative hydrolase metal-ligand and generic ATPase axes"
+    ]
+  },
+  "counterfamilies_and_controls": [
+    {
+      "control_role": "current top1 collapse boundary for GHKL mismatch rows",
+      "family_id": "metal_dependent_hydrolase"
+    },
+    {
+      "control_role": "ATP-coupled ligase counterfamily",
+      "family_id": "atp_grasp"
+    },
+    {
+      "control_role": "actin-like sugar/acetate kinase counterfamily",
+      "family_id": "askha"
+    },
+    {
+      "control_role": "nucleoside-phosphate kinase counterfamily",
+      "family_id": "ndk"
+    },
+    {
+      "control_role": "PfkA sugar-phosphate kinase counterfamily",
+      "family_id": "pfka"
+    },
+    {
+      "control_role": "PfkB/ribokinase counterfamily",
+      "family_id": "pfkb"
+    },
+    {
+      "control_role": "GHMP small-molecule kinase counterfamily",
+      "family_id": "ghmp"
+    },
+    {
+      "control_role": "protein-substrate kinase counterfamily; research-lane only",
+      "family_id": "epk"
+    }
+  ],
+  "family_readiness": {
+    "countable_positive_seed_count": 0,
+    "current_decision": "do_not_promote_production_fingerprint",
+    "expert_supported_boundary_count": 2,
+    "positive_like_boundary_row_count": 2,
+    "positive_like_boundary_rows": [
+      {
+        "countable_label_candidate": false,
+        "decision_action": "reject_label",
+        "decision_label_type": "out_of_scope",
+        "entry_id": "m_csa:327",
+        "entry_name": "protein histidine kinase (CheA)",
+        "local_ligand_codes": [
+          "ACP",
+          "MG"
+        ],
+        "local_metal_context": true,
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "expert_rejected_current_label_candidate",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "pdb_id": "1I58",
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "structure_ligand_codes": [
+          "ACP",
+          "MG",
+          "ACT",
+          "ADP"
+        ],
+        "structure_metal_context": true,
+        "support_level": "expert_review_supported_family_boundary",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2704
+      },
+      {
+        "countable_label_candidate": false,
+        "decision_action": "reject_label",
+        "decision_label_type": "out_of_scope",
+        "entry_id": "m_csa:603",
+        "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+        "local_ligand_codes": [
+          "ADP",
+          "MG"
+        ],
+        "local_metal_context": true,
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "expert_rejected_current_label_candidate",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "pdb_id": "1JM6",
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "MG"
+        ],
+        "structure_metal_context": true,
+        "support_level": "expert_review_supported_family_boundary",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4004
+      }
+    ],
+    "readiness_status": "review_only_packet_ready_for_control_tranche_not_scoring",
+    "scope_note": "GHKL/Bergerat-family kinase lanes use ATP/Mg in a distinct fold and often phosphorylate histidine or protein-family acceptors; this packet records boundary evidence only.",
+    "source_free_axis_ready_count": 0
+  },
+  "likely_failure_modes": [
+    {
+      "description": "GHKL boundary rows currently collapse to metal-dependent hydrolase top1 even with nucleotide/Mg context.",
+      "id": "hydrolase_top1_collapse"
+    },
+    {
+      "description": "ATP/Mg context alone cannot separate GHKL from ASKHA, ATP-grasp, NDK, Pfk, GHMP, ePK, or ATPase false positives.",
+      "id": "generic_atp_mg_leakage"
+    },
+    {
+      "description": "The histidine/protein acceptor and Bergerat-fold axis is not represented by a source-free production feature.",
+      "id": "histidine_acceptor_identity_gap"
+    },
+    {
+      "description": "Both available GHKL rows are expert-rejected current label candidates and cannot become countable seeds without a new gated cycle.",
+      "id": "expert_rejected_boundary_not_countable"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_ghkl_family_readiness_packet_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T21:26:00Z",
+    "curated_label_registry_edited": false,
+    "family_id": "ghkl",
+    "family_name": "Bergerat/GHKL ATP-dependent kinase family",
+    "fingerprint_registry_edited": false,
+    "method": "ghkl_review_only_family_readiness_packet",
+    "parent_family_id": "atp_phosphoryl_transfer",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_geometry_retrieval_1025.json",
+      "artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_preregistration_20260520.json"
+    ]
+  },
+  "next_experiment": {
+    "decision_to_start_now": false,
+    "experiment_id": "ghkl_vs_neighbor_atp_family_control_tranche_v1_review_only",
+    "preregistered_axes_to_freeze": [
+      "local nucleotide plus Mg/Mn state",
+      "Bergerat/GHKL fold/family context",
+      "histidine or protein-acceptor identity",
+      "negative hydrolase top1 and neighboring ATP-family counteraxes",
+      "duplicate/current-neighbor checks before any import claim"
+    ],
+    "reason_not_started": "readiness packet first; no production gates are open and the row set must be frozen before any scoring",
+    "recommended_row_count": "10-14",
+    "row_plan": [
+      "2 GHKL positive-like boundary rows from the family expansion artifact",
+      "2 current metal-hydrolase controls",
+      "2 ATP-grasp controls",
+      "2 ASKHA or GHMP controls",
+      "2 NDK/PfkA/PfkB controls",
+      "optional ePK context only as review-only counteraxis evidence"
+    ],
+    "selection_freeze_required_before_scoring": true
+  },
+  "safety_summary": {
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "registry_or_fingerprint_edit_performed": false
+  }
+}
