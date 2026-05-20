@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T21:41:15Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_scout_20260520.json",
+      "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset25_scout_20260520.json",
+      "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset50_scout_20260520.json"
+    ],
+    "source_review_scope": "Source-validate folded-protein-looking canonical ePK ligand rows that had no within-6-Angstrom heteromeric acceptor hit.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "reviewed_rows": [
+    {
+      "candidate_context": "folded substrate complex",
+      "geometry_negative_reason": "Nearest heteromeric eIF2alpha Ser48 OG is 12.041 Angstrom from the closest PKR ANP PG despite local Mg.",
+      "pdb_id": "2A19",
+      "review_decision": "source_relevant_folded_substrate_geometry_negative",
+      "source_mapping": "RCSB title and primary citation identify a PKR kinase domain, eIF2alpha, and AMP-PNP complex with higher-order substrate recognition context.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/2A19",
+        "https://data.rcsb.org/rest/v1/core/entry/2A19",
+        "https://files.rcsb.org/download/2A19.cif"
+      ]
+    },
+    {
+      "candidate_context": "heterodimeric kinase-substrate/allosteric complex",
+      "geometry_negative_reason": "KSR2 ATP PG has local Mg but nearest MEK1 Ser/Thr/Tyr acceptor is 13.709 Angstrom away; MEK1 ATP PG has no local metal and nearest KSR2 acceptor is 14.720 Angstrom away.",
+      "pdb_id": "2Y4I",
+      "review_decision": "source_relevant_folded_complex_geometry_negative",
+      "source_mapping": "RCSB title identifies the KSR2-MEK1 heterodimer; the primary citation reports a Raf-induced allosteric transition stimulating KSR/Raf phosphorylation of MEK.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/2Y4I",
+        "https://data.rcsb.org/rest/v1/core/entry/2Y4I",
+        "https://files.rcsb.org/download/2Y4I.cif"
+      ]
+    },
+    {
+      "candidate_context": "folded signaling complex",
+      "geometry_negative_reason": "RIP3 ANP PG has local Mg, but the nearest MLKL Thr235 OG1 acceptor is 13.183 Angstrom away.",
+      "pdb_id": "4M69",
+      "review_decision": "source_relevant_folded_complex_geometry_negative",
+      "source_mapping": "RCSB title identifies the mouse RIP3-MLKL complex; the primary citation is structural insight into RIP3-mediated necroptotic signaling.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/4M69",
+        "https://data.rcsb.org/rest/v1/core/entry/4M69",
+        "https://files.rcsb.org/download/4M69.cif"
+      ]
+    },
+    {
+      "candidate_context": "regulatory binding complex",
+      "geometry_negative_reason": "MST2 ANP PG local-metal instances have nearest RASSF5 hydroxyl acceptors at 24.339-26.102 Angstrom, outside local transfer geometry.",
+      "pdb_id": "4LGD",
+      "review_decision": "source_relevant_regulatory_complex_geometry_negative",
+      "source_mapping": "RCSB title identifies human MST2 kinase autoactivation and regulation by RASSF5, not a local transfer-state substrate complex.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/4LGD",
+        "https://data.rcsb.org/rest/v1/core/entry/4LGD",
+        "https://files.rcsb.org/download/4LGD.cif"
+      ]
+    },
+    {
+      "candidate_context": "non-ePK substrate complex returned by broad EC/Pfam-adjacent surface",
+      "geometry_negative_reason": "The isocitrate dehydrogenase kinase/phosphatase ATP/Mg donors are 13.670-87.555 Angstrom from heteromeric acceptors in the substrate enzyme.",
+      "pdb_id": "3LCB",
+      "review_decision": "non_epk_or_out_of_scope_geometry_negative",
+      "source_mapping": "RCSB title identifies an E. coli isocitrate dehydrogenase kinase/phosphatase-substrate complex rather than a canonical ePK kinase-substrate transfer state.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/3LCB",
+        "https://data.rcsb.org/rest/v1/core/entry/3LCB",
+        "https://files.rcsb.org/download/3LCB.cif"
+      ]
+    },
+    {
+      "candidate_context": "kinase-only ABA receptor phosphorylation source title",
+      "geometry_negative_reason": "No heteromeric substrate chain is modeled; the CARK1 ANP PG atoms have local Mg but no heteromeric acceptor to measure.",
+      "pdb_id": "5XD6",
+      "review_decision": "source_title_relevant_but_substrate_absent_geometry_negative",
+      "source_mapping": "RCSB title says CARK1 phosphorylates ABA receptors, but the model contains only the Arabidopsis protein kinase superfamily protein chains plus ANP/Mg.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/5XD6",
+        "https://data.rcsb.org/rest/v1/core/entry/5XD6",
+        "https://files.rcsb.org/header/5XD6.pdb",
+        "https://files.rcsb.org/download/5XD6.cif"
+      ]
+    },
+    {
+      "candidate_context": "PINK1 AMP-PNP state without substrate",
+      "geometry_negative_reason": "PINK1 ANP PG has two local Mg ions, but no heteromeric substrate chain or acceptor is modeled.",
+      "pdb_id": "5YJ9",
+      "review_decision": "split_state_no_substrate_geometry_negative",
+      "source_mapping": "RCSB title identifies a PINK1 kinase domain AMP-PNP complex; the primary citation concerns ubiquitin phosphorylation by PINK1, but this structure has no ubiquitin substrate chain.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/5YJ9",
+        "https://data.rcsb.org/rest/v1/core/entry/5YJ9",
+        "https://files.rcsb.org/header/5YJ9.pdb",
+        "https://files.rcsb.org/download/5YJ9.cif"
+      ]
+    },
+    {
+      "candidate_context": "regulatory kinase complex",
+      "geometry_negative_reason": "MST2 ANP PG has local Mg, but the nearest SAV1 hydroxyl acceptor is 33.548 Angstrom away.",
+      "pdb_id": "6AO5",
+      "review_decision": "source_relevant_regulatory_complex_geometry_negative",
+      "source_mapping": "RCSB title identifies human MST2 in complex with the SAV1 SARAH domain; this is regulatory activation context rather than a local transfer-state substrate complex.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/6AO5",
+        "https://data.rcsb.org/rest/v1/core/entry/6AO5",
+        "https://files.rcsb.org/header/6AO5.pdb",
+        "https://files.rcsb.org/download/6AO5.cif"
+      ]
+    },
+    {
+      "candidate_context": "inhibitory peptide near miss",
+      "geometry_negative_reason": "Legacy ANP PB fallback places the nearest Par3 Ser12 OG 6.053 Angstrom from the terminal atom, just outside the lane bound; this remains an inhibitory/access-control peptide context.",
+      "pdb_id": "5LI1",
+      "review_decision": "near_miss_inhibitory_peptide_not_clean_positive",
+      "source_mapping": "RCSB title and primary citation identify a Par3-inhibitory peptide bound to PKCiota core kinase domain to control substrate access.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/5LI1",
+        "https://data.rcsb.org/rest/v1/core/entry/5LI1",
+        "https://files.rcsb.org/header/5LI1.pdb",
+        "https://files.rcsb.org/download/5LI1.cif"
+      ]
+    },
+    {
+      "candidate_context": "repeat full-length substrate positive-like geometry without local metal",
+      "geometry_negative_reason": "Cofilin Ser3 is 4.236 Angstrom from LIMK1 ANP PG, but no Mg/Mn is local to that ANP PG under the lane scan.",
+      "pdb_id": "5HVK",
+      "review_decision": "repeat_full_length_geometry_positive_like_but_no_local_metal",
+      "source_mapping": "RCSB title and primary citation identify LIMK1 mutant D460N in complex with full-length cofilin-1 and noncanonical substrate recognition, matching prior lane review-only positive-like evidence.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/5HVK",
+        "https://data.rcsb.org/rest/v1/core/entry/5HVK",
+        "https://files.rcsb.org/download/5HVK.cif"
+      ]
+    }
+  ],
+  "source_review_summary": {
+    "evidence_against": [
+      "Folded-protein-looking canonical ligand rows did not provide clean positive geometry: 2A19, 2Y4I, 4M69, and 4LGD all have source-relevant complex context but nearest heteromeric acceptors are at least 12.041 Angstrom from the kinase terminal phosphate.",
+      "3LCB is an out-of-scope/non-ePK kinase-phosphatase substrate complex and is also geometry-negative.",
+      "The offset50 source checks added no clean positives: 5XD6 and 5YJ9 have no modeled substrate chain, 6AO5 is distant regulatory context, 5LI1 is a 6.053 Angstrom inhibitory-peptide near miss, and 5HVK remains a no-local-metal repeat.",
+      "These source checks reinforce that canonical EC/Pfam plus ATP/ANP/Mg filters still need geometry and source validation before any label use."
+    ],
+    "evidence_for": [],
+    "production_claim_allowed": false,
+    "recommendation": "Treat these folded-complex rows as review-only negatives for clean local transfer-state evidence. Do not activate production labels, thresholds, registries, fingerprints, migrations, or scoring."
+  }
+}

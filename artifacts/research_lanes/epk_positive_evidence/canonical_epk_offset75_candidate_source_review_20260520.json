@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T21:46:40Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset75_scout_20260520.json",
+    "source_review_scope": "Adjudicate local-metal candidates and no-local-metal positive-like rows from the start=75 canonical EC/Pfam ePK ligand scout.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "candidate_adjudication": [
+    {
+      "candidate_phosphoacceptor_mapping": {
+        "acceptor_atom": "OG",
+        "acceptor_residue": "SER",
+        "candidate_entity": "PLN / phospholamban",
+        "candidate_entity_uniprot_ids": [
+          "P26678"
+        ],
+        "pdb_auth_seq_id": "16",
+        "pdb_label_seq_id": "9",
+        "source_mapping": "RCSB title and primary citation identify a PKAc-PLN complex from structures of PKA-phospholamban complexes. The modeled phospholamban chain maps to human PLN and places Ser16 at the acceptor position."
+      },
+      "geometry": {
+        "distance_to_anp_pg_angstrom": 3.395,
+        "local_metals": [
+          "MG 403 at 2.935 Angstrom from ANP PG",
+          "MG 402 at 3.360 Angstrom from ANP PG"
+        ]
+      },
+      "pdb_id": "7E0Z",
+      "review_decision": "fresh_review_only_phospholamban_peptide_positive",
+      "source_limitations": [
+        "Phospholamban peptide/synthetic construct context, not a folded-protein substrate positive.",
+        "Use only for review stress; do not activate labels or thresholds."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/7E0Z",
+        "https://data.rcsb.org/rest/v1/core/entry/7E0Z",
+        "https://files.rcsb.org/header/7E0Z.pdb",
+        "https://files.rcsb.org/download/7E0Z.cif",
+        "https://doi.org/10.7554/eLife.75346"
+      ]
+    },
+    {
+      "candidate_phosphoacceptor_mapping": {
+        "acceptor_atom": "OG",
+        "acceptor_residue": "SER",
+        "candidate_entity": "PLN R9C / phospholamban mutant",
+        "candidate_entity_uniprot_ids": [
+          "P26678"
+        ],
+        "pdb_auth_seq_id": "16",
+        "pdb_label_seq_id": "9",
+        "source_mapping": "RCSB title identifies the PKAc-PLN R9C complex; the same primary citation maps the PKA-phospholamban complex context and the modeled PLN chain places Ser16 at the acceptor position."
+      },
+      "geometry": {
+        "distance_to_anp_pg_angstrom": 3.779,
+        "local_metals": [
+          "MG 403 at 3.095 Angstrom from ANP PG",
+          "MG 402 at 3.521 Angstrom from ANP PG"
+        ]
+      },
+      "pdb_id": "7E11",
+      "review_decision": "fresh_review_only_phospholamban_peptide_positive_mutant_context",
+      "source_limitations": [
+        "Phospholamban R9C mutant peptide/synthetic construct context.",
+        "Not independent folded-protein substrate evidence and not production-ready."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/7E11",
+        "https://data.rcsb.org/rest/v1/core/entry/7E11",
+        "https://files.rcsb.org/header/7E11.pdb",
+        "https://files.rcsb.org/download/7E11.cif",
+        "https://doi.org/10.7554/eLife.75346"
+      ]
+    },
+    {
+      "candidate_phosphoacceptor_mapping": {
+        "acceptor_atom": "OG",
+        "acceptor_residue": "SER",
+        "candidate_entity": "THR-ARG-SER-GLU-ILE-ARG-ARG-ALA-SER-THR-ILE-GLU phospholamban-derived A11E peptide",
+        "candidate_entity_uniprot_ids": [
+          "P26678"
+        ],
+        "pdb_auth_seq_id": "16",
+        "pdb_label_seq_id": "9",
+        "source_mapping": "RCSB title identifies the PKAc-A11E complex from the PKA-phospholamban article; the peptide maps to human PLN and retains Ser16 at the local acceptor position."
+      },
+      "geometry": {
+        "distance_to_anp_pg_angstrom": 3.366,
+        "local_metals": [
+          "MG 403 at 3.066 Angstrom from ANP PG",
+          "MG 402 at 3.229 Angstrom from ANP PG"
+        ]
+      },
+      "pdb_id": "7E12",
+      "review_decision": "fresh_review_only_phospholamban_peptide_positive_mutant_context",
+      "source_limitations": [
+        "Synthetic phospholamban-derived A11E peptide context.",
+        "Not folded-protein evidence and not production-ready."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/7E12",
+        "https://data.rcsb.org/rest/v1/core/entry/7E12",
+        "https://files.rcsb.org/header/7E12.pdb",
+        "https://files.rcsb.org/download/7E12.cif",
+        "https://doi.org/10.7554/eLife.75346"
+      ]
+    },
+    {
+      "geometry": {
+        "distance_to_anp_pg_angstrom": 3.92,
+        "local_metal": "MG at 3.192 Angstrom from ANP PG"
+      },
+      "pdb_id": "7B56",
+      "review_decision": "repeat_counterexample_or_mapping_risk",
+      "source_mapping": "RCSB title identifies a CaMKII-actinin AMPPNP complex; prior lane source review rejected 7B56 because actinin binding context did not source-map as a substrate transfer phosphoacceptor.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/7B56",
+        "https://data.rcsb.org/rest/v1/core/entry/7B56",
+        "https://files.rcsb.org/header/7B56.pdb",
+        "https://files.rcsb.org/download/7B56.cif"
+      ]
+    },
+    {
+      "pdb_id": "7UJP",
+      "review_decision": "no_local_metal_positive_like_geometry",
+      "source_mapping": "RCSB title identifies a human CaMKII-alpha kinase domain and GluN2B cocrystal. The primary citation says CaMKII binds substrates and activators at the active site, and the modeled GluN2B chain places Ser1303 within 3.140 Angstrom of ATP PG.",
+      "geometry": {
+        "distance_to_atp_pg_angstrom": 3.14,
+        "local_metals": []
+      },
+      "source_limitations": [
+        "No Mg/Mn is local to the measured ATP PG under this scan, despite structure-level Mg annotations.",
+        "This is positive-like review evidence only and should be a focused follow-up, not a production label."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/7UJP",
+        "https://data.rcsb.org/rest/v1/core/entry/7UJP",
+        "https://files.rcsb.org/header/7UJP.pdb",
+        "https://files.rcsb.org/download/7UJP.cif",
+        "https://doi.org/10.1016/j.celrep.2022.111064"
+      ]
+    },
+    {
+      "pdb_id": "6Z3R",
+      "review_decision": "repeat_no_local_metal_positive_like_geometry",
+      "summary": "6Z3R SMG1-UPF1 has source-relevant substrate-complex wording and within-6-Angstrom geometry but no local Mg/Mn near the measured terminal phosphate under this scan."
+    }
+  ],
+  "source_review_summary": {
+    "evidence_against": [
+      "The offset75 pass still found no fresh clean folded-protein local-metal positive. The new local-metal positives are phospholamban peptide/synthetic construct contexts.",
+      "7B56 remains a prior rejected CaMKII-actinin mapping-risk row, despite local ANP/Mg-to-actinin Ser proximity.",
+      "6Z3R and 7UJP remain positive-like but lack local metal in the measured donor state."
+    ],
+    "evidence_for": [
+      "Fresh review-only PKA/phospholamban peptide positives: 7E0Z, 7E11, and 7E12 source-map PLN Ser16 near ANP PG with two local Mg ions.",
+      "The canonical EC/Pfam ligand search independently recovered prior no-local-metal positive-like rows 6Z3R and 7UJP for follow-up."
+    ],
+    "production_claim_allowed": false,
+    "recommendation": "Use 7E0Z/7E11/7E12 only as review-only peptide positive evidence. Keep production scoring, threshold calibration, label imports, registries, fingerprints, migrations, and production claims closed."
+  }
+}

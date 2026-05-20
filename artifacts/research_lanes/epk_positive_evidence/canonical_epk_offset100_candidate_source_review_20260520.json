@@ -1,0 +1,146 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T21:53:20Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset100_scout_20260520.json",
+    "source_review_scope": "Adjudicate local-metal candidates from the start=100 canonical EC/Pfam ePK ligand scout.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "candidate_adjudication": [
+    {
+      "candidate_phosphoacceptor_mapping": {
+        "acceptor_atom": "OG",
+        "acceptor_residue": "SER",
+        "candidate_entity": "Cellular tumor antigen p53 synthetic peptide",
+        "candidate_entity_uniprot_ids": [
+          "P04637"
+        ],
+        "pdb_auth_seq_id": "15",
+        "pdb_label_seq_id": "5",
+        "source_mapping": "RCSB title identifies ATM(Q2971A) activated by oxidative stress in complex with Mg AMP-PNP and p53 peptide; PDB header marks the p53 entity as a custom synthesized human peptide. The modeled p53 Ser15 is the local acceptor."
+      },
+      "geometry": [
+        {
+          "acceptor_chain": "F",
+          "distance_to_anp_pg_angstrom": 3.482,
+          "local_metal": "MG 3102 at 3.117 Angstrom from ANP PG"
+        },
+        {
+          "acceptor_chain": "E",
+          "distance_to_anp_pg_angstrom": 3.636,
+          "local_metal": "MG 3102 at 3.144 Angstrom from ANP PG"
+        }
+      ],
+      "pdb_id": "8OXM",
+      "review_decision": "fresh_review_only_atm_p53_peptide_positive",
+      "source_limitations": [
+        "Synthetic peptide substrate context, not a folded-protein substrate positive.",
+        "ATM Q2971A mutant/oxidative-stress activation context; use only for review stress."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/8OXM",
+        "https://data.rcsb.org/rest/v1/core/entry/8OXM",
+        "https://files.rcsb.org/header/8OXM.pdb",
+        "https://files.rcsb.org/download/8OXM.cif",
+        "https://doi.org/10.1126/sciadv.adi8291"
+      ]
+    },
+    {
+      "candidate_phosphoacceptor_mapping": {
+        "acceptor_atom": "OG",
+        "acceptor_residue": "SER",
+        "candidate_entity": "Cellular tumor antigen p53 synthetic peptide",
+        "candidate_entity_uniprot_ids": [
+          "P04637"
+        ],
+        "pdb_auth_seq_id": "15",
+        "pdb_label_seq_id": "5",
+        "source_mapping": "RCSB title identifies the ATM(Q2971A) dimeric C-terminal region activated by oxidative stress in complex with Mg AMP-PNP and p53 peptide; the modeled p53 Ser15 is the local acceptor."
+      },
+      "geometry": [
+        {
+          "acceptor_chain": "E",
+          "distance_to_anp_pg_angstrom": 3.694,
+          "local_metal": "MG 3102 at 3.236 Angstrom from ANP PG"
+        },
+        {
+          "acceptor_chain": "F",
+          "distance_to_anp_pg_angstrom": 3.747,
+          "local_metal": "MG 3102 at 2.853 Angstrom from ANP PG"
+        }
+      ],
+      "pdb_id": "8OXO",
+      "review_decision": "fresh_review_only_atm_p53_peptide_positive",
+      "source_limitations": [
+        "Synthetic peptide substrate context, not a folded-protein substrate positive.",
+        "ATM Q2971A/dimeric C-terminal mutant context; use only for review stress."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/8OXO",
+        "https://data.rcsb.org/rest/v1/core/entry/8OXO",
+        "https://files.rcsb.org/header/8OXO.pdb",
+        "https://files.rcsb.org/download/8OXO.cif",
+        "https://doi.org/10.1126/sciadv.adi8291"
+      ]
+    },
+    {
+      "geometry": {
+        "candidate_acceptor": "CaMKII Thr176",
+        "distance_to_atp_pg_angstrom": "5.193-5.516",
+        "local_mg_present": true
+      },
+      "pdb_id": "7KL1",
+      "review_decision": "counterexample_found_wrong_associated_donor_context",
+      "source_mapping": "RCSB title identifies CaMKII-alpha kinase domain with GluN2B(S1303D), but the detected ATP donor is associated with the GluN2B chain and the closest hydroxyl is CaMKII Thr176, not a source-mapped substrate acceptor.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/7KL1",
+        "https://data.rcsb.org/rest/v1/core/entry/7KL1",
+        "https://files.rcsb.org/header/7KL1.pdb",
+        "https://files.rcsb.org/download/7KL1.cif",
+        "https://doi.org/10.1016/j.celrep.2022.111064"
+      ]
+    },
+    {
+      "geometry": {
+        "candidate_acceptor": "KaiC Thr432 across author chains",
+        "distance_to_atp_pg_angstrom": 5.905,
+        "local_mg_present": true
+      },
+      "pdb_id": "7V3X",
+      "review_decision": "counterexample_found_out_of_scope_clock_autokinase_context",
+      "source_mapping": "RCSB title identifies cyanobacterial circadian clock protein KaiC; this is not a source-mapped ePK substrate-transfer complex despite EC 2.7.11-like annotation and cross-chain ATP/Mg-to-Thr geometry.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/7V3X",
+        "https://data.rcsb.org/rest/v1/core/entry/7V3X",
+        "https://files.rcsb.org/header/7V3X.pdb",
+        "https://files.rcsb.org/download/7V3X.cif",
+        "https://doi.org/10.1126/sciadv.abm8990"
+      ]
+    },
+    {
+      "pdb_ids": [
+        "8OXP",
+        "8OXQ"
+      ],
+      "review_decision": "atm_amp_pnp_siblings_without_substrate_peptide",
+      "summary": "ATM(Q2971A) Mg AMP-PNP sibling structures from the same oxidative-stress activation paper lack the modeled p53 peptide and have no heteromeric acceptor hit."
+    }
+  ],
+  "source_review_summary": {
+    "evidence_against": [
+      "The start=100 canonical page found no fresh folded-protein ePK positive. Fresh positives are synthetic peptide contexts.",
+      "7KL1 is a wrong-associated-donor counterexample: ATP is associated with GluN2B while the closest acceptor is CaMKII Thr176.",
+      "7V3X is an out-of-scope KaiC clock autokinase-style counterexample, not a clean ePK kinase-substrate complex.",
+      "ATM siblings 8OXP and 8OXQ have Mg AMP-PNP but no p53 peptide/substrate acceptor."
+    ],
+    "evidence_for": [
+      "Fresh review-only ATM/p53 peptide positives: 8OXM and 8OXO source-map p53 Ser15 near ANP PG with local Mg in Mg AMP-PNP structures."
+    ],
+    "production_claim_allowed": false,
+    "recommendation": "Use 8OXM and 8OXO only as review-only peptide positive evidence. Keep production scoring, threshold calibration, label imports, registries, fingerprints, migrations, and production claims closed."
+  }
+}

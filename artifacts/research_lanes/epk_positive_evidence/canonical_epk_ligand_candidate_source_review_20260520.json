@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T21:31:35Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_scout_20260520.json",
+    "source_review_scope": "Source-map local-metal heteromeric candidates from the bounded canonical EC/Pfam ePK ligand scout.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "reviewed_candidates": [
+    {
+      "candidate_phosphoacceptor_mapping": {
+        "acceptor_atom": "OG",
+        "acceptor_residue": "SER",
+        "candidate_entity": "substrate peptide",
+        "candidate_entity_uniprot_ids": [],
+        "candidate_source_mapping": "RCSB primary citation and entry title identify a substrate peptide bound to phospho-CDK2/cyclin A; the source article describes peptide-substrate and recruitment-peptide specificity for cyclin-dependent kinases.",
+        "pdb_auth_seq_id": "5"
+      },
+      "geometry": [
+        {
+          "acceptor_chain": "F",
+          "distance_to_atp_pg_angstrom": 3.416,
+          "local_metal": "MG at 2.356 Angstrom from ATP PG"
+        },
+        {
+          "acceptor_chain": "E",
+          "distance_to_atp_pg_angstrom": 3.68,
+          "local_metal": "MG at 2.565 Angstrom from ATP PG"
+        }
+      ],
+      "pdb_id": "1QMZ",
+      "review_decision": "repeat_review_only_peptide_positive",
+      "source_urls": [
+        "https://www.rcsb.org/structure/1QMZ",
+        "https://data.rcsb.org/rest/v1/core/entry/1QMZ",
+        "https://files.rcsb.org/download/1QMZ.cif"
+      ]
+    },
+    {
+      "candidate_phosphoacceptor_mapping": {
+        "acceptor_atom": "OG",
+        "acceptor_residue": "SER",
+        "candidate_entity": "Cell division control protein 6 homolog",
+        "candidate_entity_uniprot_ids": [
+          "Q99741"
+        ],
+        "pdb_auth_seq_id": "70",
+        "pdb_entity_seq_id": "4",
+        "source_mapping": "2CCI entity 3 is a 30-residue human CDC6 peptide mapped by struct_ref_seq to UniProt Q99741 residues 71-100. Entity sequence position 4 is Ser and maps to UniProt CDC6 Ser74; SIFTS/PDB seq_dif flags engineered mutations at neighboring positions 71, 72, 73, and 76, but not at Ser74.",
+        "source_site_context": "The primary 2CCI article states that the pCDK2/cyclin A complex was solved with a 30-residue CDC6 peptide, with a heptapeptide bound at the catalytic site and the linking residues unresolved. Independent CDC6 phosphorylation evidence identifies human CDC6 Ser54, Ser74, and Ser106 as Cdk2 in-vitro and in-vivo phosphorylation sites."
+      },
+      "geometry": [
+        {
+          "acceptor_chain": "I",
+          "distance_to_atp_pg_angstrom": 5.821,
+          "local_metal": "MG at 2.943 Angstrom from ATP PG",
+          "terminal_ligand": "ATP"
+        },
+        {
+          "acceptor_chain": "F",
+          "distance_to_atp_pg_angstrom": 5.995,
+          "local_metal": "MG at 3.553 Angstrom from ATP PG",
+          "terminal_ligand": "ATP"
+        }
+      ],
+      "pdb_id": "2CCI",
+      "review_decision": "fresh_review_only_peptide_positive",
+      "source_limitations": [
+        "Peptide substrate only; not a folded-protein substrate positive.",
+        "The CDC6 peptide is engineered at flanking residues to generate the active-site sequence, although the mapped Ser74 acceptor is not flagged as engineered.",
+        "Geometry is within the lane 6 Angstrom bound but near the upper edge, so it is useful for review stress rather than production thresholding.",
+        "The source article reports unresolved linker density between catalytic-site and recruitment-site peptide segments."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/2CCI",
+        "https://data.rcsb.org/rest/v1/core/entry/2CCI",
+        "https://files.rcsb.org/download/2CCI.cif",
+        "https://www.sciencedirect.com/science/article/pii/S0021925819476576",
+        "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10339564&retmode=xml"
+      ]
+    }
+  ],
+  "sibling_followups": [
+    {
+      "geometry_summary": {
+        "heteromeric_candidate_hits_within_6_angstrom": 0,
+        "local_mg_or_mn_near_atp_pg": false,
+        "nearest_heteromeric_acceptor_distance_angstrom": 22.187,
+        "terminal_donor_atom_count": 2
+      },
+      "pdb_id": "2CCH",
+      "review_decision": "equivalent_analog_context_but_geometry_negative_review_only",
+      "source_context": "2CCH is the same primary-citation sibling of 2CCI and is described by RCSB/PDB header as a CDC6 substrate peptide modified with a gamma-linked ATP analogue; the header states the ATP gamma phosphate is covalently attached by a linker to an amino analogue of the hydroxyl acceptor amino acid.",
+      "source_limitations": [
+        "No Mg/Mn is modeled near ATP PG under the lane scan.",
+        "No heteromeric Ser/Thr/Tyr acceptor is within 6 Angstrom of ATP PG.",
+        "The acceptor is represented as a modified amino analogue/linker inhibitor context, not a normal source-mapped hydroxyl acceptor in a transfer-ready substrate."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/2CCH",
+        "https://data.rcsb.org/rest/v1/core/entry/2CCH",
+        "https://files.rcsb.org/download/2CCH.cif",
+        "https://files.rcsb.org/header/2CCH.pdb",
+        "https://www.sciencedirect.com/science/article/pii/S0021925819476576"
+      ]
+    }
+  ],
+  "source_review_summary": {
+    "evidence_against": [
+      "The bounded canonical search did not expose a fresh folded-protein substrate positive; the only fresh local-metal source-mapped candidate is a peptide/substrate-fragment complex.",
+      "2CCI has engineered flanking residues and unresolved linker density, so it should not be used to activate production labels or thresholds.",
+      "2CCH is an equivalent analog/inhibitor sibling but has no local Mg/Mn and no normal heteromeric hydroxyl acceptor within 6 Angstrom of ATP PG."
+    ],
+    "evidence_for": [
+      "2CCI is a fresh source-mapped peptide positive: pCDK2/cyclin A ATP/Mg has CDC6 Ser74 OG within 5.821-5.995 Angstrom of ATP PG across two chains.",
+      "1QMZ is a repeat source-clean peptide positive recovered by the canonical EC/Pfam ligand screen."
+    ],
+    "production_claim_allowed": false,
+    "recommendation": "Add 2CCI only as review-only peptide positive evidence. Keep production scoring, threshold calibration, label import, registries, fingerprints, and migrations closed."
+  }
+}

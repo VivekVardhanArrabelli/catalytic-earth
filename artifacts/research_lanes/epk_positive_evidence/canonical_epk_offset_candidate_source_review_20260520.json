@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T21:37:10Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset25_scout_20260520.json",
+    "source_review_scope": "Adjudicate local-metal candidates from the offset canonical EC/Pfam ePK ligand scout.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "candidate_adjudication": [
+    {
+      "candidate_phosphoacceptor_mapping": {
+        "acceptor_atom": "OG",
+        "acceptor_residue": "SER",
+        "candidate_entity": "cAMP-dependent protein kinase inhibitor alpha / SP20 peptide",
+        "candidate_entity_uniprot_ids": [
+          "P63248"
+        ],
+        "pdb_auth_seq_id": "21",
+        "pdb_label_seq_id": "17",
+        "source_mapping": "RCSB title identifies 4DFX as myristoylated K7C PKA catalytic subunit in complex with SP20 and AMP-PNP; PDB header maps peptide chain I to PKI-alpha residues 6-25 with engineered mutation and ANP/Mg modeled on the kinase chain."
+      },
+      "geometry": {
+        "distance_to_anp_pg_angstrom": 3.533,
+        "local_metals": [
+          "MG 403 at 2.918 Angstrom from ANP PG",
+          "MG 404 at 3.130 Angstrom from ANP PG"
+        ]
+      },
+      "pdb_id": "4DFX",
+      "review_decision": "fresh_review_only_peptide_positive_mutant_context",
+      "source_limitations": [
+        "Peptide substrate/pseudosubstrate-derived SP20 context only; not folded-protein substrate evidence.",
+        "Kinase chain is K7C myristoylated mutant, so this is not a stronger independent positive than the already reviewed WT 4DG0 SP20 structure.",
+        "Do not use for production scoring or threshold calibration."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/4DFX",
+        "https://data.rcsb.org/rest/v1/core/entry/4DFX",
+        "https://files.rcsb.org/header/4DFX.pdb",
+        "https://files.rcsb.org/download/4DFX.cif"
+      ]
+    },
+    {
+      "pdb_ids": [
+        "3X2U",
+        "3X2V",
+        "3X2W",
+        "3O7L",
+        "4DG0",
+        "4JDI"
+      ],
+      "review_decision": "repeat_review_only_peptide_or_legacy_positive",
+      "summary": "The offset canonical scout recovered prior lane anchors: PKA/SP20 ATP/Mg Michaelis peptide structures, 3O7L and 4JDI legacy ANP/PB cases, and 4DG0 WT PKA/SP20 AMP-PNP."
+    }
+  ],
+  "source_review_summary": {
+    "evidence_against": [
+      "The offset canonical EC/Pfam ligand search reviewed 50 additional unique structures and found zero fresh folded-protein substrate positives.",
+      "Seven local-metal candidates are all peptide or peptide-derived contexts; 3O7L and 4JDI still depend on explicit legacy ANP PB fallback.",
+      "4DFX is fresh as a structure but not as an independent substrate-family result because it is the K7C mutant sibling of the already reviewed PKA/SP20 4DG0 context."
+    ],
+    "evidence_for": [
+      "4DFX adds a fresh source-mapped review-only SP20 peptide positive: Ser21 OG is 3.533 Angstrom from ANP PG with two local Mg ions.",
+      "The offset search independently recovered repeat review-only peptide positives 3X2U, 3X2V, 3X2W, 3O7L, 4DG0, and 4JDI."
+    ],
+    "production_claim_allowed": false,
+    "recommendation": "Keep 4DFX as review-only peptide stress evidence only; production labels, thresholds, registries, fingerprints, migrations, and scoring paths remain forbidden."
+  }
+}
