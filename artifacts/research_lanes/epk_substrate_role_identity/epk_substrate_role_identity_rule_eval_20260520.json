@@ -1,0 +1,448 @@
+{
+  "blocker_classification": {
+    "biology_ambiguity_signal": "ATP-dependent sibling families, ATPases/transporters, kinase-kinase, and folded-substrate contexts can co-materialize gamma-proximal Ser/Thr/Tyr hydroxyls without making them true ePK substrate phosphoacceptors.",
+    "data_scarcity_signal": "Positive pressure rows include repeat/review-only positives; current synthesis still reports 0 fresh clean folded-protein positives.",
+    "historical_comparator_assessment": "Comparable blockers in this project have not been cleared by structure-only nearest-atom rules; prior accepted progress required source-reviewed hybrid evidence kept outside predictive features.",
+    "method_weakness_signal": "Nearest-hydroxyl and simple cross-chain/locality rules do not encode kinase/substrate role identity.",
+    "primary_outcome": "blocker_not_cleared_biology_ambiguity"
+  },
+  "metadata": {
+    "artifact_id": "epk_substrate_role_identity_rule_eval_20260520",
+    "candidate_specific_threshold_tuning": false,
+    "counterexample_label_count": 11,
+    "created_at": "2026-05-20T17:03:06Z",
+    "forbidden_predictive_features": [
+      "PDB title",
+      "UniProt prose",
+      "EC/Rhea",
+      "paper/source text",
+      "mechanism labels",
+      "curated substrate names",
+      "post-hoc source repair",
+      "candidate-specific threshold tuning"
+    ],
+    "labels_or_fingerprints_changed": false,
+    "method": "fixed_source_free_rule_eval_against_review_only_labels",
+    "positive_label_count": 11,
+    "primary_outcome": "blocker_not_cleared_biology_ambiguity",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "row_count": 22,
+    "rule_count": 2,
+    "script_run_started_at": "2026-05-20T17:02:58Z",
+    "source_labels_used_only_for_evaluation": true,
+    "threshold_calibrated": false,
+    "workflow_started_at": "2026-05-20T11:52:47-0500"
+  },
+  "rules": [
+    {
+      "clears_diagnostic_tranche": false,
+      "confusion_matrix": {
+        "false_negative": 4,
+        "false_positive": 1,
+        "true_negative": 10,
+        "true_positive": 7
+      },
+      "decisions": [
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "5HVK",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "6Z3R",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": "topology_ambiguity",
+          "outcome": "false_negative",
+          "pdb_id": "9UUR",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": "acceptor_identity_ambiguity",
+          "outcome": "false_negative",
+          "pdb_id": "9UUX",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "1QMZ",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": "product_or_analog_state",
+          "outcome": "false_negative",
+          "pdb_id": "3QHR",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": "product_or_analog_state",
+          "outcome": "false_negative",
+          "pdb_id": "3QHW",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "3X2U",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "3X2V",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "3X2W",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "4IAC",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_negative",
+          "pdb_id": "2JJ2",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_negative",
+          "pdb_id": "7ZE5",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "peptide_vs_folded_substrate_ambiguity",
+          "outcome": "false_positive",
+          "pdb_id": "7B56",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_negative",
+          "pdb_id": "9UW4",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_negative",
+          "pdb_id": "3R5F",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_negative",
+          "pdb_id": "5C1O",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_negative",
+          "pdb_id": "6U1D",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_negative",
+          "pdb_id": "6U1E",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_negative",
+          "pdb_id": "5TT6",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_negative",
+          "pdb_id": "6NOO",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_negative",
+          "pdb_id": "9NBW",
+          "predicted_positive": false
+        }
+      ],
+      "failure_mode_counts": {
+        "acceptor_identity_ambiguity": 1,
+        "peptide_vs_folded_substrate_ambiguity": 1,
+        "product_or_analog_state": 2,
+        "topology_ambiguity": 1
+      },
+      "pdb_ids_by_outcome": {
+        "false_negative": [
+          "9UUR",
+          "9UUX",
+          "3QHR",
+          "3QHW"
+        ],
+        "false_positive": [
+          "7B56"
+        ],
+        "true_negative": [
+          "2JJ2",
+          "7ZE5",
+          "9UW4",
+          "3R5F",
+          "5C1O",
+          "6U1D",
+          "6U1E",
+          "5TT6",
+          "6NOO",
+          "9NBW"
+        ],
+        "true_positive": [
+          "5HVK",
+          "6Z3R",
+          "1QMZ",
+          "3X2U",
+          "3X2V",
+          "3X2W",
+          "4IAC"
+        ]
+      },
+      "rule_description": "PG/P3 gamma-equivalent present; nearest eligible protein hydroxyl <=6.0 A; acceptor chain differs from ligand chain; acceptor chain lacks its own nucleotide/metal hetero context; and acceptor is short-peptide-like, N-terminal STY (first five resolved residues), or Tyr. This scans compact candidate pairs rather than requiring the global nearest hydroxyl to be the substrate.",
+      "rule_id": "strict_cross_chain_terminal_or_peptide_no_acceptor_ligand_v1"
+    },
+    {
+      "clears_diagnostic_tranche": false,
+      "confusion_matrix": {
+        "false_negative": 2,
+        "false_positive": 11,
+        "true_negative": 0,
+        "true_positive": 9
+      },
+      "decisions": [
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "5HVK",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "6Z3R",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "9UUR",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "9UUX",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "1QMZ",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": "product_or_analog_state",
+          "outcome": "false_negative",
+          "pdb_id": "3QHR",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": "product_or_analog_state",
+          "outcome": "false_negative",
+          "pdb_id": "3QHW",
+          "predicted_positive": false
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "3X2U",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "3X2V",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "3X2W",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "positive_true_substrate_acceptor",
+          "failure_mode": null,
+          "outcome": "true_positive",
+          "pdb_id": "4IAC",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "topology_ambiguity",
+          "outcome": "false_positive",
+          "pdb_id": "2JJ2",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "topology_ambiguity",
+          "outcome": "false_positive",
+          "pdb_id": "7ZE5",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "peptide_vs_folded_substrate_ambiguity",
+          "outcome": "false_positive",
+          "pdb_id": "7B56",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "topology_ambiguity",
+          "outcome": "false_positive",
+          "pdb_id": "9UW4",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "sibling_family_mimicry",
+          "outcome": "false_positive",
+          "pdb_id": "3R5F",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "sibling_family_mimicry",
+          "outcome": "false_positive",
+          "pdb_id": "5C1O",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "sibling_family_mimicry",
+          "outcome": "false_positive",
+          "pdb_id": "6U1D",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "sibling_family_mimicry",
+          "outcome": "false_positive",
+          "pdb_id": "6U1E",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "topology_ambiguity",
+          "outcome": "false_positive",
+          "pdb_id": "5TT6",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "topology_ambiguity",
+          "outcome": "false_positive",
+          "pdb_id": "6NOO",
+          "predicted_positive": true
+        },
+        {
+          "actual_label": "counterexample_not_true_substrate_acceptor",
+          "failure_mode": "topology_ambiguity",
+          "outcome": "false_positive",
+          "pdb_id": "9NBW",
+          "predicted_positive": true
+        }
+      ],
+      "failure_mode_counts": {
+        "peptide_vs_folded_substrate_ambiguity": 1,
+        "product_or_analog_state": 2,
+        "sibling_family_mimicry": 4,
+        "topology_ambiguity": 6
+      },
+      "pdb_ids_by_outcome": {
+        "false_negative": [
+          "3QHR",
+          "3QHW"
+        ],
+        "false_positive": [
+          "2JJ2",
+          "7ZE5",
+          "7B56",
+          "9UW4",
+          "3R5F",
+          "5C1O",
+          "6U1D",
+          "6U1E",
+          "5TT6",
+          "6NOO",
+          "9NBW"
+        ],
+        "true_negative": [],
+        "true_positive": [
+          "5HVK",
+          "6Z3R",
+          "9UUR",
+          "9UUX",
+          "1QMZ",
+          "3X2U",
+          "3X2V",
+          "3X2W",
+          "4IAC"
+        ]
+      },
+      "rule_description": "PG/P3 gamma-equivalent present and nearest protein Ser/Thr/Tyr hydroxyl <=6.0 A.",
+      "rule_id": "permissive_nearest_hydroxyl_6a_v1"
+    }
+  ]
+}

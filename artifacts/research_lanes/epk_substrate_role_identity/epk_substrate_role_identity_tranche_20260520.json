@@ -1,0 +1,4546 @@
+{
+  "feature_definitions": {
+    "candidate_acceptor_is_n_terminal_sty": "Nearest hydroxyl residue is Ser/Thr/Tyr within the first five resolved residues of its chain.",
+    "candidate_chain_has_own_nucleotide_or_metal": "A nucleotide-like ligand or metal is assigned to the candidate chain ID, excluding the selected nucleotide residue.",
+    "nearest_nonpolymer_oxygen_distance_angstrom": "Minimum distance from selected gamma-equivalent atom to any non-water HETATM oxygen outside the selected nucleotide residue.",
+    "nearest_protein_hydroxyl_distance_angstrom": "Minimum distance from any terminal gamma-equivalent atom to any resolved Ser OG, Thr OG1, or Tyr OH atom.",
+    "nearest_strict_cross_chain_candidate": "Nearest compact hydroxyl pair satisfying the strict rule preconditions; null means no such source-free candidate.",
+    "polymer_entity_count_sequence_proxy": "Count of distinct resolved ATOM residue-name sequences across chains.",
+    "reciprocal_cross_chain_topology": "Selected nearest gamma/hydroxyl pair spans two chains; no source role assignment is implied.",
+    "terminal_gamma_equivalent_atom_available": "A nucleotide-like nonpolymer residue has atom PG or P3 in model 1."
+  },
+  "metadata": {
+    "artifact_id": "epk_substrate_role_identity_tranche_20260520",
+    "created_at": "2026-05-20T17:03:06Z",
+    "fetch_status_counts": {
+      "ok": 22
+    },
+    "forbidden_predictive_features": [
+      "PDB title",
+      "UniProt prose",
+      "EC/Rhea",
+      "paper/source text",
+      "mechanism labels",
+      "curated substrate names",
+      "post-hoc source repair",
+      "candidate-specific threshold tuning"
+    ],
+    "labels_or_fingerprints_changed": false,
+    "materialized_row_count": 22,
+    "method": "source_free_structure_reduction_from_pdb_model1",
+    "production_claim_allowed": false,
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "row_count": 22,
+    "script_run_started_at": "2026-05-20T17:02:58Z",
+    "source_labels_used_only_for_evaluation": true,
+    "workflow_started_at": "2026-05-20T11:52:47-0500"
+  },
+  "rows": [
+    {
+      "atom_count_model1": 7446,
+      "evaluation_group": "review_only_positive",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "prior review-only ePK synthesis: LIMK1/cofilin kinase-substrate co-complex, P23528 Ser3 near ANP PG",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "5HVK",
+      "pdb_sha256_12": "29ee0d76c35c",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "D",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 164,
+        "candidate_acceptor_is_n_terminal_sty": true,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 2,
+        "candidate_chain_has_own_nucleotide_or_metal": false,
+        "candidate_local_atom_count_within_8a": 62,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O1B",
+          "auth_seq_id": "701",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.26,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": true,
+        "gamma_capable_ligand_codes_observed": [
+          "ANP"
+        ],
+        "ligand_chain_length": 291,
+        "ligand_state": "active_gamma_capable:ANP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "D",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 164,
+            "candidate_acceptor_is_n_terminal_sty": true,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 2,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": true,
+            "distance_angstrom": 4.236,
+            "ligand_chain_length": 291,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "3",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "701",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 291,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 53,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 7.814,
+            "ligand_chain_length": 291,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "380",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "701",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O1P",
+          "auth_seq_id": "508",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "TPO"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 14.416,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "3",
+          "chain_id": "D",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 4.236,
+        "nearest_strict_cross_chain_candidate": {
+          "candidate_acceptor_chain": "D",
+          "candidate_acceptor_chain_is_folded_like": true,
+          "candidate_acceptor_chain_is_midlength": false,
+          "candidate_acceptor_chain_is_short_peptide_like": false,
+          "candidate_acceptor_chain_length": 164,
+          "candidate_acceptor_is_n_terminal_sty": true,
+          "candidate_acceptor_is_tyr": false,
+          "candidate_acceptor_residue_code": "SER",
+          "candidate_acceptor_residue_ordinal_in_chain": 2,
+          "candidate_chain_has_own_nucleotide_or_metal": false,
+          "cross_chain_topology": true,
+          "distance_angstrom": 4.236,
+          "ligand_chain_length": 291,
+          "nearest_protein_hydroxyl_atom": {
+            "atom_name": "OG",
+            "auth_seq_id": "3",
+            "chain_id": "D",
+            "icode": null,
+            "residue_code": "SER"
+          },
+          "same_chain_topology": false,
+          "terminal_gamma_equivalent_atom": {
+            "atom_name": "PG",
+            "auth_seq_id": "701",
+            "chain_id": "C",
+            "icode": null,
+            "residue_code": "ANP"
+          },
+          "terminal_gamma_ligand_chain": "C"
+        },
+        "nucleotide_like_ligand_codes_observed": [
+          "ANP"
+        ],
+        "polymer_chain_count": 4,
+        "polymer_entity_count_sequence_proxy": 4,
+        "reciprocal_cross_chain_topology": true,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "701",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "C"
+      }
+    },
+    {
+      "atom_count_model1": 36011,
+      "evaluation_group": "review_only_positive",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "prior review-only ePK synthesis: SMG1/UPF1 short-peptide positive",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "6Z3R",
+      "pdb_sha256_12": "b35e8d9c4ca0",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "C",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 310,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "THR",
+        "candidate_acceptor_residue_ordinal_in_chain": 84,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 173,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "MG",
+          "auth_seq_id": "602",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "MG"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.123,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ANP",
+          "ATP"
+        ],
+        "ligand_chain_length": 310,
+        "ligand_state": "active_gamma_capable:ANP,ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 310,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 84,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 4.109,
+            "ligand_chain_length": 310,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "253",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "601",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 310,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 49,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.012,
+            "ligand_chain_length": 310,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "218",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "601",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "E",
+            "candidate_acceptor_chain_is_folded_like": false,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": true,
+            "candidate_acceptor_chain_length": 7,
+            "candidate_acceptor_is_n_terminal_sty": true,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 4,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": true,
+            "distance_angstrom": 5.607,
+            "ligand_chain_length": 1943,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "21",
+              "chain_id": "E",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "3701",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 310,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 46,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.65,
+            "ligand_chain_length": 310,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "215",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "601",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O2'",
+          "auth_seq_id": "3701",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 67.873,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG1",
+          "auth_seq_id": "253",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "THR"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 4.109,
+        "nearest_strict_cross_chain_candidate": {
+          "candidate_acceptor_chain": "E",
+          "candidate_acceptor_chain_is_folded_like": false,
+          "candidate_acceptor_chain_is_midlength": false,
+          "candidate_acceptor_chain_is_short_peptide_like": true,
+          "candidate_acceptor_chain_length": 7,
+          "candidate_acceptor_is_n_terminal_sty": true,
+          "candidate_acceptor_is_tyr": false,
+          "candidate_acceptor_residue_code": "SER",
+          "candidate_acceptor_residue_ordinal_in_chain": 4,
+          "candidate_chain_has_own_nucleotide_or_metal": false,
+          "cross_chain_topology": true,
+          "distance_angstrom": 5.607,
+          "ligand_chain_length": 1943,
+          "nearest_protein_hydroxyl_atom": {
+            "atom_name": "OG",
+            "auth_seq_id": "21",
+            "chain_id": "E",
+            "icode": null,
+            "residue_code": "SER"
+          },
+          "same_chain_topology": false,
+          "terminal_gamma_equivalent_atom": {
+            "atom_name": "PG",
+            "auth_seq_id": "3701",
+            "chain_id": "A",
+            "icode": null,
+            "residue_code": "ANP"
+          },
+          "terminal_gamma_ligand_chain": "A"
+        },
+        "nucleotide_like_ligand_codes_observed": [
+          "ANP",
+          "ATP"
+        ],
+        "polymer_chain_count": 4,
+        "polymer_entity_count_sequence_proxy": 4,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "601",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "C"
+      }
+    },
+    {
+      "atom_count_model1": 5300,
+      "evaluation_group": "review_only_positive",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "prior review-only ePK synthesis: source-reviewed MEK/ERK Tyr phosphosite positive",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "9UUR",
+      "pdb_sha256_12": "1c03b2bcb82a",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "B",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 349,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 145,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 68,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O3G",
+          "auth_seq_id": "402",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.997,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ANP"
+        ],
+        "ligand_chain_length": 349,
+        "ligand_state": "active_gamma_capable:ANP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 349,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 145,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 4.126,
+            "ligand_chain_length": 349,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "170",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "402",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 349,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": true,
+            "candidate_acceptor_residue_code": "TYR",
+            "candidate_acceptor_residue_ordinal_in_chain": 179,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": true,
+            "distance_angstrom": 4.181,
+            "ligand_chain_length": 306,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OH",
+              "auth_seq_id": "204",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "TYR"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 306,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 153,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.709,
+            "ligand_chain_length": 306,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "194",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 306,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 183,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": false,
+            "distance_angstrom": 7.171,
+            "ligand_chain_length": 306,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "226",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O1P",
+          "auth_seq_id": "222",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "SEP"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 19.742,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "170",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 4.126,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ANP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "402",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "B"
+      }
+    },
+    {
+      "atom_count_model1": 5310,
+      "evaluation_group": "review_only_positive",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "prior review-only ePK synthesis: source-reviewed MEK/ERK Tyr phosphosite positive",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "9UUX",
+      "pdb_sha256_12": "5774513212de",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "B",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 348,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": true,
+        "candidate_acceptor_residue_code": "TYR",
+        "candidate_acceptor_residue_ordinal_in_chain": 177,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 79,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O3G",
+          "auth_seq_id": "501",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 3.043,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": true,
+        "gamma_capable_ligand_codes_observed": [
+          "ANP"
+        ],
+        "ligand_chain_length": 306,
+        "ligand_state": "active_gamma_capable:ANP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 348,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": true,
+            "candidate_acceptor_residue_code": "TYR",
+            "candidate_acceptor_residue_ordinal_in_chain": 177,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": true,
+            "distance_angstrom": 3.968,
+            "ligand_chain_length": 306,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OH",
+              "auth_seq_id": "204",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "TYR"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 348,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 144,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 4.43,
+            "ligand_chain_length": 348,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "170",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "402",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 306,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 154,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.343,
+            "ligand_chain_length": 306,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "194",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 306,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 184,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.912,
+            "ligand_chain_length": 306,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "226",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O",
+          "auth_seq_id": "202",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "TPO"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 12.647,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OH",
+          "auth_seq_id": "204",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "TYR"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 3.968,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ANP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": true,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "501",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "A"
+      }
+    },
+    {
+      "atom_count_model1": 9889,
+      "evaluation_group": "review_only_positive_pressure",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested review-only positive candidate; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "1QMZ",
+      "pdb_sha256_12": "faf7fa1bf6e2",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "F",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": false,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": true,
+        "candidate_acceptor_chain_length": 7,
+        "candidate_acceptor_is_n_terminal_sty": true,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 4,
+        "candidate_chain_has_own_nucleotide_or_metal": false,
+        "candidate_local_atom_count_within_8a": 78,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O2G",
+          "auth_seq_id": "381",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.793,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": true,
+        "gamma_capable_ligand_codes_observed": [
+          "ATP"
+        ],
+        "ligand_chain_length": 296,
+        "ligand_state": "active_gamma_capable:ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "F",
+            "candidate_acceptor_chain_is_folded_like": false,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": true,
+            "candidate_acceptor_chain_length": 7,
+            "candidate_acceptor_is_n_terminal_sty": true,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 4,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": true,
+            "distance_angstrom": 3.416,
+            "ligand_chain_length": 296,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "5",
+              "chain_id": "F",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "381",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "E",
+            "candidate_acceptor_chain_is_folded_like": false,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": true,
+            "candidate_acceptor_chain_length": 7,
+            "candidate_acceptor_is_n_terminal_sty": true,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 4,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": true,
+            "distance_angstrom": 3.68,
+            "ligand_chain_length": 296,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "5",
+              "chain_id": "E",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "381",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 296,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 15,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 4.951,
+            "ligand_chain_length": 296,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "14",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "381",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 296,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 15,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.329,
+            "ligand_chain_length": 296,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "14",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "381",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 296,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 165,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.708,
+            "ligand_chain_length": 296,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "165",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "381",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 296,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 165,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.887,
+            "ligand_chain_length": 296,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "165",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "381",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O1P",
+          "auth_seq_id": "160",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "TPO"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 14.187,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "5",
+          "chain_id": "F",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 3.416,
+        "nearest_strict_cross_chain_candidate": {
+          "candidate_acceptor_chain": "F",
+          "candidate_acceptor_chain_is_folded_like": false,
+          "candidate_acceptor_chain_is_midlength": false,
+          "candidate_acceptor_chain_is_short_peptide_like": true,
+          "candidate_acceptor_chain_length": 7,
+          "candidate_acceptor_is_n_terminal_sty": true,
+          "candidate_acceptor_is_tyr": false,
+          "candidate_acceptor_residue_code": "SER",
+          "candidate_acceptor_residue_ordinal_in_chain": 4,
+          "candidate_chain_has_own_nucleotide_or_metal": false,
+          "cross_chain_topology": true,
+          "distance_angstrom": 3.416,
+          "ligand_chain_length": 296,
+          "nearest_protein_hydroxyl_atom": {
+            "atom_name": "OG",
+            "auth_seq_id": "5",
+            "chain_id": "F",
+            "icode": null,
+            "residue_code": "SER"
+          },
+          "same_chain_topology": false,
+          "terminal_gamma_equivalent_atom": {
+            "atom_name": "PG",
+            "auth_seq_id": "381",
+            "chain_id": "C",
+            "icode": null,
+            "residue_code": "ATP"
+          },
+          "terminal_gamma_ligand_chain": "C"
+        },
+        "nucleotide_like_ligand_codes_observed": [
+          "ATP"
+        ],
+        "polymer_chain_count": 6,
+        "polymer_entity_count_sequence_proxy": 3,
+        "reciprocal_cross_chain_topology": true,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "381",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "C"
+      }
+    },
+    {
+      "atom_count_model1": 10077,
+      "evaluation_group": "review_only_positive_pressure",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested review-only positive candidate; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "3QHR",
+      "pdb_sha256_12": "41529b8487e4",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": null,
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": false,
+        "candidate_acceptor_chain_is_folded_like": false,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": null,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": null,
+        "candidate_acceptor_residue_ordinal_in_chain": null,
+        "candidate_chain_has_own_nucleotide_or_metal": null,
+        "candidate_local_atom_count_within_8a": null,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": null,
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": null,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": false,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [],
+        "ligand_chain_length": null,
+        "ligand_state": "nucleotide_like_without_terminal_gamma:ADP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [],
+        "nearest_nonpolymer_oxygen_atom": null,
+        "nearest_nonpolymer_oxygen_distance_angstrom": null,
+        "nearest_protein_hydroxyl_atom": null,
+        "nearest_protein_hydroxyl_distance_angstrom": null,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ADP"
+        ],
+        "polymer_chain_count": 8,
+        "polymer_entity_count_sequence_proxy": 3,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": null,
+        "terminal_gamma_equivalent_atom_available": false,
+        "terminal_gamma_ligand_chain": null
+      }
+    },
+    {
+      "atom_count_model1": 10087,
+      "evaluation_group": "review_only_positive_pressure",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested review-only positive candidate; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "3QHW",
+      "pdb_sha256_12": "bdcc314c257e",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": null,
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": false,
+        "candidate_acceptor_chain_is_folded_like": false,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": null,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": null,
+        "candidate_acceptor_residue_ordinal_in_chain": null,
+        "candidate_chain_has_own_nucleotide_or_metal": null,
+        "candidate_local_atom_count_within_8a": null,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": null,
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": null,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": false,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [],
+        "ligand_chain_length": null,
+        "ligand_state": "nucleotide_like_without_terminal_gamma:ADP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [],
+        "nearest_nonpolymer_oxygen_atom": null,
+        "nearest_nonpolymer_oxygen_distance_angstrom": null,
+        "nearest_protein_hydroxyl_atom": null,
+        "nearest_protein_hydroxyl_distance_angstrom": null,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ADP"
+        ],
+        "polymer_chain_count": 8,
+        "polymer_entity_count_sequence_proxy": 4,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": null,
+        "terminal_gamma_equivalent_atom_available": false,
+        "terminal_gamma_ligand_chain": null
+      }
+    },
+    {
+      "atom_count_model1": 3181,
+      "evaluation_group": "review_only_positive_pressure",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested review-only positive candidate; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "3X2U",
+      "pdb_sha256_12": "2bed48a86a3d",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "S",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": false,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": true,
+        "candidate_acceptor_chain_length": 20,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 17,
+        "candidate_chain_has_own_nucleotide_or_metal": false,
+        "candidate_local_atom_count_within_8a": 85,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O2G",
+          "auth_seq_id": "501",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.818,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": true,
+        "gamma_capable_ligand_codes_observed": [
+          "ATP"
+        ],
+        "ligand_chain_length": 336,
+        "ligand_state": "active_gamma_capable:ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "S",
+            "candidate_acceptor_chain_is_folded_like": false,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": true,
+            "candidate_acceptor_chain_length": 20,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 17,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": true,
+            "distance_angstrom": 3.517,
+            "ligand_chain_length": 336,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "621",
+              "chain_id": "S",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 336,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 42,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.378,
+            "ligand_chain_length": 336,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "53",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 336,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 188,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 7.038,
+            "ligand_chain_length": 336,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "201",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O2P",
+          "auth_seq_id": "197",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "TPO"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 14.551,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "621",
+          "chain_id": "S",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 3.517,
+        "nearest_strict_cross_chain_candidate": {
+          "candidate_acceptor_chain": "S",
+          "candidate_acceptor_chain_is_folded_like": false,
+          "candidate_acceptor_chain_is_midlength": false,
+          "candidate_acceptor_chain_is_short_peptide_like": true,
+          "candidate_acceptor_chain_length": 20,
+          "candidate_acceptor_is_n_terminal_sty": false,
+          "candidate_acceptor_is_tyr": false,
+          "candidate_acceptor_residue_code": "SER",
+          "candidate_acceptor_residue_ordinal_in_chain": 17,
+          "candidate_chain_has_own_nucleotide_or_metal": false,
+          "cross_chain_topology": true,
+          "distance_angstrom": 3.517,
+          "ligand_chain_length": 336,
+          "nearest_protein_hydroxyl_atom": {
+            "atom_name": "OG",
+            "auth_seq_id": "621",
+            "chain_id": "S",
+            "icode": null,
+            "residue_code": "SER"
+          },
+          "same_chain_topology": false,
+          "terminal_gamma_equivalent_atom": {
+            "atom_name": "PG",
+            "auth_seq_id": "501",
+            "chain_id": "A",
+            "icode": null,
+            "residue_code": "ATP"
+          },
+          "terminal_gamma_ligand_chain": "A"
+        },
+        "nucleotide_like_ligand_codes_observed": [
+          "ATP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": true,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "501",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "A"
+      }
+    },
+    {
+      "atom_count_model1": 3392,
+      "evaluation_group": "review_only_positive_pressure",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested review-only positive candidate; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "3X2V",
+      "pdb_sha256_12": "792a634ee2b3",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "S",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": false,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": true,
+        "candidate_acceptor_chain_length": 20,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 17,
+        "candidate_chain_has_own_nucleotide_or_metal": false,
+        "candidate_local_atom_count_within_8a": 81,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O3G",
+          "auth_seq_id": "403",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.735,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": true,
+        "gamma_capable_ligand_codes_observed": [
+          "ATP"
+        ],
+        "ligand_chain_length": 331,
+        "ligand_state": "active_gamma_capable:ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "S",
+            "candidate_acceptor_chain_is_folded_like": false,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": true,
+            "candidate_acceptor_chain_length": 20,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 17,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": true,
+            "distance_angstrom": 3.521,
+            "ligand_chain_length": 331,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "621",
+              "chain_id": "S",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "403",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 331,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 183,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.965,
+            "ligand_chain_length": 331,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "201",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "403",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O",
+          "auth_seq_id": "197",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "TPO"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 14.581,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "621",
+          "chain_id": "S",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 3.521,
+        "nearest_strict_cross_chain_candidate": {
+          "candidate_acceptor_chain": "S",
+          "candidate_acceptor_chain_is_folded_like": false,
+          "candidate_acceptor_chain_is_midlength": false,
+          "candidate_acceptor_chain_is_short_peptide_like": true,
+          "candidate_acceptor_chain_length": 20,
+          "candidate_acceptor_is_n_terminal_sty": false,
+          "candidate_acceptor_is_tyr": false,
+          "candidate_acceptor_residue_code": "SER",
+          "candidate_acceptor_residue_ordinal_in_chain": 17,
+          "candidate_chain_has_own_nucleotide_or_metal": false,
+          "cross_chain_topology": true,
+          "distance_angstrom": 3.521,
+          "ligand_chain_length": 331,
+          "nearest_protein_hydroxyl_atom": {
+            "atom_name": "OG",
+            "auth_seq_id": "621",
+            "chain_id": "S",
+            "icode": null,
+            "residue_code": "SER"
+          },
+          "same_chain_topology": false,
+          "terminal_gamma_equivalent_atom": {
+            "atom_name": "PG",
+            "auth_seq_id": "403",
+            "chain_id": "A",
+            "icode": null,
+            "residue_code": "ATP"
+          },
+          "terminal_gamma_ligand_chain": "A"
+        },
+        "nucleotide_like_ligand_codes_observed": [
+          "ATP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": true,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "403",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "A"
+      }
+    },
+    {
+      "atom_count_model1": 3447,
+      "evaluation_group": "review_only_positive_pressure",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested review-only positive candidate; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "3X2W",
+      "pdb_sha256_12": "4a111bbe316d",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "S",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": false,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": true,
+        "candidate_acceptor_chain_length": 20,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 17,
+        "candidate_chain_has_own_nucleotide_or_metal": false,
+        "candidate_local_atom_count_within_8a": 80,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O3G",
+          "auth_seq_id": "403",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.703,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": true,
+        "gamma_capable_ligand_codes_observed": [
+          "ATP"
+        ],
+        "ligand_chain_length": 336,
+        "ligand_state": "active_gamma_capable:ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "S",
+            "candidate_acceptor_chain_is_folded_like": false,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": true,
+            "candidate_acceptor_chain_length": 20,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 17,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": true,
+            "distance_angstrom": 3.529,
+            "ligand_chain_length": 336,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "621",
+              "chain_id": "S",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "403",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 336,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 188,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.095,
+            "ligand_chain_length": 336,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "201",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "403",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 336,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 42,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.928,
+            "ligand_chain_length": 336,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "53",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "403",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O1P",
+          "auth_seq_id": "197",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "TPO"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 14.485,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "621",
+          "chain_id": "S",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 3.529,
+        "nearest_strict_cross_chain_candidate": {
+          "candidate_acceptor_chain": "S",
+          "candidate_acceptor_chain_is_folded_like": false,
+          "candidate_acceptor_chain_is_midlength": false,
+          "candidate_acceptor_chain_is_short_peptide_like": true,
+          "candidate_acceptor_chain_length": 20,
+          "candidate_acceptor_is_n_terminal_sty": false,
+          "candidate_acceptor_is_tyr": false,
+          "candidate_acceptor_residue_code": "SER",
+          "candidate_acceptor_residue_ordinal_in_chain": 17,
+          "candidate_chain_has_own_nucleotide_or_metal": false,
+          "cross_chain_topology": true,
+          "distance_angstrom": 3.529,
+          "ligand_chain_length": 336,
+          "nearest_protein_hydroxyl_atom": {
+            "atom_name": "OG",
+            "auth_seq_id": "621",
+            "chain_id": "S",
+            "icode": null,
+            "residue_code": "SER"
+          },
+          "same_chain_topology": false,
+          "terminal_gamma_equivalent_atom": {
+            "atom_name": "PG",
+            "auth_seq_id": "403",
+            "chain_id": "A",
+            "icode": null,
+            "residue_code": "ATP"
+          },
+          "terminal_gamma_ligand_chain": "A"
+        },
+        "nucleotide_like_ligand_codes_observed": [
+          "ATP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": true,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "403",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "A"
+      }
+    },
+    {
+      "atom_count_model1": 3308,
+      "evaluation_group": "review_only_positive_pressure",
+      "evaluation_label": "positive_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested review-only positive candidate; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "4IAC",
+      "pdb_sha256_12": "65b1376c6403",
+      "requested_set": "positive",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "S",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": false,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": true,
+        "candidate_acceptor_chain_length": 20,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 17,
+        "candidate_chain_has_own_nucleotide_or_metal": false,
+        "candidate_local_atom_count_within_8a": 78,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O3G",
+          "auth_seq_id": "403",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ACP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.675,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": true,
+        "gamma_capable_ligand_codes_observed": [
+          "ACP"
+        ],
+        "ligand_chain_length": 333,
+        "ligand_state": "active_gamma_capable:ACP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "S",
+            "candidate_acceptor_chain_is_folded_like": false,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": true,
+            "candidate_acceptor_chain_length": 20,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 17,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": true,
+            "distance_angstrom": 3.486,
+            "ligand_chain_length": 333,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "621",
+              "chain_id": "S",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "403",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ACP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 333,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 39,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.236,
+            "ligand_chain_length": 333,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "53",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "403",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ACP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 333,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 185,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.248,
+            "ligand_chain_length": 333,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "201",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "403",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ACP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O",
+          "auth_seq_id": "197",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "TPO"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 14.663,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "621",
+          "chain_id": "S",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 3.486,
+        "nearest_strict_cross_chain_candidate": {
+          "candidate_acceptor_chain": "S",
+          "candidate_acceptor_chain_is_folded_like": false,
+          "candidate_acceptor_chain_is_midlength": false,
+          "candidate_acceptor_chain_is_short_peptide_like": true,
+          "candidate_acceptor_chain_length": 20,
+          "candidate_acceptor_is_n_terminal_sty": false,
+          "candidate_acceptor_is_tyr": false,
+          "candidate_acceptor_residue_code": "SER",
+          "candidate_acceptor_residue_ordinal_in_chain": 17,
+          "candidate_chain_has_own_nucleotide_or_metal": false,
+          "cross_chain_topology": true,
+          "distance_angstrom": 3.486,
+          "ligand_chain_length": 333,
+          "nearest_protein_hydroxyl_atom": {
+            "atom_name": "OG",
+            "auth_seq_id": "621",
+            "chain_id": "S",
+            "icode": null,
+            "residue_code": "SER"
+          },
+          "same_chain_topology": false,
+          "terminal_gamma_equivalent_atom": {
+            "atom_name": "PG",
+            "auth_seq_id": "403",
+            "chain_id": "A",
+            "icode": null,
+            "residue_code": "ACP"
+          },
+          "terminal_gamma_ligand_chain": "A"
+        },
+        "nucleotide_like_ligand_codes_observed": [
+          "ACP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": true,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "403",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ACP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "A"
+      }
+    },
+    {
+      "atom_count_model1": 48750,
+      "evaluation_group": "counterexample",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "prior review-only ePK synthesis: F1-ATPase ANP false positive / large-chain context",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "2JJ2",
+      "pdb_sha256_12": "7119a8343419",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "I",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 479,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "THR",
+        "candidate_acceptor_residue_ordinal_in_chain": 154,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 76,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "MG",
+          "auth_seq_id": "1511",
+          "chain_id": "I",
+          "icode": null,
+          "residue_code": "MG"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.044,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ANP"
+        ],
+        "ligand_chain_length": 479,
+        "ligand_state": "active_gamma_capable:ANP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "I",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 479,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 154,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.296,
+            "ligand_chain_length": 479,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "176",
+              "chain_id": "I",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "1510",
+              "chain_id": "I",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "I"
+          },
+          {
+            "candidate_acceptor_chain": "F",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 466,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 155,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.356,
+            "ligand_chain_length": 466,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "163",
+              "chain_id": "F",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "1475",
+              "chain_id": "F",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "F"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 487,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 153,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.374,
+            "ligand_chain_length": 487,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "176",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "1511",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 495,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 161,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.427,
+            "ligand_chain_length": 495,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "176",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "1511",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "J",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 495,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 161,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.438,
+            "ligand_chain_length": 495,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "176",
+              "chain_id": "J",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "1511",
+              "chain_id": "J",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "J"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 479,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 154,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.445,
+            "ligand_chain_length": 479,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "176",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "1510",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "M",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 466,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 155,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.459,
+            "ligand_chain_length": 466,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "163",
+              "chain_id": "M",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "1475",
+              "chain_id": "M",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "M"
+          },
+          {
+            "candidate_acceptor_chain": "I",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 479,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 322,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": true,
+            "distance_angstrom": 5.466,
+            "ligand_chain_length": 466,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "344",
+              "chain_id": "I",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "1475",
+              "chain_id": "M",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "M"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O29",
+          "auth_seq_id": "1273",
+          "chain_id": "N",
+          "icode": null,
+          "residue_code": "QUE"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 22.82,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG1",
+          "auth_seq_id": "176",
+          "chain_id": "I",
+          "icode": null,
+          "residue_code": "THR"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 5.296,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ADP",
+          "ANP"
+        ],
+        "polymer_chain_count": 14,
+        "polymer_entity_count_sequence_proxy": 6,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "1510",
+          "chain_id": "I",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "I"
+      }
+    },
+    {
+      "atom_count_model1": 9077,
+      "evaluation_group": "counterexample",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "prior review-only ePK synthesis: ABC transporter ATP/ANP/Mg false positive",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "7ZE5",
+      "pdb_sha256_12": "5f5afa703ab3",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "D",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 588,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 487,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 85,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O3B",
+          "auth_seq_id": "602",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 3.17,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": true,
+        "gamma_capable_ligand_codes_observed": [
+          "ANP",
+          "ATP"
+        ],
+        "ligand_chain_length": 571,
+        "ligand_state": "active_gamma_capable:ANP,ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "D",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 588,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 487,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": true,
+            "distance_angstrom": 3.876,
+            "ligand_chain_length": 571,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "487",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "602",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 571,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 476,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": true,
+            "distance_angstrom": 4.044,
+            "ligand_chain_length": 588,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "476",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "602",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "D"
+          },
+          {
+            "candidate_acceptor_chain": "D",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 588,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 385,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 4.29,
+            "ligand_chain_length": 588,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "385",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "602",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "D"
+          },
+          {
+            "candidate_acceptor_chain": "D",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 588,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 390,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.011,
+            "ligand_chain_length": 588,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "390",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "602",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "D"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 571,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 380,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.1,
+            "ligand_chain_length": 571,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "380",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "602",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 571,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 375,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.746,
+            "ligand_chain_length": 571,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "375",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "602",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "D",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 588,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 387,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.095,
+            "ligand_chain_length": 588,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "387",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "602",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "D"
+          },
+          {
+            "candidate_acceptor_chain": "D",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 588,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 515,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": true,
+            "distance_angstrom": 6.251,
+            "ligand_chain_length": 571,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "515",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "602",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O1G",
+          "auth_seq_id": "602",
+          "chain_id": "D",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 19.395,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "487",
+          "chain_id": "D",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 3.876,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ANP",
+          "ATP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": true,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "602",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "C"
+      }
+    },
+    {
+      "atom_count_model1": 3385,
+      "evaluation_group": "counterexample",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "prior review-only ePK synthesis: decisive folded/polymer false hit for relaxed protein-role rules",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "7B56",
+      "pdb_sha256_12": "fea71a5b3b65",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "A",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": false,
+        "candidate_acceptor_chain_is_midlength": true,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 68,
+        "candidate_acceptor_is_n_terminal_sty": true,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 1,
+        "candidate_chain_has_own_nucleotide_or_metal": false,
+        "candidate_local_atom_count_within_8a": 56,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O2G",
+          "auth_seq_id": "401",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.654,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": true,
+        "gamma_capable_ligand_codes_observed": [
+          "ANP"
+        ],
+        "ligand_chain_length": 303,
+        "ligand_state": "active_gamma_capable:ANP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": false,
+            "candidate_acceptor_chain_is_midlength": true,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 68,
+            "candidate_acceptor_is_n_terminal_sty": true,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 1,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": true,
+            "distance_angstrom": 3.921,
+            "ligand_chain_length": 303,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "822",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "401",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 303,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 21,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.101,
+            "ligand_chain_length": 303,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "25",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "401",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O1S",
+          "auth_seq_id": "403",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "MES"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 31.15,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "822",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 3.921,
+        "nearest_strict_cross_chain_candidate": {
+          "candidate_acceptor_chain": "A",
+          "candidate_acceptor_chain_is_folded_like": false,
+          "candidate_acceptor_chain_is_midlength": true,
+          "candidate_acceptor_chain_is_short_peptide_like": false,
+          "candidate_acceptor_chain_length": 68,
+          "candidate_acceptor_is_n_terminal_sty": true,
+          "candidate_acceptor_is_tyr": false,
+          "candidate_acceptor_residue_code": "SER",
+          "candidate_acceptor_residue_ordinal_in_chain": 1,
+          "candidate_chain_has_own_nucleotide_or_metal": false,
+          "cross_chain_topology": true,
+          "distance_angstrom": 3.921,
+          "ligand_chain_length": 303,
+          "nearest_protein_hydroxyl_atom": {
+            "atom_name": "OG",
+            "auth_seq_id": "822",
+            "chain_id": "A",
+            "icode": null,
+            "residue_code": "SER"
+          },
+          "same_chain_topology": false,
+          "terminal_gamma_equivalent_atom": {
+            "atom_name": "PG",
+            "auth_seq_id": "401",
+            "chain_id": "B",
+            "icode": null,
+            "residue_code": "ANP"
+          },
+          "terminal_gamma_ligand_chain": "B"
+        },
+        "nucleotide_like_ligand_codes_observed": [
+          "ANP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": true,
+        "same_chain_topology": false,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "401",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "B"
+      }
+    },
+    {
+      "atom_count_model1": 5269,
+      "evaluation_group": "counterexample",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "prior review-only ePK synthesis: fresh same-chain topology-confounded nonpositive control",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "9UW4",
+      "pdb_sha256_12": "ec468987aa7b",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "A",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 304,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 155,
+        "candidate_chain_has_own_nucleotide_or_metal": false,
+        "candidate_local_atom_count_within_8a": 70,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O2G",
+          "auth_seq_id": "501",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 3.536,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ANP"
+        ],
+        "ligand_chain_length": 304,
+        "ligand_state": "active_gamma_capable:ANP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 346,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": true,
+            "candidate_acceptor_residue_code": "TYR",
+            "candidate_acceptor_residue_ordinal_in_chain": 176,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": true,
+            "distance_angstrom": 4.194,
+            "ligand_chain_length": 304,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OH",
+              "auth_seq_id": "204",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "TYR"
+            },
+            "same_chain_topology": false,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 304,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 155,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": false,
+            "distance_angstrom": 4.194,
+            "ligand_chain_length": 304,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "194",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 346,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 142,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 4.671,
+            "ligand_chain_length": 346,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "170",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "402",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 304,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 185,
+            "candidate_chain_has_own_nucleotide_or_metal": false,
+            "cross_chain_topology": false,
+            "distance_angstrom": 6.993,
+            "ligand_chain_length": 304,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "226",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O1P",
+          "auth_seq_id": "222",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "SEP"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 17.468,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "194",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 4.194,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ANP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "501",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "A"
+      }
+    },
+    {
+      "atom_count_model1": 2743,
+      "evaluation_group": "atp_grasp_sibling_control",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "prior review-only sibling-control synthesis: ATP-grasp nearest-hydroxyl mimic",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "3R5F",
+      "pdb_sha256_12": "682c165c11c3",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "A",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 343,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 187,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 40,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O2G",
+          "auth_seq_id": "368",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.58,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ATP"
+        ],
+        "ligand_chain_length": 343,
+        "ligand_state": "active_gamma_capable:ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 343,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 187,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 3.672,
+            "ligand_chain_length": 343,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "192",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "368",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": null,
+        "nearest_nonpolymer_oxygen_distance_angstrom": null,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "192",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 3.672,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ATP"
+        ],
+        "polymer_chain_count": 1,
+        "polymer_entity_count_sequence_proxy": 1,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "368",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "A"
+      }
+    },
+    {
+      "atom_count_model1": 9210,
+      "evaluation_group": "atp_grasp_sibling_control",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "prior review-only sibling-control synthesis: ATP-grasp nearest-hydroxyl mimic",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "5C1O",
+      "pdb_sha256_12": "d07f519647d7",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "B",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 290,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 149,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 25,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "N3B",
+          "auth_seq_id": "401",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 3.107,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ANP"
+        ],
+        "ligand_chain_length": 290,
+        "ligand_state": "active_gamma_capable:ANP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 290,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 149,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 4.047,
+            "ligand_chain_length": 290,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "151",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "401",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 306,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 151,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 4.722,
+            "ligand_chain_length": 306,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "151",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "401",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          },
+          {
+            "candidate_acceptor_chain": "D",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 295,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 149,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 4.936,
+            "ligand_chain_length": 295,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "151",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "401",
+              "chain_id": "D",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "D"
+          },
+          {
+            "candidate_acceptor_chain": "C",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 306,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 150,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 7.783,
+            "ligand_chain_length": 306,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "150",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "401",
+              "chain_id": "C",
+              "icode": null,
+              "residue_code": "ANP"
+            },
+            "terminal_gamma_ligand_chain": "C"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O2'",
+          "auth_seq_id": "401",
+          "chain_id": "C",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 35.463,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "151",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 4.047,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ANP"
+        ],
+        "polymer_chain_count": 4,
+        "polymer_entity_count_sequence_proxy": 4,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "401",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "ANP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "B"
+      }
+    },
+    {
+      "atom_count_model1": 5372,
+      "evaluation_group": "atp_grasp_pressure",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested ATP-grasp pressure row; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "6U1D",
+      "pdb_sha256_12": "25364535468d",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "B",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 326,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": true,
+        "candidate_acceptor_residue_code": "TYR",
+        "candidate_acceptor_residue_ordinal_in_chain": 231,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 98,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O2G",
+          "auth_seq_id": "407",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 4.125,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ATP"
+        ],
+        "ligand_chain_length": 326,
+        "ligand_state": "active_gamma_capable:ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 326,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": true,
+            "candidate_acceptor_residue_code": "TYR",
+            "candidate_acceptor_residue_ordinal_in_chain": 231,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.5,
+            "ligand_chain_length": 326,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OH",
+              "auth_seq_id": "229",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "TYR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 324,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 161,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.559,
+            "ligand_chain_length": 324,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "159",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 326,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 161,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.565,
+            "ligand_chain_length": 326,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "159",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 324,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 162,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.591,
+            "ligand_chain_length": 324,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "160",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 326,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 162,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.646,
+            "ligand_chain_length": 326,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "160",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 324,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": true,
+            "candidate_acceptor_residue_code": "TYR",
+            "candidate_acceptor_residue_ordinal_in_chain": 231,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.715,
+            "ligand_chain_length": 324,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OH",
+              "auth_seq_id": "229",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "TYR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 324,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": true,
+            "candidate_acceptor_residue_code": "TYR",
+            "candidate_acceptor_residue_ordinal_in_chain": 225,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 7.765,
+            "ligand_chain_length": 324,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OH",
+              "auth_seq_id": "223",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "TYR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 326,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": true,
+            "candidate_acceptor_residue_code": "TYR",
+            "candidate_acceptor_residue_ordinal_in_chain": 225,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 7.811,
+            "ligand_chain_length": 326,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OH",
+              "auth_seq_id": "223",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "TYR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O",
+          "auth_seq_id": "401",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "DAL"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 4.053,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OH",
+          "auth_seq_id": "229",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "TYR"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 5.5,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ATP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "407",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "B"
+      }
+    },
+    {
+      "atom_count_model1": 5256,
+      "evaluation_group": "atp_grasp_pressure",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested ATP-grasp pressure row; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "6U1E",
+      "pdb_sha256_12": "557ebe065038",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "A",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 324,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_residue_ordinal_in_chain": 161,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 91,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "C5'",
+          "auth_seq_id": "407",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 3.316,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ATP"
+        ],
+        "ligand_chain_length": 324,
+        "ligand_state": "active_gamma_capable:ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 324,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 161,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.529,
+            "ligand_chain_length": 324,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "160",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 326,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 162,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.553,
+            "ligand_chain_length": 326,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "160",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 326,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 161,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.6,
+            "ligand_chain_length": 326,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "159",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 324,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "SER",
+            "candidate_acceptor_residue_ordinal_in_chain": 160,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.611,
+            "ligand_chain_length": 324,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG",
+              "auth_seq_id": "159",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "SER"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 326,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": true,
+            "candidate_acceptor_residue_code": "TYR",
+            "candidate_acceptor_residue_ordinal_in_chain": 231,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.77,
+            "ligand_chain_length": 326,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OH",
+              "auth_seq_id": "229",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "TYR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 324,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": true,
+            "candidate_acceptor_residue_code": "TYR",
+            "candidate_acceptor_residue_ordinal_in_chain": 230,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.833,
+            "ligand_chain_length": 324,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OH",
+              "auth_seq_id": "229",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "TYR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 324,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 158,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 7.789,
+            "ligand_chain_length": 324,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "157",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 326,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 159,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 7.821,
+            "ligand_chain_length": 326,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "157",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "407",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O",
+          "auth_seq_id": "401",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "DAL"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 4.105,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG",
+          "auth_seq_id": "160",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "SER"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 5.529,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ATP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 2,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "407",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "A"
+      }
+    },
+    {
+      "atom_count_model1": 3193,
+      "evaluation_group": "same_chain_atpase_ligase_pressure",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested same-chain ATPase/ligase pressure row; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "5TT6",
+      "pdb_sha256_12": "46e033842c03",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "A",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 375,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": true,
+        "candidate_acceptor_residue_code": "TYR",
+        "candidate_acceptor_residue_ordinal_in_chain": 38,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 77,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "O1G",
+          "auth_seq_id": "403",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.263,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ATP"
+        ],
+        "ligand_chain_length": 375,
+        "ligand_state": "active_gamma_capable:ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 375,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": true,
+            "candidate_acceptor_residue_code": "TYR",
+            "candidate_acceptor_residue_ordinal_in_chain": 38,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 3.297,
+            "ligand_chain_length": 375,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OH",
+              "auth_seq_id": "37",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "TYR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "403",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": null,
+        "nearest_nonpolymer_oxygen_distance_angstrom": null,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OH",
+          "auth_seq_id": "37",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "TYR"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 3.297,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ATP"
+        ],
+        "polymer_chain_count": 1,
+        "polymer_entity_count_sequence_proxy": 1,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "403",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "A"
+      }
+    },
+    {
+      "atom_count_model1": 3965,
+      "evaluation_group": "same_chain_atpase_ligase_pressure",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested same-chain ATPase/ligase pressure row; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "6NOO",
+      "pdb_sha256_12": "339aa5a5727a",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "B",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 259,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "THR",
+        "candidate_acceptor_residue_ordinal_in_chain": 24,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 92,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "MG",
+          "auth_seq_id": "502",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "MG"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 2.383,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ATP"
+        ],
+        "ligand_chain_length": 259,
+        "ligand_state": "active_gamma_capable:ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "B",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 259,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 24,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.401,
+            "ligand_chain_length": 259,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "16",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "501",
+              "chain_id": "B",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "B"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": null,
+        "nearest_nonpolymer_oxygen_distance_angstrom": null,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG1",
+          "auth_seq_id": "16",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "THR"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 5.401,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ATP"
+        ],
+        "polymer_chain_count": 2,
+        "polymer_entity_count_sequence_proxy": 1,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "501",
+          "chain_id": "B",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "B"
+      }
+    },
+    {
+      "atom_count_model1": 4387,
+      "evaluation_group": "same_chain_atpase_ligase_pressure",
+      "evaluation_label": "counterexample_not_true_substrate_acceptor",
+      "evaluation_label_source": "user-requested same-chain ATPase/ligase pressure row; label used only after feature extraction",
+      "evaluation_label_used_only_for_eval": true,
+      "feature_extraction_started_after": "2026-05-20T11:52:47-0500",
+      "fetch_status": "ok",
+      "forbidden_predictive_features_excluded": [
+        "PDB title",
+        "UniProt prose",
+        "EC/Rhea",
+        "paper/source text",
+        "mechanism labels",
+        "curated substrate names",
+        "post-hoc source repair",
+        "candidate-specific threshold tuning"
+      ],
+      "pdb_id": "9NBW",
+      "pdb_sha256_12": "e1cd8fba227a",
+      "requested_set": "counterexample",
+      "source_free_feature_only": true,
+      "structure_features": {
+        "candidate_acceptor_chain": "A",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal": true,
+        "candidate_acceptor_chain_is_folded_like": true,
+        "candidate_acceptor_chain_is_midlength": false,
+        "candidate_acceptor_chain_is_short_peptide_like": false,
+        "candidate_acceptor_chain_length": 570,
+        "candidate_acceptor_is_n_terminal_sty": false,
+        "candidate_acceptor_is_tyr": false,
+        "candidate_acceptor_residue_code": "THR",
+        "candidate_acceptor_residue_ordinal_in_chain": 331,
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_local_atom_count_within_8a": 93,
+        "candidate_local_context_nearest_nucleotide_or_metal_atom": {
+          "atom_name": "MG",
+          "auth_seq_id": "603",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "MG"
+        },
+        "candidate_local_context_nearest_nucleotide_or_metal_distance_angstrom": 1.866,
+        "co_materialized_gamma_and_hydroxyl_in_one_structure": true,
+        "cross_chain_topology": false,
+        "gamma_capable_ligand_codes_observed": [
+          "ATP"
+        ],
+        "ligand_chain_length": 570,
+        "ligand_state": "active_gamma_capable:ATP",
+        "nearest_hydroxyl_pair_candidates_within_8a": [
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 570,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 331,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.31,
+            "ligand_chain_length": 570,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "341",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "602",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          },
+          {
+            "candidate_acceptor_chain": "A",
+            "candidate_acceptor_chain_is_folded_like": true,
+            "candidate_acceptor_chain_is_midlength": false,
+            "candidate_acceptor_chain_is_short_peptide_like": false,
+            "candidate_acceptor_chain_length": 570,
+            "candidate_acceptor_is_n_terminal_sty": false,
+            "candidate_acceptor_is_tyr": false,
+            "candidate_acceptor_residue_code": "THR",
+            "candidate_acceptor_residue_ordinal_in_chain": 22,
+            "candidate_chain_has_own_nucleotide_or_metal": true,
+            "cross_chain_topology": false,
+            "distance_angstrom": 5.517,
+            "ligand_chain_length": 570,
+            "nearest_protein_hydroxyl_atom": {
+              "atom_name": "OG1",
+              "auth_seq_id": "23",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "THR"
+            },
+            "same_chain_topology": true,
+            "terminal_gamma_equivalent_atom": {
+              "atom_name": "PG",
+              "auth_seq_id": "601",
+              "chain_id": "A",
+              "icode": null,
+              "residue_code": "ATP"
+            },
+            "terminal_gamma_ligand_chain": "A"
+          }
+        ],
+        "nearest_nonpolymer_oxygen_atom": {
+          "atom_name": "O2G",
+          "auth_seq_id": "601",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "nearest_nonpolymer_oxygen_distance_angstrom": 6.956,
+        "nearest_protein_hydroxyl_atom": {
+          "atom_name": "OG1",
+          "auth_seq_id": "341",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "THR"
+        },
+        "nearest_protein_hydroxyl_distance_angstrom": 5.31,
+        "nearest_strict_cross_chain_candidate": null,
+        "nucleotide_like_ligand_codes_observed": [
+          "ATP"
+        ],
+        "polymer_chain_count": 1,
+        "polymer_entity_count_sequence_proxy": 1,
+        "reciprocal_cross_chain_topology": false,
+        "same_chain_topology": true,
+        "terminal_gamma_equivalent_atom": {
+          "atom_name": "PG",
+          "auth_seq_id": "602",
+          "chain_id": "A",
+          "icode": null,
+          "residue_code": "ATP"
+        },
+        "terminal_gamma_equivalent_atom_available": true,
+        "terminal_gamma_ligand_chain": "A"
+      }
+    }
+  ]
+}
