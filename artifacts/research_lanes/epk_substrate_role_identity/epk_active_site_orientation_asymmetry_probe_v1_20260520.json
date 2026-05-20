@@ -54078,7 +54078,7 @@
     "all_orientation_fetch_failed": false,
     "artifact_id": "epk_active_site_orientation_asymmetry_probe_v1_20260520",
     "candidate_specific_threshold_tuning": false,
-    "created_at": "2026-05-20T21:51:30Z",
+    "created_at": "2026-05-20T22:28:00Z",
     "fetch_status_counts": {
       "ok": 54
     },
@@ -57039,7 +57039,7 @@
       "reused_from_local_exposure_probe": 54,
       "total": 54
     },
-    "ended_at": "2026-05-20T21:51:30Z",
+    "ended_at": "2026-05-20T22:28:00Z",
     "false_negative_analysis": {
       "auth_guard": [
         "9UUR",
@@ -57088,7 +57088,7 @@
     "hypothesis": "Source-free active-site orientation/asymmetry features can distinguish true folded Tyr substrate acceptors from topology-confounded mimics if structure-only substrate-role identity is recoverable.",
     "labels_or_fingerprints_changed": false,
     "lane_id": "epk_substrate_role_identity",
-    "measured_minutes": 12.57,
+    "measured_minutes": 49.07,
     "next_query": "Classify the remaining strict-rule false negatives by unavailable ligand state versus same-chain/autophosphorylation-like topology, then decide whether the lane should stop feature probing and preserve a source-reviewed adjudication requirement for ePK substrate-role identity.",
     "primary_outcome": "counterexample_found",
     "production_claim_allowed": false,

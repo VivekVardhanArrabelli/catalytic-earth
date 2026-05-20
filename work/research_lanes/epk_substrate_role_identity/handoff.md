@@ -1,6 +1,6 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-20T16:49:10-0500
+Last updated: 2026-05-20T17:28:08-0500
 
 Primary outcome: `counterexample_found`
 
