@@ -1,6 +1,6 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-20T16:27:38-0500
+Last updated: 2026-05-20T16:49:10-0500
 
 Primary outcome: `counterexample_found`
 
@@ -8,39 +8,40 @@ Primary outcome: `counterexample_found`
 
 `labels_or_fingerprints_changed=false`
 
-Run note: normal `git fetch origin` and `git pull --ff-only` were attempted
-at run start, but the sandbox could not write linked-worktree `FETCH_HEAD`.
+Run note: normal `git fetch origin` / `git pull --ff-only` were attempted at
+run start, but the sandbox could not write linked-worktree `FETCH_HEAD`.
 Live remote state was checked with `git ls-remote`; local `HEAD` and the live
-remote ref both matched `2b6d9f8ceaa747fc59bd5f8a2b606cae160323f8` before
+remote ref both matched `261c6c38038f6a32555ee8358b3925737d7107c0` during
 this run.
 
 ## What Was Tested
 
-This run executed the requested alternate source-free feature-family probe:
+This run executed the requested source-free active-site
+orientation/asymmetry probe:
 
-`epk_local_burial_solvent_exposure_probe_v1_review_only`
+`epk_active_site_orientation_asymmetry_probe_v1_review_only`
 
 Artifact:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_local_burial_solvent_exposure_probe_v1_20260520.json`
+`artifacts/research_lanes/epk_substrate_role_identity/epk_active_site_orientation_asymmetry_probe_v1_20260520.json`
 
 Helper:
 
-`tools/research_lanes/epk_substrate_role_identity/local_burial_solvent_exposure_probe.py`
+`tools/research_lanes/epk_substrate_role_identity/active_site_orientation_asymmetry_probe.py`
 
 The helper:
 
-- reused the prior reciprocal-context 54-row diagnostic set;
+- reused the prior 54-row local-exposure diagnostic set;
 - fetched structures in memory only, with no raw coordinate files written;
-- matched compact gamma/hydroxyl candidates already present in the reciprocal
-  artifact;
-- added source-free local exposure proxies around candidate hydroxyl atoms:
-  protein heavy-atom counts at 4/5/6/8/10 A, same-chain vs other-chain
-  density, local residue counts, water oxygen proximity, nonwater heteroatom
-  proximity, nucleotide/metal proximity, and 26-direction open-shell vacancy
-  fractions at 3 A and 5 A;
+- matched compact gamma/hydroxyl candidates already present in the local
+  exposure artifact;
+- added source-free orientation/asymmetry proxies around selected candidates:
+  hydroxyl-anchor-to-gamma angle, hydroxyl gamma-facing versus backside
+  half-space protein density, ligand-chain and acceptor-chain density near
+  nucleotide gamma, gamma-axis forward/back density, and nearest other
+  nucleotide/metal or active-gamma distances;
 - compared existing strict, auth-terminal guarded strict, permissive, and
-  reciprocal folded-Tyr rescue rules to local exposure-gated variants.
+  reciprocal folded-Tyr rescue rules to orientation-gated variants.
 
 Forbidden predictive inputs remained excluded: PDB title, UniProt prose,
 EC/Rhea, paper/source text, mechanism labels, curated substrate names,
@@ -55,77 +56,85 @@ Combined 54-row diagnostic set:
 - `strict_auth_terminal_guard_v1`: TP=14, FP=0, TN=34, FN=6.
 - Permissive nearest-hydroxyl rule: TP=17, FP=27, TN=7, FN=3.
 - Prior `reciprocal_folded_tyr_rescue_v1`: TP=16, FP=1, TN=33, FN=4.
-- `local_open_shell_folded_tyr_rescue_v1`: TP=16, FP=1, TN=33, FN=4.
-- `local_burial_guarded_auth_strict_v1`: TP=14, FP=0, TN=34, FN=6.
-- `water_or_open_permissive_nearest_hydroxyl_v1`: TP=17, FP=27, TN=7, FN=3.
+- `orientation_supported_folded_tyr_rescue_v1`: TP=16, FP=1, TN=33, FN=4.
+- `orientation_guarded_auth_strict_v1`: TP=14, FP=0, TN=34, FN=6.
 
-The local exposure class did not separate the decisive folded-Tyr trio:
+The orientation-supported folded-Tyr rescue recovered `9UUR` and `9UUX`, but
+also admitted `9UW4`.
 
-- `9UUR`: open_or_surface_like; Tyr204, 4.181 A, 25 protein heavy atoms within
-  6 A after same-residue exclusion, open-shell fraction 3 A = 0.692.
-- `9UUX`: open_or_surface_like; Tyr204, 3.968 A, 25 protein heavy atoms within
-  6 A after same-residue exclusion, open-shell fraction 3 A = 0.615.
-- `9UW4`: open_or_surface_like; Tyr204, 4.194 A, 25 protein heavy atoms within
-  6 A after same-residue exclusion, open-shell fraction 3 A = 0.731.
+Hard folded-Tyr trio under the accepted frozen orientation class:
 
-The helper includes a post-hoc trio separability scan. Several scalar exposure
-features can separate `9UW4` from only `9UUR`/`9UUX`, such as a 5 A
-same-residue-excluded protein density threshold between 9 and 12 atoms, or a
-3 A open-shell threshold between 0.692 and 0.731. Projected on the 54-row set
-these would score TP=16, FP=0, TN=34, FN=4, but they are candidate-specific
-thresholds learned from the hard trio and are not accepted as source-free
-identity rules.
+- `9UUR`: `gamma_facing_active_site_like`; Tyr204, 4.181 A, angle 147.266
+  degrees, 15 gamma-facing other-chain heavy atoms within 6 A, 25 ligand-chain
+  heavy atoms within 6 A of gamma.
+- `9UUX`: `gamma_facing_active_site_like`; Tyr204, 3.968 A, angle 148.035
+  degrees, 12 gamma-facing other-chain heavy atoms within 6 A, 27 ligand-chain
+  heavy atoms within 6 A of gamma.
+- `9UW4`: `gamma_facing_active_site_like`; Tyr204, 4.194 A, angle 146.026
+  degrees, 11 gamma-facing other-chain heavy atoms within 6 A, 22 ligand-chain
+  heavy atoms within 6 A of gamma.
 
 `7B56` remains a useful blocker probe. Its strict false-positive candidate is
-Ser822, resolved ordinal 1, and auth-terminal internal-fragment-like; the
-auth-terminal guard still rejects it. Local exposure alone would not solve
-`7B56`: the selected hydroxyl is open_or_surface_like with water nearby.
+Ser822 and the auth-terminal internal-fragment guard still rejects it. The new
+orientation features do not separate it: its strict candidate is also
+`gamma_facing_active_site_like` by the frozen descriptor. Thus `7B56` is still
+handled by terminal-index/topology counterevidence, not by active-site
+orientation.
 
-The remaining false negatives under the best non-posthoc local-exposure rule
-are `3QHR`, `3QHW`, `1L0O`, and `3TM0`: three product/analog-state rows
-without a terminal gamma-equivalent candidate, plus one same-chain or
-autophosphorylation-like topology row.
+The helper includes a post-hoc trio separability scan. A few scalar
+orientation/density thresholds can reject `9UW4` while retaining `9UUR`/`9UUX`,
+such as ligand-chain gamma-site density thresholds between 22 and 25 atoms.
+Projected on the 54-row set these can score TP=16, FP=0, TN=34, FN=4, but they
+are narrow thresholds learned from the hard trio and are not accepted as
+source-free identity rules.
+
+The remaining false negatives under the orientation-supported folded-Tyr rule
+are `3QHR`, `3QHW`, `1L0O`, and `3TM0`. The artifact now includes a compact
+`remaining_false_negative_probe`: `3QHR`, `3QHW`, and `1L0O` are ADP/product
+state rows with no terminal gamma-equivalent candidate and zero candidates
+within 8 A; `3TM0` has an ANP gamma and one 4.483 A Ser candidate, but it is
+same-chain, folded-chain, `same_chain_gamma_hydroxyl`, and
+`orientation_unsupported`.
 
 ## Interpretation
 
-Local burial and solvent exposure are useful review-only context, but broad
-source-free exposure classes do not identify kinase substrate role on the
-frozen diagnostic set. The feature family confirms that simple local density,
-water contact, and shell openness are not enough to distinguish the
-source-reviewed folded-Tyr positives from the topology-confounded `9UW4`
-counterexample.
+Active-site orientation/asymmetry adds useful review-only descriptors, but it
+does not identify kinase substrate role on the frozen diagnostic set. The same
+feature family that recovers the source-reviewed folded-Tyr positives also
+recovers the `9UW4` topology-confounded counterexample.
 
-The only local-exposure splits that reject `9UW4` are narrow, post-hoc scalar
-thresholds against the same hard trio. Those are exactly the kind of
-candidate-specific tuning excluded by the lane contract.
+The decisive issue is not only distance or simple catalytic-site orientation:
+the hard trio has nearly identical hydroxyl-to-gamma angles, gamma-facing
+protein density, and reciprocal active-site context. Source-free scalar
+thresholds can be found after seeing the trio, but those are candidate-specific
+tuning and remain excluded by the lane contract.
 
 Comparable ePK substrate-role blockers in this lane still have not cleared
 with structure-only nearest-atom, topology, residue-class, terminal-index,
-reciprocal-context, or local-exposure proxies. Usable progress remains hybrid:
-source-reviewed evidence can label and audit rows, while source text remains
-excluded from predictive features.
+reciprocal-context, local-exposure, or active-site-orientation proxies. Usable
+progress remains hybrid: source-reviewed evidence can label and audit rows,
+while source text remains excluded from predictive features.
 
 ## Current Decision
 
 Do not claim ePK production readiness. Do not import labels, edit production
-fingerprints, calibrate thresholds, or treat local exposure as a substrate-role
-identity rule.
+fingerprints, calibrate thresholds, or treat active-site orientation as a
+substrate-role identity rule.
 
-Use local exposure only as review-only ambiguity evidence:
+Use active-site orientation only as review-only ambiguity evidence:
 
-- broad open/buried classes do not separate the hard folded-Tyr counterexample;
+- broad orientation classes do not separate the hard folded-Tyr counterexample;
 - narrow scalar thresholds can be diagnostic but are post-hoc and
   candidate-specific;
 - product/analog rows without terminal gamma remain unavailable to
   gamma-to-hydroxyl rules;
-- `7B56` remains handled by the auth-terminal internal-fragment guard, not by
-  exposure.
+- `7B56` remains blocked by the auth-terminal internal-fragment guard, not by
+  orientation.
 
 ## Exact Next Experiment
 
-Run a source-free acceptor-chain active-site orientation/asymmetry probe:
-compare candidate hydroxyl vector geometry to nucleotide gamma and nearby
-catalytic-chain density, especially `9UUR`/`9UUX`/`9UW4` and the product-state
-false negatives. The goal is to test whether orientation or reciprocal
-active-site geometry adds a non-posthoc separation axis; if it only separates
-the known trio by tuned scalar thresholds, keep it review-only.
+Classify the remaining strict-rule false negatives by unavailable ligand state
+versus same-chain/autophosphorylation-like topology, then decide whether this
+lane should stop feature probing and preserve a source-reviewed adjudication
+requirement for ePK substrate-role identity. Treat this as a blocker decision
+probe, not a production patch.
