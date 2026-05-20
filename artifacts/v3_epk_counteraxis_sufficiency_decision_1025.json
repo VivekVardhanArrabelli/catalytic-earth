@@ -76,6 +76,22 @@
       "review_only": true,
       "sibling_control_false_hit_count": 0,
       "source_free_ready_count": 3
+    },
+    {
+      "blocker": "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "passes_source_expansion_controls_but_peptide_axis_narrow_not_production_admissible",
+      "decision_axis": "heteromeric_source_expansion_peptide_role_axis",
+      "feature_admissible_for_production_scoring": false,
+      "feature_passes_source_expansion_controls": true,
+      "general_substrate_identity_ready_count": 0,
+      "nonpositive_source_expansion_control_false_hit_count": 0,
+      "review_only": true,
+      "source_expansion_peptide_role_hit_count": 2,
+      "source_expansion_peptide_role_hit_pdb_ids": [
+        "1O6K",
+        "1O6L"
+      ]
     }
   ],
   "metadata": {
@@ -112,11 +128,20 @@
     "heteromeric_peptide_acceptor_identity_source_free_ready_count": 3,
     "heteromeric_peptide_external_feature_non_abstention_count": 0,
     "heteromeric_peptide_external_feature_probe_passed": true,
+    "heteromeric_source_expansion_peptide_role_axis_passes_source_expansion_controls": true,
+    "heteromeric_source_expansion_peptide_role_axis_status": "passes_source_expansion_controls_peptide_role_axis_review_only",
+    "heteromeric_source_expansion_peptide_role_general_substrate_ready_count": 0,
+    "heteromeric_source_expansion_peptide_role_hit_count": 2,
+    "heteromeric_source_expansion_peptide_role_hit_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "heteromeric_source_expansion_peptide_role_nonpositive_false_hit_count": 0,
     "method": "epk_counteraxis_sufficiency_decision",
     "negative_control_distance_distribution_ready": false,
     "next_actions": [
       "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
-      "stress-test peptide-like acceptor identity on broader heteromeric kinase-substrate co-complexes",
+      "convert peptide role axes into a general source-free substrate identity rule before thresholding",
       "run external hard-negative re-audit only after a calibrated ePK score exists"
     ],
     "phosphohistidine_counteraxis_row_count": 4,
@@ -138,6 +163,7 @@
       "ndk_phosphohistidine_axis_overlaps_gamma_distance_logic",
       "external_epk_specific_axes_not_materialized",
       "peptide_acceptor_identity_axis_narrow_not_general_epk_acceptor_identity",
+      "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity",
       "label_factory_gate_not_extended_for_epk"
     ],
     "prototype_gate_status": "fail_closed_review_only",

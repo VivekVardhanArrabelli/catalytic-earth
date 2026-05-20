@@ -148,7 +148,13 @@ A broader "kinase substrate peptide ATP/Mg" first-25 scout finds two topology
 hits (`9L3M`/`9L3U`) that source validation blocks as outer mitochondrial
 transmembrane helix translocase contexts, making broad text-query false
 positive risk explicit.
-The counteraxis sufficiency decision now records the same peptide feature as a
+The source-expansion peptide-role audit now makes that mixed outside-query
+surface machine-readable: `1O6K`/`1O6L` pass the source-free peptide role axis,
+`9L3M`/`9L3U` do not, and external hard-negative scoring remains closed. The
+substrate-mode gap audit combines five peptide-mode positives with three
+protein-substrate positive-like controls and still blocks scoring because a
+unified source-free substrate-identity rule is missing. The counteraxis
+sufficiency decision now records the source-expansion peptide-role row as a
 passing diagnostic row while preserving `do_not_select_threshold`.
 
 ## Time Calibration Rule

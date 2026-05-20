@@ -1580,3 +1580,10 @@ external re-audit exists. A broader ATP/Mg peptide-text scout surfaces
 `9L3M`/`9L3U` topology hits, but source validation blocks both as outer
 mitochondrial transmembrane helix translocase contexts, reinforcing that broad
 source search hits are not external performance evidence.
+The source-expansion peptide-role audit then makes the same boundary explicit:
+`1O6K`/`1O6L` pass the review-only source-free peptide-role axis, `9L3M`/`9L3U`
+remain blocked, and no imported external hard negative is rescored. The
+substrate-mode gap audit combines five peptide-mode positives and three
+protein-substrate positive-like controls, but still leaves unified source-free
+substrate identity, threshold calibration, and real external hard-negative
+scored re-audit unresolved.

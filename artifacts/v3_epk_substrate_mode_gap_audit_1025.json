@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "combined_peptide_mode_false_hit_count": 0,
+    "combined_peptide_mode_positive_count": 5,
+    "combined_peptide_mode_positive_pdb_ids": [
+      "1O6K",
+      "1O6L",
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_peptide_mode_positive_pdb_ids": [
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_substrate_mode_gap_audit",
+    "next_actions": [
+      "design a unified source-free substrate identity rule spanning peptide and protein-substrate modes",
+      "keep threshold selection closed until the unified mode rule and sibling controls are calibrated",
+      "run the real external hard-negative scored re-audit only after an ePK scorer exists"
+    ],
+    "peptide_external_hard_negative_non_abstention_count": 0,
+    "peptide_modes_pass_current_controls": true,
+    "protein_mode_passes_current_controls": true,
+    "protein_substrate_external_hard_negative_non_abstention_count": 0,
+    "protein_substrate_feature_admissible_for_production_scoring": false,
+    "protein_substrate_mode_positive_like_count": 3,
+    "protein_substrate_sibling_false_hit_count": 0,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "selected_threshold_angstrom": null,
+    "source_epk_5hvk_protein_substrate_axis_generalization_audit_method": "epk_5hvk_protein_substrate_axis_generalization_audit",
+    "source_epk_heteromeric_peptide_acceptor_identity_probe_method": "epk_heteromeric_peptide_acceptor_identity_probe",
+    "source_epk_heteromeric_peptide_external_hard_negative_probe_method": "epk_heteromeric_peptide_external_hard_negative_probe",
+    "source_epk_heteromeric_source_expansion_peptide_role_axis_audit_method": "epk_heteromeric_source_expansion_peptide_role_axis_audit",
+    "source_expansion_general_substrate_identity_ready_count": 0,
+    "source_expansion_peptide_mode_positive_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "substrate_mode_gap_status": "passes_review_only_modes_but_unified_substrate_identity_missing",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "unified_source_free_substrate_identity_ready": false
+  },
+  "rows": [
+    {
+      "current_source_pdb_ids": [
+        "6Z3R",
+        "8OXM",
+        "8OXO"
+      ],
+      "external_hard_negative_non_abstention_count": 0,
+      "false_hit_count": 0,
+      "feature_admissible_for_production_scoring": false,
+      "mode_passes_current_controls": true,
+      "pdb_ids": [
+        "1O6K",
+        "1O6L",
+        "6Z3R",
+        "8OXM",
+        "8OXO"
+      ],
+      "positive_hit_count": 5,
+      "review_only": true,
+      "row_type": "peptide_mode_summary",
+      "source_expansion_pdb_ids": [
+        "1O6K",
+        "1O6L"
+      ]
+    },
+    {
+      "external_hard_negative_non_abstention_count": 0,
+      "feature_admissible_for_production_scoring": false,
+      "mode_passes_current_controls": true,
+      "positive_like_count": 3,
+      "review_only": true,
+      "row_type": "protein_substrate_mode_summary",
+      "sibling_control_false_hit_count": 0
+    },
+    {
+      "blocker": "peptide_and_protein_substrate_modes_lack_unified_source_free_identity",
+      "decision": "passes_review_only_modes_but_unified_substrate_identity_missing",
+      "peptide_modes_pass_current_controls": true,
+      "protein_mode_passes_current_controls": true,
+      "review_only": true,
+      "row_type": "substrate_mode_gap_decision",
+      "unified_source_free_substrate_identity_ready": false
+    }
+  ],
+  "warnings": [
+    "Substrate-mode gap audit is review-only; it does not score ePK, select thresholds, edit registries, or import labels."
+  ]
+}

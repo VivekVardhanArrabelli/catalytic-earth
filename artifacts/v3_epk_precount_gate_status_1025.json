@@ -579,6 +579,40 @@
     },
     {
       "evidence": {
+        "general_substrate_identity_ready_count": 0,
+        "nonpositive_source_expansion_control_false_hit_count": 0,
+        "source_expansion_peptide_role_axis_status": "passes_source_expansion_controls_peptide_role_axis_review_only",
+        "source_method": "epk_heteromeric_source_expansion_peptide_role_axis_audit",
+        "source_valid_expansion_peptide_role_hit_count": 2,
+        "source_valid_expansion_peptide_role_hit_pdb_ids": [
+          "1O6K",
+          "1O6L"
+        ],
+        "source_valid_expansion_peptide_role_miss_count": 0
+      },
+      "gate_id": "heteromeric_source_expansion_peptide_role_axis_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "combined_peptide_mode_positive_count": 5,
+        "combined_peptide_mode_positive_pdb_ids": [
+          "1O6K",
+          "1O6L",
+          "6Z3R",
+          "8OXM",
+          "8OXO"
+        ],
+        "protein_substrate_mode_positive_like_count": 3,
+        "source_method": "epk_substrate_mode_gap_audit",
+        "substrate_mode_gap_status": "passes_review_only_modes_but_unified_substrate_identity_missing",
+        "unified_source_free_substrate_identity_ready": false
+      },
+      "gate_id": "substrate_mode_gap_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
         "atp_metal_state_candidate_count": 2,
         "atp_metal_state_candidate_pdb_ids": [
           "1TID",
@@ -978,6 +1012,15 @@
     "heteromeric_positive_coverage_reviewed_candidate_count": 50,
     "heteromeric_positive_coverage_source_validation_queue_ready": true,
     "heteromeric_positive_coverage_status": "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+    "heteromeric_source_expansion_peptide_role_axis_passed": true,
+    "heteromeric_source_expansion_peptide_role_axis_status": "passes_source_expansion_controls_peptide_role_axis_review_only",
+    "heteromeric_source_expansion_peptide_role_general_substrate_ready_count": 0,
+    "heteromeric_source_expansion_peptide_role_hit_count": 2,
+    "heteromeric_source_expansion_peptide_role_hit_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "heteromeric_source_expansion_peptide_role_nonpositive_false_hit_count": 0,
     "heteromeric_source_free_accepted_rule_hit_count": 3,
     "heteromeric_source_free_ambiguous_rule_hit_count": 2,
     "heteromeric_source_free_nonaccepted_rule_hit_count": 3,
@@ -1263,6 +1306,7 @@
     "source_epk_heteromeric_peptide_broader_stress_audit_method": "epk_heteromeric_peptide_broader_stress_audit",
     "source_epk_heteromeric_peptide_external_hard_negative_probe_method": "epk_heteromeric_peptide_external_hard_negative_probe",
     "source_epk_heteromeric_positive_coverage_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "source_epk_heteromeric_source_expansion_peptide_role_axis_audit_method": "epk_heteromeric_source_expansion_peptide_role_axis_audit",
     "source_epk_heteromeric_source_free_role_rule_probe_method": "epk_heteromeric_source_free_role_rule_probe",
     "source_epk_heteromeric_source_valid_candidate_gamma_distance_sample_method": "epk_heteromeric_source_valid_candidate_gamma_distance_sample",
     "source_epk_heteromeric_source_valid_control_rerun_method": "epk_heteromeric_source_valid_control_rerun",
@@ -1292,6 +1336,7 @@
     "source_epk_sibling_negative_control_alternate_structure_plan_method": "epk_sibling_negative_control_alternate_structure_plan",
     "source_epk_source_free_chain_topology_role_audit_method": "epk_source_free_chain_topology_role_audit",
     "source_epk_substrate_acceptor_counteraxis_prototype_method": "epk_substrate_acceptor_counteraxis_prototype",
+    "source_epk_substrate_mode_gap_audit_method": "epk_substrate_mode_gap_audit",
     "source_epk_text_free_acceptor_feature_gap_audit_method": "epk_text_free_acceptor_feature_gap_audit",
     "source_free_chain_topology_audit_status": "blocked_review_only_source_free_topology_role_rule_false_hit_risk",
     "source_free_chain_topology_cross_accession_positive_count": 1,
@@ -1314,6 +1359,19 @@
       "threshold_not_calibrated_against_negative_controls",
       "label_factory_gate_not_extended_for_epk"
     ],
+    "substrate_mode_gap_combined_peptide_positive_count": 5,
+    "substrate_mode_gap_combined_peptide_positive_pdb_ids": [
+      "1O6K",
+      "1O6L",
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
+    "substrate_mode_gap_peptide_modes_pass_current_controls": true,
+    "substrate_mode_gap_protein_mode_passes_current_controls": true,
+    "substrate_mode_gap_protein_substrate_positive_like_count": 3,
+    "substrate_mode_gap_status": "passes_review_only_modes_but_unified_substrate_identity_missing",
+    "substrate_mode_gap_unified_source_free_identity_ready": false,
     "target_family_id": "epk",
     "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
     "text_free_acceptor_candidate_feature_id": "nearest_gamma_to_oxygen_within_candidate_cutoff_v0",

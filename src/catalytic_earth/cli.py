@@ -113,6 +113,8 @@ from .labels import (
     build_epk_heteromeric_peptide_acceptor_identity_probe,
     build_epk_heteromeric_peptide_broader_stress_audit,
     build_epk_heteromeric_peptide_external_hard_negative_probe,
+    build_epk_heteromeric_source_expansion_peptide_role_axis_audit,
+    build_epk_substrate_mode_gap_audit,
     build_epk_ligand_specific_5hvk_control_rerun_queue,
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
@@ -7438,6 +7440,100 @@ def cmd_build_epk_heteromeric_peptide_broader_stress_audit(
     return 0
 
 
+def cmd_build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_heteromeric_peptide_acceptor_identity_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_peptide_acceptor_identity_probe = json.load(handle)
+    with Path(args.epk_heteromeric_peptide_external_hard_negative_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_peptide_external_hard_negative_probe = json.load(handle)
+    source_validation_paths = (
+        args.epk_heteromeric_source_expansion_source_validation_review
+        or [
+            (
+                "artifacts/"
+                "v3_epk_heteromeric_source_expansion_source_validation_review_amp_pnp_1025.json"
+            ),
+            (
+                "artifacts/"
+                "v3_epk_heteromeric_source_expansion_source_validation_review_broad_peptide_atp_1025.json"
+            ),
+        ]
+    )
+    source_validation_reviews = []
+    for path in source_validation_paths:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            source_validation_reviews.append(json.load(handle))
+    audit = build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
+        epk_heteromeric_peptide_acceptor_identity_probe=(
+            epk_heteromeric_peptide_acceptor_identity_probe
+        ),
+        epk_heteromeric_peptide_external_hard_negative_probe=(
+            epk_heteromeric_peptide_external_hard_negative_probe
+        ),
+        epk_heteromeric_source_expansion_source_validation_reviews=(
+            source_validation_reviews
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        max_peptide_chain_residue_count=args.max_peptide_chain_residue_count,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK heteromeric source-expansion peptide-role axis audit to "
+        f"{args.out} (status="
+        f"{audit['metadata']['source_expansion_peptide_role_axis_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_substrate_mode_gap_audit(args: argparse.Namespace) -> int:
+    with Path(args.epk_heteromeric_peptide_acceptor_identity_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_peptide_acceptor_identity_probe = json.load(handle)
+    with Path(
+        args.epk_heteromeric_source_expansion_peptide_role_axis_audit
+    ).open("r", encoding="utf-8") as handle:
+        epk_heteromeric_source_expansion_peptide_role_axis_audit = json.load(
+            handle
+        )
+    with Path(
+        args.epk_5hvk_protein_substrate_axis_generalization_audit
+    ).open("r", encoding="utf-8") as handle:
+        epk_5hvk_protein_substrate_axis_generalization_audit = json.load(
+            handle
+        )
+    with Path(args.epk_heteromeric_peptide_external_hard_negative_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_peptide_external_hard_negative_probe = json.load(handle)
+    audit = build_epk_substrate_mode_gap_audit(
+        epk_heteromeric_peptide_acceptor_identity_probe=(
+            epk_heteromeric_peptide_acceptor_identity_probe
+        ),
+        epk_heteromeric_source_expansion_peptide_role_axis_audit=(
+            epk_heteromeric_source_expansion_peptide_role_axis_audit
+        ),
+        epk_5hvk_protein_substrate_axis_generalization_audit=(
+            epk_5hvk_protein_substrate_axis_generalization_audit
+        ),
+        epk_heteromeric_peptide_external_hard_negative_probe=(
+            epk_heteromeric_peptide_external_hard_negative_probe
+        ),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK substrate-mode gap audit to "
+        f"{args.out} (status={audit['metadata']['substrate_mode_gap_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
     args: argparse.Namespace,
 ) -> int:
@@ -8052,6 +8148,20 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_heteromeric_peptide_broader_stress_audit = json.load(handle)
+    epk_heteromeric_source_expansion_peptide_role_axis_audit = None
+    if args.epk_heteromeric_source_expansion_peptide_role_axis_audit:
+        with Path(
+            args.epk_heteromeric_source_expansion_peptide_role_axis_audit
+        ).open("r", encoding="utf-8") as handle:
+            epk_heteromeric_source_expansion_peptide_role_axis_audit = json.load(
+                handle
+            )
+    epk_substrate_mode_gap_audit = None
+    if args.epk_substrate_mode_gap_audit:
+        with Path(args.epk_substrate_mode_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_substrate_mode_gap_audit = json.load(handle)
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -8220,6 +8330,10 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         epk_heteromeric_peptide_broader_stress_audit=(
             epk_heteromeric_peptide_broader_stress_audit
         ),
+        epk_heteromeric_source_expansion_peptide_role_axis_audit=(
+            epk_heteromeric_source_expansion_peptide_role_axis_audit
+        ),
+        epk_substrate_mode_gap_audit=epk_substrate_mode_gap_audit,
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
         ),
@@ -16759,6 +16873,102 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_heteromeric_peptide_broader_stress_audit
     )
 
+    epk_heteromeric_source_expansion_peptide_role = subparsers.add_parser(
+        "build-epk-heteromeric-source-expansion-peptide-role-axis-audit",
+        help=(
+            "audit outside-query heteromeric leads against a source-free "
+            "peptide role axis"
+        ),
+    )
+    epk_heteromeric_source_expansion_peptide_role.add_argument(
+        "--epk-heteromeric-peptide-acceptor-identity-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json"
+        ),
+    )
+    epk_heteromeric_source_expansion_peptide_role.add_argument(
+        "--epk-heteromeric-peptide-external-hard-negative-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_external_hard_negative_probe_1025.json"
+        ),
+    )
+    epk_heteromeric_source_expansion_peptide_role.add_argument(
+        "--epk-heteromeric-source-expansion-source-validation-review",
+        action="append",
+        default=None,
+        help="repeatable source-expansion source-validation review artifact",
+    )
+    epk_heteromeric_source_expansion_peptide_role.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_heteromeric_source_expansion_peptide_role.add_argument(
+        "--max-peptide-chain-residue-count",
+        type=int,
+        default=40,
+    )
+    epk_heteromeric_source_expansion_peptide_role.add_argument(
+        "--cif-dir",
+        default=None,
+        help="optional directory of cached CIF/mmCIF files keyed by PDB id",
+    )
+    epk_heteromeric_source_expansion_peptide_role.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json"
+        ),
+    )
+    epk_heteromeric_source_expansion_peptide_role.set_defaults(
+        func=cmd_build_epk_heteromeric_source_expansion_peptide_role_axis_audit
+    )
+
+    epk_substrate_mode_gap = subparsers.add_parser(
+        "build-epk-substrate-mode-gap-audit",
+        help=(
+            "summarize peptide/protein-substrate mode gaps before ePK scorer "
+            "design"
+        ),
+    )
+    epk_substrate_mode_gap.add_argument(
+        "--epk-heteromeric-peptide-acceptor-identity-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json"
+        ),
+    )
+    epk_substrate_mode_gap.add_argument(
+        "--epk-heteromeric-source-expansion-peptide-role-axis-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json"
+        ),
+    )
+    epk_substrate_mode_gap.add_argument(
+        "--epk-5hvk-protein-substrate-axis-generalization-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_5hvk_protein_substrate_axis_generalization_audit_1025.json"
+        ),
+    )
+    epk_substrate_mode_gap.add_argument(
+        "--epk-heteromeric-peptide-external-hard-negative-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_external_hard_negative_probe_1025.json"
+        ),
+    )
+    epk_substrate_mode_gap.add_argument(
+        "--out",
+        default="artifacts/v3_epk_substrate_mode_gap_audit_1025.json",
+    )
+    epk_substrate_mode_gap.set_defaults(
+        func=cmd_build_epk_substrate_mode_gap_audit
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -17239,6 +17449,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-heteromeric-peptide-broader-stress-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-heteromeric-source-expansion-peptide-role-axis-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-substrate-mode-gap-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(

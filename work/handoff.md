@@ -50,6 +50,48 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-19T23:41:43Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and startup checks passed: 610 unit tests plus
+`catalytic_earth.cli validate` with 682 labels and 8 production fingerprints.
+
+`artifacts/v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json`
+turns the prior outside-query source-expansion leads into a falsifiable
+source-free peptide-role audit. The two accepted PKB/GSK3 AMP-PNP peptide
+leads (`1O6K` and `1O6L`) pass the role axis; the two broad peptide ATP
+nonpositive controls (`9L3M` and `9L3U`) do not. The audit records 2 source-valid
+role hits, 0 source-valid misses, 0 nonpositive false hits, and 0 general
+substrate-identity-ready rows. It remains review-only: no ePK score, threshold,
+external scored re-audit, registry edit, or label import is allowed.
+
+`artifacts/v3_epk_substrate_mode_gap_audit_1025.json` combines the two
+outside-query peptide hits with the three earlier heteromeric peptide-mode hits
+(`6Z3R`, `8OXM`, `8OXO`) and the three protein-substrate positive-like controls
+from the 5HVK lane. Peptide and protein-substrate modes both pass current
+controls, with 0 peptide external-hard-negative non-abstentions and 0 protein
+external-hard-negative non-abstentions, but unified source-free substrate
+identity is still missing. The artifact status is
+`passes_review_only_modes_but_unified_substrate_identity_missing`, so it is a
+negative result for scorer readiness rather than promotion evidence.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` now includes both new gates:
+the source-expansion peptide-role audit and the substrate-mode gap audit pass as
+diagnostic review-only gates. Overall status remains `blocked_review_only`.
+`artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` now carries a
+source-expansion peptide-role decision row and still records
+`threshold_selection_decision=do_not_select_threshold`.
+
+Evidence-based confidence call: confidence is high that the source-expansion
+peptide role axis separates current PKB/GSK3 peptide positives from the
+translocase false-positive source controls, and medium that the combined
+peptide/protein-substrate mode audit identifies the right next blocker. Confidence
+remains low for production scoring because the project still lacks a unified
+source-free substrate-identity rule, threshold calibration, a real external
+hard-negative scored re-audit, and label-factory/registry gates.
+
 As of the 2026-05-19T22:40:20Z automation run, the ePK lane remains
 review-only but gained one new outside-query source lead. Artifact migration
 Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

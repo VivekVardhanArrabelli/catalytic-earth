@@ -3687,6 +3687,10 @@ class CliTests(unittest.TestCase):
             heteromeric_identity_rule = root / "heteromeric_identity_rule.json"
             heteromeric_peptide_external = root / "heteromeric_peptide_external.json"
             heteromeric_peptide_stress = root / "heteromeric_peptide_stress.json"
+            heteromeric_source_expansion_peptide_role = (
+                root / "heteromeric_source_expansion_peptide_role.json"
+            )
+            substrate_mode_gap = root / "substrate_mode_gap.json"
             out = root / "gate_status.json"
             axis.write_text(
                 json.dumps(
@@ -4279,6 +4283,63 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            heteromeric_source_expansion_peptide_role.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_source_expansion_peptide_role_axis_audit"
+                            ),
+                            "source_expansion_peptide_role_axis_status": (
+                                "passes_source_expansion_controls_peptide_role_axis_review_only"
+                            ),
+                            "source_expansion_controls_passed_review_only": True,
+                            "source_valid_expansion_peptide_role_hit_count": 2,
+                            "source_valid_expansion_peptide_role_hit_pdb_ids": [
+                                "1O6K",
+                                "1O6L",
+                            ],
+                            "source_valid_expansion_peptide_role_miss_count": 0,
+                            "nonpositive_source_expansion_control_false_hit_count": 0,
+                            "general_substrate_identity_ready_count": 0,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                            "external_hard_negative_reaudit_scored": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            substrate_mode_gap.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_substrate_mode_gap_audit",
+                            "substrate_mode_gap_status": (
+                                "passes_review_only_modes_but_unified_substrate_identity_missing"
+                            ),
+                            "combined_peptide_mode_positive_count": 5,
+                            "combined_peptide_mode_positive_pdb_ids": [
+                                "1O6K",
+                                "1O6L",
+                                "6Z3R",
+                                "8OXM",
+                                "8OXO",
+                            ],
+                            "combined_peptide_mode_false_hit_count": 0,
+                            "peptide_external_hard_negative_non_abstention_count": 0,
+                            "protein_substrate_mode_positive_like_count": 3,
+                            "protein_substrate_external_hard_negative_non_abstention_count": 0,
+                            "peptide_modes_pass_current_controls": True,
+                            "protein_mode_passes_current_controls": True,
+                            "unified_source_free_substrate_identity_ready": False,
+                            "countable_label_candidate_count": 0,
+                            "epk_score_computed": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -4340,6 +4401,10 @@ class CliTests(unittest.TestCase):
                     str(heteromeric_peptide_external),
                     "--epk-heteromeric-peptide-broader-stress-audit",
                     str(heteromeric_peptide_stress),
+                    "--epk-heteromeric-source-expansion-peptide-role-axis-audit",
+                    str(heteromeric_source_expansion_peptide_role),
+                    "--epk-substrate-mode-gap-audit",
+                    str(substrate_mode_gap),
                     "--epk-external-hard-negative-reaudit-plan",
                     str(reaudit),
                     "--out",
@@ -4613,6 +4678,40 @@ class CliTests(unittest.TestCase):
                 ],
                 0,
             )
+            self.assertEqual(
+                metadata["heteromeric_source_expansion_peptide_role_axis_status"],
+                "passes_source_expansion_controls_peptide_role_axis_review_only",
+            )
+            self.assertTrue(
+                metadata["heteromeric_source_expansion_peptide_role_axis_passed"]
+            )
+            self.assertEqual(
+                metadata["heteromeric_source_expansion_peptide_role_hit_pdb_ids"],
+                ["1O6K", "1O6L"],
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_source_expansion_peptide_role_nonpositive_false_hit_count"
+                ],
+                0,
+            )
+            self.assertEqual(
+                metadata[
+                    "heteromeric_source_expansion_peptide_role_general_substrate_ready_count"
+                ],
+                0,
+            )
+            self.assertEqual(
+                metadata["substrate_mode_gap_status"],
+                "passes_review_only_modes_but_unified_substrate_identity_missing",
+            )
+            self.assertEqual(
+                metadata["substrate_mode_gap_combined_peptide_positive_pdb_ids"],
+                ["1O6K", "1O6L", "6Z3R", "8OXM", "8OXO"],
+            )
+            self.assertFalse(
+                metadata["substrate_mode_gap_unified_source_free_identity_ready"]
+            )
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
             checks = {check["gate_id"]: check for check in status["gate_checks"]}
             self.assertTrue(checks["local_axis_prototype"]["passed"])
@@ -4683,6 +4782,12 @@ class CliTests(unittest.TestCase):
             self.assertTrue(
                 checks["heteromeric_peptide_broader_stress_audit"]["passed"]
             )
+            self.assertTrue(
+                checks[
+                    "heteromeric_source_expansion_peptide_role_axis_audit"
+                ]["passed"]
+            )
+            self.assertTrue(checks["substrate_mode_gap_audit"]["passed"])
 
     def test_build_epk_heteromeric_peptide_external_hard_negative_probe_command(
         self,
@@ -4907,6 +5012,274 @@ class CliTests(unittest.TestCase):
             self.assertTrue(metadata["exact_source_query_exhausted"])
             self.assertEqual(metadata["unreviewed_exact_query_pdb_count"], 0)
             self.assertEqual(metadata["general_substrate_identity_ready_count"], 0)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_build_epk_heteromeric_source_expansion_peptide_role_axis_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            peptide = root / "peptide.json"
+            external = root / "external.json"
+            source_review = root / "source_review.json"
+            cif_dir = root / "cifs"
+            cif_dir.mkdir()
+            out = root / "source_expansion_peptide_role.json"
+            peptide.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_acceptor_identity_probe"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "current_controls_passed_review_only": True,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            external.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_external_hard_negative_probe"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "review_only_feature_probe_passed": True,
+                            "review_only_external_hard_negative_feature_non_abstention_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_candidate_source_validation_review"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "1POS",
+                                "source_pair_id": "kinase_peptide",
+                                "source_validated_positive_like": True,
+                                "source_validation_status": (
+                                    "accepted_source_valid_heteromeric_kinase_substrate_review_only"
+                                ),
+                                "candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "C",
+                                        "candidate_auth_seq_id": "9",
+                                        "candidate_residue_code": "SER",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 3.5,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (cif_dir / "1POS.cif").write_text(
+                """
+data_1POS
+loop_
+_atom_site.group_PDB
+_atom_site.label_atom_id
+_atom_site.auth_atom_id
+_atom_site.label_comp_id
+_atom_site.auth_comp_id
+_atom_site.label_asym_id
+_atom_site.auth_asym_id
+_atom_site.label_seq_id
+_atom_site.auth_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+ATOM CA CA ALA ALA A A 1 1 0.0 0.0 0.0
+ATOM CA CA ALA ALA A A 2 2 1.0 0.0 0.0
+ATOM CA CA ALA ALA A A 3 3 2.0 0.0 0.0
+ATOM OG OG SER SER C C 9 9 0.0 0.0 3.5
+HETATM PG PG ANP ANP A A 1 1 0.0 0.0 0.0
+HETATM MG MG MG MG A A 2 2 0.0 1.0 0.0
+#
+""",
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-heteromeric-source-expansion-peptide-role-axis-audit",
+                    "--epk-heteromeric-peptide-acceptor-identity-probe",
+                    str(peptide),
+                    "--epk-heteromeric-peptide-external-hard-negative-probe",
+                    str(external),
+                    "--epk-heteromeric-source-expansion-source-validation-review",
+                    str(source_review),
+                    "--max-peptide-chain-residue-count",
+                    "2",
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_heteromeric_source_expansion_peptide_role_axis_audit",
+            )
+            self.assertEqual(
+                metadata["source_expansion_peptide_role_axis_status"],
+                "passes_source_expansion_controls_peptide_role_axis_review_only",
+            )
+            self.assertEqual(
+                metadata["source_valid_expansion_peptide_role_hit_pdb_ids"],
+                ["1POS"],
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_build_epk_substrate_mode_gap_audit_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            peptide = root / "peptide.json"
+            source_expansion = root / "source_expansion.json"
+            protein = root / "protein.json"
+            external = root / "external.json"
+            out = root / "substrate_mode_gap.json"
+            peptide.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_acceptor_identity_probe"
+                            ),
+                            "nonaccepted_control_false_hit_count": 0,
+                            "sibling_control_false_hit_count": 0,
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "heteromeric_peptide_acceptor_identity_candidate"
+                                ),
+                                "pdb_id": "6Z3R",
+                                "peptide_like_acceptor_identity_rule_hit": True,
+                            },
+                            {
+                                "row_type": (
+                                    "heteromeric_peptide_acceptor_identity_candidate"
+                                ),
+                                "pdb_id": "8OXM",
+                                "peptide_like_acceptor_identity_rule_hit": True,
+                            },
+                            {
+                                "row_type": (
+                                    "heteromeric_peptide_acceptor_identity_candidate"
+                                ),
+                                "pdb_id": "8OXO",
+                                "peptide_like_acceptor_identity_rule_hit": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_expansion.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_source_expansion_peptide_role_axis_audit"
+                            ),
+                            "source_valid_expansion_peptide_role_hit_pdb_ids": [
+                                "1O6K",
+                                "1O6L",
+                            ],
+                            "nonpositive_source_expansion_control_false_hit_count": 0,
+                            "general_substrate_identity_ready_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            protein.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_5hvk_protein_substrate_axis_generalization_audit"
+                            ),
+                            "combined_protein_substrate_positive_like_count": 3,
+                            "sibling_control_false_hit_count": 0,
+                            "imported_external_hard_negative_non_abstention_count": 0,
+                            "feature_admissible_for_production_scoring": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            external.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_external_hard_negative_probe"
+                            ),
+                            "review_only_external_hard_negative_feature_non_abstention_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-substrate-mode-gap-audit",
+                    "--epk-heteromeric-peptide-acceptor-identity-probe",
+                    str(peptide),
+                    "--epk-heteromeric-source-expansion-peptide-role-axis-audit",
+                    str(source_expansion),
+                    "--epk-5hvk-protein-substrate-axis-generalization-audit",
+                    str(protein),
+                    "--epk-heteromeric-peptide-external-hard-negative-probe",
+                    str(external),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(metadata["method"], "epk_substrate_mode_gap_audit")
+            self.assertEqual(
+                metadata["substrate_mode_gap_status"],
+                "passes_review_only_modes_but_unified_substrate_identity_missing",
+            )
+            self.assertEqual(metadata["combined_peptide_mode_positive_count"], 5)
+            self.assertFalse(metadata["unified_source_free_substrate_identity_ready"])
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
     def test_build_epk_acceptor_identity_review_command(self) -> None:
@@ -7471,6 +7844,17 @@ class CliTests(unittest.TestCase):
                             "heteromeric_peptide_acceptor_identity_axis_narrow": True,
                             "heteromeric_peptide_external_feature_probe_passed": True,
                             "heteromeric_peptide_external_feature_non_abstention_count": 0,
+                            "heteromeric_source_expansion_peptide_role_axis_passed": True,
+                            "heteromeric_source_expansion_peptide_role_axis_status": (
+                                "passes_source_expansion_controls_peptide_role_axis_review_only"
+                            ),
+                            "heteromeric_source_expansion_peptide_role_hit_count": 2,
+                            "heteromeric_source_expansion_peptide_role_hit_pdb_ids": [
+                                "1O6K",
+                                "1O6L",
+                            ],
+                            "heteromeric_source_expansion_peptide_role_nonpositive_false_hit_count": 0,
+                            "heteromeric_source_expansion_peptide_role_general_substrate_ready_count": 0,
                             "negative_control_family_template_validated_family_ids": [
                                 "pfkb"
                             ],
@@ -7537,6 +7921,19 @@ class CliTests(unittest.TestCase):
                 metadata[
                     "heteromeric_peptide_acceptor_identity_passes_current_review_controls"
                 ]
+            )
+            self.assertTrue(
+                metadata[
+                    "heteromeric_source_expansion_peptide_role_axis_passes_source_expansion_controls"
+                ]
+            )
+            self.assertEqual(
+                metadata["heteromeric_source_expansion_peptide_role_hit_pdb_ids"],
+                ["1O6K", "1O6L"],
+            )
+            self.assertEqual(
+                axes["heteromeric_source_expansion_peptide_role_axis"]["decision"],
+                "passes_source_expansion_controls_but_peptide_axis_narrow_not_production_admissible",
             )
 
     def test_build_epk_substrate_acceptor_counteraxis_prototype_command(

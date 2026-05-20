@@ -745,11 +745,16 @@ and acceptor-identity evidence. The acceptor-chain counter-axis passes only the
 current review controls. The broader counter-axis and ligand-asymmetry role
 audit now pass broader heteromeric/sibling review controls, and the peptide
 acceptor identity plus peptide external hard-negative probes pass as diagnostic
-feature gates. The peptide axis is still narrow, so none of these artifacts
-makes scoring or label import admissible.
-The downstream counteraxis sufficiency decision carries that peptide feature
-as a pass/current-controls decision row but keeps it blocked from production
-scoring because it is not a general substrate-identity rule.
+feature gates. The outside-query source-expansion peptide-role audit also
+passes for `1O6K`/`1O6L` while blocking the `9L3M`/`9L3U` nonpositive controls.
+The substrate-mode gap audit combines those two outside-query peptide hits
+with `6Z3R`/`8OXM`/`8OXO` and the three protein-substrate positive-like
+controls; both modes pass current controls, but unified source-free substrate
+identity is still missing. The downstream counteraxis sufficiency decision
+carries the source-expansion peptide-role row as a pass/current-controls
+decision row but keeps it blocked from production scoring because neither
+peptide nor protein-substrate mode is a general calibrated substrate-identity
+rule.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

@@ -1354,10 +1354,13 @@ rerun passes only as a fail-closed diagnostic, while the text-free gap audit
 and source-free role-rule probe show that role-direction and acceptor identity
 still need local replacements. The acceptor-chain counter-axis passes current
 review controls only; the broader counter-axis and ligand-asymmetry role audit
-now pass broader review controls, and the peptide acceptor-identity plus
-peptide external hard-negative probes pass as diagnostics, but the axis remains
-narrow and scorer construction stays blocked. None of these is scorer or label
-evidence. Real
+now pass broader review controls. The peptide acceptor-identity, peptide
+external hard-negative, outside-query source-expansion peptide-role, and
+substrate-mode gap audits pass as review-only diagnostics: five peptide-mode
+positives (`1O6K`, `1O6L`, `6Z3R`, `8OXM`, `8OXO`) and three protein-substrate
+positive-like controls clear current controls with 0 external non-abstentions,
+but unified source-free substrate identity remains missing. None of these is
+scorer or label evidence. Real
 scorer design, the `m_csa:760`
 split-state repair scan, the
 `m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,

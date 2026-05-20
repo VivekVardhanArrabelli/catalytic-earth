@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 199
-- Measured elapsed time: 6160.0 minutes (102.67 hours)
+- Entries: 200
+- Measured elapsed time: 6208.2 minutes (103.47 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 930.9 measured minutes (15.51 hours)
+- post-infra-science: 979.1 measured minutes (16.32 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2269
-- Evidence references logged: 1801
+- Artifact references logged: 2282
+- Evidence references logged: 1813
 
 ## Recent Entries
-
-### 2026-05-19T16:05:05.942310+00:00 - post-infra-science
-
-- Task: ePK 5HVK source-validity and control queue
-- Time mode: measured
-- Measured minutes: 33.4
-- Started: 2026-05-19T15:31:41Z
-- Ended: 2026-05-19T16:05:05Z
-- Artifacts: artifacts/v3_epk_ligand_specific_5hvk_source_validity_review_1025.json, artifacts/v3_epk_ligand_specific_5hvk_control_rerun_queue_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: startup 560-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote and dry-run push passed, 5HVK source validity accepted LIMK1/cofilin with P23528 Ser3 OG to ANP PG distance 4.236 Angstrom, control-rerun queue ready with 20 sibling controls and 3 imported external hard negatives review-only, pre-count gate remains blocked_review_only with source-validity and control-rerun diagnostic gates passing, final 566-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
 
 ### 2026-05-19T17:07:27.421941+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_heteromeric_peptide_broader_stress_audit_1025.json, artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_atp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_adp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_ags_1025.json, artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_amp_pnp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_broad_peptide_atp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_source_validation_review_amp_pnp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_source_validation_review_broad_peptide_atp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_gamma_distance_sample_amp_pnp_1025.json, artifacts/v3_epk_heteromeric_source_expansion_control_rerun_amp_pnp_1025.json, artifacts/v3_epk_precount_gate_status_1025.json
 - Evidence: startup 606-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote and dry-run push passed, exact ANP/Mg EC 2.7.11.1 source query exhausted at 110 reviewed rows and 0 unreviewed, ATP ADP and AGS first-25 novel scouts found 0 heteromeric topology leads, AMP-PNP all-11 novel scout found 1O6K and 1O6L PKB/GSK3 review leads, PKB/GSK3 distances measured at 3.542-3.566 Angstrom, broad peptide ATP first-25 scout found 9L3M and 9L3U but source validation blocked both as translocase false positives, AMP-PNP control rerun stayed fail-closed with source-free axis complete count 0, pre-count gate remains blocked_review_only with peptide stress audit passing as diagnostic, final 610-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
+
+### 2026-05-20T00:30:20.032873+00:00 - post-infra-science
+
+- Task: ePK source-expansion peptide role and mode gap
+- Time mode: measured
+- Measured minutes: 48.217
+- Started: 2026-05-19T23:41:43Z
+- Ended: 2026-05-20T00:29:56Z
+- Artifacts: artifacts/v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json, artifacts/v3_epk_substrate_mode_gap_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: startup 610-test unit discovery passed, final 616-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 225 tests, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, source-expansion peptide-role audit retained 1O6K and 1O6L with 0 nonpositive false hits, substrate-mode gap audit found 5 peptide-mode positives and 3 protein-substrate positive-like controls but no unified source-free substrate identity, pre-count remains blocked_review_only, counteraxis sufficiency keeps threshold_selection_decision do_not_select_threshold, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external-hard-negative scored re-audit or history rewrite.
 
 ## Expectation Updates
 
@@ -276,6 +276,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-19T21:26:22.348537+00:00: ePK heteromeric role direction is stronger after broader counteraxis and ligand-asymmetry controls, but generic hydroxyl residue identity is too weak for production; next work needs a non-generic local acceptor-identity signal before thresholding or external scored re-audit.
 - 2026-05-19T22:26:42.259225+00:00: A short peptide-like acceptor-chain rule is useful current-control evidence for heteromeric ePK review, but it is narrow; production scoring still needs general substrate identity, threshold calibration, real external scored re-audit, and registry/factory extension.
 - 2026-05-19T23:28:59.207385+00:00: The exact ANP/Mg source is exhausted and outside-query sourcing can find PKB/GSK3 peptide review leads but the decision surface still needs a source-free substrate-role or general acceptor-identity axis before any scorer or label gate.
+- 2026-05-20T00:30:20.032873+00:00: ePK peptide-mode coverage now includes outside-query PKB/GSK3 leads but production scoring remains blocked by missing unified source-free substrate identity threshold calibration real external scored re-audit and registry gates.
 
 ## Scope Adjustments
 
