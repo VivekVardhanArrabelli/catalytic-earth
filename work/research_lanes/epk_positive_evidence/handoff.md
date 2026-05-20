@@ -2,7 +2,9 @@
 
 Last updated: 2026-05-20T18:20:53Z
 
-Pushed commit: pending alternate-index commit for this run.
+Pushed commit: `bcf3ee2a560b531d2e9cc4259838344964b9d3a2` (primary run
+artifact commit). A follow-up self-reference commit may update this handoff
+line before final push.
 
 ## Current Outcome
 
