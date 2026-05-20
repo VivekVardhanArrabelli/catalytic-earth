@@ -216,6 +216,214 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
 
+    def test_akr_family_readiness_packet_stays_review_only(self) -> None:
+        packet = _load_json(ARTIFACTS / "v3_akr_family_readiness_packet_20260520.json")
+        metadata = packet["metadata"]
+        readiness = packet["family_readiness"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            readiness["current_decision"],
+            "do_not_promote_production_fingerprint",
+        )
+        self.assertEqual(len(readiness["positive_like_rows"]), 1)
+        self.assertEqual(readiness["positive_like_rows"][0]["accession"], "C9JRZ8")
+        self.assertEqual(
+            readiness["positive_like_rows"][0]["normalized_decision_status_after_repair"],
+            "needs_review",
+        )
+        self.assertFalse(
+            readiness["cofactor_and_active_site_evidence"]["nadp_binding_axis"][
+                "direct_local_nadp_ligand_geometry_ready"
+            ]
+        )
+        self.assertFalse(
+            readiness["cofactor_and_active_site_evidence"]["active_site_tyr_axis"][
+                "source_free_position_policy_ready"
+            ]
+        )
+        self.assertIn(
+            "broader_duplicate_screening_required",
+            readiness["import_and_duplicate_blockers"]["remaining_import_blockers"],
+        )
+        self.assertTrue(
+            any(mode["id"] == "single_positive_like_row" for mode in packet["likely_failure_modes"])
+        )
+        self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
+
+    def test_glycoside_hydrolase_family_readiness_packet_stays_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS / "v3_glycoside_hydrolase_family_readiness_packet_20260520.json"
+        )
+        metadata = packet["metadata"]
+        readiness = packet["family_readiness"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            readiness["current_decision"],
+            "do_not_promote_production_fingerprint",
+        )
+        self.assertEqual(len(readiness["positive_like_rows"]), 1)
+        self.assertEqual(readiness["positive_like_rows"][0]["accession"], "Q6NSJ0")
+        self.assertEqual(
+            readiness["positive_like_rows"][0]["family_axis_status"],
+            "review_only_glycoside_hydrolase_boundary_ready",
+        )
+        self.assertFalse(
+            readiness["cofactor_and_active_site_evidence"]["acidic_dyad_axis"][
+                "source_free_position_policy_ready"
+            ]
+        )
+        self.assertTrue(
+            readiness["cofactor_and_active_site_evidence"]["metal_or_cofactor_context"][
+                "metal_ligand_context_absent"
+            ]
+        )
+        self.assertTrue(
+            readiness["import_and_duplicate_blockers"][
+                "control_not_integrated_into_import_safety_adjudication"
+            ]
+        )
+        self.assertTrue(
+            any(mode["id"] == "metal_hydrolase_collapse_risk" for mode in packet["likely_failure_modes"])
+        )
+        self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
+
+    def test_sugar_phosphate_isomerase_readiness_packet_stays_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS / "v3_sugar_phosphate_isomerase_readiness_packet_20260520.json"
+        )
+        metadata = packet["metadata"]
+        readiness = packet["family_readiness"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            readiness["current_decision"],
+            "do_not_promote_production_fingerprint",
+        )
+        self.assertEqual(len(readiness["positive_like_rows"]), 1)
+        self.assertEqual(readiness["positive_like_rows"][0]["accession"], "P34949")
+        self.assertEqual(
+            readiness["positive_like_rows"][0]["family_axis_status"],
+            "review_only_sugar_phosphate_isomerase_scope_ready",
+        )
+        self.assertFalse(
+            readiness["cofactor_and_active_site_evidence"]["basic_active_site_axis"][
+                "source_free_position_policy_ready"
+            ]
+        )
+        self.assertTrue(
+            readiness["cofactor_and_active_site_evidence"]["flavin_or_cofactor_context"][
+                "flavin_ligand_context_absent"
+            ]
+        )
+        self.assertEqual(
+            readiness["import_and_duplicate_blockers"]["heuristic_top1_fingerprint_id"],
+            "flavin_dehydrogenase_reductase",
+        )
+        self.assertTrue(
+            any(mode["id"] == "weak_flavin_top1_scope_risk" for mode in packet["likely_failure_modes"])
+        )
+        self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
+
+    def test_mechanism_family_readiness_index_prioritizes_review_only_next_step(self) -> None:
+        index = _load_json(
+            ARTIFACTS / "v3_mechanism_family_readiness_index_20260520.json"
+        )
+        metadata = index["metadata"]
+        conclusion = index["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(metadata["family_packet_count"], 4)
+
+        self.assertEqual(
+            conclusion["overall"],
+            "all_family_packets_review_only_not_freeze_ready",
+        )
+        self.assertTrue(conclusion["do_not_promote_any_family_now"])
+        self.assertEqual(
+            conclusion["recommended_next_family_experiment"],
+            "glycoside_hydrolase_vs_metal_hydrolase_control_tranche_v1_review_only",
+        )
+
+        rows = {row["family_id"]: row for row in index["rows"]}
+        self.assertEqual(
+            set(rows),
+            {
+                "sdr_nad_p_redox",
+                "akr_nadp_redox",
+                "glycoside_hydrolase",
+                "sugar_phosphate_isomerase",
+            },
+        )
+        self.assertEqual(rows["glycoside_hydrolase"]["priority_rank"], 1)
+        self.assertTrue(
+            all(row["selection_freeze_required_before_scoring"] for row in rows.values())
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in rows.values())
+        )
+
+    def test_glycoside_hydrolase_control_tranche_preregistration_freezes_rows(self) -> None:
+        prereg = _load_json(
+            ARTIFACTS
+            / "v3_glycoside_hydrolase_control_tranche_preregistration_20260520.json"
+        )
+        metadata = prereg["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 15)
+        self.assertEqual(metadata["external_candidate_count"], 5)
+        self.assertEqual(metadata["current_control_count"], 10)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        roles = {}
+        for row in prereg["rows"]:
+            roles[row["row_role"]] = roles.get(row["row_role"], 0) + 1
+            self.assertEqual(row["score_status"], "not_scored_in_this_preregistration")
+        self.assertEqual(
+            roles,
+            {
+                "external_glycan_or_glycoside_candidate": 5,
+                "current_production_hydrolase_control": 10,
+            },
+        )
+        self.assertIn("Q6NSJ0", {row.get("accession") for row in prereg["rows"]})
+        self.assertIn(
+            "No new geometry",
+            prereg["frozen_before_scoring_statement"],
+        )
+
     def test_minicampaign_sequence_baseline_diagnostic_is_non_import_evidence(self) -> None:
         diagnostic = _load_json(
             ARTIFACTS

@@ -1,0 +1,272 @@
+{
+  "frozen_before_scoring_statement": "No new geometry, sequence-neighbor, Foldseek, inverse-gate, or production-fingerprint scoring was run to choose these rows in this preregistration artifact.",
+  "metadata": {
+    "abstain_threshold_if_scored_later": 0.4115,
+    "artifact_id": "v3_glycoside_hydrolase_control_tranche_preregistration_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T16:26:00Z",
+    "curated_label_registry_edited": false,
+    "current_control_count": 10,
+    "experiment_id": "glycoside_hydrolase_vs_metal_hydrolase_control_tranche_v1_review_only",
+    "external_candidate_count": 5,
+    "family_id": "glycoside_hydrolase",
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 15,
+    "git_history_edited": false,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "glycoside_hydrolase_control_tranche_preregistration",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "curated_labels": "data/registries/curated_mechanism_labels.json",
+      "external_candidate_manifest": "artifacts/v3_external_source_candidate_manifest_1025.json",
+      "readiness_index": "artifacts/v3_mechanism_family_readiness_index_20260520.json"
+    }
+  },
+  "next_step": "Compute only the preregistered review-only local axes and duplicate screens for these 15 rows, then emit terminal decisions without label import unless all existing gates pass in a later explicit cycle.",
+  "rows": [
+    {
+      "accession": "Q6NSJ0",
+      "freeze_rank": 1,
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "ready_for_label_import_at_freeze": false,
+      "review_status_at_freeze": "external_source_review_only",
+      "row_id": "uniprot:Q6NSJ0",
+      "row_role": "external_glycan_or_glycoside_candidate",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "external manifest glycan/glycoside candidate available before this tranche scoring",
+      "source_artifact": "artifacts/v3_external_source_candidate_manifest_1025.json"
+    },
+    {
+      "accession": "P30176",
+      "freeze_rank": 2,
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "N-glycosidase YbiA (EC 3.2.2.-) (Riboflavin biosynthesis intermediates N-glycosidase)",
+      "ready_for_label_import_at_freeze": false,
+      "review_status_at_freeze": "external_source_review_only",
+      "row_id": "uniprot:P30176",
+      "row_role": "external_glycan_or_glycoside_candidate",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "external manifest glycan/glycoside candidate available before this tranche scoring",
+      "source_artifact": "artifacts/v3_external_source_candidate_manifest_1025.json"
+    },
+    {
+      "accession": "P29372",
+      "freeze_rank": 3,
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "DNA-3-methyladenine glycosylase (EC 3.2.2.21) (3-alkyladenine DNA glycosylase) (3-methyladenine DNA glycosidase) (ADPG) (N-methylpurine-DNA glycosylase)",
+      "ready_for_label_import_at_freeze": false,
+      "review_status_at_freeze": "external_source_review_only",
+      "row_id": "uniprot:P29372",
+      "row_role": "external_glycan_or_glycoside_candidate",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "external manifest glycan/glycoside candidate available before this tranche scoring",
+      "source_artifact": "artifacts/v3_external_source_candidate_manifest_1025.json"
+    },
+    {
+      "accession": "P33025",
+      "freeze_rank": 4,
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "Pseudouridine-5'-phosphate glycosidase (PsiMP glycosidase) (EC 4.2.1.70)",
+      "ready_for_label_import_at_freeze": false,
+      "review_status_at_freeze": "external_source_review_only",
+      "row_id": "uniprot:P33025",
+      "row_role": "external_glycan_or_glycoside_candidate",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "external manifest glycan/glycoside candidate available before this tranche scoring",
+      "source_artifact": "artifacts/v3_external_source_candidate_manifest_1025.json"
+    },
+    {
+      "accession": "O60568",
+      "freeze_rank": 5,
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+      "ready_for_label_import_at_freeze": false,
+      "review_status_at_freeze": "external_source_review_only",
+      "row_id": "uniprot:O60568",
+      "row_role": "external_glycan_or_glycoside_candidate",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "external manifest glycan/glycoside candidate available before this tranche scoring",
+      "source_artifact": "artifacts/v3_external_source_candidate_manifest_1025.json"
+    },
+    {
+      "confidence": "high",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 6,
+      "label_type": "seed_fingerprint",
+      "review_status_at_freeze": "automation_curated",
+      "row_id": "m_csa:15",
+      "row_role": "current_production_hydrolase_control",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "deterministic first accepted current control for the named production hydrolase fingerprint; used as review-only counterfamily context",
+      "source_artifact": "data/registries/curated_mechanism_labels.json",
+      "tier_at_freeze": "bronze"
+    },
+    {
+      "confidence": "high",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 7,
+      "label_type": "seed_fingerprint",
+      "review_status_at_freeze": "automation_curated",
+      "row_id": "m_csa:16",
+      "row_role": "current_production_hydrolase_control",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "deterministic first accepted current control for the named production hydrolase fingerprint; used as review-only counterfamily context",
+      "source_artifact": "data/registries/curated_mechanism_labels.json",
+      "tier_at_freeze": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 8,
+      "label_type": "seed_fingerprint",
+      "review_status_at_freeze": "automation_curated",
+      "row_id": "m_csa:11",
+      "row_role": "current_production_hydrolase_control",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "deterministic first accepted current control for the named production hydrolase fingerprint; used as review-only counterfamily context",
+      "source_artifact": "data/registries/curated_mechanism_labels.json",
+      "tier_at_freeze": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 9,
+      "label_type": "seed_fingerprint",
+      "review_status_at_freeze": "automation_curated",
+      "row_id": "m_csa:27",
+      "row_role": "current_production_hydrolase_control",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "deterministic first accepted current control for the named production hydrolase fingerprint; used as review-only counterfamily context",
+      "source_artifact": "data/registries/curated_mechanism_labels.json",
+      "tier_at_freeze": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 10,
+      "label_type": "seed_fingerprint",
+      "review_status_at_freeze": "automation_curated",
+      "row_id": "m_csa:28",
+      "row_role": "current_production_hydrolase_control",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "deterministic first accepted current control for the named production hydrolase fingerprint; used as review-only counterfamily context",
+      "source_artifact": "data/registries/curated_mechanism_labels.json",
+      "tier_at_freeze": "bronze"
+    },
+    {
+      "confidence": "high",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 11,
+      "label_type": "seed_fingerprint",
+      "review_status_at_freeze": "automation_curated",
+      "row_id": "m_csa:5",
+      "row_role": "current_production_hydrolase_control",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "deterministic first accepted current control for the named production hydrolase fingerprint; used as review-only counterfamily context",
+      "source_artifact": "data/registries/curated_mechanism_labels.json",
+      "tier_at_freeze": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 12,
+      "label_type": "seed_fingerprint",
+      "review_status_at_freeze": "automation_curated",
+      "row_id": "m_csa:94",
+      "row_role": "current_production_hydrolase_control",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "deterministic first accepted current control for the named production hydrolase fingerprint; used as review-only counterfamily context",
+      "source_artifact": "data/registries/curated_mechanism_labels.json",
+      "tier_at_freeze": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 13,
+      "label_type": "seed_fingerprint",
+      "review_status_at_freeze": "automation_curated",
+      "row_id": "m_csa:169",
+      "row_role": "current_production_hydrolase_control",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "deterministic first accepted current control for the named production hydrolase fingerprint; used as review-only counterfamily context",
+      "source_artifact": "data/registries/curated_mechanism_labels.json",
+      "tier_at_freeze": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 14,
+      "label_type": "seed_fingerprint",
+      "review_status_at_freeze": "automation_curated",
+      "row_id": "m_csa:173",
+      "row_role": "current_production_hydrolase_control",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "deterministic first accepted current control for the named production hydrolase fingerprint; used as review-only counterfamily context",
+      "source_artifact": "data/registries/curated_mechanism_labels.json",
+      "tier_at_freeze": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 15,
+      "label_type": "seed_fingerprint",
+      "review_status_at_freeze": "automation_curated",
+      "row_id": "m_csa:218",
+      "row_role": "current_production_hydrolase_control",
+      "score_status": "not_scored_in_this_preregistration",
+      "selection_reason": "deterministic first accepted current control for the named production hydrolase fingerprint; used as review-only counterfamily context",
+      "source_artifact": "data/registries/curated_mechanism_labels.json",
+      "tier_at_freeze": "bronze"
+    }
+  ],
+  "selection_protocol": {
+    "allowed_future_predictive_inputs": [
+      "source-free acidic-dyad local geometry",
+      "metal-ligand presence or absence",
+      "glycan/substrate-pocket local geometry",
+      "current 8-fingerprint calibrated abstention surface"
+    ],
+    "current_control_selection_rule": "Select the first five current accepted metal_dependent_hydrolase labels and first five current accepted ser_his_acid_hydrolase labels by registry order as hydrolase counterfamily controls.",
+    "excluded_predictive_inputs": [
+      "EC labels",
+      "protein names",
+      "UniProt prose",
+      "Rhea/InterPro/source annotations",
+      "known terminal decisions",
+      "post-hoc score outcomes"
+    ],
+    "external_selection_rule": "Select up to five glycan/glycoside candidates already present in the external source candidate manifest, prioritizing Q6NSJ0 because the readiness index selected glycoside hydrolase as the next family experiment and then taking the remaining glycan/glycoside rows in manifest order.",
+    "goal": "Freeze a small review-only glycoside-hydrolase versus production-hydrolase control tranche before any new scoring."
+  },
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "name": "external_candidate_manifest",
+      "path": "artifacts/v3_external_source_candidate_manifest_1025.json",
+      "sha256": "de8e3468504f310ad39ce255f63742cbfb5eb06d08017a96a720cc5de0752bf1"
+    },
+    {
+      "json_valid": true,
+      "name": "curated_labels",
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "f30dd8fb8afe1a7d4ed91be38254851dd91dc3889ca856662c889cf177e6e3c3"
+    },
+    {
+      "json_valid": true,
+      "name": "readiness_index",
+      "path": "artifacts/v3_mechanism_family_readiness_index_20260520.json",
+      "sha256": "59a4744ede981a530a21e5a1b9f8c16ad9b009c68e1947b9f3edab67fcec4af4"
+    }
+  ]
+}

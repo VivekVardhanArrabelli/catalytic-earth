@@ -54,6 +54,56 @@ controls. It does not authorize a registry edit, label import, threshold, or
 production scorer. The next admissible SDR step is one preregistered
 review-only tranche that freezes 10-20 SDR/AKR/flavin/heme control rows before
 any source-free local-axis scoring.
+Current AKR family-readiness scope: the AKR/NADP packet in
+`artifacts/v3_akr_family_readiness_packet_20260520.json` is review-only and not
+a production fingerprint. It uses C9JRZ8 as the only direct positive-like AKR
+row, with source-traced Tyr49 active-site evidence, an N-terminal `VGLG`
+NADP-binding sequence proxy, and AKR/NADP reaction context. It also records
+current-reference out-of-scope/PLP collision controls, SDR sibling context, and
+flavin/heme redox contrast requirements. It does not authorize a registry edit,
+label import, threshold, or production scorer. The next admissible AKR step is
+one preregistered 10-20 row AKR/SDR/flavin/heme review-only tranche with
+source-free NAD(P) geometry, catalytic-Tyr local environment, and duplicate
+screens frozen before scoring.
+Current glycoside hydrolase readiness scope: the glycoside hydrolase packet in
+`artifacts/v3_glycoside_hydrolase_family_readiness_packet_20260520.json` is
+review-only and not a production fingerprint. It uses Q6NSJ0 as the only direct
+positive-like row, with source-traced Asp463/Asp520 acidic-dyad evidence,
+glycan chemistry context, absent metal-ligand support for the current
+metal-hydrolase top1, and pocket-composition boundary features. It does not
+authorize a registry edit, label import, threshold, or production scorer. The
+next admissible step is one preregistered 10-20 row glycoside-hydrolase versus
+metal/ser-his-acid hydrolase review-only tranche with acidic-dyad,
+metal-ligand, glycan-pocket, and duplicate-screen axes frozen before scoring.
+Current sugar-phosphate isomerase readiness scope: the packet in
+`artifacts/v3_sugar_phosphate_isomerase_readiness_packet_20260520.json` is
+review-only and not a production fingerprint. It uses P34949 as the only direct
+positive-like row, with source-traced Arg295 active-site evidence,
+sugar-phosphate reaction context, absent flavin context for the weak flavin
+top1, and pocket-composition boundary features. It does not authorize a
+registry edit, label import, threshold, or production scorer. The next
+admissible step is one preregistered 10-20 row sugar-phosphate-isomerase versus
+flavin review-only tranche with basic/polar active-site, flavin-context,
+sugar-phosphate pocket, and duplicate-screen axes frozen before scoring.
+Current family-readiness index scope:
+`artifacts/v3_mechanism_family_readiness_index_20260520.json` compares SDR,
+AKR, glycoside hydrolase, and sugar-phosphate isomerase readiness packets. It
+does not promote any family. It recommends the next review-only family
+experiment as
+`glycoside_hydrolase_vs_metal_hydrolase_control_tranche_v1_review_only`
+because the glycoside hydrolase packet has the clearest current-fingerprint
+boundary collapse to test. The row set must be frozen before scoring, and all
+registry, import, threshold, and production-scorer gates remain closed.
+Current glycoside hydrolase control-tranche scope:
+`artifacts/v3_glycoside_hydrolase_control_tranche_preregistration_20260520.json`
+freezes 15 review-only rows before scoring: five external glycan/glycoside
+candidates plus five current `metal_dependent_hydrolase` and five current
+`ser_his_acid_hydrolase` controls. This artifact is a preregistration only. It
+does not run new geometry, sequence-neighbor, Foldseek, inverse-gate, or
+production-fingerprint scoring, and it authorizes no registry edit, label
+import, threshold, or production scorer. The next work on this tranche must
+compute only the preregistered local axes and duplicate screens before terminal
+decisions.
 Current mini-campaign sequence-baseline scope: the sequence diagnostic in
 `artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json`
 is a review-only baseline, not a replacement for Foldseek or factory gates. It

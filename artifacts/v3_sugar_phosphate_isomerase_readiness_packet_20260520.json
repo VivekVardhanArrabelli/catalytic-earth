@@ -1,0 +1,259 @@
+{
+  "family_readiness": {
+    "cofactor_and_active_site_evidence": {
+      "basic_active_site_axis": {
+        "active_site_evidence_source_type": "uniprot_active_site_feature",
+        "active_site_residue_windows": [
+          {
+            "position": 295,
+            "residue": "R",
+            "sequence_window": "CVECMACSDNTVRAGLTPKFIDVPT",
+            "window_end": 307,
+            "window_start": 283
+          }
+        ],
+        "source_active_site_arg_positions": [
+          295
+        ],
+        "source_active_site_positions": [
+          295
+        ],
+        "source_free_position_policy_ready": false,
+        "status": "source_traced_basic_active_site_residue_present"
+      },
+      "flavin_or_cofactor_context": {
+        "direct_local_sugar_phosphate_geometry_ready": false,
+        "flavin_ligand_context_absent": true,
+        "status": "flavin_ligand_context_absent_in_boundary_control"
+      },
+      "pocket_boundary_features": {
+        "nearby_basic_or_polar_residue_count": 8,
+        "nearby_residue_count": 19,
+        "negative_fraction": 0.0526,
+        "polar_fraction": 0.2632,
+        "positive_fraction": 0.1053
+      },
+      "reaction_context": {
+        "predictive_use": "review_context_only_until_a_source_free_local_axis_is_preregistered",
+        "rhea_ids": [
+          "RHEA:12356"
+        ],
+        "status": "specific_reaction_context_present"
+      }
+    },
+    "counterfamilies": {
+      "boundary_control_interpretation": "Candidate has a source-traced basic active-site residue and a local pocket compatible with sugar-phosphate chemistry, while the weak flavin top1 match has absent flavin context and zero role-hint support. This is review-only scope control evidence, not import.",
+      "current_production_redox_contrasts": [
+        "flavin_monooxygenase",
+        "flavin_dehydrogenase_reductase"
+      ],
+      "flavin_redox_contrast_features": {
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "flavin_ligand_context_absent": true,
+        "flavin_role_hint_match_count": 0,
+        "matched_signature_roles": [
+          {
+            "matched_codes": [
+              "ARG"
+            ],
+            "required_residue": "basic_or_polar_motif",
+            "required_role": "flavin_binder",
+            "role_hint_match": false
+          },
+          {
+            "matched_codes": [
+              "ARG"
+            ],
+            "required_residue": "His/Glu/Cys/Tyr/Arg",
+            "required_role": "redox_acid_base",
+            "role_hint_match": false
+          }
+        ],
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_residue_match_fraction": 0.6667,
+        "top1_role_match_fraction": 0.0,
+        "top1_score": 0.185
+      },
+      "nearest_representation_references": [
+        "P0A6D3",
+        "P0A6D3"
+      ],
+      "primary_boundary": "flavin_dehydrogenase_reductase"
+    },
+    "current_decision": "do_not_promote_production_fingerprint",
+    "decision_rationale": "P34949 stages useful sugar-phosphate-isomerase-vs-flavin scope control evidence, but it remains review-only: terminal status requires expert review, broader duplicate screening is unresolved, and no import-safety/factory gate path has passed.",
+    "import_and_duplicate_blockers": {
+      "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+      "control_not_integrated_into_import_safety_adjudication": true,
+      "factory_gate_status": "not_run",
+      "heuristic_control_scored": true,
+      "heuristic_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "heuristic_top1_score": 0.185,
+      "sequence_duplicate_screen_status": "no_near_duplicate_signal",
+      "unresolved_evidence_for_deferred": [
+        "adjudicate heuristic scope or top1 mismatch",
+        "complete broader duplicate screening beyond the bounded current-reference search",
+        "record human/expert review decision against the assembled evidence packet",
+        "run the full label-factory gate only after review decision and duplicate controls"
+      ]
+    },
+    "positive_like_rows": [
+      {
+        "accession": "P34949",
+        "countable_label_candidate": false,
+        "entry_id": "uniprot:P34949",
+        "family_axis_status": "review_only_sugar_phosphate_isomerase_scope_ready",
+        "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+        "ready_for_label_import": false,
+        "review_decision_status": "deferred_requires_human_expert",
+        "review_status": "external_pilot_sugar_phosphate_isomerase_control_review_only",
+        "source_confidence": "medium",
+        "source_resolved_status": "rejected_representation_conflict",
+        "source_type": "UniProtKB/Swiss-Prot",
+        "terminal_status": "deferred_requires_human_expert"
+      }
+    ]
+  },
+  "likely_failure_modes": [
+    {
+      "blocks_production": true,
+      "description": "Only P34949 currently carries the staged sugar-phosphate isomerase scope control; one row is not breadth calibration.",
+      "id": "single_positive_like_row"
+    },
+    {
+      "blocks_production": true,
+      "description": "Arg295 is source-traced active-site evidence; source-free residue-role policy is not frozen.",
+      "id": "source_traced_arg_dependency"
+    },
+    {
+      "blocks_production": true,
+      "description": "The current heuristic top1 is weak flavin_dehydrogenase_reductase despite absent flavin context and zero flavin role-hint support.",
+      "id": "weak_flavin_top1_scope_risk"
+    },
+    {
+      "blocks_production": true,
+      "description": "Pilot terminal decision requires expert adjudication for scope/top1 mismatch and broader duplicate screening.",
+      "id": "human_expert_deferred"
+    },
+    {
+      "blocks_production": true,
+      "description": "The packet has pocket composition and source reaction context, not direct local sugar-phosphate substrate geometry.",
+      "id": "sugar_phosphate_geometry_missing"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_sugar_phosphate_isomerase_readiness_packet_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T16:20:00Z",
+    "curated_label_registry_edited": false,
+    "family_id": "sugar_phosphate_isomerase",
+    "family_name": "Sugar-phosphate isomerase basic/polar active-site chemistry",
+    "fingerprint_registry_edited": false,
+    "git_history_edited": false,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "sugar_phosphate_isomerase_readiness_packet_synthesis",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "production_fingerprint_ids": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "readiness_packet_type": "simpler_mechanism_family_review_only_packet",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "recommendation": "run_one_preregistered_review_only_sugar_phosphate_isomerase_vs_flavin_control_experiment_before_any_scorer_or_registry_work",
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "modern_baseline_comparison": "artifacts/v3_modern_baseline_comparison_20260520.json",
+      "pilot_active_site_evidence_decisions": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+      "pilot_decisions_review_resolved": "artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json",
+      "pilot_terminal_decisions": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json",
+      "sugar_phosphate_isomerase_control": "artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json"
+    }
+  },
+  "next_experiment": {
+    "candidate_mix": [
+      "sugar-phosphate isomerase positives with explicit basic/polar active-site evidence",
+      "flavin dehydrogenase/reductase current-fingerprint controls",
+      "flavin monooxygenase controls",
+      "non-isomerase sugar-phosphate or binding-context-only controls"
+    ],
+    "decision_to_start_now": false,
+    "experiment_id": "sugar_phosphate_isomerase_vs_flavin_control_tranche_v1_review_only",
+    "forbidden_shortcuts": [
+      "EC labels as predictive evidence",
+      "protein names or UniProt prose as predictive evidence",
+      "Rhea/InterPro/source active-site annotations as positive scoring inputs",
+      "registry edits or label imports before full gates pass"
+    ],
+    "required_source_free_axes_before_scoring": [
+      "basic/polar active-site local environment axis",
+      "flavin-ligand absence/presence boundary axis",
+      "sugar-phosphate pocket/substrate geometry where available",
+      "bounded current-reference sequence and structural duplicate screens"
+    ],
+    "selection_freeze_required_before_scoring": true,
+    "target_row_count": "10-20"
+  },
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_sugar_phosphate_isomerase_control",
+      "name": "sugar_phosphate_isomerase_control",
+      "path": "artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "46412242d2ae65044ca2e5f25382eb251f31aa4032608336bcf827b644e3a6f6"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_terminal_decisions",
+      "name": "pilot_terminal_decisions",
+      "path": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "7f005ed853ecde500cd17adf600ad84dcd38c6aa685896220bf66c8890d8b4c4"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_decisions_review_resolved",
+      "name": "pilot_decisions_review_resolved",
+      "path": "artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "449a7b15b930fd4d12001b495bc7abe6f1f4c7057c715ef817a405dfa9e3ed9d"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_active_site_evidence_decisions",
+      "name": "pilot_active_site_evidence_decisions",
+      "path": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "a5c8056dfc8258f5cd67d06bbfbe150192633ab2c0ea7f1eb4ff5407156a6aaf"
+    },
+    {
+      "json_valid": true,
+      "method": "modern_baseline_comparison_synthesis",
+      "name": "modern_baseline_comparison",
+      "path": "artifacts/v3_modern_baseline_comparison_20260520.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "04b386d4c8f8614d99c696730522404bb59b3193bdee93e07b8e3ea78ab10036"
+    }
+  ],
+  "synthesis_conclusion": "review_only_not_freeze_ready"
+}

@@ -1,0 +1,317 @@
+{
+  "family_readiness": {
+    "cofactor_and_active_site_evidence": {
+      "active_site_tyr_axis": {
+        "active_site_evidence_source_type": "uniprot_active_site_feature",
+        "active_site_tyr_local_h_or_k_count": 2,
+        "active_site_tyr_local_windows": [
+          {
+            "local_h_or_k_count": 2,
+            "position": 49,
+            "residue": "Y",
+            "window_end": 57,
+            "window_sequence": "RHIDCAYFYENQHEVGE",
+            "window_start": 41
+          }
+        ],
+        "source_active_site_positions": [
+          49
+        ],
+        "source_active_site_tyr_positions": [
+          49
+        ],
+        "source_free_position_policy_ready": false,
+        "status": "source_traced_active_site_tyr_present"
+      },
+      "nadp_binding_axis": {
+        "caveat": "The packet has sequence/interpro NADP context, not a calibrated local NADP ligand geometry scorer.",
+        "direct_local_nadp_ligand_geometry_ready": false,
+        "n_terminal_glycine_pair_cofactor_proxy_motif_hits": [
+          {
+            "end": 19,
+            "motif": "VGLG",
+            "motif_type": "n_terminal_xgxg_cofactor_binding_proxy",
+            "start": 16
+          }
+        ],
+        "status": "review_only_sequence_proxy_present"
+      },
+      "reaction_context": {
+        "predictive_use": "review_context_only_until_a_source_free_local_axis_is_preregistered",
+        "representative_rhea_reactions": [
+          "RHEA:14981 testosterone + NADP(+) = androst-4-ene-3,17-dione + NADPH + H(+)",
+          "RHEA:25033 all-trans-retinol + NADP(+) = all-trans-retinal + NADPH + H(+)",
+          "RHEA:14697 (2E,6E)-farnesol + NADP(+) = (2E,6E)-farnesal + NADPH + H(+)"
+        ],
+        "status": "source_supports_nadp_aldo_keto_reductase_context"
+      }
+    },
+    "counterfamilies": {
+      "current_production_redox_fingerprint_contrasts": [
+        "flavin_monooxygenase",
+        "flavin_dehydrogenase_reductase",
+        "heme_peroxidase_oxidase"
+      ],
+      "nearest_current_reference_contrasts": [
+        {
+          "akr_nadp_sequence_axis_status": "akr_nadp_axis_absent",
+          "current_label_summaries": [
+            {
+              "entry_id": "m_csa:405",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated"
+            }
+          ],
+          "embedding_cosine_by_backend": {
+            "esm2_t30_150m_ur50d": 0.9442,
+            "esm2_t6_8m_ur50d": 0.7995
+          },
+          "matched_m_csa_entry_ids": [
+            "m_csa:405"
+          ],
+          "n_terminal_glycine_pair_cofactor_proxy_motif_hits": [],
+          "reference_accession": "P0A786",
+          "sequence_length": 311,
+          "source_active_site_tyr_positions": []
+        },
+        {
+          "akr_nadp_sequence_axis_status": "akr_nadp_axis_absent",
+          "current_label_summaries": [
+            {
+              "entry_id": "m_csa:66",
+              "fingerprint_id": "plp_dependent_enzyme",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated"
+            }
+          ],
+          "embedding_cosine_by_backend": {
+            "esm2_t30_150m_ur50d": 0.944,
+            "esm2_t6_8m_ur50d": 0.7822
+          },
+          "matched_m_csa_entry_ids": [
+            "m_csa:66"
+          ],
+          "n_terminal_glycine_pair_cofactor_proxy_motif_hits": [],
+          "reference_accession": "P19938",
+          "sequence_length": 283,
+          "source_active_site_tyr_positions": []
+        },
+        {
+          "akr_nadp_sequence_axis_status": "akr_nadp_axis_absent",
+          "current_label_summaries": [
+            {
+              "entry_id": "m_csa:106",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated"
+            }
+          ],
+          "embedding_cosine_by_backend": {
+            "esm2_t30_150m_ur50d": 0.9537,
+            "esm2_t6_8m_ur50d": 0.775
+          },
+          "matched_m_csa_entry_ids": [
+            "m_csa:106"
+          ],
+          "n_terminal_glycine_pair_cofactor_proxy_motif_hits": [],
+          "reference_accession": "P21874",
+          "sequence_length": 325,
+          "source_active_site_tyr_positions": []
+        }
+      ],
+      "non_redox_near_reference_risks": [
+        "plp_dependent_enzyme",
+        "out_of_scope_current_reference_neighbors"
+      ],
+      "sdr_redox_sibling_context": {
+        "interpretation": "SDR is a nearby NAD(P) redox sibling/control family with a separate review-only no-go packet; AKR should not reuse SDR sequence or active-site rules as a production shortcut.",
+        "source_packet": "artifacts/v3_sdr_family_readiness_packet_20260520.json"
+      }
+    },
+    "current_decision": "do_not_promote_production_fingerprint",
+    "decision_rationale": "C9JRZ8 repairs one AKR/NADP representation-conflict lane to needs_review, but it is a single source-traced positive-like row with unresolved broader duplicate screening, no terminal acceptance, no scored heuristic control, and no full factory gate.",
+    "import_and_duplicate_blockers": {
+      "active_site_import_safety_status": "explicit_active_site_source_resolved",
+      "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+      "factory_gate_status": "not_run",
+      "heuristic_control_scored": false,
+      "remaining_import_blockers": [
+        "broader_duplicate_screening_required",
+        "broader_duplicate_screening_unresolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "review_decision_not_terminal"
+      ],
+      "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal"
+    },
+    "positive_like_rows": [
+      {
+        "accession": "C9JRZ8",
+        "countable_label_candidate": false,
+        "entry_id": "uniprot:C9JRZ8",
+        "family_axis_status": "akr_nadp_axis_present_with_source_active_site_tyr",
+        "normalized_decision_status_after_repair": "needs_review",
+        "previous_normalized_decision_status": "rejected_representation_conflict",
+        "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
+        "ready_for_label_import": false,
+        "review_status": "external_pilot_akr_nadp_import_safety_adjudication_review_only",
+        "source_confidence": "medium",
+        "source_type": "UniProtKB/Swiss-Prot",
+        "terminal_status_before_repair_packet": "rejected_duplicate_or_near_duplicate"
+      }
+    ]
+  },
+  "likely_failure_modes": [
+    {
+      "blocks_production": true,
+      "description": "Only C9JRZ8 currently carries the staged AKR/NADP repair axis; one row is not breadth calibration.",
+      "id": "single_positive_like_row"
+    },
+    {
+      "blocks_production": true,
+      "description": "The active-site Tyr49 evidence is source-traced and useful for review, but a source-free local axis is not frozen.",
+      "id": "source_traced_active_site_dependency"
+    },
+    {
+      "blocks_production": true,
+      "description": "The current NADP signal is sequence/InterPro/Rhea context; direct local NADP ligand geometry is not ready.",
+      "id": "nadp_geometry_missing"
+    },
+    {
+      "blocks_production": true,
+      "description": "The AKR axis moves C9JRZ8 from rejected representation conflict to needs_review, but terminal acceptance and broader duplicate screening remain unresolved.",
+      "id": "representation_conflict_repaired_not_terminal"
+    },
+    {
+      "blocks_production": true,
+      "description": "Nearest current references include out-of-scope and PLP rows; AKR needs explicit counterfamily controls before any positive scoring.",
+      "id": "neighbor_family_collision"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_akr_family_readiness_packet_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T16:15:30Z",
+    "curated_label_registry_edited": false,
+    "family_id": "akr_nadp_redox",
+    "family_name": "Aldo-keto reductase NADP-dependent redox",
+    "fingerprint_registry_edited": false,
+    "git_history_edited": false,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "akr_family_readiness_packet_synthesis",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "production_fingerprint_ids": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "readiness_packet_type": "simpler_mechanism_family_review_only_packet",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "recommendation": "run_one_preregistered_review_only_akr_sdr_flavin_heme_control_experiment_before_any_scorer_or_registry_work",
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "akr_nadp_import_safety_adjudication": "artifacts/v3_external_source_pilot_akr_nadp_import_safety_adjudication_1025.json",
+      "akr_nadp_repair_control": "artifacts/v3_external_source_pilot_akr_nadp_repair_control_1025.json",
+      "modern_baseline_comparison": "artifacts/v3_modern_baseline_comparison_20260520.json",
+      "pilot_active_site_evidence_decisions": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+      "pilot_terminal_decisions": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json",
+      "sdr_family_readiness_packet": "artifacts/v3_sdr_family_readiness_packet_20260520.json"
+    }
+  },
+  "next_experiment": {
+    "candidate_mix": [
+      "AKR/NADP positive-like external rows with explicit active-site Tyr and NAD(P) context",
+      "SDR/NAD(P) sibling controls",
+      "flavin and heme redox current-fingerprint contrasts",
+      "PLP/out-of-scope nearest-reference collision controls"
+    ],
+    "decision_to_start_now": false,
+    "experiment_id": "akr_sdr_flavin_heme_control_tranche_v1_review_only",
+    "forbidden_shortcuts": [
+      "EC labels as predictive evidence",
+      "protein names or UniProt prose as predictive evidence",
+      "Rhea/InterPro/source active-site annotations as positive scoring inputs",
+      "registry edits or label imports before full gates pass"
+    ],
+    "required_source_free_axes_before_scoring": [
+      "local NAD(P) or NADP-binding geometry axis",
+      "source-free catalytic Tyr/Lys/His local environment axis",
+      "counterfamily rules separating AKR from SDR, flavin, heme, PLP, and out-of-scope neighbors",
+      "bounded current-reference sequence and structural duplicate screens"
+    ],
+    "selection_freeze_required_before_scoring": true,
+    "target_row_count": "10-20"
+  },
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_akr_nadp_repair_control",
+      "name": "akr_nadp_repair_control",
+      "path": "artifacts/v3_external_source_pilot_akr_nadp_repair_control_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "8bc4f8138faa173ec1e920c7f765c094aed6c79be54d1bd1c0528102edc56513"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_akr_nadp_import_safety_adjudication",
+      "name": "akr_nadp_import_safety_adjudication",
+      "path": "artifacts/v3_external_source_pilot_akr_nadp_import_safety_adjudication_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "daa6c3719fdd60b4cbbc9ee7ee1cbf69b6ea4cdd0c463d5a12d6230fca240d7c"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_terminal_decisions",
+      "name": "pilot_terminal_decisions",
+      "path": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "7f005ed853ecde500cd17adf600ad84dcd38c6aa685896220bf66c8890d8b4c4"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_active_site_evidence_decisions",
+      "name": "pilot_active_site_evidence_decisions",
+      "path": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "a5c8056dfc8258f5cd67d06bbfbe150192633ab2c0ea7f1eb4ff5407156a6aaf"
+    },
+    {
+      "json_valid": true,
+      "method": "sdr_family_readiness_packet_synthesis",
+      "name": "sdr_family_readiness_packet",
+      "path": "artifacts/v3_sdr_family_readiness_packet_20260520.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "7068f4b583e4b7e51bf5a994bb16241acb1eeee9ba94b54d9cffe0c61676bd5f"
+    },
+    {
+      "json_valid": true,
+      "method": "modern_baseline_comparison_synthesis",
+      "name": "modern_baseline_comparison",
+      "path": "artifacts/v3_modern_baseline_comparison_20260520.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "04b386d4c8f8614d99c696730522404bb59b3193bdee93e07b8e3ea78ab10036"
+    }
+  ],
+  "synthesis_conclusion": "review_only_not_freeze_ready"
+}

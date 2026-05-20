@@ -50,6 +50,88 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T16:00:50Z automation run,
+`artifacts/v3_glycoside_hydrolase_control_tranche_preregistration_20260520.json`
+freezes the next review-only non-ePK family tranche before any new scoring. The
+15 frozen rows include five external glycan/glycoside candidates from the
+external source manifest (`Q6NSJ0`, `P30176`, `P29372`, `P33025`, and
+`O60568`) plus five current `metal_dependent_hydrolase` and five current
+`ser_his_acid_hydrolase` controls selected deterministically from registry
+order. No geometry, sequence-neighbor, Foldseek, inverse-gate, or production
+fingerprint scoring was run to choose these rows. The next step is to compute
+only the preregistered review-only local axes and duplicate screens, then emit
+terminal decisions without import unless a later explicit gated cycle passes.
+
+As of the 2026-05-20T16:00:50Z automation run,
+`artifacts/v3_mechanism_family_readiness_index_20260520.json` compares the
+current review-only family packets for SDR, AKR, glycoside hydrolase, and
+sugar-phosphate isomerase. All four remain no-go for production scoring,
+fingerprint expansion, registry edits, or label import. The index recommends
+`glycoside_hydrolase_vs_metal_hydrolase_control_tranche_v1_review_only` as the
+next non-ePK family experiment because it most directly tests the observed
+metal-hydrolase boundary collapse with acidic-dyad evidence and absent
+metal-role context. Any next family experiment must freeze 10-20 rows before
+scoring.
+
+As of the 2026-05-20T16:00:50Z automation run, the fourth fallback
+mechanism-family readiness packet is staged for sugar-phosphate isomerase in
+`artifacts/v3_sugar_phosphate_isomerase_readiness_packet_20260520.json`. It
+synthesizes the existing P34949 sugar-phosphate-isomerase scope control, pilot
+terminal decisions, active-site evidence decisions, and modern baseline context
+into a review-only go/no-go packet. The decision is a no-go for production
+fingerprint expansion: P34949 is the only direct positive-like row, Arg295
+active-site evidence is source-traced rather than a frozen source-free local
+axis, the weak flavin top1 is countered by absent flavin context rather than a
+calibrated scorer, and expert review plus broader duplicate screening remain
+unresolved.
+
+Evidence-based confidence call: confidence is high that the sugar-phosphate
+isomerase packet usefully preserves a terminal review-only scope decision and
+not a production fingerprint. Confidence is moderate that the next admissible
+experiment is a 10-20 row review-only sugar-phosphate-isomerase versus flavin
+control tranche with basic/polar active-site, flavin-context, and substrate
+pocket axes frozen before scoring.
+
+As of the 2026-05-20T16:00:50Z automation run, the third fallback
+mechanism-family readiness packet is staged for glycoside hydrolase acidic-dyad
+chemistry in
+`artifacts/v3_glycoside_hydrolase_family_readiness_packet_20260520.json`. It
+synthesizes the existing Q6NSJ0 glycoside-hydrolase boundary control, pilot
+terminal decisions, active-site evidence decisions, and modern baseline context
+into a review-only go/no-go packet. The decision is a no-go for production
+fingerprint expansion: Q6NSJ0 is the only direct positive-like row, its
+Asp463/Asp520 acidic dyad is source-traced rather than a frozen source-free
+role rule, the row remains deferred/rejected from the pilot surface, and the
+control has not been integrated into import-safety adjudication or full
+factory gates.
+
+Evidence-based confidence call: confidence is high that the glycoside
+hydrolase packet is useful boundary evidence against metal-hydrolase collapse
+and not a production fingerprint. Confidence is moderate that the next
+admissible experiment is a 10-20 row review-only glycoside-hydrolase versus
+metal/ser-his-acid hydrolase tranche with acidic-dyad, metal-ligand, and glycan
+pocket axes frozen before scoring.
+
+As of the 2026-05-20T16:00:50Z automation run, the second fallback
+mechanism-family readiness packet is staged for AKR/NADP redox in
+`artifacts/v3_akr_family_readiness_packet_20260520.json`. It synthesizes the
+existing C9JRZ8 AKR/NADP repair-control row, AKR import-safety adjudication,
+pilot terminal decisions, active-site evidence decisions, SDR sibling context,
+and the modern baseline comparison into a review-only go/no-go packet. The
+decision is a no-go for production fingerprint expansion: C9JRZ8 is the only
+direct positive-like AKR row, its post-repair status is still `needs_review`,
+the NADP axis is sequence/source-context rather than direct local ligand
+geometry, and broader duplicate screening, terminal acceptance, heuristic
+scoring, and full factory gates remain unresolved.
+
+Evidence-based confidence call: confidence is high that the AKR packet is a
+useful family-readiness small win and not a production fingerprint, because it
+names the positive-like row, counterfamilies, cofactors, active-site evidence,
+failure modes, and one next experiment while preserving 0 label imports and 0
+registry edits. Confidence is moderate that the next admissible AKR step is a
+10-20 row review-only AKR/SDR/flavin/heme control tranche with a frozen
+source-free NAD(P) and catalytic-Tyr local-axis design before scoring.
+
 As of the 2026-05-20T16:00:50Z automation run, fresh ePK research-lane
 outputs from the four sibling worktrees are integrated as review-only synthesis
 in `artifacts/v3_epk_research_lane_synthesis_20260520.json`. The main run did

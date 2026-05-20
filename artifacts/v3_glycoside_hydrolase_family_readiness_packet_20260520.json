@@ -1,0 +1,270 @@
+{
+  "family_readiness": {
+    "cofactor_and_active_site_evidence": {
+      "acidic_dyad_axis": {
+        "acidic_active_site_spacing_values": [
+          57
+        ],
+        "acidic_source_active_site_positions": [
+          463,
+          520
+        ],
+        "active_site_evidence_source_type": "uniprot_active_site_feature",
+        "active_site_residue_windows": [
+          {
+            "position": 463,
+            "residue": "D",
+            "sequence_window": "LRSRYSVASFKFDAGEVSYLPRDFS",
+            "window_end": 475,
+            "window_start": 451
+          },
+          {
+            "position": 520,
+            "residue": "D",
+            "sequence_window": "QSQNISCFFRLVDRDSVWGYDLGLR",
+            "window_end": 532,
+            "window_start": 508
+          }
+        ],
+        "source_active_site_positions": [
+          463,
+          520
+        ],
+        "source_free_position_policy_ready": false,
+        "status": "source_traced_acidic_active_site_pair_present"
+      },
+      "metal_or_cofactor_context": {
+        "direct_local_substrate_or_glycan_geometry_ready": false,
+        "metal_ligand_context_absent": true,
+        "status": "metal_ligand_context_absent_in_boundary_control"
+      },
+      "pocket_boundary_features": {
+        "aromatic_fraction": 0.2647,
+        "nearby_acidic_residue_count": 7,
+        "nearby_aromatic_residue_count": 8,
+        "nearby_residue_count": 34,
+        "negative_fraction": 0.2059
+      },
+      "reaction_context": {
+        "predictive_use": "review_context_only_until_a_source_free_local_axis_is_preregistered",
+        "rhea_ids": [
+          "RHEA:21112"
+        ],
+        "status": "specific_reaction_context_present"
+      }
+    },
+    "counterfamilies": {
+      "boundary_control_interpretation": "Candidate has source-traced acidic active-site residues and no local metal/cofactor context, while the metal-hydrolase heuristic match has zero role-hint support. This is a review-only boundary control, not import.",
+      "current_production_hydrolase_contrasts": [
+        "ser_his_acid_hydrolase",
+        "metal_dependent_hydrolase"
+      ],
+      "metal_hydrolase_contrast_features": {
+        "matched_signature_roles": [
+          {
+            "matched_codes": [
+              "ASP",
+              "ASP"
+            ],
+            "required_residue": "His/Asp/Glu/Cys",
+            "required_role": "metal_ligand",
+            "role_hint_match": false
+          },
+          {
+            "matched_codes": [
+              "ASP",
+              "ASP"
+            ],
+            "required_residue": "His/Asp/Glu",
+            "required_role": "water_activator",
+            "role_hint_match": false
+          }
+        ],
+        "metal_ligand_context_absent": true,
+        "metal_role_hint_match_count": 0,
+        "top1_residue_match_fraction": 0.6667,
+        "top1_role_match_fraction": 0.0
+      },
+      "nearest_representation_references": [
+        "P0ABI8",
+        "P07342"
+      ],
+      "primary_boundary": "metal_dependent_hydrolase"
+    },
+    "current_decision": "do_not_promote_production_fingerprint",
+    "decision_rationale": "Q6NSJ0 stages a useful glycoside-hydrolase-vs-metal-hydrolase boundary control, but it remains review-only: the row is still deferred/rejected from the pilot surface, the control is not integrated into import-safety adjudication, and no factory gate or terminal acceptance has passed.",
+    "import_and_duplicate_blockers": {
+      "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+      "control_not_integrated_into_import_safety_adjudication": true,
+      "factory_gate_status": "not_run",
+      "heuristic_control_scored": true,
+      "heuristic_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "heuristic_top1_score": 0.3552,
+      "sequence_duplicate_screen_status": "no_near_duplicate_signal",
+      "unresolved_evidence_for_deferred": [
+        "adjudicate changed nearest-reference representation evidence",
+        "adjudicate heuristic scope or top1 mismatch",
+        "complete broader duplicate screening beyond the bounded current-reference search",
+        "record human/expert review decision against the assembled evidence packet",
+        "resolve selected-pilot representation-control blocker",
+        "run the full label-factory gate only after review decision and duplicate controls"
+      ]
+    },
+    "positive_like_rows": [
+      {
+        "accession": "Q6NSJ0",
+        "countable_label_candidate": false,
+        "entry_id": "uniprot:Q6NSJ0",
+        "family_axis_status": "review_only_glycoside_hydrolase_boundary_ready",
+        "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+        "ready_for_label_import": false,
+        "review_decision_status": "deferred_requires_human_expert",
+        "review_status": "external_pilot_glycoside_hydrolase_boundary_control_review_only",
+        "source_confidence": "high",
+        "source_resolved_status": "rejected_representation_conflict",
+        "source_type": "UniProtKB/Swiss-Prot",
+        "terminal_status": "deferred_requires_human_expert"
+      }
+    ]
+  },
+  "likely_failure_modes": [
+    {
+      "blocks_production": true,
+      "description": "Only Q6NSJ0 currently carries the staged glycoside hydrolase boundary control; one row is not breadth calibration.",
+      "id": "single_positive_like_row"
+    },
+    {
+      "blocks_production": true,
+      "description": "Asp463/Asp520 are source-traced active-site residues; source-free residue-role policy is not frozen.",
+      "id": "source_traced_acidic_dyad_dependency"
+    },
+    {
+      "blocks_production": true,
+      "description": "The current heuristic top1 is metal_dependent_hydrolase despite absent metal role-hint support, so boundary rules must be calibrated before scoring.",
+      "id": "metal_hydrolase_collapse_risk"
+    },
+    {
+      "blocks_production": true,
+      "description": "ESM nearest-reference evidence changes between available backends, leaving the row deferred for expert review.",
+      "id": "representation_stability_changed"
+    },
+    {
+      "blocks_production": true,
+      "description": "The packet has pocket composition and source reaction context, not direct local glycan/substrate geometry.",
+      "id": "glycan_substrate_geometry_missing"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_glycoside_hydrolase_family_readiness_packet_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T16:18:20Z",
+    "curated_label_registry_edited": false,
+    "family_id": "glycoside_hydrolase",
+    "family_name": "Glycoside hydrolase acidic-dyad glycan chemistry",
+    "fingerprint_registry_edited": false,
+    "git_history_edited": false,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "glycoside_hydrolase_family_readiness_packet_synthesis",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "production_fingerprint_ids": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "readiness_packet_type": "simpler_mechanism_family_review_only_packet",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "recommendation": "run_one_preregistered_review_only_glycoside_hydrolase_vs_metal_hydrolase_control_experiment_before_any_scorer_or_registry_work",
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "glycoside_hydrolase_boundary_control": "artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json",
+      "modern_baseline_comparison": "artifacts/v3_modern_baseline_comparison_20260520.json",
+      "pilot_active_site_evidence_decisions": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+      "pilot_decisions_review_resolved": "artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json",
+      "pilot_terminal_decisions": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json"
+    }
+  },
+  "next_experiment": {
+    "candidate_mix": [
+      "glycoside hydrolase positives with explicit acidic dyad evidence",
+      "metal-dependent hydrolase current-fingerprint controls",
+      "ser-his-acid hydrolase controls",
+      "glycan-binding but non-catalytic or binding-context-only controls"
+    ],
+    "decision_to_start_now": false,
+    "experiment_id": "glycoside_hydrolase_vs_metal_hydrolase_control_tranche_v1_review_only",
+    "forbidden_shortcuts": [
+      "EC labels as predictive evidence",
+      "protein names or UniProt prose as predictive evidence",
+      "Rhea/InterPro/source active-site annotations as positive scoring inputs",
+      "registry edits or label imports before full gates pass"
+    ],
+    "required_source_free_axes_before_scoring": [
+      "acidic dyad spacing and local role context",
+      "metal-ligand absence/presence boundary axis",
+      "glycan/substrate-pocket local geometry where available",
+      "bounded current-reference sequence and structural duplicate screens"
+    ],
+    "selection_freeze_required_before_scoring": true,
+    "target_row_count": "10-20"
+  },
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_glycoside_hydrolase_boundary_control",
+      "name": "glycoside_hydrolase_boundary_control",
+      "path": "artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "d55bc4aefbab34c418690a2dc7e9d2eab651d0c8483ef0d5e149b984ae89730d"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_terminal_decisions",
+      "name": "pilot_terminal_decisions",
+      "path": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "7f005ed853ecde500cd17adf600ad84dcd38c6aa685896220bf66c8890d8b4c4"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_decisions_review_resolved",
+      "name": "pilot_decisions_review_resolved",
+      "path": "artifacts/v3_external_source_pilot_decisions_review_resolved_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "449a7b15b930fd4d12001b495bc7abe6f1f4c7057c715ef817a405dfa9e3ed9d"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_active_site_evidence_decisions",
+      "name": "pilot_active_site_evidence_decisions",
+      "path": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "a5c8056dfc8258f5cd67d06bbfbe150192633ab2c0ea7f1eb4ff5407156a6aaf"
+    },
+    {
+      "json_valid": true,
+      "method": "modern_baseline_comparison_synthesis",
+      "name": "modern_baseline_comparison",
+      "path": "artifacts/v3_modern_baseline_comparison_20260520.json",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "sha256": "04b386d4c8f8614d99c696730522404bb59b3193bdee93e07b8e3ea78ab10036"
+    }
+  ],
+  "synthesis_conclusion": "review_only_not_freeze_ready"
+}
