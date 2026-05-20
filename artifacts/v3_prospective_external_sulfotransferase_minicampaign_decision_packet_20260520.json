@@ -1,0 +1,547 @@
+{
+  "metadata": {
+    "artifact_id": "v3_prospective_external_sulfotransferase_minicampaign_decision_packet_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T23:25:00Z",
+    "method": "prospective_external_sulfotransferase_minicampaign_terminal_decisions",
+    "review_only": true,
+    "candidate_selection_before_outcome_scoring": true,
+    "candidate_count": 16,
+    "normalized_terminal_decision_counts": {
+      "terminal_rejection": 16
+    },
+    "scored_candidate_count": 0,
+    "inverse_gate_scored_candidate_count": 0,
+    "import_ready_candidate_count": 0,
+    "countable_label_candidate_count": 0,
+    "abstain_threshold": 0.4115,
+    "production_fingerprint_count": 8,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "source_artifacts": {
+      "freeze": "artifacts/v3_prospective_external_sulfotransferase_minicampaign_freeze_20260520.json"
+    }
+  },
+  "rows": [
+    {
+      "row_id": "uniprot:O75897",
+      "accession": "O75897",
+      "freeze_rank": 1,
+      "entry_name": "ST1C4_HUMAN",
+      "primary_ec": "2.8.2.1",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.1"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 2
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:O60507",
+      "accession": "O60507",
+      "freeze_rank": 2,
+      "entry_name": "TPST1_HUMAN",
+      "primary_ec": "2.8.2.20",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.20"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 2
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:O60704",
+      "accession": "O60704",
+      "freeze_rank": 3,
+      "entry_name": "TPST2_HUMAN",
+      "primary_ec": "2.8.2.20",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.20"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 3
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:Q6IMI6",
+      "accession": "Q6IMI6",
+      "freeze_rank": 4,
+      "entry_name": "ST1C3_HUMAN",
+      "primary_ec": "2.8.2.1",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.1",
+          "2.8.2.2"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 2
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:P49888",
+      "accession": "P49888",
+      "freeze_rank": 5,
+      "entry_name": "ST1E1_HUMAN",
+      "primary_ec": "2.8.2.4",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.4"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 5
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:O00204",
+      "accession": "O00204",
+      "freeze_rank": 6,
+      "entry_name": "ST2B1_HUMAN",
+      "primary_ec": "2.8.2.2",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.2"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 4
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:Q06520",
+      "accession": "Q06520",
+      "freeze_rank": 7,
+      "entry_name": "ST2A1_HUMAN",
+      "primary_ec": "2.8.2.14",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.14",
+          "2.8.2.2"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 7
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:A0MGZ7",
+      "accession": "A0MGZ7",
+      "freeze_rank": 8,
+      "entry_name": "H6S3B_DANRE",
+      "primary_ec": "2.8.2.-",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.-"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 3
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:Q9C9D0",
+      "accession": "Q9C9D0",
+      "freeze_rank": 9,
+      "entry_name": "SOT16_ARATH",
+      "primary_ec": "2.8.2.24",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.24"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 1
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:Q9C9C9",
+      "accession": "Q9C9C9",
+      "freeze_rank": 10,
+      "entry_name": "SOT18_ARATH",
+      "primary_ec": "2.8.2.38",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.38"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 2
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:P49891",
+      "accession": "P49891",
+      "freeze_rank": 11,
+      "entry_name": "ST1E1_MOUSE",
+      "primary_ec": "2.8.2.4",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.4"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 3
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:Q8BGL3",
+      "accession": "Q8BGL3",
+      "freeze_rank": 12,
+      "entry_name": "ST2A8_MOUSE",
+      "primary_ec": "2.8.2.34",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.34"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 2
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:Q8KLM3",
+      "accession": "Q8KLM3",
+      "freeze_rank": 13,
+      "entry_name": "STAL_STRTO",
+      "primary_ec": "2.8.2.36",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.36"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 4
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:Q8FDI4",
+      "accession": "Q8FDI4",
+      "freeze_rank": 14,
+      "entry_name": "ASST_ECOL6",
+      "primary_ec": "2.8.2.22",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.22"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 7
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:A0QQ53",
+      "accession": "A0QQ53",
+      "freeze_rank": 15,
+      "entry_name": "STF0_MYCS2",
+      "primary_ec": "2.8.2.37",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.37"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 1
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    },
+    {
+      "row_id": "uniprot:O35403",
+      "accession": "O35403",
+      "freeze_rank": 16,
+      "entry_name": "ST3A1_MOUSE",
+      "primary_ec": "2.8.2.3",
+      "terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "normalized_terminal_decision": "terminal_rejection",
+      "decision_reason": "sulfotransferase/PAPS sulfuryl-transfer chemistry is outside the current 8 production fingerprints and outside covered external hard-negative counterevidence lanes, so this prospective row is closed before scoring rather than forced through an invalid inverse gate",
+      "predictive_evidence": {
+        "production_fingerprint_scores_run": false,
+        "used_for_decision": [
+          "frozen_selection_metadata",
+          "current_production_fingerprint_universe_absence"
+        ]
+      },
+      "review_only_context": {
+        "ec_numbers": [
+          "2.8.2.3"
+        ],
+        "catalytic_activity_annotation_present": true,
+        "active_site_annotation_present": true,
+        "pdb_count": 1
+      },
+      "excluded_context": [
+        "protein_name_text_not_used_as_positive_score",
+        "uniprot_prose_not_used_as_predictive_evidence",
+        "no_sequence_or_structure_duplicate_claim"
+      ],
+      "ready_for_label_import": false,
+      "countable_label_candidate": false
+    }
+  ]
+}

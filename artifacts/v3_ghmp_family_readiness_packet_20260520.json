@@ -1,0 +1,181 @@
+{
+  "metadata": {
+    "artifact_id": "v3_ghmp_family_readiness_packet_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T23:32:00Z",
+    "method": "ghmp_review_only_family_readiness_packet",
+    "family_id": "ghmp",
+    "family_name": "GHMP-superfamily kinases",
+    "parent_family_id": "atp_phosphoryl_transfer",
+    "review_only": true,
+    "production_fingerprint_count": 8,
+    "countable_label_candidate_count": 0,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "source_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_geometry_retrieval_1025.json",
+      "artifacts/v3_atp_family_readiness_index_post_pfkb_tranche_20260520.json"
+    ]
+  },
+  "family_readiness": {
+    "current_decision": "do_not_promote_production_fingerprint",
+    "readiness_status": "review_only_packet_ready_for_control_tranche_not_scoring",
+    "scope_note": "GHMP-superfamily kinases phosphorylate small-molecule hydroxyl/carboxyl acceptors using ATP in a GHMP fold; this packet separates them from PfkB/PfkA/ASKHA/dNK/NDK/GHKL/ATP-grasp/ePK boundary lanes.",
+    "expert_supported_boundary_count": 1,
+    "positive_like_boundary_row_count": 1,
+    "countable_positive_seed_count": 0,
+    "source_free_axis_ready_count": 0,
+    "positive_like_boundary_rows": [
+      {
+        "entry_id": "m_csa:654",
+        "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+        "pdb_id": "1OJ4",
+        "support_level": "expert_review_supported_family_boundary",
+        "decision_action": "accept_label",
+        "decision_label_type": "out_of_scope",
+        "countable_label_candidate": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3581,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.278,
+        "local_ligand_codes": [
+          "CDM"
+        ],
+        "structure_ligand_codes": [
+          "CDM",
+          "ANP",
+          "MSE",
+          "CL"
+        ],
+        "structure_cofactor_families": [],
+        "nearby_residue_count": 2,
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review"
+      }
+    ]
+  },
+  "cofactors_and_active_site_evidence": {
+    "available_review_only_evidence": [
+      "Family expansion maps one expert-supported GHMP boundary row: 4-(cytidine 5-prime-diphospho)-2-C-methyl-D-erythritol kinase.",
+      "The selected structure has local CDM substrate/product-like context and structure-level ANP context, but the nucleotide is not local to the active-site slice used here.",
+      "Current geometry retrieval routes the row through metal-dependent hydrolase top1 at 0.3581, below the 0.4115 floor."
+    ],
+    "blocked_or_missing_evidence": [
+      "No accepted source-free GHMP fold axis exists in production code.",
+      "No calibrated small-molecule acceptor identity policy exists for GHMP.",
+      "No GHMP threshold, external hard-negative re-audit, or countable positive seed set exists.",
+      "The row remains current-review boundary evidence and cannot be imported or used to expand the fingerprint universe without a separate gated cycle."
+    ],
+    "expected_local_evidence_axes": [
+      "local ATP/ADP or transition-state nucleotide context plus divalent-metal support",
+      "GHMP fold context separated from ASKHA/PfkB/PfkA sugar kinases",
+      "small-molecule hydroxyl/carboxyl acceptor identity for CDP-ME or related substrates",
+      "negative hydrolase, PfkB, PfkA, ASKHA, dNK/NDK, GHKL, ATP-grasp, and ePK counteraxes"
+    ]
+  },
+  "counterfamilies_and_controls": [
+    {
+      "family_id": "metal_dependent_hydrolase",
+      "control_role": "current top1 collapse boundary for the GHMP mismatch row"
+    },
+    {
+      "family_id": "pfkb",
+      "control_role": "ribokinase-family small-molecule kinase counterfamily"
+    },
+    {
+      "family_id": "pfka",
+      "control_role": "PfkA-fold phosphofructokinase counterfamily"
+    },
+    {
+      "family_id": "askha",
+      "control_role": "ASKHA sugar/acetate kinase counterfamily"
+    },
+    {
+      "family_id": "dnk",
+      "control_role": "deoxynucleoside kinase counterfamily"
+    },
+    {
+      "family_id": "ndk",
+      "control_role": "nucleoside-diphosphate kinase counterfamily"
+    },
+    {
+      "family_id": "ghkl",
+      "control_role": "Bergerat/GHKL histidine-kinase counterfamily"
+    },
+    {
+      "family_id": "atp_grasp",
+      "control_role": "ATP-coupled ligase counterfamily"
+    },
+    {
+      "family_id": "epk",
+      "control_role": "protein-substrate kinase counterfamily; research-lane only"
+    }
+  ],
+  "likely_failure_modes": [
+    {
+      "id": "hydrolase_top1_boundary_collapse",
+      "description": "The GHMP boundary row still routes through metal-dependent hydrolase top1 in review-only geometry retrieval."
+    },
+    {
+      "id": "selected_ligand_state_gap",
+      "description": "The selected active-site slice has local CDM but lacks a local ATP/Mg/reactant-state axis."
+    },
+    {
+      "id": "pfkb_pfka_askha_sugar_kinase_confusion",
+      "description": "Small-molecule kinase wording alone can merge GHMP with PfkB, PfkA, or ASKHA without source-free fold and acceptor evidence."
+    },
+    {
+      "id": "single_boundary_row_fragility",
+      "description": "One boundary row is insufficient for threshold calibration or family breadth."
+    }
+  ],
+  "next_experiment": {
+    "experiment_id": "ghmp_vs_neighbor_atp_family_control_tranche_v1_review_only",
+    "decision_to_start_now": false,
+    "selection_freeze_required_before_scoring": true,
+    "recommended_row_count": "10-14",
+    "reason_not_started": "readiness packet first; no production gates are open and the row set must be frozen before any axis scoring",
+    "preregistered_axes_to_freeze": [
+      "local nucleotide plus metal state",
+      "GHMP fold/family context",
+      "small-molecule hydroxyl or carboxyl acceptor identity",
+      "negative PfkB, PfkA, ASKHA, dNK/NDK, GHKL, ATP-grasp, ePK, and hydrolase counteraxes",
+      "duplicate/current-neighbor checks before any import claim"
+    ],
+    "row_plan": [
+      "1 GHMP positive-like boundary row from the family expansion artifact",
+      "2 current metal-hydrolase controls",
+      "2 PfkB/PfkA sugar kinase controls",
+      "2 ASKHA/dNK/NDK controls",
+      "2 GHKL/ATP-grasp neighboring ATP-family controls",
+      "optional ePK context only as review-only counteraxis evidence"
+    ]
+  },
+  "safety_summary": {
+    "registry_or_fingerprint_edit_performed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false
+  }
+}

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 231
-- Measured elapsed time: 6980.5 minutes (116.34 hours)
+- Entries: 232
+- Measured elapsed time: 7005.2 minutes (116.75 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 94.0 measured minutes (1.57 hours)
-- post-infra-science: 1708.6 measured minutes (28.48 hours)
+- post-infra-science: 1733.3 measured minutes (28.89 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 97.9 measured minutes (1.63 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2653
-- Evidence references logged: 2163
+- Artifact references logged: 2664
+- Evidence references logged: 2171
 
 ## Recent Entries
-
-### 2026-05-20T19:49:09.571418+00:00 - post-infra-science
-
-- Task: Non-ePK control tranche terminal small wins
-- Time mode: measured
-- Measured minutes: 33.433
-- Started: 2026-05-20T19:13:00Z
-- Ended: 2026-05-20T19:46:26Z
-- Artifacts: artifacts/v3_source_complete_external_minicampaign_blocker_review_20260520.json, artifacts/v3_schiff_base_lyase_control_tranche_preregistration_20260520.json, artifacts/v3_schiff_base_lyase_control_tranche_axis_decisions_20260520.json, artifacts/v3_schiff_base_lyase_control_tranche_baseline_comparison_20260520.json, artifacts/v3_dna_glycosylase_lyase_control_tranche_preregistration_20260520.json, artifacts/v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520.json, artifacts/v3_dna_glycosylase_lyase_control_tranche_baseline_comparison_20260520.json, artifacts/v3_sdr_akr_nadp_control_tranche_preregistration_20260520.json, artifacts/v3_sdr_akr_nadp_control_tranche_axis_decisions_20260520.json, artifacts/v3_sdr_akr_nadp_control_tranche_baseline_comparison_20260520.json, artifacts/v3_sugar_phosphate_isomerase_control_tranche_preregistration_20260520.json, artifacts/v3_sugar_phosphate_isomerase_control_tranche_axis_decisions_20260520.json, artifacts/v3_sugar_phosphate_isomerase_control_tranche_baseline_comparison_20260520.json, artifacts/v3_mechanism_family_readiness_index_post_tranche_refresh_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: source-complete post-P06744 surface rejected as already terminally decided, Schiff-base lyase frozen tranche closed with 14 mechanism_match and Q9BXD5 needs_review, DNA glycosylase lyase frozen tranche closed with 5 mechanism_match 5 out_of_scope and P06746 needs_review, SDR/AKR frozen tranche closed with 8 mechanism_match 4 ambiguous and 2 needs_review, sugar-phosphate-isomerase frozen tranche closed with 6 mechanism_match 4 out_of_scope and P34949 needs_review, all five closed non-ePK tranches have 0 source-free-axis-ready families, no registry edit no label import no production fingerprint expansion
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ### 2026-05-20T19:49:17.503329+00:00 - ops
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_glycosyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json, artifacts/v3_ghkl_vs_neighbor_family_control_tranche_axis_decisions_20260520.json, artifacts/v3_dnk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json, artifacts/v3_pfkb_family_readiness_packet_20260520.json, artifacts/v3_main_loop_small_win_register_post_atp_readiness_20260520.json
 - Evidence: 736+ targeted/unit tests, registry invariant check, artifact migration guard
 - Notes: No registry edit, label import, fingerprint expansion, artifact upload/removal, or migration phase 2/3.
+
+### 2026-05-20T23:36:29.859708+00:00 - post-infra-science
+
+- Task: Main-loop small wins: ePK synthesis, sulfotransferase, ATP-family tranches
+- Time mode: measured
+- Measured minutes: 24.7
+- Started: 2026-05-20T23:11:31Z
+- Ended: 2026-05-20T23:36:13Z
+- Artifacts: artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json, artifacts/v3_pfkb_vs_neighbor_family_control_tranche_axis_decisions_20260520.json, artifacts/v3_prospective_external_sulfotransferase_minicampaign_freeze_20260520.json, artifacts/v3_prospective_external_sulfotransferase_minicampaign_decision_packet_20260520.json, artifacts/v3_sulfotransferase_minicampaign_baseline_comparison_20260520.json, artifacts/v3_ghmp_family_readiness_packet_20260520.json, artifacts/v3_ghmp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json, artifacts/v3_main_loop_small_win_register_post_ghmp_tranche_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: 20 dirty ePK JSON plus 3 JSONL ledgers validated with 0 errors, PfkB tranche closed with 2 needs_review 2 mechanism_match 7 out_of_scope, sulfotransferase 16-row external surface frozen before scoring and terminally rejected as uncovered lane, GHMP packet and tranche closed review-only no-go, full 746-test discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, registry invariants preserved
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ## Expectation Updates
 

@@ -1,0 +1,342 @@
+{
+  "metadata": {
+    "artifact_id": "v3_sulfotransferase_minicampaign_sequence_baseline_diagnostic_20260520",
+    "created_at": "2026-05-20T23:25:00Z",
+    "method": "deterministic_5mer_nearest_current_reference_diagnostic",
+    "review_only": true,
+    "candidate_count": 16,
+    "candidate_freeze_artifact": "artifacts/v3_prospective_external_sulfotransferase_minicampaign_freeze_20260520.json",
+    "reference_fasta": "artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta",
+    "reference_sequence_count": 737,
+    "external_fasta": "artifacts/v3_sulfotransferase_minicampaign_sequence_baseline_external_20260520.fasta",
+    "external_fasta_sha256": "fb756da30005ab91eac39cc644a46cb1d9c56b25d5fcb5753e7967e801c05e69",
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/stream?query=accession%3AO75897%20OR%20accession%3AO60507%20OR%20accession%3AO60704%20OR%20accession%3AQ6IMI6%20OR%20accession%3AP49888%20OR%20accession%3AO00204%20OR%20accession%3AQ06520%20OR%20accession%3AA0MGZ7%20OR%20accession%3AQ9C9D0%20OR%20accession%3AQ9C9C9%20OR%20accession%3AP49891%20OR%20accession%3AQ8BGL3%20OR%20accession%3AQ8KLM3%20OR%20accession%3AQ8FDI4%20OR%20accession%3AA0QQ53%20OR%20accession%3AO35403&format=fasta",
+    "kmer_k": 5,
+    "near_neighbor_alert_threshold_jaccard": 0.35,
+    "near_neighbor_alert_count": 1,
+    "terminal_decision_changed_by_sequence_baseline": false,
+    "superiority_claim_permitted": false,
+    "ready_for_label_import": false,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_upload_or_removal_performed": false
+  },
+  "task_definition": {
+    "task_id": "sulfotransferase_minicampaign_sequence_baseline_v1_review_only",
+    "task": "Run deterministic 5-mer nearest-current-reference diagnostic after the sulfotransferase terminal pre-scoring decision.",
+    "positive_claim_allowed": false,
+    "superiority_claim_allowed": false
+  },
+  "rows": [
+    {
+      "row_id": "uniprot:O75897",
+      "accession": "O75897",
+      "primary_ec": "2.8.2.1",
+      "query_header": "sp|O75897|ST1C4_HUMAN Sulfotransferase 1C4 (ST1C4) (EC 2.8.2.1) (Sulfotransferase 1C2) (SULT1C#2) OS=Homo sapiens (Human)",
+      "sequence_length": 302,
+      "nearest_current_reference": {
+        "reference_header": "ref__P49888",
+        "reference_accession": "ref__P49888",
+        "reference_length": 294,
+        "reference_5mer_count": 290,
+        "query_5mer_count": 298,
+        "shared_5mer_count": 9,
+        "jaccard_5mer": 0.0155
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:O60507",
+      "accession": "O60507",
+      "primary_ec": "2.8.2.20",
+      "query_header": "sp|O60507|TPST1_HUMAN Protein-tyrosine sulfotransferase 1 (EC 2.8.2.20) (Tyrosylprotein sulfotransferase 1) (TPST-1) OS=Homo sapiens (Human)",
+      "sequence_length": 370,
+      "nearest_current_reference": {
+        "reference_header": "ref__P37268",
+        "reference_accession": "ref__P37268",
+        "reference_length": 417,
+        "reference_5mer_count": 413,
+        "query_5mer_count": 366,
+        "shared_5mer_count": 3,
+        "jaccard_5mer": 0.0039
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:O60704",
+      "accession": "O60704",
+      "primary_ec": "2.8.2.20",
+      "query_header": "sp|O60704|TPST2_HUMAN Protein-tyrosine sulfotransferase 2 (EC 2.8.2.20) (Tyrosylprotein sulfotransferase 2) (TPST-2) OS=Homo sapiens (Human)",
+      "sequence_length": 377,
+      "nearest_current_reference": {
+        "reference_header": "ref__P00777",
+        "reference_accession": "ref__P00777",
+        "reference_length": 299,
+        "reference_5mer_count": 295,
+        "query_5mer_count": 373,
+        "shared_5mer_count": 3,
+        "jaccard_5mer": 0.0045
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:Q6IMI6",
+      "accession": "Q6IMI6",
+      "primary_ec": "2.8.2.1",
+      "query_header": "sp|Q6IMI6|ST1C3_HUMAN Sulfotransferase 1C3 (ST1C3) (EC 2.8.2.1) (EC 2.8.2.2) OS=Homo sapiens (Human)",
+      "sequence_length": 304,
+      "nearest_current_reference": {
+        "reference_header": "ref__P49888",
+        "reference_accession": "ref__P49888",
+        "reference_length": 294,
+        "reference_5mer_count": 290,
+        "query_5mer_count": 300,
+        "shared_5mer_count": 19,
+        "jaccard_5mer": 0.0333
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:P49888",
+      "accession": "P49888",
+      "primary_ec": "2.8.2.4",
+      "query_header": "sp|P49888|ST1E1_HUMAN Sulfotransferase 1E1 (ST1E1) (EC 2.8.2.4) (EST-1) (Estrogen sulfotransferase) (Sulfotransferase, estrogen-preferring) OS=Homo sapiens (Human)",
+      "sequence_length": 294,
+      "nearest_current_reference": {
+        "reference_header": "ref__P49888",
+        "reference_accession": "ref__P49888",
+        "reference_length": 294,
+        "reference_5mer_count": 290,
+        "query_5mer_count": 290,
+        "shared_5mer_count": 290,
+        "jaccard_5mer": 1.0
+      },
+      "near_neighbor_alert": true,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:O00204",
+      "accession": "O00204",
+      "primary_ec": "2.8.2.2",
+      "query_header": "sp|O00204|ST2B1_HUMAN Sulfotransferase 2B1 (EC 2.8.2.2) (Alcohol sulfotransferase) (Hydroxysteroid sulfotransferase 2) (Sulfotransferase family 2B member 1) (Sulfotransferase family cytosolic 2B member 1) (ST2B1) OS=Homo sapiens (Human)",
+      "sequence_length": 365,
+      "nearest_current_reference": {
+        "reference_header": "ref__P49888",
+        "reference_accession": "ref__P49888",
+        "reference_length": 294,
+        "reference_5mer_count": 290,
+        "query_5mer_count": 361,
+        "shared_5mer_count": 11,
+        "jaccard_5mer": 0.0172
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:Q06520",
+      "accession": "Q06520",
+      "primary_ec": "2.8.2.14",
+      "query_header": "sp|Q06520|ST2A1_HUMAN Sulfotransferase 2A1 (ST2A1) (EC 2.8.2.2) (Bile salt sulfotransferase) (EC 2.8.2.14) (Dehydroepiandrosterone sulfotransferase) (DHEA-ST) (DHEA-ST8) (Hydroxysteroid Sulfotransferase) (HST) (ST2) (SULT2A3) OS=Homo sapiens (Human)",
+      "sequence_length": 285,
+      "nearest_current_reference": {
+        "reference_header": "ref__P49888",
+        "reference_accession": "ref__P49888",
+        "reference_length": 294,
+        "reference_5mer_count": 290,
+        "query_5mer_count": 281,
+        "shared_5mer_count": 9,
+        "jaccard_5mer": 0.016
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:A0MGZ7",
+      "accession": "A0MGZ7",
+      "primary_ec": "2.8.2.-",
+      "query_header": "sp|A0MGZ7|H6S3B_DANRE Heparan-sulfate 6-O-sulfotransferase 3-B (HS 6-OST-3-B) (EC 2.8.2.-) OS=Danio rerio (Zebrafish) (Brachydanio rerio)",
+      "sequence_length": 419,
+      "nearest_current_reference": {
+        "reference_header": "ref__P05057",
+        "reference_accession": "ref__P05057",
+        "reference_length": 253,
+        "reference_5mer_count": 249,
+        "query_5mer_count": 415,
+        "shared_5mer_count": 2,
+        "jaccard_5mer": 0.003
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:Q9C9D0",
+      "accession": "Q9C9D0",
+      "primary_ec": "2.8.2.24",
+      "query_header": "sp|Q9C9D0|SOT16_ARATH Cytosolic sulfotransferase 16 (AtSOT16) (EC 2.8.2.24) (Aromatic desulfoglucosinolate sulfotransferase) (Desulfoglucosinolate sulfotransferase A) (AtST5a) (Protein CORONATINE INDUCED 7) OS=Arabidopsis thaliana (Mouse-ear cress)",
+      "sequence_length": 338,
+      "nearest_current_reference": {
+        "reference_header": "ref__P38489",
+        "reference_accession": "ref__P38489",
+        "reference_length": 217,
+        "reference_5mer_count": 213,
+        "query_5mer_count": 334,
+        "shared_5mer_count": 2,
+        "jaccard_5mer": 0.0037
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:Q9C9C9",
+      "accession": "Q9C9C9",
+      "primary_ec": "2.8.2.38",
+      "query_header": "sp|Q9C9C9|SOT18_ARATH Cytosolic sulfotransferase 18 (AtSOT18) (EC 2.8.2.38) (Desulfo-glucosinolate sulfotransferase B) (Sulfotransferase 5B) (AtST5b) OS=Arabidopsis thaliana (Mouse-ear cress)",
+      "sequence_length": 350,
+      "nearest_current_reference": {
+        "reference_header": "ref__P23721",
+        "reference_accession": "ref__P23721",
+        "reference_length": 362,
+        "reference_5mer_count": 358,
+        "query_5mer_count": 346,
+        "shared_5mer_count": 2,
+        "jaccard_5mer": 0.0028
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:P49891",
+      "accession": "P49891",
+      "primary_ec": "2.8.2.4",
+      "query_header": "sp|P49891|ST1E1_MOUSE Sulfotransferase 1E1 (ST1E1) (EC 2.8.2.4) (Estrogen sulfotransferase, testis isoform) (Sulfotransferase, estrogen-preferring) OS=Mus musculus (Mouse)",
+      "sequence_length": 295,
+      "nearest_current_reference": {
+        "reference_header": "ref__P49888",
+        "reference_accession": "ref__P49888",
+        "reference_length": 294,
+        "reference_5mer_count": 290,
+        "query_5mer_count": 291,
+        "shared_5mer_count": 88,
+        "jaccard_5mer": 0.1785
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:Q8BGL3",
+      "accession": "Q8BGL3",
+      "primary_ec": "2.8.2.34",
+      "query_header": "sp|Q8BGL3|ST2A8_MOUSE Sulfotransferase 2A8 (SULT2A8) (Glycochenodeoxycholate sulfotransferase 2A8) (EC 2.8.2.34) (Liver sulfotransferase-like protein) (L-STL) OS=Mus musculus (Mouse)",
+      "sequence_length": 282,
+      "nearest_current_reference": {
+        "reference_header": "ref__P49888",
+        "reference_accession": "ref__P49888",
+        "reference_length": 294,
+        "reference_5mer_count": 290,
+        "query_5mer_count": 278,
+        "shared_5mer_count": 15,
+        "jaccard_5mer": 0.0271
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:Q8KLM3",
+      "accession": "Q8KLM3",
+      "primary_ec": "2.8.2.36",
+      "query_header": "sp|Q8KLM3|STAL_STRTO Desulfo-A47934 sulfotransferase (EC 2.8.2.36) OS=Streptomyces toyocaensis",
+      "sequence_length": 270,
+      "nearest_current_reference": {
+        "reference_header": "ref__Q56320",
+        "reference_accession": "ref__Q56320",
+        "reference_length": 205,
+        "reference_5mer_count": 201,
+        "query_5mer_count": 266,
+        "shared_5mer_count": 2,
+        "jaccard_5mer": 0.0043
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:Q8FDI4",
+      "accession": "Q8FDI4",
+      "primary_ec": "2.8.2.22",
+      "query_header": "sp|Q8FDI4|ASST_ECOL6 Arylsulfate sulfotransferase AssT (EC 2.8.2.22) (Aryl sulfotransferase AssT) OS=Escherichia coli O6:H1 (strain CFT073 / ATCC 700928 / UPEC)",
+      "sequence_length": 598,
+      "nearest_current_reference": {
+        "reference_header": "ref__P22259",
+        "reference_accession": "ref__P22259",
+        "reference_length": 540,
+        "reference_5mer_count": 536,
+        "query_5mer_count": 594,
+        "shared_5mer_count": 5,
+        "jaccard_5mer": 0.0044
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:A0QQ53",
+      "accession": "A0QQ53",
+      "primary_ec": "2.8.2.37",
+      "query_header": "sp|A0QQ53|STF0_MYCS2 Trehalose 2-sulfotransferase (EC 2.8.2.37) OS=Mycolicibacterium smegmatis (strain ATCC 700084 / mc(2)155) (Mycobacterium smegmatis)",
+      "sequence_length": 267,
+      "nearest_current_reference": {
+        "reference_header": "ref__O66187",
+        "reference_accession": "ref__O66187",
+        "reference_length": 126,
+        "reference_5mer_count": 122,
+        "query_5mer_count": 263,
+        "shared_5mer_count": 2,
+        "jaccard_5mer": 0.0052
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "row_id": "uniprot:O35403",
+      "accession": "O35403",
+      "primary_ec": "2.8.2.3",
+      "query_header": "sp|O35403|ST3A1_MOUSE Amine sulfotransferase (EC 2.8.2.3) (SULT-X2) (Sulfotransferase 3A1) (ST3A1) OS=Mus musculus (Mouse)",
+      "sequence_length": 293,
+      "nearest_current_reference": {
+        "reference_header": "ref__P49888",
+        "reference_accession": "ref__P49888",
+        "reference_length": 294,
+        "reference_5mer_count": 290,
+        "query_5mer_count": 289,
+        "shared_5mer_count": 3,
+        "jaccard_5mer": 0.0052
+      },
+      "near_neighbor_alert": false,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    }
+  ],
+  "caveats": [
+    "Sequence-neighbor context is diagnostic only and cannot remove the uncovered sulfotransferase-lane blocker.",
+    "The current production universe has no sulfotransferase/PAPS sulfuryl-transfer fingerprint.",
+    "No import, threshold, registry edit, or fingerprint expansion is authorized."
+  ]
+}

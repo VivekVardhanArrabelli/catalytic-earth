@@ -50,6 +50,96 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T23:16:33Z automation run,
+`artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json` integrates
+the fresh dirty sibling-worktree ePK outputs that appeared after the late-lane
+synthesis window. It validates 20 JSON files plus 3 JSONL ledgers with 0 parse
+errors. The added evidence changes review context but not the production
+decision: positive-evidence lanes add review-only peptide/near-miss positives
+and transition-analog false hits (`7PT7`, `1HE1`), the false-positive lane adds
+`9I3I` as a topology-clear ORC/MCM non-ePK counterexample, sibling controls
+compact the 91-case counteraxis fixture, and the policy harness keeps 8
+non-prefrozen GNP/GTP terminal-gamma rows as fail-closed review-only
+abstentions. ePK remains review-only, no-go for production activation, and out
+of the main-loop default path.
+
+Evidence-based confidence call: confidence is high that the newest ePK lane
+evidence still does not justify a scorer, threshold, registry edit, label
+import, or fingerprint expansion. The only exact future ePK query is isolated
+research-lane work on `epk_v4_overblock_risk_high_order_assemblies_v1_review_only`;
+the main loop should continue visible non-ePK small wins.
+
+The same run closes the previously recommended PfkB next step. The frozen
+tranche in
+`artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
+locks 11 rows before scoring: two PfkB/ribokinase boundary rows, two current
+metal-hydrolase controls, and seven ATP-family neighbor countercontrols. The
+decision packet
+`artifacts/v3_pfkb_vs_neighbor_family_control_tranche_axis_decisions_20260520.json`
+keeps both PfkB boundary rows as `needs_review`, preserves two hydrolase
+`mechanism_match` controls, routes seven neighboring ATP-family rows to
+`out_of_scope`, and records 0 source-free PfkB-axis-ready rows. The no-claim
+baseline comparison records the same all-metal-hydrolase top1 collapse without
+claiming superiority. `artifacts/v3_atp_family_readiness_index_post_pfkb_tranche_20260520.json`
+now marks five ATP-family tranches closed review-only no-go, keeps ePK
+research-lane-only, and recommends a genuinely new prospective external
+mini-campaign next; if external sourcing is blocked, the next ATP-family packet
+is GHMP. `artifacts/v3_main_loop_small_win_register_post_pfkb_tranche_20260520.json`
+rolls up the run. No registry edit, label import, threshold, production
+scoring, fingerprint expansion, artifact migration, upload, removal, Git LFS
+tracking, or history rewrite was performed.
+
+The run then opens and closes a genuinely new prospective external
+sulfotransferase mini-campaign. The freeze artifact
+`artifacts/v3_prospective_external_sulfotransferase_minicampaign_freeze_20260520.json`
+locks 16 reviewed UniProtKB/Swiss-Prot EC 2.8.2.* rows before scoring, with
+catalytic-activity text, active-site annotation, at least one PDB
+cross-reference, prior-pool exclusions, mixed-EC exclusions, and a two-row cap
+per primary EC number. The decision packet
+`artifacts/v3_prospective_external_sulfotransferase_minicampaign_decision_packet_20260520.json`
+closes all 16 as review-only terminal rejections by uncovered mechanism lane:
+PAPS/sulfuryl-transfer chemistry is outside the current 8 production
+fingerprints and outside covered external hard-negative counterevidence lanes,
+so 0 rows were scored or import-gated. The matching no-claim baseline
+`artifacts/v3_sulfotransferase_minicampaign_baseline_comparison_20260520.json`
+keeps EC/keyword and deterministic 5-mer context diagnostic only; the sequence
+diagnostic finds one current-reference 5-mer alert but does not change any
+terminal decision. `artifacts/v3_main_loop_small_win_register_post_sulfotransferase_20260520.json`
+rolls ePK, PfkB, and sulfotransferase into one current small-win register. No
+registry edit, label import, threshold, production scoring, fingerprint
+expansion, artifact migration, upload, removal, Git LFS tracking, or history
+rewrite was performed.
+
+Finally, `artifacts/v3_ghmp_family_readiness_packet_20260520.json` packages
+the next ATP-family readiness packet without production scoring. GHMP has one
+expert-supported boundary row (`m_csa:654`), 0 countable positive seeds, 0
+source-free-axis-ready rows, hydrolase top1 collapse at 0.3581, and a
+selected-ligand-state gap because local CDM context is present but a local
+ATP/Mg/reactant-state axis is not. `artifacts/v3_atp_family_readiness_index_post_ghmp_packet_20260520.json`
+marks GHMP as packet-only no-go and recommends a frozen GHMP-vs-neighbor
+ATP-family tranche only as future review-only work. The current rollup is
+`artifacts/v3_main_loop_small_win_register_post_ghmp_packet_20260520.json`.
+No registry edit, label import, threshold, production scoring, fingerprint
+expansion, artifact migration, upload, removal, Git LFS tracking, or history
+rewrite was performed.
+
+That exact GHMP tranche is now frozen and closed as review-only terminal
+evidence. `artifacts/v3_ghmp_vs_neighbor_family_control_tranche_preregistration_20260520.json`
+locks one GHMP boundary row, two current metal-hydrolase controls, and seven
+neighboring ATP-family countercontrols before axis decisions. The decision
+packet `artifacts/v3_ghmp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json`
+keeps `m_csa:654` as `needs_review`, records two hydrolase `mechanism_match`
+controls, routes seven neighboring ATP-family rows to `out_of_scope`, and
+finds 0 source-free GHMP-axis-ready rows. The no-claim baseline again records
+all-metal-hydrolase top1 collapse with 3 rows over the 0.4115 floor. The
+post-tranche ATP-family index now marks ASKHA, ATP-grasp, GHKL, dNK, PfkB, and
+GHMP closed review-only no-go; NDK and PfkA still only have future packet
+slots. The current rollup is
+`artifacts/v3_main_loop_small_win_register_post_ghmp_tranche_20260520.json`.
+No registry edit, label import, threshold, production scoring, fingerprint
+expansion, artifact migration, upload, removal, Git LFS tracking, or history
+rewrite was performed.
+
 As of the 2026-05-20T22:17:26Z automation run,
 `artifacts/v3_epk_late_research_lane_synthesis_20260520.json` integrates the
 fresh late ePK research-lane surface without copying production changes. It

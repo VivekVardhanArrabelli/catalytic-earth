@@ -1,0 +1,340 @@
+{
+  "metadata": {
+    "artifact_id": "v3_epk_post_late_dirty_lane_synthesis_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T23:16:33Z",
+    "started_at": "2026-05-20T23:11:31Z",
+    "method": "main_loop_synthesis_of_post_late_dirty_epk_research_lane_outputs",
+    "review_only": true,
+    "integrates_uncommitted_sibling_worktree_outputs": true,
+    "fresh_dirty_outputs_after_late_synthesis_window": true,
+    "lane_count": 4,
+    "input_json_validated_file_count": 20,
+    "input_json_validation_error_count": 0,
+    "input_jsonl_validated_file_count": 3,
+    "input_jsonl_validation_error_count": 0,
+    "input_handoff_validated_count": 4,
+    "production_fingerprint_count": 8,
+    "ready_for_production_scoring": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "main_loop_should_continue_epk_by_default": false
+  },
+  "handoff_validation": [
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/work/research_lanes/epk_positive_evidence/handoff.md",
+      "exists": true,
+      "sha256": "3ca9b1cba7abc24fa8869c4574498d8c2a04bda4857d87abbfd4f002ccb8a4a7"
+    },
+    {
+      "lane_id": "epk_false_positive_hunter",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/work/research_lanes/epk_false_positive_hunter/handoff.md",
+      "exists": true,
+      "sha256": "c7b7447cdd69a0384878a9a568a68a3d09580b27e47e562095af64b5220b3ebd",
+      "sibling_git_status": " M"
+    },
+    {
+      "lane_id": "epk_sibling_controls",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/work/research_lanes/epk_sibling_controls/handoff.md",
+      "exists": true,
+      "sha256": "4d8d5344b8936be32569bd804615839cab500368e85627ab65450dd7d2eff96b",
+      "sibling_git_status": " M"
+    },
+    {
+      "lane_id": "epk_policy_harness",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/work/research_lanes/epk_policy_harness/handoff.md",
+      "exists": true,
+      "sha256": "d9a22256b68562fe29e8422bd4c5d175d2cdcd93ae68c9497f5cad7824497599",
+      "sibling_git_status": " M"
+    }
+  ],
+  "input_json_validation": [
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/canonical_epk_adp_transition_analog_scout_20260520.json",
+      "json_valid": true,
+      "sha256": "40c8a3341ab5fda19d650e700cd3998c4d1f65c8f374c2b3608cf936d20a84a9",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/canonical_epk_adp_transition_analog_source_review_20260520.json",
+      "json_valid": true,
+      "sha256": "8f886464694dc4257f9c61a187ac114fb4d14e8924beda1339fddcf639d24eed",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset150_scout_20260520.json",
+      "json_valid": true,
+      "sha256": "f5472f89d1207cf1ac61c80160fbde49efcb1b903c96da348ae35b7729749b40",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset175_scout_20260520.json",
+      "json_valid": true,
+      "sha256": "db85b421de40cd8cc86576861a671d1132a631087a3a70175503188cbb866e0f",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/canonical_epk_offset150_175_and_mek_erk_source_review_20260520.json",
+      "json_valid": true,
+      "sha256": "3331777d78dba6fa5b126cdc15d1dde8188314b7cb17f80c13563d4c1eec2412",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/cdc7_mcm_gamma_donor_family_followup_20260520.json",
+      "json_valid": true,
+      "sha256": "ee2c0aee8eecd0c69fb2b4e3438365e1b8aa4cd03e37929a1adf4084b052131d",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/cdc7_mcm_gamma_donor_source_review_20260520.json",
+      "json_valid": true,
+      "sha256": "4a07be77c129bb27affb79dbd6cc439293ff074e185be25dbe5e11e0b82d531a",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/cdc7_mcm_transition_analog_family_followup_20260520.json",
+      "json_valid": true,
+      "sha256": "29b9eda4a90ad435b036ced48281688524d5ddfc2bee565a9b07527fd1be7ad2",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/cdc7_mcm_transition_analog_source_review_20260520.json",
+      "json_valid": true,
+      "sha256": "f66dc53d59bce32ca0ac58ed2690e02187cf1c13f54762a2f7f4d8d38d05dbcf",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/gsk3_transition_analog_near_miss_source_review_20260520.json",
+      "json_valid": true,
+      "sha256": "82055ec677462ffaea0d9505e890598c60ba6832bc96e8e65eb9d7b7a96cb2d6",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/mek_erk_anp_metal_context_followup_20260520.json",
+      "json_valid": true,
+      "sha256": "8c486d60a7c21a08c7bbc2074103e670cb45b54cfd3624ac910904a109641e15",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/rcsb_transition_analog_phrase_scout_20260520.json",
+      "json_valid": true,
+      "sha256": "52a01932a01f19edf73b0c08e346ff0a391dd9225ed051aba85e9a8246b3d660",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/rcsb_transition_analog_phrase_source_review_20260520.json",
+      "json_valid": true,
+      "sha256": "3a1847ba018740ca9a7111a5ebb02b19468ebf84eab16d3e9aa5b9162dc26c30",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/transition_analog_europepmc_source_text_followup_20260520.json",
+      "json_valid": true,
+      "sha256": "03a695e23653ed3672f747a6cbd21a923e04e6b14daafa084b15adde67897e0f",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_false_positive_hunter",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/v4_component_no_mg_kinase_dimer_stress_20260520_222501Z.json",
+      "json_valid": true,
+      "sha256": "dbfdd05745c71bf9619db43f02b29fcea652736e7403425f374eecd77a2093bf",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_false_positive_hunter",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/v4_component_no_mg_kinase_dimer_guard_variant_sweep_20260520_222501Z.json",
+      "json_valid": true,
+      "sha256": "8d5fff12e7e8425c75d2936b1aa8f02570a7968f58610f7e75082110ae99b67d",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_sibling_controls",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_fixture_runtime_contract_20260520.json",
+      "json_valid": true,
+      "sha256": "32e13bdb5c7a32375ed8364638eb4e1b9bd1a74be2c825b40215e9c6e1f2b996",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_policy_harness",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z.json",
+      "json_valid": true,
+      "sha256": "ec29b3bf383b3d040ef7f863bcbbc4c6f92711b7e2389c1d6f05d02ed773dc75",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_policy_harness",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z_tranche.json",
+      "json_valid": true,
+      "sha256": "63f201250e382b880e7a435d2f038724277a63c2c9ab8db259b997a41765cb23",
+      "sibling_git_status": "??"
+    },
+    {
+      "lane_id": "epk_policy_harness",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z_result.json",
+      "json_valid": true,
+      "sha256": "6bd85f3e053bfcb9c16c3f16725e0a663ce6b926182207ac5427b9c76d82620c",
+      "sibling_git_status": "??"
+    }
+  ],
+  "input_jsonl_validation": [
+    {
+      "lane_id": "epk_positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
+      "jsonl_valid": true,
+      "line_count": 8,
+      "error_count": 0,
+      "sha256": "7af761867d7a84bf7639f0c5b8c25513b5b9aee9f89ce1ed34d316dc463983d5",
+      "sibling_git_status": " M"
+    },
+    {
+      "lane_id": "epk_sibling_controls",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
+      "jsonl_valid": true,
+      "line_count": 9,
+      "error_count": 0,
+      "sha256": "3aa7c9e3b2f807e5f5eccc8610505a83ab1b3ce84885b14737caab95ba6055eb",
+      "sibling_git_status": " M"
+    },
+    {
+      "lane_id": "epk_policy_harness",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
+      "jsonl_valid": true,
+      "line_count": 9,
+      "error_count": 0,
+      "sha256": "5b7ed4cd9e2a4ac69c240676c7954397336fd28327814c6c58c1335075b086e0",
+      "sibling_git_status": " M"
+    }
+  ],
+  "lane_findings": [
+    {
+      "lane_id": "epk_positive_evidence",
+      "primary_outcome": "review_only_peptide_positives_and_counterexamples_no_clean_folded_positive",
+      "dirty_json_file_count": 14,
+      "source_review_primary_outcomes": [
+        "evidence_for",
+        "search_surface_exhausted",
+        "evidence_against",
+        "counterexample_found",
+        "evidence_against",
+        "counterexample_found"
+      ],
+      "review_only_positive_or_near_positive_pdb_ids": [
+        "1L3R",
+        "5LIH",
+        "3QHR",
+        "3QHW",
+        "9UUR",
+        "9UUX"
+      ],
+      "counterexample_or_false_hit_pdb_ids": [
+        "7PT7",
+        "1HE1"
+      ],
+      "canonical_offset_surface_conclusion": "offset150_added_no_fresh_clean_folded_positive_and_offset175_returned_zero_rows",
+      "cdc7_mcm_conclusion": "no_cdc7_associated_clean_transfer_geometry;_7PT7_is_mcm_helicase_atpase_false_hit",
+      "production_claim_allowed": false,
+      "decision_change": false,
+      "recommendation": "keep ePK positive evidence review-only; do not score, threshold, import labels, edit registries, or expand fingerprints"
+    },
+    {
+      "lane_id": "epk_false_positive_hunter",
+      "primary_outcome": "counterexample_found",
+      "counterexample_pdb_ids": [
+        "9I3I"
+      ],
+      "manual_adjudication_ids": [
+        "9I3I"
+      ],
+      "reviewed_materializer_row_count": 360,
+      "no_mg_structure_count": 176,
+      "v4_guard_variant": [
+        "v4_oligomeric_atp_terminals_no_mg_required"
+      ],
+      "current_rule_counterexample_blocked_by_v4_count": 14,
+      "current_rule_counterexample_residual_after_v4_count": 0,
+      "known_epk_positive_lost_to_v4_count": 0,
+      "production_claim_allowed": false,
+      "decision_change": true,
+      "recommendation": "treat v4 as review-only adversarial design evidence; next lane should test overblock risk on high-order ePK assemblies"
+    },
+    {
+      "lane_id": "epk_sibling_controls",
+      "primary_outcome": "review_only_counteraxis_fixture_compacted",
+      "case_count": 91,
+      "gamma_case_count": 72,
+      "product_case_count": 19,
+      "expected_unblocked_weak_case_count": 0,
+      "unsafe_rules_falsified_by_fixture": [
+        "gamma_nearest_any_oxygen_6a",
+        "gamma_nearest_protein_hydroxyl_6a",
+        "gamma_nearest_nonpolymer_oxygen_6a",
+        "product_phosphoryl_nearest_any_oxygen_6a",
+        "product_phosphoryl_nearest_protein_hydroxyl_6a",
+        "product_phosphoryl_nearest_nonpolymer_oxygen_6a"
+      ],
+      "production_claim_allowed": false,
+      "decision_change": false,
+      "recommendation": "use as compact review-only oracle for future source-free scorer tests, not production activation"
+    },
+    {
+      "lane_id": "epk_policy_harness",
+      "primary_outcome": "policy_frozen_review_only_nonprefrozen_alias_blocker_passed",
+      "row_count": 8,
+      "decision_counts": {
+        "review_only_abstain": 8
+      },
+      "expected_decision_mismatch_count": 0,
+      "nonprefrozen_ligand_codes": [
+        "GNP",
+        "GTP"
+      ],
+      "production_claim_allowed": false,
+      "decision_change": false,
+      "recommendation": "keep GNP/GTP as review-only alias-map blockers under frozen policy v0"
+    }
+  ],
+  "synthesis_conclusion": {
+    "overall": "epk_remains_review_only_and_not_production_ready",
+    "production_activation_decision": "no_go",
+    "main_loop_decision": "do_not_resume_epk_as_default_task",
+    "positive_evidence_status": "peptide_and_near_miss_context_only_no_clean_folded_positive",
+    "false_positive_status": "fresh_9I3I_counterexample_strengthens_need_for_oligomeric_atpase_guard_review_only",
+    "sibling_control_status": "fixture_useful_for_future_review_only_scorer_tests_not_threshold_calibration",
+    "policy_status": "nonprefrozen_GNP_GTP_terminal_gamma_aliases_abstain_fail_closed",
+    "decision_to_start_now": false
+  },
+  "next_exact_experiment_if_epk_research_lane_continues": {
+    "experiment_id": "epk_v4_overblock_risk_high_order_assemblies_v1_review_only",
+    "decision_to_start_now": false,
+    "owner": "research_lane_not_main_loop",
+    "description": "Test v4 overblock risk on high-order ePK assemblies with at least 3 gamma-capable terminal phosphates and at least 5 polymer chains, separately from non-ORC high-order ATPase complexes."
+  },
+  "safety_summary": {
+    "registry_or_fingerprint_edit_performed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false,
+    "source_outputs_copied_into_main": false
+  }
+}

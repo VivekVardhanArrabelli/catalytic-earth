@@ -84,6 +84,18 @@ research continues outside the main loop, the next exact blocker decision is
 `epk_substrate_role_blocker_stop_decision_probe_v1_review_only`, not production
 scoring, threshold calibration, label import, registry edit, or fingerprint
 expansion.
+The 2026-05-20T23:16:33Z post-late dirty-lane synthesis in
+`artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json` validates 20
+additional dirty sibling-worktree JSON outputs plus 3 JSONL ledgers and again
+keeps ePK review-only. The new false-positive hunter result adds `9I3I` as a
+topology-clear ORC/MCM non-ePK counterexample; the positive lane adds
+review-only peptide/transition-state positives and `7PT7`/`1HE1` false hits
+rather than clean folded-protein positives; sibling controls preserve a
+91-case counteraxis fixture; and the policy harness keeps 8 non-prefrozen
+GNP/GTP terminal-gamma rows as review-only abstentions. Future ePK work, if
+manual research lanes continue, should test v4 overblock risk on high-order
+assemblies in isolation. It is not a main-loop scoring, threshold, label
+import, registry edit, or fingerprint-expansion task.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed
@@ -234,6 +246,63 @@ adds a deterministic 5-mer nearest-current-reference check with one crude
 near-neighbor alert across 20 rows. Geometry, ESM, and Foldseek remain unrun,
 and sequence-neighbor context is not valid performance or import evidence on
 this pre-scoring terminal surface.
+Current sulfotransferase external mini-campaign scope:
+`artifacts/v3_prospective_external_sulfotransferase_minicampaign_freeze_20260520.json`
+freezes a new 16-row reviewed UniProtKB/Swiss-Prot EC 2.8.2.* surface before
+outcome scoring, requiring catalytic-activity text, active-site annotation,
+and at least one PDB cross-reference while excluding prior external pools,
+imported hard negatives, mixed non-sulfotransferase EC contexts, and more than
+two rows per primary EC number. The decision packet
+`artifacts/v3_prospective_external_sulfotransferase_minicampaign_decision_packet_20260520.json`
+closes all 16 rows as `terminal_rejection_uncovered_mechanism_lane`: the
+current 8-fingerprint universe and 0.4115 floor are recorded, but 0 rows are
+scored because PAPS/sulfuryl-transfer chemistry is outside current production
+fingerprints and covered import-counterevidence lanes. The matching
+`artifacts/v3_sulfotransferase_minicampaign_baseline_comparison_20260520.json`
+is diagnostic only; EC/keyword routing detects the lane, and
+`artifacts/v3_sulfotransferase_minicampaign_sequence_baseline_diagnostic_20260520.json`
+adds a deterministic 5-mer nearest-current-reference check with one alert
+across 16 rows. Geometry, ESM, and Foldseek remain unrun, and sequence-neighbor
+context is not valid performance or import evidence on this pre-scoring
+terminal surface.
+Current PfkB control-tranche scope:
+`artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
+freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two
+current metal-hydrolase controls, and seven neighboring ATP-family
+countercontrols. The decision packet in
+`artifacts/v3_pfkb_vs_neighbor_family_control_tranche_axis_decisions_20260520.json`
+keeps the two PfkB rows as `needs_review`, records two current hydrolase
+`mechanism_match` controls, routes seven ATP-family neighbors to
+`out_of_scope`, and finds 0 source-free PfkB-axis-ready rows. The companion
+baseline comparison is no-claim context only: all 11 rows still top1 route to
+`metal_dependent_hydrolase`, 3 exceed the current 0.4115 floor, and no
+superiority, production scoring, threshold, registry edit, fingerprint
+expansion, or label import is authorized. The post-tranche ATP-family index
+marks ASKHA, ATP-grasp, GHKL, dNK, and PfkB closed as review-only no-go
+surfaces; ePK remains research-lane-only; GHMP, NDK, and PfkA still lack
+readiness packets.
+Current GHMP readiness scope:
+`artifacts/v3_ghmp_family_readiness_packet_20260520.json` is review-only and
+not a production fingerprint. It uses one expert-supported GHMP boundary row
+(`m_csa:654`), with local CDM substrate/product-like context, structure-level
+ANP context that is not local to the active-site slice, hydrolase top1 collapse
+at 0.3581, 0 countable positive seeds, 0 source-free-axis-ready rows, and no
+calibrated threshold or external hard-negative re-audit. The packet records
+GHMP fold, small-molecule acceptor, ligand-state, hydrolase, and neighboring
+ATP-family counteraxis needs. `artifacts/v3_atp_family_readiness_index_post_ghmp_packet_20260520.json`
+marks GHMP as `readiness_packet_no_go`; the only bounded next GHMP step is a
+frozen GHMP-vs-neighbor-ATP-family control tranche before any scoring.
+`artifacts/v3_ghmp_vs_neighbor_family_control_tranche_preregistration_20260520.json`
+and `artifacts/v3_ghmp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json`
+now close that frozen tranche as review-only terminal evidence. The decisions
+are one GHMP boundary `needs_review` row, two current hydrolase
+`mechanism_match` rows, and seven neighboring ATP-family `out_of_scope` rows.
+The source-free GHMP-axis-ready count is 0, and the no-claim baseline records
+all 10 rows still top1 route to `metal_dependent_hydrolase`, with 3 rows above
+the 0.4115 floor. GHMP remains no-go for production fingerprint expansion,
+thresholding, registry edits, or label import. The post-tranche ATP-family
+index now keeps ASKHA, ATP-grasp, GHKL, dNK, PfkB, and GHMP closed as
+review-only no-go surfaces; NDK and PfkA still need packets before any scoring.
 Current ASKHA readiness scope:
 `artifacts/v3_askha_family_readiness_packet_20260520.json` is review-only and
 not a production fingerprint. It uses four expert-supported ASKHA boundary rows

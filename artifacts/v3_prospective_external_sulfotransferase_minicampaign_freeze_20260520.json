@@ -1,0 +1,504 @@
+{
+  "excluded_rows_sample": [
+    {
+      "accession": "Q9Y663",
+      "entry_name": "HS3SA_HUMAN",
+      "primary_ec": "2.8.2.30",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb"
+    },
+    {
+      "accession": "Q8IZT8",
+      "entry_name": "HS3S5_HUMAN",
+      "primary_ec": "2.8.2.23",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb"
+    },
+    {
+      "accession": "O00338",
+      "entry_name": "ST1C2_HUMAN",
+      "primary_ec": "2.8.2.1",
+      "exclusion_reason": "primary_ec_cap_already_reached"
+    },
+    {
+      "accession": "O14792",
+      "entry_name": "HS3S1_HUMAN",
+      "primary_ec": "2.8.2.23",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb"
+    },
+    {
+      "accession": "P0DMM9",
+      "entry_name": "ST1A3_HUMAN",
+      "primary_ec": "2.8.2.1",
+      "exclusion_reason": "primary_ec_cap_already_reached"
+    },
+    {
+      "accession": "Q9BR01",
+      "entry_name": "ST4A1_HUMAN",
+      "primary_ec": "2.8.2.-",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb"
+    },
+    {
+      "accession": "O43704",
+      "entry_name": "ST1B1_HUMAN",
+      "primary_ec": "2.8.2.1",
+      "exclusion_reason": "primary_ec_cap_already_reached"
+    },
+    {
+      "accession": "P50226",
+      "entry_name": "ST1A2_HUMAN",
+      "primary_ec": "2.8.2.1",
+      "exclusion_reason": "primary_ec_cap_already_reached"
+    },
+    {
+      "accession": "P50225",
+      "entry_name": "ST1A1_HUMAN",
+      "primary_ec": "2.8.2.1",
+      "exclusion_reason": "primary_ec_cap_already_reached"
+    },
+    {
+      "accession": "P52848",
+      "entry_name": "NDST1_HUMAN",
+      "primary_ec": "2.8.2.8",
+      "exclusion_reason": "mixed_non_sulfotransferase_ec_context"
+    },
+    {
+      "accession": "P52839",
+      "entry_name": "SOT12_ARATH",
+      "primary_ec": "2.8.2.-",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb"
+    },
+    {
+      "accession": "O35310",
+      "entry_name": "HS3S1_MOUSE",
+      "primary_ec": "2.8.2.23",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb"
+    },
+    {
+      "accession": "Q3UZZ6",
+      "entry_name": "ST1D1_MOUSE",
+      "primary_ec": "2.8.2.-",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb"
+    },
+    {
+      "accession": "Q76KB1",
+      "entry_name": "HS2ST_CHICK",
+      "primary_ec": "2.8.2.-",
+      "exclusion_reason": "missing_required_catalytic_activity_active_site_or_pdb"
+    }
+  ],
+  "frozen_before_scoring_statement": "Candidate selection was completed before outcome scoring. No geometry, sequence-neighbor, Foldseek, ESM, inverse-gate, or production-fingerprint score was used to select these rows.",
+  "metadata": {
+    "artifact_id": "v3_prospective_external_sulfotransferase_minicampaign_freeze_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T23:25:00Z",
+    "method": "prospective_external_sulfotransferase_minicampaign_freeze",
+    "review_only": true,
+    "candidate_selection_before_outcome_scoring": true,
+    "candidate_count": 16,
+    "primary_ec_cap": 2,
+    "source_rows_reviewed_before_freeze_stop": 30,
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A2.8.2.%2A%29+AND+%28database%3Apdb%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Cec%2Ccc_catalytic_activity%2Cft_act_site%2Cxref_pdb%2Csequence&format=tsv&size=150",
+    "source_tsv_sha256": "1ac3f483ec54a93cdd4fb4d40a0eaed6f714955ead1796af757ef6184876414b",
+    "selection_rules": [
+      "reviewed UniProtKB/Swiss-Prot rows from EC 2.8.2.* with PDB cross-reference",
+      "require catalytic-activity annotation, active-site annotation, and at least one PDB xref",
+      "exclude imported hard negatives and previously used external candidate accessions",
+      "exclude mixed non-sulfotransferase EC contexts",
+      "cap at two rows per primary EC number",
+      "do not use fingerprint scores, sequence-neighbor outcomes, Foldseek, ESM, or ePK evidence for selection"
+    ],
+    "production_fingerprint_count": 8,
+    "abstain_threshold_if_scored_later": 0.4115,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "production_fingerprint_universe": [
+    "ser_his_acid_hydrolase",
+    "metal_dependent_hydrolase",
+    "plp_dependent_enzyme",
+    "radical_sam_enzyme",
+    "cobalamin_radical_rearrangement",
+    "flavin_monooxygenase",
+    "flavin_dehydrogenase_reductase",
+    "heme_peroxidase_oxidase"
+  ],
+  "rows": [
+    {
+      "row_id": "uniprot:O75897",
+      "accession": "O75897",
+      "freeze_rank": 1,
+      "entry_name": "ST1C4_HUMAN",
+      "protein_names": "Sulfotransferase 1C4 (ST1C4) (EC 2.8.2.1) (Sulfotransferase 1C2) (SULT1C#2)",
+      "organism": "Homo sapiens (Human)",
+      "primary_ec": "2.8.2.1",
+      "ec_numbers": [
+        "2.8.2.1"
+      ],
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "2AD1",
+        "2GWH"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 302,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:O60507",
+      "accession": "O60507",
+      "freeze_rank": 2,
+      "entry_name": "TPST1_HUMAN",
+      "protein_names": "Protein-tyrosine sulfotransferase 1 (EC 2.8.2.20) (Tyrosylprotein sulfotransferase 1) (TPST-1)",
+      "organism": "Homo sapiens (Human)",
+      "primary_ec": "2.8.2.20",
+      "ec_numbers": [
+        "2.8.2.20"
+      ],
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "5WRI",
+        "5WRJ"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 370,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:O60704",
+      "accession": "O60704",
+      "freeze_rank": 3,
+      "entry_name": "TPST2_HUMAN",
+      "protein_names": "Protein-tyrosine sulfotransferase 2 (EC 2.8.2.20) (Tyrosylprotein sulfotransferase 2) (TPST-2)",
+      "organism": "Homo sapiens (Human)",
+      "primary_ec": "2.8.2.20",
+      "ec_numbers": [
+        "2.8.2.20"
+      ],
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "3AP1",
+        "3AP2",
+        "3AP3"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 377,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:Q6IMI6",
+      "accession": "Q6IMI6",
+      "freeze_rank": 4,
+      "entry_name": "ST1C3_HUMAN",
+      "protein_names": "Sulfotransferase 1C3 (ST1C3) (EC 2.8.2.1) (EC 2.8.2.2)",
+      "organism": "Homo sapiens (Human)",
+      "primary_ec": "2.8.2.1",
+      "ec_numbers": [
+        "2.8.2.1",
+        "2.8.2.2"
+      ],
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "2H8K",
+        "2REO"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 304,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:P49888",
+      "accession": "P49888",
+      "freeze_rank": 5,
+      "entry_name": "ST1E1_HUMAN",
+      "protein_names": "Sulfotransferase 1E1 (ST1E1) (EC 2.8.2.4) (EST-1) (Estrogen sulfotransferase) (Sulfotransferase, estrogen-preferring)",
+      "organism": "Homo sapiens (Human)",
+      "primary_ec": "2.8.2.4",
+      "ec_numbers": [
+        "2.8.2.4"
+      ],
+      "pdb_count": 5,
+      "pdb_ids_sample": [
+        "1G3M",
+        "1HY3",
+        "4JVL",
+        "4JVM",
+        "4JVN"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 294,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:O00204",
+      "accession": "O00204",
+      "freeze_rank": 6,
+      "entry_name": "ST2B1_HUMAN",
+      "protein_names": "Sulfotransferase 2B1 (EC 2.8.2.2) (Alcohol sulfotransferase) (Hydroxysteroid sulfotransferase 2) (Sulfotransferase family 2B member 1) (Sulfotransferase family cytosolic 2B member 1) (ST2B1)",
+      "organism": "Homo sapiens (Human)",
+      "primary_ec": "2.8.2.2",
+      "ec_numbers": [
+        "2.8.2.2"
+      ],
+      "pdb_count": 4,
+      "pdb_ids_sample": [
+        "1Q1Q",
+        "1Q1Z",
+        "1Q20",
+        "1Q22"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 365,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:Q06520",
+      "accession": "Q06520",
+      "freeze_rank": 7,
+      "entry_name": "ST2A1_HUMAN",
+      "protein_names": "Sulfotransferase 2A1 (ST2A1) (EC 2.8.2.2) (Bile salt sulfotransferase) (EC 2.8.2.14) (Dehydroepiandrosterone sulfotransferase) (DHEA-ST) (DHEA-ST8) (Hydroxysteroid Sulfotransferase) (HST) (ST2) (SULT2A3)",
+      "organism": "Homo sapiens (Human)",
+      "primary_ec": "2.8.2.14",
+      "ec_numbers": [
+        "2.8.2.14",
+        "2.8.2.2"
+      ],
+      "pdb_count": 7,
+      "pdb_ids_sample": [
+        "1EFH",
+        "1J99",
+        "1OV4",
+        "2QP3",
+        "2QP4",
+        "3F3Y",
+        "4IFB"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 285,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:A0MGZ7",
+      "accession": "A0MGZ7",
+      "freeze_rank": 8,
+      "entry_name": "H6S3B_DANRE",
+      "protein_names": "Heparan-sulfate 6-O-sulfotransferase 3-B (HS 6-OST-3-B) (EC 2.8.2.-)",
+      "organism": "Danio rerio (Zebrafish) (Brachydanio rerio)",
+      "primary_ec": "2.8.2.-",
+      "ec_numbers": [
+        "2.8.2.-"
+      ],
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "5T03",
+        "5T05",
+        "5T0A"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 419,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:Q9C9D0",
+      "accession": "Q9C9D0",
+      "freeze_rank": 9,
+      "entry_name": "SOT16_ARATH",
+      "protein_names": "Cytosolic sulfotransferase 16 (AtSOT16) (EC 2.8.2.24) (Aromatic desulfoglucosinolate sulfotransferase) (Desulfoglucosinolate sulfotransferase A) (AtST5a) (Protein CORONATINE INDUCED 7)",
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "primary_ec": "2.8.2.24",
+      "ec_numbers": [
+        "2.8.2.24"
+      ],
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "8K9Y"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 338,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:Q9C9C9",
+      "accession": "Q9C9C9",
+      "freeze_rank": 10,
+      "entry_name": "SOT18_ARATH",
+      "protein_names": "Cytosolic sulfotransferase 18 (AtSOT18) (EC 2.8.2.38) (Desulfo-glucosinolate sulfotransferase B) (Sulfotransferase 5B) (AtST5b)",
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "primary_ec": "2.8.2.38",
+      "ec_numbers": [
+        "2.8.2.38"
+      ],
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "5MEK",
+        "5MEX"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 350,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:P49891",
+      "accession": "P49891",
+      "freeze_rank": 11,
+      "entry_name": "ST1E1_MOUSE",
+      "protein_names": "Sulfotransferase 1E1 (ST1E1) (EC 2.8.2.4) (Estrogen sulfotransferase, testis isoform) (Sulfotransferase, estrogen-preferring)",
+      "organism": "Mus musculus (Mouse)",
+      "primary_ec": "2.8.2.4",
+      "ec_numbers": [
+        "2.8.2.4"
+      ],
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "1AQU",
+        "1AQY",
+        "1BO6"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 295,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:Q8BGL3",
+      "accession": "Q8BGL3",
+      "freeze_rank": 12,
+      "entry_name": "ST2A8_MOUSE",
+      "protein_names": "Sulfotransferase 2A8 (SULT2A8) (Glycochenodeoxycholate sulfotransferase 2A8) (EC 2.8.2.34) (Liver sulfotransferase-like protein) (L-STL)",
+      "organism": "Mus musculus (Mouse)",
+      "primary_ec": "2.8.2.34",
+      "ec_numbers": [
+        "2.8.2.34"
+      ],
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "7D1X",
+        "7EOV"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 282,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:Q8KLM3",
+      "accession": "Q8KLM3",
+      "freeze_rank": 13,
+      "entry_name": "STAL_STRTO",
+      "protein_names": "Desulfo-A47934 sulfotransferase (EC 2.8.2.36)",
+      "organism": "Streptomyces toyocaensis",
+      "primary_ec": "2.8.2.36",
+      "ec_numbers": [
+        "2.8.2.36"
+      ],
+      "pdb_count": 4,
+      "pdb_ids_sample": [
+        "2OV8",
+        "2OVB",
+        "2OVF",
+        "4EEC"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 270,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:Q8FDI4",
+      "accession": "Q8FDI4",
+      "freeze_rank": 14,
+      "entry_name": "ASST_ECOL6",
+      "protein_names": "Arylsulfate sulfotransferase AssT (EC 2.8.2.22) (Aryl sulfotransferase AssT)",
+      "organism": "Escherichia coli O6:H1 (strain CFT073 / ATCC 700928 / UPEC)",
+      "primary_ec": "2.8.2.22",
+      "ec_numbers": [
+        "2.8.2.22"
+      ],
+      "pdb_count": 7,
+      "pdb_ids_sample": [
+        "3ELQ",
+        "3ETS",
+        "3ETT",
+        "4P04",
+        "4P05",
+        "4P06",
+        "4P07"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 598,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:A0QQ53",
+      "accession": "A0QQ53",
+      "freeze_rank": 15,
+      "entry_name": "STF0_MYCS2",
+      "protein_names": "Trehalose 2-sulfotransferase (EC 2.8.2.37)",
+      "organism": "Mycolicibacterium smegmatis (strain ATCC 700084 / mc(2)155) (Mycobacterium smegmatis)",
+      "primary_ec": "2.8.2.37",
+      "ec_numbers": [
+        "2.8.2.37"
+      ],
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1TEX"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 267,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    },
+    {
+      "row_id": "uniprot:O35403",
+      "accession": "O35403",
+      "freeze_rank": 16,
+      "entry_name": "ST3A1_MOUSE",
+      "protein_names": "Amine sulfotransferase (EC 2.8.2.3) (SULT-X2) (Sulfotransferase 3A1) (ST3A1)",
+      "organism": "Mus musculus (Mouse)",
+      "primary_ec": "2.8.2.3",
+      "ec_numbers": [
+        "2.8.2.3"
+      ],
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "7V1O"
+      ],
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "sequence_length": 293,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "reviewed UniProtKB/Swiss-Prot EC 2.8.2.* row with catalytic-activity text, active-site annotation, and at least one PDB cross-reference"
+    }
+  ]
+}
