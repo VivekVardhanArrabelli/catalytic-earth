@@ -1,0 +1,2020 @@
+{
+  "article_source": {
+    "article_full_text_xml_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11573500/fullTextXML",
+    "article_metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1073%2Fpnas.2409049121&format=json&pageSize=3",
+    "doi": "10.1073/pnas.2409049121",
+    "hasPDF": "Y",
+    "hasSuppl": "Y",
+    "isOpenAccess": "Y",
+    "journal": "Proc Natl Acad Sci U S A",
+    "pmcid": "PMC11573500",
+    "pmid": "39495916",
+    "pubYear": "2024",
+    "source_checks": {
+      "reports_amp_pnp_nontransfer_sample": true,
+      "reports_full_length_cftr_bound_to_pka_c": true,
+      "reports_r_domain_density_largely_missing": true,
+      "reports_site_i_and_site_ii_models": true,
+      "reports_two_catalytic_stations": true
+    },
+    "source_mapped_phosphorylation_sites": [
+      {
+        "auth_seq_id": 422,
+        "domain": "NBD1 regulatory insertion",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S422"
+      },
+      {
+        "auth_seq_id": 660,
+        "domain": "R domain",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S660"
+      },
+      {
+        "auth_seq_id": 670,
+        "domain": "R domain",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S670"
+      },
+      {
+        "auth_seq_id": 686,
+        "domain": "R domain",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S686"
+      },
+      {
+        "auth_seq_id": 700,
+        "domain": "R domain",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S700"
+      },
+      {
+        "auth_seq_id": 712,
+        "domain": "R domain",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S712"
+      },
+      {
+        "auth_seq_id": 737,
+        "domain": "R domain",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S737"
+      },
+      {
+        "auth_seq_id": 753,
+        "domain": "R domain",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S753"
+      },
+      {
+        "auth_seq_id": 768,
+        "domain": "R domain",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S768"
+      },
+      {
+        "auth_seq_id": 795,
+        "domain": "R domain",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S795"
+      },
+      {
+        "auth_seq_id": 813,
+        "domain": "R domain",
+        "mapping_basis": "PNAS article maps ten R-domain sites in Fig. 1A and identifies S422 in the NBD1 regulatory insertion as the eleventh PKA site.",
+        "residue": "S813"
+      }
+    ],
+    "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation."
+  },
+  "fetch_failures": [],
+  "metadata": {
+    "europe_pmc_rows_returned": 2,
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T18:20:12Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "pka_cftr_source_mapped_site_review",
+    "pdb_entries_reviewed": 5,
+    "primary_result": "The PKA/CFTR structures are source-relevant folded-protein substrate complexes, but they do not provide clean transfer-state positive evidence because source-mapped CFTR phosphorylation sites are absent, disordered, or lack modeled acceptor oxygen near PKA gamma.",
+    "production_claim_allowed": false,
+    "rcsb_surface_rows_returned_total": 3,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "source_review_status_counts": {
+      "no_pka_gamma_transfer_analog_in_model_review_only": 1,
+      "source_mapped_cftr_sites_absent_or_no_acceptor_oxygen_review_only": 4
+    },
+    "target_article_doi": "10.1073/pnas.2409049121",
+    "target_article_pmcid": "PMC11573500",
+    "target_article_pmid": "39495916",
+    "target_pdb_ids": [
+      "9DW4",
+      "9DW5",
+      "9DW7",
+      "9DW8",
+      "9DW9"
+    ]
+  },
+  "rows": [
+    {
+      "all_gamma_donor_count": 0,
+      "atom_count_model_1": 7331,
+      "cftr_chains": [
+        {
+          "auth_seq_id_max": 1436,
+          "auth_seq_id_min": 3,
+          "chain": "A",
+          "entity_id": "2",
+          "mapped_site_status_counts": {
+            "unobserved_or_zero_occupancy_no_model_atoms": 11
+          },
+          "mapped_sites": [
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 422,
+              "domain": "NBD1 regulatory insertion",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S422",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 660,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S660",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 670,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S670",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 686,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S686",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 700,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S700",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 712,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S712",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 737,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S737",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 753,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S753",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 768,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S768",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 795,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S795",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 813,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S813",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            }
+          ],
+          "modeled_residue_count": 1134
+        },
+        {
+          "auth_seq_id_max": 19,
+          "auth_seq_id_min": 1,
+          "chain": "B",
+          "entity_id": "3",
+          "mapped_site_status_counts": {
+            "absent_from_chain_or_construct_no_model_atoms": 11
+          },
+          "mapped_sites": [
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 422,
+              "domain": "NBD1 regulatory insertion",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S422",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 660,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S660",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 670,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S670",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 686,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S686",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 700,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S700",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 712,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S712",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 737,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S737",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 753,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S753",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 768,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S768",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 795,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S795",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 813,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S813",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            }
+          ],
+          "modeled_residue_count": 19
+        }
+      ],
+      "cftr_entity_ids": [
+        "2",
+        "3"
+      ],
+      "cftr_modeled_atom_count": 5696,
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation.",
+        "year": 2024
+      },
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9DW4",
+      "pka_entity_ids": [
+        "1"
+      ],
+      "pka_gamma_donor_count": 0,
+      "pka_gamma_donors": [],
+      "pka_modeled_atom_count": 1635,
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "no_pka_gamma_transfer_analog_in_model_review_only",
+      "title": "Dephosphorylated CFTR in 1:1 complex with PKA-C (site II)"
+    },
+    {
+      "all_gamma_donor_count": 1,
+      "atom_count_model_1": 9748,
+      "cftr_chains": [
+        {
+          "auth_seq_id_max": 1436,
+          "auth_seq_id_min": 3,
+          "chain": "A",
+          "entity_id": "1",
+          "mapped_site_status_counts": {
+            "unobserved_or_zero_occupancy_no_model_atoms": 11
+          },
+          "mapped_sites": [
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 422,
+              "domain": "NBD1 regulatory insertion",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S422",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 660,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S660",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 670,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S670",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 686,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S686",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 700,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S700",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 712,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S712",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 737,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S737",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 753,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S753",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 768,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S768",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 795,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S795",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 813,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S813",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            }
+          ],
+          "modeled_residue_count": 1134
+        }
+      ],
+      "cftr_entity_ids": [
+        "1"
+      ],
+      "cftr_modeled_atom_count": 7709,
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation.",
+        "year": 2024
+      },
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9DW5",
+      "pka_entity_ids": [
+        "2"
+      ],
+      "pka_gamma_donor_count": 1,
+      "pka_gamma_donors": [
+        {
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.448,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "403",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "G",
+              "distance_angstrom": 2.335,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "402",
+              "chain": "G",
+              "distance_angstrom": 2.439,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_cftr_acceptor_any_site": {
+            "atom_name": "OG1",
+            "auth_seq_id": "1076",
+            "chain": "A",
+            "distance_angstrom": 38.178,
+            "entity_id": "1",
+            "residue_code": "THR"
+          },
+          "nearest_cftr_mapped_site_acceptor": null,
+          "nearest_cftr_mapped_site_any_atom": null
+        }
+      ],
+      "pka_modeled_atom_count": 1995,
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "source_mapped_cftr_sites_absent_or_no_acceptor_oxygen_review_only",
+      "title": "Dephosphorylated CFTR in 1:1 complex with PKA-C (site I)"
+    },
+    {
+      "all_gamma_donor_count": 1,
+      "atom_count_model_1": 9039,
+      "cftr_chains": [
+        {
+          "auth_seq_id_max": 1436,
+          "auth_seq_id_min": 3,
+          "chain": "A",
+          "entity_id": "2",
+          "mapped_site_status_counts": {
+            "unobserved_or_zero_occupancy_no_model_atoms": 11
+          },
+          "mapped_sites": [
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 422,
+              "domain": "NBD1 regulatory insertion",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S422",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 660,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S660",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 670,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S670",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 686,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S686",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 700,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S700",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 712,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S712",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 737,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S737",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 753,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S753",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 768,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S768",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 795,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S795",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 813,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S813",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            }
+          ],
+          "modeled_residue_count": 1134
+        },
+        {
+          "auth_seq_id_max": 19,
+          "auth_seq_id_min": 1,
+          "chain": "B",
+          "entity_id": "3",
+          "mapped_site_status_counts": {
+            "absent_from_chain_or_construct_no_model_atoms": 11
+          },
+          "mapped_sites": [
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 422,
+              "domain": "NBD1 regulatory insertion",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S422",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 660,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S660",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 670,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S670",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 686,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S686",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 700,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S700",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 712,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S712",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 737,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S737",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 753,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S753",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 768,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S768",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 795,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S795",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 813,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S813",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": null,
+              "sequence_scheme_mon_id": null,
+              "sequence_scheme_present": false,
+              "status": "absent_from_chain_or_construct_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            }
+          ],
+          "modeled_residue_count": 19
+        }
+      ],
+      "cftr_entity_ids": [
+        "2",
+        "3"
+      ],
+      "cftr_modeled_atom_count": 5696,
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation.",
+        "year": 2024
+      },
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9DW7",
+      "pka_entity_ids": [
+        "1"
+      ],
+      "pka_gamma_donor_count": 1,
+      "pka_gamma_donors": [
+        {
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.504,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "403",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "G",
+              "distance_angstrom": 2.28,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "401",
+              "chain": "G",
+              "distance_angstrom": 2.411,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_cftr_acceptor_any_site": null,
+          "nearest_cftr_mapped_site_acceptor": null,
+          "nearest_cftr_mapped_site_any_atom": null
+        }
+      ],
+      "pka_modeled_atom_count": 3310,
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "G",
+            "K"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "source_mapped_cftr_sites_absent_or_no_acceptor_oxygen_review_only",
+      "title": "Dephosphorylated CFTR in 1:2 complex with PKA-C"
+    },
+    {
+      "all_gamma_donor_count": 1,
+      "atom_count_model_1": 12026,
+      "cftr_chains": [
+        {
+          "auth_seq_id_max": 1451,
+          "auth_seq_id_min": 1,
+          "chain": "A",
+          "entity_id": "1",
+          "mapped_site_status_counts": {
+            "partial_or_backbone_only_no_acceptor_oxygen": 1,
+            "unobserved_or_zero_occupancy_no_model_atoms": 10
+          },
+          "mapped_sites": [
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 422,
+              "domain": "NBD1 regulatory insertion",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S422",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 660,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S660",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 670,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S670",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 686,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S686",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 700,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S700",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 712,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S712",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 737,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S737",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 753,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S753",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 768,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S768",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 795,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S795",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 813,
+              "domain": "R domain",
+              "modeled_atom_count": 5,
+              "modeled_atom_names": [
+                "C",
+                "CA",
+                "CB",
+                "N",
+                "O"
+              ],
+              "modeled_residue_codes": [
+                "SER"
+              ],
+              "residue": "S813",
+              "residue_present_any_atom": true,
+              "sequence_scheme_auth_mon_id": "SER",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "partial_or_backbone_only_no_acceptor_oxygen",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            }
+          ],
+          "modeled_residue_count": 1182
+        }
+      ],
+      "cftr_entity_ids": [
+        "1"
+      ],
+      "cftr_modeled_atom_count": 9452,
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation.",
+        "year": 2024
+      },
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9DW8",
+      "pka_entity_ids": [
+        "2"
+      ],
+      "pka_gamma_donor_count": 1,
+      "pka_gamma_donors": [
+        {
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.754,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "403",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "G",
+              "distance_angstrom": 2.545,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "402",
+              "chain": "G",
+              "distance_angstrom": 3.127,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_cftr_acceptor_any_site": {
+            "atom_name": "OG1",
+            "auth_seq_id": "388",
+            "chain": "A",
+            "distance_angstrom": 27.427,
+            "entity_id": "1",
+            "residue_code": "THR"
+          },
+          "nearest_cftr_mapped_site_acceptor": null,
+          "nearest_cftr_mapped_site_any_atom": {
+            "atom_name": "CB",
+            "auth_seq_id": "813",
+            "chain": "A",
+            "distance_angstrom": 25.471,
+            "entity_id": "1",
+            "residue_code": "SER"
+          }
+        }
+      ],
+      "pka_modeled_atom_count": 2450,
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "source_mapped_cftr_sites_absent_or_no_acceptor_oxygen_review_only",
+      "title": "Dephosphorylated (E1371Q)CFTR in complex with PKA-C"
+    },
+    {
+      "all_gamma_donor_count": 3,
+      "atom_count_model_1": 12332,
+      "cftr_chains": [
+        {
+          "auth_seq_id_max": 1451,
+          "auth_seq_id_min": 1,
+          "chain": "A",
+          "entity_id": "1",
+          "mapped_site_status_counts": {
+            "in_sequence_scheme_but_no_model_atoms": 1,
+            "unobserved_or_zero_occupancy_no_model_atoms": 10
+          },
+          "mapped_sites": [
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 422,
+              "domain": "NBD1 regulatory insertion",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S422",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 660,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S660",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 670,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S670",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 686,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S686",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 700,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S700",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 712,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S712",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 737,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S737",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 753,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S753",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 768,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S768",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 795,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S795",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "?",
+              "sequence_scheme_mon_id": "SER",
+              "sequence_scheme_present": true,
+              "status": "unobserved_or_zero_occupancy_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": "SER",
+              "unobserved_or_zero_occ_flag": "1",
+              "unobserved_or_zero_occ_recorded": true
+            },
+            {
+              "acceptor_oxygen_modeled": false,
+              "auth_seq_id": 813,
+              "domain": "R domain",
+              "modeled_atom_count": 0,
+              "modeled_atom_names": [],
+              "modeled_residue_codes": [],
+              "residue": "S813",
+              "residue_present_any_atom": false,
+              "sequence_scheme_auth_mon_id": "SEP",
+              "sequence_scheme_mon_id": "SEP",
+              "sequence_scheme_present": true,
+              "status": "in_sequence_scheme_but_no_model_atoms",
+              "unobserved_or_zero_occ_comp_id": null,
+              "unobserved_or_zero_occ_flag": null,
+              "unobserved_or_zero_occ_recorded": false
+            }
+          ],
+          "modeled_residue_count": 1182
+        }
+      ],
+      "cftr_entity_ids": [
+        "1"
+      ],
+      "cftr_modeled_atom_count": 9485,
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation.",
+        "year": 2024
+      },
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9DW9",
+      "pka_entity_ids": [
+        "2"
+      ],
+      "pka_gamma_donor_count": 1,
+      "pka_gamma_donors": [
+        {
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.637,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "401",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "G",
+              "distance_angstrom": 3.295,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "402",
+              "chain": "G",
+              "distance_angstrom": 3.511,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_cftr_acceptor_any_site": {
+            "atom_name": "OG1",
+            "auth_seq_id": "388",
+            "chain": "A",
+            "distance_angstrom": 27.299,
+            "entity_id": "1",
+            "residue_code": "THR"
+          },
+          "nearest_cftr_mapped_site_acceptor": null,
+          "nearest_cftr_mapped_site_any_atom": null
+        }
+      ],
+      "pka_modeled_atom_count": 2621,
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "source_mapped_cftr_sites_absent_or_no_acceptor_oxygen_review_only",
+      "title": "Phosphorylated (E1371Q)CFTR in complex with PKA-C"
+    }
+  ],
+  "search_surfaces": {
+    "europe_pmc": {
+      "query_or_source": "Europe PMC: \"The structures of protein kinase A in complex with CFTR\"",
+      "returned_count": 2,
+      "rows": [
+        {
+          "doi": "10.1101/2024.05.28.596263",
+          "hasPDF": "N",
+          "hasSuppl": "N",
+          "isOpenAccess": "N",
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pubYear": "2024",
+          "title": "The structures of protein kinase A in complex with CFTR: mechanisms of phosphorylation and reversible activation"
+        },
+        {
+          "doi": "10.1073/pnas.2409049121",
+          "hasPDF": "Y",
+          "hasSuppl": "Y",
+          "isOpenAccess": "Y",
+          "journal": "Proc Natl Acad Sci U S A",
+          "pmcid": "PMC11573500",
+          "pmid": "39495916",
+          "pubYear": "2024",
+          "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation."
+        }
+      ],
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22The+structures+of+protein+kinase+A+in+complex+with+CFTR%22&format=json&pageSize=10",
+      "surface_id": "europepmc_pka_cftr_anp_dephosphorylated_phosphorylation"
+    },
+    "rcsb": [
+      {
+        "pdb_ids": [
+          "9DW5",
+          "9DW7",
+          "9DW8"
+        ],
+        "query_or_source": "RCSB full_text: PKA CFTR ANP dephosphorylated phosphorylation",
+        "requested_rows": 25,
+        "returned_count": 3,
+        "start": 0,
+        "surface_id": "rcsb_fulltext_pka_cftr_anp_dephosphorylated_phosphorylation",
+        "total_count": 3
+      },
+      {
+        "pdb_ids": [],
+        "query_or_source": "RCSB full_text: PKA CFTR AMP-PNP phosphorylation site",
+        "requested_rows": 25,
+        "returned_count": 0,
+        "start": 0,
+        "surface_id": "rcsb_fulltext_pka_cftr_amp_pnp_phosphorylation_site",
+        "total_count": 0
+      },
+      {
+        "pdb_ids": [],
+        "query_or_source": "RCSB full_text: PKA CFTR catalytic stations",
+        "requested_rows": 25,
+        "returned_count": 0,
+        "start": 0,
+        "surface_id": "rcsb_fulltext_pka_cftr_catalytic_stations",
+        "total_count": 0
+      }
+    ]
+  }
+}
