@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded ASKHA sibling-control screen for ePK review-only research.
+"""Bounded sibling-control screen for ePK review-only research.
 
 The script fetches candidate mmCIF files in memory, derives compact local
 gamma-phosphate measurements, and writes a JSON evidence artifact. It does not
@@ -160,10 +160,159 @@ FAMILY_CONFIGS = {
             "screens with stricter nonpolymer-acceptor controls."
         ),
     },
+    "atp_grasp": {
+        "family_id": "atp_grasp",
+        "family_name": "ATP-grasp ligases",
+        "method": "epk_sibling_controls_atp_grasp_bounded_control_screen",
+        "query_terms": [
+            "D-alanine D-alanine ligase ATP magnesium",
+            "D-alanine D-alanine ligase AMP-PNP magnesium",
+            "D-alanine D-alanine ligase ADP phosphate magnesium",
+            "D-alanine D-alanine ligase ADP phosphoryl phosphinate magnesium",
+            "D-alanine D-alanine ligase ADP phosphoryl phosphonate magnesium",
+            "D-Ala D-Ala ligase ATP magnesium",
+            "D-Ala D-Ala ligase ADP phosphate magnesium",
+            "glutathione synthase ATP magnesium",
+            "glutathione synthetase AMP-PNP magnesium",
+            "glycinamide ribonucleotide synthetase ATP magnesium",
+            "PurD ATP magnesium",
+            "biotin carboxylase ATP magnesium",
+            "glutamate-cysteine ligase ATP magnesium",
+            "Mur ligase ATP magnesium",
+            "carbamoyl phosphate synthetase ATP magnesium",
+            "carbamoyl phosphate synthetase ADP phosphate magnesium",
+            "pseudomurein peptide ligase UDP phosphate magnesium",
+            "ATP-grasp ligase ATP magnesium",
+            "ATP-grasp ligase AMP-PNP magnesium",
+            "ATP-grasp ligase ADP phosphate magnesium",
+        ],
+        "seed_pdb_ids": [
+            "1EHI",
+            "1IOV",
+            "1IOW",
+            "2DLN",
+            "2ZDG",
+            "3R5F",
+            "5C1O",
+            "5DOU",
+            "6NO5",
+            "6U1H",
+            "6U1I",
+            "6VR8",
+            "7DRM",
+            "7DRP",
+        ],
+        "title_keywords": (
+            "d-alanine",
+            "d-ala",
+            "d-alanyl",
+            "alanine ligase",
+            "glutathione synthase",
+            "glutathione synthetase",
+            "glycinamide ribonucleotide synthetase",
+            "glycinamide ribonucleotide transformylase",
+            "ribonucleotide synthetase",
+            "purt-encoded",
+            "purD",
+            "biotin carboxylase",
+            "pyruvate carboxylase",
+            "glutamate-cysteine ligase",
+            "glutamate cysteine ligase",
+            "gamma-glutamylcysteine synthetase",
+            "glutathionylspermidine synthetase",
+            "scgcl",
+            "mur ligase",
+            "murc",
+            "murd",
+            "mure",
+            "murf",
+            "carbamoyl phosphate synthetase",
+            "cyanophycin synthetase",
+            "folylpolyglutamate synthetase",
+            "atp-grasp",
+            "atp grasp",
+        ),
+        "prior_artifact_label": "seed_from_prior_atp_grasp_artifacts_or_graph_linked_alternates",
+        "next_query": (
+            "Rerun ATP-grasp with an explicit phosphorylated-acceptor/product-state branch "
+            "for ADP plus phosphate or phosphorylated nonpolymer controls."
+        ),
+    },
+    "pfka": {
+        "family_id": "pfka",
+        "family_name": "PfkA-fold phosphofructokinases",
+        "method": "epk_sibling_controls_pfka_bounded_control_screen",
+        "query_terms": [
+            "phosphofructokinase ATP magnesium",
+            "phosphofructokinase AMP-PNP magnesium",
+            "phosphofructokinase fructose 6-phosphate ATP magnesium",
+            "ATP-dependent phosphofructokinase ATP magnesium",
+            "phosphofructokinase-1 ATP Mg",
+            "PFK ATP magnesium",
+        ],
+        "seed_pdb_ids": [
+            "3F5M",
+            "4XYJ",
+            "5XZ8",
+            "8W2H",
+            "8W2J",
+        ],
+        "title_keywords": (
+            "phosphofructokinase",
+            "phosphofructo kinase",
+            "pfk",
+        ),
+        "prior_artifact_label": "seed_from_prior_pfka_homolog_gamma_distance_sample",
+        "next_query": (
+            "Run the source-free bounded sibling-control screen for PfkB/ribokinase-family "
+            "kinases, then NDK if PfkB adds no new weak-rule stress."
+        ),
+    },
+    "pfkb": {
+        "family_id": "pfkb",
+        "family_name": "PfkB/ribokinase-family kinases",
+        "method": "epk_sibling_controls_pfkb_bounded_control_screen",
+        "query_terms": [
+            "ribokinase ATP magnesium",
+            "ribokinase AMP-PNP magnesium",
+            "adenosine kinase ATP magnesium",
+            "aminoimidazole riboside kinase ATP magnesium",
+            "phosphofructokinase-2 ATP magnesium",
+            "thiazole kinase ATP magnesium",
+            "PfkB family kinase ATP magnesium",
+        ],
+        "seed_pdb_ids": [
+            "1ESQ",
+            "1TZ6",
+            "3CQD",
+            "3IQ0",
+            "3UMO",
+            "3UMP",
+            "3UQD",
+            "3UQE",
+            "6ILT",
+        ],
+        "title_keywords": (
+            "ribokinase",
+            "adenosine kinase",
+            "aminoimidazole riboside kinase",
+            "phosphofructokinase-2",
+            "thiazole kinase",
+            "pfkb",
+            "ketohexokinase",
+            "fructokinase",
+        ),
+        "prior_artifact_label": "seed_from_prior_pfkb_homolog_gamma_distance_sample",
+        "next_query": (
+            "Run the source-free bounded sibling-control screen for NDK ATP-state controls "
+            "or extend PfkA/PfkB only if a new query term exposes additional metal-supported rows."
+        ),
+    },
 }
 
 GAMMA_CAPABLE_CODES = {"ATP", "ANP", "ACP", "AGS", "DTP", "GTP"}
 PRODUCT_OR_PARTIAL_CODES = {"ADP", "AMP", "GDP", "UDP", "CDP"}
+PHOSPHORYL_MIMIC_CODES = {"PO4", "PHY", "POB"}
 METAL_CODES = {"MG", "MN"}
 WATER_CODES = {"HOH", "WAT", "DOD"}
 COMMON_NON_ACCEPTOR_CODES = {
@@ -187,6 +336,7 @@ HYDROXYL_ATOMS = {
     ("TYR", "OH"),
 }
 GAMMA_ATOM_NAMES = {"PG", "P3G", "P3", "PG1"}
+PRODUCT_NUCLEOTIDE_BETA_ATOM_NAMES = {"PB", "P2B", "P2"}
 
 
 def utc_now() -> str:
@@ -238,14 +388,22 @@ def parse_struct_title(cif_text: str) -> str | None:
         except ValueError:
             tokens = stripped.split(maxsplit=1)
         if len(tokens) > 1:
-            return tokens[1].strip()
-        if idx + 1 < len(lines) and lines[idx + 1].startswith(";"):
-            collected = []
-            for follow in lines[idx + 2 :]:
-                if follow.startswith(";"):
-                    break
-                collected.append(follow.rstrip())
-            return " ".join(collected).strip() or None
+            return " ".join(tokens[1:]).strip()
+        if idx + 1 < len(lines):
+            next_line = lines[idx + 1].strip()
+            if next_line.startswith(";"):
+                collected = []
+                for follow in lines[idx + 2 :]:
+                    if follow.startswith(";"):
+                        break
+                    collected.append(follow.rstrip())
+                return " ".join(collected).strip() or None
+            if next_line and not next_line.startswith(("#", "_", "loop_")):
+                try:
+                    next_tokens = shlex.split(next_line, posix=True)
+                except ValueError:
+                    next_tokens = [next_line.strip("'\"")]
+                return " ".join(next_tokens).strip() or None
     return None
 
 
@@ -346,6 +504,44 @@ def compact_atom(atom: dict, distance_angstrom: float) -> dict:
     }
 
 
+def atom_pairs(source_atoms: list[dict], target_atoms: list[dict]) -> list[tuple[float, dict, dict]]:
+    pairs = [
+        (distance(source["xyz"], target["xyz"]), source, target)
+        for source in source_atoms
+        for target in target_atoms
+    ]
+    pairs.sort(key=lambda row: row[0])
+    return pairs
+
+
+def compact_pair_rows(
+    pairs: list[tuple[float, dict, dict]],
+    source_prefix: str,
+    target_prefix: str,
+    limit: int = 5,
+) -> list[dict]:
+    rows = []
+    for dist, source, target in pairs[:limit]:
+        rows.append(
+            {
+                "distance_angstrom": round(dist, 3),
+                f"{source_prefix}_comp": source["comp"],
+                f"{source_prefix}_atom": source["atom"],
+                f"{source_prefix}_auth_asym_id": source["auth_asym_id"],
+                f"{source_prefix}_auth_seq_id": source["auth_seq_id"],
+                f"{source_prefix}_label_asym_id": source["label_asym_id"],
+                f"{source_prefix}_label_seq_id": source["label_seq_id"],
+                f"{target_prefix}_comp": target["comp"],
+                f"{target_prefix}_atom": target["atom"],
+                f"{target_prefix}_auth_asym_id": target["auth_asym_id"],
+                f"{target_prefix}_auth_seq_id": target["auth_seq_id"],
+                f"{target_prefix}_label_asym_id": target["label_asym_id"],
+                f"{target_prefix}_label_seq_id": target["label_seq_id"],
+            }
+        )
+    return rows
+
+
 def title_has_family_signal(title: str | None, config: dict) -> bool:
     if not title:
         return False
@@ -393,6 +589,50 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
         atom for atom in atoms if atom["group"] == "HETATM" and atom["comp"] in METAL_CODES
     ]
     product_codes = sorted({atom["comp"] for atom in atoms if atom["comp"] in PRODUCT_OR_PARTIAL_CODES})
+    phosphoryl_mimic_codes = sorted(
+        {atom["comp"] for atom in atoms if atom["comp"] in PHOSPHORYL_MIMIC_CODES}
+    )
+    phosphorylated_nonpolymer_codes = sorted(
+        {
+            atom["comp"]
+            for atom in atoms
+            if atom["comp"] in PHOSPHORYL_MIMIC_CODES
+            and any(
+                other["comp"] == atom["comp"] and other["group"] == "HETATM" and other["element"] == "C"
+                for other in atoms
+            )
+        }
+    )
+    product_nucleotide_beta_atoms = [
+        atom
+        for atom in atoms
+        if atom["group"] == "HETATM"
+        and atom["comp"] in PRODUCT_OR_PARTIAL_CODES
+        and atom["atom"] in PRODUCT_NUCLEOTIDE_BETA_ATOM_NAMES
+    ]
+    product_state_phosphoryl_atoms = [
+        atom
+        for atom in atoms
+        if atom["group"] == "HETATM"
+        and atom["comp"] in PHOSPHORYL_MIMIC_CODES
+        and atom["element"] == "P"
+    ]
+    product_state_phosphoryl_oxygen_atoms = [
+        atom
+        for atom in atoms
+        if atom["group"] == "HETATM"
+        and atom["comp"] in PHOSPHORYL_MIMIC_CODES
+        and atom["element"] == "O"
+    ]
+    product_state_nonpolymer_oxygen_atoms = [
+        atom
+        for atom in atoms
+        if atom["group"] == "HETATM"
+        and atom["element"] == "O"
+        and atom["comp"] not in PRODUCT_OR_PARTIAL_CODES
+        and atom["comp"] not in METAL_CODES
+        and atom["comp"] not in WATER_CODES
+    ]
     gamma_codes = sorted({atom["comp"] for atom in gamma_atoms})
     metal_codes = sorted({atom["comp"] for atom in metal_atoms})
 
@@ -411,10 +651,43 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
     nearest_nonpolymer.sort(key=lambda row: row[0])
     nearest_metal.sort(key=lambda row: row[0])
 
+    nearest_product_phosphoryl_to_metal = atom_pairs(product_state_phosphoryl_atoms, metal_atoms)
+    nearest_product_phosphoryl_to_product_beta = atom_pairs(
+        product_state_phosphoryl_atoms, product_nucleotide_beta_atoms
+    )
+    nearest_product_phosphoryl_to_protein = atom_pairs(
+        product_state_phosphoryl_atoms, protein_hydroxyl_atoms
+    )
+    nearest_product_phosphoryl_to_nonpolymer_oxygen = atom_pairs(
+        product_state_phosphoryl_atoms, product_state_nonpolymer_oxygen_atoms
+    )
+
     local_metal = [row for row in nearest_metal if row[0] <= 7.0]
     has_gamma = bool(gamma_atoms)
     has_local_metal = bool(local_metal)
     has_family_title_signal = title_has_family_signal(title, config)
+    has_product_state_local_metal = (
+        bool(nearest_product_phosphoryl_to_metal)
+        and nearest_product_phosphoryl_to_metal[0][0] <= 7.0
+    )
+    product_state_control_candidate = (
+        has_family_title_signal
+        and bool(product_codes)
+        and bool(product_state_phosphoryl_atoms)
+        and has_product_state_local_metal
+    )
+    if product_state_control_candidate and phosphorylated_nonpolymer_codes:
+        product_state_branch_status = (
+            f"{config['family_id']}_phosphorylated_nonpolymer_product_control_review_only"
+        )
+    elif product_state_control_candidate and phosphoryl_mimic_codes:
+        product_state_branch_status = (
+            f"{config['family_id']}_adp_or_udp_phosphate_product_control_review_only"
+        )
+    elif has_family_title_signal and product_codes and phosphoryl_mimic_codes:
+        product_state_branch_status = f"{config['family_id']}_product_phosphoryl_metal_gap_review_only"
+    else:
+        product_state_branch_status = None
     family_id = config["family_id"]
     if has_gamma and has_local_metal and has_family_title_signal:
         review_status = f"{family_id}_gamma_metal_control_candidate_review_only"
@@ -430,10 +703,35 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
     nearest_protein_distance = round(nearest_protein[0][0], 3) if nearest_protein else None
     nearest_nonpolymer_distance = round(nearest_nonpolymer[0][0], 3) if nearest_nonpolymer else None
     nearest_metal_distance = round(nearest_metal[0][0], 3) if nearest_metal else None
+    nearest_product_phosphoryl_to_metal_distance = (
+        round(nearest_product_phosphoryl_to_metal[0][0], 3)
+        if nearest_product_phosphoryl_to_metal
+        else None
+    )
+    nearest_product_phosphoryl_to_product_beta_distance = (
+        round(nearest_product_phosphoryl_to_product_beta[0][0], 3)
+        if nearest_product_phosphoryl_to_product_beta
+        else None
+    )
+    nearest_product_phosphoryl_to_protein_hydroxyl_distance = (
+        round(nearest_product_phosphoryl_to_protein[0][0], 3)
+        if nearest_product_phosphoryl_to_protein
+        else None
+    )
+    nearest_product_phosphoryl_to_nonpolymer_oxygen_distance = (
+        round(nearest_product_phosphoryl_to_nonpolymer_oxygen[0][0], 3)
+        if nearest_product_phosphoryl_to_nonpolymer_oxygen
+        else None
+    )
     weak_nearest_protein_hydroxyl_hit = (
         review_status == f"{family_id}_gamma_metal_control_candidate_review_only"
         and nearest_protein_distance is not None
         and nearest_protein_distance <= 6.0
+    )
+    weak_nearest_nonpolymer_oxygen_hit = (
+        review_status == f"{family_id}_gamma_metal_control_candidate_review_only"
+        and nearest_nonpolymer_distance is not None
+        and nearest_nonpolymer_distance <= 6.0
     )
     weak_nearest_any_oxygen_hit = (
         review_status == f"{family_id}_gamma_metal_control_candidate_review_only"
@@ -459,12 +757,57 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
         "observed_ligand_codes": observed_ligand_codes,
         "gamma_capable_nucleotide_codes": gamma_codes,
         "product_or_partial_nucleotide_codes": product_codes,
+        "phosphate_or_phosphoryl_mimic_codes": phosphoryl_mimic_codes,
+        "phosphorylated_nonpolymer_ligand_codes": phosphorylated_nonpolymer_codes,
         "metal_ligand_codes": metal_codes,
         "gamma_atom_count": len(gamma_atoms),
         "metal_atom_count": len(metal_atoms),
+        "product_nucleotide_beta_atom_count": len(product_nucleotide_beta_atoms),
+        "product_state_phosphoryl_atom_count": len(product_state_phosphoryl_atoms),
+        "product_state_phosphoryl_oxygen_atom_count": len(product_state_phosphoryl_oxygen_atoms),
         "nearest_gamma_to_metal_distance_angstrom": nearest_metal_distance,
         "nearest_gamma_to_protein_hydroxyl_distance_angstrom": nearest_protein_distance,
         "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": nearest_nonpolymer_distance,
+        "product_state_branch_status": product_state_branch_status,
+        "product_state_control_candidate_review_only": product_state_control_candidate,
+        "product_state_free_phosphate_control_review_only": (
+            product_state_control_candidate and "PO4" in phosphoryl_mimic_codes
+        ),
+        "product_state_phosphorylated_nonpolymer_control_review_only": (
+            product_state_control_candidate and bool(phosphorylated_nonpolymer_codes)
+        ),
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": (
+            nearest_product_phosphoryl_to_metal_distance
+        ),
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": (
+            nearest_product_phosphoryl_to_product_beta_distance
+        ),
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": (
+            nearest_product_phosphoryl_to_protein_hydroxyl_distance
+        ),
+        "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": (
+            nearest_product_phosphoryl_to_nonpolymer_oxygen_distance
+        ),
+        "product_state_phosphoryl_to_metal_rows": compact_pair_rows(
+            nearest_product_phosphoryl_to_metal,
+            "phosphoryl",
+            "metal",
+        ),
+        "product_state_phosphoryl_to_product_beta_rows": compact_pair_rows(
+            nearest_product_phosphoryl_to_product_beta,
+            "phosphoryl",
+            "product_beta",
+        ),
+        "product_state_phosphoryl_to_protein_hydroxyl_rows": compact_pair_rows(
+            nearest_product_phosphoryl_to_protein,
+            "phosphoryl",
+            "protein_hydroxyl",
+        ),
+        "product_state_phosphoryl_to_nonpolymer_oxygen_rows": compact_pair_rows(
+            nearest_product_phosphoryl_to_nonpolymer_oxygen,
+            "phosphoryl",
+            "nonpolymer_oxygen",
+        ),
         "nearest_protein_hydroxyl_rows": [
             {
                 "gamma_ligand_code": gamma["comp"],
@@ -482,6 +825,7 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
             for dist, gamma, candidate in nearest_nonpolymer[:5]
         ],
         "weak_nearest_protein_hydroxyl_rule_hit_6a": weak_nearest_protein_hydroxyl_hit,
+        "weak_nearest_nonpolymer_oxygen_rule_hit_6a": weak_nearest_nonpolymer_oxygen_hit,
         "weak_nearest_any_oxygen_rule_hit_6a": weak_nearest_any_oxygen_hit,
         "unified_rule_expected_blocker_source_free": (
             "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate"
@@ -554,14 +898,47 @@ def main() -> int:
         if row.get("weak_nearest_protein_hydroxyl_rule_hit_6a")
         or row.get("weak_nearest_any_oxygen_rule_hit_6a")
     ]
+    weak_protein_hits = [
+        row for row in controls if row.get("weak_nearest_protein_hydroxyl_rule_hit_6a")
+    ]
+    weak_nonpolymer_hits = [
+        row for row in controls if row.get("weak_nearest_nonpolymer_oxygen_rule_hit_6a")
+    ]
     distances = [
         row["nearest_gamma_to_protein_hydroxyl_distance_angstrom"]
         for row in controls
         if row.get("nearest_gamma_to_protein_hydroxyl_distance_angstrom") is not None
     ]
+    product_state_rows = [
+        row
+        for row in rows
+        if row.get("review_status") == f"{config['family_id']}_product_state_only_review_only"
+    ]
+    product_state_with_metal = [
+        row for row in product_state_rows if row.get("metal_ligand_codes")
+    ]
+    product_state_with_phosphoryl_mimic = [
+        row
+        for row in product_state_with_metal
+        if row.get("phosphate_or_phosphoryl_mimic_codes")
+    ]
+    product_state_branch_controls = [
+        row for row in rows if row.get("product_state_control_candidate_review_only")
+    ]
+    product_state_free_phosphate_controls = [
+        row for row in rows if row.get("product_state_free_phosphate_control_review_only")
+    ]
+    product_state_phosphorylated_nonpolymer_controls = [
+        row
+        for row in rows
+        if row.get("product_state_phosphorylated_nonpolymer_control_review_only")
+    ]
     status_counts = defaultdict(int)
+    product_branch_status_counts = defaultdict(int)
     for row in rows:
         status_counts[row.get("review_status", "unknown")] += 1
+        if row.get("product_state_branch_status"):
+            product_branch_status_counts[row["product_state_branch_status"]] += 1
 
     artifact = {
         "metadata": {
@@ -586,7 +963,39 @@ def main() -> int:
             f"{config['family_id']}_gamma_metal_control_count": len(controls),
             "weak_rule_counterexample_count": len(weak_hits),
             "weak_rule_counterexample_pdb_ids": [row["pdb_id"] for row in weak_hits],
+            "weak_nearest_protein_hydroxyl_counterexample_count": len(weak_protein_hits),
+            "weak_nearest_protein_hydroxyl_counterexample_pdb_ids": [
+                row["pdb_id"] for row in weak_protein_hits
+            ],
+            "weak_nearest_nonpolymer_oxygen_counterexample_count": len(weak_nonpolymer_hits),
+            "weak_nearest_nonpolymer_oxygen_counterexample_pdb_ids": [
+                row["pdb_id"] for row in weak_nonpolymer_hits
+            ],
+            "product_state_only_row_count": len(product_state_rows),
+            "product_state_with_metal_count": len(product_state_with_metal),
+            "product_state_with_metal_pdb_ids": [
+                row["pdb_id"] for row in product_state_with_metal
+            ],
+            "product_state_with_phosphoryl_mimic_count": len(product_state_with_phosphoryl_mimic),
+            "product_state_with_phosphoryl_mimic_pdb_ids": [
+                row["pdb_id"] for row in product_state_with_phosphoryl_mimic
+            ],
+            "product_state_branch_control_count": len(product_state_branch_controls),
+            "product_state_branch_control_pdb_ids": [
+                row["pdb_id"] for row in product_state_branch_controls
+            ],
+            "product_state_free_phosphate_control_count": len(product_state_free_phosphate_controls),
+            "product_state_free_phosphate_control_pdb_ids": [
+                row["pdb_id"] for row in product_state_free_phosphate_controls
+            ],
+            "product_state_phosphorylated_nonpolymer_control_count": len(
+                product_state_phosphorylated_nonpolymer_controls
+            ),
+            "product_state_phosphorylated_nonpolymer_control_pdb_ids": [
+                row["pdb_id"] for row in product_state_phosphorylated_nonpolymer_controls
+            ],
             "review_status_counts": dict(sorted(status_counts.items())),
+            "product_state_branch_status_counts": dict(sorted(product_branch_status_counts.items())),
             "nearest_protein_hydroxyl_min_angstrom": min(distances) if distances else None,
             "nearest_protein_hydroxyl_max_angstrom": max(distances) if distances else None,
             "primary_outcome": "counterexample_found" if weak_hits else "next_query_defined",
