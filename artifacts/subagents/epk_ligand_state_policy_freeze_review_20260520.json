@@ -1,0 +1,382 @@
+{
+  "metadata": {
+    "method": "epk_ligand_state_policy_freeze_review",
+    "created_on": "2026-05-20",
+    "subagent": "B",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "policy_id": "epk_ligand_state_evidence_policy_v0_20260520",
+    "policy_status": "frozen_review_only_for_future_fresh_tranche_not_activated",
+    "policy_freeze_scope": "ligand_state_evidence_admissibility_only",
+    "can_ligand_state_policy_be_frozen_now": true,
+    "activation_requires_more_evidence": true,
+    "activation_status": "blocked_review_only",
+    "production_scoring_admissible": false,
+    "ready_to_run_epk_scorer": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "review_only": true,
+    "review_only_rule": "This artifact freezes a review-only ePK ligand-state evidence policy for a future fresh tranche selected after the freeze. It does not activate ePK scoring, select thresholds, edit registries, import labels, or claim held-out performance.",
+    "source_artifacts_reviewed": [
+      "artifacts/v3_epk_analog_product_state_policy_preregistration_1025.json",
+      "artifacts/v3_epk_analog_product_state_policy_activation_audit_1025.json",
+      "artifacts/v3_epk_analog_product_state_policy_control_reaudit_1025.json",
+      "artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+      "artifacts/v3_epk_m_csa640_alternate_gamma_geometry_review_1025.json",
+      "artifacts/v3_epk_m_csa756_5li1_residue_evidence_audit_1025.json",
+      "artifacts/v3_epk_ligand_specific_5hvk_source_validity_review_1025.json",
+      "artifacts/v3_epk_ligand_specific_5hvk_prototype_control_rerun_1025.json",
+      "artifacts/v3_epk_ligand_specific_active_state_terminal_decision_1025.json",
+      "artifacts/v3_epk_ligand_specific_active_query_extension_audit_1025.json",
+      "work/scope.md",
+      "docs/label_factory.md"
+    ],
+    "non_modified_surfaces": [
+      "data/registries/mechanism_fingerprints.json",
+      "production label registries",
+      "artifact migration files",
+      "git history"
+    ]
+  },
+  "evidence_basis": [
+    {
+      "source": "v3_epk_analog_product_state_policy_preregistration_1025",
+      "relevant_signal": "draft preregistration is inactive, excludes mechanism text and product-state ADP-without-gamma from predictive use, and requires the policy to be frozen before candidate selection",
+      "policy_implication": "freeze is necessary before a fresh tranche, but preregistration alone did not activate scoring"
+    },
+    {
+      "source": "v3_epk_analog_product_state_policy_activation_audit_1025",
+      "relevant_signal": "activation failed closed with seven blockers, including no calibrated ePK score, no real external hard-negative scored re-audit, and unresolved ligand-analog dependency for m_csa:640",
+      "policy_implication": "the ligand-state policy may be frozen as a prospective rule, but production activation still needs evidence"
+    },
+    {
+      "source": "v3_epk_analog_product_state_policy_control_reaudit_1025",
+      "relevant_signal": "active-gamma protein-substrate-or-ligand-analog variant covered 3/3 current positives, had 0 sibling false hits and 0 imported external feature non-abstentions, but failed the freeze-before-selection and scored external re-audit gates",
+      "policy_implication": "diagnostic controls support a conservative freeze, not retrospective activation"
+    },
+    {
+      "source": "v3_epk_m_csa640_alternate_gamma_geometry_review_1025",
+      "relevant_signal": "3TM0 ANP/Mg plus B31 acceptor-like analog geometry closes a review-only gap for m_csa:640, with ANP PG-to-B31 O14 distance 3.558 angstrom",
+      "policy_implication": "ANP can be a gamma-capable ATP-state nucleotide analog, but substrate/acceptor analog context remains review-only"
+    },
+    {
+      "source": "v3_epk_m_csa756_5li1_residue_evidence_audit_1025",
+      "relevant_signal": "5LI1 preserves ANP/Mg and local residue hints but lacks terminal gamma measurement, source-authoritative target residue positions, and mapped protein-substrate acceptor evidence",
+      "policy_implication": "structure-level active-state context is insufficient unless terminal gamma, metal, and source-free acceptor/role features co-materialize"
+    },
+    {
+      "source": "v3_epk_ligand_specific_5hvk_source_validity_review_1025 and control rerun",
+      "relevant_signal": "5HVK is accepted as source-valid LIMK1/cofilin review evidence with ANP PG-to-Ser3 geometry, but control rerun remains review-only and uncalibrated",
+      "policy_implication": "source review may adjudicate outcomes after scoring, but cannot be a predictive feature in a fresh tranche"
+    },
+    {
+      "source": "v3_epk_unified_review_only_scoring_prototype_1025",
+      "relevant_signal": "unified prototype gives full review-only signal to eight positive-like rows, blocks current controls and imported external hard negatives, excludes ligand-analog-only m_csa:640, and fails closed because threshold, real external re-audit, registry/factory extension, and production freeze are missing",
+      "policy_implication": "fresh-tranche policy must separate source-free predictive ligand-state features from review-only support"
+    },
+    {
+      "source": "work/scope.md and docs/label_factory.md",
+      "relevant_signal": "current ePK lane is review-only, repeated scouts include ATP/Mg, ANP/Mg, AMP-PNP/Mg, ADP/Mg, and product-state surfaces, and no threshold, scorer, registry edit, or label import is authorized",
+      "policy_implication": "the frozen policy must fail closed until activation data are collected"
+    }
+  ],
+  "answer_summary": {
+    "q1_predictive_ligand_states": "ATP and pre-frozen gamma-capable ATP-state nucleotide analogs, including ANP/AMP-PNP aliases, can be predictive only when terminal gamma-equivalent geometry, local metal context, catalytic-site locality, and source-free acceptor/role features co-materialize in the same structure. ADP, product-state structures, and substrate/acceptor analogs are not predictive.",
+    "q2_review_only_states": "ADP/Mg, product-state ADP plus phosphorylated product/substrate, substrate or product analog acceptors such as B31/KAN-like context, structure-level SEP/TPO context, and active-state nucleotide structures missing terminal gamma, metal, or source-free acceptor/role evidence are review-only.",
+    "q3_forbidden_context": "After-the-fact source review, candidate-specific alternate repair, cross-PDB split-state fusion, mechanism prose, entry names, labels, EC/Rhea/UniProt identifiers, source ids, homomeric chain choice, post-hoc ligand-code expansion, and threshold selection after seeing fresh outcomes are forbidden as predictive inputs.",
+    "q4_exact_frozen_policy": "Use only a pre-frozen ligand alias map and source-free mmCIF-derived local features. Score per structure. Permit ATP/ANP/AMP-PNP active-gamma states only if terminal gamma-equivalent atom, local Mg/Mn-compatible metal, catalytic-site locality, and pre-frozen acceptor/role features are present in the same structure. Otherwise abstain. Keep ADP/product-state/substrate-analog evidence as review-only support. Select the fresh tranche only after this policy and scorer implementation are frozen.",
+    "q5_data_before_activation": "Collect a fresh post-freeze tranche, fixed query manifest, mmCIF extraction logs, ligand-state calls, active-gamma/metal/acceptor measurements, abstention reasons, sibling-family controls, broad stress controls, real external hard-negative scored re-audit, threshold calibration records, source-review adjudication kept separate from features, and label-factory/registry gate artifacts before activation."
+  },
+  "ligand_state_decisions": [
+    {
+      "state": "ATP",
+      "state_class": "native_active_gamma_nucleotide",
+      "predictive_use": "allowed_if_all_frozen_conditions_pass",
+      "review_only_when": [
+        "remote from catalytic site",
+        "no local Mg/Mn-compatible metal context",
+        "no source-free acceptor or role feature",
+        "not in the same structure/model/assembly as the candidate acceptor",
+        "used in development rows selected before this freeze"
+      ],
+      "required_predictive_conditions": [
+        "ligand code and atom names parsed from mmCIF without source prose",
+        "terminal gamma phosphorus or gamma-equivalent atom materialized",
+        "nucleotide and metal local to catalytic-site residues under frozen distance rules",
+        "candidate acceptor/role features are source-free and pre-frozen",
+        "all required context co-materializes in the same structure row"
+      ],
+      "forbidden_uses": [
+        "using ATP text or EC/source labels to assign ePK state",
+        "using a separate ATP structure to repair a product-state acceptor row after candidate selection"
+      ]
+    },
+    {
+      "state": "ANP",
+      "state_class": "prewhitelisted_active_gamma_atp_state_analog",
+      "predictive_use": "allowed_if_all_frozen_conditions_pass",
+      "review_only_when": [
+        "terminal gamma-equivalent atom is absent or noncanonical under the frozen parser",
+        "ANP only provides structure-level active-state context",
+        "acceptor identity or role comes from source review",
+        "ANP is paired with a substrate/acceptor analog rather than a source-free protein acceptor feature"
+      ],
+      "required_predictive_conditions": [
+        "ANP is present in the frozen ligand alias map before tranche selection",
+        "terminal gamma-equivalent geometry is parseable",
+        "local metal and catalytic-site context pass frozen rules",
+        "source-free acceptor/role features pass frozen rules in the same structure"
+      ],
+      "forbidden_uses": [
+        "treating ANP plus B31 or another substrate analog as protein-substrate acceptor evidence",
+        "adding ANP-related exceptions after observing candidate outcomes"
+      ]
+    },
+    {
+      "state": "AMP-PNP",
+      "state_class": "prewhitelisted_active_gamma_atp_state_analog_alias",
+      "predictive_use": "allowed_if_all_frozen_conditions_pass",
+      "review_only_when": [
+        "the structure is found through source context and lacks source-free role or acceptor features",
+        "the alias is not present in the frozen ligand-code map",
+        "the row is used only to support post-hoc candidate review"
+      ],
+      "required_predictive_conditions": [
+        "AMP-PNP aliases and PDB ligand codes are frozen before candidate selection",
+        "terminal gamma-equivalent atom and active-state geometry are materialized",
+        "local metal and same-structure source-free acceptor/role features are present"
+      ],
+      "forbidden_uses": [
+        "manual alias expansion after seeing fresh tranche structures",
+        "using source-reviewed phosphosite support as a predictive feature"
+      ]
+    },
+    {
+      "state": "ADP",
+      "state_class": "product_or_post-transfer_nucleotide",
+      "predictive_use": "not_allowed",
+      "review_only_when": [
+        "ADP/Mg supports catalytic-site or product-state context",
+        "ADP marks a source-repair lead or selected-structure gap",
+        "ADP co-occurs with product or phosphorylated-substrate state"
+      ],
+      "required_predictive_conditions": [],
+      "forbidden_uses": [
+        "measuring gamma-to-acceptor geometry from ADP",
+        "counting ADP/Mg as active-state donor evidence",
+        "combining ADP product-state acceptor context with a separate ATP/ANP structure after candidate selection"
+      ]
+    },
+    {
+      "state": "product-state",
+      "state_class": "post-reaction_or_phosphorylated_product_context",
+      "predictive_use": "not_allowed",
+      "review_only_when": [
+        "ADP plus phosphorylated residue/product helps review mechanism plausibility",
+        "SEP/TPO or other product-like groups suggest acceptor context",
+        "product-state co-complex helps plan future source-free features"
+      ],
+      "required_predictive_conditions": [],
+      "forbidden_uses": [
+        "using product-state phosphosite identity as a source-free acceptor feature",
+        "using product-state rows as positive scoring examples",
+        "split-state repair across ATP-state and product-state PDBs"
+      ]
+    },
+    {
+      "state": "analogs",
+      "state_class": "split_between_nucleotide_donor_analogs_and_substrate_acceptor_analogs",
+      "predictive_use": "allowed_only_for_prewhitelisted_active_gamma_nucleotide_donor_analogs",
+      "review_only_when": [
+        "analog is a substrate, product, inhibitor, antibiotic, peptide mimic, or acceptor mimic",
+        "analog was identified through candidate-specific review",
+        "analog lacks terminal gamma-equivalent donor geometry",
+        "analog code was not present in the frozen alias map before tranche selection"
+      ],
+      "required_predictive_conditions": [
+        "donor analog is in the frozen active-gamma nucleotide allowlist",
+        "gamma-equivalent atom, local metal, and same-structure source-free acceptor/role features pass",
+        "analog use does not supply acceptor identity"
+      ],
+      "forbidden_uses": [
+        "using substrate/acceptor analogs such as B31-like context as predictive protein-substrate evidence",
+        "post-hoc analog admissibility decisions",
+        "manual analog rescue of rows already inspected"
+      ]
+    }
+  ],
+  "frozen_policy": {
+    "policy_version": "epk_ligand_state_evidence_policy_v0_20260520",
+    "predictive_input_boundary": {
+      "allowed_inputs": [
+        "mmCIF ligand codes and atom records parsed by a frozen implementation",
+        "pre-frozen active-gamma nucleotide alias map",
+        "source-free local coordinates for nucleotide, metal, catalytic-site residues, candidate acceptor atoms, chains, entities, and polymer topology",
+        "pre-frozen distance and abstention rules"
+      ],
+      "excluded_inputs": [
+        "mechanism text",
+        "entry names",
+        "EC identifiers",
+        "Rhea identifiers",
+        "UniProt prose",
+        "source entry ids",
+        "expert rationale",
+        "manual source review",
+        "candidate-specific repair notes"
+      ]
+    },
+    "active_gamma_nucleotide_allowlist": [
+      {
+        "state": "ATP",
+        "current_code_basis": [
+          "ATP"
+        ],
+        "predictive_allowed": true
+      },
+      {
+        "state": "ANP",
+        "current_code_basis": [
+          "ANP"
+        ],
+        "predictive_allowed": true
+      },
+      {
+        "state": "AMP-PNP",
+        "current_code_basis": [
+          "ANP",
+          "any additional AMP-PNP PDB ligand code only if explicitly listed in the frozen scorer config before tranche selection"
+        ],
+        "predictive_allowed": true
+      }
+    ],
+    "active_gamma_required_conditions": [
+      "terminal gamma or gamma-equivalent atom is materialized and parseable",
+      "local divalent metal context is present under frozen geometry rules",
+      "nucleotide, metal, catalytic-site context, and candidate acceptor/role features co-materialize in the same structure row",
+      "acceptor and role features are source-free and pre-frozen",
+      "row is not a development row used to design this policy"
+    ],
+    "mandatory_abstentions": [
+      "ADP-only or product-state-only rows",
+      "rows with no terminal gamma-equivalent atom under the frozen parser",
+      "split-state rows requiring ATP-state context from one PDB and acceptor/product context from another PDB",
+      "substrate/acceptor analog-only rows",
+      "homomeric chain-choice rows without source-free role disambiguation",
+      "rows requiring source review to assign kinase/substrate role or acceptor identity",
+      "rows requiring post-freeze ligand-code or threshold changes"
+    ],
+    "review_only_support_allowed": [
+      "ADP/Mg and product-state context for blocker routing",
+      "ANP/AMP-PNP/ATP structures lacking source-free acceptor or role features as source leads",
+      "substrate analog geometry such as B31-like evidence as review context",
+      "source-reviewed kinase-substrate co-complexes for post-score adjudication only",
+      "structure-level SEP/TPO or phosphosite context for review only"
+    ],
+    "fresh_tranche_rule": "A future evaluation tranche must be selected after this policy, ligand alias map, implementation version, thresholds or abstention policy, duplicate controls, and exclusion list are frozen. Source review may adjudicate labels after scoring, but must not feed predictive features."
+  },
+  "forbidden_or_leak_prone_context": [
+    {
+      "context": "after_the_fact_source_review",
+      "decision": "forbidden_as_predictive_input",
+      "examples": [
+        "source-reviewed phosphosite support for 4EKK, 5HVK, 6Z3R, 8OXM, or 8OXO",
+        "manual kinase/substrate role assignment from papers",
+        "source-authoritative acceptor identity review"
+      ]
+    },
+    {
+      "context": "candidate_specific_repair",
+      "decision": "forbidden_as_predictive_input",
+      "examples": [
+        "choosing an alternate ATP/ANP PDB after seeing a product-state miss",
+        "repairing residue mappings manually for one candidate",
+        "using m_csa:760-style split-state ATP/product fusion"
+      ]
+    },
+    {
+      "context": "text_identifier_or_label_leakage",
+      "decision": "forbidden_as_predictive_input",
+      "examples": [
+        "mechanism prose",
+        "entry names",
+        "EC lineage",
+        "Rhea reaction identifiers",
+        "UniProt functional text",
+        "M-CSA entry ids or source ids",
+        "candidate labels"
+      ]
+    },
+    {
+      "context": "post_hoc_policy_or_threshold_changes",
+      "decision": "forbidden",
+      "examples": [
+        "adding ligand codes after seeing fresh tranche hits",
+        "selecting a gamma-distance threshold from fresh outcomes",
+        "changing abstention handling to rescue known misses"
+      ]
+    },
+    {
+      "context": "non_source_free_substrate_identity",
+      "decision": "forbidden_as_predictive_input",
+      "examples": [
+        "homomeric chain choice as substrate mapping",
+        "same-chain hydroxyl proximity without role disambiguation",
+        "substrate/product analogs as protein-substrate identity",
+        "structure-level SEP/TPO as mapped acceptor identity"
+      ]
+    }
+  ],
+  "activation_data_requirements": [
+    {
+      "requirement_id": "frozen_implementation_manifest",
+      "required_before_activation": true,
+      "description": "Versioned scorer/config implementing this ligand-state policy, including ligand alias map, atom parser, metal rules, abstention rules, duplicate exclusions, and thresholds or threshold-selection protocol."
+    },
+    {
+      "requirement_id": "fresh_post_freeze_tranche",
+      "required_before_activation": true,
+      "description": "A fresh ePK evaluation tranche selected only after freeze, with exact query strings, retrieval date, PDB/accession list, exclusion of development rows, and immutable candidate manifest."
+    },
+    {
+      "requirement_id": "source_free_feature_audit",
+      "required_before_activation": true,
+      "description": "Per-row mmCIF-derived ligand-state calls, terminal gamma materialization, metal context, same-structure co-materialization, acceptor/role feature calls, abstention reasons, and parser failures."
+    },
+    {
+      "requirement_id": "sibling_and_broad_stress_controls",
+      "required_before_activation": true,
+      "description": "Scored NDK, PfkB, PfkA, ATP-grasp, GHMP, dNK, ASKHA, GHKL, and broad topology/query controls under the exact frozen policy, not under a separate review-only feature screen."
+    },
+    {
+      "requirement_id": "external_hard_negative_scored_reaudit",
+      "required_before_activation": true,
+      "description": "A real scored external hard-negative re-audit under the calibrated ePK scorer, not just feature abstention diagnostics."
+    },
+    {
+      "requirement_id": "threshold_and_abstention_calibration",
+      "required_before_activation": true,
+      "description": "Threshold selection or abstention policy calibrated on pre-declared calibration data, with fresh tranche held back for evaluation."
+    },
+    {
+      "requirement_id": "source_review_separation_log",
+      "required_before_activation": true,
+      "description": "Audit proving source review, literature review, phosphosite support, and expert rationale were used only for post-score adjudication or review labels, not predictive feature construction."
+    },
+    {
+      "requirement_id": "label_factory_and_registry_gate",
+      "required_before_activation": true,
+      "description": "A future review-only gate proving fingerprint registry extension, label factory behavior, countable import safety, and production activation criteria are implemented and pass."
+    }
+  ],
+  "warnings": [
+    "This artifact freezes policy text only; it does not implement a scorer.",
+    "Existing current-row and scout evidence remains development/review evidence because it was selected before this freeze.",
+    "ADP/product-state and substrate-analog evidence must stay review-only in prospective scoring.",
+    "Ligand-state policy can be frozen now for a future fresh tranche, but activation needs more evidence and gate artifacts."
+  ]
+}

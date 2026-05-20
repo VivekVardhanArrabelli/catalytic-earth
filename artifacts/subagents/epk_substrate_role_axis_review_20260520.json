@@ -1,0 +1,496 @@
+{
+  "metadata": {
+    "method": "epk_substrate_role_axis_review",
+    "review_date": "2026-05-20",
+    "subagent": "A",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "review_only": true,
+    "countable_label_candidate_count": 0,
+    "epk_score_computed": false,
+    "threshold_calibrated": false,
+    "ready_for_production_scoring": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "git_history_edited": false,
+    "overall_decision": "blocked_current_evidence_no_source_free_substrate_role_identity_axis_ready_for_frozen_policy",
+    "recommendation": "continue_one_preregistered_review_only_substrate_role_experiment_then_pivot_if_it_fails",
+    "source_free_policy_ready": false
+  },
+  "source_artifacts_inspected": [
+    "artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json",
+    "artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+    "artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json",
+    "artifacts/v3_epk_unified_prototype_broad_stress_with_next_tranche_amp_pnp_1025.json",
+    "artifacts/v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json",
+    "artifacts/v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json",
+    "artifacts/v3_epk_heteromeric_peptide_broader_stress_audit_1025.json",
+    "artifacts/v3_epk_heteromeric_source_free_role_rule_probe_1025.json",
+    "artifacts/v3_epk_heteromeric_broader_counteraxis_control_audit_1025.json",
+    "artifacts/v3_epk_heteromeric_ligand_asymmetry_role_audit_1025.json",
+    "artifacts/v3_epk_source_free_protein_substrate_role_discriminator_audit_1025.json",
+    "artifacts/v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json",
+    "artifacts/v3_epk_general_substrate_identity_gap_audit_1025.json",
+    "artifacts/v3_epk_length_band_substrate_identity_counteraxis_audit_1025.json",
+    "artifacts/v3_epk_mek_erk_broad_role_stress_audit_1025.json",
+    "artifacts/v3_epk_mek_erk_source_free_topology_ambiguity_counteraxis_1025.json",
+    "artifacts/v3_epk_mek_erk_source_free_topology_broader_stress_audit_1025.json",
+    "artifacts/v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json",
+    "artifacts/v3_epk_mek_erk_substrate_mode_fresh_stress_audit_1025.json",
+    "artifacts/v3_epk_substrate_mode_next_tranche_fresh_stress_amp_pnp_1025.json",
+    "artifacts/v3_epk_text_free_acceptor_feature_gap_audit_1025.json"
+  ],
+  "answers": {
+    "q1_source_free_features_already_failed_or_passed_bounded_controls": {
+      "passed_bounded_controls_but_not_policy_ready": [
+        {
+          "feature": "short_peptide_acceptor_identity",
+          "rule_summary": "candidate hydroxyl on a short peptide-like acceptor polymer lacking local nucleotide or metal context, with the gamma-associated polymer larger and ligand-context positive",
+          "passed_rows_or_counts": {
+            "current_peptide_positives": [
+              "6Z3R",
+              "8OXM",
+              "8OXO"
+            ],
+            "source_expansion_peptide_positives": [
+              "1O6K",
+              "1O6L"
+            ],
+            "nonaccepted_or_sibling_false_hits": 0,
+            "external_hard_negative_non_abstentions": 0
+          },
+          "bounded_control_result": "passes_current_and_exact_query_review_controls",
+          "why_not_ready": "narrow peptide-mode rule; no general folded-protein substrate identity"
+        },
+        {
+          "feature": "heteromeric_ligand_asymmetry_role",
+          "rule_summary": "gamma-associated chain carries local nucleotide or metal context while the candidate acceptor chain lacks that context",
+          "passed_rows_or_counts": {
+            "retained_source_valid_role_hits": 3,
+            "blocked_nonaccepted_or_ambiguous_hits": [
+              "7M0T",
+              "7M0W",
+              "8ZN6"
+            ],
+            "sibling_role_asymmetry_false_hits": 0
+          },
+          "bounded_control_result": "passes_current_role_controls_review_only",
+          "why_not_ready": "role direction does not establish acceptor or substrate identity"
+        },
+        {
+          "feature": "heteromeric_acceptor_chain_counteraxis",
+          "rule_summary": "local acceptor-chain ligand-context counteraxis over heteromeric and sibling controls",
+          "passed_rows_or_counts": {
+            "broader_heteromeric_reviewed_structure_count": 50,
+            "sibling_control_row_count": 36,
+            "residual_nonaccepted_rule_hit_count": 0,
+            "sibling_residual_false_hit_count": 0
+          },
+          "bounded_control_result": "passes_broader_review_controls_not_scoring_admissible",
+          "why_not_ready": "still lacks source-free kinase/substrate role assignment"
+        },
+        {
+          "feature": "current_protein_substrate_role_discriminator",
+          "rule_summary": "non-catalytic-chain protein acceptor context plus heteromeric entity topology for current protein-substrate rows",
+          "passed_rows_or_counts": {
+            "current_protein_positive_hits": [
+              "1IR3",
+              "2PHK"
+            ],
+            "heteromeric_protein_positive_hits": [
+              "5HVK"
+            ],
+            "protein_role_control_false_hits": 0
+          },
+          "bounded_control_result": "passes_current_controls_review_only",
+          "why_not_ready": "later source-expansion stress found relaxed protein-role false-hit risk at 7B56 and no broad source-valid protein positive"
+        },
+        {
+          "feature": "mek_erk_tyr_or_n_terminal_substrate_mode",
+          "rule_summary": "retain local tyrosine acceptors or N-terminal Ser/Thr/Tyr acceptors, carrying the existing topology-ambiguity counteraxis",
+          "passed_rows_or_counts": {
+            "retained_positive_controls": [
+              "1IR3",
+              "5HVK",
+              "6Z3R",
+              "9UUR",
+              "9UUX"
+            ],
+            "false_hits_blocked_by_substrate_mode": [
+              "2JJ2",
+              "4HPU",
+              "7B56",
+              "7ZDT"
+            ],
+            "false_hits_blocked_by_existing_topology": [
+              "7CAG",
+              "7ZDU",
+              "7ZE5",
+              "8BMS"
+            ]
+          },
+          "bounded_control_result": "passes_current_broad_stress_substrate_mode_controls_review_only",
+          "why_not_ready": "residue class and author-position are weak substrate identity; fresh controls were topology-confounded and 4EKK remained an unresolved fresh rule hit"
+        },
+        {
+          "feature": "unified_review_only_substrate_identity_prototype_current_surface",
+          "rule_summary": "diagnostic conjunction of gamma distance, local substrate-role context, ligand-analog exclusion, and unified substrate identity",
+          "passed_rows_or_counts": {
+            "positive_like_full_score_pdb_ids": [
+              "1IR3",
+              "1O6K",
+              "1O6L",
+              "2PHK",
+              "5HVK",
+              "6Z3R",
+              "8OXM",
+              "8OXO"
+            ],
+            "current_control_false_non_abstention_count": 0,
+            "imported_external_hard_negative_non_abstention_count": 0
+          },
+          "bounded_control_result": "passes_current_controls_review_only",
+          "why_not_ready": "broad stress later produced source-validation counterexamples and the scorer is not calibrated"
+        }
+      ],
+      "failed_or_blocked_features": [
+        {
+          "feature": "nearest_gamma_to_oxygen_acceptor_geometry",
+          "failed_on": "sibling ATP-family controls",
+          "false_hit_count": 11,
+          "false_hit_pdb_ids": [
+            "1TZ6",
+            "1WKL",
+            "3Q86",
+            "3R5F",
+            "4XYJ",
+            "5C1O",
+            "5XZ8",
+            "8W2H",
+            "8W2J",
+            "9OAN",
+            "9PFY"
+          ],
+          "status": "failed_review_only_not_scoring_admissible"
+        },
+        {
+          "feature": "heteromeric_topology_plus_gamma_distance_alone",
+          "failed_on": "nonaccepted or ambiguous heteromeric rule hits",
+          "false_or_nonaccepted_hit_pdb_ids": [
+            "7M0T",
+            "7M0W",
+            "8ZN6"
+          ],
+          "status": "blocked_source_free_rule_false_hit_risk"
+        },
+        {
+          "feature": "source_free_chain_topology_role_rule",
+          "failed_on": "same-accession phosphosite control risk",
+          "risk_pdb_ids": [
+            "3Q4Z",
+            "4I94",
+            "5XD6"
+          ],
+          "status": "blocked_source_free_topology_role_rule_false_hit_risk"
+        },
+        {
+          "feature": "naive_mek_erk_broad_role_rule",
+          "failed_on": "terminal broad-role false-hit surface",
+          "false_hit_pdb_ids": [
+            "2JJ2",
+            "4HPU",
+            "7B56",
+            "7CAG",
+            "7ZDT",
+            "7ZDU",
+            "7ZE5",
+            "8BMS"
+          ],
+          "status": "fails_closed_naive_broad_role_rule_false_hits_terminal_surface"
+        },
+        {
+          "feature": "source_free_topology_ambiguity_counteraxis",
+          "failed_on": "broader MEK/ERK topology stress after passing bounded residuals",
+          "blocked_false_hit_pdb_ids": [
+            "7CAG",
+            "7ZDU",
+            "7ZE5",
+            "8BMS"
+          ],
+          "residual_false_hit_pdb_ids": [
+            "2JJ2",
+            "4HPU",
+            "7B56",
+            "7ZDT"
+          ],
+          "status": "fails_closed_broader_topology_ambiguity_residual_false_hits"
+        },
+        {
+          "feature": "relaxed_generic_polymer_acceptor_identity",
+          "failed_on": "source-expansion nonpositive control",
+          "false_hit_pdb_ids": [
+            "7B56"
+          ],
+          "status": "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit"
+        },
+        {
+          "feature": "relaxed_folded_protein_substrate_role",
+          "failed_on": "source-expansion protein-role stress",
+          "false_hit_pdb_ids": [
+            "7B56"
+          ],
+          "status": "fails_closed_review_only_source_expansion_protein_role_false_hit"
+        },
+        {
+          "feature": "length_band_polymer_acceptor_identity_counteraxis",
+          "failed_on": "generalization, not current source-expansion controls",
+          "blocked_false_hit_pdb_ids": [
+            "7B56"
+          ],
+          "status": "passes_source_expansion_subset_only_not_general_epk_identity"
+        },
+        {
+          "feature": "unified_substrate_identity_broad_stress",
+          "failed_on": "outside-query source-validation counterexamples",
+          "blocked_or_rejected_pdb_ids": [
+            "2JJ2",
+            "4HPU",
+            "7B56",
+            "7T55",
+            "7T56",
+            "7T57",
+            "7ZDT",
+            "7ZDU",
+            "7ZE5",
+            "9L3M",
+            "9L3U",
+            "4EKK"
+          ],
+          "status": "bounded_stress_has_source_validation_counterexamples_review_only"
+        }
+      ]
+    },
+    "q2_policy_readiness": {
+      "answer": "No source-free substrate-role or substrate-identity rule is ready for a frozen ePK policy.",
+      "interpretation": "A plausible review-only composite exists for the current row list, but it is not a policy rule. The evidence is split across a narrow peptide identity rule, weak residue-position substrate-mode rules, bounded ligand-asymmetry role rules, and source-context labels. The general source-free identity problem remains unresolved for folded protein substrates and kinase-kinase or same-chain contexts.",
+      "blocker_assessment": "fundamental_with_current_evidence_not_proven_impossible_in_principle",
+      "blocking_reasons": [
+        "peptide-like acceptor identity is clean but mode-limited",
+        "generic polymer and relaxed folded-protein rules false-hit 7B56",
+        "topology-only role inference cannot safely assign kinase versus substrate direction",
+        "MEK/ERK substrate-mode rescue relies on residue class and author-position heuristics, with fresh stress either topology-confounded or unresolved",
+        "broad stress produced source-validation counterexamples before threshold calibration",
+        "no calibrated scorer or real external hard-negative scored re-audit exists"
+      ],
+      "candidate_rule_status": "review_only_skeleton_possible_not_freezable",
+      "production_policy_action": "do_not_freeze_do_not_activate_do_not_import_labels"
+    },
+    "q3_exact_next_experiment": {
+      "experiment_id": "epk_fresh_nonconfounded_folded_substrate_role_identity_stress_v1_review_only",
+      "purpose": "Test whether a source-free composite can retain peptide, heteromeric protein, MEK/ERK phosphosite, and source-expansion peptide positives while rejecting known false hits, sibling controls, and a fresh non-topology-confounded folded-substrate tranche.",
+      "do_not_run_yet": [
+        "production scorer activation",
+        "threshold calibration for label import",
+        "registry edits",
+        "artifact migration edits",
+        "clean held-out performance claims"
+      ],
+      "inputs": {
+        "must_retain_positive_controls": [
+          "1IR3",
+          "5HVK",
+          "6Z3R",
+          "8OXM",
+          "8OXO",
+          "9UUR",
+          "9UUX",
+          "1O6K",
+          "1O6L"
+        ],
+        "additional_current_positive_context": [
+          "2PHK"
+        ],
+        "must_reject_known_false_hits": [
+          "2JJ2",
+          "4HPU",
+          "7B56",
+          "7ZDT",
+          "7CAG",
+          "8BMS",
+          "7M0T",
+          "7M0W",
+          "9UW4"
+        ],
+        "must_reject_sibling_controls": [
+          "atp_grasp",
+          "ndk",
+          "pfka",
+          "pfkb"
+        ],
+        "must_abstain_or_reject_external_hard_negatives": [
+          "uniprot:P06744",
+          "uniprot:P78549",
+          "uniprot:Q3LXA3"
+        ],
+        "fresh_tranche_requirement": "pre-register a nonrepeat outside-query tranche enriched for source-reviewed heteromeric ePK or kinase-substrate co-complexes with a non-peptide folded protein substrate; exclude same-chain topology-confounded hits from success evidence and track them only as controls"
+      },
+      "source_free_features_to_materialize": [
+        "nearest_gamma_to_acceptor_distance_angstrom",
+        "candidate_acceptor_chain_has_local_nucleotide_or_metal",
+        "gamma_associated_chain_has_local_nucleotide_or_metal",
+        "acceptor_and_gamma_chain_or_entity_disjointness",
+        "acceptor_chain_residue_count_band_le_40_41_to_119_ge_120",
+        "gamma_chain_residue_count",
+        "gamma_chain_larger_than_acceptor_chain",
+        "topology_ambiguity_counteraxis",
+        "tyrosine_acceptor_mode",
+        "n_terminal_ser_thr_tyr_acceptor_mode",
+        "ligand_analog_exclusion"
+      ],
+      "candidate_composite_to_test_review_only": "gamma_distance_within_candidate_cutoff AND not_ligand_analog AND not_topology_ambiguous AND (short_peptide_acceptor_identity OR heteromeric_ligand_asymmetry_role_with_source_free_acceptor_identity OR tyr_or_n_terminal_substrate_mode)",
+      "success_criteria": [
+        "all must_retain_positive_controls are retained without source labels as predictive inputs",
+        "all must_reject_known_false_hits are rejected",
+        "no sibling control false hits",
+        "external hard negatives abstain or reject under the same feature surface",
+        "at least one fresh non-topology-confounded source-valid non-peptide folded-protein substrate positive is retained",
+        "no fresh nonpositive source-validation counterexample passes the composite"
+      ],
+      "failure_criteria": [
+        "any must-retain positive is missed",
+        "any listed false hit or sibling control passes",
+        "the only fresh pass evidence is topology-confounded",
+        "no source-valid folded-protein substrate positive can be sourced",
+        "any fresh source-validation counterexample passes"
+      ],
+      "expected_outcome_if_failure": "pivot away from substrate-role/source-free identity as the next ePK blocker and work a different ePK axis"
+    },
+    "q4_decisive_rows": {
+      "decisive_positive_rows": [
+        {
+          "pdb_id": "1IR3",
+          "reason": "current protein-substrate positive retained by unified prototype and MEK/ERK substrate-mode control; Tyr/N-terminal local acceptor context",
+          "mode": "protein_substrate"
+        },
+        {
+          "pdb_id": "5HVK",
+          "reason": "heteromeric protein-substrate positive and key role-direction test; retained by current protein-role and substrate-mode controls",
+          "mode": "heteromeric_protein_substrate"
+        },
+        {
+          "pdb_id": "6Z3R",
+          "reason": "current short-peptide positive retained by peptide identity and substrate-mode controls",
+          "mode": "short_peptide_substrate"
+        },
+        {
+          "pdb_id": "8OXM",
+          "reason": "current short-peptide positive retained by peptide identity",
+          "mode": "short_peptide_substrate"
+        },
+        {
+          "pdb_id": "8OXO",
+          "reason": "current short-peptide positive retained by peptide identity",
+          "mode": "short_peptide_substrate"
+        },
+        {
+          "pdb_id": "9UUR",
+          "reason": "source-reviewed MEK/ERK phosphosite positive retained by Tyr substrate-mode rule",
+          "mode": "mek_erk_tyrosine_phosphosite"
+        },
+        {
+          "pdb_id": "9UUX",
+          "reason": "source-reviewed MEK/ERK phosphosite positive retained by Tyr substrate-mode rule",
+          "mode": "mek_erk_tyrosine_phosphosite"
+        },
+        {
+          "pdb_id": "1O6K",
+          "reason": "source-expansion peptide positive retained by short-peptide role axis and unified prototype",
+          "mode": "short_peptide_source_expansion"
+        },
+        {
+          "pdb_id": "1O6L",
+          "reason": "source-expansion peptide positive retained by short-peptide role axis and unified prototype",
+          "mode": "short_peptide_source_expansion"
+        }
+      ],
+      "additional_positive_context_rows": [
+        {
+          "pdb_id": "2PHK",
+          "reason": "current artifact positive retained by unified prototype but not part of the user-named decisive row list",
+          "mode": "protein_substrate"
+        },
+        {
+          "pdb_id": "3TM0",
+          "reason": "ligand-analog positive excluded from the unified production candidate surface",
+          "mode": "ligand_analog_excluded"
+        }
+      ],
+      "decisive_negative_or_control_rows": [
+        {
+          "pdb_id": "7B56",
+          "reason": "critical mid-length folded/polymer false hit; breaks relaxed polymer and relaxed protein-role generalization while current substrate-mode blocks it",
+          "control_type": "source_expansion_nonpositive_control"
+        },
+        {
+          "pdb_id": "2JJ2",
+          "reason": "large acceptor/gamma chain context with local ligand on acceptor; blocked by peptide and substrate-mode axes",
+          "control_type": "prior_counterexample_repeat"
+        },
+        {
+          "pdb_id": "4HPU",
+          "reason": "nonpositive source-expansion control; blocked by peptide identity and substrate-mode axes",
+          "control_type": "prior_counterexample_repeat"
+        },
+        {
+          "pdb_id": "7ZDT",
+          "reason": "nonpositive source-expansion control with large chain context; residual for topology-only rule, blocked by substrate-mode",
+          "control_type": "prior_counterexample_repeat"
+        },
+        {
+          "pdb_id": "7CAG",
+          "reason": "transporter/topology false hit blocked by topology ambiguity, not by substrate-mode alone",
+          "control_type": "topology_ambiguity_false_hit"
+        },
+        {
+          "pdb_id": "8BMS",
+          "reason": "transporter/topology false hit blocked by topology ambiguity, not by substrate-mode alone",
+          "control_type": "topology_ambiguity_false_hit"
+        },
+        {
+          "pdb_id": "7M0T",
+          "reason": "fresh nonrepeat control blocked by substrate-mode but topology-confounded; cannot serve as clean success evidence",
+          "control_type": "fresh_topology_confounded_control"
+        },
+        {
+          "pdb_id": "7M0W",
+          "reason": "fresh nonrepeat control blocked by substrate-mode but topology-confounded; cannot serve as clean success evidence",
+          "control_type": "fresh_topology_confounded_control"
+        },
+        {
+          "pdb_id": "9UW4",
+          "reason": "fresh nonrepeat control blocked by substrate-mode but topology-confounded; cannot serve as clean success evidence",
+          "control_type": "fresh_topology_confounded_control"
+        }
+      ],
+      "unresolved_watch_rows": [
+        {
+          "pdb_id": "4EKK",
+          "reason": "fresh Amp-PNP next-tranche rule hit with source context insufficient; blocks policy readiness until resolved or rejected by a stronger local axis"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "json_validation_required": true,
+    "targeted_tests_added": false,
+    "notes": "This artifact is review-only synthesis and does not add executable tests."
+  },
+  "warnings": [
+    "Do not promote this review to a production label or fingerprint registry decision.",
+    "Do not use the candidate composite as a calibrated ePK score.",
+    "All source validation remains review context only, not a predictive input."
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "metadata": {
+    "artifact_id": "epk_sibling_counterfamily_stress_review_20260520",
+    "created_date": "2026-05-20",
+    "subagent": "C",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "review_only": true,
+    "production_activation_recommendation": "no_go",
+    "sibling_control_sufficiency_call": "sufficient_to_block_distance_only_thresholding_but_not_sufficient_for_frozen_production_policy",
+    "registry_edits_performed": false,
+    "artifact_migration_edits_performed": false,
+    "git_history_edits_performed": false
+  },
+  "source_artifacts_reviewed": [
+    "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+    "artifacts/v3_epk_negative_control_gamma_distance_distribution_1025.json",
+    "artifacts/v3_epk_sibling_negative_control_alternate_structure_plan_1025.json",
+    "artifacts/v3_epk_sibling_negative_control_alternate_gamma_distance_sample_1025.json",
+    "artifacts/v3_epk_negative_control_calibration_sufficiency_decision_1025.json",
+    "artifacts/v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json",
+    "artifacts/v3_epk_family_specific_homolog_mapping_review_pfkb_1025.json",
+    "artifacts/v3_epk_family_specific_homolog_mapping_review_pfka_1025.json",
+    "artifacts/v3_epk_family_specific_homolog_mapping_review_atp_grasp_1025.json",
+    "artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_pfkb_1025.json",
+    "artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_pfka_1025.json",
+    "artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_atp_grasp_1025.json",
+    "artifacts/v3_epk_family_specific_mapping_template_validation_review_1025.json",
+    "artifacts/v3_epk_review_only_scoring_prototype_1025.json",
+    "artifacts/v3_epk_substrate_acceptor_counteraxis_prototype_1025.json",
+    "artifacts/v3_epk_text_free_acceptor_feature_gap_audit_1025.json",
+    "artifacts/v3_epk_chain_ligand_acceptor_disambiguation_audit_1025.json",
+    "artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+    "artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json",
+    "artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json",
+    "artifacts/v3_epk_precount_gate_status_1025.json",
+    "docs/label_factory.md",
+    "work/atp_phosphoryl_transfer_family_expansion_700_notes.md",
+    "work/handoff.md",
+    "tests/test_leakage_closure.py",
+    "tests/test_geometry_artifact_regression.py"
+  ],
+  "family_coverage_assessment": [
+    {
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "coverage_status": "sufficient_current_review_control",
+      "control_depth": {
+        "homolog_gamma_metal_candidates": 4,
+        "mapped_homolog_controls": 4,
+        "measured_homolog_controls": 4,
+        "unified_review_rows": 12,
+        "chain_ligand_audit_rows": 4
+      },
+      "geometry_overlap_evidence": {
+        "pg_to_mapped_histidine_distance_range_angstrom": [2.899, 3.339],
+        "same_chain_hydroxyl_distance_range_angstrom": [3.487, 5.24],
+        "six_angstrom_candidate_hits": 4
+      },
+      "current_rule_result": "blocked_by_phosphohistidine_counteraxis_review_only",
+      "source_free_block_assessment": "Current rows are marked text_free_inputs_only and are blocked without source text, but the control is phosphohistidine-axis counterevidence rather than a general production scorer.",
+      "residual_risk": "Needs to remain as an explicit non-hydroxyl acceptor counteraxis in any frozen policy."
+    },
+    {
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "coverage_status": "strong_current_review_control",
+      "control_depth": {
+        "source_candidates": 10,
+        "gamma_metal_candidates": 9,
+        "mapped_family_specific_controls": 9,
+        "measured_family_specific_controls": 9,
+        "unified_review_rows": 19,
+        "chain_ligand_audit_rows": 9
+      },
+      "geometry_overlap_evidence": {
+        "pg_to_family_acid_base_distance_range_angstrom": [3.872, 5.596],
+        "same_chain_hydroxyl_distance_range_angstrom": [4.441, 6.808],
+        "six_angstrom_family_acid_base_hits": 9
+      },
+      "current_rule_result": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_free_block_assessment": "Current sibling rows are blocked in the unified and chain/ligand review surfaces without source text.",
+      "residual_risk": "One unresolved source candidate remains; production still needs a frozen, calibrated scorer rather than family-id-aware review blocking."
+    },
+    {
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "coverage_status": "adequate_current_review_control_but_partial_family_depth",
+      "control_depth": {
+        "source_candidates": 10,
+        "gamma_metal_candidates": 5,
+        "mapped_family_specific_controls": 5,
+        "measured_family_specific_controls": 5,
+        "unified_review_rows": 14,
+        "chain_ligand_audit_rows": 5
+      },
+      "geometry_overlap_evidence": {
+        "pg_to_family_acid_base_distance_range_angstrom": [3.611, 5.534],
+        "same_chain_hydroxyl_distance_range_angstrom": [3.221, 6.152],
+        "six_angstrom_family_acid_base_hits": 5
+      },
+      "current_rule_result": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_free_block_assessment": "Current sibling rows are blocked in the unified and chain/ligand review surfaces without source text.",
+      "residual_risk": "Half the sourced row set is unresolved; add replacement or repaired PfkA controls before any frozen policy claim."
+    },
+    {
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "coverage_status": "thin_current_review_control",
+      "control_depth": {
+        "source_candidates": 12,
+        "gamma_metal_candidates": 2,
+        "mapped_family_specific_controls": 2,
+        "measured_family_specific_controls": 2,
+        "unified_review_rows": 6,
+        "chain_ligand_audit_rows": 2
+      },
+      "geometry_overlap_evidence": {
+        "pg_to_family_acid_base_distance_range_angstrom": [3.691, 5.006],
+        "same_chain_hydroxyl_distance_range_angstrom": [3.672, 4.047],
+        "six_angstrom_family_acid_base_hits": 2
+      },
+      "current_rule_result": "blocked_by_family_specific_sibling_counteraxis_review_only",
+      "source_free_block_assessment": "The two measured controls are blocked without source text in the current review surfaces.",
+      "residual_risk": "Only 2 of 12 candidates are measured. ATP-grasp is enough to falsify distance-only geometry but too thin for production sibling sufficiency."
+    },
+    {
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "coverage_status": "under_covered_review_context_only",
+      "control_depth": {
+        "ontology_family_rows": 4,
+        "selected_structure_measured_controls": 0,
+        "alternate_measured_controls": 2,
+        "unified_review_rows": 2,
+        "chain_ligand_audit_rows": 2
+      },
+      "geometry_overlap_evidence": {
+        "alternate_pg_to_hydroxyl_distance_range_angstrom": [4.175, 9.92],
+        "six_angstrom_candidate_hits": 1
+      },
+      "current_rule_result": "available_rows_blocked_or_nonhit_review_only",
+      "source_free_block_assessment": "The current rows are blocked in review-only text-free surfaces, but ASKHA lacks a family-specific homolog/control set comparable to NDK/PfkA/PfkB/ATP-grasp.",
+      "residual_risk": "ASKHA remains a production blocker until multiple active-state gamma/Mg controls and sugar/carboxylate acceptor contexts are measured under the frozen rule."
+    },
+    {
+      "family_id": "ghkl",
+      "family_name": "GHKL/Bergerat ATP-binding kinases",
+      "coverage_status": "under_covered_review_context_only",
+      "control_depth": {
+        "ontology_family_rows": 2,
+        "selected_structure_measured_controls": 0,
+        "alternate_measured_controls": 1,
+        "unified_review_rows": 1,
+        "chain_ligand_audit_rows": 1
+      },
+      "geometry_overlap_evidence": {
+        "alternate_pg_to_hydroxyl_distance_range_angstrom": [7.91, 7.91],
+        "six_angstrom_candidate_hits": 0
+      },
+      "current_rule_result": "available_rows_blocked_or_nonhit_review_only",
+      "source_free_block_assessment": "The present GHKL rows do not false-hit, but coverage is too shallow and not family-specific enough for production.",
+      "residual_risk": "Needs histidine-kinase/PDK-like active-state controls, not only ontology boundary rows."
+    },
+    {
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "coverage_status": "under_covered_review_context_only",
+      "control_depth": {
+        "ontology_family_rows": 1,
+        "selected_structure_measured_controls": 1,
+        "alternate_measured_controls": 0,
+        "unified_review_rows": 1,
+        "chain_ligand_audit_rows": 1
+      },
+      "geometry_overlap_evidence": {
+        "selected_pg_to_hydroxyl_distance_range_angstrom": [6.184, 6.184],
+        "six_angstrom_candidate_hits": 0,
+        "eight_angstrom_candidate_hits": 1
+      },
+      "current_rule_result": "available_rows_blocked_or_nonhit_review_only",
+      "source_free_block_assessment": "The current GHMP row does not false-hit, but one row is not a credible frozen-policy control set.",
+      "residual_risk": "Needs multiple GHMP active-state controls spanning substrate classes and ligand/product states."
+    },
+    {
+      "family_id": "dnk",
+      "family_name": "Deoxynucleoside kinases",
+      "coverage_status": "under_covered_review_context_only",
+      "control_depth": {
+        "ontology_family_rows": 2,
+        "selected_structure_measured_controls": 1,
+        "alternate_measured_controls": 0,
+        "unified_review_rows": 1,
+        "chain_ligand_audit_rows": 1
+      },
+      "geometry_overlap_evidence": {
+        "selected_pg_to_hydroxyl_distance_range_angstrom": [3.232, 3.232],
+        "six_angstrom_candidate_hits": 1
+      },
+      "current_rule_result": "available_rows_blocked_review_only",
+      "source_free_block_assessment": "The present dNK row is blocked by missing ePK substrate-role context, but the family is only sparsely represented.",
+      "residual_risk": "dNK is a close hydroxyl-phosphorylation sibling and needs a family-specific active-state mini-panel before production activation."
+    }
+  ],
+  "rule_stress_results": [
+    {
+      "rule_or_axis": "distance_only_gamma_threshold",
+      "status": "not_robust",
+      "evidence": "NDK, PfkA, PfkB, ATP-grasp, ASKHA, dNK, and GHMP controls collide with candidate gamma-distance scenarios. The counteraxis decision keeps threshold_selection_decision=do_not_select_threshold."
+    },
+    {
+      "rule_or_axis": "nearest_gamma_to_oxygen_within_candidate_cutoff_v0",
+      "status": "falsified_by_sibling_controls",
+      "evidence": {
+        "candidate_threshold_angstrom": 6.0,
+        "negative_control_false_hit_count": 11,
+        "negative_control_false_hit_family_counts": {
+          "atp_grasp": 2,
+          "ndk": 4,
+          "pfka": 4,
+          "pfkb": 1
+        }
+      }
+    },
+    {
+      "rule_or_axis": "epk_substrate_acceptor_counteraxis_rule_v0_review_only",
+      "status": "blocks_current_measured_siblings_but_review_context_dependent",
+      "evidence": {
+        "blocked_counteraxis_row_count": 20,
+        "positive_like_acceptor_axis_row_count": 3,
+        "weak_axes": [
+          "source_supported_acceptor_axis_is_review_context_not_predictive",
+          "external_epk_specific_axes_not_materialized",
+          "threshold_not_calibrated_against_negative_controls",
+          "label_factory_gate_not_extended_for_epk"
+        ]
+      }
+    },
+    {
+      "rule_or_axis": "gamma_acceptor_non_catalytic_chain_or_ligand_analog_v0",
+      "status": "best_current_source_free_candidate_but_not_production_admissible",
+      "evidence": {
+        "current_positive_feature_hit_count": 3,
+        "negative_control_row_count": 25,
+        "negative_control_false_hit_count": 0,
+        "external_hard_negative_abstention_row_count": 3,
+        "production_blockers": [
+          "chain_ligand_context_generalization_not_calibrated",
+          "ligand_analog_policy_review_only",
+          "external_hard_negative_reaudit_not_scored",
+          "threshold_not_calibrated_against_negative_controls",
+          "registry_and_label_factory_extension_not_implemented"
+        ]
+      }
+    },
+    {
+      "rule_or_axis": "epk_unified_polymer_substrate_identity_rule_v0_review_only",
+      "status": "passes_current_controls_review_only_but_not_frozen",
+      "evidence": {
+        "positive_like_full_score_count": 8,
+        "positive_like_miss_pdb_ids": ["3TM0"],
+        "current_control_false_non_abstention_count": 0,
+        "legacy_sibling_counteraxis_row_count": 20,
+        "prototype_gate_status": "fail_closed_review_only",
+        "threshold_calibrated": false
+      }
+    },
+    {
+      "rule_or_axis": "relaxed_polymer_or_naive_protein_role_axes",
+      "status": "overfit_or_not_general",
+      "evidence": {
+        "relaxed_polymer_false_hit_pdb_ids": ["7B56"],
+        "source_free_chain_topology_same_accession_control_risk_pdb_ids": ["3Q4Z", "4I94", "5XD6"],
+        "mek_erk_broad_role_false_hit_pdb_ids": ["2JJ2", "4HPU", "7B56", "7CAG", "7ZDT", "7ZDU", "7ZE5", "8BMS"]
+      }
+    }
+  ],
+  "answers": {
+    "1_sufficiently_represented_sibling_families_today": "NDK, PfkB, PfkA, and ATP-grasp are represented enough to attack and block the current review-only distance/sibling surface. PfkB and NDK are strongest; PfkA is adequate but partial; ATP-grasp is thin but already falsifies distance-only thresholding.",
+    "2_under_covered_or_review_context_only_families": "ASKHA, dNK, GHKL, and GHMP are under-covered. They exist in the ATP/phosphoryl-transfer ontology and have selected or alternate review controls, but not a family-specific active-state control panel comparable to NDK/PfkA/PfkB/ATP-grasp. ATP-grasp also needs more breadth before production.",
+    "3_do_current_rules_block_requested_families_without_source_text": "For rows currently present, yes in review-only diagnostics: the unified and chain/ligand surfaces mark sibling controls text_free_inputs_only and report 0 current sibling false hits. However, the naive nearest-oxygen source-free rule fails 11 of 20 measured sibling controls, and the substrate-acceptor counteraxis still includes review-context acceptor support. Therefore the answer is yes for current-row blocking, no for a production-frozen source-free policy.",
+    "4_minimal_additional_controls_for_frozen_policy": "Add active-state gamma/Mg family-specific mini-panels for ASKHA, dNK, GHKL, and GHMP; expand ATP-grasp beyond two measured rows; repair or replace unresolved PfkA/PfkB/ATP-grasp rows; rerun the frozen chain/ligand or successor rule with source text masked; include product/partial nucleotide, split-state, same-chain hydroxyl, phosphohistidine, acyl-phosphate, and small-molecule acceptor controls; then run a real external hard-negative scored re-audit after the scorer is frozen.",
+    "5_activation_blocked_by_sibling_controls_or_only_substrate_identity": "Blocked by both. Current sibling controls are sufficient to reject distance-only thresholding, but not broad enough for a frozen policy across all eight sibling families. Substrate identity is also unresolved because ligand-analog policy, general substrate identity, and source-free role/acceptor assignment remain review-only."
+  },
+  "minimal_additional_controls": [
+    "At least 3-5 active-state gamma-plus-metal controls for ASKHA, dNK, GHKL, and GHMP, with mapped acceptor atom/class and local family catalytic residue context.",
+    "More ATP-grasp controls spanning acyl-phosphate or related phosphointermediate states, not only the two currently measured homologs.",
+    "Replacement or repair rows for unresolved PfkA, PfkB, and ATP-grasp candidates so the measured set is not a handpicked easy subset.",
+    "A frozen text-free scorer rerun where rule inputs are restricted to coordinates, ligands, chains, residue classes, polymer/ligand topology, and predeclared family/acceptor features, with source text masked.",
+    "A held-out sibling replay including product/partial nucleotide states, no-metal states, split ATP/substrate structures, same-chain hydroxyl decoys, phosphohistidine NDK, and ATP-grasp acyl-phosphate context.",
+    "A real external hard-negative scored re-audit after, not before, scorer freeze."
+  ],
+  "production_blocking_counterexamples": [
+    {
+      "blocker": "distance_only_threshold_collision",
+      "examples": ["NDK 1WKL/3Q86/9OAN/9PFY", "PfkB 1ESQ/1TZ6/3CQD/3IQ0/3UMO/3UMP/3UQD/3UQE/6ILT", "PfkA 3F5M/4XYJ/5XZ8/8W2H/8W2J", "ATP-grasp 3R5F/5C1O"]
+    },
+    {
+      "blocker": "nearest_oxygen_text_free_false_hits",
+      "examples": ["1TZ6", "1WKL", "3Q86", "3R5F", "4XYJ", "5C1O", "5XZ8", "8W2H", "8W2J", "9OAN", "9PFY"]
+    },
+    {
+      "blocker": "undercovered_close_hydroxyl_siblings",
+      "examples": ["dNK 2OCP at 3.232 Angstrom", "ASKHA 3FGU at 4.175 Angstrom", "GHMP 1OJ4 at 6.184 Angstrom"]
+    },
+    {
+      "blocker": "substrate_identity_not_frozen",
+      "examples": ["3TM0 ligand-analog positive excluded", "7B56 relaxed polymer false hit", "same-accession topology controls 3Q4Z/4I94/5XD6"]
+    }
+  ],
+  "go_no_go": {
+    "recommendation": "no_go",
+    "for_current_review_only_surface": "go_for_diagnostic_stress_only",
+    "for_production_activation": "no_go",
+    "reason": "Sibling controls already disprove source-free distance/nearest-oxygen thresholds and the only passing surfaces remain review-only, under-covered for four sibling families, not externally scored, and not frozen as production rules."
+  },
+  "verification": {
+    "new_artifact_json_validation": "passed_jq_empty",
+    "targeted_tests_added": false,
+    "targeted_tests_reason": "Review-only artifact generation only; no production code or test behavior changed.",
+    "expected_validation_commands": [
+      "jq empty artifacts/subagents/epk_sibling_counterfamily_stress_review_20260520.json"
+    ]
+  }
+}

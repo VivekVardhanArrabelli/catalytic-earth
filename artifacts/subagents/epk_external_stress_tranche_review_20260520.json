@@ -1,0 +1,547 @@
+{
+  "metadata": {
+    "method": "epk_external_stress_tranche_review",
+    "created_at": "2026-05-20T11:31:45Z",
+    "subagent": "D",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "review_only": true,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "mechanism_fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "git_history_edited": false,
+    "countable_label_candidate_count": 0,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "ready_for_production_scoring": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "threshold_calibrated": false,
+    "selected_threshold_angstrom": null,
+    "clean_heldout_performance_claim_permitted": false,
+    "clean_performance_evidence_candidate_count": 0,
+    "development_review_evidence_candidate_count": 8,
+    "candidate_specific_repairs_applied": false,
+    "rule_tuning_performed": false,
+    "candidate_selection_freeze_status": "frozen_for_future_review_only_probe_before_any_new_scoring_by_this_packet",
+    "freeze_scope": "PDB-level external structural stress candidates selected from existing review-only ePK sourcing artifacts; no label registry, fingerprint registry, import gate, or production scorer was changed.",
+    "existing_imported_external_hard_negative_entry_ids": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "candidate_count": 8,
+    "primary_fresh_nonrepeat_candidate_count": 1,
+    "already_observed_regression_context_candidate_count": 7,
+    "primary_fresh_nonrepeat_candidate_ids": [
+      "pdb:4EKK"
+    ],
+    "regression_context_candidate_ids": [
+      "pdb:7ZE5",
+      "pdb:7B56",
+      "pdb:7ZDT",
+      "pdb:2JJ2",
+      "pdb:4HPU",
+      "pdb:9L3U",
+      "pdb:7T55"
+    ],
+    "recommended_frozen_candidate_ids": [
+      "pdb:4EKK",
+      "pdb:7ZE5",
+      "pdb:7B56",
+      "pdb:7ZDT",
+      "pdb:2JJ2",
+      "pdb:4HPU",
+      "pdb:9L3U",
+      "pdb:7T55"
+    ],
+    "selection_rule": "Select source-validation-blocked external PDB structures with ATP, ANP, or AMP-PNP/Mg-like gamma context and a local Ser/Thr hydroxyl within the 6.0 angstrom candidate cutoff, prioritizing fresh nonrepeat rows and retaining older blocked rows only as regression context.",
+    "freeze_before_scoring_requirements": [
+      "record candidate ids, source artifacts, ligand state, acceptor chain/residue, gamma-associated chain, and nearest gamma distance before any new ePK score run",
+      "run only rules that were frozen before this candidate list was assembled",
+      "report every frozen row, including misses and failures",
+      "do not tune thresholds, source filters, ligand policies, role rules, or repairs after looking at row outcomes",
+      "separate source-validation text and structure titles from predictive/import evidence"
+    ],
+    "predictive_or_import_evidence_allowed_if_future_gated": [
+      "local gamma-capable adenine nucleotide or analog presence from structure",
+      "local metal context from structure",
+      "Ser/Thr/Tyr hydroxyl acceptor atom identity and gamma-to-acceptor distance from coordinates",
+      "polymer chain/entity topology, acceptor chain length, and local nucleotide/metal absence on acceptor chain when computed without source labels",
+      "pre-registered counteraxes and sibling controls frozen before tranche scoring"
+    ],
+    "review_only_context_not_predictive": [
+      "PDB structure title",
+      "RCSB or UniProt text-query terms",
+      "UniProt names, EC numbers, Rhea identifiers, catalytic activity prose, and mechanism prose",
+      "source-validation outcome labels such as blocked_source_context_insufficient_review_only",
+      "candidate-specific repair decisions, post-hoc rationales, and human/expert review notes",
+      "known counterexample status for rows already used in earlier rule diagnostics"
+    ],
+    "current_rules_testable_without_leakage": "yes_for_review_only_diagnostics_only",
+    "current_rules_leakage_conditions": [
+      "the 8-row list must be treated as frozen before a new run",
+      "4EKK is the only primary fresh nonrepeat row for a future unified-rule probe in this packet",
+      "7ZE5, 7B56, 7ZDT, 2JJ2, 4HPU, 9L3U, and 7T55 were already observed in prior broad-stress diagnostics and cannot support clean performance claims",
+      "no threshold selection or rule repair may use candidate-specific outcomes from this tranche"
+    ],
+    "main_loop_recommendation": "run_this_tranche_now_as_review_only_stress_regression_and_diagnostic_only; do_not_use_as_clean_performance_evidence",
+    "forbidden_import_or_scoring_claims": [
+      "do not claim any candidate is import-ready",
+      "do not claim any candidate is a countable label",
+      "do not claim external hard negatives were scored under a calibrated ePK scorer",
+      "do not claim a selected ePK threshold exists",
+      "do not activate the analog/product-state policy",
+      "do not use ligand-analog evidence to rescue production positive coverage",
+      "do not use source text, EC labels, UniProt names, or structure titles as predictive features",
+      "do not use candidate-specific repairs or post-hoc review to claim clean held-out performance",
+      "do not edit production label registries, fingerprint registries, mechanism_fingerprints.json, artifact migrations, or Git history"
+    ],
+    "source_artifacts": [
+      "artifacts/v3_epk_substrate_mode_next_tranche_candidate_scout_amp_pnp_1025.json",
+      "artifacts/v3_epk_substrate_mode_next_tranche_source_validation_amp_pnp_1025.json",
+      "artifacts/v3_epk_substrate_mode_next_tranche_fresh_stress_amp_pnp_1025.json",
+      "artifacts/v3_epk_unified_next_broad_stress_candidate_scout_amp_pnp_peptide_1025.json",
+      "artifacts/v3_epk_unified_next_broad_stress_source_validation_review_amp_pnp_peptide_1025.json",
+      "artifacts/v3_epk_unified_next_broad_stress_candidate_scout_amp_pnp_peptide_round2_1025.json",
+      "artifacts/v3_epk_unified_next_broad_stress_source_validation_review_amp_pnp_peptide_round2_1025.json",
+      "artifacts/v3_epk_unified_next_broad_stress_candidate_scout_broad_text_atp_round2_1025.json",
+      "artifacts/v3_epk_unified_next_broad_stress_source_validation_review_broad_text_atp_round2_1025.json",
+      "artifacts/v3_epk_unified_next_broad_stress_candidate_scout_broad_text_atp_round3_1025.json",
+      "artifacts/v3_epk_unified_next_broad_stress_source_validation_review_broad_text_atp_round3_1025.json",
+      "artifacts/v3_epk_unified_next_broad_stress_candidate_scout_protein_substrate_anp_round3_1025.json",
+      "artifacts/v3_epk_unified_next_broad_stress_source_validation_review_protein_substrate_anp_round3_1025.json",
+      "artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+      "artifacts/v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json",
+      "artifacts/v3_epk_review_only_external_hard_negative_score_probe_1025.json",
+      "artifacts/v3_epk_chain_ligand_external_hard_negative_feature_screen_1025.json",
+      "artifacts/v3_epk_heteromeric_peptide_external_hard_negative_probe_1025.json",
+      "docs/external_source_transfer.md"
+    ]
+  },
+  "rows": [
+    {
+      "candidate_id": "pdb:4EKK",
+      "pdb_id": "4EKK",
+      "rank": 1,
+      "priority": "primary_fresh_nonrepeat",
+      "freshness_status": "fresh_nonrepeat_for_future_unified_rule_probe_but_substrate_mode_diagnostic_already_seen",
+      "stress_lane": "amp_pnp_mg_substrate_role_false_positive",
+      "stress_axes": [
+        "substrate_role_direction",
+        "atp_analog_gamma_geometry",
+        "kinase_partner_chain_confusion"
+      ],
+      "selection_reason": "Strong local ANP gamma to Ser/Thr geometry on partner chains, but source validation found no explicit kinase-substrate source context.",
+      "predictive_or_import_evidence_if_future_gated": {
+        "candidate_threshold_angstrom": 6.0,
+        "nearest_gamma_distance_angstrom": 3.228,
+        "gamma_ligand_code": "ANP",
+        "candidate_acceptor_chain_name": "D",
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_auth_seq_id": "7",
+        "gamma_associated_polymer_chain_name": "B",
+        "text_free_inputs_only": true
+      },
+      "review_only_context": {
+        "structure_title": "Akt1 with AMP-PNP",
+        "chain_accessions": {
+          "A": [
+            "P31749"
+          ],
+          "B": [
+            "P31749"
+          ],
+          "C": [
+            "P49841"
+          ],
+          "D": [
+            "P49841"
+          ]
+        },
+        "source_validation_status": "blocked_source_context_insufficient_review_only",
+        "source_validation_evidence": [
+          "no_explicit_kinase_substrate_source_context_detected"
+        ]
+      },
+      "prior_diagnostic_exposure": {
+        "unified_review_only_scoring_prototype_seen": false,
+        "substrate_mode_fresh_stress_seen": true,
+        "prior_decision": "fresh_nonrepeat_rule_hit_unresolved_review_only"
+      },
+      "terminal_review_decision": "selected_for_frozen_review_only_stress_tranche_pending_future_unified_rule_probe",
+      "clean_performance_evidence_admissible": false,
+      "clean_performance_blocker": "row selected after reading prior substrate-mode diagnostic; future use is review-only unless a stricter pre-score freeze is independently recorded",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "remaining_blockers": [
+        "source_context_insufficient",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ]
+    },
+    {
+      "candidate_id": "pdb:7ZE5",
+      "pdb_id": "7ZE5",
+      "rank": 2,
+      "priority": "regression_context",
+      "freshness_status": "previously_observed_in_broad_stress_controls",
+      "stress_lane": "abc_transporter_atp_mg_false_positive",
+      "stress_axes": [
+        "atp_mg_false_positive",
+        "interchain_serine_near_gamma",
+        "non_kinase_transferase_context"
+      ],
+      "selection_reason": "ABC transporter row with ATP/ANP and Mg-like context plus a Ser hydroxyl within the candidate cutoff; source validation blocks kinase-substrate interpretation.",
+      "predictive_or_import_evidence_if_future_gated": {
+        "candidate_threshold_angstrom": 6.0,
+        "nearest_gamma_distance_angstrom": 3.876,
+        "gamma_ligand_code": "ATP",
+        "candidate_acceptor_chain_name": "D",
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_auth_seq_id": "487",
+        "gamma_associated_polymer_chain_name": "C",
+        "text_free_inputs_only": true
+      },
+      "review_only_context": {
+        "entity_context": [
+          "ATP-binding/permease protein CydC",
+          "ATP-binding/permease protein CydD",
+          "MAGNESIUM ION",
+          "ADENOSINE-5'-TRIPHOSPHATE",
+          "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER"
+        ],
+        "source_validation_status": "blocked_source_context_insufficient_review_only",
+        "source_validation_evidence": [
+          "no_explicit_kinase_substrate_source_context_detected"
+        ]
+      },
+      "prior_diagnostic_exposure": {
+        "unified_review_only_scoring_prototype_seen": true,
+        "prior_unified_score": 0.0,
+        "prior_unified_decision": "control_blocked_by_unified_identity_counteraxis_review_only"
+      },
+      "terminal_review_decision": "retain_as_review_only_regression_counterexample_not_clean_performance_evidence",
+      "clean_performance_evidence_admissible": false,
+      "clean_performance_blocker": "already scored in prior unified review-only prototype",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "remaining_blockers": [
+        "already_observed_in_rule_diagnostic",
+        "control_row_not_epk_positive_label",
+        "threshold_not_calibrated_against_broad_controls"
+      ]
+    },
+    {
+      "candidate_id": "pdb:7B56",
+      "pdb_id": "7B56",
+      "rank": 3,
+      "priority": "regression_context",
+      "freshness_status": "previously_observed_in_broad_stress_controls",
+      "stress_lane": "midlength_folded_substrate_role_false_hit",
+      "stress_axes": [
+        "substrate_role_direction",
+        "folded_protein_role_false_positive",
+        "anp_mg_context"
+      ],
+      "selection_reason": "Known relaxed folded-protein role false hit: local geometry and role-like topology are tempting, but source validation blocks explicit kinase-substrate interpretation.",
+      "predictive_or_import_evidence_if_future_gated": {
+        "candidate_threshold_angstrom": 6.0,
+        "nearest_gamma_distance_angstrom": 3.92,
+        "gamma_ligand_code": "ANP",
+        "candidate_acceptor_chain_name": "A",
+        "candidate_acceptor_residue_code": "SER",
+        "acceptor_chain_residue_count": 68,
+        "acceptor_chain_lacks_local_nucleotide_or_metal": true,
+        "gamma_chain_has_local_nucleotide_or_metal": true,
+        "text_free_inputs_only": true
+      },
+      "review_only_context": {
+        "structure_title": "Crystal structure of CaMKII-actinin complex bound to AMPPNP",
+        "source_validation_status": "blocked_source_context_insufficient_review_only",
+        "source_validation_evidence": [
+          "no_explicit_kinase_substrate_source_context_detected"
+        ]
+      },
+      "prior_diagnostic_exposure": {
+        "unified_review_only_scoring_prototype_seen": true,
+        "prior_unified_score": 0.0,
+        "prior_unified_decision": "control_blocked_by_unified_identity_counteraxis_review_only",
+        "relaxed_folded_protein_role_rule_hit": true,
+        "protein_role_stress_decision": "nonpositive_source_expansion_protein_role_false_hit"
+      },
+      "terminal_review_decision": "retain_as_review_only_regression_counterexample_not_clean_performance_evidence",
+      "clean_performance_evidence_admissible": false,
+      "clean_performance_blocker": "already used to identify a relaxed protein-role false hit",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "remaining_blockers": [
+        "candidate_specific_false_hit_already_seen",
+        "no_source_valid_expansion_protein_substrate_positive",
+        "threshold_not_calibrated_against_negative_controls"
+      ]
+    },
+    {
+      "candidate_id": "pdb:7ZDT",
+      "pdb_id": "7ZDT",
+      "rank": 4,
+      "priority": "regression_context",
+      "freshness_status": "previously_observed_in_broad_stress_controls",
+      "stress_lane": "abc_transporter_atp_bound_state_counterexample",
+      "stress_axes": [
+        "atp_mg_false_positive",
+        "local_role_context_decoy",
+        "serine_near_gamma"
+      ],
+      "selection_reason": "ATP-bound CydDC row with close Ser-gamma geometry and local role-context pressure, but no explicit kinase-substrate source context.",
+      "predictive_or_import_evidence_if_future_gated": {
+        "candidate_threshold_angstrom": 6.0,
+        "nearest_gamma_distance_angstrom": 3.71,
+        "gamma_ligand_code": "ATP",
+        "candidate_acceptor_chain_name": "D",
+        "candidate_acceptor_residue_code": "SER",
+        "local_substrate_role_context_present_prior_axis_value": 1,
+        "text_free_inputs_only": true
+      },
+      "review_only_context": {
+        "structure_title": "Occ(apo/return) conformation of CydDC mutant (E500Q.C) in ATP(CydC) bound state (Dataset-18)",
+        "source_validation_status": "blocked_source_context_insufficient_review_only",
+        "source_validation_evidence": [
+          "no_explicit_kinase_substrate_source_context_detected"
+        ]
+      },
+      "prior_diagnostic_exposure": {
+        "unified_review_only_scoring_prototype_seen": true,
+        "prior_unified_score": 0.0,
+        "prior_unified_decision": "control_blocked_by_unified_identity_counteraxis_review_only"
+      },
+      "terminal_review_decision": "retain_as_review_only_regression_counterexample_not_clean_performance_evidence",
+      "clean_performance_evidence_admissible": false,
+      "clean_performance_blocker": "already scored in prior unified review-only prototype",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "remaining_blockers": [
+        "already_observed_in_rule_diagnostic",
+        "control_row_not_epk_positive_label",
+        "threshold_not_calibrated_against_broad_controls"
+      ]
+    },
+    {
+      "candidate_id": "pdb:2JJ2",
+      "pdb_id": "2JJ2",
+      "rank": 5,
+      "priority": "regression_context",
+      "freshness_status": "previously_observed_in_broad_stress_controls",
+      "stress_lane": "f1_atpase_anp_false_positive",
+      "stress_axes": [
+        "atp_mg_false_positive",
+        "non_kinase_nucleotide_enzyme",
+        "large_chain_serine_near_gamma"
+      ],
+      "selection_reason": "Non-kinase nucleotide enzyme with ANP and close Ser-gamma geometry; useful as a hard ATP/Mg negative control.",
+      "predictive_or_import_evidence_if_future_gated": {
+        "candidate_threshold_angstrom": 6.0,
+        "nearest_gamma_distance_angstrom": 5.466,
+        "gamma_ligand_code": "ANP",
+        "candidate_acceptor_chain_name": "I",
+        "candidate_acceptor_residue_code": "SER",
+        "acceptor_chain_residue_count": 479,
+        "gamma_chain_has_local_nucleotide_or_metal": true,
+        "text_free_inputs_only": true
+      },
+      "review_only_context": {
+        "structure_title": "The Structure of F1-ATPase inhibited by quercetin.",
+        "source_validation_status": "blocked_source_context_insufficient_review_only",
+        "source_validation_evidence": [
+          "no_explicit_kinase_substrate_source_context_detected"
+        ]
+      },
+      "prior_diagnostic_exposure": {
+        "unified_review_only_scoring_prototype_seen": true,
+        "prior_unified_score": 0.0,
+        "prior_unified_decision": "control_blocked_by_unified_identity_counteraxis_review_only",
+        "relaxed_folded_protein_role_rule_hit": false
+      },
+      "terminal_review_decision": "retain_as_review_only_regression_counterexample_not_clean_performance_evidence",
+      "clean_performance_evidence_admissible": false,
+      "clean_performance_blocker": "already scored in prior unified review-only prototype",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "remaining_blockers": [
+        "already_observed_in_rule_diagnostic",
+        "control_row_not_epk_positive_label",
+        "threshold_not_calibrated_against_broad_controls"
+      ]
+    },
+    {
+      "candidate_id": "pdb:4HPU",
+      "pdb_id": "4HPU",
+      "rank": 6,
+      "priority": "regression_context",
+      "freshness_status": "previously_observed_in_broad_stress_controls",
+      "stress_lane": "pk_inhibitor_partner_chain_role_decoy",
+      "stress_axes": [
+        "substrate_role_direction",
+        "anp_mg_context",
+        "large_acceptor_chain_decoy"
+      ],
+      "selection_reason": "Kinase/inhibitor-like complex with ANP and Ser/Thr geometry on a large chain, but source validation does not support treating the chain as the phosphorylated substrate.",
+      "predictive_or_import_evidence_if_future_gated": {
+        "candidate_threshold_angstrom": 6.0,
+        "nearest_gamma_distance_angstrom": 5.779,
+        "gamma_ligand_code": "ANP",
+        "candidate_acceptor_chain_name": "E",
+        "candidate_acceptor_residue_code": "SER",
+        "candidate_acceptor_auth_seq_id": "53",
+        "acceptor_chain_residue_count": 336,
+        "gamma_associated_polymer_chain_name": "I",
+        "text_free_inputs_only": true
+      },
+      "review_only_context": {
+        "chain_accessions": {
+          "E": [
+            "P05132"
+          ],
+          "I": [
+            "P63248"
+          ]
+        },
+        "source_validation_status": "blocked_source_context_insufficient_review_only",
+        "source_validation_evidence": [
+          "no_explicit_kinase_substrate_source_context_detected"
+        ]
+      },
+      "prior_diagnostic_exposure": {
+        "unified_review_only_scoring_prototype_seen": true,
+        "prior_unified_score": 0.0,
+        "prior_unified_decision": "control_blocked_by_unified_identity_counteraxis_review_only",
+        "relaxed_folded_protein_role_rule_hit": false
+      },
+      "terminal_review_decision": "retain_as_review_only_regression_counterexample_not_clean_performance_evidence",
+      "clean_performance_evidence_admissible": false,
+      "clean_performance_blocker": "already scored in prior unified review-only prototype",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "remaining_blockers": [
+        "already_observed_in_rule_diagnostic",
+        "control_row_not_epk_positive_label",
+        "threshold_not_calibrated_against_broad_controls"
+      ]
+    },
+    {
+      "candidate_id": "pdb:9L3U",
+      "pdb_id": "9L3U",
+      "rank": 7,
+      "priority": "regression_context",
+      "freshness_status": "previously_observed_in_broad_stress_controls",
+      "stress_lane": "tight_thr_gamma_broad_text_counterexample",
+      "stress_axes": [
+        "atp_mg_false_positive",
+        "tight_gamma_distance",
+        "broad_text_query_source_leakage_guard"
+      ],
+      "selection_reason": "Lowest-distance broad-query blocked counterexample among the retained rows; useful for testing that tight Thr-gamma geometry alone is insufficient.",
+      "predictive_or_import_evidence_if_future_gated": {
+        "candidate_threshold_angstrom": 6.0,
+        "nearest_gamma_distance_angstrom": 3.291,
+        "candidate_acceptor_chain_name": "A",
+        "candidate_acceptor_residue_code": "THR",
+        "text_free_inputs_only": true
+      },
+      "review_only_context": {
+        "source_validation_status": "blocked_source_context_insufficient_review_only",
+        "source_validation_context": "broad text-query row; source authority did not confirm kinase-substrate chemistry"
+      },
+      "prior_diagnostic_exposure": {
+        "unified_review_only_scoring_prototype_seen": true,
+        "prior_unified_score": 0.0,
+        "prior_unified_decision": "control_blocked_by_unified_identity_counteraxis_review_only"
+      },
+      "terminal_review_decision": "retain_as_review_only_regression_counterexample_not_clean_performance_evidence",
+      "clean_performance_evidence_admissible": false,
+      "clean_performance_blocker": "already scored in prior unified review-only prototype",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "remaining_blockers": [
+        "already_observed_in_rule_diagnostic",
+        "control_row_not_epk_positive_label",
+        "threshold_not_calibrated_against_broad_controls"
+      ]
+    },
+    {
+      "candidate_id": "pdb:7T55",
+      "pdb_id": "7T55",
+      "rank": 8,
+      "priority": "regression_context",
+      "freshness_status": "previously_observed_in_broad_stress_controls",
+      "stress_lane": "same_or_large_chain_atp_thr_counterexample",
+      "stress_axes": [
+        "atp_mg_false_positive",
+        "same_chain_or_large_chain_role_decoy",
+        "threonine_near_gamma"
+      ],
+      "selection_reason": "ATP row with a Thr hydroxyl inside the candidate cutoff but no explicit kinase-substrate source context; representative of the 7T55/7T56/7T57 cluster.",
+      "predictive_or_import_evidence_if_future_gated": {
+        "candidate_threshold_angstrom": 6.0,
+        "nearest_gamma_distance_angstrom": 5.767,
+        "gamma_ligand_code": "ATP",
+        "candidate_acceptor_chain_name": "B",
+        "candidate_acceptor_residue_code": "THR",
+        "acceptor_chain_residue_count": 715,
+        "text_free_inputs_only": true
+      },
+      "review_only_context": {
+        "source_validation_status": "blocked_source_context_insufficient_review_only",
+        "source_validation_evidence": [
+          "no_explicit_kinase_substrate_source_context_detected"
+        ],
+        "cluster_representative_for": [
+          "pdb:7T55",
+          "pdb:7T56",
+          "pdb:7T57"
+        ]
+      },
+      "prior_diagnostic_exposure": {
+        "unified_review_only_scoring_prototype_seen": true,
+        "prior_unified_score": 0.0,
+        "prior_unified_decision": "control_blocked_by_unified_identity_counteraxis_review_only",
+        "relaxed_folded_protein_role_rule_hit": false
+      },
+      "terminal_review_decision": "retain_as_review_only_regression_counterexample_not_clean_performance_evidence",
+      "clean_performance_evidence_admissible": false,
+      "clean_performance_blocker": "already scored in prior unified review-only prototype",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "remaining_blockers": [
+        "already_observed_in_rule_diagnostic",
+        "control_row_not_epk_positive_label",
+        "threshold_not_calibrated_against_broad_controls"
+      ]
+    }
+  ],
+  "warnings": [
+    "This artifact freezes and triages a review-only stress tranche; it does not run a new scorer.",
+    "Only pdb:4EKK is primary fresh nonrepeat for a future unified-rule probe, and even it has prior substrate-mode diagnostic exposure.",
+    "Rows already present in prior broad-stress diagnostics are regression context only and cannot support clean held-out performance claims.",
+    "All import, threshold, registry, and production scoring claims remain forbidden."
+  ]
+}
