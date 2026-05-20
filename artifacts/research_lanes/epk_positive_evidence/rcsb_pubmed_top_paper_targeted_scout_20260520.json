@@ -1,0 +1,5375 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "no_active_gamma_donor_atom_review_only": 54,
+      "no_heteromeric_candidate_hit_review_only": 6
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T16:28:19Z",
+    "heteromeric_candidate_pdb_ids": [],
+    "heteromeric_candidate_structure_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_bounded_rcsb_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "review_only": true,
+    "review_only_rule": "This lane-local scout uses RCSB full-text surfaces plus transient mmCIF geometry to identify source-validation leads only. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 7,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 63,
+    "surface_total_count_reported_total": 191,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 60
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 44,
+      "atom_count_model_1": 2282,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Peptide ligands of pp60(c-src) SH2 domains: a thermodynamic and structural study.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1A07",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "C-SRC TYROSINE KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "ACE-MALONYL TYR-GLU-(N,N-DIPENTYL AMINE)",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 43,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "C-SRC (SH2 DOMAIN) COMPLEXED WITH ACE-MALONYL TYR-GLU-(N,N-DIPENTYL AMINE)"
+    },
+    {
+      "acceptor_atom_count": 45,
+      "atom_count_model_1": 2199,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Peptide ligands of pp60(c-src) SH2 domains: a thermodynamic and structural study.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1A08",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "C-SRC TYROSINE KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "ACE-DIFLUORO PHOSPHOTYR-GLU-(N,N-DIPENTYL AMINE)",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 44,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "C-SRC (SH2 DOMAIN) COMPLEXED WITH ACE-DIFLUORO PHOSPHOTYR-GLU-(N,N-DIPENTYL AMINE)"
+    },
+    {
+      "acceptor_atom_count": 45,
+      "atom_count_model_1": 2733,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Peptide ligands of pp60(c-src) SH2 domains: a thermodynamic and structural study.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1A09",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "C-SRC TYROSINE KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "ACE-FORMYL PHOSPHOTYR-GLU-(N,N-DIPENTYL AMINE)",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 45,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "C-src (SH2 domain) complexed with ace-formyl phosphotyr-glu-(n,n-dipentyl amine)"
+    },
+    {
+      "acceptor_atom_count": 47,
+      "atom_count_model_1": 2734,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Peptide ligands of pp60(c-src) SH2 domains: a thermodynamic and structural study.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1A1A",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "C-SRC TYROSINE KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "ACE-FORMYL PHOSPHOTYR-GLU-(N,N-DIPENTYL AMINE)",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 49,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "C-SRC (SH2 DOMAIN WITH C188A MUTATION) COMPLEXED WITH ACE-FORMYL PHOSPHOTYR-GLU-(N,N-DIPENTYL AMINE)"
+    },
+    {
+      "acceptor_atom_count": 45,
+      "atom_count_model_1": 2158,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Peptide ligands of pp60(c-src) SH2 domains: a thermodynamic and structural study.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1A1B",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "C-SRC TYROSINE KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "ACE-PHOSPHOTYR-GLU-(N,N-DIPENTYL AMINE)",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 46,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "C-SRC (SH2 DOMAIN) COMPLEXED WITH ACE-PHOSPHOTYR-GLU-(N,N-DIPENTYL AMINE)"
+    },
+    {
+      "acceptor_atom_count": 45,
+      "atom_count_model_1": 2242,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Peptide ligands of pp60(c-src) SH2 domains: a thermodynamic and structural study.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1A1C",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "C-SRC TYROSINE KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "ACE-PHOSPHOTYR-GLU-(N-ME(-(CH2)3-CYCLOPENTYL))",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 39,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "C-SRC (SH2 DOMAIN) COMPLEXED WITH ACE-PHOSPHOTYR-GLU-(N-ME(-(CH2)3-CYCLOPENTYL))"
+    },
+    {
+      "acceptor_atom_count": 44,
+      "atom_count_model_1": 2245,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Peptide ligands of pp60(c-src) SH2 domains: a thermodynamic and structural study.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1A1E",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "C-SRC TYROSINE KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "ACE-PHOSPHOTYR-GLU-(3-BUTYLPIPERIDINE)",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 47,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "C-SRC (SH2 DOMAIN) COMPLEXED WITH ACE-PHOSPHOTYR-GLU-(3-BUTYLPIPERIDINE)"
+    },
+    {
+      "acceptor_atom_count": 79,
+      "atom_count_model_1": 4006,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Three-dimensional structure of the tyrosine kinase c-Src.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1FMK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "TYROSINE-PROTEIN KINASE SRC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 16,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "CRYSTAL STRUCTURE OF HUMAN TYROSINE-PROTEIN KINASE C-SRC"
+    },
+    {
+      "acceptor_atom_count": 23,
+      "atom_count_model_1": 1811,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Solution structure of the human pp60c-src SH2 domain complexed with a phosphorylated tyrosine pentapeptide.",
+        "year": 1995
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "SOLUTION NMR"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1HCS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "ACETYL-PYEEIE-OH",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "HUMAN SRC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 20,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "NMR STRUCTURE OF THE HUMAN SRC SH2 DOMAIN COMPLEX"
+    },
+    {
+      "acceptor_atom_count": 23,
+      "atom_count_model_1": 1811,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Solution structure of the human pp60c-src SH2 domain complexed with a phosphorylated tyrosine pentapeptide.",
+        "year": 1995
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "SOLUTION NMR"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1HCT",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "ACETYL-PYEEIE-OH",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "HUMAN SRC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 21,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "NMR STRUCTURE OF THE HUMAN SRC SH2 DOMAIN COMPLEX"
+    },
+    {
+      "acceptor_atom_count": 80,
+      "atom_count_model_1": 3691,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mutant tyrosine kinases with unnatural nucleotide specificity retain the structure and phospho-acceptor specificity of the wild-type enzyme.",
+        "year": 2002
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1KSW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PROTO-ONCOGENE TYROSINE-PROTEIN KINASE SRC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 40,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of Human c-Src Tyrosine Kinase (Thr338Gly Mutant) in Complex with N6-benzyl ADP"
+    },
+    {
+      "acceptor_atom_count": 23,
+      "atom_count_model_1": 1013,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Requirements for specific binding of low affinity inhibitor fragments to the SH2 domain of (pp60)Src are identical to those for high affinity binding of full length inhibitors.",
+        "year": 2003
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1O4L",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PROTO-ONCOGENE TYROSINE-PROTEIN KINASE SRC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 41,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "CRYSTAL STRUCTURE OF SH2 IN COMPLEX WITH FRAGMENT2."
+    },
+    {
+      "acceptor_atom_count": 44,
+      "atom_count_model_1": 2071,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structure of the membrane distal phosphatase domain of RPTPalpha reveals interdomain flexibility and an SH2 domain interaction region.",
+        "year": 2003
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1P13",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00523"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 7,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal Structure of the Src SH2 Domain Complexed with Peptide (SDpYANFK)"
+    },
+    {
+      "acceptor_atom_count": 82,
+      "atom_count_model_1": 3976,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Crystal Structure of a c-Src Complex in an Active Conformation Suggests Possible Steps in c-Src Activation",
+        "year": 2005
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1Y57",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 11,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of unphosphorylated c-Src in complex with an inhibitor"
+    },
+    {
+      "acceptor_atom_count": 74,
+      "atom_count_model_1": 4995,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of the unphosphorylated C-terminal tail segment of the SRC kinase and its role in SRC activity regulation",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1YI6",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 33,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "C-term tail segment of human tyrosine kinase (258-533)"
+    },
+    {
+      "acceptor_atom_count": 95,
+      "atom_count_model_1": 5718,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structure of the FERM Domain of Focal Adhesion Kinase",
+        "year": 2006
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2AL6",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Focal adhesion kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q00944"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "FERM domain of Focal Adhesion Kinase"
+    },
+    {
+      "acceptor_atom_count": 74,
+      "atom_count_model_1": 4801,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of Src tyrosine kinase inhibition with a new class of potent and selective trisubstituted purine-based compounds.",
+        "year": 2006
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2BDF",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 22,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Src kinase in complex with inhibitor AP23451"
+    },
+    {
+      "acceptor_atom_count": 34,
+      "atom_count_model_1": 2243,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of Src tyrosine kinase inhibition with a new class of potent and selective trisubstituted purine-based compounds.",
+        "year": 2006
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2BDJ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 30,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Src kinase in complex with inhibitor AP23464"
+    },
+    {
+      "acceptor_atom_count": 80,
+      "atom_count_model_1": 3840,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "N-(5-chloro-1,3-benzodioxol-4-yl)-7-[2-(4-methylpiperazin-1-yl)ethoxy]-5- (tetrahydro-2H-pyran-4-yloxy)quinazolin-4-amine, a novel, highly selective, orally available, dual-specific c-Src/Abl kinase inhibitor.",
+        "year": 2006
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2H8H",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 12,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Src kinase in complex with a quinazoline inhibitor"
+    },
+    {
+      "acceptor_atom_count": 140,
+      "atom_count_model_1": 8556,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of the Src family tyrosine kinase Hck.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2HCK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "HEMATOPOETIC CELL KINASE HCK",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08631"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 29,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "SRC FAMILY KINASE HCK-QUERCETIN COMPLEX"
+    },
+    {
+      "acceptor_atom_count": 76,
+      "atom_count_model_1": 3702,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The 2.35 A crystal structure of the inactivated form of chicken Src: a dynamic molecule with multiple regulatory interactions",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2PTK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "TYROSINE-PROTEIN KINASE TRANSFORMING PROTEIN SRC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00523"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 6,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "CHICKEN SRC TYROSINE KINASE"
+    },
+    {
+      "acceptor_atom_count": 65,
+      "atom_count_model_1": 4052,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into how irreversible inhibitors can overcome drug resistance in EGFR.",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2QLQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00523"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of SRC kinase domain with covalent inhibitor RL3"
+    },
+    {
+      "acceptor_atom_count": 63,
+      "atom_count_model_1": 4147,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into how irreversible inhibitors can overcome drug resistance in EGFR.",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2QQ7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00523"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of drug resistant SRC kinase domain with irreversible inhibitor"
+    },
+    {
+      "acceptor_atom_count": 81,
+      "atom_count_model_1": 3915,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structures of c-Src reveal features of its autoinhibitory mechanism.",
+        "year": 1999
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.571,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": []
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2SRC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "TYROSINE-PROTEIN KINASE SRC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 15,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "CRYSTAL STRUCTURE OF HUMAN TYROSINE-PROTEIN KINASE C-SRC, IN COMPLEX WITH AMP-PNP"
+    },
+    {
+      "acceptor_atom_count": 36,
+      "atom_count_model_1": 2205,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structures of human Bruton's tyrosine kinase in active and inactive conformations suggest a mechanism of activation for TEC family kinases.",
+        "year": 2010
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3K54",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein kinase BTK",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q06187"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Fgr Src-family kinase substrate ATP phosphorylation site",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_fgr_src_family_kinase_substrate_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structures of human Bruton's tyrosine kinase in active and inactive conformations suggests a mechanism of activation for TEC family kinases."
+    },
+    {
+      "acceptor_atom_count": 93,
+      "atom_count_model_1": 4535,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "X-ray crystal structure of bone marrow kinase in the x chromosome: a Tec family kinase.",
+        "year": 2011
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3SXR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Cytoplasmic tyrosine-protein kinase BMX",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51813"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Fgr Src-family kinase substrate ATP phosphorylation site",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_fgr_src_family_kinase_substrate_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of BMX non-receptor tyrosine kinase complex with dasatinib"
+    },
+    {
+      "acceptor_atom_count": 32,
+      "atom_count_model_1": 1894,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Lysozyme contamination facilitates crystallization of a heterotrimeric cortactin-Arg-lysozyme complex.",
+        "year": 2012
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3ULR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Lysozyme C",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00698"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Src substrate cortactin",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q60598"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Abelson tyrosine-protein kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42684"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 19,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Lysozyme contamination facilitates crystallization of a hetero-trimericCortactin:Arg:Lysozyme complex"
+    },
+    {
+      "acceptor_atom_count": 62,
+      "atom_count_model_1": 5195,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Mechanisms Determining Inhibition of the Collagen Receptor Ddr1 by Selective and Multi-Targeted Type II Kinase Inhibitors",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3ZOS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "EPITHELIAL DISCOIDIN DOMAIN-CONTAINING RECEPTOR 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q08345"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 13,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of the DDR1 kinase domain in complex with ponatinib"
+    },
+    {
+      "acceptor_atom_count": 24,
+      "atom_count_model_1": 1007,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Superbinder SH2 Domains Act as Antagonists of Cell Signaling.",
+        "year": 2012
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4F5B",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 38,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Triple mutant Src SH2 domain bound to phosphotyrosine"
+    },
+    {
+      "acceptor_atom_count": 80,
+      "atom_count_model_1": 3894,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structure of 1NA in complex with Src T338G",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4K11",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 8,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The structure of 1NA in complex with Src T338G"
+    },
+    {
+      "acceptor_atom_count": 15,
+      "atom_count_model_1": 996,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "3D domain swapping in a chimeric c-Src SH3 domain takes place through two hinge loops.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4LE9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00523"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of a chimeric c-Src-SH3 domain"
+    },
+    {
+      "acceptor_atom_count": 74,
+      "atom_count_model_1": 4626,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A conserved water-mediated hydrogen bond network defines bosutinib's kinase selectivity.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4MXO",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 23,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "human Src kinase bound to kinase inhibitor bosutinib"
+    },
+    {
+      "acceptor_atom_count": 76,
+      "atom_count_model_1": 4405,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A conserved water-mediated hydrogen bond network defines bosutinib's kinase selectivity.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4MXX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 24,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human Src A403T mutant bound to kinase inhibitor bosutinib"
+    },
+    {
+      "acceptor_atom_count": 72,
+      "atom_count_model_1": 4410,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A conserved water-mediated hydrogen bond network defines bosutinib's kinase selectivity.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4MXY",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 25,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Src M314L T338M double mutant bound to kinase inhibitor bosutinib"
+    },
+    {
+      "acceptor_atom_count": 72,
+      "atom_count_model_1": 4410,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A conserved water-mediated hydrogen bond network defines bosutinib's kinase selectivity.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4MXZ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 26,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Src M314L T338M double mutant bound to kinase inhibitor bosutinib"
+    },
+    {
+      "acceptor_atom_count": 17,
+      "atom_count_model_1": 2313,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Acetyl-lysine Binding Site of Bromodomain-Containing Protein 4 (BRD4) Interacts with Diverse Kinase Inhibitors.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4O75",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Bromodomain-containing protein 4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O60885"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase A Raf kinase inhibitory protein phosphorylation ATP substrate",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_rkip_pka_phosphorylation_complex_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: Fgr Src-family kinase substrate ATP phosphorylation site",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_fgr_src_family_kinase_substrate_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of the first bromodomain of human BRD4 in complex with FOSTAMATINIB"
+    },
+    {
+      "acceptor_atom_count": 29,
+      "atom_count_model_1": 2540,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Fragment-Based Discovery of Potent and Selective DDR1/2 Inhibitors.",
+        "year": 2015
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5BVW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Epithelial discoidin domain-containing receptor 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q08345"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 14,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: Fgr Src-family kinase substrate ATP phosphorylation site",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_fgr_src_family_kinase_substrate_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Fragment-based discovery of potent and selective DDR1/2 inhibitors"
+    },
+    {
+      "acceptor_atom_count": 35,
+      "atom_count_model_1": 2155,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Leveraging Compound Promiscuity to Identify Targetable Cysteines within the Kinome.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ATE",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 50,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "SRC kinase bound to covalent inhibitor"
+    },
+    {
+      "acceptor_atom_count": 30,
+      "atom_count_model_1": 2312,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "What Makes a Kinase Promiscuous for Inhibitors?",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6BSD",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Epithelial discoidin domain-containing receptor 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q08345"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 10,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: Fgr Src-family kinase substrate ATP phosphorylation site",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_fgr_src_family_kinase_substrate_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "DDR1 bound to Dasatinib"
+    },
+    {
+      "acceptor_atom_count": 34,
+      "atom_count_model_1": 1299,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Molecular basis for the interaction between human choline kinase alpha and the SH3 domain of the c-Src tyrosine kinase.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6C4S",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src,cSrc SH3 Domain",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 35,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human cSrc SH3 Domain in complex with Choline Kinase fragment 60-69"
+    },
+    {
+      "acceptor_atom_count": 96,
+      "atom_count_model_1": 5869,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "High resolution crystal structure of the FAK FERM domain reveals new insights on the Druggability of tyrosine 397 and the Src SH3 binding site.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6CB0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Focal adhesion kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q00944"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal Structure of the FAK FERM domain"
+    },
+    {
+      "acceptor_atom_count": 296,
+      "atom_count_model_1": 17871,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure and Characterization of a Covalent Inhibitor of Src Kinase.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6E6E",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 9,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "DGY-06-116, a novel and selective covalent inhibitor of SRC kinase"
+    },
+    {
+      "acceptor_atom_count": 1233,
+      "atom_count_model_1": 115020,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A structural inventory of native ribosomal ABCE1-43S pre-initiation complexes.",
+        "year": 2021
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "1",
+          "associated_polymer_distance_angstrom": 1.731,
+          "associated_polymer_entity_id": "46",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "605",
+          "gamma_chain_name": "1",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "604",
+              "chain": "1",
+              "distance_angstrom": 2.577,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZVJ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "a"
+          ],
+          "description": "40S ribosomal protein SA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08865"
+          ]
+        },
+        "10": {
+          "auth_asym_ids": [
+            "c"
+          ],
+          "description": "40S ribosomal protein S9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46781"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "n"
+          ],
+          "description": "40S ribosomal protein S11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62280"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "m"
+          ],
+          "description": "40S ribosomal protein S13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62277"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "i"
+          ],
+          "description": "40S ribosomal protein S14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A0A2R8Y811"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "y"
+          ],
+          "description": "40S ribosomal protein S21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63220"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "f"
+          ],
+          "description": "40S ribosomal protein S15a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62244"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "j"
+          ],
+          "description": "40S ribosomal protein S23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62266"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "z"
+          ],
+          "description": "40S ribosomal protein S24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "E7ETK0"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "40S ribosomal protein S27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42677"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "40S ribosomal protein S30",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62861"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "p"
+          ],
+          "description": "40S ribosomal protein S3a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61247"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "18S ribosomal RNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "21": {
+          "auth_asym_ids": [
+            "w"
+          ],
+          "description": "40S ribosomal protein S17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08708"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "g"
+          ],
+          "description": "40S ribosomal protein S16",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62249"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "b"
+          ],
+          "description": "40S ribosomal protein S3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23396"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "e"
+          ],
+          "description": "40S ribosomal protein S5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46782"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "u"
+          ],
+          "description": "40S ribosomal protein S10",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46783"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "v"
+          ],
+          "description": "40S ribosomal protein S12",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P25398"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "o"
+          ],
+          "description": "40S ribosomal protein S15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62841"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "k"
+          ],
+          "description": "40S ribosomal protein S18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62269"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "x"
+          ],
+          "description": "40S ribosomal protein S19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39019"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "d"
+          ],
+          "description": "40S ribosomal protein S2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15880"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "h"
+          ],
+          "description": "40S ribosomal protein S20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60866"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "40S ribosomal protein S25",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62851"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "40S ribosomal protein S28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62857"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "l"
+          ],
+          "description": "40S ribosomal protein S29",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62273"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "Ubiquitin-40S ribosomal protein S27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62979"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "V"
+          ],
+          "description": "Receptor of activated protein C kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63244"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit I",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13347"
+          ]
+        },
+        "37": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P55884"
+          ]
+        },
+        "38": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit A",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q14152"
+          ]
+        },
+        "39": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit C",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "B4DVU3"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "Q"
+          ],
+          "description": "40S ribosomal protein S26",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62854"
+          ]
+        },
+        "40": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit E",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60228"
+          ]
+        },
+        "41": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit F",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O00303"
+          ]
+        },
+        "42": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15372"
+          ]
+        },
+        "43": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit K",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UBQ5"
+          ]
+        },
+        "44": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit L",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9Y262"
+          ]
+        },
+        "45": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit M",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q7L2H7"
+          ]
+        },
+        "46": {
+          "auth_asym_ids": [
+            "1"
+          ],
+          "description": "ATP-binding cassette sub-family E member 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61221"
+          ]
+        },
+        "47": {
+          "auth_asym_ids": [
+            "N"
+          ],
+          "description": "Eukaryotic translation initiation factor 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41567"
+          ]
+        },
+        "48": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit D",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15371"
+          ]
+        },
+        "49": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "RNA recognition motif (unknown)",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "5": {
+          "auth_asym_ids": [
+            "q"
+          ],
+          "description": "40S ribosomal protein S4, X isoform",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62701"
+          ]
+        },
+        "50": {
+          "auth_asym_ids": [
+            "G",
+            "J"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit J",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O75822"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "W"
+          ],
+          "description": "60S ribosomal protein L41",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62945"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "r"
+          ],
+          "description": "40S ribosomal protein S6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62753"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "s"
+          ],
+          "description": "40S ribosomal protein S7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62081"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "t"
+          ],
+          "description": "40S ribosomal protein S8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62241"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase A Raf kinase inhibitory protein phosphorylation ATP substrate",
+          "rank": 6,
+          "surface_id": "rcsb_fulltext_rkip_pka_phosphorylation_complex_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of a human ABCE1-bound 43S pre-initiation complex - State II"
+    },
+    {
+      "acceptor_atom_count": 695,
+      "atom_count_model_1": 80133,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the final steps of human 40S ribosome maturation.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "z",
+          "associated_polymer_distance_angstrom": 2.756,
+          "associated_polymer_entity_id": "35",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "603",
+          "gamma_chain_name": "z",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "601",
+              "chain": "z",
+              "distance_angstrom": 2.316,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "602",
+              "chain": "z",
+              "distance_angstrom": 2.447,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZXF",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "pre-18S ribosomal RNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "10": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "40S ribosomal protein S9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46781"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "40S ribosomal protein S5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46782"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "40S ribosomal protein S11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62280"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "40S ribosomal protein S10",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46783"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "N"
+          ],
+          "description": "40S ribosomal protein S13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62277"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "40S ribosomal protein S14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62263"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "40S ribosomal protein S12",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P25398"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "40S ribosomal protein S15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62841"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "40S ribosomal protein S17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08708"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "Q"
+          ],
+          "description": "40S ribosomal protein S16",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62249"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "40S ribosomal protein SA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08865"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "40S ribosomal protein S18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62269"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "40S ribosomal protein S19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39019"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "V"
+          ],
+          "description": "40S ribosomal protein S21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63220"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "W"
+          ],
+          "description": "40S ribosomal protein S15a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62244"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "40S ribosomal protein S23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62266"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "40S ribosomal protein S24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62847"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "40S ribosomal protein S20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60866"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "Z"
+          ],
+          "description": "40S ribosomal protein S25",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62851"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "b"
+          ],
+          "description": "40S ribosomal protein S27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42677"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "c"
+          ],
+          "description": "40S ribosomal protein S28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62857"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "40S ribosomal protein S3a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61247"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "d"
+          ],
+          "description": "40S ribosomal protein S29",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62273"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "e"
+          ],
+          "description": "40S ribosomal protein S30",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62861"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "f"
+          ],
+          "description": "Ubiquitin-40S ribosomal protein S27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62979"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "g"
+          ],
+          "description": "Receptor of activated protein C kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63244"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "j"
+          ],
+          "description": "Probable RNA-binding protein EIF1AD",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N9N8"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "z"
+          ],
+          "description": "Serine/threonine-protein kinase RIO1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BRS2"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "y"
+          ],
+          "description": "RNA-binding protein NOB1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9ULX3"
+          ]
+        },
+        "37": {
+          "auth_asym_ids": [
+            "k"
+          ],
+          "description": "Leucine-rich repeat-containing protein 47",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N1G4"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "40S ribosomal protein S2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15880"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "40S ribosomal protein S4, X isoform",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62701"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "40S ribosomal protein S3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23396"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "40S ribosomal protein S6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62753"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "40S ribosomal protein S7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62081"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "40S ribosomal protein S8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62241"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase A Raf kinase inhibitory protein phosphorylation ATP substrate",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_rkip_pka_phosphorylation_complex_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Cryo-EM structure of a late human pre-40S ribosomal subunit - State G"
+    },
+    {
+      "acceptor_atom_count": 692,
+      "atom_count_model_1": 79865,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the final steps of human 40S ribosome maturation.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "z",
+          "associated_polymer_distance_angstrom": 2.751,
+          "associated_polymer_entity_id": "37",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "602",
+          "gamma_chain_name": "z",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "603",
+              "chain": "z",
+              "distance_angstrom": 3.272,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "601",
+              "chain": "z",
+              "distance_angstrom": 3.365,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZXG",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "pre-18S ribosomal RNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "10": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "40S ribosomal protein S8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62241"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "40S ribosomal protein S9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46781"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "40S ribosomal protein S5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46782"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "40S ribosomal protein S11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62280"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "40S ribosomal protein S10",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46783"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "N"
+          ],
+          "description": "40S ribosomal protein S13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62277"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "40S ribosomal protein S14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62263"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "40S ribosomal protein S12",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P25398"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "40S ribosomal protein S15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62841"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "40S ribosomal protein S17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08708"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "40S ribosomal protein SA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08865"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "Q"
+          ],
+          "description": "40S ribosomal protein S16",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62249"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "40S ribosomal protein S18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62269"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "40S ribosomal protein S19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39019"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "V"
+          ],
+          "description": "40S ribosomal protein S21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63220"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "W"
+          ],
+          "description": "40S ribosomal protein S15a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62244"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "40S ribosomal protein S23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62266"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "40S ribosomal protein S24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62847"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "40S ribosomal protein S20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60866"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "Z"
+          ],
+          "description": "40S ribosomal protein S25",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62851"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "b"
+          ],
+          "description": "40S ribosomal protein S27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42677"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "40S ribosomal protein S3a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61247"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "c"
+          ],
+          "description": "40S ribosomal protein S28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62857"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "d"
+          ],
+          "description": "40S ribosomal protein S29",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62273"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "e"
+          ],
+          "description": "40S ribosomal protein S30",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62861"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "f"
+          ],
+          "description": "Ubiquitin-40S ribosomal protein S27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62979"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "g"
+          ],
+          "description": "Receptor of activated protein C kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63244"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "j"
+          ],
+          "description": "Probable RNA-binding protein EIF1AD",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N9N8"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "k"
+          ],
+          "description": "Leucine-rich repeat-containing protein 47",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N1G4"
+          ]
+        },
+        "37": {
+          "auth_asym_ids": [
+            "z"
+          ],
+          "description": "Serine/threonine-protein kinase RIO1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BRS2"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "40S ribosomal protein S2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15880"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "h"
+          ],
+          "description": "40S ribosomal protein S26",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62854"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "40S ribosomal protein S4, X isoform",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62701"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "40S ribosomal protein S3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23396"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "40S ribosomal protein S6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62753"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "40S ribosomal protein S7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62081"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase A Raf kinase inhibitory protein phosphorylation ATP substrate",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_rkip_pka_phosphorylation_complex_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Cryo-EM structure of a late human pre-40S ribosomal subunit - State H1"
+    },
+    {
+      "acceptor_atom_count": 666,
+      "atom_count_model_1": 76979,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the final steps of human 40S ribosome maturation.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "z",
+          "associated_polymer_distance_angstrom": 2.566,
+          "associated_polymer_entity_id": "36",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "602",
+          "gamma_chain_name": "z",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "603",
+              "chain": "z",
+              "distance_angstrom": 3.325,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "601",
+              "chain": "z",
+              "distance_angstrom": 3.541,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZXH",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "pre-18S ribosomal RNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "10": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "40S ribosomal protein S8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62241"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "40S ribosomal protein S9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46781"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "40S ribosomal protein S5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46782"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "40S ribosomal protein S11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62280"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "40S ribosomal protein S10",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46783"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "N"
+          ],
+          "description": "40S ribosomal protein S13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62277"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "40S ribosomal protein S14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62263"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "40S ribosomal protein S12",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P25398"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "40S ribosomal protein S15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62841"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "40S ribosomal protein S17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08708"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "40S ribosomal protein SA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08865"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "Q"
+          ],
+          "description": "40S ribosomal protein S16",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62249"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "40S ribosomal protein S18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62269"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "40S ribosomal protein S19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39019"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "V"
+          ],
+          "description": "40S ribosomal protein S21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63220"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "W"
+          ],
+          "description": "40S ribosomal protein S15a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62244"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "40S ribosomal protein S23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62266"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "40S ribosomal protein S24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62847"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "40S ribosomal protein S20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60866"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "Z"
+          ],
+          "description": "40S ribosomal protein S25",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62851"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "b"
+          ],
+          "description": "40S ribosomal protein S27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42677"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "40S ribosomal protein S3a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61247"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "c"
+          ],
+          "description": "40S ribosomal protein S28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62857"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "d"
+          ],
+          "description": "40S ribosomal protein S29",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62273"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "e"
+          ],
+          "description": "40S ribosomal protein S30",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62861"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "f"
+          ],
+          "description": "Ubiquitin-40S ribosomal protein S27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62979"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "g"
+          ],
+          "description": "Receptor of activated protein C kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63244"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "j"
+          ],
+          "description": "Probable RNA-binding protein EIF1AD",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N9N8"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "z"
+          ],
+          "description": "Serine/threonine-protein kinase RIO1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BRS2"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "40S ribosomal protein S2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15880"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "h"
+          ],
+          "description": "40S ribosomal protein S26",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62854"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "40S ribosomal protein S4, X isoform",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62701"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "40S ribosomal protein S3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23396"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "40S ribosomal protein S6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62753"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "40S ribosomal protein S7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62081"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase A Raf kinase inhibitory protein phosphorylation ATP substrate",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_rkip_pka_phosphorylation_complex_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Cryo-EM structure of a late human pre-40S ribosomal subunit - State H2"
+    },
+    {
+      "acceptor_atom_count": 1294,
+      "atom_count_model_1": 122168,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A structural inventory of native ribosomal ABCE1-43S pre-initiation complexes.",
+        "year": 2021
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "J",
+          "associated_polymer_distance_angstrom": 2.243,
+          "associated_polymer_entity_id": "47",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "605",
+          "gamma_chain_name": "J",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "606",
+              "chain": "J",
+              "distance_angstrom": 3.458,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7A09",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "a"
+          ],
+          "description": "40S ribosomal protein SA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08865"
+          ]
+        },
+        "10": {
+          "auth_asym_ids": [
+            "c"
+          ],
+          "description": "40S ribosomal protein S9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46781"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "n"
+          ],
+          "description": "40S ribosomal protein S11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62280"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "m"
+          ],
+          "description": "40S ribosomal protein S13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62277"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "y"
+          ],
+          "description": "40S ribosomal protein S21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63220"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "40S ribosomal protein S15a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62244"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "z"
+          ],
+          "description": "40S ribosomal protein S24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "E7ETK0"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "40S ribosomal protein S27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42677"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "40S ribosomal protein S30",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62861"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "18S ribosomal RNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "19": {
+          "auth_asym_ids": [
+            "w"
+          ],
+          "description": "40S ribosomal protein S17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08708"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "p"
+          ],
+          "description": "40S ribosomal protein S3a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61247"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "b"
+          ],
+          "description": "40S ribosomal protein S3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23396"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "e"
+          ],
+          "description": "40S ribosomal protein S5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46782"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "u"
+          ],
+          "description": "40S ribosomal protein S10",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46783"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "v"
+          ],
+          "description": "40S ribosomal protein S12",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P25398"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "o"
+          ],
+          "description": "40S ribosomal protein S15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62841"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "g"
+          ],
+          "description": "40S ribosomal protein S16",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62249"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "k"
+          ],
+          "description": "40S ribosomal protein S18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62269"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "x"
+          ],
+          "description": "40S ribosomal protein S19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39019"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "h"
+          ],
+          "description": "40S ribosomal protein S20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60866"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "40S ribosomal protein S25",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62851"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "d"
+          ],
+          "description": "40S ribosomal protein S2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15880"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "40S ribosomal protein S28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62857"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "l"
+          ],
+          "description": "40S ribosomal protein S29",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62273"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "Ubiquitin-40S ribosomal protein S27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62979"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "V"
+          ],
+          "description": "Receptor of activated protein C kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63244"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "i"
+          ],
+          "description": "40S ribosomal protein S14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62263"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "j"
+          ],
+          "description": "40S ribosomal protein S23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62266"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "Eukaryotic translation initiation factor 1A, X-chromosomal",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P47813"
+          ]
+        },
+        "37": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit I",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13347"
+          ]
+        },
+        "38": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P55884"
+          ]
+        },
+        "39": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit A",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q14152"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "Q"
+          ],
+          "description": "40S ribosomal protein S26",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62854"
+          ]
+        },
+        "40": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit C,Eukaryotic translation initiation factor 3 subunit C,Eukaryotic translation initiation factor 3 subunit C",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q99613"
+          ]
+        },
+        "41": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit E",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60228"
+          ]
+        },
+        "42": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit F",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O00303"
+          ]
+        },
+        "43": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15372"
+          ]
+        },
+        "44": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit K",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UBQ5"
+          ]
+        },
+        "45": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit L",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9Y262"
+          ]
+        },
+        "46": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit M",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q7L2H7"
+          ]
+        },
+        "47": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "ATP-binding cassette sub-family E member 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61221"
+          ]
+        },
+        "48": {
+          "auth_asym_ids": [
+            "N"
+          ],
+          "description": "Eukaryotic translation initiation factor 3 subunit D",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15371"
+          ]
+        },
+        "49": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "RNA recognition motif",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "5": {
+          "auth_asym_ids": [
+            "q"
+          ],
+          "description": "40S ribosomal protein S4, X isoform",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62701"
+          ]
+        },
+        "50": {
+          "auth_asym_ids": [
+            "f"
+          ],
+          "description": "tRNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "51": {
+          "auth_asym_ids": [
+            "4"
+          ],
+          "description": "Eukaryotic translation initiation factor 2 subunit 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20042"
+          ]
+        },
+        "52": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "Eukaryotic translation initiation factor 2 subunit 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05198"
+          ]
+        },
+        "53": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "Eukaryotic translation initiation factor 2 subunit 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41091"
+          ]
+        },
+        "54": {
+          "auth_asym_ids": [
+            "Z"
+          ],
+          "description": "Eukaryotic translation initiation factor 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41567"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "W"
+          ],
+          "description": "60S ribosomal protein L41",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62945"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "r"
+          ],
+          "description": "40S ribosomal protein S6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62753"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "s"
+          ],
+          "description": "40S ribosomal protein S7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62081"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "t"
+          ],
+          "description": "40S ribosomal protein S8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62241"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase A Raf kinase inhibitory protein phosphorylation ATP substrate",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_rkip_pka_phosphorylation_complex_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of a human ABCE1-bound 43S pre-initiation complex - State III"
+    },
+    {
+      "acceptor_atom_count": 39,
+      "atom_count_model_1": 2477,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A Conformation Selective Mode of Inhibiting SRC Improves Drug Efficacy and Tolerability.",
+        "year": 2021
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7NG7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 31,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Src kinase bound to eCF506 trapped in inactive conformation"
+    },
+    {
+      "acceptor_atom_count": 74,
+      "atom_count_model_1": 4388,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "An allosteric switch between the activation loop and a c-terminal palindromic phospho-motif controls c-Src function.",
+        "year": 2023
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7OTE",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 32,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Src Kinase Domain in complex with ponatinib"
+    },
+    {
+      "acceptor_atom_count": 10,
+      "atom_count_model_1": 1194,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A novel Pyk2-derived peptide inhibits invadopodia-mediated breast cancer metastasis.",
+        "year": 2023
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "SOLUTION NMR"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7PLL",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Src substrate cortactin",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q60598"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Pyk2-PRR2 peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q14289"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 34,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of the murine cortactin C-SH3 domain in complex with a Pyk2 proline-rich ligand"
+    },
+    {
+      "acceptor_atom_count": 56,
+      "atom_count_model_1": 2931,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Elucidation of the GSK3 alpha Structure Informs the Design of Novel, Paralog-Selective Inhibitors.",
+        "year": 2023
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7SXH",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49841"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "axin peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Axin scaffold GSK3 beta kinase substrate complex ATP phosphorylation site",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_axin_gsk3beta_substrate_complex_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "BIO-8546 bound GSK3beta-axin complex"
+    },
+    {
+      "acceptor_atom_count": 58,
+      "atom_count_model_1": 3070,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Elucidation of the GSK3 alpha Structure Informs the Design of Novel, Paralog-Selective Inhibitors.",
+        "year": 2023
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7SXJ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49841"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "axin peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Axin scaffold GSK3 beta kinase substrate complex ATP phosphorylation site",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_axin_gsk3beta_substrate_complex_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "BIO-2895 (BRD0705) bound GSK3beta-axin complex"
+    },
+    {
+      "acceptor_atom_count": 70,
+      "atom_count_model_1": 4115,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The complex of Src with GW8510",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8HAQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Isoform 2 of Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 42,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The complex of Src with GW8510"
+    },
+    {
+      "acceptor_atom_count": 81,
+      "atom_count_model_1": 3981,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The crystal structure of c-Src in complex with covalent inhibitor DC-Srci-6668",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8JN8",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 17,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of c-Src in complex with covalent inhibitor DC-Srci-6668"
+    },
+    {
+      "acceptor_atom_count": 80,
+      "atom_count_model_1": 3633,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The crystal structure of c-Src in complex with covalent inhibitor LW-Srci-8",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8JN9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 18,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of c-Src in complex with covalent inhibitor LW-Srci-8"
+    },
+    {
+      "acceptor_atom_count": 25,
+      "atom_count_model_1": 1018,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Engineered Mutant Src Sh2 Domain",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8VCG",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Isoform 3 of Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 48,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Mutant Src SH2 domain in complex with phosphotyrosine"
+    },
+    {
+      "acceptor_atom_count": 80,
+      "atom_count_model_1": 3864,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure-based development of selective covalent inhibitors targeting a dynamic allosteric pocket of c-Src kinase",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9IRL",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 36,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure analysis of LW-Srci-2o in complex with c-Src."
+    },
+    {
+      "acceptor_atom_count": 40,
+      "atom_count_model_1": 4584,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conformational landscape adaptations enable processive phosphorylation by Src family kinases.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "SOLUTION NMR"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9NS0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 27,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Ground state of Src kinase domain"
+    },
+    {
+      "acceptor_atom_count": 41,
+      "atom_count_model_1": 4590,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conformational landscape adaptations enable processive phosphorylation by Src family kinases.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "SOLUTION NMR"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9NS1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 28,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Intermediate state of Src kinase domain"
+    },
+    {
+      "acceptor_atom_count": 67,
+      "atom_count_model_1": 2059,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Nickel Binding to the c-Src SH3 Domain Facilitates Crystallization.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9OFX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+          "rank": 37,
+          "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of c-Src SH3 domain in H32 space group mediated by nickel"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "7SXH",
+        "7SXJ"
+      ],
+      "query_or_source": "RCSB full_text: Axin scaffold GSK3 beta kinase substrate complex ATP phosphorylation site",
+      "requested_rows": 50,
+      "returned_count": 2,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_axin_gsk3beta_substrate_complex_all",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [
+        "6CB0",
+        "2AL6",
+        "4LE9",
+        "2QLQ",
+        "2QQ7",
+        "2PTK",
+        "1P13",
+        "4K11",
+        "6E6E",
+        "6BSD",
+        "1Y57",
+        "2H8H",
+        "3ZOS",
+        "5BVW",
+        "2SRC",
+        "1FMK",
+        "8JN8",
+        "8JN9",
+        "3ULR",
+        "1HCS",
+        "1HCT",
+        "2BDF",
+        "4MXO",
+        "4MXX",
+        "4MXY",
+        "4MXZ",
+        "9NS0",
+        "9NS1",
+        "2HCK",
+        "2BDJ",
+        "7NG7",
+        "7OTE",
+        "1YI6",
+        "7PLL",
+        "6C4S",
+        "9IRL",
+        "9OFX",
+        "4F5B",
+        "1A1C",
+        "1KSW",
+        "1O4L",
+        "8HAQ",
+        "1A07",
+        "1A08",
+        "1A09",
+        "1A1B",
+        "1A1E",
+        "8VCG",
+        "1A1A",
+        "6ATE"
+      ],
+      "query_or_source": "RCSB full_text: c-Src substrate complex ATP phosphorylation site kinase-substrate",
+      "requested_rows": 50,
+      "returned_count": 50,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_csrc_substrate_complex_phosphotyrosine_all",
+      "total_count": 178
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: CDK4 4E-BP1 phosphorylation substrate complex ATP",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_cdk4_4ebp1_phosphorylation_complex_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: Yersinia YopO kinase substrate specificity ATP phosphorylation site",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_yopo_kinase_substrate_complex_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: CaMKII EAG potassium channel substrate active site ATP",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_camkii_eag_substrate_complex_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "4O75",
+        "6ZXF",
+        "6ZXG",
+        "6ZXH",
+        "7A09",
+        "6ZVJ"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase A Raf kinase inhibitory protein phosphorylation ATP substrate",
+      "requested_rows": 50,
+      "returned_count": 6,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_rkip_pka_phosphorylation_complex_all",
+      "total_count": 6
+    },
+    {
+      "pdb_ids": [
+        "3SXR",
+        "6BSD",
+        "5BVW",
+        "4O75",
+        "3K54"
+      ],
+      "query_or_source": "RCSB full_text: Fgr Src-family kinase substrate ATP phosphorylation site",
+      "requested_rows": 50,
+      "returned_count": 5,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_fgr_src_family_kinase_substrate_atp_all",
+      "total_count": 5
+    }
+  ]
+}

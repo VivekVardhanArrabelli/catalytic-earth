@@ -1,0 +1,1356 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "heteromeric_candidate_source_validation_pending_review_only": 4,
+      "no_active_gamma_donor_atom_review_only": 13
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T16:34:43Z",
+    "heteromeric_candidate_pdb_ids": [
+      "3X2U",
+      "3X2V",
+      "3X2W",
+      "5HVK"
+    ],
+    "heteromeric_candidate_structure_count": 4,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_bounded_rcsb_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "review_only": true,
+    "review_only_rule": "This lane-local scout uses RCSB full-text surfaces plus transient mmCIF geometry to identify source-validation leads only. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 6,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 17,
+    "surface_total_count_reported_total": 17,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 17
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 3405,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "MgF(3)(-) as a Transition State Analog of Phosphoryl Transfer",
+        "year": 2002
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1OW3",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Rho-GTPase-activating protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07960"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Transforming protein RhoA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61586"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase transition state substrate protein MgF",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_protein_kinase_transition_state_substrate_protein_mgf_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal Structure of RhoA.GDP.MgF3-in Complex with RhoGAP"
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 3184,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanism of molecular specificity of RhoGAP domains towards small GTPases of RhoA family.",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3MSX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Transforming protein RhoA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61586"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Rho GTPase-activating protein 20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9P2F6"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase transition state substrate protein MgF",
+          "rank": 9,
+          "surface_id": "rcsb_fulltext_protein_kinase_transition_state_substrate_protein_mgf_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of RhoA.GDP.MgF3 in complex with GAP domain of ArhGAP20"
+    },
+    {
+      "acceptor_atom_count": 180,
+      "atom_count_model_1": 10077,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Briefly Bound to Activate: Transient Binding of a Second Catalytic Magnesium Activates the Structure and Dynamics of CDK2 Kinase for Catalysis.",
+        "year": 2011
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3QHR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Cell division protein kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Cyclin-A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51943"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J",
+            "K",
+            "L",
+            "M"
+          ],
+          "description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase transition state substrate protein MgF",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_protein_kinase_transition_state_substrate_protein_mgf_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of a pCDK2/CyclinA transition-state mimic"
+    },
+    {
+      "acceptor_atom_count": 178,
+      "atom_count_model_1": 10087,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Briefly Bound to Activate: Transient Binding of a Second Catalytic Magnesium Activates the Structure and Dynamics of CDK2 Kinase for Catalysis.",
+        "year": 2011
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3QHW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Cell division protein kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Cyclin-A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51943"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J",
+            "K",
+            "L",
+            "M"
+          ],
+          "description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase transition state substrate protein MgF",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_protein_kinase_transition_state_substrate_protein_mgf_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of a pCDK2/CyclinA transition-state mimic"
+    },
+    {
+      "acceptor_atom_count": 47,
+      "atom_count_model_1": 3181,
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Protein Kinase A Catalytic Subunit Primed for Action: Time-Lapse Crystallography of Michaelis Complex Formation.",
+        "year": 2015
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.401,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "502",
+              "chain": "A",
+              "distance_angstrom": 2.688,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "503",
+              "chain": "A",
+              "distance_angstrom": 3.063,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_entity_description": "Substrate Peptide",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "P61925"
+          ],
+          "candidate_label_seq_id": "17",
+          "candidate_residue_code": "SER",
+          "gamma_associated_entity_description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "gamma_associated_entity_uniprot_ids": [
+            "P05132"
+          ],
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "502",
+              "chain": "A",
+              "distance_angstrom": 2.688,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "503",
+              "chain": "A",
+              "distance_angstrom": 3.063,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 3.517
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3X2U",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "Substrate Peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61925"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase Michaelis complex substrate protein ATP",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_protein_kinase_michaelis_complex_substrate_protein_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Michaelis-like initial complex of cAMP-dependent Protein Kinase Catalytic Subunit."
+    },
+    {
+      "acceptor_atom_count": 47,
+      "atom_count_model_1": 3392,
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Protein Kinase A Catalytic Subunit Primed for Action: Time-Lapse Crystallography of Michaelis Complex Formation.",
+        "year": 2015
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.665,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "403",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "A",
+              "distance_angstrom": 2.923,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "401",
+              "chain": "A",
+              "distance_angstrom": 3.145,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_entity_description": "Substrate Peptide",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "P61925"
+          ],
+          "candidate_label_seq_id": "17",
+          "candidate_residue_code": "SER",
+          "gamma_associated_entity_description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "gamma_associated_entity_uniprot_ids": [
+            "P05132"
+          ],
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "403",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "A",
+              "distance_angstrom": 2.923,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "401",
+              "chain": "A",
+              "distance_angstrom": 3.145,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 3.521
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3X2V",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "Substrate Peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61925"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase Michaelis complex substrate protein ATP",
+          "rank": 6,
+          "surface_id": "rcsb_fulltext_protein_kinase_michaelis_complex_substrate_protein_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Michaelis-like complex of cAMP-dependent Protein Kinase Catalytic Subunit"
+    },
+    {
+      "acceptor_atom_count": 47,
+      "atom_count_model_1": 3447,
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Protein Kinase A Catalytic Subunit Primed for Action: Time-Lapse Crystallography of Michaelis Complex Formation.",
+        "year": 2015
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.637,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "403",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "A",
+              "distance_angstrom": 2.773,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "401",
+              "chain": "A",
+              "distance_angstrom": 3.012,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_entity_description": "Substrate Peptide",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "P61925"
+          ],
+          "candidate_label_seq_id": "17",
+          "candidate_residue_code": "SER",
+          "gamma_associated_entity_description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "gamma_associated_entity_uniprot_ids": [
+            "P05132"
+          ],
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "403",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "A",
+              "distance_angstrom": 2.773,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "401",
+              "chain": "A",
+              "distance_angstrom": 3.012,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 3.529
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3X2W",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "Substrate Peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61925"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase Michaelis complex substrate protein ATP",
+          "rank": 7,
+          "surface_id": "rcsb_fulltext_protein_kinase_michaelis_complex_substrate_protein_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Michaelis complex of cAMP-dependent Protein Kinase Catalytic Subunit"
+    },
+    {
+      "acceptor_atom_count": 54,
+      "atom_count_model_1": 3438,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structures of bacterial polynucleotide kinase in a Michaelis complex with GTP*Mg2+ and 5'-OH oligonucleotide and a product complex with GDP*Mg2+ and 5'-PO4 oligonucleotide reveal a mechanism of general acid-base catalysis and the determinants of phosphoacceptor recognition.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4MDE",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Metallophosphoesterase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A3DJ38"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "DNA (5'-D(P*CP*CP*TP*GP*T)-3')",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase Michaelis complex substrate protein ATP",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_protein_kinase_michaelis_complex_substrate_protein_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of bacterial polynucleotide kinase product complex bound to GDP and DNA"
+    },
+    {
+      "acceptor_atom_count": 54,
+      "atom_count_model_1": 3381,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structures of bacterial polynucleotide kinase in a Michaelis complex with GTP*Mg2+ and 5'-OH oligonucleotide and a product complex with GDP*Mg2+ and 5'-PO4 oligonucleotide reveal a mechanism of general acid-base catalysis and the determinants of phosphoacceptor recognition.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4MDF",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Metallophosphoesterase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A3DJ38"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "DNA (5'-D(*CP*CP*TP*GP*T)-3')",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase Michaelis complex substrate protein ATP",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_protein_kinase_michaelis_complex_substrate_protein_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of bacterial polynucleotide kinase Michaelis complex bound to GTP and DNA"
+    },
+    {
+      "acceptor_atom_count": 54,
+      "atom_count_model_1": 3548,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structures of bacterial polynucleotide kinase in a michaelis complex with nucleoside triphosphate (NTP)-Mg2+ and 5'-OH RNA and a mixed substrate-product complex with NTP-Mg2+ and a 5'-phosphorylated oligonucleotide.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4QM6",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Metallophosphoesterase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A3DJ38"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "RNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase Michaelis complex substrate protein ATP",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_protein_kinase_michaelis_complex_substrate_protein_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of bacterial polynucleotide kinase bound to GTP and RNA"
+    },
+    {
+      "acceptor_atom_count": 54,
+      "atom_count_model_1": 3208,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structures of bacterial polynucleotide kinase in a michaelis complex with nucleoside triphosphate (NTP)-Mg2+ and 5'-OH RNA and a mixed substrate-product complex with NTP-Mg2+ and a 5'-phosphorylated oligonucleotide.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4QM7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Metallophosphoesterase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A3DJ38"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase Michaelis complex substrate protein ATP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_protein_kinase_michaelis_complex_substrate_protein_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of bacterial polynucleotide kinase bound to GTP and pDNA"
+    },
+    {
+      "acceptor_atom_count": 115,
+      "atom_count_model_1": 7446,
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.853,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "701",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ANP",
+          "local_metals": []
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "3",
+          "candidate_chain_name": "D",
+          "candidate_entity_description": "Cofilin-1",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [
+            "P23528"
+          ],
+          "candidate_label_seq_id": "2",
+          "candidate_residue_code": "SER",
+          "gamma_associated_entity_description": "LIM domain kinase 1",
+          "gamma_associated_entity_uniprot_ids": [
+            "P53667"
+          ],
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "701",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_gamma_distance_angstrom": 4.236
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5HVK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "LIM domain kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53667"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cofilin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23528"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Cofilin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23528"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: noncanonical substrate recognition full-length kinase ANP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_noncanonical_substrate_recognition_full_length_kinase_anp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of LIMK1 mutant D460N in complex with full-length cofilin-1"
+    },
+    {
+      "acceptor_atom_count": 105,
+      "atom_count_model_1": 6938,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Deciphering the Molecular and Functional Basis of RHOGAP Family Proteins: A SYSTEMATIC APPROACH TOWARD SELECTIVE INACTIVATION OF RHO FAMILY PROTEINS.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5IRC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Rho GTPase-activating protein 35",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P81128"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D",
+            "F"
+          ],
+          "description": "Transforming protein RhoA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61586"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase transition state substrate protein MgF",
+          "rank": 8,
+          "surface_id": "rcsb_fulltext_protein_kinase_transition_state_substrate_protein_mgf_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "p190A GAP domain complex with RhoA"
+    },
+    {
+      "acceptor_atom_count": 86,
+      "atom_count_model_1": 6087,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Assessing the Influence of Mutation on GTPase Transition States by Using X-ray Crystallography, (19) F NMR, and DFT Approaches.",
+        "year": 2017
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5M6X",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "H"
+          ],
+          "description": "Rho GTPase-activating protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07960"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "I"
+          ],
+          "description": "Transforming protein RhoA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61586"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase transition state substrate protein MgF",
+          "rank": 6,
+          "surface_id": "rcsb_fulltext_protein_kinase_transition_state_substrate_protein_mgf_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal Structure of human RhoGAP mutated in its arginine finger (R85A) in complex with RhoA.GDP.MgF3- human"
+    },
+    {
+      "acceptor_atom_count": 84,
+      "atom_count_model_1": 6226,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "GTPase IN COMPLEX WITH GDP.MGF3-",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7QSC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Rho GTPase-activating protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07960"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Transforming protein RhoA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61586"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase transition state substrate protein MgF",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_protein_kinase_transition_state_substrate_protein_mgf_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "GTPase IN COMPLEX WITH GDP.MGF3-"
+    },
+    {
+      "acceptor_atom_count": 84,
+      "atom_count_model_1": 6072,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Transition state analogue of small G protein in complex with relevant GAP",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7QTM",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "H"
+          ],
+          "description": "Rho GTPase-activating protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07960"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "I"
+          ],
+          "description": "Transforming protein RhoA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61586"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase transition state substrate protein MgF",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_protein_kinase_transition_state_substrate_protein_mgf_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Transition state analogue of small G protein in complex with relevant GAP"
+    },
+    {
+      "acceptor_atom_count": 78,
+      "atom_count_model_1": 3973,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A small G protein with MgF3 TSA complex",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8BOS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "GTPase HRas",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P01112"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "Ras GTPase-activating protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20936"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase transition state substrate protein MgF",
+          "rank": 7,
+          "surface_id": "rcsb_fulltext_protein_kinase_transition_state_substrate_protein_mgf_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Transition state analogue complex of small G protein and its GAP effector"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: protein kinase Michaelis complex substrate protein ANP",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_protein_kinase_michaelis_complex_substrate_protein_anp_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "4QM7",
+        "4QM6",
+        "4MDF",
+        "4MDE",
+        "3X2U",
+        "3X2V",
+        "3X2W"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase Michaelis complex substrate protein ATP",
+      "requested_rows": 100,
+      "returned_count": 7,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_protein_kinase_michaelis_complex_substrate_protein_atp_all",
+      "total_count": 7
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: kinase substrate Michaelis complex AMP-PNP protein",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_kinase_substrate_michaelis_complex_amp_pnp_protein_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "7QTM",
+        "3QHW",
+        "3QHR",
+        "1OW3",
+        "7QSC",
+        "5M6X",
+        "8BOS",
+        "5IRC",
+        "3MSX"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase transition state substrate protein MgF",
+      "requested_rows": 100,
+      "returned_count": 9,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_protein_kinase_transition_state_substrate_protein_mgf_all",
+      "total_count": 9
+    },
+    {
+      "pdb_ids": [
+        "5HVK"
+      ],
+      "query_or_source": "RCSB full_text: noncanonical substrate recognition full-length kinase ANP",
+      "requested_rows": 100,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_noncanonical_substrate_recognition_full_length_kinase_anp_all",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: substrate trapping protein kinase ANP",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_substrate_trapping_protein_kinase_anp_all",
+      "total_count": 0
+    }
+  ]
+}

@@ -1,0 +1,2446 @@
+{
+  "counterexamples_found": [
+    "6EQI",
+    "5YJ9",
+    "8UYH",
+    "8R3Y",
+    "9DW5",
+    "9DW7",
+    "9DW8",
+    "9DW9",
+    "9T7J",
+    "9T94",
+    "9ZBK",
+    "2SRC",
+    "6ZXF",
+    "2QO7",
+    "3Q4Z",
+    "7ZDU",
+    "7ZE5"
+  ],
+  "evidence_against": [
+    "The exact full-length/ATP/phosphorylation-site RCSB phrase scout reviewed 110 unique PDB IDs and found only repeat 5HVK as a heteromeric gamma/acceptor lead.",
+    "Europe PMC returned 68 rows across three PubMed-style query surfaces; top family/paper leads did not introduce a fresh clean transfer-state structure.",
+    "PINK1/ubiquitin is split-state: 6EQI has kinase-substrate context but no gamma donor, while 5YJ9/8UYH have AMP-PNP on PINK1 without ubiquitin substrate.",
+    "PKA/CFTR entries 9DW5/9DW7/9DW8/9DW9 have source-context complexes but no heteromeric CFTR acceptor within 6 Angstrom of kinase gamma; nearest sampled distances are 27-38 Angstrom or absent.",
+    "aPKC/Par6/Lgl 8R3Y places the nearest Lgl hydroxyl 12.560 Angstrom from ANP PG; mTORC2 ATP-state rows keep heteromeric acceptors at least 25.9 Angstrom away or lack active gamma.",
+    "Adjacent dephosphorylated/unphosphorylated substrate wording returned 21 RCSB rows across 18 unique PDB IDs and 0 heteromeric gamma/acceptor candidates; 2QO7 and 3Q4Z are same-entity kinase regulatory states, not substrate transfer complexes.",
+    "The same Michaelis/transition pass found 0 fresh folded-protein positives: 3X2U/3X2V/3X2W are peptide repeats and 5HVK is the known LIMK1/cofilin repeat.",
+    "Broad ATP-analog/gamma-transfer alias scout reviewed 402 unique PDB IDs; it found repeat peptide positives 1IR3/2PHK/4IAC and counterexample transporter rows 7ZDU/7ZE5, with 0 fresh folded-protein positives."
+  ],
+  "evidence_for": [
+    "Repeat review-only folded-protein positive-like evidence recovered again: 5HVK LIMK1/cofilin Ser3 near ANP PG.",
+    "Michaelis/transition-state wording recovered repeat peptide positives 3X2U/3X2V/3X2W with PKA substrate peptide Ser621 3.517-3.529 Angstrom from ATP PG, plus repeat folded 5HVK.",
+    "ATP-analog/gamma-transfer aliases recovered repeat peptide positives 1IR3, 2PHK, and 4IAC for review-only stress coverage."
+  ],
+  "metadata": {
+    "accepted_repeat_folded_protein_positive_like_pdb_ids": [
+      "5HVK"
+    ],
+    "accepted_repeat_peptide_positive_like_pdb_ids": [
+      "3X2U",
+      "3X2V",
+      "3X2W",
+      "1IR3",
+      "2PHK",
+      "4IAC"
+    ],
+    "adjacent_dephosphorylated_substrate_heteromeric_candidates": 0,
+    "adjacent_dephosphorylated_substrate_unique_pdb_ids_reviewed": 18,
+    "atp_analog_alias_fetch_failure_count": 2,
+    "atp_analog_alias_fetch_failures": [
+      {
+        "error": "TimeoutError('The read operation timed out')",
+        "pdb_id": "5BK2"
+      },
+      {
+        "error": "URLError(TimeoutError('timed out'))",
+        "pdb_id": "5BS8"
+      }
+    ],
+    "atp_analog_alias_surface_total_count_reported_total": 13565,
+    "atp_analog_alias_unique_pdb_ids_reviewed": 402,
+    "blocker_not_removed": [
+      "no_fresh_clean_folded_protein_positive",
+      "source_review_evidence_not_source_free_predictive_feature",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "europepmc_rows_reviewed": 68,
+    "europepmc_unique_pmids_returned": 61,
+    "fresh_clean_positive_count": 0,
+    "generated_at": "2026-05-20T16:32:50Z",
+    "hypothesis": "A bounded RCSB/PubMed route for full-length kinase-substrate complexes with ATP/analog and phosphorylation-site wording may expose fresh non-topology-confounded folded-protein ePK positive evidence.",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_full_length_atp_phosphosite_source_review",
+    "michaelis_transition_heteromeric_candidates": 4,
+    "michaelis_transition_unique_pdb_ids_reviewed": 17,
+    "ncbi_eutils_blocker": "HTTP 429 on bounded PubMed ESearch/ESummary; Europe PMC fallback completed.",
+    "primary_outcome": "evidence_against",
+    "primary_outcome_reason": "The phrase search recovered only repeat 5HVK; PubMed-derived family leads either split kinase-substrate and nucleotide states or lack local gamma-to-acceptor geometry.",
+    "production_claim_allowed": false,
+    "rcsb_surface_rows_returned_total_across_scouts": 954,
+    "rcsb_unique_pdb_ids_reviewed_across_scouts": 700,
+    "rejected_or_counterexample_pdb_ids": [
+      "6EQI",
+      "5YJ9",
+      "8UYH",
+      "9DW5",
+      "9DW7",
+      "9DW8",
+      "9DW9",
+      "8R3Y",
+      "9T7J",
+      "9T94",
+      "9ZBK",
+      "2SRC",
+      "6ZXF",
+      "7ZDU",
+      "7ZE5"
+    ],
+    "review_only": true,
+    "search_surface_exhausted": true,
+    "source_artifacts": [
+      "artifacts/research_lanes/epk_positive_evidence/rcsb_full_length_atp_phosphosite_phrase_scout_20260520.json",
+      "artifacts/research_lanes/epk_positive_evidence/pubmed_full_length_atp_phosphosite_phrase_scout_20260520.json",
+      "artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_family_targeted_scout_20260520.json",
+      "artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_family_broad_title_scout_20260520.json",
+      "artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_top_paper_targeted_scout_20260520.json",
+      "artifacts/research_lanes/epk_positive_evidence/rcsb_dephosphorylated_substrate_scout_20260520.json",
+      "artifacts/research_lanes/epk_positive_evidence/rcsb_michaelis_transition_substrate_scout_20260520.json",
+      "artifacts/research_lanes/epk_positive_evidence/rcsb_atp_analog_gamma_transfer_alias_scout_20260520.json"
+    ],
+    "source_review_status_counts": {
+      "accepted_repeat_folded_protein_substrate_evidence_review_only": 1,
+      "accepted_repeat_peptide_substrate_evidence_review_only": 6,
+      "rejected_apkc_lgl_acceptor_too_far_review_only": 1,
+      "rejected_cyddc_transporter_counterexample_review_only": 2,
+      "rejected_mtorc2_akt_no_local_transfer_geometry_review_only": 2,
+      "rejected_mtorc2_akt_recruitment_no_active_gamma_review_only": 1,
+      "rejected_pink1_nucleotide_state_without_ubiquitin_substrate_review_only": 2,
+      "rejected_pink1_ubiquitin_split_state_no_active_gamma_review_only": 1,
+      "rejected_pka_cftr_no_local_transfer_geometry_review_only": 4,
+      "rejected_top_paper_surface_false_positive_review_only": 2
+    },
+    "source_reviewed_candidate_count": 22,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "candidate_status_from_scout": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "folded_non_peptide_positive": true,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 1,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": true,
+      "nearest_or_geometry_samples": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "3",
+          "candidate_chain_name": "D",
+          "candidate_entity_description": "Cofilin-1",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [
+            "P23528"
+          ],
+          "candidate_label_seq_id": "2",
+          "candidate_residue_code": "SER",
+          "gamma_associated_entity_description": "LIM domain kinase 1",
+          "gamma_associated_entity_uniprot_ids": [
+            "P53667"
+          ],
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "701",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_gamma_distance_angstrom": 4.236
+        }
+      ],
+      "pdb_id": "5HVK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "LIM domain kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53667"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cofilin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23528"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Cofilin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23528"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "repeat_not_fresh_evidence",
+        "threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "Only heteromeric candidate recovered by the exact full-length/ATP/phosphorylation-site phrase scout.",
+        "RCSB entry identifies LIMK1 mutant D460N in complex with full-length cofilin-1; prior lane source review maps cofilin Ser3 4.236 Angstrom from ANP PG.",
+        "Repeat positive-like evidence, not fresh evidence for production activation."
+      ],
+      "source_review_status": "accepted_repeat_folded_protein_substrate_evidence_review_only",
+      "structure_title": "Crystal structure of LIMK1 mutant D460N in complex with full-length cofilin-1",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of PINK1 in complex with its substrate ubiquitin.",
+        "year": 2017
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [],
+      "pdb_id": "6EQI",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Ubiquitin",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0CG48"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Nb696",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, putative",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "E0W1I1"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "split_state_kinase_substrate_without_gamma",
+        "not_measurement_ready"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "PINK1/ubiquitin source lead has the desired kinase-substrate pair in the title and entities.",
+        "The modeled PINK1-bound ubiquitin structure has 0 ATP/ANP/AMP-PNP gamma donor atoms in the scout.",
+        "Related PINK1 nucleotide structures put AMP-PNP on PINK1 without ubiquitin substrate in the same structure."
+      ],
+      "source_review_status": "rejected_pink1_ubiquitin_split_state_no_active_gamma_review_only",
+      "structure_title": "Structure of PINK1 bound to ubiquitin",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into ubiquitin phosphorylation by PINK1.",
+        "year": 2018
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [
+        {
+          "gamma_associated_polymer_chain_name": "D",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ANP",
+          "nearest_heteromeric_acceptors": []
+        }
+      ],
+      "pdb_id": "5YJ9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial-like Protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "D6WMX4"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "split_state_gamma_without_substrate",
+        "not_measurement_ready"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "PINK1 nucleotide lead contains ANP/AMP-PNP gamma donor geometry on the kinase.",
+        "The modeled structure lacks a separate ubiquitin substrate entity; all acceptors are on the kinase entity, so no heteromeric substrate acceptor can be mapped.",
+        "Together with 6EQI this is split-state evidence, not clean positive transfer-state evidence."
+      ],
+      "source_review_status": "rejected_pink1_nucleotide_state_without_ubiquitin_substrate_review_only",
+      "structure_title": "Crystal structure of Tribolium castaneum PINK1 kinase domain in complex with AMP-PNP",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Interaction of PINK1 with nucleotides and kinetin.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [
+        {
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "nearest_heteromeric_acceptors": []
+        },
+        {
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "nearest_heteromeric_acceptors": []
+        }
+      ],
+      "pdb_id": "8UYH",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase Pink1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "E0W1I1"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "split_state_gamma_without_substrate",
+        "not_measurement_ready"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "PINK1 nucleotide lead contains ANP/AMP-PNP gamma donor geometry on the kinase.",
+        "The modeled structure lacks a separate ubiquitin substrate entity; all acceptors are on the kinase entity, so no heteromeric substrate acceptor can be mapped.",
+        "Together with 6EQI this is split-state evidence, not clean positive transfer-state evidence."
+      ],
+      "source_review_status": "rejected_pink1_nucleotide_state_without_ubiquitin_substrate_review_only",
+      "structure_title": "Structure of AMP-PNP-bound Pediculus humanus (Ph) PINK1 dimer",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [
+        {
+          "gamma_associated_polymer_chain_name": "G",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_auth_seq_id": "403",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ANP",
+          "nearest_heteromeric_acceptors": [
+            {
+              "auth_seq_id": "1076",
+              "chain_name": "A",
+              "distance_angstrom": 38.178,
+              "entity_id": "1",
+              "label_seq_id": "1076",
+              "residue_code": "THR"
+            },
+            {
+              "auth_seq_id": "380",
+              "chain_name": "A",
+              "distance_angstrom": 38.322,
+              "entity_id": "1",
+              "label_seq_id": "380",
+              "residue_code": "TYR"
+            },
+            {
+              "auth_seq_id": "50",
+              "chain_name": "A",
+              "distance_angstrom": 38.429,
+              "entity_id": "1",
+              "label_seq_id": "50",
+              "residue_code": "SER"
+            }
+          ]
+        }
+      ],
+      "pdb_id": "9DW5",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "no_heteromeric_acceptor_within_6_angstrom",
+        "source_context_not_local_transfer_state"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "RCSB citation/title maps the PKA-C/CFTR paper lead to CFTR substrate context.",
+        "The active kinase nucleotide is modeled on PKA-C for at least one state, but no heteromeric CFTR Ser/Thr/Tyr acceptor lies within the 6 Angstrom gamma-transfer window.",
+        "Nearest heteromeric acceptors are tens of Angstroms away or absent in the modeled atoms, so source context is not matched by local transfer geometry."
+      ],
+      "source_review_status": "rejected_pka_cftr_no_local_transfer_geometry_review_only",
+      "structure_title": "Dephosphorylated CFTR in 1:1 complex with PKA-C (site I)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [
+        {
+          "gamma_associated_polymer_chain_name": "G",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_auth_seq_id": "403",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ANP",
+          "nearest_heteromeric_acceptors": []
+        }
+      ],
+      "pdb_id": "9DW7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "G",
+            "K"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "no_heteromeric_acceptor_within_6_angstrom",
+        "source_context_not_local_transfer_state"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "RCSB citation/title maps the PKA-C/CFTR paper lead to CFTR substrate context.",
+        "The active kinase nucleotide is modeled on PKA-C for at least one state, but no heteromeric CFTR Ser/Thr/Tyr acceptor lies within the 6 Angstrom gamma-transfer window.",
+        "Nearest heteromeric acceptors are tens of Angstroms away or absent in the modeled atoms, so source context is not matched by local transfer geometry."
+      ],
+      "source_review_status": "rejected_pka_cftr_no_local_transfer_geometry_review_only",
+      "structure_title": "Dephosphorylated CFTR in 1:2 complex with PKA-C",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [
+        {
+          "gamma_associated_polymer_chain_name": "G",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_auth_seq_id": "403",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ANP",
+          "nearest_heteromeric_acceptors": [
+            {
+              "auth_seq_id": "388",
+              "chain_name": "A",
+              "distance_angstrom": 27.427,
+              "entity_id": "1",
+              "label_seq_id": "388",
+              "residue_code": "THR"
+            },
+            {
+              "auth_seq_id": "385",
+              "chain_name": "A",
+              "distance_angstrom": 27.832,
+              "entity_id": "1",
+              "label_seq_id": "385",
+              "residue_code": "TYR"
+            },
+            {
+              "auth_seq_id": "485",
+              "chain_name": "A",
+              "distance_angstrom": 31.291,
+              "entity_id": "1",
+              "label_seq_id": "485",
+              "residue_code": "SER"
+            }
+          ]
+        }
+      ],
+      "pdb_id": "9DW8",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "no_heteromeric_acceptor_within_6_angstrom",
+        "source_context_not_local_transfer_state"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "RCSB citation/title maps the PKA-C/CFTR paper lead to CFTR substrate context.",
+        "The active kinase nucleotide is modeled on PKA-C for at least one state, but no heteromeric CFTR Ser/Thr/Tyr acceptor lies within the 6 Angstrom gamma-transfer window.",
+        "Nearest heteromeric acceptors are tens of Angstroms away or absent in the modeled atoms, so source context is not matched by local transfer geometry."
+      ],
+      "source_review_status": "rejected_pka_cftr_no_local_transfer_geometry_review_only",
+      "structure_title": "Dephosphorylated (E1371Q)CFTR in complex with PKA-C",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 3,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [
+        {
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_auth_seq_id": "1505",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "nearest_heteromeric_acceptors": [
+            {
+              "auth_seq_id": "260",
+              "chain_name": "G",
+              "distance_angstrom": 31.617,
+              "entity_id": "2",
+              "label_seq_id": "260",
+              "residue_code": "SER"
+            },
+            {
+              "auth_seq_id": "140",
+              "chain_name": "G",
+              "distance_angstrom": 35.872,
+              "entity_id": "2",
+              "label_seq_id": "140",
+              "residue_code": "SER"
+            },
+            {
+              "auth_seq_id": "236",
+              "chain_name": "G",
+              "distance_angstrom": 37.287,
+              "entity_id": "2",
+              "label_seq_id": "236",
+              "residue_code": "TYR"
+            }
+          ]
+        },
+        {
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_auth_seq_id": "1506",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "nearest_heteromeric_acceptors": [
+            {
+              "auth_seq_id": "260",
+              "chain_name": "G",
+              "distance_angstrom": 36.349,
+              "entity_id": "2",
+              "label_seq_id": "260",
+              "residue_code": "SER"
+            },
+            {
+              "auth_seq_id": "236",
+              "chain_name": "G",
+              "distance_angstrom": 40.646,
+              "entity_id": "2",
+              "label_seq_id": "236",
+              "residue_code": "TYR"
+            },
+            {
+              "auth_seq_id": "230",
+              "chain_name": "G",
+              "distance_angstrom": 44.555,
+              "entity_id": "2",
+              "label_seq_id": "230",
+              "residue_code": "TYR"
+            }
+          ]
+        },
+        {
+          "gamma_associated_polymer_chain_name": "G",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_auth_seq_id": "401",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ATP",
+          "nearest_heteromeric_acceptors": [
+            {
+              "auth_seq_id": "388",
+              "chain_name": "A",
+              "distance_angstrom": 27.299,
+              "entity_id": "1",
+              "label_seq_id": "388",
+              "residue_code": "THR"
+            },
+            {
+              "auth_seq_id": "385",
+              "chain_name": "A",
+              "distance_angstrom": 27.921,
+              "entity_id": "1",
+              "label_seq_id": "385",
+              "residue_code": "TYR"
+            },
+            {
+              "auth_seq_id": "809",
+              "chain_name": "A",
+              "distance_angstrom": 30.997,
+              "entity_id": "1",
+              "label_seq_id": "809",
+              "residue_code": "SER"
+            }
+          ]
+        }
+      ],
+      "pdb_id": "9DW9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "no_heteromeric_acceptor_within_6_angstrom",
+        "source_context_not_local_transfer_state"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "RCSB citation/title maps the PKA-C/CFTR paper lead to CFTR substrate context.",
+        "The active kinase nucleotide is modeled on PKA-C for at least one state, but no heteromeric CFTR Ser/Thr/Tyr acceptor lies within the 6 Angstrom gamma-transfer window.",
+        "Nearest heteromeric acceptors are tens of Angstroms away or absent in the modeled atoms, so source context is not matched by local transfer geometry."
+      ],
+      "source_review_status": "rejected_pka_cftr_no_local_transfer_geometry_review_only",
+      "structure_title": "Phosphorylated (E1371Q)CFTR in complex with PKA-C",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [
+        {
+          "gamma_associated_polymer_chain_name": "I",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "I",
+          "gamma_ligand_code": "ANP",
+          "nearest_heteromeric_acceptors": [
+            {
+              "auth_seq_id": "655",
+              "chain_name": "L",
+              "distance_angstrom": 12.56,
+              "entity_id": "2",
+              "label_seq_id": "641",
+              "residue_code": "SER"
+            },
+            {
+              "auth_seq_id": "651",
+              "chain_name": "L",
+              "distance_angstrom": 14.842,
+              "entity_id": "2",
+              "label_seq_id": "637",
+              "residue_code": "SER"
+            },
+            {
+              "auth_seq_id": "659",
+              "chain_name": "L",
+              "distance_angstrom": 18.69,
+              "entity_id": "2",
+              "label_seq_id": "645",
+              "residue_code": "SER"
+            }
+          ]
+        }
+      ],
+      "pdb_id": "8R3Y",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Lethal(2) giant larvae protein homolog 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15334"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "Partitioning defective 6 homolog alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "R4GMM2"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "acceptor_distance_outside_transfer_window",
+        "not_measurement_ready"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "The aPKC/Par6/Lgl paper lead supplies a folded-protein substrate complex with ANP on aPKC.",
+        "Nearest heteromeric Lgl hydroxyl acceptor sampled from the scout is Ser655 at 12.560 Angstrom from ANP PG, outside the transfer-state window.",
+        "Other aPKC/Par6/Lgl rows in the exact targeted scout are nucleotide-free or peptide-only."
+      ],
+      "source_review_status": "rejected_apkc_lgl_acceptor_too_far_review_only",
+      "structure_title": "Cryo EM structure of a stable LGL/aPKC Iota/Par-6 complex",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [
+        {
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_auth_seq_id": "2602",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "nearest_heteromeric_acceptors": [
+            {
+              "auth_seq_id": "62",
+              "chain_name": "C",
+              "distance_angstrom": 26.202,
+              "entity_id": "2",
+              "label_seq_id": "62",
+              "residue_code": "TYR"
+            },
+            {
+              "auth_seq_id": "1628",
+              "chain_name": "E",
+              "distance_angstrom": 28.432,
+              "entity_id": "3",
+              "label_seq_id": "1654",
+              "residue_code": "SER"
+            },
+            {
+              "auth_seq_id": "268",
+              "chain_name": "E",
+              "distance_angstrom": 31.057,
+              "entity_id": "3",
+              "label_seq_id": "294",
+              "residue_code": "THR"
+            }
+          ]
+        },
+        {
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_auth_seq_id": "2601",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "nearest_heteromeric_acceptors": [
+            {
+              "auth_seq_id": "62",
+              "chain_name": "D",
+              "distance_angstrom": 25.972,
+              "entity_id": "2",
+              "label_seq_id": "62",
+              "residue_code": "TYR"
+            },
+            {
+              "auth_seq_id": "1628",
+              "chain_name": "F",
+              "distance_angstrom": 27.723,
+              "entity_id": "3",
+              "label_seq_id": "1654",
+              "residue_code": "SER"
+            },
+            {
+              "auth_seq_id": "1625",
+              "chain_name": "F",
+              "distance_angstrom": 31.225,
+              "entity_id": "3",
+              "label_seq_id": "1651",
+              "residue_code": "SER"
+            }
+          ]
+        }
+      ],
+      "pdb_id": "9T7J",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "no_heteromeric_acceptor_within_6_angstrom",
+        "recruitment_context_not_transfer_state"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "mTORC2/Akt PubMed lead maps to recent mTORC2 structures with ATP in mTOR active-site context.",
+        "Nearest heteromeric acceptor samples are at least 25.9 Angstrom from ATP PG; no Akt or other substrate acceptor is locally transfer-ready.",
+        "Separate mTORC2-Akt recruitment rows such as 9ZBK have no active gamma donor in the scout."
+      ],
+      "source_review_status": "rejected_mtorc2_akt_no_local_transfer_geometry_review_only",
+      "structure_title": "cryo-EM structure of AKT phosphorylated mTOR complex 2, overall refinement",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [
+        {
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_auth_seq_id": "2602",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "nearest_heteromeric_acceptors": [
+            {
+              "auth_seq_id": "62",
+              "chain_name": "C",
+              "distance_angstrom": 26.839,
+              "entity_id": "2",
+              "label_seq_id": "62",
+              "residue_code": "TYR"
+            },
+            {
+              "auth_seq_id": "1628",
+              "chain_name": "E",
+              "distance_angstrom": 28.221,
+              "entity_id": "3",
+              "label_seq_id": "1654",
+              "residue_code": "SER"
+            },
+            {
+              "auth_seq_id": "268",
+              "chain_name": "E",
+              "distance_angstrom": 31.378,
+              "entity_id": "3",
+              "label_seq_id": "294",
+              "residue_code": "THR"
+            }
+          ]
+        }
+      ],
+      "pdb_id": "9T94",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "no_heteromeric_acceptor_within_6_angstrom",
+        "recruitment_context_not_transfer_state"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "mTORC2/Akt PubMed lead maps to recent mTORC2 structures with ATP in mTOR active-site context.",
+        "Nearest heteromeric acceptor samples are at least 25.9 Angstrom from ATP PG; no Akt or other substrate acceptor is locally transfer-ready.",
+        "Separate mTORC2-Akt recruitment rows such as 9ZBK have no active gamma donor in the scout."
+      ],
+      "source_review_status": "rejected_mtorc2_akt_no_local_transfer_geometry_review_only",
+      "structure_title": "cryo-EM structure of AKT phosphorylated mTOR complex 2, focused on a single protomer",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the recruitment and selective phosphorylation of Akt by mTORC2.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [],
+      "pdb_id": "9ZBK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "RAC-alpha serine/threonine-protein kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P31749"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "kinase_substrate_recruitment_without_gamma",
+        "not_measurement_ready"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "RCSB entry is mTORC2 in complex with Akt1 from the recent recruitment paper.",
+        "The scout finds 0 active ATP/ANP/AMP-PNP gamma donor atoms, so it is not a transfer-state positive."
+      ],
+      "source_review_status": "rejected_mtorc2_akt_recruitment_no_active_gamma_review_only",
+      "structure_title": "mTORC2 in complex with Akt1",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structures of c-Src reveal features of its autoinhibitory mechanism.",
+        "year": 1999
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [],
+      "pdb_id": "2SRC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "TYROSINE-PROTEIN KINASE SRC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "text_query_false_positive",
+        "not_source_mapped_substrate_transfer_state"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "Top-paper title query recovered this row through broad kinase/source terms rather than a source-mapped kinase-substrate transfer state.",
+        "Scout found no heteromeric gamma/acceptor candidate; row is retained as text-query false-positive risk."
+      ],
+      "source_review_status": "rejected_top_paper_surface_false_positive_review_only",
+      "structure_title": "CRYSTAL STRUCTURE OF HUMAN TYROSINE-PROTEIN KINASE C-SRC, IN COMPLEX WITH AMP-PNP",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the final steps of human 40S ribosome maturation.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "nearest_or_geometry_samples": [],
+      "pdb_id": "6ZXF",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "pre-18S ribosomal RNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "10": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "40S ribosomal protein S9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46781"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "40S ribosomal protein S5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46782"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "40S ribosomal protein S11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62280"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "40S ribosomal protein S10",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46783"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "N"
+          ],
+          "description": "40S ribosomal protein S13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62277"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "40S ribosomal protein S14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62263"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "40S ribosomal protein S12",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P25398"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "40S ribosomal protein S15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62841"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "40S ribosomal protein S17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08708"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "Q"
+          ],
+          "description": "40S ribosomal protein S16",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62249"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "40S ribosomal protein SA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08865"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "40S ribosomal protein S18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62269"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "40S ribosomal protein S19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39019"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "V"
+          ],
+          "description": "40S ribosomal protein S21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63220"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "W"
+          ],
+          "description": "40S ribosomal protein S15a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62244"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "40S ribosomal protein S23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62266"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "40S ribosomal protein S24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62847"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "40S ribosomal protein S20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60866"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "Z"
+          ],
+          "description": "40S ribosomal protein S25",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62851"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "b"
+          ],
+          "description": "40S ribosomal protein S27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42677"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "c"
+          ],
+          "description": "40S ribosomal protein S28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62857"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "40S ribosomal protein S3a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61247"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "d"
+          ],
+          "description": "40S ribosomal protein S29",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62273"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "e"
+          ],
+          "description": "40S ribosomal protein S30",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62861"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "f"
+          ],
+          "description": "Ubiquitin-40S ribosomal protein S27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62979"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "g"
+          ],
+          "description": "Receptor of activated protein C kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63244"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "j"
+          ],
+          "description": "Probable RNA-binding protein EIF1AD",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N9N8"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "z"
+          ],
+          "description": "Serine/threonine-protein kinase RIO1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BRS2"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "y"
+          ],
+          "description": "RNA-binding protein NOB1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9ULX3"
+          ]
+        },
+        "37": {
+          "auth_asym_ids": [
+            "k"
+          ],
+          "description": "Leucine-rich repeat-containing protein 47",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N1G4"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "40S ribosomal protein S2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15880"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "40S ribosomal protein S4, X isoform",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62701"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "40S ribosomal protein S3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23396"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "40S ribosomal protein S6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62753"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "40S ribosomal protein S7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62081"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "40S ribosomal protein S8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62241"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "text_query_false_positive",
+        "not_source_mapped_substrate_transfer_state"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "Top-paper title query recovered this row through broad kinase/source terms rather than a source-mapped kinase-substrate transfer state.",
+        "Scout found no heteromeric gamma/acceptor candidate; row is retained as text-query false-positive risk."
+      ],
+      "source_review_status": "rejected_top_paper_surface_false_positive_review_only",
+      "structure_title": "Cryo-EM structure of a late human pre-40S ribosomal subunit - State G",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "621",
+      "candidate_chain_name": "S",
+      "candidate_residue": "SER",
+      "candidate_status_from_scout": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Protein Kinase A Catalytic Subunit Primed for Action: Time-Lapse Crystallography of Michaelis Complex Formation.",
+        "year": 2015
+      },
+      "countable_label_candidate": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ATP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [
+        {
+          "auth_seq_id": "502",
+          "chain": "A",
+          "distance_angstrom": 2.688,
+          "metal_code": "MG"
+        },
+        {
+          "auth_seq_id": "503",
+          "chain": "A",
+          "distance_angstrom": 3.063,
+          "metal_code": "MG"
+        }
+      ],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 3.517,
+      "pdb_id": "3X2U",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "Substrate Peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61925"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "peptide_substrate_not_folded_protein_positive",
+        "repeat_not_fresh_evidence",
+        "production_scoring_closed"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "Michaelis/transition-state wording scout recovered the known PKA/SP20 substrate peptide series.",
+        "Substrate peptide Ser621 is 3.517 Angstrom from ATP PG with local Mg ions.",
+        "This is repeat peptide evidence and does not satisfy the fresh folded-protein substrate objective."
+      ],
+      "source_review_status": "accepted_repeat_peptide_substrate_evidence_review_only",
+      "structure_title": "Michaelis-like initial complex of cAMP-dependent Protein Kinase Catalytic Subunit.",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "621",
+      "candidate_chain_name": "S",
+      "candidate_residue": "SER",
+      "candidate_status_from_scout": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Protein Kinase A Catalytic Subunit Primed for Action: Time-Lapse Crystallography of Michaelis Complex Formation.",
+        "year": 2015
+      },
+      "countable_label_candidate": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ATP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [
+        {
+          "auth_seq_id": "402",
+          "chain": "A",
+          "distance_angstrom": 2.923,
+          "metal_code": "MG"
+        },
+        {
+          "auth_seq_id": "401",
+          "chain": "A",
+          "distance_angstrom": 3.145,
+          "metal_code": "MG"
+        }
+      ],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 3.521,
+      "pdb_id": "3X2V",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "Substrate Peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61925"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "peptide_substrate_not_folded_protein_positive",
+        "repeat_not_fresh_evidence",
+        "production_scoring_closed"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "Michaelis/transition-state wording scout recovered the known PKA/SP20 substrate peptide series.",
+        "Substrate peptide Ser621 is 3.521 Angstrom from ATP PG with local Mg ions.",
+        "This is repeat peptide evidence and does not satisfy the fresh folded-protein substrate objective."
+      ],
+      "source_review_status": "accepted_repeat_peptide_substrate_evidence_review_only",
+      "structure_title": "Michaelis-like complex of cAMP-dependent Protein Kinase Catalytic Subunit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "621",
+      "candidate_chain_name": "S",
+      "candidate_residue": "SER",
+      "candidate_status_from_scout": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Protein Kinase A Catalytic Subunit Primed for Action: Time-Lapse Crystallography of Michaelis Complex Formation.",
+        "year": 2015
+      },
+      "countable_label_candidate": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ATP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [
+        {
+          "auth_seq_id": "402",
+          "chain": "A",
+          "distance_angstrom": 2.773,
+          "metal_code": "MG"
+        },
+        {
+          "auth_seq_id": "401",
+          "chain": "A",
+          "distance_angstrom": 3.012,
+          "metal_code": "MG"
+        }
+      ],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 3.529,
+      "pdb_id": "3X2W",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "Substrate Peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61925"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "peptide_substrate_not_folded_protein_positive",
+        "repeat_not_fresh_evidence",
+        "production_scoring_closed"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "Michaelis/transition-state wording scout recovered the known PKA/SP20 substrate peptide series.",
+        "Substrate peptide Ser621 is 3.529 Angstrom from ATP PG with local Mg ions.",
+        "This is repeat peptide evidence and does not satisfy the fresh folded-protein substrate objective."
+      ],
+      "source_review_status": "accepted_repeat_peptide_substrate_evidence_review_only",
+      "structure_title": "Michaelis complex of cAMP-dependent Protein Kinase Catalytic Subunit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "10",
+      "candidate_chain_name": "B",
+      "candidate_residue": "TYR",
+      "candidate_status_from_scout": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of the activated insulin receptor tyrosine kinase in complex with peptide substrate and ATP analog.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ANP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [
+        {
+          "auth_seq_id": "301",
+          "chain": "A",
+          "distance_angstrom": 3.143,
+          "metal_code": "MG"
+        }
+      ],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 5.082,
+      "pdb_id": "1IR3",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "INSULIN RECEPTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06213"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "PEPTIDE SUBSTRATE",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "peptide_substrate_not_folded_protein_positive",
+        "repeat_or_prior_known_evidence",
+        "production_scoring_closed"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "ATP-analog/gamma-transfer alias scout recovered a known peptide substrate kinase complex.",
+        "Modeled peptide acceptor TYR10 is 5.082 Angstrom from ANP PG.",
+        "Useful review-only peptide evidence; not a fresh folded-protein substrate positive."
+      ],
+      "source_review_status": "accepted_repeat_peptide_substrate_evidence_review_only",
+      "structure_title": "PHOSPHORYLATED INSULIN RECEPTOR TYROSINE KINASE IN COMPLEX WITH PEPTIDE SUBSTRATE AND ATP ANALOG",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "5",
+      "candidate_chain_name": "B",
+      "candidate_residue": "SER",
+      "candidate_status_from_scout": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The crystal structure of a phosphorylase kinase peptide substrate complex: kinase substrate recognition.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ATP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [
+        {
+          "auth_seq_id": "383",
+          "chain": "A",
+          "distance_angstrom": 2.821,
+          "metal_code": "MN"
+        },
+        {
+          "auth_seq_id": "382",
+          "chain": "A",
+          "distance_angstrom": 3.314,
+          "metal_code": "MN"
+        }
+      ],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 3.61,
+      "pdb_id": "2PHK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHORYLASE KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00518"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "MC-PEPTIDE",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "peptide_substrate_not_folded_protein_positive",
+        "repeat_or_prior_known_evidence",
+        "production_scoring_closed"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "ATP-analog/gamma-transfer alias scout recovered a known peptide substrate kinase complex.",
+        "Modeled peptide acceptor SER5 is 3.61 Angstrom from ATP PG.",
+        "Useful review-only peptide evidence; not a fresh folded-protein substrate positive."
+      ],
+      "source_review_status": "accepted_repeat_peptide_substrate_evidence_review_only",
+      "structure_title": "THE CRYSTAL STRUCTURE OF A PHOSPHORYLASE KINASE PEPTIDE SUBSTRATE COMPLEX: KINASE SUBSTRATE RECOGNITION",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "621",
+      "candidate_chain_name": "S",
+      "candidate_residue": "SER",
+      "candidate_status_from_scout": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Insights into the Phosphoryl Transfer Catalyzed by cAMP-Dependent Protein Kinase: An X-ray Crystallographic Study of Complexes with Various Metals and Peptide Substrate SP20.",
+        "year": 2013
+      },
+      "countable_label_candidate": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ACP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [
+        {
+          "auth_seq_id": "402",
+          "chain": "A",
+          "distance_angstrom": 3.152,
+          "metal_code": "MG"
+        },
+        {
+          "auth_seq_id": "401",
+          "chain": "A",
+          "distance_angstrom": 3.361,
+          "metal_code": "MG"
+        }
+      ],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 3.486,
+      "pdb_id": "4IAC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "Peptide SP20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61925"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "peptide_substrate_not_folded_protein_positive",
+        "repeat_or_prior_known_evidence",
+        "production_scoring_closed"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "ATP-analog/gamma-transfer alias scout recovered a known peptide substrate kinase complex.",
+        "Modeled peptide acceptor SER621 is 3.486 Angstrom from ACP PG.",
+        "Useful review-only peptide evidence; not a fresh folded-protein substrate positive."
+      ],
+      "source_review_status": "accepted_repeat_peptide_substrate_evidence_review_only",
+      "structure_title": "X-RAY structure of cAMP dependent protein kinase A in complex with HIGH MG2+ concentration, AMP-PCP AND pseudo-substrate peptide SP20",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Dissecting the conformational complexity and mechanism of a bacterial heme transporter.",
+        "year": 2023
+      },
+      "countable_label_candidate": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "487",
+          "candidate_chain_name": "D",
+          "candidate_entity_description": "ATP-binding/permease protein CydD",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "P29018"
+          ],
+          "candidate_label_seq_id": "487",
+          "candidate_residue_code": "SER",
+          "gamma_associated_entity_description": "ATP-binding/permease protein CydC",
+          "gamma_associated_entity_uniprot_ids": [
+            "P23886"
+          ],
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "602",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "601",
+              "chain": "C",
+              "distance_angstrom": 3.354,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 4.07
+        },
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "476",
+          "candidate_chain_name": "C",
+          "candidate_entity_description": "ATP-binding/permease protein CydC",
+          "candidate_entity_id": "1",
+          "candidate_entity_uniprot_ids": [
+            "P23886"
+          ],
+          "candidate_label_seq_id": "476",
+          "candidate_residue_code": "SER",
+          "gamma_associated_entity_description": "ATP-binding/permease protein CydD",
+          "gamma_associated_entity_uniprot_ids": [
+            "P29018"
+          ],
+          "gamma_associated_polymer_chain_name": "D",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "602",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "601",
+              "chain": "D",
+              "distance_angstrom": 3.385,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 4.294
+        },
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "515",
+          "candidate_chain_name": "D",
+          "candidate_entity_description": "ATP-binding/permease protein CydD",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "P29018"
+          ],
+          "candidate_label_seq_id": "515",
+          "candidate_residue_code": "SER",
+          "gamma_associated_entity_description": "ATP-binding/permease protein CydC",
+          "gamma_associated_entity_uniprot_ids": [
+            "P23886"
+          ],
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "602",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "601",
+              "chain": "C",
+              "distance_angstrom": 3.354,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 5.7
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "pdb_id": "7ZDU",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "ATP-binding/permease protein CydC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23886"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "ATP-binding/permease protein CydD",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29018"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "non_epk_transporter_context",
+        "not_kinase_substrate_complex",
+        "production_scoring_closed"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "Broad ATP-analog/gamma-transfer alias wording recovered CydDC transporter ATP-binding rows.",
+        "Heteromeric Ser hydroxyl/gamma distances are local, but source entities are ATP-binding/permease transporter proteins, not ePK kinase-substrate complexes.",
+        "Retained as a counterexample for broad text plus geometry searches."
+      ],
+      "source_review_status": "rejected_cyddc_transporter_counterexample_review_only",
+      "structure_title": "Occ(apo/return) conformation of CydDC mutant (E500Q.C) in ATP(CydC)/ATP(CydD) bound state (Dataset-19)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status_from_scout": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Dissecting the conformational complexity and mechanism of a bacterial heme transporter.",
+        "year": 2023
+      },
+      "countable_label_candidate": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "487",
+          "candidate_chain_name": "D",
+          "candidate_entity_description": "ATP-binding/permease protein CydD",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "P29018"
+          ],
+          "candidate_label_seq_id": "487",
+          "candidate_residue_code": "SER",
+          "gamma_associated_entity_description": "ATP-binding/permease protein CydC",
+          "gamma_associated_entity_uniprot_ids": [
+            "P23886"
+          ],
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "602",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "601",
+              "chain": "C",
+              "distance_angstrom": 3.331,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 3.876
+        },
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "476",
+          "candidate_chain_name": "C",
+          "candidate_entity_description": "ATP-binding/permease protein CydC",
+          "candidate_entity_id": "1",
+          "candidate_entity_uniprot_ids": [
+            "P23886"
+          ],
+          "candidate_label_seq_id": "476",
+          "candidate_residue_code": "SER",
+          "gamma_associated_entity_description": "ATP-binding/permease protein CydD",
+          "gamma_associated_entity_uniprot_ids": [
+            "P29018"
+          ],
+          "gamma_associated_polymer_chain_name": "D",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "602",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "601",
+              "chain": "D",
+              "distance_angstrom": 3.408,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 4.044
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "measurement_ready_for_review_controls": false,
+      "pdb_id": "7ZE5",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "ATP-binding/permease protein CydC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23886"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "ATP-binding/permease protein CydD",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29018"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "non_epk_transporter_context",
+        "not_kinase_substrate_complex",
+        "production_scoring_closed"
+      ],
+      "review_only": true,
+      "source_basis": [
+        "Broad ATP-analog/gamma-transfer alias wording recovered CydDC transporter ATP-binding rows.",
+        "Heteromeric Ser hydroxyl/gamma distances are local, but source entities are ATP-binding/permease transporter proteins, not ePK kinase-substrate complexes.",
+        "Retained as a counterexample for broad text plus geometry searches."
+      ],
+      "source_review_status": "rejected_cyddc_transporter_counterexample_review_only",
+      "structure_title": "Occ(apo/return) conformation of CydDC mutant (E500Q.C) in ATP(CydC)/AMP-PNP(CydD) bound state (Dataset-23)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ]
+}

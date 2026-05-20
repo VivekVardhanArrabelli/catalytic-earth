@@ -1,0 +1,1290 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "no_active_gamma_donor_atom_review_only": 12,
+      "no_heteromeric_candidate_hit_review_only": 6
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T16:33:15Z",
+    "heteromeric_candidate_pdb_ids": [],
+    "heteromeric_candidate_structure_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_bounded_rcsb_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "review_only": true,
+    "review_only_rule": "This lane-local scout uses RCSB full-text surfaces plus transient mmCIF geometry to identify source-validation leads only. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 6,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 21,
+    "surface_total_count_reported_total": 21,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 18
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 259,
+      "atom_count_model_1": 13181,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The TGF beta receptor activation process: an inhibitor- to substrate-binding switch.",
+        "year": 2001
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1IAS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "description": "TGF-BETA RECEPTOR TYPE I",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P36897"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+          "rank": 10,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "CYTOPLASMIC DOMAIN OF UNPHOSPHORYLATED TYPE I TGF-BETA RECEPTOR CRYSTALLIZED WITHOUT FKBP12"
+    },
+    {
+      "acceptor_atom_count": 82,
+      "atom_count_model_1": 3976,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Crystal Structure of a c-Src Complex in an Active Conformation Suggests Possible Steps in c-Src Activation",
+        "year": 2005
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1Y57",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+          "rank": 6,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of unphosphorylated c-Src in complex with an inhibitor"
+    },
+    {
+      "acceptor_atom_count": 74,
+      "atom_count_model_1": 4995,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of the unphosphorylated C-terminal tail segment of the SRC kinase and its role in SRC activity regulation",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1YI6",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Proto-oncogene tyrosine-protein kinase Src",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12931"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "C-term tail segment of human tyrosine kinase (258-533)"
+    },
+    {
+      "acceptor_atom_count": 44,
+      "atom_count_model_1": 2581,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Autoregulation by the Juxtamembrane Region of the Human Ephrin Receptor Tyrosine Kinase A3 (EphA3).",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2QO2",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Ephrin receptor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29320"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ATP",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human EphA3 kinase and juxtamembrane region, dephosphorylated, apo structure"
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 2507,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Autoregulation by the Juxtamembrane Region of the Human Ephrin Receptor Tyrosine Kinase A3 (EphA3).",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.762,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1000",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1",
+              "chain": "A",
+              "distance_angstrom": 3.303,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2QO7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Ephrin receptor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29320"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ANP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_anp_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ATP",
+          "rank": 6,
+          "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_atp_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: protein kinase substrate dephosphorylated AMP-PNP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_protein_kinase_substrate_dephosphorylated_amp_pnp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human EphA3 kinase and juxtamembrane region, dephosphorylated, AMP-PNP bound"
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 2864,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification of a key element for hydrogen-bonding patterns between protein kinases and their inhibitors",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2Z7L",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63086"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+          "rank": 9,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Unphosphorylated Mitogen Activated Protein Kinase ERK2 in Complex with (4-{[5-Carbamoyl-4-(3-Methylanilino)Pyrimidin 2-Yl]Amino}Phenyl)Acetic Acid"
+    },
+    {
+      "acceptor_atom_count": 41,
+      "atom_count_model_1": 2459,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Discovery of the first non-ATP competitive IGF-1R kinase inhibitors: Advantages in comparison with competitive inhibitors",
+        "year": 2011
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3O23",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Insulin-like growth factor 1 receptor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08069"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human unphosphorylated IGF1-R Kinase domain in complex with an hydantoin inhibitor"
+    },
+    {
+      "acceptor_atom_count": 74,
+      "atom_count_model_1": 4662,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into the autoactivation mechanism of p21-activated protein kinase",
+        "year": 2011
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.526,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "800",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1",
+              "chain": "A",
+              "distance_angstrom": 4.272,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3Q4Z",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase PAK 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13153"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ANP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_anp_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+          "rank": 7,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of unphosphorylated PAK1 kinase domain"
+    },
+    {
+      "acceptor_atom_count": 155,
+      "atom_count_model_1": 9305,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Discovery of 2,4-bis-arylamino-1,3-pyrimidines as insulin-like growth factor-1 receptor (IGF-1R) inhibitors.",
+        "year": 2011
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3QQU",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Insulin-like growth factor 1 receptor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08069"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Cocrystal structure of unphosphorylated igf with pyrimidine 8"
+    },
+    {
+      "acceptor_atom_count": 71,
+      "atom_count_model_1": 4635,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "De Novo Fragment Design for Drug Discovery and Chemical Biology.",
+        "year": 2015
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5A6O",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "DEATH-ASSOCIATED PROTEIN KINASE 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O43293"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of the apo form of the unphosphorylated human death associated protein kinase 3 (DAPK3)"
+    },
+    {
+      "acceptor_atom_count": 78,
+      "atom_count_model_1": 4513,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conformational flexibility and inhibitor binding to unphosphorylated interleukin-1 receptor-associated kinase 4 (IRAK4).",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6EG9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Interleukin-1 receptor-associated kinase 4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NWZ3"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "IRAK4 in complex with Ponatinib"
+    },
+    {
+      "acceptor_atom_count": 47,
+      "atom_count_model_1": 3343,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Quantitation of ERK1/2 inhibitor cellular target occupancies with a reversible slow off-rate probe.",
+        "year": 2018
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6GJB",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P28482"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+          "rank": 8,
+          "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Erk2 signalling protein"
+    },
+    {
+      "acceptor_atom_count": 179,
+      "atom_count_model_1": 9243,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Molecular structures reveal synergistic rescue of Delta 508 CFTR by Trikafta modulators.",
+        "year": 2022
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.816,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1503",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1501",
+              "chain": "A",
+              "distance_angstrom": 3.067,
+              "metal_code": "MG"
+            }
+          ]
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.487,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1504",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1502",
+              "chain": "A",
+              "distance_angstrom": 2.847,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8EIG",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ATP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The complex of phosphorylated human delta F508 cystic fibrosis transmembrane conductance regulator (CFTR) with elexacaftor (VX-445) and ATP/Mg"
+    },
+    {
+      "acceptor_atom_count": 181,
+      "atom_count_model_1": 9550,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Molecular structures reveal synergistic rescue of Delta 508 CFTR by Trikafta modulators.",
+        "year": 2022
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.655,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1503",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1501",
+              "chain": "A",
+              "distance_angstrom": 3.458,
+              "metal_code": "MG"
+            }
+          ]
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.702,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1504",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1502",
+              "chain": "A",
+              "distance_angstrom": 3.244,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8EIO",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ATP",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The complex of phosphorylated human delta F508 cystic fibrosis transmembrane conductance regulator (CFTR) with elexacaftor (VX-445), lumacaftor (VX-809) and ATP/Mg"
+    },
+    {
+      "acceptor_atom_count": 181,
+      "atom_count_model_1": 9578,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Molecular structures reveal synergistic rescue of Delta 508 CFTR by Trikafta modulators.",
+        "year": 2022
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.523,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1503",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1501",
+              "chain": "A",
+              "distance_angstrom": 3.421,
+              "metal_code": "MG"
+            }
+          ]
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.429,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1504",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1502",
+              "chain": "A",
+              "distance_angstrom": 3.4,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8EIQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ATP",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The complex of phosphorylated human delta F508 cystic fibrosis transmembrane conductance regulator (CFTR) with Trikafta [elexacaftor (VX-445), tezacaftor (VX-661), ivacaftor (VX-770)] and ATP/Mg"
+    },
+    {
+      "acceptor_atom_count": 223,
+      "atom_count_model_1": 12332,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 3,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.76,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1505",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1503",
+              "chain": "A",
+              "distance_angstrom": 3.59,
+              "metal_code": "MG"
+            }
+          ]
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.691,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1506",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1504",
+              "chain": "A",
+              "distance_angstrom": 3.734,
+              "metal_code": "MG"
+            }
+          ]
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.637,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "401",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "G",
+              "distance_angstrom": 3.295,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "402",
+              "chain": "G",
+              "distance_angstrom": 3.511,
+              "metal_code": "MG"
+            }
+          ]
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9DW9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cystic fibrosis transmembrane conductance regulator",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13569"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ATP",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Phosphorylated (E1371Q)CFTR in complex with PKA-C"
+    },
+    {
+      "acceptor_atom_count": 881,
+      "atom_count_model_1": 52832,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9TDS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ATP",
+          "rank": 7,
+          "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cryo-EM structure of dephosphorylated mTOR complex 2, overall refinement"
+    },
+    {
+      "acceptor_atom_count": 423,
+      "atom_count_model_1": 25046,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9TDT",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ATP",
+          "rank": 8,
+          "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_atp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cryo-EM structure of dephosphorylated mTOR complex 2, focused on a single protomer"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "2QO7"
+      ],
+      "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ANP",
+      "requested_rows": 100,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_anp_all",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "3Q4Z"
+      ],
+      "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ANP",
+      "requested_rows": 100,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_anp_all",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "8EIG",
+        "8EIQ",
+        "8EIO",
+        "9DW9",
+        "2QO2",
+        "2QO7",
+        "9TDS",
+        "9TDT"
+      ],
+      "query_or_source": "RCSB full_text: dephosphorylated substrate protein kinase ATP",
+      "requested_rows": 100,
+      "returned_count": 8,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_dephosphorylated_substrate_protein_kinase_atp_all",
+      "total_count": 8
+    },
+    {
+      "pdb_ids": [
+        "6EG9",
+        "5A6O",
+        "3O23",
+        "3QQU",
+        "1YI6",
+        "1Y57",
+        "3Q4Z",
+        "6GJB",
+        "2Z7L",
+        "1IAS"
+      ],
+      "query_or_source": "RCSB full_text: unphosphorylated substrate protein kinase ATP",
+      "requested_rows": 100,
+      "returned_count": 10,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_unphosphorylated_substrate_protein_kinase_atp_all",
+      "total_count": 10
+    },
+    {
+      "pdb_ids": [
+        "2QO7"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase substrate dephosphorylated AMP-PNP",
+      "requested_rows": 100,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_protein_kinase_substrate_dephosphorylated_amp_pnp_all",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: full-length dephosphorylated substrate kinase AMP-PNP",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_full_length_dephosphorylated_substrate_kinase_amp_pnp_all",
+      "total_count": 0
+    }
+  ]
+}
