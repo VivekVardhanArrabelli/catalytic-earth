@@ -50,6 +50,35 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T20:12:12Z automation run,
+`artifacts/v3_epk_research_lane_synthesis_20260520.json` has been refreshed
+from the four sibling ePK research-lane worktrees after a fresh fetch of main.
+The main run did not copy production changes or merge lane code. It validated
+143 JSON files and 4 JSONL ledgers with 0 parse errors. The refreshed synthesis
+adds 36 lane JSON files beyond the prior main synthesis, including the
+positive-evidence legacy ANP/PB audit, 2025/2026 phrase follow-ups,
+same-author-chain false-positive stress, expanded sibling-control rollups, and
+the terminal-gamma geometry lead sibling-control stress.
+
+The ePK decision is unchanged: production activation remains no-go. The
+positive lane still has 0 fresh clean folded-protein positives; 9IZ0 joins the
+peptide-only review set but has a local-metal caveat, and the legacy ANP/PB
+audit supports only review-lane helper handling for 3O7L/4JDI. The
+false-positive lane found 7 same-author-chain entity-reuse pressure IDs across 820
+rows but 0 current-rule topology-clear counterexamples. The sibling-control
+lane now records 64 gamma/metal controls, 47 weak-rule counterexamples, and 15
+strict product controls blocked by the source-free substrate-identity
+counteraxis. The policy lane completed the terminal-gamma lead/control stress:
+six geometry leads plus six matched sibling controls all abstained with 0
+expected-decision mismatches and 0 counterexamples.
+
+Evidence-based confidence call: confidence is high that ePK remains review-only
+and should not return to the main-loop critical path. Confidence is moderate
+that the useful future ePK work is a research-lane-only source-free
+substrate-role extractor design, because the latest terminal-gamma stress
+proved fail-closed behavior but still did not create an accepted role policy,
+threshold, external hard-negative re-audit, registry edit, or label import.
+
 As of the 2026-05-20T19:05:55Z automation run,
 `artifacts/v3_epk_research_lane_synthesis_20260520.json` has been refreshed
 again from the four ePK sibling research-lane worktrees and origin research

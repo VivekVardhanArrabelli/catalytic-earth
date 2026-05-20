@@ -2,6 +2,7 @@
   "input_lane_validation": [
     {
       "branch": "research/epk-positive-evidence",
+      "current_head": "a56e3c3362b6629d67fd6927da955bb2e1e51f8c",
       "dirty_status_summary": [
         "D  artifacts/research_lanes/epk_positive_evidence/akt_gsk3_peptide_amp_pnp_source_review_20260520.json",
         "MM artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
@@ -30,7 +31,14 @@
         "D  tools/research_lanes/epk_positive_evidence/pka_cftr_source_map.py",
         "MM work/research_lanes/epk_positive_evidence/handoff.md",
         "?? artifacts/research_lanes/epk_positive_evidence/akt_gsk3_peptide_amp_pnp_source_review_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/atm_tel1_chk2_peptide_amp_pnp_source_review_20260520.json",
         "?? artifacts/research_lanes/epk_positive_evidence/europepmc_amp_pnp_full_length_substrate_literature_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/europepmc_recent_amp_pnp_kinase_substrate_literature_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/fresh_global_phrase_pg_followup_source_check_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_distance_negative_source_checks_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_global_phrase_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_prior_scout_audit_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_prior_scout_source_review_20260520.json",
         "?? artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_rescue_scout_20260520.json",
         "?? artifacts/research_lanes/epk_positive_evidence/mtorc2_akt_source_mapped_site_review_20260520.json",
         "?? artifacts/research_lanes/epk_positive_evidence/pak4_paktide_legacy_anp_source_review_20260520.json",
@@ -51,6 +59,11 @@
         "?? artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_family_broad_title_scout_20260520.json",
         "?? artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_full_length_atp_phosphosite_source_review_20260520.json",
         "?? artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_top_paper_targeted_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/recent_cdk_cak_title_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/recent_cdk_cak_title_source_review_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/recent_exact_title_no_ligand_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/recent_literature_title_followup_rcsb_scout_20260520.json",
+        "?? tools/research_lanes/epk_positive_evidence/legacy_anp_pb_audit.py",
         "?? tools/research_lanes/epk_positive_evidence/pka_cftr_source_map.py"
       ],
       "handoff_last_updated": "2026-05-20T19:07:33Z",
@@ -63,8 +76,36 @@
           "sha256": "bef5304a2708adebf4de1545527616d9a30ca91bf7de306529419ba4cc81f464"
         },
         {
+          "path": "artifacts/research_lanes/epk_positive_evidence/atm_tel1_chk2_peptide_amp_pnp_source_review_20260520.json",
+          "sha256": "7f746ebe11ae41ac1a4af4fa90d81fc6c9c683ef5f883b266430589e51c3adbd"
+        },
+        {
           "path": "artifacts/research_lanes/epk_positive_evidence/europepmc_amp_pnp_full_length_substrate_literature_scout_20260520.json",
           "sha256": "d1c92b83e0af00d34954004a6a2e4fbdf048ffeb34bb792f378d1869a761b273"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/europepmc_recent_amp_pnp_kinase_substrate_literature_scout_20260520.json",
+          "sha256": "c8af9c1469cab55fba4d2e7fec7f8faa8f8c8b5db6b5c469a4a1134ac638cf00"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/fresh_global_phrase_pg_followup_source_check_20260520.json",
+          "sha256": "0280a724f1b5f2e325385dfa37b05fed51b5fd2d485bc50319489f89fffa1912"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_distance_negative_source_checks_20260520.json",
+          "sha256": "b494b5ad04021ef4eda5dd4ecf8b3386381c1d3bd0217b503f8e545b9755bb72"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_global_phrase_scout_20260520.json",
+          "sha256": "1abd0a9da0d7862dab18a5bdbe493740615d9c53608a6b06a03369a2ab075d93"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_prior_scout_audit_20260520.json",
+          "sha256": "bedc150a76d8e502c96ebdea75ad4a8e26d671428c05bc9c59928d8437fcfbdc"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_prior_scout_source_review_20260520.json",
+          "sha256": "71df6d352ea4420b0c8bc5f6461ddcffbc1084d7e98d2cd0500f7ddc5d25b257"
         },
         {
           "path": "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_rescue_scout_20260520.json",
@@ -209,102 +250,49 @@
         {
           "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_top_paper_targeted_scout_20260520.json",
           "sha256": "04b4326bdb61c94842eb11aa6174b82a56de3b57633e2ccbc1124141953270ef"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/recent_cdk_cak_title_scout_20260520.json",
+          "sha256": "9e13e89a7912ae82ed4a75fa3f69a387e68f2b312144354028a9855cc006957a"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/recent_cdk_cak_title_source_review_20260520.json",
+          "sha256": "e198730e295a2b2717764342075f82ca8f1b7b8ae5c749313f879aa182a884fa"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/recent_exact_title_no_ligand_scout_20260520.json",
+          "sha256": "c95a14d222abe96b96c791bffab85c0f17a1cffce0880a227d928424e3810fd7"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/recent_literature_title_followup_rcsb_scout_20260520.json",
+          "sha256": "f8af0d4b2961c7892eacc4223590a20ac1eb33c1281b498e65286f72ace8874b"
         }
       ],
       "json_validation": {
         "error_count": 0,
         "errors": [],
-        "json_file_count": 38,
+        "json_file_count": 49,
         "jsonl_file_count": 1,
-        "validated_file_count": 39
+        "jsonl_record_count": 6,
+        "validated_file_count": 50
       },
-      "jsonl_file_digests": [
-        {
-          "path": "artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
-          "record_count": 5,
-          "sha256": "017e8ee567c852437b1368069fc983d6b91eb0020f97b3101fd9ba4a9c4c4670"
-        }
-      ],
-      "lane_id": "epk_positive_evidence",
-      "latest_file_mtime": "2026-05-20T19:08:26Z",
-      "latest_json_created_at": "2026-05-20T18:54:53Z",
-      "latest_ledger_ended_at": "2026-05-20T19:07:33Z",
-      "latest_ledger_record": {
-        "counterexamples_found": [
-          "2V55",
-          "3BEG",
-          "7B56",
-          "7ZE5",
-          "8UKN",
-          "8UKO",
-          "8UKP",
-          "9T7J",
-          "9T94",
-          "9ZBK"
-        ],
-        "ended_at": "2026-05-20T19:07:33Z",
-        "evidence_against": [
-          "No fresh clean folded-protein substrate positive was found in this cycle; new positives are peptide-only review evidence.",
-          "Processive/multisite source review rejected 2V55 and 3BEG as clean positives: 2V55 ROCK-I/RhoE nearest RhoE acceptors are 19.728 and 20.033 Angstrom from ANP PG and source-relevant terminal phosphorylation regions are absent from modeled RhoE; 3BEG SRPK1/ASF/SF2 nearest substrate Ser133 is 11.109 Angstrom from ANP PG in a docking/sliding state.",
-          "mTORC2/Akt source map remains split/recruitment evidence: 9ZBK contains Akt1 but no active gamma donor and has Cys473 in the Akt hydrophobic-motif position; 9T7J and 9T94 contain ATP on mTOR but no Akt chain and no heteromeric acceptor within 6 Angstrom.",
-          "PKA/CaV/Rad 8UKN/8UKO/8UKP did not add positive evidence: 8UKN has ANP on PKA but no substrate chain, while 8UKO and 8UKP are peptide complexes without an active gamma donor under the current scan.",
-          "Legacy ANP PB audit shows helper atom-name sensitivity; 3O7L and 4JDI require explicit review-only legacy terminal-atom handling before any helper behavior change."
-        ],
-        "evidence_for": [
-          "Fresh review-only peptide positives: 1O6K and 1O6L Akt/PKB ternary complexes with GSK3 peptide Ser9 OG 3.566 and 3.542 Angstrom from ANP PG, plus two local Mn ions.",
-          "Fresh review-only peptide positive: 4DG0 PKA/SP20 Ser21 OG 3.463 Angstrom from ANP PG with two local Mg ions.",
-          "Legacy-atom-name peptide positives: 3O7L PKA/phospholamban Ser21 OG 5.930 Angstrom from source-declared AMP-PNP/ANP PB, and 4JDI PAK4/Paktide Ser0 OG 5.862 Angstrom from legacy ANP PB.",
-          "Repeat review-only positives recovered in the broad peptide scout: 1IR3 insulin receptor peptide Tyr10 and 5HVK LIMK1/full-length cofilin Ser3."
-        ],
-        "hypothesis": "A fresh bounded peptide and processive-substrate search may expose additional clean ePK positive substrate evidence, while source-mapping the 2V55/3BEG next-query candidates can test whether processive folded-substrate contexts have local gamma-transfer geometry.",
-        "labels_or_fingerprints_changed": false,
-        "lane_id": "epk_positive_evidence",
-        "measured_minutes": 49.1,
-        "next_query": "Audit legacy ANP/PB terminal-phosphate atom naming across all prior lane scout artifacts, not just peptide seeds; source-map any within-6-Angstrom candidates, then decide whether a review-only helper fallback for ANP lacking PG is warranted. Do not change production labels, thresholds, registries, or fingerprints.",
-        "primary_outcome": "evidence_for",
-        "production_claim_allowed": false,
-        "query_or_source": [
-          "RCSB full_text: Akt GSK3 peptide AMP-PNP / protein kinase B GSK3 peptide AMP-PNP / PKB GSK3 peptide AMP-PNP",
-          "RCSB full_text: protein kinase peptide AMP-PNP substrate / kinase peptide AMP-PNP / protein kinase peptide ANP substrate",
-          "Europe PMC: protein kinase AMP-PNP full-length substrate PDB; kinase-substrate complex AMP-PNP PDB; protein kinase ATP analog substrate protein PDB; kinase substrate transition state PDB phosphorylation",
-          "RCSB fixed/source review: 2V55 ROCK-I/RhoE and 3BEG SRPK1/ASF/SF2",
-          "RCSB full_text: PKA L-type calcium channel Rad GTPase peptide ANP aliases",
-          "RCSB full_text: PKA phospholamban AMP-PNP / phospholamban PKA substrate ANP / phospholamban PKA ternary complex",
-          "Legacy ANP PB rescue audit seeded from peptide AMP-PNP/ANP and PKA/phospholamban scouts",
-          "Source reviews: Akt/GSK3 peptide, PKA/SP20, PKA/phospholamban, PAK4/Paktide, mTORC2/Akt"
-        ],
-        "recommendation": "Use 1O6K, 1O6L, 4DG0, 3O7L, and 4JDI as review-only peptide positive evidence, with 3O7L and 4JDI explicitly flagged as legacy ANP PB terminal-atom cases. Keep folded-protein positives unresolved and production scoring/import closed.",
-        "rows_reviewed": 208,
-        "search_surface": [
-          "rcsb_akt_gsk3_peptide_amp_pnp_scout_20260520",
-          "akt_gsk3_peptide_amp_pnp_source_review_20260520",
-          "rcsb_peptide_amp_pnp_anp_positive_scout_20260520",
-          "pka_sp20_amp_pnp_source_review_20260520",
-          "europepmc_amp_pnp_full_length_substrate_literature_scout_20260520",
-          "processive_multisite_source_mapped_site_review_20260520",
-          "mtorc2_akt_source_mapped_site_review_20260520",
-          "rcsb_pka_cav_rad_peptide_scout_20260520",
-          "rcsb_pka_phospholamban_peptide_scout_20260520",
-          "pka_phospholamban_amp_pnp_source_review_20260520",
-          "legacy_anp_pb_rescue_scout_20260520",
-          "pak4_paktide_legacy_anp_source_review_20260520"
-        ],
-        "search_surface_exhausted": false,
-        "started_at": "2026-05-20T18:18:28Z"
-      },
-      "ledger_path": "artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
-      "ledger_record_count": 5,
-      "ledger_sha256": "017e8ee567c852437b1368069fc983d6b91eb0020f97b3101fd9ba4a9c4c4670",
-      "linked_worktree_git_metadata_write_blocked_in_lane": true,
-      "origin_commit": "a56e3c3362b6629d67fd6927da955bb2e1e51f8c",
-      "origin_commit_date": "2026-05-20T14:11:17-05:00",
-      "origin_commit_summary": "Record ePK peptide evidence commit",
-      "origin_ref": "origin/research/epk-positive-evidence",
-      "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive",
-      "worktree_dirty_at_synthesis": true
+      "new_json_files_since_prior_synthesis": [
+        "artifacts/research_lanes/epk_positive_evidence/atm_tel1_chk2_peptide_amp_pnp_source_review_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/europepmc_recent_amp_pnp_kinase_substrate_literature_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/fresh_global_phrase_pg_followup_source_check_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_distance_negative_source_checks_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_global_phrase_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_prior_scout_audit_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_prior_scout_source_review_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/recent_cdk_cak_title_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/recent_cdk_cak_title_source_review_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/recent_exact_title_no_ligand_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/recent_literature_title_followup_rcsb_scout_20260520.json"
+      ]
     },
     {
       "branch": "research/epk-false-positive-hunter",
+      "current_head": "96b921c3af9742b85c0e2feea23060fab0750afc",
       "dirty_status_summary": [
         " M artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
         " M tools/research_lanes/epk_false_positive_hunter/gamma_chain_assignment_stress.py",
@@ -315,12 +303,14 @@
         "?? artifacts/research_lanes/epk_false_positive_hunter/auth_namespace_edge_case_stress_20260520.json",
         "?? artifacts/research_lanes/epk_false_positive_hunter/gamma_chain_assignment_stress_20260520.json",
         "?? artifacts/research_lanes/epk_false_positive_hunter/namespace_path_audit_20260520.json",
+        "?? artifacts/research_lanes/epk_false_positive_hunter/same_author_chain_entity_reuse_stress_20260520.json",
         "?? tools/research_lanes/epk_false_positive_hunter/auth_namespace_edge_case_stress.py",
-        "?? tools/research_lanes/epk_false_positive_hunter/namespace_path_audit.py"
+        "?? tools/research_lanes/epk_false_positive_hunter/namespace_path_audit.py",
+        "?? tools/research_lanes/epk_false_positive_hunter/same_author_chain_entity_reuse_stress.py"
       ],
-      "handoff_last_updated": "2026-05-20T19:10:31Z",
+      "handoff_last_updated": "2026-05-20T20:11:53Z",
       "handoff_path": "work/research_lanes/epk_false_positive_hunter/handoff.md",
-      "handoff_sha256": "f964f1d1119e62a513100ae48d0f881f8bbcaa1787e4ad6cc0e024a16a2314fa",
+      "handoff_sha256": "8b6e3d72153d10e8cac98543939067dad713edebd3150837613b071fb6c75e9f",
       "handoff_stale_relative_to_latest_ledger": false,
       "json_file_digests": [
         {
@@ -376,6 +366,10 @@
           "sha256": "68e81f62ecf25a65ea6402ceef4f5279a304afeeee06289d2268c64b284f004b"
         },
         {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/same_author_chain_entity_reuse_stress_20260520.json",
+          "sha256": "4422a439937ad00da7c543c5791670436d51f0f28cdce3c944e4b27045ca9e46"
+        },
+        {
           "path": "artifacts/research_lanes/epk_false_positive_hunter/stress_summary_20260520.json",
           "sha256": "bf0982d68bf0a4e1a951af0c97c52ef022e3af2ff3c461de75f38b5204eceddf"
         },
@@ -387,371 +381,80 @@
       "json_validation": {
         "error_count": 0,
         "errors": [],
-        "json_file_count": 15,
+        "json_file_count": 16,
         "jsonl_file_count": 1,
-        "validated_file_count": 16
+        "jsonl_record_count": 6,
+        "validated_file_count": 17
       },
-      "jsonl_file_digests": [
-        {
-          "path": "artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
-          "record_count": 5,
-          "sha256": "1e6e2f81a7250194e560ecad42548423cc4d1aea1d2c5c1ecc28ee8b833b6615"
-        }
-      ],
-      "lane_id": "epk_false_positive_hunter",
-      "latest_file_mtime": "2026-05-20T19:11:09Z",
-      "latest_json_created_at": "2026-05-20T18:52:55Z",
-      "latest_ledger_ended_at": "2026-05-20T19:10:31Z",
-      "latest_ledger_record": {
-        "artifacts": {
-          "auth_namespace_edge_case_stress": "artifacts/research_lanes/epk_false_positive_hunter/auth_namespace_edge_case_stress_20260520.json",
-          "handoff": "work/research_lanes/epk_false_positive_hunter/handoff.md",
-          "helper": "tools/research_lanes/epk_false_positive_hunter/auth_namespace_edge_case_stress.py",
-          "ledger": "artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl"
-        },
-        "blockers": [
-          "git fetch/pull blocked at start by Operation not permitted writing worktree FETCH_HEAD",
-          "final git add/commit/push blocked by `git add`: fatal: Unable to create '/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth-epk-false-positive/index.lock': Operation not permitted"
-        ],
-        "commit_push_status": "blocked_git_metadata_write_denied",
-        "counterexamples_found": [],
-        "ended_at": "2026-05-20T19:10:31Z",
-        "evidence_against": [
-          "Zero non-ePK current-rule counterexamples across 520 reviewed ATP-like/Mg rows from 16 component-query slices plus 11 seed/pressure IDs; fetch errors were 0.",
-          "The scan found 93 author-namespace edge pressure entries, including 81 non-ePK entries, but zero topology-clear non-ePK edge-pressure entries.",
-          "The actual review-only materializer was forced on all 93 edge-pressure IDs and returned zero non-ePK substrate-mode counterexamples after excluding known ePK positives/context.",
-          "The three non-ePK materializer pressure IDs (1N56, 2ZH6, 4RWT) all had candidate_chain_name equal to gamma_associated_polymer_chain_name, so the source-free topology counteraxis blocks them.",
-          "Source inspection confirmed the topology counteraxis tests same-chain and reciprocal candidate/gamma chain pairs before retaining review-only hits."
-        ],
-        "evidence_for": [
-          "Author-chain/label-chain divergence is a real pressure source: 93 edge-pressure entries were found, mostly terminal_auth_asym_id_differs_from_label cases.",
-          "The actual materializer emitted non-ePK heteromeric candidate rows for 1N56, 2ZH6, and 4RWT despite same author-chain names across different entities; these are pressure cases for preserving the topology counteraxis.",
-          "Known positive 1IR3 remains a sanity check: it clears materializer substrate-mode geometry but is explicitly excluded from false-positive status as insulin receptor tyrosine kinase."
-        ],
-        "hypothesis": "Author-chain fallback, nonstandard auth IDs, or auth/label namespace divergence around ATP-like terminal phosphates can let non-ePK structures satisfy the current review-only ePK substrate-mode/topology rules.",
-        "labels_or_fingerprints_changed": false,
-        "lane_id": "epk_false_positive_hunter",
-        "materializer_non_epk_pressure_cases": [
-          {
-            "hits": [
-              {
-                "candidate_auth_seq_id": "48",
-                "candidate_chain_name": "B",
-                "candidate_residue_code": "TYR",
-                "candidate_same_chain_as_gamma": true,
-                "gamma_associated_polymer_chain_name": "B",
-                "nearest_gamma_distance_angstrom": 3.761
-              },
-              {
-                "candidate_auth_seq_id": "48",
-                "candidate_chain_name": "A",
-                "candidate_residue_code": "TYR",
-                "candidate_same_chain_as_gamma": true,
-                "gamma_associated_polymer_chain_name": "A",
-                "nearest_gamma_distance_angstrom": 4.032
-              }
-            ],
-            "pdb_id": "1N56",
-            "title": "Y-family DNA polymerase Dpo4 in complex with DNA containing abasic lesion"
-          },
-          {
-            "hits": [
-              {
-                "candidate_auth_seq_id": "47",
-                "candidate_chain_name": "A",
-                "candidate_residue_code": "SER",
-                "candidate_same_chain_as_gamma": true,
-                "gamma_associated_polymer_chain_name": "A",
-                "nearest_gamma_distance_angstrom": 3.063
-              },
-              {
-                "candidate_auth_seq_id": "161",
-                "candidate_chain_name": "A",
-                "candidate_residue_code": "TYR",
-                "candidate_same_chain_as_gamma": true,
-                "gamma_associated_polymer_chain_name": "A",
-                "nearest_gamma_distance_angstrom": 3.5
-              }
-            ],
-            "pdb_id": "2ZH6",
-            "title": "Complex structure of AFCCA with tRNAminiDCU and ATP"
-          },
-          {
-            "hits": [
-              {
-                "candidate_auth_seq_id": "14",
-                "candidate_chain_name": "B",
-                "candidate_residue_code": "SER",
-                "candidate_same_chain_as_gamma": true,
-                "gamma_associated_polymer_chain_name": "B",
-                "nearest_gamma_distance_angstrom": 5.332
-              }
-            ],
-            "pdb_id": "4RWT",
-            "title": "Structure of actin-Lmod complex"
-          }
-        ],
-        "measured_minutes": 49.57,
-        "next_query": "Target same-author-chain name reuse across distinct polymer entities in ATP-like/Mg structures: query entries where the actual materializer can assign different label_entity_id/polymer entities to a candidate acceptor and gamma-associated polymer while candidate_chain_name == gamma_associated_polymer_chain_name, then test whether any non-ePK row also avoids same-chain and reciprocal topology ambiguity. Keep ligand labels, thresholds, registries, production scoring, and label imports closed.",
-        "primary_outcome": "evidence_against",
-        "production_claim_allowed": false,
-        "pushed_commit": null,
-        "query_or_source": {
-          "actual_materializer_function": "catalytic_earth.labels.build_epk_heteromeric_positive_coverage_candidate_scout",
-          "rcsb_cif_template": "https://files.rcsb.org/download/{pdb_id}.cif",
-          "rcsb_entry_template": "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
-          "rcsb_search_api": "https://search.rcsb.org/rcsbsearch/v2/query",
-          "source_code_paths_audited": [
-            "src/catalytic_earth/labels.py",
-            "src/catalytic_earth/structure.py"
-          ]
-        },
-        "recommendation": "Preserve auth-chain topology ambiguity handling and keep the review-only materializer closed to production scoring. Next, target same-author-chain reuse across distinct entities because it produced the strongest non-ePK pressure without clearing current rules.",
-        "rows_reviewed": 520,
-        "rule_under_attack": "epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0 plus epk_mek_erk_source_free_topology_ambiguity_counteraxis_v0",
-        "search_surface": {
-          "actual_materializer_candidate_status_counts": {
-            "heteromeric_candidate_source_validation_pending_review_only": 4,
-            "no_heteromeric_candidate_hit_review_only": 89
-          },
-          "actual_materializer_gamma_capable_codes": [
-            "ACP",
-            "ANP",
-            "ATP",
-            "DTP"
-          ],
-          "actual_materializer_input_count": 93,
-          "actual_materializer_non_epk_pressure_pdb_ids": [
-            "1N56",
-            "2ZH6",
-            "4RWT"
-          ],
-          "auth_namespace_edge_pressure_entry_count": 93,
-          "candidate_threshold_angstrom": 6.0,
-          "component_query_count": 16,
-          "component_query_surface": [
-            {
-              "ligand": "ATP",
-              "metal": "MG",
-              "name": "atp_mg_start_0",
-              "rows": 60,
-              "start": 0
-            },
-            {
-              "ligand": "ATP",
-              "metal": "MG",
-              "name": "atp_mg_start_180",
-              "rows": 60,
-              "start": 180
-            },
-            {
-              "ligand": "ATP",
-              "metal": "MG",
-              "name": "atp_mg_start_360",
-              "rows": 60,
-              "start": 360
-            },
-            {
-              "ligand": "ATP",
-              "metal": "MG",
-              "name": "atp_mg_start_720",
-              "rows": 60,
-              "start": 720
-            },
-            {
-              "ligand": "ATP",
-              "metal": "MG",
-              "name": "atp_mg_start_1080",
-              "rows": 60,
-              "start": 1080
-            },
-            {
-              "ligand": "ANP",
-              "metal": "MG",
-              "name": "anp_mg_start_0",
-              "rows": 55,
-              "start": 0
-            },
-            {
-              "ligand": "ANP",
-              "metal": "MG",
-              "name": "anp_mg_start_160",
-              "rows": 55,
-              "start": 160
-            },
-            {
-              "ligand": "ANP",
-              "metal": "MG",
-              "name": "anp_mg_start_320",
-              "rows": 55,
-              "start": 320
-            },
-            {
-              "ligand": "ACP",
-              "metal": "MG",
-              "name": "acp_mg_start_0",
-              "rows": 55,
-              "start": 0
-            },
-            {
-              "ligand": "ACP",
-              "metal": "MG",
-              "name": "acp_mg_start_160",
-              "rows": 55,
-              "start": 160
-            },
-            {
-              "ligand": "AGS",
-              "metal": "MG",
-              "name": "ags_mg_start_0",
-              "rows": 55,
-              "start": 0
-            },
-            {
-              "ligand": "AGS",
-              "metal": "MG",
-              "name": "ags_mg_start_160",
-              "rows": 55,
-              "start": 160
-            },
-            {
-              "ligand": "A3P",
-              "metal": "MG",
-              "name": "a3p_mg_start_0",
-              "rows": 55,
-              "start": 0
-            },
-            {
-              "ligand": "A3P",
-              "metal": "MG",
-              "name": "a3p_mg_start_160",
-              "rows": 55,
-              "start": 160
-            },
-            {
-              "ligand": "DTP",
-              "metal": "MG",
-              "name": "dtp_mg_start_0",
-              "rows": 45,
-              "start": 0
-            },
-            {
-              "ligand": "DTP",
-              "metal": "MG",
-              "name": "dtp_mg_start_120",
-              "rows": 45,
-              "start": 120
-            }
-          ],
-          "current_atp_like_ligands": [
-            "A3P",
-            "ACP",
-            "AGS",
-            "ANP",
-            "ATP"
-          ],
-          "extra_epk_context_tokens": [
-            "insulin receptor tyrosine kinase",
-            "receptor tyrosine kinase",
-            "tyrosine kinase",
-            "serine/threonine-protein kinase",
-            "serine/threonine protein kinase",
-            "eukaryotic protein kinase"
-          ],
-          "known_epk_positive_ids_excluded_from_counterexamples": [
-            "1IR3",
-            "1O6K",
-            "1O6L",
-            "2PHK",
-            "3TM0",
-            "5HVK",
-            "6Z3R",
-            "8OXM",
-            "8OXO",
-            "9UUR",
-            "9UUX"
-          ],
-          "max_n_terminal_acceptor_auth_seq_id": 25,
-          "max_unique_ids": 520,
-          "mg_distance_cutoff_angstrom": 4.5,
-          "non_epk_edge_pressure_entry_count": 81,
-          "raw_coordinate_files_written": false,
-          "scan_ligands": [
-            "A3P",
-            "ACP",
-            "AGS",
-            "ANP",
-            "ATP",
-            "DTP"
-          ],
-          "seed_ids": [
-            "7CAG",
-            "8BMS",
-            "9L3M",
-            "9L3U",
-            "7ZE5",
-            "5TT6",
-            "6NOO",
-            "9NBW",
-            "4KFT",
-            "1A82",
-            "3C9S"
-          ],
-          "topology_clear_non_epk_edge_pressure_pdb_ids": [],
-          "unique_pdb_ids_review_surface_count": 520
-        },
-        "search_surface_exhausted": true,
-        "started_at": "2026-05-20T18:20:57Z"
-      },
-      "ledger_path": "artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
-      "ledger_record_count": 5,
-      "ledger_sha256": "1e6e2f81a7250194e560ecad42548423cc4d1aea1d2c5c1ecc28ee8b833b6615",
-      "linked_worktree_git_metadata_write_blocked_in_lane": true,
-      "origin_commit": "96b921c3af9742b85c0e2feea23060fab0750afc",
-      "origin_commit_date": "2026-05-20T11:26:22-05:00",
-      "origin_commit_summary": "Add ePK cross-chain false-positive stress",
-      "origin_ref": "origin/research/epk-false-positive-hunter",
-      "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive",
-      "worktree_dirty_at_synthesis": true
+      "new_json_files_since_prior_synthesis": [
+        "artifacts/research_lanes/epk_false_positive_hunter/same_author_chain_entity_reuse_stress_20260520.json"
+      ]
     },
     {
       "branch": "research/epk-sibling-controls",
+      "current_head": "f5185ea0b0dca7f0bd0002531580def0f962c02f",
       "dirty_status_summary": [
         " M artifacts/research_lanes/epk_sibling_controls/atp_grasp_product_state_control_screen_20260520.json",
         " M artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
         " M tools/research_lanes/epk_sibling_controls/askha_control_screen.py",
         " M work/research_lanes/epk_sibling_controls/handoff.md",
+        "?? artifacts/research_lanes/epk_sibling_controls/askha_expanded_bounded_control_screen_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/askha_product_state_adjudication_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/askha_product_state_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_gamma_counteraxis_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_counteraxis_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_gamma_counteraxis_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_product_counteraxis_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_rollup_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/atp_grasp_product_state_acceptor_adjudication_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/counteraxis_scorer_design_cases_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/cross_family_source_free_control_rollup_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/dnk_expanded_bounded_control_screen_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/dnk_product_state_acceptor_adjudication_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/dnk_product_state_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/expanded_sibling_surface_rollup_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/gamma_control_substrate_identity_counteraxis_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/ghkl_expanded_bounded_control_screen_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/ghkl_product_state_adjudication_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/ghkl_product_state_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/ghmp_expanded_bounded_control_screen_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/ghmp_product_state_adjudication_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/ghmp_product_state_control_screen_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/ndk_bounded_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/ndk_product_state_ntp_redesign_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/pfka_bounded_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/pfka_product_state_acceptor_adjudication_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/pfkb_bounded_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/pfkb_product_state_acceptor_adjudication_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/product_state_exhaustion_and_counteraxis_adjudication_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/residual_product_state_structured_retry_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/residual_retry_and_counteraxis_rollup_20260520.json",
         "?? artifacts/research_lanes/epk_sibling_controls/strict_product_substrate_identity_counteraxis_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/thin_expanded_gamma_counteraxis_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/thin_expanded_panel_rollup_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/undercovered_expanded_gamma_counteraxis_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/undercovered_expanded_panel_rollup_20260520.json",
+        "?? tools/research_lanes/epk_sibling_controls/gamma_control_counteraxis_adjudication.py",
         "?? tools/research_lanes/epk_sibling_controls/product_control_counteraxis_adjudication.py",
         "?? tools/research_lanes/epk_sibling_controls/residual_product_state_retry.py"
       ],
       "handoff_last_updated": "2026-05-20T19:10:58Z",
       "handoff_path": "work/research_lanes/epk_sibling_controls/handoff.md",
-      "handoff_sha256": "1e6f139c7cdcc3a051ee845673f494caf7a909d4b3ff468664a613a2f04103f1",
+      "handoff_sha256": "7ef714963c820de52c4097245a85bb5969ebb6fc71a61695e1b4c96a36be3c4d",
       "handoff_stale_relative_to_latest_ledger": false,
       "json_file_digests": [
         {
           "path": "artifacts/research_lanes/epk_sibling_controls/askha_bounded_control_screen_20260520.json",
           "sha256": "723653fbe77142c7af27adcc6eeabaea04346db6b457acdb088cc9f0bdf63ebe"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/askha_expanded_bounded_control_screen_20260520.json",
+          "sha256": "0ee0d456ba01e31a62651745465e8c847fd920b6e06137f8e1c1935f6e67e0f4"
         },
         {
           "path": "artifacts/research_lanes/epk_sibling_controls/askha_product_state_adjudication_20260520.json",
@@ -766,12 +469,44 @@
           "sha256": "4e9532b71ede252aef9fb45bcda24eab302797eed74b55dfd2b7598abbbbce52"
         },
         {
+          "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+          "sha256": "287e4ad71a7a65e63ab44414ff690395882d34d9edd50669251f450d62ce1ec8"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_gamma_counteraxis_20260520.json",
+          "sha256": "f2bcc9666bc60a43bb5f7effd616b03054c2e0f12603670f458bb1b1ab8608e9"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_counteraxis_20260520.json",
+          "sha256": "2f247604fb67fb6b10e916d0545bbc2713e28cce858cdf83f4d047cdfc32d607"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_gamma_counteraxis_20260520.json",
+          "sha256": "c49564a13e734fc3df98374e49086b83a81918aa4ec1e631048ff0828488e244"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_product_counteraxis_20260520.json",
+          "sha256": "95b9d38ff2637bce098aa30aa4fdf6834091e40232aa1262fa14c76757c9fd23"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json",
+          "sha256": "ed4476aa56d325e91b2b26f20010b60c6c1c207e9052747af4b43edd3a6419ec"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_rollup_20260520.json",
+          "sha256": "36f1ff65aff0ed4e7ae96e027f400a0f77d53452c804a2c3676c1df1bfd9706d"
+        },
+        {
           "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_product_state_acceptor_adjudication_20260520.json",
           "sha256": "16173efed74f946e46cfb05f3d4688504c1cc1e9b320fcaaae15c3e1e0548d3e"
         },
         {
           "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_product_state_control_screen_20260520.json",
           "sha256": "03b3cfbcf3a4dd22b7f9a591236a9eace9bce0645678f70d2138c6c6181c111b"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/counteraxis_scorer_design_cases_20260520.json",
+          "sha256": "f7c52dd218e96b0df4492ff8c9803f0ba512019e1ae68cf2897810ce786a6318"
         },
         {
           "path": "artifacts/research_lanes/epk_sibling_controls/cross_family_source_free_control_rollup_20260520.json",
@@ -782,6 +517,10 @@
           "sha256": "48a66f68001b9e9f51b833cfe7b3a56eb44d412806867baf32af1558b2568dae"
         },
         {
+          "path": "artifacts/research_lanes/epk_sibling_controls/dnk_expanded_bounded_control_screen_20260520.json",
+          "sha256": "eedfa141189261c0869dd745ae3ac5e26babcf2f05ad3481b39cb0636195e627"
+        },
+        {
           "path": "artifacts/research_lanes/epk_sibling_controls/dnk_product_state_acceptor_adjudication_20260520.json",
           "sha256": "37904038b24d8845824765a1add82a851bf534828c327b41aeadc48234914c6e"
         },
@@ -790,8 +529,20 @@
           "sha256": "09aeb3d09d1604fdd5c7254dc16485168891aa9a3aa494e4994aeaf164088672"
         },
         {
+          "path": "artifacts/research_lanes/epk_sibling_controls/expanded_sibling_surface_rollup_20260520.json",
+          "sha256": "53fe1febbedfe7ce3a1417e707f0c4d20ec8755564d4e382ee1ebbb5618486e7"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/gamma_control_substrate_identity_counteraxis_20260520.json",
+          "sha256": "e9f721cd56582da72e15435bb5c2544fdb6c421ba54d03dbd0c673491ef12e3c"
+        },
+        {
           "path": "artifacts/research_lanes/epk_sibling_controls/ghkl_bounded_control_screen_20260520.json",
           "sha256": "202356205f4e6564dc701f3fa84770374c5c188b8f3f5e3ba9bd14c157ea1c7f"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/ghkl_expanded_bounded_control_screen_20260520.json",
+          "sha256": "57e4ac95a4a56dde98dee01b99bb124b18557453b2720278c5354c39b3720cbc"
         },
         {
           "path": "artifacts/research_lanes/epk_sibling_controls/ghkl_product_state_adjudication_20260520.json",
@@ -806,6 +557,10 @@
           "sha256": "0896d4cbc55a6931e1fb275dd755c09f02106b8be4664bb3346bd20a5e697459"
         },
         {
+          "path": "artifacts/research_lanes/epk_sibling_controls/ghmp_expanded_bounded_control_screen_20260520.json",
+          "sha256": "f4c2b59d932cf3057f4752386ef36d69c831f6442fc843843a7066e29b132e65"
+        },
+        {
           "path": "artifacts/research_lanes/epk_sibling_controls/ghmp_product_state_adjudication_20260520.json",
           "sha256": "2a8433246d0ce26e46ec58340ab385b49b93d914949d5910c4aeab0aff6ebec8"
         },
@@ -818,6 +573,10 @@
           "sha256": "732ddfaf234897a7f070fb850b3cd9f23115c91b62b88967a0bcdef027e1370c"
         },
         {
+          "path": "artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
+          "sha256": "c8b7218e1fea6a8ab0a149efe7c319a7a04c67e9f2de2e9e960885a47de9e2fd"
+        },
+        {
           "path": "artifacts/research_lanes/epk_sibling_controls/ndk_product_state_ntp_redesign_20260520.json",
           "sha256": "b120a8975dc81444ae187c15e791eaff45aaaae8a8830234f993ec8161a4f70a"
         },
@@ -826,12 +585,20 @@
           "sha256": "2812d6e8aeca0070c21dd35189dad550eb9cc948c42e97f161120f5cb3f46efd"
         },
         {
+          "path": "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+          "sha256": "355773e51533304e29610d0a83c6fdae822981e7d97ba9b9806a6a68c05ee715"
+        },
+        {
           "path": "artifacts/research_lanes/epk_sibling_controls/pfka_product_state_acceptor_adjudication_20260520.json",
           "sha256": "138b69f5af29d5ffb7f8240023a464d72e5e0307b8d746ee000f10a0d54b03ea"
         },
         {
           "path": "artifacts/research_lanes/epk_sibling_controls/pfkb_bounded_control_screen_20260520.json",
           "sha256": "95df4601be83dd9570cc16577f4a3e26d1a8887a0171d57a02dbdff31a20b4c7"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+          "sha256": "14dad41158ddaf620818176bd16e7e8b314fa9e4b9572c7425b654929b42d240"
         },
         {
           "path": "artifacts/research_lanes/epk_sibling_controls/pfkb_product_state_acceptor_adjudication_20260520.json",
@@ -852,91 +619,59 @@
         {
           "path": "artifacts/research_lanes/epk_sibling_controls/strict_product_substrate_identity_counteraxis_20260520.json",
           "sha256": "702209788c05a740cf97bbb3d0196c0f1f6f852a7638ae7ef7c44f68114d79eb"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/thin_expanded_gamma_counteraxis_20260520.json",
+          "sha256": "cb067cc58ee0a46ae7eccf3930a443d08439e9a7b952669017a30e378036972e"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/thin_expanded_panel_rollup_20260520.json",
+          "sha256": "c7f6d8132b3e29ceddc6226db2eb63affc7dbbac0ce86b61758683f2faf8ffee"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/undercovered_expanded_gamma_counteraxis_20260520.json",
+          "sha256": "b77ea81e38222bdc012b7950dd13c99ec68dc74f07404dc8bf12461e2d9da3c3"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/undercovered_expanded_panel_rollup_20260520.json",
+          "sha256": "0c6308269ab187788af530bdb8684bae1acc12a352e914d530c780d49b418050"
         }
       ],
       "json_validation": {
         "error_count": 0,
         "errors": [],
-        "json_file_count": 26,
+        "json_file_count": 47,
         "jsonl_file_count": 1,
-        "validated_file_count": 27
+        "jsonl_record_count": 5,
+        "validated_file_count": 48
       },
-      "jsonl_file_digests": [
-        {
-          "path": "artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
-          "record_count": 5,
-          "sha256": "a1a7c239999ef2a6a6222dd561bae8ee982ffaab0ce42f796ed41b0f9befcbb8"
-        }
-      ],
-      "lane_id": "epk_sibling_controls",
-      "latest_file_mtime": "2026-05-20T19:10:58Z",
-      "latest_json_created_at": "2026-05-20T18:35:44Z",
-      "latest_ledger_ended_at": "2026-05-20T19:10:58Z",
-      "latest_ledger_record": {
-        "controls_added": 0,
-        "controls_adjudicated": 15,
-        "counterexamples_found": [
-          "1E4E",
-          "1EHI",
-          "1H74",
-          "1I58",
-          "1I5A",
-          "1I5B",
-          "1IOV",
-          "1IOW",
-          "1PFK",
-          "2DLN",
-          "2QQ0",
-          "3UQD",
-          "4C5A",
-          "5DOU",
-          "6U1H",
-          "6U1I",
-          "6U1J",
-          "6VR8",
-          "9QV4"
-        ],
-        "ended_at": "2026-05-20T19:10:58Z",
-        "evidence_against": [
-          "Residual structured/no-hit retry reviewed 95 ASKHA/GHKL/GHMP/PfkB rows and found zero new strict product-state controls.",
-          "The four formerly failed synonym searches now resolve as RCSB HTTP 204 no-hit outcomes rather than JSON parser failures.",
-          "ASKHA structured product-ligand seeds found 10 product-state rows; 2E2Q had ADP/Mg without phosphoryl product and 1CZA/1DGK/1TUU had phosphoryl product gap rows without metal-local product phosphoryl evidence.",
-          "GHKL/GHMP/PfkB residual product rows similarly lacked the ADP/partial nucleotide plus metal-local product phosphoryl combination required for strict controls."
-        ],
-        "evidence_for": [
-          "Strict product-control counteraxis reviewed 15 ATP-grasp/dNK/PfkA/PfkB controls and blocked all 15 as source-free HETATM/free-phosphate product identity cases.",
-          "Blocker classes were {'free_phosphate_product': 4, 'phosphorylated_hetatm_nonpolymer_product': 11}: 11 phosphorylated HETATM nonpolymer products and 4 free phosphate products.",
-          "All 15 strict product controls still hit weak product-phosphoryl proximity rules at <=6A, so generic product-proximity rules remain unsafe without the substrate-identity blocker."
-        ],
-        "git_write_status": "git fetch/pull/add/commit/push expected blocked by linked-worktree Git metadata Operation not permitted; commit not pushed from this sandbox.",
-        "hypothesis": "Residual no-hit product-state synonyms or structured title/ligand seeds may reveal strict non-ePK product controls; existing strict product controls should be separable by a source-free substrate-identity counteraxis.",
-        "labels_or_fingerprints_changed": false,
-        "lane_id": "epk_sibling_controls",
-        "measured_minutes": 49.5,
-        "next_query": "Use the review-only substrate-identity blocker definition when future scorer work adds source-free counteraxes; only reopen ASKHA/GHKL/GHMP product-state sourcing if new curated product-ligand seeds appear, and do not calibrate production thresholds from these rows.",
-        "primary_outcome": "search_surface_exhausted",
-        "production_claim_allowed": false,
-        "query_or_source": "residual_product_state_structured_retry_20260520.json; strict_product_substrate_identity_counteraxis_20260520.json; residual_retry_and_counteraxis_rollup_20260520.json; helper scripts residual_product_state_retry.py and product_control_counteraxis_adjudication.py.",
-        "recommendation": "Treat the residual ASKHA/GHKL/GHMP/PfkB product-state structured/no-hit surface as exhausted for this bounded lane query; keep weak distance/product-proximity rules closed unless paired with a source-free substrate-identity counteraxis.",
-        "rows_reviewed": 110,
-        "search_surface": "RCSB residual full_text terms plus structured/title-bounded ASKHA, CheA, homoserine kinase, CDP-ME kinase, and ketohexokinase PDB-id seed searches; 95 rows scanned in memory with compact mmCIF evidence, plus 15 existing strict product controls adjudicated from lane artifacts.",
-        "search_surface_exhausted": true,
-        "started_at": "2026-05-20T18:21:28Z",
-        "target_sibling_family": "ASKHA, GHKL, GHMP, PfkB residual product-state branches; ATP-grasp, dNK, PfkA, PfkB strict product controls"
-      },
-      "ledger_path": "artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
-      "ledger_record_count": 5,
-      "ledger_sha256": "a1a7c239999ef2a6a6222dd561bae8ee982ffaab0ce42f796ed41b0f9befcbb8",
-      "linked_worktree_git_metadata_write_blocked_in_lane": true,
-      "origin_commit": "f5185ea0b0dca7f0bd0002531580def0f962c02f",
-      "origin_commit_date": "2026-05-20T11:26:32-05:00",
-      "origin_commit_summary": "Add ePK ATP-grasp sibling controls",
-      "origin_ref": "origin/research/epk-sibling-controls",
-      "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls",
-      "worktree_dirty_at_synthesis": true
+      "new_json_files_since_prior_synthesis": [
+        "artifacts/research_lanes/epk_sibling_controls/askha_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_gamma_counteraxis_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_counteraxis_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_gamma_counteraxis_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_product_counteraxis_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_rollup_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/counteraxis_scorer_design_cases_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/dnk_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/expanded_sibling_surface_rollup_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/gamma_control_substrate_identity_counteraxis_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/ghkl_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/ghmp_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/thin_expanded_gamma_counteraxis_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/thin_expanded_panel_rollup_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/undercovered_expanded_gamma_counteraxis_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/undercovered_expanded_panel_rollup_20260520.json"
+      ]
     },
     {
       "branch": "research/epk-policy-harness",
+      "current_head": "9f0775c963d9be54fdf6cc90620e4743cdba2390",
       "dirty_status_summary": [
         " M artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
         " M tools/research_lanes/epk_policy_harness/epk_policy_harness.py",
@@ -964,7 +699,11 @@
         "?? artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z_result.json",
         "?? artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z_tranche.json",
         "?? artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_source_validation_20260520T183959Z.json",
-        "?? tools/research_lanes/epk_policy_harness/epk_fresh_surface_scan.py"
+        "?? artifacts/research_lanes/epk_policy_harness/epk_terminal_gamma_geometry_lead_sibling_control_stress_20260520T192720Z.json",
+        "?? artifacts/research_lanes/epk_policy_harness/epk_terminal_gamma_geometry_lead_sibling_control_stress_20260520T192720Z_result.json",
+        "?? artifacts/research_lanes/epk_policy_harness/epk_terminal_gamma_geometry_lead_sibling_control_stress_20260520T192720Z_tranche.json",
+        "?? tools/research_lanes/epk_policy_harness/epk_fresh_surface_scan.py",
+        "?? tools/research_lanes/epk_policy_harness/epk_topology_sibling_control_stress.py"
       ],
       "handoff_last_updated": "2026-05-20T19:11:49Z",
       "handoff_path": "work/research_lanes/epk_policy_harness/handoff.md",
@@ -1082,323 +821,117 @@
         {
           "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_v0_20260520.json",
           "sha256": "298b2a636fe3a50b3872bb513a9d37e0151b02b71d25fe1b651da5d3854b4345"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_terminal_gamma_geometry_lead_sibling_control_stress_20260520T192720Z.json",
+          "sha256": "c8e72099ba6eb89cd527efa309e3fd674a6c6422a8af0f8131b403eb323ca319"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_terminal_gamma_geometry_lead_sibling_control_stress_20260520T192720Z_result.json",
+          "sha256": "8c54be673135241bf6799deea702f4d893f31d5d1d83f37a3bb1b47132a327bb"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_terminal_gamma_geometry_lead_sibling_control_stress_20260520T192720Z_tranche.json",
+          "sha256": "2307866cfe0af3c1298632e47717e80b14366a8173ea22bf073be4a847cb7df4"
         }
       ],
       "json_validation": {
         "error_count": 0,
         "errors": [],
-        "json_file_count": 28,
+        "json_file_count": 31,
         "jsonl_file_count": 1,
-        "validated_file_count": 29
+        "jsonl_record_count": 5,
+        "validated_file_count": 32
       },
-      "jsonl_file_digests": [
-        {
-          "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
-          "record_count": 5,
-          "sha256": "9e522e583a4bbc1d153bb091c8e240ee16963deed8e8a9efdf3b29dc61e10142"
-        }
-      ],
-      "lane_id": "epk_policy_harness",
-      "latest_file_mtime": "2026-05-20T19:11:49Z",
-      "latest_json_created_at": "2026-05-20T18:39:59Z",
-      "latest_ledger_ended_at": "2026-05-20T19:11:49Z",
-      "latest_ledger_record": {
-        "allowed_predictive_features": [
-          "ligand_code_from_structure",
-          "terminal_gamma_equivalent_geometry",
-          "terminal_gamma_atom_name",
-          "nearest_gamma_acceptor_distance_angstrom",
-          "local_metal_context",
-          "catalytic_site_locality",
-          "source_free_acceptor_role_features",
-          "source_free_acceptor_role_policy_id",
-          "same_structure_co_materialization"
-        ],
-        "counterexamples_found": [],
-        "ended_at": "2026-05-20T19:11:49Z",
-        "evaluation_tranche": "aggregate:artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z_tranche.json;artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z_tranche.json;artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z_tranche.json;artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z_tranche.json",
-        "evaluation_tranches": [
-          "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z_tranche.json",
-          "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z_tranche.json",
-          "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z_tranche.json",
-          "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z_tranche.json"
-        ],
-        "evidence_against": [
-          "The ATP chemistry-component surface is not exhausted overall; it produced geometry leads, so future work must stress role/topology controls rather than declaring the surface closed.",
-          "The broad ATP chemcomp surface returns non-ePK ATPase/source-title contexts; source validation can flag this only downstream and review-only, not as predictive filtering.",
-          "No accepted source-free folded substrate-role or acceptor-identity extractor exists in policy v0, so the policy remains deliberately fail-closed.",
-          "Normal git fetch/pull/add/commit/push remain blocked by linked-worktree metadata permissions, preventing a pushed commit from this sandbox."
-        ],
-        "evidence_for": [
-          "Added terminal-gamma tranche validation: terminal-gamma stress rows must have terminal_gamma_equivalent_geometry=true and terminal_gamma_atom_name=PG, with self-test coverage for rejection.",
-          "Added topology review-contract validation: cross-chain geometry without a preregistered source-free role policy must keep same_structure_co_materialization false and expect review-only abstention.",
-          "Added ATP chemistry-component query mode and narrowed freshness scanning to lane artifacts/work; four compact chemcomp surfaces reviewed 34 candidate ids, 33 with ATP PG, and 6 cross-chain geometry leads within the frozen 6.0 A cutoff.",
-          "All 22 selected terminal-gamma tranche rows abstained under policy v0 with zero expected-decision mismatches and no forbidden source-leak flags.",
-          "Downstream review-only source validation covered geometry leads 9UQ0, 9VLN, 22VT, 9VLW, 9O4E, and 10TZ after local feature review; source text/title fields were explicitly not predictive.",
-          "Prior diagnostic, cutoff, ANP/Mg, and ATP full-text tranches reran cleanly under the stricter opt-in validators."
-        ],
-        "forbidden_features": [
-          "production_label",
-          "curated_mechanism_label",
-          "mechanism_fingerprint_registry_status",
-          "source_review_used_for_predictive_feature",
-          "candidate_specific_source_repair_used_for_predictive_feature",
-          "mechanism_text",
-          "pdb_title_as_predictive_feature",
-          "uniprot_prose_as_predictive_feature",
-          "ec_or_rhea_as_predictive_feature",
-          "source_id_as_predictive_feature",
-          "post_hoc_ligand_alias_expansion",
-          "post_hoc_threshold_selection",
-          "cross_pdb_split_state_fusion",
-          "homomeric_chain_choice_as_substrate_mapping",
-          "source_validation_used_for_predictive_feature",
-          "source_text_used_for_predictive_feature",
-          "structure_title_used_for_predictive_feature"
-        ],
-        "frozen_inputs": {
-          "accepted_source_free_acceptor_role_policy_ids": [],
-          "candidate_distance_cutoff_angstrom": 6.0,
-          "evaluation_tranche_sha256": "0681e2730098a375cdcc37a446defd6bd60e9589b2df79656d14e7cd7f575fbc",
-          "evaluation_tranche_sha256s": {
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z_tranche.json": "b4ceb9438f31230cd94300b86c1620cfef05fb146372f6e1c3c6e5ca32c4da37",
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z_tranche.json": "0681e2730098a375cdcc37a446defd6bd60e9589b2df79656d14e7cd7f575fbc",
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z_tranche.json": "be9b73f2dea3bf9af0d71eeed39d48cc41183181bee62051ed09930394958363",
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z_tranche.json": "a7979dd8b922439d06044e716c3468851ff3740d37a607af1885f982a0ef6596"
-          },
-          "ligand_code_alias_map": {
-            "AMP_PNP": [
-              "AMP-PNP",
-              "AMPPNP"
-            ],
-            "ANP": [
-              "ANP"
-            ],
-            "ATP": [
-              "ATP"
-            ]
-          },
-          "nonconfounded_candidate_count_within_cutoff": 6,
-          "policy_manifest": "artifacts/research_lanes/epk_policy_harness/epk_policy_v0_20260520.json",
-          "policy_sha256": "298b2a636fe3a50b3872bb513a9d37e0151b02b71d25fe1b651da5d3854b4345",
-          "raw_coordinate_dump_written": false,
-          "result_sha256s": {
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z_result.json": "ffecf787b8ee6cfc0a581fec7ae967d1cbb664f9dfb13e3a8bb0c4f79058b20d",
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z_result.json": "090d5b5a511c219b5ddab7ac0dcf7ce3802873a2b75f8d24aee7eeafe020f7f1",
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z_result.json": "ae5a037cf254148c2f3f038936fdd8f85440878c8feb8a874debfb0409a0384c",
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z_result.json": "0b52156d1a91c862103f9b1075bdf957e70903171194a5f112d99b4712c6d9fa"
-          },
-          "search_surface_candidate_count_reviewed": 34,
-          "search_surface_sha256s": {
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z.json": "9706d598de79e366859b21c5d9f5b50560683d3e43a6669f5c1c5faae52e7a4a",
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z.json": "f023e93ee424f42745b25e641498d358fa9a679ef7cbef61e117b1f2a870e4ff",
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z.json": "5c3f03c28911542b37d1695e905d3afd473357b84ad594968cc4a399c8733ad4",
-            "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z.json": "68c2f480a080bd8e8459ca323831b9e2c8ce6b427c3e8e18a9afebc4e7be3ef4"
-          },
-          "source_validation_phase_contract": {
-            "candidate_ids_frozen_before_local_feature_review": true,
-            "source_free_local_features_computed_before_source_validation": true,
-            "source_validation_applied_after_local_features": true,
-            "source_validation_review_only": true
-          },
-          "source_validation_sha256": "741cef557851eec6f517d25682434b9cd3680c4f56fe58f54c0e17ee7fabb5ca",
-          "terminal_gamma_candidate_count_reviewed": 33,
-          "terminal_gamma_required_for_tranche": true,
-          "topology_review_contract": {
-            "cross_chain_geometry_review_only_without_preaccepted_role_policy": true,
-            "topology_status_required": true
-          }
-        },
-        "geometry_leads_review_only": [
-          "9UQ0",
-          "9VLN",
-          "22VT",
-          "9VLW",
-          "9O4E",
-          "10TZ"
-        ],
-        "hypothesis": "A frozen review-only ePK policy remains falsifiable on ATP chemistry-component surfaces only if terminal-gamma rows are admitted explicitly, cross-chain topology geometry cannot substitute for a preregistered source-free acceptor-role policy, and downstream source validation remains review-only.",
-        "labels_or_fingerprints_changed": false,
-        "lane_id": "epk_policy_harness",
-        "measured_minutes": 50.77,
-        "next_query": "epk_terminal_gamma_geometry_lead_source_free_role_sibling_control_stress_v1_review_only",
-        "policy_version": "epk_review_only_policy_harness_v0_20260520",
-        "primary_outcome": "policy_frozen_review_only",
-        "production_claim_allowed": false,
-        "recommendation": "policy_frozen_review_only",
-        "review_only_features": [
-          "pdb_id",
-          "row_role",
-          "clean_held_out_performance_evidence",
-          "development_or_regression_context",
-          "product_state_context",
-          "substrate_acceptor_analog_context",
-          "split_state_context",
-          "candidate_specific_source_repair",
-          "sibling_counterfamily_context",
-          "post_score_review_status",
-          "source_validation_status",
-          "source_review_status",
-          "source_query",
-          "structure_title",
-          "entity_descriptions",
-          "chain_accessions",
-          "source_pair_id",
-          "known_counterexample_status",
-          "expert_notes",
-          "source_validation_phase",
-          "topology_ambiguity_status",
-          "freshness_status",
-          "search_surface_scope",
-          "structure_title_review_only_source_validation"
-        ],
-        "rows_reviewed": 22,
-        "search_surface_exhausted": false,
-        "started_at": "2026-05-20T18:21:03Z",
-        "surface_summaries": [
-          {
-            "candidate_count": 10,
-            "decision_counts": {
-              "review_only_abstain": 6
-            },
-            "expected_decision_mismatch_count": 0,
-            "nonconfounded_within_cutoff_count": 4,
-            "primary_outcome": "policy_frozen_review_only",
-            "result": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z_result.json",
-            "surface": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z.json",
-            "terminal_gamma_count": 10,
-            "tranche": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z_tranche.json"
-          },
-          {
-            "candidate_count": 12,
-            "decision_counts": {
-              "review_only_abstain": 6
-            },
-            "expected_decision_mismatch_count": 0,
-            "nonconfounded_within_cutoff_count": 1,
-            "primary_outcome": "policy_frozen_review_only",
-            "result": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z_result.json",
-            "surface": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z.json",
-            "terminal_gamma_count": 12,
-            "tranche": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z_tranche.json"
-          },
-          {
-            "candidate_count": 8,
-            "decision_counts": {
-              "review_only_abstain": 6
-            },
-            "expected_decision_mismatch_count": 0,
-            "nonconfounded_within_cutoff_count": 0,
-            "primary_outcome": "search_surface_exhausted",
-            "result": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z_result.json",
-            "surface": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z.json",
-            "terminal_gamma_count": 7,
-            "tranche": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z_tranche.json"
-          },
-          {
-            "candidate_count": 4,
-            "decision_counts": {
-              "review_only_abstain": 4
-            },
-            "expected_decision_mismatch_count": 0,
-            "nonconfounded_within_cutoff_count": 1,
-            "primary_outcome": "policy_frozen_review_only",
-            "result": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z_result.json",
-            "surface": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z.json",
-            "terminal_gamma_count": 4,
-            "tranche": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z_tranche.json"
-          }
-        ]
-      },
-      "ledger_path": "artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
-      "ledger_record_count": 5,
-      "ledger_sha256": "9e522e583a4bbc1d153bb091c8e240ee16963deed8e8a9efdf3b29dc61e10142",
-      "linked_worktree_git_metadata_write_blocked_in_lane": true,
-      "origin_commit": "9f0775c963d9be54fdf6cc90620e4743cdba2390",
-      "origin_commit_date": "2026-05-20T11:26:43-05:00",
-      "origin_commit_summary": "Tighten ePK policy harness invariants",
-      "origin_ref": "origin/research/epk-policy-harness",
-      "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness",
-      "worktree_dirty_at_synthesis": true
+      "new_json_files_since_prior_synthesis": [
+        "artifacts/research_lanes/epk_policy_harness/epk_terminal_gamma_geometry_lead_sibling_control_stress_20260520T192720Z.json",
+        "artifacts/research_lanes/epk_policy_harness/epk_terminal_gamma_geometry_lead_sibling_control_stress_20260520T192720Z_result.json",
+        "artifacts/research_lanes/epk_policy_harness/epk_terminal_gamma_geometry_lead_sibling_control_stress_20260520T192720Z_tranche.json"
+      ]
     }
   ],
   "lane_findings": [
     {
       "evidence_against": [
-        "No fresh clean folded-protein substrate positive was found.",
-        "2V55 and 3BEG are source-relevant processive/multisite complexes but reject as clean positives because mapped acceptors are 11-20 Angstrom from ANP PG or absent from modeled substrate regions.",
-        "mTORC2/Akt, PKA/CaV/Rad, PKA/CFTR, PINK1/ubiquitin, and aPKC/Lgl surfaces remain split-state, docking-only, missing active gamma donor, or long-distance evidence."
+        "No fresh clean folded-protein substrate positive was found; folded_protein_substrate_positive_count remains 0 in the fresh positive-lane follow-ups.",
+        "Recent global phrase rows 9M5Y, 9M6G, and 9O0V are geometry-negative or regulatory-complex negatives, not positives.",
+        "Recent CDK/CAK source-relevant rows add six geometry-negative folded-protein controls: four lack active gamma donor and two have gamma present but distant acceptors.",
+        "9IZ0 is peptide-only and lacks local Mg/Mn in the modeled ANP PG environment, so it cannot support production scoring."
       ],
       "evidence_for": [
-        "Fresh review-only peptide positives were found: 1O6K, 1O6L, 4DG0, 3O7L, and 4JDI.",
-        "1O6K/1O6L and 4DG0 have source-mapped peptide acceptors near ANP PG with local metal context.",
-        "3O7L and 4JDI expose legacy ANP/PB terminal-atom handling pressure for review-only helper design."
+        "Fresh review-only peptide positives remain 1O6K, 1O6L, 4DG0, 3O7L, and 4JDI; the later ATM/Tel1 artifact adds 9IZ0 as source-mapped peptide evidence but with a local-metal caveat.",
+        "The legacy ANP/PB audit reviewed 221 prior-scout ANP intersections from 971 unique prior-scout PDB ids and found only 3O7L and 4JDI within 6 Angstrom of a heteromeric Ser/Thr/Tyr acceptor.",
+        "The PB fallback decision is explicitly review-only and limited to lane helpers with source mapping, local metal context, and a legacy-PB flag."
       ],
       "lane_id": "epk_positive_evidence",
-      "latest_lane_outcome": "evidence_for_review_only_peptide_positives",
+      "latest_lane_outcome": "legacy_pb_and_recent_phrase_reviews_add_review_only_context_only",
       "primary_outcome": "evidence_against_fresh_folded_protein_positive",
-      "recommendation": "Use the peptide positives and legacy ANP/PB cases only as research-lane review material; do not score ePK, import labels, edit registries, or promote a fingerprint.",
+      "recommendation": "Preserve the legacy PB audit and peptide positives as research-lane review material only; do not score ePK, import labels, edit registries, or promote a fingerprint.",
       "review_only_blockers": [
         "no_fresh_clean_folded_protein_positive",
-        "legacy_anp_pb_terminal_atom_policy_not_frozen",
+        "legacy_anp_pb_terminal_atom_policy_review_only_only",
         "source_free_substrate_role_identity_axis_not_accepted",
         "threshold_calibration_not_run",
         "external_hard_negative_scored_reaudit_not_run"
       ],
       "source_review_status_counts": {
         "folded_protein_positive_ids_added": [],
-        "latest_rows_reviewed": 208,
-        "legacy_anp_pb_review_leads": [
-          "3O7L",
-          "4JDI"
-        ],
-        "processive_folded_candidates_rejected": [
-          "2V55",
-          "3BEG"
-        ],
+        "fresh_global_phrase_clean_positive_count": 0,
+        "legacy_anp_pb_distance_negative_count": 7,
+        "legacy_anp_pb_prior_scout_intersection_count": 221,
+        "legacy_anp_pb_prior_scout_unique_pdb_ids": 971,
+        "legacy_anp_pb_within_6_structure_count": 2,
+        "recent_cdk_cak_clean_positive_count": 0,
+        "recent_cdk_cak_source_relevant_rows_reviewed": 6,
         "review_only_peptide_positive_ids": [
           "1O6K",
           "1O6L",
           "4DG0",
           "3O7L",
-          "4JDI"
+          "4JDI",
+          "9IZ0"
         ]
       }
     },
     {
       "evidence_against": [
-        "The actual auth-preferred materializer found 0 current-rule substrate-mode counterexamples across the fresh namespace stress.",
-        "The six handoff pressure IDs and broader namespace surfaces stayed closed under current auth-chain handling."
+        "Across 820 reviewed ATP-like/Mg rows, the same-author-chain reuse stress found 0 local current-rule counterexamples and 0 actual-materializer topology-clear non-ePK counterexamples.",
+        "Earlier namespace stress also found 0 current-rule non-ePK counterexamples across 520 reviewed rows while preserving auth/label namespace pressure as diagnostic risk."
       ],
       "evidence_for": [
-        "Auth namespace edge pressure is real: 93 pressure entries and 520 reviewed rows stress ligand-chain and atom-site namespace handling.",
-        "Hypothetical label-asym handling remains dangerous and should stay outside predictive scoring."
+        "The same-author-chain reuse stress found seven non-ePK pressure entries where the actual materializer can assign distinct entities while author chain names are reused.",
+        "The pressure IDs are 1N56, 2DRA, 2Q66, 2ZH6, 4RWT, 7Z3N, and 7Z3O; they are useful regression pressure for auth-chain topology handling."
       ],
       "lane_id": "epk_false_positive_hunter",
+      "latest_lane_outcome": "same_author_chain_entity_reuse_pressure_found_but_blocked",
       "primary_outcome": "no_current_rule_counterexample_found",
-      "recommendation": "Preserve auth namespace discipline and continue false-positive hunting in research lanes; no production activation follows from absence of a bounded counterexample.",
+      "recommendation": "Preserve auth-chain topology ambiguity handling and convert this pressure into future regression coverage before any scorer use; no production activation follows.",
       "review_only_blockers": [
         "namespace_attack_is_diagnostic_not_safety_proof",
-        "future_ligand_namespace_expansion_requires_reaudit",
+        "same_author_chain_entity_reuse_requires_regression_pressure_only",
         "production_scoring_not_run"
       ],
       "source_review_status_counts": {
-        "actual_materializer_substrate_mode_counterexample_count": 0,
+        "actual_materializer_topology_clear_non_epk_counterexample_count": 0,
         "auth_namespace_edge_pressure_entry_count": 93,
-        "current_rule_counterexample_count": 0,
-        "rows_reviewed_latest_edge_case": 520
+        "auth_namespace_rows_reviewed": 520,
+        "local_current_rule_counterexample_count": 0,
+        "same_author_chain_entity_reuse_pressure_entry_count": 7,
+        "same_author_chain_entity_reuse_rows_reviewed": 820
       }
     },
     {
       "evidence_against": [
-        "Sibling controls falsify weak distance-only or nearest-oxygen rules, but they do not supply a calibrated ePK scorer or a production-ready substrate-identity policy."
+        "Sibling controls falsify weak distance-only, nearest-oxygen, and generic product-proximity rules but do not supply a calibrated ePK scorer or a production-ready substrate-identity policy.",
+        "Residual structured retry reviewed 95 ASKHA/GHKL/GHMP/PfkB rows and added 0 new strict product-state controls; ASKHA/GHKL/GHMP/PfkB product-state sourcing is only bounded-exhausted for this lane query."
       ],
       "evidence_for": [
-        "Product-first sibling control adjudication reviewed 558 rows and retained 15 strict product-state controls across ATP-grasp, dNK, PfkA, and PfkB.",
-        "The strict product substrate-identity counteraxis blocks all 15 strict controls as review-only non-ePK product controls.",
-        "Residual structured retries close the current product-state query surface without making ASKHA, GHKL, or GHMP exhaustion claims stronger than the data support."
+        "The expanded sibling rollup reviewed 452 rows and found 64 gamma/metal controls plus 47 unique weak-rule counterexamples across ATP-grasp, ASKHA, dNK, GHKL, GHMP, PfkA, PfkB, and NDK.",
+        "The product-first branch retained 15 strict product controls across ATP-grasp, dNK, PfkA, and PfkB.",
+        "A strict source-free substrate-identity counteraxis blocked all 15 strict product controls as HETATM/free-phosphate product cases."
       ],
       "lane_id": "epk_sibling_controls",
+      "latest_lane_outcome": "residual_product_surface_exhausted_and_strict_controls_blocked",
       "primary_outcome": "counterexample_found",
       "recommendation": "Keep sibling controls as falsification pressure and future counteraxis material; they are insufficient for ePK production activation.",
       "review_only_blockers": [
@@ -1407,7 +940,11 @@
         "threshold_calibration_not_run"
       ],
       "source_review_status_counts": {
-        "product_first_rows_reviewed": 558,
+        "expanded_rows_reviewed": 452,
+        "gamma_metal_controls": 64,
+        "residual_retry_new_strict_controls": 0,
+        "residual_retry_rows_reviewed": 95,
+        "strict_product_control_blocked_count": 15,
         "strict_product_control_pdb_ids": [
           "1EHI",
           "1IOV",
@@ -1426,43 +963,39 @@
           "3UQD"
         ],
         "strict_product_state_controls": 15,
-        "substrate_identity_counteraxis_blocked_count": 15,
-        "weak_rule_counterexample_ids_in_product_first_screens": 36
+        "weak_rule_counterexample_count": 47
       }
     },
     {
       "evidence_against": [
         "No accepted source-free folded substrate-role or acceptor-identity extractor exists in policy v0.",
-        "The six-row ATP full-text expansion and later chemcomp ATP surfaces are diagnostics, not clean held-out performance evidence."
+        "The six ATP terminal-gamma leads and six matched controls are review-only pressure cases, not clean held-out performance evidence.",
+        "The ATP chemistry-component surface is not exhausted overall and cannot be used for production claims or predictive source filtering."
       ],
       "evidence_for": [
-        "Policy v0 remains frozen and fail-closed with source-free local feature review before source validation.",
-        "Fresh chemcomp ATP terminal-gamma lane-scope rows abstained under the frozen harness with 0 expected-decision mismatches and 0 counterexamples.",
-        "The source-validation artifact reviewed 9UQ0, 9VLN, 22VT, 9VLW, 9O4E, and 10TZ only after source-free local features were computed."
+        "The terminal-gamma geometry lead sibling-control stress froze six geometry leads plus six matched sibling controls before harness evaluation using only source-free local features.",
+        "The 12-row tranche enforced terminal PG, topology review, source-validation phase, and sibling-control contracts.",
+        "All 12 rows abstained under policy v0 with 0 expected-decision mismatches, 0 counterexamples, and 0 forbidden predictive-context flags."
       ],
       "lane_id": "epk_policy_harness",
-      "latest_lane_outcome": "chemcomp_atp_terminal_gamma_surface_remains_review_only",
-      "primary_outcome": "policy_frozen_review_only_and_fresh_stress_abstains",
-      "recommendation": "Keep ligand-state and substrate-role policy review-only; future chemcomp ATP terminal-gamma scans belong in research lanes until a source-free role extractor is preregistered and passes controls.",
+      "latest_lane_outcome": "terminal_gamma_geometry_lead_sibling_control_stress_completed_review_only",
+      "primary_outcome": "policy_frozen_review_only_and_terminal_gamma_sibling_stress_abstains",
+      "recommendation": "Keep ligand-state and substrate-role policy review-only; the completed terminal-gamma sibling stress supports fail-closed behavior, not production scoring.",
       "review_only_blockers": [
-        "policy_v0_has_no_accepted_source_free_role_policy",
-        "source_validation_cannot_be_predictive_feature",
-        "threshold_calibration_not_run",
-        "external_hard_negative_scored_reaudit_not_run"
+        "source_free_role_policy_not_accepted",
+        "terminal_gamma_geometry_leads_are_pressure_cases_not_positives",
+        "external_hard_negative_scored_reaudit_not_run",
+        "threshold_calibration_not_run"
       ],
       "source_review_status_counts": {
-        "chemcomp_lane_scope_abstain_rows": 4,
-        "chemcomp_source_validation_candidate_ids": [
-          "9UQ0",
-          "9VLN",
-          "22VT",
-          "9VLW",
-          "9O4E",
-          "10TZ"
-        ],
-        "expected_decision_mismatch_count": 0,
-        "fresh_atp_full_text_counterexamples": 0,
-        "fresh_atp_full_text_rows_reviewed": 6
+        "chemcomp_surface_candidate_count_reviewed": 34,
+        "chemcomp_terminal_gamma_candidate_count_reviewed": 33,
+        "terminal_gamma_stress_counterexample_count": 0,
+        "terminal_gamma_stress_expected_decision_mismatch_count": 0,
+        "terminal_gamma_stress_lead_count": 6,
+        "terminal_gamma_stress_review_only_abstain_count": 12,
+        "terminal_gamma_stress_row_count": 12,
+        "terminal_gamma_stress_sibling_control_count": 6
       }
     }
   ],
@@ -1473,22 +1006,23 @@
     "automation_id": "catalytic-earth-work-loop",
     "canonical_countable_label_count": 682,
     "countable_label_candidate_count": 0,
-    "created_at": "2026-05-20T19:12:06Z",
+    "created_at": "2026-05-20T20:12:12Z",
     "curated_label_registry_edited": false,
     "epk_score_computed": false,
     "external_hard_negative_reaudit_scored": false,
     "fingerprint_registry_edited": false,
+    "fresh_json_files_since_prior_synthesis_count": 36,
     "fresh_lane_outputs_since_prior_synthesis": true,
     "git_history_edited": false,
     "integrates_uncommitted_sibling_worktree_outputs": true,
     "lane_count": 4,
-    "lane_json_file_count": 107,
+    "lane_json_file_count": 143,
     "lane_json_validation_error_count": 0,
     "lane_jsonl_file_count": 4,
     "main_loop_should_continue_epk_by_default": false,
     "mechanism_fingerprint_registry_edited": false,
     "method": "main_loop_research_lane_review_only_synthesis_refresh",
-    "prior_synthesis_created_at": "2026-05-20T17:08:53Z",
+    "prior_synthesis_created_at": "2026-05-20T19:12:06Z",
     "production_fingerprint_count": 8,
     "ready_for_label_import": false,
     "ready_for_production_scoring": false,
@@ -1499,34 +1033,34 @@
     "threshold_calibrated": false
   },
   "next_exact_experiment_if_epk_is_reopened": {
-    "alternate_policy_lane_next_query": "epk_fresh_rcsb_chemcomp_atp_terminal_gamma_nonconfounded_surface_v1_review_only",
+    "completed_policy_lane_query": "epk_terminal_gamma_geometry_lead_source_free_role_sibling_control_stress_v1_review_only",
+    "completed_policy_lane_result": "12/12 review_only_abstain with 0 mismatches and 0 counterexamples",
     "decision_to_start_now": false,
-    "experiment_id": "epk_legacy_anp_pb_terminal_atom_audit_v1_review_only",
+    "experiment_id": "epk_source_free_substrate_role_identity_extractor_design_v1_review_only",
     "preconditions": [
-      "freeze prior lane scout artifacts before audit",
-      "use source-free terminal-phosphate atom handling before source-map review",
-      "keep source validation downstream and review-only",
-      "do not calibrate thresholds or score external hard negatives"
+      "freeze a fresh terminal-gamma lead/control tranche before any new outcome review",
+      "define source-free substrate-role features before source validation",
+      "require sibling controls to remain matched and review-only",
+      "do not calibrate thresholds, score external hard negatives, edit registries, or import labels"
     ],
-    "reason_not_started": "main automation should not continue ePK by default and this helper-policy audit does not resolve production blockers by itself",
-    "source_lane": "epk_positive_evidence",
+    "reason_not_started": "main automation should not continue ePK by default and the terminal-gamma lead sibling stress completed as all-abstain review-only pressure, not as a production-blocker resolution",
+    "source_lane": "epk_policy_harness",
     "status": "research_lane_only_deferred"
   },
   "small_win_ladder_decision": {
-    "integration_required_before_unrelated_work": true,
-    "integration_status": "completed_in_this_artifact_pending_commit",
-    "next_main_loop_task": "freeze_source_complete_external_rows_or_one_schiff_base_dna_lyase_control_tranche_before_scoring",
-    "rationale": "Fresh ePK lane output changes review context but not the production no-go decision; main-loop work should return to visible non-ePK small wins after this integration is committed."
+    "epk_default_main_loop_task": false,
+    "main_loop_decision": "commit_research_lane_synthesis_then_return_to_non_epk_small_wins",
+    "reason": "fresh lane outputs reinforce no-go production activation and name only deferred research-lane work"
   },
   "synthesis_conclusion": {
-    "false_positive_lane": "no_current_auth_rule_counterexample_found_but_namespace_pressure_persists",
+    "false_positive_lane": "same_author_chain_entity_reuse_pressure_found_but_no_current_rule_counterexample",
     "ligand_state_policy": "freeze_as_review_only_future_tranche_policy_only",
     "overall": "epk_remains_review_only_and_not_production_ready",
-    "policy_harness_lane": "fresh_folded_role_identity_stress_abstained_fail_closed",
-    "policy_harness_latest_surface": "chemcomp_atp_terminal_gamma_tranches_remain_review_only",
-    "positive_evidence_lane": "peptide_positives_review_only_no_fresh_clean_folded_protein_positive",
+    "policy_harness_lane": "terminal_gamma_geometry_lead_sibling_control_stress_abstained_fail_closed",
+    "policy_harness_latest_surface": "six_geometry_leads_plus_six_sibling_controls_all_abstained_review_only",
+    "positive_evidence_lane": "peptide_positives_and_legacy_pb_review_only_no_fresh_clean_folded_protein_positive",
     "production_activation_decision": "no_go",
-    "sibling_control_lane": "strict_product_controls_falsify_weak_substrate_rules",
+    "sibling_control_lane": "expanded_sibling_controls_falsify_weak_substrate_rules_and_strict_product_controls_are_blocked",
     "substrate_role_axis": "not_freeze_ready",
     "terminal_main_loop_decision": "do_not_resume_epk_as_default_main_loop_task"
   }

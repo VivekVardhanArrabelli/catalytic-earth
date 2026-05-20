@@ -50,6 +50,19 @@ leads `2V55` and `3BEG` reject as clean positives, auth-namespace stress finds
 sibling controls block weak substrate rules, and ATP terminal-gamma policy
 surfaces remain abstained/fail-closed. ePK remains research-lane-only and not
 production-ready.
+The 2026-05-20T20:12:12Z synthesis refresh validates 143 JSON files plus 4
+JSONL ledgers and adds later sibling-worktree evidence without changing scope.
+Positive-lane follow-ups add only review context: 9IZ0 is peptide-only with a
+local-metal caveat, the legacy ANP/PB audit supports only review-lane helper
+handling for 3O7L/4JDI, and recent phrase/CDK-CAK follow-ups add
+geometry-negative controls rather than folded-protein positives. False-positive stress
+finds 7 same-author-chain entity-reuse pressure IDs across 820 rows but 0
+current-rule counterexamples. Sibling controls now contain 64 gamma/metal
+controls, 47 weak-rule counterexamples, and 15 strict product controls blocked
+by a source-free substrate-identity counteraxis. The policy harness completes
+six terminal-gamma geometry leads plus six matched sibling controls as 12/12
+review-only abstentions. ePK remains no-go for production activation; any next
+ePK step is research-lane-only source-free substrate-role extractor design.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

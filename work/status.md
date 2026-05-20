@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 226
-- Measured elapsed time: 6892.7 minutes (114.88 hours)
+- Entries: 227
+- Measured elapsed time: 6896.7 minutes (114.95 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 93.0 measured minutes (1.55 hours)
-- post-infra-science: 1654.9 measured minutes (27.58 hours)
+- post-infra-science: 1659.0 measured minutes (27.65 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2622
-- Evidence references logged: 2131
+- Artifact references logged: 2628
+- Evidence references logged: 2137
 
 ## Recent Entries
-
-### 2026-05-20T17:16:23.980051+00:00 - post-infra-science
-
-- Task: Glycoside hydrolase control tranche decisions
-- Time mode: measured
-- Measured minutes: 4.383
-- Started: 2026-05-20T17:12:00Z
-- Ended: 2026-05-20T17:16:23Z
-- Artifacts: artifacts/v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: frozen 15-row glycoside hydrolase tranche scored only with preregistered review-only axes and existing duplicate-screen evidence, terminal decisions are 10 mechanism_match 2 ambiguous 1 needs_review 2 terminal_rejection, five external rows have bounded sequence no-signal and external all-vs-all structural no-signal, P33025 remains terminal rejection by prior current-countable structural duplicate signal, source-free glycoside axis ready count is 0, targeted artifact test passed, JSON validation passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
 
 ### 2026-05-20T17:19:03.090362+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/progress_log.jsonl, work/status.md
 - Evidence: post-status full 714-test unit discovery passed, post-status validate passed with 682 labels and 8 fingerprints, post-status artifact migration dry-run passed with removal_allowed=0, all artifacts JSON validation passed, git diff --check passed
 - Notes: Recorded after regenerating status so the final work log reflects the last verification pass.
+
+### 2026-05-20T20:13:02.164962+00:00 - post-infra-science
+
+- Task: Refresh ePK research-lane synthesis with terminal-gamma stress
+- Time mode: measured
+- Measured minutes: 4.017
+- Started: 2026-05-20T20:09:00Z
+- Ended: 2026-05-20T20:13:01Z
+- Artifacts: artifacts/v3_epk_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: 143 ePK lane JSON files and 4 JSONL ledgers validated with 0 errors, 36 fresh lane JSON files since prior synthesis integrated as review-only evidence, terminal-gamma geometry lead sibling-control stress all-abstained 12 of 12 with 0 mismatches and 0 counterexamples, ePK remains review-only and production activation no-go, targeted synthesis test passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -300,6 +300,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T19:12:53.814979+00:00: Commit the ePK integration, then return the main loop to source-complete external rows or a frozen non-ePK control tranche.
 - 2026-05-20T19:49:09.571418+00:00: The previous fallback queue no longer has an unscored family tranche; all six families are terminal review-only no-go surfaces.
 - 2026-05-20T19:49:17.503329+00:00: Small-win tranche run is ready to commit and push; next work should avoid reopening the closed six-family queue unless new evidence appears.
+- 2026-05-20T20:13:02.164962+00:00: Commit this ePK integration, then return the main loop to genuinely new external sourcing or a new non-ePK family packet.
 
 ## Scope Adjustments
 
@@ -422,3 +423,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T18:22:16.234314+00:00: Main loop added a source-gap terminal mini-campaign plus two non-ePK readiness packets; no registry import or production fingerprint path opened.
 - 2026-05-20T19:12:53.814979+00:00: Fresh ePK lane output adds review-only peptide positives and product-state controls but preserves the no-go production decision.
 - 2026-05-20T19:49:09.571418+00:00: Six-family non-ePK small-win queue is now closed as review-only no-go evidence; next main loop should source a genuinely new external mini-campaign or choose a new family packet.
+- 2026-05-20T20:13:02.164962+00:00: ePK synthesis now includes terminal-gamma lead/control stress and same-author-chain pressure while preserving no-go production scope.
