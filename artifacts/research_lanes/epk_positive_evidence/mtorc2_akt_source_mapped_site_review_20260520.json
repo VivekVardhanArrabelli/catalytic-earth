@@ -1,0 +1,405 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T18:30:26Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "mtorc2_akt_source_mapped_site_review",
+    "pdb_entries_reviewed": 5,
+    "primary_result": "mTORC2/Akt entries remain split or probe/recruitment states: 9ZBK has Akt1 but no active gamma donor and Cys473 in the source-mapped hydrophobic-motif position; 9T7J/9T94 have ATP on mTOR but no Akt chain and no heteromeric acceptor within 6 Angstrom.",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "target_akt_site_positions": [
+      308,
+      450,
+      473,
+      474
+    ],
+    "target_pdb_ids": [
+      "9ZBK",
+      "9AAA",
+      "9ZBJ",
+      "9T7J",
+      "9T94"
+    ]
+  },
+  "rows": [
+    {
+      "akt_entity_ids": [
+        "5"
+      ],
+      "akt_site_statuses": [
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 308,
+          "modeled_atom_count": 5,
+          "modeled_atom_names": [
+            "C",
+            "CA",
+            "CB",
+            "N",
+            "O"
+          ],
+          "modeled_residue_codes": [
+            "THR"
+          ],
+          "status": "modeled_but_no_acceptor_oxygen_or_mutated_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 450,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 473,
+          "modeled_atom_count": 6,
+          "modeled_atom_names": [
+            "C",
+            "CA",
+            "CB",
+            "N",
+            "O",
+            "SG"
+          ],
+          "modeled_residue_codes": [
+            "CYS"
+          ],
+          "status": "modeled_but_no_acceptor_oxygen_or_mutated_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": true,
+          "auth_seq_id": 474,
+          "modeled_atom_count": 12,
+          "modeled_atom_names": [
+            "C",
+            "CA",
+            "CB",
+            "CD1",
+            "CD2",
+            "CE1",
+            "CE2",
+            "CG",
+            "CZ",
+            "N",
+            "O",
+            "OH"
+          ],
+          "modeled_residue_codes": [
+            "TYR"
+          ],
+          "status": "acceptor_oxygen_modeled_review_only"
+        }
+      ],
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the recruitment and selective phosphorylation of Akt by mTORC2.",
+        "year": 2026
+      },
+      "donor_gamma_atom_count": 0,
+      "gamma_records": [],
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "mtor_entity_ids": [
+        "1"
+      ],
+      "pdb_id": "9ZBK",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_review_status": "review_only_no_clean_transfer_state_positive",
+      "title": "mTORC2 in complex with Akt1"
+    },
+    {
+      "akt_entity_ids": [
+        "5"
+      ],
+      "akt_site_statuses": [
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 308,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 450,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 473,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 474,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        }
+      ],
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for the Recruitment and Selective Phosphorylation of Akt by mTORC2",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "gamma_records": [],
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "mtor_entity_ids": [],
+      "pdb_id": "9AAA",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_review_status": "review_only_no_clean_transfer_state_positive",
+      "title": "Integrative model of mTORC2-AKT1"
+    },
+    {
+      "akt_entity_ids": [],
+      "akt_site_statuses": [
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 308,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 450,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 473,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 474,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        }
+      ],
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the recruitment and selective phosphorylation of Akt by mTORC2.",
+        "year": 2026
+      },
+      "donor_gamma_atom_count": 0,
+      "gamma_records": [],
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "mtor_entity_ids": [
+        "1"
+      ],
+      "pdb_id": "9ZBJ",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_review_status": "review_only_no_clean_transfer_state_positive",
+      "title": "Cryo-EM structure of human apo mTORC2"
+    },
+    {
+      "akt_entity_ids": [],
+      "akt_site_statuses": [
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 308,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 450,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 473,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 474,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        }
+      ],
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.796,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2602",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 26.202
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.885,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2601",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 25.972
+          }
+        }
+      ],
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "mtor_entity_ids": [
+        "1"
+      ],
+      "pdb_id": "9T7J",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_review_status": "review_only_no_clean_transfer_state_positive",
+      "title": "cryo-EM structure of AKT phosphorylated mTOR complex 2, overall refinement"
+    },
+    {
+      "akt_entity_ids": [],
+      "akt_site_statuses": [
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 308,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 450,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 473,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        },
+        {
+          "acceptor_oxygen_modeled": false,
+          "auth_seq_id": 474,
+          "modeled_atom_count": 0,
+          "modeled_atom_names": [],
+          "modeled_residue_codes": [],
+          "status": "no_model_atoms_for_akt_site_review_only"
+        }
+      ],
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.736,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2602",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 26.839
+          }
+        }
+      ],
+      "heteromeric_candidate_hit_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "mtor_entity_ids": [
+        "1"
+      ],
+      "pdb_id": "9T94",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_review_status": "review_only_no_clean_transfer_state_positive",
+      "title": "cryo-EM structure of AKT phosphorylated mTOR complex 2, focused on a single protomer"
+    }
+  ]
+}

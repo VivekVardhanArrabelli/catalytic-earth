@@ -1,0 +1,222 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T18:54:20Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "legacy_anp_pb_rows": 6,
+    "method": "legacy_anp_pb_rescue_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "seed_pdb_count": 14,
+    "within_6a_review_leads": [
+      "3O7L",
+      "4JDI"
+    ]
+  },
+  "rows": [
+    {
+      "associated_polymer": {
+        "association_basis": "ligand_author_chain_matches_polymer_author_chain",
+        "chain": "B",
+        "distance_angstrom": 1.942,
+        "entity_id": "1"
+      },
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Dynamics connect substrate recognition to catalysis in protein kinase A.",
+        "year": 2010
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_ligand_key": [
+        "G",
+        "ANP",
+        "354"
+      ],
+      "nearest_heteromeric_acceptor_from_anp_pb": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "21",
+        "candidate_chain_name": "I",
+        "candidate_entity_id": "3",
+        "candidate_label_seq_id": "13",
+        "candidate_residue_code": "SER",
+        "distance_angstrom": 5.93
+      },
+      "pdb_id": "3O7L",
+      "production_claim_allowed": false,
+      "review_only": true,
+      "title": "Crystal Structure of phospholamban (1-19):PKA C-subunit:AMP-PNP:Mg2+ complex",
+      "within_6a_review_lead": true
+    },
+    {
+      "associated_polymer": {
+        "association_basis": "ligand_author_chain_matches_polymer_author_chain",
+        "chain": "E",
+        "distance_angstrom": 2.465,
+        "entity_id": "1"
+      },
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Phosphoryl transfer by protein kinase a is captured in a crystal lattice.",
+        "year": 2013
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_ligand_key": [
+        "C",
+        "ANP",
+        "401"
+      ],
+      "nearest_heteromeric_acceptor_from_anp_pb": {
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "16",
+        "candidate_chain_name": "I",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "12",
+        "candidate_residue_code": "THR",
+        "distance_angstrom": 19.12
+      },
+      "pdb_id": "4HPT",
+      "production_claim_allowed": false,
+      "review_only": true,
+      "title": "Crystal structure of the catalytic subunit of cAMP-dependent protein kinase displaying complete phosphoryl transfer of AMP-PNP onto a substrate peptide",
+      "within_6a_review_lead": false
+    },
+    {
+      "associated_polymer": {
+        "association_basis": "ligand_author_chain_matches_polymer_author_chain",
+        "chain": "E",
+        "distance_angstrom": 2.595,
+        "entity_id": "1"
+      },
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Phosphoryl transfer by protein kinase a is captured in a crystal lattice.",
+        "year": 2013
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_ligand_key": [
+        "D",
+        "ANP",
+        "402"
+      ],
+      "nearest_heteromeric_acceptor_from_anp_pb": {
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "16",
+        "candidate_chain_name": "I",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "12",
+        "candidate_residue_code": "THR",
+        "distance_angstrom": 19.381
+      },
+      "pdb_id": "4HPU",
+      "production_claim_allowed": false,
+      "review_only": true,
+      "title": "Crystal structure of the catalytic subunit of cAMP-dependent protein kinase displaying partial phosphoryl transfer of AMP-PNP onto a substrate peptide",
+      "within_6a_review_lead": false
+    },
+    {
+      "associated_polymer": {
+        "association_basis": "ligand_author_chain_matches_polymer_author_chain",
+        "chain": "A",
+        "distance_angstrom": 2.604,
+        "entity_id": "1"
+      },
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification of a major determinant for serine-threonine kinase phosphoacceptor specificity.",
+        "year": 2014
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_ligand_key": [
+        "C",
+        "ANP",
+        "1000"
+      ],
+      "nearest_heteromeric_acceptor_from_anp_pb": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "0",
+        "candidate_chain_name": "B",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "5",
+        "candidate_residue_code": "SER",
+        "distance_angstrom": 5.862
+      },
+      "pdb_id": "4JDI",
+      "production_claim_allowed": false,
+      "review_only": true,
+      "title": "Crystal structure of Serine/threonine-protein kinase PAK 4 in complex with Paktide S peptide substrate",
+      "within_6a_review_lead": true
+    },
+    {
+      "associated_polymer": {
+        "association_basis": "ligand_author_chain_matches_polymer_author_chain",
+        "chain": "A",
+        "distance_angstrom": 2.7,
+        "entity_id": "1"
+      },
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Multiple mechanisms render Erk proteins MEK-independent",
+        "year": null
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_ligand_key": [
+        "B",
+        "ANP",
+        "401"
+      ],
+      "nearest_heteromeric_acceptor_from_anp_pb": null,
+      "pdb_id": "4S33",
+      "production_claim_allowed": false,
+      "review_only": true,
+      "title": "ERK2 R65S mutant complexed with AMP-PNP",
+      "within_6a_review_lead": false
+    },
+    {
+      "associated_polymer": {
+        "association_basis": "ligand_author_chain_matches_polymer_author_chain",
+        "chain": "A",
+        "distance_angstrom": 2.572,
+        "entity_id": "1"
+      },
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization.",
+        "year": 2016
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_ligand_key": [
+        "C",
+        "ANP",
+        "601"
+      ],
+      "nearest_heteromeric_acceptor_from_anp_pb": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "12",
+        "candidate_chain_name": "B",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "12",
+        "candidate_residue_code": "SER",
+        "distance_angstrom": 6.053
+      },
+      "pdb_id": "5LI1",
+      "production_claim_allowed": false,
+      "review_only": true,
+      "title": "Structure of a Par3-inhibitory peptide bound to PKCiota core kinase domain",
+      "within_6a_review_lead": false
+    }
+  ],
+  "seed_files": [
+    "artifacts/research_lanes/epk_positive_evidence/rcsb_peptide_amp_pnp_anp_positive_scout_20260520.json",
+    "artifacts/research_lanes/epk_positive_evidence/rcsb_pka_phospholamban_peptide_scout_20260520.json"
+  ]
+}

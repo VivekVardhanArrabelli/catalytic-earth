@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T18:47:06Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "processive_multisite_source_mapped_site_review",
+    "pdb_entries_reviewed": 2,
+    "primary_result": "2V55 and 3BEG are source-relevant processive/multisite kinase-substrate complexes with ANP on the kinase, but neither has a heteromeric acceptor within 6 Angstrom of ANP PG. 2V55 nearest RhoE acceptors are about 19.7-20.0 Angstrom away and source-relevant terminal regions are absent; 3BEG nearest ASF/SF2 Ser133 is 11.109 Angstrom away in a docking/sliding state.",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "target_pdb_ids": [
+      "2V55",
+      "3BEG"
+    ]
+  },
+  "rows": [
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanism of Multi-Site Phosphorylation from a Rock-I:Rhoe Complex Structure.",
+        "year": 2008
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.843,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1480",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1481",
+              "chain": "A",
+              "distance_angstrom": 3.939,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "68",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "68",
+            "candidate_residue_code": "THR",
+            "nearest_gamma_distance_angstrom": 19.728
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.856,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1480",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1481",
+              "chain": "C",
+              "distance_angstrom": 3.92,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "68",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "68",
+            "candidate_residue_code": "THR",
+            "nearest_gamma_distance_angstrom": 20.033
+          }
+        }
+      ],
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2V55",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapped_site_note": "RhoE N/C-terminal phosphorylation sites are source-relevant but terminal regions are absent from the modeled RhoE construct/ordered atoms; nearest modeled RhoE acceptor is Thr68, not a terminal mapped site.",
+      "source_note": "EMBO J source describes multisite RhoE phosphorylation by ROCK-I, with N- and C-terminal RhoE sites positioned by a remote docking interface.",
+      "source_review_status": "source_relevant_processive_or_multisite_complex_but_no_local_transfer_geometry_review_only",
+      "source_url": "https://www.embopress.org/doi/10.1038/emboj.2008.226",
+      "substrate_chain_ranges": [
+        {
+          "auth_seq_id_max": 200,
+          "auth_seq_id_min": 20,
+          "chain": "B",
+          "modeled_residue_count": 181
+        },
+        {
+          "auth_seq_id_max": 200,
+          "auth_seq_id_min": 19,
+          "chain": "D",
+          "modeled_residue_count": 182
+        }
+      ],
+      "substrate_entity_description": "RHO-RELATED GTP-BINDING PROTEIN RHOE",
+      "substrate_entity_uniprot_ids": [
+        "P61587"
+      ],
+      "title": "Mechanism of multi-site phosphorylation from a ROCK-I:RhoE complex structure"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A sliding docking interaction is essential for sequential and     \nprocessive phosphorylation of an SR protein by SRPK1",
+        "year": 2008
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.418,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "656",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "133",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "29",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 11.109
+          }
+        }
+      ],
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3BEG",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapped_site_note": "ASF/SF2 RS-domain substrate is source-relevant, but modeled acceptors are distal/docking-state; nearest modeled substrate acceptor is Ser133, 11.109 Angstrom from ANP PG.",
+      "source_note": "RCSB/PubMed source describes SRPK1 bound to ASF/SF2 with the phosphorylated RS domain docking distal to the active site and processive sliding to the active site.",
+      "source_review_status": "source_relevant_processive_or_multisite_complex_but_no_local_transfer_geometry_review_only",
+      "source_url": "https://www.rcsb.org/structure/3BEG",
+      "substrate_chain_ranges": [
+        {
+          "auth_seq_id_max": 210,
+          "auth_seq_id_min": 121,
+          "chain": "B",
+          "modeled_residue_count": 86
+        }
+      ],
+      "substrate_entity_description": "Splicing factor, arginine/serine-rich 1",
+      "substrate_entity_uniprot_ids": [
+        "Q07955"
+      ],
+      "title": "Crystal structure of SR protein kinase 1 complexed to its substrate ASF/SF2"
+    }
+  ]
+}

@@ -1,116 +1,98 @@
 # ePK Positive Evidence Handoff
 
-Last updated: 2026-05-20T18:20:53Z
+Last updated: 2026-05-20T19:07:33Z
 
-Pushed commit: `bcf3ee2a560b531d2e9cc4259838344964b9d3a2` (primary run
-artifact commit). A follow-up self-reference commit may update this handoff
-line before final push.
+Pushed commit: pending first commit for this run. A follow-up self-reference
+commit should replace this line with the pushed artifact commit and final
+branch HEAD.
 
 ## Current Outcome
 
-Primary outcome: `evidence_against`.
+Primary outcome: `evidence_for`.
 
-This run executed the prior handoff query:
+This run began from the PKA/CFTR handoff, but the branch advanced during the
+run to include the PKA/CFTR, PINK1, aPKC/Lgl, and mTORC2/Akt negative-scout
+commits. After integrating that upstream lane state, the run executed the
+latest handoff next query for processive/multisite kinase-substrate complexes
+and ran a bounded peptide/legacy-ANP evidence search.
 
-`RCSB/PubMed source review: "PKA CFTR" "ANP" "dephosphorylated" "phosphorylation" site-specific acceptor mapping`
-
-It reviewed the PKA/CFTR source family `9DW4`/`9DW5`/`9DW7`/`9DW8`/`9DW9`
-against the final PNAS/PMC article, RCSB exact-family surfaces, Europe PMC
-exact-title/DOI metadata, and transient mmCIF atom/sequence-scheme scans. The
-family is strong folded-protein substrate context, but it is not clean
-gamma-transfer positive evidence because the source-mapped CFTR PKA sites are
-absent, unobserved, or lack a modeled phosphoacceptor oxygen near PKA gamma.
-
-The compact artifact records 5 reviewed PDB entries, 3 RCSB exact-family rows,
-2 Europe PMC exact-title rows, and 0 fetch failures. It stores only compact
-metadata, mapped-site statuses, and distances; no coordinate dumps were written.
-
-A secondary PINK1/ubiquitin split-state scout artifact was also tracked during
-wrap because it was generated in the lane path and otherwise blocked a clean
-branch. It reviewed 22 unique PDB IDs from 27 RCSB rows and found no
-heteromeric candidate structures.
-
-A secondary aPKC/Lgl substrate-state scout artifact was also tracked from the
-same lane-local generated pass. It reviewed 5 unique PDB IDs from 8 RCSB rows
-and found no heteromeric candidate structures.
-
-A secondary mTORC2/Akt substrate-state scout artifact was also tracked after
-the generator settled. It reviewed 11 unique PDB IDs from 33 RCSB rows and
-found no heteromeric candidate structures.
+The primary positive result is peptide-only review evidence, not a folded-
+protein substrate positive and not production evidence. No registries, labels,
+fingerprints, migrations, production thresholds, or scoring paths were changed.
 
 ## Files Changed
 
-- `artifacts/research_lanes/epk_positive_evidence/pka_cftr_source_mapped_site_review_20260520.json`
-- `artifacts/research_lanes/epk_positive_evidence/rcsb_pink1_ubiquitin_split_state_scout_20260520.json`
-- `artifacts/research_lanes/epk_positive_evidence/rcsb_apkc_lgl_substrate_state_scout_20260520.json`
-- `artifacts/research_lanes/epk_positive_evidence/rcsb_mtorc2_akt_substrate_state_scout_20260520.json`
-- `tools/research_lanes/epk_positive_evidence/pka_cftr_source_map.py`
-- `tools/research_lanes/epk_positive_evidence/epk_evidence_search.py`
+- `artifacts/research_lanes/epk_positive_evidence/rcsb_akt_gsk3_peptide_amp_pnp_scout_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/akt_gsk3_peptide_amp_pnp_source_review_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/rcsb_peptide_amp_pnp_anp_positive_scout_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/pka_sp20_amp_pnp_source_review_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/europepmc_amp_pnp_full_length_substrate_literature_scout_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/processive_multisite_source_mapped_site_review_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/mtorc2_akt_source_mapped_site_review_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/rcsb_pka_cav_rad_peptide_scout_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/rcsb_pka_phospholamban_peptide_scout_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/pka_phospholamban_amp_pnp_source_review_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_rescue_scout_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/pak4_paktide_legacy_anp_source_review_20260520.json`
 - `artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl`
 - `work/research_lanes/epk_positive_evidence/handoff.md`
 
 ## Evidence For
 
-- The PNAS/PMC source article maps PKA-C bound to full-length CFTR and reports
-  two catalytic-station docking sites for phosphorylating eleven CFTR PKA sites:
-  `S422`, `S660`, `S670`, `S686`, `S700`, `S712`, `S737`, `S753`, `S768`,
-  `S795`, and `S813`.
-- RCSB exact-family search recovered `9DW5`, `9DW7`, and `9DW8`; the fixed PDB
-  family source review covered `9DW4`, `9DW5`, `9DW7`, `9DW8`, and `9DW9`.
-- `9DW5`, `9DW7`, `9DW8`, and `9DW9` contain PKA-associated ANP or ATP gamma
-  donors with local magnesium, making them useful review-only negative controls
-  for source-rich kinase-substrate context without local transfer geometry.
+- Fresh review-only peptide positives: `1O6K` and `1O6L` Akt/PKB ternary
+  complexes with GSK3 peptide `Ser9` `OG` 3.566 and 3.542 Angstrom from ANP
+  `PG`, plus two local Mn ions.
+- Fresh review-only peptide positive: `4DG0` PKA/SP20 `Ser21` `OG` 3.463
+  Angstrom from ANP `PG`, plus two local Mg ions.
+- Legacy atom-name peptide positives: `3O7L` PKA/phospholamban `Ser21` `OG`
+  5.930 Angstrom from source-declared AMP-PNP/ANP `PB`, and `4JDI`
+  PAK4/Paktide `Ser0` `OG` 5.862 Angstrom from legacy ANP `PB`.
+- Repeat review-only positives recovered by the broad peptide scout: `1IR3`
+  insulin receptor peptide `Tyr10` and `5HVK` LIMK1/full-length cofilin `Ser3`.
 
 ## Evidence Against
 
-- `9DW4` is source-relevant but has no modeled PKA gamma-transfer donor.
-- `9DW5` and `9DW7` have PKA ANP/Mg, but all eleven source-mapped CFTR sites are
-  unobserved/zero-occupancy with no modeled acceptor oxygen.
-- `9DW8` has PKA ANP/Mg, but ten mapped sites are unobserved and `S813` is only
-  partially modeled (`C`, `CA`, `CB`, `N`, `O`) without `OG`; the nearest
-  mapped-site atom is 25.471 Angstrom from PKA ANP `PG`, and no mapped-site
-  acceptor exists.
-- `9DW9` has PKA ATP/Mg, but all eleven mapped sites lack modeled acceptor
-  oxygen. `S813` is present in the sequence scheme but has no modeled atoms.
-- Nearest nonmapped CFTR Ser/Thr/Tyr acceptors to PKA gamma in `9DW5`, `9DW8`,
-  and `9DW9` are 38.178, 27.427, and 27.299 Angstrom away respectively;
-  `9DW7` has no modeled CFTR acceptor atom in the scan.
-- Secondary PINK1/ubiquitin scout: 22 unique PDB IDs from four exact PINK1
-  surfaces produced 20 rows with no active gamma donor and 2 rows with no
-  heteromeric candidate hit, reinforcing the already-recorded split-state
-  PINK1/ubiquitin negative call.
-- Secondary aPKC/Lgl scout: 5 unique PDB IDs from three exact aPKC/Lgl surfaces
-  produced 4 rows with no active gamma donor and 1 row with no heteromeric
-  candidate hit, reinforcing the already-recorded docking/long-distance
-  aPKC/Lgl negative call.
-- Secondary mTORC2/Akt scout: 11 unique PDB IDs from four exact mTORC2/Akt
-  surfaces produced 9 rows with no active gamma donor and 2 rows with no
-  heteromeric candidate hit, reinforcing the already-recorded recruitment/
-  ATP-state mTORC2/Akt negative call.
+- No fresh clean folded-protein substrate positive was found in this cycle.
+- Processive/multisite source review rejected `2V55` and `3BEG` as clean
+  positives. In `2V55`, ROCK-I/RhoE nearest RhoE acceptors are 19.728 and
+  20.033 Angstrom from ANP `PG`, and source-relevant terminal phosphorylation
+  regions are absent from modeled RhoE. In `3BEG`, SRPK1/ASF/SF2 nearest
+  substrate `Ser133` is 11.109 Angstrom from ANP `PG` in a docking/sliding
+  state.
+- mTORC2/Akt remains split/recruitment evidence: `9ZBK` contains Akt1 but no
+  active gamma donor and has `Cys473` in the Akt hydrophobic-motif position;
+  `9T7J` and `9T94` contain ATP on mTOR but no Akt chain and no heteromeric
+  acceptor within 6 Angstrom.
+- PKA/CaV/Rad `8UKN`/`8UKO`/`8UKP` did not add positive evidence. `8UKN` has
+  ANP on PKA but no substrate chain, while `8UKO` and `8UKP` are peptide
+  complexes without an active gamma donor under the current scan.
+- Broad peptide surface still recovered false-positive/counterexample rows:
+  `7B56` CaMKII-actinin source-insufficient proximity and `7ZE5` CydDC
+  transporter/non-ePK context.
 
 ## Blockers
 
-- `git fetch origin` failed at start with `Operation not permitted` while
-  writing `.git/worktrees/catalytic-earth-epk-positive/FETCH_HEAD`.
-- `git pull --ff-only origin research/epk-positive-evidence` failed for the
-  same `FETCH_HEAD` permission reason.
-- Branch equality at start was verified by `git fetch --no-write-fetch-head
-  origin`, `git rev-parse HEAD`, `git rev-parse origin/research/epk-positive-evidence`,
-  and `git ls-remote`; all matched `6ae8a6fb29eff298315731a698a3522aa87bf12e`.
+- `git fetch origin` and `git pull --ff-only origin research/epk-positive-evidence`
+  failed at start with `Operation not permitted` while writing
+  `.git/worktrees/catalytic-earth-epk-positive/FETCH_HEAD`.
+- `git fetch --no-write-fetch-head origin` succeeded. Start-of-run equality was
+  verified against remote at `6ae8a6fb29eff298315731a698a3522aa87bf12e`, but
+  the branch advanced during the run to `e82379f22bc80ed28d427472c7c655a386fb477d`.
 - Normal linked-worktree index writes remain blocked; use an alternate index
   under `/tmp` for clean status, commit, and push.
+- Legacy ANP atom naming is now a known review issue: some source-declared
+  AMP-PNP structures have ANP `PB` and no `PG`. `3O7L` and `4JDI` are recorded
+  as explicit review-only legacy-terminal-atom positives, but helper behavior
+  was not changed in production or label paths.
 - Production claims, threshold calibration, label import, registry edits, and
   fingerprint changes remain forbidden.
 
 ## Next Query
 
-The PKA/CFTR family source-review surface is exhausted for clean folded-protein
-transfer-state positives. Recommended next query:
-
-`Source-map processive/multisite kinase-substrate complexes 2V55 ROCK-I/RhoE and 3BEG SRPK1/ASF/SF2 using paper-level acceptor residue maps plus transient CIF geometry; record whether the substrate acceptors are absent, disordered, docking-only, or distant from ANP/Mg gamma before any broader processive-phosphorylation search.`
-
-Start from the existing geometry-scout observation that `2V55` and `3BEG` both
-have ANP-bound kinase source context but no heteromeric acceptor hit within the
-current scout window.
+Audit legacy ANP/PB terminal-phosphate atom naming across all prior lane scout
+artifacts, not just peptide seeds. Source-map any within-6-Angstrom candidates,
+then decide whether a review-only helper fallback for ANP lacking `PG` is
+warranted. Do not change production labels, thresholds, registries, or
+fingerprints.
 
 Production claims and label/fingerprint changes remain forbidden.

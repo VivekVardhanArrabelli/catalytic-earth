@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T18:32:37Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "akt_gsk3_peptide_amp_pnp_source_review",
+    "pdb_entries_reviewed": 2,
+    "primary_result": "1O6K and 1O6L are clean source-mapped peptide positives for review-only stress: Akt/PKB kinase, AMP-PNP/ANP gamma analog, local Mn ions, and GSK3 peptide Ser9 OG 3.542-3.566 Angstrom from ANP PG. They are not folded-protein substrate positives.",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "target_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ]
+  },
+  "rows": [
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structure of an Activated Akt/Protein Kinase B Ternary Complex with Gsk-3 Peptide and AMP-Pnp",
+        "year": 2002
+      },
+      "folded_protein_substrate_positive": false,
+      "gamma_transfer_geometry": {
+        "gamma_atom_name": "PG",
+        "gamma_auth_seq_id": "1480",
+        "gamma_chain_name": "A",
+        "gamma_ligand_code": "ANP",
+        "gamma_to_acceptor_distance_angstrom": 3.566,
+        "local_metals": [
+          {
+            "auth_seq_id": "1481",
+            "chain": "A",
+            "distance_angstrom": 3.052,
+            "metal_code": "MN"
+          },
+          {
+            "auth_seq_id": "1482",
+            "chain": "A",
+            "distance_angstrom": 3.253,
+            "metal_code": "MN"
+          }
+        ]
+      },
+      "kinase_entity_description": "RAC-BETA SERINE/THREONINE PROTEIN KINASE",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1O6K",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapped_acceptor": {
+        "atom_name": "OG",
+        "auth_seq_id": "9",
+        "label_seq_id": "7",
+        "mapping_basis": "RCSB title and primary citation identify a ternary Akt/PKB complex with GSK3 peptide and AMP-PNP; mmCIF sequence scheme maps the modeled peptide Ser auth_seq_id 9 on chain C.",
+        "residue_code": "SER"
+      },
+      "source_review_status": "source_mapped_peptide_positive_review_only",
+      "substrate_chain": "C",
+      "substrate_entity_description": "GLYCOGEN SYNTHASE KINASE-3 BETA",
+      "substrate_peptide_sequence_mon_ids": [
+        "GLY",
+        "ARG",
+        "PRO",
+        "ARG",
+        "THR",
+        "THR",
+        "SER",
+        "PHE",
+        "ALA",
+        "GLU"
+      ],
+      "title": "Structure of activated form of PKB kinase domain S474D with GSK3 peptide and AMP-PNP"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structure of an Activated Akt/Protein Kinase B Ternary Complex with Gsk-3 Peptide and AMP-Pnp",
+        "year": 2002
+      },
+      "folded_protein_substrate_positive": false,
+      "gamma_transfer_geometry": {
+        "gamma_atom_name": "PG",
+        "gamma_auth_seq_id": "1480",
+        "gamma_chain_name": "A",
+        "gamma_ligand_code": "ANP",
+        "gamma_to_acceptor_distance_angstrom": 3.542,
+        "local_metals": [
+          {
+            "auth_seq_id": "1481",
+            "chain": "A",
+            "distance_angstrom": 3.041,
+            "metal_code": "MN"
+          },
+          {
+            "auth_seq_id": "1482",
+            "chain": "A",
+            "distance_angstrom": 3.218,
+            "metal_code": "MN"
+          }
+        ]
+      },
+      "kinase_entity_description": "RAC-BETA SERINE/THREONINE PROTEIN KINASE",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1O6L",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapped_acceptor": {
+        "atom_name": "OG",
+        "auth_seq_id": "9",
+        "label_seq_id": "7",
+        "mapping_basis": "RCSB title and primary citation identify a ternary Akt/PKB complex with GSK3 peptide and AMP-PNP; mmCIF sequence scheme maps the modeled peptide Ser auth_seq_id 9 on chain C.",
+        "residue_code": "SER"
+      },
+      "source_review_status": "source_mapped_peptide_positive_review_only",
+      "substrate_chain": "C",
+      "substrate_entity_description": "GLYCOGEN SYNTHASE KINASE-3 BETA",
+      "substrate_peptide_sequence_mon_ids": [
+        "GLY",
+        "ARG",
+        "PRO",
+        "ARG",
+        "THR",
+        "THR",
+        "SER",
+        "PHE",
+        "ALA",
+        "GLU"
+      ],
+      "title": "Crystal structure of an activated Akt/protein kinase B (PKB-PIF chimera) ternary complex with AMP-PNP and GSK3 peptide"
+    }
+  ]
+}

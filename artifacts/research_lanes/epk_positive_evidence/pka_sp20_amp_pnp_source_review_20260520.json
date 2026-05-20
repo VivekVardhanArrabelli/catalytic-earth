@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T18:36:43Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "pka_sp20_amp_pnp_source_review",
+    "pdb_entries_reviewed": 1,
+    "primary_result": "4DG0 is a source-mapped PKA/SP20 peptide positive for review-only stress: ANP/AMP-PNP PG, two local Mg ions, and SP20 Ser21 OG 3.463 Angstrom from PG. It is not a folded-protein substrate positive.",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "target_pdb_ids": [
+      "4DG0"
+    ]
+  },
+  "rows": [
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Role of N-terminal myristylation in the structure and regulation of cAMP-dependent protein kinase.",
+        "year": 2012
+      },
+      "folded_protein_substrate_positive": false,
+      "gamma_transfer_geometry": {
+        "gamma_atom_name": "PG",
+        "gamma_auth_seq_id": "402",
+        "gamma_chain_name": "E",
+        "gamma_ligand_code": "ANP",
+        "gamma_to_acceptor_distance_angstrom": 3.463,
+        "local_metals": [
+          {
+            "auth_seq_id": "404",
+            "chain": "E",
+            "distance_angstrom": 2.741,
+            "metal_code": "MG"
+          },
+          {
+            "auth_seq_id": "403",
+            "chain": "E",
+            "distance_angstrom": 3.079,
+            "metal_code": "MG"
+          }
+        ]
+      },
+      "kinase_entity_description": "cAMP-dependent protein kinase catalytic subunit alpha",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4DG0",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapped_acceptor": {
+        "atom_name": "OG",
+        "auth_seq_id": "21",
+        "label_seq_id": "17",
+        "mapping_basis": "RCSB title and primary citation identify PKA catalytic subunit in ternary complex with SP20/substrate peptide and AMP-PNP; mmCIF geometry maps Ser auth_seq_id 21 on peptide chain I near ANP PG.",
+        "residue_code": "SER"
+      },
+      "source_review_status": "source_mapped_peptide_positive_review_only",
+      "substrate_chain": "I",
+      "substrate_or_peptide_entity_description": "cAMP-dependent protein kinase inhibitor alpha",
+      "substrate_peptide_sequence_mon_ids": [
+        "THR",
+        "THR",
+        "TYR",
+        "ALA",
+        "ASP",
+        "PHE",
+        "ILE",
+        "ALA",
+        "SER",
+        "GLY",
+        "ARG",
+        "THR",
+        "GLY",
+        "ARG",
+        "ARG",
+        "ALA",
+        "SER",
+        "ILE",
+        "HIS",
+        "ASP"
+      ],
+      "title": "Crystal structure of myristoylated WT catalytic subunit of cAMP-dependent protein kinase in complex with SP20 and AMP-PNP"
+    }
+  ]
+}

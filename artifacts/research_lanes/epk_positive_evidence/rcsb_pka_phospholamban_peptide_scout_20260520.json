@@ -1,0 +1,140 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "no_active_gamma_donor_atom_review_only": 1
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T18:49:55Z",
+    "heteromeric_candidate_pdb_ids": [],
+    "heteromeric_candidate_structure_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_bounded_rcsb_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "review_only": true,
+    "review_only_rule": "This lane-local scout uses RCSB full-text surfaces plus transient mmCIF geometry to identify source-validation leads only. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 3,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 2,
+    "surface_total_count_reported_total": 2,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 1
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 80,
+      "atom_count_model_1": 5231,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Dynamics connect substrate recognition to catalysis in protein kinase A.",
+        "year": 2010
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3O7L",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cardiac phospholamban",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61014"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PKA phospholamban AMP-PNP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_pka_phospholamban_amp_pnp_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: phospholamban PKA substrate ANP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_phospholamban_pka_substrate_anp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal Structure of phospholamban (1-19):PKA C-subunit:AMP-PNP:Mg2+ complex"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "3O7L"
+      ],
+      "query_or_source": "RCSB full_text: PKA phospholamban AMP-PNP",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_pka_phospholamban_amp_pnp_all",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "3O7L"
+      ],
+      "query_or_source": "RCSB full_text: phospholamban PKA substrate ANP",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_phospholamban_pka_substrate_anp_all",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: phospholamban PKA ternary complex",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_phospholamban_pka_ternary_complex_all",
+      "total_count": 0
+    }
+  ]
+}

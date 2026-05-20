@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T18:53:17Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "pka_phospholamban_amp_pnp_source_review",
+    "pdb_entries_reviewed": 1,
+    "primary_result": "3O7L is a source-mapped PKA/phospholamban peptide positive for review-only stress when legacy ANP PB is treated as the source-declared AMP-PNP terminal atom: phospholamban Ser21 OG is 5.930 Angstrom from ANP PB with local Mg nearby. It is not a folded-protein substrate positive.",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "target_pdb_ids": [
+      "3O7L"
+    ]
+  },
+  "rows": [
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Dynamics connect substrate recognition to catalysis in protein kinase A.",
+        "year": 2010
+      },
+      "folded_protein_substrate_positive": false,
+      "gamma_transfer_geometry": {
+        "gamma_atom_name": "PB",
+        "gamma_atom_naming_note": "Legacy ANP atom naming in 3O7L has PA/PB and no PG; PB is treated as the source-declared AMP-PNP terminal gamma-equivalent atom for this review-only artifact.",
+        "gamma_auth_seq_id": "354",
+        "gamma_chain_name": "B",
+        "gamma_ligand_code": "ANP",
+        "gamma_to_acceptor_distance_angstrom": 5.93,
+        "local_metals": [
+          {
+            "auth_seq_id": "352",
+            "chain": "B",
+            "distance_angstrom": 2.599,
+            "metal_code": "MG"
+          },
+          {
+            "auth_seq_id": "351",
+            "chain": "B",
+            "distance_angstrom": 4.039,
+            "metal_code": "MG"
+          }
+        ]
+      },
+      "kinase_entity_description": "cAMP-dependent protein kinase catalytic subunit alpha",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3O7L",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapped_acceptor": {
+        "atom_name": "OG",
+        "auth_seq_id": "21",
+        "chain_name": "I",
+        "label_seq_id": "13",
+        "mapping_basis": "RCSB title identifies phospholamban (1-19):PKA C-subunit:AMP-PNP:Mg2+ complex; phospholamban Ser21 is the modeled substrate acceptor nearest the terminal ANP atom.",
+        "residue_code": "SER"
+      },
+      "source_review_status": "source_mapped_peptide_positive_legacy_anp_pb_review_only",
+      "substrate_entity_description": "Cardiac phospholamban",
+      "title": "Crystal Structure of phospholamban (1-19):PKA C-subunit:AMP-PNP:Mg2+ complex"
+    }
+  ]
+}

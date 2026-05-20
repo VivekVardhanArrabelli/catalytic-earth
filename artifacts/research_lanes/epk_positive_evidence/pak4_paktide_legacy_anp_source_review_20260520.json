@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T18:54:53Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "pak4_paktide_legacy_anp_source_review",
+    "pdb_entries_reviewed": 1,
+    "primary_result": "4JDI moves from legacy-atom-name near-miss to review-only peptide-positive evidence: PAK4/Paktide S has source-mapped peptide Ser0 OG 5.862 Angstrom from legacy ANP PB. It is near the 6 Angstrom boundary and not folded-protein evidence.",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "target_pdb_ids": [
+      "4JDI"
+    ]
+  },
+  "rows": [
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification of a major determinant for serine-threonine kinase phosphoacceptor specificity.",
+        "year": 2014
+      },
+      "folded_protein_substrate_positive": false,
+      "gamma_transfer_geometry": {
+        "gamma_atom_name": "PB",
+        "gamma_atom_naming_note": "Legacy ANP atom naming has PA/PB and no PG; PB is treated as source-declared AMP-PNP terminal gamma-equivalent atom for this review-only artifact.",
+        "gamma_auth_seq_id": "1000",
+        "gamma_chain_name": "A",
+        "gamma_ligand_code": "ANP",
+        "gamma_to_acceptor_distance_angstrom": 5.862,
+        "local_metals": [
+          {
+            "auth_seq_id": "1002",
+            "chain": "A",
+            "distance_angstrom": 3.206,
+            "metal_code": "MG"
+          },
+          {
+            "auth_seq_id": "1001",
+            "chain": "A",
+            "distance_angstrom": 3.347,
+            "metal_code": "MG"
+          }
+        ]
+      },
+      "kinase_entity_description": "Serine/threonine-protein kinase PAK 4",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4JDI",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapped_acceptor": {
+        "atom_name": "OG",
+        "auth_seq_id": "0",
+        "chain_name": "B",
+        "label_seq_id": "5",
+        "mapping_basis": "RCSB title identifies PAK4 in complex with Paktide S peptide substrate; mmCIF maps the modeled peptide Ser auth_seq_id 0 on chain B as the nearest phosphoacceptor.",
+        "residue_code": "SER"
+      },
+      "source_review_status": "source_mapped_peptide_positive_legacy_anp_pb_review_only",
+      "substrate_entity_description": "Paktide S",
+      "substrate_peptide_sequence_mon_ids": [
+        "ARG",
+        "ARG",
+        "ARG",
+        "ARG",
+        "SER",
+        "TRP",
+        "TYR"
+      ],
+      "title": "Crystal structure of Serine/threonine-protein kinase PAK 4 in complex with Paktide S peptide substrate"
+    }
+  ]
+}
