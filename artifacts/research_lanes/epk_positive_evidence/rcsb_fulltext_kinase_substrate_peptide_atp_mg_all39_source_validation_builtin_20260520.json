@@ -1,0 +1,1585 @@
+{
+  "metadata": {
+    "ambiguous_candidate_count": 0,
+    "blocker_not_removed": [
+      "source_free_role_direction_not_generalized_to_scoring",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "heteromeric_candidate_source_validation_review_executed",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "method": "epk_heteromeric_candidate_source_validation_review",
+    "minimum_positive_coverage_met_review_only": false,
+    "next_actions": [
+      "rerun the heteromeric topology audit with source-validated candidates separated from ambiguous and rejected rows",
+      "treat BRAF/MEK kinase-kinase hits as ambiguous until role direction is source-reviewed",
+      "keep threshold selection and external hard-negative scoring closed"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "rejected_candidate_count": 0,
+    "review_only": true,
+    "review_only_rule": "This artifact source-reviews heteromeric topology leads. Accepted rows are positive-like review controls only; they are not countable labels, ePK scores, or held-out performance evidence.",
+    "reviewed_candidate_count": 12,
+    "source_epk_heteromeric_positive_coverage_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "source_validated_new_candidate_count": 0,
+    "source_validated_new_candidate_pdb_ids": [],
+    "source_validated_unique_pair_count": 0,
+    "source_validated_unique_pair_ids": [],
+    "source_validation_status_counts": {
+      "blocked_source_context_insufficient_review_only": 12
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "5",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.416
+        },
+        {
+          "acceptor_entity_id": "3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "5",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.68
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P24941"
+        ],
+        "B": [
+          "P20248"
+        ],
+        "C": [
+          "P24941"
+        ],
+        "D": [
+          "P20248"
+        ],
+        "E": [
+          "1QMZ"
+        ],
+        "F": [
+          "1QMZ"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "CELL DIVISION PROTEIN KINASE 2",
+        "G2/MITOTIC-SPECIFIC CYCLIN A",
+        "MAGNESIUM ION",
+        "SUBSTRATE PEPTIDE",
+        "water"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 2,
+      "keywords": [
+        "CELL CYCLE",
+        "CELL CYCLE, COMPLEX (PROTEIN KINASE-CYCLIN), CYCLIN, CDK, PHOSPHORYLATION, SUBSTRATE COMPLEX"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.416,
+      "pdb_id": "1QMZ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": "PHOSPHORYLATED CDK2-CYCLYIN A-SUBSTRATE PEPTIDE COMPLEX",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.517
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P05132"
+        ],
+        "S": [
+          "3X2U"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "MAGNESIUM ION",
+        "Substrate Peptide",
+        "cAMP-dependent protein kinase catalytic subunit alpha",
+        "water"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "TRANSFERASE/PEPTIDE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.517,
+      "pdb_id": "3X2U",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": "Michaelis-like initial complex of cAMP-dependent Protein Kinase Catalytic Subunit.",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.521
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P05132"
+        ],
+        "S": [
+          "3X2V"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "CARBONATE ION",
+        "MAGNESIUM ION",
+        "Substrate Peptide",
+        "cAMP-dependent protein kinase catalytic subunit alpha",
+        "water"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "TRANSFERASE/PEPTIDE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.521,
+      "pdb_id": "3X2V",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": "Michaelis-like complex of cAMP-dependent Protein Kinase Catalytic Subunit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.529
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P05132"
+        ],
+        "S": [
+          "3X2W"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "CARBONATE ION",
+        "MAGNESIUM ION",
+        "Substrate Peptide",
+        "cAMP-dependent protein kinase catalytic subunit alpha",
+        "water"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "TRANSFERASE/PEPTIDE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.529,
+      "pdb_id": "3X2W",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": "Michaelis complex of cAMP-dependent Protein Kinase Catalytic Subunit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "53",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "I",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 5.779
+        },
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "201",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "I",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 5.97
+        }
+      ],
+      "chain_accessions": {
+        "E": [
+          "P05132"
+        ],
+        "I": [
+          "P63248"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "MAGNESIUM ION",
+        "MYRISTIC ACID",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "cAMP-dependent protein kinase catalytic subunit alpha",
+        "water"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 2,
+      "keywords": [
+        "transferase/transferase inhibitor"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 5.779,
+      "pdb_id": "4HPU",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "nearest_gamma_distance_angstrom": 3.486
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P05132"
+        ],
+        "S": [
+          "4IAC"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "MAGNESIUM ION",
+        "PHOSPHOMETHYLPHOSPHONIC ACID ADENYLATE ESTER",
+        "Peptide SP20",
+        "cAMP-dependent protein kinase catalytic subunit alpha",
+        "water"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "Transferase/Peptide",
+        "kinase, phosphorylation, auto-phosphorylated, Transferase-Peptide complex"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.486,
+      "pdb_id": "4IAC",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "14",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "234",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.476
+        },
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "233",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.654
+        },
+        {
+          "acceptor_entity_id": "9",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "223",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.947
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P35998"
+        ],
+        "B": [
+          "P62191"
+        ],
+        "C": [
+          "P62195"
+        ],
+        "D": [
+          "P43686"
+        ],
+        "E": [
+          "P62333"
+        ],
+        "F": [
+          "P17980"
+        ],
+        "G": [
+          "P60900"
+        ],
+        "H": [
+          "P25787"
+        ],
+        "I": [
+          "P25789"
+        ],
+        "J": [
+          "O14818"
+        ],
+        "K": [
+          "P28066"
+        ],
+        "L": [
+          "P25786"
+        ],
+        "M": [
+          "P25788"
+        ],
+        "O": [
+          "Q99436"
+        ],
+        "U": [
+          "Q99460"
+        ],
+        "V": [
+          "O43242"
+        ],
+        "W": [
+          "O00232"
+        ],
+        "X": [
+          "O00231"
+        ],
+        "Y": [
+          "Q15008"
+        ],
+        "Z": [
+          "P51665"
+        ],
+        "a": [
+          "Q9UNM6"
+        ],
+        "b": [
+          "P55036"
+        ],
+        "c": [
+          "O00487"
+        ],
+        "d": [
+          "P48556"
+        ],
+        "e": [
+          "P60896"
+        ],
+        "f": [
+          "Q13200"
+        ],
+        "g": [
+          "Q9Y5A7"
+        ],
+        "v": [
+          "8USC"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "26S protease regulatory subunit 10B",
+        "26S protease regulatory subunit 8",
+        "26S proteasome complex subunit SEM1",
+        "26S proteasome non-ATPase regulatory subunit 1",
+        "26S proteasome non-ATPase regulatory subunit 11",
+        "26S proteasome non-ATPase regulatory subunit 12",
+        "26S proteasome non-ATPase regulatory subunit 13",
+        "26S proteasome non-ATPase regulatory subunit 2",
+        "26S proteasome non-ATPase regulatory subunit 3",
+        "26S proteasome non-ATPase regulatory subunit 4",
+        "26S proteasome non-ATPase regulatory subunit 6",
+        "26S proteasome non-ATPase regulatory subunit 7",
+        "26S proteasome non-ATPase regulatory subunit 8",
+        "26S proteasome regulatory subunit 4",
+        "26S proteasome regulatory subunit 6A",
+        "26S proteasome regulatory subunit 6B",
+        "26S proteasome regulatory subunit 7",
+        "ADENOSINE-5'-DIPHOSPHATE",
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Isoform 2 of NEDD8 ultimate buster 1",
+        "MAGNESIUM ION",
+        "Proteasome subunit alpha type-1",
+        "Proteasome subunit alpha type-2",
+        "Proteasome subunit alpha type-3",
+        "Proteasome subunit alpha type-4",
+        "Proteasome subunit alpha type-5",
+        "Proteasome subunit alpha type-6",
+        "Proteasome subunit alpha type-7",
+        "Proteasome subunit beta type-7",
+        "ZINC ION",
+        "line",
+        "substrate peptide"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 3,
+      "keywords": [
+        "26S Proteasome, Nub1, Fat10, MOTOR PROTEIN, HYDROLASE-PROTEIN BINDING complex",
+        "HYDROLASE/PROTEIN BINDING"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 4.476,
+      "pdb_id": "8USC",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": "Nub1/Fat10-processing human 26S proteasome",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "23",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "233",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.852
+        },
+        {
+          "acceptor_entity_id": "25",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "234",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.913
+        },
+        {
+          "acceptor_entity_id": "22",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "223",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.37
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P35998"
+        ],
+        "B": [
+          "P62191"
+        ],
+        "C": [
+          "P62195"
+        ],
+        "D": [
+          "P43686"
+        ],
+        "E": [
+          "P62333"
+        ],
+        "F": [
+          "P17980"
+        ],
+        "G": [
+          "P60900"
+        ],
+        "H": [
+          "P25787"
+        ],
+        "I": [
+          "P25789"
+        ],
+        "J": [
+          "O14818"
+        ],
+        "K": [
+          "P28066"
+        ],
+        "L": [
+          "P25786"
+        ],
+        "M": [
+          "P25788"
+        ],
+        "U": [
+          "Q99460"
+        ],
+        "V": [
+          "O43242"
+        ],
+        "W": [
+          "O00232"
+        ],
+        "X": [
+          "O00231"
+        ],
+        "Y": [
+          "Q15008"
+        ],
+        "Z": [
+          "P51665"
+        ],
+        "a": [
+          "Q9UNM6"
+        ],
+        "b": [
+          "P55036"
+        ],
+        "c": [
+          "O00487"
+        ],
+        "d": [
+          "P48556"
+        ],
+        "e": [
+          "P60896"
+        ],
+        "f": [
+          "Q13200"
+        ],
+        "g": [
+          "Q9Y5A7"
+        ],
+        "u": [
+          "O43396"
+        ],
+        "v": [
+          "9E8J"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "26S protease regulatory subunit 10B",
+        "26S protease regulatory subunit 8",
+        "26S proteasome complex subunit SEM1",
+        "26S proteasome non-ATPase regulatory subunit 1",
+        "26S proteasome non-ATPase regulatory subunit 11",
+        "26S proteasome non-ATPase regulatory subunit 12",
+        "26S proteasome non-ATPase regulatory subunit 13",
+        "26S proteasome non-ATPase regulatory subunit 14",
+        "26S proteasome non-ATPase regulatory subunit 2",
+        "26S proteasome non-ATPase regulatory subunit 3",
+        "26S proteasome non-ATPase regulatory subunit 4",
+        "26S proteasome non-ATPase regulatory subunit 6",
+        "26S proteasome non-ATPase regulatory subunit 7",
+        "26S proteasome non-ATPase regulatory subunit 8",
+        "26S proteasome regulatory subunit 4",
+        "26S proteasome regulatory subunit 6A",
+        "26S proteasome regulatory subunit 6B",
+        "26S proteasome regulatory subunit 7",
+        "ADENOSINE-5'-DIPHOSPHATE",
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Isoform 2 of NEDD8 ultimate buster 1",
+        "MAGNESIUM ION",
+        "Proteasome subunit alpha type-1",
+        "Proteasome subunit alpha type-2",
+        "Proteasome subunit alpha type-3",
+        "Proteasome subunit alpha type-4",
+        "Proteasome subunit alpha type-5",
+        "Proteasome subunit alpha type-6",
+        "Proteasome subunit alpha type-7",
+        "Thioredoxin-like protein 1",
+        "ZINC ION",
+        "substrate peptide"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 3,
+      "keywords": [
+        "26S Proteasome, Nub1, Fat10, MOTOR PROTEIN, HYDROLASE-PROTEIN BINDING complex",
+        "MOTOR PROTEIN, HYDROLASE/PROTEIN BINDING"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 4.852,
+      "pdb_id": "9E8J",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "213",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "D",
+          "gamma_associated_polymer_entity_id": "4",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.161
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P35998"
+        ],
+        "B": [
+          "P62191"
+        ],
+        "C": [
+          "P62195"
+        ],
+        "D": [
+          "P43686"
+        ],
+        "E": [
+          "P62333"
+        ],
+        "F": [
+          "P17980"
+        ],
+        "H": [
+          "P60900"
+        ],
+        "J": [
+          "P25787"
+        ],
+        "K": [
+          "P25789"
+        ],
+        "L": [
+          "O14818"
+        ],
+        "M": [
+          "P25786"
+        ],
+        "N": [
+          "P25788"
+        ],
+        "P": [
+          "P28066"
+        ],
+        "c": [
+          "O00487"
+        ],
+        "v": [
+          "9E8K"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "26S protease regulatory subunit 10B",
+        "26S protease regulatory subunit 8",
+        "26S proteasome non-ATPase regulatory subunit 14",
+        "26S proteasome regulatory subunit 4",
+        "26S proteasome regulatory subunit 6A",
+        "26S proteasome regulatory subunit 6B",
+        "26S proteasome regulatory subunit 7",
+        "ADENOSINE-5'-DIPHOSPHATE",
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "MAGNESIUM ION",
+        "Proteasome subunit alpha type-1",
+        "Proteasome subunit alpha type-2",
+        "Proteasome subunit alpha type-3",
+        "Proteasome subunit alpha type-4",
+        "Proteasome subunit alpha type-5",
+        "Proteasome subunit alpha type-6",
+        "Proteasome subunit alpha type-7",
+        "ZINC ION",
+        "substrate peptide"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "26S Proteasome, MOTOR PROTEIN, HYDROLASE-PROTEIN BINDING complex",
+        "MOTOR PROTEIN, HYDROLASE/PROTEIN BINDING"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 4.161,
+      "pdb_id": "9E8K",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "12",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "223",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.218
+        },
+        {
+          "acceptor_entity_id": "13",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "233",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.334
+        },
+        {
+          "acceptor_entity_id": "14",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "197",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.634
+        },
+        {
+          "acceptor_entity_id": "17",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "234",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.665
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P35998"
+        ],
+        "B": [
+          "P62191"
+        ],
+        "C": [
+          "P62195"
+        ],
+        "D": [
+          "P43686"
+        ],
+        "E": [
+          "A0A087X2I1"
+        ],
+        "F": [
+          "P17980"
+        ],
+        "G": [
+          "P60900"
+        ],
+        "H": [
+          "P25787"
+        ],
+        "I": [
+          "P25789"
+        ],
+        "J": [
+          "O14818"
+        ],
+        "K": [
+          "P28066"
+        ],
+        "L": [
+          "P25786"
+        ],
+        "M": [
+          "P25788"
+        ],
+        "N": [
+          "P28072"
+        ],
+        "O": [
+          "Q99436"
+        ],
+        "P": [
+          "P49720"
+        ],
+        "Q": [
+          "P49721"
+        ],
+        "R": [
+          "P28074"
+        ],
+        "S": [
+          "P20618"
+        ],
+        "T": [
+          "P28070"
+        ],
+        "U": [
+          "Q99460"
+        ],
+        "V": [
+          "O43242"
+        ],
+        "W": [
+          "O00232"
+        ],
+        "X": [
+          "O00231"
+        ],
+        "Y": [
+          "Q15008"
+        ],
+        "Z": [
+          "P51665"
+        ],
+        "a": [
+          "Q9UNM6"
+        ],
+        "b": [
+          "P55036"
+        ],
+        "c": [
+          "O00487"
+        ],
+        "d": [
+          "P48556"
+        ],
+        "e": [
+          "P60896"
+        ],
+        "f": [
+          "Q504T8"
+        ],
+        "g": [
+          "P60900"
+        ],
+        "h": [
+          "P25787"
+        ],
+        "i": [
+          "P25789"
+        ],
+        "j": [
+          "O14818"
+        ],
+        "k": [
+          "P28066"
+        ],
+        "l": [
+          "P25786"
+        ],
+        "m": [
+          "P25788"
+        ],
+        "n": [
+          "P28072"
+        ],
+        "o": [
+          "Q99436"
+        ],
+        "p": [
+          "P49720"
+        ],
+        "q": [
+          "P49721"
+        ],
+        "r": [
+          "P28074"
+        ],
+        "s": [
+          "P20618"
+        ],
+        "t": [
+          "P28070"
+        ],
+        "u": [
+          "Q13200"
+        ],
+        "v": [
+          "9MBP"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "26S proteasome complex subunit SEM1",
+        "26S proteasome non-ATPase regulatory subunit 1",
+        "26S proteasome non-ATPase regulatory subunit 11",
+        "26S proteasome non-ATPase regulatory subunit 12",
+        "26S proteasome non-ATPase regulatory subunit 13",
+        "26S proteasome non-ATPase regulatory subunit 14",
+        "26S proteasome non-ATPase regulatory subunit 2",
+        "26S proteasome non-ATPase regulatory subunit 3",
+        "26S proteasome non-ATPase regulatory subunit 4",
+        "26S proteasome non-ATPase regulatory subunit 6",
+        "26S proteasome non-ATPase regulatory subunit 7",
+        "26S proteasome non-ATPase regulatory subunit 8",
+        "26S proteasome regulatory subunit 4",
+        "26S proteasome regulatory subunit 6A",
+        "26S proteasome regulatory subunit 6B",
+        "26S proteasome regulatory subunit 7",
+        "26S proteasome regulatory subunit 8",
+        "ADENOSINE-5'-DIPHOSPHATE",
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Isoform Long of Proteasome subunit alpha type-1",
+        "MAGNESIUM ION",
+        "Midnolin",
+        "N-[(benzyloxy)carbonyl]-L-leucyl-N-[(2S)-4-methyl-1-oxopentan-2-yl]-L-leucinamide",
+        "Proteasome 26S subunit, ATPase 6",
+        "Proteasome subunit alpha type-2",
+        "Proteasome subunit alpha type-3",
+        "Proteasome subunit alpha type-4",
+        "Proteasome subunit alpha type-5",
+        "Proteasome subunit alpha type-6",
+        "Proteasome subunit alpha type-7",
+        "Proteasome subunit beta type-1",
+        "Proteasome subunit beta type-2",
+        "Proteasome subunit beta type-3",
+        "Proteasome subunit beta type-4",
+        "Proteasome subunit beta type-5",
+        "Proteasome subunit beta type-6",
+        "Proteasome subunit beta type-7",
+        "ZINC ION",
+        "substrate peptide"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 4,
+      "keywords": [
+        "HYDROLASE",
+        "Midnolin, 26S proteasome, Complex, HYDROLASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 5.218,
+      "pdb_id": "9MBP",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "13",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "233",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.002
+        },
+        {
+          "acceptor_entity_id": "12",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "223",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.046
+        },
+        {
+          "acceptor_entity_id": "14",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "197",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.533
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P35998"
+        ],
+        "B": [
+          "P62191"
+        ],
+        "C": [
+          "P62194"
+        ],
+        "D": [
+          "P43686"
+        ],
+        "E": [
+          "P62335"
+        ],
+        "F": [
+          "P17980"
+        ],
+        "G": [
+          "P60900"
+        ],
+        "H": [
+          "P25787"
+        ],
+        "I": [
+          "P25789"
+        ],
+        "J": [
+          "O14818"
+        ],
+        "K": [
+          "P28066"
+        ],
+        "L": [
+          "P25786"
+        ],
+        "M": [
+          "P25788"
+        ],
+        "N": [
+          "P28072"
+        ],
+        "O": [
+          "Q99436"
+        ],
+        "P": [
+          "P49720"
+        ],
+        "Q": [
+          "P49721"
+        ],
+        "R": [
+          "P28074"
+        ],
+        "S": [
+          "P20618"
+        ],
+        "T": [
+          "P28070"
+        ],
+        "U": [
+          "Q99460"
+        ],
+        "V": [
+          "O43242"
+        ],
+        "W": [
+          "O00232"
+        ],
+        "X": [
+          "O00231"
+        ],
+        "Y": [
+          "Q15008"
+        ],
+        "Z": [
+          "P51665"
+        ],
+        "a": [
+          "Q9UNM6"
+        ],
+        "b": [
+          "P55036"
+        ],
+        "c": [
+          "O00487"
+        ],
+        "d": [
+          "P48556"
+        ],
+        "e": [
+          "P60896"
+        ],
+        "f": [
+          "Q504T8"
+        ],
+        "g": [
+          "P60900"
+        ],
+        "h": [
+          "P25787"
+        ],
+        "i": [
+          "P25789"
+        ],
+        "j": [
+          "O14818"
+        ],
+        "k": [
+          "P28066"
+        ],
+        "l": [
+          "P25786"
+        ],
+        "m": [
+          "P25788"
+        ],
+        "n": [
+          "P28072"
+        ],
+        "o": [
+          "Q99436"
+        ],
+        "p": [
+          "P49720"
+        ],
+        "q": [
+          "P49721"
+        ],
+        "r": [
+          "P28074"
+        ],
+        "s": [
+          "P20618"
+        ],
+        "t": [
+          "P28070"
+        ],
+        "v": [
+          "9MBQ"
+        ],
+        "x": [
+          "Q13200"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "26S proteasome complex subunit SEM1",
+        "26S proteasome non-ATPase regulatory subunit 1",
+        "26S proteasome non-ATPase regulatory subunit 11",
+        "26S proteasome non-ATPase regulatory subunit 12",
+        "26S proteasome non-ATPase regulatory subunit 13",
+        "26S proteasome non-ATPase regulatory subunit 14",
+        "26S proteasome non-ATPase regulatory subunit 2",
+        "26S proteasome non-ATPase regulatory subunit 3",
+        "26S proteasome non-ATPase regulatory subunit 4",
+        "26S proteasome non-ATPase regulatory subunit 6",
+        "26S proteasome non-ATPase regulatory subunit 7",
+        "26S proteasome non-ATPase regulatory subunit 8",
+        "26S proteasome regulatory subunit 10B",
+        "26S proteasome regulatory subunit 4",
+        "26S proteasome regulatory subunit 6A",
+        "26S proteasome regulatory subunit 6B",
+        "26S proteasome regulatory subunit 7",
+        "26S proteasome regulatory subunit 8",
+        "ADENOSINE-5'-DIPHOSPHATE",
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Isoform Long of Proteasome subunit alpha type-1",
+        "MAGNESIUM ION",
+        "Midnolin",
+        "N-[(benzyloxy)carbonyl]-L-leucyl-N-[(2S)-4-methyl-1-oxopentan-2-yl]-L-leucinamide",
+        "Proteasome subunit alpha type-2",
+        "Proteasome subunit alpha type-3",
+        "Proteasome subunit alpha type-4",
+        "Proteasome subunit alpha type-5",
+        "Proteasome subunit alpha type-6",
+        "Proteasome subunit alpha type-7",
+        "Proteasome subunit beta type-1",
+        "Proteasome subunit beta type-2",
+        "Proteasome subunit beta type-3",
+        "Proteasome subunit beta type-4",
+        "Proteasome subunit beta type-5",
+        "Proteasome subunit beta type-6",
+        "Proteasome subunit beta type-7",
+        "ZINC ION",
+        "substrate peptide"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 3,
+      "keywords": [
+        "HYDROLASE",
+        "Midnolin, 26S proteasome, Complex, HYDROLASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 5.002,
+      "pdb_id": "9MBQ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "12",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "213",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "D",
+          "gamma_associated_polymer_entity_id": "4",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.416
+        },
+        {
+          "acceptor_entity_id": "13",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "181",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "E",
+          "gamma_associated_polymer_entity_id": "5",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.484
+        },
+        {
+          "acceptor_entity_id": "11",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "197",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.668
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P35998"
+        ],
+        "B": [
+          "P62191"
+        ],
+        "C": [
+          "P62195"
+        ],
+        "D": [
+          "P43686"
+        ],
+        "E": [
+          "A0A087X2I1"
+        ],
+        "F": [
+          "P17980"
+        ],
+        "U": [
+          "Q99460"
+        ],
+        "V": [
+          "O43242"
+        ],
+        "W": [
+          "O00232"
+        ],
+        "X": [
+          "O00231"
+        ],
+        "Y": [
+          "Q15008"
+        ],
+        "Z": [
+          "P51665"
+        ],
+        "a": [
+          "Q9UNM6"
+        ],
+        "b": [
+          "P55036"
+        ],
+        "c": [
+          "O00487"
+        ],
+        "d": [
+          "P48556"
+        ],
+        "e": [
+          "P60896"
+        ],
+        "v": [
+          "9U4M"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "26S proteasome complex subunit SEM1",
+        "26S proteasome non-ATPase regulatory subunit 1",
+        "26S proteasome non-ATPase regulatory subunit 11",
+        "26S proteasome non-ATPase regulatory subunit 12",
+        "26S proteasome non-ATPase regulatory subunit 13",
+        "26S proteasome non-ATPase regulatory subunit 14",
+        "26S proteasome non-ATPase regulatory subunit 3",
+        "26S proteasome non-ATPase regulatory subunit 4",
+        "26S proteasome non-ATPase regulatory subunit 6",
+        "26S proteasome non-ATPase regulatory subunit 7",
+        "26S proteasome non-ATPase regulatory subunit 8",
+        "26S proteasome regulatory subunit 4",
+        "26S proteasome regulatory subunit 6A",
+        "26S proteasome regulatory subunit 6B",
+        "26S proteasome regulatory subunit 7",
+        "26S proteasome regulatory subunit 8",
+        "ADENOSINE-5'-DIPHOSPHATE",
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "MAGNESIUM ION",
+        "Proteasome 26S subunit, ATPase 6",
+        "ZINC ION",
+        "substrate peptide"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 3,
+      "keywords": [
+        "HYDROLASE",
+        "Midnolin, 26S proteasome, Complex, HYDROLASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.416,
+      "pdb_id": "9U4M",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Source-validated heteromeric candidates remain review-only controls until scorer, threshold, external re-audit, and registry gates exist."
+  ]
+}

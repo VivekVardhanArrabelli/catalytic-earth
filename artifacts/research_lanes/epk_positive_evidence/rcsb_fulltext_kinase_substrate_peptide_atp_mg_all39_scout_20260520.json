@@ -1,0 +1,1224 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "source_validation_pending_for_new_heteromeric_candidates",
+      "only_one_source_valid_heteromeric_positive_like_control",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "bounded_heteromeric_candidate_scout_executed",
+    "candidate_status_counts": {
+      "heteromeric_candidate_source_validation_pending_review_only": 12,
+      "no_heteromeric_candidate_hit_review_only": 27
+    },
+    "candidate_threshold_angstrom": 6.0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "current_source_valid_positive_like_count": 1,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "heteromeric_candidate_pdb_ids": [
+      "1QMZ",
+      "3X2U",
+      "3X2V",
+      "3X2W",
+      "4HPU",
+      "4IAC",
+      "8USC",
+      "9E8J",
+      "9E8K",
+      "9MBP",
+      "9MBQ",
+      "9U4M"
+    ],
+    "heteromeric_candidate_structure_count": 12,
+    "input_candidate_count": 39,
+    "method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "minimum_positive_coverage_met": false,
+    "new_heteromeric_candidate_pdb_ids": [
+      "1QMZ",
+      "3X2U",
+      "3X2V",
+      "3X2W",
+      "4HPU",
+      "4IAC",
+      "8USC",
+      "9E8J",
+      "9E8K",
+      "9MBP",
+      "9MBQ",
+      "9U4M"
+    ],
+    "next_actions": [
+      "source-validate the new heteromeric candidate PDBs before treating any as positive-like controls",
+      "keep the one validated 5HVK case as the only source-valid heteromeric positive until validation passes",
+      "do not calibrate thresholds or score external hard negatives from unsourced topology hits"
+    ],
+    "positive_coverage_status": "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This scout scans a bounded follow-on active-state kinase PDB set for source-free heteromeric entity topology. Hits are only source-validation leads; they are not positive labels, ePK scores, external hard-negative re-audits, or production fingerprint evidence.",
+    "reviewed_candidate_count": 39,
+    "source_epk_heteromeric_chain_topology_signal_audit_method": "epk_heteromeric_chain_topology_signal_audit",
+    "source_query": "RCSB full_text: \"protein kinase\" \"substrate peptide\" ATP magnesium; all 39 results on 2026-05-20; lane epk_positive_evidence",
+    "source_validation_queue_ready": true,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "1GY3",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "1JBP",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "1JLU",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 2,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "5",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.416
+        },
+        {
+          "acceptor_entity_id": "3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "5",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.68
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "1QMZ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "2CCH",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "2JD5",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "2PVF",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "3ALN",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "3ALO",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "3QHR",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "3QHW",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "3U87",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.517
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "3X2U",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.521
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "3X2V",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.529
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "3X2W",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "4HPT",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 2,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "53",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "I",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 5.779
+        },
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "201",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "I",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 5.97
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "4HPU",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "621",
+          "candidate_chain_name": "S",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ACP",
+          "nearest_gamma_distance_angstrom": 3.486
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "4IAC",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "4IAF",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "4IAI",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "4IAK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "4IAY",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "4IAZ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "4IB0",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "4IB1",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "4IB3",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "7KRU",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "7KRV",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "7KZI",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "7KZU",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 3,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "14",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "234",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.476
+        },
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "233",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.654
+        },
+        {
+          "acceptor_entity_id": "9",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "223",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.947
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "8USC",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "9E8G",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 3,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "23",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "233",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.852
+        },
+        {
+          "acceptor_entity_id": "25",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "234",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.913
+        },
+        {
+          "acceptor_entity_id": "22",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "223",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.37
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "9E8J",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "213",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "D",
+          "gamma_associated_polymer_entity_id": "4",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.161
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "9E8K",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "9E8L",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 4,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "12",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "223",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.218
+        },
+        {
+          "acceptor_entity_id": "13",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "233",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.334
+        },
+        {
+          "acceptor_entity_id": "14",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "197",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.634
+        },
+        {
+          "acceptor_entity_id": "17",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "234",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.665
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "9MBP",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 3,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "13",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "233",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.002
+        },
+        {
+          "acceptor_entity_id": "12",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "223",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.046
+        },
+        {
+          "acceptor_entity_id": "14",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "197",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.533
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "9MBQ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 0,
+      "heteromeric_candidate_hits": [],
+      "measurement_ready": false,
+      "pdb_id": "9U3L",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "no_source_free_heteromeric_candidate_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 3,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "12",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "213",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "D",
+          "gamma_associated_polymer_entity_id": "4",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.416
+        },
+        {
+          "acceptor_entity_id": "13",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "181",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "E",
+          "gamma_associated_polymer_entity_id": "5",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.484
+        },
+        {
+          "acceptor_entity_id": "11",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "197",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.668
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "9U4M",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "New heteromeric topology hits remain source-validation leads and cannot expand the positive fingerprint universe."
+  ]
+}

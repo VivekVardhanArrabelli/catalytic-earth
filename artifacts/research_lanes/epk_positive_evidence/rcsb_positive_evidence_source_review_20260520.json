@@ -1,0 +1,575 @@
+{
+  "metadata": {
+    "lane_id": "epk_positive_evidence",
+    "method": "rcsb_positive_evidence_source_review",
+    "generated_at": "2026-05-20T14:30:01Z",
+    "hypothesis": "A fresh bounded RCSB source search may expose clean ePK kinase-substrate positive evidence with gamma-transfer or equivalent transition-state geometry and source-mapped phosphoacceptor residues.",
+    "review_only": true,
+    "production_claim_allowed": false,
+    "labels_or_fingerprints_changed": false,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "source_urls": [
+      "https://search.rcsb.org/",
+      "https://data.rcsb.org/graphql",
+      "https://files.rcsb.org/download/{pdb_id}.cif",
+      "https://rest.uniprot.org/"
+    ],
+    "bounded_search_summary": {
+      "surface_rows_reviewed": 213,
+      "unique_pdb_ids_reviewed": 197,
+      "fetch_failures": 0,
+      "new_clean_fresh_folded_protein_positive_count": 0,
+      "fresh_or_underreviewed_peptide_positive_structure_count": 7,
+      "fresh_transition_state_peptide_positive_structure_count": 2,
+      "known_positive_repeat_count": 5,
+      "prior_positive_recovered_count": 3,
+      "counterexample_or_false_positive_context_count": 17
+    },
+    "primary_outcome": "evidence_for",
+    "primary_outcome_reason": "Fresh bounded searches found clean review-only peptide-substrate evidence for CDK2/Cyclin A and PKA, plus two CDK2/Cyclin A ADP/MGF transition-state mimic structures with source-mapped substrate peptide Thr acceptors. No new folded-protein substrate positive was found beyond known 5HVK."
+  },
+  "search_surfaces": [
+    {
+      "surface_id": "rcsb_fulltext_kinase_substrate_peptide_atp_mg_all39",
+      "query_or_source": "RCSB full_text: \"protein kinase\" \"substrate peptide\" ATP magnesium",
+      "rows_reviewed": 39,
+      "scout_artifact": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_peptide_atp_mg_all39_scout_20260520.json",
+      "builtin_source_validation_artifact": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_peptide_atp_mg_all39_source_validation_builtin_20260520.json",
+      "heteromeric_candidate_pdb_ids": [
+        "1QMZ",
+        "3X2U",
+        "3X2V",
+        "3X2W",
+        "4HPU",
+        "4IAC",
+        "8USC",
+        "9E8J",
+        "9E8K",
+        "9MBP",
+        "9MBQ",
+        "9U4M"
+      ],
+      "manual_adjudication": "manual source review accepts 1QMZ, 3X2U, 3X2V, 3X2W, and 4IAC as peptide positive-like evidence; rejects 4HPU and proteasome ATPase substrate-translocation rows as counterexamples."
+    },
+    {
+      "surface_id": "rcsb_fulltext_protein_kinase_protein_substrate_atp_mg_all16",
+      "query_or_source": "RCSB full_text: \"protein kinase\" \"protein substrate\" ATP magnesium",
+      "rows_reviewed": 16,
+      "scout_artifact": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_protein_kinase_protein_substrate_atp_mg_all16_scout_20260520.json",
+      "heteromeric_candidate_pdb_ids": [
+        "3X2U",
+        "3X2V",
+        "3X2W"
+      ],
+      "manual_adjudication": "no fresh folded-protein ePK positive; the only ePK-like geometry hits are the same PKA SP20 peptide structures."
+    },
+    {
+      "surface_id": "rcsb_fulltext_tyrosine_kinase_substrate_peptide_atp_analog_all10",
+      "query_or_source": "RCSB full_text: tyrosine kinase substrate peptide ATP analog magnesium",
+      "rows_reviewed": 10,
+      "scout_artifact": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_tyrosine_kinase_substrate_peptide_atp_analog_all10_scout_20260520.json",
+      "heteromeric_candidate_pdb_ids": [
+        "1IR3"
+      ],
+      "manual_adjudication": "1IR3 is a known positive repeat; 2PVF is a clean FGFR2 substrate-peptide source near-miss but the substrate Tyr OH is 6.956 Angstrom from ACP PG, outside the current 6 Angstrom geometry rule."
+    },
+    {
+      "surface_id": "rcsb_fulltext_michaelis_kinase_substrate_peptide_atp_all4",
+      "query_or_source": "RCSB full_text: Michaelis complex protein kinase substrate peptide ATP",
+      "rows_reviewed": 4,
+      "scout_artifact": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_michaelis_kinase_substrate_peptide_atp_all4_scout_20260520.json",
+      "heteromeric_candidate_pdb_ids": [
+        "3X2U",
+        "3X2V",
+        "3X2W"
+      ],
+      "manual_adjudication": "exhausted exact Michaelis wording; it adds no fresh folded-protein positive beyond the PKA peptide structures."
+    },
+    {
+      "surface_id": "rcsb_fulltext_protein_kinase_transition_state_mimic_substrate_mgf",
+      "query_or_source": "RCSB full_text: protein kinase transition state mimic substrate MGF",
+      "rows_reviewed": 2,
+      "pdb_ids": [
+        "3QHR",
+        "3QHW"
+      ],
+      "manual_adjudication": "both structures are accepted as clean review-only peptide transition-state evidence for CDK2/Cyclin A with ADP/MG/MGF and source-mapped CDK2 substrate peptide Thr acceptor."
+    },
+    {
+      "surface_id": "rcsb_fulltext_protein_kinase_substrate_peptide_mgf_all10",
+      "query_or_source": "RCSB full_text: protein kinase substrate peptide MGF",
+      "rows_reviewed": 10,
+      "pdb_ids": [
+        "3QHW",
+        "3QHR",
+        "7QTM",
+        "7QSC",
+        "5M6X",
+        "1OW3",
+        "5HPY",
+        "5IRC",
+        "3MSX",
+        "8BOS"
+      ],
+      "manual_adjudication": "only 3QHR and 3QHW are ePK transition-state substrate-peptide evidence; the remaining eight rows are GTPase GDP/MgF3 contexts."
+    },
+    {
+      "surface_id": "rcsb_fulltext_kinase_substrate_protein_atp_mg_46",
+      "query_or_source": "RCSB full_text: \"kinase-substrate\" protein ATP Mg",
+      "rows_reviewed": 46,
+      "scout_artifact": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_protein_atp_mg_46_scout_20260520.json",
+      "heteromeric_candidate_pdb_ids": [
+        "5HVK"
+      ],
+      "manual_adjudication": "the only source-free heteromeric geometry hit is known positive repeat 5HVK; no new folded-protein positive was found."
+    },
+    {
+      "surface_id": "rcsb_fulltext_phosphoacceptor_protein_kinase_substrate_all21",
+      "query_or_source": "RCSB full_text: phosphoacceptor protein kinase substrate",
+      "rows_reviewed": 21,
+      "scout_artifact": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_phosphoacceptor_protein_kinase_substrate_all21_scout_20260520.json",
+      "heteromeric_candidate_pdb_ids": [],
+      "manual_adjudication": "no heteromeric gamma geometry hits. The PAK4/Paktide rows are source-relevant peptide complexes, but the only ANP/MG row checked manually, 4JDI, lacks a modeled terminal PG atom and therefore is not gamma-transfer measurement-ready."
+    },
+    {
+      "surface_id": "rcsb_fulltext_protein_kinase_substrate_amp_pnp_protein_all67",
+      "query_or_source": "RCSB full_text: \"protein kinase\" \"substrate\" \"AMP-PNP\" \"protein\"",
+      "rows_reviewed": 67,
+      "scout_artifact": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_protein_kinase_substrate_amp_pnp_protein_all67_scout_20260520.json",
+      "heteromeric_candidate_pdb_ids": [
+        "1O6K",
+        "1O6L",
+        "4EKK",
+        "4HPU",
+        "7ZE5"
+      ],
+      "manual_adjudication": "recovers known peptide positives 1O6K, 1O6L, and 4EKK, and known/repeated counterexamples 4HPU and 7ZE5. It adds no fresh folded-protein positive evidence."
+    }
+  ],
+  "evidence_for": [
+    {
+      "pdb_id": "3QHR",
+      "source_status": "accepted_transition_state_peptide_evidence_review_only",
+      "structure_title": "Structure of a pCDK2/CyclinA transition-state mimic",
+      "citation": {
+        "title": "Briefly Bound to Activate: Transient Binding of a Second Catalytic Magnesium Activates the Structure and Dynamics of CDK2 Kinase for Catalysis.",
+        "pubmed_id": 21565702,
+        "doi": "10.1016/j.str.2011.02.016",
+        "year": 2011
+      },
+      "kinase": {
+        "description": "Cell division protein kinase 2",
+        "uniprot": "P24941",
+        "chains": [
+          "A",
+          "C"
+        ]
+      },
+      "substrate": {
+        "description": "CDK2 substrate peptide: PKTPKKAKKL",
+        "sequence": "PKTPKKAKKL",
+        "chains": [
+          "J",
+          "K",
+          "L",
+          "M"
+        ],
+        "phosphoacceptor": {
+          "residue": "THR",
+          "sequence_position": 3,
+          "auth_seq_id": "0",
+          "atom": "OG1",
+          "mapping_basis": "PDB entity description plus pdbx_poly_seq_scheme"
+        }
+      },
+      "ligand_state": [
+        "ADP",
+        "MG",
+        "MGF"
+      ],
+      "gamma_equivalent_geometry": {
+        "analog": "MGF transition-state mimic",
+        "active_acceptor_measurements": [
+          {
+            "substrate_chain": "J",
+            "nearest_mgf_atom": "MG",
+            "mgf_auth_asym_id": "C",
+            "distance_angstrom": 2.593
+          },
+          {
+            "substrate_chain": "K",
+            "nearest_mgf_atom": "MG",
+            "mgf_auth_asym_id": "A",
+            "distance_angstrom": 2.497
+          }
+        ],
+        "nearest_fluoride_distance_range_angstrom": [
+          2.634,
+          3.497
+        ]
+      },
+      "production_use": "not_allowed_review_only"
+    },
+    {
+      "pdb_id": "3QHW",
+      "source_status": "accepted_transition_state_peptide_evidence_review_only",
+      "structure_title": "Structure of a pCDK2/CyclinA transition-state mimic",
+      "citation": {
+        "title": "Briefly Bound to Activate: Transient Binding of a Second Catalytic Magnesium Activates the Structure and Dynamics of CDK2 Kinase for Catalysis.",
+        "pubmed_id": 21565702,
+        "doi": "10.1016/j.str.2011.02.016",
+        "year": 2011
+      },
+      "kinase": {
+        "description": "Cell division protein kinase 2",
+        "uniprot": "P24941",
+        "chains": [
+          "A",
+          "C"
+        ]
+      },
+      "substrate": {
+        "description": "CDK2 substrate peptide: PKTPKKAKKL",
+        "sequence": "PKTPKKAKKL",
+        "chains": [
+          "J",
+          "K",
+          "L",
+          "M"
+        ],
+        "phosphoacceptor": {
+          "residue": "THR",
+          "sequence_position": 3,
+          "auth_seq_id": "0",
+          "atom": "OG1",
+          "mapping_basis": "PDB entity description plus pdbx_poly_seq_scheme"
+        }
+      },
+      "ligand_state": [
+        "ADP",
+        "MG",
+        "MGF"
+      ],
+      "gamma_equivalent_geometry": {
+        "analog": "MGF transition-state mimic",
+        "active_acceptor_measurements": [
+          {
+            "substrate_chain": "J",
+            "nearest_mgf_atom": "MG",
+            "mgf_auth_asym_id": "A",
+            "distance_angstrom": 2.581
+          },
+          {
+            "substrate_chain": "K",
+            "nearest_mgf_atom": "MG",
+            "mgf_auth_asym_id": "C",
+            "distance_angstrom": 2.507
+          }
+        ],
+        "nearest_fluoride_distance_range_angstrom": [
+          2.881,
+          3.260
+        ]
+      },
+      "production_use": "not_allowed_review_only"
+    },
+    {
+      "pdb_id": "1QMZ",
+      "source_status": "accepted_peptide_gamma_geometry_evidence_review_only",
+      "structure_title": "PHOSPHORYLATED CDK2-CYCLYIN A-SUBSTRATE PEPTIDE COMPLEX",
+      "citation": {
+        "title": "The Structural Basis for Specificity of Substrate and Recruitment Peptides for Cyclin-Dependent Kinases",
+        "pubmed_id": 10559988,
+        "doi": "10.1038/15674",
+        "year": 1999
+      },
+      "kinase": {
+        "description": "CELL DIVISION PROTEIN KINASE 2",
+        "uniprot": "P24941",
+        "chains": [
+          "A",
+          "C"
+        ]
+      },
+      "substrate": {
+        "description": "SUBSTRATE PEPTIDE",
+        "sequence": "HHASPRK",
+        "chains": [
+          "E",
+          "F"
+        ],
+        "phosphoacceptor": {
+          "residue": "SER",
+          "sequence_position": 4,
+          "auth_seq_id": "5",
+          "atom": "OG",
+          "mapping_basis": "PDB entity description plus pdbx_poly_seq_scheme"
+        }
+      },
+      "ligand_state": [
+        "ATP",
+        "MG"
+      ],
+      "gamma_acceptor_distances_angstrom": [
+        3.416,
+        3.680
+      ],
+      "production_use": "not_allowed_review_only"
+    },
+    {
+      "pdb_id": "3X2U",
+      "source_status": "accepted_peptide_gamma_geometry_evidence_review_only",
+      "structure_title": "Michaelis-like initial complex of cAMP-dependent Protein Kinase Catalytic Subunit.",
+      "citation": {
+        "title": "Protein Kinase A Catalytic Subunit Primed for Action: Time-Lapse Crystallography of Michaelis Complex Formation.",
+        "pubmed_id": 26585512,
+        "doi": "10.1016/j.str.2015.10.005",
+        "year": 2015
+      },
+      "kinase": {
+        "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+        "uniprot": "P05132",
+        "chains": [
+          "A"
+        ]
+      },
+      "substrate": {
+        "description": "Substrate Peptide",
+        "sequence": "TTYADFIASGRTGRRASIHD",
+        "chains": [
+          "S"
+        ],
+        "phosphoacceptor": {
+          "residue": "SER",
+          "sequence_position": 17,
+          "auth_seq_id": "621",
+          "atom": "OG",
+          "mapping_basis": "PDB entity description plus pdbx_poly_seq_scheme"
+        }
+      },
+      "ligand_state": [
+        "ATP",
+        "MG"
+      ],
+      "gamma_acceptor_distances_angstrom": [
+        3.517
+      ],
+      "production_use": "not_allowed_review_only"
+    },
+    {
+      "pdb_id": "3X2V",
+      "source_status": "accepted_peptide_gamma_geometry_evidence_review_only",
+      "structure_title": "Michaelis-like complex of cAMP-dependent Protein Kinase Catalytic Subunit",
+      "citation": {
+        "title": "Protein Kinase A Catalytic Subunit Primed for Action: Time-Lapse Crystallography of Michaelis Complex Formation.",
+        "pubmed_id": 26585512,
+        "doi": "10.1016/j.str.2015.10.005",
+        "year": 2015
+      },
+      "kinase": {
+        "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+        "uniprot": "P05132",
+        "chains": [
+          "A"
+        ]
+      },
+      "substrate": {
+        "description": "Substrate Peptide",
+        "sequence": "TTYADFIASGRTGRRASIHD",
+        "chains": [
+          "S"
+        ],
+        "phosphoacceptor": {
+          "residue": "SER",
+          "sequence_position": 17,
+          "auth_seq_id": "621",
+          "atom": "OG",
+          "mapping_basis": "PDB entity description plus pdbx_poly_seq_scheme"
+        }
+      },
+      "ligand_state": [
+        "ATP",
+        "MG"
+      ],
+      "gamma_acceptor_distances_angstrom": [
+        3.521
+      ],
+      "production_use": "not_allowed_review_only"
+    },
+    {
+      "pdb_id": "3X2W",
+      "source_status": "accepted_peptide_gamma_geometry_evidence_review_only",
+      "structure_title": "Michaelis complex of cAMP-dependent Protein Kinase Catalytic Subunit",
+      "citation": {
+        "title": "Protein Kinase A Catalytic Subunit Primed for Action: Time-Lapse Crystallography of Michaelis Complex Formation.",
+        "pubmed_id": 26585512,
+        "doi": "10.1016/j.str.2015.10.005",
+        "year": 2015
+      },
+      "kinase": {
+        "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+        "uniprot": "P05132",
+        "chains": [
+          "A"
+        ]
+      },
+      "substrate": {
+        "description": "Substrate Peptide",
+        "sequence": "TTYADFIASGRTGRRASIHD",
+        "chains": [
+          "S"
+        ],
+        "phosphoacceptor": {
+          "residue": "SER",
+          "sequence_position": 17,
+          "auth_seq_id": "621",
+          "atom": "OG",
+          "mapping_basis": "PDB entity description plus pdbx_poly_seq_scheme"
+        }
+      },
+      "ligand_state": [
+        "ATP",
+        "MG"
+      ],
+      "gamma_acceptor_distances_angstrom": [
+        3.529
+      ],
+      "production_use": "not_allowed_review_only"
+    },
+    {
+      "pdb_id": "4IAC",
+      "source_status": "accepted_supporting_peptide_gamma_analog_evidence_review_only",
+      "structure_title": "X-RAY structure of cAMP dependent protein kinase A in complex with HIGH MG2+ concentration, AMP-PCP AND pseudo-substrate peptide SP20",
+      "citation": {
+        "title": "Insights into the Phosphoryl Transfer Catalyzed by cAMP-Dependent Protein Kinase: An X-ray Crystallographic Study of Complexes with Various Metals and Peptide Substrate SP20.",
+        "pubmed_id": 23672593,
+        "doi": "10.1021/bi400066a",
+        "year": 2013
+      },
+      "kinase": {
+        "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+        "uniprot": "P05132",
+        "chains": [
+          "A"
+        ]
+      },
+      "substrate": {
+        "description": "Peptide SP20",
+        "sequence": "TTYADFIASGRTGRRASIHD",
+        "chains": [
+          "S"
+        ],
+        "phosphoacceptor": {
+          "residue": "SER",
+          "sequence_position": 17,
+          "auth_seq_id": "621",
+          "atom": "OG",
+          "mapping_basis": "PDB entity description plus pdbx_poly_seq_scheme"
+        }
+      },
+      "ligand_state": [
+        "ACP",
+        "MG"
+      ],
+      "gamma_acceptor_distances_angstrom": [
+        3.486
+      ],
+      "production_use": "not_allowed_review_only"
+    }
+  ],
+  "evidence_against": [
+    {
+      "pdb_id": "2PVF",
+      "status": "clean_source_near_miss_outside_current_geometry_rule_review_only",
+      "structure_title": "Crystal Structure of Tyrosine Phosphorylated Activated FGF Receptor 2 (FGFR2) Kinase Domain in Complex with ATP Analog and Substrate Peptide",
+      "substrate_sequence": "TTNEEYLDLSQPLEQ",
+      "phosphoacceptor": {
+        "residue": "TYR",
+        "auth_seq_id": "606",
+        "atom": "OH"
+      },
+      "ligand_state": [
+        "ACP",
+        "MG"
+      ],
+      "nearest_pg_distance_angstrom": 6.956,
+      "reason_not_clean_positive": "source context is clean but the measured ACP PG-to-acceptor distance is outside the current 6 Angstrom candidate geometry rule"
+    },
+    {
+      "pdb_ids": [
+        "8USC",
+        "9E8J",
+        "9E8K",
+        "9MBP",
+        "9MBQ",
+        "9U4M"
+      ],
+      "status": "rejected_non_epk_atpase_substrate_translocation_contexts",
+      "reason_not_clean_positive": "RCSB text surface matches substrate plus ATP/Mg, but structures are proteasome ATPase substrate-processing complexes, not ePK phosphoryl-transfer substrate complexes."
+    },
+    {
+      "pdb_id": "4HPU",
+      "status": "rejected_topology_inverted_or_wrong_acceptor_chain_review_only",
+      "reason_not_clean_positive": "the heteromeric scout hits kinase-chain Ser/Thr acceptors near ANP on the inhibitor/substrate-chain ligand context; this repeats a known source-mode counterexample rather than source-mapped substrate acceptor evidence."
+    },
+    {
+      "pdb_id": "7ZE5",
+      "status": "rejected_non_epk_transporter_context_review_only",
+      "structure_title": "Occ(apo/return) conformation of CydDC mutant (E500Q.C) in ATP(CydC)/AMP-PNP(CydD) bound state (Dataset-23)",
+      "reason_not_clean_positive": "the AMP-PNP/protein wording returns a CydDC transporter ATPase complex with local hydroxyl geometry, not an ePK kinase-substrate phosphotransfer complex."
+    },
+    {
+      "pdb_ids": [
+        "4JDH",
+        "4JDI",
+        "4JDJ",
+        "4JDK"
+      ],
+      "status": "source_relevant_pak4_peptide_rows_not_gamma_measurement_ready",
+      "reason_not_clean_positive": "PAK4/Paktide source context is relevant, but 4JDH, 4JDJ, and 4JDK have no gamma-capable ligand and 4JDI models ANP/MG without a terminal PG atom in atom-site coordinates."
+    },
+    {
+      "pdb_ids": [
+        "7QTM",
+        "7QSC",
+        "5M6X",
+        "1OW3",
+        "5HPY",
+        "5IRC",
+        "3MSX",
+        "8BOS"
+      ],
+      "status": "rejected_non_epk_gtpase_mgf_contexts",
+      "reason_not_clean_positive": "MGF search matches transition-state analog language but these are GDP/MgF3 small-GTPase or GAP complexes, not protein kinase substrate complexes."
+    }
+  ],
+  "known_positive_repeats": [
+    {
+      "pdb_id": "1IR3",
+      "status": "known_positive_repeat_from_tyrosine_surface",
+      "nearest_gamma_acceptor_distance_angstrom": 5.082
+    },
+    {
+      "pdb_id": "5HVK",
+      "status": "known_positive_repeat_from_folded_protein_surface",
+      "nearest_gamma_acceptor_distance_angstrom": 4.236
+    },
+    {
+      "pdb_id": "1O6K",
+      "status": "known_positive_repeat_from_amp_pnp_surface",
+      "nearest_gamma_acceptor_distance_angstrom": 3.566
+    },
+    {
+      "pdb_id": "1O6L",
+      "status": "known_positive_repeat_from_amp_pnp_surface",
+      "nearest_gamma_acceptor_distance_angstrom": 3.542
+    },
+    {
+      "pdb_id": "4EKK",
+      "status": "known_positive_repeat_from_amp_pnp_surface",
+      "nearest_gamma_acceptor_distance_angstrom": 3.228
+    }
+  ],
+  "recommendation": "Record this run as evidence_for clean review-only peptide and transition-state analog positive evidence, but do not activate production scoring. The next query should focus on non-peptide folded protein-substrate co-complexes with source-mapped acceptors because this run found zero fresh folded-protein positives beyond known 5HVK."
+}
