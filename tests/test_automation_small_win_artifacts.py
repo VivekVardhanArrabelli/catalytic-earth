@@ -506,6 +506,47 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "no_go",
         )
 
+    def test_epk_counterexample_push_synthesis_stays_review_only(self) -> None:
+        synthesis = _load_json(
+            ARTIFACTS / "v3_epk_counterexample_push_synthesis_20260520.json"
+        )
+        metadata = synthesis["metadata"]
+        conclusion = synthesis["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["json_validated_file_count"], 8)
+        self.assertEqual(metadata["json_validation_error_count"], 0)
+        self.assertEqual(metadata["fresh_remote_commits_since_prior_fresh_synthesis"], 2)
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        self.assertTrue(
+            all(row["json_valid"] for row in synthesis["input_validation"])
+        )
+        self.assertEqual(
+            synthesis["lane_findings"][0]["primary_outcome"],
+            "counterexample_found",
+        )
+        self.assertEqual(
+            synthesis["counterexample_summary"]["fresh_counterexample"],
+            "7ZDT",
+        )
+        self.assertEqual(
+            synthesis["positive_anchor_summary"][
+                "fresh_clean_folded_protein_positive_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            conclusion["overall"],
+            "epk_remains_review_only_and_not_production_ready",
+        )
+        self.assertEqual(conclusion["production_activation_decision"], "no_go")
+
     def test_epk_fresh_research_lane_push_synthesis_stays_no_go(self) -> None:
         synthesis = _load_json(
             ARTIFACTS / "v3_epk_fresh_research_lane_push_synthesis_20260520.json"

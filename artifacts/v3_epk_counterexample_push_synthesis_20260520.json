@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "artifact_id": "v3_epk_counterexample_push_synthesis_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T21:12:25Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "fresh_remote_commits_since_prior_fresh_synthesis": 2,
+    "json_validation_error_count": 0,
+    "json_validated_file_count": 8,
+    "latest_main_synthesis_artifact": "artifacts/v3_epk_research_lane_synthesis_20260520.json",
+    "latest_main_synthesis_sha256": "459be97b7ff7908a66a4598ded01abc86c79bb9a6901cb4b42db45290b3673ce",
+    "prior_fresh_synthesis_artifact": "artifacts/v3_epk_fresh_research_lane_push_synthesis_20260520.json",
+    "prior_fresh_synthesis_sha256": "c8ea75b11bee8e9fd639442a58700cd0ead3735a16b0552beef160dcd517c4c8",
+    "production_claim_allowed": false,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true
+  },
+  "fresh_remote_commits": [
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "commit": "1585d3e3945d0e30a5ec1069a5b6f31bd69b1622",
+      "summary": "Add ePK PIKK metal counterexample scout",
+      "synthesis_status": "new_review_only_counterexample_integrated"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "commit": "7efc9a3",
+      "summary": "Record ePK counterexample handoff commit reference",
+      "synthesis_status": "handoff_only_no_production_change"
+    }
+  ],
+  "input_validation": [
+    {
+      "json_valid": true,
+      "path": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/pikk_atm_tel1_chk2_metal_context_followup_20260520.json",
+      "sha256": "8ac4dc8444e81a3425edd3d900c114bcf192c421c3d0b4461ee064526421aed0"
+    },
+    {
+      "json_valid": true,
+      "path": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/europepmc_pikk_metal_context_literature_scout_20260520.json",
+      "sha256": "54907600c476fdc9327193f74be308c474ca626071a5a9d57586c3c7f67bcb3a"
+    },
+    {
+      "json_valid": true,
+      "path": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/recent_atp_mg_substrate_peptide_geometry_scout_20260520.json",
+      "sha256": "44ea58b9b658bb86e84b2a3ceada658474ffb157855ff0652686afac7df96785"
+    },
+    {
+      "json_valid": true,
+      "path": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/recent_atp_mg_substrate_peptide_rows21_40_geometry_scout_20260520.json",
+      "sha256": "edd6909d9aa756c3c21a657950c366db572cd1d5d7107f891adb7d80dc78bd38"
+    },
+    {
+      "json_valid": true,
+      "path": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/recent_atp_mg_substrate_peptide_rows41_60_geometry_scout_20260520.json",
+      "sha256": "d9b120bc4f234bb9bb4ba8ef578b0cf1249fcc3057de5e628e5cc26ffac407ca"
+    },
+    {
+      "json_valid": true,
+      "path": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/recent_atp_mg_substrate_peptide_rows61_80_geometry_scout_20260520.json",
+      "sha256": "58fca6ae0a60313289a3d342f03ebf0da07c86e741e98fd5ddedc4b147cd81b6"
+    },
+    {
+      "json_valid": true,
+      "path": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/phosphoacceptor_ligand_mg_exact_surface_review_20260520.json",
+      "sha256": "b714f793f29c71c56a07a30dbb3e9f42043c9d7ab400254347f575c33eb1b6b8"
+    },
+    {
+      "json_valid": true,
+      "path": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/full_length_ligand_mg_geometry_scout_20260520.json",
+      "sha256": "bcae8a3ee32e95cfa0ec52c4eb2092416fd60869fd7c161546c04b154704d5a1"
+    }
+  ],
+  "lane_findings": [
+    {
+      "decision_change": true,
+      "handoff_sha256": "5132a4a6bd79fc3577173c7271bec5bf00910a9f199a2b227d3fc84e602d6ee0",
+      "lane_id": "epk_positive_evidence",
+      "ledger_sha256": "49936ffae1b77b999e5d7cce2d6383562bf17b6452d64575b874a31c168abe01",
+      "primary_outcome": "counterexample_found",
+      "summary": "The fresh positive-evidence push found no clean folded-protein ePK positive. It instead adds 7ZDT as a source-mapped local ATP/Mg-to-Ser geometry counterexample from CydDC ATP-binding/permease heme transporter chains, plus repeat 7ZDU/7ZE5 CydDC counterexamples and ATPase/chaperone false-positive families.",
+      "use_in_main_loop": false
+    }
+  ],
+  "counterexample_summary": {
+    "fresh_counterexample": "7ZDT",
+    "fresh_counterexample_family": "CydDC ATP-binding/permease heme transporter",
+    "nearest_local_metal_gamma_acceptor_distance_angstrom": 3.71,
+    "repeat_counterexamples": [
+      "7ZDU",
+      "7ZE5"
+    ],
+    "search_surface_exhausted": true,
+    "source_mapping_decision": "counterexample_transporter_atpase_false_positive_not_ePK_substrate_evidence"
+  },
+  "positive_anchor_summary": {
+    "review_only_repeat_peptide_anchors": [
+      "1QMZ",
+      "9IZ0"
+    ],
+    "review_only_repeat_folded_positive_like_anchor": "5HVK",
+    "fresh_clean_folded_protein_positive_count": 0,
+    "countable_positive_evidence_count": 0
+  },
+  "synthesis_conclusion": {
+    "main_loop_decision": "do_not_resume_epk_as_default_main_loop_task",
+    "next_exact_research_lane_experiment": "domain_or_ec_filtered_canonical_epk_ligand_search_v1_review_only",
+    "overall": "epk_remains_review_only_and_not_production_ready",
+    "production_activation_decision": "no_go",
+    "reason": "Fresh lane evidence adds an ATPase/transporter geometry counterexample and no production scorer, threshold, external hard-negative production re-audit, label import, registry edit, or fingerprint edit."
+  },
+  "safety_summary": {
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false,
+    "external_imported_out_of_scope_labels_changed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "registry_or_fingerprint_edit_performed": false
+  }
+}

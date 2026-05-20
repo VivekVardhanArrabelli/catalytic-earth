@@ -50,6 +50,24 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T21:08:55Z automation run,
+`artifacts/v3_epk_counterexample_push_synthesis_20260520.json` integrates the
+fresh ePK positive-evidence research-lane push that landed after the prior
+main-loop synthesis. Eight new lane JSON artifacts validate with 0 parse
+errors. The new result changes review context but not the production decision:
+no fresh clean folded-protein ePK positive was found, and `7ZDT` is a fresh
+source-mapped counterexample where local ATP/Mg-to-Ser geometry occurs in CydDC
+ATP-binding/permease heme transporter chains rather than kinase-substrate
+phosphorylation. Repeat `7ZDU`/`7ZE5` CydDC and broader ATPase/chaperone
+false-positive families reinforce the same blocker.
+
+Evidence-based confidence call: confidence is high that this fresh lane push
+keeps ePK review-only and no-go for main-loop production activation. The exact
+future ePK experiment, if a separate research lane continues, is a
+domain/EC-filtered canonical ePK ligand search with explicit ATPase/chaperone
+exclusions. Main-loop work should continue with the frozen ASKHA tranche or a
+new prospective external surface, not ePK scorer activation.
+
 As of the 2026-05-20T20:17:20Z automation run,
 `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
 freezes a genuinely new 20-row Swiss-Prot EC 2.1.1.x methyltransferase surface

@@ -63,6 +63,14 @@ by a source-free substrate-identity counteraxis. The policy harness completes
 six terminal-gamma geometry leads plus six matched sibling controls as 12/12
 review-only abstentions. ePK remains no-go for production activation; any next
 ePK step is research-lane-only source-free substrate-role extractor design.
+The 2026-05-20T21:08:55Z fresh positive-evidence push synthesis adds one more
+review-only counterexample rather than reopening production work. Eight new
+positive-lane JSON artifacts validate cleanly, but the only fresh local
+ATP/Mg-to-Ser hit with source mapping is `7ZDT`, a CydDC ATP-binding/permease
+heme transporter context rather than kinase-substrate phosphorylation. The
+main loop must treat this as counterevidence for generic ATP/Mg/Ser proximity.
+Any future ePK work belongs in a research lane and should use a domain/EC-
+filtered canonical ePK ligand search with explicit ATPase/chaperone exclusions.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed
