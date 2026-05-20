@@ -1,0 +1,46 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "active_site_mapped_candidate_count": 0,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "current_countable_structural_screen": "artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json",
+        "next_candidate_sourcing": "artifacts/v3_prospective_external_minicampaign_candidate_freeze_20260520.json"
+      },
+      "blocker_removed": "next_candidate_inverse_gate_scores",
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "slice_id": 1025
+    },
+    "blocker_not_removed": [],
+    "blocker_removed": "next_candidate_all_8_out_of_scope_inverse_gate_scored",
+    "candidate_count": 0,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T13:08:55Z",
+    "fetch_failure_count": 0,
+    "import_ready_candidate_count": 0,
+    "inverse_gate_blocked_count": 0,
+    "inverse_gate_pass_count": 0,
+    "inverse_gate_status_counts": {},
+    "method": "external_hard_negative_next_candidate_inverse_gate_scores",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "remaining_import_blocker_counts": {},
+    "review_only": true,
+    "scored_candidate_count": 0,
+    "slice_id": 1025,
+    "source_candidate_sourcing_method": "external_hard_negative_post_p06744_sourcing",
+    "source_current_countable_structural_screen_method": "external_hard_negative_new_candidate_current_countable_structural_screen",
+    "source_heuristic_scores_method": "external_source_heuristic_control_scores",
+    "source_next_candidate_sourcing_method": "external_hard_negative_post_p06744_sourcing",
+    "target_fingerprint_id": null,
+    "target_label_type": "out_of_scope",
+    "threshold_policy_version": "external_hard_negative_threshold_policy_v1_2026_05_17",
+    "top_k": 8
+  },
+  "rows": [],
+  "warnings": [
+    "next-candidate inverse-gate scores are review-only safety evidence; terminal review and the full factory gate still block import"
+  ]
+}

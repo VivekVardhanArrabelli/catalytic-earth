@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 212
-- Measured elapsed time: 6722.1 minutes (112.03 hours)
+- Entries: 213
+- Measured elapsed time: 6743.1 minutes (112.38 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 1492.9 measured minutes (24.88 hours)
+- post-infra-science: 1514.0 measured minutes (25.23 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2510
-- Evidence references logged: 1992
+- Artifact references logged: 2521
+- Evidence references logged: 2008
 
 ## Recent Entries
-
-### 2026-05-20T05:33:51.904993+00:00 - post-infra-science
-
-- Task: ePK protein-role discriminator and fourth source pass
-- Time mode: measured
-- Measured minutes: 46.283
-- Started: 2026-05-20T04:47:09Z
-- Ended: 2026-05-20T05:33:26Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_source_free_protein_substrate_role_discriminator_audit_1025.json, artifacts/v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json, artifacts/v3_epk_external_protein_substrate_source_scout_fourth_pass_1025.json, artifacts/v3_epk_external_source_structure_mapping_review_fourth_pass_1025.json, artifacts/v3_epk_external_source_lower_priority_ligand_sourcing_review_fourth_pass_1025.json, artifacts/v3_epk_external_source_acceptor_gap_audit_fourth_pass_1025.json, artifacts/v3_epk_external_source_next_experiment_queue_fourth_pass_1025.json, artifacts/v3_epk_external_source_four_pass_terminal_decision_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 632-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, protein-role discriminator hit 1IR3 2PHK 5HVK with 0 control false hits and 0 external non-abstentions, protein-role stress fails closed on 7B56 with 0 broad protein-mode positives, fourth external source pass sourced 8 new candidates and mapped 37 structures with 0 active-state mapping-ready rows, pre-count gate remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 638-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed 0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external hard-negative production score or removal_allowed=true.
 
 ### 2026-05-20T06:36:57.763104+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_broad41_80_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_broad81_92_1025.json, artifacts/v3_epk_substrate_mode_tranche_recovery_decision_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_amp_pnp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_amp_pnp_protein_rows41_67_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_atp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_anp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_anp_protein_rows31_60_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_anp_protein_rows61_90_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_anp_protein_rows91_120_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_validation_amp_pnp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_validation_amp_pnp_protein_rows41_67_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_validation_atp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_validation_anp_protein_rows31_60_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_validation_anp_protein_rows61_90_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_review_amp_pnp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_review_amp_pnp_protein_rows41_67_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_review_atp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_review_anp_protein_rows31_60_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_review_anp_protein_rows61_90_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_terminal_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: recovered missing broad41-80 and broad81-92 source-review writes, 4EKK remains only source-mapped measurement-ready review row, 1O6K and 1O6L now carry explicit PKB GSK3 exact AKT1 or chain mapping blocker, folded protein-substrate stress reviewed 11 topology hits with 0 measurement-ready positives, 2JJ2 4HPU 7B56 and 7ZE5 rejected by substrate mode, six ATP-query rows topology-confounded, 1IR3 source-mapping unresolved under generic mapper, 680-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external-hard-negative scored re-audit or removal_allowed=true.
+
+### 2026-05-20T13:17:20.692201+00:00 - post-infra-science
+
+- Task: ePK subagent synthesis plus external mini-campaign and baseline comparison
+- Time mode: measured
+- Measured minutes: 21.033
+- Started: 2026-05-20T12:55:46Z
+- Ended: 2026-05-20T13:16:48Z
+- Artifacts: artifacts/v3_epk_subagent_synthesis_20260520.json, artifacts/v3_prospective_external_minicampaign_candidate_freeze_20260520.json, artifacts/v3_prospective_external_minicampaign_backend_sequence_search_20260520.json, artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json, artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json, artifacts/v3_prospective_external_minicampaign_inverse_gate_scores_20260520.json, artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json, artifacts/v3_modern_baseline_comparison_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: startup 680-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, ePK subagent synthesis integrated and pushed in commit 45dec98, prospective external mini-campaign froze 12 rows across 3 lanes before scoring, MMseqs2 backend sequence search found 11 no-signal rows and one exact-reference holdout P07237, local Foldseek binary unavailable so structural screen incomplete and 11 rows are needs_review, inverse gate configured with 8 fingerprints at threshold 0.4115 but scored 0 rows due no structurally screened survivors, modern baseline comparison makes no superiority claim, focused artifact tests passed, full 683-test unit discovery passed, validate passed, artifact migration dry-run local-file guard passed with removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external hard negatives unchanged, compileall passed, git diff --check passed
+- Notes: No Phase 2 or 3 artifact migration, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -287,6 +287,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T09:40:52.064773+00:00: MEK ERK residual false hits are now closed in a bounded source-free topology probe, but broader stress leaves four false hits; the next useful ePK work needs an additional source-free acceptor or substrate-identity axis before thresholding.
 - 2026-05-20T11:24:52.078372+00:00: 4EKK is useful source-mapped ePK review evidence, but production remains blocked by source-context dependence, uncalibrated substrate-mode logic, external scored re-audit, and local disk capacity before broader source-review recovery.
 - 2026-05-20T12:19:46.938589+00:00: Folded protein-substrate sourcing is still negative under the current source-free substrate-mode surface; next work needs a fresh bounded tranche with stronger source-free substrate identity or pair-specific source mapping kept outside predictive scoring.
+- 2026-05-20T13:17:20.692201+00:00: Next external mini-campaign blocker is restoring or configuring Foldseek before current-countable structural screen and inverse-gate scoring can produce import decisions
 
 ## Scope Adjustments
 
@@ -398,3 +399,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-17T17:13:28.332690+00:00: leakage-risk closure complete; next milestone is infrastructure/artifact strategy before ePK or broad scale-up
 - 2026-05-18T05:26:10.455344+00:00: ePK is ready for draft fingerprint specification but not positive-universe expansion; external hard negatives require scored ePK re-audit before any future counting claim.
 - 2026-05-18T06:29:09.711385+00:00: ePK now has a review-only draft spec and local evidence audit but remains blocked from positive-universe expansion until scorer threshold external re-audit terminal review and factory gates pass.
+- 2026-05-20T13:17:20.692201+00:00: ePK remains review-only; main loop pivoted to external mini-campaign and baseline comparison small wins

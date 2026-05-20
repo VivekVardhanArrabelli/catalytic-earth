@@ -50,6 +50,39 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T13:15:07Z automation run, the main loop completed two
+visible small wins after committing the ePK synthesis. The prospective external
+mini-campaign is frozen and decisioned in
+`artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json`.
+The candidate-freeze artifact selected 12 external review-only candidates
+across oxidoreductase, lyase, and isomerase lanes after excluding the prior
+external pool, prior new-candidate surfaces, prior terminal duplicate rejects,
+the three imported external out-of-scope labels, and the explicit P22830
+deferral. Backend MMseqs2 sequence search completed: 11 rows have no current
+reference near-duplicate signal and `P07237` is an exact-reference terminal
+rejection. Current-countable structural screening did not run because the local
+Foldseek binary `/private/tmp/catalytic-foldseek-env/bin/foldseek` is absent;
+therefore the 11 sequence-clean rows are terminal `needs_review` rather than
+out-of-scope or import-ready. The current 8-fingerprint inverse gate was
+configured at the calibrated `0.4115` abstention threshold, but scored 0 rows
+because no row cleared structural duplicate screening. No external row became
+countable or import-ready.
+
+The modern-baseline comparison is in
+`artifacts/v3_modern_baseline_comparison_20260520.json`. It compares the
+current geometry/retrieval triage against EC/keyword lane routing,
+deterministic k-mer nearest-neighbor proxy, cached ESM-2 8M representation, and
+the available Foldseek all-30 sidecar. The artifact makes no superiority claim:
+geometry abstains on all 12 mapped-control rows at `0.4115` and uses no text or
+label fields for scoring, but its review top1s still collapse 9/12 rows to
+`metal_dependent_hydrolase` with 9 scope/top1 mismatches. K-mer flags one
+representation holdout; ESM-2 flags three; the Foldseek sidecar is useful
+structural-diversity context only and does not cover the new prospective
+mini-campaign rows. A focused regression test in
+`tests/test_automation_small_win_artifacts.py` pins the review-only status,
+zero-import outcome, Foldseek blocker, 8-fingerprint/threshold metadata, and
+no-superiority baseline caveat.
+
 As of the 2026-05-20T12:55:46Z automation run, the completed ePK subagent
 packets are integrated as review-only synthesis in
 `artifacts/v3_epk_subagent_synthesis_20260520.json`. All four JSON packets

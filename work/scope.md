@@ -19,6 +19,18 @@ for production breadth, and the external stress tranche is diagnostic rather
 than clean performance evidence. The main loop should pivot away from ePK as
 the default task and toward prospective external mini-campaigns, modern
 baseline comparisons, terminal decisions, and family-readiness packets.
+Current small-win scope: the first prospective external mini-campaign now has
+a frozen 12-row candidate set, completed bounded current-reference sequence
+screening, and terminal review-only decisions. One exact-reference holdout is
+rejected; the other 11 rows are `needs_review` because local Foldseek is absent
+and current-countable structural duplicate screening could not run. The current
+8-fingerprint inverse gate remains configured at `0.4115`, but no candidate is
+eligible for scoring until structural screening is restored. The modern
+baseline comparison is also review-only: geometry abstains on all 12 mapped
+controls, EC/keyword lanes are routing context only, k-mer and ESM-2 are
+sequence-neighbor controls, and Foldseek context comes from the existing all-30
+sidecar rather than the new mini-campaign. No superiority claim, label import,
+or production fingerprint change is in scope.
 MEK1/ERK1 source review now provides two
 source-authoritative broad protein-substrate review controls (`9UUR` and
 `9UUX`) and rejects same-chain `9UW4`, but the broad-role stress test shows a

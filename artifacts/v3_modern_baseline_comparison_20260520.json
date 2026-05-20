@@ -1,0 +1,282 @@
+{
+  "metadata": {
+    "artifact_id": "v3_modern_baseline_comparison_20260520",
+    "created_at": "2026-05-20T13:12:00Z",
+    "method": "modern_baseline_comparison_synthesis",
+    "review_only": true,
+    "task_definition": "Compare current geometry/retrieval triage against simple EC/keyword lane, deterministic k-mer nearest-neighbor, cached ESM-2 8M representation, and available Foldseek structural sidecar context on the external mapped-control surface.",
+    "frozen_row_count": 12,
+    "frozen_row_source": "artifacts/v3_external_source_representation_backend_sample_1025.json",
+    "abstain_threshold": 0.4115,
+    "ready_for_label_import": false,
+    "countable_label_candidate_count": 0,
+    "superiority_claim_permitted": false,
+    "superiority_claim_reason": "The compared surfaces answer different review-control questions; geometry abstains on all rows and representation/Foldseek sidecars are diagnostic only.",
+    "source_artifacts": {
+      "geometry_retrieval_triage": "artifacts/v3_external_source_heuristic_control_scores_1025.json",
+      "ec_keyword_lane_proxy": "artifacts/v3_external_source_representation_backend_sample_1025.json",
+      "deterministic_kmer_proxy": "artifacts/v3_external_source_kmer_representation_backend_sample_1025.json",
+      "esm2_8m_sample": "artifacts/v3_external_source_representation_backend_sample_1025.json",
+      "foldseek_structural_sidecar": "artifacts/v3_external_structural_cluster_index_1025_all30.json"
+    }
+  },
+  "frozen_rows": [
+    {
+      "accession": "P33025",
+      "scope_signal": "glycan_chemistry",
+      "ec_keyword_lane_proxy": "glycan_chemistry",
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3355,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": false,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.9,
+      "esm_status": "representation_near_duplicate_holdout",
+      "esm_top_embedding_cosine": 0.9727,
+      "esm_nearest_reference": "P0A786",
+      "representation_comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split"
+    },
+    {
+      "accession": "P60174",
+      "scope_signal": "isomerase",
+      "ec_keyword_lane_proxy": "isomerase",
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3741,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": true,
+      "kmer_status": "representation_near_duplicate_holdout",
+      "kmer_top_embedding_cosine": 0.9782,
+      "esm_status": "representation_near_duplicate_holdout",
+      "esm_top_embedding_cosine": 0.9984,
+      "esm_nearest_reference": "P00940",
+      "representation_comparison_status": "proxy_flags_metal_hydrolase_collapse"
+    },
+    {
+      "accession": "Q13907",
+      "scope_signal": "isomerase",
+      "ec_keyword_lane_proxy": "isomerase",
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3714,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": true,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.8539,
+      "esm_status": "learned_representation_sample_complete",
+      "esm_top_embedding_cosine": 0.8265,
+      "esm_nearest_reference": "P13000",
+      "representation_comparison_status": "proxy_flags_metal_hydrolase_collapse"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "scope_signal": "glycan_chemistry",
+      "ec_keyword_lane_proxy": "glycan_chemistry",
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3552,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": false,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.9175,
+      "esm_status": "learned_representation_sample_complete",
+      "esm_top_embedding_cosine": 0.8958,
+      "esm_nearest_reference": "P0ABI8",
+      "representation_comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split"
+    },
+    {
+      "accession": "Q9BXD5",
+      "scope_signal": "lyase",
+      "ec_keyword_lane_proxy": "lyase",
+      "geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "geometry_top1_score": 0.3646,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": true,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.9364,
+      "esm_status": "learned_representation_sample_complete",
+      "esm_top_embedding_cosine": 0.8619,
+      "esm_nearest_reference": "P11708",
+      "representation_comparison_status": "proxy_flags_scope_top1_mismatch"
+    },
+    {
+      "accession": "Q9BXS1",
+      "scope_signal": "isomerase",
+      "ec_keyword_lane_proxy": "isomerase",
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3734,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": true,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.9026,
+      "esm_status": "learned_representation_sample_complete",
+      "esm_top_embedding_cosine": 0.9025,
+      "esm_nearest_reference": "P61517",
+      "representation_comparison_status": "proxy_flags_metal_hydrolase_collapse"
+    },
+    {
+      "accession": "A2RU49",
+      "scope_signal": "transferase_phosphoryl",
+      "ec_keyword_lane_proxy": "transferase_phosphoryl",
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.302,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": true,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.8965,
+      "esm_status": "learned_representation_sample_complete",
+      "esm_top_embedding_cosine": 0.8879,
+      "esm_nearest_reference": "P05404",
+      "representation_comparison_status": "proxy_flags_metal_hydrolase_collapse"
+    },
+    {
+      "accession": "O14756",
+      "scope_signal": "oxidoreductase_long_tail",
+      "ec_keyword_lane_proxy": "oxidoreductase_long_tail",
+      "geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "geometry_top1_score": 0.3039,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": false,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.8803,
+      "esm_status": "learned_representation_sample_complete",
+      "esm_top_embedding_cosine": 0.7852,
+      "esm_nearest_reference": "P0A6C1",
+      "representation_comparison_status": "proxy_consistent_with_heuristic_scope"
+    },
+    {
+      "accession": "P34949",
+      "scope_signal": "isomerase",
+      "ec_keyword_lane_proxy": "isomerase",
+      "geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "geometry_top1_score": 0.185,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": true,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.92,
+      "esm_status": "learned_representation_sample_complete",
+      "esm_top_embedding_cosine": 0.9199,
+      "esm_nearest_reference": "P0A6D3",
+      "representation_comparison_status": "proxy_flags_scope_top1_mismatch"
+    },
+    {
+      "accession": "P35914",
+      "scope_signal": "lyase",
+      "ec_keyword_lane_proxy": "lyase",
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.1875,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": true,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.9214,
+      "esm_status": "learned_representation_sample_complete",
+      "esm_top_embedding_cosine": 0.9499,
+      "esm_nearest_reference": "P21874",
+      "representation_comparison_status": "proxy_flags_metal_hydrolase_collapse"
+    },
+    {
+      "accession": "Q969G6",
+      "scope_signal": "transferase_phosphoryl",
+      "ec_keyword_lane_proxy": "transferase_phosphoryl",
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3012,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": true,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.8529,
+      "esm_status": "representation_near_duplicate_holdout",
+      "esm_top_embedding_cosine": 0.9789,
+      "esm_nearest_reference": "P0A7F3",
+      "representation_comparison_status": "proxy_flags_metal_hydrolase_collapse"
+    },
+    {
+      "accession": "Q96I15",
+      "scope_signal": "lyase",
+      "ec_keyword_lane_proxy": "lyase",
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.1935,
+      "geometry_abstention_decision": "abstain",
+      "geometry_scope_top1_mismatch": true,
+      "kmer_status": "sequence_kmer_embedding_control_complete",
+      "kmer_top_embedding_cosine": 0.9295,
+      "esm_status": "learned_representation_sample_complete",
+      "esm_top_embedding_cosine": 0.8346,
+      "esm_nearest_reference": "P24295",
+      "representation_comparison_status": "proxy_flags_metal_hydrolase_collapse"
+    }
+  ],
+  "metrics": {
+    "geometry_retrieval_triage": {
+      "row_count": 12,
+      "retrieval_method": "geometry_aware_seed_fingerprint_retrieval",
+      "top1_fingerprint_counts": {
+        "flavin_dehydrogenase_reductase": 1,
+        "heme_peroxidase_oxidase": 2,
+        "metal_dependent_hydrolase": 9
+      },
+      "non_abstention_count_at_0_4115": 0,
+      "abstention_count_at_0_4115": 12,
+      "scope_top1_mismatch_count": 9,
+      "text_or_label_fields_used_for_score_count": 0,
+      "interpretation": "Geometry/retrieval is conservative under calibrated abstention, but top1 review context still shows metal-hydrolase collapse and scope mismatches."
+    },
+    "ec_keyword_lane_proxy": {
+      "row_count": 12,
+      "lane_counts": {
+        "glycan_chemistry": 2,
+        "isomerase": 4,
+        "lyase": 3,
+        "oxidoreductase_long_tail": 1,
+        "transferase_phosphoryl": 2
+      },
+      "coverage_count": 12,
+      "predictive_status": "review_context_only_not_positive_scoring_evidence",
+      "interpretation": "EC/keyword lanes provide broad routing coverage but are intentionally excluded from predictive mechanism scoring."
+    },
+    "deterministic_kmer_nearest_neighbor": {
+      "row_count": 12,
+      "backend_status_counts": {
+        "representation_near_duplicate_holdout": 1,
+        "sequence_kmer_embedding_control_complete": 11
+      },
+      "representation_near_duplicate_alert_count": 1,
+      "learned_vs_heuristic_disagreement_count": 12,
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "interpretation": "Deterministic k-mer is a cheap sequence-neighbor proxy; it flagged one representation holdout and disagreed with heuristic review context on all rows."
+    },
+    "esm2_8m_representation": {
+      "row_count": 12,
+      "backend_status_counts": {
+        "learned_representation_sample_complete": 9,
+        "representation_near_duplicate_holdout": 3
+      },
+      "embedding_vector_dimension": 320,
+      "representation_near_duplicate_alert_count": 3,
+      "learned_representation_complete_count": 9,
+      "learned_vs_heuristic_disagreement_count": 12,
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
+      "interpretation": "Cached ESM-2 8M gives real representation signal for 9 rows and near-duplicate holdouts for 3 rows; it remains a review control, not an import gate."
+    },
+    "foldseek_structural_sidecar": {
+      "row_count": 30,
+      "surface_scope": "broader_external_surface",
+      "coordinate_materialized_count": 30,
+      "all_vs_all_pair_cache_complete": true,
+      "unique_unordered_pair_count": 435,
+      "high_tm_pair_count": 6,
+      "tm_cluster_count": 26,
+      "max_rows": 30,
+      "interpretation": "Foldseek sidecar covers the older all-30 external surface, not the new 12-row mini-campaign; use it only as structural-diversity context."
+    }
+  },
+  "caveats": [
+    "No method is declared superior by this artifact.",
+    "EC/keyword lane signals are source/review context and are not predictive scoring features.",
+    "The geometry surface uses current 8 fingerprints and calibrated abstention, but the external mapped-control task lacks gold mechanism labels.",
+    "The ESM and k-mer surfaces measure sequence-neighbor behavior rather than catalytic mechanism correctness.",
+    "The Foldseek sidecar is from the existing all-30 external surface and does not cover the new prospective mini-campaign rows."
+  ]
+}

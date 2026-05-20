@@ -1,0 +1,874 @@
+{
+  "blockers": [
+    "external_review_decision_artifact_not_built",
+    "full_label_factory_gate_not_run",
+    "sequence_holdout_control_not_resolved"
+  ],
+  "exact_reference_rows": [
+    {
+      "accession": "P07237",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "sequence_holdout_control_not_resolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P07237",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 508,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 1.0,
+      "near_duplicate_hit_count": 1,
+      "protein_name": "Protein disulfide-isomerase (PDI) (EC 5.3.4.1) (Cellular thyroid hormone-binding protein) (Prolyl 4-hydroxylase subunit beta) (p55)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "exact_reference_holdout",
+      "top_hits": [
+        {
+          "accession": "P07237",
+          "alignment_length": 508,
+          "bits": 1022.0,
+          "evalue": 0.0,
+          "external_length": 508,
+          "identity": 1.0,
+          "matched_m_csa_entry_ids": [
+            "m_csa:191"
+          ],
+          "min_coverage": 1.0,
+          "query_coverage": 1.0,
+          "reference_accession": "P07237",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 508,
+          "requested_reference_accession": "P07237",
+          "target_coverage": 1.0
+        }
+      ]
+    }
+  ],
+  "failure_rows": [],
+  "fetch_failures": [],
+  "metadata": {
+    "alignment_row_count": 6,
+    "backend_available": true,
+    "backend_commands": [
+      "/opt/homebrew/bin/mmseqs easy-search /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_prospective_external_minicampaign_backend_sequence_search_external_20260520.fasta /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_prospective_external_minicampaign_backend_sequence_search_reference_20260520.fasta /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_prospective_external_minicampaign_backend_sequence_search_20260520.tsv /private/tmp/catalytic-earth-external-sequence-mmseqs-2591820f7ffe98f5/tmp --format-output query,target,pident,alnlen,evalue,bits --min-seq-id 0.0 -c 0.8 --cov-mode 0 --max-seqs 10000 --threads 1"
+    ],
+    "backend_name": "mmseqs2_easy_search",
+    "backend_requested": "auto",
+    "backend_result_tsv": "artifacts/v3_prospective_external_minicampaign_backend_sequence_search_20260520.tsv",
+    "backend_succeeded": true,
+    "backend_version": "18-8cc5c",
+    "blocker_not_removed": [
+      "uniref_wide_or_external_all_vs_all_duplicate_screen_not_run"
+    ],
+    "blocker_removed": "bounded_current_reference_backend_sequence_search",
+    "blocker_removed_for_status": "current_reference_backend_no_signal",
+    "candidate_count": 12,
+    "countable_label_candidate_count": 0,
+    "coverage_threshold": 0.8,
+    "current_reference_accession_count": 735,
+    "current_reference_sequence_count": 737,
+    "exact_coverage_threshold": 0.98,
+    "exact_identity_threshold": 0.999,
+    "exact_reference_row_count": 1,
+    "expected_external_sequence_count": 12,
+    "external_sequence_count": 12,
+    "external_sequence_source": "uniprot_sequence_batch_search",
+    "failure_row_count": 0,
+    "identity_threshold": 0.9,
+    "import_ready_row_count": 0,
+    "inactive_reference_accession_resolutions": {
+      "P03176": [
+        "P0DTH5",
+        "Q9QNF7"
+      ],
+      "Q05489": [
+        "P0DUB8",
+        "P0DUB9"
+      ]
+    },
+    "limitations": [
+      "MMseqs2 easy-search reports heuristic local alignments at the configured coverage threshold; it is not an exhaustive dynamic programming matrix for every low-identity pair",
+      "bounded search compares the provided external candidate manifest against current accepted countable reference sequences only; no UniRef database was downloaded or searched",
+      "backend no-signal rows remove complete-search debt for the bounded current-reference pilot screen only; exact and near-duplicate rows remain holdout controls",
+      "Foldseek/TM-score structural duplicate screening is not computed here"
+    ],
+    "max_external_vs_reference_identity": 1.0,
+    "max_rows": 12,
+    "method": "external_source_backend_sequence_search",
+    "missing_external_sequence_accessions": [],
+    "missing_external_sequence_count": 0,
+    "missing_reference_sequence_accessions": [],
+    "missing_reference_sequence_count": 0,
+    "near_duplicate_row_count": 0,
+    "no_signal_row_count": 11,
+    "ready_for_label_import": false,
+    "reference_fasta_record_count": 734,
+    "review_only_rule": "real backend sequence-search evidence is review-only and cannot make external rows countable or import-ready",
+    "row_blocker_counts": {
+      "external_review_decision_artifact_not_built": 12,
+      "full_label_factory_gate_not_run": 12,
+      "sequence_holdout_control_not_resolved": 1
+    },
+    "search_status_counts": {
+      "exact_reference_holdout": 1,
+      "no_near_duplicate_signal": 11
+    },
+    "sequence_source_artifacts": {
+      "candidate_manifest": "external_hard_negative_post_p06744_sourcing",
+      "generated_external_fasta": "artifacts/v3_prospective_external_minicampaign_backend_sequence_search_external_20260520.fasta",
+      "generated_reference_fasta": "artifacts/v3_prospective_external_minicampaign_backend_sequence_search_reference_20260520.fasta",
+      "reference_fasta": "artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta",
+      "sequence_clusters": "sequence_cluster_proxy_from_reference_uniprot"
+    }
+  },
+  "near_duplicate_rows": [],
+  "no_signal_rows": [
+    {
+      "accession": "P0A6L4",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P0A6L4",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 297,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.255,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "N-acetylneuraminate lyase (AcNeu lyase) (NAL) (Neu5Ac lyase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (NALase) (Sialate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P0A6L4",
+          "alignment_length": 273,
+          "bits": 98.0,
+          "evalue": 7.49e-24,
+          "external_length": 297,
+          "identity": 0.255,
+          "matched_m_csa_entry_ids": [
+            "m_csa:267"
+          ],
+          "min_coverage": 0.9192,
+          "query_coverage": 0.9192,
+          "reference_accession": "P0A6L2",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 292,
+          "requested_reference_accession": "P0A6L2",
+          "target_coverage": 0.9349
+        }
+      ]
+    },
+    {
+      "accession": "P14174",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P14174",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 115,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Macrophage migration inhibitory factor (MIF) (EC 5.3.2.1) (Glycosylation-inhibiting factor) (GIF) (L-dopachrome isomerase) (L-dopachrome tautomerase) (EC 5.3.3.12) (Phenylpyruvate tautomerase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P28240",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P28240",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 557,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Isocitrate lyase (ICL) (EC 4.1.3.1) (Methylisocitrate lyase) (MICA) (EC 4.1.3.30) (Threo-D(S)-isocitrate glyoxylate-lyase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P28330",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P28330",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 430,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.344,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Long-chain specific acyl-CoA dehydrogenase, mitochondrial (LCAD) (EC 1.3.8.8) (Medium-chain acyl-CoA dehydrogenase, mitochondrial) (EC 1.3.8.7)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P28330",
+          "alignment_length": 374,
+          "bits": 238.0,
+          "evalue": 2.447e-69,
+          "external_length": 430,
+          "identity": 0.344,
+          "matched_m_csa_entry_ids": [
+            "m_csa:68"
+          ],
+          "min_coverage": 0.8698,
+          "query_coverage": 0.8698,
+          "reference_accession": "P26440",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 426,
+          "requested_reference_accession": "P26440",
+          "target_coverage": 0.8779
+        }
+      ]
+    },
+    {
+      "accession": "P30101",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30101",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 505,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.338,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Protein disulfide-isomerase A3 (EC 5.3.4.1) (58 kDa glucose-regulated protein) (58 kDa microsomal protein) (p58) (Disulfide isomerase ER-60) (Endoplasmic reticulum resident protein 57) (ER protein 57) (ERp57) (Endoplasmic reticulum resident protein 60) (ER protein 60) (ERp60)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P30101",
+          "alignment_length": 479,
+          "bits": 258.0,
+          "evalue": 3.516e-75,
+          "external_length": 505,
+          "identity": 0.338,
+          "matched_m_csa_entry_ids": [
+            "m_csa:191"
+          ],
+          "min_coverage": 0.9429,
+          "query_coverage": 0.9485,
+          "reference_accession": "P07237",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 508,
+          "requested_reference_accession": "P07237",
+          "target_coverage": 0.9429
+        }
+      ]
+    },
+    {
+      "accession": "P30838",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30838",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 453,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Aldehyde dehydrogenase, dimeric NADP-preferring (EC 1.2.1.5) (ALDHIII) (Aldehyde dehydrogenase 3) (Aldehyde dehydrogenase family 3 member A1)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P31040",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P31040",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 664,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.888,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Succinate dehydrogenase [ubiquinone] flavoprotein subunit, mitochondrial (EC 1.3.5.1) (Flavoprotein subunit of complex II) (Fp) (Malate dehydrogenase [quinone] flavoprotein subunit) (EC 1.1.5.-)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P31040",
+          "alignment_length": 665,
+          "bits": 1243.0,
+          "evalue": 0.0,
+          "external_length": 664,
+          "identity": 0.888,
+          "matched_m_csa_entry_ids": [
+            "m_csa:294"
+          ],
+          "min_coverage": 1.0,
+          "query_coverage": 1.0015,
+          "reference_accession": "Q9YHT1",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 665,
+          "requested_reference_accession": "Q9YHT1",
+          "target_coverage": 1.0
+        },
+        {
+          "accession": "P31040",
+          "alignment_length": 539,
+          "bits": 191.0,
+          "evalue": 1.715e-51,
+          "external_length": 664,
+          "identity": 0.305,
+          "matched_m_csa_entry_ids": [
+            "m_csa:739"
+          ],
+          "min_coverage": 0.8117,
+          "query_coverage": 0.8117,
+          "reference_accession": "P10902",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 540,
+          "requested_reference_accession": "P10902",
+          "target_coverage": 0.9981
+        }
+      ]
+    },
+    {
+      "accession": "P36959",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P36959",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 345,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "GMP reductase 1 (GMPR 1) (EC 1.7.1.7) (Guanosine 5'-monophosphate oxidoreductase 1) (Guanosine monophosphate reductase 1)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P54098",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P54098",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 1239,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "DNA polymerase subunit gamma-1 (EC 2.7.7.7) (3'-5' exodeoxyribonuclease) (EC 3.1.11.-) (5'-deoxyribose-phosphate lyase) (EC 4.2.99.-) (Mitochondrial DNA polymerase catalytic subunit) (PolG-alpha)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q8TAT5",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8TAT5",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 605,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Endonuclease 8-like 3 (EC 3.2.2.-) (EC 4.2.99.18) (DNA glycosylase FPG2) (DNA glycosylase/AP lyase Neil3) (Endonuclease VIII-like 3) (Nei-like protein 3)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q9BZE2",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BZE2",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 481,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "tRNA pseudouridine(38/39) synthase (EC 5.4.99.45) (tRNA pseudouridine synthase 3) (tRNA pseudouridylate synthase 3) (tRNA-uridine isomerase 3)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    }
+  ],
+  "rows": [
+    {
+      "accession": "P07237",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "sequence_holdout_control_not_resolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P07237",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 508,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 1.0,
+      "near_duplicate_hit_count": 1,
+      "protein_name": "Protein disulfide-isomerase (PDI) (EC 5.3.4.1) (Cellular thyroid hormone-binding protein) (Prolyl 4-hydroxylase subunit beta) (p55)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "exact_reference_holdout",
+      "top_hits": [
+        {
+          "accession": "P07237",
+          "alignment_length": 508,
+          "bits": 1022.0,
+          "evalue": 0.0,
+          "external_length": 508,
+          "identity": 1.0,
+          "matched_m_csa_entry_ids": [
+            "m_csa:191"
+          ],
+          "min_coverage": 1.0,
+          "query_coverage": 1.0,
+          "reference_accession": "P07237",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 508,
+          "requested_reference_accession": "P07237",
+          "target_coverage": 1.0
+        }
+      ]
+    },
+    {
+      "accession": "P0A6L4",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P0A6L4",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 297,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.255,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "N-acetylneuraminate lyase (AcNeu lyase) (NAL) (Neu5Ac lyase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (NALase) (Sialate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P0A6L4",
+          "alignment_length": 273,
+          "bits": 98.0,
+          "evalue": 7.49e-24,
+          "external_length": 297,
+          "identity": 0.255,
+          "matched_m_csa_entry_ids": [
+            "m_csa:267"
+          ],
+          "min_coverage": 0.9192,
+          "query_coverage": 0.9192,
+          "reference_accession": "P0A6L2",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 292,
+          "requested_reference_accession": "P0A6L2",
+          "target_coverage": 0.9349
+        }
+      ]
+    },
+    {
+      "accession": "P14174",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P14174",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 115,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Macrophage migration inhibitory factor (MIF) (EC 5.3.2.1) (Glycosylation-inhibiting factor) (GIF) (L-dopachrome isomerase) (L-dopachrome tautomerase) (EC 5.3.3.12) (Phenylpyruvate tautomerase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P28240",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P28240",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 557,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Isocitrate lyase (ICL) (EC 4.1.3.1) (Methylisocitrate lyase) (MICA) (EC 4.1.3.30) (Threo-D(S)-isocitrate glyoxylate-lyase)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P28330",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P28330",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 430,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.344,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Long-chain specific acyl-CoA dehydrogenase, mitochondrial (LCAD) (EC 1.3.8.8) (Medium-chain acyl-CoA dehydrogenase, mitochondrial) (EC 1.3.8.7)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P28330",
+          "alignment_length": 374,
+          "bits": 238.0,
+          "evalue": 2.447e-69,
+          "external_length": 430,
+          "identity": 0.344,
+          "matched_m_csa_entry_ids": [
+            "m_csa:68"
+          ],
+          "min_coverage": 0.8698,
+          "query_coverage": 0.8698,
+          "reference_accession": "P26440",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 426,
+          "requested_reference_accession": "P26440",
+          "target_coverage": 0.8779
+        }
+      ]
+    },
+    {
+      "accession": "P30101",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30101",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 505,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.338,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Protein disulfide-isomerase A3 (EC 5.3.4.1) (58 kDa glucose-regulated protein) (58 kDa microsomal protein) (p58) (Disulfide isomerase ER-60) (Endoplasmic reticulum resident protein 57) (ER protein 57) (ERp57) (Endoplasmic reticulum resident protein 60) (ER protein 60) (ERp60)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P30101",
+          "alignment_length": 479,
+          "bits": 258.0,
+          "evalue": 3.516e-75,
+          "external_length": 505,
+          "identity": 0.338,
+          "matched_m_csa_entry_ids": [
+            "m_csa:191"
+          ],
+          "min_coverage": 0.9429,
+          "query_coverage": 0.9485,
+          "reference_accession": "P07237",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 508,
+          "requested_reference_accession": "P07237",
+          "target_coverage": 0.9429
+        }
+      ]
+    },
+    {
+      "accession": "P30838",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30838",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 453,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Aldehyde dehydrogenase, dimeric NADP-preferring (EC 1.2.1.5) (ALDHIII) (Aldehyde dehydrogenase 3) (Aldehyde dehydrogenase family 3 member A1)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P31040",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P31040",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 664,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": 0.888,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Succinate dehydrogenase [ubiquinone] flavoprotein subunit, mitochondrial (EC 1.3.5.1) (Flavoprotein subunit of complex II) (Fp) (Malate dehydrogenase [quinone] flavoprotein subunit) (EC 1.1.5.-)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": [
+        {
+          "accession": "P31040",
+          "alignment_length": 665,
+          "bits": 1243.0,
+          "evalue": 0.0,
+          "external_length": 664,
+          "identity": 0.888,
+          "matched_m_csa_entry_ids": [
+            "m_csa:294"
+          ],
+          "min_coverage": 1.0,
+          "query_coverage": 1.0015,
+          "reference_accession": "Q9YHT1",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 665,
+          "requested_reference_accession": "Q9YHT1",
+          "target_coverage": 1.0
+        },
+        {
+          "accession": "P31040",
+          "alignment_length": 539,
+          "bits": 191.0,
+          "evalue": 1.715e-51,
+          "external_length": 664,
+          "identity": 0.305,
+          "matched_m_csa_entry_ids": [
+            "m_csa:739"
+          ],
+          "min_coverage": 0.8117,
+          "query_coverage": 0.8117,
+          "reference_accession": "P10902",
+          "reference_accession_resolution": "source_reference_fasta",
+          "reference_length": 540,
+          "requested_reference_accession": "P10902",
+          "target_coverage": 0.9981
+        }
+      ]
+    },
+    {
+      "accession": "P36959",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P36959",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 345,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "GMP reductase 1 (GMPR 1) (EC 1.7.1.7) (Guanosine 5'-monophosphate oxidoreductase 1) (Guanosine monophosphate reductase 1)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "P54098",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P54098",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 1239,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "DNA polymerase subunit gamma-1 (EC 2.7.7.7) (3'-5' exodeoxyribonuclease) (EC 3.1.11.-) (5'-deoxyribose-phosphate lyase) (EC 4.2.99.-) (Mitochondrial DNA polymerase catalytic subunit) (PolG-alpha)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q8TAT5",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q8TAT5",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 605,
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "Endonuclease 8-like 3 (EC 3.2.2.-) (EC 4.2.99.18) (DNA glycosylase FPG2) (DNA glycosylase/AP lyase Neil3) (Endonuclease VIII-like 3) (Nei-like protein 3)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    },
+    {
+      "accession": "Q9BZE2",
+      "backend_name": "mmseqs2_easy_search",
+      "backend_search_complete": true,
+      "blockers": [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BZE2",
+      "exact_reference_overlap": false,
+      "external_sequence_length": 481,
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "max_external_vs_reference_identity": null,
+      "near_duplicate_hit_count": 0,
+      "protein_name": "tRNA pseudouridine(38/39) synthase (EC 5.4.99.45) (tRNA pseudouridine synthase 3) (tRNA pseudouridylate synthase 3) (tRNA-uridine isomerase 3)",
+      "ready_for_label_import": false,
+      "review_status": "external_backend_sequence_search_review_only",
+      "scope_signal": null,
+      "search_status": "no_near_duplicate_signal",
+      "top_hits": []
+    }
+  ],
+  "warnings": [
+    "the backend search removes bounded current-reference sequence-search debt only for no-signal rows; active-site evidence, representation controls, review decisions, and factory gates remain required"
+  ]
+}
