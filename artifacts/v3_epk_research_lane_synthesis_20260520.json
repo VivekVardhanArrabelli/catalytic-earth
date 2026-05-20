@@ -1,0 +1,353 @@
+{
+  "input_lane_validation": [
+    {
+      "branch": "research/epk-positive-evidence",
+      "dirty_status_summary": [
+        " M artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
+        " M work/research_lanes/epk_positive_evidence/handoff.md",
+        "?? artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_source_review_20260520.json",
+        "?? tools/"
+      ],
+      "handoff_path": "work/research_lanes/epk_positive_evidence/handoff.md",
+      "handoff_sha256": "10e1b08aea9b69e1828a5d292723ba6901ca068205c2cfaa9f765dc1a448c3ed",
+      "json_file_digests": [
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_scout_20260520.json",
+          "sha256": "363d0bbb76199ea2acf402680605b6493a002b4ac9ed1fcb744aa4976c5dd907"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_source_review_20260520.json",
+          "sha256": "6f1f72c87e73c4a04493174b2b411737d1b097a3e32a67e8b4f76cc6681b57ba"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_peptide_atp_mg_all39_scout_20260520.json",
+          "sha256": "2346914db629131265a591433b203d199cb57f3eefcd21fee3bdb2fd7cb9b1b1"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_peptide_atp_mg_all39_source_validation_builtin_20260520.json",
+          "sha256": "62e932e31ad9b6a5de582a209384592ecbbb79a547625cb007d03cd805e464e1"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_peptide_atp_mg_first25_scout_20260520.json",
+          "sha256": "0d211ad30278195c5e639191f8b47c14830bc92101b0a6c2f3ff970d2273d503"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_peptide_atp_mg_first25_source_validation_builtin_20260520.json",
+          "sha256": "3710c56e69821bd7d9ab0c22afa44105f3a46f09d578d84ac150e5e5ad04336d"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_protein_atp_mg_46_scout_20260520.json",
+          "sha256": "7751bcc3630262ff73628d9b47dbed03fde8cdeda6db2acac4c3d66673079b66"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_michaelis_kinase_substrate_peptide_atp_all4_scout_20260520.json",
+          "sha256": "602b662d2bdfd62b7afb96ce504dd3a4a650ebb3c23facc6a7af3d5b3ea1b613"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_phosphoacceptor_protein_kinase_substrate_all21_scout_20260520.json",
+          "sha256": "48be59c2ff485f0b663817c8ea70e40b61af6f440895476954a6e26feec2fcee"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_protein_kinase_protein_substrate_atp_mg_all16_scout_20260520.json",
+          "sha256": "55e094a31a4944889f41552ce341b16ecfa3efc1a434454004421f99e1b71a7c"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_protein_kinase_substrate_amp_pnp_protein_all67_scout_20260520.json",
+          "sha256": "bdb941e0084236068c00d168812dda04032112a3968a09fc43490907cf286fde"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_tyrosine_kinase_substrate_peptide_atp_analog_all10_scout_20260520.json",
+          "sha256": "ea68b7df87b2d2bd7034de906fae7e11011b8e4f5d61ddc1bb31354ac6d1912d"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_positive_evidence_source_review_20260520.json",
+          "sha256": "925612520d74602f820d3fc0956136f8b9e9b1227df1b421a608399cc9f39ffe"
+        }
+      ],
+      "json_validation": {
+        "error_count": 0,
+        "json_file_count": 13,
+        "jsonl_file_count": 1,
+        "validated_file_count": 14
+      },
+      "lane_id": "epk_positive_evidence",
+      "ledger_path": "artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
+      "ledger_sha256": "b1c25100da322584bbc8d88a364eed6ab2fb516b80185b2a4f12a054eb9228c3",
+      "origin_ref": "origin/research/epk-positive-evidence",
+      "pushed_commit_prefix": "5cb29afec94a",
+      "pushed_commit_summary": "Add ePK positive evidence research lane",
+      "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive",
+      "worktree_dirty_at_synthesis": true
+    },
+    {
+      "branch": "research/epk-false-positive-hunter",
+      "dirty_status_summary": [
+        "?? artifacts/research_lanes/epk_false_positive_hunter/component_atp_like_mg_cross_chain_substrate_mode_stress_20260520.json",
+        "?? artifacts/research_lanes/epk_false_positive_hunter/cross_chain_acceptor_targeted_substrate_mode_stress_20260520.json",
+        "?? artifacts/research_lanes/epk_false_positive_hunter/cross_chain_interface_oligomer_substrate_mode_stress_20260520.json",
+        "?? artifacts/research_lanes/epk_false_positive_hunter/cross_chain_non_epk_atp_mg_substrate_mode_stress_20260520.json",
+        "?? tools/research_lanes/epk_false_positive_hunter/component_cross_chain_substrate_mode_stress.py",
+        "?? tools/research_lanes/epk_false_positive_hunter/cross_chain_substrate_mode_stress.py"
+      ],
+      "handoff_path": "work/research_lanes/epk_false_positive_hunter/handoff.md",
+      "handoff_sha256": "e2164d83545612a5f7fe20b55338d437fa5d835dd261f150bef73897e1bc5b95",
+      "json_file_digests": [
+        {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/atpase_transporter_substrate_mode_stress_20260520.json",
+          "sha256": "bb8aa822e5f82afb556f2ca82868eebe8d1542274e0b595825d9a6e470af75f8"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/component_atp_like_mg_cross_chain_substrate_mode_stress_20260520.json",
+          "sha256": "6a30c8d5e816f2fd8421e6840984d20ad462ebd3924ee6ae70d3d7a075559465"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/cross_chain_acceptor_targeted_substrate_mode_stress_20260520.json",
+          "sha256": "372e2857fcc8e43b80d84f544fd0f898ea1101c4048e801bf4305517c3cc2e36"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/cross_chain_interface_oligomer_substrate_mode_stress_20260520.json",
+          "sha256": "fc27bd0f76af2b0e874d65d5faa5160809131481c945427022907eb82f7e8e94"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/cross_chain_non_epk_atp_mg_substrate_mode_stress_20260520.json",
+          "sha256": "e262513daba186bea69d97549faf47298c7001d99b451ecf1f1cea69bdf94064"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/non_epk_atp_mg_enzyme_substrate_mode_stress_20260520.json",
+          "sha256": "68e81f62ecf25a65ea6402ceef4f5279a304afeeee06289d2268c64b284f004b"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/stress_summary_20260520.json",
+          "sha256": "bf0982d68bf0a4e1a951af0c97c52ef022e3af2ff3c461de75f38b5204eceddf"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/walker_a_substrate_mode_confirmation_20260520.json",
+          "sha256": "f1f6923a10ddff14711abd96942afb4556863f5333bcb903f7a18854a0b235f3"
+        }
+      ],
+      "json_validation": {
+        "error_count": 0,
+        "json_file_count": 8,
+        "jsonl_file_count": 1,
+        "validated_file_count": 9
+      },
+      "lane_id": "epk_false_positive_hunter",
+      "ledger_path": "artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
+      "ledger_sha256": "507ca6255302ae797d8dc956e3c5e3ab55bccab4e52962ccb95138e2d8f9d80c",
+      "origin_ref": "origin/research/epk-false-positive-hunter",
+      "pushed_commit_prefix": "264a470b3933",
+      "pushed_commit_summary": "Add ePK false-positive hunter stress evidence",
+      "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive",
+      "worktree_dirty_at_synthesis": true
+    },
+    {
+      "branch": "research/epk-sibling-controls",
+      "dirty_status_summary": [
+        " M tools/research_lanes/epk_sibling_controls/askha_control_screen.py",
+        "?? artifacts/research_lanes/epk_sibling_controls/atp_grasp_bounded_control_screen_20260520.json"
+      ],
+      "handoff_path": "work/research_lanes/epk_sibling_controls/handoff.md",
+      "handoff_sha256": "689a4051e623b6e2ca5039c165c63a275993774ac9670379f73e5f82121ed793",
+      "json_file_digests": [
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/askha_bounded_control_screen_20260520.json",
+          "sha256": "723653fbe77142c7af27adcc6eeabaea04346db6b457acdb088cc9f0bdf63ebe"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_bounded_control_screen_20260520.json",
+          "sha256": "4e9532b71ede252aef9fb45bcda24eab302797eed74b55dfd2b7598abbbbce52"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/dnk_bounded_control_screen_20260520.json",
+          "sha256": "48a66f68001b9e9f51b833cfe7b3a56eb44d412806867baf32af1558b2568dae"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/ghkl_bounded_control_screen_20260520.json",
+          "sha256": "202356205f4e6564dc701f3fa84770374c5c188b8f3f5e3ba9bd14c157ea1c7f"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/ghmp_bounded_control_screen_20260520.json",
+          "sha256": "0896d4cbc55a6931e1fb275dd755c09f02106b8be4664bb3346bd20a5e697459"
+        }
+      ],
+      "json_validation": {
+        "error_count": 0,
+        "json_file_count": 5,
+        "jsonl_file_count": 1,
+        "validated_file_count": 6
+      },
+      "lane_id": "epk_sibling_controls",
+      "ledger_path": "artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
+      "ledger_sha256": "d504b18521be634003ce2e1257780a86badac266240e5136cd8dca373b711355",
+      "origin_ref": "origin/research/epk-sibling-controls",
+      "pushed_commit_prefix": "8537feec28a2",
+      "pushed_commit_summary": "Add ePK sibling controls research evidence",
+      "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls",
+      "worktree_dirty_at_synthesis": true
+    },
+    {
+      "branch": "research/epk-policy-harness",
+      "dirty_status_summary": [
+        " M tools/research_lanes/epk_policy_harness/epk_policy_harness.py",
+        "?? artifacts/research_lanes/epk_policy_harness/epk_policy_cutoff_expectation_result_20260520T151816Z.json",
+        "?? artifacts/research_lanes/epk_policy_harness/epk_policy_cutoff_expectation_tranche_20260520T151816Z.json"
+      ],
+      "handoff_path": "work/research_lanes/epk_policy_harness/handoff.md",
+      "handoff_sha256": "047a9faf0084d69de0135f63d513393297e5ab28b86531ebc945203f52f4f71b",
+      "json_file_digests": [
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_cutoff_expectation_result_20260520T151816Z.json",
+          "sha256": "0dbd31af003f4c9bec1ad57471c4ed646ddb04f1faa2a0842ee5dd32d22d016c"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_cutoff_expectation_tranche_20260520T151816Z.json",
+          "sha256": "11e763896a9b7133040151a283c7d6744f6e5fcb0f8d337587568dce926192be"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_diagnostic_result_20260520T091714-0500.json",
+          "sha256": "5c35888e17a0e5961ef149d9254089fbf96b4f58fd6b8182d7b78c8872a88d1a"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_diagnostic_tranche_20260520.json",
+          "sha256": "97762d6786125e283e216ba2e6373b9687d0722b90db659e24792ce7d1935c4b"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_v0_20260520.json",
+          "sha256": "298b2a636fe3a50b3872bb513a9d37e0151b02b71d25fe1b651da5d3854b4345"
+        }
+      ],
+      "json_validation": {
+        "error_count": 0,
+        "json_file_count": 5,
+        "jsonl_file_count": 1,
+        "validated_file_count": 6
+      },
+      "lane_id": "epk_policy_harness",
+      "ledger_path": "artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
+      "ledger_sha256": "cc31918c2f7adcadd750836f585b45fd30f1f8ea44bfbcb5c2b1bff9dd30e716",
+      "origin_ref": "origin/research/epk-policy-harness",
+      "pushed_commit_prefix": "4ac7ac682301",
+      "pushed_commit_summary": "Add ePK policy harness research evidence",
+      "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness",
+      "worktree_dirty_at_synthesis": true
+    }
+  ],
+  "lane_findings": [
+    {
+      "evidence_against": [
+        "The later explicit phosphoacceptor/full-length substrate surface reviewed 177 unique PDB IDs across 14 surfaces and found 0 fresh clean folded-protein positives.",
+        "Strict AMP-PNP plus phosphoacceptor folded-substrate query returned 0 rows; full-length ATP/Mg wording returned 24 rows without a new heteromeric source-review lead.",
+        "Rejected or counterexample rows include 2JJ2, 7B56, 7ZE5, and 9UW4."
+      ],
+      "evidence_for": [
+        "Pushed lane evidence added review-only peptide/protein-substrate positive-like anchors including CDK2 and PKA peptide structures.",
+        "Known folded-protein positive-like repeats 5HVK, 6Z3R, 9UUR, and 9UUX were recovered as regression anchors."
+      ],
+      "lane_id": "epk_positive_evidence",
+      "primary_outcome": "evidence_against_fresh_folded_protein_positive",
+      "recommendation": "Keep positive evidence review-only; do not score ePK or calibrate thresholds from repeat positives or source-context peptide anchors."
+    },
+    {
+      "evidence_against": [
+        "The surfaces are bounded review-only attacks, not clean safety proof for production scoring.",
+        "The next adversarial surface remains topology-clear cross-chain non-ePK ATP/Mg cases, not same-chain Walker-A/P-loop repeats."
+      ],
+      "evidence_for": [
+        "Across the pushed stress summary, 295 reviewed rows / 281 unique PDB IDs produced 14 substrate-mode pressure cases, all blocked by same-chain topology ambiguity.",
+        "Newer sibling-worktree cross-chain stress artifacts validate and add 668 reviewed rows with 0 counterexample candidates across non-ePK ATP/Mg, interface/oligomer, acceptor-targeted, and component ATP-like Mg surfaces."
+      ],
+      "lane_id": "epk_false_positive_hunter",
+      "primary_outcome": "evidence_against_exact_counterexample_on_bounded_surfaces",
+      "recommendation": "Preserve the topology ambiguity counteraxis as review-only evidence and keep ePK production scoring closed."
+    },
+    {
+      "evidence_against": [
+        "The controls were not production-scored and do not clear threshold calibration or external hard-negative re-audit gates.",
+        "Distance-only, nearest-oxygen, and unqualified gamma-to-hydroxyl rules remain invalidated by sibling-family overlap."
+      ],
+      "evidence_for": [
+        "ASKHA, dNK, GHKL, and GHMP pushed controls reviewed 119 rows, added 14 controls, and found weak nearest-hydroxyl counterexamples including 3FGU, 6PDT, 5ZQT, 2QQ0, 1I5A, 1I5B, 6BLK, 3SL2, 8F71, 3GON, and 1H74.",
+        "A newer ATP-grasp local artifact reviewed 72 structures and records 25 gamma/metal control candidates plus 24 product-state-with-metal rows."
+      ],
+      "lane_id": "epk_sibling_controls",
+      "primary_outcome": "counterexample_found",
+      "recommendation": "Use sibling rows as falsification controls; expand ATP-grasp or add nonpolymer-acceptor counteraxes only inside review-only experiments."
+    },
+    {
+      "evidence_against": [
+        "No accepted source-free acceptor/role extractor exists in v0, so the policy is deliberately fail-closed rather than positive-yielding.",
+        "Diagnostic and synthetic tranches are harness QA or development context, not clean held-out performance evidence."
+      ],
+      "evidence_for": [
+        "The frozen v0 policy manifest separates allowed structure-local features from forbidden text, label, source, EC/Rhea, post-hoc threshold, and registry-derived features.",
+        "The 13-row diagnostic tranche abstained on all rows, including 4EKK, seven regression counterexamples, product/analog/repair tripwires, and sibling controls.",
+        "A newer five-row synthetic cutoff expectation tranche produced 0 expected-decision mismatches and 5 review-only abstentions."
+      ],
+      "lane_id": "epk_policy_harness",
+      "primary_outcome": "policy_frozen_review_only",
+      "recommendation": "Freeze the policy only for future review-only prospective tranches; do not activate it as a production scorer."
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_epk_research_lane_synthesis_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "canonical_countable_label_count": 682,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T16:12:00Z",
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "git_history_edited": false,
+    "lane_count": 4,
+    "lane_json_validation_error_count": 0,
+    "main_loop_should_continue_epk_by_default": false,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "main_loop_research_lane_review_only_synthesis",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_type": "sibling_worktree_research_lanes_plus_origin_research_branches",
+    "threshold_calibrated": false
+  },
+  "next_exact_experiment_if_epk_is_reopened": {
+    "decision_to_start_now": false,
+    "experiment_id": "epk_fresh_nonconfounded_folded_substrate_role_identity_stress_v1_review_only",
+    "preconditions": [
+      "Freeze a fresh post-policy candidate tranche before computing local features.",
+      "Compute source-free ligand-state, topology, acceptor-role, and substrate-identity features before any source validation or text review.",
+      "Keep source validation as post-feature review context only.",
+      "Include topology-clear cross-chain non-ePK ATP/Mg attacks and ATP-grasp sibling controls in the same review-only packet.",
+      "Do not calibrate thresholds, score external hard negatives, import labels, or edit registries."
+    ],
+    "reason_not_started": "Main automation has higher-priority visible small wins and current ePK evidence does not remove a production blocker.",
+    "status": "deferred_not_main_loop_default"
+  },
+  "small_win_ladder_decision": {
+    "avoid": [
+      "more unbounded ePK audit/control churn",
+      "M-CSA strict pairwise Foldseek/TM split repair",
+      "artifact migration Phase 2 upload or Phase 3 removal",
+      "registry or fingerprint edits without preregistered gates"
+    ],
+    "next_main_loop_focus": "continue_non_epk_small_wins",
+    "preferred_next_rung": "prospective_external_minicampaign_or_non_epk_family_readiness_packet"
+  },
+  "synthesis_conclusion": {
+    "false_positive_lane": "bounded_attacks_found_pressure_cases_but_no_topology_clear_counterexample",
+    "ligand_state_policy": "frozen_only_for_future_review_only_prospective_tranches",
+    "overall": "epk_remains_review_only_and_not_production_ready",
+    "policy_harness_lane": "review_only_policy_is_frozen_fail_closed_not_positive_yielding",
+    "positive_evidence_lane": "fresh_folded_protein_positive_not_found",
+    "production_activation_decision": "no_go",
+    "sibling_control_lane": "counterexamples_found_for_distance_only_or_nearest_oxygen_rules",
+    "substrate_role_axis": "not_freeze_ready_for_production",
+    "terminal_main_loop_decision": "do_not_resume_epk_as_default_main_loop_task"
+  }
+}

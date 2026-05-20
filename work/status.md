@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 215
-- Measured elapsed time: 6792.6 minutes (113.21 hours)
+- Entries: 216
+- Measured elapsed time: 6798.7 minutes (113.31 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 1563.4 measured minutes (26.06 hours)
+- post-infra-science: 1569.6 measured minutes (26.16 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2546
-- Evidence references logged: 2042
+- Artifact references logged: 2552
+- Evidence references logged: 2050
 
 ## Recent Entries
-
-### 2026-05-20T08:39:33.652171+00:00 - post-infra-science
-
-- Task: ePK MEK ERK source review and broad-role stress
-- Time mode: measured
-- Measured minutes: 48.517
-- Started: 2026-05-20T07:50:46Z
-- Ended: 2026-05-20T08:39:17Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_mek_erk_phosphosite_source_review_1025.json, artifacts/v3_epk_mek_erk_role_control_rerun_1025.json, artifacts/v3_epk_mek_erk_broad_role_stress_audit_1025.json, artifacts/v3_epk_mek_erk_context_counteraxis_stress_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 644-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, MEK ERK source review marked 9UUR and 9UUX measurement-ready and rejected 9UW4 same-chain topology, broad-role stress retained 9UUR and 9UUX but false-hit 8 nonpositive topology rows, review-context counteraxis blocked 6 prior counterexample repeats and left 7CAG and 8BMS residual false hits, pre-count gate remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 656-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external hard-negative production score or removal_allowed=true.
 
 ### 2026-05-20T09:40:52.064773+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-20T15:31:49Z
 - Artifacts: artifacts/v3_prospective_external_minicampaign_coordinate_materialization_20260520.json, artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520, artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json, artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json, artifacts/v3_prospective_external_minicampaign_inverse_gate_scores_20260520.json, artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json, artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 685-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, subagent JSON packets and synthesis JSON validated, 11 frozen mini-campaign AlphaFold coordinate sidecars materialized with 0 fetch failures, Foldseek current-countable structural screen completed 7392/7392 query-target pairs against 672 current coordinate groups, all 11 sequence-clean rows rejected by current-countable structural duplicate signal, P07237 remains exact-reference terminal rejection, inverse gate scored 0 rows because no row survived structural duplicate screening, focused small-win artifact tests passed, final 686-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and 3 external hard negatives unchanged, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
+
+### 2026-05-20T16:07:10.750132+00:00 - post-infra-science
+
+- Task: ePK research-lane synthesis integration
+- Time mode: measured
+- Measured minutes: 6.167
+- Started: 2026-05-20T16:00:50Z
+- Ended: 2026-05-20T16:07:00Z
+- Artifacts: artifacts/v3_epk_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 686-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, four ePK sibling research lanes read from sibling worktrees and origin research branches, 35 lane JSON/JSONL files validated with 0 errors, ePK remains review-only and production activation no-go, targeted small-win artifact tests passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -290,6 +290,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T13:17:20.692201+00:00: Next external mini-campaign blocker is restoring or configuring Foldseek before current-countable structural screen and inverse-gate scoring can produce import decisions
 - 2026-05-20T14:14:08.715044+00:00: Next mini-campaign work should materialize the 11 candidate coordinate sidecars before rerunning Foldseek; next SDR work should freeze a 10-20 row SDR/AKR control tranche before scoring.
 - 2026-05-20T15:32:22.885905+00:00: Next external mini-campaign work needs genuinely new preregistered sourcing or a different frozen surface; do not rerun this structurally duplicated set for import.
+- 2026-05-20T16:07:10.750132+00:00: Current ePK evidence still does not remove production blockers; the only exact future ePK experiment is deferred review-only fresh substrate-role stress.
 
 ## Scope Adjustments
 
@@ -404,3 +405,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T13:17:20.692201+00:00: ePK remains review-only; main loop pivoted to external mini-campaign and baseline comparison small wins
 - 2026-05-20T14:14:08.715044+00:00: Main loop now has a non-ePK SDR readiness packet and a mini-campaign sequence baseline; Foldseek binary is restored but candidate coordinate sidecars are the active external-screen blocker.
 - 2026-05-20T15:32:22.885905+00:00: Frozen prospective mini-campaign is now closed as terminal review-only duplicate evidence rather than blocked by missing coordinate sidecars.
+- 2026-05-20T16:07:10.750132+00:00: Fresh ePK research-lane outputs are synthesized as review-only evidence; main loop should continue non-ePK small wins instead of ePK default work.

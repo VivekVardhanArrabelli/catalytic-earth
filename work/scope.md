@@ -19,6 +19,18 @@ for production breadth, and the external stress tranche is diagnostic rather
 than clean performance evidence. The main loop should pivot away from ePK as
 the default task and toward prospective external mini-campaigns, modern
 baseline comparisons, terminal decisions, and family-readiness packets.
+The 2026-05-20 sibling research-lane synthesis in
+`artifacts/v3_epk_research_lane_synthesis_20260520.json` reinforces that
+scope rather than reopening production work. Fresh lane evidence found no new
+clean folded-protein positive, found no topology-clear false-positive
+counterexample on bounded attacks, added sibling-family counterexamples that
+break distance-only/nearest-oxygen rules, and froze a fail-closed review-only
+policy harness. The only exact future ePK experiment named by the main loop is
+`epk_fresh_nonconfounded_folded_substrate_role_identity_stress_v1_review_only`,
+and it remains deferred: source-free features must be computed on a frozen
+fresh tranche before source validation, with no threshold calibration, external
+hard-negative production score, registry edit, fingerprint edit, or label
+import.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

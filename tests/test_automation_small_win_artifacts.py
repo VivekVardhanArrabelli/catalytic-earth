@@ -42,6 +42,58 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             all(row["json_valid"] for row in synthesis["input_packet_validation"])
         )
 
+    def test_epk_research_lane_synthesis_stays_review_only(self) -> None:
+        synthesis = _load_json(
+            ARTIFACTS / "v3_epk_research_lane_synthesis_20260520.json"
+        )
+        metadata = synthesis["metadata"]
+        conclusion = synthesis["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_migration_files_edited"])
+        self.assertFalse(metadata["main_loop_should_continue_epk_by_default"])
+        self.assertEqual(metadata["lane_count"], 4)
+        self.assertEqual(metadata["lane_json_validation_error_count"], 0)
+
+        self.assertEqual(
+            conclusion["overall"],
+            "epk_remains_review_only_and_not_production_ready",
+        )
+        self.assertEqual(conclusion["production_activation_decision"], "no_go")
+        self.assertEqual(
+            conclusion["terminal_main_loop_decision"],
+            "do_not_resume_epk_as_default_main_loop_task",
+        )
+
+        lanes = {row["lane_id"]: row for row in synthesis["lane_findings"]}
+        self.assertEqual(
+            set(lanes),
+            {
+                "epk_positive_evidence",
+                "epk_false_positive_hunter",
+                "epk_sibling_controls",
+                "epk_policy_harness",
+            },
+        )
+        self.assertEqual(
+            lanes["epk_positive_evidence"]["primary_outcome"],
+            "evidence_against_fresh_folded_protein_positive",
+        )
+        self.assertEqual(
+            lanes["epk_sibling_controls"]["primary_outcome"],
+            "counterexample_found",
+        )
+        self.assertFalse(
+            synthesis["next_exact_experiment_if_epk_is_reopened"][
+                "decision_to_start_now"
+            ]
+        )
+
     def test_prospective_external_minicampaign_records_blocker_without_import(self) -> None:
         packet = _load_json(
             ARTIFACTS

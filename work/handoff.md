@@ -50,6 +50,37 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T16:00:50Z automation run, fresh ePK research-lane
+outputs from the four sibling worktrees are integrated as review-only synthesis
+in `artifacts/v3_epk_research_lane_synthesis_20260520.json`. The main run did
+not merge lane code or copy production changes. It validated 35 JSON/JSONL
+lane artifacts across the positive-evidence, false-positive-hunter,
+sibling-control, and policy-harness lanes, including local sibling-worktree
+outputs that had not yet been pushed from those linked worktrees.
+
+The synthesis keeps ePK out of production. The positive-evidence lane found
+review-only peptide/protein-substrate anchors but the later explicit
+phosphoacceptor/full-length substrate pass reviewed 177 unique PDB IDs and
+found 0 fresh clean folded-protein positives. The false-positive lane found no
+topology-clear counterexample on bounded pushed surfaces and newer local
+cross-chain stress surfaces, but those surfaces remain bounded review attacks
+rather than safety proof. The sibling-control lane found counterexamples for
+distance-only and nearest-oxygen rules across ASKHA, dNK, GHKL, GHMP, and an
+ATP-grasp follow-up. The policy harness is frozen only as a fail-closed
+review-only policy: all diagnostic and synthetic cutoff rows abstain, and no
+accepted source-free acceptor/role extractor exists.
+
+Evidence-based confidence call: confidence is high that current ePK production
+activation remains a no-go because every lane either preserves a blocker or
+adds review-only falsification controls, with no score, threshold, external
+hard-negative scored re-audit, registry edit, label import, or fingerprint
+expansion. Confidence is moderate that a future exact ePK experiment can be
+useful only if it is a fresh post-policy,
+`epk_fresh_nonconfounded_folded_substrate_role_identity_stress_v1_review_only`
+tranche with source-free features computed before source validation. Confidence
+is high that the main automation should continue visible non-ePK small wins
+rather than resume ePK as the default task.
+
 As of the 2026-05-20T14:58:48Z automation run, the frozen prospective external
 mini-campaign has a terminal review-only outcome in
 `artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json`.
