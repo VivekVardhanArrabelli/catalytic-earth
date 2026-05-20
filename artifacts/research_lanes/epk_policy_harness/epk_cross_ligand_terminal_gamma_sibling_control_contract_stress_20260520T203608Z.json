@@ -1,0 +1,178 @@
+{
+  "metadata": {
+    "artifact_id": "epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T203608Z",
+    "candidate_distance_cutoff_angstrom": 6.0,
+    "candidate_ids_frozen_before_local_feature_review": true,
+    "created_at": "2026-05-20T20:36:08Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "lead_control_pairing_frozen_before_evaluation": true,
+    "lead_count": 4,
+    "ligand_codes_observed": [
+      "ANP"
+    ],
+    "matched_pair_count": 4,
+    "pairing_uses_source_free_local_features_only": true,
+    "production_claim_allowed": false,
+    "query_id": "epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_v1_review_only",
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "sibling_control_context_review_only": true,
+    "source_free_matching_features": [
+      "ligand_code_from_structure",
+      "terminal_gamma_atom_name",
+      "local_metal_context_review_only",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom",
+      "best_cross_auth_chain_distance_angstrom",
+      "nearest_gamma_metal_distance_angstrom",
+      "nonconfounded_inter_auth_chain_within_cutoff"
+    ],
+    "source_surface_artifacts": [
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_page2_20260520T203608Z.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_materialized_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amppnp_alias_materialized_anp_terminal_gamma_search_surface_20260520T202914Z.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_substrate_materialized_anp_terminal_gamma_search_surface_20260520T203337Z.json"
+    ],
+    "source_surface_query_contexts_review_only": [
+      {
+        "artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+        "chem_comp_id": "ANP",
+        "ligand_code": "ANP",
+        "query": "chemcomp rcsb_chem_comp_container_identifiers.comp_id exact_match ANP sorted by rcsb_accession_info.initial_release_date desc",
+        "query_mode": "chemcomp",
+        "review_only": true
+      },
+      {
+        "artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_page2_20260520T203608Z.json",
+        "chem_comp_id": "ANP",
+        "ligand_code": "ANP",
+        "query": "chemcomp rcsb_chem_comp_container_identifiers.comp_id exact_match ANP sorted by rcsb_accession_info.initial_release_date desc",
+        "query_mode": "chemcomp",
+        "review_only": true
+      },
+      {
+        "artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_materialized_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+        "chem_comp_id": "ANP",
+        "ligand_code": "ANP",
+        "query": "full_text protein kinase AMP-PNP magnesium sorted by rcsb_accession_info.initial_release_date desc",
+        "query_mode": "full_text",
+        "review_only": true
+      },
+      {
+        "artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amppnp_alias_materialized_anp_terminal_gamma_search_surface_20260520T202914Z.json",
+        "chem_comp_id": "ANP",
+        "ligand_code": "ANP",
+        "query": "full_text protein kinase AMPPNP magnesium sorted by rcsb_accession_info.initial_release_date desc",
+        "query_mode": "full_text",
+        "review_only": true
+      },
+      {
+        "artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_substrate_materialized_anp_terminal_gamma_search_surface_20260520T203337Z.json",
+        "chem_comp_id": "ANP",
+        "ligand_code": "ANP",
+        "query": "full_text kinase substrate AMP-PNP magnesium sorted by rcsb_accession_info.initial_release_date desc",
+        "query_mode": "full_text",
+        "review_only": true
+      }
+    ]
+  },
+  "pairs": [
+    {
+      "control_best_cross_auth_chain_distance_angstrom": 18.737,
+      "control_ligand_code_from_structure": "ANP",
+      "control_nearest_gamma_metal_distance_angstrom": 5.73,
+      "control_pdb_id": "9YAI",
+      "control_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_materialized_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+      "lead_best_cross_auth_chain_distance_angstrom": 3.968,
+      "lead_ligand_code_from_structure": "ANP",
+      "lead_nearest_gamma_metal_distance_angstrom": 4.691,
+      "lead_pdb_id": "9UUX",
+      "lead_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+      "pair_id": "pair_9UUX_9YAI",
+      "pairing_feature_basis": [
+        "ligand_code_from_structure",
+        "terminal_gamma_atom_name",
+        "local_metal_context_review_only",
+        "best_any_ser_thr_tyr_gamma_distance_angstrom",
+        "best_cross_auth_chain_distance_angstrom",
+        "nearest_gamma_metal_distance_angstrom",
+        "nonconfounded_inter_auth_chain_within_cutoff"
+      ],
+      "pairing_score": 3.5994,
+      "pairing_status": "frozen_before_harness_evaluation"
+    },
+    {
+      "control_best_cross_auth_chain_distance_angstrom": 9.149,
+      "control_ligand_code_from_structure": "ANP",
+      "control_nearest_gamma_metal_distance_angstrom": 3.248,
+      "control_pdb_id": "9ECU",
+      "control_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_page2_20260520T203608Z.json",
+      "lead_best_cross_auth_chain_distance_angstrom": 4.181,
+      "lead_ligand_code_from_structure": "ANP",
+      "lead_nearest_gamma_metal_distance_angstrom": 4.467,
+      "lead_pdb_id": "9UUR",
+      "lead_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+      "pair_id": "pair_9UUR_9ECU",
+      "pairing_feature_basis": [
+        "ligand_code_from_structure",
+        "terminal_gamma_atom_name",
+        "local_metal_context_review_only",
+        "best_any_ser_thr_tyr_gamma_distance_angstrom",
+        "best_cross_auth_chain_distance_angstrom",
+        "nearest_gamma_metal_distance_angstrom",
+        "nonconfounded_inter_auth_chain_within_cutoff"
+      ],
+      "pairing_score": 2.1458,
+      "pairing_status": "frozen_before_harness_evaluation"
+    },
+    {
+      "control_best_cross_auth_chain_distance_angstrom": 17.422,
+      "control_ligand_code_from_structure": "ANP",
+      "control_nearest_gamma_metal_distance_angstrom": 4.323,
+      "control_pdb_id": "9OAN",
+      "control_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_materialized_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+      "lead_best_cross_auth_chain_distance_angstrom": 4.194,
+      "lead_ligand_code_from_structure": "ANP",
+      "lead_nearest_gamma_metal_distance_angstrom": 4.304,
+      "lead_pdb_id": "9UW4",
+      "lead_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_page2_20260520T203608Z.json",
+      "pair_id": "pair_9UW4_9OAN",
+      "pairing_feature_basis": [
+        "ligand_code_from_structure",
+        "terminal_gamma_atom_name",
+        "local_metal_context_review_only",
+        "best_any_ser_thr_tyr_gamma_distance_angstrom",
+        "best_cross_auth_chain_distance_angstrom",
+        "nearest_gamma_metal_distance_angstrom",
+        "nonconfounded_inter_auth_chain_within_cutoff"
+      ],
+      "pairing_score": 2.3404,
+      "pairing_status": "frozen_before_harness_evaluation"
+    },
+    {
+      "control_best_cross_auth_chain_distance_angstrom": 7.396,
+      "control_ligand_code_from_structure": "ANP",
+      "control_nearest_gamma_metal_distance_angstrom": null,
+      "control_pdb_id": "9OMY",
+      "control_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+      "lead_best_cross_auth_chain_distance_angstrom": 4.586,
+      "lead_ligand_code_from_structure": "ANP",
+      "lead_nearest_gamma_metal_distance_angstrom": null,
+      "lead_pdb_id": "9ZZR",
+      "lead_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_page2_20260520T203608Z.json",
+      "pair_id": "pair_9ZZR_9OMY",
+      "pairing_feature_basis": [
+        "ligand_code_from_structure",
+        "terminal_gamma_atom_name",
+        "local_metal_context_review_only",
+        "best_any_ser_thr_tyr_gamma_distance_angstrom",
+        "best_cross_auth_chain_distance_angstrom",
+        "nearest_gamma_metal_distance_angstrom",
+        "nonconfounded_inter_auth_chain_within_cutoff"
+      ],
+      "pairing_score": 25.3147,
+      "pairing_status": "frozen_before_harness_evaluation"
+    }
+  ]
+}

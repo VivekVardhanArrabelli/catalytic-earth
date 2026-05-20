@@ -1,0 +1,1013 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "alias_map_blockers_review_only": [
+      "GNP",
+      "GTP"
+    ],
+    "artifact_id": "epk_amp_pnp_query_context_coordinate_ligand_materialization_guard_20260520T213835Z",
+    "candidate_id_query_hits_review_only": {
+      "7TQX": [
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "7ZE5": [
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "8FO2": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "8UTN": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "8UTO": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "8UTP": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "8UTQ": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "8UTT": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "8UTU": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "8UTY": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "8WWU": [
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9BMD": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9BQ6": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9BQ7": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9BQ8": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9BQ9": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9BQA": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9BQB": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9BQC": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9BQD": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9CDF": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9CVB": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9ERQ": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9GBA": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9JN1": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9JN2": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9M2T": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9O56": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9O65": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9OAN": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9QCV": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9QKZ": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9V79": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9YA5": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9YAI": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "9YMG": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ]
+    },
+    "candidate_ids_frozen_before_coordinate_ligand_inventory": true,
+    "candidate_ids_reviewed": [
+      "9O56",
+      "9YA5",
+      "9YAI",
+      "9JN1",
+      "9JN2",
+      "9QKZ",
+      "9M2T",
+      "9V79",
+      "9O65",
+      "9YMG",
+      "9QCV",
+      "9CDF",
+      "9GBA",
+      "9ERQ",
+      "9CVB",
+      "9BQ6",
+      "9BQ7",
+      "9BQ8",
+      "9BQ9",
+      "9BQA",
+      "9BQB",
+      "9BQC",
+      "9BQD",
+      "9BMD",
+      "9OAN",
+      "8UTN",
+      "8UTO",
+      "8UTP",
+      "8UTQ",
+      "8UTT",
+      "8UTU",
+      "8UTY",
+      "8FO2",
+      "8WWU",
+      "7ZE5",
+      "7TQX"
+    ],
+    "coordinate_ligand_codes_inventoried_before_local_feature_review": true,
+    "coordinate_ligand_codes_observed": [
+      "ANP",
+      "ATP",
+      "GNP",
+      "GTP"
+    ],
+    "created_at": "2026-05-20T21:38:35Z",
+    "freshness_status": "bounded_live_query_page_materialization_guard",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "nonconfounded_candidate_count_within_cutoff": 2,
+    "pre_frozen_coordinate_ligand_codes": [
+      "ANP",
+      "ATP"
+    ],
+    "production_claim_allowed": false,
+    "queries": [
+      "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+      "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+      "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+    ],
+    "query_id": "epk_amp_pnp_query_context_coordinate_ligand_materialization_guard_v1_review_only",
+    "query_ligand_synonyms_review_only": [
+      "AMP-PNP",
+      "AMPPNP"
+    ],
+    "query_mode": "full_text",
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "terminal_gamma_candidate_count_reviewed": 38
+  },
+  "rows": [
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP"
+      ],
+      "atom_site_row_count": 22126,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9O56",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP",
+        "GTP",
+        "TA1"
+      ],
+      "atom_site_row_count": 19724,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "9YA5",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP",
+        "GTP",
+        "TA1"
+      ],
+      "atom_site_row_count": 19749,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "9YAI",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP"
+      ],
+      "atom_site_row_count": 11118,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9JN1",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP"
+      ],
+      "atom_site_row_count": 11156,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9JN2",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "SEP",
+        "TPO"
+      ],
+      "atom_site_row_count": 5615,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9QKZ",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "CAC",
+        "GOL",
+        "P6G",
+        "PG4"
+      ],
+      "atom_site_row_count": 7922,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9M2T",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP"
+      ],
+      "atom_site_row_count": 2112,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9V79",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "GNP"
+      ],
+      "atom_site_row_count": 7348,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GNP"
+      ],
+      "pdb_id": "9O65",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "GNP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "EDO",
+        "GDP",
+        "GTP"
+      ],
+      "atom_site_row_count": 21620,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "9YMG",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ACE",
+        "ANP"
+      ],
+      "atom_site_row_count": 9759,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9QCV",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP"
+      ],
+      "atom_site_row_count": 16433,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9CDF",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "ATP",
+        "GOL",
+        "SF4"
+      ],
+      "atom_site_row_count": 21237,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9GBA",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "ATP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "ATP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "A1H6S",
+        "ANP",
+        "CL",
+        "MES",
+        "S2G"
+      ],
+      "atom_site_row_count": 19000,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9ERQ",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "CL",
+        "EDO",
+        "PG4"
+      ],
+      "atom_site_row_count": 5465,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9CVB",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP"
+      ],
+      "atom_site_row_count": 12949,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9BQ6",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "A1ASD",
+        "ANP",
+        "CL",
+        "GOL"
+      ],
+      "atom_site_row_count": 6575,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9BQ7",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP"
+      ],
+      "atom_site_row_count": 7080,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9BQ8",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "A1ASE",
+        "ANP",
+        "CL",
+        "GOL"
+      ],
+      "atom_site_row_count": 6681,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9BQ9",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "A1ASD",
+        "ANP",
+        "GOL"
+      ],
+      "atom_site_row_count": 6636,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9BQA",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "A1ASC",
+        "ANP",
+        "CL",
+        "GOL"
+      ],
+      "atom_site_row_count": 13471,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9BQB",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "A1ASE",
+        "ANP"
+      ],
+      "atom_site_row_count": 6823,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9BQC",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "A1ASC",
+        "ANP"
+      ],
+      "atom_site_row_count": 6890,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9BQD",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ADP",
+        "ANP",
+        "ATP"
+      ],
+      "atom_site_row_count": 24603,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9BMD",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "ATP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "ATP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP"
+      ],
+      "atom_site_row_count": 4067,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "9OAN",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP",
+        "GTP",
+        "TA1"
+      ],
+      "atom_site_row_count": 23784,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "8UTN",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP",
+        "GTP",
+        "TA1"
+      ],
+      "atom_site_row_count": 23792,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "8UTO",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP",
+        "GTP",
+        "TA1"
+      ],
+      "atom_site_row_count": 23792,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "8UTP",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP",
+        "GTP",
+        "TA1"
+      ],
+      "atom_site_row_count": 16825,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "8UTQ",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP",
+        "GTP",
+        "TA1"
+      ],
+      "atom_site_row_count": 23744,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "8UTT",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP",
+        "GTP",
+        "TA1"
+      ],
+      "atom_site_row_count": 13615,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "8UTU",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP",
+        "GTP",
+        "TA1"
+      ],
+      "atom_site_row_count": 23765,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "8UTY",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ATP",
+        "GDP",
+        "GNP"
+      ],
+      "atom_site_row_count": 18255,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GNP"
+      ],
+      "pdb_id": "8FO2",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ATP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ATP",
+        "GNP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP"
+      ],
+      "atom_site_row_count": 25382,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "8WWU",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "ATP"
+      ],
+      "atom_site_row_count": 9077,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [],
+      "pdb_id": "7ZE5",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "ATP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "ATP"
+      ]
+    },
+    {
+      "all_nonwater_hetatm_component_ids": [
+        "ANP",
+        "GDP",
+        "GTP",
+        "TA1"
+      ],
+      "atom_site_row_count": 9822,
+      "fetch_status": "fetched",
+      "non_prefrozen_terminal_gamma_ligand_codes_review_only": [
+        "GTP"
+      ],
+      "pdb_id": "7TQX",
+      "prefrozen_terminal_gamma_ligand_codes_observed": [
+        "ANP"
+      ],
+      "raw_coordinate_dump_written": false,
+      "source_queries_review_only": [
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_ligand_codes_observed": [
+        "ANP",
+        "GTP"
+      ]
+    }
+  ]
+}

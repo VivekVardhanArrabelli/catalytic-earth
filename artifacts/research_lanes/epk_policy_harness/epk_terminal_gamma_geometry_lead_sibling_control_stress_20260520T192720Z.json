@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "artifact_id": "epk_terminal_gamma_geometry_lead_sibling_control_stress_20260520T192720Z",
+    "candidate_distance_cutoff_angstrom": 6.0,
+    "candidate_ids_frozen_before_local_feature_review": true,
+    "created_at": "2026-05-20T19:27:20Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "lead_control_pairing_frozen_before_evaluation": true,
+    "lead_count": 6,
+    "matched_pair_count": 6,
+    "pairing_uses_source_free_local_features_only": true,
+    "production_claim_allowed": false,
+    "query_id": "epk_terminal_gamma_geometry_lead_source_free_role_sibling_control_stress_v1_review_only",
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "sibling_control_context_review_only": true,
+    "source_free_matching_features": [
+      "ligand_code_from_structure",
+      "terminal_gamma_atom_name",
+      "local_metal_context_review_only",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom",
+      "best_cross_auth_chain_distance_angstrom",
+      "nearest_gamma_metal_distance_angstrom",
+      "nonconfounded_inter_auth_chain_within_cutoff"
+    ],
+    "source_surface_artifacts": [
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z.json"
+    ]
+  },
+  "pairs": [
+    {
+      "control_best_cross_auth_chain_distance_angstrom": 7.305,
+      "control_nearest_gamma_metal_distance_angstrom": 3.435,
+      "control_pdb_id": "11KK",
+      "control_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z.json",
+      "lead_best_cross_auth_chain_distance_angstrom": 3.575,
+      "lead_nearest_gamma_metal_distance_angstrom": 3.291,
+      "lead_pdb_id": "9O4E",
+      "lead_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z.json",
+      "pair_id": "pair_9O4E_11KK",
+      "pairing_feature_basis": [
+        "ligand_code_from_structure",
+        "terminal_gamma_atom_name",
+        "local_metal_context_review_only",
+        "best_any_ser_thr_tyr_gamma_distance_angstrom",
+        "best_cross_auth_chain_distance_angstrom",
+        "nearest_gamma_metal_distance_angstrom",
+        "nonconfounded_inter_auth_chain_within_cutoff"
+      ],
+      "pairing_score": 0.5345,
+      "pairing_status": "frozen_before_harness_evaluation"
+    },
+    {
+      "control_best_cross_auth_chain_distance_angstrom": 8.379,
+      "control_nearest_gamma_metal_distance_angstrom": 3.08,
+      "control_pdb_id": "9NYP",
+      "control_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z.json",
+      "lead_best_cross_auth_chain_distance_angstrom": 5.241,
+      "lead_nearest_gamma_metal_distance_angstrom": 3.371,
+      "lead_pdb_id": "9UQ0",
+      "lead_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z.json",
+      "pair_id": "pair_9UQ0_9NYP",
+      "pairing_feature_basis": [
+        "ligand_code_from_structure",
+        "terminal_gamma_atom_name",
+        "local_metal_context_review_only",
+        "best_any_ser_thr_tyr_gamma_distance_angstrom",
+        "best_cross_auth_chain_distance_angstrom",
+        "nearest_gamma_metal_distance_angstrom",
+        "nonconfounded_inter_auth_chain_within_cutoff"
+      ],
+      "pairing_score": 0.9098,
+      "pairing_status": "frozen_before_harness_evaluation"
+    },
+    {
+      "control_best_cross_auth_chain_distance_angstrom": 9.887,
+      "control_nearest_gamma_metal_distance_angstrom": 2.676,
+      "control_pdb_id": "9K54",
+      "control_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z.json",
+      "lead_best_cross_auth_chain_distance_angstrom": 5.638,
+      "lead_nearest_gamma_metal_distance_angstrom": 2.788,
+      "lead_pdb_id": "10TZ",
+      "lead_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z.json",
+      "pair_id": "pair_10TZ_9K54",
+      "pairing_feature_basis": [
+        "ligand_code_from_structure",
+        "terminal_gamma_atom_name",
+        "local_metal_context_review_only",
+        "best_any_ser_thr_tyr_gamma_distance_angstrom",
+        "best_cross_auth_chain_distance_angstrom",
+        "nearest_gamma_metal_distance_angstrom",
+        "nonconfounded_inter_auth_chain_within_cutoff"
+      ],
+      "pairing_score": 1.1234,
+      "pairing_status": "frozen_before_harness_evaluation"
+    },
+    {
+      "control_best_cross_auth_chain_distance_angstrom": 10.073,
+      "control_nearest_gamma_metal_distance_angstrom": 2.766,
+      "control_pdb_id": "9K55",
+      "control_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z.json",
+      "lead_best_cross_auth_chain_distance_angstrom": 5.818,
+      "lead_nearest_gamma_metal_distance_angstrom": 3.0,
+      "lead_pdb_id": "9VLN",
+      "lead_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z.json",
+      "pair_id": "pair_9VLN_9K55",
+      "pairing_feature_basis": [
+        "ligand_code_from_structure",
+        "terminal_gamma_atom_name",
+        "local_metal_context_review_only",
+        "best_any_ser_thr_tyr_gamma_distance_angstrom",
+        "best_cross_auth_chain_distance_angstrom",
+        "nearest_gamma_metal_distance_angstrom",
+        "nonconfounded_inter_auth_chain_within_cutoff"
+      ],
+      "pairing_score": 1.1866,
+      "pairing_status": "frozen_before_harness_evaluation"
+    },
+    {
+      "control_best_cross_auth_chain_distance_angstrom": 10.572,
+      "control_nearest_gamma_metal_distance_angstrom": 2.633,
+      "control_pdb_id": "9K5A",
+      "control_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z.json",
+      "lead_best_cross_auth_chain_distance_angstrom": 5.835,
+      "lead_nearest_gamma_metal_distance_angstrom": 3.978,
+      "lead_pdb_id": "22VT",
+      "lead_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z.json",
+      "pair_id": "pair_22VT_9K5A",
+      "pairing_feature_basis": [
+        "ligand_code_from_structure",
+        "terminal_gamma_atom_name",
+        "local_metal_context_review_only",
+        "best_any_ser_thr_tyr_gamma_distance_angstrom",
+        "best_cross_auth_chain_distance_angstrom",
+        "nearest_gamma_metal_distance_angstrom",
+        "nonconfounded_inter_auth_chain_within_cutoff"
+      ],
+      "pairing_score": 2.2639,
+      "pairing_status": "frozen_before_harness_evaluation"
+    },
+    {
+      "control_best_cross_auth_chain_distance_angstrom": 9.693,
+      "control_nearest_gamma_metal_distance_angstrom": 2.62,
+      "control_pdb_id": "9K53",
+      "control_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z.json",
+      "lead_best_cross_auth_chain_distance_angstrom": 5.986,
+      "lead_nearest_gamma_metal_distance_angstrom": 3.0,
+      "lead_pdb_id": "9VLW",
+      "lead_surface_artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z.json",
+      "pair_id": "pair_9VLW_9K53",
+      "pairing_feature_basis": [
+        "ligand_code_from_structure",
+        "terminal_gamma_atom_name",
+        "local_metal_context_review_only",
+        "best_any_ser_thr_tyr_gamma_distance_angstrom",
+        "best_cross_auth_chain_distance_angstrom",
+        "nearest_gamma_metal_distance_angstrom",
+        "nonconfounded_inter_auth_chain_within_cutoff"
+      ],
+      "pairing_score": 1.3116,
+      "pairing_status": "frozen_before_harness_evaluation"
+    }
+  ]
+}

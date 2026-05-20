@@ -1,0 +1,249 @@
+{
+  "metadata": {
+    "artifact_id": "epk_fresh_folded_role_identity_search_surface_20260520T161951Z",
+    "created_at": "2026-05-20T16:19:51Z",
+    "lane_id": "epk_policy_harness",
+    "review_only": true,
+    "source": "live_rcsb_data_and_coordinate_api_bounded_scan",
+    "query": "full_text protein kinase ANP magnesium sorted by rcsb_accession_info.initial_release_date desc",
+    "candidate_distance_cutoff_angstrom": 6.0,
+    "candidate_ids_not_seen_in_existing_artifacts_before_this_run": [
+      "9SGG",
+      "9O56",
+      "9JN1",
+      "9JN2",
+      "9QKZ",
+      "9M2T",
+      "9O0G",
+      "9O7O",
+      "9O8P",
+      "9O8Z",
+      "9O9M",
+      "9GBA",
+      "9YNF",
+      "9ERQ",
+      "9QCV",
+      "9SKQ",
+      "9DGP",
+      "9DGQ",
+      "8SE1",
+      "9GSF",
+      "9GSH",
+      "9CDF",
+      "9CDH",
+      "9CDI",
+      "9CDJ"
+    ],
+    "fresh_candidate_count_reviewed": 25,
+    "row_count": 25,
+    "nonconfounded_inter_auth_chain_candidate_count_within_cutoff": 0,
+    "search_surface_exhausted": true,
+    "search_surface_scope": "top 25 candidate ids from the bounded fresh-id surface only; this does not exhaust all possible RCSB ePK structures",
+    "raw_coordinate_dump_written": false,
+    "source_validation_applied_after_local_features": true,
+    "production_claim_allowed": false,
+    "labels_or_fingerprints_changed": false
+  },
+  "rows": [
+    {
+      "pdb_id": "9SGG",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.66,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 18.384,
+      "nearest_gamma_metal_distance_angstrom": 3.173,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9O56",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.405,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 24.053,
+      "nearest_gamma_metal_distance_angstrom": null,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9JN1",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 6.711,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": null,
+      "nearest_gamma_metal_distance_angstrom": 6.402,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9JN2",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 4.139,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": null,
+      "nearest_gamma_metal_distance_angstrom": 9.463,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9QKZ",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 5.505,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 27.394,
+      "nearest_gamma_metal_distance_angstrom": 2.672,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9M2T",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.793,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 14.222,
+      "nearest_gamma_metal_distance_angstrom": 3.326,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9O0G",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 8.202,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 13.475,
+      "nearest_gamma_metal_distance_angstrom": 3.576,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9O7O",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 7.792,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 13.2,
+      "nearest_gamma_metal_distance_angstrom": 2.891,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9O8P",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 7.757,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 14.177,
+      "nearest_gamma_metal_distance_angstrom": 2.481,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9O8Z",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 6.784,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 14.308,
+      "nearest_gamma_metal_distance_angstrom": 2.457,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9O9M",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 8.346,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 14.322,
+      "nearest_gamma_metal_distance_angstrom": 2.537,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9GBA",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.459,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 8.995,
+      "nearest_gamma_metal_distance_angstrom": 3.212,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9YNF",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.73,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": null,
+      "nearest_gamma_metal_distance_angstrom": 2.607,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9ERQ",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.502,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 9.651,
+      "nearest_gamma_metal_distance_angstrom": 2.844,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9QCV",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.376,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 9.747,
+      "nearest_gamma_metal_distance_angstrom": 3.983,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9SKQ",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.649,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 12.359,
+      "nearest_gamma_metal_distance_angstrom": 4.318,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9DGP",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.521,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": null,
+      "nearest_gamma_metal_distance_angstrom": 3.426,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9DGQ",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": null,
+      "best_any_auth_chain_relation": "none_found",
+      "best_cross_auth_chain_distance_angstrom": null,
+      "nearest_gamma_metal_distance_angstrom": 3.791,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "8SE1",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 4.897,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 29.024,
+      "nearest_gamma_metal_distance_angstrom": 2.745,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9GSF",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 4.474,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 55.295,
+      "nearest_gamma_metal_distance_angstrom": 4.524,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9GSH",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 4.271,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 45.713,
+      "nearest_gamma_metal_distance_angstrom": 4.298,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9CDF",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 5.554,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 7.596,
+      "nearest_gamma_metal_distance_angstrom": 2.813,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9CDH",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 5.302,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 7.242,
+      "nearest_gamma_metal_distance_angstrom": 3.172,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9CDI",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 5.637,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 7.382,
+      "nearest_gamma_metal_distance_angstrom": 2.225,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    },
+    {
+      "pdb_id": "9CDJ",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 5.57,
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_cross_auth_chain_distance_angstrom": 7.173,
+      "nearest_gamma_metal_distance_angstrom": 3.281,
+      "nonconfounded_inter_auth_chain_within_cutoff": false
+    }
+  ]
+}

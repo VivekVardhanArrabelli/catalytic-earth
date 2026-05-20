@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "artifact_id": "epk_fresh_rcsb_chemcomp_atp_terminal_gamma_source_validation_20260520T183959Z",
+    "candidate_ids_frozen_before_source_validation": true,
+    "candidate_ids_reviewed": [
+      "9UQ0",
+      "9VLN",
+      "22VT",
+      "9VLW",
+      "9O4E",
+      "10TZ"
+    ],
+    "created_at": "2026-05-20T18:39:59Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_free_local_features_computed_before_source_validation": true,
+    "source_id_as_predictive_feature": false,
+    "source_text_used_for_predictive_feature": false,
+    "source_validation_phase": "after_source_free_local_feature_review",
+    "source_validation_review_only": true,
+    "structure_title_used_for_predictive_feature": false,
+    "upstream_search_surfaces": [
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_20260520T183040Z.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page2_20260520T183400Z.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_search_surface_page3_20260520T183620Z.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_atp_terminal_gamma_lane_scope_probe_20260520T183910Z.json"
+    ]
+  },
+  "rows": [
+    {
+      "initial_release_date": "2026-05-20T00:00:00.000+00:00",
+      "labels_or_fingerprints_changed": false,
+      "local_geometry_review_role": "terminal_gamma_cross_auth_chain_candidate_from_prior_source_free_scan",
+      "pdb_id": "9UQ0",
+      "polymer_entity_ids": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "production_claim_allowed": false,
+      "source": "rcsb_core_entry_rest_api",
+      "source_id_as_predictive_feature": false,
+      "source_text_used_for_predictive_feature": false,
+      "source_validation_phase": "after_source_free_local_feature_review",
+      "source_validation_status": "review_only_title_context_mcm2_7_not_used_for_prediction",
+      "structure_title": "Structure of human MCM2-7 single hexamer with MCM3-WHD attached to MCM2-CTD",
+      "structure_title_used_for_predictive_feature": false
+    },
+    {
+      "initial_release_date": "2026-05-20T00:00:00.000+00:00",
+      "labels_or_fingerprints_changed": false,
+      "local_geometry_review_role": "terminal_gamma_cross_auth_chain_candidate_from_prior_source_free_scan",
+      "pdb_id": "9VLN",
+      "polymer_entity_ids": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "production_claim_allowed": false,
+      "source": "rcsb_core_entry_rest_api",
+      "source_id_as_predictive_feature": false,
+      "source_text_used_for_predictive_feature": false,
+      "source_validation_phase": "after_source_free_local_feature_review",
+      "source_validation_status": "review_only_title_context_mcm2_7_not_used_for_prediction",
+      "structure_title": "Structure of human MCM2-7 single hexamer without MCM3 CTE, state 1",
+      "structure_title_used_for_predictive_feature": false
+    },
+    {
+      "initial_release_date": "2026-05-20T00:00:00.000+00:00",
+      "labels_or_fingerprints_changed": false,
+      "local_geometry_review_role": "terminal_gamma_cross_auth_chain_candidate_from_prior_source_free_scan",
+      "pdb_id": "22VT",
+      "polymer_entity_ids": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "production_claim_allowed": false,
+      "source": "rcsb_core_entry_rest_api",
+      "source_id_as_predictive_feature": false,
+      "source_text_used_for_predictive_feature": false,
+      "source_validation_phase": "after_source_free_local_feature_review",
+      "source_validation_status": "review_only_title_context_mcm2_7_not_used_for_prediction",
+      "structure_title": "Structure of human MCM2-7 single hexamer with MCM3-WHD attached to MCM2-CTD, containing Meier-Gorlin Syndrome mutation (MCM3-Q761L)",
+      "structure_title_used_for_predictive_feature": false
+    },
+    {
+      "initial_release_date": "2026-05-20T00:00:00.000+00:00",
+      "labels_or_fingerprints_changed": false,
+      "local_geometry_review_role": "terminal_gamma_cross_auth_chain_candidate_from_prior_source_free_scan",
+      "pdb_id": "9VLW",
+      "polymer_entity_ids": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "production_claim_allowed": false,
+      "source": "rcsb_core_entry_rest_api",
+      "source_id_as_predictive_feature": false,
+      "source_text_used_for_predictive_feature": false,
+      "source_validation_phase": "after_source_free_local_feature_review",
+      "source_validation_status": "review_only_title_context_mcm2_7_not_used_for_prediction",
+      "structure_title": "Structure of human MCM2-7 single hexamer without MCM3 CTE, state 2",
+      "structure_title_used_for_predictive_feature": false
+    },
+    {
+      "initial_release_date": "2026-05-06T00:00:00.000+00:00",
+      "labels_or_fingerprints_changed": false,
+      "local_geometry_review_role": "terminal_gamma_cross_auth_chain_candidate_from_prior_source_free_scan",
+      "pdb_id": "9O4E",
+      "polymer_entity_ids": [
+        "1",
+        "2"
+      ],
+      "production_claim_allowed": false,
+      "source": "rcsb_core_entry_rest_api",
+      "source_id_as_predictive_feature": false,
+      "source_text_used_for_predictive_feature": false,
+      "source_validation_phase": "after_source_free_local_feature_review",
+      "source_validation_status": "review_only_title_context_not_used_for_prediction",
+      "structure_title": "EcAvs2 bound to phage PhiV-1 terminase",
+      "structure_title_used_for_predictive_feature": false
+    },
+    {
+      "initial_release_date": "2026-04-22T00:00:00.000+00:00",
+      "labels_or_fingerprints_changed": false,
+      "local_geometry_review_role": "terminal_gamma_cross_auth_chain_candidate_from_prior_source_free_scan",
+      "pdb_id": "10TZ",
+      "polymer_entity_ids": [
+        "1"
+      ],
+      "production_claim_allowed": false,
+      "source": "rcsb_core_entry_rest_api",
+      "source_id_as_predictive_feature": false,
+      "source_text_used_for_predictive_feature": false,
+      "source_validation_phase": "after_source_free_local_feature_review",
+      "source_validation_status": "review_only_title_context_not_used_for_prediction",
+      "structure_title": "Tissue Non-specific Alkaline Phosphatase -S110A bound to ATP",
+      "structure_title_used_for_predictive_feature": false
+    }
+  ]
+}
