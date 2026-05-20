@@ -175,9 +175,25 @@ general substrate-identity readiness remains 0. A bounded length-band
 counter-axis blocks that `7B56` false hit while retaining `1O6K`/`1O6L`, and
 the three imported external hard negatives still abstain under that diagnostic,
 but the rule is source-expansion scoped and not a real scored re-audit. The
+source-free protein-substrate role discriminator now combines the `1IR3`/`2PHK`
+protein-substrate acceptor hits with the `5HVK` heteromeric topology hit while
+excluding ligand-analog-only `m_csa:640`, with 0 current-control false hits and
+0 imported external hard-negative non-abstentions. Its source-expansion stress
+audit remains negative: `1O6K`/`1O6L` are peptide-mode, no broad source-valid
+protein-mode positive exists, and relaxed folded-protein role logic false-hits
+blocked `7B56`. The
 counteraxis sufficiency decision records the unified rule, prototype,
-broad-stress rows, relaxed polymer gap audit, and length-band repair audit
+broad-stress rows, relaxed polymer gap audit, length-band repair audit,
+protein-role discriminator, and protein-role stress audit
 while preserving `do_not_select_threshold`.
+The fourth bounded external protein-substrate source scout excludes the first
+31 UniProt/PDB-backed source-pass accessions and finds eight new review-only
+candidates (`O14730`, `O60229`, `P78368`, `O43353`, `P08922`, `P09769`,
+`P0C1S8`, and `P14616`). These rows are only pending structure mapping and do
+not reopen scoring, measurement, or label import gates. The bounded follow-on
+mapping/ligand review checks 37 structures, finds 8 direct-position-ready rows
+but 0 active-state mapping-ready rows, and closes the fourth pass at 0
+measurement-ready candidates.
 
 ## Time Calibration Rule
 

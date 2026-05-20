@@ -5846,6 +5846,306 @@ HETATM MG MG MG MG A A 2 2 0.0 1.0 0.0
             self.assertFalse(metadata["epk_score_computed"])
             self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
 
+    def test_build_epk_source_free_protein_substrate_role_discriminator_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            protein = root / "protein.json"
+            topology = root / "topology.json"
+            length_band = root / "length_band.json"
+            out = root / "protein_role.json"
+            protein.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_protein_substrate_acceptor_candidate_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:35",
+                                "pdb_id": "2PHK",
+                                "candidate_feature_hit": True,
+                                "non_catalytic_chain_acceptor": True,
+                                "ligand_analog_acceptor": False,
+                                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                                    3.61
+                                ),
+                            },
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:246",
+                                "pdb_id": "1IR3",
+                                "candidate_feature_hit": True,
+                                "non_catalytic_chain_acceptor": True,
+                                "ligand_analog_acceptor": False,
+                                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                                    5.082
+                                ),
+                            },
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:640",
+                                "pdb_id": "3TM0",
+                                "candidate_feature_hit": False,
+                                "non_catalytic_chain_acceptor": False,
+                                "ligand_analog_acceptor": True,
+                                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                                    3.558
+                                ),
+                            },
+                            {
+                                "row_type": "imported_external_hard_negative",
+                                "entry_id": "uniprot:P06744",
+                                "candidate_feature_hit": False,
+                                "non_catalytic_chain_acceptor": False,
+                                "ligand_analog_acceptor": False,
+                            },
+                            {
+                                "row_type": (
+                                    "sibling_family_specific_negative_control"
+                                ),
+                                "pdb_id": "3R5F",
+                                "family_id": "atp_grasp",
+                                "candidate_feature_hit": False,
+                                "non_catalytic_chain_acceptor": False,
+                                "ligand_analog_acceptor": False,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            topology.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_chain_topology_signal_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": "heteromeric_chain_topology_hit_control",
+                                "pdb_id": "5HVK",
+                                "known_review_context_class": (
+                                    "cross_accession_source_valid_positive_like"
+                                ),
+                                "heteromeric_chain_entity_signal_hit": True,
+                            },
+                            {
+                                "row_type": "heteromeric_chain_topology_hit_control",
+                                "pdb_id": "3Q4Z",
+                                "known_review_context_class": (
+                                    "same_accession_phosphosite_control_risk"
+                                ),
+                                "heteromeric_chain_entity_signal_hit": False,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            length_band.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_length_band_substrate_identity_counteraxis_audit"
+                            ),
+                            "positive_like_length_band_hit_count": 2,
+                            "nonpositive_relaxed_false_hit_blocked_by_length_band_count": 1,
+                        },
+                        "rows": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-source-free-protein-substrate-role-discriminator-audit",
+                    "--epk-protein-substrate-acceptor-candidate-audit",
+                    str(protein),
+                    "--epk-heteromeric-chain-topology-signal-audit",
+                    str(topology),
+                    "--epk-length-band-substrate-identity-counteraxis-audit",
+                    str(length_band),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_source_free_protein_substrate_role_discriminator_audit",
+            )
+            self.assertEqual(
+                metadata["protein_substrate_role_discriminator_status"],
+                "passes_current_controls_but_review_only_not_production_admissible",
+            )
+            self.assertEqual(
+                metadata["combined_protein_substrate_role_hit_pdb_ids"],
+                ["1IR3", "2PHK", "5HVK"],
+            )
+            self.assertEqual(
+                metadata["ligand_analog_excluded_positive_entry_ids"],
+                ["m_csa:640"],
+            )
+            self.assertEqual(metadata["protein_role_control_false_hit_count"], 0)
+            self.assertEqual(
+                metadata[
+                    "protein_role_external_hard_negative_non_abstention_count"
+                ],
+                0,
+            )
+            self.assertTrue(metadata["length_band_not_general_protein_discriminator"])
+            self.assertEqual(metadata["general_substrate_identity_ready_count"], 0)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_build_epk_source_free_protein_substrate_role_discriminator_stress_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            protein_role = root / "protein_role.json"
+            source_expansion = root / "source_expansion.json"
+            out = root / "protein_role_stress.json"
+            protein_role.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_source_free_protein_substrate_role_discriminator_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "protein_substrate_role_discriminator_status": (
+                                "passes_current_controls_but_review_only_not_production_admissible"
+                            ),
+                        },
+                        "rows": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_expansion.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_source_expansion_peptide_role_axis_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "source_expansion_peptide_role_positive_candidate"
+                                ),
+                                "pdb_id": "1O6K",
+                                "source_validated_positive_like": True,
+                                "source_free_peptide_role_axis_rule_hit": True,
+                                "peptide_like_acceptor_chain": True,
+                                "acceptor_chain_lacks_local_nucleotide_or_metal": True,
+                                "gamma_chain_has_local_nucleotide_or_metal": True,
+                                "gamma_chain_is_larger_polymer": True,
+                            },
+                            {
+                                "row_type": (
+                                    "source_expansion_peptide_role_nonpositive_control"
+                                ),
+                                "pdb_id": "7B56",
+                                "source_validated_positive_like": False,
+                                "source_free_peptide_role_axis_rule_hit": False,
+                                "peptide_like_acceptor_chain": False,
+                                "acceptor_chain_lacks_local_nucleotide_or_metal": True,
+                                "gamma_chain_has_local_nucleotide_or_metal": True,
+                                "gamma_chain_is_larger_polymer": True,
+                            },
+                            {
+                                "row_type": (
+                                    "source_expansion_peptide_role_nonpositive_control"
+                                ),
+                                "pdb_id": "9L3M",
+                                "source_validated_positive_like": False,
+                                "source_free_peptide_role_axis_rule_hit": False,
+                                "peptide_like_acceptor_chain": False,
+                                "acceptor_chain_lacks_local_nucleotide_or_metal": False,
+                                "gamma_chain_has_local_nucleotide_or_metal": True,
+                                "gamma_chain_is_larger_polymer": False,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-source-free-protein-substrate-role-discriminator-stress-audit",
+                    "--epk-source-free-protein-substrate-role-discriminator-audit",
+                    str(protein_role),
+                    "--epk-heteromeric-source-expansion-peptide-role-axis-audit",
+                    str(source_expansion),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_source_free_protein_substrate_role_discriminator_stress_audit",
+            )
+            self.assertEqual(
+                metadata["protein_role_source_expansion_stress_status"],
+                "fails_closed_review_only_source_expansion_protein_role_false_hit",
+            )
+            self.assertEqual(
+                metadata[
+                    "nonpositive_source_expansion_protein_role_false_hit_pdb_ids"
+                ],
+                ["7B56"],
+            )
+            self.assertEqual(
+                metadata["source_valid_expansion_peptide_mode_not_protein_pdb_ids"],
+                ["1O6K"],
+            )
+            self.assertFalse(metadata["protein_discriminator_generalization_ready"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
     def test_build_epk_unified_review_only_scoring_prototype_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

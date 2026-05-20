@@ -690,6 +690,42 @@
     },
     {
       "evidence": {
+        "combined_protein_substrate_role_hit_count": 3,
+        "combined_protein_substrate_role_hit_pdb_ids": [
+          "1IR3",
+          "2PHK",
+          "5HVK"
+        ],
+        "length_band_not_general_protein_discriminator": true,
+        "protein_role_control_false_hit_count": 0,
+        "protein_role_external_hard_negative_non_abstention_count": 0,
+        "protein_substrate_role_discriminator_status": "passes_current_controls_but_review_only_not_production_admissible",
+        "rule_id": "epk_source_free_protein_substrate_role_discriminator_v0_review_only",
+        "source_method": "epk_source_free_protein_substrate_role_discriminator_audit"
+      },
+      "gate_id": "source_free_protein_substrate_role_discriminator_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "nonpositive_source_expansion_protein_role_false_hit_count": 1,
+        "nonpositive_source_expansion_protein_role_false_hit_pdb_ids": [
+          "7B56"
+        ],
+        "protein_role_source_expansion_stress_status": "fails_closed_review_only_source_expansion_protein_role_false_hit",
+        "rule_id": "epk_relaxed_folded_protein_substrate_role_stress_v0_review_only",
+        "source_method": "epk_source_free_protein_substrate_role_discriminator_stress_audit",
+        "source_valid_expansion_peptide_mode_not_protein_pdb_ids": [
+          "1O6K",
+          "1O6L"
+        ],
+        "source_valid_expansion_protein_role_hit_count": 0
+      },
+      "gate_id": "source_free_protein_substrate_role_discriminator_stress_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
         "current_control_false_non_abstention_count": 0,
         "imported_external_hard_negative_non_abstention_count": 0,
         "positive_like_full_score_count": 8,
@@ -1429,6 +1465,23 @@
     "protein_substrate_acceptor_negative_control_false_hit_count": 0,
     "protein_substrate_acceptor_positive_hit_count": 2,
     "protein_substrate_acceptor_positive_miss_count": 1,
+    "protein_substrate_role_discriminator_control_false_hit_count": 0,
+    "protein_substrate_role_discriminator_external_non_abstention_count": 0,
+    "protein_substrate_role_discriminator_hit_count": 3,
+    "protein_substrate_role_discriminator_hit_pdb_ids": [
+      "1IR3",
+      "2PHK",
+      "5HVK"
+    ],
+    "protein_substrate_role_discriminator_length_band_not_general": true,
+    "protein_substrate_role_discriminator_rule_id": "epk_source_free_protein_substrate_role_discriminator_v0_review_only",
+    "protein_substrate_role_discriminator_status": "passes_current_controls_but_review_only_not_production_admissible",
+    "protein_substrate_role_stress_false_hit_count": 1,
+    "protein_substrate_role_stress_false_hit_pdb_ids": [
+      "7B56"
+    ],
+    "protein_substrate_role_stress_generalization_ready": false,
+    "protein_substrate_role_stress_status": "fails_closed_review_only_source_expansion_protein_role_false_hit",
     "prototype_ready_row_count": 3,
     "ready_for_label_import": false,
     "ready_to_expand_positive_fingerprint_universe": false,
@@ -1500,6 +1553,8 @@
     "source_epk_sibling_negative_control_alternate_gamma_distance_sample_method": "epk_sibling_negative_control_alternate_gamma_distance_sample",
     "source_epk_sibling_negative_control_alternate_structure_plan_method": "epk_sibling_negative_control_alternate_structure_plan",
     "source_epk_source_free_chain_topology_role_audit_method": "epk_source_free_chain_topology_role_audit",
+    "source_epk_source_free_protein_substrate_role_discriminator_audit_method": "epk_source_free_protein_substrate_role_discriminator_audit",
+    "source_epk_source_free_protein_substrate_role_discriminator_stress_audit_method": "epk_source_free_protein_substrate_role_discriminator_stress_audit",
     "source_epk_substrate_acceptor_counteraxis_prototype_method": "epk_substrate_acceptor_counteraxis_prototype",
     "source_epk_substrate_mode_gap_audit_method": "epk_substrate_mode_gap_audit",
     "source_epk_text_free_acceptor_feature_gap_audit_method": "epk_text_free_acceptor_feature_gap_audit",

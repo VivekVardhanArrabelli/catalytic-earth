@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 204
-- Measured elapsed time: 6376.5 minutes (106.27 hours)
+- Entries: 205
+- Measured elapsed time: 6422.8 minutes (107.05 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 1147.3 measured minutes (19.12 hours)
+- post-infra-science: 1193.6 measured minutes (19.89 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2352
-- Evidence references logged: 1866
+- Artifact references logged: 2372
+- Evidence references logged: 1882
 
 ## Recent Entries
-
-### 2026-05-19T21:26:22.348537+00:00 - post-infra-science
-
-- Task: ePK heteromeric identity rule probe
-- Time mode: measured
-- Measured minutes: 49.417
-- Started: 2026-05-19T20:36:41Z
-- Ended: 2026-05-19T21:26:06Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_leakage_closure.py, tests/test_cli.py, artifacts/v3_epk_heteromeric_broader_counteraxis_control_audit_1025.json, artifacts/v3_epk_heteromeric_ligand_asymmetry_role_audit_1025.json, artifacts/v3_epk_heteromeric_acceptor_identity_gap_audit_1025.json, artifacts/v3_epk_heteromeric_acceptor_identity_rule_probe_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: startup 595-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote and dry-run push passed, broader heteromeric counteraxis retained 3 source-valid hits blocked 3 nonaccepted hits and blocked 11 sibling same-chain hydroxyl hits, ligand-asymmetry role audit retained 3 role hits with 0 nonaccepted and 0 sibling false hits, acceptor-identity gap audit kept source-free identity ready count at 0, generic hydroxyl identity rule hit 3 retained candidates but is weak with source-free identity ready count 0, pre-count gate remains blocked_review_only, final 601-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed 0, label invariants preserved 682 total 212 seed 470 out_of_scope, jq empty passed on updated ePK JSON artifacts, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
 
 ### 2026-05-19T22:26:42.259225+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-20T04:34:07Z
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_general_substrate_identity_gap_audit_1025.json, artifacts/v3_epk_length_band_substrate_identity_counteraxis_audit_1025.json, artifacts/v3_epk_length_band_external_hard_negative_review_1025.json, artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: final 632-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 241 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, relaxed polymer substrate identity false-hit 7B56, length-band counteraxis retained 1O6K and 1O6L while blocking 7B56, length-band external hard-negative review kept P06744 P78549 Q3LXA3 at 0 non-abstentions, NDK terminal review marked 1WKL 3Q86 9OAN 9PFY mapped and measured, pre-count remains blocked_review_only, counteraxis decision remains do_not_select_threshold, compileall and JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external hard-negative production score or removal_allowed=true.
+
+### 2026-05-20T05:33:51.904993+00:00 - post-infra-science
+
+- Task: ePK protein-role discriminator and fourth source pass
+- Time mode: measured
+- Measured minutes: 46.283
+- Started: 2026-05-20T04:47:09Z
+- Ended: 2026-05-20T05:33:26Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_source_free_protein_substrate_role_discriminator_audit_1025.json, artifacts/v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json, artifacts/v3_epk_external_protein_substrate_source_scout_fourth_pass_1025.json, artifacts/v3_epk_external_source_structure_mapping_review_fourth_pass_1025.json, artifacts/v3_epk_external_source_lower_priority_ligand_sourcing_review_fourth_pass_1025.json, artifacts/v3_epk_external_source_acceptor_gap_audit_fourth_pass_1025.json, artifacts/v3_epk_external_source_next_experiment_queue_fourth_pass_1025.json, artifacts/v3_epk_external_source_four_pass_terminal_decision_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 632-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, protein-role discriminator hit 1IR3 2PHK 5HVK with 0 control false hits and 0 external non-abstentions, protein-role stress fails closed on 7B56 with 0 broad protein-mode positives, fourth external source pass sourced 8 new candidates and mapped 37 structures with 0 active-state mapping-ready rows, pre-count gate remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 638-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed 0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external hard-negative production score or removal_allowed=true.
 
 ## Expectation Updates
@@ -280,6 +280,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T02:33:19.307966+00:00: ePK unified review-only prototype is current-control clean, but broad-stress counterexamples 9L3M/9L3U and uncalibrated thresholds keep production scoring closed; next work should execute the preregistered broad-stress tranche before threshold or real external scored re-audit.
 - 2026-05-20T03:33:14.995937+00:00: ePK broad-stress execution found more source-context counterexamples but the peptide-role counterevidence rule blocks them without changing production gates; next work should seek a more general source-free substrate identity axis or a qualitatively new positive source before threshold work.
 - 2026-05-20T04:34:07.290642+00:00: A relaxed polymer identity rule is unsafe because 7B56 false-hits; a length-band counteraxis repairs that bounded source-expansion false hit but remains too scoped for production, so ePK still needs broader substrate-identity stress or new positive source evidence before thresholding.
+- 2026-05-20T05:33:51.904993+00:00: ePK protein-role evidence is current-control clean but not general: 7B56 blocks relaxed folded-protein generalization and the fourth external source pass adds no measurement-ready positives.
 
 ## Scope Adjustments
 

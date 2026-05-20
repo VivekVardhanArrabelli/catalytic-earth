@@ -1522,6 +1522,120 @@ class LeakageClosureTests(unittest.TestCase):
             },
         )
 
+    def test_epk_external_source_fourth_pass_scout_stays_review_only(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_protein_substrate_source_scout_fourth_pass_1025.json"
+        )
+        metadata = scout["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_external_protein_substrate_source_scout"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["sourced_candidate_count"], 8)
+        self.assertEqual(metadata["entry_feature_record_available_count"], 16)
+        self.assertEqual(metadata["query_fetch_failure_count"], 0)
+        self.assertEqual(metadata["entry_feature_fetch_failure_count"], 0)
+        self.assertEqual(
+            metadata["sourced_candidate_accessions"],
+            [
+                "O14730",
+                "O60229",
+                "P78368",
+                "O43353",
+                "P08922",
+                "P09769",
+                "P0C1S8",
+                "P14616",
+            ],
+        )
+        self.assertEqual(
+            metadata["source_scout_status_counts"],
+            {
+                "blocked_uniprot_feature_fetch": 16,
+                "sourced_pending_structure_mapping_review": 8,
+            },
+        )
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        for row in scout["rows"]:
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertFalse(row["measurement_ready"])
+            self.assertFalse(row["epk_score_computed"])
+
+    def test_epk_external_source_fourth_pass_terminal_decision_stays_review_only(
+        self,
+    ) -> None:
+        mapping = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_structure_mapping_review_fourth_pass_1025.json"
+        )
+        ligand = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_lower_priority_ligand_sourcing_review_fourth_pass_1025.json"
+        )
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_external_source_four_pass_terminal_decision_1025.json"
+        )
+        self.assertEqual(mapping["metadata"]["structure_row_count"], 37)
+        self.assertEqual(
+            mapping["metadata"]["active_state_mapping_ready_structure_count"], 0
+        )
+        self.assertEqual(
+            mapping["metadata"]["direct_position_mapping_ready_structure_count"], 8
+        )
+        self.assertEqual(mapping["metadata"]["measurement_ready_candidate_count"], 0)
+        self.assertEqual(ligand["metadata"]["reviewed_row_count"], 8)
+        self.assertEqual(
+            ligand["metadata"]["active_gamma_metal_current_structure_count"], 0
+        )
+        self.assertEqual(ligand["metadata"]["measurement_ready_candidate_count"], 0)
+        self.assertEqual(
+            ligand["metadata"]["ligand_sourcing_status_counts"],
+            {
+                "metal_without_gamma_needs_alternate_review_only": 3,
+                "non_atp_or_remote_ligand_context_needs_alternate_review_only": 5,
+            },
+        )
+        metadata = decision["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_external_source_scout_pass_terminal_decision"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["source_pass_count"], 4)
+        self.assertEqual(metadata["unique_sourced_candidate_count"], 32)
+        self.assertEqual(metadata["total_structure_row_count"], 100)
+        self.assertEqual(
+            metadata["total_active_state_mapping_ready_structure_count"], 5
+        )
+        self.assertEqual(metadata["measurement_ready_candidate_count"], 0)
+        self.assertEqual(
+            metadata["terminal_decision"],
+            "current_4_pass_external_source_surface_exhausted_review_only",
+        )
+        self.assertTrue(metadata["current_source_candidates_exhausted"])
+        self.assertFalse(metadata["ready_to_measure_gamma_acceptor_distance"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
     def test_epk_external_source_three_pass_terminal_decision_stays_review_only(
         self,
     ) -> None:
@@ -7028,6 +7142,51 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             metadata["length_band_external_hard_negative_not_real_scored_reaudit"]
         )
         self.assertEqual(
+            metadata[
+                "source_epk_source_free_protein_substrate_role_discriminator_audit_method"
+            ],
+            "epk_source_free_protein_substrate_role_discriminator_audit",
+        )
+        self.assertEqual(
+            metadata["protein_substrate_role_discriminator_status"],
+            "passes_current_controls_but_review_only_not_production_admissible",
+        )
+        self.assertEqual(
+            metadata["protein_substrate_role_discriminator_hit_pdb_ids"],
+            ["1IR3", "2PHK", "5HVK"],
+        )
+        self.assertEqual(
+            metadata["protein_substrate_role_discriminator_control_false_hit_count"],
+            0,
+        )
+        self.assertEqual(
+            metadata[
+                "protein_substrate_role_discriminator_external_non_abstention_count"
+            ],
+            0,
+        )
+        self.assertTrue(
+            metadata["protein_substrate_role_discriminator_length_band_not_general"]
+        )
+        self.assertEqual(
+            metadata[
+                "source_epk_source_free_protein_substrate_role_discriminator_stress_audit_method"
+            ],
+            "epk_source_free_protein_substrate_role_discriminator_stress_audit",
+        )
+        self.assertEqual(
+            metadata["protein_substrate_role_stress_status"],
+            "fails_closed_review_only_source_expansion_protein_role_false_hit",
+        )
+        self.assertEqual(metadata["protein_substrate_role_stress_false_hit_count"], 1)
+        self.assertEqual(
+            metadata["protein_substrate_role_stress_false_hit_pdb_ids"],
+            ["7B56"],
+        )
+        self.assertFalse(
+            metadata["protein_substrate_role_stress_generalization_ready"]
+        )
+        self.assertEqual(
             metadata["source_epk_unified_review_only_scoring_prototype_method"],
             "epk_unified_review_only_scoring_prototype",
         )
@@ -8387,6 +8546,116 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             self.assertFalse(row["length_band_feature_non_abstention"])
             self.assertFalse(row["countable_label_candidate"])
 
+    def test_epk_source_free_protein_substrate_role_discriminator_is_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_source_free_protein_substrate_role_discriminator_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_source_free_protein_substrate_role_discriminator_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["protein_substrate_role_discriminator_status"],
+            "passes_current_controls_but_review_only_not_production_admissible",
+        )
+        self.assertTrue(
+            metadata["protein_substrate_role_discriminator_passes_current_controls"]
+        )
+        self.assertEqual(metadata["current_protein_positive_hit_pdb_ids"], ["1IR3", "2PHK"])
+        self.assertEqual(metadata["heteromeric_protein_positive_hit_pdb_ids"], ["5HVK"])
+        self.assertEqual(
+            metadata["combined_protein_substrate_role_hit_pdb_ids"],
+            ["1IR3", "2PHK", "5HVK"],
+        )
+        self.assertEqual(metadata["protein_substrate_role_miss_count"], 0)
+        self.assertEqual(
+            metadata["ligand_analog_excluded_positive_entry_ids"],
+            ["m_csa:640"],
+        )
+        self.assertEqual(metadata["protein_role_control_false_hit_count"], 0)
+        self.assertEqual(
+            metadata[
+                "protein_role_external_hard_negative_non_abstention_count"
+            ],
+            0,
+        )
+        self.assertTrue(metadata["length_band_not_general_protein_discriminator"])
+        self.assertEqual(metadata["general_substrate_identity_ready_count"], 0)
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        for row in audit["rows"]:
+            self.assertFalse(row["production_scoring_admissible"])
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertFalse(row["epk_score_computed"])
+
+    def test_epk_source_free_protein_substrate_role_discriminator_stress_fails_closed(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_source_free_protein_substrate_role_discriminator_stress_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["source_epk_source_free_protein_substrate_role_discriminator_audit_method"],
+            "epk_source_free_protein_substrate_role_discriminator_audit",
+        )
+        self.assertEqual(
+            metadata["protein_role_source_expansion_stress_status"],
+            "fails_closed_review_only_source_expansion_protein_role_false_hit",
+        )
+        self.assertEqual(
+            metadata["source_valid_expansion_protein_role_hit_count"],
+            0,
+        )
+        self.assertEqual(
+            metadata["source_valid_expansion_peptide_mode_not_protein_pdb_ids"],
+            ["1O6K", "1O6L"],
+        )
+        self.assertEqual(
+            metadata[
+                "nonpositive_source_expansion_protein_role_false_hit_pdb_ids"
+            ],
+            ["7B56"],
+        )
+        self.assertFalse(metadata["protein_discriminator_generalization_ready"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        for row in audit["rows"]:
+            self.assertFalse(row["production_scoring_admissible"])
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertFalse(row["epk_score_computed"])
+
     def test_epk_unified_prototype_next_broad_stress_preregistration_closed(
         self,
     ) -> None:
@@ -8449,6 +8718,8 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             "v3_epk_general_substrate_identity_gap_audit_1025.json",
             "v3_epk_length_band_substrate_identity_counteraxis_audit_1025.json",
             "v3_epk_length_band_external_hard_negative_review_1025.json",
+            "v3_epk_source_free_protein_substrate_role_discriminator_audit_1025.json",
+            "v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json",
             "v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json",
         ]:
             artifact = _load_json(ROOT / "artifacts" / artifact_name)
@@ -8627,6 +8898,32 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             axes["length_band_substrate_identity_counteraxis_audit"][
                 "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids"
             ],
+            ["7B56"],
+        )
+        self.assertEqual(
+            axes["source_free_protein_substrate_role_discriminator"]["decision"],
+            "passes_current_controls_but_not_general_or_calibrated",
+        )
+        self.assertEqual(
+            axes["source_free_protein_substrate_role_discriminator"][
+                "protein_substrate_role_hit_pdb_ids"
+            ],
+            ["1IR3", "2PHK", "5HVK"],
+        )
+        self.assertEqual(
+            axes["source_free_protein_substrate_role_discriminator"]["blocker"],
+            "protein_substrate_role_discriminator_not_general_substrate_identity_or_calibrated_score",
+        )
+        self.assertEqual(
+            axes[
+                "source_free_protein_substrate_role_discriminator_stress"
+            ]["decision"],
+            "fails_closed_false_hit_keeps_generalization_closed",
+        )
+        self.assertEqual(
+            axes[
+                "source_free_protein_substrate_role_discriminator_stress"
+            ]["false_hit_pdb_ids"],
             ["7B56"],
         )
         self.assertEqual(

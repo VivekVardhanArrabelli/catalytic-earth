@@ -16535,6 +16535,44 @@ def build_epk_counteraxis_sufficiency_decision(
             "length_band_substrate_identity_blocked_relaxed_false_hit_pdb_ids", []
         )
     )
+    protein_role_discriminator_status = str(
+        precount_meta.get("protein_substrate_role_discriminator_status") or ""
+    )
+    protein_role_discriminator_hit_count = int(
+        precount_meta.get("protein_substrate_role_discriminator_hit_count") or 0
+    )
+    protein_role_discriminator_hit_pdb_ids = _sorted_strings(
+        precount_meta.get("protein_substrate_role_discriminator_hit_pdb_ids", [])
+    )
+    protein_role_discriminator_control_false_hit_count = int(
+        precount_meta.get(
+            "protein_substrate_role_discriminator_control_false_hit_count"
+        )
+        or 0
+    )
+    protein_role_discriminator_external_non_abstention_count = int(
+        precount_meta.get(
+            "protein_substrate_role_discriminator_external_non_abstention_count"
+        )
+        or 0
+    )
+    protein_role_discriminator_length_band_not_general = bool(
+        precount_meta.get(
+            "protein_substrate_role_discriminator_length_band_not_general"
+        )
+    )
+    protein_role_stress_status = str(
+        precount_meta.get("protein_substrate_role_stress_status") or ""
+    )
+    protein_role_stress_false_hit_count = int(
+        precount_meta.get("protein_substrate_role_stress_false_hit_count") or 0
+    )
+    protein_role_stress_false_hit_pdb_ids = _sorted_strings(
+        precount_meta.get("protein_substrate_role_stress_false_hit_pdb_ids", [])
+    )
+    protein_role_stress_generalization_ready = bool(
+        precount_meta.get("protein_substrate_role_stress_generalization_ready")
+    )
     unified_scoring_passes_current_controls = bool(
         precount_meta.get("unified_review_only_scoring_passes_current_controls")
     )
@@ -16828,6 +16866,63 @@ def build_epk_counteraxis_sufficiency_decision(
             "blocker": (
                 "length_band_counteraxis_source_expansion_only_not_general_epk_identity"
             ),
+        },
+        {
+            "decision_axis": "source_free_protein_substrate_role_discriminator",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "protein_substrate_role_discriminator_status": (
+                protein_role_discriminator_status
+            ),
+            "protein_substrate_role_hit_count": (
+                protein_role_discriminator_hit_count
+            ),
+            "protein_substrate_role_hit_pdb_ids": (
+                protein_role_discriminator_hit_pdb_ids
+            ),
+            "control_false_hit_count": (
+                protein_role_discriminator_control_false_hit_count
+            ),
+            "external_hard_negative_non_abstention_count": (
+                protein_role_discriminator_external_non_abstention_count
+            ),
+            "length_band_not_general_protein_discriminator": (
+                protein_role_discriminator_length_band_not_general
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "passes_current_controls_but_not_general_or_calibrated"
+                if protein_role_discriminator_status
+                == "passes_current_controls_but_review_only_not_production_admissible"
+                and protein_role_discriminator_control_false_hit_count == 0
+                and protein_role_discriminator_external_non_abstention_count == 0
+                else "missing_or_failing_protein_substrate_role_discriminator"
+            ),
+            "blocker": (
+                "protein_substrate_role_discriminator_not_general_substrate_identity_or_calibrated_score"
+            ),
+        },
+        {
+            "decision_axis": "source_free_protein_substrate_role_discriminator_stress",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "protein_substrate_role_stress_status": protein_role_stress_status,
+            "false_hit_count": protein_role_stress_false_hit_count,
+            "false_hit_pdb_ids": protein_role_stress_false_hit_pdb_ids,
+            "protein_discriminator_generalization_ready": (
+                protein_role_stress_generalization_ready
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "fails_closed_false_hit_keeps_generalization_closed"
+                if protein_role_stress_false_hit_count
+                else (
+                    "stress_passed_but_review_only_not_calibrated"
+                    if protein_role_stress_generalization_ready
+                    else "missing_or_inconclusive_protein_role_stress"
+                )
+            ),
+            "blocker": "source_expansion_protein_role_stress_false_hit_or_missing_positive",
         },
         {
             "decision_axis": "unified_review_only_scoring_prototype",
@@ -31522,6 +31617,624 @@ def build_epk_length_band_external_hard_negative_review(
     }
 
 
+def build_epk_source_free_protein_substrate_role_discriminator_audit(
+    *,
+    epk_protein_substrate_acceptor_candidate_audit: dict[str, Any],
+    epk_heteromeric_chain_topology_signal_audit: dict[str, Any],
+    epk_length_band_substrate_identity_counteraxis_audit: dict[str, Any]
+    | None = None,
+) -> dict[str, Any]:
+    """Audit a source-free protein-substrate role discriminator in review mode."""
+
+    protein_meta = epk_protein_substrate_acceptor_candidate_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(protein_meta, dict):
+        protein_meta = {}
+    topology_meta = epk_heteromeric_chain_topology_signal_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(topology_meta, dict):
+        topology_meta = {}
+    length_meta = (
+        epk_length_band_substrate_identity_counteraxis_audit.get("metadata", {})
+        if isinstance(epk_length_band_substrate_identity_counteraxis_audit, dict)
+        else {}
+    )
+    if not isinstance(length_meta, dict):
+        length_meta = {}
+
+    target_fingerprint_id = str(
+        protein_meta.get("target_fingerprint_id")
+        or topology_meta.get("target_fingerprint_id")
+        or length_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    rule_id = "epk_source_free_protein_substrate_role_discriminator_v0_review_only"
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    current_positive_hit_pdb_ids: list[str] = []
+    current_positive_miss_pdb_ids: list[str] = []
+    heteromeric_positive_hit_pdb_ids: list[str] = []
+    heteromeric_positive_miss_pdb_ids: list[str] = []
+    ligand_analog_excluded_entry_ids: list[str] = []
+    control_false_hit_pdb_ids: list[str] = []
+    external_non_abstention_entry_ids: list[str] = []
+
+    def _add_row(
+        *,
+        source_row: dict[str, Any],
+        row_type: str,
+        source_mode: str,
+        rule_hit: bool,
+        decision: str,
+        control_like: bool = False,
+        external_like: bool = False,
+    ) -> None:
+        status_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": row_type,
+                "source_row_type": source_row.get("row_type"),
+                "source_mode": source_mode,
+                "entry_id": source_row.get("entry_id"),
+                "pdb_id": source_row.get("pdb_id"),
+                "family_id": source_row.get("family_id"),
+                "family_name": source_row.get("family_name"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only", True)
+                ),
+                "rule_id": rule_id,
+                "source_candidate_feature_hit": bool(
+                    source_row.get("candidate_feature_hit")
+                ),
+                "non_catalytic_chain_acceptor": bool(
+                    source_row.get("non_catalytic_chain_acceptor")
+                ),
+                "heteromeric_chain_entity_signal_hit": bool(
+                    source_row.get("heteromeric_chain_entity_signal_hit")
+                ),
+                "ligand_analog_acceptor": bool(
+                    source_row.get("ligand_analog_acceptor")
+                ),
+                "nearest_gamma_to_acceptor_distance_angstrom": (
+                    source_row.get(
+                        "nearest_gamma_to_candidate_acceptor_distance_angstrom"
+                    )
+                    or source_row.get("nearest_gamma_to_acceptor_distance_angstrom")
+                    or source_row.get("source_valid_5hvk_distance_angstrom")
+                ),
+                "source_feature_decision": (
+                    source_row.get("feature_audit_decision")
+                    or source_row.get("known_review_context_class")
+                    or source_row.get("source_feature_decision")
+                ),
+                "protein_substrate_role_discriminator_hit": rule_hit,
+                "protein_substrate_role_discriminator_decision": decision,
+                "control_like": control_like,
+                "external_hard_negative_like": external_like,
+                "production_scoring_admissible": False,
+                "ready_for_production_scoring": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "protein_substrate_role_discriminator_not_calibrated_as_scorer",
+                    "length_band_counteraxis_source_expansion_only",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    for source_row in epk_protein_substrate_acceptor_candidate_audit.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        source_type = str(source_row.get("row_type") or "")
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        entry_id = str(source_row.get("entry_id") or "")
+        rule_hit = bool(source_row.get("candidate_feature_hit")) and bool(
+            source_row.get("non_catalytic_chain_acceptor")
+        ) and not bool(source_row.get("ligand_analog_acceptor"))
+        if source_type == "current_epk_positive_prototype":
+            if bool(source_row.get("ligand_analog_acceptor")):
+                ligand_analog_excluded_entry_ids.append(entry_id)
+                decision = "ligand_analog_positive_excluded_from_protein_role_discriminator"
+            elif rule_hit:
+                current_positive_hit_pdb_ids.append(pdb_id)
+                decision = "current_positive_protein_role_discriminator_hit_review_only"
+            else:
+                current_positive_miss_pdb_ids.append(pdb_id)
+                decision = "current_positive_protein_role_discriminator_miss_review_only"
+            _add_row(
+                source_row=source_row,
+                row_type="protein_role_current_positive",
+                source_mode="current_protein_substrate_acceptor",
+                rule_hit=rule_hit,
+                decision=decision,
+            )
+        elif source_type == "imported_external_hard_negative":
+            if rule_hit:
+                external_non_abstention_entry_ids.append(entry_id)
+                decision = "external_hard_negative_protein_role_non_abstention"
+            else:
+                decision = "external_hard_negative_protein_role_abstention"
+            _add_row(
+                source_row=source_row,
+                row_type="protein_role_imported_external_hard_negative",
+                source_mode="imported_external_hard_negative",
+                rule_hit=rule_hit,
+                decision=decision,
+                external_like=True,
+            )
+        elif source_type.endswith("negative_control"):
+            if rule_hit:
+                control_false_hit_pdb_ids.append(pdb_id)
+                decision = "protein_role_control_false_hit_review_only"
+            else:
+                decision = "protein_role_control_blocked_review_only"
+            _add_row(
+                source_row=source_row,
+                row_type="protein_role_sibling_or_local_control",
+                source_mode="protein_substrate_control",
+                rule_hit=rule_hit,
+                decision=decision,
+                control_like=True,
+            )
+
+    for source_row in epk_heteromeric_chain_topology_signal_audit.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        if source_row.get("row_type") != "heteromeric_chain_topology_hit_control":
+            continue
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        review_class = str(source_row.get("known_review_context_class") or "")
+        rule_hit = bool(source_row.get("heteromeric_chain_entity_signal_hit"))
+        source_valid = review_class == "cross_accession_source_valid_positive_like"
+        if source_valid:
+            if rule_hit:
+                heteromeric_positive_hit_pdb_ids.append(pdb_id)
+                decision = "heteromeric_protein_role_discriminator_hit_review_only"
+            else:
+                heteromeric_positive_miss_pdb_ids.append(pdb_id)
+                decision = "heteromeric_protein_role_discriminator_miss_review_only"
+            _add_row(
+                source_row=source_row,
+                row_type="protein_role_heteromeric_positive",
+                source_mode="heteromeric_protein_substrate",
+                rule_hit=rule_hit,
+                decision=decision,
+            )
+        else:
+            if rule_hit:
+                control_false_hit_pdb_ids.append(pdb_id)
+                decision = "heteromeric_topology_control_false_hit_review_only"
+            else:
+                decision = "heteromeric_topology_control_blocked_review_only"
+            _add_row(
+                source_row=source_row,
+                row_type="protein_role_heteromeric_topology_control",
+                source_mode="heteromeric_topology_control",
+                rule_hit=rule_hit,
+                decision=decision,
+                control_like=True,
+            )
+
+    current_positive_hit_pdb_ids = _sorted_strings(current_positive_hit_pdb_ids)
+    current_positive_miss_pdb_ids = _sorted_strings(current_positive_miss_pdb_ids)
+    heteromeric_positive_hit_pdb_ids = _sorted_strings(
+        heteromeric_positive_hit_pdb_ids
+    )
+    heteromeric_positive_miss_pdb_ids = _sorted_strings(
+        heteromeric_positive_miss_pdb_ids
+    )
+    ligand_analog_excluded_entry_ids = _sorted_strings(
+        ligand_analog_excluded_entry_ids
+    )
+    control_false_hit_pdb_ids = _sorted_strings(control_false_hit_pdb_ids)
+    external_non_abstention_entry_ids = _sorted_strings(
+        external_non_abstention_entry_ids
+    )
+    positive_hit_pdb_ids = _sorted_strings(
+        [*current_positive_hit_pdb_ids, *heteromeric_positive_hit_pdb_ids]
+    )
+    positive_miss_pdb_ids = _sorted_strings(
+        [*current_positive_miss_pdb_ids, *heteromeric_positive_miss_pdb_ids]
+    )
+    passes_current_controls = (
+        len(positive_hit_pdb_ids) >= 3
+        and not positive_miss_pdb_ids
+        and not control_false_hit_pdb_ids
+        and not external_non_abstention_entry_ids
+    )
+    status = (
+        "passes_current_controls_but_review_only_not_production_admissible"
+        if passes_current_controls
+        else "blocked_review_only_protein_role_discriminator_gap_or_false_hit"
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_source_free_protein_substrate_role_discriminator_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "rule_id": rule_id,
+            "source_epk_protein_substrate_acceptor_candidate_audit_method": (
+                protein_meta.get("method")
+            ),
+            "source_epk_heteromeric_chain_topology_signal_audit_method": (
+                topology_meta.get("method")
+            ),
+            "source_epk_length_band_substrate_identity_counteraxis_audit_method": (
+                length_meta.get("method")
+            ),
+            "protein_substrate_role_discriminator_status": status,
+            "protein_substrate_role_discriminator_passes_current_controls": (
+                passes_current_controls
+            ),
+            "current_protein_positive_hit_count": len(
+                current_positive_hit_pdb_ids
+            ),
+            "current_protein_positive_hit_pdb_ids": current_positive_hit_pdb_ids,
+            "heteromeric_protein_positive_hit_count": len(
+                heteromeric_positive_hit_pdb_ids
+            ),
+            "heteromeric_protein_positive_hit_pdb_ids": (
+                heteromeric_positive_hit_pdb_ids
+            ),
+            "combined_protein_substrate_role_hit_count": len(
+                positive_hit_pdb_ids
+            ),
+            "combined_protein_substrate_role_hit_pdb_ids": positive_hit_pdb_ids,
+            "protein_substrate_role_miss_count": len(positive_miss_pdb_ids),
+            "protein_substrate_role_miss_pdb_ids": positive_miss_pdb_ids,
+            "ligand_analog_excluded_positive_count": len(
+                ligand_analog_excluded_entry_ids
+            ),
+            "ligand_analog_excluded_positive_entry_ids": (
+                ligand_analog_excluded_entry_ids
+            ),
+            "protein_role_control_false_hit_count": len(
+                control_false_hit_pdb_ids
+            ),
+            "protein_role_control_false_hit_pdb_ids": control_false_hit_pdb_ids,
+            "protein_role_external_hard_negative_non_abstention_count": len(
+                external_non_abstention_entry_ids
+            ),
+            "protein_role_external_hard_negative_non_abstention_entry_ids": (
+                external_non_abstention_entry_ids
+            ),
+            "length_band_source_expansion_positive_hit_count": (
+                length_meta.get("positive_like_length_band_hit_count")
+            ),
+            "length_band_blocked_relaxed_false_hit_count": (
+                length_meta.get(
+                    "nonpositive_relaxed_false_hit_blocked_by_length_band_count"
+                )
+            ),
+            "length_band_not_general_protein_discriminator": True,
+            "source_free_protein_substrate_role_ready_review_only": (
+                passes_current_controls
+            ),
+            "general_substrate_identity_ready_count": 0,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "protein_substrate_role_decision_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "blocker_removed": "source_free_protein_substrate_role_discriminator_audited",
+            "blocker_not_removed": [
+                "protein_substrate_role_discriminator_not_calibrated_as_scorer",
+                "general_substrate_identity_axis_still_missing",
+                "length_band_counteraxis_source_expansion_only",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This audit combines two local protein-substrate role signals: "
+                "non-catalytic-chain protein acceptor context in current ePK "
+                "prototype rows and heteromeric entity topology in the 5HVK "
+                "protein-substrate lead. It deliberately excludes ligand-analog "
+                "support and does not create a calibrated ePK scorer."
+            ),
+            "next_actions": [
+                "stress this protein-substrate role discriminator on new source-valid positives",
+                "keep length-band evidence scoped to source-expansion peptide rows",
+                "do not threshold or run a real external scored re-audit until a frozen scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The protein-substrate role discriminator is review-only and "
+                "does not authorize threshold selection, registry edits, label "
+                "imports, or held-out performance claims."
+            )
+        ],
+    }
+
+
+def build_epk_source_free_protein_substrate_role_discriminator_stress_audit(
+    *,
+    epk_source_free_protein_substrate_role_discriminator_audit: dict[str, Any],
+    epk_heteromeric_source_expansion_peptide_role_axis_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Stress the review-only protein-role rule on source-expansion rows."""
+
+    protein_role_meta = (
+        epk_source_free_protein_substrate_role_discriminator_audit.get(
+            "metadata", {}
+        )
+        if isinstance(
+            epk_source_free_protein_substrate_role_discriminator_audit, dict
+        )
+        else {}
+    )
+    if not isinstance(protein_role_meta, dict):
+        protein_role_meta = {}
+    source_expansion_meta = (
+        epk_heteromeric_source_expansion_peptide_role_axis_audit.get(
+            "metadata", {}
+        )
+        if isinstance(epk_heteromeric_source_expansion_peptide_role_axis_audit, dict)
+        else {}
+    )
+    if not isinstance(source_expansion_meta, dict):
+        source_expansion_meta = {}
+
+    target_fingerprint_id = str(
+        protein_role_meta.get("target_fingerprint_id")
+        or source_expansion_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    rule_id = "epk_relaxed_folded_protein_substrate_role_stress_v0_review_only"
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    source_valid_protein_hit_pdb_ids: list[str] = []
+    source_valid_protein_miss_pdb_ids: list[str] = []
+    nonpositive_false_hit_pdb_ids: list[str] = []
+    peptide_mode_positive_pdb_ids: list[str] = []
+
+    for source_row in (
+        epk_heteromeric_source_expansion_peptide_role_axis_audit.get(
+            "rows", []
+        )
+        or []
+    ):
+        if not isinstance(source_row, dict):
+            continue
+        source_type = str(source_row.get("row_type") or "")
+        if source_type not in {
+            "source_expansion_peptide_role_positive_candidate",
+            "source_expansion_peptide_role_nonpositive_control",
+        }:
+            continue
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        source_valid = bool(source_row.get("source_validated_positive_like"))
+        peptide_mode_hit = bool(
+            source_row.get("source_free_peptide_role_axis_rule_hit")
+        )
+        relaxed_protein_role_hit = (
+            not bool(source_row.get("peptide_like_acceptor_chain"))
+            and bool(source_row.get("acceptor_chain_lacks_local_nucleotide_or_metal"))
+            and bool(source_row.get("gamma_chain_has_local_nucleotide_or_metal"))
+            and bool(source_row.get("gamma_chain_is_larger_polymer"))
+        )
+        if source_valid and relaxed_protein_role_hit:
+            source_valid_protein_hit_pdb_ids.append(pdb_id)
+            decision = "source_valid_expansion_protein_role_hit_review_only"
+        elif source_valid and peptide_mode_hit:
+            peptide_mode_positive_pdb_ids.append(pdb_id)
+            decision = "source_valid_expansion_peptide_mode_not_protein_role"
+        elif source_valid:
+            source_valid_protein_miss_pdb_ids.append(pdb_id)
+            decision = "source_valid_expansion_protein_role_miss_review_only"
+        elif relaxed_protein_role_hit:
+            nonpositive_false_hit_pdb_ids.append(pdb_id)
+            decision = "nonpositive_source_expansion_protein_role_false_hit"
+        else:
+            decision = "nonpositive_source_expansion_protein_role_blocked"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "source_expansion_protein_role_stress",
+                "source_row_type": source_type,
+                "pdb_id": pdb_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only", True)
+                ),
+                "rule_id": rule_id,
+                "source_validated_positive_like": source_valid,
+                "source_validation_status_review_context": source_row.get(
+                    "source_validation_status_review_context"
+                ),
+                "peptide_like_acceptor_chain": bool(
+                    source_row.get("peptide_like_acceptor_chain")
+                ),
+                "acceptor_chain_residue_count": source_row.get(
+                    "acceptor_chain_residue_count"
+                ),
+                "acceptor_chain_lacks_local_nucleotide_or_metal": bool(
+                    source_row.get(
+                        "acceptor_chain_lacks_local_nucleotide_or_metal"
+                    )
+                ),
+                "gamma_chain_has_local_nucleotide_or_metal": bool(
+                    source_row.get("gamma_chain_has_local_nucleotide_or_metal")
+                ),
+                "gamma_chain_is_larger_polymer": bool(
+                    source_row.get("gamma_chain_is_larger_polymer")
+                ),
+                "candidate_acceptor_chain_name": source_row.get(
+                    "candidate_acceptor_chain_name"
+                ),
+                "gamma_associated_polymer_chain_name": source_row.get(
+                    "gamma_associated_polymer_chain_name"
+                ),
+                "nearest_gamma_distance_angstrom": source_row.get(
+                    "nearest_gamma_distance_angstrom"
+                ),
+                "relaxed_folded_protein_role_rule_hit": (
+                    relaxed_protein_role_hit
+                ),
+                "protein_substrate_role_stress_decision": decision,
+                "production_scoring_admissible": False,
+                "ready_for_production_scoring": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "relaxed_protein_role_false_hit_in_source_expansion_stress",
+                    "no_source_valid_expansion_protein_substrate_positive",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    source_valid_protein_hit_pdb_ids = _sorted_strings(
+        source_valid_protein_hit_pdb_ids
+    )
+    source_valid_protein_miss_pdb_ids = _sorted_strings(
+        source_valid_protein_miss_pdb_ids
+    )
+    nonpositive_false_hit_pdb_ids = _sorted_strings(nonpositive_false_hit_pdb_ids)
+    peptide_mode_positive_pdb_ids = _sorted_strings(peptide_mode_positive_pdb_ids)
+    stress_passed = (
+        bool(source_valid_protein_hit_pdb_ids)
+        and not source_valid_protein_miss_pdb_ids
+        and not nonpositive_false_hit_pdb_ids
+    )
+    if stress_passed:
+        status = "passes_source_expansion_protein_role_stress_review_only"
+    elif nonpositive_false_hit_pdb_ids:
+        status = "fails_closed_review_only_source_expansion_protein_role_false_hit"
+    else:
+        status = "blocked_review_only_no_source_valid_expansion_protein_positive"
+
+    return {
+        "metadata": {
+            "method": (
+                "epk_source_free_protein_substrate_role_discriminator_stress_audit"
+            ),
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "rule_id": rule_id,
+            "source_epk_source_free_protein_substrate_role_discriminator_audit_method": (
+                protein_role_meta.get("method")
+            ),
+            "source_epk_heteromeric_source_expansion_peptide_role_axis_audit_method": (
+                source_expansion_meta.get("method")
+            ),
+            "source_protein_role_discriminator_status": protein_role_meta.get(
+                "protein_substrate_role_discriminator_status"
+            ),
+            "source_expansion_reviewed_row_count": len(rows),
+            "source_valid_expansion_protein_role_hit_count": len(
+                source_valid_protein_hit_pdb_ids
+            ),
+            "source_valid_expansion_protein_role_hit_pdb_ids": (
+                source_valid_protein_hit_pdb_ids
+            ),
+            "source_valid_expansion_protein_role_miss_count": len(
+                source_valid_protein_miss_pdb_ids
+            ),
+            "source_valid_expansion_protein_role_miss_pdb_ids": (
+                source_valid_protein_miss_pdb_ids
+            ),
+            "source_valid_expansion_peptide_mode_not_protein_count": len(
+                peptide_mode_positive_pdb_ids
+            ),
+            "source_valid_expansion_peptide_mode_not_protein_pdb_ids": (
+                peptide_mode_positive_pdb_ids
+            ),
+            "nonpositive_source_expansion_protein_role_false_hit_count": len(
+                nonpositive_false_hit_pdb_ids
+            ),
+            "nonpositive_source_expansion_protein_role_false_hit_pdb_ids": (
+                nonpositive_false_hit_pdb_ids
+            ),
+            "protein_role_source_expansion_stress_status": status,
+            "protein_discriminator_generalization_ready": stress_passed,
+            "source_expansion_stress_decision_counts": dict(
+                sorted(decision_counts.items())
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "source_expansion_protein_role_stress_audit_executed",
+            "blocker_not_removed": [
+                "protein_role_discriminator_has_no_broad_source_valid_protein_positive",
+                "relaxed_folded_protein_role_false_hits_7b56",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "next_actions": [
+                "source a true broad protein-substrate ePK positive before generalizing this discriminator",
+                "treat 7B56 as a mid-length folded-substrate false hit for relaxed protein-role rules",
+                "keep production scoring and external scored re-audit closed",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("source_row_type") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "This stress audit is a negative review-only result and does "
+                "not authorize an ePK scorer, threshold, label import, or "
+                "clean held-out performance claim."
+            )
+        ],
+    }
+
+
 def build_epk_external_source_lower_priority_ligand_sourcing_review(
     *,
     epk_external_source_structure_mapping_review: dict[str, Any],
@@ -31855,11 +32568,14 @@ def build_epk_external_source_scout_pass_terminal_decision(
         alternate_meta.get("measurement_ready_candidate_count") or 0
     )
     total_measurement_ready += alternate_measurement_ready
-    terminal_decision = (
-        "current_three_pass_external_source_surface_exhausted_review_only"
-        if total_measurement_ready == 0 and pass_count >= 3
-        else "continue_external_source_review_only"
-    )
+    if total_measurement_ready == 0 and pass_count >= 3:
+        terminal_decision = (
+            "current_three_pass_external_source_surface_exhausted_review_only"
+            if pass_count == 3
+            else f"current_{pass_count}_pass_external_source_surface_exhausted_review_only"
+        )
+    else:
+        terminal_decision = "continue_external_source_review_only"
     return {
         "metadata": {
             "method": "epk_external_source_scout_pass_terminal_decision",
@@ -31887,8 +32603,9 @@ def build_epk_external_source_scout_pass_terminal_decision(
             "measurement_ready_candidate_count": total_measurement_ready,
             "terminal_decision": terminal_decision,
             "current_source_candidates_exhausted": (
-                terminal_decision
-                == "current_three_pass_external_source_surface_exhausted_review_only"
+                terminal_decision.endswith(
+                    "_pass_external_source_surface_exhausted_review_only"
+                )
             ),
             "ready_to_measure_gamma_acceptor_distance": total_measurement_ready > 0,
             "ready_to_run_epk_scorer": False,
@@ -33240,6 +33957,10 @@ def build_epk_precount_gate_status(
     epk_length_band_substrate_identity_counteraxis_audit: dict[str, Any]
     | None = None,
     epk_length_band_external_hard_negative_review: dict[str, Any] | None = None,
+    epk_source_free_protein_substrate_role_discriminator_audit: dict[str, Any]
+    | None = None,
+    epk_source_free_protein_substrate_role_discriminator_stress_audit: dict[str, Any]
+    | None = None,
     epk_unified_review_only_scoring_prototype: dict[str, Any] | None = None,
     epk_unified_prototype_broad_stress_audit: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
@@ -33777,6 +34498,29 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(length_band_external_hard_negative_meta, dict):
         length_band_external_hard_negative_meta = {}
+    protein_role_discriminator_meta = (
+        epk_source_free_protein_substrate_role_discriminator_audit.get(
+            "metadata", {}
+        )
+        if isinstance(
+            epk_source_free_protein_substrate_role_discriminator_audit, dict
+        )
+        else {}
+    )
+    if not isinstance(protein_role_discriminator_meta, dict):
+        protein_role_discriminator_meta = {}
+    protein_role_stress_meta = (
+        epk_source_free_protein_substrate_role_discriminator_stress_audit.get(
+            "metadata", {}
+        )
+        if isinstance(
+            epk_source_free_protein_substrate_role_discriminator_stress_audit,
+            dict,
+        )
+        else {}
+    )
+    if not isinstance(protein_role_stress_meta, dict):
+        protein_role_stress_meta = {}
     unified_scoring_meta = (
         epk_unified_review_only_scoring_prototype.get("metadata", {})
         if isinstance(epk_unified_review_only_scoring_prototype, dict)
@@ -36377,6 +37121,150 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if protein_role_discriminator_meta:
+        gate_checks.append(
+            {
+                "gate_id": "source_free_protein_substrate_role_discriminator_audit",
+                "passed": protein_role_discriminator_meta.get(
+                    "protein_substrate_role_discriminator_status"
+                )
+                == "passes_current_controls_but_review_only_not_production_admissible"
+                and bool(
+                    protein_role_discriminator_meta.get(
+                        "protein_substrate_role_discriminator_passes_current_controls"
+                    )
+                )
+                and int(
+                    protein_role_discriminator_meta.get(
+                        "combined_protein_substrate_role_hit_count"
+                    )
+                    or 0
+                )
+                > 0
+                and int(
+                    protein_role_discriminator_meta.get(
+                        "protein_role_control_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    protein_role_discriminator_meta.get(
+                        "protein_role_external_hard_negative_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    protein_role_discriminator_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    protein_role_discriminator_meta.get("epk_score_computed")
+                )
+                and not bool(
+                    protein_role_discriminator_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": protein_role_discriminator_meta.get(
+                        "method"
+                    ),
+                    "rule_id": protein_role_discriminator_meta.get("rule_id"),
+                    "protein_substrate_role_discriminator_status": (
+                        protein_role_discriminator_meta.get(
+                            "protein_substrate_role_discriminator_status"
+                        )
+                    ),
+                    "combined_protein_substrate_role_hit_count": (
+                        protein_role_discriminator_meta.get(
+                            "combined_protein_substrate_role_hit_count"
+                        )
+                    ),
+                    "combined_protein_substrate_role_hit_pdb_ids": (
+                        protein_role_discriminator_meta.get(
+                            "combined_protein_substrate_role_hit_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "protein_role_control_false_hit_count": (
+                        protein_role_discriminator_meta.get(
+                            "protein_role_control_false_hit_count"
+                        )
+                    ),
+                    "protein_role_external_hard_negative_non_abstention_count": (
+                        protein_role_discriminator_meta.get(
+                            "protein_role_external_hard_negative_non_abstention_count"
+                        )
+                    ),
+                    "length_band_not_general_protein_discriminator": bool(
+                        protein_role_discriminator_meta.get(
+                            "length_band_not_general_protein_discriminator"
+                        )
+                    ),
+                },
+            }
+        )
+    if protein_role_stress_meta:
+        gate_checks.append(
+            {
+                "gate_id": "source_free_protein_substrate_role_discriminator_stress_audit",
+                "passed": protein_role_stress_meta.get(
+                    "protein_role_source_expansion_stress_status"
+                )
+                in {
+                    "fails_closed_review_only_source_expansion_protein_role_false_hit",
+                    "blocked_review_only_no_source_valid_expansion_protein_positive",
+                    "passes_source_expansion_protein_role_stress_review_only",
+                }
+                and int(
+                    protein_role_stress_meta.get("countable_label_candidate_count")
+                    or 0
+                )
+                == 0
+                and not bool(protein_role_stress_meta.get("epk_score_computed"))
+                and not bool(
+                    protein_role_stress_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": protein_role_stress_meta.get("method"),
+                    "rule_id": protein_role_stress_meta.get("rule_id"),
+                    "protein_role_source_expansion_stress_status": (
+                        protein_role_stress_meta.get(
+                            "protein_role_source_expansion_stress_status"
+                        )
+                    ),
+                    "source_valid_expansion_protein_role_hit_count": (
+                        protein_role_stress_meta.get(
+                            "source_valid_expansion_protein_role_hit_count"
+                        )
+                    ),
+                    "source_valid_expansion_peptide_mode_not_protein_pdb_ids": (
+                        protein_role_stress_meta.get(
+                            "source_valid_expansion_peptide_mode_not_protein_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "nonpositive_source_expansion_protein_role_false_hit_count": (
+                        protein_role_stress_meta.get(
+                            "nonpositive_source_expansion_protein_role_false_hit_count"
+                        )
+                    ),
+                    "nonpositive_source_expansion_protein_role_false_hit_pdb_ids": (
+                        protein_role_stress_meta.get(
+                            "nonpositive_source_expansion_protein_role_false_hit_pdb_ids",
+                            [],
+                        )
+                    ),
+                },
+            }
+        )
     if unified_scoring_meta:
         gate_checks.append(
             {
@@ -38948,6 +39836,67 @@ def build_epk_precount_gate_status(
             "length_band_external_hard_negative_not_real_scored_reaudit": bool(
                 length_band_external_hard_negative_meta.get(
                     "not_a_real_scored_reaudit"
+                )
+            ),
+            "source_epk_source_free_protein_substrate_role_discriminator_audit_method": (
+                protein_role_discriminator_meta.get("method")
+            ),
+            "protein_substrate_role_discriminator_status": (
+                protein_role_discriminator_meta.get(
+                    "protein_substrate_role_discriminator_status"
+                )
+            ),
+            "protein_substrate_role_discriminator_rule_id": (
+                protein_role_discriminator_meta.get("rule_id")
+            ),
+            "protein_substrate_role_discriminator_hit_count": (
+                protein_role_discriminator_meta.get(
+                    "combined_protein_substrate_role_hit_count"
+                )
+            ),
+            "protein_substrate_role_discriminator_hit_pdb_ids": (
+                protein_role_discriminator_meta.get(
+                    "combined_protein_substrate_role_hit_pdb_ids",
+                    [],
+                )
+            ),
+            "protein_substrate_role_discriminator_control_false_hit_count": (
+                protein_role_discriminator_meta.get(
+                    "protein_role_control_false_hit_count"
+                )
+            ),
+            "protein_substrate_role_discriminator_external_non_abstention_count": (
+                protein_role_discriminator_meta.get(
+                    "protein_role_external_hard_negative_non_abstention_count"
+                )
+            ),
+            "protein_substrate_role_discriminator_length_band_not_general": bool(
+                protein_role_discriminator_meta.get(
+                    "length_band_not_general_protein_discriminator"
+                )
+            ),
+            "source_epk_source_free_protein_substrate_role_discriminator_stress_audit_method": (
+                protein_role_stress_meta.get("method")
+            ),
+            "protein_substrate_role_stress_status": (
+                protein_role_stress_meta.get(
+                    "protein_role_source_expansion_stress_status"
+                )
+            ),
+            "protein_substrate_role_stress_false_hit_count": (
+                protein_role_stress_meta.get(
+                    "nonpositive_source_expansion_protein_role_false_hit_count"
+                )
+            ),
+            "protein_substrate_role_stress_false_hit_pdb_ids": (
+                protein_role_stress_meta.get(
+                    "nonpositive_source_expansion_protein_role_false_hit_pdb_ids",
+                    [],
+                )
+            ),
+            "protein_substrate_role_stress_generalization_ready": bool(
+                protein_role_stress_meta.get(
+                    "protein_discriminator_generalization_ready"
                 )
             ),
             "source_epk_unified_review_only_scoring_prototype_method": (

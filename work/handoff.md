@@ -50,6 +50,65 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T05:04:15Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and startup checks passed: 632 unit tests plus
+`catalytic_earth.cli validate` with 682 labels and 8 production fingerprints.
+Wrap-up verification passed with 638 unit tests, `validate`, `compileall`,
+JSON parsing, label invariants, `git diff --check`, and the artifact migration
+dry-run guard at 108 rows with `removal_allowed=0`.
+
+`artifacts/v3_epk_source_free_protein_substrate_role_discriminator_audit_1025.json`
+adds a source-free, review-only protein-substrate role discriminator. It
+combines the current protein-substrate acceptor positives `1IR3` and `2PHK`
+with the `5HVK` heteromeric topology hit, excludes ligand-analog-only
+`m_csa:640`, and records 0 current-control false hits plus 0 imported external
+hard-negative non-abstentions. The artifact explicitly keeps
+`ready_to_run_epk_scorer=false`, `epk_score_computed=false`,
+`external_hard_negative_reaudit_scored=false`, and
+`countable_label_candidate_count=0`.
+
+`artifacts/v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json`
+then stress-tests the relaxed folded-protein generalization against the current
+source-expansion surface. This is a negative result: `1O6K` and `1O6L` remain
+peptide-mode rather than protein-mode evidence, there is no broad source-valid
+protein-mode positive, and blocked `7B56` false-hits the relaxed protein-role
+logic. The regenerated pre-count and counteraxis artifacts carry this as
+review-only blocker evidence; `artifacts/v3_epk_precount_gate_status_1025.json`
+remains `blocked_review_only`, and
+`artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` remains
+`do_not_select_threshold`.
+
+To avoid stopping at analysis, the run also opened a fourth bounded
+external-source scout that excludes the 31 accessions from the first three
+UniProt/PDB-backed source passes:
+`artifacts/v3_epk_external_protein_substrate_source_scout_fourth_pass_1025.json`.
+It found eight new review-only protein-kinase candidates (`O14730`, `O60229`,
+`P78368`, `O43353`, `P08922`, `P09769`, `P0C1S8`, and `P14616`) with no query
+or entry-fetch failures. They are only `sourced_pending_structure_mapping_review`
+rows, and the follow-on mapping/ligand review closes the pass negatively:
+`artifacts/v3_epk_external_source_structure_mapping_review_fourth_pass_1025.json`
+maps 37 structures, finds 8 direct-position-ready rows but 0 active-state
+mapping-ready rows, and
+`artifacts/v3_epk_external_source_lower_priority_ligand_sourcing_review_fourth_pass_1025.json`
+finds only metal-without-gamma or non-ATP/remote-ligand contexts. The four-pass
+terminal decision covers 100 total structure rows and keeps
+measurement-ready count at 0, so no distance measurement, scorer, label import,
+or registry change is authorized.
+
+Evidence-based confidence call: confidence is higher that the current
+protein-substrate role rule is useful as a narrow control-clean discriminator
+for known protein-substrate-like positives, but low that it generalizes beyond
+the current support. `7B56` is now explicit counterevidence for relaxed
+folded-protein substrate identity. The fourth-pass source scout did not rescue
+the lane, so the next useful experiment is a ligand-specific active ATP/ANP
+plus metal source query for a true broad protein-substrate ePK positive, or a
+stronger source-free acceptor-identity counter-axis before any thresholding or
+external scored re-audit.
+
 As of the 2026-05-20T03:45:18Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

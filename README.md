@@ -1403,6 +1403,18 @@ identity rule. The paired
 `artifacts/v3_epk_length_band_external_hard_negative_review_1025.json` records
 0 length-band non-abstentions for the three imported external hard negatives,
 explicitly not as a scored re-audit or held-out performance claim. The
+source-free protein-substrate role audit
+`artifacts/v3_epk_source_free_protein_substrate_role_discriminator_audit_1025.json`
+combines `1IR3`/`2PHK` protein-substrate acceptor hits with the `5HVK`
+heteromeric topology hit, excludes ligand-analog-only `m_csa:640`, and keeps
+current controls plus the three imported external hard negatives abstained.
+The paired stress audit
+`artifacts/v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json`
+then deliberately fails closed: the current source-expansion positives
+`1O6K`/`1O6L` are peptide-mode rather than protein-mode evidence, and the
+relaxed folded-protein role rule false-hits blocked `7B56`. Protein-role
+generalization therefore remains unavailable.
+The
 preregistration artifact
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`
 keeps those counterexamples in the next review-only stress plan.
@@ -1413,9 +1425,19 @@ split-state repair scan, the
 external scored re-audit, and label-factory extension all remain failing
 gates; the negative-control distribution blocker also stays open.
 The downstream counteraxis sufficiency decision now carries the unified
-substrate-identity, relaxed-polymer gap, and length-band repair rows, but
+substrate-identity, relaxed-polymer gap, length-band repair, protein-role
+discriminator, and protein-role stress rows, but
 keeps `do_not_select_threshold` because the repaired rule is not calibrated
 for production scoring or a real external hard-negative scored re-audit.
+The next source pass is now concrete:
+`artifacts/v3_epk_external_protein_substrate_source_scout_fourth_pass_1025.json`
+excludes the 31 accessions from the first three UniProt/PDB-backed source
+passes and finds eight new review-only candidates (`O14730`, `O60229`,
+`P78368`, `O43353`, `P08922`, `P09769`, `P0C1S8`, and `P14616`) for future
+structure mapping. The follow-on fourth-pass structure-mapping and ligand
+sourcing reviews inspect 37 structures, find 8 direct-position-ready rows but
+0 active-state mapping-ready rows, and keep measurement-ready count at 0. They
+do not open scorer, registry, or label gates.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

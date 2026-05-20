@@ -786,15 +786,33 @@ source-expansion scoped and not production-admissible. The paired
 `artifacts/v3_epk_length_band_external_hard_negative_review_1025.json` records
 0 length-band non-abstentions for `uniprot:P06744`, `uniprot:P78549`, and
 `uniprot:Q3LXA3` as an abstention diagnostic, not a scored external re-audit.
+The protein-substrate role discriminator in
+`artifacts/v3_epk_source_free_protein_substrate_role_discriminator_audit_1025.json`
+is also review-only: it keeps `1IR3`, `2PHK`, and `5HVK`, excludes
+ligand-analog-only `m_csa:640`, and records 0 current-control false hits plus
+0 imported external hard-negative non-abstentions. The paired stress audit
+`artifacts/v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json`
+keeps that evidence fail-closed by showing no broad source-valid
+protein-mode positive and one relaxed folded-protein false hit (`7B56`).
 The next broad-stress tranche is
 preregistered in
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`.
 The downstream counteraxis sufficiency decision carries the unified rule,
-unified prototype, broad-stress audit, relaxed-polymer gap audit, and
-length-band repair audit as review-only decision rows but keeps
+unified prototype, broad-stress audit, relaxed-polymer gap audit,
+length-band repair audit, protein-role discriminator, and protein-role stress
+audit as review-only decision rows but keeps
 `do_not_select_threshold` because threshold
 calibration, a real scored external re-audit, and registry/factory extension
 are still closed.
+The fourth external protein-substrate source scout now excludes the 31
+previously sourced UniProt/PDB-backed candidates and adds eight new review-only
+structure-mapping candidates (`O14730`, `O60229`, `P78368`, `O43353`,
+`P08922`, `P09769`, `P0C1S8`, and `P14616`). They remain
+`sourced_pending_structure_mapping_review`; follow-on mapping covers 37
+structures and finds 8 direct-position-ready rows, but ligand review finds
+only metal-without-gamma or non-ATP/remote-ligand contexts and 0
+measurement-ready rows. There are no
+scores, registry edits, or label candidates.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

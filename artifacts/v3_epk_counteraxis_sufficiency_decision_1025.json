@@ -156,6 +156,38 @@
       "review_only": true
     },
     {
+      "blocker": "protein_substrate_role_discriminator_not_general_substrate_identity_or_calibrated_score",
+      "candidate_threshold_angstrom": 6.0,
+      "control_false_hit_count": 0,
+      "decision": "passes_current_controls_but_not_general_or_calibrated",
+      "decision_axis": "source_free_protein_substrate_role_discriminator",
+      "external_hard_negative_non_abstention_count": 0,
+      "feature_admissible_for_production_scoring": false,
+      "length_band_not_general_protein_discriminator": true,
+      "protein_substrate_role_discriminator_status": "passes_current_controls_but_review_only_not_production_admissible",
+      "protein_substrate_role_hit_count": 3,
+      "protein_substrate_role_hit_pdb_ids": [
+        "1IR3",
+        "2PHK",
+        "5HVK"
+      ],
+      "review_only": true
+    },
+    {
+      "blocker": "source_expansion_protein_role_stress_false_hit_or_missing_positive",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "fails_closed_false_hit_keeps_generalization_closed",
+      "decision_axis": "source_free_protein_substrate_role_discriminator_stress",
+      "false_hit_count": 1,
+      "false_hit_pdb_ids": [
+        "7B56"
+      ],
+      "feature_admissible_for_production_scoring": false,
+      "protein_discriminator_generalization_ready": false,
+      "protein_substrate_role_stress_status": "fails_closed_review_only_source_expansion_protein_role_false_hit",
+      "review_only": true
+    },
+    {
       "blocker": "unified_review_only_score_not_calibrated_or_production_admissible",
       "candidate_threshold_angstrom": 6.0,
       "control_false_non_abstention_count": 0,

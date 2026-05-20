@@ -1,0 +1,1951 @@
+{
+  "metadata": {
+    "active_state_mapping_ready_accessions": [],
+    "active_state_mapping_ready_pdb_ids": [],
+    "active_state_mapping_ready_structure_count": 0,
+    "analog_policy_blocked_structure_count": 0,
+    "blocker_not_removed": [
+      "protein_substrate_acceptor_not_source_mapped",
+      "gamma_to_acceptor_distance_not_measured",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "external_epk_source_structure_mapping_started",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "direct_position_mapping_ready_structure_count": 8,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "mapping_review_status_counts": {
+      "blocked_direct_position_mapping_ambiguous_or_missing_review_only": 29,
+      "direct_position_mapping_ready_ligand_context_incomplete_review_only": 8
+    },
+    "max_candidates": 8,
+    "max_pdbs_per_candidate": 10,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_external_source_structure_mapping_review",
+    "next_actions": [
+      "for active-state mapped rows, source protein-substrate acceptor evidence before distance measurement",
+      "treat analog-only mapped rows as blocked until an analog policy is frozen and passes controls",
+      "keep external hard-negative scored re-audit closed until a calibrated ePK scorer exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact attempts direct UniProt-position-to-PDB mapping for external ePK source candidates. Direct active-state mapping is only a source-repair lead; it is not protein-substrate acceptor evidence, a calibrated score, or a countable label.",
+    "reviewed_candidate_count": 8,
+    "scouted_candidate_count": 8,
+    "source_epk_external_protein_substrate_source_scout_method": "epk_external_protein_substrate_source_scout",
+    "structure_row_count": 37,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "accession": "O14730",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "struct_ref_seq_uniprot_position_mapping",
+      "direct_position_mapping_ready": true,
+      "direct_position_mapping_warnings": [],
+      "direct_position_match_counts": {
+        "257": 4,
+        "290": 3,
+        "406": 2
+      },
+      "entry_id": "uniprot:O14730",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 3,
+      "mapped_residue_positions": [
+        {
+          "chain_name": "p",
+          "code": "ASP",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "406",
+          "roles": [
+            "uniprot_active_site_feature"
+          ],
+          "uniprot_position": "406"
+        },
+        {
+          "chain_name": "p",
+          "code": "ILE",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "257",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "257"
+        },
+        {
+          "chain_name": "p",
+          "code": "LYS",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "290",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "290"
+        }
+      ],
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "pdb_id": "8ZDB",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_gamma_metal_context_missing",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ZN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O14730",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "struct_ref_seq_uniprot_position_mapping",
+      "direct_position_mapping_ready": true,
+      "direct_position_mapping_warnings": [],
+      "direct_position_match_counts": {
+        "257": 6,
+        "290": 5,
+        "406": 3
+      },
+      "entry_id": "uniprot:O14730",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 3,
+      "mapped_residue_positions": [
+        {
+          "chain_name": "p",
+          "code": "ASP",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "406",
+          "roles": [
+            "uniprot_active_site_feature"
+          ],
+          "uniprot_position": "406"
+        },
+        {
+          "chain_name": "p",
+          "code": "ILE",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "257",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "257"
+        },
+        {
+          "chain_name": "p",
+          "code": "LYS",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "290",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "290"
+        }
+      ],
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "pdb_id": "8ZDC",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_gamma_metal_context_missing",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ZN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O14730",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "struct_ref_seq_uniprot_position_mapping",
+      "direct_position_mapping_ready": true,
+      "direct_position_mapping_warnings": [],
+      "direct_position_match_counts": {
+        "257": 5,
+        "290": 4,
+        "406": 2
+      },
+      "entry_id": "uniprot:O14730",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 3,
+      "mapped_residue_positions": [
+        {
+          "chain_name": "p",
+          "code": "ASP",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "406",
+          "roles": [
+            "uniprot_active_site_feature"
+          ],
+          "uniprot_position": "406"
+        },
+        {
+          "chain_name": "p",
+          "code": "ILE",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "257",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "257"
+        },
+        {
+          "chain_name": "p",
+          "code": "LYS",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "290",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "290"
+        }
+      ],
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "pdb_id": "8ZDD",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_gamma_metal_context_missing",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ZN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O60229",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "2690": 0,
+        "2713": 0,
+        "2803": 0
+      },
+      "entry_id": "uniprot:O60229",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5QQD",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "JGA"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O60229",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "2690": 0,
+        "2713": 0,
+        "2803": 0
+      },
+      "entry_id": "uniprot:O60229",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5QQE",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "N5S"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O60229",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "2690": 0,
+        "2713": 0,
+        "2803": 0
+      },
+      "entry_id": "uniprot:O60229",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5QQF",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "N5V"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O60229",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "2690": 0,
+        "2713": 0,
+        "2803": 0
+      },
+      "entry_id": "uniprot:O60229",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5QQG",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "N64"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O60229",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "2690": 0,
+        "2713": 0,
+        "2803": 0
+      },
+      "entry_id": "uniprot:O60229",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5QQH",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "N67"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O60229",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "2690": 0,
+        "2713": 0,
+        "2803": 0
+      },
+      "entry_id": "uniprot:O60229",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5QQI",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "N6D"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O60229",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "2690": 0,
+        "2713": 0,
+        "2803": 0
+      },
+      "entry_id": "uniprot:O60229",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5QQJ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "N6J"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O60229",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "2690": 0,
+        "2713": 0,
+        "2803": 0
+      },
+      "entry_id": "uniprot:O60229",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5QQK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "N6V"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O60229",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "2690": 0,
+        "2713": 0,
+        "2803": 0
+      },
+      "entry_id": "uniprot:O60229",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5QQL",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "N71"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O60229",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "2690": 0,
+        "2713": 0,
+        "2803": 0
+      },
+      "entry_id": "uniprot:O60229",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5QQM",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "N74"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P78368",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_or_conflicting_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+      ],
+      "direct_position_match_counts": {
+        "165": 8,
+        "52": 8,
+        "75": 8
+      },
+      "entry_id": "uniprot:P78368",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "ser_thr_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "2C47",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "direct_position_matches_do_not_form_single_chain_mapping",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "5ID",
+        "CSD",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O43353",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "146": 0,
+        "24": 1,
+        "47": 1
+      },
+      "entry_id": "uniprot:O43353",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "2N7Z",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O43353",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "146": 0,
+        "24": 2,
+        "47": 2
+      },
+      "entry_id": "uniprot:O43353",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "2N83",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O43353",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_or_conflicting_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+      ],
+      "direct_position_match_counts": {
+        "146": 4,
+        "24": 2,
+        "47": 4
+      },
+      "entry_id": "uniprot:O43353",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "4C8B",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "direct_position_matches_do_not_form_single_chain_mapping",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "0LI",
+        "EDO"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O43353",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_or_conflicting_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+      ],
+      "direct_position_match_counts": {
+        "146": 4,
+        "24": 4,
+        "47": 4
+      },
+      "entry_id": "uniprot:O43353",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5AR2",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "direct_position_matches_do_not_form_single_chain_mapping",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "CA"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O43353",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_or_conflicting_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+      ],
+      "direct_position_match_counts": {
+        "146": 4,
+        "24": 4,
+        "47": 4
+      },
+      "entry_id": "uniprot:O43353",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5AR3",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "direct_position_matches_do_not_form_single_chain_mapping",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ACP",
+        "MG"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O43353",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_or_conflicting_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+      ],
+      "direct_position_match_counts": {
+        "146": 4,
+        "24": 4,
+        "47": 4
+      },
+      "entry_id": "uniprot:O43353",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5AR4",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "direct_position_matches_do_not_form_single_chain_mapping",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "SB2"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O43353",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_or_conflicting_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+      ],
+      "direct_position_match_counts": {
+        "146": 4,
+        "24": 4,
+        "47": 4
+      },
+      "entry_id": "uniprot:O43353",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5AR5",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "direct_position_matches_do_not_form_single_chain_mapping",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "CA",
+        "IQ7"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O43353",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_or_conflicting_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+      ],
+      "direct_position_match_counts": {
+        "146": 4,
+        "24": 4,
+        "47": 4
+      },
+      "entry_id": "uniprot:O43353",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5AR7",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "direct_position_matches_do_not_form_single_chain_mapping",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "SR8"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O43353",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_or_conflicting_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+      ],
+      "direct_position_match_counts": {
+        "146": 4,
+        "24": 3,
+        "47": 4
+      },
+      "entry_id": "uniprot:O43353",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5AR8",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "direct_position_matches_do_not_form_single_chain_mapping",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "XYW"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O43353",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_or_conflicting_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+      ],
+      "direct_position_match_counts": {
+        "146": 4,
+        "24": 4,
+        "47": 4
+      },
+      "entry_id": "uniprot:O43353",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "5J79",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "direct_position_matches_do_not_form_single_chain_mapping",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "6GE",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P08922",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "struct_ref_seq_uniprot_position_mapping",
+      "direct_position_mapping_ready": true,
+      "direct_position_mapping_warnings": [],
+      "direct_position_match_counts": {
+        "1951": 1,
+        "1980": 1,
+        "2079": 1
+      },
+      "entry_id": "uniprot:P08922",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "VGH"
+      ],
+      "local_resolved_residue_count": 3,
+      "mapped_residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "2079",
+          "roles": [
+            "uniprot_active_site_feature"
+          ],
+          "uniprot_position": "2079"
+        },
+        {
+          "chain_name": "A",
+          "code": "LEU",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "1951",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "1951"
+        },
+        {
+          "chain_name": "A",
+          "code": "LYS",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "1980",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "1980"
+        }
+      ],
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "pdb_id": "3ZBF",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_gamma_metal_context_missing",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "VGH"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P08922",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "struct_ref_seq_uniprot_position_mapping",
+      "direct_position_mapping_ready": true,
+      "direct_position_mapping_warnings": [],
+      "direct_position_match_counts": {
+        "1951": 1,
+        "1980": 1,
+        "2079": 1
+      },
+      "entry_id": "uniprot:P08922",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "5P8"
+      ],
+      "local_resolved_residue_count": 3,
+      "mapped_residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "2079",
+          "roles": [
+            "uniprot_active_site_feature"
+          ],
+          "uniprot_position": "2079"
+        },
+        {
+          "chain_name": "A",
+          "code": "LEU",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "1951",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "1951"
+        },
+        {
+          "chain_name": "A",
+          "code": "LYS",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "1980",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "1980"
+        }
+      ],
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "pdb_id": "4UXL",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_gamma_metal_context_missing",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "5P8"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P08922",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_multi_chain_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "multiple_chains_match_uniprot_positions"
+      ],
+      "direct_position_match_counts": {
+        "1951": 2,
+        "1980": 2,
+        "2079": 2
+      },
+      "entry_id": "uniprot:P08922",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "7Z5W",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "multiple_chains_match_uniprot_positions",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "IDW",
+        "SO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P08922",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_multi_chain_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "multiple_chains_match_uniprot_positions"
+      ],
+      "direct_position_match_counts": {
+        "1951": 2,
+        "1980": 2,
+        "2079": 2
+      },
+      "entry_id": "uniprot:P08922",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "7Z5X",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "multiple_chains_match_uniprot_positions",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "AWJ"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P08922",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "struct_ref_seq_uniprot_position_mapping",
+      "direct_position_mapping_ready": true,
+      "direct_position_mapping_warnings": [],
+      "direct_position_match_counts": {
+        "1951": 1,
+        "1980": 1,
+        "2079": 1
+      },
+      "entry_id": "uniprot:P08922",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "A1I6Z"
+      ],
+      "local_resolved_residue_count": 3,
+      "mapped_residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "2079",
+          "roles": [
+            "uniprot_active_site_feature"
+          ],
+          "uniprot_position": "2079"
+        },
+        {
+          "chain_name": "A",
+          "code": "LEU",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "1951",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "1951"
+        },
+        {
+          "chain_name": "A",
+          "code": "LYS",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "1980",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "1980"
+        }
+      ],
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "pdb_id": "9QEK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_gamma_metal_context_missing",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "A1I6Z",
+        "EDO"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P09769",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "269": 0,
+        "291": 0,
+        "382": 0
+      },
+      "entry_id": "uniprot:P09769",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "7JT9",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P09769",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "ambiguous_or_conflicting_direct_position_mapping",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "direct_position_matches_do_not_form_single_chain_mapping"
+      ],
+      "direct_position_match_counts": {
+        "269": 4,
+        "291": 4,
+        "382": 4
+      },
+      "entry_id": "uniprot:P09769",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "7UY0",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "direct_position_matches_do_not_form_single_chain_mapping",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "CL",
+        "CME",
+        "GOL",
+        "PO4",
+        "PTR",
+        "VSE"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P09769",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "struct_ref_seq_uniprot_position_mapping",
+      "direct_position_mapping_ready": true,
+      "direct_position_mapping_warnings": [],
+      "direct_position_match_counts": {
+        "269": 2,
+        "291": 2,
+        "382": 2
+      },
+      "entry_id": "uniprot:P09769",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "OJL"
+      ],
+      "local_resolved_residue_count": 3,
+      "mapped_residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "386",
+          "roles": [
+            "uniprot_active_site_feature"
+          ],
+          "uniprot_position": "382"
+        },
+        {
+          "chain_name": "A",
+          "code": "LEU",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "273",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "269"
+        },
+        {
+          "chain_name": "A",
+          "code": "LYS",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "295",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "291"
+        }
+      ],
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "pdb_id": "7UY3",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_gamma_metal_context_missing",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "EDO",
+        "GOL",
+        "OJL",
+        "PO4",
+        "PTR"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P0C1S8",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "struct_ref_seq_uniprot_position_mapping",
+      "direct_position_mapping_ready": true,
+      "direct_position_mapping_warnings": [],
+      "direct_position_match_counts": {
+        "218": 2,
+        "241": 2,
+        "339": 1
+      },
+      "entry_id": "uniprot:P0C1S8",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [
+        "8X7",
+        "PO4"
+      ],
+      "local_resolved_residue_count": 3,
+      "mapped_residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "339",
+          "roles": [
+            "uniprot_active_site_feature"
+          ],
+          "uniprot_position": "339"
+        },
+        {
+          "chain_name": "A",
+          "code": "ILE",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "218",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "218"
+        },
+        {
+          "chain_name": "A",
+          "code": "LYS",
+          "mapping_basis": "struct_ref_seq_alignment",
+          "resid": "241",
+          "roles": [
+            "uniprot_atp_binding_feature"
+          ],
+          "uniprot_position": "241"
+        }
+      ],
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "pdb_id": "5VDK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "local_gamma_metal_context_missing",
+        "protein_substrate_acceptor_not_source_mapped",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "8X7",
+        "PO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P14616",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "1013": 0,
+        "1115": 0,
+        "985": 0
+      },
+      "entry_id": "uniprot:P14616",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "7PL4",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P14616",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "1013": 0,
+        "1115": 0,
+        "985": 0
+      },
+      "entry_id": "uniprot:P14616",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "7TYJ",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P14616",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "1013": 0,
+        "1115": 0,
+        "985": 0
+      },
+      "entry_id": "uniprot:P14616",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "7TYK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P14616",
+      "countable_label_candidate": false,
+      "direct_position_mapping_basis": "missing_direct_position_matches",
+      "direct_position_mapping_ready": false,
+      "direct_position_mapping_warnings": [
+        "missing_uniprot_direct_position_matches"
+      ],
+      "direct_position_match_counts": {
+        "1013": 0,
+        "1115": 0,
+        "985": 0
+      },
+      "entry_id": "uniprot:P14616",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched_rcsb_cif",
+      "has_inactive_analog_ligand": false,
+      "has_local_gamma_capable_nucleotide": false,
+      "has_local_metal": false,
+      "lane_id": "tyrosine_protein_kinase_fourth_pass",
+      "local_cofactor_families": [],
+      "local_ligand_codes": [],
+      "local_resolved_residue_count": 0,
+      "mapped_residue_positions": [],
+      "mapping_review_status": "blocked_direct_position_mapping_ambiguous_or_missing_review_only",
+      "pdb_id": "7TYM",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "missing_uniprot_direct_position_matches",
+        "source_structure_mapping_not_conservative",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "requested_active_site_position_count": 1,
+      "requested_atp_binding_position_count": 2,
+      "requested_uniprot_position_count": 3,
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "External ePK structure mapping remains review-only and cannot support countable fingerprint expansion without acceptor mapping, thresholds, gates, and external re-audit."
+  ]
+}

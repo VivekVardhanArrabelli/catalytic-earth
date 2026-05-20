@@ -1,0 +1,375 @@
+{
+  "metadata": {
+    "active_gamma_metal_current_structure_count": 0,
+    "blocker_not_removed": [
+      "active_gamma_metal_context_missing",
+      "protein_substrate_acceptor_not_source_mapped",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "lower_priority_mapped_ligand_context_reviewed",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "ligand_sourcing_status_counts": {
+      "metal_without_gamma_needs_alternate_review_only": 3,
+      "non_atp_or_remote_ligand_context_needs_alternate_review_only": 5
+    },
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_external_source_lower_priority_ligand_sourcing_review",
+    "next_actions": [
+      "source active gamma/metal structures for O14730, P08922, P09769, P0C1S8 outside the current mapped rows",
+      "do not use inactive analog or remote ligand context as production positive evidence",
+      "only rerun acceptor mapping after a local active gamma/metal axis exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact reviews lower-priority mapped external ePK rows whose current structures lack a production-admissible local active gamma/metal axis. It does not score, import labels, or edit registries.",
+    "reviewed_row_count": 8,
+    "source_epk_external_protein_substrate_source_scout_method": "epk_external_protein_substrate_source_scout",
+    "source_epk_external_source_structure_mapping_review_method": "epk_external_source_structure_mapping_review",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "accession": "O14730",
+      "countable_label_candidate": false,
+      "current_scout_pdb_count": 3,
+      "current_structure_measurement_ready": false,
+      "entry_id": "uniprot:O14730",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_inactive_analog_ligand": false,
+      "ligand_sourcing_status": "metal_without_gamma_needs_alternate_review_only",
+      "local_cofactor_families": [],
+      "local_has_gamma_capable_nucleotide": false,
+      "local_has_metal": false,
+      "local_ligand_codes": [],
+      "mapped_residue_count": 3,
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "measurement_ready": false,
+      "pdb_id": "8ZDB",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "active_gamma_capable_nucleotide_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped"
+      ],
+      "remaining_current_scout_alternate_pdb_ids": [
+        "8ZDC",
+        "8ZDD"
+      ],
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_has_gamma_capable_nucleotide": false,
+      "structure_has_metal": true,
+      "structure_ligand_codes": [
+        "ZN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O14730",
+      "countable_label_candidate": false,
+      "current_scout_pdb_count": 3,
+      "current_structure_measurement_ready": false,
+      "entry_id": "uniprot:O14730",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_inactive_analog_ligand": false,
+      "ligand_sourcing_status": "metal_without_gamma_needs_alternate_review_only",
+      "local_cofactor_families": [],
+      "local_has_gamma_capable_nucleotide": false,
+      "local_has_metal": false,
+      "local_ligand_codes": [],
+      "mapped_residue_count": 3,
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "measurement_ready": false,
+      "pdb_id": "8ZDC",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "active_gamma_capable_nucleotide_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped"
+      ],
+      "remaining_current_scout_alternate_pdb_ids": [
+        "8ZDB",
+        "8ZDD"
+      ],
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_has_gamma_capable_nucleotide": false,
+      "structure_has_metal": true,
+      "structure_ligand_codes": [
+        "ZN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "O14730",
+      "countable_label_candidate": false,
+      "current_scout_pdb_count": 3,
+      "current_structure_measurement_ready": false,
+      "entry_id": "uniprot:O14730",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_inactive_analog_ligand": false,
+      "ligand_sourcing_status": "metal_without_gamma_needs_alternate_review_only",
+      "local_cofactor_families": [],
+      "local_has_gamma_capable_nucleotide": false,
+      "local_has_metal": false,
+      "local_ligand_codes": [],
+      "mapped_residue_count": 3,
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "measurement_ready": false,
+      "pdb_id": "8ZDD",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "active_gamma_capable_nucleotide_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped"
+      ],
+      "remaining_current_scout_alternate_pdb_ids": [
+        "8ZDB",
+        "8ZDC"
+      ],
+      "review_only": true,
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_has_gamma_capable_nucleotide": false,
+      "structure_has_metal": true,
+      "structure_ligand_codes": [
+        "ZN"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P08922",
+      "countable_label_candidate": false,
+      "current_scout_pdb_count": 5,
+      "current_structure_measurement_ready": false,
+      "entry_id": "uniprot:P08922",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_inactive_analog_ligand": false,
+      "ligand_sourcing_status": "non_atp_or_remote_ligand_context_needs_alternate_review_only",
+      "local_cofactor_families": [],
+      "local_has_gamma_capable_nucleotide": false,
+      "local_has_metal": false,
+      "local_ligand_codes": [
+        "VGH"
+      ],
+      "mapped_residue_count": 3,
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "measurement_ready": false,
+      "pdb_id": "3ZBF",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "active_gamma_metal_context_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped"
+      ],
+      "remaining_current_scout_alternate_pdb_ids": [
+        "4UXL",
+        "7Z5W",
+        "7Z5X",
+        "9QEK"
+      ],
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_has_gamma_capable_nucleotide": false,
+      "structure_has_metal": false,
+      "structure_ligand_codes": [
+        "VGH"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P08922",
+      "countable_label_candidate": false,
+      "current_scout_pdb_count": 5,
+      "current_structure_measurement_ready": false,
+      "entry_id": "uniprot:P08922",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_inactive_analog_ligand": false,
+      "ligand_sourcing_status": "non_atp_or_remote_ligand_context_needs_alternate_review_only",
+      "local_cofactor_families": [],
+      "local_has_gamma_capable_nucleotide": false,
+      "local_has_metal": false,
+      "local_ligand_codes": [
+        "5P8"
+      ],
+      "mapped_residue_count": 3,
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "measurement_ready": false,
+      "pdb_id": "4UXL",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "active_gamma_metal_context_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped"
+      ],
+      "remaining_current_scout_alternate_pdb_ids": [
+        "3ZBF",
+        "7Z5W",
+        "7Z5X",
+        "9QEK"
+      ],
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_has_gamma_capable_nucleotide": false,
+      "structure_has_metal": false,
+      "structure_ligand_codes": [
+        "5P8"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P08922",
+      "countable_label_candidate": false,
+      "current_scout_pdb_count": 5,
+      "current_structure_measurement_ready": false,
+      "entry_id": "uniprot:P08922",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_inactive_analog_ligand": false,
+      "ligand_sourcing_status": "non_atp_or_remote_ligand_context_needs_alternate_review_only",
+      "local_cofactor_families": [],
+      "local_has_gamma_capable_nucleotide": false,
+      "local_has_metal": false,
+      "local_ligand_codes": [
+        "A1I6Z"
+      ],
+      "mapped_residue_count": 3,
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "measurement_ready": false,
+      "pdb_id": "9QEK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "active_gamma_metal_context_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped"
+      ],
+      "remaining_current_scout_alternate_pdb_ids": [
+        "3ZBF",
+        "4UXL",
+        "7Z5W",
+        "7Z5X"
+      ],
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_has_gamma_capable_nucleotide": false,
+      "structure_has_metal": false,
+      "structure_ligand_codes": [
+        "A1I6Z",
+        "EDO"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P09769",
+      "countable_label_candidate": false,
+      "current_scout_pdb_count": 3,
+      "current_structure_measurement_ready": false,
+      "entry_id": "uniprot:P09769",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_inactive_analog_ligand": false,
+      "ligand_sourcing_status": "non_atp_or_remote_ligand_context_needs_alternate_review_only",
+      "local_cofactor_families": [],
+      "local_has_gamma_capable_nucleotide": false,
+      "local_has_metal": false,
+      "local_ligand_codes": [
+        "OJL"
+      ],
+      "mapped_residue_count": 3,
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "measurement_ready": false,
+      "pdb_id": "7UY3",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "active_gamma_metal_context_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped"
+      ],
+      "remaining_current_scout_alternate_pdb_ids": [
+        "7JT9",
+        "7UY0"
+      ],
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_has_gamma_capable_nucleotide": false,
+      "structure_has_metal": false,
+      "structure_ligand_codes": [
+        "EDO",
+        "GOL",
+        "OJL",
+        "PO4",
+        "PTR"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "accession": "P0C1S8",
+      "countable_label_candidate": false,
+      "current_scout_pdb_count": 1,
+      "current_structure_measurement_ready": false,
+      "entry_id": "uniprot:P0C1S8",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "has_inactive_analog_ligand": false,
+      "ligand_sourcing_status": "non_atp_or_remote_ligand_context_needs_alternate_review_only",
+      "local_cofactor_families": [],
+      "local_has_gamma_capable_nucleotide": false,
+      "local_has_metal": false,
+      "local_ligand_codes": [
+        "8X7",
+        "PO4"
+      ],
+      "mapped_residue_count": 3,
+      "mapping_review_status": "direct_position_mapping_ready_ligand_context_incomplete_review_only",
+      "measurement_ready": false,
+      "pdb_id": "5VDK",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "active_gamma_metal_context_missing",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "protein_substrate_acceptor_not_source_mapped"
+      ],
+      "remaining_current_scout_alternate_pdb_ids": [],
+      "review_only": true,
+      "structure_cofactor_families": [],
+      "structure_has_gamma_capable_nucleotide": false,
+      "structure_has_metal": false,
+      "structure_ligand_codes": [
+        "8X7",
+        "PO4"
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Lower-priority mapped external rows remain review-only because their current ligand axis is incomplete."
+  ]
+}

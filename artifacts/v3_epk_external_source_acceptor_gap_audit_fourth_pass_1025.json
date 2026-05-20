@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "acceptor_gap_status_counts": {},
+    "active_state_mapping_ready_input_count": 0,
+    "audited_structure_count": 0,
+    "blocker_not_removed": [
+      "protein_substrate_acceptor_not_source_mapped",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "external_epk_source_acceptor_gap_audited",
+    "candidate_threshold_angstrom": 6.0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_candidate_count": 0,
+    "method": "epk_external_source_acceptor_gap_audit",
+    "next_actions": [
+      "source protein-substrate acceptor evidence for Q8IVT5 before any distance claim",
+      "if no source-mapped acceptor exists, continue external source mapping to the next scout accession",
+      "keep the ePK scorer and external hard-negative re-audit closed"
+    ],
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact tests whether active-state mapped external ePK source leads have source-usable acceptor geometry. Nearby same-chain hydroxyls or unsourced non-catalytic hydroxyls are not production acceptor evidence.",
+    "source_epk_external_source_structure_mapping_review_method": "epk_external_source_structure_mapping_review",
+    "source_mapped_acceptor_count": 0,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [],
+  "warnings": [
+    "External active-state mapping does not become measurement-ready until the protein-substrate acceptor is source-mapped."
+  ]
+}
